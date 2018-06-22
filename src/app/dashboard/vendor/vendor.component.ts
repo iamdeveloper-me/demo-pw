@@ -15,12 +15,12 @@ export interface Chart {
 }
 
 @Component({
-    selector: 'app-dashboard1',
-    templateUrl: './dashboard1.component.html',
-    styleUrls: ['./dashboard1.component.scss']
+    selector: 'app-vendor',
+    templateUrl: './vendor.component.html',
+    styleUrls: ['./vendor.component.scss']
 })
 
-export class Dashboard1Component {
+export class VendorComponent {
 
     // Line area chart configuration Starts
     lineArea: Chart = {

@@ -16,12 +16,12 @@ export interface Chart {
 }
 
 @Component({
-    selector: 'app-dashboard2',
-    templateUrl: './dashboard2.component.html',
-    styleUrls: ['./dashboard2.component.scss']
+    selector: 'app-user',
+    templateUrl: './user.component.html',
+    styleUrls: ['./user.component.scss']
 })
 
-export class Dashboard2Component {
+export class UserComponent {
     // Line chart configuration Starts
     WidgetlineChart: Chart = {
         type: 'Line', data: data['WidgetlineChart2'],

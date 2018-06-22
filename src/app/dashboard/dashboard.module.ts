@@ -6,9 +6,9 @@ import { ChartistModule } from 'ng-chartist';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatchHeightModule } from "../shared/directives/match-height.directive";
 
-import { Dashboard1Component } from "./dashboard1/dashboard1.component";
-import { Dashboard2Component } from "./dashboard2/dashboard2.component";
-
+import { VendorComponent } from "./vendor/vendor.component";
+import { UserComponent } from "./user/user.component";
+import { AdminComponent } from "./admin/admin.component";
 
 @NgModule({
     imports: [
@@ -20,8 +20,9 @@ import { Dashboard2Component } from "./dashboard2/dashboard2.component";
     ],
     exports: [],
     declarations: [
-        Dashboard1Component,
-        Dashboard2Component
+        VendorComponent,
+        UserComponent,
+        AdminComponent
     ],
     providers: [],
 })

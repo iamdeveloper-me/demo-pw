@@ -7,13 +7,6 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive"
 
 import { GridsComponent } from "./grids/grids.component";
 import { TypographyComponent } from "./typography/typography.component";
-import { HelperClassesComponent } from "./helper-classes/helper-classes.component";
-import { SyntaxHighlighterComponent } from "./syntax-highlighter/syntax-highlighter.component";
-import { TextUtilitiesComponent } from "./text-utilities/text-utilities.component";
-import { FeatherComponent } from './icons/feather/feather.component';
-import { FontAwesomeComponent } from './icons/font-awesome/font-awesome.component';
-import { SimpleLineComponent } from './icons/simple-line/simple-line.component';
-;
 
 @NgModule({
     imports: [
@@ -25,13 +18,7 @@ import { SimpleLineComponent } from './icons/simple-line/simple-line.component';
     ],
     declarations: [
         GridsComponent,
-        TypographyComponent,
-        HelperClassesComponent,
-        SyntaxHighlighterComponent,
-        TextUtilitiesComponent,
-        FeatherComponent,
-        FontAwesomeComponent,
-        SimpleLineComponent
+        TypographyComponent
     ]
 })
 export class UIKitModule { }

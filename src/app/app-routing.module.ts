@@ -18,7 +18,7 @@ const appRoutes: Routes = [
 
   {
     path: '',
-    redirectTo: 'dashboard/dashboard1',
+    redirectTo: 'dashboard/vendor',
     pathMatch: 'full',
   },
   { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES, canActivate: [AuthGuard] },

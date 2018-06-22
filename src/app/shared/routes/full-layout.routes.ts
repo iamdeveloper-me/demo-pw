@@ -12,10 +12,6 @@ export const Full_ROUTES: Routes = [
     loadChildren: './calendar/calendar.module#CalendarsModule'
   },
   {
-    path: 'charts',
-    loadChildren: './charts/charts.module#ChartsNg2Module'
-  },
-  {
     path: 'forms',
     loadChildren: './forms/forms.module#FormModule'
   },
@@ -46,10 +42,6 @@ export const Full_ROUTES: Routes = [
   {
     path: 'cards',
     loadChildren: './cards/cards.module#CardsModule'
-  },
-  {
-    path: 'colorpalettes',
-    loadChildren: './color-palette/color-palette.module#ColorPaletteModule'
   },
   {
     path: 'chat',

@@ -24,6 +24,12 @@ import { AuthGuard } from './shared/auth/auth-guard.service';
 import * as $ from 'jquery';
 import { HomeComponent } from './home/home.component';
 import { LoginPageComponent } from './login/login-page.component';
+import { MenuComponent } from './menu/menu.component';
+import { BannerComponent } from './banner/banner.component';
+import { FootComponent } from './foot/foot.component';
+import { VendorcardComponent } from './vendorcard/vendorcard.component';
+
+
 
 
 
@@ -37,8 +43,12 @@ export function createTranslateLoader(http: HttpClient) {
         FullLayoutComponent,
         ContentLayoutComponent,
         HomeComponent,
-        LoginPageComponent
-    ],
+        LoginPageComponent,
+        MenuComponent,
+        BannerComponent,
+        FootComponent,
+        VendorcardComponent
+  ],
     imports: [
         BrowserAnimationsModule,
         StoreModule.forRoot({}),

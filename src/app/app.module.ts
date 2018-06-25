@@ -15,6 +15,7 @@ import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { ContentLayoutComponent } from "./layouts/content/content-layout.component";
 import { FullLayoutComponent } from "./layouts/full/full-layout.component";
+import { FormsModule } from '@angular/forms';
 
 import { DragulaService } from 'ng2-dragula';
 import { AuthService } from './shared/auth/auth.service';
@@ -22,6 +23,7 @@ import { AuthGuard } from './shared/auth/auth-guard.service';
 
 import * as $ from 'jquery';
 import { HomeComponent } from './home/home.component';
+import { LoginPageComponent } from './login/login-page.component';
 
 
 
@@ -34,12 +36,14 @@ export function createTranslateLoader(http: HttpClient) {
         AppComponent,
         FullLayoutComponent,
         ContentLayoutComponent,
-        HomeComponent
+        HomeComponent,
+        LoginPageComponent
     ],
     imports: [
         BrowserAnimationsModule,
         StoreModule.forRoot({}),
         AppRoutingModule,
+        FormsModule,
         SharedModule,
         HttpClientModule,
         ToastrModule.forRoot(),

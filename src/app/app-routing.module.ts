@@ -9,13 +9,14 @@ import { CONTENT_ROUTES } from "./shared/routes/content-layout.routes";
 
 import { AuthGuard } from './shared/auth/auth-guard.service';
 import { HomeComponent } from './home/home.component';
+import { LoginPageComponent } from './login/login-page.component';
 
-
+import { FormsModule } from '@angular/forms';
 
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-
+  { path: 'home/login', component: LoginPageComponent }, 
   {
     path: '',
     redirectTo: 'dashboard/vendor',

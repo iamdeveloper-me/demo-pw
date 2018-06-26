@@ -20,17 +20,12 @@ import { FormsModule } from '@angular/forms';
 import { DragulaService } from 'ng2-dragula';
 import { AuthService } from './shared/auth/auth.service';
 import { AuthGuard } from './shared/auth/auth-guard.service';
-
 import * as $ from 'jquery';
 import { HomeComponent } from './home/home.component';
-import { LoginPageComponent } from './login/login-page.component';
 import { MenuComponent } from './menu/menu.component';
 import { BannerComponent } from './banner/banner.component';
 import { FootComponent } from './foot/foot.component';
 import { VendorcardComponent } from './vendorcard/vendorcard.component';
-
-
-
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -42,13 +37,11 @@ export function createTranslateLoader(http: HttpClient) {
         FullLayoutComponent,
         ContentLayoutComponent,
         HomeComponent,
-        LoginPageComponent,
         MenuComponent,
         BannerComponent,
         FootComponent,
-        VendorcardComponent
+        VendorcardComponent,
   ],
-
     imports: [
         BrowserAnimationsModule,
         StoreModule.forRoot({}),
@@ -76,4 +69,5 @@ export function createTranslateLoader(http: HttpClient) {
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

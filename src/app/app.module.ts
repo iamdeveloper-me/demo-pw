@@ -27,10 +27,36 @@ import { BannerComponent } from './banner/banner.component';
 import { FootComponent } from './foot/foot.component';
 import { VendorcardComponent } from './vendorcard/vendorcard.component';
 
+import {
+    SocialLoginModule,
+    AuthServiceConfig,
+    GoogleLoginProvider,
+    FacebookLoginProvider,
+} from "angular5-social-login";
+
+
+
+
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
   }
 
+export function getAuthServiceConfigs() {
+    let config = new AuthServiceConfig(
+        [
+            {
+                id: FacebookLoginProvider.PROVIDER_ID,
+                // provider: new FacebookLoginProvider("561602290896109")
+                provider: new FacebookLoginProvider("2098318490445607")
+            },
+            {
+                id: GoogleLoginProvider.PROVIDER_ID,
+                provider: new GoogleLoginProvider("977298696650-9luhrfn2v8ahm7r7qsqgd7qf2v1ljmit.apps.googleusercontent.com")
+            },
+        ]
+);
+    return config;
+}
 @NgModule({
     declarations: [
         AppComponent,
@@ -49,6 +75,7 @@ export function createTranslateLoader(http: HttpClient) {
         FormsModule,
         SharedModule,
         HttpClientModule,
+        SocialLoginModule,
         ToastrModule.forRoot(),
         NgbModule.forRoot(),
         TranslateModule.forRoot({
@@ -65,7 +92,11 @@ export function createTranslateLoader(http: HttpClient) {
     providers: [
         AuthService,
         AuthGuard,
-        DragulaService
+        DragulaService,
+        {
+            provide: AuthServiceConfig,
+            useFactory: getAuthServiceConfigs
+        }
     ],
     bootstrap: [AppComponent]
 })

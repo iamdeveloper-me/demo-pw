@@ -25,6 +25,7 @@ import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { BannerComponent } from './banner/banner.component';
 import { FootComponent } from './foot/foot.component';
+import { LoginComponent } from './login/login.component';
 import { VendorcardComponent } from './vendorcard/vendorcard.component';
 
 import {
@@ -33,6 +34,8 @@ import {
     GoogleLoginProvider,
     FacebookLoginProvider,
 } from "angular5-social-login";
+
+import {RegisterComponent} from './register/register.component';
 
 
 
@@ -66,6 +69,8 @@ export function getAuthServiceConfigs() {
         MenuComponent,
         BannerComponent,
         FootComponent,
+        LoginComponent,
+        RegisterComponent,
         VendorcardComponent,
   ],
     imports: [

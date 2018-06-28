@@ -1,11 +1,6 @@
 import { TemplateRef } from '@angular/core';
-import { Component,  OnInit ,Input} from '@angular/core';
+import { Component,  OnInit , Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import {
-    AuthService,
-    FacebookLoginProvider,
-    GoogleLoginProvider
-} from 'angular5-social-login';
 
 @Component({
   selector: 'ngbd-modal-content',
@@ -42,22 +37,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
   }
 
-    constructor( private socialAuthService: AuthService ,private modalService: NgbModal) {}
-
-    public socialSignIn(socialPlatform : string) {
-        let socialPlatformProvider;
-        if(socialPlatform == "facebook"){
-            socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-        }else if(socialPlatform == "google"){
-            socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-        }
-
-        this.socialAuthService.signIn(socialPlatformProvider).then(
-            (userData) => {
-                console.log(socialPlatform+" sign in data : " , userData)
-            }
-        );
-    }
+    constructor(  private modalService: NgbModal) {}
   closeResult: string;
   // Open default modal
   open(content) {

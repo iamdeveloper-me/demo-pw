@@ -34,33 +34,22 @@
     </div>
 </nav>
 <!--Modal Login content start-->
+
 <ng-template #loginContent let-c="close" let-d="dismiss">
-        <!-- <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button> -->
-    
     <div class="modal-body logincontainer">
-
         <app-login></app-login>
-        <!--Registration Page Ends-->
     </div>
-    
 </ng-template>
-
 <!--Modal signup content start-->
 <ng-template #signupContent let-c="close" let-d="dismiss">
-  
-    
     <div class="modal-body">
+        <div class="modal-header">
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
         <app-register></app-register>
-        <!--Registration Page Ends-->
     </div>
-   
 </ng-template>
-
 <!--Modal signup content end-->
-
-
-
-
 <router-outlet></router-outlet>

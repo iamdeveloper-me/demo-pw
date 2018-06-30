@@ -4,13 +4,12 @@
           <div class="card-img overlap loginhead">
             <h1>Log in</h1>
             <div class="loginsocial">
-              <a href="#"><i class="fa fa-facebook"></i></a>
+              <a  (click)="socialSignIn('facebook')"><i class="fa fa-facebook"></i></a>
               <a href="#"><i class="fa fa-twitter"></i></a>
-              <a href="#"><i class="fa fa-google-plus"></i></a>
+              <a (click)="socialSignIn('google')"><i class="fa fa-google-plus"></i></a>
             </div>
              </div>
           <div class="card-body loginbody">
-            
               <form novalidate="" (ngSubmit)="onSubmit()" #f="ngForm">
                   <div class="form-group">
                       <div class="col-md-12">
@@ -24,39 +23,39 @@
                     <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Email" ngModel required email>
                   </div>
                 </div>
-
                 <div class="form-group">
                   <div class="col-md-12">
                       <i class="material-icons">lock_outline</i>
                     <input type="password" class="form-control" name="inputPass" id="inputPass" placeholder="Password" ngModel required>
                   </div>
                 </div>
-
-                <!-- <div class="form-group">
-                    <div class="col-md-12">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" checked id="rememberme">
-                        <label class="custom-control-label float-left" for="rememberme">Remember Me</label>
-                      </div>
-                    </div>
-                </div> -->
-
                 <div class="form-group">
                   <div class="col-md-12">
                     <button type="submit" class="textbtn">Lets Go</button>
                     </div>
                 </div>
               </form>
-           
           </div>
-          <!-- <div class="card-footer">
-            <div class="float-left"><a (click)="onForgotPassword()" class="white">Recover Password</a></div>
-            <div class="float-right"><a (click)="onRegister()" class="white">New User?</a></div>
-          </div> -->
+          <div class="card-footer">
+            <div class="float-right"><a id="hide" (click)="open(signupContent)" class="red">New User?</a></div>
+          </div>
         </div>
       </div>
 </section>
 
+<!--Modal signup content start-->
+<ng-template #signupContent let-c="close" let-d="dismiss">
+  <div class="modal-body">
+      <div class="modal-header">
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <app-register></app-register>
+      <!--Registration Page Ends-->
+  </div>
+ </ng-template>
+<!--Modal signup content end-->
 
 
 

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {
-    AuthService,
-    FacebookLoginProvider,
-    GoogleLoginProvider
-} from 'angular5-social-login';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+
+
+
+
 
 @Component({
   selector: 'app-register',
@@ -15,21 +14,11 @@ export class RegisterComponent implements OnInit {
 
 
 
-  ngOnInit() {
+  ngOnInit() {    $.getScript('./assets/register/js/jquery-2.2.4.min.js');
+                  $.getScript('./assets/register/js/bootstrap.min.js');
+                  $.getScript('./assets/register/js/jquery.bootstrap.js');
+                  $.getScript('./assets/register/js/jquery.validate.min.js');
+                  $.getScript('./assets/register/js/material-bootstrap-wizard.js');
   }
-    constructor( private socialAuthService: AuthService ) {}
-
-    public socialSignIn(socialPlatform : string) {
-        let socialPlatformProvider;
-        if(socialPlatform == "facebook"){
-            socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-        }else if(socialPlatform == "google"){
-            socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-        }
-
-        this.socialAuthService.signIn(socialPlatformProvider).then(
-            (userData) => {console.log(socialPlatform+" sign in data : " , userData)
-            }
-        );
-    }
+    constructor( ) {}
 }

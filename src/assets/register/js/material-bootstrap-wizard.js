@@ -153,9 +153,6 @@ $(document).ready(function(){
     $('.set-full-height').css('height', 'auto');
 
 });
-
-
-
  //Function to show image before upload
 
 function readURL(input) {

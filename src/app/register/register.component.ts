@@ -1,24 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-
-
-
-
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
-
-
+export class RegisterComponent  {
 
   ngOnInit() {    $.getScript('./assets/register/js/jquery-2.2.4.min.js');
                   $.getScript('./assets/register/js/bootstrap.min.js');
                   $.getScript('./assets/register/js/jquery.bootstrap.js');
                   $.getScript('./assets/register/js/jquery.validate.min.js');
                   $.getScript('./assets/register/js/material-bootstrap-wizard.js');
+                  $.getScript('./assets/js/hideshow.js');
   }
     constructor( ) {}
+
+    loadScript(){
+      this.ngOnInit();
+    }
+  
 }

@@ -16,6 +16,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     $.getScript('./assets/js/hideshow.js');
   }
+  loadScript(){
+    this.ngOnInit();
+  }
   constructor( private socialAuthService: AuthService ,private modalService: NgbModal ) {}
   closeResult: string;
   // Open default modal

@@ -77,4 +77,149 @@
   .text-primary {
     color: #F05F40 !important;
   }
-  
+  //----------------------------gallery css ------------
+
+
+  body {
+    background-image: linear-gradient(to top, #ecedee 0%, #eceeef 75%, #e7e8e9 100%);
+    min-height: 100vh;
+    font: normal 16px sans-serif;
+    padding: 60px 0;
+}
+
+.container.gallery-container {
+    background-color: #fff;
+    color: #35373a;
+    min-height: 100vh;
+    border-radius: 20px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.06);
+}
+
+.gallery-container h1 {
+    text-align: center;
+    margin-top: 70px;
+    font-family: 'Droid Sans', sans-serif;
+    font-weight: bold;
+}
+
+.gallery-container p.page-description {
+    text-align: center;
+    max-width: 800px;
+    margin: 25px auto;
+    color: #888;
+    font-size: 18px;
+}
+
+.tz-gallery {
+    padding: 40px;
+}
+
+.tz-gallery .lightbox img {
+    width: 100%;
+    margin-bottom: 30px;
+    transition: 0.2s ease-in-out;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+}
+
+
+.tz-gallery .lightbox img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+.tz-gallery img {
+    border-radius: 4px;
+}
+
+.baguetteBox-button {
+    background-color: transparent !important;
+}
+
+
+@media(max-width: 768px) {
+    body {
+        padding: 0;
+    }
+
+    .container.gallery-container {
+        border-radius: 0;
+    }
+}
+//tool
+.homeTools__item:hover {
+  color: #fb1b26;
+}
+
+.homeTools__item {
+  color: #444;
+  cursor: pointer;
+}
+.pure-u-1-5, .pure-u-2-10 {
+  width: 20%;
+}
+
+.app-link {
+  cursor: pointer;
+}
+.pure-g {
+  letter-spacing: -.32em;
+  text-rendering: optimizespeed;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.wrapper {
+  max-width: 1200px;
+  min-width: 950px;
+  margin: 0 auto;
+  padding: 15px;
+  display: block;
+}
+
+.homeTools {
+  text-align: center;
+  padding: 10px 0 25px;
+  background: #fff;
+}
+
+pure-u-1, .pure-u-1-10, .pure-u-1-11, .pure-u-1-12, .pure-u-1-13, .pure-u-1-14, .pure-u-1-15, .pure-u-1-16, .pure-u-1-17, .pure-u-1-2, .pure-u-1-24, .pure-u-1-3, .pure-u-1-4, .pure-u-1-5, .pure-u-1-6, .pure-u-1-7, .pure-u-1-8, .pure-u-1-9, .pure-u-10-12, .pure-u-11-12, .pure-u-11-24, .pure-u-13-24, .pure-u-14-15, .pure-u-15-16, .pure-u-16-17, .pure-u-17-24, .pure-u-19-24, .pure-u-2-10, .pure-u-2-12, .pure-u-2-3, .pure-u-2-4, .pure-u-2-5, .pure-u-2-6, .pure-u-2-7, .pure-u-2-8, .pure-u-2-9, .pure-u-22-24, .pure-u-23-24, .pure-u-3-10, .pure-u-3-12, .pure-u-3-4, .pure-u-3-5, .pure-u-3-6, .pure-u-3-7, .pure-u-3-8, .pure-u-3-9, .pure-u-4-10, .pure-u-4-12, .pure-u-4-24, .pure-u-4-5, .pure-u-4-6, .pure-u-4-7, .pure-u-4-8, .pure-u-5-10, .pure-u-5-12, .pure-u-5-24, .pure-u-5-6, .pure-u-5-7, .pure-u-5-8, .pure-u-6-10, .pure-u-6-7, .pure-u-6-8, .pure-u-7-10, .pure-u-7-12, .pure-u-7-24, .pure-u-7-8, .pure-u-7-9, .pure-u-8-10, .pure-u-8-9, .pure-u-9-10, .pure-u-9-12 {
+  box-sizing: border-box;
+  display: inline-block;
+  letter-spacing: normal;
+  word-spacing: normal;
+  vertical-align: top;
+  text-rendering: auto;
+}
+.homeTools__itemIcon--myvendors {
+  background-position: 50% 0;
+}
+
+.homeTools__itemIcon {
+  background: url(https://cdn1.weddingwire.in/assets/img/home/sprite_tools.svg?v=1) no-repeat scroll 50% 0 transparent;
+      background-position-x: 50%;
+      background-position-y: 0px;
+      background-size: auto auto;
+  background-size: 60%;
+  width: 90px;
+  height: 70px;
+  margin: 5px auto 0;
+  display: block;
+}
+.homeTools__itemIcon--guests {
+  background-position: 50% -330px;
+}
+.homeTools__itemIcon--checklist {
+  background-position: 50% -120px;
+}
+.homeTools__itemIcon--budget {
+  background-position: 50% -230px;
+}
+.homeTools__itemIcon--wedsite {
+  background-position: 50% -445px;
+}
+.h4 {
+  font-size: 22px;
+}
+.h3{font-weight: 400;}

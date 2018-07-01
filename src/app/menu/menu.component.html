@@ -1,38 +1,40 @@
-<nav class="navbar navbar-expand-lg navbar-light  headernav" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Wedding</a>
+<div >
+    <nav class="navbar navbar-expand-lg navbar-light  headernav " id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">Wedding</a>
 
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#about">Wedding Suppliers</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#services">Photos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#portfolio">Tips & Articles</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#contact">Events</a>
-                </li>
-                <li class="nav-item">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#about">Wedding Suppliers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#services">Photos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#portfolio">Tips & Articles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#contact">Events</a>
+                    </li>
+                    <li class="nav-item">
 
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" (click)="open(loginContent)">login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" (click)="open(signupContent)">signup</a>
-                </li>
-            </ul>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" (click)="open(loginContent)">login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" (click)="open(signupContent)">signup</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</div>    
 <!--Modal Login content start-->
 
 <ng-template #loginContent let-c="close" let-d="dismiss">

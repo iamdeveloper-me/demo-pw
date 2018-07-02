@@ -24,6 +24,8 @@
                     </li>
                     <li class="nav-item">
 
+
+
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" (click)="open(loginContent)">login</a>
                     </li>
@@ -37,12 +39,13 @@
 </div>    
 <!--Modal Login content start-->
 
+
 <ng-template #loginContent let-c="close" let-d="dismiss">
     <div class="modal-body logincontainer">
         <app-login></app-login>
     </div>
 </ng-template>
-<!--Modal signup content start-->
+
 <ng-template #signupContent let-c="close" let-d="dismiss">
     <div class="modal-body">
         <div class="modal-header">
@@ -55,3 +58,5 @@
 </ng-template>
 <!--Modal signup content end-->
 <router-outlet></router-outlet>
+
+

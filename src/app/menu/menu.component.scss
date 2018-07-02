@@ -102,6 +102,69 @@ color: #ffffff;
   }
     /* End PopUp css signUP */
 
+    .dropdown:hover>.dropdown-menu {
+      display: block;
+    }
+    
+    .dropdown>.dropdown-toggle:active {
+      /*Without this, clicking will make it sticky*/
+        pointer-events: none;
+    }
+.dropdown-menu ul{
+  margin: 0%;
+  padding: 0%;
+}
+.dropdown-menu{
+  width:100%;min-width: 600px;
+}
+.dropdown-menu ul li{
+  list-style-type: none;
+}
+.dropdown-menu ul li a i{
+  margin-right: 15px;
+}
+.are_you{
+        width: 100%;
+         border-top: 1px solid #d7d7d7;
+        padding: 10px;
+        margin-top: 30px;
+        
+      }
+       .are_you .vendo{
+         padding: 0%;
+         margin: 0%;
+         margin-left: 20px;
+       }
+       .are_you .regi{
+         padding: 0%;
+         margin: 0%;
+         text-align: right;
+        margin-right: 20px;
+        
+       }
+      .are_you .regi a{
+        padding: 0%;
+         margin: 0%;
+        
+       color: #e72e77;
+      }
+     
+      .dropdown-menu ul li a:hover{
+        background-color:unset !important;
+         color: #e72e77 !important;
+       }
+
+       @media (max-width:767px){
+        .navbar-nav > li {
+          float: left;
+          width: 100%;
+          text-align: left;
+      }
+      .dropdown-menu ul li a:hover{
+        background-color:unset !important;
+         color: #e72e77 !important;
+       }
+  }
 
 
 
@@ -153,3 +216,4 @@ dark-modal .modal-content {
 .dark-modal .close {
   color: white;
 }
+

@@ -16,8 +16,11 @@ export class NgbdModalContent {
 
 export class MenuComponent implements OnInit {
 
-  ngOnInit() {
-  }
+
+    ngOnInit() {    
+        $.getScript('./assets/register/js/jquery-2.2.4.min.js');
+        $.getScript('./assets/register/js/bootstrap.min.js');
+    }
 
     constructor(  private modalService: NgbModal) {}
   closeResult: string;

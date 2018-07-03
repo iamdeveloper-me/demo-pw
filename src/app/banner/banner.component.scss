@@ -123,8 +123,8 @@ img::-moz-selection {
 #mainNav .navbar-nav > li.nav-item > a.nav-link:focus.active:hover {
   background-color: transparent;
 }
-.no-gutters{
-  padding-left: 110px !important;
+.searchbar{
+  max-width: 800px;
 }
 
 @media (min-width: 992px) {
@@ -194,51 +194,6 @@ header.masthead p {
   font-weight: 300;
 }
 
-@media (min-width: 768px) {
-  header.masthead p {
-    font-size: 1.15rem;
-  }
-}
-@media (max-width: 767px){
-  .form-group{
-      padding-bottom: 0px; 
-     margin: 0px 0 0 0;
-     }
-     .padd_bottom{
-       margin-bottom: 0px;
-       border-bottom: 1px solid #ccc;
-     }
-     header.masthead[_ngcontent-c2]{
-       padding-bottom: 2rem;
-       padding-top: 2rem;
-     }
-     .section-heading[_ngcontent-c2]{
-       font-size: 20px;
-     }
-     header.masthead[_ngcontent-c2] p[_ngcontent-c2]{
-      margin-bottom: 0.25rem !important;
-      font-size: 14px;
-     }
-
-}
-
-@media (min-width: 992px) {
-  header.masthead {
-    
-    min-height: 500px;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-  header.masthead h1 {
-    font-size: 3rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  header.masthead h1 {
-    font-size: 4rem;
-  }
-}
 
 .service-box {
   max-width: 400px;
@@ -332,15 +287,6 @@ header.masthead p {
   outline: none;
 }
 
-@media (min-width: 768px) {
-  .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
-    font-size: 16px;
-  }
-  .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
-    font-size: 22px;
-  }
-}
-
 .text-primary {
   color: #F05F40 !important;
 }
@@ -369,4 +315,72 @@ header.masthead p {
 
 .btn-primary:active, .btn-primary:focus {
   box-shadow: 0 0 0 0.2rem rgba(240, 95, 64, 0.5) !important;
+}
+.popularsearchbar{
+  padding-left: 0px !important;
+}
+
+@media (min-width: 1200px) {
+  header.masthead h1 {
+    font-size: 4rem;
+  }
+}
+@media (min-width: 992px) {
+  header.masthead {
+    
+    min-height: 500px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  header.masthead h1 {
+    font-size: 3rem;
+  }
+}
+@media (max-width: 767px){
+  .form-group{
+      padding-bottom: 0px; 
+     margin: 0px 0 0 0;
+     }
+     .padd_bottom{
+       margin-bottom: 0px;
+       border-bottom: 1px solid #ccc;
+     }
+     header.masthead{
+       padding-bottom: 2rem;
+       padding-top: 5rem;
+     }
+     .section-heading{
+       font-size: 20px;
+     }
+     header.masthead p{
+      margin-bottom: 0.25rem !important;
+      font-size: 14px;
+     }
+     .searchbar .form-group{
+      display:block;
+    }
+    .form-group .form-control{
+      margin-bottom:0px;
+    }
+    .popularsearchbar a{
+      font-size: 14px;
+     
+    }
+    .popularsearchbar{
+      padding-left: 16px !important;
+      margin-top: 10px;
+    }
+}
+
+@media (min-width: 768px) {
+  .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
+    font-size: 16px;
+  }
+  .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
+    font-size: 22px;
+  }
+  header.masthead p {
+    font-size: 1.15rem;
+  }
+
 }

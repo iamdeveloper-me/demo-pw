@@ -9,16 +9,34 @@ import { CONTENT_ROUTES } from "./shared/routes/content-layout.routes";
 
 import { AuthGuard } from './shared/auth/auth-guard.service';
 import { HomeComponent } from './home/home.component';
-
-
-
+import { VendorComponent } from './vendor/vendor.component';
+import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
+import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.component';
+import { ChatComponent } from "./vendor/chat/chat.component";
+import { MylistingComponent } from './vendor/mylisting/mylisting.component';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  {
-    path: '',
-    redirectTo: 'dashboard/vendor',
-    pathMatch: 'full',
-  },
+  { path: 'vendor', component:  VendorComponent  },
+  { path: 'vendor/dashboard', component:  DashboardComponent  },
+  { path: 'vendor/profile', component:  VendorprofileComponent  },
+  { path: 'vendor/chat', component:  ChatComponent },
+  { path: 'vendor', children:   [  
+     { path: 'list', component: MylistingComponent },
+ 
+      ]},
+
+
+  // {
+  //   path: 'home/vendor',
+  //   redirectTo: 'dashboard/vendor',
+  //   pathMatch: 'full',
+  // },
+  // {
+  //   path: 'home/user',
+  //   redirectTo: 'dashboard/user',
+  //   pathMatch: 'full',
+  // }, 
+  
   { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES, canActivate: [AuthGuard] },
   { path: '', component: ContentLayoutComponent, data: { title: 'content Views' }, children: CONTENT_ROUTES, canActivate: [AuthGuard] },
 ];

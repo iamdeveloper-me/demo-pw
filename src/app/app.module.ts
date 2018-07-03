@@ -32,6 +32,7 @@ import { MylistingComponent } from './vendor/mylisting/mylisting.component';
 import { NavemenuComponent } from './vendor/navemenu/navemenu.component';
 import { ChatComponent } from "./vendor/chat/chat.component";
 import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.component';
+import { EditprofileComponent } from './vendor/editprofile/editprofile.component';
 import {
     SocialLoginModule,
     AuthServiceConfig,
@@ -41,8 +42,8 @@ import {
 
 import {RegisterComponent} from './register/register.component';
 import { VendorComponent } from './vendor/vendor.component';
-
-
+import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
+import { GalleryComponent } from './vendor/gallery/gallery.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -82,7 +83,11 @@ export function getAuthServiceConfigs() {
         NavemenuComponent,
         VendorprofileComponent,
         ChatComponent,
-        MylistingComponent
+        MylistingComponent,
+        MyaccountComponent,
+        EditprofileComponent,
+        GalleryComponent
+
   ],
     imports: [
         BrowserAnimationsModule,

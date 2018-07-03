@@ -45,7 +45,7 @@
   }
   .headernav{
     background: rgba(0,46,119, 0.5)!important;
-    position: absolute;
+    position: fixed;
     width: 100%;
   
   }
@@ -161,22 +161,13 @@ color: #ffffff;
          color: #e72e77 !important;
        }
     
-
-       @media (max-width:767px){
-        .navbar-nav > li {
-          float: left;
-          width: 100%;
-          text-align: left;
+       dark-modal .modal-content {
+        background-color: #292b2c;
+        color: white;
       }
-      .dropdown-menu ul li a:hover{
-        background-color:unset !important;
-         color: #e72e77 !important;
-       }
-      
-  }
-
-
-
+      .dark-modal .close {
+        color: white;
+      }
   @media (min-width: 992px) {
     #mainNav {
       border-color: transparent;
@@ -184,6 +175,7 @@ color: #ffffff;
     }
     #mainNav .navbar-brand {
       color: rgba(255, 255, 255, 0.7);
+      line-height: 40px;
     }
     #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
       color: #fff;
@@ -218,14 +210,123 @@ color: #ffffff;
       color: #F05F40;
     }
   }
-dark-modal .modal-content {
-  background-color: #292b2c;
-  color: white;
-}
-.dark-modal .close {
-  color: white;
-}
+
+  @media (max-width:767px){
+    #mainNav .container::before,#mainNav .container::after{
+      display: none;
+    }
+    #mainNav .navbar-brand{
+      float: left;
+      line-height: 40px;
+      padding-left: 0px;
+      color: #ffffff;
+    }
+    .navbar-light .navbar-toggler-icon {
+      background-image: none!important;
+      background: #ffffff;
+      height: 2px;
+      border-radius: 5px;
+      margin: 5px 0px;
+      display: block;
+  }
+    .navbar-nav > li {
+      float: left;
+      width: 100%;
+      text-align: left;
+  }
+  .dropdown-menu ul li a:hover{
+    background-color:unset !important;
+     color: #e72e77 !important;
+   }
+   .navbar-collapse{
+    background: #ffffff!important;
+  }
+  .navbar-collapse{
+    overflow: hidden;
+  }
+  .dropdown-menu{
+    z-index: 99999;
+  }
+  }
+  
 
 
 
 
+//   .fmc-dropdown-perspective{
+//     display: inline-block;
+//     position: relative;
+    
+//     width: 100%;
+//     padding: 0;
+//     margin: 0;
+//     list-style-type: none;
+//     -webkit-perspective: 500px;
+//     -moz-perspective: 500px;
+//     -ms-perspective: 500px;
+//     perspective: 500px;
+// }
+// .fmc-dropdown-perspective li{
+//     display: block;
+// }
+// .fmc-dropdown-perspective li a{
+//     padding: 12px 16px;
+//     display: block;
+//     color: rgba(255,255,255, 0.9);
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     white-space: nowrap;
+// }
+// .fmc-dropdown-perspective li:hover{
+//     -webkit-box-shadow: inset 5px 0 crimson;
+//     box-shadow: inset 5px 0 crimson;
+// }
+// .fmc-dropdown-content-perspective{
+//     visibility: hidden;
+//     opacity: 0;
+//     position: absolute;
+//     left: 0;
+//     width: 160px;
+//     background-color: rgba(0,0,0,0.8);
+//     padding: 0;
+//     margin: 0;
+//     list-style-type: none;
+//     -webkit-transform: rotateX(-90deg);
+//     -ms-transform: rotateX(-90deg);
+//     -o-transform: rotateX(-90deg);
+//     transform: rotateX(-90deg);
+//     -webkit-transform-origin: top;
+//     -moz-transform-origin: top;
+//     -ms-transform-origin: top;
+//     -o-transform-origin: top;
+//     transform-origin: top;
+//     -webkit-transition: 0.9s;
+//     -o-transition: 0.9s;
+//     transition: 0.9s;
+// }
+// .fmc-dropdown-content-perspective li:hover{
+//     -webkit-box-shadow: none;
+//     box-shadow: none;
+// }
+// .fmc-dropdown-content-perspective li a:hover{
+//     -webkit-box-shadow: inset 5px 0 crimson;
+//     box-shadow: inset 5px 0 crimson;
+//     color: #fff;
+// }
+
+// .fmc-dropdown-perspective:hover .fmc-dropdown-content-perspective{
+//     visibility: visible;
+//     opacity: 1;
+//     -webkit-transform: rotateX(0deg);
+//     -ms-transform: rotateX(0deg);
+//     -o-transform: rotateX(0deg);
+//     transform: rotateX(0deg);
+// }
+
+// .fmc-dropdown-perspective li{
+//   display: inline-block !important;
+//   float: left;
+// }
+// #navbarResponsive{
+//   margin-left: 20% !important;
+// }

@@ -27,7 +27,11 @@ import { BannerComponent } from './banner/banner.component';
 import { FootComponent } from './foot/foot.component';
 import { LoginComponent } from './login/login.component';
 import { VendorcardComponent } from './vendorcard/vendorcard.component';
-
+import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
+import { MylistingComponent } from './vendor/mylisting/mylisting.component';
+import { NavemenuComponent } from './vendor/navemenu/navemenu.component';
+import { ChatComponent } from "./vendor/chat/chat.component";
+import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.component';
 import {
     SocialLoginModule,
     AuthServiceConfig,
@@ -36,6 +40,7 @@ import {
 } from "angular5-social-login";
 
 import {RegisterComponent} from './register/register.component';
+import { VendorComponent } from './vendor/vendor.component';
 
 
 
@@ -72,6 +77,12 @@ export function getAuthServiceConfigs() {
         LoginComponent,
         RegisterComponent,
         VendorcardComponent,
+        VendorComponent,
+        DashboardComponent,
+        NavemenuComponent,
+        VendorprofileComponent,
+        ChatComponent,
+        MylistingComponent
   ],
     imports: [
         BrowserAnimationsModule,

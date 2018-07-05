@@ -19,22 +19,23 @@ import { DetailpageComponent } from './detailpage/detailpage.component';
 import { ChatComponent } from "./vendor/chat/chat.component";
 import { EditprofileComponent } from './vendor/editprofile/editprofile.component';
 import { MylistingComponent } from './vendor/mylisting/mylisting.component';
-const appRoutes: Routes = [
-  { path: 'searchresult', component: SearchresultComponent },
-   { path: 'home', component: HomeComponent },
-  { path: 'vendor', component:  VendorComponent  },
-   { path: 'searchresult/detailprofile', component:  DetailpageComponent  },
-  { path: 'vendor/dashboard', component:  DashboardComponent  },
-  { path: 'vendor/dashboard/profile', component:  VendorprofileComponent  },
-  { path: 'vendor/dashboard/chat', component:  ChatComponent },
 
-  { path: 'vendor/dashboard/editprofile', component:   EditprofileComponent },
-  { path: 'vendor/chat', component:  ChatComponent },
-  { path: 'vendor/editprofile', component:   EditprofileComponent },
-  { path: 'vendor/mylisting', component:   MylistingComponent },
-  { path: 'vendor/dashboard/mylisting', component:   MylistingComponent },
-  { path: 'photo', component: PhotoComponent },
-  { path: 'tips', component: TipsComponent },
+const appRoutes: Routes = [
+  { path: 'home/searchresult', component: SearchresultComponent },
+   { path: 'home', component: HomeComponent },
+  { path: 'home/vendor', component:  VendorComponent  },
+   { path: 'searchresult/detailprofile', component:  DetailpageComponent  },
+  { path: 'home/vendor/dashboard', component:  DashboardComponent  },
+  { path: 'home/vendor/dashboard/profile', component:  VendorprofileComponent  },
+  { path: 'home/vendor/dashboard/chat', component:  ChatComponent },
+
+  { path: 'home/vendor/dashboard/editprofile', component:   EditprofileComponent },
+  { path: 'home/vendor/chat', component:  ChatComponent },
+  { path: 'home/vendor/editprofile', component:   EditprofileComponent },
+  { path: 'home/vendor/mylisting', component:   MylistingComponent },
+  { path: 'home/vendor/dashboard/mylisting', component:   MylistingComponent },
+  { path: 'home/photo', component: PhotoComponent },
+  { path: 'home/tips', component: TipsComponent },
 
   
   // {

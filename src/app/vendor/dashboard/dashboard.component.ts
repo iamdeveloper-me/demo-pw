@@ -10,6 +10,16 @@ export class DashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $("#mylist").hide();
+    $("#chat").hide();
+    $("#myaccount").hide();
+    $("#editprofile").hide();
+    $("#gallery").hide();
+    $.getScript('./assets/js/vendordashboard.js');
+   
+  }
+  loadScript(){
+    this.ngOnInit();
   }
 
 }

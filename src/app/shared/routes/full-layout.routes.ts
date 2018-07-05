@@ -7,6 +7,10 @@ export const Full_ROUTES: Routes = [
     path: 'dashboard',
     loadChildren: './dashboard/dashboard.module#DashboardModule'
   },
+  // {
+  //   path: 'userpannel',
+  //   loadChildren: './userpannel/userpannel.module#UserpannelModule'
+  // },
   {
     path: 'calendar',
     loadChildren: './calendar/calendar.module#CalendarsModule'

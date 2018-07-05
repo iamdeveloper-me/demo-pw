@@ -12,6 +12,10 @@ import { VendorprofileComponent } from './vendorprofile/vendorprofile.component'
 
 import { ChatComponent } from "./chat/chat.component";
 import { MylistingComponent } from './mylisting/mylisting.component';
+import { MyaccountComponent } from './myaccount/myaccount.component';
+import { EditprofileComponent } from './editprofile/editprofile.component';
+import { GalleryComponent } from './gallery/gallery.component';
+
 
 
 
@@ -28,7 +32,10 @@ import { MylistingComponent } from './mylisting/mylisting.component';
         NavemenuComponent,
         VendorprofileComponent,
         ChatComponent,
-        MylistingComponent
+        MylistingComponent,
+        MyaccountComponent,
+        EditprofileComponent,
+        GalleryComponent
     ]
 })
 export class VendorModule { }

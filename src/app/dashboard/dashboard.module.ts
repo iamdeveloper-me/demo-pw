@@ -9,6 +9,8 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
 import { VendorComponent } from "./vendor/vendor.component";
 import { UserComponent } from "./user/user.component";
 import { AdminComponent } from "./admin/admin.component";
+import { NavComponent } from './vendor/nav/nav.component';
+
 
 @NgModule({
     imports: [
@@ -22,7 +24,8 @@ import { AdminComponent } from "./admin/admin.component";
     declarations: [
         VendorComponent,
         UserComponent,
-        AdminComponent
+        AdminComponent,
+        NavComponent
     ],
     providers: [],
 })

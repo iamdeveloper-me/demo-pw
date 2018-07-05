@@ -16,7 +16,9 @@ export class VendorcardComponent implements OnInit {
     config.keyboard = false;
   }
 
-  ngOnInit() {$.getScript('./assets/js/prism.min.js');
+  ngOnInit() { 
+
+ 
   }
 
 }

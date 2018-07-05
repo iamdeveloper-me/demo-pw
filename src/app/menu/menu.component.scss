@@ -45,7 +45,7 @@
   }
   .headernav{
     background: rgba(0,46,119, 0.5)!important;
-    position: absolute;
+    position: fixed;
     width: 100%;
   
   }
@@ -161,22 +161,13 @@ color: #ffffff;
          color: #e72e77 !important;
        }
     
-
-       @media (max-width:767px){
-        .navbar-nav > li {
-          float: left;
-          width: 100%;
-          text-align: left;
+       dark-modal .modal-content {
+        background-color: #292b2c;
+        color: white;
       }
-      .dropdown-menu ul li a:hover{
-        background-color:unset !important;
-         color: #e72e77 !important;
-       }
-      
-  }
-
-
-
+      .dark-modal .close {
+        color: white;
+      }
   @media (min-width: 992px) {
     #mainNav {
       border-color: transparent;
@@ -184,6 +175,7 @@ color: #ffffff;
     }
     #mainNav .navbar-brand {
       color: rgba(255, 255, 255, 0.7);
+      line-height: 40px;
     }
     #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
       color: #fff;
@@ -218,13 +210,78 @@ color: #ffffff;
       color: #F05F40;
     }
   }
-dark-modal .modal-content {
-  background-color: #292b2c;
-  color: white;
+
+  @media (max-width:767px){
+    #mainNav .container::before,#mainNav .container::after{
+      display: none;
+    }
+    #mainNav .navbar-brand{
+      float: left;
+      line-height: 40px;
+      padding-left: 0px;
+      color: #ffffff;
+    }
+    .navbar-light .navbar-toggler-icon {
+      background-image: none!important;
+      background: #ffffff;
+      height: 2px;
+      border-radius: 5px;
+      margin: 5px 0px;
+      display: block;
+  }
+    .navbar-nav > li {
+      float: left;
+      width: 100%;
+      text-align: left;
+  }
+  .dropdown-menu ul li a:hover{
+    background-color:unset !important;
+     color: #e72e77 !important;
+   }
+   .navbar-collapse{
+    background: #ffffff!important;
+  }
+  .navbar-collapse{
+    overflow: hidden;
+  }
+  .dropdown-menu{
+    z-index: 99999;
+  }
+  }
+  
+
+
+
+
+#navbarResponsive{
+  margin-left: 20% !important;
 }
-.dark-modal .close {
-  color: white;
+
+
+.headernav {
+    height:80px !important;
+    -ms-transition:     all 0.3s ease-out;
+    -moz-transition:    all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    -o-transition:      all 0.3s ease-out;
+    transition:         all 0.3s ease-out;
 }
+
+.headernav.head_small {
+    height: 60px !important;
+    line-height: 35px;
+    background: rgba(0, 46, 119, 0.99) !important;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -14,24 +14,26 @@
                   <div class="form-group">
                       <div class="col-md-12">
                           <i class="material-icons pull-left">face</i>
-                        <input type="text" class="form-control" name="inputName" id="inputName" placeholder="Name" ngModel required name>
+                        <!-- <input type="text" class="form-control" name="inputName" id="inputName" placeholder="Name" ngModel required name> -->
                       </div>
                     </div>
                 <div class="form-group">
                   <div class="col-md-12">
                       <i class="material-icons">email</i>
-                    <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Email" ngModel required email>
+                    <!-- <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Email" ngModel required email> -->
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-md-12">
                       <i class="material-icons">lock_outline</i>
-                    <input type="password" class="form-control" name="inputPass" id="inputPass" placeholder="Password" ngModel required>
+                    <!-- <input type="password" class="form-control" name="inputPass" id="inputPass" placeholder="Password" ngModel required> -->
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-md-12">
-                    <button type="submit" class="textbtn"  >Lets Go</button>
+                    <button type="submit" class="textbtn"  >Lets Go</button><br>
+                    <a routerLink="user">user</a><br>
+                    <a routerLink="vendor">vendor</a>
                     </div>
                 </div>
               </form>
@@ -44,7 +46,6 @@
       </div>
 </section>
 
-<!--Modal signup content start-->
 <ng-template #signupContent let-c="close" let-d="dismiss">
   <div class="modal-body">
       <div class="modal-header">
@@ -56,8 +57,9 @@
       <!--Registration Page Ends-->
   </div>
  </ng-template>
-<!--Modal signup content end-->
 
+
+<!--Modal signup content start-->
 <ng-template #BContent let-c="close" let-d="dismiss">
     <div class="modal-body">
         <div class="modal-header">
@@ -69,4 +71,4 @@
         <!--Registration Page Ends-->
     </div>
    </ng-template>
-
+<!--Modal signup content end-->

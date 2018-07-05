@@ -32,6 +32,7 @@ import { MylistingComponent } from './vendor/mylisting/mylisting.component';
 import { NavemenuComponent } from './vendor/navemenu/navemenu.component';
 import { ChatComponent } from "./vendor/chat/chat.component";
 import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.component';
+import { EditprofileComponent } from './vendor/editprofile/editprofile.component';
 import {
     SocialLoginModule,
     AuthServiceConfig,
@@ -43,6 +44,9 @@ import {RegisterComponent} from './register/register.component';
 import { VendorComponent } from './vendor/vendor.component';
 import { SearchresultComponent } from './searchresult/searchresult.component';
 
+
+import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
+import { GalleryComponent } from './vendor/gallery/gallery.component';
 
 
 
@@ -85,6 +89,11 @@ export function getAuthServiceConfigs() {
         ChatComponent,
         MylistingComponent,
         SearchresultComponent
+        MyaccountComponent,
+        EditprofileComponent,
+        GalleryComponent
+
+
   ],
     imports: [
         BrowserAnimationsModule,

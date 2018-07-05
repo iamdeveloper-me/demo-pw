@@ -13,20 +13,14 @@ import { VendorComponent } from './vendor/vendor.component';
 import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
 import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.component';
 import { ChatComponent } from "./vendor/chat/chat.component";
-import { MylistingComponent } from './vendor/mylisting/mylisting.component';
 const appRoutes: Routes = [
   { path: 'searchresult', component: SearchresultComponent },
    { path: 'home', component: HomeComponent },
   { path: 'vendor', component:  VendorComponent  },
   { path: 'vendor/dashboard', component:  DashboardComponent  },
-  { path: 'vendor/profile', component:  VendorprofileComponent  },
-  { path: 'vendor/chat', component:  ChatComponent },
-  { path: 'vendor', children:   [  
-     { path: 'list', component: MylistingComponent },
- 
-      ]},
-
-
+  { path: 'vendor/dashboard/profile', component:  VendorprofileComponent  },
+  { path: 'vendor/dashboard/chat', component:  ChatComponent },
+  
   // {
   //   path: 'home/vendor',
   //   redirectTo: 'dashboard/vendor',

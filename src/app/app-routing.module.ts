@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 
+import { PhotoComponent } from './photo/photo.component';
+import { TipsComponent } from './tips/tips.component';
+
 import { FullLayoutComponent } from "./layouts/full/full-layout.component";
 import { ContentLayoutComponent } from "./layouts/content/content-layout.component";
 
@@ -19,6 +22,8 @@ const appRoutes: Routes = [
   { path: 'vendor/dashboard', component:  DashboardComponent  },
   { path: 'vendor/dashboard/profile', component:  VendorprofileComponent  },
   { path: 'vendor/dashboard/chat', component:  ChatComponent },
+  { path: 'photo', component: PhotoComponent },
+  { path: 'tips', component: TipsComponent },
   
   // {
   //   path: 'home/vendor',

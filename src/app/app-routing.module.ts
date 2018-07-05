@@ -12,11 +12,13 @@ import { HomeComponent } from './home/home.component';
 import { VendorComponent } from './vendor/vendor.component';
 import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
 import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.component';
+import { DetailpageComponent } from './detailpage/detailpage.component';
 import { ChatComponent } from "./vendor/chat/chat.component";
 const appRoutes: Routes = [
   { path: 'searchresult', component: SearchresultComponent },
    { path: 'home', component: HomeComponent },
   { path: 'vendor', component:  VendorComponent  },
+   { path: 'searchresult/detailprofile', component:  DetailpageComponent  },
   { path: 'vendor/dashboard', component:  DashboardComponent  },
   { path: 'vendor/dashboard/profile', component:  VendorprofileComponent  },
   { path: 'vendor/dashboard/chat', component:  ChatComponent },

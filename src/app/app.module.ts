@@ -47,6 +47,7 @@ import { SearchresultComponent } from './searchresult/searchresult.component';
 
 import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
 import { GalleryComponent } from './vendor/gallery/gallery.component';
+import { DetailpageComponent } from './detailpage/detailpage.component';
 
 
 
@@ -88,10 +89,11 @@ export function getAuthServiceConfigs() {
         VendorprofileComponent,
         ChatComponent,
         MylistingComponent,
-        SearchresultComponent
+        SearchresultComponent,
         MyaccountComponent,
         EditprofileComponent,
-        GalleryComponent
+        GalleryComponent,
+        DetailpageComponent
 
 
   ],

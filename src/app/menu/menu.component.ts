@@ -20,6 +20,17 @@ export class MenuComponent implements OnInit {
     ngOnInit() {    
         $.getScript('./assets/register/js/jquery-2.2.4.min.js');
         $.getScript('./assets/register/js/bootstrap.min.js');
+    
+        $(window).scroll(function () {
+    var sc = $(window).scrollTop()
+    if (sc > 100) {
+        $(".headernav").addClass("head_small")
+    } else {
+        $(".headernav").removeClass("head_small")
+    }
+});
+
+    
     }
 
     constructor(  private modalService: NgbModal) {}

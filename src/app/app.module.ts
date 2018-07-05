@@ -43,10 +43,15 @@ import {
 
 import {RegisterComponent} from './register/register.component';
 import { VendorComponent } from './vendor/vendor.component';
+import { SearchresultComponent } from './searchresult/searchresult.component';
 import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
 import { GalleryComponent } from './vendor/gallery/gallery.component';
 import { VendorsidebarComponent } from './vendor/vendorsidebar/vendorsidebar.component';
 import { Navbar2Component } from './vendor/navbar2/navbar2.component';
+import { PhotoComponent } from './photo/photo.component';
+import { TipsComponent } from './tips/tips.component';
+import { DetailpageComponent } from './detailpage/detailpage.component';
+
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
   }
@@ -85,12 +90,17 @@ export function getAuthServiceConfigs() {
         VendorprofileComponent,
         ChatComponent,
         MylistingComponent,
+        SearchresultComponent,
         MyaccountComponent,
         EditprofileComponent,
         GalleryComponent,
         ReviewsComponent,
         VendorsidebarComponent,
-        Navbar2Component
+        Navbar2Component,
+        PhotoComponent,
+        TipsComponent,
+        DetailpageComponent
+
 
   ],
     imports: [

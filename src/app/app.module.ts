@@ -43,15 +43,10 @@ import {
 import {RegisterComponent} from './register/register.component';
 import { VendorComponent } from './vendor/vendor.component';
 import { SearchresultComponent } from './searchresult/searchresult.component';
-
-
 import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
-
-
 import { GalleryComponent } from './vendor/gallery/gallery.component';
 import { PhotoComponent } from './photo/photo.component';
 import { TipsComponent } from './tips/tips.component';
-
 import { DetailpageComponent } from './detailpage/detailpage.component';
 
 
@@ -100,7 +95,7 @@ export function getAuthServiceConfigs() {
         EditprofileComponent,
         GalleryComponent,
         PhotoComponent,
-        TipsComponent
+        TipsComponent,
         DetailpageComponent
 
   ],

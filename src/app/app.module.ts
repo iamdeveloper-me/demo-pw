@@ -41,6 +41,7 @@ import {
 
 import {RegisterComponent} from './register/register.component';
 import { VendorComponent } from './vendor/vendor.component';
+import { SearchresultComponent } from './searchresult/searchresult.component';
 
 
 
@@ -82,7 +83,8 @@ export function getAuthServiceConfigs() {
         NavemenuComponent,
         VendorprofileComponent,
         ChatComponent,
-        MylistingComponent
+        MylistingComponent,
+        SearchresultComponent
   ],
     imports: [
         BrowserAnimationsModule,

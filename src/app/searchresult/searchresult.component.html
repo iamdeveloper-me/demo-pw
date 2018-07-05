@@ -1,0 +1,321 @@
+<app-menu></app-menu>
+<router-outlet></router-outlet> 
+<!--banner section-->
+<section class="title-banner py-4 searchinnerbanner" id="title-banner">
+<div class="container py-3">
+	<div class="row">
+		<h4>Florists</h4>
+		<div class="clearfix"></div>
+		<div class="col-sm-12">
+		<p class="text-center font18px">Wedding Flowers: Check prices and request for the most beautiful flowers for you wedding.</p>
+		</div>
+		<div class="clearfix"></div>
+		<div class="searchbarinner">
+			<input value="Florists" type="text"/>
+			<input value="(E.g. Delhi)" type="text"/>
+			<button class="btn">Search</button>
+		</div>
+	</div>
+</div>
+</section>
+<div class="container-fluid whitebg borbottom marbot20px">
+<div class="container searchcategoryhead">
+	<div class="col-sm-9">
+        <strong>YOUR SEARCH: 160 VENDORS</strong>
+        <span class="searchresultbox">
+        	Wedding Vendors <i class="fa fa-times"></i>
+        </span>
+         <span class="searchresultbox">
+        	Florists <i class="fa fa-times"></i>
+        </span>
+        <span  class="searchresultbox">Delete All <i class="fa fa-times"></i></span>
+    </div>
+        <div class="btn-group pull-right">
+            <a href="#" id="list">
+            	<i class="material-icons">view_list</i>
+            </a> 
+            <a href="#" id="grid">
+            	<i class="material-icons">view_module</i>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3 whitebg nopadd searchfilterbox">
+			<div id="accordion" class="panel">
+					<div class="panel-heading">
+						<h3 class="panel-title">Search Filter</h3>
+					</div>
+					<div class="panel-body  filterbox" >
+						<!-- location filter -->
+						<div class="panel-heading" >
+							<h4 class="panel-title">
+								<a data-toggle="collapse" href="#collapse0">Locations
+									<i class="indicator fa fa-caret-down" aria-hidden="true"></i> 
+								</a>
+							</h4>
+						</div>
+						<div id="collapse0" class="panel-collapse collapse in">
+							<div><input type="text" class="cityinput" placeholder="Type the city"/></div>
+
+							<div class="cityscroll">
+								<div class="checkbox1">
+										<label>
+											<input type="checkbox" value="">
+											Delhi NCR
+										</label>
+									</div>
+									<div class="checkbox1" >
+										<label>
+											<input type="checkbox" value="">
+											Mumbai
+										</label>
+									</div>
+									<div class="checkbox1"  >
+										<label>
+											<input type="checkbox" value="">
+											Banglore
+										</label>
+									</div>
+									<div class="checkbox1"  >
+										<label>
+											<input type="checkbox" value="">
+											Indore
+										</label>
+									</div>
+									<div class="checkbox1"  >
+										<label>
+											<input type="checkbox" value="">
+											Pune
+										</label>
+									</div>
+							</div>
+							
+						</div>
+						<!-- Price Range  -->
+						<div class="panel-heading ">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" href="#collapse1">
+									<i class="indicator fa fa-caret-down" aria-hidden="true"></i> Price Range
+								</a>
+							</h4>
+						</div>
+						<div id="collapse1" class="panel-collapse collapse in" >
+							<div data-role="main" class="ui-content">
+	    						<form method="post" action="/action_page_post.php">
+							      <div data-role="rangeslider">
+							        <label for="price-min">Price:</label>
+							        <input type="range" name="price-min" id="price-min" value="200" min="0" max="1000">
+							        <label for="price-max">Price:</label>
+							        <input type="range" name="price-max" id="price-max" value="800" min="0" max="1000">
+							      </div>
+							    </form>
+	  						</div>
+						</div>
+						<!-- Category -->
+						<div class="panel-heading filterbox" >
+							<h4 class="panel-title">
+								<a data-toggle="collapse" href="#collapse2">
+									<i class="indicator fa fa-caret-down" aria-hidden="true"></i> Category
+								</a>
+							</h4>
+						</div>
+						<div id="collapse2" class="panel-collapse collapse in" >
+									<div class="checkbox1">
+										<label>
+											<input type="checkbox" value="">
+											citroen
+										</label>
+									</div>
+									<div class="checkbox1">
+										<label>
+											<input type="checkbox" value="">
+											citroen
+										</label>
+									</div>
+									<div class="checkbox1">
+										<label>
+											<input type="checkbox" value="">
+											citroen
+										</label>
+									</div>
+									<div class="checkbox1">
+										<label>
+											<input type="checkbox" value="">
+											citroen
+										</label>
+									</div>
+									<div class="checkbox1">
+										<label>
+											<input type="checkbox" value="">
+											citroen
+										</label>
+									</div>
+								
+						</div>
+						<!-- Customer Rating -->
+						<div class="panel-heading" >
+							<h4 class="panel-title">
+								<a data-toggle="collapse" href="#collapse3"><i class="indicator fa fa-caret-down" aria-hidden="true"></i> Customer Rating</a>
+							</h4>
+						</div>
+						<div id="collapse3" class="panel-collapse collapse in">
+							
+									<div class="checkbox1">
+										<label>
+											<input type="checkbox" value="">
+											1 <i class="fa fa-star"></i>  & above
+										</label>
+									</div>
+								<div class="checkbox1">
+										<label>
+											<input type="checkbox" value="">
+											2 <i class="fa fa-star"></i>  & above
+										</label>
+									</div>
+									<div class="checkbox1">
+										<label>
+											<input type="checkbox" value="">
+											3 <i class="fa fa-star"></i>  & above
+										</label>
+									</div>
+									<div class="checkbox1">
+										<label>
+											<input type="checkbox" value="">
+											4 <i class="fa fa-star"></i>  & above
+										</label>
+									</div>
+									<div class="checkbox1">
+										<label>
+											<input type="checkbox" value="">
+											5 <i class="fa fa-star"></i>  & above
+										</label>
+									</div>
+						</div>
+					</div>
+			</div>
+		</div>
+		<div class="col-sm-9">
+	    	<div id="products" class="row list-group">
+	        	<div class="item  col-sm-6">
+	            <div class="thumbnail">
+	                <img class="group list-group-image" src="../../assets/img/deco1.jpg" alt="" />
+	                 <i class="material-icons favicon">favorite</i>
+	                <div class="caption">
+	                    <h4 class="group inner list-group-item-heading">Appollo Florist</h4>
+	                    <p class="group inner list-group-item-text">
+	                        Product description</p>
+	                    
+	                        <div class="col-sm-12 nopadd">
+	                            <p class="lead">
+	                               Price from<br/>
+	                                $21.000</p>
+
+	                                  <a class="bottomheadlink" href="#"><i class="fa fa-envelope"></i> Get More Info</a>
+	                                   </div>
+	                       
+	                    </div>
+	               
+	            </div>
+	       		</div>
+	       		<div class="item  col-sm-6">
+	            <div class="thumbnail">
+	               <img class="group list-group-image" src="../../assets/img/deco3.jpg" alt="" />
+	               <i class="material-icons favicon">favorite_border</i>
+	                <div class="caption">
+	                    <h4 class="group inner list-group-item-heading">Product title</h4>
+	                    <p class="group inner list-group-item-text">
+	                        Lorem ipsum dolor sit</p>
+	                   
+	                        <div class="col-sm-12 nopadd">
+	                            <p class="lead">
+	                               Price from<br/>
+	                                $21.000</p>
+	                                 <a class="bottomheadlink" href="#"><i class="fa fa-envelope"></i> Get More Info</a>
+	                        </div>
+	                       
+	                   
+	                </div>
+	            </div>
+	        	</div>
+	        	<div class="item  col-sm-6">
+	            <div class="thumbnail">
+	               <img class="group list-group-image" src="../../assets/img/deco3.jpg" alt="" />
+	                <i class="material-icons favicon">favorite</i>
+	                <div class="caption">
+	                    <h4 class="group inner list-group-item-heading">Country Flora</h4>
+	                    <p class="group inner list-group-item-text">
+	                       Florists, South Mumbai</p>
+	                    
+	                        <div class="col-sm-12 nopadd">
+	                            <p class="lead">
+	                               Price from<br/>
+	                                $21.000</p>
+	                                 <a class="bottomheadlink" href="#"><i class="fa fa-envelope"></i> Get More Info</a>
+	                        </div>
+	                   
+	                </div>
+	            </div>
+	        	</div>
+	        	<div class="item  col-sm-6">
+	            <div class="thumbnail">
+	               <img class="group list-group-image" src="../../assets/img/deco1.jpg" alt="" />
+	                <i class="material-icons favicon">favorite_border</i>
+	                <div class="caption">
+	                    <h4 class="group inner list-group-item-heading">Wedding Affaire</h4>
+	                    <p class="group inner list-group-item-text">
+	                        Florists, Pune</p>
+	                   
+	                        <div class="col-sm-12 nopadd">
+	                            <p class="lead">
+	                               Price from<br/>
+	                                $21.000</p>
+	                                 <a class="bottomheadlink" href="#"><i class="fa fa-envelope"></i> Get More Info</a>
+	                        </div>
+	                   
+	                </div>
+	            </div>
+	        	</div>
+	        	<div class="item  col-sm-6">
+	            <div class="thumbnail">
+	                <img class="group list-group-image" src="../../assets/img/deco3.jpg" alt="" />
+	                 <i class="material-icons favicon">favorite_border</i>
+	                <div class="caption">
+	                    <h4 class="group inner list-group-item-heading">Marrie-gold Florida</h4>
+	                    <p class="group inner list-group-item-text">
+	                         Florists, Navi Mumbai</p>
+	                    
+	                        <div class="col-sm-12 nopadd">
+	                            <p class="lead">
+	                               Price from<br/>
+	                                $21.000</p>
+	                                <a class="bottomheadlink" href="#"><i class="fa fa-envelope"></i> Get More Info</a>
+	                        </div>
+	                    
+	                </div>
+	            </div>
+	        	</div>
+	        	<div class="item  col-sm-6">
+	            <div class="thumbnail">
+	               <img class="group list-group-image" src="../../assets/img/deco1.jpg" alt="" />
+	                <i class="material-icons favicon">favorite_border</i>
+	                <div class="caption">
+	                    <h4 class="group inner list-group-item-heading">
+	                        Product title</h4>
+	                    <p class="group inner list-group-item-text">
+	                         Florists, Indore</p>
+	                    
+	                        <div class="col-sm-12 nopadd">
+	                            <p class="lead">
+	                               Price from<br/>
+	                                $21.000</p>
+	                                 <a class="bottomheadlink" href="#"><i class="fa fa-envelope"></i> Get More Info</a>
+	                        </div>
+	                   
+	                </div>
+	            </div>
+	        	</div>
+	    	</div>
+		</div>
+</div>

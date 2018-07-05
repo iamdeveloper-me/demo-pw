@@ -6,7 +6,7 @@ import { ContentLayoutComponent } from "./layouts/content/content-layout.compone
 
 import { Full_ROUTES } from "./shared/routes/full-layout.routes";
 import { CONTENT_ROUTES } from "./shared/routes/content-layout.routes";
-
+import { SearchresultComponent } from './searchresult/searchresult.component';
 import { AuthGuard } from './shared/auth/auth-guard.service';
 import { HomeComponent } from './home/home.component';
 import { VendorComponent } from './vendor/vendor.component';
@@ -15,7 +15,8 @@ import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.com
 import { ChatComponent } from "./vendor/chat/chat.component";
 import { MylistingComponent } from './vendor/mylisting/mylisting.component';
 const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'searchresult', component: SearchresultComponent },
+   { path: 'home', component: HomeComponent },
   { path: 'vendor', component:  VendorComponent  },
   { path: 'vendor/dashboard', component:  DashboardComponent  },
   { path: 'vendor/profile', component:  VendorprofileComponent  },

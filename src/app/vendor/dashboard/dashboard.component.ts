@@ -10,16 +10,9 @@ export class DashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    $("#mylist").hide();
-    $("#chat").hide();
-    $("#myaccount").hide();
-    $("#editprofile").hide();
-    $("#gallery").hide();
-    $.getScript('./assets/js/vendordashboard.js');
-   
-  }
-  loadScript(){
-    this.ngOnInit();
-  }
-
+    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
+  $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
+  $.getScript('./assets/js/vendorsidebar.js');
+   }
+ 
 }

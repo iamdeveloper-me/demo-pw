@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-navemenu',
   templateUrl: './navemenu.component.html',
@@ -10,8 +11,9 @@ export class NavemenuComponent implements OnInit {
     toggleClass = 'ft-maximize';
   constructor(public translate: TranslateService) { const browserLang: string = translate.getBrowserLang();
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : 'en'); }
-
+  
   ngOnInit() {
+
   }
   ChangeLanguage(language: string) {
     this.translate.use(language);

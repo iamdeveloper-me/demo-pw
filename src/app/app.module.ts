@@ -33,6 +33,7 @@ import { NavemenuComponent } from './vendor/navemenu/navemenu.component';
 import { ChatComponent } from "./vendor/chat/chat.component";
 import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.component';
 import { EditprofileComponent } from './vendor/editprofile/editprofile.component';
+import { ReviewsComponent } from './vendor/reviews/reviews.component';
 import {
     SocialLoginModule,
     AuthServiceConfig,
@@ -44,8 +45,8 @@ import {RegisterComponent} from './register/register.component';
 import { VendorComponent } from './vendor/vendor.component';
 import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
 import { GalleryComponent } from './vendor/gallery/gallery.component';
-
-
+import { VendorsidebarComponent } from './vendor/vendorsidebar/vendorsidebar.component';
+import { Navbar2Component } from './vendor/navbar2/navbar2.component';
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
   }
@@ -86,7 +87,10 @@ export function getAuthServiceConfigs() {
         MylistingComponent,
         MyaccountComponent,
         EditprofileComponent,
-        GalleryComponent
+        GalleryComponent,
+        ReviewsComponent,
+        VendorsidebarComponent,
+        Navbar2Component
 
   ],
     imports: [

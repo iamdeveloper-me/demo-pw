@@ -26,8 +26,11 @@ export class ChatComponent implements OnInit {
 
   ngOnInit() {
     $.getScript('./assets/js/chat.js');
-  }
-
+    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
+  $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
+  $.getScript('./assets/js/vendorsidebar.js');
+   }
+ 
   //send button function calls
   onAddMessage() {
     if (this.messageInputRef.nativeElement.value != "") {

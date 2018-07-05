@@ -15,6 +15,9 @@ import { MylistingComponent } from './mylisting/mylisting.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
 import { GalleryComponent } from './gallery/gallery.component';
+import { ReviewsComponent } from './reviews/reviews.component';
+import { VendorsidebarComponent } from './vendorsidebar/vendorsidebar.component';
+import { Navbar2Component } from './navbar2/navbar2.component';
 
 
 
@@ -35,7 +38,10 @@ import { GalleryComponent } from './gallery/gallery.component';
         MylistingComponent,
         MyaccountComponent,
         EditprofileComponent,
-        GalleryComponent
+        GalleryComponent,
+        ReviewsComponent,
+        VendorsidebarComponent,
+        Navbar2Component
     ]
 })
 export class VendorModule { }

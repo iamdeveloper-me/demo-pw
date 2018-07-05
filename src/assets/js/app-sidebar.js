@@ -10,7 +10,6 @@
 */
  $(document).ready( function(){
 
-
     var $sidebar = $('.app-sidebar'),
     $sidebar_content = $('.sidebar-content'),
     $sidebar_img = $sidebar.data('image'),

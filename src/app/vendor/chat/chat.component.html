@@ -1,4 +1,9 @@
-<app-navemenu></app-navemenu>
+<div id="wrapper">
+    <div id="sidebar-wrapper">
+        <app-vendorsidebar></app-vendorsidebar>
+    </div>
+    <div id="page-content-wrapper">    
+<app-navbar2></app-navbar2>
 <router-outlet></router-outlet> 
 <div class="chat-application">
   <div class="content-overlay"></div>
@@ -19,7 +24,7 @@
           <a class="list-group-item bg-blue-grey bg-lighten-5 border-right-primary border-right-2" (click)="SetActive($event, 'chat1')">
             <span class="media">
               <span class="avatar avatar-md avatar-online">
-                <img class="media-object d-flex mr-3 bg-primary height-50 rounded-circle" src="assets/img/portrait/small/avatar-s-3.png"
+                <img class="media-object d-flex mr-3 bg-primary height-50 rounded-circle" src="../../assets/img/card_icon.jpg"
                   alt="Generic placeholder image">
                 <i></i>
               </span>
@@ -39,7 +44,7 @@
           <a class="list-group-item no-border" (click)="SetActive($event,'chat2')">
             <span class="media">
               <span class="avatar avatar-md avatar-busy">
-                <img class="media-object d-flex mr-3 bg-primary height-50 rounded-circle" src="assets/img/portrait/small/avatar-s-7.png"
+                <img class="media-object d-flex mr-3 bg-primary height-50 rounded-circle" src="../../assets/img/card_icon.jpg"
                   alt="Generic placeholder image">
                 <i></i>
               </span>
@@ -60,7 +65,7 @@
           <a class="list-group-item no-border" (click)="SetActive($event,'chat3')">
             <span class="media">
               <span class="avatar avatar-md avatar-away">
-                <img class="media-object d-flex mr-3 bg-primary height-50 rounded-circle" src="assets/img/portrait/small/avatar-s-8.png"
+                <img class="media-object d-flex mr-3 bg-primary height-50 rounded-circle" src="../../assets/img/card_icon.jpg"
                   alt="Generic placeholder image">
                 <i></i>
               </span>
@@ -81,7 +86,7 @@
           <a class="list-group-item no-border" (click)="SetActive($event,'chat4')">
             <span class="media">
               <span class="avatar avatar-md avatar-away">
-                <img class="media-object d-flex mr-3 bg-primary height-50 rounded-circle" src="assets/img/portrait/small/avatar-s-5.png"
+                <img class="media-object d-flex mr-3 bg-primary height-50 rounded-circle" src="../../assets/img/card_icon.jpg"
                   alt="Generic placeholder image">
                 <i></i>
               </span>
@@ -97,7 +102,7 @@
           <a class="list-group-item no-border" (click)="SetActive($event,'chat5')">
             <span class="media">
               <span class="avatar avatar-md avatar-online">
-                <img class="media-object d-flex mr-3 bg-primary height-50 rounded-circle" src="assets/img/portrait/small/avatar-s-9.png"
+                <img class="media-object d-flex mr-3 bg-primary height-50 rounded-circle" src="../../assets/img/card_icon.jpg"
                   alt="Generic placeholder image">
                 <i></i>
               </span>
@@ -117,7 +122,7 @@
           <a class="list-group-item no-border" (click)="SetActive($event,'chat6')">
             <span class="media">
               <span class="avatar avatar-md avatar-busy">
-                <img class="media-object d-flex mr-3 bg-primary height-50 rounded-circle" src="assets/img/portrait/small/avatar-s-4.png"
+                <img class="media-object d-flex mr-3 bg-primary height-50 rounded-circle" src="../../assets/img/card_icon.jpg"
                   alt="Generic placeholder image">
                 <i></i>
               </span>
@@ -133,7 +138,7 @@
           <a class="list-group-item no-border" (click)="SetActive($event,'chat7')">
             <span class="media">
               <span class="avatar avatar-md avatar-online">
-                <img class="media-object d-flex mr-3 bg-primary height-50 rounded-circle" src="assets/img/portrait/small/avatar-s-14.png"
+                <img class="media-object d-flex mr-3 bg-primary height-50 rounded-circle" src="../../assets/img/card_icon.jpg"
                   alt="Generic placeholder image">
                 <i></i>
               </span>
@@ -215,9 +220,10 @@
         </div>
       </fieldset>
       <fieldset class="form-group position-relative has-icon-left col-xl-2 col-lg-4 col-4 m-0 mb-1">
-        <button type="button" class="btn btn-raised btn-primary" (click)="onAddMessage()">
+        <button type="button" class="btn btn-raised btn-comman" (click)="onAddMessage()">
           <i class="fa fa-paper-plane-o hidden-lg-up"></i> Send</button>
       </fieldset>
     </form>
   </section>
 </div>
+</div></div>

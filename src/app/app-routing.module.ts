@@ -20,16 +20,33 @@ import { DetailpageComponent } from './detailpage/detailpage.component';
 import { ChatComponent } from "./vendor/chat/chat.component";
 import { EditprofileComponent } from './vendor/editprofile/editprofile.component';
 import { MylistingComponent } from './vendor/mylisting/mylisting.component';
-
+import { GalleryComponent } from './vendor/gallery/gallery.component';
 const appRoutes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: 'searchresult', component: SearchresultComponent },
+  { path: 'searchresult/detailprofile', component:  DetailpageComponent  },
+  { path: 'detailprofile', component:  DetailpageComponent  },
+  { path: 'vendor', component:  VendorComponent  },
+  { path: 'photo', component: PhotoComponent },
+  { path: 'tips', component: TipsComponent },
+  { path: 'dashboard', component:  DashboardComponent  },
+  { path: 'home/vendor/gallery', component:  GalleryComponent   },
+  { path: 'profile', component:  VendorprofileComponent  },
+  { path: 'chat', component:  ChatComponent },
+  { path: 'editprofile', component:   EditprofileComponent },
+  { path: 'mylisting', component:   MylistingComponent },
   { path: 'home/searchresult', component: SearchresultComponent },
-   { path: 'home', component: HomeComponent },
+  { path: 'home/photo', component: PhotoComponent },
+  { path: 'home/photo/tips', component: TipsComponent },
+  { path: 'home/tips/photo', component: PhotoComponent },
+  { path: 'home/tips/photo/tips', component: TipsComponent },
+  { path: 'home/photo/tips/photos', component: PhotoComponent },
+  { path: 'home/tips', component: TipsComponent },
   { path: 'home/vendor', component:  VendorComponent  },
-   { path: 'searchresult/detailprofile', component:  DetailpageComponent  },
+  { path: 'home/searchresult/detailprofile', component:  DetailpageComponent  },
   { path: 'home/vendor/dashboard', component:  DashboardComponent  },
   { path: 'home/vendor/dashboard/profile', component:  VendorprofileComponent  },
   { path: 'home/vendor/dashboard/chat', component:  ChatComponent },
-
   { path: 'home/vendor/dashboard/editprofile', component:   EditprofileComponent },
   { path: 'home/vendor/chat', component:  ChatComponent },
   { path: 'home/vendor/editprofile', component:   EditprofileComponent },
@@ -38,6 +55,9 @@ const appRoutes: Routes = [
   { path: 'home/photo', component: PhotoComponent },
   { path: 'home/tips', component: TipsComponent },
   { path: 'home/events', component: EventsComponent },
+  { path: 'home/photo/home', component: HomeComponent },
+  { path: 'home/tips/home', component: HomeComponent },
+
 
   
   // {

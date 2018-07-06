@@ -20,7 +20,6 @@ var transparent = true;
 var mobile_device = false;
 
 $(document).ready(function(){
-
     $.material.init();
 
     /*  Activate the tooltips      */
@@ -61,7 +60,7 @@ $(document).ready(function(){
         		return false;
         	}
         },
-
+ 
         onInit : function(tab, navigation, index){
             //check number of tabs and fill the entire row
             var $total = navigation.find('li').length;

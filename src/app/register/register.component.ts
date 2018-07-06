@@ -7,12 +7,12 @@ import { Component} from '@angular/core';
 })
 export class RegisterComponent  {
 
-  ngOnInit() {    $.getScript('./assets/register/js/jquery-2.2.4.min.js');
+  ngOnInit() {    
+                  $.getScript('./assets/register/js/jquery-2.2.4.min.js');
                   $.getScript('./assets/register/js/bootstrap.min.js');
                   $.getScript('./assets/register/js/jquery.bootstrap.js');
                   $.getScript('./assets/register/js/jquery.validate.min.js');
                   $.getScript('./assets/register/js/material-bootstrap-wizard.js');
-                  $.getScript('./assets/js/hideshow.js');
   }
     constructor( ) {}
 

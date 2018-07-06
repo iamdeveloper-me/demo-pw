@@ -12,7 +12,7 @@
           <h5>This information will let us know more about you.</h5>
         </div>
         <div class="wizard-navigation">
-          <ul class="nav nav-pills">
+          <ul class="nav nav-pills" >
             <li style="width: 33.3333%;" class="active"><a href="#details" data-toggle="tab" aria-expanded="false" (click)="loadScript()">Account</a></li>
             <li style="width: 33.3333%;" class=""><a href="#captain" data-toggle="tab" aria-expanded="false" (click)="loadScript()">Registration Type</a></li>
             <li style="width: 33.3333%;" class=""><a href="#description" data-toggle="tab" aria-expanded="true" (click)="loadScript()">Extra Details</a></li>
@@ -111,19 +111,6 @@
           <div class="pull-right">
             <input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='Next' (click)="formSubmit()"/>
             <input type='button' class='btn btn-finish btn-fill btn-danger btn-wd' name='finish' value='Finish' />
-          </div>
-          <div class="pull-left">
-            <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
-            <div class="footer-checkbox">
-              <div class="col-sm-12">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" name="optionsCheckboxes">
-                  </label>
-                  Subscribe to our newsletter
-                </div>
-              </div>
-            </div>
           </div>
           <div class="clearfix"></div>
         </div>

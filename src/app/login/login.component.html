@@ -32,15 +32,13 @@
                 <div class="form-group">
                   <div class="col-md-12">
                     <button type="submit" class="textbtn"  >Lets Go</button><br>
-                    <a routerLink="user">user</a><br>
                     <a routerLink="vendor">vendor</a>
                     </div>
                 </div>
               </form>
           </div>
           <div class="card-footer">
-            <div class="float-right"><a id="hide" (click)="open(signupContent)" (click)="loadScript()"class="red">New User?</a></div><br>
-            <div class="float-right"><a id="hide"   (click)="open(BContent)" (click)="loadScript()"class="red">Business sign in</a></div>
+            <div class="float-right"><a id="hide" (click)="open(signupContent)" (click)="loadScript()"class="red">New User?</a></div>
           </div>
         </div>
       </div>
@@ -57,18 +55,3 @@
       <!--Registration Page Ends-->
   </div>
  </ng-template>
-
-
-<!--Modal signup content start-->
-<ng-template #BContent let-c="close" let-d="dismiss">
-    <div class="modal-body">
-        <div class="modal-header">
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <app-register></app-register>
-        <!--Registration Page Ends-->
-    </div>
-   </ng-template>
-<!--Modal signup content end-->

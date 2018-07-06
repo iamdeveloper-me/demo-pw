@@ -51,6 +51,7 @@ import { Navbar2Component } from './vendor/navbar2/navbar2.component';
 import { PhotoComponent } from './photo/photo.component';
 import { TipsComponent } from './tips/tips.component';
 import { DetailpageComponent } from './detailpage/detailpage.component';
+import { EventsComponent } from './events/events.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -99,7 +100,8 @@ export function getAuthServiceConfigs() {
         Navbar2Component,
         PhotoComponent,
         TipsComponent,
-        DetailpageComponent
+        DetailpageComponent,
+        EventsComponent
 
 
   ],

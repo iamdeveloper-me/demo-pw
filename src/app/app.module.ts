@@ -52,6 +52,7 @@ import { PhotoComponent } from './photo/photo.component';
 import { TipsComponent } from './tips/tips.component';
 import { DetailpageComponent } from './detailpage/detailpage.component';
 import { EventsComponent } from './events/events.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -101,7 +102,8 @@ export function getAuthServiceConfigs() {
         PhotoComponent,
         TipsComponent,
         DetailpageComponent,
-        EventsComponent
+        EventsComponent,
+        ContactUsComponent
 
 
   ],

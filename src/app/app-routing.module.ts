@@ -4,6 +4,7 @@ import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { PhotoComponent } from './photo/photo.component';
 import { TipsComponent } from './tips/tips.component';
 import { EventsComponent } from './events/events.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 import { FullLayoutComponent } from "./layouts/full/full-layout.component";
 import { ContentLayoutComponent } from "./layouts/content/content-layout.component";
@@ -55,8 +56,9 @@ const appRoutes: Routes = [
   { path: 'home/photo', component: PhotoComponent },
   { path: 'home/tips', component: TipsComponent },
   { path: 'home/events', component: EventsComponent },
-  { path: 'home/photo/home', component: HomeComponent },
-  { path: 'home/tips/home', component: HomeComponent },
+  { path: 'home/photo', component: HomeComponent },
+  { path: 'home/tips', component: HomeComponent },
+  { path: 'home/contact', component: ContactUsComponent },
 
 
   

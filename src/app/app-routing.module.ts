@@ -20,42 +20,41 @@ import { ChatComponent } from "./vendor/chat/chat.component";
 import { EditprofileComponent } from './vendor/editprofile/editprofile.component';
 import { MylistingComponent } from './vendor/mylisting/mylisting.component';
 import { GalleryComponent } from './vendor/gallery/gallery.component';
+import { ReviewsComponent } from './vendor/reviews/reviews.component';
+import { MembershipComponent } from './vendor/membership/membership.component';
 const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'searchresult', component: SearchresultComponent },
-  { path: 'searchresult/detailprofile', component:  DetailpageComponent  },
-  { path: 'detailprofile', component:  DetailpageComponent  },
-  { path: 'vendor', component:  VendorComponent  },
-  { path: 'photo', component: PhotoComponent },
-  { path: 'tips', component: TipsComponent },
-  { path: 'dashboard', component:  DashboardComponent  },
-  { path: 'home/vendor/gallery', component:  GalleryComponent   },
-  { path: 'profile', component:  VendorprofileComponent  },
-  { path: 'chat', component:  ChatComponent },
-  { path: 'editprofile', component:   EditprofileComponent },
-  { path: 'mylisting', component:   MylistingComponent },
+  { path: '', component: HomeComponent },
   { path: 'home/searchresult', component: SearchresultComponent },
-  { path: 'home/photo', component: PhotoComponent },
-  { path: 'home/photo/tips', component: TipsComponent },
-  { path: 'home/tips/photo', component: PhotoComponent },
-  { path: 'home/tips/photo/tips', component: TipsComponent },
-  { path: 'home/photo/tips/photos', component: PhotoComponent },
-  { path: 'home/tips', component: TipsComponent },
-  { path: 'home/vendor', component:  VendorComponent  },
   { path: 'home/searchresult/detailprofile', component:  DetailpageComponent  },
-  { path: 'home/vendor/dashboard', component:  DashboardComponent  },
-  { path: 'home/vendor/dashboard/profile', component:  VendorprofileComponent  },
-  { path: 'home/vendor/dashboard/chat', component:  ChatComponent },
-  { path: 'home/vendor/dashboard/editprofile', component:   EditprofileComponent },
-  { path: 'home/vendor/chat', component:  ChatComponent },
-  { path: 'home/vendor/editprofile', component:   EditprofileComponent },
-  { path: 'home/vendor/mylisting', component:   MylistingComponent },
-  { path: 'home/vendor/dashboard/mylisting', component:   MylistingComponent },
-  { path: 'home/photo/home', component: HomeComponent },
-  { path: 'home/tips/home', component: HomeComponent },
+  { path: 'home/photo', component: PhotoComponent },
+  { path: 'home/tips', component: TipsComponent },
+  { path: 'vendor', component:  VendorComponent  },
+  
+  
+  { path: 'vendor/dashboard', component:  DashboardComponent  },
+  { path: 'vendor/editprofile', component:   EditprofileComponent },
+  { path: 'vendor/chat', component:  ChatComponent },
+  { path: 'vendor/mylisting', component:   MylistingComponent },
+  
+  { path: 'vendor/Membership', component:  MembershipComponent },
+  { path: 'vendor/gallery', component:  GalleryComponent   },
+  { path: 'vendor/review', component: ReviewsComponent },
 
   
-  // {
+  // { path: '../tips', component: TipsComponent },
+  // { path: 'home/vendor/review', component: ReviewsComponent },
+  // { path: 'dashboard', component:  DashboardComponent  },
+  // { path: 'home/vendor/gallery', component:  GalleryComponent   },
+  // { path: 'profile', component:  VendorprofileComponent  },
+  // { path: 'chat', component:  ChatComponent },
+  // { path: 'editprofile', component:   EditprofileComponent },
+  // { path: 'mylisting', component:   MylistingComponent },
+  // { path: 'home/searchresult', component: SearchresultComponent },
+  // { path: 'home/photo', component: PhotoComponent },
+  // { path: 'home/vendor', component:  VendorComponent  },
+  // { path: 'home/vendor/dashboard/profile', component:  VendorprofileComponent  },
+  // { path: 'home/vendor/dashboard/chat', component:  ChatComponent },
+    // {
   //   path: 'home/vendor',
   //   redirectTo: 'dashboard/vendor',
   //   pathMatch: 'full',

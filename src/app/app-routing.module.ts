@@ -24,7 +24,7 @@ import { GalleryComponent } from './vendor/gallery/gallery.component';
 import { ReviewsComponent } from './vendor/reviews/reviews.component';
 import { MembershipComponent } from './vendor/membership/membership.component';
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'home/searchresult', component: SearchresultComponent },
   { path: 'home/searchresult/detailprofile', component:  DetailpageComponent  },
   { path: 'home/photo', component: PhotoComponent },

@@ -3,6 +3,7 @@ import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 
 import { PhotoComponent } from './photo/photo.component';
 import { TipsComponent } from './tips/tips.component';
+import { EventsComponent } from './events/events.component';
 
 import { FullLayoutComponent } from "./layouts/full/full-layout.component";
 import { ContentLayoutComponent } from "./layouts/content/content-layout.component";
@@ -39,6 +40,8 @@ const appRoutes: Routes = [
   { path: 'vendor/Membership', component:  MembershipComponent },
   { path: 'vendor/gallery', component:  GalleryComponent   },
   { path: 'vendor/review', component: ReviewsComponent },
+
+
 
   
   // { path: '../tips', component: TipsComponent },

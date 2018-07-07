@@ -7,6 +7,8 @@ import {
   GoogleLoginProvider
 } from 'angular5-social-login';
 
+import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -19,7 +21,7 @@ export class LoginComponent implements OnInit {
   loadScript(){
     this.ngOnInit();
   }
-  constructor( private socialAuthService: AuthService ,private modalService: NgbModal ) {}
+  constructor(private router:Router, private socialAuthService: AuthService ,private modalService: NgbModal ) {}
   closeResult: string;
   // Open default modal
   open(content) {
@@ -57,5 +59,9 @@ export class LoginComponent implements OnInit {
           (userData) => {console.log(socialPlatform+" sign in data : " , userData)
           }
       );
+    }
+
+    vendor(){
+        this.router.navigate(['vendor/dashboard']);
     }
 }

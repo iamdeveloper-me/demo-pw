@@ -29,7 +29,6 @@ const appRoutes: Routes = [
   { path: 'home/searchresult/detailprofile', component:  DetailpageComponent  },
   { path: 'home/photo', component: PhotoComponent },
   { path: 'home/tips', component: TipsComponent },
-  { path: 'vendor', component:  VendorComponent  },
   
   
   { path: 'vendor/dashboard', component:  DashboardComponent  },

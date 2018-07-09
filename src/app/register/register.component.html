@@ -1,121 +1,242 @@
 
-<div class="registerbox">
-  <!-- Wizard container  -->
-  <div class="wizard-container">
-    <div class="card wizard-card" data-color="red" id="wizard">
-      <form class="icons-tab-steps wizard-circle" #f="ngForm">
-        <!-- You can switch " data-color="blue" "  with one of the next bright colors: "green", "orange", "red", "purple" -->
-        <div class="wizard-header">
-          <h3 class="wizard-title">
-          Registration
-          </h3>
-          <h5>This information will let us know more about you.</h5>
-        </div>
-        <div class="wizard-navigation">
-          <ul class="nav nav-pills" >
-            <li style="width: 33.3333%;" class="active"><a href="#details" data-toggle="tab" aria-expanded="false" (click)="loadScript()">Account</a></li>
-            <li style="width: 33.3333%;" class=""><a href="#captain" data-toggle="tab" aria-expanded="false" (click)="loadScript()">Registration Type</a></li>
-            <li style="width: 33.3333%;" class=""><a href="#description" data-toggle="tab" aria-expanded="true" (click)="loadScript()">Extra Details</a></li>
-          </ul>
-        <div class="moving-tab" style="width: 250px; transform: translate3d(-8px, 0px, 0px); transition: transform 0s ease 0s;">Account</div>
-        </div>
-        <div class="tab-content">
-          <div class="tab-pane active" id="details">
-            <div class="row">
-              <div class="col-sm-12">
-                  <h4 class="info-text"> Let's start with the basic details.</h4>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group label-floating">
-                  <label class="control-label">Your Email</label>
-                  <input name="name" type="text" class="form-control">
-                </div>
-                <div class="form-group label-floating">
-                  <label class="control-label">Your Password</label>
-                  <input name="name2" type="password" class="form-control">
-                </div>
-              </div>
-              <div class="col-sm-6">
-                  <div class="form-group label-floating">
-                      <label class="control-label">Country</label>
-                      <select class="form-control">
-                            <option disabled="" selected=""></option>
-                            <option value="Afghanistan"> Afghanistan </option>
-                            <option value="Albania"> Albania </option>
-                            <option value="Algeria"> Algeria </option>
-                            <option value="American Samoa"> American Samoa </option>
-                            <option value="Andorra"> Andorra </option>
-                            <option value="Angola"> Angola </option>
-                            <option value="Anguilla"> Anguilla </option>
-                            <option value="Antarctica"> Antarctica </option>
-                            <option value="...">...</option>
-                      </select>
-                  </div>
-      <div class="form-group label-floating">
-                            <label class="control-label">Daily Budget</label>
-                            <select class="form-control">
-          <option disabled="" selected=""></option>
-                                  <option value="Afghanistan"> < $100 </option>
-                                  <option value="Albania"> $100 - $499 </option>
-                                  <option value="Algeria"> $499 - $999 </option>
-                                  <option value="American Samoa"> $999+ </option>
-                            </select>
-                        </div>
-              </div>
+<div style="background-color: white;" class="container">
+    <h2 class="text-center font-bold pt-4 pb-5 mb-5"><strong>Registration form with steps</strong></h2>
+
+    <!-- Stepper -->
+    <div class="steps-form-2" (click)="loadScript()">
+        <div class="steps-row-2 setup-panel-2 d-flex justify-content-between">
+            <div class="steps-step-2">
+                <a href="#step-1" type="button" class="btn btn-amber btn-circle-2 waves-effect ml-0" data-toggle="tooltip" data-placement="top" title="Basic Information"><i class="fa fa-folder-open-o" aria-hidden="true"></i>
+                    
+                </a>
+                <p>  General Information   </p>
             </div>
-          </div>
-          <div class="tab-pane" id="captain">
-            <h4 class="info-text">What type of Registration would you want? </h4>
-            <div class="row">
-              <div class="col-sm-10 col-sm-offset-1">
-                <div class="col-sm-6">
-                  <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="This is good if you travel alone.">
-                    <input type="radio" name="job" value="Design">
-                    <div class="icon">
-                      <i class="material-icons">weekend</i>
-                    </div>
-                    <h6>Single</h6>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you are coming with your team.">
-                    <input type="radio" name="job" value="Code">
-                    <div class="icon">
-                      <i class="material-icons">business</i>
-                    </div>
-                    <h6>Vendor</h6>
-                  </div>
-                </div>
-              </div>
+            <div class="steps-step-2">
+                <a href="#step-2" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Personal Data"><i class="fa fa-pencil" aria-hidden="true"></i>
+                   
+                </a>
+                <p> Business Information   </p>
             </div>
-          </div>
-          <div class="tab-pane" id="description">
-            <div class="row">
-              <h4 class="info-text"> Drop us a small description.</h4>
-              <div class="col-sm-6 col-sm-offset-1">
-                <div class="form-group">
-                  <label>Room description</label>
-                  <textarea class="form-control" placeholder="" rows="6"></textarea>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <label class="control-label">Example</label>
-                  <p class="description">"The room really nice name is recognized as being a really awesome room. We use it every sunday when we go fishing and we catch a lot. It has some kind of magic shield around it."</p>
-                </div>
-              </div>
+            <div class="steps-step-2">
+                <a href="#step-3" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Terms and Conditions"><i class="fa fa-photo" aria-hidden="true"></i>
+                   
+                </a>
+                <p> Your Business Category  </p>
             </div>
-          </div>
+            <div class="steps-step-2">
+                <a href="#step-4" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Finish"><i class="fa fa-check" aria-hidden="true"></i>
+                    
+                </a>
+              <p> Payment   </p>  
+            </div>
         </div>
-        <div class="wizard-footer">
-          <div class="pull-right">
-            <input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='Next' (click)="formSubmit()"/>
-            <input type='button' class='btn btn-finish btn-fill btn-danger btn-wd' name='finish' value='Finish' />
-          </div>
-          <div class="clearfix"></div>
-        </div>
-      </form>
     </div>
-  </div>
-  <!-- wizard container -->
-</div>
+    
+    <!-- First Step -->
+    <form role="form" action="" method="post">
+        <div class="row setup-content-2" id="step-1">
+                <div class="col-md-12">
+                        <h3 class="font-weight-bold pl-0 my-4"><strong>Login Information</strong></h3>
+                        <div class="form-group md-form">
+                            <label for="yourEmail-2" data-error="wrong" data-success="right">Email</label>
+                            <input id="yourEmail-2" type="email" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3">
+                            <label for="yourPassword-2" data-error="wrong" data-success="right">Password</label>
+                            <input id="yourPassword-2" type="password" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3">
+                            <label for="repeatPassword-2" data-error="wrong" data-success="right">Repeat Password</label>
+                            <input id="repeatPassword-2" type="password" required="required" class="form-control validate">
+                        </div>
+                    </div>
+            <div class="col-md-12">
+                <h3 class="font-weight-bold pl-0 my-4"><strong>Contact Information</strong></h3>
+                <div class="form-group md-form">
+                    <label for="yourEmail-2" data-error="wrong" data-success="right">contact person *</label>
+                    <input id="yourEmail-2" type="email" required="required" class="form-control validate">
+                </div>
+                <div class="form-group md-form">
+                    <label for="yourUsername-2" data-error="wrong" data-success="right">email</label>
+                    <input id="yourUsername-2" type="text" required="required" class="form-control validate">
+                </div>
+                <div class="form-group md-form mt-3">
+                    <label for="yourPassword-2" data-error="wrong" data-success="right">Telephone</label>
+                    <input id="yourPassword-2" type="password" required="required" class="form-control validate">
+                </div>
+                <div class="form-group md-form mt-3">
+                    <label for="repeatPassword-2" data-error="wrong" data-success="right">mobile number</label>
+                    <input id="repeatPassword-2" type="password" required="required" class="form-control validate">
+                </div>
+                <div class="form-group md-form mt-3">
+                        <label for="repeatPassword-2" data-error="wrong" data-success="right">fax</label>
+                        <input id="repeatPassword-2" type="password" required="required" class="form-control validate">
+                    </div>
+                    <div class="form-group md-form mt-3">
+                            <label for="repeatPassword-2" data-error="wrong" data-success="right">website</label>
+                            <input id="repeatPassword-2" type="password" required="required" class="form-control validate">
+                        </div>
+                <button class="btn btn-success
+                btn-rounded nextBtn-2 float-right" type="button">Next</button>
+            </div>
+        </div>
+    
+    <!-- Second Step -->
+        <div class="row setup-content-2" id="step-2">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold pl-0 my-4"><strong> Business Information</strong></h3>
+                <div class="form-group md-form">
+                    <label for="yourName-2" data-error="wrong" data-success="right">country</label>
+                    <input id="yourName-2" type="text" required="required" class="form-control validate">
+                </div>
+                <div class="form-group md-form mt-3">
+                    <label for="secondName-2" data-error="wrong" data-success="right">state/city</label>
+                    <input id="secondName-2" type="text" required="required" class="form-control validate">
+                </div>
+                <div class="form-group md-form">
+                    <label for="surname-2" data-error="wrong" data-success="right">Postal code</label>
+                    <input id="surname-2" type="text" required="required" class="form-control validate">
+                </div>
+                <div class="form-group md-form mt-3">
+                    <label for="yourAddress-2" data-error="wrong" data-success="right">Address</label>
+                    <textarea id="yourAddress-2" type="text" required="required" rows="2" class="md-textarea validate form-control"></textarea>
+                </div>
+                
+                <div class="form-group md-form mt-3">
+                        <label for="yourAddress-2" data-error="wrong" data-success="right">Name of your Bussiness</label>
+                        <textarea id="yourAddress-2" type="text" required="required" rows="2" class="md-textarea validate form-control"></textarea>
+                </div>
+
+                <button class="btn btn-success btn-rounded prevBtn-2 float-left" type="button">Previous</button>
+                <button class="btn btn-success btn-rounded nextBtn-2 float-right" type="button">Next</button>
+            </div>
+        </div>
+    
+        <!-- Third Step -->
+        <div class="row setup-content-2" id="step-3">
+            <div class="col-md-12 cate_list">
+                <h3 class="font-weight-bold pl-0 my-4"><strong>your business category</strong></h3>
+                <div class="col-md-4">
+                   <ul>
+                       <h5>Wedding venues</h5>
+                       <li><input type="radio" />Hotel</li>
+                        <li><input type="radio" />Resort</li>
+                        <li><input type="radio" />FarmHouse</li>
+                        <li><input type="radio" />party loung</li>
+                   </ul>
+
+                </div>
+
+                <div class="col-md-3">
+                    <ul>
+                        <h5>Wedding vendor</h5>
+                        <li><input type="radio" />dsvfs</li>
+                        <li><input type="radio" />vgs</li>
+                        <li><input type="radio" />dvgfs</li>
+                        <li><input type="radio" />dvgfs</li>
+                        <li><input type="radio" />dsvgfs</li>
+                        <li><input type="radio" />dfsgv</li>
+                    </ul>
+                    </div>
+                    <div class="col-md-2">
+                        <ul>
+                            <h5>Brides</h5>
+                            <li> <input type="radio" />dfsgv</li>
+                            <li><input type="radio" />dgfvs</li>
+                            <li><input type="radio" />gvs</li>
+                            <li><input type="radio" />gvfsd</li>
+                            <li> <input type="radio" />dgfvs</li>
+                        </ul>
+                        </div>
+                        <div class="col-md-3">
+                                <ul>
+                                <h5>Grooms</h5>
+                                <li> <input type="radio" />shearwani</li>
+                                
+                                </ul>
+                            </div>
+
+            </div>
+            <div class="col-md-12">
+                    <h3 class="font-weight-bold pl-0 my-4"><strong>Choose Account Type</strong></h3>
+                    <section id="extended">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Payment Plans </h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-block">
+                                                <table class="table table-responsive-md text-center">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th></th>
+                                                            <th>First Name</th>
+                                                            <th>Last Name</th>
+                                                            <th>Gender</th>
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox m-0">
+                                                                    <input type="checkbox" class="custom-control-input" id="item1">
+                                                                    <label class="custom-control-label" for="item1"></label>
+                                                                </div>
+                                                            </td>
+                                                            <td>John</td>
+                                                            <td>Carter</td>
+                                                            <td>Male</td>
+                                                
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox m-0">
+                                                                    <input type="checkbox" class="custom-control-input" id="item2">
+                                                                    <label class="custom-control-label" for="item2"></label>
+                                                                </div>
+                                                            </td>
+                                                            <td>Peter</td>
+                                                            <td>Parker</td>
+                                                            <td>Male</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3</td>
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox m-0">
+                                                                    <input type="checkbox" class="custom-control-input" id="item3">
+                                                                    <label class="custom-control-label" for="item3"></label>
+                                                                </div>
+                                                            </td>
+                                                            <td>John</td>
+                                                            <td>Rambo</td>
+                                                            <td>Male</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                </div>
+        </div>
+    
+        <!-- Fourth Step -->
+        <div class="row setup-content-2" id="step-4">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold pl-0 my-4"><strong>Payment</strong></h3>
+                <h2 class="text-center font-weight-bold my-4">Registration completed!</h2>
+                <button class="btn btn-success btn-rounded prevBtn-2 float-left" type="button">Previous</button>
+                <button class="btn btn-success btn-rounded float-right" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+    
+ </div>   

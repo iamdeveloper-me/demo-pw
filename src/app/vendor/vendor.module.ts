@@ -18,6 +18,7 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { VendorsidebarComponent } from './vendorsidebar/vendorsidebar.component';
 import { Navbar2Component } from './navbar2/navbar2.component';
+import { MembershipComponent } from './membership/membership.component';
 
 
 
@@ -41,7 +42,8 @@ import { Navbar2Component } from './navbar2/navbar2.component';
         GalleryComponent,
         ReviewsComponent,
         VendorsidebarComponent,
-        Navbar2Component
+        Navbar2Component,
+        MembershipComponent
     ]
 })
 export class VendorModule { }

@@ -20,7 +20,8 @@ import { FormsModule } from '@angular/forms';
 import { DragulaService } from 'ng2-dragula';
 import { AuthService } from './shared/auth/auth.service';
 import { AuthGuard } from './shared/auth/auth-guard.service';
-import * as $ from 'jquery';
+ import * as $ from 'jquery';
+
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { BannerComponent } from './banner/banner.component';
@@ -34,6 +35,7 @@ import { ChatComponent } from "./vendor/chat/chat.component";
 import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.component';
 import { EditprofileComponent } from './vendor/editprofile/editprofile.component';
 import { ReviewsComponent } from './vendor/reviews/reviews.component';
+import { MembershipComponent } from './vendor/membership/membership.component';
 import {
     SocialLoginModule,
     AuthServiceConfig,
@@ -51,6 +53,9 @@ import { Navbar2Component } from './vendor/navbar2/navbar2.component';
 import { PhotoComponent } from './photo/photo.component';
 import { TipsComponent } from './tips/tips.component';
 import { DetailpageComponent } from './detailpage/detailpage.component';
+import { EventsComponent } from './events/events.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -99,7 +104,10 @@ export function getAuthServiceConfigs() {
         Navbar2Component,
         PhotoComponent,
         TipsComponent,
-        DetailpageComponent
+        DetailpageComponent,
+        MembershipComponent,
+        EventsComponent,
+        ContactUsComponent
 
 
   ],

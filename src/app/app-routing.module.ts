@@ -31,6 +31,8 @@ const appRoutes: Routes = [
   { path: 'dashboard', component:  DashboardComponent  },
   { path: 'home/vendor/gallery', component:  GalleryComponent   },
   { path: 'profile', component:  VendorprofileComponent  },
+   { path: 'vendor/profile', component:  VendorprofileComponent  },
+  
   { path: 'chat', component:  ChatComponent },
   { path: 'editprofile', component:   EditprofileComponent },
   { path: 'mylisting', component:   MylistingComponent },
@@ -53,7 +55,15 @@ const appRoutes: Routes = [
   { path: 'home/vendor/dashboard/mylisting', component:   MylistingComponent },
   { path: 'home/photo/home', component: HomeComponent },
   { path: 'home/tips/home', component: HomeComponent },
-
+  { path: 'vendor/dashboard', component:  DashboardComponent  },
+  { path: 'vendor/dashboard/profile', component:  VendorprofileComponent  },
+  { path: 'vendor/dashboard/chat', component:  ChatComponent },
+  { path: 'vendor/dashboard/editprofile', component:   EditprofileComponent },
+  { path: 'vendor/chat', component:  ChatComponent },
+  { path: 'vendor/editprofile', component:   EditprofileComponent },
+  { path: 'vendor/mylisting', component:   MylistingComponent },
+  { path: 'vendor/dashboard/mylisting', component:   MylistingComponent },
+ 
   
   // {
   //   path: 'home/vendor',

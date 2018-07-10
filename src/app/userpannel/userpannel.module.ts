@@ -5,7 +5,8 @@ import { UserpannelRoutingModule } from "./userpannel-routing.module";
 import { ChartistModule } from 'ng-chartist';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatchHeightModule } from "../shared/directives/match-height.directive";
-import { DashboardComponent } from './dashboard/dashboard.component';
+
+import { UserboardComponent } from './userboard/userboard.component';
 
 
 
@@ -24,7 +25,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         // UserComponent,
         // AdminComponent,
         // NavComponent
-    DashboardComponent],
+        UserboardComponent],
     providers: [],
 })
 export class UserpannelModule { }

@@ -1,0 +1,57 @@
+<div style="text-align:center;background-color:white;">
+    <app-menu></app-menu>
+      <div class="col-md-12 container-fluid vendors_tools ">
+        <div class="col-md-4 box">
+            <div class="homeTools__item pure-u-1-5 app-link" data-href="/tools/Info?page=MyVendors">
+              <span class="homeTools__itemIcon homeTools__itemIcon--myvendors"></span>
+              <p class="homeTools__itemIconText">new review notifications</p>
+          </div>
+        </div>
+        <div class="col-md-4  box">
+            <div class=" homeTools__item pure-u-1-5 app-link" data-href="/tools/Info?page=Guests">
+              <span class="homeTools__itemIcon homeTools__itemIcon--guests"></span>
+              <p class="homeTools__itemIconText">Request review</p>
+          </div>
+        </div>
+        <div class="col-md-4  box">
+              <div class="homeTools__item pure-u-1-5 app-link" data-href="/tools/Info?page=CheckList">
+                <span class="homeTools__itemIcon homeTools__itemIcon--checklist"></span>
+                <p class="homeTools__itemIconText">Highlight your best review</p>
+              </div>
+        </div> 
+        <div class="col-md-4  box">
+            <div class=" homeTools__item pure-u-1-5 app-link" data-href="/tools/Info?page=Budget">
+              <span class="homeTools__itemIcon homeTools__itemIcon--budget"></span>
+              <p class="homeTools__itemIconText">response to review</p>
+          </div>
+        </div>
+        <div class="col-md-4 box">
+            <div class="homeTools__item pure-u-1-5 app-link" data-href="/tools/Info?page=Wedsite">
+              <span class="homeTools__itemIcon homeTools__itemIcon--wedsite"></span>
+              <p class="homeTools__itemIconText">hide dispute review </p>
+            </div>
+        </div>
+        <div class="col-md-4 box">
+            <div class="homeTools__item pure-u-1-5 app-link" data-href="/tools/Info?page=Wedsite">
+              <span class="homeTools__itemIcon homeTools__itemIcon--wedsite"></span>
+              <p class="homeTools__itemIconText">Download review </p>
+            </div>
+        </div>            
+      </div>
+      <div ngbDropdown >
+          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>General</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button class="dropdown-item">Join a Wedding</button><hr>
+              <button class="dropdown-item">Indox</button>
+              <button class="dropdown-item">Bookings</button>
+              <button class="dropdown-item">Settings</button>
+              <button class="dropdown-item">Download App</button>
+              <button class="dropdown-item">Logout</button>
+          </div>
+      </div>
+    <p>
+      userboard works!
+    </p>
+    <app-foot></app-foot>
+</div>    
+<router-outlet></router-outlet> 

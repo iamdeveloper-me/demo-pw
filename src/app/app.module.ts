@@ -28,6 +28,7 @@ import { BannerComponent } from './banner/banner.component';
 import { FootComponent } from './foot/foot.component';
 import { LoginComponent } from './login/login.component';
 import { VendorcardComponent } from './vendorcard/vendorcard.component';
+import { VendorComponent } from './vendor/vendor.component';
 import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
 import { MylistingComponent } from './vendor/mylisting/mylisting.component';
 import { NavemenuComponent } from './vendor/navemenu/navemenu.component';
@@ -44,7 +45,7 @@ import {
 } from "angular5-social-login";
 
 import {RegisterComponent} from './register/register.component';
-import { VendorComponent } from './vendor/vendor.component';
+
 import { SearchresultComponent } from './searchresult/searchresult.component';
 import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
 import { GalleryComponent } from './vendor/gallery/gallery.component';
@@ -59,8 +60,8 @@ import { FaquestionComponent } from './faquestion/faquestion.component';
 import { TermsandconComponent } from './termsandcon/termsandcon.component';
 import { CareersComponent } from './careers/careers.component';
 import { AdvertiseComponent } from './advertise/advertise.component';
-
-
+import { UserpannelComponent } from './userpannel/userpannel.component';
+import { UserboardComponent } from './userpannel/userboard/userboard.component';
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
   }
@@ -93,8 +94,6 @@ export function getAuthServiceConfigs() {
         LoginComponent,
         RegisterComponent,
         VendorcardComponent,
-        VendorComponent,
-        DashboardComponent,
         NavemenuComponent,
         VendorprofileComponent,
         ChatComponent,
@@ -115,7 +114,11 @@ export function getAuthServiceConfigs() {
         FaquestionComponent,
         TermsandconComponent,
         CareersComponent,
-        AdvertiseComponent
+        AdvertiseComponent,
+        VendorComponent,
+        DashboardComponent,
+        UserpannelComponent,
+        UserboardComponent
 
 
   ],

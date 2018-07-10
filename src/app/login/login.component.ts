@@ -17,10 +17,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   ngOnInit() {
     $.getScript('./assets/js/hideshow.js');
+                
+    $("#signupform").hide(); 
+    $("#signupheading").hide();
+    $("#signinuser").hide();  
   }
   loadScript(){
     this.ngOnInit();
+  
   }
+
+
+
   constructor(private router:Router, private socialAuthService: AuthService ,private modalService: NgbModal ) {}
   closeResult: string;
   // Open default modal

@@ -1,7 +1,25 @@
+#nav{
+  background-color: #ede8e8;
+    width: 100%;
+    margin-top: 6%;
+}
+#signin
+{
+  float: right;
+}
+
+a{margin-top: 3%;}
+hr {
+  box-sizing: content-box;
+  height: 39px;
+  overflow: visible;
+}
+
 .steps-form-2 {
   display: table;
-  width: 100%;
-  position: relative; }
+    width: 79%;
+    position: relative;
+    margin: 0 auto;}
 .steps-form-2 .steps-row-2 {
   display: table-row; }
 .steps-form-2 .steps-row-2:before {
@@ -10,14 +28,14 @@
   position: absolute;
   content: " ";
   width: 100%;
-  height: 2px;
-  background-color: #7283a7; }
+  height: 1px;
+  background-color: #cccccc; }
 .steps-form-2 .steps-row-2 .steps-step-2 {
   display: table-cell;
   text-align: center;
   position: relative; }
 .steps-form-2 .steps-row-2 .steps-step-2 p {
-  margin-top: 0.5rem; }
+  margin-top: 0.5rem;  font-weight: 600; font-size: 18px;}
 .steps-form-2 .steps-row-2 .steps-step-2 button[disabled] {
   opacity: 1 !important;
   filter: alpha(opacity=100) !important; }
@@ -32,8 +50,9 @@
   margin-top: -22px; }
 .steps-form-2 .steps-row-2 .steps-step-2 .btn-circle-2:hover {
   border: 2px solid #4285F4;
-  color: #4285F4 !important;
-  background-color: white !important; }
+    color: #fff!important;
+    background-color: #e72e77 !important;
+}
 .steps-form-2 .steps-row-2 .steps-step-2 .btn-circle-2 .fa {
   font-size: 1.7rem; }
 
@@ -63,7 +82,352 @@
 
     border: 2px solid #e72e77 !important;
     color: #e72e77 !important;
+    transition : all 0.5s ease;
   }
-  .steps-form-2 .steps-row-2 .steps-step-2{
-    text-align: left !important;
+
+
+
+  .sign_up_container{margin: 110px auto 30px; border: 1px solid #cccccc; background: #ffffff;}
+  .sign_up_container .steps-form-2 .steps-step-2 .btn-amber{color: #ffffff !important;
+  background: #e72e77 !important;}
+  .sign_up_container .steps-form-2 .steps-step-2 .first_step{float:left !important;}
+  .mt-25{margin-top:25px; padding-bottom:20px; }
+
+
+
+  .styled-checkbox {
+    position: absolute; // take it out of document flow
+    opacity: 0; // hide it
+  
+    & + label {
+      position: relative;
+      cursor: pointer;
+      padding: 0;
+    }
+  
+    // Box.
+    & + label:before {
+      content: '';
+      margin-right: 10px;
+      display: inline-block;
+      vertical-align: text-top;
+      width: 20px;
+      height: 20px;
+      background: #aaa;
+    }
+  
+    // Box hover
+    &:hover + label:before {
+      background: #e72e77;
+    }
+    
+    // Box focus
+    &:focus + label:before {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+    }
+  
+    // Box checked
+    &:checked + label:before {
+      background: #e72e77;
+    }
+    
+    // Disabled state label.
+    &:disabled + label {
+      color: #b8b8b8;
+      cursor: auto;
+    }
+  
+    // Disabled box.
+    &:disabled + label:before {
+      box-shadow: none;
+      background: #ddd;
+    }
+  
+    // Checkmark. Could be replaced with an image
+    &:checked + label:after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 15px;
+      background: white;
+      width: 2px;
+      height: 2px;
+      box-shadow: 
+        2px 0 0 white,
+        4px 0 0 white,
+        4px -2px 0 white,
+        4px -4px 0 white,
+        4px -6px 0 white,
+        4px -8px 0 white;
+      transform: rotate(45deg);
+    }
   }
+  
+ 
+  .unstyled {
+    margin: 0;
+    list-style-type: none;
+
+  }
+  
+  .styled-checkbox li {
+    margin: 10px 0;
+  }
+
+ .unstyled li{
+    line-height: 1.8rem !important;
+}
+.unstyled h5{font-size: 16px; font-weight: 400;}
+
+
+
+:focus{outline: none;}
+.input-effect{position:relative; height: 33px; margin-bottom: 47px;}
+
+.input-effect .effect-16{
+    border: 0;
+    padding: 4px 0;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+    z-index: 2;
+    position: relative;
+    width: 100%;
+}
+.input-effect .effect-16 ~ label {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 7px;
+    color: #aaa;
+    transition: 0.3s;
+    z-index: 1;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+}
+.input-effect .effect-16 ~ .focus-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: rgb(240, 17, 140);
+    transition: 0.4s;
+}
+
+.input-effect .effect-16:focus ~ label{
+    top: -16px;
+    font-size: 12px;
+    color:  rgb(240, 17, 140);
+    transition: 0.3s;
+}
+
+.input-effect .effect-16:focus ~ .focus-border{
+    width: 100%;
+    transition: 0.4s;
+
+}
+
+.signup_nextbtn {    width: 177px;
+    height: 50px;
+    font-size: 19px;
+    margin: 30px auto 20px;
+    text-transform: uppercase;}
+.ml-yb{margin-left: -66px;}
+
+.col-md-12.cate_list {
+    margin-top: 22px;
+    margin-left: 41px;
+}
+.lc_head{ font-size: 20px;
+    font-weight: 600;
+    background: #e3e3e3;
+    padding: 13px;
+    padding-left: 15px !important;}
+
+
+
+
+  /* pricing */
+  
+    /* COMMON PRICING STYLES */
+    .panel.price,
+    .panel.price>.panel-heading{
+      border-radius:0px;
+       -moz-transition: all .3s ease;
+      -o-transition:  all .3s ease;
+      -webkit-transition:  all .3s ease;
+    }
+    .panel.price:hover{
+      box-shadow: 0px 0px 30px rgba(0,0,0, .2);
+    }
+    .panel.price:hover>.panel-heading{
+      box-shadow: 0px 0px 30px rgba(0,0,0, .2) inset;
+    }
+    
+        
+    .panel.price>.panel-heading{
+      box-shadow: 0px 5px 0px rgba(50,50,50, .2) inset;
+      text-shadow:0px 3px 0px rgba(50,50,50, .6);
+    }
+      
+    .price .list-group-item{
+      border-bottom-:1px solid rgba(250,250,250, .5);
+    }
+    
+    .panel.price .list-group-item:last-child {
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+    }
+    .panel.price .list-group-item:first-child {
+      border-top-right-radius: 0px;
+      border-top-left-radius: 0px;
+    }
+    
+    .price .panel-footer {
+      color: #fff;
+      border-bottom:0px;
+      background-color:  rgba(0,0,0, .1);
+      box-shadow: 0px 3px 0px rgba(0,0,0, .3);
+    }
+    
+    
+    .panel.price .btn{
+      box-shadow: 0 -1px 0px rgba(50,50,50, .2) inset;
+      border:0px;
+    }
+    
+  /* green panel */
+  
+    
+    .price.panel-green>.panel-heading {
+      color: #fff;
+      background-color: #57AC57;
+      border-color: #71DF71;
+      border-bottom: 1px solid #71DF71;
+    }
+    
+      
+    .price.panel-green>.panel-body {
+      color: #fff;
+      background-color: #65C965;
+    }
+        
+    
+    .price.panel-green>.panel-body .lead{
+        text-shadow: 0px 3px 0px rgba(50,50,50, .3);
+    }
+    
+    .price.panel-green .list-group-item {
+      color: #333;
+      background-color: rgba(50,50,50, .01);
+      font-weight:600;
+      text-shadow: 0px 1px 0px rgba(250,250,250, .75);
+    }
+    
+
+    
+    /* grey price */
+    
+  
+    .price.panel-grey>.panel-heading {
+      color: #fff;
+      background-color: #6D6D6D;
+      border-color: #B7B7B7;
+      border-bottom: 1px solid #B7B7B7;
+    }
+    
+      
+    .price.panel-grey>.panel-body {
+      color: #fff;
+      background-color: #808080;
+    }
+    
+
+    
+    .price.panel-grey>.panel-body .lead{
+        text-shadow: 0px 3px 0px rgba(50,50,50, .3);
+    }
+    
+    .price.panel-grey .list-group-item {
+      color: #333;
+      background-color: rgba(50,50,50, .01);
+      font-weight:600;
+      text-shadow: 0px 1px 0px rgba(250,250,250, .75);
+    }
+    
+    .white_text{color: #ffffff !important;}
+    .list-group-item{padding: 5px !important;}
+
+    .panel-body.text-center{padding: 10px 0px 0px 0px !important;}
+
+
+
+    /* card page */
+
+    .credit-card-box .panel-title {
+    display: inline;
+    font-weight: bold;
+}
+.credit-card-box .form-control.error {
+    border-color: red;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(255,0,0,0.6);
+}
+.credit-card-box label.error {
+  font-weight: bold;
+  color: red;
+  padding: 2px 8px;
+  margin-top: 2px;
+}
+.credit-card-box .payment-errors {
+  font-weight: bold;
+  color: red;
+  padding: 2px 8px;
+  margin-top: 2px;
+}
+.credit-card-box label {
+    display: block;
+}
+/* The old "center div vertically" hack */
+.credit-card-box .display-table {
+    display: table;
+}
+.credit-card-box .display-tr {
+    display: table-row;
+}
+.credit-card-box .display-td {
+    display: table-cell;
+    vertical-align: middle;
+    width: 50%;
+}
+/* Just looks nicer */
+.credit-card-box .panel-heading img {
+    min-width: 180px;
+}
+.payment_card{width: 400px; margin: 0 auto;}
+.payment_btn{width: 100% !important; margin: 10px 0px !important;}
+
+
+@media screen and (max-width: 768px) {
+.steps-form-2{width: 100%;}
+.steps-form-2 .steps-row-2 .steps-step-2 p{ font-size: 13px;     margin-top: 0;
+    line-height: 17px;}
+.ml-yb{ margin-left: -17px;}
+
+.col-md-12.cate_list {
+    margin-top: 10px;
+    margin-left: 0px;
+}
+
+.unstyled h5{font-size: 18px; font-weight: 600; background: #e3e3e3;  padding: 13px;
+   padding-left: 10px !important; margin-bottom: 8px;}
+.cate_list .col-md-3{padding: 0px;}
+.mtx-0{margin-top: 0px;}
+.lc_head{ margin-top: 10px !important; margin-bottom: 0px !important;}
+.mb-xs-20{margin-bottom: 20px !important;}
+.pl-0, .px-0{padding-right: 0 !important;}
+.mt-xs-20{margin-top: 20px;}
+.no-pad-xs{padding: 0px !important;}
+.payment_card{width: 90%; margin: 0 auto;}
+
+}

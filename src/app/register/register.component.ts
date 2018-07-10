@@ -9,10 +9,11 @@ export class RegisterComponent  {
 
   ngOnInit() {    
                   $.getScript('./assets/register/js/register.js');
-                
+                 $(".show").hide();
                   
   }
     constructor( ) {}
 
     loadScript(){this.ngOnInit;}
+
 }

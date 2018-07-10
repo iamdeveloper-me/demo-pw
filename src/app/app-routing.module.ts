@@ -20,6 +20,11 @@ import { ChatComponent } from "./vendor/chat/chat.component";
 import { EditprofileComponent } from './vendor/editprofile/editprofile.component';
 import { MylistingComponent } from './vendor/mylisting/mylisting.component';
 import { GalleryComponent } from './vendor/gallery/gallery.component';
+import { EventsComponent } from './events/events.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+
+import {RegisterComponent} from './register/register.component';
+
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'home/searchresult', component: SearchresultComponent },
@@ -28,13 +33,15 @@ const appRoutes: Routes = [
   { path: 'home/vendor', component:  VendorComponent  },
   { path: 'home/photo', component: PhotoComponent },
   { path: 'home/tips', component: TipsComponent },
-
+   { path: 'home/contact', component: ContactUsComponent },
+   { path: 'home/events', component:  EventsComponent  },
 
   { path: 'vendor/profile', component:  VendorprofileComponent  },
   { path: 'vendor/chat', component:  ChatComponent },
   { path: 'vendor/editprofile', component:   EditprofileComponent },
   { path: 'vendor/mylisting', component:   MylistingComponent },
  
+   { path: 'register', component:  RegisterComponent  },
   
   // {
   //   path: 'home/vendor',

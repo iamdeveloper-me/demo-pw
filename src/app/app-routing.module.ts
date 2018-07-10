@@ -24,8 +24,16 @@ import { MylistingComponent } from './vendor/mylisting/mylisting.component';
 import { GalleryComponent } from './vendor/gallery/gallery.component';
 import { ReviewsComponent } from './vendor/reviews/reviews.component';
 import { MembershipComponent } from './vendor/membership/membership.component';
+import { FaquestionComponent } from './faquestion/faquestion.component';
+import { TermsandconComponent } from './termsandcon/termsandcon.component';
+import { CareersComponent } from './careers/careers.component';
+import { AdvertiseComponent } from './advertise/advertise.component';
+
+
+import {RegisterComponent} from './register/register.component';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'home/searchresult', component: SearchresultComponent },
   { path: 'home/searchresult/detailprofile', component:  DetailpageComponent  },
   { path: 'home/photo', component: PhotoComponent },
@@ -40,34 +48,14 @@ const appRoutes: Routes = [
   
   { path: 'home/events', component: EventsComponent },
   { path: 'home/contact', component: ContactUsComponent },
-
-
-
+  { path: 'home/FAQ', component:FaquestionComponent },
+  { path: 'home/TermsandConditions', component: TermsandconComponent  },
+  { path: 'home/Careers', component:  CareersComponent  },
+  { path: 'home/Advertise', component:  AdvertiseComponent },
   
-  // { path: '../tips', component: TipsComponent },
-  // { path: 'home/vendor/review', component: ReviewsComponent },
-  // { path: 'dashboard', component:  DashboardComponent  },
-  // { path: 'home/vendor/gallery', component:  GalleryComponent   },
-  // { path: 'profile', component:  VendorprofileComponent  },
-  // { path: 'chat', component:  ChatComponent },
-  // { path: 'editprofile', component:   EditprofileComponent },
-  // { path: 'mylisting', component:   MylistingComponent },
-  // { path: 'home/searchresult', component: SearchresultComponent },
-  // { path: 'home/photo', component: PhotoComponent },
-  // { path: 'home/vendor', component:  VendorComponent  },
-  // { path: 'home/vendor/dashboard/profile', component:  VendorprofileComponent  },
-  // { path: 'home/vendor/dashboard/chat', component:  ChatComponent },
-    // {
-  //   path: 'home/vendor',
-  //   redirectTo: 'dashboard/vendor',
-  //   pathMatch: 'full',
-  // },
-  // {
-  //   path: 'home/user',
-  //   redirectTo: 'dashboard/user',
-  //   pathMatch: 'full',
-  // }, 
-  
+
+
+
   { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES, canActivate: [AuthGuard] },
   { path: '', component: ContentLayoutComponent, data: { title: 'content Views' }, children: CONTENT_ROUTES, canActivate: [AuthGuard] },
 ];

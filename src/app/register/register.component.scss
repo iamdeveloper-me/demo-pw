@@ -1,3 +1,20 @@
+#nav{
+  background-color: #ede8e8;
+    width: 100%;
+    margin-top: 6%;
+}
+#signin
+{
+  float: right;
+}
+
+a{margin-top: 3%;}
+hr {
+  box-sizing: content-box;
+  height: 39px;
+  overflow: visible;
+}
+
 .steps-form-2 {
   display: table;
   width: 100%;
@@ -10,14 +27,14 @@
   position: absolute;
   content: " ";
   width: 100%;
-  height: 2px;
-  background-color: #7283a7; }
+  height: 1px;
+  background-color: #cccccc; }
 .steps-form-2 .steps-row-2 .steps-step-2 {
   display: table-cell;
   text-align: center;
   position: relative; }
 .steps-form-2 .steps-row-2 .steps-step-2 p {
-  margin-top: 0.5rem; }
+  margin-top: 0.5rem;  font-weight: 400;}
 .steps-form-2 .steps-row-2 .steps-step-2 button[disabled] {
   opacity: 1 !important;
   filter: alpha(opacity=100) !important; }
@@ -64,6 +81,150 @@
     border: 2px solid #e72e77 !important;
     color: #e72e77 !important;
   }
-  .steps-form-2 .steps-row-2 .steps-step-2{
-    text-align: left !important;
+
+
+
+  .sign_up_container{margin: 110px auto 30px; border: 1px solid #cccccc; background: #ffffff;}
+  .sign_up_container .steps-form-2 .steps-step-2 .btn-amber{color: #ffffff !important;
+  background: #e72e77 !important;}
+  .sign_up_container .steps-form-2 .steps-step-2 .first_step{float:left !important;}
+  .mt-25{margin-top:25px; padding-bottom:20px; }
+
+
+
+  .styled-checkbox {
+    position: absolute; // take it out of document flow
+    opacity: 0; // hide it
+  
+    & + label {
+      position: relative;
+      cursor: pointer;
+      padding: 0;
+    }
+  
+    // Box.
+    & + label:before {
+      content: '';
+      margin-right: 10px;
+      display: inline-block;
+      vertical-align: text-top;
+      width: 20px;
+      height: 20px;
+      background: #aaa;
+    }
+  
+    // Box hover
+    &:hover + label:before {
+      background: #e72e77;
+    }
+    
+    // Box focus
+    &:focus + label:before {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+    }
+  
+    // Box checked
+    &:checked + label:before {
+      background: #e72e77;
+    }
+    
+    // Disabled state label.
+    &:disabled + label {
+      color: #b8b8b8;
+      cursor: auto;
+    }
+  
+    // Disabled box.
+    &:disabled + label:before {
+      box-shadow: none;
+      background: #ddd;
+    }
+  
+    // Checkmark. Could be replaced with an image
+    &:checked + label:after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 15px;
+      background: white;
+      width: 2px;
+      height: 2px;
+      box-shadow: 
+        2px 0 0 white,
+        4px 0 0 white,
+        4px -2px 0 white,
+        4px -4px 0 white,
+        4px -6px 0 white,
+        4px -8px 0 white;
+      transform: rotate(45deg);
+    }
   }
+  
+ 
+  .unstyled {
+    margin: 0;
+    list-style-type: none;
+
+  }
+  
+  .styled-checkbox li {
+    margin: 10px 0;
+  }
+
+ .unstyled li{
+    line-height: 1.8rem !important;
+}
+.unstyled h5{font-size: 16px; font-weight: 400;}
+
+
+
+:focus{outline: none;}
+.input-effect{position:relative; height: 33px;}
+
+.input-effect .effect-16{
+    border: 0;
+    padding: 4px 0;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+    z-index: 2;
+    position: relative;
+    width: 100%;
+}
+.input-effect .effect-16 ~ label {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 9px;
+    color: #aaa;
+    transition: 0.3s;
+    z-index: 1;
+    letter-spacing: 0.5px;
+
+}
+.input-effect .effect-16 ~ .focus-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: rgb(240, 17, 140);
+    transition: 0.4s;
+}
+
+.input-effect .effect-16:focus ~ label{
+    top: -16px;
+    font-size: 12px;
+    color:  rgb(240, 17, 140);
+    transition: 0.3s;
+}
+
+.input-effect .effect-16:focus ~ .focus-border{
+    width: 100%;
+    transition: 0.4s;
+
+}
+
+.signup_nextbtn {width: 157px;  height: 46px; font-size: 19px;margin: 30px auto 20px;
+  text-transform: uppercase;}
+
+

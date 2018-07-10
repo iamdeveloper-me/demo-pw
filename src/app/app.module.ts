@@ -55,6 +55,10 @@ import { TipsComponent } from './tips/tips.component';
 import { DetailpageComponent } from './detailpage/detailpage.component';
 import { EventsComponent } from './events/events.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { FaquestionComponent } from './faquestion/faquestion.component';
+import { TermsandconComponent } from './termsandcon/termsandcon.component';
+import { CareersComponent } from './careers/careers.component';
+import { AdvertiseComponent } from './advertise/advertise.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -107,7 +111,11 @@ export function getAuthServiceConfigs() {
         DetailpageComponent,
         MembershipComponent,
         EventsComponent,
-        ContactUsComponent
+        ContactUsComponent,
+        FaquestionComponent,
+        TermsandconComponent,
+        CareersComponent,
+        AdvertiseComponent
 
 
   ],

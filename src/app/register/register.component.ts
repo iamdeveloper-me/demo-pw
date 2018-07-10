@@ -1,5 +1,4 @@
 import { Component} from '@angular/core';
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -7,10 +6,10 @@ import { Component} from '@angular/core';
 })
 export class RegisterComponent  {
 
-  ngOnInit() {    
-                  $.getScript('./assets/register/js/register.js');
-                
-                  
+  ngOnInit() {  
+//  $.material.init();
+    $(".loginnav").hide(); 
+    $.getScript('./assets/js/register.js');             
   }
     constructor( ) {}
 

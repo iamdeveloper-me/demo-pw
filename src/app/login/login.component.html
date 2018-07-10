@@ -2,7 +2,8 @@
       <div class="col-12 d-flex align-items-center justify-content-center">
         <div class="card gradient-indigo-purple text-center width-400 shadownone">
           <div class="card-img overlap loginhead">
-            <h1>Log in</h1>
+            <h1 id="loginheading">User Log in</h1>
+            <h1 id="signupheading"> User Sign up</h1>
             <div class="loginsocial">
               <a  (click)="socialSignIn('facebook')"><i class="fa fa-facebook"></i></a>
               <a href="#"><i class="fa fa-twitter"></i></a>
@@ -11,13 +12,13 @@
              </div>
           <div class="card-body loginbody">
               <form novalidate="" (ngSubmit)="onSubmit()" #f="ngForm">
-                  <div class="form-group">
+                    <div class="form-group" id ="signupform">
                       <div class="col-md-12">
                           <i class="material-icons pull-left">face</i>
                         <input type="text" class="form-control" name="inputName" id="inputName" placeholder="Name" >
                       </div>
                     </div>
-                <div class="form-group">
+                <div class="form-group">  
                   <div class="col-md-12">
                       <i class="material-icons">email</i>
                     <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Email" >
@@ -29,29 +30,19 @@
                     <input type="password" class="form-control" name="inputPass" id="inputPass" placeholder="Password">
                   </div>
                 </div>
+
                 <div class="form-group">
                   <div class="col-md-12">
-                    <button type="submit" class="textbtn"  >Lets Go</button><br>
-                    <a (click)="vendor()">vendor</a>
+                    <button type="submit" class="textbtn" (click)="vendor()"  >Lets Go</button><br>                
                     </div>
                 </div>
               </form>
           </div>
-          <div class="card-footer">
-            <div class="float-right"><a id="hide" (click)="open(signupContent)" (click)="loadScript()"class="red">New User?</a></div>
-          </div>
+          <hr>
+            <a id="new" (click)="loadScript()" class="btn btn-outline-info">user sign up ?</a>
+            <a id="signinuser" class="btn btn-outline-info">sign in?</a>
+            <div class="float-right"><a routerLink="../register" class="red">Business Sign In</a></div>
+    
         </div>
       </div>
 </section>
-
-<ng-template #signupContent let-c="close" let-d="dismiss">
-  <div class="modal-body">
-      <div class="modal-header">
-          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-          <span aria-hidden="true">&times;</span>
-          </button>
-      </div>
-      <app-register></app-register>
-      <!--Registration Page Ends-->
-  </div>
- </ng-template>

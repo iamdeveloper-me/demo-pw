@@ -13,6 +13,8 @@ export class SearchresultComponent implements OnInit {
                  $.getScript('./assets/register/js/bootstrap.min.js');
                  $.getScript('./assets/register/js/jquery.bootstrap.js');
                  $.getScript('./assets/js/searchresult.js');
+ $(".slider_use_anather_compo").hide();
+
   }
 
 }

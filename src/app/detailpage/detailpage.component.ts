@@ -10,6 +10,9 @@ export class DetailpageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
 
+   $.getScript('./assets/js/jssor.slider.min.js');
+
+ 
+}
 }

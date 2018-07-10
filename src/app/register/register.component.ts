@@ -6,12 +6,16 @@ import { Component} from '@angular/core';
 })
 export class RegisterComponent  {
 
+
   ngOnInit() {  
 //  $.material.init();
     $(".loginnav").hide(); 
     $.getScript('./assets/js/register.js');             
+                 $(".show").hide();
+
   }
     constructor( ) {}
 
     loadScript(){this.ngOnInit;}
+
 }

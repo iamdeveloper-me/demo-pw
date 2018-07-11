@@ -50,7 +50,7 @@ const appRoutes: Routes = [
   { path: 'vendor/editprofile', component:   EditprofileComponent },
   { path: 'vendor/mylisting', component:   MylistingComponent },
  
-   { path: 'register', component:  RegisterComponent  },
+   { path: 'home/register', component:  RegisterComponent  },
   
 
   { path: 'home/events', component: EventsComponent },

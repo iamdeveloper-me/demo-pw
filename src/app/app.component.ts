@@ -4,5 +4,7 @@ import { Component, ViewContainerRef } from '@angular/core';
     templateUrl: './app.component.html'
 })
 export class AppComponent {
-
+constructor(){
+    $.getScript('./assets/js/jssor.slider.min.js');
+}
 }

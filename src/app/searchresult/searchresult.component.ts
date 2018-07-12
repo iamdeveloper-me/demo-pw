@@ -18,6 +18,6 @@ export class SearchresultComponent implements OnInit {
 
   }
   xyz(){
-    this._route.navigate(['home/searchresult/detailprofile']);
+    this._route.navigate(['home/detailprofile']);
   }
 }

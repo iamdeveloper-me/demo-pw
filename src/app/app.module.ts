@@ -62,6 +62,8 @@ import { CareersComponent } from './careers/careers.component';
 import { AdvertiseComponent } from './advertise/advertise.component';
 import { UserpannelComponent } from './userpannel/userpannel.component';
 import { UserboardComponent } from './userpannel/userboard/userboard.component';
+import { AllcategoryComponent } from './allcategory/allcategory.component';
+
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
   }
@@ -118,7 +120,8 @@ export function getAuthServiceConfigs() {
         VendorComponent,
         DashboardComponent,
         UserpannelComponent,
-        UserboardComponent
+        UserboardComponent,
+        AllcategoryComponent
 
 
   ],

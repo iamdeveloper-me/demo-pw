@@ -1,3 +1,4 @@
+
 .logincontainer{padding: 0px!important;max-width: 340px!important;background: #ffffff;margin-left: auto;margin-right: auto;border-radius: 5px;}
 
 
@@ -73,107 +74,6 @@
     background: rgba(0, 46, 119, 0.99) !important;
 }
 
-  @media (min-width: 992px) {
-    #mainNav {
-      border-color: transparent;
-      background-color: transparent;
-    }
-    #mainNav .navbar-brand {
-      color: rgba(255, 255, 255, 0.7);
-      line-height: 40px;
-    }
-    #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-      color: #fff;
-    }
-    #mainNav .navbar-nav > li.nav-item > a.nav-link {
-      padding: 0.5rem 1rem;
-    }
-    #mainNav .navbar-nav > li.nav-item > a.nav-link,
-    #mainNav .navbar-nav > li.nav-item > a.nav-link:focus {
-      color: rgba(255, 255, 255, 0.7);
-    }
-    #mainNav .navbar-nav > li.nav-item > a.nav-link:hover,
-    #mainNav .navbar-nav > li.nav-item > a.nav-link:focus:hover {
-      color: #fff;
-    }
-    #mainNav.navbar-shrink {
-      border-bottom: 1px solid rgba(33, 37, 41, 0.1);
-      background-color: #fff;
-    }
-    #mainNav.navbar-shrink .navbar-brand {
-      color: #F05F40;
-    }
-    #mainNav.navbar-shrink .navbar-brand:focus, #mainNav.navbar-shrink .navbar-brand:hover {
-      color: #f05f40;
-    }
-    #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link,
-    #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus {
-      color: #212529;
-    }
-    #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:hover,
-    #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus:hover {
-      color: #F05F40;
-    }
-  }
-
-  @media (max-width:767px){
-    #mainNav .container::before,#mainNav .container::after{
-      display: none;
-    }
-    #mainNav .navbar-brand{
-      float: left;
-      line-height: 40px;
-      padding-left: 0px;
-      color: #ffffff;
-    }
-    .navbar-light .navbar-toggler-icon {
-      background-image: none!important;
-      background: #ffffff;
-      height: 2px;
-      border-radius: 5px;
-      margin: 5px 0px;
-      display: block;
-  }
-    .navbar-nav > li {
-      float: left;
-      width: 100%;
-      text-align: left;
-  }
-  .dropdown-menu ul li a:hover{
-    background-color:unset !important;
-     color: #e72e77 !important;
-   }
-   .navbar-collapse{
-    background: #ffffff!important;
-    
-  }
-  .navbar-collapse{
-    overflow: hidden;
-  }
-  .dropdown-menu{
-    z-index: 99999;
-    display: none !important;
-   
-  }
-  .drop_mob_hide{
-
-  }
-  #navbarResponsive{
-  margin-left: 0% !important;
-  position: absolute;
-    top: 80px;
-    left: 0;
-}
-.dropdown-toggle::after{display:none !important;}
-.mrg_top_menu{
-  /*margin-top: 250px;*/
-  }
-
-.headernav.head_small{
-    height: auto !important;}
-
-}
-
   .dropdown:hover>.dropdown-menu {
       display: block;
     }
@@ -242,7 +142,133 @@
   
 
 
+      @media (min-width: 992px) {
+        #mainNav {
+          border-color: transparent;
+          background-color: transparent;
+        }
+        #mainNav .navbar-brand {
+          color: rgba(255, 255, 255, 0.7);
+          line-height: 40px;
+        }
+        #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
+          color: #fff;
+        }
+        #mainNav .navbar-nav > li.nav-item > a.nav-link {
+          padding: 0.5rem 1rem;
+        }
+        #mainNav .navbar-nav > li.nav-item > a.nav-link,
+        #mainNav .navbar-nav > li.nav-item > a.nav-link:focus {
+          color: rgba(255, 255, 255, 0.7);
+        }
+        #mainNav .navbar-nav > li.nav-item > a.nav-link:hover,
+        #mainNav .navbar-nav > li.nav-item > a.nav-link:focus:hover {
+          color: #fff;
+        }
+        #mainNav.navbar-shrink {
+          border-bottom: 1px solid rgba(33, 37, 41, 0.1);
+          background-color: #fff;
+        }
+        #mainNav.navbar-shrink .navbar-brand {
+          color: #F05F40;
+        }
+        #mainNav.navbar-shrink .navbar-brand:focus, #mainNav.navbar-shrink .navbar-brand:hover {
+          color: #f05f40;
+        }
+        #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link,
+        #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus {
+          color: #212529;
+        }
+        #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:hover,
+        #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus:hover {
+          color: #F05F40;
+        }
+      }
+    
 
+      @media (max-width:767px){
+        #mainNav .container::before,#mainNav .container::after{
+          display: none;
+        }
+        #mainNav .navbar-brand{
+          float: inherit;
+          line-height: 40px;
+          padding-left: 0px;
+          color: #ffffff;
+          width: 112px;
+          margin: 0px auto;
+        }
+        .navbar-light .navbar-toggler-icon {
+          background-image: none!important;
+          background: #ffffff;
+          height: 2px;
+          border-radius: 5px;
+          margin: 5px 0px;
+          display: block;
+      }
+        .navbar-nav > li {
+          float: left;
+          width: 100%;
+          text-align: left;
+      }
+      .dropdown-menu ul li a:hover{
+        background-color:unset !important;
+         color: #e72e77 !important;
+       }
+       .navbar-collapse{
+        background: #ffffff!important;
+        
+      }
+      .navbar-collapse{
+        overflow: hidden;
+      }
+      .dropdown-menu{
+        z-index: 99999;
+        display: none !important;
+      }
+      .navbar-toggler{
+        position: absolute;
+      }
+     .navbtntik{
+      padding: 0.25rem 0.75rem;
+      font-size: 1.25rem;
+      line-height: 1;
+      background-color: transparent;
+      border: 1px solid transparent;
+      border-radius: 0.25rem;
+      position: absolute;
+     }
+      #navbarResponsive{
+      margin-left: 0% !important;
+      position: absolute;
+        top: 80px;
+    }
+    .dropdown-toggle::after{display:none !important;}
+    
+    
+    .headernav.head_small{
+        height: auto !important;}
+    
+       
+    #navbarResponsive{
+      position: fixed;
+      top: 0;
+      z-index: 1;
+      height: 100%; 
+      width: 280px;
+      display: block;
+      
+    }
+      .navbar-collapse {
+        transition: 1s;
+        left: -280px;
+    }
+.in{
+  left: 0px!important;
+}
+
+    }
+    
 
 
 

@@ -12,7 +12,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     $("#id9").hide();
     $("#id19").hide();
-  
     $(".signup_click").click(function(){
       $("#panel8").addClass( "in");
       $("#panel8").addClass( "active");

@@ -10,14 +10,19 @@ export class SearchresultComponent implements OnInit {
 
   constructor(public _route:Router) { }
 
- ngOnInit() {    $.getScript('./assets/register/js/jquery-2.2.4.min.js');
-                 $.getScript('./assets/register/js/bootstrap.min.js');
-                 $.getScript('./assets/register/js/jquery.bootstrap.js');
-                 $.getScript('./assets/js/searchresult.js');
- $(".slider_use_anather_compo").hide();
+ ngOnInit() {    
+  $.getScript('./assets/register/js/jquery-2.2.4.min.js');
+  $.getScript('./assets/register/js/bootstrap.min.js');
+  $.getScript('./assets/register/js/jquery.bootstrap.js');
+  $.getScript('./assets/js/searchresult.js');
+  $(".slider_use_anather_compo").hide();
+  
 
- $.getScript('./assets/js/jssor.slider.min.js');
- $.getScript('./assets/js/searchslide.js');
+  $.getScript('./assets/jss/core/popper.min.js');
+  $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
+  $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');
+  $.getScript('./assets/jss/plugins/chartist.min.js');
+  $.getScript('./assets/jss/plugins/bootstrap-notify.js');
 
   }
   xyz(){

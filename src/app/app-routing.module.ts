@@ -31,26 +31,28 @@ import { EventsComponent } from './events/events.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.component';
 import { VendorComponent } from './vendor/vendor.component';
-
+import { AllcategoryComponent } from './allcategory/allcategory.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home/searchresult', component: SearchresultComponent },
-  { path: 'home/searchresult/detailprofile', component:  DetailpageComponent  },
+  { path: 'home/detailprofile', component:  DetailpageComponent  },
  
   { path: 'home/vendor', component:  VendorComponent  },
   { path: 'home/photo', component: PhotoComponent },
   { path: 'home/tips', component: TipsComponent },
    { path: 'home/contact', component: ContactUsComponent },
    { path: 'home/events', component:  EventsComponent  },
+  { path: 'home/allcategory', component:  AllcategoryComponent },
 
+   { path: 'vendor/dashboard', component:  DashboardComponent  },
   { path: 'vendor/profile', component:  VendorprofileComponent  },
   { path: 'vendor/chat', component:  ChatComponent },
   { path: 'vendor/editprofile', component:   EditprofileComponent },
   { path: 'vendor/mylisting', component:   MylistingComponent },
  
-   { path: 'register', component:  RegisterComponent  },
+   { path: 'home/register', component:  RegisterComponent  },
   
 
   { path: 'home/events', component: EventsComponent },

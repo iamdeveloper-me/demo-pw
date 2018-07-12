@@ -8,11 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class DetailpageComponent implements OnInit {
 
   constructor() { }
-
+  
   ngOnInit() {
-
+  //  window.location.reload;
    $.getScript('./assets/js/jssor.slider.min.js');
-
+   $.getScript('./assets/js/jsorslider.js');
  
 }
 }

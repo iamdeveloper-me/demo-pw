@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-searchresult',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchresultComponent implements OnInit {
 
-  constructor() { }
+  constructor(public _route:Router) { }
 
  ngOnInit() {    $.getScript('./assets/register/js/jquery-2.2.4.min.js');
                  $.getScript('./assets/register/js/bootstrap.min.js');
@@ -19,5 +20,7 @@ export class SearchresultComponent implements OnInit {
  $.getScript('./assets/js/searchslide.js');
 
   }
-
+  xyz(){
+    this._route.navigate(['home/detailprofile']);
+  }
 }

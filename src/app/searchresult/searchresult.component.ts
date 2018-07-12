@@ -15,6 +15,9 @@ export class SearchresultComponent implements OnInit {
                  $.getScript('./assets/js/searchresult.js');
  $(".slider_use_anather_compo").hide();
 
+ $.getScript('./assets/js/jssor.slider.min.js');
+ $.getScript('./assets/js/searchslide.js');
+
   }
 
 }

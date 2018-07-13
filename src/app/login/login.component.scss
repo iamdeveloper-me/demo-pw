@@ -1,61 +1,204 @@
-rrui__input-label, .rrui__input:not(.rrui__input--multiline) {
-    height: 1.8rem;
+// loginpage
+
+.vendor{padding-top: 4%;}
+.light-blue.darken-3 {
+    background-color: #0277bd!important;
 }
-.react-phone-number-input__phone {
+.modal-dialog{
+	max-width: 500px!important;
+}
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    outline: 0;
+}
+.modal-dialog .modal-content {    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+    border: 0;}
+
+.modal-dialog .modal-content .tab-content{
+	background:#ffffff!important;
+	margin-top: -30px;
+	padding-top: 30px;
+	border-radius: 5px;
+}
+.modal-dialog.cascading-modal .modal-c-tabs .nav-tabs {
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    margin: 0px auto 0px auto;
+    max-width: 90%;
+    z-index: 99999;
+    position: relative;
+    border-radius: 5px;
+    padding:10px;
+}
+.modal-dialog.cascading-modal .nav-tabs li {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+.modal-dialog.cascading-modal .nav-tabs li a {
+    text-align: center;
+    border:0px solid #fff!important;
+}
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.nav-tabs .nav-item .nav-link {
+    -webkit-border-radius: .25rem;
+    border-radius: .25rem;
+    background-color: inherit;
+    color: #fff;
+}
+.nav-tabs .nav-item .nav-link.active {
+    background-color: rgba(0,0,0,.2)!important;
+}
+.waves-effect {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+.modal-dialog.cascading-modal .modal-body, .modal-dialog.cascading-modal .modal-footer {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    color: #616161;
+}
+.md-form {
+    position: relative;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
-.loginhead{
-border-radius: 3px 3px 3px 3px;
-margin-top: -40px;
-padding: 15px;
-box-shadow: 0 4px 20px 0 rgba(0,0,0,.14),0 7px 10px -5px rgba(233,30,99,.4);
-background: linear-gradient(60deg,#ec407a,#d81b60);
-color: #ffffff;
+.md-form input{
+	border:0px solid #fff;
+	border-bottom:1px solid #A6A9AE;
+	border-radius:0px;
+	box-shadow: none!important;
 }
-.modal.show .modal-dialog{
- margin-top:18vh!important;
+.md-form.form-sm .prefix {
+    top: .35rem;
+    font-size: 1.5rem;
 }
-.card{background: transparent;}
-.loginhead h1{font-size:30px!important;}
-.loginhead a{
-    color: #ffffff;
-    display: inline-block;
-    margin:5px 20px;
-    }
-.loginbody{
-    background: #fff!important;
-    color: #000000;
-    margin-top: 20px;
+.md-form.form-sm .prefix~input, .md-form.form-sm .prefix~textarea {
+    margin-left: 2rem;
+    width: -webkit-calc(100% - 2rem);
+    width: calc(100% - 2rem);
 }
-.loginbody .form-control{
-    width: auto;
-    float: left;
+.md-form.form-sm .prefix~label {
+    margin-left: 2rem;
+    font-size: .875rem;
 }
-.loginbody input{
-    border-color :0.15s ease-in-out, 
-    box-shadow 0.15s ease-in-out;
+.btn-info{
+	color: #fff!important;
+    border-radius: 0px;
+    padding: 10px 20px;
+    background: #e72e77;
+    border:0px solid #fff;
 }
-.loginbody input:focus {
-    box-shadow: none;
-    border-bottom: 1px solid #ec407a!important;
-    border-color :0.15s ease-in-out;
+.btn-info:not([disabled]):not(.disabled).active, .btn-info:not([disabled]):not(.disabled):active, .show>.btn-info.dropdown-toggle {
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+    background-color: #e72e77!important;
+
 }
-.loginbody .form-group{
-    overflow: hidden;
-    margin: 10px 0px!important;
+.bordashpad{
+	border: 1px dashed #333;
+	padding: 10px;
+	width: 100%;
+	text-align: center;
 }
-.loginbody i{
-    float: left;
-    margin-top: 6px;
-    color: #999;
-    margin-right: 10px;
+.bordashpad .btn{
+	margin-bottom: 0px;
 }
-.shadownone{box-shadow: none;}
-.textbtn{
-    color:#d81b60;
-    background: transparent;
-    border: 0px solid #fff;
-    box-shadow: none!important;
-    text-transform: uppercase;
+a.pink-text{
+	color:#e72e77!important;
 }
+
+//input
+.slidemenu{
+    left: 0px;
+    transition: 1s;
+}
+.inslide{
+    left:280px!important;
+    position: fixed;
+}
+:focus{outline: none;}
+.input-effect{position:relative; height: 33px; margin-bottom: 47px;}
+
+.input-effect .effect-16{
+    border: 0;
+    padding: 4px 0;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+    z-index: 2;
+    position: relative;
+    width: 100%;
+}
+.input-effect .effect-16 ~ label {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 7px;
+    color: #aaa;
+    transition: 0.3s;
+    z-index: 1;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+}
+.input-effect .effect-16 ~ .focus-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: rgb(240, 17, 140);
+    transition: 0.4s;
+}
+
+.input-effect .effect-16:focus ~ label{
+    top: -16px;
+    font-size: 12px;
+    color:  rgb(240, 17, 140);
+    transition: 0.3s;
+}
+
+.input-effect .effect-16:focus ~ .focus-border{
+    width: 100%;
+    transition: 0.4s;
+
+}
+
+.align_left{
+    text-align: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

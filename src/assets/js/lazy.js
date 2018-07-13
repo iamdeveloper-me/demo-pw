@@ -24,22 +24,22 @@ $(document).ready(function() {
 	//window resize
 	var currentWidth = 1100;
 
-	$(window).on("resize",function() {
+	$(window).on("load",function() {
 	
 		var winWidth = $(window).width();
 		var conWidth;
 		if(winWidth < 660) {
-			conWidth = 440;
-			col = 2
+			conWidth = 375;
+			col = 2;
 		} else if(winWidth < 880) {
 			conWidth = 660;
-			col = 3
+			col = 2;
 		} else if(winWidth < 1100) {
 			conWidth = 880;
-			col = 3;
+			col = 2;
 		} else {
 			conWidth = 1100;
-			col = 5;
+			col = 4;
 		}
 
 		if(conWidth != currentWidth) {

@@ -63,6 +63,8 @@ import { AdvertiseComponent } from './advertise/advertise.component';
 import { UserpannelComponent } from './userpannel/userpannel.component';
 import { UserboardComponent } from './userpannel/userboard/userboard.component';
 import { AllcategoryComponent } from './allcategory/allcategory.component';
+import { SupplierByCityComponent } from './supplier-by-city/supplier-by-city.component';
+import { SupplierByCateComponent } from './supplier-by-cate/supplier-by-cate.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -121,7 +123,9 @@ export function getAuthServiceConfigs() {
         DashboardComponent,
         UserpannelComponent,
         UserboardComponent,
-        AllcategoryComponent
+        AllcategoryComponent,
+        SupplierByCityComponent,
+        SupplierByCateComponent
 
 
   ],

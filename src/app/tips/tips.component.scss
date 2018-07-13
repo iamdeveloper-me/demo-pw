@@ -1,125 +1,109 @@
- a{
-    color: #fff;
- }
 .tips{
-   padding-top: 100px;
-}
-.tips_headin h2{
-	color: pink;
-}
-.tips_headin p{
-    text-align: left !important;
+
+  padding-top: 80px;
+  background-color: #fff;
 }
 
-.tips_headin p span{
-    color: pink;
+.searchtopbar{
+margin-bottom: 20px;
+margin-top: 20px;
+overflow: hidden;
 }
-.filter{
-
+.searchtopbar div{
+    padding: 0px;
+}
+.Search_img .search-button{
   
+
+    background: url(../../assets/img/search.png) center no-repeat;
+    border: 0;
+    cursor: pointer;
+    height: 30px;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    width: 30px;
+
 }
-.filter_div{
-   padding: 0px;
-   margin-top: 5px;
-}
-.photo_graphy{
-width: 70%;
-padding: 5px;
-background-color: #fff;
-color: #eb75a4;
-border: 1px solid #ccc;
-border-radius: 5px;
+.searchinput{
+  border-radius: 3px;
 }
 
-.req span{
-   background-color: pink;
-   border-radius: 5px;
-   border:1px solid #fff;
-   padding: 5px 10px;
-   color: #fff;
-   font-style: bold;
-   
+.mar_left_75{
+   margin-left: 75px;
 }
-.tips_box{
-    margin-top: 40px;
+.Search_img{
+margin-left: 50px
 }
-.sub_box{
-    margin-top: 0px;
+.searchtopbar input, .searchtopbar select{
+    width: 100%;
+    background: #ffffff;
+    border:1px solid #ccc;
+    -webkit-apperience:none;
+    height: 40px;
+    text-indent: 10px;
+}
+.cityinput2{
+  border-radius: 3px;
+}
+
+
+/*Venders section*/
+.Venders{
+  margin-bottom: 50px;
+}
+
+
+.box_text{
+    position: relative;
     background-color: #fff;
+    border:1px solid #ccc;
+    padding: 20px;
+   
+    margin-top: -30px;
+    border-radius: 5px;
+    margin-left: 14px;
+    margin-right: 14px;
+}
+.box_text button{
+   position: absolute;
+   top: -20%;
+   left: 40%;
+   background-color: #e72e77 !important;
+   color: #fff;
+   padding: 4px 30px;
+}
+.box_text button:hover{
+  color: #000;
 }
 
-.sub_box p{
-    color: pink;
-    margin-left: 0px !important;
+.box_img{
+  border-radius: 5px;
+      margin-top: 20px;
 }
 
-/*Artical css */
-
-.artical{
-    background-color: #fff !important;
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-.grid-hover{
-   padding-bottom: 0px;
-       padding-top: 0;
-}
-.grid-hover figure{
-    max-height: 250px !important;
-
-}
-figure.effect-layla h2 {
-    padding-top: 8%;
-    font-size: 26px;
-}
-.card{
-   box-shadow: none !important;
-   padding-top: 0;
-    margin-top: 0;
-    padding-bottom: 0;
-}
-.artica_hed{
-   padding-top: 20px;
-}
-.artica_hed hr{
-    width: 4%;
-    margin-top: -5px;
-    border-color: pink;
-    border-width: 2px;
-  
-}
+/*End Venders section*/
 
 
+@media(max-width: 767px){
 
-
-
-
-
-
-
-@media(max-width: 768px){
-
-    .tips{
-       margin-top: 10px;
+  .mar_left_75{
+       margin-left: 0px !important;
     }
-    .filter{
-      text-align: center;;
-    }
-    .share_mob_hide{
-      display: none;
-    }
-    .photo_graphy{
-      width: 100%;
-    }
-    .card .card-block{
-      padding: 0 !important;
-    }
-    
-    .grid-hover figure{
-      min-width: 0px !important; 
-    }
-    .tips_box_img{
-      padding-left: 0px;
-      padding-right: 0px !important;
-    }
+    .Search_img{
+    margin-left: 0px;
+  }
+  .tips{
+     position: fixed;
+    z-index: 1;
+    padding-top: 0;
+    top: 50px;
 }
+.Venders{padding-top: 130px;}
+.col-xs-6{width: 50%;}
+
+.searchtopbar input,.searchtopbar select{border-radius: 0;}
+
+
+}
+

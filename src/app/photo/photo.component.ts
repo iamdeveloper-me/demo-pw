@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-photo',
   templateUrl: './photo.component.html',
@@ -9,7 +10,14 @@ export class PhotoComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  public ngOnInit() {
+    $.getScript('./assets/js/blocksit.min.js');
+    $.getScript('./assets/js/lazy.js');
+    
   }
+ save(){
+   this.ngOnInit();
+ }
+ 
 
 }

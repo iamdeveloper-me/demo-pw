@@ -102,9 +102,7 @@
   .pad_leftd{
     padding-left: 0 !important;
   }
-  .pad_rigtd{
-    padding-right: 0 !important;
-  }
+ 
 .btn_next{
   position: absolute;
   left: -35px;
@@ -136,11 +134,10 @@
     height: 380px !important;
   }
 .vendors_tools{
-  background-image: url("../../assets/img/parallax1.jpg");
+  background-image: url("../../assets/img/flower_bg.jpg");
   padding: 30px 0px;
-  margin-bottom: 50px;
   background-attachment: fixed;
-    background-position: center;
+   
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 300px;
@@ -169,7 +166,7 @@
   font-size: 14px;
 }
 .card-body a{
-  color: #ccc;
+  color: #999999;
 }
 .in_list ul li{
   list-style-type: none;
@@ -252,7 +249,9 @@
 .caroosel_headin{
 margin-bottom:30px;
 }
-
+.mar_lef_20 a{
+   margin-left: -20px !important;
+}
 
   @media (min-width: 768px) {
     .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
@@ -325,36 +324,7 @@ margin-bottom:30px;
 }
 
 
-@media(max-width: 768px) {
-    body {
-        padding: 0;
-    }
 
-    .caro_control_img img{
-         width: 40%; 
-    }
-    .btn_next{
-       left: 0px !important;
-    }
-    .btn_pre{
-
-       right: 0px !important;
-    }
-
-    .container.gallery-container {
-        border-radius: 0;
-    }
-    .mob_margin_top_100{
-       
-    }
-.popup-gallery .galleryview{padding: 10px 0px !important;}
-.card .card-block { padding: 10px !important;}
-.in_list1 ul{
-
-   margin-top: 6px;
-}
-
-}
 //tool
 .homeTools__item:hover {
   color: #fb1b26;
@@ -439,4 +409,44 @@ pure-u-1, .pure-u-1-10, .pure-u-1-11, .pure-u-1-12, .pure-u-1-13, .pure-u-1-14, 
   background-color: #e72e77 !important;
   color: #fff !important;
   border-color: #e72e77;
+}
+.margi_left_20{
+  margin-left: -20px;
+}
+@media(max-width: 768px) {
+    body {
+        padding: 0;
+    }
+
+    .caro_control_img img{
+         width: 40%; 
+    }
+    .btn_next{
+       left: 0px !important;
+    }
+    .btn_pre{
+
+       right: 0px !important;
+    }
+    .mob_half{
+      width: 50%;
+    }
+
+    .container.gallery-container {
+        border-radius: 0;
+    }
+    .mob_margin_top_100{
+       
+    }
+    .galleryview{
+       padding-left: 0px !important;
+    }
+
+
+.card .card-block { padding: 10px !important;}
+.in_list1 ul{
+
+   margin-top: 6px;
+}
+
 }

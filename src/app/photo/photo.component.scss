@@ -6,8 +6,8 @@
 }
 
 .searchtopbar{
-margin-bottom: 20px;
-margin-top: 20px;
+margin-bottom:20px;
+margin-top:20px;
 overflow: hidden;
 }
 .searchtopbar div{
@@ -293,6 +293,9 @@ margin-top: 50px;
 .photo_cont{background: #ffffff; padding: 0px; box-shadow: 0 2px 5px 0 rgba(0,0,0,.2) }
 
 @media(max-width:768px){
+.search-button{
+  background-size:80%;
+}
    .photoframewrapper {
 width:100%!important;
  }
@@ -341,6 +344,19 @@ width:48%!important;
     .input_div i {
        margin-left: 10px;
     }
+.searchtopbar{
+margin-bottom:0px;
+margin-top:0px;
+overflow: hidden;
+    box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.12);
+    -webkit-box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.12);
+}
+.searchtopbar select{
+  border-left:0px;
+  border-bottom:0px;
+  botder-top:0px;
+}
 
 }
 
@@ -705,9 +721,6 @@ margin-bottom:30px;
 .col-xs-6{width: 50%;}
 
 .searchtopbar input,.searchtopbar select{border-radius: 0;}
-#wrapper{
-       margin-top: 125px;
-}
 }
 //tool
 .homeTools__item:hover {

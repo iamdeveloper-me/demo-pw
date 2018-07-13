@@ -38,6 +38,7 @@ export class SearchresultComponent implements OnInit {
      //alert("close");
       $("#citybox").hide();
       $("#categorybox").hide();
+       $("#searchfilterbox").hide();
     });
  $(".regular").click(function(){
      //alert("close");

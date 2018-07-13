@@ -849,8 +849,6 @@ box-shadow: inset 0px 15px 34px -18px rgba(204,204,204,1);
     z-index: 10;
     cursor: pointer;
     background:#e72e77;
-    -webkit-animation: animate-arrow-1 1s ease-in-out infinite;
-    animation: animate-arrow-1 1s ease-in-out infinite;
     display:block;
 }
 .searchfilterbox .panel-heading h3.panel-title {
@@ -871,4 +869,19 @@ border-bottom:1px solid #e5e5e5;
 .left467px{
   left:467px!important;
 }
+}
+
+.blink {
+  animation: blink-animation 1s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
 }

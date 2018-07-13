@@ -61,10 +61,21 @@ export class MenuComponent implements OnInit {
         $(".navbtntik").hide(); 
         $(".navbar-collapse").removeClass("in");
         $(".slidemenu").addClass("outslide");  
+        setTimeout(function() { $(".slidemenu").removeClass("outslide") }, 500);
         $(".slidemenu").removeClass("inslide"); 
-        
     });
-        
+    
+
+       $(".nav-link").click(function(){
+        $(".navbar-toggler").show(); 
+        $(".navbtntik").hide(); 
+        $(".navbar-collapse").removeClass("in");
+        $(".slidemenu").addClass("outslide");  
+        setTimeout(function() { $(".slidemenu").removeClass("outslide") }, 500);
+        $(".slidemenu").removeClass("inslide"); 
+    });
+    
+
     $(window).scroll(function () {
     var sc = $(window).scrollTop()
     if (sc > 100) {

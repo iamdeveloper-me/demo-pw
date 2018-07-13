@@ -1,3 +1,4 @@
+
 import { TemplateRef } from '@angular/core';
 import { Component,  OnInit , Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -46,15 +47,22 @@ export class MenuComponent implements OnInit {
     
     //end
     $(".tik").click(function(){
-        //alert("1")
         $(".navbar-collapse").addClass("in");
-        $(".navbar-toggler").addClass("navbtntik");
+        $(".navbar-toggler").hide();
+        $(".navbtntik").show(); 
         $(".navbar-toggler").removeClass("tik");
+        $(".slidemenu").removeClass("outslide");
         $(".slidemenu").addClass("inslide");  
+
     });
 
     $(".navbtntik").click(function(){
-        alert("1")  
+        $(".navbar-toggler").show(); 
+        $(".navbtntik").hide(); 
+        $(".navbar-collapse").removeClass("in");
+        $(".slidemenu").addClass("outslide");  
+        $(".slidemenu").removeClass("inslide"); 
+        
     });
         
     $(window).scroll(function () {

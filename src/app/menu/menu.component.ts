@@ -20,16 +20,23 @@ export class MenuComponent implements OnInit {
     ngOnInit() {    
         // $.getScript('./assets/register/js/jquery-2.2.4.min.js');
         // $.getScript('./assets/register/js/bootstrap.min.js');
-    $(".tik").click(function(){
-        //alert("1")
+    $(".navbar-toggler.tik").click(function(){
         $(".navbar-collapse").addClass("in");
-        $(".navbar-toggler").addClass("navbtntik");
+        $(".navbar-toggler").hide();
+        $(".navbtntik").show(); 
         $(".navbar-toggler").removeClass("tik");
+        $(".slidemenu").removeClass("outslide");
         $(".slidemenu").addClass("inslide");  
+
     });
 
     $(".navbtntik").click(function(){
-        alert("1")  
+        $(".navbar-toggler").show(); 
+        $(".navbtntik").hide(); 
+        $(".navbar-collapse").removeClass("in");
+        $(".slidemenu").addClass("outslide");  
+        $(".slidemenu").removeClass("inslide"); 
+        
     });
         
     $(window).scroll(function () {

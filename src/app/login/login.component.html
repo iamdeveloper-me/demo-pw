@@ -1,48 +1,168 @@
-<section id="login">
-      <div class="col-12 d-flex align-items-center justify-content-center">
-        <div class="card gradient-indigo-purple text-center width-400 shadownone">
-          <div class="card-img overlap loginhead">
-            <h1 id="loginheading">User Log in</h1>
-            <h1 id="signupheading"> User Sign up</h1>
-            <div class="loginsocial">
-              <a  (click)="socialSignIn('facebook')"><i class="fa fa-facebook"></i></a>
-              <a href="#"><i class="fa fa-twitter"></i></a>
-              <a (click)="socialSignIn('google')"><i class="fa fa-google-plus"></i></a>
-            </div>
-             </div>
-          <div class="card-body loginbody">
-              <form novalidate="" (ngSubmit)="onSubmit()" #f="ngForm">
-                    <div class="form-group" id ="signupform">
-                      <div class="col-md-12">
-                          <i class="material-icons pull-left">face</i>
-                        <input type="text" class="form-control" name="inputName" id="inputName" placeholder="Name" >
-                      </div>
-                    </div>
-                <div class="form-group">  
-                  <div class="col-md-12">
-                      <i class="material-icons">email</i>
-                    <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Email" >
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-md-12">
-                      <i class="material-icons">lock_outline</i>
-                    <input type="password" class="form-control" name="inputPass" id="inputPass" placeholder="Password">
-                  </div>
-                </div>
+<div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+       <!--Modal cascading tabs-->
+       <div class="modal-c-tabs">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs tabs-2 light-blue darken-3 customerlogin" role="tablist">
+             <li class="nav-item">
+                <a class="nav-link active logintab" data-toggle="tab" href="#panel7" role="tab">
+                   <i class="fa fa-user mr-1"></i> Login
+                </a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link registertab" data-toggle="tab" href="#panel8" role="tab" >
+                  <i class="fa fa-user-plus mr-1"></i> Register
+                </a>
+             </li>
+          </ul>
 
-                <div class="form-group">
-                  <div class="col-md-12">
-                    <button type="submit" class="textbtn" (click)="vendor()"  >Lets Go</button><br>                
-                    </div>
+
+
+          <ul class="nav nav-tabs tabs-2 light-blue darken-3 vendorlogin" role="tablist" style="display:none;">
+              <li class="nav-item">
+                 <a class="nav-link active logintab" data-toggle="tab" href="#panel7" role="tab">
+                    <i class="fa fa-user mr-1"></i> Vendor Login
+                 </a>
+              </li>
+           </ul>
+
+
+          <!-- Tab panels -->
+          <div class="tab-content">
+             <!--Panel 7-->
+             <div class="tab-pane fade in active" id="panel7" role="tabpanel">
+                <!--Body-->
+                <form role="form" action="" method="post" id="id7">
+                      <div class="modal-body mb-1 align_left">
+
+                   <div class="input-effect form-group md-form mt-3">
+                      <input class="effect-16"  type="email" required="required" placeholder="">
+                      <label>Your Email</label>
+                      <span class="focus-border"></span>
+                  </div>   
+                  <div class="input-effect form-group md-form mt-3">
+                      <input class="effect-16"   type="password" required="required"  placeholder="">
+                      <label>Password</label>
+                      <span class="focus-border"></span>
+                  </div>   
+                   <div class="text-center mt-2" >
+                      <button class="btn btn-info">Log in <i class="fa 
+                         fa-sign-in ml-1"></i></button>
+                          <p class="pt-1">
+                            <a  href="#" class="pink-text">Forgot Password</a></p>
+                          <p class="pt-1">Already have an account? 
+                         <a data-toggle="tab" href="#panel8" role="tab" class="pink-text signup_click" >Sign Up</a>
+                          </p>  
+
+                   </div>
+                      </div>
+                </form>
+               
+                <!--Footer-->
+                  <div class="modal-footer ls_fot" >
+                 
+                         <div class="bordashpad">
+                      Are you a vendor? <a (click)="loadScript()" class="btn btn-info">Business Sign In</a>
+                      </div>
+                     
+                 <!--   <button type="button" class="btn btn-outline-info 
+                      waves-effect ml-auto" data-dismiss="modal">Close</button> -->
+               </div>     
+             </div>
+             <!--/.Panel 7-->
+             <!--Panel 8-->
+              <div class="tab-pane fade" id="panel8" role="tabpanel">
+                <!--Body-->
+                 <form role="form" action="" method="post" id="id8">
+                     <div class="modal-body mb-1 align_left">               
+                      
+                        <div class="input-effect form-group md-form mt-3">
+                            <input class="effect-16"  type="email" required="required" placeholder="">
+                            <label>Your Email</label>
+                            <span class="focus-border"></span>
+                        </div>   
+                        <div class="input-effect form-group md-form mt-3">
+                            <input class="effect-16"  type="password" required="required" placeholder="">
+                            <label>Password</label>
+                            <span class="focus-border"></span>
+                        </div>  
+                        <div class="input-effect form-group md-form mt-3">
+                            <input class="effect-16"  type="password" required="required" placeholder="">
+                            <label>Confirm Password</label>
+                            <span class="focus-border"></span>
+                        </div>  
+                            
+                    
+                         <div class="text-center form-sm mt-2">
+                            <button class="btn btn-info">Sign up 
+                          <i class="fa  fa-sign-in ml-1"></i>
+                        </button>
+
+
+                      <p class="pt-1">Already have an account? 
+                  <a data-toggle="tab" href="#panel7" role="tab" class="pink-text signin_click" >Log In</a></p>
+                         </div>
+                      </div>
+                 </form>
+
+     
+                <!--Footer-->
+                <div class="modal-footer ls_fot">
+                    <div class="bordashpad">
+                        Are you a vendor? <a (click)="loadScript()" class="btn btn-info">Business Sign In</a>
+                        </div>
+                       
+                   <!-- <button type="button" class="btn btn-outline-info 
+                      waves-effect ml-auto" data-dismiss="modal">Close</button> -->
                 </div>
-              </form>
+              </div>
+
+              <div class="tab-pane fade" id="panel9" role="tabpanel">
+              <form role="form" action="" method="post">
+                 
+               <div class="modal-body mb-1 align_left">
+
+                  <div class="input-effect form-group md-form mt-3">
+                      <input class="effect-16"  type="email" required="required" placeholder="">
+                      <label>Your Email</label>
+                      <span class="focus-border"></span>
+                  </div>   
+                  <div class="input-effect form-group md-form mt-3">
+                      <input class="effect-16"   type="password" required="required"  placeholder="">
+                      <label>Password</label>
+                      <span class="focus-border"></span>
+                  </div>   
+                   
+               
+                   <div class="text-center mt-2">
+                   <button class="btn btn-info vendor" routerLink="../vendor/dashboard" >MLog in <i class="fa 
+                      fa-sign-in ml-1"></i></button>
+
+                        <p class="pt-1"><a 
+                      href="#" class="pink-text">Forgot Password</a></p>
+
+                        <p class="pt-1">Not a member? 
+                          
+                            <a  data-dismiss="modal" routerLink="../home/register" class="pink-text">Business Sign up</a>
+                
+                         </p>
+                </div>
+               </div>
+
+               <div class="modal-footer ls_fot">
+               <div class="bordashpad" >
+                  Are you a Customer?    <a 
+                  data-toggle="tab" 
+           role="tab"  class="btn btn-info" (click)="userin()"> Customer Sign in</a></div>
+</div>
+           </form>
+</div>
+
+
+             <!--/.Panel 8-->
           </div>
-          <hr>
-            <a id="new" (click)="loadScript()" class="btn btn-outline-info">user sign up ?</a>
-            <a id="signinuser" class="btn btn-outline-info">sign in?</a>
-            <div class="float-right"><a routerLink="../register" class="red">Business Sign In</a></div>
-    
-        </div>
-      </div>
-</section>
+       </div>
+    </div>
+    <!--/.Content-->
+ </div>

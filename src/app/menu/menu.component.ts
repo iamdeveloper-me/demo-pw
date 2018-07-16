@@ -66,7 +66,7 @@ export class MenuComponent implements OnInit {
     });
     
 
-       $(".nav-link").click(function(){
+       $(".in").click(function(){
         $(".navbar-toggler").show(); 
         $(".navbtntik").hide(); 
         $(".navbar-collapse").removeClass("in");

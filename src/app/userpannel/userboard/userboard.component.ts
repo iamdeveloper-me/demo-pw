@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, Input } from '@angular/core';
+
+
+
 
 @Component({
   selector: 'app-userboard',
   templateUrl: './userboard.component.html',
-  styleUrls: ['./userboard.component.scss']
+  styleUrls: ['./userboard.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
-export class UserboardComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
+export class UserboardComponent {
 
 }

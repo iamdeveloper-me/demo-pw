@@ -65,6 +65,13 @@ import { UserboardComponent } from './userpannel/userboard/userboard.component';
 import { AllcategoryComponent } from './allcategory/allcategory.component';
 import { SupplierByCityComponent } from './supplier-by-city/supplier-by-city.component';
 import { SupplierByCateComponent } from './supplier-by-cate/supplier-by-cate.component';
+import { CategoryComponent } from './category/category.component';
+import { VendorlistComponent } from './userpannel/userboard/vendorlist/vendorlist.component';
+import { ToolComponent } from './userpannel/userboard/tool/tool.component';
+import { TimelineComponent } from './userpannel/userboard/timeline/timeline.component';
+import { BookmarkComponent } from './userpannel/userboard/bookmark/bookmark.component';
+import { GuestComponent } from './userpannel/userboard/guest/guest.component';
+import { BudgetComponent } from './userpannel/userboard/budget/budget.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -125,9 +132,14 @@ export function getAuthServiceConfigs() {
         UserboardComponent,
         AllcategoryComponent,
         SupplierByCityComponent,
-        SupplierByCateComponent
-
-
+        SupplierByCateComponent,
+        CategoryComponent,
+        VendorlistComponent,
+        ToolComponent,
+        TimelineComponent ,
+        BookmarkComponent,
+        GuestComponent,
+        BudgetComponent 
   ],
     imports: [
         BrowserAnimationsModule,

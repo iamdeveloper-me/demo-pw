@@ -1,4 +1,6 @@
 
+
+
 import { TemplateRef } from '@angular/core';
 import { Component,  OnInit , Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -85,8 +87,7 @@ export class MenuComponent implements OnInit {
         $(".headernav").removeClass("head_small")
     }
 });
-
-    
+  
     }
 
     

@@ -1,4 +1,4 @@
-
+ 
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -21,7 +21,8 @@ import { DragulaService } from 'ng2-dragula';
 import { AuthService } from './shared/auth/auth.service';
 import { AuthGuard } from './shared/auth/auth-guard.service';
  import * as $ from 'jquery';
-
+ import { UiSwitchModule } from 'ngx-ui-switch';
+ 
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { BannerComponent } from './banner/banner.component';
@@ -30,6 +31,9 @@ import { LoginComponent } from './login/login.component';
 import { VendorcardComponent } from './vendorcard/vendorcard.component';
 import { VendorComponent } from './vendor/vendor.component';
 import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
+import { BusinessInfoComponent } from "./vendor/business-info/business-info.component";
+import { LocationComponent } from "./vendor/location/location.component";
+
 import { MylistingComponent } from './vendor/mylisting/mylisting.component';
 import { NavemenuComponent } from './vendor/navemenu/navemenu.component';
 import { ChatComponent } from "./vendor/chat/chat.component";
@@ -95,6 +99,8 @@ export function getAuthServiceConfigs() {
 @NgModule({
     declarations: [
         AppComponent,
+        BusinessInfoComponent,
+        LocationComponent,
         FullLayoutComponent,
         ContentLayoutComponent,
         HomeComponent,
@@ -137,7 +143,8 @@ export function getAuthServiceConfigs() {
         TimelineComponent ,
         BookmarkComponent,
         GuestComponent,
-        BudgetComponent 
+        BudgetComponent
+     
   ],
     imports: [
         BrowserAnimationsModule,
@@ -145,6 +152,7 @@ export function getAuthServiceConfigs() {
         AppRoutingModule,
         FormsModule,
         SharedModule,
+        UiSwitchModule ,
         HttpClientModule,
         SocialLoginModule,
         ToastrModule.forRoot(),

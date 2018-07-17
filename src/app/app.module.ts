@@ -50,7 +50,6 @@ import { SearchresultComponent } from './searchresult/searchresult.component';
 import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
 import { GalleryComponent } from './vendor/gallery/gallery.component';
 import { VendorsidebarComponent } from './vendor/vendorsidebar/vendorsidebar.component';
-import { Navbar2Component } from './vendor/navbar2/navbar2.component';
 import { PhotoComponent } from './photo/photo.component';
 import { TipsComponent } from './tips/tips.component';
 import { DetailpageComponent } from './detailpage/detailpage.component';
@@ -115,7 +114,6 @@ export function getAuthServiceConfigs() {
         GalleryComponent,
         ReviewsComponent,
         VendorsidebarComponent,
-        Navbar2Component,
         PhotoComponent,
         TipsComponent,
         DetailpageComponent,

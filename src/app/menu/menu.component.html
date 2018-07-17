@@ -135,13 +135,17 @@
   </nav>
 
   
-  <div class="modal fade" id="MMM" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade loginboxmodal" id="MMM" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+
+
             <div class="modal-dialog cascading-modal" role="document">
                <!--Content-->
                <div class="modal-content">
                   <!--Modal cascading tabs-->
-                  <div class="modal-c-tabs">
+                  <div class="modal-c-tabs text-right">
                      <!-- Nav tabs -->
+                     <button type="button" class="btn waves-effect ml-auto closebtn" data-dismiss="modal">&times;</button>
                      <ul class="nav nav-tabs tabs-2 light-blue darken-3 customerlogin" role="tablist">
                         <li class="nav-item">
                            <a class="nav-link active logintab" data-toggle="tab" href="#panel7" role="tab">
@@ -203,9 +207,7 @@
                                     <div class="bordashpad">
                                  Are you a vendor? <a (click)="loadScript()" class="btn btn-info">Business Sign In</a>
                                  </div>
-                                
-                            <!--   <button type="button" class="btn btn-outline-info 
-                                 waves-effect ml-auto" data-dismiss="modal">Close</button> -->
+                            
                           </div>     
                         </div>
                         <!--/.Panel 7-->

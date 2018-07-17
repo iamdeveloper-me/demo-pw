@@ -13,6 +13,9 @@ import { SearchresultComponent } from './searchresult/searchresult.component';
 import { AuthGuard } from './shared/auth/auth-guard.service';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
+import { BusinessInfoComponent } from "./vendor/business-info/business-info.component";
+import { LocationComponent } from "./vendor/location/location.component";
+
 import { DetailpageComponent } from './detailpage/detailpage.component';
 import { ChatComponent } from "./vendor/chat/chat.component";
 import { EditprofileComponent } from './vendor/editprofile/editprofile.component';
@@ -47,6 +50,8 @@ const appRoutes: Routes = [
   { path: 'home/allcategory', component:  AllcategoryComponent },
 
    { path: 'vendor/dashboard', component:  DashboardComponent  },
+   { path: 'vendor/business', component:  BusinessInfoComponent  },
+   { path: 'vendor/location', component:  LocationComponent  },
   { path: 'vendor/profile', component:  VendorprofileComponent  },
   { path: 'vendor/chat', component:  ChatComponent },
   { path: 'vendor/editprofile', component:   EditprofileComponent },

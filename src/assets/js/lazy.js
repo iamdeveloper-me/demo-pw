@@ -56,6 +56,38 @@ $(document).ready(function() {
 		
 	});
 
+	$(window).on("resize",function() {
+	    location.reload();
+		var winWidth = $(window).width();
+		var conWidth;
+		if(winWidth < 660) {
+			conWidth = 375;
+			col = 2;
+		} else if(winWidth < 880) {
+			conWidth = 660;
+			col = 2;
+		} else if(winWidth < 1100) {
+			conWidth = 880;
+			col = 2;
+		} else {
+			conWidth = 1100;
+			col = 4;
+		}
+
+		if(conWidth != currentWidth) {
+			currentWidth = conWidth;
+			$('#container').width(conWidth);
+			$('#container').BlocksIt({
+				numOfCol: col,
+				offsetX: 8,
+				offsetY: 8
+			
+			});
+		
+		}
+		
+	});
+
 	//lazy loading 
 	    
     /* Every time the window is scrolled ... */

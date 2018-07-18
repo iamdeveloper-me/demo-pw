@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
-
+import { UiSwitchModule } from 'ngx-ui-switch';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -17,7 +17,6 @@ import { EditprofileComponent } from './editprofile/editprofile.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { VendorsidebarComponent } from './vendorsidebar/vendorsidebar.component';
-import { Navbar2Component } from './navbar2/navbar2.component';
 import { MembershipComponent } from './membership/membership.component';
 import { BusinessInfoComponent } from './business-info/business-info.component';
 import { LocationComponent } from './location/location.component';
@@ -39,7 +38,8 @@ import { BusinessServicesComponent } from './business-services/business-services
         CommonModule,
         NgxChartsModule,
         NgbModule,
-        MatchHeightModule
+        MatchHeightModule,
+        UiSwitchModule 
     ],
     declarations: [
         DashboardComponent,
@@ -52,7 +52,6 @@ import { BusinessServicesComponent } from './business-services/business-services
         GalleryComponent,
         ReviewsComponent,
         VendorsidebarComponent,
-        Navbar2Component,
         MembershipComponent,
         BusinessInfoComponent,
         LocationComponent,

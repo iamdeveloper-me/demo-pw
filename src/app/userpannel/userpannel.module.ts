@@ -7,6 +7,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatchHeightModule } from "../shared/directives/match-height.directive";
 
 import { UserboardComponent } from './userboard/userboard.component';
+import { TimelineComponent } from './userboard/timeline/timeline.component';
+import { BookmarkComponent } from './userboard/bookmark/bookmark.component';
+import { GuestComponent } from './userboard/guest/guest.component';
+import { BudgetComponent } from './userboard/budget/budget.component';
+import { VendorlistComponent } from './userboard/vendorlist/vendorlist.component';
+import { ToolComponent } from './userboard/tool/tool.component';
+
 
 
 
@@ -25,7 +32,14 @@ import { UserboardComponent } from './userboard/userboard.component';
         // UserComponent,
         // AdminComponent,
         // NavComponent
-        UserboardComponent],
+        UserboardComponent,
+        TimelineComponent,
+        BookmarkComponent,
+        GuestComponent,
+        BudgetComponent,
+        VendorlistComponent,
+        ToolComponent,
+        ],
     providers: [],
 })
 export class UserpannelModule { }

@@ -1,0 +1,269 @@
+
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+ #sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background:rgba(0, 46, 119, 0.7) !important;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+  
+  #wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+  }
+  
+  /* Sidebar Styles */
+  
+  
+  #page-content-wrapper {
+    padding: 20px;
+    position: relative;
+  }
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+  }
+  #wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+  
+  #wrapper.toggled {
+    padding-left: 250px;
+  }
+  
+  #wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+  }
+  
+  #page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 0px;
+  }
+  
+  #wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+  }
+  .nopadd{
+    padding:0px!important;
+  }
+  @media(min-width:768px) {
+    #wrapper {
+      padding-left: 0;
+    }
+    #wrapper.toggled {
+      padding-left: 250px;
+    }
+    #sidebar-wrapper {
+      width: 0;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+      width: 250px;
+    }
+    #page-content-wrapper {
+      padding:0px;
+      position: relative;
+    }
+    #wrapper.toggled #page-content-wrapper {
+      position: relative;
+      margin-right: 0;
+    }
+  }
+  .list-group .list-group-item:first-child {
+      -webkit-border-top-left-radius: 0.125rem;
+      border-top-left-radius: 0.125rem;
+      -webkit-border-top-right-radius: 0.125rem;
+      border-top-right-radius: 0.125rem; }
+    
+    .list-group .list-group-item:last-child {
+      -webkit-border-bottom-left-radius: 0.125rem;
+      border-bottom-left-radius: 0.125rem;
+      -webkit-border-bottom-right-radius: 0.125rem;
+      border-bottom-right-radius: 0.125rem; }
+    
+    .list-group a,
+    .list-group button {
+      -webkit-transition: 0.5s;
+      -o-transition: 0.5s;
+      transition: 0.5s; }
+      .list-group a:hover,
+      .list-group button:hover {
+        -webkit-transition: 0.5s;
+        -o-transition: 0.5s;
+        transition: 0.5s; }
+    
+      .list-group .list-group-item:first-child
+      {
+          -webkit-border-top-left-radius:.125rem;border-top-left-radius:.125rem;
+          -webkit-border-top-right-radius:.125rem;border-top-right-radius:.125rem
+      }
+      .list-group .list-group-item:last-child
+      {
+          -webkit-border-bottom-left-radius:.125rem;border-bottom-left-radius:.125rem;
+          -webkit-border-bottom-right-radius:.125rem;border-bottom-right-radius:.125rem
+      }
+      .list-group a,.list-group a:hover,.list-group button,.list-group button:hover{
+          -webkit-transition:.5s;-o-transition:.5s;transition:.5s
+      }
+  //======================location
+
+  .full-width{
+    float:left;width:100%;margin-top:30px;min-height:100px;position:relative;
+}
+.form-style-fake{position:absolute;top:0px;}
+.form-style-base{position:absolute;top:0px;z-index: 999;opacity: 0;}
+.imgCircle{border-radius: 50%;}
+.form-control{padding: 10px 50px;}
+.form-input{height:50px;border-radius: 0px;margin-top: 20px;}
+.Profile-input-file{
+    height: 300px;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 0px;
+    z-index: 999;
+    opacity: 0 !important;
+    padding: 0px;
+    margin: 0px;
+}
+.mg-auto{
+    margin:0 auto;max-width: 200px;overflow: hidden;
+}
+.fake-styled-btn{
+    background: #006cad;
+    padding: 10px;
+    color: #fff;
+}
+#main-input{width:250px;}
+.input-place{
+    position: absolute;top:35px;left: 20px;font-size:23px;color:gray;}
+.margin{margin-top:10px;margin-bottom:10px;}
+.truncate {
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.custom-form{float: left;width:100%;overflow: hidden;
+}
+.img-section{
+    float: left;width: 100%;padding-top:0px;padding-bottom:0px;background: rgba(0,0,0,0.7);position: relative;
+}
+.img-section h4{color:#fff;}
+#PicUpload{
+    color: #ffffff;
+    width: 100%;
+    height:100%;
+    background: rgba(255,255,255,0.4);
+    position: absolute;
+    display: none;
+    top:0px;
+}
+.camera{
+    font-size: 50px;
+    color: #333;
+}
+.custom-btn{
+    margin-top: 15px;
+    border-radius: 0px;
+    padding: 10px 60px;
+    margin-bottom: 15px;
+}
+#checker{
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    cursor: pointer;
+}
+#checkerdescription{
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    cursor: pointer;
+}
+.color{
+    color:#fff;
+}
+
+/*====== style for placeholder ========*/
+
+.form-control::-webkit-input-placeholder {
+    color:lightgray;
+    font-size:18px;
+}
+.form-control:-moz-placeholder {
+    color:lightgray;
+    font-size:18px;
+}
+.form-control::-moz-placeholder {
+    color:lightgray;
+    font-size:18px;
+}
+.form-control:-ms-input-placeholder {
+    color:lightgray;
+    font-size:18px;
+}
+
+.infoimg{
+	margin:0px auto;
+}
+.editbtn{
+	position: absolute;
+    width: 28px;
+    padding: 0PX;
+    height: 28PX;
+    top:31PX;
+    right:15PX;
+}
+.editbtn h4{
+padding:0PX;
+}
+.form-control:disabled, .form-control[readonly]{
+	background: #ffffff!important;
+	border:1px solid #ffffff;
+	box-shadow: none;
+	padding:0px!important;
+	height: auto;
+}
+.martop0px{
+	margin-top: 0px;
+}
+.nopadd{
+	padding: 0px!important;
+}
+.hr-light{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-color: #a8a8a8;
+}
+.paddtop3px{
+	padding-top: 3px;
+}
+.weekboxinput div{
+	width: 50%!important;
+	float: left;
+}
+textarea.form-control:disabled, textarea.form-control[readonly]{
+	border-bottom:1px solid #e5e5e5;
+	padding: 0px!important;
+	height: 150px;
+}
+textarea.form-control, textarea.form-control{
+	height: 150px;
+}

@@ -11,6 +11,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StoreModule } from '@ngrx/store';
+import { BusinessServicesComponent } from "./vendor/business-services/business-services.component";
 
 import { AppComponent } from './app.component';
 import { ContentLayoutComponent } from "./layouts/content/content-layout.component";
@@ -130,7 +131,8 @@ export function getAuthServiceConfigs() {
         UserboardComponent,
         AllcategoryComponent,
         SupplierByCityComponent,
-        SupplierByCateComponent
+        SupplierByCateComponent,
+        BusinessServicesComponent
 
 
   ],

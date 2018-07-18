@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
 import { BusinessInfoComponent } from "./vendor/business-info/business-info.component";
 import { LocationComponent } from "./vendor/location/location.component";
+import { BusinessServicesComponent } from "./vendor/business-services/business-services.component";
 
 import { DetailpageComponent } from './detailpage/detailpage.component';
 import { ChatComponent } from "./vendor/chat/chat.component";
@@ -48,7 +49,7 @@ const appRoutes: Routes = [
    { path: 'home/contact', component: ContactUsComponent },
    { path: 'home/events', component:  EventsComponent  },
   { path: 'home/allcategory', component:  AllcategoryComponent },
-
+{ path: 'vendor/business-services', component:  BusinessServicesComponent  },
    { path: 'vendor/dashboard', component:  DashboardComponent  },
    { path: 'vendor/business', component:  BusinessInfoComponent  },
    { path: 'vendor/location', component:  LocationComponent  },

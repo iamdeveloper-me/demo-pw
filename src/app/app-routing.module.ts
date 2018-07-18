@@ -35,28 +35,37 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.component';
 import { VendorComponent } from './vendor/vendor.component';
 import { AllcategoryComponent } from './allcategory/allcategory.component';
+import { GalleryComponent } from '.vendor/gallery/gallery.component';
+import { VideosComponent } from './vendor/videos/videos.component';
+
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home/searchresult', component: SearchresultComponent },
   { path: 'home/detailprofile', component:  DetailpageComponent  },
+  { path: 'home/gallery', component:  GalleryComponent  },
  
-  { path: 'home/vendor', component:  VendorComponent  },
+ 
+  { path: 'home/allcategory', component:  AllcategoryComponent },
+   { path: 'home/vendor', component:  VendorComponent  },
   { path: 'home/photo', component: PhotoComponent },
   { path: 'home/tips', component: TipsComponent },
    { path: 'home/contact', component: ContactUsComponent },
    { path: 'home/events', component:  EventsComponent  },
-  { path: 'home/allcategory', component:  AllcategoryComponent },
-
+  
+  { path: 'vendor/editprofile', component:   EditprofileComponent },
+  { path: 'vendor/mylisting', component:   MylistingComponent },
+  { path: 'vendor/gallery', component: GalleryComponent  },
    { path: 'vendor/dashboard', component:  DashboardComponent  },
    { path: 'vendor/business', component:  BusinessInfoComponent  },
    { path: 'vendor/location', component:  LocationComponent  },
   { path: 'vendor/profile', component:  VendorprofileComponent  },
   { path: 'vendor/chat', component:  ChatComponent },
-  { path: 'vendor/editprofile', component:   EditprofileComponent },
-  { path: 'vendor/mylisting', component:   MylistingComponent },
- 
+   { path: 'vendor/Videos', component:    VideosComponent},
+
+
+
    { path: 'home/register', component:  RegisterComponent  },
   
 

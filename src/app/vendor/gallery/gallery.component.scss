@@ -1,6 +1,325 @@
-.my-drop-zone { 
-    border: dotted 3px lightgray; 
-    background-color: #f5f7fa !important;
+
+//======================sidebar
+.togglebtnmenu{
+    float: left;
+    background: transparent;
+    border: 0px solid #e5e5e5;
+    box-shadow: none;
+    width: 30px;
+    height: 30PX;
+    overflow: hidden;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right:20px;
+    margin-top: 15px;
+    outline: none!important;
 }
-.nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
-.another-file-over-class { border: dotted 3px green; }
+
+.togglebtnmenu span{
+    background: #ffffff;
+    display: block;
+    width: 100%;
+    height: 2px;
+    margin: 8PX 0PX;
+}
+
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    -webkit-transition: all 0.5s ease;
+  background:rgba(0, 46, 119, 0.7) !important;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+  
+  #wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+  }
+  
+ 
+
+
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+  }
+  
+  #wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+  }
+  
+  
+  /* Sidebar Styles */
+  
+  
+  #page-content-wrapper {
+    padding: 0px !important;
+    position: relative;
+  }
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+  }
+  #wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+  
+  #wrapper.toggled {
+    padding-left: 250px;
+  }
+  
+  #wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+  }
+  
+  #page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 0px;
+  }
+  
+  #wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+  }
+  .nopadd{
+    padding:0px!important;
+  }
+ 
+.navbar{
+    width: 100%;
+    background: rgba(0, 46, 119, 0.99) !important;
+    }
+.headervendor{
+    padding: 0px!important;
+    width: 100%;
+} 
+.beforenone::before, .afternone::before{
+    display: none;
+}
+.headerrightbar{
+    float:right;
+    padding: 0px 10px;
+    margin: 0px;
+}
+.btnheadvendor{
+    padding: 10px;
+    margin-top: 15px;
+}
+.btnheadvendor:hover{
+    background: #ffffff;
+}
+.list-group-item
+   {
+    padding:0px 5px;
+    line-height: 36px;
+   } 
+   .textview{
+       margin-top: 25px;
+       margin-right: 0px;
+   }
+   .textview li{
+    margin-right:15px;
+}
+.linkbtnholder li{
+    margin-left: 15px;
+}
+.nav-item{
+    color: #fff;
+    line-height: 24PX;
+}
+.nav-item .material-icons{
+    float: left;
+}
+.nopadd{
+    padding: 0px;
+}
+.navbar-brand {
+    font-weight: bold;
+    font-size: 24px;
+    color: #fff!important;
+    margin: 0px;
+    padding: 10px;
+    height: auto;
+    width: auto;
+    display: inline-block;
+}
+a:hover.navbar-brand {
+    color: #fff;
+}
+.navbar-brand img{
+    max-width: 50px;
+    max-height: 50px;
+    float: left;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+.navbar-brand span{
+    font-size: 14px;
+    display: inherit;
+    font-weight: normal;
+    padding: 5px 0px;
+}
+.listing li{
+margin-top: 10px!important;
+}
+.listing li a{
+    color:#ffffff!important;
+    }
+    .listing li a i{
+        color:#ffffff!important;
+        }
+        .notification-dropdown .noti-list{
+            height: 269px!important;
+        }
+    .listing li .dropdown-menu.show i{
+        color: #000000!important;
+    }
+    .listing li .dropdown-menu.show a{
+        color: #000000!important;
+    }
+    .listing li .dropdown-menu.show a:hover.dropdown-item{
+        background: #E5e5e5!important;
+    }
+    .listing li .noti-list i{
+        color: #000000!important;
+    }
+    .listing li .noti-list a:hover.dropdown-item{
+        background: #E5e5e5!important;
+    }
+    .listing li a.noti-footer{
+        color: #ffffff!important;
+        background:#e72e77!important;
+    }
+
+
+    .photo_gallery{
+      background-color: #fff;
+      margin-top: -22px;
+      padding-top: 16px;
+      padding-bottom: 50px;
+    }
+
+.photo_gallery h2{
+
+     border-bottom: 1px solid #ccc;
+     padding-bottom: 10px;
+  }
+  .cam_left{
+    float: right;
+  }
+  .cam_left a{
+    color: #000 !important;
+  }
+  .photos_gallery{
+    margin-top: 20px;
+  }
+.second_row{
+  margin-top: 30px;
+}
+.third_row{
+   margin-top: 30px;
+}
+.zoom_effect:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.1); 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     @media(min-width:768px) {
+    #wrapper {
+      padding-left: 0;
+    }
+    #wrapper.toggled {
+      padding-left: 250px;
+    }
+    #sidebar-wrapper {
+      width: 0;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+      width: 250px;
+    }
+    #page-content-wrapper {
+      padding:0px;
+      position: relative;
+    }
+    #wrapper.toggled #page-content-wrapper {
+      position: relative;
+      margin-right: 0;
+    }
+  }
+   @media(min-width:768px) {
+    #wrapper {
+      padding-left: 0;
+    }
+    #wrapper.toggled {
+      padding-left: 250px;
+    }
+    #sidebar-wrapper {
+      width: 0;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+      width: 250px;
+    }
+    #page-content-wrapper {
+      padding: 20px;
+      position: relative;
+    }
+    #wrapper.toggled #page-content-wrapper {
+      position: relative;
+      margin-right: 0;
+    }
+  }
+
+  @media(max-width: 767px){
+
+    .photo_gallery{
+      margin-top: 190px;
+    }
+    .firt_row .col-md-3{
+      margin-bottom: 20px;
+    }
+    .second_row .col-md-3{
+      margin-bottom: 20px;
+    }
+    .third_row .col-md-3{
+      margin-bottom: 20px;
+    }
+    .second_row{
+      margin-top: 0px
+    }
+    .third_row{
+      margin-top: 0px
+    }
+  }
+

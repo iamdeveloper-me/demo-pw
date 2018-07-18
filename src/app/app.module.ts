@@ -32,6 +32,7 @@ import { VendorComponent } from './vendor/vendor.component';
 import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
 import { BusinessInfoComponent } from "./vendor/business-info/business-info.component";
 import { LocationComponent } from "./vendor/location/location.component";
+import { VideosComponent } from './vendor/videos/videos.component';
 
 import { MylistingComponent } from './vendor/mylisting/mylisting.component';
 import { NavemenuComponent } from './vendor/navemenu/navemenu.component';
@@ -130,7 +131,8 @@ export function getAuthServiceConfigs() {
         UserboardComponent,
         AllcategoryComponent,
         SupplierByCityComponent,
-        SupplierByCateComponent
+        SupplierByCateComponent,
+         VideosComponent
 
 
   ],

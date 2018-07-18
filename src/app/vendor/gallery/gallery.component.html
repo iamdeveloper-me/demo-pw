@@ -1,53 +1,82 @@
-<!--File Upload Starts-->
-<a class="btn btn-floating halfway-fab btn-large bg-danger"><i class="ft-plus"></i></a>
-  <div class="row" matchHeight ="card">
-      <!-- Inline Lists-->
-      <div class="col-md-12 col-lg-4">
-          <div class="card">
-              <img class="img-fluid" src="../../assets/img/hotel.jpg" class="img-responsive" alt="">
-          </div>
-      </div>
-      <!-- Inline Lists-->
-
-      <!-- Inline Lists-->
-      <div class="col-md-12 col-lg-4">
-          <div class="card">
-              <img class="img-fluid" src="../../assets/img/hotel.jpg" class="img-responsive" alt="">
-          </div>
-      </div>
-      <!-- Inline Lists-->
-
-      <!-- Inline Lists-->
-      <div class="col-md-12 col-lg-4">
-          <div class="card">
-              <img class="img-fluid" src="../../assets/img/hotel.jpg" class="img-responsive" alt="">
-          </div>
-      </div>
-      <!-- Inline Lists-->
+<!-- Card Dark -->
+<div id="wrapper">
+  <div id="sidebar-wrapper">
+      <app-vendorsidebar></app-vendorsidebar>
   </div>
-  <div class="row" matchHeight ="card">
-      <!-- Inline Lists-->
-      <div class="col-md-12 col-lg-4">
-          <div class="card">
-              <img class="img-fluid" src="../../assets/img/hotel.jpg" class="img-responsive" alt="">
-          </div>
-      </div>
-      <!-- Inline Lists-->
+  <div id="page-content-wrapper">    
+<app-navbar2></app-navbar2>
+<router-outlet></router-outlet> 
+   <div class="container-fluid photo_gallery">
+     <h2>Photos</h2>
+     <div class="photo_heading">
+       <div class="note">
+          <span>Note: Upload picture that will best represent your business. </span>
+          <span class="cam_left">  <a href="#"> <i class="material-icons">
+camera_enhance
+</i> </a> </span>
 
-      <!-- Inline Lists-->
-      <div class="col-md-12 col-lg-4">
-          <div class="card">
-              <img class="img-fluid" src="../../assets/img/hotel.jpg" class="img-responsive" alt="">
-          </div>
-      </div>
-      <!-- Inline Lists-->
+       </div>
 
-      <!-- Inline Lists-->
-      <div class="col-md-12 col-lg-4">
-          <div class="card">
-              <img class="img-fluid" src="../../assets/img/hotel.jpg" class="img-responsive" alt="">
-          </div>
+     </div>
+
+    <div class="photos_gallery">
+      <div class="row firt_row"> 
+       <div class="col-md-3 zoom_effect zoom_effect">
+            <img src="../assets/img/hotel.jpg" class="img-responsive">
+       </div>
+       <div class="col-md-3 zoom_effect">
+            <img src="../assets/img/detail_slide5.jpg" class="img-responsive">
+       </div>
+       <div class="col-md-3 zoom_effect">
+            <img src="../assets/img/detail_slide.jpg" class="img-responsive">
+       </div>
+       <div class="col-md-3 zoom_effect">
+            <img src="../assets/img/detail_slide5.jpg" class="img-responsive">
+       </div>
+
       </div>
-      <!-- Inline Lists-->
-  </div>
-  <!--File Upload Ends-->
+      <div class="row second_row"> 
+       <div class="col-md-3 zoom_effect">
+            <img src="../assets/img/hotel.jpg" class="img-responsive">
+       </div>
+       <div class="col-md-3 zoom_effect">
+            <img src="../assets/img/hotel.jpg" class="img-responsive">
+       </div>
+       <div class="col-md-3 zoom_effect">
+            <img src="../assets/img/hotel.jpg" class="img-responsive">
+       </div>
+       <div class="col-md-3 zoom_effect">
+            <img src="../assets/img/hotel.jpg" class="img-responsive">
+       </div>
+
+      </div>
+
+      <div class="row third_row"> 
+       <div class="col-md-3 zoom_effect">
+            <img src="../assets/img/hotel.jpg" class="img-responsive">
+       </div>
+       <div class="col-md-3 zoom_effect">
+            <img src="../assets/img/hotel.jpg" class="img-responsive">
+       </div>
+       <div class="col-md-3 zoom_effect">
+            <img src="../assets/img/hotel.jpg" class="img-responsive">
+       </div>
+       <div class="col-md-3 zoom_effect">
+            <img src="../assets/img/hotel.jpg" class="img-responsive">
+       </div>
+
+      </div>
+
+    </div>
+        
+   </div>
+   <app-foot></app-foot>
+
+</div>
+</div>
+<router-outlet></router-outlet> 
+
+
+
+        
+ 

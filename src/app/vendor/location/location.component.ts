@@ -17,7 +17,10 @@ export class LocationComponent implements OnInit {
     $.getScript('./assets/js/vertical-timeline.js');
   $.getScript('./assets/js/profile.js');
 
-  $('#navmenu').hide();
+  $('#morelocation').hide();
+  $("#btn-loc").click(function(){
+    $('#morelocation').show();
+  });
   }
 
 
@@ -36,4 +39,8 @@ export class LocationComponent implements OnInit {
 
 
 
+save()
+{
+  this.ngOnInit();
+}
 }

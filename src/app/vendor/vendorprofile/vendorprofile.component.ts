@@ -12,10 +12,13 @@ export class VendorprofileComponent implements OnInit {
 
   ngOnInit() { $.getScript('./assets/js/vertical-timeline.js');
   $.getScript('./assets/js/profile.js');
+ 
   }
   showPage(page: string) {
     this.currentPage = page;
 }
+
+
 
  // Variable Declaration
  x: any;

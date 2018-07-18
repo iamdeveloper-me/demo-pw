@@ -1,3 +1,313 @@
-<p>
-  location works!
-</p>
+<!-- Card Dark -->
+<div id="wrapper">
+    <div id="sidebar-wrapper">
+        <app-vendorsidebar></app-vendorsidebar>
+    </div>
+    <div id="page-content-wrapper">    
+  
+  <router-outlet></router-outlet> 
+  <div class="content">
+      <app-navemenu></app-navemenu>
+        <section id="user-profile">
+            <div class="row">
+              <div class="col-12">
+                <div class="col-sm-4">
+                  <div _ngcontent-c4="" class="card">
+                    <div _ngcontent-c4="" class="card-header">
+                       
+                            <div  class="card-block">
+                                    <div>
+                                        <ui-switch [(ngModel)]="enable"></ui-switch> {{enable}}
+                                    </div>
+                            </div>  
+                   
+                      <h4 _ngcontent-c4="" class="card-title">General Information</h4>
+                      <div class="col-lg-12 editbtn">
+                        <h4 class="text-right col-lg-12">
+                          <i class="material-icons"> edit</i></h4>
+                          
+                        <input type="checkbox" class="form-control" id="checker">
+                      </div>
+                    </div>
+                     
+                    
+               
+                   
+                    <div _ngcontent-c4="" class="card-body">
+                      <form _ngcontent-c4="" novalidate class="ng-untouched ng-pristine ng-valid">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="custom-form">
+                          <div class="text-center bg-form">
+                            <div class="img-section"> <img src="../../assets/img/deco4.jpg" class="infoimg" alt="Profile picture"> <span class="fake-icon-edit" id="PicUpload" style="color: #ffffff;"> 
+                              <span class="glyphicon glyphicon-camera camera"></span> </span> </div>
+                            <input type="file" id="image-input" onchange="readURL(this);" accept="image/*" disabled class="form-control form-input Profile-input-file" >
+                          </div>
+                          <div class="col-lg-12 col-md-12">
+                            <input type="text" class="form-control form-input" value="Digital Photography" placeholder="Company Name" disabled id="companyname">
+                          </div>
+                          <div class="col-lg-12 col-md-12">
+                            <input type="text" class="form-control form-input martop0px" value="Photography, Vediography" placeholder="Company Title" disabled id="companytitle">
+                          </div>
+                          <div class="col-lg-12 col-md-12">
+                            <hr _ngcontent-c2="" class="hr-light">
+                            <div class="col-xs-2 paddtop3px"> 
+                              <span class="glyphicon glyphicon-map-marker"></span>
+                            </div>
+                          <div class="col-xs-10 nopadd weekboxinput">
+                            
+                              <div col-xs-6>Country</div>
+                                <div class="col-xs-6">
+                                    <input type="text" class="form-control form-input martop0px" value="India" placeholder="Country" disabled id="country">
+                                </div>
+                              
+                           
+                                <div col-xs-6>City</div>
+                                <div class="col-xs-6">
+                                  <input type="text" class="form-control form-input martop0px" value="Chandigarh" placeholder="City" disabled id="city">
+                                </div>
+                          
+                          
+                                <div col-xs-6>Postal Code</div>
+                                <div class="col-xs-6">
+                                   <input type="text" class="form-control form-input martop0px" value="425007" placeholder="Postal code" disabled id="postalcode">
+                                </div>
+                            
+                           
+                                <div col-xs-6>Address</div>
+                                <div class="col-xs-6">
+                                  <input type="text" class="form-control form-input martop0px" value="105 C street hole " placeholder="Address" disabled id="address">
+                                </div>
+                            
+                      
+                          </div> 
+                          </div>
+                          <div class="col-lg-12 col-md-12">
+                              <hr _ngcontent-c2="" class="hr-light">
+                              <button id="btn-loc" type="button"  (click)="morelocation()"  class="btn btn-info">
+                                <i class="icon-hand-right"></i> ADD more location 
+                              </button>
+                              <form id= "morelocation">
+                                       
+                                       <div class="input-effect form-group md-form mt-3">
+                                          <input class="effect-16"   type="text" required="required"  >
+                                          <label>Country</label>
+                                          <span class="focus-border"></span>
+                                      </div>   
+                                      
+                                       <div class="input-effect form-group md-form mt-3">
+                                          <input class="effect-16"   type="text" required="required" >
+                                          <label>City</label>
+                                          <span class="focus-border"></span>
+                                      </div>   
+                                 
+                                       <div class="input-effect form-group md-form mt-3">
+                                          <input class="effect-16"   type="text" required="required"  >
+                                          <label>Address</label>
+                                          <span class="focus-border"></span>
+                                      </div>   
+                                     
+                                       <div class="input-effect form-group md-form mt-3">
+                                          <input class="effect-16"   type="text" required="required" >
+                                          <label>Postal Code</label>
+                                          <span class="focus-border"></span>
+                                      </div>   <br>
+                                       <button  (click)="save()">Save</button>
+                              </form>
+                          </div>
+                          <div class="col-lg-12 col-md-12">
+                            <hr _ngcontent-c2="" class="hr-light">
+                            <div class="col-xs-2 paddtop3px"> <i _ngcontent-c0="" class="material-icons">access_time</i></div>
+                            <div class="col-xs-10 nopadd weekboxinput">
+                              <div col-xs-6>Sunday</div>
+                              <div col-xs-6>
+                                <input type="text" class="form-control form-input martop0px" value="Closed" placeholder="Time" disabled id="suntime">
+                              </div>
+                              <div class="clearfix"></div>
+                              <div col-xs-6>Monday</div>
+                              <div col-xs-6>
+                                <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="montime">
+                              </div>
+                              <div class="clearfix"></div>
+                              <div col-xs-6>Tuesday</div>
+                              <div col-xs-6>
+                                <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="tuetime">
+                              </div>
+                              <div class="clearfix"></div>
+                              <div col-xs-6>Webnesday</div>
+                              <div col-xs-6>
+                                <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="wedtime">
+                              </div>
+                              <div class="clearfix"></div>
+                              <div col-xs-6>Thursday</div>
+                              <div col-xs-6>
+                                <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="thutime">
+                              </div>
+                              <div class="clearfix"></div>
+                              <div col-xs-6>Friday</div>
+                              <div col-xs-6>
+                                <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="fritime">
+                              </div>
+                              <div class="clearfix"></div>
+                              <div col-xs-6>Saturday</div>
+                              <div col-xs-6>
+                                <input type="text" class="form-control form-input martop0px" value="Closed" placeholder="Time" disabled id="sattime">
+                              </div>
+                              <div class="clearfix"></div>
+                            </div>
+                            <div class="col-lg-12 col-md-12">
+                              <hr _ngcontent-c2="" class="hr-light">
+                              <div class="col-xs-2 paddtop3px"> <span class="glyphicon glyphicon-earphone"></span></div>
+                              <div class="col-xs-10 nopadd">
+                                <input type="text" class="form-control form-input martop0px" value="+91-00000000" placeholder="Phone Number" disabled id="phone1">
+                                <input type="text" class="form-control form-input martop0px" value="+91-00000000" placeholder="Phone Number" disabled id="phone2">
+                              </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 text-center" style="display: none;">
+                              <button class="btn btn-info btn-lg custom-btn" id="submit" disabled><span class="glyphicon glyphicon-save"></span> Save</button>
+                            </div> 
+                           
+                          </div>
+                        </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-8">
+                    <div _ngcontent-c4="" class="card">
+                        <div _ngcontent-c4="" class="card-header">
+                             <section class="p-0 container" id="portfolio">
+                                <div class="container-fluid p-0">
+                            
+                                    <h3  class="h4">My Listing</h3>
+                                  <div class="row popup-gallery">
+                                  
+                                    <div class="col-lg-4 col-sm-6 galleryview">
+                                        <div class="card">
+                            
+                                            <!-- Card image -->
+                                            <div class="view overlay">
+                                              <img class="card-img-top" src="../../assets/img/hotel5.jpg" alt="Card image cap">
+                                              <a>
+                                                <div class="mask rgba-white-slight"></div>
+                                              </a>
+                                            </div>
+                                          
+                                            <!-- Card content -->
+                                            <div class="card-body elegant-color white-text rounded-bottom">
+                                          
+                                              <!-- Social shares button -->
+                                              <!-- Title -->
+                                              <h4 class="card-title">Card title</h4>
+                            
+                                              <h5><span _ngcontent-c0=""><i _ngcontent-c0="" class="material-icons"> add_location </i> location</span></h5>
+                                              <h5><span _ngcontent-c0=""><i _ngcontent-c0="" class="material-icons"> face </i> location</span></h5>
+                                             
+                            <div class="btnholder">
+                            <div>
+                              <span class="badge bg-success">Active</span>
+                            </div> 
+                            <div>
+                            <span class="badge bg-info">Holiday Mode</span>
+                            </div>
+                                          </div>
+                                              <hr class="hr-light">
+                                              <!-- Text -->
+                                                <!-- Link -->
+                                                <a _ngcontent-c6="" class="btn btn-raised btn-danger">Manage</a>
+                                          
+                                            </div>
+                                          
+                                          </div>
+                                    </div>
+                                   
+                                    <div class="col-lg-4 col-sm-6 galleryview">
+                                        <div class="card">
+                            
+                                            <!-- Card image -->
+                                            <div class="view overlay">
+                                              <img class="card-img-top" src="../../assets/img/hotel4.jpg" alt="Card image cap">
+                                              <a>
+                                                <div class="mask rgba-white-slight"></div>
+                                              </a>
+                                            </div>
+                                          
+                                            <!-- Card content -->
+                                            <div class="card-body elegant-color white-text rounded-bottom">
+                                          
+                                              <!-- Social shares button -->
+                                              <!-- Title -->
+                                              <h4 class="card-title">Card title</h4>
+                            
+                                              <h5><span _ngcontent-c0=""><i _ngcontent-c0="" class="material-icons"> add_location </i> location</span></h5>
+                                              <h5><span _ngcontent-c0=""><i _ngcontent-c0="" class="material-icons"> face </i> Manager not assigned</span></h5>
+                                             
+                            <div class="btnholder">
+                                             <div>
+                                                <span class="badge bg-warning">Pending Approval</span>
+                                              </div> 
+                                              <div>
+                                             
+                                            </div>
+                                          </div>
+                                              <hr class="hr-light">
+                                              <!-- Text -->
+                                                <!-- Link -->
+                                                <a _ngcontent-c6="" class="btn btn-raised btn-default">Manage</a>
+                                          
+                                            </div>
+                                          
+                                          </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6 galleryview">
+                                        <div class="card">
+                            
+                                            <!-- Card image -->
+                                            <div class="view overlay">
+                                              <img class="card-img-top" src="../../assets/img/hotel2.jpg" alt="Card image cap">
+                                              <a>
+                                                <div class="mask rgba-white-slight"></div>
+                                              </a>
+                                            </div>
+                                          
+                                            <!-- Card content -->
+                                            <div class="card-body elegant-color white-text rounded-bottom">
+                                          
+                                              <!-- Social shares button -->
+                                              <!-- Title -->
+                                              <h4 class="card-title">Card title</h4>
+                            
+                                              <h5><span _ngcontent-c0=""><i _ngcontent-c0="" class="material-icons"> add_location </i> location</span></h5>
+                                              <h5><span _ngcontent-c0=""><i _ngcontent-c0="" class="material-icons"> face </i> location</span></h5>
+                                             
+                            <div class="btnholder">
+                            <div>
+                              <span class="badge bg-success">Active</span>
+                            </div> 
+                            <div>
+                            <span class="badge bg-info">Holiday Mode</span>
+                            </div>
+                                          </div>
+                                              <hr class="hr-light">
+                                              <!-- Text -->
+                                                <!-- Link -->
+                                                <a _ngcontent-c6="" class="btn btn-raised btn-danger">Manage</a>
+                                          
+                                            </div>
+                                          
+                                          </div>
+                                    </div>
+                                   
+                                    
+                                  </div>
+                                </div>
+                              </section>
+                        </div>
+                    </div>           
+                </div>
+              </div>
+            </div>
+        </section>       
+  </div>
+  </div>
+  </div>

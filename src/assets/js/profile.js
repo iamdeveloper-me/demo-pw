@@ -2,7 +2,7 @@
         $('#fake-input').val($(this).val().replace("C:\\fakepath\\", ""));
     });
 
-    <!--==================Javascript code for custom input type file on button ================-->
+//==================Javascript code for custom input type file on button ================//
 
     $('input[id=main-input]').change(function() {
         console.log($(this).val());
@@ -14,7 +14,7 @@
         }
     });
 
-    <!--=========================input type file change on button ends here====================-->
+//=========================input type file change on button ends here==================== //
 
 //    ===================== snippet for profile picture change ============================ //
 
@@ -39,9 +39,17 @@
     var userPhone1 = document.getElementById('phone1');
     var userPhone2 = document.getElementById('phone2');
     var userEmail = document.getElementById('companytitle');
-    var userPlace = document.getElementById('place');
+    var usercountry = document.getElementById('country');
+    var usercity = document.getElementById('city');
+    var userPostalcode = document.getElementById('postalcode');
+    var useraddress = document.getElementById('address');
+
     var UserSend = document.getElementById('submit');
     var editPic = document.getElementById('PicUpload');
+  
+
+
+
 
     var suntime = document.getElementById('suntime');
     var montime = document.getElementById('montime');
@@ -51,6 +59,7 @@
     var fritime = document.getElementById('fritime');
     var sattime = document.getElementById('sattime');
 
+
     checkme.onchange = function() {
         UserSend.disabled = !this.checked;
         userImage.disabled = !this.checked;
@@ -58,7 +67,11 @@
         userPhone1.disabled = !this.checked;
         userPhone2.disabled = !this.checked;
         userEmail.disabled = !this.checked;
-        userPlace.disabled = !this.checked;
+        usercountry.disabled =!this.checked;
+        usercity.disabled = !this.checked;
+        userPostalcode.disabled = !this.checked;
+        useraddress.disabled = !this.checked;
+
 
         suntime.disabled = !this.checked;
         montime.disabled = !this.checked;
@@ -75,8 +88,21 @@
 
     var checkmedescription = document.getElementById('checkerdescription');
     var userdescription = document.getElementById('description');
+    var userfacebook = document.getElementById('facebook');
+    var usergoogle = document.getElementById('google');
+    var userpinterest = document.getElementById('pinterest');
+    var userInstagram = document.getElementById('Instagram');
+    
     
     checkmedescription.onchange = function() {
         UserSend.disabled = !this.checked;
         userdescription.disabled = !this.checked;
+        userfacebook.disabled = !this.checked;
+        usergoogle.disabled = !this.checked;
+        userpinterest.disabled = !this.checked;
+        userInstagram.disabled = !this.checked;
+
+
     };
+
+    

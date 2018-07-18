@@ -3,210 +3,212 @@
       <app-vendorsidebar></app-vendorsidebar>
   </div>
   <div id="page-content-wrapper">    
-
-<router-outlet></router-outlet> 
-<div class="content">
-  <section id="user-profile">
-    <div class="col-12">
-    	<div _ngcontent-c4="" class="card">
-        	<div _ngcontent-c4="" class="card-header">
-            	<h4 _ngcontent-c4="" class="card-title">Photography, Videography & Cinematography </h4>
-        	</div>
-    	  	<div _ngcontent-c4="" class="card-body">
-    	  		<div class="card-content selectboxservice"> 
-            		<h5>Which Service do you provide</h5>
-            		<div>
-            			<label>
-              				<input name="group1" type="radio" checked=""> <span>Photography Only</span>
-              			</label>
-          			</div>
-          			<div>
-          				<label>
-              				<input name="group1" type="radio"> <span>Photo + Vedio</span> 
-          				</label>
-          			</div>
-          			<div>
-            			<label>
-              				<input name="group1" type="radio"> <span>Vediography</span> 
-          				</label>
-          			</div>
-          			<hr class="hr-light">
-        		</div>
-        		<div class="card-content selectboxservice">
-        			<div class="funkyradio">
-        				<div class="col-sm-3">
-        					<div class="funkyradio-info">
-            					<input type="checkbox" name="checkbox" id="checkbox1" checked/>
-            					<label for="checkbox1">Drone Capture</label>
-        					</div>
-    					</div>
-        				<div class="col-sm-3">
-        				<div class="funkyradio-info">
-            			<input type="checkbox" name="checkbox" id="checkbox2" checked/>
-            			<label for="checkbox2">Candid Photography</label>
-        				</div>
-         				<div class="clearfix"></div>
-         				<div class="editer">
-         					<label>Price:</label>&nbsp;
-         					<input type="text" name="service1" disabled placeholder="Select" id="service1">
-            				
-            				<div class="editbtn">
-              					<i class="material-icons">edit</i>
-              					<input type="checkbox" class="form-control" id="checkerdescription">
-            				</div>
-          				</div>
-          
-        				</div>
-        				<div class="col-sm-3">
-       					<div class="funkyradio-info">
-            				<input type="checkbox" name="checkbox" id="checkbox3" checked/>
-            				<label for="checkbox3">Cinematography</label>
-        				</div>
-        				<div class="clearfix"></div>
-         				<div class="editer">
-         					<label>Price:</label>&nbsp;
-         					<input type="text" name="service1" disabled placeholder="Select" id="service1">
-            				
-            				<div class="editbtn">
-              					<i class="material-icons">edit</i>
-              					<input type="checkbox" class="form-control" id="">
-            				</div>
-          				</div>
-    					</div>
-      					<div class="col-sm-3">
-       					<div class="funkyradio-info">
-            				<input type="checkbox" name="checkbox" id="checkbox4" checked/>
-            				<label for="checkbox4">Studio Shoots</label>
-        				</div>
-        				<div class="editer">
-         					<label>Price:</label>&nbsp;
-         					<input type="text" name="service1" disabled placeholder="15k & Below" id="service1">
-            				
-            				<div class="editbtn">
-              					<i class="material-icons">edit</i>
-              					<input type="checkbox" class="form-control" id="">
-            				</div>
-          				</div>
+	<div class="container-fluid nopadd">                    
+		<app-navemenu></app-navemenu>
+		<router-outlet></router-outlet> 
+		<div class="content">
+		<section id="user-profile">
+			<div class="col-12">
+				<div _ngcontent-c4="" class="card">
+					<div _ngcontent-c4="" class="card-header">
+						<h4 _ngcontent-c4="" class="card-title">Photography, Videography & Cinematography </h4>
+					</div>
+					<div _ngcontent-c4="" class="card-body">
+						<div class="card-content selectboxservice"> 
+							<h5>Which Service do you provide</h5>
+							<div>
+								<label>
+									<input name="group1" type="radio" checked=""> <span>Photography Only</span>
+								</label>
+							</div>
+							<div>
+								<label>
+									<input name="group1" type="radio"> <span>Photo + Vedio</span> 
+								</label>
+							</div>
+							<div>
+								<label>
+									<input name="group1" type="radio"> <span>Vediography</span> 
+								</label>
+							</div>
+							<hr class="hr-light">
 						</div>
-						<div class="clearfix"></div>
-  						<div class="col-sm-3">
-        				<div class="funkyradio-info">
-            				<input type="checkbox" name="checkbox" id="checkbox5"/>
-            				<label for="checkbox5">Pre-Wedding Shoots</label>
-        				</div>
-        				<div class="editer">
-         					<label>Price:</label>&nbsp;
-         					<input type="text" name="service1" disabled placeholder="On Request" id="service1">
-            				
-            				<div class="editbtn">
-              					<i class="material-icons">edit</i>
-              					<input type="checkbox" class="form-control" id="">
-            				</div>
-          				</div>
-    					</div>
-      					<div class="col-sm-3">
-        				<div class="funkyradio-info">
-            				<input type="checkbox" name="checkbox" id="checkbox6"/>
-            				<label for="checkbox6">Photos Delivered</label>
-        				</div>
-        				<div class="editer">
-         					<input type="text" name="service1" disabled placeholder="500 Photos & 2 Photos Albums" id="service1">
-            				
-            				<div class="editbtn">
-              					<i class="material-icons">edit</i>
-              					<input type="checkbox" class="form-control" id="">
-            				</div>
-          				</div>
-    					</div>
-      					<div class="col-sm-3">
-       					<div class="funkyradio-info">
-            				<input type="checkbox" name="checkbox" id="checkbox7"/>
-            				<label for="checkbox7">Experience</label>
-        				</div>
-        				<div class="editer">
-         					
-         					<input type="text" name="service1" disabled placeholder="4 Years" id="service1">
-            				
-            				<div class="editbtn">
-              					<i class="material-icons">edit</i>
-              					<input type="checkbox" class="form-control" id="">
-            				</div>
-          				</div>
-    					</div>
-      					<div class="col-sm-3">
-       					<div class="funkyradio-info">
-            				<input type="checkbox" name="checkbox" id="checkbox8"/>
-            				<label for="checkbox8">Payments Terms</label>
-        				</div>
-        				<div class="editer">
-         					<input type="text" name="service1" disabled placeholder="50% upfront" id="service1">
-            				
-            				<div class="editbtn">
-              					<i class="material-icons">edit</i>
-              					<input type="checkbox" class="form-control" id="">
-            				</div>
-          				</div>
-        				</div>
-        				<div class="clearfix"></div>
-        				<div class="col-sm-3">
-        				<div class="funkyradio-info">
-            				<input type="checkbox" name="checkbox" id="checkbox9"/>
-            				<label for="checkbox9">Travel Costs</label>
-        				</div>
-        				<div class="editer">
-         					<label>Price</label>&nbsp;
-         					<input type="text" name="service1" disabled placeholder="No travel costs" id="service1">
-            				
-            				<div class="editbtn">
-              					<i class="material-icons">edit</i>
-              					<input type="checkbox" class="form-control" id="">
-            				</div>
-          				</div>
-    					</div>
-    				</div>
-    				<hr class="hr-light">
-    			</div>
+						<div class="card-content selectboxservice">
+							<div class="funkyradio">
+								<div class="col-sm-3">
+									<div class="funkyradio-info">
+										<input type="checkbox" name="checkbox" id="checkbox1" checked/>
+										<label for="checkbox1">Drone Capture</label>
+									</div>
+								</div>
+								<div class="col-sm-3">
+								<div class="funkyradio-info">
+								<input type="checkbox" name="checkbox" id="checkbox2" checked/>
+								<label for="checkbox2">Candid Photography</label>
+								</div>
+								<div class="clearfix"></div>
+								<div class="editer">
+									<label>Price:</label>&nbsp;
+									<input type="text" name="service1" disabled placeholder="Select" id="service1">
+									
+									<div class="editbtn">
+										<i class="material-icons">edit</i>
+										<input type="checkbox" class="form-control" id="checkerdescription">
+									</div>
+								</div>
+				
+								</div>
+								<div class="col-sm-3">
+								<div class="funkyradio-info">
+									<input type="checkbox" name="checkbox" id="checkbox3" checked/>
+									<label for="checkbox3">Cinematography</label>
+								</div>
+								<div class="clearfix"></div>
+								<div class="editer">
+									<label>Price:</label>&nbsp;
+									<input type="text" name="service1" disabled placeholder="Select" id="service1">
+									
+									<div class="editbtn">
+										<i class="material-icons">edit</i>
+										<input type="checkbox" class="form-control" id="">
+									</div>
+								</div>
+								</div>
+								<div class="col-sm-3">
+								<div class="funkyradio-info">
+									<input type="checkbox" name="checkbox" id="checkbox4" checked/>
+									<label for="checkbox4">Studio Shoots</label>
+								</div>
+								<div class="editer">
+									<label>Price:</label>&nbsp;
+									<input type="text" name="service1" disabled placeholder="15k & Below" id="service1">
+									
+									<div class="editbtn">
+										<i class="material-icons">edit</i>
+										<input type="checkbox" class="form-control" id="">
+									</div>
+								</div>
+								</div>
+								<div class="clearfix"></div>
+								<div class="col-sm-3">
+								<div class="funkyradio-info">
+									<input type="checkbox" name="checkbox" id="checkbox5"/>
+									<label for="checkbox5">Pre-Wedding Shoots</label>
+								</div>
+								<div class="editer">
+									<label>Price:</label>&nbsp;
+									<input type="text" name="service1" disabled placeholder="On Request" id="service1">
+									
+									<div class="editbtn">
+										<i class="material-icons">edit</i>
+										<input type="checkbox" class="form-control" id="">
+									</div>
+								</div>
+								</div>
+								<div class="col-sm-3">
+								<div class="funkyradio-info">
+									<input type="checkbox" name="checkbox" id="checkbox6"/>
+									<label for="checkbox6">Photos Delivered</label>
+								</div>
+								<div class="editer">
+									<input type="text" name="service1" disabled placeholder="500 Photos & 2 Photos Albums" id="service1">
+									
+									<div class="editbtn">
+										<i class="material-icons">edit</i>
+										<input type="checkbox" class="form-control" id="">
+									</div>
+								</div>
+								</div>
+								<div class="col-sm-3">
+								<div class="funkyradio-info">
+									<input type="checkbox" name="checkbox" id="checkbox7"/>
+									<label for="checkbox7">Experience</label>
+								</div>
+								<div class="editer">
+									
+									<input type="text" name="service1" disabled placeholder="4 Years" id="service1">
+									
+									<div class="editbtn">
+										<i class="material-icons">edit</i>
+										<input type="checkbox" class="form-control" id="">
+									</div>
+								</div>
+								</div>
+								<div class="col-sm-3">
+								<div class="funkyradio-info">
+									<input type="checkbox" name="checkbox" id="checkbox8"/>
+									<label for="checkbox8">Payments Terms</label>
+								</div>
+								<div class="editer">
+									<input type="text" name="service1" disabled placeholder="50% upfront" id="service1">
+									
+									<div class="editbtn">
+										<i class="material-icons">edit</i>
+										<input type="checkbox" class="form-control" id="">
+									</div>
+								</div>
+								</div>
+								<div class="clearfix"></div>
+								<div class="col-sm-3">
+								<div class="funkyradio-info">
+									<input type="checkbox" name="checkbox" id="checkbox9"/>
+									<label for="checkbox9">Travel Costs</label>
+								</div>
+								<div class="editer">
+									<label>Price</label>&nbsp;
+									<input type="text" name="service1" disabled placeholder="No travel costs" id="service1">
+									
+									<div class="editbtn">
+										<i class="material-icons">edit</i>
+										<input type="checkbox" class="form-control" id="">
+									</div>
+								</div>
+								</div>
+							</div>
+							<hr class="hr-light">
+						</div>
 
-    			<div class="card-content selectboxservice"> 
-            		<h5>Do you offer packages</h5>
-            		<div>
-            			<div class="funkyradio">
-        				<div class="col-sm-3">
-        					<div class="funkyradio-info">
-            					<input type="checkbox" name="checkbox" id="checkbox11" checked/>
-            					<label for="checkbox11">Photos</label>
-        					</div>
-        					<div class="editer">
-         					<label>Price</label>&nbsp;
-         					<input type="text" name="service1" disabled placeholder="Select" id="service1">
-            				
-            				<div class="editbtn">
-              					<i class="material-icons">edit</i>
-              					<input type="checkbox" class="form-control" id="">
-            				</div>
-          				</div>
-    					</div>
-    					<div class="col-sm-3">
-        					<div class="funkyradio-info">
-            					<input type="checkbox" name="checkbox" id="checkbox12" checked/>
-            					<label for="checkbox12">Photos + Vedios</label>
-        					</div>
-        					<div class="editer">
-         					<label>Price</label>&nbsp;
-         					<input type="text" name="service1" disabled placeholder="Select" id="service1">
-            				
-            				<div class="editbtn">
-              					<i class="material-icons">edit</i>
-              					<input type="checkbox" class="form-control" id="">
-            				</div>
-          				</div>
-    					</div>
-    				</div>
-          			</div>
-        		</div>
-    		</div>
-    	</div>
-    </div>
-  </section>
-</div>
+						<div class="card-content selectboxservice"> 
+							<h5>Do you offer packages</h5>
+							<div>
+								<div class="funkyradio">
+								<div class="col-sm-3">
+									<div class="funkyradio-info">
+										<input type="checkbox" name="checkbox" id="checkbox11" checked/>
+										<label for="checkbox11">Photos</label>
+									</div>
+									<div class="editer">
+									<label>Price</label>&nbsp;
+									<input type="text" name="service1" disabled placeholder="Select" id="service1">
+									
+									<div class="editbtn">
+										<i class="material-icons">edit</i>
+										<input type="checkbox" class="form-control" id="">
+									</div>
+								</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="funkyradio-info">
+										<input type="checkbox" name="checkbox" id="checkbox12" checked/>
+										<label for="checkbox12">Photos + Vedios</label>
+									</div>
+									<div class="editer">
+									<label>Price</label>&nbsp;
+									<input type="text" name="service1" disabled placeholder="Select" id="service1">
+									
+									<div class="editbtn">
+										<i class="material-icons">edit</i>
+										<input type="checkbox" class="form-control" id="">
+									</div>
+								</div>
+								</div>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		</div>
+	</div>		
 </div>

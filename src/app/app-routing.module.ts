@@ -39,7 +39,6 @@ import { BookmarkComponent } from './userpannel/userboard/bookmark/bookmark.comp
 import { GuestComponent } from './userpannel/userboard/guest/guest.component';
 import { BudgetComponent } from './userpannel/userboard/budget/budget.component';
 
-
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -51,7 +50,7 @@ const appRoutes: Routes = [
   { path: 'home/contact', component: ContactUsComponent },
   { path: 'home/events', component:  EventsComponent  },
   { path: 'home/allcategory', component:  AllcategoryComponent },
-  { path: 'vendor/business-services', component:  BusinessServicesComponent  },
+
   { path: 'home/category', component:  CategoryComponent },
   { path: 'home/register', component:  RegisterComponent  },
   { path: 'home/events', component: EventsComponent },
@@ -59,6 +58,7 @@ const appRoutes: Routes = [
   { path: 'home/FAQ', component:FaquestionComponent },
   { path: 'home/TermsandConditions', component: TermsandconComponent  },
   { path: 'home/Careers', component:  CareersComponent  },
+
   { path: 'home/Advertise', component:  AdvertiseComponent },
    { path: 'vendor/dashboard', component:  DashboardComponent  },
    { path: 'vendor/business', component:  BusinessInfoComponent  },
@@ -67,6 +67,8 @@ const appRoutes: Routes = [
   { path: 'vendor/chat', component:  ChatComponent },
   { path: 'vendor/editprofile', component:   EditprofileComponent },
   { path: 'vendor/mylisting', component:   MylistingComponent },
+  { path: 'vendor/business-services', component:  BusinessServicesComponent  },
+  
    { path: 'User/vendor', component: VendorlistComponent },  
   { path: 'User/Timeline', component: TimelineComponent },
   { path: 'User/Bookmarks', component: BookmarkComponent },

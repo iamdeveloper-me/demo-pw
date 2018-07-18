@@ -11,7 +11,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StoreModule } from '@ngrx/store';
-import { BusinessServicesComponent } from "./vendor/business-services/business-services.component";
+
 
 import { AppComponent } from './app.component';
 import { ContentLayoutComponent } from "./layouts/content/content-layout.component";
@@ -76,7 +76,7 @@ import { TimelineComponent } from './userpannel/userboard/timeline/timeline.comp
 import { BookmarkComponent } from './userpannel/userboard/bookmark/bookmark.component';
 import { GuestComponent } from './userpannel/userboard/guest/guest.component';
 import { BudgetComponent } from './userpannel/userboard/budget/budget.component';
-
+import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
   }
@@ -138,14 +138,15 @@ export function getAuthServiceConfigs() {
         AllcategoryComponent,
         SupplierByCityComponent,
         SupplierByCateComponent,
-        BusinessServicesComponent
+        BusinessServicesComponent,
         CategoryComponent,
         VendorlistComponent,
         ToolComponent,
         TimelineComponent ,
         BookmarkComponent,
         GuestComponent,
-        BudgetComponent
+        BudgetComponent,
+        BusinessServicesComponent 
 
   ],
     imports: [

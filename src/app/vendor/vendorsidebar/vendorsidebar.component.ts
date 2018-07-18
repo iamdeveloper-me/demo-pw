@@ -9,7 +9,8 @@ export class VendorsidebarComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() { 
+    $.getScript('./assets/js/jquery.slimscroll.min.js');
   }
   
 }

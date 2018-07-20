@@ -155,7 +155,7 @@ export function getAuthServiceConfigs() {
         GuestComponent,
         BudgetComponent,
         CalendertableComponent,
-        CreateEventComponent
+        CreateEventComponent,
         AlbumviewComponent
 
   ],

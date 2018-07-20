@@ -4,86 +4,8 @@
  * Copyright 2013-2017 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
  */
- #sidebar-wrapper {
-    z-index: 1000;
-    position: fixed;
-    left: 250px;
-    width: 0;
-    height: 100%;
-    margin-left: -250px;
-    overflow-y: auto;
-    background:rgba(0, 46, 119, 0.7) !important;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-  }
-  
-  #wrapper.toggled #sidebar-wrapper {
-    width: 250px;
-  }
-  
-  /* Sidebar Styles */
-  
-  
-  #page-content-wrapper {
-    padding: 20px;
-    position: relative;
-  }
-  #wrapper.toggled #page-content-wrapper {
-    position: relative;
-    margin-right: 0;
-  }
-  #wrapper {
-    padding-left: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-  }
-  
-  #wrapper.toggled {
-    padding-left: 250px;
-  }
-  
-  #wrapper.toggled #sidebar-wrapper {
-    width: 250px;
-  }
-  
-  #page-content-wrapper {
-    width: 100%;
-    position: absolute;
-    padding: 0px;
-  }
-  
-  #wrapper.toggled #page-content-wrapper {
-    position: absolute;
-    margin-right: -250px;
-  }
   .nopadd{
     padding:0px!important;
-  }
-  @media(min-width:768px) {
-    #wrapper {
-      padding-left: 0;
-    }
-    #wrapper.toggled {
-      padding-left: 250px;
-    }
-    #sidebar-wrapper {
-      width: 0;
-    }
-    #wrapper.toggled #sidebar-wrapper {
-      width: 250px;
-    }
-    #page-content-wrapper {
-      padding:0px;
-      position: relative;
-    }
-    #wrapper.toggled #page-content-wrapper {
-      position: relative;
-      margin-right: 0;
-    }
   }
   .list-group .list-group-item:first-child {
       -webkit-border-top-left-radius: 0.125rem;
@@ -130,7 +52,7 @@
 .form-style-base{position:absolute;top:0px;z-index: 999;opacity: 0;}
 .imgCircle{border-radius: 50%;}
 .form-control{padding: 10px 50px;}
-.form-input{height:50px;border-radius: 0px;margin-top: 20px;}
+.form-input{height:50px;border-radius: 0px;margin-top: 7px;}
 .Profile-input-file{
     height: 300px;
     width: 100%;
@@ -166,6 +88,10 @@
     float: left;width: 100%;padding-top:0px;padding-bottom:0px;background: rgba(0,0,0,0.7);position: relative;
 }
 .img-section h4{color:#fff;}
+.img-section img{
+    height: 100px !important;
+    width: 100% !important
+}
 #PicUpload{
     color: #ffffff;
     width: 100%;
@@ -367,5 +293,77 @@ textarea.form-control, textarea.form-control{
 }
 
 .align_left{
-    text-align: left;
+    text-align: left !important;
+}
+.align_10px_left{
+    text-align: left !important;
+}
+.text_left{
+    text-align: left !important;
+}
+.custom-form{
+  
+    padding-top: 20px;
+    margin-bottom: 30px !important;
+    padding-bottom: 20px;
+    margin-top: -40px;
+}
+.card-block{
+    text-align: left !important;
+    padding-left: 0;
+}
+#user-profile{
+    margin-top: -10px;
+}
+.pad_left_0px{
+    padding-left: 0px !important;
+}
+.acce_time{
+    position: absolute !important;
+    top: 15px !important;
+    left: 7px !important;
+}
+.acce_time .material-icons{
+    left: -4px !important;
+    position: absolute !important;
+    top: -4px !important;
+}
+.border_left_div{
+    min-height: 240px;
+    border: 1px solid #ccc;
+    padding-left: 30px;
+    padding-top: 10px;
+}
+.border_left_div1{
+    min-height: 240px;
+    border: 1px solid #ccc;
+    padding-left: 30px;
+    border-left: none !important;
+    
+    padding-top: 10px;
+}
+.border_left_div2{
+    min-height: 240px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    border-right: none !important;
+    
+    padding-top: 10px;
+}
+.edit_btn{
+    float: right;
+    cursor: pointer;
+}
+.edit_btn1{
+    float: right;
+    cursor: pointer;
+    margin-top: -30px;
+}
+.phone_icon{
+    position: absolute !important;
+    top: 6px !important;
+    left: -13px !important;
+}
+.phone_icon1{
+    margin-top: 17px;
 }

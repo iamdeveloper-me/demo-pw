@@ -13,6 +13,22 @@ export class NavemenuComponent implements OnInit {
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : 'en'); }
   
   ngOnInit() {
+    $(document).ready(function(){
+    $('.togglebtnmenu').on('click', function(){
+     //alert("h1");
+      $(this).toggleClass('cross');
+     $('.blackoverlaymobile').toggleClass('blockmobile');
+    $('#page-content-wrapper').toggleClass('overhidden');
+    });
+
+    $('.blackoverlaymobile').on('click', function(){
+     //alert("h1");
+     $('#wrapper').toggleClass('toggled');
+     $('.togglebtnmenu').toggleClass('cross');
+      $('.blackoverlaymobile').toggleClass('blockmobile');
+      $('#page-content-wrapper').toggleClass('overhidden');
+    });
+});
 
   }
   ChangeLanguage(language: string) {

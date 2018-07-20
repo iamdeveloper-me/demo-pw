@@ -43,6 +43,7 @@ import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.com
 import { EditprofileComponent } from './vendor/editprofile/editprofile.component';
 import { ReviewsComponent } from './vendor/reviews/reviews.component';
 import { MembershipComponent } from './vendor/membership/membership.component';
+
 import {
     SocialLoginModule,
     AuthServiceConfig,
@@ -78,6 +79,11 @@ import { BookmarkComponent } from './userpannel/userboard/bookmark/bookmark.comp
 import { GuestComponent } from './userpannel/userboard/guest/guest.component';
 import { BudgetComponent } from './userpannel/userboard/budget/budget.component';
 import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
+import { CalendertableComponent } from './vendor/calendertable/calendertable.component';
+import { CreateEventComponent } from './vendor/create-event/create-event.component';
+
+import { AlbumviewComponent } from './vendor/albumview/albumview.component';
+
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
   }
@@ -147,8 +153,10 @@ export function getAuthServiceConfigs() {
         TimelineComponent ,
         BookmarkComponent,
         GuestComponent,
-        BudgetComponent
-
+        BudgetComponent,
+        CalendertableComponent,
+        CreateEventComponent
+        AlbumviewComponent
 
   ],
     imports: [

@@ -28,6 +28,8 @@ import { MessageComponent } from './message/message.component';
 import { ReviewComponent } from './review/review.component';
 import { EventComponent } from './event/event.component';
 import { BusinessServicesComponent } from './business-services/business-services.component';
+import { CalendertableComponent } from './calendertable/calendertable.component';
+import { CreateEventComponent } from './create-event/create-event.component';
 
 
 
@@ -62,7 +64,9 @@ import { BusinessServicesComponent } from './business-services/business-services
         MessageComponent,
         ReviewComponent,
         EventComponent,
-        BusinessServicesComponent
+        BusinessServicesComponent,
+        CalendertableComponent,
+        CreateEventComponent
     ]
 })
 export class VendorModule { }

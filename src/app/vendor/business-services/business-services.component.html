@@ -52,11 +52,43 @@
 									<input type="text" name="service1" disabled placeholder="Select" id="service1">
 									
 									<div class="editbtn">
-										<i class="material-icons">edit</i>
-										<input type="checkbox" class="form-control" id="checkerdescription">
+										<i class="material-icons" (click)="open(Candid)">edit</i>
 									</div>
 								</div>
-				
+								<div _ngcontent-c4="" class="card-body">   
+									<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
+									<div class="social" data-reactid="332">
+											{{jkl}}
+											<div class="card-block">
+												<ng-template #Candid let-c="close" let-d="dismiss">
+													<div class="modal-header" style="background-color: white;">
+														<h4 class="modal-title">Candid Photography </h4>
+														<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+														<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<div class="modal-body"  style="background-color: white;" >
+														<div class="input-effect form-group md-form mt-3">
+															<form>  
+																	
+																<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+															</form>  
+															
+															<label>Add here </label>
+															
+															<span class="focus-border"> </span>
+														</div>   
+													</div>
+													<div class="modal-footer"  style="background-color: white;">
+														<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+													</div>
+												</ng-template>
+					
+											</div>
+										
+									</div>
+									</div>
+							</div>
 								</div>
 								<div class="col-sm-3">
 								<div class="funkyradio-info">
@@ -65,13 +97,48 @@
 								</div>
 								<div class="clearfix"></div>
 								<div class="editer">
-									<label>Price:</label>&nbsp;
-									<input type="text" name="service1" disabled placeholder="Select" id="service1">
-									
-									<div class="editbtn">
-										<i class="material-icons">edit</i>
-										<input type="checkbox" class="form-control" id="">
+									<div class="editer">
+										<label>Price:</label>&nbsp;
+										<input type="text" name="service1" disabled placeholder="Select" id="service1">
+										
+										<div class="editbtn">
+											<i class="material-icons" (click)="open(Cinematography)">edit</i>
+										</div>
 									</div>
+									<div _ngcontent-c4="" class="card-body">   
+										<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
+										<div class="social" data-reactid="332">
+												{{jkl}}
+												<div class="card-block">
+													<ng-template #Cinematography let-c="close" let-d="dismiss">
+														<div class="modal-header" style="background-color: white;">
+															<h4 class="modal-title">Cinematography </h4>
+															<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+															<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body"  style="background-color: white;" >
+															<div class="input-effect form-group md-form mt-3">
+																<form>  
+																		
+																	<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+																</form>  
+																
+																<label>Add here </label>
+																
+																<span class="focus-border"> </span>
+															</div>   
+														</div>
+														<div class="modal-footer"  style="background-color: white;">
+															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+														</div>
+													</ng-template>
+						
+												</div>
+											
+										</div>
+										</div>
+								</div>
 								</div>
 								</div>
 								<div class="col-sm-3">
@@ -80,13 +147,49 @@
 									<label for="checkbox4">Studio Shoots</label>
 								</div>
 								<div class="editer">
-									<label>Price:</label>&nbsp;
-									<input type="text" name="service1" disabled placeholder="15k & Below" id="service1">
-									
-									<div class="editbtn">
-										<i class="material-icons">edit</i>
-										<input type="checkbox" class="form-control" id="">
+
+									<div class="editer">
+										<label>Price:</label>&nbsp;
+										<input type="text" name="service1" disabled placeholder="Select" id="service1">
+										
+										<div class="editbtn">
+											<i class="material-icons" (click)="open(Studio)">edit</i>
+										</div>
 									</div>
+									<div _ngcontent-c4="" class="card-body">   
+										<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
+										<div class="social" data-reactid="332">
+												{{jkl}}
+												<div class="card-block">
+													<ng-template #Studio let-c="close" let-d="dismiss">
+														<div class="modal-header" style="background-color: white;">
+															<h4 class="modal-title">Studio Shoots</h4>
+															<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+															<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body"  style="background-color: white;" >
+															<div class="input-effect form-group md-form mt-3">
+																<form>  
+																		
+																	<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+																</form>  
+																
+																<label>Add here </label>
+																
+																<span class="focus-border"> </span>
+															</div>   
+														</div>
+														<div class="modal-footer"  style="background-color: white;">
+															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+														</div>
+													</ng-template>
+						
+												</div>
+											
+										</div>
+										</div>
+								</div>
 								</div>
 								</div>
 								<div class="clearfix"></div>
@@ -97,12 +200,46 @@
 								</div>
 								<div class="editer">
 									<label>Price:</label>&nbsp;
-									<input type="text" name="service1" disabled placeholder="On Request" id="service1">
-									
-									<div class="editbtn">
-										<i class="material-icons">edit</i>
-										<input type="checkbox" class="form-control" id="">
+									<div class="editer">
+										
+										<div class="editbtn">
+											<i class="material-icons" (click)="open(Shoots)">edit</i>
+										</div>
 									</div>
+									<div _ngcontent-c4="" class="card-body">   
+										<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
+										<div class="social" data-reactid="332">
+												{{jkl}}
+												<div class="card-block">
+													<ng-template #Shoots let-c="close" let-d="dismiss">
+														<div class="modal-header" style="background-color: white;">
+															<h4 class="modal-title">Pre-Wedding Shoots</h4>
+															<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+															<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body"  style="background-color: white;" >
+															<div class="input-effect form-group md-form mt-3">
+																<form>  
+																		
+																	<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+																</form>  
+																
+																<label>Add here </label>
+																
+																<span class="focus-border"> </span>
+															</div>   
+														</div>
+														<div class="modal-footer"  style="background-color: white;">
+															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+														</div>
+													</ng-template>
+						
+												</div>
+											
+										</div>
+										</div>
+								</div>
 								</div>
 								</div>
 								<div class="col-sm-3">
@@ -111,12 +248,46 @@
 									<label for="checkbox6">Photos Delivered</label>
 								</div>
 								<div class="editer">
-									<input type="text" name="service1" disabled placeholder="500 Photos & 2 Photos Albums" id="service1">
-									
-									<div class="editbtn">
-										<i class="material-icons">edit</i>
-										<input type="checkbox" class="form-control" id="">
+									<div class="editer">
+										<label>Price:</label>&nbsp;
+										<div class="editbtn">
+											<i class="material-icons" (click)="open(Delivered)">edit</i>
+										</div>
 									</div>
+									<div _ngcontent-c4="" class="card-body">   
+										<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
+										<div class="social" data-reactid="332">
+												{{jkl}}
+												<div class="card-block">
+													<ng-template #Delivered let-c="close" let-d="dismiss">
+														<div class="modal-header" style="background-color: white;">
+															<h4 class="modal-title">Photos Delivered </h4>
+															<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+															<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body"  style="background-color: white;" >
+															<div class="input-effect form-group md-form mt-3">
+																<form>  
+																		
+																	<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+																</form>  
+																
+																<label>Add here </label>
+																
+																<span class="focus-border"> </span>
+															</div>   
+														</div>
+														<div class="modal-footer"  style="background-color: white;">
+															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+														</div>
+													</ng-template>
+						
+												</div>
+											
+										</div>
+										</div>
+								</div>
 								</div>
 								</div>
 								<div class="col-sm-3">
@@ -125,13 +296,46 @@
 									<label for="checkbox7">Experience</label>
 								</div>
 								<div class="editer">
-									
-									<input type="text" name="service1" disabled placeholder="4 Years" id="service1">
-									
-									<div class="editbtn">
-										<i class="material-icons">edit</i>
-										<input type="checkbox" class="form-control" id="">
+									<div class="editer">
+										<label>Price:</label>&nbsp;
+										<div class="editbtn">
+											<i class="material-icons" (click)="open(Experience)">edit</i>
+										</div>
 									</div>
+									<div _ngcontent-c4="" class="card-body">   
+										<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
+										<div class="social" data-reactid="332">
+												{{jkl}}
+												<div class="card-block">
+													<ng-template #Experience let-c="close" let-d="dismiss">
+														<div class="modal-header" style="background-color: white;">
+															<h4 class="modal-title">Experience </h4>
+															<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+															<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body"  style="background-color: white;" >
+															<div class="input-effect form-group md-form mt-3">
+																<form>  
+																		
+																	<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+																</form>  
+																
+																<label>Add here </label>
+																
+																<span class="focus-border"> </span>
+															</div>   
+														</div>
+														<div class="modal-footer"  style="background-color: white;">
+															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+														</div>
+													</ng-template>
+						
+												</div>
+											
+										</div>
+										</div>
+								</div>
 								</div>
 								</div>
 								<div class="col-sm-3">
@@ -140,12 +344,49 @@
 									<label for="checkbox8">Payments Terms</label>
 								</div>
 								<div class="editer">
-									<input type="text" name="service1" disabled placeholder="50% upfront" id="service1">
-									
-									<div class="editbtn">
-										<i class="material-icons">edit</i>
-										<input type="checkbox" class="form-control" id="">
+
+									<div class="editer">
+										<label>Price:</label>&nbsp;
+										<input type="text" name="service1" disabled placeholder="Select" id="service1">
+										
+										<div class="editbtn">
+											<i class="material-icons" (click)="open(Payments)">edit</i>
+										</div>
 									</div>
+									<div _ngcontent-c4="" class="card-body">   
+										<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
+										<div class="social" data-reactid="332">
+												{{jkl}}
+												<div class="card-block">
+													<ng-template #Payments let-c="close" let-d="dismiss">
+														<div class="modal-header" style="background-color: white;">
+															<h4 class="modal-title">Payments Terms</h4>
+															<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+															<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body"  style="background-color: white;" >
+															<div class="input-effect form-group md-form mt-3">
+																<form>  
+																		
+																	<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+																</form>  
+																
+																<label>Add here </label>
+																
+																<span class="focus-border"> </span>
+															</div>   
+														</div>
+														<div class="modal-footer"  style="background-color: white;">
+															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+														</div>
+													</ng-template>
+						
+												</div>
+											
+										</div>
+										</div>
+								</div>
 								</div>
 								</div>
 								<div class="clearfix"></div>
@@ -156,12 +397,48 @@
 								</div>
 								<div class="editer">
 									<label>Price</label>&nbsp;
-									<input type="text" name="service1" disabled placeholder="No travel costs" id="service1">
-									
-									<div class="editbtn">
-										<i class="material-icons">edit</i>
-										<input type="checkbox" class="form-control" id="">
+									<div class="editer">
+										<label>Price:</label>&nbsp;
+										<input type="text" name="service1" disabled placeholder="Select" id="service1">
+										
+										<div class="editbtn">
+											<i class="material-icons" (click)="open(Travel)">edit</i>
+										</div>
 									</div>
+									<div _ngcontent-c4="" class="card-body">   
+										<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
+										<div class="social" data-reactid="332">
+												{{jkl}}
+												<div class="card-block">
+													<ng-template #Travel let-c="close" let-d="dismiss">
+														<div class="modal-header" style="background-color: white;">
+															<h4 class="modal-title">Travel Costs </h4>
+															<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+															<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body"  style="background-color: white;" >
+															<div class="input-effect form-group md-form mt-3">
+																<form>  
+																		
+																	<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+																</form>  
+																
+																<label>Add here </label>
+																
+																<span class="focus-border"> </span>
+															</div>   
+														</div>
+														<div class="modal-footer"  style="background-color: white;">
+															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+														</div>
+													</ng-template>
+						
+												</div>
+											
+										</div>
+										</div>
+								</div>
 								</div>
 								</div>
 							</div>
@@ -172,37 +449,111 @@
 							<h5>Do you offer packages</h5>
 							<div>
 								<div class="funkyradio">
-								<div class="col-sm-3">
-									<div class="funkyradio-info">
-										<input type="checkbox" name="checkbox" id="checkbox11" checked/>
-										<label for="checkbox11">Photos</label>
+									<div class="col-sm-3">
+										<div class="funkyradio-info">
+											<input type="checkbox" name="checkbox" id="checkbox11" checked/>
+											<label for="checkbox11">Photos</label>
+										</div>
+										<div class="editer">
+										<label>Price</label>&nbsp;
+										<div class="editer">
+											<label>Price:</label>&nbsp;
+											<input type="text" name="service1" disabled placeholder="Select" id="service1">
+											
+											<div class="editbtn">
+												<i class="material-icons" (click)="open(packages)">edit</i>
+											</div>
+										</div>
+										<div _ngcontent-c4="" class="card-body">   
+											<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
+											<div class="social" data-reactid="332">
+													{{jkl}}
+													<div class="card-block">
+														<ng-template #packages let-c="close" let-d="dismiss">
+															<div class="modal-header" style="background-color: white;">
+																<h4 class="modal-title">Do you offer packages </h4>
+																<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+																<span aria-hidden="true">&times;</span>
+																</button>
+															</div>
+															<div class="modal-body"  style="background-color: white;" >
+																<div class="input-effect form-group md-form mt-3">
+																	<form>  
+																			
+																		<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+																	</form>  
+																	
+																	<label>Add here </label>
+																	
+																	<span class="focus-border"> </span>
+																</div>   
+															</div>
+															<div class="modal-footer"  style="background-color: white;">
+																<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+															</div>
+														</ng-template>
+							
+													</div>
+												
+											</div>
+											</div>
 									</div>
-									<div class="editer">
-									<label>Price</label>&nbsp;
-									<input type="text" name="service1" disabled placeholder="Select" id="service1">
-									
-									<div class="editbtn">
-										<i class="material-icons">edit</i>
-										<input type="checkbox" class="form-control" id="">
 									</div>
-								</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="funkyradio-info">
-										<input type="checkbox" name="checkbox" id="checkbox12" checked/>
-										<label for="checkbox12">Photos + Vedios</label>
 									</div>
-									<div class="editer">
-									<label>Price</label>&nbsp;
-									<input type="text" name="service1" disabled placeholder="Select" id="service1">
-									
-									<div class="editbtn">
-										<i class="material-icons">edit</i>
-										<input type="checkbox" class="form-control" id="">
+									<div class="col-sm-3">
+										<div class="funkyradio-info">
+											<input type="checkbox" name="checkbox" id="checkbox12" checked/>
+											<label for="checkbox12">Photos + Vedios</label>
+										</div>
+										<div class="editer">
+										<label>Price</label>&nbsp;
+										<input type="text" name="service1" disabled placeholder="Select" id="service1">
+										<div class="editer">
+											<label>Price:</label>&nbsp;
+											<input type="text" name="service1" disabled placeholder="Select" id="service1">
+											
+											<div class="editbtn">
+												<i class="material-icons" (click)="open(Photos)">edit</i>
+											</div>
+											<div _ngcontent-c4="" class="card-body">   
+												<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
+												<div class="social" data-reactid="332">
+														{{jkl}}
+														<div class="card-block">
+															<ng-template #Photos let-c="close" let-d="dismiss">
+																<div class="modal-header" style="background-color: white;">
+																	<h4 class="modal-title">Photos + Vedios</h4>
+																	<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+																	<span aria-hidden="true">&times;</span>
+																	</button>
+																</div>
+																<div class="modal-body"  style="background-color: white;" >
+																	<div class="input-effect form-group md-form mt-3">
+																		<form>  
+																				
+																			<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+																		</form>  
+																		
+																		<label>Add here </label>
+																		
+																		<span class="focus-border"> </span>
+																	</div>   
+																</div>
+																<div class="modal-footer"  style="background-color: white;">
+																	<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+																</div>
+															</ng-template>
+								
+														</div>
+													
+												</div>
+												</div>
+											</div>
+										</div>
+										
 									</div>
-								</div>
-								</div>
-							</div>
+									</div>
+							    </div>
 							</div>
 						</div>
 					</div>

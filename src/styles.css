@@ -115,22 +115,207 @@ border:0px solid #fff!important;
 
 #mainNav{top: 0px !important; background:rgba(0, 46, 119, 0.99) !important; }
 
-
- @media (max-width:767px){
-.slidemenu{
-    left: 0px;
-    transition: 1s;
+//======================sidebar
+.togglebtnmenu{
+    float: left;
+    background: transparent;
+    border: 0px solid #e5e5e5;
+    box-shadow: none;
+    width: 30px;
+    height: 30PX;
+    overflow: hidden;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right:20px;
+    margin-top: 15px;
+    outline: none!important;
+    z-index: 9999!important;
+    position: relative!important;
 }
-.inslide{
-    left:280px;
+
+.togglebtnmenu span{
+    background: #ffffff;
+    display: block;
+    width: 100%;
+    height: 2px;
+    margin: 8PX 0PX;
+}
+
+
+#sidebar-wrapper {
+    z-index: 1000;
     position: fixed;
-}
-.outslide{
-    left:0px!important;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    -webkit-transition: all 0.5s ease;
+  background:rgba(0, 46, 119, 0.7) !important;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+  
+  #wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+  }
+  #page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 0px;
+  }
+  
+  #wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+  }
+  /* Sidebar Styles */
+  
+  
+  #page-content-wrapper {
+    padding: 20px;
+    position: relative;
+  }
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+  }
+  #wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+  
+  #wrapper.toggled {
+    padding-left: 250px;
+  }
+
+  
+.blackoverlaymobile{
+    display: none;
+  }
+
+@media(min-width:768px) {
+    #wrapper {
+      padding-left: 0;
+    }
+    #wrapper.toggled {
+      padding-left: 250px;
+    }
+    #sidebar-wrapper {
+      width: 0;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+      width: 250px;
+    }
+    #page-content-wrapper {
+      padding:0px;
+      position: relative;
+    }
+    #wrapper.toggled #page-content-wrapper {
+      position: relative;
+      margin-right: 0;
+    }
+  }
+@media(max-width:768px) {
+    #wrapper {
+      padding-left: 250;
+    }
+    #wrapper.toggled {
+      padding-left: 0px;
+    }
+    #sidebar-wrapper {
+      width: 250px;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+      width: 0px;
+    }
+    #page-content-wrapper {
+      padding:inherit;
+      position: relative;
+      margin-right:0;
+    }
+    #wrapper.toggled #page-content-wrapper {
+      position: relative;
+      margin-right: inherit;
+      padding:0;
+      margin-left:0px;
+    }
+    #wrapper #page-content-wrapper {
+    position: absolute;
+    margin-right: 0px;
+    margin-left:250px
+  }
+  .blackoverlaymobile{
+    background: rgb(0,0,0, 0.5);
     position: fixed;
-}
-
-}
-
-
+    width: 100%;
+    height:100vh;
+    top:0px;
+    z-index: 999;
+  }
+  .blockmobile{
+    display: block!important;
+  }
+  .Analytics,.Profile_com{
+    position: relative;
+    z-index: 0;
+  }
+  .overhidden{
+    overflow: hidden;
+    position: fixed!important;
+  }
+  .cross .line1 {
+width: 30px;
+    height: 30px;
+    border-bottom: 2px solid #000;
+    -webkit-transform: translateY(-20px)
+ translateX(5px)
+ rotate(40deg);
+    position: absolute;
+    top: 16px;
+    right: 4px;
+    }
+    .cross  .line2 {
+        display: none;
+    }
+    .cross .line3 {
+      width: 30px;
+    height: 30px;
+    border-bottom: 2px solid #000;
+    -webkit-transform: translateY(20px)
+ translateX(5px)
+ rotate(-40deg);
+    position: absolute;
+      top: -25px;
+    left: -7px;
+    }
+  }
+ .line1 {
+    width: 30px;
+    height: 30px;
+    border-bottom: 2px solid #000;
+    position: absolute;
+    top: -14px;
+    right: 8px;
+    }
+  .line2 {
+   width: 30px;
+    height: 30px;
+    border-bottom: 2px solid #000;
+    position: absolute;
+    top: -6px;
+    right: 8px;
+    }
+    .line3 {
+    width: 30px;
+    height: 30px;
+    border-bottom: 2px solid #000;
+    position: absolute;
+    top: 2px;
+    left: 7px;;
+    }
 

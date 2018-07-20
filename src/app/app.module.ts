@@ -82,6 +82,8 @@ import { BusinessServicesComponent } from './vendor/business-services/business-s
 import { CalendertableComponent } from './vendor/calendertable/calendertable.component';
 import { CreateEventComponent } from './vendor/create-event/create-event.component';
 
+import { AlbumviewComponent } from './vendor/albumview/albumview.component';
+
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
   }
@@ -154,8 +156,7 @@ export function getAuthServiceConfigs() {
         BudgetComponent,
         CalendertableComponent,
         CreateEventComponent
-
-
+        AlbumviewComponent
 
   ],
     imports: [

@@ -41,9 +41,11 @@ import { TimelineComponent } from './userpannel/userboard/timeline/timeline.comp
 import { BookmarkComponent } from './userpannel/userboard/bookmark/bookmark.component';
 import { GuestComponent } from './userpannel/userboard/guest/guest.component';
 import { BudgetComponent } from './userpannel/userboard/budget/budget.component';
+
 import { CalendertableComponent } from './vendor/calendertable/calendertable.component';
 import { CreateEventComponent } from './vendor/create-event/create-event.component';
 
+import { AlbumviewComponent } from './vendor/albumview/albumview.component';
 
 
 const appRoutes: Routes = [
@@ -74,6 +76,7 @@ const appRoutes: Routes = [
   { path: 'home/Advertise', component:  AdvertiseComponent },
 
    { path: 'vendor/dashboard', component:  DashboardComponent  },
+     { path: 'vendor/albumview', component:  AlbumviewComponent  },
    { path: 'vendor/business', component:  BusinessInfoComponent  },
    { path: 'vendor/location', component:  LocationComponent  },
   { path: 'vendor/profile', component:  VendorprofileComponent  },

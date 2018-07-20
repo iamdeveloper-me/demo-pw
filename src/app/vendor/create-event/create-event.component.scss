@@ -43,7 +43,28 @@
     width: 250px;
   }
   
- 
+  @media(min-width:768px) {
+    #wrapper {
+      padding-left: 0;
+    }
+    #wrapper.toggled {
+      padding-left: 250px;
+    }
+    #sidebar-wrapper {
+      width: 0;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+      width: 250px;
+    }
+    #page-content-wrapper {
+      padding: 20px;
+      position: relative;
+    }
+    #wrapper.toggled #page-content-wrapper {
+      position: relative;
+      margin-right: 0;
+    }
+  }
 
 
 
@@ -63,7 +84,7 @@
   
   
   #page-content-wrapper {
-    padding: 0px !important;
+    padding: 20px;
     position: relative;
   }
   #wrapper.toggled #page-content-wrapper {
@@ -99,7 +120,28 @@
   .nopadd{
     padding:0px!important;
   }
- 
+  @media(min-width:768px) {
+    #wrapper {
+      padding-left: 0;
+    }
+    #wrapper.toggled {
+      padding-left: 250px;
+    }
+    #sidebar-wrapper {
+      width: 0;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+      width: 250px;
+    }
+    #page-content-wrapper {
+      padding:0px;
+      position: relative;
+    }
+    #wrapper.toggled #page-content-wrapper {
+      position: relative;
+      margin-right: 0;
+    }
+  }
 .navbar{
     width: 100%;
     background: rgba(0, 46, 119, 0.99) !important;
@@ -205,115 +247,82 @@ margin-top: 10px!important;
         color: #ffffff!important;
         background:#e72e77!important;
     }
-
-
-    .photo_gallery{
-      background-color: #fff;
-      margin-top: -22px;
-      padding-top: 16px;
-      padding-bottom: 50px;
-    }
-
-.photo_gallery h2{
-
-     border-bottom: 1px solid #ccc;
-     padding-bottom: 10px;
-  }
-  .cam_left{
-    float: right;
-  }
-  .cam_left a{
-    color: #000 !important;
-  }
-  .photos_gallery{
-    margin-top: 20px;
-  }
-.second_row{
-  margin-top: 30px;
-}
-.third_row{
-   margin-top: 30px;
-}
-.zoom_effect{
-  position: relative;
-    transition: all .25s;
-}
-.zoom_effect:hover {
-    -ms-transform: scale(1.5); /* IE 9 */
-    -webkit-transform: scale(1.5); /* Safari 3-8 */
-    transform: scale(1.5); 
-}
-
-
-
-
-
-     @media(min-width:768px) {
-    #wrapper {
-      padding-left: 0;
-    }
-    #wrapper.toggled {
-      padding-left: 250px;
-    }
-    #sidebar-wrapper {
-      width: 0;
-    }
-    #wrapper.toggled #sidebar-wrapper {
-      width: 250px;
-    }
-    #page-content-wrapper {
-      padding:0px;
-      position: relative;
-    }
-    #wrapper.toggled #page-content-wrapper {
-      position: relative;
-      margin-right: 0;
-    }
-  }
-   @media(min-width:768px) {
-    #wrapper {
-      padding-left: 0;
-    }
-    #wrapper.toggled {
-      padding-left: 250px;
-    }
-    #sidebar-wrapper {
-      width: 0;
-    }
-    #wrapper.toggled #sidebar-wrapper {
-      width: 250px;
-    }
-    #page-content-wrapper {
-      padding: 20px;
-      position: relative;
-    }
-    #wrapper.toggled #page-content-wrapper {
-      position: relative;
-      margin-right: 0;
-    }
-  }
-
-  @media(max-width: 767px){
-
-    .photo_gallery{
+    
+    .Reviews_page{
+     
       margin-top: -20px;
+      padding-top: 20px;
     }
-    .firt_row .col-md-3{
-      margin-bottom: 20px;
+    .man_info h2{
+      
+      padding-bottom: 10px;
     }
-    .second_row .col-md-3{
-      margin-bottom: 20px;
+    
+    .man_img{
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
     }
-    .third_row .col-md-3{
-      margin-bottom: 20px;
+   
+  .btn-success , .btn-danger{
+    color: #fff !important;
+  }
+  .btn-success{
+    margin-right: 40px !important;
+    padding: 10px 30px !important;
+  }
+  .btn_button{
+    margin-top: 40px;
+  }
+  .man_info{
+    margin-bottom: 50px;
+  }
+.create_field ul{
+    margin: 0;
+    padding: 0%;
+}
+.create_field ul li{
+    list-style-type: none;
+}
+.man_img:hover {
+    box-shadow: 0 0 6px rgb(27, 27, 27);
+}
+.create_field ul li input{
+    border: none;
+}
+.create_field ul li select{
+    border: none;
+}
+
+.tittle_input{
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 13px;
+    
+    padding-bottom: 10px;
+}
+.man_img ul li{
+    font-weight: 700;
+}
+
+  @media(max-width:767px){
+   
+    .btn-success{
+      margin-right: 30px !important;
     }
-    .second_row{
-      margin-top: 0px
+    .content{
+      padding-left: 0;
+      padding-right: 0px;
     }
-    .third_row{
-      margin-top: 0px
+    .create_field{
+        padding: 0%;
     }
-    .photos_gallery iframe{
-      width: 100%;
+    .create_field .col-md-6{
+        padding: 0%;
+    }
+    .mob_width{
+        width: 50%;
     }
   }

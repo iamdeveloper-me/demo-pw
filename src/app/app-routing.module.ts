@@ -16,6 +16,7 @@ import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
 import { BusinessInfoComponent } from "./vendor/business-info/business-info.component";
 import { LocationComponent } from "./vendor/location/location.component";
 import { BusinessServicesComponent } from "./vendor/business-services/business-services.component";
+import { MembershipComponent } from "./vendor/membership/membership.component";
 
 import { DetailpageComponent } from './detailpage/detailpage.component';
 import { ChatComponent } from "./vendor/chat/chat.component";
@@ -40,10 +41,14 @@ import { TimelineComponent } from './userpannel/userboard/timeline/timeline.comp
 import { BookmarkComponent } from './userpannel/userboard/bookmark/bookmark.component';
 import { GuestComponent } from './userpannel/userboard/guest/guest.component';
 import { BudgetComponent } from './userpannel/userboard/budget/budget.component';
+import { CalendertableComponent } from './vendor/calendertable/calendertable.component';
+import { CreateEventComponent } from './vendor/create-event/create-event.component';
+
 
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
+  
   { path: 'register', component: RegisterComponent },
   { path: 'home/searchresult', component: SearchresultComponent },
   { path: 'home/detailprofile', component:  DetailpageComponent  },
@@ -73,13 +78,15 @@ const appRoutes: Routes = [
    { path: 'vendor/location', component:  LocationComponent  },
   { path: 'vendor/profile', component:  VendorprofileComponent  },
   { path: 'vendor/chat', component:  ChatComponent },
+  { path: 'vendor/event', component:  CreateEventComponent },
 
    { path: 'vendor/Videos', component:    VideosComponent},
 
   { path: 'vendor/editprofile', component:   EditprofileComponent },
   { path: 'vendor/mylisting', component:   MylistingComponent },
   { path: 'vendor/business-services', component:  BusinessServicesComponent  },
-
+  { path: 'vendor/membership', component:  MembershipComponent  },
+  { path: 'vendor/calender', component:  CalendertableComponent},
   
    { path: 'User/vendor', component: VendorlistComponent },  
   { path: 'User/Timeline', component: TimelineComponent },

@@ -14,7 +14,7 @@
                     
             <div class="photo_heading">
               <div class="note">
-                  <span>Note: Upload picture that will best represent your business. </span>
+                  <span>Note: You can upload only 15 of their best images (Free Account only) </span>
                   <!-- <span class="cam_left">  <a href="#"> <i class="material-icons">camera_enhance</i></a></span>--> 
               </div>
             </div>
@@ -25,7 +25,7 @@
 
               <div class="col-md-3 defaultalbumbtn"  (click)="open(content)">
 
-                    <img src="../assets/img/hotel.jpg" class="img-responsive">
+                    <img src="../../assets/img/category/celebrat.jpg" class="img-responsive">
                    <div class="albumbox">
                     <p>
                       Portfolio<br/>
@@ -36,7 +36,7 @@
 </div>
                   <div class="col-md-3">
                     <a  routerLink="../albumview" >
-                    <img src="../assets/img/detail_slide5.jpg" class="img-responsive">
+                    <img src="../../assets/img/category/dj.jpg" class="img-responsive">
                    <div class="albumbox">
                     <p>
                       Album Name<br/>
@@ -64,50 +64,28 @@
                             </div>
                             <div class="modal-body" style="background-color: white">
                                <form>
-                <!-- <div class="row">
-                  <div class="col-md-5">
-                    <div class="form-group">
-                      <label class="bmd-label-floating">Company (disabled)</label>
-                      <input type="text" class="form-control" disabled>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label class="bmd-label-floating">Username</label>
-                      <input type="text" class="form-control">
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label class="bmd-label-floating">Email address</label>
-                      <input type="email" class="form-control">
-                    </div>
-                  </div>
-                </div> -->
+                
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
                         <div class="input-effect form-group md-form ">
                             <input class="effect-16 validate" type="text" placeholder="" required="required">
-                            <label>Full Name</label>
+                            <label>Gallery Name</label>
                             <span class="focus-border"></span>
                         </div>
                     </div>
                   </div>
-                  <!-- <div class="col-md-12">
-                    <div class="form-group">
-                      <label class="bmd-label-floating">Last Name</label>
-                      <input type="text" class="form-control">
-                    </div>
-                  </div> -->
                 </div>
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
                         <div class="input-effect form-group md-form ">
-                            <input class="effect-16 validate" type="text" placeholder="" required="required">
-                            <label>Phone Number</label>
-                            <span class="focus-border"></span>
+                          <select class="effect-16 validate">
+                             <option>Select Photo Type</option>
+                            <option>Pre-Wedding Shoot</option>
+                             <option>Real Wedding Shoot</option>
+                          </select>
+                            
                         </div>
                     </div>
                   </div>
@@ -117,7 +95,7 @@
                       <div class="form-group">
                           <div class="input-effect form-group md-form ">
                               <input class="effect-16 validate" type="email" placeholder="" required="required">
-                              <label>Email</label>
+                              <label>Tags</label>
                               <span class="focus-border"></span>
                           </div>
                       </div>
@@ -129,8 +107,19 @@
                       <div class="form-group">
                         <div class="input-effect form-group md-form ">  
                             <input class="effect-16 validate"  required="required">
-                            <label>About Me</label>
+                            <label>Color Tags</label>
                             <span class="focus-border"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="form-group">
+                        <div class="input-effect form-group md-form ">  
+                           <input type="file" class="effect-16 validate" required="required" name="img" multiple>
                         </div>
                       </div>
                     </div>
@@ -140,9 +129,7 @@
                 <div class="clearfix"></div>
               </form>
                             </div>
-                            <div class="modal-footer" style="background-color: white">
-                                <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
-                            </div>
+                          
                             </div>
                         </ng-template>
 <router-outlet></router-outlet> 

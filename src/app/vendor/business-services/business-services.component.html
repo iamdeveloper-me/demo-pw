@@ -3,9 +3,7 @@
       <app-vendorsidebar></app-vendorsidebar>
   </div>
   <div id="page-content-wrapper">    
-	<div class="container-fluid nopadd">                   
-	 
-
+	<div class="container-fluid nopadd"> 
 		<app-navemenu></app-navemenu>
 		<router-outlet></router-outlet> 
 		<div class="content">
@@ -44,23 +42,23 @@
 									</div>
 								</div>
 								<div class="col-sm-3">
-								<div class="funkyradio-info">
-								<input type="checkbox" name="checkbox" id="checkbox2" checked/>
-								<label for="checkbox2">Candid Photography</label>
-								</div>
-								<div class="clearfix"></div>
-								<div class="editer">
-									<label>Price:</label>&nbsp;
-									<input type="text" name="service1" disabled placeholder="Select" id="service1">
-									
-									<div class="editbtn">
-										<i class="material-icons" (click)="open(Candid)">edit</i>
+									<div class="funkyradio-info">
+										<input type="checkbox" name="checkbox" id="checkbox2" checked/>
+										<label for="checkbox2">Candid Photography</label>
 									</div>
-								</div>
-								<div _ngcontent-c4="" class="card-body">   
-									<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
-									<div class="social" data-reactid="332">
-											{{jkl}}
+									<div class="clearfix"></div>
+									<div class="editer">
+										<label>Price:</label>&nbsp;
+										<input type="text" value="{{candid}}" name="service1" disabled placeholder="Select" id="service1">	
+										<div class="editbtn">
+										<i class="material-icons" (click)="open(Candid)">edit</i>
+										</div>
+									</div>
+									<div _ngcontent-c4="" class="card-body">   
+										<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
+										<div class="social" data-reactid="332">
+
+										
 											<div class="card-block">
 												<ng-template #Candid let-c="close" let-d="dismiss">
 													<div class="modal-header" style="background-color: white;">
@@ -72,45 +70,42 @@
 													<div class="modal-body"  style="background-color: white;" >
 														<div class="input-effect form-group md-form mt-3">
 															<form>  
-																	
-																<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+																<input type="text" name="pqr" class="form-control" [(ngModel)]="candid" >
 															</form>  
 															
-															<label>Add here </label>
+															
 															
 															<span class="focus-border"> </span>
 														</div>   
 													</div>
 													<div class="modal-footer"  style="background-color: white;">
-														<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+														<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
 													</div>
 												</ng-template>
 					
 											</div>
-										
 									</div>
 									</div>
-							</div>
+								</div>
 								</div>
 								<div class="col-sm-3">
-								<div class="funkyradio-info">
+									<div class="funkyradio-info">
 									<input type="checkbox" name="checkbox" id="checkbox3" checked/>
 									<label for="checkbox3">Cinematography</label>
-								</div>
-								<div class="clearfix"></div>
-								<div class="editer">
+									</div>
+									<div class="clearfix"></div>
 									<div class="editer">
 										<label>Price:</label>&nbsp;
-										<input type="text" name="service1" disabled placeholder="Select" id="service1">
-										
+										<input type="text" value="{{cinematography}}" name="service1" disabled placeholder="Select" id="service1">
 										<div class="editbtn">
 											<i class="material-icons" (click)="open(Cinematography)">edit</i>
 										</div>
 									</div>
-									<div _ngcontent-c4="" class="card-body">   
+									<div _ngcontent-c4="" class="card-body">
+
 										<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
 										<div class="social" data-reactid="332">
-												{{jkl}}
+												
 												<div class="card-block">
 													<ng-template #Cinematography let-c="close" let-d="dismiss">
 														<div class="modal-header" style="background-color: white;">
@@ -123,16 +118,15 @@
 															<div class="input-effect form-group md-form mt-3">
 																<form>  
 																		
-																	<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+																	<input type="text" name="pqr" class="form-control" [(ngModel)]="cinematography" >
 																</form>  
 																
-																<label>Add here </label>
 																
 																<span class="focus-border"> </span>
 															</div>   
 														</div>
 														<div class="modal-footer"  style="background-color: white;">
-															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
 														</div>
 													</ng-template>
 						
@@ -140,28 +134,25 @@
 											
 										</div>
 										</div>
-								</div>
-								</div>
+									</div>
 								</div>
 								<div class="col-sm-3">
-								<div class="funkyradio-info">
+									<div class="funkyradio-info">
 									<input type="checkbox" name="checkbox" id="checkbox4" checked/>
 									<label for="checkbox4">Studio Shoots</label>
-								</div>
-								<div class="editer">
-
+									</div>
 									<div class="editer">
 										<label>Price:</label>&nbsp;
-										<input type="text" name="service1" disabled placeholder="Select" id="service1">
-										
+										<input type="text" value="{{studio}}" name="service1" disabled placeholder="Select" id="service1">
 										<div class="editbtn">
 											<i class="material-icons" (click)="open(Studio)">edit</i>
 										</div>
 									</div>
-									<div _ngcontent-c4="" class="card-body">   
+									<div _ngcontent-c4="" class="card-body">
+
 										<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
 										<div class="social" data-reactid="332">
-												{{jkl}}
+												
 												<div class="card-block">
 													<ng-template #Studio let-c="close" let-d="dismiss">
 														<div class="modal-header" style="background-color: white;">
@@ -174,16 +165,16 @@
 															<div class="input-effect form-group md-form mt-3">
 																<form>  
 																		
-																	<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+																	<input type="text" name="pqr" class="form-control" [(ngModel)]="studio" >
 																</form>  
 																
-																<label>Add here </label>
+															
 																
 																<span class="focus-border"> </span>
 															</div>   
 														</div>
 														<div class="modal-footer"  style="background-color: white;">
-															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
 														</div>
 													</ng-template>
 						
@@ -191,8 +182,7 @@
 											
 										</div>
 										</div>
-								</div>
-								</div>
+									</div>
 								</div>
 								<div class="clearfix"></div>
 								<div class="col-sm-3">
@@ -202,8 +192,7 @@
 								</div>
 								<div class="editer">
 									<label>Price:</label>&nbsp;
-									<div class="editer">
-										
+									<input type="text" value="{{shoots}}" name="service1" disabled placeholder="Select" id="service1">
 										<div class="editbtn">
 											<i class="material-icons" (click)="open(Shoots)">edit</i>
 										</div>
@@ -211,7 +200,6 @@
 									<div _ngcontent-c4="" class="card-body">   
 										<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
 										<div class="social" data-reactid="332">
-												{{jkl}}
 												<div class="card-block">
 													<ng-template #Shoots let-c="close" let-d="dismiss">
 														<div class="modal-header" style="background-color: white;">
@@ -224,16 +212,15 @@
 															<div class="input-effect form-group md-form mt-3">
 																<form>  
 																		
-																	<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+																	<input type="text" name="pqr" class="form-control" [(ngModel)]="shoots" >
 																</form>  
 																
-																<label>Add here </label>
 																
 																<span class="focus-border"> </span>
 															</div>   
 														</div>
 														<div class="modal-footer"  style="background-color: white;">
-															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
 														</div>
 													</ng-template>
 						
@@ -243,15 +230,14 @@
 										</div>
 								</div>
 								</div>
-								</div>
 								<div class="col-sm-3">
 								<div class="funkyradio-info">
 									<input type="checkbox" name="checkbox" id="checkbox6"/>
 									<label for="checkbox6">Photos Delivered</label>
 								</div>
-								<div class="editer">
 									<div class="editer">
 										<label>Price:</label>&nbsp;
+										<input type="text" value="{{delivered}}" name="service1" disabled placeholder="Select" id="service1">
 										<div class="editbtn">
 											<i class="material-icons" (click)="open(Delivered)">edit</i>
 										</div>
@@ -259,7 +245,6 @@
 									<div _ngcontent-c4="" class="card-body">   
 										<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
 										<div class="social" data-reactid="332">
-												{{jkl}}
 												<div class="card-block">
 													<ng-template #Delivered let-c="close" let-d="dismiss">
 														<div class="modal-header" style="background-color: white;">
@@ -272,16 +257,15 @@
 															<div class="input-effect form-group md-form mt-3">
 																<form>  
 																		
-																	<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+																	<input type="text" name="pqr" class="form-control" [(ngModel)]="delivered" >
 																</form>  
 																
-																<label>Add here </label>
 																
 																<span class="focus-border"> </span>
 															</div>   
 														</div>
 														<div class="modal-footer"  style="background-color: white;">
-															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
 														</div>
 													</ng-template>
 						
@@ -291,15 +275,13 @@
 										</div>
 								</div>
 								</div>
-								</div>
 								<div class="col-sm-3">
 								<div class="funkyradio-info">
 									<input type="checkbox" name="checkbox" id="checkbox7"/>
 									<label for="checkbox7">Experience</label>
 								</div>
 								<div class="editer">
-									<div class="editer">
-										<label>Price:</label>&nbsp;
+										<input type="text" value="{{experience}}" name="service1" disabled placeholder="4 Years" id="service1">
 										<div class="editbtn">
 											<i class="material-icons" (click)="open(Experience)">edit</i>
 										</div>
@@ -307,7 +289,6 @@
 									<div _ngcontent-c4="" class="card-body">   
 										<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
 										<div class="social" data-reactid="332">
-												{{jkl}}
 												<div class="card-block">
 													<ng-template #Experience let-c="close" let-d="dismiss">
 														<div class="modal-header" style="background-color: white;">
@@ -320,16 +301,15 @@
 															<div class="input-effect form-group md-form mt-3">
 																<form>  
 																		
-																	<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+																	<input type="text" name="pqr" class="form-control" [(ngModel)]="experience" >
 																</form>  
 																
-																<label>Add here </label>
 																
 																<span class="focus-border"> </span>
 															</div>   
 														</div>
 														<div class="modal-footer"  style="background-color: white;">
-															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
 														</div>
 													</ng-template>
 						
@@ -339,17 +319,14 @@
 										</div>
 								</div>
 								</div>
-								</div>
 								<div class="col-sm-3">
 								<div class="funkyradio-info">
 									<input type="checkbox" name="checkbox" id="checkbox8"/>
 									<label for="checkbox8">Payments Terms</label>
 								</div>
 								<div class="editer">
-
-									<div class="editer">
 										<label>Price:</label>&nbsp;
-										<input type="text" name="service1" disabled placeholder="Select" id="service1">
+										<input type="text" value="{{payments}}" name="service1" disabled placeholder="Select" id="service1">
 										
 										<div class="editbtn">
 											<i class="material-icons" (click)="open(Payments)">edit</i>
@@ -358,7 +335,7 @@
 									<div _ngcontent-c4="" class="card-body">   
 										<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
 										<div class="social" data-reactid="332">
-												{{jkl}}
+												
 												<div class="card-block">
 													<ng-template #Payments let-c="close" let-d="dismiss">
 														<div class="modal-header" style="background-color: white;">
@@ -371,16 +348,15 @@
 															<div class="input-effect form-group md-form mt-3">
 																<form>  
 																		
-																	<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+																	<input type="text" name="pqr" class="form-control" [(ngModel)]="payments" >
 																</form>  
 																
-																<label>Add here </label>
 																
 																<span class="focus-border"> </span>
 															</div>   
 														</div>
 														<div class="modal-footer"  style="background-color: white;">
-															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
 														</div>
 													</ng-template>
 						
@@ -390,18 +366,15 @@
 										</div>
 								</div>
 								</div>
-								</div>
 								<div class="clearfix"></div>
 								<div class="col-sm-3">
 								<div class="funkyradio-info">
 									<input type="checkbox" name="checkbox" id="checkbox9"/>
 									<label for="checkbox9">Travel Costs</label>
 								</div>
-								<div class="editer">
-									<label>Price</label>&nbsp;
 									<div class="editer">
 										<label>Price:</label>&nbsp;
-										<input type="text" name="service1" disabled placeholder="Select" id="service1">
+										<input type="text" value="{{travel}}" name="service1" disabled placeholder="Select" id="service1">
 										
 										<div class="editbtn">
 											<i class="material-icons" (click)="open(Travel)">edit</i>
@@ -410,7 +383,7 @@
 									<div _ngcontent-c4="" class="card-body">   
 										<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
 										<div class="social" data-reactid="332">
-												{{jkl}}
+												
 												<div class="card-block">
 													<ng-template #Travel let-c="close" let-d="dismiss">
 														<div class="modal-header" style="background-color: white;">
@@ -423,16 +396,15 @@
 															<div class="input-effect form-group md-form mt-3">
 																<form>  
 																		
-																	<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+																	<input type="text" name="pqr" class="form-control" [(ngModel)]="travel" >
 																</form>  
 																
-																<label>Add here </label>
 																
 																<span class="focus-border"> </span>
 															</div>   
 														</div>
 														<div class="modal-footer"  style="background-color: white;">
-															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
 														</div>
 													</ng-template>
 						
@@ -440,7 +412,6 @@
 											
 										</div>
 										</div>
-								</div>
 								</div>
 								</div>
 							</div>
@@ -457,10 +428,8 @@
 											<label for="checkbox11">Photos</label>
 										</div>
 										<div class="editer">
-										<label>Price</label>&nbsp;
-										<div class="editer">
 											<label>Price:</label>&nbsp;
-											<input type="text" name="service1" disabled placeholder="Select" id="service1">
+											<input type="text" value="{{photos}}" name="service1" disabled placeholder="Select" id="service1">
 											
 											<div class="editbtn">
 												<i class="material-icons" (click)="open(packages)">edit</i>
@@ -469,7 +438,7 @@
 										<div _ngcontent-c4="" class="card-body">   
 											<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
 											<div class="social" data-reactid="332">
-													{{jkl}}
+													
 													<div class="card-block">
 														<ng-template #packages let-c="close" let-d="dismiss">
 															<div class="modal-header" style="background-color: white;">
@@ -482,16 +451,14 @@
 																<div class="input-effect form-group md-form mt-3">
 																	<form>  
 																			
-																		<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+																		<input type="text" name="pqr" class="form-control" [(ngModel)]="photos" >
 																	</form>  
-																	
-																	<label>Add here </label>
 																	
 																	<span class="focus-border"> </span>
 																</div>   
 															</div>
 															<div class="modal-footer"  style="background-color: white;">
-																<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+																<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
 															</div>
 														</ng-template>
 							
@@ -501,26 +468,23 @@
 											</div>
 									</div>
 									</div>
-									</div>
 									<div class="col-sm-3">
 										<div class="funkyradio-info">
 											<input type="checkbox" name="checkbox" id="checkbox12" checked/>
 											<label for="checkbox12">Photos + Vedios</label>
 										</div>
-										<div class="editer">
-										<label>Price</label>&nbsp;
-										<input type="text" name="service1" disabled placeholder="Select" id="service1">
+										
 										<div class="editer">
 											<label>Price:</label>&nbsp;
-											<input type="text" name="service1" disabled placeholder="Select" id="service1">
-											
+											<input type="text" value="{{vedios}}" name="service1" disabled placeholder="Select" id="service1">
 											<div class="editbtn">
-												<i class="material-icons" (click)="open(Photos)">edit</i>
+											<i class="material-icons" (click)="open(Photos)">edit</i>
 											</div>
+										</div>
 											<div _ngcontent-c4="" class="card-body">   
 												<div class="social-connect col-md-3 col-sm-12" data-reactid="330">
 												<div class="social" data-reactid="332">
-														{{jkl}}
+														
 														<div class="card-block">
 															<ng-template #Photos let-c="close" let-d="dismiss">
 																<div class="modal-header" style="background-color: white;">
@@ -533,16 +497,14 @@
 																	<div class="input-effect form-group md-form mt-3">
 																		<form>  
 																				
-																			<input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+																			<input type="text" name="pqr" class="form-control" [(ngModel)]="vedios" >
 																		</form>  
-																		
-																		<label>Add here </label>
 																		
 																		<span class="focus-border"> </span>
 																	</div>   
 																</div>
 																<div class="modal-footer"  style="background-color: white;">
-																	<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+																	<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
 																</div>
 															</ng-template>
 								
@@ -551,9 +513,6 @@
 												</div>
 												</div>
 											</div>
-										</div>
-										
-									</div>
 									</div>
 							    </div>
 							</div>

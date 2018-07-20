@@ -3,6 +3,7 @@ import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { Component, ViewEncapsulation, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
+
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
 @Component({
@@ -43,21 +44,7 @@ export class GalleryComponent implements OnInit {
   $.getScript('./assets/js/vendorsidebar.js');
   }
 
-  uploader: FileUploader = new FileUploader({
-    url: URL,
-    isHTML5: true
-  });
-  hasBaseDropZoneOver = false;
-  hasAnotherDropZoneOver = false;
 
-  // Angular2 File Upload
-  fileOverBase(e: any): void {
-    this.hasBaseDropZoneOver = e;
-  }
-
-  fileOverAnother(e: any): void {
-    this.hasAnotherDropZoneOver = e;
-  }
 
   //model
 
@@ -95,4 +82,20 @@ export class GalleryComponent implements OnInit {
         const modalRef = this.modalService.open(NgbdModalContent);
         modalRef.componentInstance.name = 'World';
     }
+
+    uploader: FileUploader = new FileUploader({
+    url: URL,
+    isHTML5: true
+  });
+  hasBaseDropZoneOver = false;
+  hasAnotherDropZoneOver = false;
+
+  // Angular2 File Upload
+  fileOverBase(e: any): void {
+    this.hasBaseDropZoneOver = e;
+  }
+
+  fileOverAnother(e: any): void {
+    this.hasAnotherDropZoneOver = e;
+  }
 }

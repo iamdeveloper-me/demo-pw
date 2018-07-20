@@ -4,22 +4,13 @@
         <app-vendorsidebar></app-vendorsidebar>
     </div>
     <div id="page-content-wrapper">    
-  
-  <router-outlet></router-outlet> 
-
-  <div class="content">
       <app-navemenu></app-navemenu>
     <section class="p-0 " id="portfolio">
         <div class="col-sm-12">
-            <div _ngcontent-c4="" class="card">
+            <div _ngcontent-c4="" class="card marg_bot">
                 <div _ngcontent-c4="" class="card-header">
                     <h4 _ngcontent-c4="" class="card-title"> Business description</h4>
-                    <button type="button" class="btn btn-outline-success" ngbTooltip="Do not have a website? You now have one with us! 
-                        You can copy the link in the address bar above and add it to your Facebook Business Page.
-                        This enables your audience to be able to access your storefront and albums on Perfectweddings.mu">
-                        Get More Information
-                        
-                        </button>
+                    
                         <div class="col-lg-12 editbtn">
                                 <h4 class="text-right col-lg-12">
                                     <i class="material-icons" (click)="open(contentext)">edit</i>
@@ -40,32 +31,27 @@
                                             
                                         <input type="text" name="pqr" class="form-control" [(ngModel)]="text" >
                                     </form>  
-                                    
-                                    <label>Add here </label>
+                            
                                     
                                     <span class="focus-border"> </span>
                                 </div>   
                             </div>
                             <div class="modal-footer"  style="background-color: white;">
-                                <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+                                <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
                             </div>
                         </ng-template>
 
                 </div>
                 
-                    <div _ngcontent-c4="" class="card-body">
-                        <div class="col-lg-12 col-md-12">
-                            <textarea  class="form-control form-input" disabled placeholder="About"  value="" id="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</textarea>
+                    <div _ngcontent-c4="" class="card-body margin_top_30px">
+                        <div class="col-lg-12 col-md-12 add_text">
+                            <textarea  class="form-control form-input" disabled placeholder="About"  value="" id="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting</textarea>
                                 {{text}}
                         </div>
                     </div>
             </div>
 
-            <div _ngcontent-c4="" class="card">
+            <div _ngcontent-c4="" class="card margin_top_20">
             
                 <div _ngcontent-c4="" class="card-header">
                     <h4 _ngcontent-c4="" class="card-title">Link Accounts & Websites</h4>
@@ -76,7 +62,7 @@
                                 <a title="Connect with us on Facebook" class="text-muted" rel="nofollow" target="_blank" href="https://www.facebook.com" data-reactid="333">
                                     <i class="fa fa-facebook fa-2x" data-reactid="334"></i>
                                 </a>
-                                {{xyz}}
+                                <input class="return_value" value="{{xyz}}" />
                                 <div class="col-lg-12 editbtn">
                                         <h4 class="text-right col-lg-12">
                                             <i class="material-icons" (click)="open(contentt)">edit</i>
@@ -93,20 +79,20 @@
                                         <div class="modal-body"  style="background-color: white;" >
                                             <div class="input-effect form-group md-form mt-3">
                                                     <a title="Connect with us on Facebook" class="text-muted" rel="nofollow" target="_blank" href="https://www.facebook.com" data-reactid="333">
-                                                        <i class="fa fa-facebook fa-2x" data-reactid="334"></i>
+                                                        <i class="fa fa-facebook fa-2x mar_botom" data-reactid="334"></i>
                                                     </a>
                                                 <form>  
                                                         
                                                         <input type="text" name="xyz" class="form-control" [(ngModel)]="xyz" (click)="abc($event)">
                                                 </form>  
                                             
-                                                <label>Add here </label>
+
                                             
                                                 <span class="focus-border"> </span>
                                             </div>   
                                         </div>
                                         <div class="modal-footer"  style="background-color: white;">
-                                            <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+                                            <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
                                         </div>
                                     </ng-template>
 
@@ -119,9 +105,9 @@
                         <div class="social-connect col-md-3 col-sm-12" data-reactid="330">
                         <div class="social" data-reactid="332">
                                 <a title="Follow us on Pinterest" class="text-muted" rel="nofollow" target="_blank" href="https://www.pinterest.com" data-reactid="337">
-                                    <i class="fa fa-pinterest-p fa-2x" data-reactid="338"></i>
+                                    <i class="fa fa-pinterest-p fa-2x " data-reactid="338"></i>
                                 </a>
-                                {{pqr}}
+                                <input class="return_value" value="{{xyy}}" />
                                 <div class="col-lg-12 editbtn">
                                         <h4 class="text-right col-lg-12">
                                             <i class="material-icons" (click)="open(content)">edit</i>
@@ -138,20 +124,20 @@
                                         <div class="modal-body"  style="background-color: white;" >
                                             <div class="input-effect form-group md-form mt-3">
                                                     <a title="Follow us on Pinterest" class="text-muted" rel="nofollow" target="_blank" href="https://www.pinterest.com" data-reactid="337">
-                                                        <i class="fa fa-pinterest-p fa-2x" data-reactid="338"></i>
+                                                        <i class="fa fa-pinterest-p fa-2x mar_botom" data-reactid="338"></i>
                                                     </a>
                                                 <form>  
                                                         
                                                     <input type="text" name="pqr" class="form-control" [(ngModel)]="pqr" >
                                                 </form>  
                                                 
-                                                <label>Add here </label>
+
                                                 
                                                 <span class="focus-border"> </span>
                                             </div>   
                                         </div>
                                         <div class="modal-footer"  style="background-color: white;">
-                                            <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+                                            <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
                                         </div>
                                     </ng-template>
         
@@ -166,7 +152,7 @@
                                 <a title="Follow us on Google+" class="text-muted" rel="nofollow" target="_blank" href="https://plus.google.com" data-reactid="339">
                                     <i class="fa fa-google-plus fa-2x" data-reactid="340"></i>
                                   </a>
-                                {{lmn}}
+                                  <input class="return_value" value="{{xyx}}" />
                                 <div class="col-lg-12 editbtn">
                                         <h4 class="text-right col-lg-12">
                                             <i class="material-icons" (click)="open(contenttt)">edit</i>
@@ -183,20 +169,20 @@
                                         <div class="modal-body"  style="background-color: white;" >
                                             <div class="input-effect form-group md-form mt-3">
                                                     <a title="Follow us on Google+" class="text-muted" rel="nofollow" target="_blank" href="https://plus.google.com" data-reactid="339">
-                                                        <i class="fa fa-google-plus fa-2x" data-reactid="340"></i>
+                                                        <i class="fa fa-google-plus fa-2x mar_botom" data-reactid="340"></i>
                                                       </a>
                                                 <form>  
                                                         
                                                     <input type="text" name="pqr" class="form-control" [(ngModel)]="lmn" >
                                                 </form>  
                                                 
-                                                <label>Add here </label>
+
                                                 
                                                 <span class="focus-border"> </span>
                                             </div>   
                                         </div>
                                         <div class="modal-footer"  style="background-color: white;">
-                                            <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+                                            <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
                                         </div>
                                     </ng-template>
         
@@ -211,7 +197,7 @@
                                 <a title="Follow us on Instagram" class="text-muted" rel="nofollow" target="_blank" href="https://instagram.com" data-reactid="341">
                                     <i class="fa fa-instagram fa-2x" data-reactid="342"></i>
                                 </a>
-                                {{jkl}}
+                                <input class="return_value" value="{{zzz}}" />
                                 <div class="col-lg-12 editbtn">
                                         <h4 class="text-right col-lg-12">
                                             <i class="material-icons" (click)="open(contentttt)">edit</i>
@@ -228,20 +214,20 @@
                                         <div class="modal-body"  style="background-color: white;" >
                                             <div class="input-effect form-group md-form mt-3">
                                                     <a title="Follow us on Instagram" class="text-muted" rel="nofollow" target="_blank" href="https://instagram.com" data-reactid="341">
-                                                        <i class="fa fa-instagram fa-2x" data-reactid="342"></i>
+                                                        <i class="fa fa-instagram fa-2x mar_botom" data-reactid="342"></i>
                                                     </a>
                                                 <form>  
                                                         
                                                     <input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
                                                 </form>  
                                                 
-                                                <label>Add here </label>
+
                                                 
                                                 <span class="focus-border"> </span>
                                             </div>   
                                         </div>
                                         <div class="modal-footer"  style="background-color: white;">
-                                            <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+                                            <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
                                         </div>
                                     </ng-template>
         
@@ -255,6 +241,14 @@
             </div>  
         </div>    
      </section> 
+    
+
+   
+    
+    
   </div>
+  
   </div>
-  </div>
+ 
+  <router-outlet></router-outlet>
+ 

@@ -32,7 +32,10 @@ export class NgbdModalContent {
 })
 export class BusinessInfoComponent implements OnInit {
 
-
+xyz:string = 'www.facebook.com'
+xyy:string = 'www.pinterest.com'
+xyx:string = 'www.google.com'
+zzz:string = 'www.instagram.com'
   ngOnInit() {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');

@@ -7,28 +7,28 @@
       <div class="container-fluid nopadd">                    
                   <app-navemenu></app-navemenu>
         <router-outlet></router-outlet> 
-          <div class="container-fluid photo_gallery">
-            <h2>Photo Gallery</h2>
-                    
-
-                    
+        <div class="container-fluid">
+             <h2>Photo Gallery</h2>
+           </div>
+          <div class="container-fluid">  
+          <div  class="card photo_gallery">   
             <div class="photo_heading">
               <div class="note">
                   <span>Note: You can upload only 15 of their best images (Free Account only) </span>
-                  <span>You can upload unlimited photos for paid accounts <a href="#">Update Your Plan</a></span>
+                  <span>You can upload unlimited photos for paid accounts <a routerLink="../membership">Update Your Plan</a></span>
                   <!-- <span class="cam_left">  <a href="#"> <i class="material-icons">camera_enhance</i></a></span>--> 
               </div>
             </div>
 
             <div class="photos_gallery">
 
-              <div class="col-sm-12 firt_row"> 
+              <div class="row firt_row"> 
 
               <div class="col-sm-3" >
                 <div class="defaultalbumbtn"  (click)="open(content)">
                   <img src="../../assets/img/category/celebrat.jpg" class="img-responsive">
                   <div class="albumbox">
-                    
+                    <i class="material-icons" style="font-size:30px;">camera_alt</i>
                     <p>
                       Portfolio<br/>
                       0 images selected<br/>
@@ -50,13 +50,14 @@
                       </div>
                   </div>
                 </a>
-</div>
+              </div>
                   
               </div>
 
               </div>
             </div>
-        
+        </div>  
+             <app-foot></app-foot>
       </div>
 </div>
 </div>

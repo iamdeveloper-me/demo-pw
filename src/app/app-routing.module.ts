@@ -44,7 +44,7 @@ import { BudgetComponent } from './userpannel/userboard/budget/budget.component'
 
 import { CalendertableComponent } from './vendor/calendertable/calendertable.component';
 import { CreateEventComponent } from './vendor/create-event/create-event.component';
-
+import { MessageComponent } from './vendor/message/message.component';
 import { AlbumviewComponent } from './vendor/albumview/albumview.component';
 
 import { VedioviewComponent } from './vendor/vedioview/vedioview.component';
@@ -76,24 +76,25 @@ const appRoutes: Routes = [
 
   { path: 'home/Advertise', component:  AdvertiseComponent },
 
-   { path: 'vendor/dashboard', component:  DashboardComponent  },
-     { path: 'vendor/albumview', component:  AlbumviewComponent  },
-       { path: 'vendor/videoview', component:  VedioviewComponent  },
-   { path: 'vendor/business', component:  BusinessInfoComponent  },
-   { path: 'vendor/location', component:  LocationComponent  },
-  { path: 'vendor/profile', component:  VendorprofileComponent  },
-  { path: 'vendor/chat', component:  ChatComponent },
-  { path: 'vendor/event', component:  CreateEventComponent },
 
-   { path: 'vendor/Videos', component:    VideosComponent},
+    { path: 'vendor/dashboard', component:  DashboardComponent  },
+    { path: 'vendor/albumview', component:  AlbumviewComponent  },
+    { path: 'vendor/business', component:  BusinessInfoComponent  },
+    { path: 'vendor/location', component:  LocationComponent  },
+    { path: 'vendor/profile', component:  VendorprofileComponent  },
+    { path: 'vendor/chat', component:  ChatComponent },
+    { path: 'vendor/event', component:  CreateEventComponent },
+    { path: 'vendor/Videos', component:    VideosComponent},
+    { path: 'vendor/editprofile', component:   EditprofileComponent },
+    { path: 'vendor/mylisting', component:   MylistingComponent },
+    { path: 'vendor/business-services', component:  BusinessServicesComponent  },
+    { path: 'vendor/membership', component:  MembershipComponent  },
+    { path: 'vendor/calender', component:  CalendertableComponent},
+    { path: 'vendor/Message', component:  MessageComponent},
+    { path: 'vendor/videoview', component:    VedioviewComponent},
 
-  { path: 'vendor/editprofile', component:   EditprofileComponent },
-  { path: 'vendor/mylisting', component:   MylistingComponent },
-  { path: 'vendor/business-services', component:  BusinessServicesComponent  },
-  { path: 'vendor/membership', component:  MembershipComponent  },
-  { path: 'vendor/calender', component:  CalendertableComponent},
-  
-   { path: 'User/vendor', component: VendorlistComponent },  
+  { path: 'User/vendor', component: VendorlistComponent },  
+
   { path: 'User/Timeline', component: TimelineComponent },
   { path: 'User/Bookmarks', component: BookmarkComponent },
   { path: 'User/GuestList', component: GuestComponent },

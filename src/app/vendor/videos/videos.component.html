@@ -7,8 +7,12 @@
         <div class="container-fluid nopadd">                    
                 <app-navemenu></app-navemenu>
         <router-outlet></router-outlet> 
-        <div class="container-fluid photo_gallery">
-            <h2>Video</h2>
+<div class="container-fluid">
+    <h2>Video</h2>
+</div>
+
+        <div class="container-fluid">
+           <div class="card photo_gallery">
             <div class="photo_heading">
             <div class="note">
                 <span>
@@ -18,16 +22,8 @@
                     You can upload unlimited vedios for paid accounts 
                     <a href="#">Update Your Plan</a>
                 </span>
-
-
             </div>
-
             </div>
-
-
-  
-
-
 
  <div class="photos_gallery">
 
@@ -37,19 +33,50 @@
                 <div class="defaultalbumbtn"  (click)="open(content)">
                   <img src="../../assets/img/category/celebrat.jpg" class="img-responsive">
                   <div class="albumbox" >
-                     <i class="material-icons"> missed_video_call</i>
+                    <i class="material-icons" style="font-size:30px;">video_call</i>
                     <p>
                       Portfolio<br/>
                       0 images selected<br/>
                       Click Here Add Album
                     </p>
                   </div>
-                     <div class="card-block">
-                        <ng-template #content let-c="close" let-d="dismiss">
+                     
+                </div>
+              </div>
+              <div class="col-md-3" >
+                <a  routerLink="../videoview" >
+                  <div class="mainalbumbtn">
+                    <img src="../../assets/img/category/dj.jpg" class="img-responsive">
+                    <div class="albumbox">
+                      <p>
+                        Album Name<br/>
+                        20 images selected<br/>
+                        Click Here to View Album
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+                  
+              </div>
+
+              </div>
+
+
+
+</div>
+            
+        </div>
+        <app-foot></app-foot>
+        </div>
+
+</div>
+</div>
+ <ng-template #content let-c="close" let-d="dismiss">
 
                         
 
-                             <div class="card-block">
+                <div class="card-block">
                   <div class="modal-header" style="background-color: white">
                     <h4 class="modal-title">Add Vedio Gallery</h4>
                     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -124,38 +151,6 @@
                   </div>
   </div>
                         </ng-template>
-                    </div>
-                </div>
-              </div>
-              <div class="col-md-3" >
-                <a  routerLink="../videoview" >
-                  <div class="mainalbumbtn">
-                    <img src="../../assets/img/category/dj.jpg" class="img-responsive">
-                    <div class="albumbox">
-                      <p>
-                        Album Name<br/>
-                        20 images selected<br/>
-                        Click Here to View Album
-                      </p>
-                    </div>
-                  </div>
-                </a>
-              </div>
-                  
-              </div>
-
-              </div>
-
-
-
-
-            
-        </div>
-        <app-foot></app-foot>
-        </div>
-
-</div>
-</div>
 <router-outlet></router-outlet> 
 
 

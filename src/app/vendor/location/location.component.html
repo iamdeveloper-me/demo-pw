@@ -7,7 +7,7 @@
   
   <router-outlet></router-outlet> 
   
-      <app-navemenu></app-navemenu>
+     
         <section id="user-profile">
             <div class="row">
               <div class="col-12">
@@ -84,7 +84,7 @@
                             <input type="file" id="image-input" onchange="readURL(this);" accept="image/*" disabled class="form-control form-input Profile-input-file" >
                             <div class="col-lg-12 col-md-12 pad_left_0px">
                                 <input type="text" class="form-control form-input" value="Digital Photography" placeholder="Company Name" disabled id="companyname">
-                                {{CompanyName}}
+                                {{CompanyName}}  <i class="material-icons edit_btn digi_edit"> edit</i>
                               </div>
                               <div class="col-lg-12 col-md-12 pad_left_0px">
                                   <input type="text" class="form-control form-input martop0px" value="Photography, Vediography" placeholder="Company Title" disabled id="companytitle">
@@ -217,5 +217,7 @@
               </div>
             </div>
         </section>
+        <app-foot></app-foot>
+        <router-outlet></router-outlet>
   </div>
   </div>

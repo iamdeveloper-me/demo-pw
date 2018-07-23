@@ -84,6 +84,7 @@ import { CreateEventComponent } from './vendor/create-event/create-event.compone
 
 import { AlbumviewComponent } from './vendor/albumview/albumview.component';
 
+import { VedioviewComponent } from './vendor/vedioview/vedioview.component';
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
   }
@@ -156,7 +157,8 @@ export function getAuthServiceConfigs() {
         BudgetComponent,
         CalendertableComponent,
         CreateEventComponent,
-        AlbumviewComponent
+        AlbumviewComponent,
+        VedioviewComponent
 
   ],
     imports: [

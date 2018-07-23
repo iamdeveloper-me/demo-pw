@@ -11,72 +11,144 @@
             <h2>Video</h2>
             <div class="photo_heading">
             <div class="note">
-                <span>Note: Upload video that will best represent your business. </span>
-                <span class="cam_left">  <a href="#"> <i class="material-icons">
-        missed_video_call
-        </i> </a> </span>
+                <span>
+                    Note: You can upload only 15 of their best vedios (Free Account only)
+                </span>
+                <span>
+                    You can upload unlimited vedios for paid accounts 
+                    <a href="#">Update Your Plan</a>
+                </span>
 
-            </div>
 
-            </div>
-
-        <div class="photos_gallery">
-            <div class=" firt_row"> 
-            <div class="col-md-3  ">
-            <iframe  src="https://www.youtube.com/embed/Wxy80QvnMwA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-            </div>
-            <div class="col-md-3 ">
-                <iframe  src="https://www.youtube.com/embed/QgaTQ5-XfMM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-            <div class="col-md-3 ">
-                <iframe  src="https://www.youtube.com/embed/fz4MzJTeL0c" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-            <div class="col-md-3 ">
-                <iframe  src="https://www.youtube.com/embed/Zo4PRKnqJdg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-
-            </div>
-
-            <div class=" second_row"> 
-            <div class="col-md-3  ">
-            <iframe  src="https://www.youtube.com/embed/49wlhCSjb6g" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-            </div>
-            <div class="col-md-3 ">
-                <iframe  src="https://www.youtube.com/embed/woSCgIhRl9s" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-            <div class="col-md-3 ">
-                <iframe  src="https://www.youtube.com/embed/nL-5JI4H8M0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-            <div class="col-md-3 ">
-                <iframe  src="https://www.youtube.com/embed/rtOvBOTyX00" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
 
             </div>
 
 
-            <div class=" third_row"> 
-            <div class="col-md-3  ">
-            <iframe  src="https://www.youtube.com/embed/Wxy80QvnMwA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  
 
-            </div>
-            <div class="col-md-3 ">
-                <iframe  src="https://www.youtube.com/embed/XC8Vu-Qm5E0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-            <div class="col-md-3 ">
-                <iframe  src="https://www.youtube.com/embed/y7l52g9p11s" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-            <div class="col-md-3 ">
-                <iframe  src="https://www.youtube.com/embed/w2WfMtzmrLA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
 
-            </div>
-            
 
-            
+ <div class="photos_gallery">
 
-        </div>
+              <div class="row firt_row"> 
+
+              <div class="col-md-3" >
+                <div class="defaultalbumbtn"  (click)="open(content)">
+                  <img src="../../assets/img/category/celebrat.jpg" class="img-responsive">
+                  <div class="albumbox" >
+                     <i class="material-icons"> missed_video_call</i>
+                    <p>
+                      Portfolio<br/>
+                      0 images selected<br/>
+                      Click Here Add Album
+                    </p>
+                  </div>
+                     <div class="card-block">
+                        <ng-template #content let-c="close" let-d="dismiss">
+
+                        
+
+                             <div class="card-block">
+                  <div class="modal-header" style="background-color: white">
+                    <h4 class="modal-title">Add Vedio Gallery</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" style="background-color: white">
+                    <form>
+                    <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="input-effect form-group md-form ">
+                            <input class="effect-16 validate" type="text" placeholder="" required="required">
+                            <label>Gallery Name</label>
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                  </div>
+                    </div>
+                    <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="input-effect form-group md-form ">
+                          <select class="effect-16 validate">
+                             <option>Select Gallery Type</option>
+                            <option>Pre-Wedding Shoot</option>
+                             <option>Real Wedding Shoot</option>
+                          </select>
+                            
+                        </div>
+                    </div>
+                  </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                          <div class="input-effect form-group md-form ">
+                              <input class="effect-16 validate" type="email" placeholder="" required="required">
+                              <label>Tags</label>
+                              <span class="focus-border"></span>
+                          </div>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="form-group">
+                        <div class="input-effect form-group md-form ">  
+                            <input class="effect-16 validate"  required="required">
+                            <label>Color Tags</label>
+                            <span class="focus-border"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                    </div>
+                    <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="form-group">
+                        <div class="input-effect form-group md-form ">  
+                           <input type="file" class="effect-16 validate" required="required" name="img" multiple>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                    </div>
+                    <button type="submit" class="btn btn-comman pull-right">Update Profile</button>
+                    <div class="clearfix"></div>
+                    </form>
+                  </div>
+  </div>
+                        </ng-template>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-3" >
+                <a  routerLink="../videoview" >
+                  <div class="mainalbumbtn">
+                    <img src="../../assets/img/category/dj.jpg" class="img-responsive">
+                    <div class="albumbox">
+                      <p>
+                        Album Name<br/>
+                        20 images selected<br/>
+                        Click Here to View Album
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+                  
+              </div>
+
+              </div>
+
+
+
+
             
         </div>
         <app-foot></app-foot>

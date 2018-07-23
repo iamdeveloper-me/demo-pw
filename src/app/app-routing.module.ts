@@ -47,6 +47,7 @@ import { CreateEventComponent } from './vendor/create-event/create-event.compone
 
 import { AlbumviewComponent } from './vendor/albumview/albumview.component';
 
+import { VedioviewComponent } from './vendor/vedioview/vedioview.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -77,6 +78,7 @@ const appRoutes: Routes = [
 
    { path: 'vendor/dashboard', component:  DashboardComponent  },
      { path: 'vendor/albumview', component:  AlbumviewComponent  },
+       { path: 'vendor/videoview', component:  VedioviewComponent  },
    { path: 'vendor/business', component:  BusinessInfoComponent  },
    { path: 'vendor/location', component:  LocationComponent  },
   { path: 'vendor/profile', component:  VendorprofileComponent  },

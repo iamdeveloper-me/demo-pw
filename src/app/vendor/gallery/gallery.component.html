@@ -15,37 +15,43 @@
             <div class="photo_heading">
               <div class="note">
                   <span>Note: You can upload only 15 of their best images (Free Account only) </span>
+                  <span>You can upload unlimited photos for paid accounts <a href="#">Update Your Plan</a></span>
                   <!-- <span class="cam_left">  <a href="#"> <i class="material-icons">camera_enhance</i></a></span>--> 
               </div>
             </div>
 
             <div class="photos_gallery">
 
-              <div class="row firt_row"> 
+              <div class="col-sm-12 firt_row"> 
 
-              <div class="col-md-3 defaultalbumbtn"  (click)="open(content)">
-
-                    <img src="../../assets/img/category/celebrat.jpg" class="img-responsive">
-                   <div class="albumbox">
+              <div class="col-sm-3" >
+                <div class="defaultalbumbtn"  (click)="open(content)">
+                  <img src="../../assets/img/category/celebrat.jpg" class="img-responsive">
+                  <div class="albumbox">
+                    
                     <p>
                       Portfolio<br/>
                       0 images selected<br/>
                       Click Here Add Album
                     </p>
                   </div>
-</div>
-                  <div class="col-md-3">
-                    <a  routerLink="../albumview" >
+                </div>
+              </div>
+              <div class="col-sm-3" >
+                <a  routerLink="../albumview" >
+                  <div class="mainalbumbtn">
                     <img src="../../assets/img/category/dj.jpg" class="img-responsive">
-                   <div class="albumbox">
-                    <p>
-                      Album Name<br/>
-                      20 images selected<br/>
-                      Click Here to View Album
-                    </p>
+                    <div class="albumbox">
+                      <p>
+                        Album Name<br/>
+                        20 images selected<br/>
+                        Click Here to View Album
+                      </p>
+                      </div>
                   </div>
                 </a>
-                </div>
+</div>
+                  
               </div>
 
               </div>
@@ -55,17 +61,16 @@
 </div>
 </div>
 <ng-template #content let-c="close" let-d="dismiss">
-                          <div class="card-block">
-                            <div class="modal-header" style="background-color: white">
-                                <h4 class="modal-title">Add Gallery</h4>
-                                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body" style="background-color: white">
-                               <form>
-                
-                <div class="row">
+  <div class="card-block">
+                  <div class="modal-header" style="background-color: white">
+                    <h4 class="modal-title">Add Gallery</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" style="background-color: white">
+                    <form>
+                    <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
                         <div class="input-effect form-group md-form ">
@@ -75,8 +80,8 @@
                         </div>
                     </div>
                   </div>
-                </div>
-                <div class="row">
+                    </div>
+                    <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
                         <div class="input-effect form-group md-form ">
@@ -89,8 +94,8 @@
                         </div>
                     </div>
                   </div>
-                </div>
-                <div class="row">
+                    </div>
+                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
                           <div class="input-effect form-group md-form ">
@@ -100,8 +105,8 @@
                           </div>
                       </div>
                     </div>
-                  </div>
-                <div class="row">
+                    </div>
+                    <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
                       <div class="form-group">
@@ -113,8 +118,8 @@
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="row">
+                    </div>
+                    <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
                       <div class="form-group">
@@ -124,14 +129,13 @@
                       </div>
                     </div>
                   </div>
-                </div>
-                <button type="submit" class="btn btn-comman pull-right">Update Profile</button>
-                <div class="clearfix"></div>
-              </form>
-                            </div>
-                          
-                            </div>
-                        </ng-template>
+                    </div>
+                    <button type="submit" class="btn btn-comman pull-right">Update Profile</button>
+                    <div class="clearfix"></div>
+                    </form>
+                  </div>
+  </div>
+</ng-template>
 <router-outlet></router-outlet> 
 
 

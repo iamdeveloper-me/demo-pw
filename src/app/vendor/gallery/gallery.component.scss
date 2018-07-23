@@ -153,13 +153,44 @@ margin-top: 10px!important;
   position: absolute;
   top: 0px;
   text-align: center;
-  width: 89%;
-  height: 100%;
-  background:rgba(0, 0, 0, 0.5);
+  width:100%;
   color: #fff;
-  padding-top:35px;
+  padding-top:40px;
+  z-index:999;
 }
-
+.defaultalbumbtn{
+  position:relative;
+  cursor:pointer;
+}
+.defaultalbumbtn img{
+border-radius:10px;
+}
+.defaultalbumbtn::after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    content: "";
+    top: 0;
+    border-radius: 5px;
+    left: 0px;
+}
+.mainalbumbtn{
+  position:relative;
+}
+.mainalbumbtn img{
+border-radius:10px;
+}
+.mainalbumbtn::after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    content: "";
+    top: 0;
+    border-radius: 5px;
+    left: 0px;
+}
 
 
   //===input field

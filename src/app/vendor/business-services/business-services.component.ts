@@ -1,35 +1,10 @@
-import { Component, OnInit , ViewEncapsulation, Input } from '@angular/core';
-import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
-
-
-@Component({
-  selector: 'ngbd-modal-content',
-  template: `
-  <div class="modal-header">
-    <h4 class="modal-title">Hi there!</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p>Hello, {{name}}!</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary btn-raised" (click)="activeModal.close('Close click')">Close</button>
-  </div>
-`
-})
-
-export class NgbdModalContent {
-  @Input() name;
-  constructor(public activeModal: NgbActiveModal) { }
-}
+import { Component, OnInit } from '@angular/core';
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-business-services',
   templateUrl: './business-services.component.html',
   styleUrls: ['./business-services.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+
 })
 export class BusinessServicesComponent implements OnInit {
 
@@ -44,44 +19,309 @@ export class BusinessServicesComponent implements OnInit {
   }
 
 
-  closeResult: string;
-
-  constructor(private modalService: NgbModal ) { }
- 
-  // Open default modal
-  open(content) {
-      this.modalService.open(content).result.then((result) => {
-          this.closeResult = `Closed with: ${result}`;
-      }, (reason) => {
-          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      });
-
-     
-  }
-
-
-  // This function is used in open
-  private getDismissReason(reason: any): string {
-      if (reason === ModalDismissReasons.ESC) {
-          return 'by pressing ESC';
-      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-          return 'by clicking on a backdrop';
-      } else {
-          return `with: ${reason}`;
+  Photos(){
+    swal.setDefaults({
+      input: 'text',
+      confirmButtonText: 'Next &rarr;',
+      showCancelButton: true,
+      //progressSteps: ['1']
+    })
+    
+    var steps = [
+      {
+        title: 'Add your Photos link',
+        //text: 'Chaining swal2 modals is easy'
       }
+    ]
+    
+    swal.queue(steps).then((result) => {
+      swal.resetDefaults()
+    
+      if (result.value) {
+        swal({
+          title: 'All done!',
+          html:
+            'Your Photos: <pre>' +
+              JSON.stringify(result.value) +
+            '</pre>',
+          confirmButtonText: 'Lovely!'
+        })
+      }
+    })
+  }
+ 
+  Photosandvedio(){
+    swal.setDefaults({
+      input: 'text',
+      confirmButtonText: 'Next &rarr;',
+      showCancelButton: true,
+      //progressSteps: ['1']
+    })
+    
+    var steps = [
+      {
+        title: 'Add your Photos and vedio link',
+        //text: 'Chaining swal2 modals is easy'
+      }
+    ]
+    
+    swal.queue(steps).then((result) => {
+      swal.resetDefaults()
+    
+      if (result.value) {
+        swal({
+          title: 'All done!',
+          html:
+            'Your Photos and vedio: <pre>' +
+              JSON.stringify(result.value) +
+            '</pre>',
+          confirmButtonText: 'Lovely!'
+        })
+      }
+    })
   }
 
-  // Open modal with dark section
-  openModal(customContent) {
-      this.modalService.open(customContent, { windowClass: 'dark-modal' });
+ 
+  Candid(){
+    swal.setDefaults({
+      input: 'text',
+      confirmButtonText: 'Next &rarr;',
+      showCancelButton: true,
+      //progressSteps: ['1']
+    })
+    
+    var steps = [
+      {
+        title: 'Add your Candid Photography',
+        //text: 'Chaining swal2 modals is easy'
+      }
+    ]
+    
+    swal.queue(steps).then((result) => {
+      swal.resetDefaults()
+    
+      if (result.value) {
+        swal({
+          title: 'All done!',
+          html:
+            'Your Candid Photography: <pre>' +
+              JSON.stringify(result.value) +
+            '</pre>',
+          confirmButtonText: 'Lovely!'
+        })
+      }
+    })
+  }
+  Cinematography(){
+    swal.setDefaults({
+      input: 'text',
+      confirmButtonText: 'Next &rarr;',
+      showCancelButton: true,
+      //progressSteps: ['1']
+    })
+    
+    var steps = [
+      {
+        title: 'Add your Cinematography',
+        //text: 'Chaining swal2 modals is easy'
+      }
+    ]
+    
+    swal.queue(steps).then((result) => {
+      swal.resetDefaults()
+    
+      if (result.value) {
+        swal({
+          title: 'All done!',
+          html:
+            'Your Cinematography: <pre>' +
+              JSON.stringify(result.value) +
+            '</pre>',
+          confirmButtonText: 'Lovely!'
+        })
+      }
+    })
+  }
+  Studio(){
+    swal.setDefaults({
+      input: 'text',
+      confirmButtonText: 'Next &rarr;',
+      showCancelButton: true,
+      //progressSteps: ['1']
+    })
+    
+    var steps = [
+      {
+        title: 'Add your Studio Shoots',
+        //text: 'Chaining swal2 modals is easy'
+      }
+    ]
+    
+    swal.queue(steps).then((result) => {
+      swal.resetDefaults()
+    
+      if (result.value) {
+        swal({
+          title: 'All done!',
+          html:
+            'Your Studio Shoots: <pre>' +
+              JSON.stringify(result.value) +
+            '</pre>',
+          confirmButtonText: 'Lovely!'
+        })
+      }
+    })
+  }
+  PreWedding(){
+    swal.setDefaults({
+      input: 'text',
+      confirmButtonText: 'Next &rarr;',
+      showCancelButton: true,
+      //progressSteps: ['1']
+    })
+    
+    var steps = [
+      {
+        title: 'Add your Pre-Wedding Shoots',
+        //text: 'Chaining swal2 modals is easy'
+      }
+    ]
+    
+    swal.queue(steps).then((result) => {
+      swal.resetDefaults()
+    
+      if (result.value) {
+        swal({
+          title: 'All done!',
+          html:
+            'Your Pre-Wedding Shoots: <pre>' +
+              JSON.stringify(result.value) +
+            '</pre>',
+          confirmButtonText: 'Lovely!'
+        })
+      }
+    })
+  }
+  PhotosDelivered(){
+    swal.setDefaults({
+      input: 'text',
+      confirmButtonText: 'Next &rarr;',
+      showCancelButton: true,
+      //progressSteps: ['1']
+    })
+    
+    var steps = [
+      {
+        title: 'Add your Photos Delivered',
+        //text: 'Chaining swal2 modals is easy'
+      }
+    ]
+    
+    swal.queue(steps).then((result) => {
+      swal.resetDefaults()
+    
+      if (result.value) {
+        swal({
+          title: 'All done!',
+          html:
+            'Your Photos Delivered: <pre>' +
+              JSON.stringify(result.value) +
+            '</pre>',
+          confirmButtonText: 'Lovely!'
+        })
+      }
+    })
+  }
+  Experience(){
+    swal.setDefaults({
+      input: 'text',
+      confirmButtonText: 'Next &rarr;',
+      showCancelButton: true,
+      //progressSteps: ['1']
+    })
+    
+    var steps = [
+      {
+        title: 'Add your Experience',
+        //text: 'Chaining swal2 modals is easy'
+      }
+    ]
+    
+    swal.queue(steps).then((result) => {
+      swal.resetDefaults()
+    
+      if (result.value) {
+        swal({
+          title: 'All done!',
+          html:
+            'Your  Experience: <pre>' +
+              JSON.stringify(result.value) +
+            '</pre>',
+          confirmButtonText: 'Lovely!'
+        })
+      }
+    })
+  }
+  Payments(){
+    swal.setDefaults({
+      input: 'text',
+      confirmButtonText: 'Next &rarr;',
+      showCancelButton: true,
+      //progressSteps: ['1']
+    })
+    
+    var steps = [
+      {
+        title: 'Add your Payments Terms',
+        //text: 'Chaining swal2 modals is easy'
+      }
+    ]
+    
+    swal.queue(steps).then((result) => {
+      swal.resetDefaults()
+    
+      if (result.value) {
+        swal({
+          title: 'All done!',
+          html:
+            'Your  Payments Terms: <pre>' +
+              JSON.stringify(result.value) +
+            '</pre>',
+          confirmButtonText: 'Lovely!'
+        })
+      }
+    })
   }
 
-  // Open content with dark section
-  openContent() {
-      const modalRef = this.modalService.open(NgbdModalContent);
-      modalRef.componentInstance.name = 'World';
+  Travel(){
+    swal.setDefaults({
+      input: 'text',
+      confirmButtonText: 'Next &rarr;',
+      showCancelButton: true,
+      //progressSteps: ['1']
+    })
+    
+    var steps = [
+      {
+        title: 'Add your Travel Costs',
+        //text: 'Chaining swal2 modals is easy'
+      }
+    ]
+    
+    swal.queue(steps).then((result) => {
+      swal.resetDefaults()
+    
+      if (result.value) {
+        swal({
+          title: 'All done!',
+          html:
+            'Your Travel Costs: <pre>' +
+              JSON.stringify(result.value) +
+            '</pre>',
+          confirmButtonText: 'Lovely!'
+        })
+      }
+    })
   }
-
-
 }
 

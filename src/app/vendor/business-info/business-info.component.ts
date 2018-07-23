@@ -1,7 +1,7 @@
 import { Component, OnInit , ViewEncapsulation, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
-
+//import * as alertFunctions from '../../shared/data/sweet-alerts';
+import swal from 'sweetalert2';
 @Component({
   selector: 'ngbd-modal-content',
   template: `
@@ -30,8 +30,166 @@ export class NgbdModalContent {
   styleUrls: ['./business-info.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class BusinessInfoComponent implements OnInit {
 
+
+
+
+export class BusinessInfoComponent implements OnInit {
+// Confirm Button Action
+
+description(){
+  swal.setDefaults({
+    input: 'textarea',
+    confirmButtonText: 'Next &rarr;',
+    showCancelButton: true,
+    //progressSteps: ['1']
+  })
+  
+  var steps = [
+    {
+      title: 'Add your Description link',
+      //text: 'Chaining swal2 modals is easy'
+    }
+  ]
+  
+  swal.queue(steps).then((result) => {
+    swal.resetDefaults()
+  
+    if (result.value) {
+      swal({
+        title: 'All done!',
+        html:
+          'Your description: <pre>' +
+            JSON.stringify(result.value) +
+          '</pre>',
+        confirmButtonText: 'Lovely!'
+      })
+    }
+  })
+}
+Pinterest(){
+  swal.setDefaults({
+    input: 'text',
+    confirmButtonText: 'Next &rarr;',
+    showCancelButton: true,
+    //progressSteps: ['1']
+  })
+  
+  var steps = [
+    {
+      title: 'Add your Pinterest link',
+      //text: 'Chaining swal2 modals is easy'
+    }
+  ]
+  
+  swal.queue(steps).then((result) => {
+    swal.resetDefaults()
+  
+    if (result.value) {
+      swal({
+        title: 'All done!',
+        html:
+          'Your link: <pre>' +
+            JSON.stringify(result.value) +
+          '</pre>',
+        confirmButtonText: 'Lovely!'
+      })
+    }
+  })
+}
+Google(){
+
+  swal.setDefaults({
+    input: 'text',
+    confirmButtonText: 'Next &rarr;',
+    showCancelButton: true,
+    //progressSteps: ['1']
+  })
+  
+  var steps = [
+    {
+      title: 'Add your Google link',
+      //text: 'Chaining swal2 modals is easy'
+    }
+  ]
+  
+  swal.queue(steps).then((result) => {
+    swal.resetDefaults()
+  
+    if (result.value) {
+      swal({
+        title: 'All done!',
+        html:
+          'Your link: <pre>' +
+            JSON.stringify(result.value) +
+          '</pre>',
+        confirmButtonText: 'Lovely!'
+      })
+    }
+  })
+}
+Instagram(){
+
+  swal.setDefaults({
+    input: 'text',
+    confirmButtonText: 'Next &rarr;',
+    showCancelButton: true,
+    //progressSteps: ['1']
+  })
+  
+  var steps = [
+    {
+      title: 'Add your Instagram link',
+      //text: 'Chaining swal2 modals is easy'
+    }
+  ]
+  
+  swal.queue(steps).then((result) => {
+    swal.resetDefaults()
+  
+    if (result.value) {
+      swal({
+        title: 'All done!',
+        html:
+          'Your link: <pre>' +
+            JSON.stringify(result.value) +
+          '</pre>',
+        confirmButtonText: 'Lovely!'
+      })
+    }
+  })
+}
+  // Prompt Function
+  promptFunction(){
+    swal.setDefaults({
+      input: 'text',
+      confirmButtonText: 'Next &rarr;',
+      showCancelButton: true,
+      //progressSteps: ['1']
+    })
+    
+    var steps = [
+      {
+        title: 'Add your Facebook link',
+        //text: 'Chaining swal2 modals is easy'
+      }
+    ]
+    
+    swal.queue(steps).then((result) => {
+      swal.resetDefaults()
+    
+      if (result.value) {
+        swal({
+          title: 'All done!',
+          html:
+            'Your link: <pre>' +
+              JSON.stringify(result.value) +
+            '</pre>',
+          confirmButtonText: 'Lovely!'
+        })
+      }
+    })
+  }
 xyz:string = 'www.facebook.com'
 xyy:string = 'www.pinterest.com'
 xyx:string = 'www.google.com'
@@ -87,3 +245,5 @@ abc(event){
 
 
 }
+
+

@@ -2,6 +2,26 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+//calender 
+
+import { CommonModule } from "@angular/common";
+import { NgbModalModule, NgbDatepickerModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { CalendarModule, CalendarDateFormatter } from 'angular-calendar';
+import { DateTimePickerComponent } from './vendor/calendertable/date-time-picker.component';
+
+//indox of vendor
+import { QuillModule } from 'ngx-quill'
+
+
+
+
+
+
+
+
+
+
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from "./shared/shared.module";
@@ -81,7 +101,7 @@ import { BudgetComponent } from './userpannel/userboard/budget/budget.component'
 import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
 import { CalendertableComponent } from './vendor/calendertable/calendertable.component';
 import { CreateEventComponent } from './vendor/create-event/create-event.component';
-
+import { MessageComponent } from './vendor/message/message.component';
 import { AlbumviewComponent } from './vendor/albumview/albumview.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -156,7 +176,9 @@ export function getAuthServiceConfigs() {
         BudgetComponent,
         CalendertableComponent,
         CreateEventComponent,
-        AlbumviewComponent
+        AlbumviewComponent,
+        DateTimePickerComponent,
+        MessageComponent
 
   ],
     imports: [
@@ -168,6 +190,14 @@ export function getAuthServiceConfigs() {
         UiSwitchModule ,
         HttpClientModule,
         SocialLoginModule,
+        //inbox
+        QuillModule ,
+        //calender
+        CommonModule,
+        CalendarModule.forRoot(),
+        NgbModalModule.forRoot(),
+        NgbDatepickerModule.forRoot(),
+        NgbTimepickerModule.forRoot(),
         ToastrModule.forRoot(),
         NgbModule.forRoot(),
         TranslateModule.forRoot({
@@ -181,6 +211,7 @@ export function getAuthServiceConfigs() {
             apiKey: 'AIzaSyBr5_picK8YJK7fFR2CPzTVMj6GG1TtRGo'
         })
     ],
+
     providers: [
         AuthService,
         AuthGuard,

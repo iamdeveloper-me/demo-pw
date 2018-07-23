@@ -138,9 +138,14 @@ margin-top: 10px!important;
 .third_row{
    margin-top: 30px;
 }
+.zoom_effect {
+    position: relative;
+    transition: all .25s;
+}
+.zoom_effect img{border-radius:5px;}
 .zoom_effect:hover {
-    -ms-transform: scale(1.5); /* IE 9 */
-    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    ms-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
     transform: scale(1.1); 
 }
 
@@ -165,10 +170,6 @@ margin-top: 10px!important;
 
 
   @media(max-width: 767px){
-
-    .photo_gallery{
-      margin-top: 190px;
-    }
     .firt_row .col-md-3{
       margin-bottom: 20px;
     }

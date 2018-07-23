@@ -1,3 +1,5 @@
+
+
 <!-- Card Dark -->
 <div id="wrapper" class="toggled">
     <div id="sidebar-wrapper">
@@ -23,62 +25,12 @@
                                     </div>
                             </div>  
                    
-                      <h4 _ngcontent-c4="" class="card-title">General Information</h4>
-                      <div class="col-lg-12 editbtn">
-                        <h4 class="text-right col-lg-12">
-                          <i class="material-icons" (click)="open(content)"> edit</i></h4>
-                          
-                        <input type="checkbox" class="form-control" id="checker">
-                      </div>
-                      <div class="card-body align_10px_left">
-                          <div class="card-block ">
-                              <ng-template #content let-c="close" let-d="dismiss">
-                                  <div class="modal-header">
-                                      <h4 class="modal-title">Modal title</h4>
-                                      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                                      <span aria-hidden="true">&times;</span>
-                                      </button>
-                                  </div>
-                                  <div class="modal-body ">
-                                      
-                                      <label>Company Name</label>
-                                      <input type="text" name="pqr" class="form-control" [(ngModel)]="CompanyName" >
-                                      <label> Company Title</label>
-              
-                                      <input type="text" name="pqr" class="form-control" [(ngModel)]="CompanyTitle" >  
-                                      <input type="text" name="pqr" class="form-control" [(ngModel)]="Country" >                                  
-                                      <label>Country</label>
-                              
-
-
-                                      <label>City</label>
-                                      <input type="text" name="pqr" class="form-control" [(ngModel)]="City" >
-                                      <label>Address</label>
-                                      <input type="text" name="pqr" class="form-control" [(ngModel)]="Address" >
-                                      <label>Postalcode</label>
-                                      <input type="text" name="pqr" class="form-control" [(ngModel)]="Postalcode" >
-                                      <label>access_time</label>
-                                      <input type="text" name="pqr" class="form-control" [(ngModel)]="access_time" >
-                                      <label>Phone Number</label>
-                                      <input type="text" name="pqr" class="form-control" [(ngModel)]="PhoneNumber" >
-                                      
-                                     
-                                  </div>
-                                  <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
-                                  </div>
-                              </ng-template>
-      
-                            </div>
-                      </div>
-                    </div>
-                     
-                    
-               
-                   
+                      <h4 _ngcontent-c4="" class="card-title">General Information{{obj}}</h4>
+                    </div>    
                     <div _ngcontent-c4="" class="card-body">
                       <form _ngcontent-c4="" novalidate class="ng-untouched ng-pristine ng-valid">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 border_squar">
+
                         <div class="custom-form">
                           <div class="text-center bg-form col-md-4 border_left_div2">
                             <div class="img-section"> <img src="../../assets/img/deco4.jpg" class="infoimg img-responsive" alt="Profile picture"> <span class="fake-icon-edit" id="PicUpload" style="color: #ffffff;"> 
@@ -102,114 +54,107 @@
                                          
                                         </div>
                                         {{PhoneNumber}}
+
                                       </div>
-                                    </div>
+                                      <div class="col-lg-12 col-md-12 pad_left_0px">
+                                          <input type="text" class="form-control form-input martop0px" value="Photography, Vediography" placeholder="Company Title" disabled id="companytitle">
+                                          {{CompanyTitle}}
+                                      </div>
+                                      <div class="col-lg-12 text_left phone_icon1">
+                                            <div class="col-lg-12 col-md-12">
+                                  
+                                                <span class="glyphicon glyphicon-earphone phone_icon " id="phone-function" (click)="phone()">
 
 
-                         
-                          </div>
-                          
-                          
-                          <div class="col-lg-4 col-md-4 text_left border_left_div">
-                           
-                           
-                              <span class="glyphicon glyphicon-map-marker acce_time"></span>
-                            
-                          <div class=" nopadd weekboxinput">
-                            
-                              <div>Country</div>
-                                <div class="">
-                                : {{Country}}  <i class="material-icons edit_btn"> edit</i>
-                                </div>
-                              
-                           
-                                <div >City</div>
-                                <div class="">
-                                :  {{City}}
-                                </div>
-                          
-                          
-                                <div >Postal Code</div>
-                                <div class="">
-                                : {{Postalcode}}
-                                </div>
-                            
-                           
-                                <div >Address</div>
-                                <div class="">
-                                : {{Address}}
-                                  </div>
-                            
-                      
-                          </div> 
-
-                          
-
-                          </div>
-                        
-                          <div class="col-lg-4 col-md-4 text_left border_left_div1">
-                           
-                            <span class="acce_time"> <i _ngcontent-c0="" class="material-icons">access_time</i>   </span> 
-                            <div class=" nopadd weekboxinput">
-                              <div >Sunday </div>
-                              <div > 
-                                <input type="text" class="form-control form-input martop0px" value="Closed" placeholder="Time" disabled id="suntime">
-                                <i class="material-icons edit_btn1" > edit</i>
+                                                </span>
+                                                <div class=" nopadd">
+                                                  <input type="text" class="form-control form-input martop0px" value="+91-00000000" placeholder="Phone Number" disabled id="phone1">
+                                                  <input type="text" class="form-control form-input martop0px" value="+91-00000000" placeholder="Phone Number" disabled id="phone2">
+                                                
+                                                </div>
+                                                {{PhoneNumber}}
+                                              </div>
+                                      </div>              
+                            </div>   
+                            <div class="col-lg-4 col-md-4 text_left border_left_div">
+                                <span class="glyphicon glyphicon-map-marker acce_time" ></span>
+                                <div class=" nopadd weekboxinput">
+                                  
+                                    <div>Country</div>
+                                      <div class="">
+                                      : {{Country}}  <i class="material-icons edit_btn" id="address-function" (click)="address()"> edit</i>
+                                      </div>
+                                    
                                 
-                              </div>
-                              <div class="clearfix"></div>
-                              <div >Monday</div>
-                              <div >
-                                <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="montime">
-                              </div>
-                              <div class="clearfix"></div>
-                              <div >Tuesday</div>
-                              <div >
-                                <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="tuetime">
-                              </div>
-                              <div class="clearfix"></div>
-                              <div >Webnesday</div>
-                              <div >
-                                <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="wedtime">
-                              </div>
-                              <div class="clearfix"></div>
-                              <div >Thursday</div>
-                              <div >
-                                <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="thutime">
-                              </div>
-                              <div class="clearfix"></div>
-                              <div >Friday</div>
-                              <div >
-                                <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="fritime">
-                              </div>
-                              <div class="clearfix"></div>
-                              <div >Saturday</div>
-                              <div >
-                                <input type="text" class="form-control form-input martop0px" value="Closed" placeholder="Time" disabled id="sattime">
-                              </div>
-                              <div class="clearfix"></div>
-                            </div>
+                                      <div >City</div>
+                                      <div class="">
+                                      :  {{City}}
+                                      </div>
+                                
+                                
+                                      <div >Postal Code</div>
+                                      <div class="">
+                                      : {{Postalcode}}
+                                      </div>
+                                  
+                                
+                                      <div >Address</div>
+                                      <div class="">
+                                      : {{Address}}
+                                        </div>
+                                  
                             
-                            <div class="col-lg-12 col-md-12 text-center" style="display: none;">
-                              <button class="btn btn-info btn-lg custom-btn" id="submit" disabled><span class="glyphicon glyphicon-save"></span> Save</button>
-                            </div> 
-                           
-                          </div>
-
-                          <!-- <div class="col-lg-2 text_left">
-                              <div class="col-lg-12 col-md-12">
-                    
-                                  <span class="glyphicon glyphicon-earphone"></span>
-                                  <div class=" nopadd">
-                                    <input type="text" class="form-control form-input martop0px" value="+91-00000000" placeholder="Phone Number" disabled id="phone1">
-                                    <input type="text" class="form-control form-input martop0px" value="+91-00000000" placeholder="Phone Number" disabled id="phone2">
-                                   
-                                  </div>
-                                  {{PhoneNumber}}
                                 </div>
-                          </div> -->
-                          
-                        </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 text_left border_left_div1">
+                            
+                              <span class="acce_time"> <i _ngcontent-c0="" class="material-icons">access_time</i>   </span> 
+                              <div class=" nopadd weekboxinput">
+                                <div >Sunday </div>
+                                <div > 
+                                  <input type="text" class="form-control form-input martop0px" value="Closed" placeholder="Time" disabled id="suntime">
+                                  <i class="material-icons edit_btn1" id="access-function" (click)="access()" > edit</i>
+                                  
+                                </div>
+                                <div class="clearfix"></div>
+                                <div >Monday</div>
+                                <div >
+                                  <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="montime">
+                                </div>
+                                <div class="clearfix"></div>
+                                <div >Tuesday</div>
+                                <div >
+                                  <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="tuetime">
+                                </div>
+                                <div class="clearfix"></div>
+                                <div >Webnesday</div>
+                                <div >
+                                  <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="wedtime">
+                                </div>
+                                <div class="clearfix"></div>
+                                <div >Thursday</div>
+                                <div >
+                                  <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="thutime">
+                                </div>
+                                <div class="clearfix"></div>
+                                <div >Friday</div>
+                                <div >
+                                  <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="fritime">
+                                </div>
+                                <div class="clearfix"></div>
+                                <div >Saturday</div>
+                                <div >
+                                  <input type="text" class="form-control form-input martop0px" value="Closed" placeholder="Time" disabled id="sattime">
+                                </div>
+                                <div class="clearfix"></div>
+                              </div>
+                              
+                              <div class="col-lg-12 col-md-12 text-center" style="display: none;">
+                                <button class="btn btn-info btn-lg custom-btn" id="submit" disabled><span class="glyphicon glyphicon-save"></span> Save</button>
+                              </div> 
+                            
+                            </div>
+                          </div>
                         </div>
                       </form>
                     </div>

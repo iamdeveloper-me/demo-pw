@@ -894,7 +894,3 @@ export class InboxService {
             ]
         )
     ];
-
-
-
-}

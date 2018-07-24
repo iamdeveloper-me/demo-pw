@@ -11,7 +11,11 @@ import { DateTimePickerComponent } from './vendor/calendertable/date-time-picker
 
 //indox of vendor
 import { QuillModule } from 'ngx-quill'
+//vendorcharts
 
+import { ChartsModule } from 'ng2-charts';
+import { ChartistModule} from 'ng-chartist';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 
@@ -103,7 +107,7 @@ import { CalendertableComponent } from './vendor/calendertable/calendertable.com
 import { CreateEventComponent } from './vendor/create-event/create-event.component';
 import { MessageComponent } from './vendor/message/message.component';
 import { AlbumviewComponent } from './vendor/albumview/albumview.component';
-
+import { StatisticsComponent } from './vendor/statistics/statistics.component';
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
   }
@@ -178,7 +182,8 @@ export function getAuthServiceConfigs() {
         CreateEventComponent,
         AlbumviewComponent,
         DateTimePickerComponent,
-        MessageComponent
+        MessageComponent,
+        StatisticsComponent
 
   ],
     imports: [
@@ -194,6 +199,10 @@ export function getAuthServiceConfigs() {
         QuillModule ,
         //calender
         CommonModule,
+        //charts 
+        ChartsModule,
+        ChartistModule,
+        NgxChartsModule,
         CalendarModule.forRoot(),
         NgbModalModule.forRoot(),
         NgbDatepickerModule.forRoot(),

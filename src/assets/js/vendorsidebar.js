@@ -2,3 +2,248 @@ $("#menu-toggle").click(function(e) {
     e.preventDefault();
     $("#wrapper").toggleClass("toggled");
 });
+
+
+//side hover colour change
+
+$("#dashboard").click(function(){
+    $("#dashboard").addClass("colour");
+    $("#Services").removeClass("colour");
+    $("#message").removeClass("colour");
+    $("#photo_album").removeClass("colour");
+    $("#play_circle_outline").removeClass("colour");
+    $("#stars").removeClass("colour");
+    $("#event_available").removeClass("colour");
+    $("#card_membership").removeClass("colour");
+    $("#Calender").removeClass("colour");
+    $("#Promotions").removeClass("colour");
+    $("#Statistics").removeClass("colour");
+    $("#account_circle").removeClass("colour");
+    $("#business").removeClass("colour");
+});
+  
+   
+$("#business").click(function(){
+  $("#business").addClass("colour");
+  $("#Services").removeClass("colour");
+  $("#message").removeClass("colour");
+  $("#photo_album").removeClass("colour");
+  $("#play_circle_outline").removeClass("colour");
+  $("#stars").removeClass("colour");
+  $("#event_available").removeClass("colour");
+  $("#card_membership").removeClass("colour");
+  $("#Calender").removeClass("colour");
+  $("#Promotions").removeClass("colour");
+  $("#Statistics").removeClass("colour");
+  $("#account_circle").removeClass("colour");
+  $("#dashboard").removeClass("colour");
+});
+
+
+  $("#location_on").click(function(){
+    $("#location_on").addClass("colour");
+    $("#Services").removeClass("colour");
+    $("#message").removeClass("colour");
+    $("#photo_album").removeClass("colour");
+    $("#play_circle_outline").removeClass("colour");
+    $("#stars").removeClass("colour");
+    $("#event_available").removeClass("colour");
+    $("#card_membership").removeClass("colour");
+    $("#Calender").removeClass("colour");
+    $("#Promotions").removeClass("colour");
+    $("#Statistics").removeClass("colour");
+    $("#account_circle").removeClass("colour");
+    $("#business").removeClass("colour");
+    $("#dashboard").removeClass("colour");
+});
+
+
+
+$("#Services").click(function(){
+  $("#Services").addClass("colour");
+  $("#location_on").removeClass("colour");
+  $("#message").removeClass("colour");
+  $("#photo_album").removeClass("colour");
+  $("#play_circle_outline").removeClass("colour");
+  $("#stars").removeClass("colour");
+  $("#event_available").removeClass("colour");
+  $("#card_membership").removeClass("colour");
+  $("#Calender").removeClass("colour");
+  $("#Promotions").removeClass("colour");
+  $("#Statistics").removeClass("colour");
+  $("#account_circle").removeClass("colour");
+  $("#business").removeClass("colour");
+  $("#dashboard").removeClass("colour");
+});
+
+
+$("#message").click(function(){
+$("#message").addClass("colour");
+$("#location_on").removeClass("colour");
+$("#Services").removeClass("colour");
+$("#photo_album").removeClass("colour");
+$("#play_circle_outline").removeClass("colour");
+$("#stars").removeClass("colour");
+$("#event_available").removeClass("colour");
+$("#card_membership").removeClass("colour");
+$("#Calender").removeClass("colour");
+$("#Promotions").removeClass("colour");
+$("#Statistics").removeClass("colour");
+$("#account_circle").removeClass("colour");
+$("#business").removeClass("colour");
+$("#dashboard").removeClass("colour");
+});
+
+$("#photo_album").click(function(){
+$("#photo_album").addClass("colour");
+$("#location_on").removeClass("colour");
+$("#Services").removeClass("colour");
+$("#message").removeClass("colour");
+$("#play_circle_outline").removeClass("colour");
+$("#stars").removeClass("colour");
+$("#event_available").removeClass("colour");
+$("#card_membership").removeClass("colour");
+$("#Calender").removeClass("colour");
+$("#Promotions").removeClass("colour");
+$("#Statistics").removeClass("colour");
+$("#account_circle").removeClass("colour");
+$("#business").removeClass("colour");
+$("#dashboard").removeClass("colour");
+});
+
+$("#play_circle_outline").click(function(){
+$("#play_circle_outline").addClass("colour");
+$("#location_on").removeClass("colour");
+    $("#Services").removeClass("colour");
+    $("#message").removeClass("colour");
+    $("#photo_album").removeClass("colour");
+    $("#stars").removeClass("colour");
+    $("#event_available").removeClass("colour");
+    $("#card_membership").removeClass("colour");
+    $("#Calender").removeClass("colour");
+    $("#Promotions").removeClass("colour");
+    $("#Statistics").removeClass("colour");
+    $("#account_circle").removeClass("colour");
+    $("#business").removeClass("colour");
+    $("#dashboard").removeClass("colour");
+});
+
+$("#stars").click(function(){
+$("#stars").addClass("colour");
+$("#location_on").removeClass("colour");
+$("#Services").removeClass("colour");
+$("#message").removeClass("colour");
+$("#photo_album").removeClass("colour");
+$("#play_circle_outline").removeClass("colour");
+$("#event_available").removeClass("colour");
+$("#card_membership").removeClass("colour");
+$("#Calender").removeClass("colour");
+$("#Promotions").removeClass("colour");
+$("#Statistics").removeClass("colour");
+$("#account_circle").removeClass("colour");
+$("#business").removeClass("colour");
+$("#dashboard").removeClass("colour");
+});
+
+$("#event_available").click(function(){
+$("#event_available").addClass("colour");
+$("#location_on").removeClass("colour");
+$("#Services").removeClass("colour");
+$("#message").removeClass("colour");
+$("#photo_album").removeClass("colour");
+$("#play_circle_outline").removeClass("colour");
+$("#stars").removeClass("colour");
+$("#card_membership").removeClass("colour");
+$("#Calender").removeClass("colour");
+$("#Promotions").removeClass("colour");
+$("#Statistics").removeClass("colour");
+$("#account_circle").removeClass("colour");
+$("#business").removeClass("colour");
+$("#dashboard").removeClass("colour");
+});
+
+$("#card_membership").click(function(){
+$("#card_membership").addClass("colour");
+$("#location_on").removeClass("colour");
+    $("#Services").removeClass("colour");
+    $("#message").removeClass("colour");
+    $("#photo_album").removeClass("colour");
+    $("#play_circle_outline").removeClass("colour");
+    $("#stars").removeClass("colour");
+    $("#event_available").removeClass("colour");
+    $("#Calender").removeClass("colour");
+    $("#Promotions").removeClass("colour");
+    $("#Statistics").removeClass("colour");
+    $("#account_circle").removeClass("colour");
+    $("#business").removeClass("colour");
+    $("#dashboard").removeClass("colour");
+});
+
+$("#Calender").click(function(){
+$("#Calender").addClass("colour");
+$("#location_on").removeClass("colour");
+$("#Services").removeClass("colour");
+$("#message").removeClass("colour");
+$("#photo_album").removeClass("colour");
+$("#play_circle_outline").removeClass("colour");
+$("#stars").removeClass("colour");
+$("#event_available").removeClass("colour");
+$("#card_membership").removeClass("colour");
+$("#Promotions").removeClass("colour");
+$("#Statistics").removeClass("colour");
+$("#account_circle").removeClass("colour");
+$("#business").removeClass("colour");
+$("#dashboard").removeClass("colour");
+});
+
+$("#Promotions").click(function(){
+$("#Promotions").addClass("colour");
+$("#location_on").removeClass("colour");
+$("#Services").removeClass("colour");
+$("#message").removeClass("colour");
+$("#photo_album").removeClass("colour");
+$("#play_circle_outline").removeClass("colour");
+$("#stars").removeClass("colour");
+$("#event_available").removeClass("colour");
+$("#card_membership").removeClass("colour");
+$("#Calender").removeClass("colour");
+$("#Statistics").removeClass("colour");
+$("#account_circle").removeClass("colour");
+$("#business").removeClass("colour");
+$("#dashboard").removeClass("colour");
+});
+
+$("#Statistics").click(function(){
+$("#Statistics").addClass("colour");
+$("#location_on").removeClass("colour");
+$("#Services").removeClass("colour");
+$("#message").removeClass("colour");
+$("#photo_album").removeClass("colour");
+$("#play_circle_outline").removeClass("colour");
+$("#stars").removeClass("colour");
+$("#event_available").removeClass("colour");
+$("#card_membership").removeClass("colour");
+$("#Calender").removeClass("colour");
+$("#Promotions").removeClass("colour");
+$("#account_circle").removeClass("colour");
+$("#business").removeClass("colour");
+$("#dashboard").removeClass("colour");
+});
+
+$("#account_circle").click(function(){
+$("#account_circle").addClass("colour");
+$("#location_on").removeClass("colour");
+$("#Services").removeClass("colour");
+$("#message").removeClass("colour");
+$("#photo_album").removeClass("colour");
+$("#play_circle_outline").removeClass("colour");
+$("#stars").removeClass("colour");
+$("#event_available").removeClass("colour");
+$("#card_membership").removeClass("colour");
+$("#Calender").removeClass("colour");
+$("#Promotions").removeClass("colour");
+$("#Statistics").removeClass("colour");
+$("#business").removeClass("colour");
+$("#dashboard").removeClass("colour");
+});
+

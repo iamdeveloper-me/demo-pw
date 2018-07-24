@@ -27,7 +27,7 @@ export class AlbumviewComponent implements OnInit {
    //    closeEffect: "none"
    //});
 
-});
+
    
   
   }

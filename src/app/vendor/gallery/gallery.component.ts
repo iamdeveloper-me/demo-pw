@@ -1,4 +1,4 @@
-import { OnInit ,ChangeDetectionStrategy} from '@angular/core';
+import {Component, OnInit ,ChangeDetectionStrategy} from '@angular/core';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { ViewEncapsulation, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';

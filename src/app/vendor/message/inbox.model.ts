@@ -99,3 +99,4 @@ export class Attachments {
     this.attachmentId = attachmentId;
     this.url = url;
   }
+}

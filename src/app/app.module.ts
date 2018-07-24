@@ -103,6 +103,7 @@ import { CalendertableComponent } from './vendor/calendertable/calendertable.com
 import { CreateEventComponent } from './vendor/create-event/create-event.component';
 import { MessageComponent } from './vendor/message/message.component';
 import { AlbumviewComponent } from './vendor/albumview/albumview.component';
+import { PromoteBusinessComponent } from './vendor/promote-business/promote-business.component';
 
 import { VedioviewComponent } from './vendor/vedioview/vedioview.component';
 export function createTranslateLoader(http: HttpClient) {
@@ -178,7 +179,7 @@ export function getAuthServiceConfigs() {
         CalendertableComponent,
         CreateEventComponent,
         AlbumviewComponent,
-
+        PromoteBusinessComponent,   
         VedioviewComponent,
 
         DateTimePickerComponent,

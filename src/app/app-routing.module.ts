@@ -46,7 +46,7 @@ import { CalendertableComponent } from './vendor/calendertable/calendertable.com
 import { CreateEventComponent } from './vendor/create-event/create-event.component';
 import { MessageComponent } from './vendor/message/message.component';
 import { AlbumviewComponent } from './vendor/albumview/albumview.component';
-
+import { PromoteBusinessComponent } from './vendor/promote-business/promote-business.component';
 import { VedioviewComponent } from './vendor/vedioview/vedioview.component';
 
 const appRoutes: Routes = [
@@ -92,6 +92,7 @@ const appRoutes: Routes = [
     { path: 'vendor/calender', component:  CalendertableComponent},
     { path: 'vendor/Message', component:  MessageComponent},
     { path: 'vendor/videoview', component:    VedioviewComponent},
+     { path: 'vendor/PromoteBusiness', component:    PromoteBusinessComponent},
 
   { path: 'User/vendor', component: VendorlistComponent },  
 

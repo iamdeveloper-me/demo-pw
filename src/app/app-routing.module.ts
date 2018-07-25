@@ -49,7 +49,10 @@ import { AlbumviewComponent } from './vendor/albumview/albumview.component';
 import { PromoteBusinessComponent } from './vendor/promote-business/promote-business.component';
 import { StatisticsComponent } from './vendor/statistics/statistics.component';
 
+
 import { VedioviewComponent } from './vendor/vedioview/vedioview.component';
+import { AllPromotionPageComponent } from './vendor/all-promotion-page/all-promotion-page.component';
+
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   
@@ -59,6 +62,7 @@ const appRoutes: Routes = [
   { path: 'home/gallery', component:  GalleryComponent  },
 
   { path: 'vendor/gallery', component: GalleryComponent  },
+  { path: 'vendor/allpromotion', component: AllPromotionPageComponent  },
 
   { path: 'home/vendor', component:  VendorComponent  },
   { path: 'home/photo', component: PhotoComponent },

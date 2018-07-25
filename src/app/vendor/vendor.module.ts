@@ -32,6 +32,7 @@ import { CalendertableComponent } from './calendertable/calendertable.component'
 import { CreateEventComponent } from './create-event/create-event.component';
 import { VedioviewComponent } from './vedioview/vedioview.component';
 import { PromoteBusinessComponent } from './promote-business/promote-business.component';
+import { AllPromotionPageComponent } from './all-promotion-page/all-promotion-page.component';
 
 
 
@@ -70,7 +71,8 @@ import { PromoteBusinessComponent } from './promote-business/promote-business.co
         CalendertableComponent,
         CreateEventComponent,
         VedioviewComponent,
-        PromoteBusinessComponent
+        PromoteBusinessComponent,
+        AllPromotionPageComponent
     ]
 })
 export class VendorModule { }

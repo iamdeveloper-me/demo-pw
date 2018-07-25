@@ -98,6 +98,7 @@ import { AlbumviewComponent } from './vendor/albumview/albumview.component';
 import { PromoteBusinessComponent } from './vendor/promote-business/promote-business.component';
 import { VedioviewComponent } from './vendor/vedioview/vedioview.component';
 import { StatisticsComponent } from './vendor/statistics/statistics.component';
+import { AllPromotionPageComponent } from './vendor/all-promotion-page/all-promotion-page.component';
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
   }
@@ -121,6 +122,7 @@ export function getAuthServiceConfigs() {
 @NgModule({
     declarations: [
         AppComponent,
+        AllPromotionPageComponent,
         BusinessInfoComponent,
         LocationComponent,
         FullLayoutComponent,

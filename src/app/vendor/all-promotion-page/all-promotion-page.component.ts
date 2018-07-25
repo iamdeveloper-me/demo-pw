@@ -1,5 +1,4 @@
-import {Input, Component, OnInit } from '@angular/core';
-import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { Input, Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -25,40 +24,23 @@ export class NgbdModalContent {
 
 }
 
+
 @Component({
-  selector: 'app-promote-business',
-  templateUrl: './promote-business.component.html',
-  styleUrls: ['./promote-business.component.scss']
+  selector: 'app-all-promotion-page',
+  templateUrl: './all-promotion-page.component.html',
+  styleUrls: ['./all-promotion-page.component.scss']
 })
-export class PromoteBusinessComponent implements OnInit {
-
-//accordian
- acc: any;
-  // Prevent panel toggle code
-  public beforeChange($event: NgbPanelChangeEvent) {
-    if ($event.panelId === '2') {
-      $event.preventDefault();
-    }
-    if ($event.panelId === '3' && $event.nextState === false) {
-      $event.preventDefault();
-    }
-  };
-  
-
+export class AllPromotionPageComponent implements OnInit {
   ngOnInit() {
-   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
-    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
-    $.getScript('./assets/js/vendorsidebar.js');
 
-
-
-    $(".close").click(function(){
-  alert("hi");
-        $(".alert").hide();
-     });
+        function myFunction() {
+          var popup = document.getElementById("myPopup");
+          popup.classList.toggle("show");
+      }
   }
+//model
 
-  closeResult: string;
+closeResult: string;
 
 constructor(private modalService: NgbModal) { }
 
@@ -92,7 +74,4 @@ openContent() {
     const modalRef = this.modalService.open(NgbdModalContent);
     modalRef.componentInstance.name = 'World';
 }
-
-
-
 }

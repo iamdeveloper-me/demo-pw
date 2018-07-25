@@ -46,7 +46,10 @@ import { CalendertableComponent } from './vendor/calendertable/calendertable.com
 import { CreateEventComponent } from './vendor/create-event/create-event.component';
 import { MessageComponent } from './vendor/message/message.component';
 import { AlbumviewComponent } from './vendor/albumview/albumview.component';
+import { PromoteBusinessComponent } from './vendor/promote-business/promote-business.component';
+import { StatisticsComponent } from './vendor/statistics/statistics.component';
 
+import { VedioviewComponent } from './vendor/vedioview/vedioview.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -75,6 +78,7 @@ const appRoutes: Routes = [
 
   { path: 'home/Advertise', component:  AdvertiseComponent },
 
+
     { path: 'vendor/dashboard', component:  DashboardComponent  },
     { path: 'vendor/albumview', component:  AlbumviewComponent  },
     { path: 'vendor/business', component:  BusinessInfoComponent  },
@@ -89,8 +93,10 @@ const appRoutes: Routes = [
     { path: 'vendor/membership', component:  MembershipComponent  },
     { path: 'vendor/calender', component:  CalendertableComponent},
     { path: 'vendor/Message', component:  MessageComponent},
-
-  { path: 'User/vendor', component: VendorlistComponent },  
+    { path: 'vendor/videoview', component:    VedioviewComponent},
+     { path: 'vendor/PromoteBusiness', component:    PromoteBusinessComponent},
+    { path: 'vendor/statistics', component:  StatisticsComponent},
+    { path: 'User/vendor', component: VendorlistComponent },  
   { path: 'User/Timeline', component: TimelineComponent },
   { path: 'User/Bookmarks', component: BookmarkComponent },
   { path: 'User/GuestList', component: GuestComponent },

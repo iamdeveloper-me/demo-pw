@@ -27,6 +27,9 @@ import { TermsandconComponent } from './termsandcon/termsandcon.component';
 import { CareersComponent } from './careers/careers.component';
 import { AdvertiseComponent } from './advertise/advertise.component';
 import { UserboardComponent } from './userpannel/userboard/userboard.component';
+import { InspirationsComponent } from './userpannel/userboard/inspirations/inspirations.component';
+import { UserReviewsComponent } from './userpannel/userboard/user-reviews/user-reviews.component';
+
 import { RegisterComponent} from './register/register.component';
 import { EventsComponent } from './events/events.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
@@ -46,7 +49,10 @@ import { CalendertableComponent } from './vendor/calendertable/calendertable.com
 import { CreateEventComponent } from './vendor/create-event/create-event.component';
 import { MessageComponent } from './vendor/message/message.component';
 import { AlbumviewComponent } from './vendor/albumview/albumview.component';
+<<<<<<< HEAD
 import { PromoteBusinessComponent } from './vendor/promote-business/promote-business.component';
+=======
+>>>>>>> mahima
 import { StatisticsComponent } from './vendor/statistics/statistics.component';
 
 import { VedioviewComponent } from './vendor/vedioview/vedioview.component';
@@ -93,14 +99,23 @@ const appRoutes: Routes = [
     { path: 'vendor/membership', component:  MembershipComponent  },
     { path: 'vendor/calender', component:  CalendertableComponent},
     { path: 'vendor/Message', component:  MessageComponent},
+<<<<<<< HEAD
     { path: 'vendor/videoview', component:    VedioviewComponent},
      { path: 'vendor/PromoteBusiness', component:    PromoteBusinessComponent},
     { path: 'vendor/statistics', component:  StatisticsComponent},
     { path: 'User/vendor', component: VendorlistComponent },  
+=======
+    { path: 'vendor/statistics', component:  StatisticsComponent},
+
+
+>>>>>>> mahima
   { path: 'User/Timeline', component: TimelineComponent },
+  { path: 'User/vendor', component: VendorlistComponent },  
   { path: 'User/Bookmarks', component: BookmarkComponent },
   { path: 'User/GuestList', component: GuestComponent },
   { path: 'User/Budget', component: BudgetComponent },
+  { path: 'User/Inspirations', component: InspirationsComponent },
+  { path: 'User/UserReviews', component: UserReviewsComponent },
 
   { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES, canActivate: [AuthGuard] },
   { path: '', component: ContentLayoutComponent, data: { title: 'content Views' }, children: CONTENT_ROUTES, canActivate: [AuthGuard] },

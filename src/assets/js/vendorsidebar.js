@@ -3,7 +3,7 @@ $("#menu-toggle").click(function(e) {
     $("#wrapper").toggleClass("toggled");
 });
 
-//side hover colour change
+
 if(window.location.pathname == '/vendor/dashboard' ) {
     $("#dashboard").addClass("colour");
     $("#Services").removeClass("colour");
@@ -18,8 +18,10 @@ if(window.location.pathname == '/vendor/dashboard' ) {
     $("#Statistics").removeClass("colour");
     $("#account_circle").removeClass("colour");
     $("#business").removeClass("colour");
+
 } else if(window.location.pathname == '/vendor/business') {
-    $("#business").addClass("colour");
+
+  $("#business").addClass("colour");
   $("#Services").removeClass("colour");
   $("#message").removeClass("colour");
   $("#photo_album").removeClass("colour");
@@ -115,28 +117,14 @@ if(window.location.pathname == '/vendor/dashboard' ) {
     $("#photo_album").removeClass("colour");
     $("#play_circle_outline").removeClass("colour");
     $("#stars").removeClass("colour");
-    $("#card_membership").removeClass("colour");
-    $("#Calender").removeClass("colour");
-    $("#Promotions").removeClass("colour");
-    $("#Statistics").removeClass("colour");
-    $("#account_circle").removeClass("colour");
-    $("#business").removeClass("colour");
-    $("#dashboard").removeClass("colour");
-} else if(window.location.pathname == '/vendor/mylisting') {
-    $("#event_available").addClass("colour");
-    $("#location_on").removeClass("colour");
-    $("#Services").removeClass("colour");
-    $("#message").removeClass("colour");
-    $("#photo_album").removeClass("colour");
-    $("#play_circle_outline").removeClass("colour");
-    $("#stars").removeClass("colour");
-    $("#card_membership").removeClass("colour");
-    $("#Calender").removeClass("colour");
-    $("#Promotions").removeClass("colour");
-    $("#Statistics").removeClass("colour");
-    $("#account_circle").removeClass("colour");
-    $("#business").removeClass("colour");
-    $("#dashboard").removeClass("colour");
+  $("#event_available").removeClass("colour");
+  $("#card_membership").removeClass("colour");
+  $("#Calender").removeClass("colour");
+  $("#Promotions").removeClass("colour");
+  $("#Statistics").removeClass("colour");
+  $("#account_circle").removeClass("colour");
+  $("#business").removeClass("colour");
+  $("#dashboard").removeClass("colour");
 } else if(window.location.pathname == '/vendor/membership') {
     $("#card_membership").addClass("colour");
     $("#location_on").removeClass("colour");
@@ -152,21 +140,6 @@ if(window.location.pathname == '/vendor/dashboard' ) {
         $("#account_circle").removeClass("colour");
         $("#business").removeClass("colour");
         $("#dashboard").removeClass("colour");
-} else if(window.location.pathname == '/vendor/calender') {
-    $("#Calender").addClass("colour");
-$("#location_on").removeClass("colour");
-$("#Services").removeClass("colour");
-$("#message").removeClass("colour");
-$("#photo_album").removeClass("colour");
-$("#play_circle_outline").removeClass("colour");
-$("#stars").removeClass("colour");
-$("#event_available").removeClass("colour");
-$("#card_membership").removeClass("colour");
-$("#Promotions").removeClass("colour");
-$("#Statistics").removeClass("colour");
-$("#account_circle").removeClass("colour");
-$("#business").removeClass("colour");
-$("#dashboard").removeClass("colour");
 } else if(window.location.pathname == '/vendor/PromoteBusiness') {
     $("#Promotions").addClass("colour");
     $("#location_on").removeClass("colour");
@@ -212,7 +185,21 @@ $("#dashboard").removeClass("colour");
     $("#Statistics").removeClass("colour");
     $("#business").removeClass("colour");
     $("#dashboard").removeClass("colour");
-} else{alert("there is no url ");}
-
+} else if(window.location.pathname == '/vendor/calender') {
+    $("#Calender").addClass("colour");
+    $("#location_on").removeClass("colour");
+    $("#Services").removeClass("colour");
+    $("#message").removeClass("colour");
+    $("#photo_album").removeClass("colour");
+    $("#play_circle_outline").removeClass("colour");
+    $("#stars").removeClass("colour");
+    $("#event_available").removeClass("colour");
+    $("#card_membership").removeClass("colour");
+    $("#account_circle").removeClass("colour");
+    $("#Promotions").removeClass("colour");
+    $("#Statistics").removeClass("colour");
+    $("#business").removeClass("colour");
+    $("#dashboard").removeClass("colour");
+}else{alert("there is no url ");}
 
 

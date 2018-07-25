@@ -124,10 +124,22 @@
                     <a class="nav-link js-scroll-trigger" routerLink="/home/events">Events</a>
                 </li>
               
-                <li class="nav-item">
+                <li class="nav-item" id="login">
                   <a  class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#MMM">LogIn</a>
                 </li>
-             
+                <li class="nav-item user" >
+                        <div ngbDropdown >
+                                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>General</button>
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                    <button class="dropdown-item">Join a Wedding</button><hr>
+                                    <button class="dropdown-item">Indox</button>
+                                    <button class="dropdown-item">Bookings</button>
+                                    <button class="dropdown-item">Settings</button>
+                                    <button class="dropdown-item">Download App</button>
+                                    <button class="dropdown-item">Logout</button>
+                                </div>
+                        </div>
+                </li>
             </ul> 
         </div>
     </div>
@@ -188,7 +200,7 @@
                                  <span class="focus-border"></span>
                              </div>   
                               <div class="text-center mt-2" >
-                                 <button class="btn btn-info">Log in <i class="fa 
+                                 <button class="btn btn-info" routerLink="../User/Timeline">Log in <i class="fa 
                                     fa-sign-in ml-1"></i></button>
                                      <p class="pt-1">
                                        <a  href="#" class="pink-text">Forgot Password</a></p>

@@ -9,7 +9,8 @@ export class GuestComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {  $("li").removeClass("user");
+  $("#login").hide();
   }
 
 }

@@ -9,7 +9,8 @@ export class VendorlistComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {  $("li").removeClass("user");
+  $("#login").hide();
   }
 
 }

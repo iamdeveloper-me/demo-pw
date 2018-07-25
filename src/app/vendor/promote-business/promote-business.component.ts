@@ -31,7 +31,6 @@ export class PromoteBusinessComponent implements OnInit {
 
 
     $(".close").click(function(){
-  alert("hi");
         $(".alert").hide();
      });
   }

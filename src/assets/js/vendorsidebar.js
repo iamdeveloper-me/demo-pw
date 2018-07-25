@@ -3,10 +3,8 @@ $("#menu-toggle").click(function(e) {
     $("#wrapper").toggleClass("toggled");
 });
 
-
 //side hover colour change
-
-$("#dashboard").click(function(){
+if(window.location.pathname == '/vendor/dashboard' ) {
     $("#dashboard").addClass("colour");
     $("#Services").removeClass("colour");
     $("#message").removeClass("colour");
@@ -20,11 +18,8 @@ $("#dashboard").click(function(){
     $("#Statistics").removeClass("colour");
     $("#account_circle").removeClass("colour");
     $("#business").removeClass("colour");
-});
-  
-   
-$("#business").click(function(){
-  $("#business").addClass("colour");
+} else if(window.location.pathname == '/vendor/business') {
+    $("#business").addClass("colour");
   $("#Services").removeClass("colour");
   $("#message").removeClass("colour");
   $("#photo_album").removeClass("colour");
@@ -37,10 +32,7 @@ $("#business").click(function(){
   $("#Statistics").removeClass("colour");
   $("#account_circle").removeClass("colour");
   $("#dashboard").removeClass("colour");
-});
-
-
-  $("#location_on").click(function(){
+} else if(window.location.pathname == '/vendor/location') {
     $("#location_on").addClass("colour");
     $("#Services").removeClass("colour");
     $("#message").removeClass("colour");
@@ -55,68 +47,12 @@ $("#business").click(function(){
     $("#account_circle").removeClass("colour");
     $("#business").removeClass("colour");
     $("#dashboard").removeClass("colour");
-});
-
-
-
-$("#Services").click(function(){
-  $("#Services").addClass("colour");
-  $("#location_on").removeClass("colour");
-  $("#message").removeClass("colour");
-  $("#photo_album").removeClass("colour");
-  $("#play_circle_outline").removeClass("colour");
-  $("#stars").removeClass("colour");
-  $("#event_available").removeClass("colour");
-  $("#card_membership").removeClass("colour");
-  $("#Calender").removeClass("colour");
-  $("#Promotions").removeClass("colour");
-  $("#Statistics").removeClass("colour");
-  $("#account_circle").removeClass("colour");
-  $("#business").removeClass("colour");
-  $("#dashboard").removeClass("colour");
-});
-
-
-$("#message").click(function(){
-$("#message").addClass("colour");
-$("#location_on").removeClass("colour");
-$("#Services").removeClass("colour");
-$("#photo_album").removeClass("colour");
-$("#play_circle_outline").removeClass("colour");
-$("#stars").removeClass("colour");
-$("#event_available").removeClass("colour");
-$("#card_membership").removeClass("colour");
-$("#Calender").removeClass("colour");
-$("#Promotions").removeClass("colour");
-$("#Statistics").removeClass("colour");
-$("#account_circle").removeClass("colour");
-$("#business").removeClass("colour");
-$("#dashboard").removeClass("colour");
-});
-
-$("#photo_album").click(function(){
-$("#photo_album").addClass("colour");
-$("#location_on").removeClass("colour");
-$("#Services").removeClass("colour");
-$("#message").removeClass("colour");
-$("#play_circle_outline").removeClass("colour");
-$("#stars").removeClass("colour");
-$("#event_available").removeClass("colour");
-$("#card_membership").removeClass("colour");
-$("#Calender").removeClass("colour");
-$("#Promotions").removeClass("colour");
-$("#Statistics").removeClass("colour");
-$("#account_circle").removeClass("colour");
-$("#business").removeClass("colour");
-$("#dashboard").removeClass("colour");
-});
-
-$("#play_circle_outline").click(function(){
-$("#play_circle_outline").addClass("colour");
-$("#location_on").removeClass("colour");
-    $("#Services").removeClass("colour");
+} else if(window.location.pathname == '/vendor/business-services') {
+    $("#Services").addClass("colour");
+    $("#location_on").removeClass("colour");
     $("#message").removeClass("colour");
     $("#photo_album").removeClass("colour");
+    $("#play_circle_outline").removeClass("colour");
     $("#stars").removeClass("colour");
     $("#event_available").removeClass("colour");
     $("#card_membership").removeClass("colour");
@@ -126,61 +62,98 @@ $("#location_on").removeClass("colour");
     $("#account_circle").removeClass("colour");
     $("#business").removeClass("colour");
     $("#dashboard").removeClass("colour");
-});
-
-$("#stars").click(function(){
-$("#stars").addClass("colour");
-$("#location_on").removeClass("colour");
-$("#Services").removeClass("colour");
-$("#message").removeClass("colour");
-$("#photo_album").removeClass("colour");
-$("#play_circle_outline").removeClass("colour");
-$("#event_available").removeClass("colour");
-$("#card_membership").removeClass("colour");
-$("#Calender").removeClass("colour");
-$("#Promotions").removeClass("colour");
-$("#Statistics").removeClass("colour");
-$("#account_circle").removeClass("colour");
-$("#business").removeClass("colour");
-$("#dashboard").removeClass("colour");
-});
-
-$("#event_available").click(function(){
-$("#event_available").addClass("colour");
-$("#location_on").removeClass("colour");
-$("#Services").removeClass("colour");
-$("#message").removeClass("colour");
-$("#photo_album").removeClass("colour");
-$("#play_circle_outline").removeClass("colour");
-$("#stars").removeClass("colour");
-$("#card_membership").removeClass("colour");
-$("#Calender").removeClass("colour");
-$("#Promotions").removeClass("colour");
-$("#Statistics").removeClass("colour");
-$("#account_circle").removeClass("colour");
-$("#business").removeClass("colour");
-$("#dashboard").removeClass("colour");
-});
-
-$("#card_membership").click(function(){
-$("#card_membership").addClass("colour");
-$("#location_on").removeClass("colour");
+} else if(window.location.pathname == '/vendor/Message') {
+    $("#message").addClass("colour");
+    $("#location_on").removeClass("colour");
     $("#Services").removeClass("colour");
-    $("#message").removeClass("colour");
     $("#photo_album").removeClass("colour");
     $("#play_circle_outline").removeClass("colour");
     $("#stars").removeClass("colour");
     $("#event_available").removeClass("colour");
+    $("#card_membership").removeClass("colour");
     $("#Calender").removeClass("colour");
     $("#Promotions").removeClass("colour");
     $("#Statistics").removeClass("colour");
     $("#account_circle").removeClass("colour");
     $("#business").removeClass("colour");
     $("#dashboard").removeClass("colour");
-});
-
-$("#Calender").click(function(){
-$("#Calender").addClass("colour");
+} else if(window.location.pathname == '/vendor/gallery') {
+    $("#photo_album").addClass("colour");
+    $("#location_on").removeClass("colour");
+    $("#Services").removeClass("colour");
+    $("#message").removeClass("colour");
+    $("#play_circle_outline").removeClass("colour");
+    $("#stars").removeClass("colour");
+    $("#event_available").removeClass("colour");
+    $("#card_membership").removeClass("colour");
+    $("#Calender").removeClass("colour");
+    $("#Promotions").removeClass("colour");
+    $("#Statistics").removeClass("colour");
+    $("#account_circle").removeClass("colour");
+    $("#business").removeClass("colour");
+    $("#dashboard").removeClass("colour");
+} else if(window.location.pathname == '/vendor/Videos') {
+    $("#play_circle_outline").addClass("colour");
+    $("#location_on").removeClass("colour");
+        $("#Services").removeClass("colour");
+        $("#message").removeClass("colour");
+        $("#photo_album").removeClass("colour");
+        $("#stars").removeClass("colour");
+        $("#event_available").removeClass("colour");
+        $("#card_membership").removeClass("colour");
+        $("#Calender").removeClass("colour");
+        $("#Promotions").removeClass("colour");
+        $("#Statistics").removeClass("colour");
+        $("#account_circle").removeClass("colour");
+        $("#business").removeClass("colour");
+        $("#dashboard").removeClass("colour");
+} else if(window.location.pathname == '/vendor/mylisting') {
+    $("#event_available").addClass("colour");
+    $("#location_on").removeClass("colour");
+    $("#Services").removeClass("colour");
+    $("#message").removeClass("colour");
+    $("#photo_album").removeClass("colour");
+    $("#play_circle_outline").removeClass("colour");
+    $("#stars").removeClass("colour");
+    $("#card_membership").removeClass("colour");
+    $("#Calender").removeClass("colour");
+    $("#Promotions").removeClass("colour");
+    $("#Statistics").removeClass("colour");
+    $("#account_circle").removeClass("colour");
+    $("#business").removeClass("colour");
+    $("#dashboard").removeClass("colour");
+} else if(window.location.pathname == '/vendor/mylisting') {
+    $("#event_available").addClass("colour");
+    $("#location_on").removeClass("colour");
+    $("#Services").removeClass("colour");
+    $("#message").removeClass("colour");
+    $("#photo_album").removeClass("colour");
+    $("#play_circle_outline").removeClass("colour");
+    $("#stars").removeClass("colour");
+    $("#card_membership").removeClass("colour");
+    $("#Calender").removeClass("colour");
+    $("#Promotions").removeClass("colour");
+    $("#Statistics").removeClass("colour");
+    $("#account_circle").removeClass("colour");
+    $("#business").removeClass("colour");
+    $("#dashboard").removeClass("colour");
+} else if(window.location.pathname == '/vendor/membership') {
+    $("#card_membership").addClass("colour");
+    $("#location_on").removeClass("colour");
+        $("#Services").removeClass("colour");
+        $("#message").removeClass("colour");
+        $("#photo_album").removeClass("colour");
+        $("#play_circle_outline").removeClass("colour");
+        $("#stars").removeClass("colour");
+        $("#event_available").removeClass("colour");
+        $("#Calender").removeClass("colour");
+        $("#Promotions").removeClass("colour");
+        $("#Statistics").removeClass("colour");
+        $("#account_circle").removeClass("colour");
+        $("#business").removeClass("colour");
+        $("#dashboard").removeClass("colour");
+} else if(window.location.pathname == '/vendor/calender') {
+    $("#Calender").addClass("colour");
 $("#location_on").removeClass("colour");
 $("#Services").removeClass("colour");
 $("#message").removeClass("colour");
@@ -194,56 +167,52 @@ $("#Statistics").removeClass("colour");
 $("#account_circle").removeClass("colour");
 $("#business").removeClass("colour");
 $("#dashboard").removeClass("colour");
-});
+} else if(window.location.pathname == '/vendor/PromoteBusiness') {
+    $("#Promotions").addClass("colour");
+    $("#location_on").removeClass("colour");
+    $("#Services").removeClass("colour");
+    $("#message").removeClass("colour");
+    $("#photo_album").removeClass("colour");
+    $("#play_circle_outline").removeClass("colour");
+    $("#stars").removeClass("colour");
+    $("#event_available").removeClass("colour");
+    $("#card_membership").removeClass("colour");
+    $("#Calender").removeClass("colour");
+    $("#Statistics").removeClass("colour");
+    $("#account_circle").removeClass("colour");
+    $("#business").removeClass("colour");
+    $("#dashboard").removeClass("colour");
+} else if(window.location.pathname == '/vendor/statistics') {
+    $("#Statistics").addClass("colour");
+    $("#location_on").removeClass("colour");
+    $("#Services").removeClass("colour");
+    $("#message").removeClass("colour");
+    $("#photo_album").removeClass("colour");
+    $("#play_circle_outline").removeClass("colour");
+    $("#stars").removeClass("colour");
+    $("#event_available").removeClass("colour");
+    $("#card_membership").removeClass("colour");
+    $("#Calender").removeClass("colour");
+    $("#Promotions").removeClass("colour");
+    $("#account_circle").removeClass("colour");
+    $("#business").removeClass("colour");
+    $("#dashboard").removeClass("colour");
+} else if(window.location.pathname == '/vendor/editprofile') {
+    $("#account_circle").addClass("colour");
+    $("#location_on").removeClass("colour");
+    $("#Services").removeClass("colour");
+    $("#message").removeClass("colour");
+    $("#photo_album").removeClass("colour");
+    $("#play_circle_outline").removeClass("colour");
+    $("#stars").removeClass("colour");
+    $("#event_available").removeClass("colour");
+    $("#card_membership").removeClass("colour");
+    $("#Calender").removeClass("colour");
+    $("#Promotions").removeClass("colour");
+    $("#Statistics").removeClass("colour");
+    $("#business").removeClass("colour");
+    $("#dashboard").removeClass("colour");
+} else{alert("there is no url ");}
 
-$("#Promotions").click(function(){
-$("#Promotions").addClass("colour");
-$("#location_on").removeClass("colour");
-$("#Services").removeClass("colour");
-$("#message").removeClass("colour");
-$("#photo_album").removeClass("colour");
-$("#play_circle_outline").removeClass("colour");
-$("#stars").removeClass("colour");
-$("#event_available").removeClass("colour");
-$("#card_membership").removeClass("colour");
-$("#Calender").removeClass("colour");
-$("#Statistics").removeClass("colour");
-$("#account_circle").removeClass("colour");
-$("#business").removeClass("colour");
-$("#dashboard").removeClass("colour");
-});
 
-$("#Statistics").click(function(){
-$("#Statistics").addClass("colour");
-$("#location_on").removeClass("colour");
-$("#Services").removeClass("colour");
-$("#message").removeClass("colour");
-$("#photo_album").removeClass("colour");
-$("#play_circle_outline").removeClass("colour");
-$("#stars").removeClass("colour");
-$("#event_available").removeClass("colour");
-$("#card_membership").removeClass("colour");
-$("#Calender").removeClass("colour");
-$("#Promotions").removeClass("colour");
-$("#account_circle").removeClass("colour");
-$("#business").removeClass("colour");
-$("#dashboard").removeClass("colour");
-});
-
-$("#account_circle").click(function(){
-$("#account_circle").addClass("colour");
-$("#location_on").removeClass("colour");
-$("#Services").removeClass("colour");
-$("#message").removeClass("colour");
-$("#photo_album").removeClass("colour");
-$("#play_circle_outline").removeClass("colour");
-$("#stars").removeClass("colour");
-$("#event_available").removeClass("colour");
-$("#card_membership").removeClass("colour");
-$("#Calender").removeClass("colour");
-$("#Promotions").removeClass("colour");
-$("#Statistics").removeClass("colour");
-$("#business").removeClass("colour");
-$("#dashboard").removeClass("colour");
-});
 

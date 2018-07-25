@@ -14,5 +14,5 @@ export class VendorsidebarComponent implements OnInit {
     $.getScript('./assets/js/vendorsidebar.js');
     }
   
-
+ 
 }

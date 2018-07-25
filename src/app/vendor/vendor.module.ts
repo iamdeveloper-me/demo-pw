@@ -24,7 +24,7 @@ import { VideosComponent } from './videos/videos.component';
 import { PromotionsComponent } from './promotions/promotions.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { MyAccountComponent } from './my-account/my-account.component';
-import { MessageComponent } from './message/message.component';s
+import { MessageComponent } from './message/message.component';
 import { ReviewComponent } from './review/review.component';
 import { EventComponent } from './event/event.component';
 import { BusinessServicesComponent } from './business-services/business-services.component';
@@ -32,6 +32,7 @@ import { CalendertableComponent } from './calendertable/calendertable.component'
 import { CreateEventComponent } from './create-event/create-event.component';
 import { VedioviewComponent } from './vedioview/vedioview.component';
 import { PromoteBusinessComponent } from './promote-business/promote-business.component';
+import { CreatePromotionComponent } from './create-promotion/create-promotion.component';
 
 
 
@@ -70,7 +71,8 @@ import { PromoteBusinessComponent } from './promote-business/promote-business.co
         CalendertableComponent,
         CreateEventComponent,
         VedioviewComponent,
-        PromoteBusinessComponent
+        PromoteBusinessComponent,
+        CreatePromotionComponent
     ]
 })
 export class VendorModule { }

@@ -80,6 +80,14 @@ import { CareersComponent } from './careers/careers.component';
 import { AdvertiseComponent } from './advertise/advertise.component';
 import { UserpannelComponent } from './userpannel/userpannel.component';
 import { UserboardComponent } from './userpannel/userboard/userboard.component';
+import { InspirationsComponent } from './userpannel/userboard/inspirations/inspirations.component';
+import { UserReviewsComponent } from './userpannel/userboard/user-reviews/user-reviews.component';
+import { UserbannerComponent } from './userpannel/userboard/userbanner/userbanner.component';
+
+
+
+
+
 import { AllcategoryComponent } from './allcategory/allcategory.component';
 import { SupplierByCityComponent } from './supplier-by-city/supplier-by-city.component';
 import { SupplierByCateComponent } from './supplier-by-cate/supplier-by-cate.component';
@@ -175,8 +183,10 @@ export function getAuthServiceConfigs() {
         VedioviewComponent,
         DateTimePickerComponent,
         MessageComponent,
-        StatisticsComponent
-
+        StatisticsComponent,
+        UserReviewsComponent,
+        InspirationsComponent,
+        UserbannerComponent
 
   ],
     imports: [

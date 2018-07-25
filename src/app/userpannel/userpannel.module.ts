@@ -13,6 +13,9 @@ import { GuestComponent } from './userboard/guest/guest.component';
 import { BudgetComponent } from './userboard/budget/budget.component';
 import { VendorlistComponent } from './userboard/vendorlist/vendorlist.component';
 import { ToolComponent } from './userboard/tool/tool.component';
+import { InspirationsComponent } from './userboard/inspirations/inspirations.component';
+import { UserReviewsComponent } from './userboard/user-reviews/user-reviews.component';
+import { UserbannerComponent } from './userboard/userbanner/userbanner.component';
 
 
 
@@ -39,6 +42,9 @@ import { ToolComponent } from './userboard/tool/tool.component';
         BudgetComponent,
         VendorlistComponent,
         ToolComponent,
+        InspirationsComponent,
+        UserReviewsComponent,
+        UserbannerComponent,
         ],
     providers: [],
 })

@@ -9,7 +9,13 @@ export class TimelineComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { $("div").click(function(){
+    
+    $("div").removeClass( "modal-backdrop");
+  });  
+  $("li").removeClass("user");
+  $("#login").hide();
 
+  }
+ 
 }

@@ -10,6 +10,9 @@ export class BudgetComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
+    $("li").removeClass("user");
+    $("#login").hide();
   }
 
 }

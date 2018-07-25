@@ -10,6 +10,8 @@ export class BookmarkComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $("li").removeClass("user");
+    $("#login").hide();
   }
 
 }

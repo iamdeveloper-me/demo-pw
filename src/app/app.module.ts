@@ -55,6 +55,7 @@ import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.com
 import { EditprofileComponent } from './vendor/editprofile/editprofile.component';
 import { ReviewsComponent } from './vendor/reviews/reviews.component';
 import { MembershipComponent } from './vendor/membership/membership.component';
+import { CreatePromotionComponent } from './vendor/create-promotion/create-promotion.component';
 
 import {
     SocialLoginModule,
@@ -130,6 +131,7 @@ export function getAuthServiceConfigs() {
     declarations: [
         AppComponent,
         BusinessInfoComponent,
+        CreatePromotionComponent,
         LocationComponent,
         FullLayoutComponent,
         ContentLayoutComponent,

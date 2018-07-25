@@ -185,6 +185,7 @@ if(window.location.pathname == '/vendor/dashboard' ) {
     $("#Statistics").removeClass("colour");
     $("#business").removeClass("colour");
     $("#dashboard").removeClass("colour");
+
 } else if(window.location.pathname == '/vendor/calender') {
     $("#Calender").addClass("colour");
     $("#location_on").removeClass("colour");
@@ -201,5 +202,6 @@ if(window.location.pathname == '/vendor/dashboard' ) {
     $("#business").removeClass("colour");
     $("#dashboard").removeClass("colour");
 }else{alert("there is no url ");}
+
 
 

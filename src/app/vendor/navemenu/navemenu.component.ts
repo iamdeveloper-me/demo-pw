@@ -19,6 +19,7 @@ export class NavemenuComponent implements OnInit {
       $(this).toggleClass('cross');
      $('.blackoverlaymobile').toggleClass('blockmobile');
     $('#page-content-wrapper').toggleClass('overhidden');
+     $('#wrapper').toggleClass('toggled');
     });
 
     $('.blackoverlaymobile').on('click', function(){
@@ -27,6 +28,7 @@ export class NavemenuComponent implements OnInit {
      $('.togglebtnmenu').toggleClass('cross');
       $('.blackoverlaymobile').toggleClass('blockmobile');
       $('#page-content-wrapper').toggleClass('overhidden');
+       $('#wrapper').toggleClass('toggled');
     });
 });
 

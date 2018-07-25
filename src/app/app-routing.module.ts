@@ -56,6 +56,7 @@ import { PromoteBusinessComponent } from './vendor/promote-business/promote-busi
 import { StatisticsComponent } from './vendor/statistics/statistics.component';
 
 import { VedioviewComponent } from './vendor/vedioview/vedioview.component';
+import { CreatePromotionComponent } from './vendor/create-promotion/create-promotion.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -66,7 +67,6 @@ const appRoutes: Routes = [
   { path: 'home/gallery', component:  GalleryComponent  },
 
   { path: 'vendor/gallery', component: GalleryComponent  },
-
   { path: 'home/vendor', component:  VendorComponent  },
   { path: 'home/photo', component: PhotoComponent },
   { path: 'home/tips', component: TipsComponent },
@@ -84,7 +84,7 @@ const appRoutes: Routes = [
 
   { path: 'home/Advertise', component:  AdvertiseComponent },
 
-
+    { path: 'vendor/creatpromo', component:  CreatePromotionComponent  },
     { path: 'vendor/dashboard', component:  DashboardComponent  },
     { path: 'vendor/albumview', component:  AlbumviewComponent  },
     { path: 'vendor/business', component:  BusinessInfoComponent  },

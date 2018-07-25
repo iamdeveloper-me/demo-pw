@@ -33,10 +33,7 @@ import { CreateEventComponent } from './create-event/create-event.component';
 import { VedioviewComponent } from './vedioview/vedioview.component';
 import { PromoteBusinessComponent } from './promote-business/promote-business.component';
 import { CreatePromotionComponent } from './create-promotion/create-promotion.component';
-
-
-
-
+import { AllPromotionPageComponent } from './all-promotion-page/all-promotion-page.component';
 
 @NgModule({
     imports: [
@@ -72,7 +69,9 @@ import { CreatePromotionComponent } from './create-promotion/create-promotion.co
         CreateEventComponent,
         VedioviewComponent,
         PromoteBusinessComponent,
-        CreatePromotionComponent
+        CreatePromotionComponent,
+        AllPromotionPageComponent
+
     ]
 })
 export class VendorModule { }

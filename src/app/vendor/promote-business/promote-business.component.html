@@ -123,7 +123,7 @@
   								<span class="graytext">Impressions</span>
   							</td>
   							<td>
-  								<a href="" class="btn btn-raised btn-secondary">
+  								<a (click)="open(content)" class="btn btn-raised btn-secondary">
   									View Result
   								</a>
   							</td></tr>
@@ -145,13 +145,13 @@
   								<span class="graytext">Impressions</span>
   							</td>
   							<td>
-  								<a href="" class="btn btn-raised btn-secondary">
+  								<a (click)="open(content)" class="btn btn-raised btn-secondary">
   									View Result
   								</a>
   							</td></tr>
   							
   					</table>
-  					<div class="text-center"><a href="#" class="btn btn-flat btn-link">See All > </a></div>
+  					<div class="text-center"><a routerLink="../allpromotion" class="btn btn-flat btn-link">See All > </a></div>
   				</div>
   			</div>
   		</div>
@@ -320,12 +320,93 @@ class
   	</div>
   </section>
 
-
-
-
-
-
    </div>
+
+
+   <ng-template #content let-c="close" let-d="dismiss">
+   
+		<!-- <div class="modal-header" style="background-color: white">
+
+		  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div> -->
+	 
+		  <div class="container-fluid pop_head border_top_none" style="background-color: white">
+			   <div class="">
+				  <div class="col-md-4">
+					   <strong> 5,157</strong>
+
+					   <p>People Reached</p>
+				  </div>
+				  <div class="col-md-4">
+					 <span class="text-center"> <strong> 2</strong>  </span> 
+					  <p>Impressions</p>
+				 </div>
+				 <div class="col-md-4">
+				  <strong>22.58</strong>
+				  <p>Total Spend</p>
+			 </div>
+		   </div>
+		  </div>
+
+		  <div class="container-fluid pop_head bord_top">
+			<div class="watch_latr">
+				<span><i class="material-icons">watch_later </i> </span>    
+				<span class="promo_span">This promotion will run for <strong>14 days </strong> .</span>
+			</div>
+			<div>
+				<span><i class="material-icons">attach_money </i> </span>    
+			<span class="promo_span">Your total budget for this promotion is <strong>30.00 PLN </strong> .</span>
+			</div>
+		  
+		   </div>
+		 
+		   <div class="container-fluid pop_head bord_top1" style="background-color: white">
+			<div class="progres_bar">
+				<span class="phot_clic"> <strong>Photo Clicks </strong>  </span>
+				  <div class="progress-bar progress progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="70" style="width:100%">   
+				  </div> <span class="number_clics"><strong> 54 </strong> </span> 
+
+			</div>
+
+			<div class="progres_bar">
+				<span class="phot_clic"> <strong>Link Clicks </strong>  </span>
+				  <div class="progress-bar progress progress-bar-green" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="70" style="width:100%">   
+				  </div> <span class="number_clics"><strong> 1 </strong> </span> 
+
+			</div>
+
+			<div class="progres_bar">
+				<span class="phot_clic"> <strong> Page likes </strong>  </span>
+				  <div class="progress-bar progress progress-bar-voilet" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="70" style="width:100%">   
+				  </div> <span class="number_clics"><strong> 25 </strong> </span> 
+
+			</div>
+
+			<div class="progres_bar">
+				<span class="phot_clic"> <strong>  Phost likes  </strong> </span>
+				  <div class="progress-bar progress progress-bar-orang" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="70" style="width:100%">   
+				  </div> <span class="number_clics"> <strong> 2 </strong>  </span> 
+
+			</div>
+
+
+			 
+
+		   </div>
+
+		   <div class="container-fluid pop_head Finish ">
+			  <h4>Finishes in 4 days </h4> 
+			
+			 </div>
+
+
+	   
+			 
+	   
+
+</ng-template>
 <app-foot></app-foot>
 
 </div>

@@ -26,6 +26,7 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 export class NgbdModalContent {
     @Input() name;
     constructor(public activeModal: NgbActiveModal) { }
+
 }
 
 

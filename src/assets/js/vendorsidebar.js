@@ -201,7 +201,7 @@ if(window.location.pathname == '/vendor/dashboard' ) {
     $("#Statistics").removeClass("colour");
     $("#business").removeClass("colour");
     $("#dashboard").removeClass("colour");
-}else{alert("there is no url ");}
+}else{}
 
 
 

@@ -50,7 +50,6 @@ import { PromoteBusinessComponent } from './vendor/promote-business/promote-busi
 import { StatisticsComponent } from './vendor/statistics/statistics.component';
 
 import { VedioviewComponent } from './vendor/vedioview/vedioview.component';
-
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   

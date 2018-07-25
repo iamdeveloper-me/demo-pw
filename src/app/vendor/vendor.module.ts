@@ -24,7 +24,7 @@ import { VideosComponent } from './videos/videos.component';
 import { PromotionsComponent } from './promotions/promotions.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { MyAccountComponent } from './my-account/my-account.component';
-import { MessageComponent } from './message/message.component';s
+import { MessageComponent } from './message/message.component';
 import { ReviewComponent } from './review/review.component';
 import { EventComponent } from './event/event.component';
 import { BusinessServicesComponent } from './business-services/business-services.component';

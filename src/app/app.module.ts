@@ -92,6 +92,14 @@ import { CareersComponent } from './careers/careers.component';
 import { AdvertiseComponent } from './advertise/advertise.component';
 import { UserpannelComponent } from './userpannel/userpannel.component';
 import { UserboardComponent } from './userpannel/userboard/userboard.component';
+import { InspirationsComponent } from './userpannel/userboard/inspirations/inspirations.component';
+import { UserReviewsComponent } from './userpannel/userboard/user-reviews/user-reviews.component';
+import { UserbannerComponent } from './userpannel/userboard/userbanner/userbanner.component';
+
+
+
+
+
 import { AllcategoryComponent } from './allcategory/allcategory.component';
 import { SupplierByCityComponent } from './supplier-by-city/supplier-by-city.component';
 import { SupplierByCateComponent } from './supplier-by-cate/supplier-by-cate.component';
@@ -108,6 +116,8 @@ import { CreateEventComponent } from './vendor/create-event/create-event.compone
 import { MessageComponent } from './vendor/message/message.component';
 import { AlbumviewComponent } from './vendor/albumview/albumview.component';
 import { StatisticsComponent } from './vendor/statistics/statistics.component';
+
+
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
   }
@@ -183,8 +193,10 @@ export function getAuthServiceConfigs() {
         AlbumviewComponent,
         DateTimePickerComponent,
         MessageComponent,
-        StatisticsComponent
-
+        StatisticsComponent,
+        UserReviewsComponent,
+        InspirationsComponent,
+        UserbannerComponent
   ],
     imports: [
         BrowserAnimationsModule,

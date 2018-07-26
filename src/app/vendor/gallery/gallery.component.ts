@@ -1,4 +1,4 @@
-import { Component, OnInit ,ChangeDetectionStrategy} from '@angular/core';
+import {Component, OnInit ,ChangeDetectionStrategy} from '@angular/core';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { ViewEncapsulation, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -26,6 +26,7 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 export class NgbdModalContent {
     @Input() name;
     constructor(public activeModal: NgbActiveModal) { }
+
 }
 
 

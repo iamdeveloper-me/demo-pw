@@ -16,16 +16,6 @@ import { QuillModule } from 'ngx-quill'
 import { ChartsModule } from 'ng2-charts';
 import { ChartistModule} from 'ng-chartist';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-
-
-
-
-
-
-
-
-
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from "./shared/shared.module";
@@ -35,8 +25,6 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StoreModule } from '@ngrx/store';
-
-
 import { AppComponent } from './app.component';
 import { ContentLayoutComponent } from "./layouts/content/content-layout.component";
 import { FullLayoutComponent } from "./layouts/full/full-layout.component";
@@ -67,6 +55,7 @@ import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.com
 import { EditprofileComponent } from './vendor/editprofile/editprofile.component';
 import { ReviewsComponent } from './vendor/reviews/reviews.component';
 import { MembershipComponent } from './vendor/membership/membership.component';
+import { CreatePromotionComponent } from './vendor/create-promotion/create-promotion.component';
 
 import {
     SocialLoginModule,
@@ -115,9 +104,10 @@ import { CalendertableComponent } from './vendor/calendertable/calendertable.com
 import { CreateEventComponent } from './vendor/create-event/create-event.component';
 import { MessageComponent } from './vendor/message/message.component';
 import { AlbumviewComponent } from './vendor/albumview/albumview.component';
+import { PromoteBusinessComponent } from './vendor/promote-business/promote-business.component';
+import { VedioviewComponent } from './vendor/vedioview/vedioview.component';
 import { StatisticsComponent } from './vendor/statistics/statistics.component';
-
-
+import { AllPromotionPageComponent } from './vendor/all-promotion-page/all-promotion-page.component';
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
   }
@@ -141,7 +131,9 @@ export function getAuthServiceConfigs() {
 @NgModule({
     declarations: [
         AppComponent,
+        AllPromotionPageComponent,
         BusinessInfoComponent,
+        CreatePromotionComponent,
         LocationComponent,
         FullLayoutComponent,
         ContentLayoutComponent,
@@ -191,12 +183,15 @@ export function getAuthServiceConfigs() {
         CalendertableComponent,
         CreateEventComponent,
         AlbumviewComponent,
+        PromoteBusinessComponent,   
+        VedioviewComponent,
         DateTimePickerComponent,
         MessageComponent,
         StatisticsComponent,
         UserReviewsComponent,
         InspirationsComponent,
         UserbannerComponent
+
   ],
     imports: [
         BrowserAnimationsModule,

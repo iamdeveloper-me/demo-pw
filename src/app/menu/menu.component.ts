@@ -49,6 +49,7 @@ export class MenuComponent implements OnInit {
        $("#panel7").addClass( "in");
        $(".logintab").addClass( "active");
        $(".registertab").removeClass( "active");
+
      });
  
     
@@ -59,7 +60,8 @@ export class MenuComponent implements OnInit {
         $(".navbtntik").show(); 
         $(".navbar-toggler").removeClass("tik");
         $(".slidemenu").removeClass("outslide");
-        $(".slidemenu").addClass("inslide");  
+        $(".slidemenu").addClass("inslide"); 
+        $(".blackoverlaymain").addClass( "blockmobile"); 
 
     });
 
@@ -70,17 +72,20 @@ export class MenuComponent implements OnInit {
         $(".slidemenu").addClass("outslide");  
         setTimeout(function() { $(".slidemenu").removeClass("outslide") }, 500);
         $(".slidemenu").removeClass("inslide"); 
+        $(".blackoverlaymain").removeClass( "blockmobile"); 
+
     });
     
 
-       $(".nav-item").click(function(){
+       $(".nav-item, .blackoverlaymain").click(function(){
        //alert("hi");
         $(".navbar-toggler").show(); 
         $(".navbtntik").hide(); 
         $(".navbar-collapse").removeClass("in");
         $(".slidemenu").addClass("outslide");  
         setTimeout(function() { $(".slidemenu").removeClass("outslide") }, 500);
-        $(".slidemenu").removeClass("inslide"); 
+        $(".slidemenu").removeClass("inslide");
+        $(".blackoverlaymain").removeClass( "blockmobile");  
     });
     
 

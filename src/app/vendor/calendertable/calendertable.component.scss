@@ -64,6 +64,9 @@
   a:hover.navbar-brand {
     color: #fff;
   }
+  ngb-timepicker{
+  display:none!important;
+  }
   .navbar-brand img{
     max-width: 50px;
     max-height: 50px;
@@ -71,6 +74,7 @@
     margin-right: 10px;
     border-radius: 50%;
   }
+  .d-lg-block{display:inline-block!important;}
   .navbar-brand span{
     font-size: 14px;
     display: inherit;
@@ -108,4 +112,72 @@
         color: #ffffff!important;
         background:#e72e77!important;
     }
+
+  @media(max-width: 767px){
+     .d-lg-block{display:none!important;}
+     .modal-content{
+     max-width:90%;
+     }
+     }
   
+  
+//input
+.slidemenu{
+    left: 0px;
+    transition: 1s;
+}
+.inslide{
+    left:280px!important;
+    position: fixed;
+}
+:focus{outline: none;}
+.input-effect{position:relative; height: 33px; margin-bottom: 47px;}
+
+.input-effect .effect-16{
+    border: 0;
+    padding: 4px 0;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+    z-index: 2;
+    position: relative;
+    width: 100%;
+}
+.input-effect .effect-16 ~ label {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 7px;
+    color: #aaa;
+    transition: 0.3s;
+    z-index: 1;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+}
+.input-effect .effect-16 ~ .focus-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: rgb(240, 17, 140);
+    transition: 0.4s;
+}
+.input-effect textarea.effect-16 ~ .focus-border {
+    bottom: -24px;
+}
+.input-effect .effect-16:focus ~ label{
+    top: -16px;
+    font-size: 12px;
+    color:  rgb(240, 17, 140);
+    transition: 0.3s;
+}
+
+.input-effect .effect-16:focus ~ .focus-border{
+    width: 100%;
+    transition: 0.4s;
+
+}
+
+.align_left{
+    text-align: left;
+}

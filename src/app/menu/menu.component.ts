@@ -69,8 +69,8 @@ export class MenuComponent implements OnInit {
         $(".navbar-toggler").show(); 
         $(".navbtntik").hide(); 
         $(".navbar-collapse").removeClass("in");
-        $(".slidemenu").addClass("outslide");  
-        setTimeout(function() { $(".slidemenu").removeClass("outslide") }, 500);
+        // $(".slidemenu").addClass("outslide");  
+        // setTimeout(function() { $(".slidemenu").removeClass("outslide") }, 500);
         $(".slidemenu").removeClass("inslide"); 
         $(".blackoverlaymain").removeClass( "blockmobile"); 
 
@@ -101,7 +101,6 @@ export class MenuComponent implements OnInit {
     }
 
     
-    constructor( public _router:Router, private modalService: NgbModal) {}
 //loginpage
 loadScript(){ 
     $("#panel9").addClass( "in");
@@ -131,46 +130,22 @@ loadScript(){
    $(".customerlogin").show();
    }
 //end
+    
+remove(){
+    if(window.location.pathname == '/home' )
+    {     
+        $("body").removeClass( "modal-open");
+        $("body").css({ 'padding-right' : '' }); 
+   }
 
+}
 
+constructor( public _router:Router, private modalService: NgbModal) {}
     save() {
         //Do stuff
-       
         this._router.navigateByUrl('home/photo');
-        location.reload();
-       
+        location.reload();      
     }
-  closeResult: string;
-  // Open default modal
-  open(content) {
-      this.modalService.open(content).result.then((result) => {
-          this.closeResult = `Closed with: ${result}`;
-      }, (reason) => {
-          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      });
-  }
-
-  // This function is used in open
-  private getDismissReason(reason: any): string {
-      if (reason === ModalDismissReasons.ESC) {
-          return 'by pressing ESC';
-      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-          return 'by clicking on a backdrop';
-      } else {
-          return `with: ${reason}`;
-      }
-  }
-
-  // Open modal with dark section
-  openModal(customContent) {
-      this.modalService.open(customContent, { windowClass: 'dark-modal' });
-  }
-
-  // Open content with dark section
-  openContent() {
-      const modalRef = this.modalService.open(NgbdModalContent);
-      modalRef.componentInstance.name = 'World';
-  }
-
+ 
 
 }

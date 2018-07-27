@@ -88,7 +88,22 @@ export class MenuComponent implements OnInit {
         $(".blackoverlaymain").removeClass( "blockmobile");  
     });
     
-
+$(".tikright").click(function(){
+        $(".tool_icons").addClass("in");
+        $(".tikright").hide(); 
+        $(".tikrightclose").show();
+        $(".slidemenu").addClass("rtslide");
+         $(".slidemenu").removeClass("outslide");
+        $(".blackoverlaymain").addClass( "blockmobile"); 
+    });
+    $(".tikrightclose").click(function(){    
+        $(".tool_icons").removeClass("in");
+        $(".tikright").show(); 
+        $(".tikrightclose").hide();
+        $(".slidemenu").addClass("outslide");
+        $(".slidemenu").removeClass("rtslide");
+        $(".blackoverlaymain").removeClass( "blockmobile"); 
+    });
     $(window).scroll(function () {
     var sc = $(window).scrollTop()
     if (sc > 100) {

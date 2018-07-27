@@ -1,2 +1,176 @@
 
 #login{display: none;}
+.mainhead{
+	padding: 20px 0px;
+	display: inline-block;
+	width: 23.5%;
+	float: left;
+}
+
+.timeline{
+	position: relative;
+}
+
+/*Line*/
+.timeline>li::before{
+	content:'';
+	position: absolute;
+	width: 1px;
+	background-color: #E7E7E7;
+	top: 0;
+	bottom: 0;
+	left:5px;
+}
+/*Circle*/
+.timeline>li::after{
+    text-align: center;
+    padding-top:10px;
+	z-index: 10;
+	content:counter(item);
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	border:0px solid white;
+	background-color: #E7E7E7;
+	border-radius: 50%;
+	top:11px;
+	left:0px;
+	text-indent:-9999px;
+}
+.textareafocus{
+	bottom: -24px!important;
+}
+.pinkbtn{
+    border-radius: 0px;
+    border: 0px solid #fff;
+    background: #e72e77;
+    color: #fff;
+    height: 50px;
+    margin-top: 20px;
+}
+/*Content*/
+.timeline>li{
+	padding: 0px 0px 5px 20px;
+	margin-left: 0px;
+	position: relative;
+	list-style: none;
+	width:100%;
+	float:left;
+}
+.nopadd{
+	padding:0px;
+}
+.filterbox .badge{
+float: right;
+margin-top: 9px;
+font-size: 11px;
+padding: 2px 5px;
+}
+.martop0px{
+margin-top: 0px!important;
+}
+.martop15px{
+margin-top: 15px!important;
+}
+.card-title{
+padding: 5px 10px!important;
+}
+.selectbox{
+	margin-top: 15px;
+}
+.card-title span{
+font-size: 12px;
+display: block;
+width: 100%;
+line-height: 19px;
+}
+.boldtext{
+font-weight: bold;
+}
+.floatleft{
+	float: left;
+}
+.font12px{
+	font-size: 12px;
+}
+.font18px{
+	font-size:18px;
+}
+.marltrt10px{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.listdetail .card{
+	max-width: 30%;
+	margin:0px 1% 20px 1%;
+}
+.listdetail .card .btn-floating.halfway-fab{
+	right: 0px;
+	top:0px;
+	background: transparent!important;
+	box-shadow: none;
+}
+.filter-button{
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.filter .card-footer{
+	padding: 10px;
+}
+.filter .card-footer .tag{
+	display: block;
+}
+.icontikmik{
+position: absolute;
+right: 10px;
+bottom: 14px;
+color: #fff;
+}
+.filter-button i{
+	float: left;
+}
+.filterbtn{
+	display: none;
+}
+.reviewbtn{
+	padding: 0px;
+    float: right;
+    color: pink!important;
+    color: #e72e77;
+    background: none!important;
+}
+.martop25px{
+	margin-top: 25px;
+}
+@media(max-width:768px) {
+.filterbtn{
+	display:inherit;
+	margin-right: 10px;
+	margin: 20px 0px;
+    background: #e72e77;
+    color: #fff;
+    position: absolute;
+    right: 10px;
+    z-index: 999999;
+}
+.filterboxtik{
+	display: none;
+}
+.filterboxtik.in{
+	display: block;
+}
+.listdetail .card{
+	max-width: 100%;
+	margin:0px 0px 20px 0px;
+}
+.col-xs-9{
+	width: 75%!important;
+}
+.col-xs-3{
+	width: 25%!important;
+}
+.mainhead{
+	width: inherit;
+}
+
+}

@@ -16,12 +16,15 @@ export class DashboardComponent implements OnInit {
   
 
   $("div").click(function(){
-    
     $("div").removeClass( "modal-backdrop");
   });  
 
 
-
+  if(window.location.pathname == '/vendor/dashboard' )
+  { $("body").removeClass( "modal-open");
+   
+    $("body").css({ 'padding-right' : '' });
+  }
 
 
   var acc = document.getElementsByClassName("accordion");

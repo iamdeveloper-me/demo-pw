@@ -1,10 +1,4 @@
 <nav class="navbar navbar-expand-lg navbar-light  headernav" id="mainNav">
-   <!--Modal: Login / Register Form-->
-
- 
-
-<!--Modal: Login / Register Form-->
-
     <div class="container mrg_top_menu">
         <a class="navbar-brand js-scroll-trigger logo_icon" routerLink="../../home"> Perfect Wedding</a>
 
@@ -134,198 +128,192 @@
                 </li>
               
                 <li class="nav-item" id="login">
-                  <a  class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#MMM">LogIn</a>
+                  <a  class="nav-link js-scroll-trigger" data-toggle="modal" (click)="remove()" data-target="#MMM">LogIn</a>
                 </li>
                 <li class="nav-item user" >
-                        <div ngbDropdown >
-                                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>General</button>
-                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                    <button class="dropdown-item">Join a Wedding</button><hr>
-                                    <button class="dropdown-item">Indox</button>
-                                    <button class="dropdown-item">Bookings</button>
-                                    <button class="dropdown-item">Settings</button>
-                                    <button class="dropdown-item">Download App</button>
-                                    <button class="dropdown-item">Logout</button>
+                       
+                        <div class="header-joined">
+                                <a class="header-joined-inbox app-header-envelope-inbox" href="https://www.weddingwire.in/users-mailbox.php">
+                                    <i class="icon-header icon-header-nav-envelope"></i>
+                                    <span class=" app-header-inbox-counter"></span>
+                                </a>
+                                <div class="header-joined-container app-dropdown-toggle pointer">
+                                    <div class="header-joined-avatar">
+                                        <div>
+                                      <div class="avatar  ">    <div class="avatar-alias size-avatar-small ">
+                                    <svg class="avatar-generic" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMin slice">
+                                        <circle fill="#9AAAB0" cx="100" cy="100" r="100"></circle>
+                                        <text transform="translate(100,130)" y="0">
+                                            <tspan font-size="90" class="" fill="rgba(0,0,0,0.3)" text-anchor="middle">D</tspan>
+                                        </text>
+                                    </svg>
                                 </div>
-                        </div>
+                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="header-joined__toggle icon-header icon-header-nav-down"></div>
+                                    <div class="userMenu app-dropdown-toggle-layer" data-ajax="/user-LoggedMenuAjax.php" style="display:none;"></div>
+                                </div>
+                            </div>
+
                 </li>
             </ul> 
         </div>
     </div>
-  </nav>
+</nav>
 
   
   <div class="modal fade loginboxmodal " id="MMM" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
-
-
-            <div class="modal-dialog cascading-modal" role="document">
-               <!--Content-->
-               <div class="modal-content">
-                  <!--Modal cascading tabs-->
-                  <div class="modal-c-tabs text-right">
-                     <!-- Nav tabs -->
-                     <button type="button" class="btn waves-effect ml-auto closebtn" data-dismiss="modal">&times;</button>
-                     <ul class="nav nav-tabs tabs-2 light-blue darken-3 customerlogin" role="tablist">
-                        <li class="nav-item">
-                           <a class="nav-link active logintab" data-toggle="tab" href="#panel7" role="tab">
-                              <i class="fa fa-user mr-1"></i> Login
-                           </a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link registertab" data-toggle="tab" href="#panel8" role="tab" >
-                             <i class="fa fa-user-plus mr-1"></i> Register
-                           </a>
-                        </li>
-                     </ul>
-         
-         
-         
-                     <ul class="nav nav-tabs tabs-2 light-blue darken-3 vendorlogin" role="tablist" style="display:none;">
-                         <li class="nav-item">
-                            <a class="nav-link active logintab" data-toggle="tab" href="#panel7" role="tab">
-                               <i class="fa fa-user mr-1"></i> Vendor Login
-                            </a>
-                         </li>
-                      </ul>
-          
-         
-                     <!-- Tab panels -->
-                     <div class="tab-content">
-                        <!--Panel 7-->
-                        <div class="tab-pane fade in active" id="panel7" role="tabpanel">
-                           <!--Body-->
-                           <form role="form" action="" method="post" id="id7">
-                                 <div class="modal-body mb-1 align_left">
-           
-                              <div class="input-effect form-group md-form mt-3">
-                                 <input class="effect-16"  type="email" required="required" placeholder="">
-                                 <label>Your Email</label>
-                                 <span class="focus-border"></span>
-                             </div>   
-                             <div class="input-effect form-group md-form mt-3">
-                                 <input class="effect-16"   type="password" required="required"  placeholder="">
-                                 <label>Password</label>
-                                 <span class="focus-border"></span>
-                             </div>   
-                              <div class="text-center mt-2" >
-                                 <button class="btn btn-info" routerLink="../User/Timeline">Log in <i class="fa 
-                                    fa-sign-in ml-1"></i></button>
-                                     <p class="pt-1">
-                                       <a  href="#" class="pink-text">Forgot Password</a></p>
-                                     <p class="pt-1">Already have an account? 
-                                    <a data-toggle="tab" href="#panel8" role="tab" class="pink-text signup_click" >Sign Up</a>
-                                     </p>  
-         
-                              </div>
-                                 </div>
-                           </form>
-                          
-                           <!--Footer-->
-                             <div class="modal-footer ls_fot">
-                            
-                                    <div class="bordashpad">
-                                 Are you a vendor? <a (click)="loadScript()" class="btn btn-info">Business Sign In</a>
-                                 </div>
-                            
-                          </div>     
+    <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Modal cascading tabs-->
+            <div class="modal-c-tabs text-right">
+                <!-- Nav tabs -->
+                <button type="button" class="btn waves-effect ml-auto closebtn" data-dismiss="modal">&times;</button>
+                <ul class="nav nav-tabs tabs-2 light-blue darken-3 customerlogin" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active logintab" data-toggle="tab" href="#panel7" role="tab">
+                        <i class="fa fa-user mr-1"></i> Login
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link registertab" data-toggle="tab" href="#panel8" role="tab" >
+                        <i class="fa fa-user-plus mr-1"></i> Register
+                    </a>
+                </li>
+                </ul>
+                <ul class="nav nav-tabs tabs-2 light-blue darken-3 vendorlogin" role="tablist" style="display:none;">
+                    <li class="nav-item">
+                    <a class="nav-link active logintab" data-toggle="tab" href="#panel7" role="tab">
+                        <i class="fa fa-user mr-1"></i> Vendor Login
+                    </a>
+                    </li>
+                </ul>
+                <!-- Tab panels -->
+                <div class="tab-content">
+                <!--Panel 7-->
+                <div class="tab-pane fade in active" id="panel7" role="tabpanel">
+                    <!--Body-->
+                    <form role="form" action="" method="post" id="id7">
+                            <div class="modal-body mb-1 align_left">
+    
+                        <div class="input-effect form-group md-form mt-3">
+                            <input class="effect-16"  type="email" required="required" placeholder="">
+                            <label>Your Email</label>
+                            <span class="focus-border"></span>
+                        </div>   
+                        <div class="input-effect form-group md-form mt-3">
+                            <input class="effect-16"   type="password" required="required"  placeholder="">
+                            <label>Password</label>
+                            <span class="focus-border"></span>
+                        </div>   
+                        <div class="text-center mt-2" >
+                            <button class="btn btn-info" routerLink="../User/Timeline">Log in <i class="fa 
+                            fa-sign-in ml-1"></i></button>
+                                <p class="pt-1">
+                                <a  href="#" class="pink-text">Forgot Password</a></p>
+                                <p class="pt-1">Already have an account? 
+                            <a data-toggle="tab" href="#panel8" role="tab" class="pink-text signup_click" >Sign Up</a>
+                                </p>  
+    
                         </div>
-                        <!--/.Panel 7-->
-                        <!--Panel 8-->
-                         <div class="tab-pane fade" id="panel8" role="tabpanel">
-                           <!--Body-->
-                            <form role="form" action="" method="post" id="id8">
-                                <div class="modal-body mb-1 align_left">               
-                                 
-                                   <div class="input-effect form-group md-form mt-3">
-                                       <input class="effect-16"  type="email" required="required" placeholder="">
-                                       <label>Your Email</label>
-                                       <span class="focus-border"></span>
-                                   </div>   
-                                   <div class="input-effect form-group md-form mt-3">
-                                       <input class="effect-16"  type="password" required="required" placeholder="">
-                                       <label>Password</label>
-                                       <span class="focus-border"></span>
-                                   </div>  
-                                   <div class="input-effect form-group md-form mt-3">
-                                       <input class="effect-16"  type="password" required="required" placeholder="">
-                                       <label>Confirm Password</label>
-                                       <span class="focus-border"></span>
-                                   </div>  
-                                       
-                               
-                                    <div class="text-center form-sm mt-2">
-                                       <button class="btn btn-info">Sign up 
-                                     <i class="fa  fa-sign-in ml-1"></i>
-                                   </button>
-         
-         
-                                 <p class="pt-1">Already have an account? 
-                             <a data-toggle="tab" href="#panel7" role="tab" class="pink-text signin_click" >Log In</a></p>
-                                    </div>
-                                 </div>
-                            </form>
-         
-                
-                           <!--Footer-->
-                           <div class="modal-footer ls_fot">
-                               <div class="bordashpad">
-                                   Are you a vendor? <a (click)="loadScript()" class="btn btn-info">Business Sign In</a>
-                                   </div>
-                                  
-                              <!-- <button type="button" class="btn btn-outline-info 
-                                 waves-effect ml-auto" data-dismiss="modal">Close</button> -->
-                           </div>
-                         </div>
-         
-                         <div class="tab-pane fade" id="panel9" role="tabpanel">
-                         <form role="form" action="" method="post">
+                            </div>
+                    </form>
+                    
+                    <!--Footer-->
+                        <div class="modal-footer ls_fot">
+                    
+                            <div class="bordashpad">
+                            Are you a vendor? <a (click)="loadScript()" class="btn btn-info">Business Sign In</a>
+                            </div>
+                    
+                    </div>     
+                </div>
+                <!--/.Panel 7-->
+                <!--Panel 8-->
+                    <div class="tab-pane fade" id="panel8" role="tabpanel">
+                    <!--Body-->
+                        <form role="form" action="" method="post" id="id8">
+                            <div class="modal-body mb-1 align_left">               
+                                
+                                <div class="input-effect form-group md-form mt-3">
+                                    <input class="effect-16"  type="email" required="required" placeholder="">
+                                    <label>Your Email</label>
+                                    <span class="focus-border"></span>
+                                </div>   
+                                <div class="input-effect form-group md-form mt-3">
+                                    <input class="effect-16"  type="password" required="required" placeholder="">
+                                    <label>Password</label>
+                                    <span class="focus-border"></span>
+                                </div>  
+                                <div class="input-effect form-group md-form mt-3">
+                                    <input class="effect-16"  type="password" required="required" placeholder="">
+                                    <label>Confirm Password</label>
+                                    <span class="focus-border"></span>
+                                </div>  
+                                    
                             
-                          <div class="modal-body mb-1 align_left">
-         
-                             <div class="input-effect form-group md-form mt-3">
-                                 <input class="effect-16"  type="email" required="required" placeholder="">
-                                 <label>Your Email</label>
-                                 <span class="focus-border"></span>
-                             </div>   
-                             <div class="input-effect form-group md-form mt-3">
-                                 <input class="effect-16"   type="password" required="required"  placeholder="">
-                                 <label>Password</label>
-                                 <span class="focus-border"></span>
-                             </div>   
-                              
-                          
-                              <div class="text-center mt-2">
-                              <button class="btn btn-info vendor" routerLink="../vendor/dashboard" >Log in <i class="fa 
-                                 fa-sign-in ml-1"></i></button>
-         
-                                   <p class="pt-1"><a 
-                                 href="#" class="pink-text">Forgot Password</a></p>
-         
-                                   <p class="pt-1">Not a member? 
-                                     
-                                       <a  data-dismiss="modal" routerLink="../register" class="pink-text">Business Sign up</a>
-                           
+                                <div class="text-center form-sm mt-2">
+                                    <button class="btn btn-info">Sign up 
+                                    <i class="fa  fa-sign-in ml-1"></i>
+                                </button>
+        
+        
+                                <p class="pt-1">Already have an account? 
+                            <a data-toggle="tab" href="#panel7" role="tab" class="pink-text signin_click" >Log In</a></p>
+                                </div>
+                                </div>
+                        </form>
+                        <!--Footer-->
+                        <div class="modal-footer ls_fot">
+                            <div class="bordashpad">
+                                Are you a vendor? <a (click)="loadScript()" class="btn btn-info">Business Sign In</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="panel9" role="tabpanel">
+                        <form role="form" action="" method="post">
+                            <div class="modal-body mb-1 align_left">
+                                <div class="input-effect form-group md-form mt-3">
+                                    <input class="effect-16"  type="email" required="required" placeholder="">
+                                    <label>Your Email</label>
+                                    <span class="focus-border"></span>
+                                </div>   
+                                <div class="input-effect form-group md-form mt-3">
+                                    <input class="effect-16"   type="password" required="required"  placeholder="">
+                                    <label>Password</label>
+                                    <span class="focus-border"></span>
+                                </div>   
+                                <div class="text-center mt-2">
+                                   <button class="btn btn-info vendor" routerLink="../vendor/dashboard" >Log in <i class="fa 
+                                    fa-sign-in ml-1"></i></button>
+            
+                                    <p class="pt-1">
+                                        <a  href="#" class="pink-text">Forgot Password</a>
                                     </p>
-                           </div>
-                          </div>
-         
-                          <div class="modal-footer ls_fot">
-                          <div class="bordashpad" >
-                             Are you a Customer?    <a 
-                             data-toggle="tab" 
-                      role="tab"  class="btn btn-info" (click)="userin()"> Customer Sign in</a></div>
-         </div>
-                      </form>
-         </div>
-         
-         
-                        <!--/.Panel 8-->
-                     </div>
-                  </div>
-               </div>
-               <!--/.Content-->
+            
+                                    <p class="pt-1">Not a member? 
+                                        <a  data-dismiss="modal" routerLink="../register" class="pink-text">Business Sign up</a>
+                                    </p>
+                                </div>    
+                            </div>
+                            <div class="modal-footer ls_fot">
+                                <div class="bordashpad" >
+                                    Are you a Customer?   
+                                    <a  data-toggle="tab" role="tab"   class="btn btn-info" (click)="userin()"> 
+                                        Customer Sign in
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                <!--/.Panel 8-->
+                </div>
             </div>
-         </div>
+        </div>
+        <!--/.Content-->
+    </div>
+  </div>
 
 <router-outlet></router-outlet>

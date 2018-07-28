@@ -20,7 +20,7 @@ import swal from 'sweetalert2';
 `
 })
 
-export class NgbdModalContent {
+export class NgbduModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) { }
 }
@@ -239,7 +239,7 @@ abc(event){
 
   // Open content with dark section
   openContent() {
-      const modalRef = this.modalService.open(NgbdModalContent);
+      const modalRef = this.modalService.open(NgbduModalContent);
       modalRef.componentInstance.name = 'World';
   }
 

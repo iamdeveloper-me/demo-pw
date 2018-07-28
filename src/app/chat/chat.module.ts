@@ -8,7 +8,7 @@ import { VgBufferingModule } from 'videogular2/buffering';
 
 import { ChatRoutingModule } from "./chat-routing.module";
 
-import { ChatComponent } from "./chat.component";
+//import { ChatComponent } from "./chat.component";
 
 @NgModule({
     imports: [
@@ -20,7 +20,7 @@ import { ChatComponent } from "./chat.component";
         VgBufferingModule
     ],
     declarations: [
-        ChatComponent
+       // ChatComponent
     ]
 })
 export class ChatModule { }

@@ -20,7 +20,7 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
   `
 })
 
-export class NgbdModalContent {
+export class NgbdvedioModalContent {
     @Input() name;
     constructor(public activeModal: NgbActiveModal) { }
 }
@@ -77,7 +77,7 @@ export class VideosComponent implements OnInit {
 
   // Open content with dark section
   openContent() {
-      const modalRef = this.modalService.open(NgbdModalContent);
+      const modalRef = this.modalService.open(NgbdvedioModalContent);
       modalRef.componentInstance.name = 'World';
   }
 

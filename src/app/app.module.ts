@@ -44,9 +44,9 @@ import { LoginComponent } from './login/login.component';
 import { VendorcardComponent } from './vendorcard/vendorcard.component';
 import { VendorComponent } from './vendor/vendor.component';
 import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
-import { BusinessInfoComponent } from "./vendor/business-info/business-info.component";
+import { BusinessInfoComponent ,NgbduModalContent} from "./vendor/business-info/business-info.component";
 import { LocationComponent } from "./vendor/location/location.component";
-import { VideosComponent } from './vendor/videos/videos.component';
+import { VideosComponent ,NgbdvedioModalContent} from './vendor/videos/videos.component';
 
 import { MylistingComponent } from './vendor/mylisting/mylisting.component';
 import { NavemenuComponent } from './vendor/navemenu/navemenu.component';
@@ -68,7 +68,7 @@ import {RegisterComponent} from './register/register.component';
 
 import { SearchresultComponent } from './searchresult/searchresult.component';
 import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
-import { GalleryComponent } from './vendor/gallery/gallery.component';
+import { GalleryComponent ,NgbdgalleryModalContent } from './vendor/gallery/gallery.component';
 import { VendorsidebarComponent } from './vendor/vendorsidebar/vendorsidebar.component';
 import { PhotoComponent } from './photo/photo.component';
 import { TipsComponent } from './tips/tips.component';
@@ -104,10 +104,11 @@ import { CalendertableComponent } from './vendor/calendertable/calendertable.com
 import { CreateEventComponent } from './vendor/create-event/create-event.component';
 import { MessageComponent } from './vendor/message/message.component';
 import { AlbumviewComponent } from './vendor/albumview/albumview.component';
-import { PromoteBusinessComponent } from './vendor/promote-business/promote-business.component';
+import { PromoteBusinessComponent , NgbdpromotbusinessModalContent} from './vendor/promote-business/promote-business.component';
+
 import { VedioviewComponent } from './vendor/vedioview/vedioview.component';
 import { StatisticsComponent } from './vendor/statistics/statistics.component';
-import { AllPromotionPageComponent } from './vendor/all-promotion-page/all-promotion-page.component';
+import { AllPromotionPageComponent ,NgbdModalContent} from './vendor/all-promotion-page/all-promotion-page.component';
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
   }
@@ -131,8 +132,12 @@ export function getAuthServiceConfigs() {
 @NgModule({
     declarations: [
         AppComponent,
+        NgbdModalContent,
         AllPromotionPageComponent,
+
         BusinessInfoComponent,
+        NgbduModalContent,
+
         CreatePromotionComponent,
         LocationComponent,
         FullLayoutComponent,
@@ -152,7 +157,9 @@ export function getAuthServiceConfigs() {
         MyaccountComponent,
         EditprofileComponent,
         GalleryComponent,
+        NgbdgalleryModalContent ,  
         ReviewsComponent,
+
         VendorsidebarComponent,
         PhotoComponent,
         TipsComponent,
@@ -171,7 +178,10 @@ export function getAuthServiceConfigs() {
         AllcategoryComponent,
         SupplierByCityComponent,
         SupplierByCateComponent,
+
          VideosComponent,
+         NgbdvedioModalContent,
+
         BusinessServicesComponent,
         CategoryComponent,
         VendorlistComponent,
@@ -183,7 +193,10 @@ export function getAuthServiceConfigs() {
         CalendertableComponent,
         CreateEventComponent,
         AlbumviewComponent,
-        PromoteBusinessComponent,   
+
+        PromoteBusinessComponent,  
+        NgbdpromotbusinessModalContent,
+
         VedioviewComponent,
         DateTimePickerComponent,
         MessageComponent,
@@ -237,7 +250,8 @@ export function getAuthServiceConfigs() {
             useFactory: getAuthServiceConfigs
         }
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [NgbdModalContent]
 })
 export class AppModule {
 }

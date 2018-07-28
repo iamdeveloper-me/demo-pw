@@ -85,10 +85,29 @@ export class MenuComponent implements OnInit {
         $(".slidemenu").addClass("outslide");  
         setTimeout(function() { $(".slidemenu").removeClass("outslide") }, 500);
         $(".slidemenu").removeClass("inslide");
-        $(".blackoverlaymain").removeClass( "blockmobile");  
+        $(".blackoverlaymain").removeClass( "blockmobile"); 
+        $(".tool_icons").removeClass("in"); 
+        $(".tikright").show(); 
+        $(".slidemenu").removeClass("rtslide");
+        $(".tikrightclose").hide();
     });
     
-
+$(".tikright").click(function(){
+        $(".tool_icons").addClass("in");
+        $(".tikright").hide(); 
+        $(".tikrightclose").show();
+        $(".slidemenu").addClass("rtslide");
+         $(".slidemenu").removeClass("outslide");
+        $(".blackoverlaymain").addClass( "blockmobile"); 
+    });
+    $(".tikrightclose").click(function(){    
+        $(".tool_icons").removeClass("in");
+        $(".tikright").show(); 
+        $(".tikrightclose").hide();
+        $(".slidemenu").addClass("outslide");
+        $(".slidemenu").removeClass("rtslide");
+        $(".blackoverlaymain").removeClass( "blockmobile"); 
+    });
     $(window).scroll(function () {
     var sc = $(window).scrollTop()
     if (sc > 100) {

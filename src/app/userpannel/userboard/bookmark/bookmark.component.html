@@ -1,7 +1,385 @@
 <app-menu></app-menu>
 <app-tool></app-tool>
-<div style="margin-left: 47%;margin-top: 10%;">
-        checklist
-      </div>  
-      <app-foot></app-foot>
+<div class="container-fluid">
+	<div class="col-sm-12">
+		<h2 class="mainhead">CheckList</h2>
+
+     
+
+<button class="btn addtaskbtn" (click)="open(content)">
+			<i class="material-icons">add_circle_outline</i>
+			New Task
+		</button>
+
+		<button class="btn addtaskbtn filterbtn">
+			<i class="material-icons">
+filter_list
+</i>
+		
+		</button>
+	</div>
+    <div>
+        <div class="col-sm-3 col-md-3 filterbox filterboxtik">
+        	<div class="card" style="margin-top:0PX;">
+        		<div class="card-body" >
+        			<div class="px-3 py-3">
+        				<h2>BY STATUS</h2>
+        				<a href="#"><span class="active"></span> Done <span class="badge badge-pill badge-default">1</span></a>
+        				<a href="#"><span class="warning"></span>To Do List <span class="badge badge-pill badge-default">94</span></a>
+        			</div>
+        		</div>
+        	</div>
+           <div  class="card" style="margin-top:0PX;">
+				<div class="card-body" >
+					<div class="px-3 py-3">
+           				<h2>BY DATE</h2>
+           					<ol class="timeline">
+								<li><a href="#">
+									From 10 to 12 months <span class="badge badge-pill badge-default">11</span>
+								</a>
+								</li>
+								<li><a href="#">From 07 to 09 months <span class="badge badge-pill badge-default">22</span></a></li>
+								<li><a href="#">From 04 to 06 months <span class="badge badge-pill badge-default">13</span></a></li>
+								<li><a href="#">From 02 to 03 months <span class="badge badge-pill badge-default">16</span></a></li>
+								<li><a href="#">Last months <span class="badge badge-pill badge-default">6</span></a></li>
+								<li><a href="#">Two Weeks <span class="badge badge-pill badge-default">8</span></a></li>
+								<li><a href="#">Last Week <span class="badge badge-pill badge-default">23</span></a></li>
+								<li><a href="#">After the Wedding <span class="badge badge-pill badge-default">27</span></a></li>
+							</ol>
+           			</div>
+       			</div>
+       		</div>
+           <div  class="card" style="margin-top:0PX;">
+				<div class="card-body" >
+					<div class="px-3 py-3">
+           				<h2>BY CATEGORY</h2>
+			           	<ol class="timeline">
+							<li><a href="#">Events <span class="badge badge-pill badge-default">22</span></a></li>
+							<li><a href="#">Photography & Vedio <span class="badge badge-pill badge-default">22</span></a></li>
+							<li><a href="#">Planing <span class="badge badge-pill badge-default">22</span></a></li>
+							<li><a href="#">Health & Beauty <span class="badge badge-pill badge-default">22</span></a></li>
+							<li><a href="#">Others <span class="badge badge-pill badge-default">22</span></a></li>
+						</ol>
+					</div>
+				</div>
+			</div>
+       	</div>
+
+
+
+
+        <div class="col-sm-6 col-md-6">
+<ngb-accordion [closeOthers]="true" activeIds="1" class="bookmarkdesign">
+        <ngb-panel id="1">
+        	
+        	 <ng-template ngbPanelTitle>
+           
+                    <h3 class="panel-title pull-left mobfloatnone">FROM 10 TO 12 MONTHS </h3>
+                   <div class="pull-right mobfloatnone">
+                        Before March 2018
+                    </div>
+                
+          </ng-template>
+          <ng-template ngbPanelContent>
+           
+                    <div class="CheckListdiv">
+                    	<i class="material-icons tikchecklist">check</i>
+                    	<span>
+                    		<strong>Check if your wedding date is on an auspicious day</strong>
+                    		<br/>
+                    		Events
+                    	</span>
+                    	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
+                    </div>
+                    <div class="CheckListdiv">
+                    	<i class="material-icons tikchecklist">check</i>
+                    	<span>
+                    		<strong>Check if your wedding date is on an auspicious day</strong>
+                    		<br/>
+                    		Events
+                    	</span>
+                    	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
+                    </div>
+                    <div class="CheckListdiv">
+                    	<i class="material-icons tikchecklist">check</i>
+                    	<span>
+                    		<strong>Check if your wedding date is on an auspicious day</strong>
+                    		<br/>
+                    		Events
+                    	</span>
+                    	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
+                    </div>
+                    <div class="CheckListdiv">
+                    	<i class="material-icons tikchecklist">check</i>
+                    	<span>
+                    		<strong>Check if your wedding date is on an auspicious day</strong>
+                    		<br/>
+                    		Events
+                    	</span>
+                    	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
+                    </div>
+                    <div class="CheckListdiv">
+                    	<i class="material-icons tikchecklist">check</i>
+                    	<span>
+                    		<strong>Check if your wedding date is on an auspicious day</strong>
+                    		<br/>
+                    		Events
+                    	</span>
+                    	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
+                    </div>
+                
+          </ng-template>
+     
+        </ngb-panel>
+        <ngb-panel id="2">
+          <ng-template ngbPanelTitle>
+             
+                    <h3 class="panel-title pull-left mobfloatnone">FROM 07 TO 09 MONTHS </h3>
+                   <div class="pull-right mobfloatnone">
+                        Before June 2018
+                    </div>
+               
+          </ng-template>
+          <ng-template ngbPanelContent>
+           
+                    <div class="CheckListdiv">
+                    	<i class="material-icons tikchecklist">check</i>
+                    	<span>
+                    		<strong>Check if your wedding date is on an auspicious day</strong>
+                    		<br/>
+                    		Events
+                    	</span>
+                    	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
+                    </div>
+                    <div class="CheckListdiv doneListdiv">
+                    	<i class="material-icons tikchecklist">check</i>
+                    	<span>
+                    		<strong>Check if your wedding date is on an auspicious day</strong>
+                    		<br/>
+                    		Events
+                    	</span>
+                    	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
+                    </div>
+                    <div class="CheckListdiv">
+                    	<i class="material-icons tikchecklist">check</i>
+                    	<span>
+                    		<strong>Check if your wedding date is on an auspicious day</strong>
+                    		<br/>
+                    		Events
+                    	</span>
+                    	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
+                    </div>
+                    <div class="CheckListdiv">
+                    	<i class="material-icons tikchecklist">check</i>
+                    	<span>
+                    		<strong>Check if your wedding date is on an auspicious day</strong>
+                    		<br/>
+                    		Events
+                    	</span>
+                    	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
+                    </div>
+                    <div class="CheckListdiv">
+                    	<i class="material-icons tikchecklist">check</i>
+                    	<span>
+                    		<strong>Check if your wedding date is on an auspicious day</strong>
+                    		<br/>
+                    		Events
+                    	</span>
+                    	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
+                    </div>
+               
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel>
+        	 <ng-template ngbPanelTitle>
+        	
+                    <h3 class="panel-title pull-left mobfloatnone">FROM 04 TO 06 MONTHS </h3>
+                   <div class="pull-right mobfloatnone">
+                        Before Aug 2018
+                    </div>
+            </ng-template>
+          <ng-template ngbPanelContent>
+            
+                    <div class="CheckListdiv">
+                    	<i class="material-icons tikchecklist">check</i>
+                    	<span>
+                    		<strong>Check if your wedding date is on an auspicious day</strong>
+                    		<br/>
+                    		Events
+                    	</span>
+                    	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
+                    </div>
+                    <div class="CheckListdiv">
+                    	<i class="material-icons tikchecklist">check</i>
+                    	<span>
+                    		<strong>Check if your wedding date is on an auspicious day</strong>
+                    		<br/>
+                    		Events
+                    	</span>
+                    	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
+                    </div>
+                    <div class="CheckListdiv">
+                    	<i class="material-icons tikchecklist">check</i>
+                    	<span>
+                    		<strong>Check if your wedding date is on an auspicious day</strong>
+                    		<br/>
+                    		Events
+                    	</span>
+                    	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
+                    </div>
+                    <div class="CheckListdiv">
+                    	<i class="material-icons tikchecklist">check</i>
+                    	<span>
+                    		<strong>Check if your wedding date is on an auspicious day</strong>
+                    		<br/>
+                    		Events
+                    	</span>
+                    	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
+                    </div>
+                    <div class="CheckListdiv">
+                    	<i class="material-icons tikchecklist">check</i>
+                    	<span>
+                    		<strong>Check if your wedding date is on an auspicious day</strong>
+                    		<br/>
+                    		Events
+                    	</span>
+                    	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
+                    </div>
+              
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+
+   <div class="CheckListdiv">
+                    	<i class="material-icons tikchecklist">check</i>
+                    	<span>
+                    		<strong>Check if your wedding date is on an auspicious day</strong>
+                    		<br/>
+                    		Events
+                    	</span>
+                    	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
+                    </div>
+
+
+
+              <!-- <div class="panel-body nopadd">
+                    <div class="CheckListdiv">
+                    	<i class="material-icons tikchecklist">check</i>
+                    	<span>
+                    		<strong>Check if your wedding date is on an auspicious day</strong>
+                    		<br/>
+                    		Events
+                    	</span>
+                    	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
+                    </div>
+                </div> -->
+
+          
+
+           
+        </div>
+        <div class="col-sm-3 col-md-3 filterbox">
+			<div  class="card" style="margin-top:0PX;">
+	<div class="card-body" >
+		<div class="px-3 py-3">
+			<div>
+        		<h2 class="text-center">My Checklist</h2>
+        		<div class="text-center">
+        			<img src="../assets/img/checklist-icon.png">
+        			<div class="span4tik" style="position: relative;">
+  					<span class="tools-boxProgress-tooltip" style="left:25px;">25%</span>
+	  				 <ngb-progressbar showValue="true" type="success" [value]="25"></ngb-progressbar>
+	  				 1 of 112 tasks completed
+					</div>
+				</div>
+        	</div>
+		</div>
+	</div>
+			</div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+	<div  class="card">
+	<div class="card-body">
+                            <div class="modal-header">
+                            	<br/>
+                                <h4 class="modal-title">Add New Task</h4>
+                                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                    <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="input-effect form-group md-form ">
+                            <input class="effect-16 validate" type="text" placeholder="" required="required">
+                            <label>Task Name</label>
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                  </div>
+                    </div>
+                    <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-effect form-group md-form ">
+                          <select class="effect-16 validate">
+                            <option>Timing</option>
+                            <option>From 10 to 12 months</option>
+							<option>From 07 to 09 months</option>
+							<option>From 04 to 06 months</option>
+							<option>From 02 to 03 months</option>
+							<option>Last months</option>
+							<option>Two Weeks</option>
+							<option>Last Week</option>
+							<option>After the Wedding</option>
+                            <option>Real Wedding Shoot</option>
+                          </select>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-effect form-group md-form ">
+                          <select class="effect-16 validate">
+                            <option>Category</option>
+                            <option>Events</option>
+							<option>Photography & Vedio</option>
+							<option>Planing</option>
+							<option>Health & Beauty</option>
+							<option>Others</option>
+                          </select>
+                        </div>
+                    </div>
+                  </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                          <div class="input-effect form-group md-form ">
+                              <textarea class="effect-16 validate" type="email" placeholder="" required="required"></textarea>
+                              <label>Notes</label>
+                              <span class="focus-border textareafocus"></span>
+                          </div>
+                      </div>
+                    </div>
+                    </div>
+                     <div class="clearfix"></div>
+                   <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                    <button type="submit" class="btn pinkbtn">Add Task</button>
+                </div></div></div>
+                   
+                    </form>
+                            </div>
+                          
+                        </div></div>
+                        </ng-template>
+<app-foot></app-foot>
 <router-outlet></router-outlet> 

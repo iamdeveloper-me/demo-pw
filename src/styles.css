@@ -7,12 +7,19 @@
 
 .slidemenu{
     left: 0px;
+    right:0px;
     transition: 1s;
     position:inherit;
 }
 .inslide{
     left:280px!important;
     position: fixed!important;
+   
+}
+.rtslide{
+    left:-280px!important;
+    position: fixed!important;
+   
 }
 .headernav{margin-bottom: 0px!important;}
 .modal-content{background: transparent!important;
@@ -175,6 +182,19 @@ border:0px solid #fff!important;
   }
   .card-body.collapse.show {
 visibility: inherit!important;
+}
+.bookmarkdesign .card-body.collapse{
+  padding: 0px!important;
+  border-top: 1px solid #ccc!important;
+}
+.bookmarkdesign .card-header a{
+  display: block;
+  overflow: hidden;
+}
+
+.bookmarkdesign .card{
+  margin-bottom: 20px!important;
+  border-bottom: 0px solid #fff;
 }
   #wrapper.toggled #page-content-wrapper {
     position: absolute;
@@ -340,7 +360,7 @@ width: 30px;
     left: 7px;;
     }
 
-.navbtntik .line11 {
+.navbtntik .line11, .tikrightclose .line11 {
 width: 30px;
     height: 30px;
     border-bottom: 2px solid #fff;
@@ -351,7 +371,7 @@ width: 30px;
     top: 16px;
     right: 4px;
     }
-    .navbtntik .line33 {
+    .navbtntik .line33, .tikrightclose .line33 {
       width: 30px;
     height: 30px;
     border-bottom: 2px solid #fff;
@@ -362,7 +382,26 @@ width: 30px;
       top: -25px;
     left: -7px;
     }
-
+ .tikrightclose{
+float: right;
+    border: 0px solid #e5e5e5;
+    box-shadow: none;
+    width: 45px;
+    height: 45PX;
+    overflow: hidden;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right: 20px;
+    margin-top: 2px;
+    outline: none !important;
+    background: #ccc;
+    padding: 10px;
+    border-radius: 100%;
+    transition: 0.3s;
+    z-index: 9999;
+    position: relative;
+    right: 0px;
+}
     .navbtntik{
 float: left;
     border: 0px solid #e5e5e5;
@@ -381,4 +420,52 @@ float: left;
     transition: 0.3s;
     z-index: 9999;
     position: relative;
+}
+ //===input field
+
+:focus{outline: none;}
+.input-effect{position:relative; height: 33px;}
+
+.input-effect .effect-16{
+    border: 0;
+    padding: 4px 0;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+    z-index: 2;
+    position: relative;
+    width: 100%;
+}
+.input-effect .effect-16 ~ label {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 9px;
+    color: #aaa;
+    transition: 0.3s;
+    z-index: 1;
+    letter-spacing: 0.5px;
+
+}
+.input-effect .effect-16 ~ .focus-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: rgb(240, 17, 140);
+    transition: 0.4s;
+}
+
+.input-effect .effect-16:focus ~ label{
+    top: -17px;
+    font-size: 12px;
+    color:  rgb(240, 17, 140);
+    transition: 0.3s;
+    z-index:999;
+}
+
+.input-effect .effect-16:focus ~ .focus-border{
+    width: 100%;
+    transition: 0.4s;
+
 }

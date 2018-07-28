@@ -1,17 +1,178 @@
 
-.budget{
-    background-color: rgba(102, 103, 105, 0.99) !important;
-    color: #fff;
-}
 .budge_list{
     padding: 10px;
 }
-.budge_list button{
+.budget button{
     float: right;
-    margin-top: 6px;
+    margin-top: 12px;
     background-color: #e72e77;
     color: #fff;
+    position: relative;
+    padding: 5px 20px 5px 30px;
 }
 .budge_list .btn{
     padding: 5px 20px !important;
 }
+.budget button i{
+    position: absolute;
+    left: 2px;
+}
+.cost_per {
+    padding-left: 0;
+    padding-right: 0;
+}
+.cost_per ul {
+   
+   color: #ccc;
+   background-color: #fff;
+    padding: 16px 0;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px 3px #ccc;
+}
+.cost_per_bg{
+    padding-left: 0%;
+    
+}
+.cost_per_bg1{
+    padding-right: 0;
+}
+
+.cost_per ul li{
+   list-style-type: none;
+}
+.cost_per ul li i{
+    color: #e72e77;
+}
+.color_green{
+    color: green;
+}
+.color_green1{
+    color: #e72e77;
+}
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    border-radius: 5px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+    background-color:inherit;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+    padding: 0 ;
+    background-color: transparent;
+    display: none;
+    overflow: hidden;
+}
+.accordin{
+    margin-bottom: 30px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.accordion i{
+    position: relative;
+    top: 8px;
+    font-size: 40px;
+}
+.accordion span{
+    display: block;
+    position: relative;
+    top: -20px;
+    left: 50px;
+}
+
+.check1{
+    float: right;  
+}
+.check1 i{
+    color: green;
+    float: right;
+}
+.checkbox{
+    background-color: #fff;
+    padding: 10px;
+}
+.positi_rel{
+    position: relative;
+    top: -5px;
+    left: 5px;
+}
+.uparrow {
+    display: none;
+}
+.downarrow{
+    position: absolute !important;
+    right: 20px !important;
+    top: 20px !important;
+}
+.uparrow{
+    position: absolute !important;
+    right: 20px !important;
+    top: 20px !important;
+}
+
+  .accordion.active .downarrow{
+  display: none;
+  }
+  .accordion.active .uparrow{
+  display:inline;
+  }
+
+  .flo_right{
+      float: right;
+  }
+ .rental{
+    color:  #e72e77;
+ }
+  .colo_pink{
+    color:  #e72e77;
+ }
+ .mainhead{
+	padding: 20px 0px;
+	display: inline-block;
+	width: 23.5%;
+	float: left;
+}
+.martop20px{
+    margin-top: 20px!important;
+}
+
+ @media(max-width:767px){
+    .mainhead{
+        float: inherit;
+        width: 50%;
+    }
+    .budget{
+        margin-top: 50px !important;
+    }
+    .budget .col-xs-6{
+        width: 50%;
+    }
+    .cost_per_bg1{
+        padding-right: 15px;
+    }
+    .mob_pad15{
+        padding-left: 0px;
+    }
+    .accordion{
+        margin-bottom: 10px;
+    }
+    .martop20px{
+        margin-right: 10px;
+    }
+ }
+
+  

@@ -96,7 +96,7 @@ import { CategoryComponent } from './category/category.component';
 import { VendorlistComponent } from './userpannel/userboard/vendorlist/vendorlist.component';
 import { ToolComponent } from './userpannel/userboard/tool/tool.component';
 import { TimelineComponent } from './userpannel/userboard/timeline/timeline.component';
-import { BookmarkComponent } from './userpannel/userboard/bookmark/bookmark.component';
+import { BookmarkComponent ,NgbdbookmarkModalContent } from './userpannel/userboard/bookmark/bookmark.component';
 import { GuestComponent } from './userpannel/userboard/guest/guest.component';
 import { BudgetComponent } from './userpannel/userboard/budget/budget.component';
 import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
@@ -188,6 +188,7 @@ export function getAuthServiceConfigs() {
         ToolComponent,
         TimelineComponent ,
         BookmarkComponent,
+        NgbdbookmarkModalContent,
         GuestComponent,
         BudgetComponent,
         CalendertableComponent,

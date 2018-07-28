@@ -20,7 +20,7 @@ import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
   `
 })
 
-export class NgbdModalContent {
+export class NgbdbookmarkModalContent {
     @Input() name;
     constructor(public activeModal: NgbActiveModal) { }
 
@@ -75,7 +75,7 @@ export class BookmarkComponent implements OnInit {
 
    // Open content with dark section
     openContent() {
-        const modalRef = this.modalService.open(NgbdModalContent);
+        const modalRef = this.modalService.open(NgbdbookmarkModalContent);
         modalRef.componentInstance.name = 'World';
     }
   

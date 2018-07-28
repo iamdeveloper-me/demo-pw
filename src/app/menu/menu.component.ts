@@ -23,7 +23,7 @@ export class MenuComponent implements OnInit {
     ngOnInit() { 
       
         if(window.location.pathname == '/home'||'home/events'||'home/tips'||'home/photo' ) {
-           $(".user").hide();    
+        $(".user").hide();    
         } 
     
 

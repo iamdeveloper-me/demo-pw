@@ -85,7 +85,11 @@ export class MenuComponent implements OnInit {
         $(".slidemenu").addClass("outslide");  
         setTimeout(function() { $(".slidemenu").removeClass("outslide") }, 500);
         $(".slidemenu").removeClass("inslide");
-        $(".blackoverlaymain").removeClass( "blockmobile");  
+        $(".blackoverlaymain").removeClass( "blockmobile"); 
+        $(".tool_icons").removeClass("in"); 
+        $(".tikright").show(); 
+        $(".slidemenu").removeClass("rtslide");
+        $(".tikrightclose").hide();
     });
     
 $(".tikright").click(function(){

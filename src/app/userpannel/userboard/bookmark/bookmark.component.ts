@@ -78,7 +78,7 @@ export class BookmarkComponent implements OnInit {
         const modalRef = this.modalService.open(NgbdModalContent);
         modalRef.componentInstance.name = 'World';
     }
-  constructor() { }
+  
 
   ngOnInit() {
     $("li").removeClass("user");

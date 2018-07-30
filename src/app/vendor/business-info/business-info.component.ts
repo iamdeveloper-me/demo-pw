@@ -194,6 +194,7 @@ xyz:string = 'www.facebook.com'
 xyy:string = 'www.pinterest.com'
 xyx:string = 'www.google.com'
 zzz:string = 'www.instagram.com'
+busi_person:string = 'Rodriguez'
   ngOnInit() {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');

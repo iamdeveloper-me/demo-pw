@@ -54,25 +54,20 @@ import { StatisticsComponent } from './vendor/statistics/statistics.component';
 import { VedioviewComponent } from './vendor/vedioview/vedioview.component';
 import { CreatePromotionComponent } from './vendor/create-promotion/create-promotion.component';
 import { AllPromotionPageComponent } from './vendor/all-promotion-page/all-promotion-page.component';
+
+import { AdminComponent } from './admin/admin.component';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  
   { path: 'register', component: RegisterComponent },
   { path: 'home/searchresult', component: SearchresultComponent },
   { path: 'home/detailprofile', component:  DetailpageComponent  },
   { path: 'home/gallery', component:  GalleryComponent  },
-
-  { path: 'vendor/gallery', component: GalleryComponent  },
-
-  { path: 'vendor/allpromotion', component: AllPromotionPageComponent  },
-
   { path: 'home/vendor', component:  VendorComponent  },
   { path: 'home/photo', component: PhotoComponent },
   { path: 'home/tips', component: TipsComponent },
   { path: 'home/contact', component: ContactUsComponent },
   { path: 'home/events', component:  EventsComponent  },
   { path: 'home/allcategory', component:  AllcategoryComponent },
-
   { path: 'home/category', component:  CategoryComponent },
   { path: 'home/register', component:  RegisterComponent  },
   { path: 'home/events', component: EventsComponent },
@@ -80,7 +75,6 @@ const appRoutes: Routes = [
   { path: 'home/FAQ', component:FaquestionComponent },
   { path: 'home/TermsandConditions', component: TermsandconComponent  },
   { path: 'home/Careers', component:  CareersComponent  },
-
   { path: 'home/Advertise', component:  AdvertiseComponent },
 
     { path: 'vendor/creatpromo', component:  CreatePromotionComponent  },
@@ -88,15 +82,14 @@ const appRoutes: Routes = [
     { path: 'vendor/albumview', component:  AlbumviewComponent  },
     { path: 'vendor/business', component:  BusinessInfoComponent  },
     { path: 'vendor/location', component:  LocationComponent  },
-   
+    { path: 'vendor/gallery', component: GalleryComponent  },
+    { path: 'vendor/allpromotion', component: AllPromotionPageComponent  },
     { path: 'vendor/profile', component:  VendorprofileComponent  },
     // {
     //   path: 'vendor/chat',
     //   loadChildren: './chat/chat.module#ChatModule',
     //   component:  ChatComponent
     // },
-
-  
     { path: 'vendor/event', component:  CreateEventComponent },
     { path: 'vendor/Videos', component:    VideosComponent},
     { path: 'vendor/editprofile', component:   EditprofileComponent },
@@ -106,18 +99,21 @@ const appRoutes: Routes = [
     { path: 'vendor/calender', component:  CalendertableComponent},
     { path: 'vendor/Message', component:  MessageComponent},
     { path: 'vendor/videoview', component:    VedioviewComponent},
-     { path: 'vendor/PromoteBusiness', component:    PromoteBusinessComponent},
+    { path: 'vendor/PromoteBusiness', component:    PromoteBusinessComponent},
     { path: 'vendor/statistics', component:  StatisticsComponent},
-    { path: 'User/vendor', component: VendorlistComponent },  
 
- { path: 'User/Timeline', component: TimelineComponent },
+  { path: 'User/vendor', component: VendorlistComponent },  
+  { path: 'User/Timeline', component: TimelineComponent },
   { path: 'User/vendor', component: VendorlistComponent },  
   { path: 'User/Bookmarks', component: BookmarkComponent },
   { path: 'User/GuestList', component: GuestComponent },
   { path: 'User/Budget', component: BudgetComponent },
   { path: 'User/Inspirations', component: InspirationsComponent },
   { path: 'User/UserReviews', component: UserReviewsComponent },
+   
 
+
+ 
   { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES, canActivate: [AuthGuard] },
   { path: '', component: ContentLayoutComponent, data: { title: 'content Views' }, children: CONTENT_ROUTES, canActivate: [AuthGuard] },
 ];

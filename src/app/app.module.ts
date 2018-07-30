@@ -36,27 +36,6 @@ import { AuthGuard } from './shared/auth/auth-guard.service';
  import * as $ from 'jquery';
  import { UiSwitchModule } from 'ngx-ui-switch';
  
-import { HomeComponent } from './home/home.component';
-import { MenuComponent } from './menu/menu.component';
-import { BannerComponent } from './banner/banner.component';
-import { FootComponent } from './foot/foot.component';
-import { LoginComponent } from './login/login.component';
-import { VendorcardComponent } from './vendorcard/vendorcard.component';
-import { VendorComponent } from './vendor/vendor.component';
-import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
-import { BusinessInfoComponent ,NgbduModalContent} from "./vendor/business-info/business-info.component";
-import { LocationComponent } from "./vendor/location/location.component";
-import { VideosComponent ,NgbdvedioModalContent} from './vendor/videos/videos.component';
-
-import { MylistingComponent } from './vendor/mylisting/mylisting.component';
-import { NavemenuComponent } from './vendor/navemenu/navemenu.component';
-import { ChatComponent } from "./vendor/chat/chat.component";
-import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.component';
-import { EditprofileComponent } from './vendor/editprofile/editprofile.component';
-import { ReviewsComponent } from './vendor/reviews/reviews.component';
-import { MembershipComponent } from './vendor/membership/membership.component';
-import { CreatePromotionComponent } from './vendor/create-promotion/create-promotion.component';
-
 import {
     SocialLoginModule,
     AuthServiceConfig,
@@ -64,12 +43,17 @@ import {
     FacebookLoginProvider,
 } from "angular5-social-login";
 
-import {RegisterComponent} from './register/register.component';
 
+
+
+import { HomeComponent } from './home/home.component';
+import { MenuComponent } from './menu/menu.component';
+import { BannerComponent } from './banner/banner.component';
+import { FootComponent } from './foot/foot.component';
+import { LoginComponent } from './login/login.component';
+import { VendorcardComponent } from './vendorcard/vendorcard.component';
+import { RegisterComponent } from './register/register.component';
 import { SearchresultComponent } from './searchresult/searchresult.component';
-import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
-import { GalleryComponent ,NgbdgalleryModalContent } from './vendor/gallery/gallery.component';
-import { VendorsidebarComponent } from './vendor/vendorsidebar/vendorsidebar.component';
 import { PhotoComponent } from './photo/photo.component';
 import { TipsComponent } from './tips/tips.component';
 import { DetailpageComponent } from './detailpage/detailpage.component';
@@ -79,36 +63,57 @@ import { FaquestionComponent } from './faquestion/faquestion.component';
 import { TermsandconComponent } from './termsandcon/termsandcon.component';
 import { CareersComponent } from './careers/careers.component';
 import { AdvertiseComponent } from './advertise/advertise.component';
+import { AllcategoryComponent } from './allcategory/allcategory.component';
+import { SupplierByCityComponent } from './supplier-by-city/supplier-by-city.component';
+import { SupplierByCateComponent } from './supplier-by-cate/supplier-by-cate.component';
+import { CategoryComponent } from './category/category.component';
+
+
+
+import { VendorlistComponent } from './userpannel/userboard/vendorlist/vendorlist.component';
+import { ToolComponent } from './userpannel/userboard/tool/tool.component';
 import { UserpannelComponent } from './userpannel/userpannel.component';
 import { UserboardComponent } from './userpannel/userboard/userboard.component';
 import { InspirationsComponent } from './userpannel/userboard/inspirations/inspirations.component';
 import { UserReviewsComponent } from './userpannel/userboard/user-reviews/user-reviews.component';
 import { UserbannerComponent } from './userpannel/userboard/userbanner/userbanner.component';
-
-
-
-
-
-import { AllcategoryComponent } from './allcategory/allcategory.component';
-import { SupplierByCityComponent } from './supplier-by-city/supplier-by-city.component';
-import { SupplierByCateComponent } from './supplier-by-cate/supplier-by-cate.component';
-import { CategoryComponent } from './category/category.component';
-import { VendorlistComponent } from './userpannel/userboard/vendorlist/vendorlist.component';
-import { ToolComponent } from './userpannel/userboard/tool/tool.component';
 import { TimelineComponent } from './userpannel/userboard/timeline/timeline.component';
 import { BookmarkComponent ,NgbdbookmarkModalContent } from './userpannel/userboard/bookmark/bookmark.component';
 import { GuestComponent } from './userpannel/userboard/guest/guest.component';
 import { BudgetComponent } from './userpannel/userboard/budget/budget.component';
+
+
+
 import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
 import { CalendertableComponent } from './vendor/calendertable/calendertable.component';
 import { CreateEventComponent } from './vendor/create-event/create-event.component';
 import { MessageComponent } from './vendor/message/message.component';
 import { AlbumviewComponent } from './vendor/albumview/albumview.component';
 import { PromoteBusinessComponent , NgbdpromotbusinessModalContent} from './vendor/promote-business/promote-business.component';
-
 import { VedioviewComponent } from './vendor/vedioview/vedioview.component';
 import { StatisticsComponent } from './vendor/statistics/statistics.component';
 import { AllPromotionPageComponent ,NgbdModalContent} from './vendor/all-promotion-page/all-promotion-page.component';
+import { VendorsidebarComponent } from './vendor/vendorsidebar/vendorsidebar.component';
+import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
+import { GalleryComponent ,NgbdgalleryModalContent } from './vendor/gallery/gallery.component';
+import { VendorComponent } from './vendor/vendor.component';
+import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
+import { BusinessInfoComponent ,NgbduModalContent} from "./vendor/business-info/business-info.component";
+import { LocationComponent } from "./vendor/location/location.component";
+import { VideosComponent ,NgbdvedioModalContent} from './vendor/videos/videos.component';
+import { MylistingComponent } from './vendor/mylisting/mylisting.component';
+import { NavemenuComponent } from './vendor/navemenu/navemenu.component';
+import { ChatComponent } from "./vendor/chat/chat.component";
+import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.component';
+import { EditprofileComponent } from './vendor/editprofile/editprofile.component';
+import { ReviewsComponent } from './vendor/reviews/reviews.component';
+import { MembershipComponent } from './vendor/membership/membership.component';
+import { CreatePromotionComponent } from './vendor/create-promotion/create-promotion.component';
+
+
+import { AdminComponent } from './admin/admin.component';
+
+
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
   }
@@ -204,7 +209,8 @@ export function getAuthServiceConfigs() {
         StatisticsComponent,
         UserReviewsComponent,
         InspirationsComponent,
-        UserbannerComponent
+        UserbannerComponent,
+        AdminComponent
 
   ],
     imports: [

@@ -1,15 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+   providers: [NgbCarouselConfig] // add NgbCarouselConfig to the component providers
+
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+    constructor(config: NgbCarouselConfig) {
+    // customize default values of carousels used by this component tree
+    config.interval = 10000;
+    config.wrap = false;
+    config.keyboard = false;
+  }
 
   ngOnInit() {
+
+   //  Code formatting script
+      $.getScript('./assets/js/prism.min.js');
+
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
   $.getScript('./assets/js/vendorsidebar.js');
@@ -49,3 +61,8 @@ for (i = 0; i < acc.length; i++) {
 
    
 }
+
+
+
+
+

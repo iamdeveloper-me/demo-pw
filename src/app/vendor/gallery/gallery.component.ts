@@ -23,7 +23,7 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
     </div>
   `
 })
-export class NgbdModalContent {
+export class NgbdgalleryModalContent {
     @Input() name;
     constructor(public activeModal: NgbActiveModal) { }
 
@@ -80,7 +80,7 @@ export class GalleryComponent implements OnInit {
 
     // Open content with dark section
     openContent() {
-        const modalRef = this.modalService.open(NgbdModalContent);
+        const modalRef = this.modalService.open(NgbdgalleryModalContent );
         modalRef.componentInstance.name = 'World';
     }
 

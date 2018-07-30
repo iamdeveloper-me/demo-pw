@@ -19,7 +19,7 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
   </div>
 `
 })
-export class NgbdModalContent {
+export class NgbdpromotbusinessModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) { }
 
@@ -88,7 +88,7 @@ openModal(customContent) {
 
 // Open content with dark section
 openContent() {
-    const modalRef = this.modalService.open(NgbdModalContent);
+    const modalRef = this.modalService.open( NgbdpromotbusinessModalContent);
     modalRef.componentInstance.name = 'World';
 }
 

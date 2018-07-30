@@ -19,8 +19,8 @@
   
 </button>
 <button class="hidden-md hidden-sm hidden-lg tikrightclose" data-toggle="slide-collapse" type="button" style="display:none;">
-   <div _ngcontent-c1="" class="line11"></div>
-  <div _ngcontent-c1="" class="line33"></div>
+    <div class="line11"></div>
+  <div class="line33"></div>
 </button>
 
 
@@ -130,33 +130,34 @@
                 <li class="nav-item" id="login">
                   <a  class="nav-link js-scroll-trigger" data-toggle="modal" (click)="remove()" data-target="#MMM">LogIn</a>
                 </li>
-                <li class="nav-item user" >
-                       
-                        <div class="header-joined">
-                                <a class="header-joined-inbox app-header-envelope-inbox" href="https://www.weddingwire.in/users-mailbox.php">
-                                    <i class="icon-header icon-header-nav-envelope"></i>
-                                    <span class=" app-header-inbox-counter"></span>
-                                </a>
-                                <div class="header-joined-container app-dropdown-toggle pointer">
-                                    <div class="header-joined-avatar">
-                                        <div>
-                                      <div class="avatar  ">    <div class="avatar-alias size-avatar-small ">
-                                    <svg class="avatar-generic" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMin slice">
-                                        <circle fill="#9AAAB0" cx="100" cy="100" r="100"></circle>
-                                        <text transform="translate(100,130)" y="0">
-                                            <tspan font-size="90" class="" fill="rgba(0,0,0,0.3)" text-anchor="middle">D</tspan>
-                                        </text>
-                                    </svg>
-                                </div>
-                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="header-joined__toggle icon-header icon-header-nav-down"></div>
-                                    <div class="userMenu app-dropdown-toggle-layer" data-ajax="/user-LoggedMenuAjax.php" style="display:none;"></div>
-                                </div>
-                            </div>
-
-                </li>
+                <li class="nav-item user" ngbDropdown placement="bottom-right">
+                        <a class="nav-link position-relative" id="dropdownBasic3" ngbDropdownToggle>
+                            <i class="ft-user font-medium-3"></i>
+                            <p class="d-none">User Settings</p>
+                        </a>
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic3">                           <a class="dropdown-item" routerLink="/home">
+                                <i class="ft-power mr-2"></i>
+                                <span>Logout</span>
+                            </a>
+                            <!-- <a class="dropdown-item py-1" routerLink="profile">
+                                <i class="ft-edit mr-2"></i>
+                                <span>My Profile</span>
+                            </a>
+                            <a class="dropdown-item py-1" routerLink="chat">
+                                <i class="ft-mail mr-2"></i>
+                                <span>My Inbox</span>
+                            </a>
+                            <a class="dropdown-item py-1" href="javascript:;">
+                                <i class="ft-settings mr-2"></i>
+                                <span>Settings</span>
+                            </a> -->
+                            <!-- <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:;">
+                                <i class="ft-power mr-2"></i>
+                                <span>Logout</span>
+                            </a> -->
+                        </div>
+                </li>  
             </ul> 
         </div>
     </div>
@@ -192,46 +193,46 @@
                 </ul>
                 <!-- Tab panels -->
                 <div class="tab-content">
-                <!--Panel 7-->
-                <div class="tab-pane fade in active" id="panel7" role="tabpanel">
-                    <!--Body-->
-                    <form role="form" action="" method="post" id="id7">
+                    <!--Panel 7-->
+                    <div class="tab-pane fade in active" id="panel7" role="tabpanel">
+                        <!--Body-->
+                        <form role="form" action="" method="post" id="id7">
                             <div class="modal-body mb-1 align_left">
-    
-                        <div class="input-effect form-group md-form mt-3">
-                            <input class="effect-16"  type="email" required="required" placeholder="">
-                            <label>Your Email</label>
-                            <span class="focus-border"></span>
-                        </div>   
-                        <div class="input-effect form-group md-form mt-3">
-                            <input class="effect-16"   type="password" required="required"  placeholder="">
-                            <label>Password</label>
-                            <span class="focus-border"></span>
-                        </div>   
-                        <div class="text-center mt-2" >
-                            <button class="btn btn-info" routerLink="../User/Timeline">Log in <i class="fa 
-                            fa-sign-in ml-1"></i></button>
-                                <p class="pt-1">
-                                <a  href="#" class="pink-text">Forgot Password</a></p>
-                                <p class="pt-1">Already have an account? 
-                            <a data-toggle="tab" href="#panel8" role="tab" class="pink-text signup_click" >Sign Up</a>
-                                </p>  
-    
-                        </div>
+                                <div class="input-effect  md-form mt-3">
+                                    <input class="effect-16"  type="email" required="required" placeholder="email">
+                                    <label>Your Email</label>
+                                    <span class="focus-border"></span>
+                                </div> 
+                                <div class="input-effect  md-form mt-3">
+                                    <input class="effect-16"   type="password" required="required"  placeholder="Password">
+                                    <label>Password</label>
+                                    <span class="focus-border"></span>
+                                </div>   
+                                <div class="text-center mt-2" >
+                                    <button class="btn btn-info" routerLink="../User/Timeline">Log in 
+                                        <i class="fa fa-sign-in ml-1"></i>
+                                    </button>
+                                    <p class="pt-1">
+                                            <a  href="#" class="pink-text">Forgot Password</a>
+                                    </p>
+                                    <p class="pt-1">
+                                        Already have an account? 
+                                        <a data-toggle="tab" href="#panel8" role="tab" class="pink-text signup_click" >Sign Up</a>
+                                    </p>  
+                                </div>
                             </div>
-                    </form>
-                    
-                    <!--Footer-->
-                        <div class="modal-footer ls_fot">
-                    
-                            <div class="bordashpad">
-                            Are you a vendor? <a (click)="loadScript()" class="btn btn-info">Business Sign In</a>
-                            </div>
-                    
-                    </div>     
-                </div>
-                <!--/.Panel 7-->
-                <!--Panel 8-->
+                        </form>
+                        <!--Footer-->
+                            <div class="modal-footer ls_fot">
+                        
+                                <div class="bordashpad">
+                                Are you a vendor? <a (click)="loadScript()" class="btn btn-info">Business Sign In</a>
+                                </div>
+                        
+                            </div>     
+                    </div>
+                    <!--/.Panel 7-->
+                    <!--Panel 8-->
                     <div class="tab-pane fade" id="panel8" role="tabpanel">
                     <!--Body-->
                         <form role="form" action="" method="post" id="id8">
@@ -308,7 +309,7 @@
                             </div>
                         </form>
                     </div>
-                <!--/.Panel 8-->
+                   <!--/.Panel 8-->
                 </div>
             </div>
         </div>

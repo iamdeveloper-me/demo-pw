@@ -19,7 +19,7 @@ import { BusinessServicesComponent } from "./vendor/business-services/business-s
 import { MembershipComponent } from "./vendor/membership/membership.component";
 
 import { DetailpageComponent } from './detailpage/detailpage.component';
-import { ChatComponent } from "./vendor/chat/chat.component";
+// import { ChatComponent } from "./vendor/chat/chat.component";
 import { EditprofileComponent } from './vendor/editprofile/editprofile.component';
 import { MylistingComponent } from './vendor/mylisting/mylisting.component';
 import { FaquestionComponent } from './faquestion/faquestion.component';
@@ -88,8 +88,15 @@ const appRoutes: Routes = [
     { path: 'vendor/albumview', component:  AlbumviewComponent  },
     { path: 'vendor/business', component:  BusinessInfoComponent  },
     { path: 'vendor/location', component:  LocationComponent  },
+   
     { path: 'vendor/profile', component:  VendorprofileComponent  },
-    { path: 'vendor/chat', component:  ChatComponent },
+    // {
+    //   path: 'vendor/chat',
+    //   loadChildren: './chat/chat.module#ChatModule',
+    //   component:  ChatComponent
+    // },
+
+  
     { path: 'vendor/event', component:  CreateEventComponent },
     { path: 'vendor/Videos', component:    VideosComponent},
     { path: 'vendor/editprofile', component:   EditprofileComponent },

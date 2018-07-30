@@ -8,26 +8,25 @@
     position:relative;
     text-align:center;
     cursor:default;
+    -webkit-transition:all .4s linear;
+    transition:all .4s linear;
+    overflow:hidden;
     }
     
     .hovereffect .overlay {
-    width:100%;
-    height:100%;
+    width:93%;
+    height:92%;
     position:absolute;
     overflow:hidden;
     top:0;
-    left:0;
+    left:14px;
     opacity:0;
     background-color:rgba(0,0,0,0.5);
-    -webkit-transition:all .4s ease-in-out;
-    transition:all .4s ease-in-out
     }
     
     .hovereffect img {
     display:block;
     position:relative;
-    -webkit-transition:all .4s linear;
-    transition:all .4s linear;
     }
     
     .hovereffect h2 {
@@ -64,10 +63,10 @@
     box-shadow:0 0 5px #fff;
     }
     
-    .hovereffect:hover img {
-    -ms-transform:scale(1.2);
-    -webkit-transform:scale(1.2);
-    transform:scale(1.2);
+    .hovereffect:hover {
+    -ms-transform:scale(1.1);
+    -webkit-transform:scale(1.1);
+    transform:scale(1.1);
     }
     
     .hovereffect:hover .overlay {
@@ -88,7 +87,7 @@
     transition-delay:.2s;
     }
     .my_inspi{
-        margin-top: 40px;
+        margin-top: 20px;
        
     }
     .my_photo{
@@ -115,8 +114,37 @@
       .insp_left{
         margin-left: -14px;
       }
-
-
+      .modal-body{
+        background-color: #fff !important;
+      }
+.closebtn{    
+position: absolute;
+z-index: 999;
+right: 20px;
+top: 15px;
+}
+.nextpre{
+  position: absolute;
+  left: 0px;
+  top:50%;
+  z-index: 999;
+  width: 100%;
+}
+.imgpopup{
+  padding: 0px;
+}
+.nextpre button{
+  border-radius: 50%;
+  padding: 0px;
+  height: 40px;
+  width: 40px;
+  line-height: 50px;
+  text-align: center;
+  margin-bottom: 0px;
+}
+.mar_lef8px{
+  margin-left: 8px;
+}
 
 
       @media(max-width:767px){

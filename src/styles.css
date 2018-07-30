@@ -2,10 +2,9 @@
 
 .text-bold{
     font-weight: bold;
-    *body{
-         background-color: #ffffff!important;
-    }
+
 }
+
 .slidemenu{
     left: 0px;
     right:0px;
@@ -15,12 +14,12 @@
 .inslide{
     left:280px!important;
     position: fixed!important;
-    right: inherit!important;
+   
 }
 .rtslide{
-    right:280px!important;
+    left:-280px!important;
     position: fixed!important;
-    left: inherit!important;
+   
 }
 .headernav{margin-bottom: 0px!important;}
 .modal-content{background: transparent!important;
@@ -131,7 +130,7 @@ border:0px solid #fff!important;
 
 #mainNav{top: 0px !important; background:rgba(0, 46, 119, 0.99) !important; }
 
-//======================sidebar
+/* ======================sidebar */
 .togglebtnmenu{
     float: left;
     background: transparent;
@@ -361,7 +360,7 @@ width: 30px;
     left: 7px;;
     }
 
-.navbtntik .line11 {
+.navbtntik .line11, .tikrightclose .line11 {
 width: 30px;
     height: 30px;
     border-bottom: 2px solid #fff;
@@ -372,7 +371,7 @@ width: 30px;
     top: 16px;
     right: 4px;
     }
-    .navbtntik .line33 {
+    .navbtntik .line33, .tikrightclose .line33 {
       width: 30px;
     height: 30px;
     border-bottom: 2px solid #fff;
@@ -383,7 +382,26 @@ width: 30px;
       top: -25px;
     left: -7px;
     }
-
+ .tikrightclose{
+float: right;
+    border: 0px solid #e5e5e5;
+    box-shadow: none;
+    width: 45px;
+    height: 45PX;
+    overflow: hidden;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right: 20px;
+    margin-top: 2px;
+    outline: none !important;
+    background: #ccc;
+    padding: 10px;
+    border-radius: 100%;
+    transition: 0.3s;
+    z-index: 9999;
+    position: relative;
+    right: 0px;
+}
     .navbtntik{
 float: left;
     border: 0px solid #e5e5e5;

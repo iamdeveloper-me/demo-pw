@@ -1,0 +1,40 @@
+
+<div id="wrapper" class="toggled">
+    <div id="sidebar-wrapper">
+       
+            <app-adminsidebar></app-adminsidebar>
+        
+    </div>
+    <div id="page-content-wrapper">    
+        <div class="container-fluid nopadd">                    
+            <app-adminnavbar></app-adminnavbar>
+                       user list 
+                       <section id="action">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Confirm Action</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-block">
+                                                <ng2-smart-table [settings]="alertsettings" [source]="alertSource" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onSaveConfirm($event)"
+                                                    (createConfirm)="onCreateConfirm($event)">
+                                                </ng2-smart-table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+            <app-foot></app-foot>
+        </div>
+    </div> 
+</div>
+
+
+
+    
+    
+
+<router-outlet></router-outlet> 

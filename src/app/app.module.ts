@@ -108,11 +108,26 @@ import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.com
 import { EditprofileComponent } from './vendor/editprofile/editprofile.component';
 import { ReviewsComponent } from './vendor/reviews/reviews.component';
 import { MembershipComponent } from './vendor/membership/membership.component';
-import { CreatePromotionComponent } from './vendor/create-promotion/create-promotion.component';
+import { CreatePromotionComponent } from './vendor/create-promotion/create-promotion.component'; 
 
-
-import { AdminComponent } from './admin/admin.component';
-
+import {  AdminComponent } from "./admin/admin.component";
+import { AdminsidebarComponent } from './admin/adminsidebar/adminsidebar.component';
+import { AdminnavbarComponent } from './admin/adminnavbar/adminnavbar.component';
+import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
+import { UseraccountlistComponent } from './admin/useraccountlist/useraccountlist.component';
+import { CustomerbillingsComponent } from './admin/customerbillings/customerbillings.component';
+import { CalenderandnotesComponent } from './admin/calenderandnotes/calenderandnotes.component';
+import { EmailComponent } from './admin/email/email.component';
+import { TicketsComponent } from './admin/tickets/tickets.component';
+import { MessageschatComponent } from './admin/messageschat/messageschat.component';
+import { AdminadvertisingComponent } from './admin/adminadvertising/adminadvertising.component';
+import { SocialfeedComponent } from './admin/socialfeed/socialfeed.component';
+import { EventsandarticlesComponent } from './admin/eventsandarticles/eventsandarticles.component';
+import { SitestatsandreportsComponent } from './admin/sitestatsandreports/sitestatsandreports.component';
+import { AdminusersComponent } from './admin/adminusers/adminusers.component';
+import { ReviewandfeedbackComponent } from './admin/reviewandfeedback/reviewandfeedback.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { AdmincalenderComponent } from './admin/admincalender/admincalender.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -210,7 +225,23 @@ export function getAuthServiceConfigs() {
         UserReviewsComponent,
         InspirationsComponent,
         UserbannerComponent,
-        AdminComponent
+        AdminComponent,
+        AdminsidebarComponent,
+        AdminnavbarComponent,
+        AdmindashboardComponent,
+        UseraccountlistComponent,
+        CustomerbillingsComponent,
+        CalenderandnotesComponent,
+        EmailComponent,
+        TicketsComponent,
+        MessageschatComponent,
+        AdminadvertisingComponent,
+        SocialfeedComponent,
+        EventsandarticlesComponent,
+        SitestatsandreportsComponent,
+        AdminusersComponent,
+        ReviewandfeedbackComponent,
+        AdmincalenderComponent
 
   ],
     imports: [
@@ -228,6 +259,7 @@ export function getAuthServiceConfigs() {
         CommonModule,
         //charts 
         ChartsModule,
+        Ng2SmartTableModule,
         ChartistModule,
         NgxChartsModule,
         CalendarModule.forRoot(),

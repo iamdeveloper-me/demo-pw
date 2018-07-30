@@ -55,7 +55,21 @@ import { VedioviewComponent } from './vendor/vedioview/vedioview.component';
 import { CreatePromotionComponent } from './vendor/create-promotion/create-promotion.component';
 import { AllPromotionPageComponent } from './vendor/all-promotion-page/all-promotion-page.component';
 
-import { AdminComponent } from './admin/admin.component';
+import {  AdminComponent } from "./admin/admin.component";
+import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
+import { UseraccountlistComponent } from './admin/useraccountlist/useraccountlist.component';
+import { CustomerbillingsComponent } from './admin/customerbillings/customerbillings.component';
+import { CalenderandnotesComponent } from './admin/calenderandnotes/calenderandnotes.component';
+import { EmailComponent } from './admin/email/email.component';
+import { TicketsComponent } from './admin/tickets/tickets.component';
+import { MessageschatComponent } from './admin/messageschat/messageschat.component';
+import { AdminadvertisingComponent } from './admin/adminadvertising/adminadvertising.component';
+import { SocialfeedComponent } from './admin/socialfeed/socialfeed.component';
+import { EventsandarticlesComponent } from './admin/eventsandarticles/eventsandarticles.component';
+import { SitestatsandreportsComponent } from './admin/sitestatsandreports/sitestatsandreports.component';
+import { AdminusersComponent } from './admin/adminusers/adminusers.component';
+import { ReviewandfeedbackComponent } from './admin/reviewandfeedback/reviewandfeedback.component';
+
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -110,10 +124,22 @@ const appRoutes: Routes = [
   { path: 'User/Budget', component: BudgetComponent },
   { path: 'User/Inspirations', component: InspirationsComponent },
   { path: 'User/UserReviews', component: UserReviewsComponent },
-   
+  
+  { path: 'Admin/dashboard', component:  AdmindashboardComponent },  
+  { path: 'Admin/login', component:  AdminComponent },  
+  { path: 'Admin/Useraccountlist', component:  UseraccountlistComponent },  
+  { path: 'Admin/Customerbillings', component:  CustomerbillingsComponent  },  
+  { path: 'Admin/Calenderandnotes', component: CalenderandnotesComponent },  
+  { path: 'Admin/Email', component: EmailComponent },  
+  { path: 'Admin/Tickets', component:  TicketsComponent  },  
+  { path: 'Admin/Messageschat', component:   MessageschatComponent   },    
+  { path: 'Admin/Events', component:  EventsandarticlesComponent},  
+  { path: 'Admin/Socialfeed', component: SocialfeedComponent  },  
+  { path: 'Admin/Sitestats', component: SitestatsandreportsComponent },  
+  { path: 'Admin/Adminusers', component: AdminusersComponent },  
+  { path: 'Admin/Reviewandfeedback', component: ReviewandfeedbackComponent },  
+  { path: 'Admin/advertising', component:   AdminadvertisingComponent  },  
 
-
- 
   { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES, canActivate: [AuthGuard] },
   { path: '', component: ContentLayoutComponent, data: { title: 'content Views' }, children: CONTENT_ROUTES, canActivate: [AuthGuard] },
 ];

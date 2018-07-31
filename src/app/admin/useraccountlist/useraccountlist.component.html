@@ -9,7 +9,29 @@
         <div class="container-fluid nopadd">                    
             <app-adminnavbar></app-adminnavbar>
                        user list 
-                       <section id="action">
+
+            <div class="row">
+                  
+                <div class="col-md-8">
+                  
+                        <ng-template #content let-c="close" let-d="dismiss">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Modal title</h4>
+                                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>One fine body&hellip;</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+                            </div>
+                        </ng-template>
+
+                        <button class="btn btn-lg btn-outline-primary" (click)="open(content)">add more user</button>
+
+                        <section id="action">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="card">
@@ -27,6 +49,15 @@
                                 </div>
                             </div>
                         </section>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">defvrg</div>
+                    <div  class="card">frewf</div>
+                    <div  class="card">fewf</div>
+                    <div  class="card">defdre</div>
+                </div>
+            </div>            
+
             <app-foot></app-foot>
         </div>
     </div> 

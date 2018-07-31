@@ -244,10 +244,14 @@ abc(event){
       const modalRef = this.modalService.open(NgbduModalContent);
       modalRef.componentInstance.name = 'World';
   }
+enable =  true;
+enable1 =  true;
+enable2 =  true;
+enable3 =  true;
+enable4 =  true;
 
 
-
-  enable =  true;
+  
   count = 0;
   onSubmit() { }
 

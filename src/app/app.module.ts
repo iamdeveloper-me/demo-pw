@@ -128,6 +128,7 @@ import { AdminusersComponent } from './admin/adminusers/adminusers.component';
 import { ReviewandfeedbackComponent } from './admin/reviewandfeedback/reviewandfeedback.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { AdmincalenderComponent } from './admin/admincalender/admincalender.component';
+import { MininavbarComponent } from './admin/mininavbar/mininavbar.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -241,7 +242,8 @@ export function getAuthServiceConfigs() {
         SitestatsandreportsComponent,
         AdminusersComponent,
         ReviewandfeedbackComponent,
-        AdmincalenderComponent
+        AdmincalenderComponent,
+        MininavbarComponent
 
   ],
     imports: [

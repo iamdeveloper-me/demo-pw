@@ -6,9 +6,11 @@
   .nopadd{
     padding:0px!important;
   }
+  .mainhead{float: left;}
   .switbtn{
-  position: absolute;line-height: 30px;
+      float: right;
   }
+
   .list-group .list-group-item:first-child {
       -webkit-border-top-left-radius: 0.125rem;
       border-top-left-radius: 0.125rem;
@@ -183,10 +185,6 @@ padding:0PX;
 .paddtop3px{
 	padding-top: 3px;
 }
-.weekboxinput div{
-	width: 50%!important;
-	float: left;
-}
 textarea.form-control:disabled, textarea.form-control[readonly]{
 	border-bottom:1px solid #e5e5e5;
 	padding: 0px!important;
@@ -308,7 +306,6 @@ textarea.form-control, textarea.form-control{
     padding-top: 20px;
     margin-bottom: 30px !important;
     padding-bottom: 20px;
-    margin-top: -40px;
 }
 .card-block{
     text-align: left !important;
@@ -322,18 +319,28 @@ textarea.form-control, textarea.form-control{
 }
 .acce_time{
     position: absolute !important;
-    top: 15px !important;
-    left: 7px !important;
+    top: 5px !important;
+    left: -10px !important;
 }
 .acce_time .material-icons{
     left: -4px !important;
     position: absolute !important;
     top: -4px !important;
 }
+.acce_time1{
+    position: absolute !important;
+    top: 5px !important;
+    left: -10px !important;
+}
+.acce_time1 .material-icons{
+    left: 12px !important;
+    position: absolute !important;
+    top: 5px !important;
+}
 .border_left_div{
     min-height: 240px;
     border: 1px solid #ccc;
-    padding-left: 30px;
+    padding-left: 15px;
     padding-top: 10px;
 }
 .border_left_div1{
@@ -352,14 +359,27 @@ textarea.form-control, textarea.form-control{
     
     padding-top: 10px;
 }
+.border_squar{
+    cursor: pointer;
+}
 .edit_btn{
     float: right;
     cursor: pointer;
+    display: none
+   
 }
+.edit_hide:hover .edit_btn{
+    display: block;
+}
+
 .edit_btn1{
     float: right;
     cursor: pointer;
     margin-top: -30px;
+    display: none
+}
+.weekboxinput3:hover .edit_btn1{
+    display: block;
 }
 .phone_icon{
     position: absolute !important;
@@ -380,6 +400,10 @@ textarea.form-control, textarea.form-control{
         margin-bottom: 20px !important;
         border-right: 1px solid #ccc !important;
     }
+    .col-xs-6{
+    width: 50%!important;
+    float: left;
+    }
     .digi_edit{
         margin-top: -20px !important;
     }
@@ -392,5 +416,13 @@ textarea.form-control, textarea.form-control{
     }
     .border_left_div{
         min-height: 140px !important;
+    }
+    
+    .mainhead{
+        font-size: 24px;
+        font-weight: 300;
+    }
+    .switbtn ui-switch{
+        margin-left: 5px;
     }
 }

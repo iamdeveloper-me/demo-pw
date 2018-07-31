@@ -260,6 +260,16 @@ enable4 =  true;
   }
 
 
+
+  enable =  true;
+  count = 0;
+  onSubmit() { }
+
+  onChange() {
+    this.count++;
+  }
+
+
 }
 
 

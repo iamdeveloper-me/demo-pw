@@ -6,26 +6,25 @@
     <div id="page-content-wrapper">
       <app-navemenu></app-navemenu>
       <section id="user-profile">
-            <div class="row">
-              <div class="col-12">
+          <div class="col-sm-12">
+              <h2 class="mainhead">General Information</h2>
+                <div class="switbtn">
+                    <span class="pull-left">Vacation Mode</span>
+                    <ui-switch [(ngModel)]="enable" class="pull-left"></ui-switch> 
+                   
+                  </div>
+          </div>
+          <div class="clearfix"></div>
+          
                 <div class="col-sm-12">
-                  <h2>Location & Trading</h2>
+                 
                   <div _ngcontent-c4="" class="card">
-                    <div _ngcontent-c4="" class="card-header">
-                      <div  class="card-block">
-                        <div class="switbtn">
-                          <ui-switch [(ngModel)]="enable" style="float: left;margin-right: 10px;"></ui-switch> 
-                          &nbsp;{{enable}}
-                        </div>
-                        <h4 _ngcontent-c4="" class="card-title text-center">General Information</h4>
-                      </div>
                       
-                    </div>    
                     <div _ngcontent-c4="" class="card-body">
                       <form  _ngcontent-c4="" novalidate class="ng-untouched ng-pristine ng-valid">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 border_squar">
+                        <div class="col-sm-12 border_squar">
                           <div class="custom-form">
-                            <div class="text-center bg-form col-md-4 border_left_div2">
+                            <div class="text-center bg-form col-sm-4 border_left_div2">
                               <div class="img-section"> 
                                 <img src="../../assets/img/deco4.jpg" class="infoimg img-responsive" alt="Profile picture"> 
                                 <span class="fake-icon-edit" id="PicUpload" style="color: #ffffff;"> 
@@ -53,75 +52,140 @@
                                       </div>     
                               </div>
                             </div>
-                            <div class="col-lg-4 col-md-4 text_left border_left_div">
-                                <span class="glyphicon glyphicon-map-marker acce_time" ></span>
+                            <div class="col-sm-4 text_left border_left_div">
+                                
                                 <div class=" nopadd weekboxinput">
                                   
-                                    <div>Country</div>
-                                      <div class="">
-                                      :  <i class="material-icons edit_btn" id="address-function" (click)="address()"> edit</i>
-                                      </div>
+                                    <div class="col-sm-12 nopadd edit_hide">
                                     
-                                
-                                      <div >City</div>
-                                      <div class="">
-                                      :  
+                                        <div class="col-sm-6 col-xs-6">
+                                            <span class="glyphicon glyphicon-map-marker acce_time" ></span>
+                                            Country
+                                        </div>
+
+                                        <div class="col-sm-6 col-xs-6">
+                                            :  <i class="material-icons edit_btn" id="address-function" (click)="address()"> edit</i>
+                                        </div>
+                                      
                                       </div>
-                                
-                                
-                                      <div >Postal Code</div>
-                                      <div class="">
-                                      : 
+                                      <div class="clearfix"></div>
+  
+                                      <div class="col-sm-12 nopadd">
+                                        
+                                       <div class="col-sm-6 col-xs-6">
+                                          City
+                                       </div> 
+                                       
+                                       <div class="col-sm-6 col-xs-6">
+                                          :  
+                                          </div>
+
+
                                       </div>
+                                      
+                                
+                                
+                                      <div class="col-sm-12 nopadd">
+                                        <div class="col-sm-6 col-xs-6">
+                                            Postal Code
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6" >
+                                            : 
+                                            </div>
+                                      </div>
+                                     
                                   
                                 
-                                      <div >Address</div>
-                                      <div class="">
-                                      : 
+                                      <div class="col-sm-12 nopadd">
+                                        <div class="col-sm-6 col-xs-6">
+                                            Address
                                         </div>
+                                        <div class="col-sm-6 col-xs-6">
+                                            : 
+                                              </div>
+                                        </div>
+                                     
                                   
                             
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-4 text_left border_left_div1">
-                              <span class="acce_time"> <i _ngcontent-c0="" class="material-icons">access_time</i>   </span> 
-                              <div class=" nopadd weekboxinput">
-                                <div >Sunday </div>
-                                <div > 
-                                  <input type="text" class="form-control form-input martop0px" value="Closed" placeholder="Time" disabled id="suntime">
-                                  <i class="material-icons edit_btn1" id="access-function" (click)="access()" > edit</i>
-                                  
+                            <div class="col-sm-4 text_left border_left_div1">
+                              <span class="acce_time1"> <i _ngcontent-c0="" class="material-icons">access_time</i>   </span> 
+                              <div class=" nopadd weekboxinput1">
+                                <div class="col-sm-12 nopadd weekboxinput3">
+                                    <div class="col-sm-6 col-xs-6 nopadd">Sunday </div>
+                                    <div class="col-sm-6 col-xs-6 nopadd"> 
+                                        <input type="text" class="form-control form-input martop0px" value="Closed" placeholder="Time" disabled id="suntime">
+                                        <i class="material-icons edit_btn1" id="access-function" (click)="access()" > edit</i>
+                                        
+                                      </div>
                                 </div>
+                               
+                               
                                 <div class="clearfix"></div>
-                                <div >Monday</div>
-                                <div >
-                                  <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="montime">
+
+
+                                <div class="col-sm-12 nopadd">
+                                    <div class="col-sm-6 col-xs-6 nopadd">
+                                        Monday
+                                    </div>
+                                    <div class="col-sm-6 col-xs-6 nopadd">
+                                        <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="montime">
+                                      </div>
+
                                 </div>
+                                
                                 <div class="clearfix"></div>
-                                <div >Tuesday</div>
-                                <div >
-                                  <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="tuetime">
+                                <div class="col-sm-12 nopadd">
+
+                                  <div class="col-sm-6 col-xs-6 nopadd">
+                                      Tuesday
+                                  </div>
+                                  <div class="col-sm-6 col-xs-6 nopadd">
+                                      <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="tuetime">
+                                    </div>
                                 </div>
+                                
                                 <div class="clearfix"></div>
-                                <div >Webnesday</div>
-                                <div >
-                                  <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="wedtime">
+                                <div class="col-sm-12 nopadd">
+                                  <div class="col-sm-6 col-xs-6 nopadd">
+                                      Webnesday
+                                  </div>
+                                  <div class="col-sm-6 col-xs-6 nopadd">
+                                      <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="wedtime">
+                                    </div>
                                 </div>
+                               
                                 <div class="clearfix"></div>
-                                <div >Thursday</div>
-                                <div >
-                                  <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="thutime">
+                                <div class="col-sm-12 nopadd">
+                                    <div class="col-sm-6 col-xs-6 nopadd">
+                                        Thursday
+                                    </div>
+                                    <div class="col-sm-6 col-xs-6 nopadd">
+                                        <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="thutime">
+                                      </div>
                                 </div>
+                                
                                 <div class="clearfix"></div>
-                                <div >Friday</div>
-                                <div >
-                                  <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="fritime">
+                                <div class="col-sm-12 nopadd">
+                                    <div class="col-sm-6 col-xs-6 nopadd">
+                                        Friday
+                                    </div>
+                                    <div class="col-sm-6 col-xs-6 nopadd">
+                                        <input type="text" class="form-control form-input martop0px" value="9:00 AM to 5:00 PM" placeholder="Time" disabled id="fritime">
+                                      </div>
                                 </div>
+                               
                                 <div class="clearfix"></div>
-                                <div >Saturday</div>
-                                <div >
-                                  <input type="text" class="form-control form-input martop0px" value="Closed" placeholder="Time" disabled id="sattime">
+                                <div class="col-sm-12 nopadd">
+                                    <div class="col-sm-6 col-xs-6 nopadd">
+                                        Saturday
+                                    </div>
+                                    <div class="col-sm-6 col-xs-6 nopadd">
+                                        <input type="text" class="form-control form-input martop0px" value="Closed" placeholder="Time" disabled id="sattime">
+                                      </div>
                                 </div>
+                                
                                 <div class="clearfix"></div>
                               </div>
                               <div class="col-lg-12 col-md-12 text-center" style="display: none;">
@@ -136,8 +200,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+                <div class="clearfix"></div>
       </section>
       <app-foot></app-foot>
      <router-outlet></router-outlet>

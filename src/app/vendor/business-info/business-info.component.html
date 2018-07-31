@@ -7,7 +7,7 @@
       <app-navemenu></app-navemenu>
     <section class="p-0 " id="portfolio">
         <div class="col-sm-12 mob_margin_30px">
-            <h2>Business information</h2>
+            <h2>Business profile</h2>
             <div _ngcontent-c4="" class="card marg_bot">
                 <div _ngcontent-c4="" class="card-header">
                     <div class="col-sm-6 busines_img">
@@ -76,6 +76,8 @@
                     <ng-template #contentext let-c="close" let-d="dismiss">
                             <div class="modal-header" style="background-color: white;">
                                 <h4 class="modal-title">Add Business description </h4>
+                                 <!-- Switch -->
+                    
                                 <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
@@ -95,7 +97,7 @@
                 </div>
                     <div _ngcontent-c4="" class="card-body margin_top_30px">
                         <div class="col-lg-12 col-md-12 add_text">
-                            <textarea  class="form-control form-input" disabled placeholder="About"  value="" id="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting</textarea>
+                            <textarea  class="form-control form-input"  placeholder="About"  value="" id="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting</textarea>
                               
                         </div>
                     </div>
@@ -107,7 +109,7 @@
                     <h4 _ngcontent-c4="" class="card-title">Link Accounts & Websites</h4>
                 </div>
                 <div _ngcontent-c4="" class="card-body">   
-                    <div class="social-connect col-md-3 col-sm-12" data-reactid="330">
+                    <div class="social-connect col-md-6 col-sm-12" data-reactid="330">
                         <div class="social" data-reactid="332">
                                 <a title="Connect with us on Facebook" class="text-muted" rel="nofollow" target="_blank" href="https://www.facebook.com" data-reactid="333">
                                     <i class="fa fa-facebook fa-2x" data-reactid="334"></i>
@@ -118,6 +120,10 @@
                                             <i class="material-icons"  id="prompt-function" (click)="promptFunction()">edit</i>
                                         </h4>
                                 </div>
+                                <div class="switbtn">
+                                        <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                                </div>
+                                
                                 <div class="card-block">
                                     <ng-template #contentt let-c="close" let-d="dismiss">
                                         <div class="modal-header" style="background-color: white;">
@@ -152,10 +158,10 @@
                     </div>
                 </div>
                 <div _ngcontent-c4="" class="card-body">   
-                        <div class="social-connect col-md-3 col-sm-12" data-reactid="330">
+                        <div class="social-connect col-md-6 col-sm-12" data-reactid="330">
                         <div class="social" data-reactid="332">
-                                <a title="Follow us on Pinterest" class="text-muted" rel="nofollow" target="_blank" href="https://www.pinterest.com" data-reactid="337">
-                                    <i class="fa fa-pinterest-p fa-2x " data-reactid="338"></i>
+                                <a title="Follow us on Pinterest" class="text-muted" rel="nofollow" target="_blank" href="https://www.twitter.com" data-reactid="337">
+                                    <i class="fa fa-twitter fa-2x " data-reactid="338"></i>
                                 </a>
                                 <input class="return_value" value="{{xyy}}" />
                                 <div class="col-lg-12 editbtn">
@@ -163,10 +169,13 @@
                                             <i class="material-icons" id="Pinterest-function" (click)="Pinterest()">edit</i>
                                         </h4>
                                 </div>
+                                <div class="switbtn">
+                                        <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                                </div>
                                 <div class="card-block ">
                                     <ng-template #content let-c="close" let-d="dismiss">
                                         <div class="modal-header " style="background-color: white;">
-                                            <h4 class="modal-title">Add your Pinterest link </h4>
+                                            <h4 class="modal-title">Add your Twitter link </h4>
                                             <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
                                             <span aria-hidden="true">&times;</span>
                                             </button>
@@ -197,7 +206,7 @@
                         </div>
                 </div>
                 <div _ngcontent-c4="" class="card-body">   
-                        <div class="social-connect col-md-3 col-sm-12" data-reactid="330">
+                        <div class="social-connect col-md-6 col-sm-12" data-reactid="330">
                         <div class="social" data-reactid="332">
                                 <a title="Follow us on Google+" class="text-muted" rel="nofollow" target="_blank" href="https://plus.google.com" data-reactid="339">
                                     <i class="fa fa-google-plus fa-2x" data-reactid="340"></i>
@@ -207,6 +216,9 @@
                                         <h4 class="text-right col-lg-12">
                                             <i class="material-icons"  id="Google-function" (click)="Google()">edit</i>
                                         </h4>
+                                </div>
+                                <div class="switbtn">
+                                        <ui-switch [(ngModel)]="enable" ></ui-switch> 
                                 </div>
                                 <div class="card-block">
                                     <ng-template #contenttt let-c="close" let-d="dismiss">
@@ -242,7 +254,7 @@
                         </div>
                 </div>
                 <div _ngcontent-c4="" class="card-body">   
-                        <div class="social-connect col-md-3 col-sm-12" data-reactid="330">
+                        <div class="social-connect col-md-6 col-sm-12" data-reactid="330">
                         <div class="social" data-reactid="332">
                                 <a title="Follow us on Instagram" class="text-muted" rel="nofollow" target="_blank" href="https://instagram.com" data-reactid="341">
                                     <i class="fa fa-instagram fa-2x" data-reactid="342"></i>
@@ -253,6 +265,9 @@
                                             <!-- <i class="material-icons" (click)="open(contentttt)">edit</i> -->
                                             <i class="material-icons"  id="Instagram-function" (click)="Instagram()">edit</i>
                                         </h4>
+                                </div>
+                                <div class="switbtn">
+                                        <ui-switch [(ngModel)]="enable" ></ui-switch> 
                                 </div>
                                 <div class="card-block">
                                     <ng-template #contentttt let-c="close" let-d="dismiss">
@@ -287,14 +302,59 @@
                         </div>
                         </div>
                 </div>
+                <div _ngcontent-c4="" class="card-body">   
+                    <div class="social-connect col-md-6 col-sm-12" data-reactid="330">
+                    <div class="social" data-reactid="332">
+                            <a title="Follow us on Instagram" class="text-muted" rel="nofollow" target="_blank" href="https://instagram.com" data-reactid="341">
+                                <i class="fa fa-globe fa-2x" data-reactid="342"></i>
+                            </a>
 
-                    <!-- <div class="col-lg-4 col-sm-6 col-12">
-                        <h5 class="mt-4">Prompt Function</h5>
-                        <p>A replacement for the "prompt" function. You can set <code>type</code> as "input" to get a prompt modal.</p>
-                        <button type="button" class="btn btn-primary btn-raised btn-block">Prompt</button>
-                    </div> -->
+                            
+                            <input class="return_value" value="{{zzz1}}" />
+                            
+                            <div class="col-lg-12 editbtn">
+                                    <h4 class="text-right col-lg-12">
+                                        <!-- <i class="material-icons" (click)="open(contentttt)">edit</i> -->
+                                        <i class="material-icons"  id="Instagram-function" (click)="Instagram()">edit</i>
+                                    </h4>
+                            </div>
+                            <div class="switbtn">
+                                    <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                            </div>
+                            <div class="card-block">
+                                <ng-template #contentttt let-c="close" let-d="dismiss">
+                                    <div class="modal-header" style="background-color: white;">
+                                        <h4 class="modal-title">Add your Instagram link </h4>
+                                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body"  style="background-color: white;" >
+                                        <div class="input-effect form-group md-form mt-3">
+                                                <a title="Follow us on Instagram" class="text-muted" rel="nofollow" target="_blank" href="https://instagram.com" data-reactid="341">
+                                                    <i class="fa fa-instagram fa-2x mar_botom" data-reactid="342"></i>
+                                                </a>
+                                            <form>  
+                                                    
+                                                <input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+                                            </form>  
+                                            
 
-        
+                                            
+                                            <span class="focus-border"> </span>
+                                        </div>   
+                                    </div>
+                                    <div class="modal-footer"  style="background-color: white;">
+                                        <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
+                                    </div>
+                                </ng-template>
+    
+                            </div>
+                        
+                    </div>
+                    </div>
+            </div>
+
             </div>  
         </div>    
      </section> 

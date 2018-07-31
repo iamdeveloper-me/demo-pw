@@ -191,9 +191,10 @@ Instagram(){
     })
   }
 xyz:string = 'www.facebook.com'
-xyy:string = 'www.pinterest.com'
+xyy:string = 'www.twitter.com'
 xyx:string = 'www.google.com'
 zzz:string = 'www.instagram.com'
+zzz1:string = 'www.Perfect.com'
 busi_person:string = 'Rodriguez'
   ngOnInit() {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
@@ -245,6 +246,17 @@ abc(event){
   }
 
 
+
+  enable =  true;
+  count = 0;
+  onSubmit() { }
+
+  onChange() {
+    this.count++;
+  }
+
+
 }
+
 
 

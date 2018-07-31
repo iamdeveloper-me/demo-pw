@@ -12,6 +12,58 @@
 .blacktext{
   color:#000!important;
 }
+.viewstore{
+background:rgba(0, 0, 0, 0.8);
+padding:20px 10px;
+  text-align:center;
+  width:100%;
+  position:absolute;
+  bottom:0px;
+}
+a.bluelink{
+  color:#2196f3!important;
+}
+.padleft0px{
+  padding-left:0px!important;
+}
+.edithovering .photoedit{
+display:none;
+position:absolute;
+top:0px;
+border:0px solid #fff;
+color:#fff!important;
+z-index:99;
+background:rgba(0, 0, 0, 0.8);
+width: 80px;
+height: 80px;
+border-radius: 50%;
+left: inherit;
+right: inherit;
+}
+.edithovering:hover .photoedit{
+display:block;
+}
+
+.edithovering .editbtn{
+display:none;
+position:absolute;
+right:40px;
+top:0px;
+background:none;
+border:0px solid #fff;
+color:#2196f3;
+z-index:99;
+}
+.edithovering:hover .editbtn{
+  display:block;
+}
+.viewstore a{
+border:1px solid #fff;
+border-radius:10px;
+padding:5px 10px;
+color:#fff!important;
+
+}
 .prof_padbot{
   padding-bottom:20px;
 }
@@ -28,6 +80,10 @@
 .displya_name{
   padding: 0 !important;
 }
+.dashimgads{
+    width: 100%!important;
+  }
+
 .displya_name ul li{
 position:relative;
 }
@@ -46,6 +102,9 @@ border-radius:50%;
 }
 .martop15px{
   margin-top:15px;
+}
+.paddleft0px{
+  padding-left:0px;
 }
 .bottop{
   border-top:1px solid #e5e5e5;
@@ -94,7 +153,7 @@ display:none!important;
   box-shadow: 0 1px 4px 0 rgba(0,0,0,.14);
   border: 0;
   margin-bottom: 30px;
-  margin-top: 30px;
+  margin-top:0px;
   border-radius: 6px;
   color: #333;
   background: #fff;
@@ -229,9 +288,6 @@ display:none!important;
   direction: ltr;
   font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
-}
-.Analytics{
-  margin-top:50px;
 }
 .Analytics .card-header{
 
@@ -1114,10 +1170,42 @@ display:none!important;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto; }
-    @media (min-width: 576px) {
+    @media (min-width: 576px) 
+    {
       .container {
-        max-width: 540px; } }
+        max-width: 540px; }   
+  }
+
+  @media (max-width: 768px) {
+  .mobpadd10{
+  padding:10px!important;
+  }
+  .col-xs-4{
+  width:33.3%!important;
+  }
+  .mobnopadd{
+  padding:0px!important;
+  }
+  .overhiddenmob{
+  overflow:hidden!important;
+  }
+.acordian_panel{
+  margin-top:10px!important;
+}
+.bluelink span{
+  display:none!important;
+}
+.prolinkmob{
+text-align:right!important;
+}
+  }
     @media (min-width: 768px) {
+  .col-xs-3{
+  max-width:25%!important;
+  }
+    .col-xs-9{
+  max-width:75%!important;
+  }  
       .container {
         max-width: 720px; } }
     @media (min-width: 992px) {
@@ -12950,9 +13038,7 @@ display:none!important;
            text-align: left !important;
             margin-left: 3px !important;
       }
-      .prof_martop{
-        padding-left: 0 !important;
-      }
+      
       .displya_name{
         width: 50% !important;
       }

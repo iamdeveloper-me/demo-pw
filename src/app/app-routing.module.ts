@@ -134,7 +134,7 @@ const appRoutes: Routes = [
   { path: 'Admin/Tickets', component:  TicketsComponent  },  
   { path: 'Admin/Messageschat', component:   MessageschatComponent   },    
   { path: 'Admin/Events', component:  EventsandarticlesComponent},  
-  { path: 'Admin/Socialfeed', component: SocialfeedComponent  },  
+  { path: 'Admin/tipsandartical', component: SocialfeedComponent  },  
   { path: 'Admin/Sitestats', component: SitestatsandreportsComponent },  
   { path: 'Admin/Adminusers', component: AdminusersComponent },  
   { path: 'Admin/Reviewandfeedback', component: ReviewandfeedbackComponent },  

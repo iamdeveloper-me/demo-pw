@@ -256,7 +256,7 @@ export function getAuthServiceConfigs() {
         HttpClientModule,
         SocialLoginModule,
         //inbox
-        QuillModule ,
+        QuillModule,
         //calender
         CommonModule,
         //charts 

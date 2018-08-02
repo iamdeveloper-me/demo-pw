@@ -249,15 +249,14 @@ enable1 =  true;
 enable2 =  true;
 enable3 =  true;
 enable4 =  true;
+  
+  count = 0;
 
-count = 0;
   onSubmit() { }
 
   onChange() {
     this.count++;
   }
-
-
 }
 
 

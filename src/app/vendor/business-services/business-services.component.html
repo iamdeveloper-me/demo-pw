@@ -11,14 +11,19 @@
 <div class="container-fluid"> 
 		<div class="content">
 		</div>
-			<h2>Business Services</h2>
+			<h2>Form 1</h2>
 		<section id="user-profile">
 
 			<div class="col-12 nopadd">
 
 				<div _ngcontent-c4="" class="card">
-					<div _ngcontent-c4="" class="card-header">
-						<h4 _ngcontent-c4="" class="card-title">Photography, Videography & Cinematography </h4>
+						
+					<div _ngcontent-c4="" class="card-header text-center">
+							
+						<button _ngcontent-c4="" class="card-title">Photography, Videography & Cinematography </button>
+						<button type="button" class="btn edit_btn1 top_10px" data-toggle="modal" data-target="#week">
+								<i class="material-icons">edit</i>
+							  </button>
 					</div>
 					<div _ngcontent-c4="" class="card-body">
 						<div class="card-content selectboxservice"> 
@@ -28,7 +33,7 @@
 									<input name="group1" type="radio" checked=""> <span>Photography Only</span>
 								</label>
 							</div>
-							<div>
+							<!-- <div>
 								<label>
 									<input name="group1" type="radio"> <span>Photo + Vedio</span> 
 								</label>
@@ -37,18 +42,19 @@
 								<label>
 									<input name="group1" type="radio"> <span>Vediography</span> 
 								</label>
-							</div>
+							</div> -->
 							<hr class="hr-light">
 						</div>
 						<div class="card-content selectboxservice">
+							<h3>Form 2</h3>
 							<div class="funkyradio">
-								<div class="col-sm-3">
+								<div class="col-sm-3 col-xs-6">
 									<div class="funkyradio-info">
 										<input type="checkbox" name="checkbox" id="checkbox1" checked/>
 										<label for="checkbox1">Drone Capture</label>
 									</div>
 								</div>
-								<div class="col-sm-3">
+								<div class="col-sm-3 col-xs-6">
 									<div class="funkyradio-info">
 										<input type="checkbox" name="checkbox" id="checkbox2" checked/>
 										<label for="checkbox2">Candid Photography</label>
@@ -56,13 +62,14 @@
 									<div class="clearfix"></div>
 									<div class="editer">
 										<label>Price:</label>&nbsp;
-										<div class="editbtn">
-										<i class="material-icons" id="Candid-function" (click)="Candid()">edit</i>
-										</div>
+										<input type="text" value="" name="service1" disabled placeholder="Select" id="service1">
+										<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#candid">
+												<i class="material-icons">edit</i>
+											  </button>
 									</div>
 									
 								</div>
-								<div class="col-sm-3">
+								<div class="col-sm-3 col-xs-6">
 									<div class="funkyradio-info">
 									<input type="checkbox" name="checkbox" id="checkbox3" checked/>
 									<label for="checkbox3">Cinematography</label>
@@ -71,13 +78,14 @@
 									<div class="editer">
 										<label>Price:</label>&nbsp;
 										<input type="text" value="" name="service1" disabled placeholder="Select" id="service1">
-										<div class="editbtn">
-											<i class="material-icons" id="Cinematography-function" (click)="Cinematography()">edit</i>
-										</div>
+										<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#cinema">
+												<i class="material-icons">edit</i>
+											  </button>
+										
 									</div>
 								
 								</div>
-								<div class="col-sm-3">
+								<div class="col-sm-3 col-xs-6">
 									<div class="funkyradio-info">
 									<input type="checkbox" name="checkbox" id="checkbox4" checked/>
 									<label for="checkbox4">Studio Shoots</label>
@@ -85,13 +93,13 @@
 									<div class="editer">
 										<label>Price:</label>&nbsp;
 										<input type="text" value="" name="service1" disabled placeholder="Select" id="service1">
-										<div class="editbtn">
-											<i class="material-icons" id="Studio-function" (click)="Studio()">edit</i>
-										</div>
+										<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#studio">
+												<i class="material-icons">edit</i>
+											  </button>
 									</div>
 								
 								</div>
-								<div class="col-sm-3">
+								<div class="col-sm-3 col-xs-6">
 								<div class="funkyradio-info">
 									<input type="checkbox" name="checkbox" id="checkbox5"/>
 									<label for="checkbox5">Pre-Wedding Shoots</label>
@@ -99,13 +107,13 @@
 								<div class="editer">
 									<label>Price:</label>&nbsp;
 									<input type="text" value="" name="service1" disabled placeholder="Select" id="service1">
-										<div class="editbtn">
-											<i class="material-icons" id="PreWedding-function" (click)="PreWedding()">edit</i>
-										</div>
+									<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#prewed">
+											<i class="material-icons">edit</i>
+										  </button>
 									</div>
 								
 								</div>
-								<div class="col-sm-3">
+								<div class="col-sm-3 col-xs-6">
 								<div class="funkyradio-info">
 									<input type="checkbox" name="checkbox" id="checkbox6"/>
 									<label for="checkbox6">Photos Delivered</label>
@@ -113,26 +121,27 @@
 									<div class="editer">
 										<label>Price:</label>&nbsp;
 										<input type="text" value="" name="service1" disabled placeholder="Select" id="service1">
-										<div class="editbtn">
-											<i class="material-icons" id="PhotosDelivered-function" (click)="PhotosDelivered()">edit</i>
-										</div>
+										<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#photod">
+												<i class="material-icons">edit</i>
+											  </button>
 									</div>
 								
 								</div>
-								<div class="col-sm-3">
+								<div class="col-sm-3 col-xs-6">
 								<div class="funkyradio-info">
 									<input type="checkbox" name="checkbox" id="checkbox7"/>
 									<label for="checkbox7">Experience</label>
 								</div>
 								<div class="editer">
-										<input type="text" value="}" name="service1" disabled placeholder="4 Years" id="service1">
-										<div class="editbtn">
-											<i class="material-icons" id="Experience-function" (click)="Experience()">edit</i>
-										</div>
+									    <input type="text" value="" name="service1" disabled placeholder="Select" id="service1">
+										<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#experience">
+												<i class="material-icons">edit</i>
+											  </button>
+										
 									</div>
 								
 								</div>
-								<div class="col-sm-3">
+								<div class="col-sm-3 col-xs-6">
 								<div class="funkyradio-info">
 									<input type="checkbox" name="checkbox" id="checkbox8"/>
 									<label for="checkbox8">Payments Terms</label>
@@ -140,14 +149,13 @@
 								<div class="editer">
 										<label>Price:</label>&nbsp;
 										<input type="text" value="" name="service1" disabled placeholder="Select" id="service1">
-										
-										<div class="editbtn">
-											<i class="material-icons" id="Payments-function" (click)="Payments()">edit</i>
-										</div>
+										<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#payment">
+												<i class="material-icons">edit</i>
+											  </button>
 									</div>
 								
 								</div>
-								<div class="col-sm-3">
+								<div class="col-sm-3 col-xs-6">
 								<div class="funkyradio-info">
 									<input type="checkbox" name="checkbox" id="checkbox9"/>
 									<label for="checkbox9">Travel Costs</label>
@@ -155,10 +163,9 @@
 									<div class="editer">
 										<label>Price:</label>&nbsp;
 										<input type="text" value="" name="service1" disabled placeholder="Select" id="service1">
-										
-										<div class="editbtn">
-											<i class="material-icons" id="Travel-function" (click)="Travel()">edit</i>
-										</div>
+										<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#travel">
+												<i class="material-icons">edit</i>
+											  </button>
 									</div>
 								
 								</div>
@@ -167,10 +174,11 @@
 						</div>
 
 						<div class="card-content selectboxservice"> 
+							<h3>Form 3</h3>
 							<h5>Do you offer packages</h5>
 							<div>
 								<div class="funkyradio">
-									<div class="col-sm-3">
+									<div class="col-sm-3 col-xs-6">
 										<div class="funkyradio-info">
 											<input type="checkbox" name="checkbox" id="checkbox11" checked/>
 											<label for="checkbox11">Photos</label>
@@ -178,14 +186,13 @@
 										<div class="editer">
 											<label>Price:</label>&nbsp;
 											<input type="text" value="" name="service1" disabled placeholder="Select" id="service1">
-											
-											<div class="editbtn">
-												<i class="material-icons" id="Photos-function" (click)="Photos()">edit</i>
-											</div>
+											<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#photo_off">
+													<i class="material-icons">edit</i>
+												  </button>
 										</div>
 										
 									</div>
-									<div class="col-sm-3">
+									<div class="col-sm-3 col-xs-6">
 										<div class="funkyradio-info">
 											<input type="checkbox" name="checkbox" id="checkbox12" checked/>
 											<label for="checkbox12">Photos + Vedios</label>
@@ -194,9 +201,9 @@
 										<div class="editer">
 											<label>Price:</label>&nbsp;
 											<input type="text" value="" name="service1" disabled placeholder="Select" id="service1">
-											<div class="editbtn">
-											<i class="material-icons" id="Photosandvedio-function" (click)="Photosandvedio()">edit</i>
-											</div>
+											<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#photo_ved">
+													<i class="material-icons">edit</i>
+												  </button>
 										</div>
 											
 									</div>
@@ -207,6 +214,283 @@
 				</div>
 			</div>
 		</section>
+
+
+		<div class="modal fade" id="week" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+				  <div class="modal-content">
+						<h4  class="card-title">Photography, Videography & Cinematography </h4>
+						<div class="card-content selectboxservice"> 
+								<h5>Which Service do you provide</h5>
+								<div>
+									<label>
+										<input name="group1" type="radio" checked=""> <span>Photography Only</span>
+									</label>
+								</div>
+								<div>
+									<label>
+										<input name="group1" type="radio"> <span>Photo + Vedio</span> 
+									</label>
+								</div>
+								<div>
+									<label>
+										<input name="group1" type="radio"> <span>Vediography</span> 
+									</label>
+								</div>
+							
+							</div>
+			
+
+							<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button>
+							</div>
+				  </div>
+				</div>
+			  </div>
+			  
+		<div class="modal fade" id="candid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+				  <div class="modal-content">
+						<h4  class="card-title">Candid Photography </h4>
+						<div class="card-content selectboxservice"> 
+								<h5>Enter your Price</h5>
+								<div>
+									<label class="price_select">
+										<input name="Price" type="text" placeholder="$10"> 
+										
+									</label>
+								</div>
+								
+							
+							</div>
+			
+
+							<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button>
+							</div>
+				  </div>
+				</div>
+			  </div>
+
+        <div class="modal fade" id="cinema" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+					  <div class="modal-content">
+							<h4  class="card-title">Cinematography </h4>
+							<div class="card-content selectboxservice"> 
+									<h5>Enter your Price</h5>
+									<div>
+										<label class="price_select">
+											<input name="Price" type="text" placeholder="$10"> 
+											
+										</label>
+									</div>
+									
+								
+								</div>
+				
+	
+								<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button>
+								</div>
+					  </div>
+					</div>
+				  </div>
+		<div class="modal fade" id="studio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						<div class="modal-dialog" role="document">
+						  <div class="modal-content">
+								<h4  class="card-title">Studio Shoots </h4>
+								<div class="card-content selectboxservice"> 
+										<h5>Enter your Price</h5>
+										<div>
+											<label class="price_select">
+												<input name="Price" type="text" placeholder="$10"> 
+												
+											</label>
+										</div>
+										
+									
+									</div>
+					
+		
+									<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button>
+									</div>
+						  </div>
+						</div>
+					  </div>
+		<div class="modal fade" id="prewed" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+							  <div class="modal-content">
+									<h4  class="card-title">Pre-wedding Shoots </h4>
+									<div class="card-content selectboxservice"> 
+											<h5>Enter your Price</h5>
+											<div>
+												<label class="price_select">
+													<input name="Price" type="text" placeholder="$10"> 
+													
+												</label>
+											</div>
+											
+										
+										</div>
+						
+			
+										<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+												<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button>
+										</div>
+							  </div>
+							</div>
+						  </div>
+	    <div class="modal fade" id="photod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+								  <div class="modal-content">
+										<h4  class="card-title"> Photos Delivered </h4>
+										<div class="card-content selectboxservice"> 
+												<h5>Enter your Price</h5>
+												<div>
+													<label class="price_select">
+														<input name="Price" type="text" placeholder="$10"> 
+														
+													</label>
+												</div>
+												
+											
+											</div>
+							
+				
+											<div class="modal-footer">
+													<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+													<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button>
+											</div>
+								  </div>
+								</div>
+							  </div>
+	  <div class="modal fade" id="experience" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+									<div class="modal-dialog" role="document">
+									  <div class="modal-content">
+											<h4  class="card-title">Experience </h4>
+											<div class="card-content selectboxservice"> 
+													<h5>Your experience</h5>
+													<div>
+														<label class="price_select">
+															<input name="Price" type="text" placeholder="1 years"> 
+															
+														</label>
+													</div>
+													
+												
+												</div>
+								
+					
+												<div class="modal-footer">
+														<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+														<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button>
+												</div>
+									  </div>
+									</div>
+								  </div>
+		 <div class="modal fade" id="payment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+										<div class="modal-dialog" role="document">
+										  <div class="modal-content">
+												<h4  class="card-title">Payments Termes </h4>
+												<div class="card-content selectboxservice"> 
+														<h5>Enter your Price</h5>
+														<div>
+															<label class="price_select">
+																<input name="Price" type="text" placeholder="$10"> 
+																
+															</label>
+														</div>
+														
+													
+													</div>
+									
+						
+													<div class="modal-footer">
+															<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button>
+													</div>
+										  </div>
+										</div>
+									  </div>
+		 <div class="modal fade" id="travel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+											<div class="modal-dialog" role="document">
+											  <div class="modal-content">
+													<h4  class="card-title">Travel Cost </h4>
+													<div class="card-content selectboxservice"> 
+															<h5>Enter your Price</h5>
+															<div>
+																<label class="price_select">
+																	<input name="Price" type="text" placeholder="$10"> 
+																	
+																</label>
+															</div>
+															
+														
+														</div>
+										
+							
+														<div class="modal-footer">
+																<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button>
+														</div>
+											  </div>
+											</div>
+										  </div>
+        <div class="modal fade" id="photo_off" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+												<div class="modal-dialog" role="document">
+												  <div class="modal-content">
+														<h4  class="card-title">Photos </h4>
+														<div class="card-content selectboxservice"> 
+																<h5>Enter your Price</h5>
+																<div>
+																	<label class="price_select">
+																		<input name="Price" type="text" placeholder="$10"> 
+																		
+																	</label>
+																</div>
+																
+															
+															</div>
+											
+								
+															<div class="modal-footer">
+																	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																	<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button>
+															</div>
+												  </div>
+												</div>
+											  </div>
+		  <div class="modal fade" id="photo_ved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+													<div class="modal-dialog" role="document">
+													  <div class="modal-content">
+															<h4  class="card-title">Photos Vedios </h4>
+															<div class="card-content selectboxservice"> 
+																	<h5>Enter your Price</h5>
+																	<div>
+																		<label class="price_select">
+																			<input name="Price" type="text" placeholder="$10"> 
+																			
+																		</label>
+																	</div>
+																	
+																
+																</div>
+												
+									
+																<div class="modal-footer">
+																		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																		<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button>
+																</div>
+													  </div>
+													</div>
+												  </div>
+			
 		</div>
 		<app-foot></app-foot>
      <router-outlet></router-outlet>

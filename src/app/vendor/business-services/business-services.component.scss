@@ -86,10 +86,26 @@ position: absolute;
    color: #666;
    font-size: 20px;
    line-height: 23px;
+   display: none;
+}
+
+.modal-content .card-content{
+    border-top: 1px solid #e9ecef;
+    padding: 10px 30px !important;
+}
+.modal-content .card-title{
+    padding: 10px;
+    padding-left: 30px;
 }
 .selectboxservice h5{
     font-weight:bold;
     font-size:16px;
+}
+.selectboxservice h3{
+    margin-bottom: 16px;
+}
+.selectboxservice{
+    cursor: pointer;
 }
 .selectboxservice label{
     font-weight:normal;
@@ -98,6 +114,7 @@ position: absolute;
 margin-right:10px;}
 .funkyradio{
     overflow:hidden;
+    padding-bottom: 10px;
 }
 .funkyradio label {
   width: 100%;
@@ -305,7 +322,45 @@ margin-top: 10px!important;
   max-width:90%;
   margin:0px auto;
 }
+.card-header button{
+    border-radius: 15px;
+    padding: 5px;
+    color: #fff;
+    background:#e72e77!important;
+}
+.card .edit_btn1{
+  
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    padding: 0px;
+     display: none;
+    right: 50px;
+    color: #000;
+    background: #fff !important;
+}
+.card-header:hover .edit_btn1{
+    display: block !important;
+}
+.modal-footer button{
+    background:#e72e77!important;
+    color: #fff;
+}
+.editer:hover .edit_btn1{
+    display: block !important;
+    cursor: pointer;
+}
+.price_select input{
+    border: none !important;
+}
+.card .top_10px{
+    top: 10px !important;
+}
 @media(max-width:767px){
 
+    .card-header button {
+        padding: 0px;
+  
+    }
 
 }

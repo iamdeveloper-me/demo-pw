@@ -74,7 +74,7 @@ export class InboxService {
             true,
             false,
             true,
-            'assets/img/portrait/small/avatar-s-7.png',
+            'https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg',
             '',
             '',
             'Inbox',

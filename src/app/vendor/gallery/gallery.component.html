@@ -8,7 +8,7 @@
         <app-navemenu></app-navemenu>
         <router-outlet></router-outlet> 
         <div class="container-fluid">
-             <h2>Photo Gallery</h2>
+            <h2>Overview</h2>
            </div>
           <div class="container-fluid">  
           <div  class="card photo_gallery">   
@@ -21,36 +21,47 @@
             </div>
 
             <div class="photos_gallery">
-
-              <div class="row firt_row"> 
-
-              <div class="col-sm-3" >
-                <div class="defaultalbumbtn"  (click)="open(content)">
-                  <img src="../../assets/img/category/celebrat.jpg" class="img-responsive">
-                  <div class="albumbox">
-                    <i class="material-icons" style="font-size:30px;">camera_alt</i>
-                    <p>
-                      Portfolio<br/>
-                      0 images selected<br/>
-                      Click Here Add Album
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3" >
+               
+              <div class="row firt_row "> 
+                
+                  <div class="col-sm-4 mob_bot_20px" >
+                      <a  routerLink="../portfolioview" >
+                        <div class="mainalbumbtn">
+                          <img src="../../assets/img/category/celebrat.jpg" class="img-responsive">
+                          <div class="albumbox">
+                              <i class="material-icons" style="font-size:30px;">camera_alt</i>
+                              <p>
+                                Portfolio<br/>
+                                Oops! You have 0 image in your portfolio<br/>  
+                              </p>
+                              <p class="upload_bt text-center"> <button>Upload</button>  </p>
+                              <p class="text-center uplod_para"> Want to grow your Portfolio collection? Get UNLIMITED photos with a Premium Account. <a href="">Upgrade</a> </p>
+                            </div>
+                        </div>
+                      </a>
+                    </div>
+                    
+              <div class="col-sm-4" >
                 <a  routerLink="../albumview" >
                   <div class="mainalbumbtn">
                     <img src="../../assets/img/category/dj.jpg" class="img-responsive">
                     <div class="albumbox">
+                        <i class="material-icons" style="font-size:30px;">photo_album</i>
                       <p>
-                        Album Name<br/>
-                        20 images selected<br/>
-                        Click Here to View Album
+                       My Album <br/>
+                          
+                         You have no Photo Albums!<br/>  
+        
                       </p>
+                      <p class="upload_bt text-center"> <button>Create</button>  </p>
+                      <p class="text-center uplod_para"> Get orgainised with <span>UNLIMITED </span> albums. <br> <a href="">Upgrade to Premium Account</a> </p>
                       </div>
                   </div>
                 </a>
               </div>
+
+           
+             
                   
               </div>
 

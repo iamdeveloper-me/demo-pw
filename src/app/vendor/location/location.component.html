@@ -26,12 +26,59 @@
                           <div class="custom-form">
                             <div class="text-center bg-form col-sm-4 border_left_div2">
                               <div class="img-section"> 
-                                <img src="../../assets/img/deco4.jpg" class="infoimg img-responsive" alt="Profile picture"> 
-                                <span class="fake-icon-edit" id="PicUpload" style="color: #ffffff;"> 
-                                  <span class="glyphicon glyphicon-camera camera"></span> 
-                                </span>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3060153584!2d-74.2598711799434!3d40.69714940555201!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1533112990233" 
+                                    width="100%" height="215" frameborder="0" style="border:0" allowfullscreen></iframe>
+                               
+                                   <div class="img_overlay">
+
+                                        <div class="col-lg-12 col-md-12 pad_left_0px">
+                                                <input type="text" class="form-control form-input" value="Digital Photography" placeholder="Company Name" disabled id="companyname">
+                                               
+                                                <button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#photo_ved">
+                                                        <i class="material-icons">edit</i>
+                                                      </button>
+                                              </div>
+                                              <div class="col-lg-12 col-md-12 pad_left_0px">
+                                                  <input type="text" class="form-control form-input martop0px" value="Photography, Vediography" placeholder="Company Title" disabled id="companytitle">
+                                                
+                                              </div>
+                                   </div>
+
+                                   <div class="modal fade" id="photo_ved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                                <h4  class="card-title">Digital Photography </h4>
+                                               
+                                                <div class="card-content selectboxservice"> 
+                                                        <div class="form-group">
+                                                                <label for="comment">Map Location:</label>
+                                                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                                                              </div>    
+                                                <div>
+                                                    <label class="digi_lable">
+                                                        <input name="group1" type="radio" checked=""> <span>Photography </span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label>
+                                                        <input name="group1" type="radio"> <span> Vediography</span> 
+                                                    </label>
+                                                </div>
+                                               
+                                            
+                                            </div>
+                                    
+                        
+                                                    <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button>
+                                                    </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    
                               </div>
-                              <input type="file" id="image-input" onchange="readURL(this);" accept="image/*" disabled class="form-control form-input Profile-input-file" >
+                              <!-- <input type="file" id="image-input" onchange="readURL(this);" accept="image/*" disabled class="form-control form-input Profile-input-file" >
                               <div class="col-lg-12 col-md-12 pad_left_0px">
                                 <input type="text" class="form-control form-input" value="Digital Photography" placeholder="Company Name" disabled id="companyname">
                               <i class="material-icons edit_btn digi_edit"> edit</i>
@@ -39,18 +86,8 @@
                               <div class="col-lg-12 col-md-12 pad_left_0px">
                                   <input type="text" class="form-control form-input martop0px" value="Photography, Vediography" placeholder="Company Title" disabled id="companytitle">
                                 
-                              </div>
-                              <div class="col-lg-12 text_left phone_icon1">
-                                <div class="col-lg-12 col-md-12">
-                                  <span class="glyphicon glyphicon-earphone phone_icon">
-                                  </span>
-                                  <div class=" nopadd">
-                                    <input type="text" class="form-control form-input martop0px" value="+91-00000000" placeholder="Phone Number" disabled id="phone1">
-                                    <input type="text" class="form-control form-input martop0px" value="+91-00000000" placeholder="Phone Number" disabled id="phone2">
-                                  </div>
-                                       
-                                      </div>     
-                              </div>
+                              </div> -->
+                              
                             </div>
                             <div class="col-sm-4 text_left border_left_div">
                                 
@@ -62,49 +99,116 @@
                                             <span class="glyphicon glyphicon-map-marker acce_time" ></span>
                                             Country
                                         </div>
-
+                                   
+                    
+                                          
+                    
                                         <div class="col-sm-6 col-xs-6">
-                                            :  <i class="material-icons edit_btn" id="address-function" (click)="address()"> edit</i>
+                                            :  <i class="material-icons edit_btn" id="address-function" (click)="open(content)"> edit</i>
                                         </div>
-                                      
+                                       
                                       </div>
                                       <div class="clearfix"></div>
   
                                       <div class="col-sm-12 nopadd">
                                         
                                        <div class="col-sm-6 col-xs-6">
-                                          City
+                                        District
                                        </div> 
                                        
                                        <div class="col-sm-6 col-xs-6">
                                           :  
                                           </div>
-
-
                                       </div>
-                                      
-                                
-                                
+                            
                                       <div class="col-sm-12 nopadd">
                                         <div class="col-sm-6 col-xs-6">
-                                            Postal Code
-                                        </div>
-                                        <div class="col-sm-6 col-xs-6" >
-                                            : 
-                                            </div>
-                                      </div>
-                                     
-                                  
-                                
-                                      <div class="col-sm-12 nopadd">
-                                        <div class="col-sm-6 col-xs-6">
-                                            Address
+                                            Street Address
                                         </div>
                                         <div class="col-sm-6 col-xs-6">
                                             : 
                                               </div>
                                         </div>
-                                     
+
+                                        <ng-template #content let-c="close" let-d="dismiss">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Address</h4>
+                                                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                               
+                                                <div class="col-sm-12 county_addres">
+                                                        <div class="col-sm-2">
+                                                                Country
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                                <span class="ui_switch"><ui-switch [(ngModel)]="enable1" checked class="pull-left"></ui-switch> </span> 
+                                                           </div>
+                                                           <div class="col-sm-2">
+                                                              <input type="text" placeholder=" Enter Your Country">
+                                                            </div>
+                                                            
+                                                     </div>
+                                                     <div class="col-sm-12 county_addres">
+                                                            <div class="col-sm-2">
+                                                                    District
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                    <span class="ui_switch"><ui-switch [(ngModel)]="enable1" checked class="pull-left"></ui-switch> </span> 
+                                                               </div>
+                                                               <div class="col-sm-2">
+                                                                  <input type="text" placeholder=" Enter Your District">
+                                                                </div>
+                                                                
+                                                         </div>
+                                                         <div class="col-sm-12 county_addres mar_bottom_10px">
+                                                                <div class="col-sm-2">
+                                                                  Address
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                        <span class="ui_switch"><ui-switch [(ngModel)]="enable1" checked class="pull-left"></ui-switch> </span> 
+                                                                   </div>
+                                                                   <div class="col-sm-2">
+                                                                      <input type="text" placeholder=" Street Address">
+                                                                    </div>
+                                                                    
+                                                             </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+                                                    <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button>
+                                                </div>
+                                            </ng-template>
+
+
+
+                                        <div class="col-lg-12 text_left phone_icon1">
+                                            <div class="col-lg-12 col-md-12">
+                                              <span class="glyphicon glyphicon-earphone phone_icon">
+                                              </span>
+                                              <div class=" nopadd marg_left_13px">
+                                                <input type="text" class="form-control form-input martop0px" value="0731-245326" placeholder="Phone Number" disabled id="phone1">
+                                                <span class="glyphicon glyphicon-phone phone_icon"></span> <input type="text" class="form-control form-input martop0px" value="1234567890" placeholder="Phone Number" disabled id="phone2">
+
+                                                <button  class="btn edit_btn1" data-target="#phone" data-toggle="modal" type="button"><i _ class="material-icons">edit</i></button>
+                                              </div>
+                                                   
+                                             </div>     
+                                        </div>
+                                  
+                                        <div class="col-sm-12 new_location">
+                                            <div class="col-sm-8 col-xs-8">
+                                                    <button data-target="#location" data-toggle="modal" type="button"> Add New Location </button>
+                                            </div>
+                                           <div class="col-sm-4 col-xs-4 map_new_loc">
+                                             <input type="text" placeholder=" USA"> 
+                                           </div>
+                                         
+                                          
+                                        </div>
+
+                                     <div class="clearfix"></div>
                                   
                             
                                 </div>
@@ -116,7 +220,14 @@
                                     <div class="col-sm-6 col-xs-6 nopadd">Sunday </div>
                                     <div class="col-sm-6 col-xs-6 nopadd"> 
                                         <input type="text" class="form-control form-input martop0px" value="Closed" placeholder="Time" disabled id="suntime">
-                                        <i class="material-icons edit_btn1" id="access-function" (click)="access()" > edit</i>
+                                       
+                                        <button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#week">
+                                                <i class="material-icons">edit</i>
+                                        
+                                              </button>
+                                       
+                                       
+                                       
                                         
                                       </div>
                                 </div>
@@ -193,6 +304,10 @@
                                   <span class="glyphicon glyphicon-save"></span> Save
                                 </button>
                               </div>
+
+
+
+                             
                             </div>
                           </div>
                         </div>
@@ -201,7 +316,185 @@
                   </div>
                 </div>
                 <div class="clearfix"></div>
+
+
+                <div class="modal fade" id="week" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                                <div class="modal-header">
+                                        <h4 class="modal-title">Hours</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                  <div class="col-sm-12 sund_top">
+                                     <div class="col-sm-2">
+                                         Sunday
+                                     </div>
+                                     <div class="col-sm-4 line_height">
+                                        <span class="ui_switch"><ui-switch [(ngModel)]="enable1" disabled class="pull-left"></ui-switch> </span>    Closed
+                                        </div>
+                                  </div>
+                                  <div class="col-sm-12 loca_hours">
+                                        <div class="col-sm-2">
+                                            Monday
+                                        </div>
+                                        <div class="col-sm-3">
+                                                <span class="ui_switch"><ui-switch [(ngModel)]="enable2" checked class="pull-left"></ui-switch> </span>  Open
+                                           </div>
+                                           <div class="col-sm-2">
+                                              <input type="text" placeholder="9:00 am">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                    <input type="text" placeholder="5:00 pm">
+                                                </div>
+                                     </div>
+
+                                     <div class="col-sm-12 loca_hours">
+                                            <div class="col-sm-2">
+                                                Tuesday
+                                            </div>
+                                            <div class="col-sm-3">
+                                                    <span class="ui_switch"><ui-switch [(ngModel)]="enable3" checked class="pull-left"></ui-switch> </span>  Open
+                                               </div>
+                                               <div class="col-sm-2">
+                                                  <input type="text" placeholder="9:00 am">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                        <input type="text" placeholder="5:00 pm">
+                                                    </div>
+                                         </div>
+                                         <div class="col-sm-12 loca_hours">
+                                                <div class="col-sm-2">
+                                                    Wednesday
+                                                </div>
+                                                <div class="col-sm-3">
+                                                        <span class="ui_switch"><ui-switch [(ngModel)]="enable4" checked class="pull-left"></ui-switch> </span>  Open
+                                                   </div>
+                                                   <div class="col-sm-2">
+                                                      <input type="text" placeholder="9:00 am">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                            <input type="text" placeholder="5:00 pm">
+                                                        </div>
+                                             </div>
+                                             <div class="col-sm-12 loca_hours">
+                                                    <div class="col-sm-2">
+                                                        Thursday
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                            <span class="ui_switch"><ui-switch [(ngModel)]="enable5" checked class="pull-left"></ui-switch> </span>  Open
+                                                       </div>
+                                                       <div class="col-sm-2">
+                                                          <input type="text" placeholder="9:00 am">
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                                <input type="text" placeholder="5:00 pm">
+                                                            </div>
+                                                 </div>
+                                                 <div class="col-sm-12 loca_hours">
+                                                        <div class="col-sm-2">
+                                                            Friday
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                                <span class="ui_switch"><ui-switch [(ngModel)]="enable6" checked class="pull-left"></ui-switch> </span>  Open
+                                                           </div>
+                                                           <div class="col-sm-2">
+                                                              <input type="text" placeholder="9:00 am">
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                    <input type="text" placeholder="5:00 pm">
+                                                                </div>
+                                                     </div>
+                                                     <div class="col-sm-12 loca_hours">
+                                                            <div class="col-sm-2">
+                                                                Saturday
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                    <span class="ui_switch"><ui-switch [(ngModel)]="enable7" checked class="pull-left"></ui-switch> </span>  Open
+                                                               </div>
+                                                               <div class="col-sm-2">
+                                                                  <input type="text" placeholder="9:00 am">
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                        <input type="text" placeholder="5:00 pm">
+                                                                    </div>
+                                                         </div>
+
+                                    <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button>
+                                    </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                      <div class="modal fade" id="location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                    <div class="modal-header">
+                                            <h4 class="modal-title">Add New Location</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        </div>
+                                        <div class="modal-body">
+                                                <div class="col-sm-12  text-center">                 
+                                                        <i class="material-icons"> add_location </i>
+                                                         <p>Have more business branches?</p>
+                                                        <p> <input class="endent_10px" type="text" placeholder="Enter Location"> </p> 
+
+                                                         <p>Premium members only. <span>Upgrade</span> </p>
+                                                        </div>
+
+                                        </div>
+    
+                                        <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button>
+                                        </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+                          <div class="modal fade" id="phone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                        <div class="modal-header">
+                                                <h4 class="modal-title">Hours</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                    <div class="col-sm-12 pad_lef_30px">
+                                                            <div class="col-sm-12 pad_lef_30px">
+                                                             <span class="glyphicon glyphicon-earphone phone_icon"></span>
+                                                             <input type="text"  placeholder="0731-245326"  id="phone1">
+                                                            </div> 
+                                                               <div class="col-sm-12 pad_lef_30px">
+                                                                    <span class="glyphicon glyphicon-phone phone_icon"></span> 
+                                                                    <input type="text"   placeholder="1234567890"  id="phone2">
+                                                               </div> 
+                                                                
+                                                               <div class="col-sm-12 pad_lef_30px">
+                                                                <a href=""> ADD PHONE NUMBER </a>   
+                                                               </div>
+                                                                
+                                                              
+                                                            </div>
+    
+                                            </div>
+        
+                                            <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button>
+                                            </div>
+                                  </div>
+                                </div>
+                              </div>
       </section>
+
+      
+       
+
       <app-foot></app-foot>
      <router-outlet></router-outlet>
     </div>

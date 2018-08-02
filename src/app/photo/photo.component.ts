@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-photo',
@@ -8,16 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhotoComponent implements OnInit {
 
-  constructor() { }
+  constructor( public _router:Router) { }
 
   public ngOnInit() {
     $.getScript('./assets/js/blocksit.min.js');
     $.getScript('./assets/js/lazy.js');
     
+    
   }
- save(){
-   this.ngOnInit();
- }
+//  save(){
+//    this.ngOnInit();
+//    this._router.navigateByUrl('home/photo');
+//    location.reload(); 
+//  }
  
 
 }

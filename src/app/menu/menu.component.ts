@@ -160,11 +160,11 @@ remove(){
 }
 
 constructor( public _router:Router, private modalService: NgbModal) {}
-    save() {
-        //Do stuff
-        this._router.navigateByUrl('home/photo');
-        location.reload();      
-    }
+    // save() {
+    //     //Do stuff
+    //     this._router.navigateByUrl('home/photo');
+    //     location.reload();      
+    // }
  
 
 }

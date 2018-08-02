@@ -1,105 +1,129 @@
-
 <div id="wrapper" class="toggled">
     <div id="sidebar-wrapper">
-       
-            <app-adminsidebar></app-adminsidebar>
-        
+      <app-adminsidebar></app-adminsidebar>   
     </div>
     <div id="page-content-wrapper">    
-        <div class="container-fluid nopadd">                    
+        <div class="container-fluid nopadd Analytics">                    
             <app-adminnavbar></app-adminnavbar>
-            <div class="container-fluid Analytics">
+            <div class="container-fluid">
                 <h2> Dashboard</h2>
-                <div class="row">
-                  
+                <div class="row martop30px">
                 <div class="col-md-3">
+                    <div class="card card-stats">
+                      <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                          <i class="material-icons">store</i>
+                        </div>
+                        <p class="card-category">Pending Enquires</p>
+                        <h3 class="card-title"> 184</h3>
+
+                      </div>
+                      <div class="card-footer">
+                              <div class="stats">
+                              <i class="material-icons text-danger">warning</i>
+                              <a href="#">Storefront views</a>
+                              </div>
+                          </div>
+                    </div>     
+
+              </div>
+
+              <div class="col-md-3">
                       <div class="card card-stats">
                         <div class="card-header card-header-warning card-header-icon">
-                          <div class="card-icon">
-                            <i class="material-icons">store</i>
+                          <div class="card-icon rose">
+                            <i class="material-icons">equalizer</i>
                           </div>
-                          <p class="card-category">Impressions</p>
-                          <h3 class="card-title"> 184</h3>
-  
+                          <p class="card-category">Subscriptions</p>
+                          <h3 class="card-title"> 53</h3>
                         </div>
                         <div class="card-footer">
                                 <div class="stats">
-                                <i class="material-icons text-danger">warning</i>
-                                <a href="#">Storefront views</a>
+                                <i class="material-icons ">local_offer</i>
+                                <a href="#">Contact From & Job Pool</a>
                                 </div>
                             </div>
                       </div>     
                 </div>
-  
+
                 <div class="col-md-3">
-                        <div class="card card-stats">
-                          <div class="card-header card-header-warning card-header-icon">
-                            <div class="card-icon rose">
-                              <i class="material-icons">equalizer</i>
-                            </div>
-                            <p class="card-category">Enquiries & Leads</p>
-                            <h3 class="card-title"> 53</h3>
+                      <div class="card card-stats">
+                        <div class="card-header card-header-warning card-header-icon">
+                          <div class="card-icon green_bg">
+                            <i class="material-icons">favorite_border</i>
                           </div>
-                          <div class="card-footer">
-                                  <div class="stats">
-                                  <i class="material-icons ">local_offer</i>
-                                  <a href="#">Contact From & Job Pool</a>
-                                  </div>
-                              </div>
-                        </div>     
-                  </div>
-  
-                  <div class="col-md-3">
-                        <div class="card card-stats">
-                          <div class="card-header card-header-warning card-header-icon">
-                            <div class="card-icon green_bg">
-                              <i class="material-icons">favorite_border</i>
+                          <p class="card-category">Advertising Jobs</p>
+                          <h3 class="card-title"> 4</h3>
+                        </div>
+                        <div class="card-footer">
+                                <div class="stats">
+                                <i class="material-icons ">date_range</i>
+                                <a href="#"> No of times images are bookmark</a>
+                                </div>
                             </div>
-                            <p class="card-category">Love count</p>
-                            <h3 class="card-title"> 4</h3>
+                      </div>     
+                </div>
+
+                <div class="col-md-3">
+                      <div class="card card-stats">
+                        <div class="card-header card-header-warning card-header-icon">
+                          <div class="card-icon green_bg1">
+                            <i class="material-icons">message</i>
                           </div>
-                          <div class="card-footer">
-                                  <div class="stats">
-                                  <i class="material-icons ">date_range</i>
-                                  <a href="#"> No of times images are bookmark</a>
-                                  </div>
-                              </div>
-                        </div>     
-                  </div>
-  
-                  <div class="col-md-3">
-                        <div class="card card-stats">
-                          <div class="card-header card-header-warning card-header-icon">
-                            <div class="card-icon green_bg1">
-                              <i class="material-icons">message</i>
+                          <p class="card-category">Complaints</p>
+                          <h3 class="card-title"> 15</h3>
+                        </div>
+                        <div class="card-footer">
+                                <div class="stats">
+                                <i class="material-icons">date_range</i>
+                                <a href="#"> update</a>
+                                </div>
                             </div>
-                            <p class="card-category">Reviews</p>
-                            <h3 class="card-title"> 15</h3>
-                          </div>
-                          <div class="card-footer">
-                                  <div class="stats">
-                                  <i class="material-icons">date_range</i>
-                                  <a href="#"> update</a>
-                                  </div>
-                              </div>
-                        </div>     
-                  </div>
-  
+                      </div>     
+                </div>
                 </div>
             </div>
 
-
-            <div class="row">
+ <div class="container-fluid nopadd Analytics">   
+          
                   
-                <div class="col-md-7">
+                <div class="col-md-8" matchheight="card">
                    <app-admincalender></app-admincalender>
                 </div>
-                <div class="col-md-5 card" >
-                   <div class="box1"></div>
+                <div class="col-md-4 paddtopbot20px"  matchheight="card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="box1">
+                    <div class="col-sm-5 sidebox">
+                      <h3>184</h3>
+                      <p>Social Feeds</p>
+                    </div>
+                     <div class="col-sm-7 sideboxright">
+                      <i class="fa fa-facebook fa-2x" data-reactid="334"></i>&nbsp;
+                      <i class="fa fa-twitter fa-2x " data-reactid="338"></i>&nbsp;
+                      <i class="fa fa-google-plus fa-2x" data-reactid="340"></i>&nbsp;
+                      <i class="fa fa-instagram fa-2x" data-reactid="342"></i>&nbsp;
+                    </div> 
+                       
+                  </div>
                    <div  class="box2"></div>
-                   <div  class="box3"></div>
+                   <div  class="box3">
+                       <div class="col-sm-7 sidebox">
+                      <h3>325</h3>
+                      <p>Events & Articles</p>
+                      <p><a href="#">View All</a></p>
+                    </div>
+                     <div class="col-sm-5 sideboxright text-right">
+                      <i class="material-icons">email</i>
+                    </div> 
+                     <div class="updatepoststatus">Last Post:22 Jan 2018</div>
+                   </div>
+                </div>
+              </div>
+                   
+               
                  </div>
-            </div>       
+              </div>
             <app-foot></app-foot>
         </div>
     </div> 

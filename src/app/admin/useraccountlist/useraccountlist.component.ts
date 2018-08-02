@@ -38,9 +38,22 @@ export class UseraccountlistComponent implements OnInit {
 
   ngOnInit() {
 
+$("#action").hide();
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
   $.getScript('./assets/js/vendorsidebar.js');
+  
+  $(".Suppliertab").click(function(){
+    $("#filter").show();
+    $("#action").hide();  
+  
+  });
+
+    $(".Registertab").click(function(){
+    $("#filter").hide();
+    $("#action").show();  
+  
+  });
   }
 
 

@@ -1,4 +1,3 @@
-
 <div id="wrapper" class="toggled">
     <div id="sidebar-wrapper">
        
@@ -8,56 +7,395 @@
     <div id="page-content-wrapper">    
         <div class="container-fluid nopadd">                    
             <app-adminnavbar></app-adminnavbar>
-                       user list 
+            <div class="container-fluid">
+                <h2>Manage User & Supplier</h2>
+
+                <div class="row martop30px">
+                <div class="col-md-3">
+                    <div class="card card-stats">
+                      <div class="card-header card-header-warning card-header-icon">
+                        <p class="card-category">Trial Account</p>
+                        <div class="card-icon">
+                          <i class="material-icons">account_box</i>
+                        </div>
+                        
+                        <h3 class="card-title"> 184</h3>
+
+                      </div>
+                      
+                    </div>     
+
+              </div>
+
+              <div class="col-md-3">
+                      <div class="card card-stats">
+                        <div class="card-header card-header-warning card-header-icon">
+                            <p class="card-category">Silver Membership</p>
+                          <div class="card-icon rose">
+                            <i class="material-icons">card_membership</i>
+                          </div>
+                          <h3 class="card-title"> 53</h3>
+                        </div>
+                       
+                      </div>     
+                </div>
+
+                <div class="col-md-3">
+                      <div class="card card-stats">
+                        <div class="card-header card-header-warning card-header-icon">
+                          <p class="card-category">Gold Membership</p>
+                          <div class="card-icon green_bg">
+                            <i class="material-icons">class</i>
+                          </div>
+                          <h3 class="card-title"> 4</h3>
+                        </div>
+                        
+                      </div>     
+                </div>
+
+                <div class="col-md-3">
+                      <div class="card card-stats">
+                        <div class="card-header card-header-warning card-header-icon">
+                            <p class="card-category">Registered Users</p>
+                          <div class="card-icon green_bg1">
+                            <i class="material-icons">verified_user</i>
+                          </div>
+                          <h3 class="card-title"> 15</h3>
+                        </div>
+                        
+                      </div>     
+                </div>
+                </div>
 
             <div class="row">
-                  
-                <div class="col-md-8">
-                  
-                        <ng-template #content let-c="close" let-d="dismiss">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Modal title</h4>
-                                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>One fine body&hellip;</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
-                            </div>
-                        </ng-template>
-
-                        <button class="btn btn-lg btn-outline-primary" (click)="open(content)">add more user</button>
-
-                        <section id="action">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <ul class="tabbingdesign">
+                                <li class="card-title Suppliertab">Supplier</li>
+                                <li class="card-title Registertab">Register User</li>
+                            </ul>    
+                        </div>
+                        <section id="filter">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h4 class="card-title">Confirm Action</h4>
+                                    <div class="card martop0px">
+                                        <div class="card-header nopadtopbot"> 
+                                            <ng-template #supplier let-c="close" let-d="dismiss">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Add New Supplier</h4>
+                                                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                               <form>
+                                                    <div class="form-group">
+                                                        <label>Email</label>
+                                                        <input type="Email" name="" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Contact Person</label>
+                                                        <input type="text" name="" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Business Name</label>
+                                                        <input type="text" name="" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Passport/Other ID Card</label>
+                                                        <input type="file" name="" class="form-control">
+                                                    </div>
+                                                     <div class="form-group">
+                                                        <label>Contact Phone Number</label>
+                                                        <input type="text" name="" class="form-control">
+                                                    </div>
+                                                     <div class="form-group">
+                                                        <label>Mailing Address</label>
+                                                        <textarea class="form-control"></textarea>
+                                                    </div>
+                                               </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+                                                </div>
+                                            </ng-template>
+
+                                            <div class="serchbox">
+                                                <label>Show</label>
+                                                <select>
+                                                    <option>05</option>
+                                                    <option>10</option>
+                                                    <option>15</option>
+                                                    <option>20</option>
+                                                </select>
+
+                                                <input type="text" placeholder="Type to filter the name column" name="">
+
+                                                 <button class="btn btn-small btn-link" (click)="open(supplier)">Add New Supplier</button>
+
+                                            </div>
+                                           
                                         </div>
                                         <div class="card-body">
-                                            <div class="card-block">
-                                                <ng2-smart-table [settings]="alertsettings" [source]="alertSource" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onSaveConfirm($event)"
-                                                    (createConfirm)="onCreateConfirm($event)">
-                                                </ng2-smart-table>
+                                            <div class="card-block table-responsive">
+                                                <table class="table table-bordered table-striped">
+                                                    <tr>
+                                                            <th>#</th>
+                                                            <th>Name</th>
+                                                            <th>Plan</th>
+                                                            <th>Date</th>
+                                                            <th>Expiry</th>
+                                                            <th>Membership</th>
+                                                            <th>Status</th>
+                                                            <th>Details</th>
+                                                    </tr>
+                                                    <tr>
+                                                            <td>01</td>
+                                                            <td>Patricia Lebsack</td>
+                                                            <td>Sliver</td>
+                                                            <td>Aug 8, 2018</td>
+                                                            <td>Aug 8, 2019</td>
+                                                            <td>1 Year</td>
+                                                            <td>Active</td>
+                                                            <td><a href="#">View</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                            <td>01</td>
+                                                            <td>Patricia Lebsack</td>
+                                                            <td>Sliver</td>
+                                                            <td>Aug 8, 2018</td>
+                                                            <td>Aug 8, 2019</td>
+                                                            <td>1 Year</td>
+                                                            <td>Active</td>
+                                                            <td><a href="#">View</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                            <td>01</td>
+                                                            <td>Patricia Lebsack</td>
+                                                            <td>Sliver</td>
+                                                            <td>Aug 8, 2018</td>
+                                                            <td>Aug 8, 2019</td>
+                                                            <td>1 Year</td>
+                                                            <td>Active</td>
+                                                            <td><a href="#">View</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                            <td>01</td>
+                                                            <td>Patricia Lebsack</td>
+                                                            <td>Sliver</td>
+                                                            <td>Aug 8, 2018</td>
+                                                            <td>Aug 8, 2019</td>
+                                                            <td>1 Year</td>
+                                                            <td>Active</td>
+                                                            <td><a href="#">View</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                            <td>01</td>
+                                                            <td>Patricia Lebsack</td>
+                                                            <td>Sliver</td>
+                                                            <td>Aug 8, 2018</td>
+                                                            <td>Aug 8, 2019</td>
+                                                            <td>1 Year</td>
+                                                            <td>Active</td>
+                                                            <td><a href="#">View</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                            <td>01</td>
+                                                            <td>Patricia Lebsack</td>
+                                                            <td>Sliver</td>
+                                                            <td>Aug 8, 2018</td>
+                                                            <td>Aug 8, 2019</td>
+                                                            <td>1 Year</td>
+                                                            <td>Active</td>
+                                                            <td><a href="#">View</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                            <td>01</td>
+                                                            <td>Patricia Lebsack</td>
+                                                            <td>Sliver</td>
+                                                            <td>Aug 8, 2018</td>
+                                                            <td>Aug 8, 2019</td>
+                                                            <td>1 Year</td>
+                                                            <td>Active</td>
+                                                            <td><a href="#">View</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                            <td>01</td>
+                                                            <td>Patricia Lebsack</td>
+                                                            <td>Sliver</td>
+                                                            <td>Aug 8, 2018</td>
+                                                            <td>Aug 8, 2019</td>
+                                                            <td>1 Year</td>
+                                                            <td>Active</td>
+                                                            <td><a href="#">View</a></td>
+                                                    </tr>
+                                                </table>
+                                                   <!--  <ng2-smart-table [settings]="alertsettings" [source]="alertSource" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onSaveConfirm($event)"
+                                                        (createConfirm)="onCreateConfirm($event)">
+                                                    </ng2-smart-table> -->
+                                              
+                                                   <!--  <ng2-smart-table [settings]="filtersettings" [source]="filterSource"></ng2-smart-table> -->
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </section>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">defvrg</div>
-                    <div  class="card">frewf</div>
-                    <div  class="card">fewf</div>
-                    <div  class="card">defdre</div>
-                </div>
-            </div>            
+                        <section id="action">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card martop0px">
+                                        <div class="card-header nopadtopbot"> 
 
+                                            <ng-template #adduser let-c="close" let-d="dismiss">
+                                            <div class="modal-header">
+                                                    <h4 class="modal-title">Add New Supplier</h4>
+                                                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                               <form>
+                                                    <div class="form-group">
+                                                        <label>Email</label>
+                                                        <input type="Email" name="" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Contact Person</label>
+                                                        <input type="text" name="" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Business Name</label>
+                                                        <input type="text" name="" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Passport/Other ID Card</label>
+                                                        <input type="file" name="" class="form-control">
+                                                    </div>
+                                                     <div class="form-group">
+                                                        <label>Contact Phone Number</label>
+                                                        <input type="text" name="" class="form-control">
+                                                    </div>
+                                                     <div class="form-group">
+                                                        <label>Mailing Address</label>
+                                                        <textarea class="form-control"></textarea>
+                                                    </div>
+                                               </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+                                                </div>
+                                        </ng-template>
+
+                                            <div class="serchbox">
+                                                <label>Show</label>
+                                                <select>
+                                                    <option>05</option>
+                                                    <option>10</option>
+                                                    <option>15</option>
+                                                    <option>20</option>
+                                                </select>
+
+                                                <input type="text" placeholder="Type to filter the name column" name="">
+
+                                                  <button class="btn btn-small btn-link" (click)="open(adduser)">Add New User</button>
+
+                                            </div>
+
+                                       
+                                        </div>
+                                        <div class="card-body">
+                                            
+                                            <div class="card-block table-responsive">
+                                                <table class="table table-bordered table-striped">
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Name</th>
+                                                        <th>Date</th>
+                                                        <th>Membership</th>
+                                                        <th>Status</th>
+                                                        <th>Details</th>
+                                                    </tr>
+                                                      <tr>
+                                                        <td>01</td>
+                                                        <td>Patricia Lebsack</td>
+                                                        <td>Aug 8, 2018</td>
+                                                        <td>1 Year</td>
+                                                        <td>Active</td>
+                                                        <td><a href="#">View</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                         <td>01</td>
+                                                        <td>Patricia Lebsack</td>
+                                                        <td>Aug 8, 2018</td>
+                                                        <td>1 Year</td>
+                                                        <td>Active</td>
+                                                        <td><a href="#">View</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>01</td>
+                                                        <td>Patricia Lebsack</td>
+                                                        <td>Aug 8, 2018</td>
+                                                        <td>1 Year</td>
+                                                        <td>Active</td>
+                                                        <td><a href="#">View</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>01</td>
+                                                        <td>Patricia Lebsack</td>
+                                                        <td>Aug 8, 2018</td>
+                                                        <td>1 Year</td>
+                                                        <td>Active</td>
+                                                        <td><a href="#">View</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                         <td>01</td>
+                                                        <td>Patricia Lebsack</td>
+                                                        <td>Aug 8, 2018</td>
+                                                        <td>1 Year</td>
+                                                        <td>Active</td>
+                                                        <td><a href="#">View</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>01</td>
+                                                        <td>Patricia Lebsack</td>
+                                                        <td>Aug 8, 2018</td>
+                                                        <td>1 Year</td>
+                                                        <td>Active</td>
+                                                        <td><a href="#">View</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                         <td>01</td>
+                                                        <td>Patricia Lebsack</td>
+                                                        <td>Aug 8, 2018</td>
+                                                        <td>1 Year</td>
+                                                        <td>Active</td>
+                                                        <td><a href="#">View</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>01</td>
+                                                        <td>Patricia Lebsack</td>
+                                                        <td>Aug 8, 2018</td>
+                                                        <td>1 Year</td>
+                                                        <td>Active</td>
+                                                        <td><a href="#">View</a></td>
+                                                    </tr>
+                                                </table>
+                                               <!--  <ng2-smart-table [settings]="alertsettings" [source]="alertSource" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onSaveConfirm($event)"
+                                                    (createConfirm)="onCreateConfirm($event)">
+                                                </ng2-smart-table> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>    
+                </div>
+               
+            </div>            
+</div>
             <app-foot></app-foot>
         </div>
     </div> 

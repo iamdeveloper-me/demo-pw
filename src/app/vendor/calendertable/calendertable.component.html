@@ -24,12 +24,10 @@
 
 
 				<div class="d-flex flex-wrap justify-content-md-between xs-1 mb-3 no-gutters">
-					
-<div class="col-sm-4">
+					<div class="col-sm-4">
 						<h6 class="text-uppercase mb-0">{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h6>
 					</div>
-
-<div class="col-sm-4 text-center align-self-center">
+					<div class="col-sm-4 text-center align-self-center">
 						<div class="btn-group d-none d-sm-none d-md-none d-lg-block">
 							<a class="btn btn-raised btn-primary" (click)="view = 'month'" [class.active]="view === 'month'">
 								Month
@@ -53,9 +51,7 @@
 								<i class="fa fa-th-list"></i>
 							</a>
 						</div>
-
 					</div>
-
 					<div class="col-sm-4 text-right align-self-right">
 						<div class="btn-group d-none d-sm-none d-md-none d-lg-block">
 							<a class="btn btn-raised btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
@@ -80,9 +76,7 @@
 								<i class="icon icon-arrows-right"></i>
 							</a>
 						</div>
-					</div>
-					
-					
+					</div>	
 				</div>
 				
 				

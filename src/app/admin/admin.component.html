@@ -1,60 +1,30 @@
+<div class="" id="LoginForm">
+<h1 class="form-heading"></h1>
+<div class="login-form">
+<div class="main-div">
+    
+   <h2>Admin Login</h2>
+   <p>Please enter your email and password</p>
+   
+    <form id="Login">
 
-<section id="login" class="login_section">
-    <div class="container-fluid">
-        <div class="row full-height-vh">
-            <div class="col-12 d-flex align-items-center justify-content-center">
-                <div class="card gradient-indigo-purple text-center width-400">
-                    <div class="card-img overlap">
-                        <img alt="element 06" class="mb-1" src="http://www.federalschoolofoccupationaltherapyyaba.gov.ng/images/adminicon.png" width="190">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-block">
-                            <h2 class="white">Login</h2>
-                            <form novalidate="" (ngSubmit)="onSubmit()" #f="ngForm">
-                                <div class="form-group ">
-                                    <div class="col-md-12 mar_bot_10px">
-                                        <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Email" ngModel required email>
-                                    </div>
-                                </div>
+        <div class="form-group">
 
-                                <div class="form-group">
-                                    <div class="col-md-12 mar_bot_10px">
-                                        <input type="password" class="form-control" name="inputPass" id="inputPass" placeholder="Password" ngModel required>
-                                    </div>
-                                </div>
 
-                                <div class="clearfix"></div>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email Address">
 
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0 ml-3">
-                                                <input type="checkbox" class="custom-control-input" checked id="rememberme">
-                                                <label class="custom-control-label float-left white" for="rememberme">Remember Me</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <button type="submit" class="btn btn-pink btn-block btn-raised"  routerLink="../dashboard">Submit</button>
-                                        <button type="button" class="btn btn-secondary btn-block btn-raised">Cancel</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <div class="float-left"><a (click)="onForgotPassword()" class="white">Recover Password</a></div>
-                        <div class="float-right"><a (click)="onRegister()" class="white">New User?</a></div>
-                    </div>
-                </div>
-            </div>
         </div>
+
+        <div class="form-group">
+
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+
+        </div>
+        <div class="forgot">
+        <a href="reset.html">Forgot password?</a>
+</div>
+        <button type="submit" routerLink="../dashboard" class="admin_login btn btn-raised gradient-purple-bliss white shadow-z-1-hover">Login</button>
+
+    </form>
     </div>
-</section>
-
-
- 
-
+</div></div>

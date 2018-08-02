@@ -114,11 +114,11 @@ import {  AdminComponent } from "./admin/admin.component";
 import { AdminsidebarComponent } from './admin/adminsidebar/adminsidebar.component';
 import { AdminnavbarComponent } from './admin/adminnavbar/adminnavbar.component';
 import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
-import { UseraccountlistComponent } from './admin/useraccountlist/useraccountlist.component';
+import { UseraccountlistComponent ,NgbduserModalContent } from './admin/useraccountlist/useraccountlist.component';
 import { CustomerbillingsComponent } from './admin/customerbillings/customerbillings.component';
 import { CalenderandnotesComponent } from './admin/calenderandnotes/calenderandnotes.component';
 import { EmailComponent } from './admin/email/email.component';
-import { TicketsComponent } from './admin/tickets/tickets.component';
+import { TicketsComponent ,NgbdticketModalContent} from './admin/tickets/tickets.component';
 import { MessageschatComponent } from './admin/messageschat/messageschat.component';
 import { AdminadvertisingComponent } from './admin/adminadvertising/adminadvertising.component';
 import { SocialfeedComponent } from './admin/socialfeed/socialfeed.component';
@@ -158,7 +158,7 @@ export function getAuthServiceConfigs() {
 
         BusinessInfoComponent,
         NgbduModalContent,
-
+        NgbdticketModalContent,
         CreatePromotionComponent,
         LocationComponent,
         FullLayoutComponent,
@@ -180,7 +180,7 @@ export function getAuthServiceConfigs() {
         GalleryComponent,
         NgbdgalleryModalContent ,  
         ReviewsComponent,
-
+        NgbduserModalContent ,
         VendorsidebarComponent,
         PhotoComponent,
         TipsComponent,
@@ -256,7 +256,7 @@ export function getAuthServiceConfigs() {
         HttpClientModule,
         SocialLoginModule,
         //inbox
-        QuillModule ,
+        QuillModule,
         //calender
         CommonModule,
         //charts 

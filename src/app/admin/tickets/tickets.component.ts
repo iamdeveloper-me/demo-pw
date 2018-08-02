@@ -23,7 +23,7 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
 `
 })
 
-export class NgbduserModalContent {
+export class NgbdticketModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) { }
 }
@@ -145,7 +145,7 @@ export class TicketsComponent implements OnInit {
 
   // Open content with dark section
   openContent() {
-      const modalRef = this.modalService.open( NgbduserModalContent);
+      const modalRef = this.modalService.open( NgbdticketModalContent);
       modalRef.componentInstance.name = 'World';
   }
 }

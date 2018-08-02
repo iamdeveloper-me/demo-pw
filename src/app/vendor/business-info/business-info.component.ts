@@ -250,13 +250,24 @@ enable2 =  true;
 enable3 =  true;
 enable4 =  true;
   
-  count = 0;
 
-  onSubmit() { }
+  // count = 0;
+  // onSubmit() { }
 
-  onChange() {
-    this.count++;
-  }
+  // onChange() {
+  //   this.count++;
+  // }
+
+
+
+  // enable =  true;
+  // count = 0;
+  // onSubmit() { }
+
+  // onChange() {
+  //   this.count++;
+  // }
+
 }
 
 

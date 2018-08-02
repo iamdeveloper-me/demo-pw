@@ -1,7 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input} from '@angular/core';
 import swal from 'sweetalert2';
+import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
+@Component({
+    selector: 'ngbd-modal-content',
+    template: `
+    <div class="modal-header">
+      <h4 class="modal-title">Hi there!</h4>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Hello, {{name}}!</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary btn-raised" (click)="activeModal.close('Close click')">Close</button>
+    </div>
+  `
+})
 
+export class NgbdModalContent {
+  @Input() name;
+  constructor(public activeModal: NgbActiveModal) { }
+}
 @Component({
   selector: 'app-location',
   templateUrl: './location.component.html',
@@ -10,7 +32,7 @@ import swal from 'sweetalert2';
 export class LocationComponent implements OnInit {
   currentPage: string = "About"
   obj = [];
-name= 'fgdfgdfgdfgdf'
+  name= 'fgdfgdfgdfgdf'
   
   ngOnInit(): void {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
@@ -19,7 +41,26 @@ name= 'fgdfgdfgdfgdf'
     //edit js
     $.getScript('./assets/js/vertical-timeline.js');
 
-
+    function testAnim(x) {
+      $('.modal .modal-dialog').addClass('animated');
+      $('.modal .modal-dialog').addClass('bounceIn');
+  };
+  $('#week').on('show.bs.modal', function (e) {
+    var anim = $('#entrance').val();
+        testAnim(anim);
+  })
+  $('#week').on('hide.bs.modal', function (e) {
+    var anim = $('#exit').val();
+        testAnim(anim);
+  })
+  $('#phone').on('show.bs.modal', function (e) {
+    var anim = $('#entrance').val();
+        testAnim(anim);
+  })
+  $('#phone').on('hide.bs.modal', function (e) {
+    var anim = $('#exit').val();
+        testAnim(anim);
+  })
   }
   phone(){
     swal.setDefaults({
@@ -116,6 +157,13 @@ name= 'fgdfgdfgdfgdf'
   
 
   enable =  true;
+  enable1 =  true;
+  enable2 =  true;
+  enable3 =  true;
+  enable4 =  true;
+  enable5 =  true;
+  enable6 =  true;
+  enable7 =  true;
   count = 0;
   onSubmit() { }
 
@@ -128,7 +176,42 @@ name= 'fgdfgdfgdfgdf'
   showPage(page: string) {
     this.currentPage = page;
 }
+//model
+closeResult: string;
 
+constructor(private modalService: NgbModal) { }
 
+// Open default modal
+open(content) {
+    this.modalService.open(content).result.then((result) => {
+      $(".modal-dailog").addClass( "bounceIn");
+      $(".modal-dailog").addClass( "animated"); 
+        this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+}
+
+// This function is used in open
+private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+        return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+        return 'by clicking on a backdrop';
+    } else {
+        return `with: ${reason}`;
+    }
+}
+
+// Open modal with dark section
+openModal(customContent) {
+    this.modalService.open(customContent, { windowClass: 'dark-modal' });
+}
+
+// Open content with dark section
+openContent() {
+    const modalRef = this.modalService.open(NgbdModalContent);
+    modalRef.componentInstance.name = 'World';
+}
 
 }

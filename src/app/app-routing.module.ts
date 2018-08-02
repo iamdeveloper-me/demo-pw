@@ -69,6 +69,7 @@ import { EventsandarticlesComponent } from './admin/eventsandarticles/eventsanda
 import { SitestatsandreportsComponent } from './admin/sitestatsandreports/sitestatsandreports.component';
 import { AdminusersComponent } from './admin/adminusers/adminusers.component';
 import { ReviewandfeedbackComponent } from './admin/reviewandfeedback/reviewandfeedback.component';
+import { PortfolioviewComponent } from './vendor/portfolioview/portfolioview.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -94,6 +95,7 @@ const appRoutes: Routes = [
     { path: 'vendor/creatpromo', component:  CreatePromotionComponent  },
     { path: 'vendor/dashboard', component:  DashboardComponent  },
     { path: 'vendor/albumview', component:  AlbumviewComponent  },
+    { path: 'vendor/portfolioview', component:  PortfolioviewComponent  },
     { path: 'vendor/business', component:  BusinessInfoComponent  },
     { path: 'vendor/location', component:  LocationComponent  },
     { path: 'vendor/gallery', component: GalleryComponent  },

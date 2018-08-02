@@ -85,7 +85,7 @@
 .custom-form{float: left;width:100%;overflow: hidden;
 }
 .img-section{
-    float: left;width: 100%;padding-top:0px;padding-bottom:0px;background: rgba(0,0,0,0.7);position: relative;
+   background: rgba(0,0,0,0.7);position: relative;
 }
 .img-section h4{color:#fff;}
 .img-section img{
@@ -369,13 +369,27 @@ textarea.form-control, textarea.form-control{
 }
 
 .edit_btn1{
-    float: right;
+    background: transparent;
     cursor: pointer;
-    margin-top: -30px;
-    display: none
+    position: absolute;
+    top: 0px;
+    padding: 0px;
+    display: none;
+
+    right: 0px;
+}
+.edit_btn1 i{
+    color: #000;
 }
 .weekboxinput3:hover .edit_btn1{
     display: block;
+}
+.pad_left_0px:hover .digi_edit{
+    display: block;
+}
+#phone1 , #phone2 ,#suntime ,#montime , #tuetime , #wedtime 
+,#thutime , #fritime , #sattime ,#companyname , #image-input , #companytitle{
+    cursor: pointer !important;
 }
 .phone_icon{
     position: absolute !important;
@@ -383,7 +397,7 @@ textarea.form-control, textarea.form-control{
     left: -13px !important;
 }
 .phone_icon1{
-    margin-top: 17px;
+    margin-top: 10px;
 }
 .digi_edit{
     margin-top: -24px;
@@ -392,7 +406,140 @@ textarea.form-control, textarea.form-control{
 .switbtn ui-switch{
     margin-left: 10px;
 }
-
+.img_overlay{
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8); 
+    bottom: 5px;
+}
+.img_overlay input{
+    background: transparent !important;
+    border: none;
+    color: #fff;
+    text-align: center;
+}
+.img_overlay .material-icons{
+    margin-right: 0px;
+    color: #fff;
+}
+.img_overlay:hover .edit_btn1{
+    display: block;
+}
+.loca_hours input{
+    border:none;
+}
+.loca_hours{
+    margin-bottom: 10px;
+}
+.ui_switch{
+    margin-right: 10px;
+}
+.ui_switch ui-switch{
+    margin-top: 5px;
+}
+.line_height{
+    line-height: 30px;
+}
+.sund_top{
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+.modal-footer button{
+    background: #e72e77;
+    color: #fff;
+    border: none !important;
+}
+.county_addres{
+    margin-top: 10px;
+}
+.county_addres input{
+    border: none;
+}
+.mar_bottom_10px{
+    margin-bottom: 10px;
+}
+.marg_left_13px{
+    margin-left: -13px;
+}
+.phone_icon1 .glyphicon-earphone{
+    top: 5px !important;
+    left: -22px !important;
+}
+.phone_icon1 .glyphicon-phone{
+    top: 32px !important;
+    left: -20px !important;
+}
+.marg_left_13px:hover .edit_btn1{
+    display: block;
+}
+.marg_left_13px i{
+    position: absolute;
+    right: 0;
+    top: 0px;
+}
+.pad_lef_30px{
+    padding-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.bounceIn{
+    z-index: 77;
+}
+.pad_lef_30px input{
+    border: none;
+}
+.new_location{
+    margin-top: 15px;
+}
+.new_location button{
+    background-color: #e72e77 !important;
+    padding: 10px ;
+}
+.pop_locatio{
+    background-color: #e72e77 !important;
+    padding: 10px 10px ;
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.new_location:hover .edit_btn1{
+    display: block;
+    background-color: transparent !important;
+    border: none  !important;
+}
+#location .modal-body i{
+    font-size: 80px;
+}
+#photo_ved .card-title{
+    color: #000 !important;
+}
+#photo_ved .modal-content{
+    text-align: left;
+    padding: 10px;
+}
+#photo_ved .modal-content label input{
+    margin-right: 10px;
+}
+.digi_lable{
+    border-top: 1px solid #e9ecef;
+    width: 100%;
+    padding-top: 10px;
+}
+.map_new_loc input{
+    border: none;
+    width: 100%;
+}
+.new_location{
+    padding-left: 0;
+}
+.new_location .col-sm-8{
+    padding-left: 0;
+}
+.map_new_loc{
+    line-height: 40px;
+}
+.endent_10px{
+    text-indent: 10px;
+}
 
 @media(max-width:767px){
     .border_left_div2{
@@ -418,7 +565,7 @@ textarea.form-control, textarea.form-control{
     }
     
     .mainhead{
-        font-size: 24px;
+        font-size: 20px;
         font-weight: 300;
     }
     .switbtn ui-switch{
@@ -428,6 +575,23 @@ textarea.form-control, textarea.form-control{
     .switbtn{
        
         margin-top: 4px !important;
+    }
+    .img_overlay{
+        width: 100%;
+    }
+    .phone_icon1 .glyphicon-earphone{
+        top: 40px !important;
+   
+    }
+    .phone_icon1 .glyphicon-phone {
+        top: 68px !important;
+     
+    }
+    .new_location .col-xs-8{
+        width: 70%;
+    }
+    .new_location .col-xs-4{
+        width: 30%;
     }
 
 }

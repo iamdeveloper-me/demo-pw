@@ -10,7 +10,9 @@ constructor(){
 }
 
 ngOnInit() {
-
+    $.getScript('./assets/js/blocksit.min.js');
+    $.getScript('./assets/js/lazy.js');
+    
 }
 
 }

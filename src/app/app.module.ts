@@ -99,7 +99,7 @@ import { GalleryComponent ,NgbdgalleryModalContent } from './vendor/gallery/gall
 import { VendorComponent } from './vendor/vendor.component';
 import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
 import { BusinessInfoComponent ,NgbduModalContent} from "./vendor/business-info/business-info.component";
-import { LocationComponent } from "./vendor/location/location.component";
+import { LocationComponent,NgbdlocationModalContent } from "./vendor/location/location.component";
 import { VideosComponent ,NgbdvedioModalContent} from './vendor/videos/videos.component';
 import { MylistingComponent } from './vendor/mylisting/mylisting.component';
 import { NavemenuComponent } from './vendor/navemenu/navemenu.component';
@@ -157,7 +157,7 @@ export function getAuthServiceConfigs() {
         NgbdModalContent,
         AllPromotionPageComponent,
         PortfolioviewComponent,
-
+        NgbdlocationModalContent,
         BusinessInfoComponent,
         NgbduModalContent,
         NgbdticketModalContent,

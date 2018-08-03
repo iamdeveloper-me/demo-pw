@@ -4,106 +4,99 @@
       <app-vendorsidebar></app-vendorsidebar>
   </div>
   <div id="page-content-wrapper">    
+      <router-outlet></router-outlet> 
+      <div class="content">
+        <div id ="navmenu">
+          <app-navemenu></app-navemenu>
+        </div>
+        <section class="Reviews_page container-fluid">
+            <div class="man_info">
+              <h2> Reviews </h2>
+              <div class="man_img">
+                <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> <span class="revie_name"> <strong> Peeter Parker </strong> </span>
 
-<router-outlet></router-outlet> 
-<div class="content">
-   <div id ="navmenu">
-    <app-navemenu></app-navemenu>
-   </div>
-   <section class="Reviews_page container-fluid">
-      <div class="man_info">
-        <h2> Reviews </h2>
-         <div class="man_img">
-           <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> <span class="revie_name"> <strong> Peeter Parker </strong> </span>
+                <div class="rating_star">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span> 
+                    <span class="weeks_ago"> <strong> 2 weeks ago   </strong>  </span>
+                    
+                </div>
+                <p> Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
 
-           <div class="rating_star">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span> 
-              <span class="weeks_ago"> <strong> 2 weeks ago   </strong>  </span>
-              
-           </div>
-           <p> Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
-
-           <div class="btn_button ">
-             <button class="btn btn-lg btn-success">APPROVE </button>
-             <button class="btn btn-raised gradient-pomegranate white signup_nextbtn">DISAGREE </button>
-           </div>
-         </div>
-
-         <div class="man_img first_rew">
-            <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> <span class="revie_name"> <strong> Peeter Parker </strong> </span>
- 
-            <div class="rating_star">
-               <span class="fa fa-star checked"></span>
-               <span class="fa fa-star checked"></span>
-               <span class="fa fa-star checked"></span>
-               <span class="fa fa-star"></span>
-               <span class="fa fa-star"></span> 
-               <span class="weeks_ago"> <strong> 2 weeks ago   </strong>  </span>
-               
-            </div>
-            <p> Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
- 
-            <div class="btn_button ">
-               <button class="btn btn-lg btn-success">APPROVE </button>
-              <button class="btn btn-raised gradient-pomegranate white signup_nextbtn">DISAGREE </button>
-            </div>
-          </div>
-
-          <div class="man_img first_rew">
-              <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> <span class="revie_name"> <strong> Peeter Parker </strong> </span>
-   
-              <div class="rating_star">
-                 <span class="fa fa-star checked"></span>
-                 <span class="fa fa-star checked"></span>
-                 <span class="fa fa-star checked"></span>
-                 <span class="fa fa-star"></span>
-                 <span class="fa fa-star"></span> 
-                 <span class="weeks_ago"> <strong> 2 weeks ago   </strong>  </span>
-                 
+                <div class="btn_button ">
+                  <button class="btn btn-lg btn-success">APPROVE </button>
+                  <button class="btn btn-raised gradient-pomegranate white signup_nextbtn">DISAGREE </button>
+                </div>
               </div>
-              <p> Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
-   
-               <button class="btn btn-lg btn-success">APPROVE </button>
-              <button class="btn btn-raised gradient-pomegranate white signup_nextbtn">DISAGREE </button>
-              </div>
+
+                <div class="man_img first_rew">
+                  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> <span class="revie_name"> <strong> Peeter Parker </strong> </span>
+      
+                  <div class="rating_star">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span> 
+                    <span class="weeks_ago"> <strong> 2 weeks ago   </strong>  </span>
+                    
+                  </div>
+                  <p> Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
+      
+                  <div class="btn_button ">
+                    <button class="btn btn-lg btn-success">APPROVE </button>
+                    <button class="btn btn-raised gradient-pomegranate white signup_nextbtn">DISAGREE </button>
+                  </div>
+                </div>
+
+                <div class="man_img first_rew">
+                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> <span class="revie_name"> <strong> Peeter Parker </strong> </span>
+        
+                    <div class="rating_star">
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span> 
+                      <span class="weeks_ago"> <strong> 2 weeks ago   </strong>  </span>
+                      
+                    </div>
+                    <p> Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
+        
+                    <button class="btn btn-lg btn-success">APPROVE </button>
+                    <button class="btn btn-raised gradient-pomegranate white signup_nextbtn">DISAGREE </button>
+                </div>
             </div>
 
             <div class="man_img first_rew">
                 <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> <span class="revie_name"> <strong> Peeter Parker </strong> </span>
-     
+    
                 <div class="rating_star">
-                   <span class="fa fa-star checked"></span>
-                   <span class="fa fa-star checked"></span>
-                   <span class="fa fa-star checked"></span>
-                   <span class="fa fa-star"></span>
-                   <span class="fa fa-star"></span> 
-                   <span class="weeks_ago"> <strong> 2 weeks ago   </strong>  </span>
-                   
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span> 
+                  <span class="weeks_ago"> <strong> 2 weeks ago   </strong>  </span>
+                  
                 </div>
                 <p> Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
-     
+    
                   <button class="btn btn-lg btn-success">APPROVE </button>
                   
-              <button class="btn btn-raised gradient-pomegranate white signup_nextbtn">DISAGREE </button>
-                </div>
-              </div>
-
-
+                <button class="btn btn-raised gradient-pomegranate white signup_nextbtn">DISAGREE </button>
+            </div>
+        </section>          
       </div>
-    
+  </div>
 
-   </section> 
-
- 
+    <app-foot></app-foot>
 </div>
-<app-foot></app-foot>
 <router-outlet></router-outlet>
-</div>
-</div>
+
 
 
 

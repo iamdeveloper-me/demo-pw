@@ -157,7 +157,7 @@ export class LocationComponent implements OnInit {
   
 
   enable =  true;
-  enable1 =  true;
+  enable1 =  false;
   enable2 =  true;
   enable3 =  true;
   enable4 =  true;

@@ -145,12 +145,12 @@ margin-top: 10px!important;
     position: relative;
     transition: all .25s;
 }
-.zoom_effect img{border-radius:5px;}
-.zoom_effect:hover {
-    ms-transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1); 
-}
+// .zoom_effect img{border-radius:5px;}
+// .zoom_effect:hover {
+//     ms-transform: scale(1.1);
+//     -webkit-transform: scale(1.1);
+//     transform: scale(1.1); 
+// }
 
 
 
@@ -174,11 +174,12 @@ margin-top: 10px!important;
 .over_like{
     position: absolute;
     background: #fff;
-    bottom: 25px;
-    left: 19px;
+    bottom: 30px;
+    left: 24px;
     padding: 8px;
-    width: 81%;
+    width: 85%;
     padding-bottom: 0px !important;
+    border-radius: 1px;
 }
 .over_like .fa-heart{
     font-size:18px;
@@ -186,6 +187,7 @@ margin-top: 10px!important;
 }
 .over_like .flo_right{
     float: right;
+    color: #000;
 }
 .foot_text{
     color: rgb(248, 174, 37) !important;
@@ -203,9 +205,10 @@ margin-top: 10px!important;
 .viewallalbums .padd_10px{
     padding-top: 10px;
 }
-.viewallalbums span{
-    position: relative;
-    top: 5px;
+.viewallalbums .setting{
+    position: absolute;
+    top: 20px;
+    right: 0;
 }
 .viewallalbums h4{
     text-transform: uppercase;
@@ -251,10 +254,12 @@ margin-top: 10px!important;
     background: transparent;
     border: none;
     margin-bottom: 0px !important;
-    box-shadow:none !important;
-    color: #000 !important; 
+    box-shadow: none !important;
+    color: #000 !important;
     padding-top: 0;
     margin-left: 14px;
+    padding-right: 0;
+    float: right;
 }
 .gearicon .dropdown-menu{
     left: -109px;
@@ -262,7 +267,19 @@ margin-top: 10px!important;
 }
 .gearicon .flo_right{
     position: absolute;
-    right: 20px;
+    right: 18px;
+}
+.tittle_album i{
+    position: relative;
+    top: 5px;
+}
+.mar_top_50px{
+    margin-top: 50px;
+}
+.viewallalbums a{
+    color: #000;
+    position: absolute;
+    left: 0px;
 }
 
   @media(max-width: 767px){

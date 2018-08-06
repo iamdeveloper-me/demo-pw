@@ -79,11 +79,16 @@ color:#fff!important;
 }
 .displya_name{
   padding: 0 !important;
+  cursor:pointer!important;
+  margin-bottom:20px;
 }
 .dashimgads{
     width: 100%!important;
   }
-
+.profileleftbox{
+  max-width:700px!important;
+  margin:0px auto;
+}
 .displya_name ul li{
 position:relative;
 }
@@ -207,6 +212,7 @@ display:none!important;
   border-radius: 3px;
   padding: 15px;
 }
+.font24px{font-size:24px!important;}
 .Analytics .card .card-header-warning .card-icon, .card .card-header-warning .card-text, .card .card-header-warning:not(.card-header-icon):not(.card-header-text) {
   box-shadow: rgba(0, 0, 0, 0.14) 0px 4px 20px 0px, rgba(255, 152, 0, 0.4) 0px 7px 10px -5px;
 }
@@ -1177,6 +1183,12 @@ display:none!important;
   }
 
   @media (max-width: 768px) {
+  .displya_name{
+width:100%;
+  }
+  .prolinkmob{
+
+  }
   .mobpadd10{
   padding:10px!important;
   }
@@ -13039,9 +13051,16 @@ text-align:right!important;
             margin-left: 3px !important;
       }
       
-      .displya_name{
-        width: 50% !important;
-      }
+     .displya_name ul li .editbtn{
+display:block;
+     }
+      .displya_name ul li.done .editbtn{
+display:none;
+     }
+     .edithovering .editbtn{
+display:block;
+right:-20px!important;
+     }
       .mob_dis_none{
         display: none !important;
       }

@@ -70,6 +70,7 @@ import { SitestatsandreportsComponent } from './admin/sitestatsandreports/sitest
 import { AdminusersComponent } from './admin/adminusers/adminusers.component';
 import { ReviewandfeedbackComponent } from './admin/reviewandfeedback/reviewandfeedback.component';
 import { PortfolioviewComponent } from './vendor/portfolioview/portfolioview.component';
+import { ViewPhotoAlbumsComponent } from './vendor/view-photo-albums/view-photo-albums.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -95,6 +96,7 @@ const appRoutes: Routes = [
     { path: 'vendor/creatpromo', component:  CreatePromotionComponent  },
     { path: 'vendor/dashboard', component:  DashboardComponent  },
     { path: 'vendor/albumview', component:  AlbumviewComponent  },
+    { path: 'vendor/albumviewphoto', component:  ViewPhotoAlbumsComponent  },
     { path: 'vendor/portfolioview', component:  PortfolioviewComponent  },
     { path: 'vendor/business', component:  BusinessInfoComponent  },
     { path: 'vendor/location', component:  LocationComponent  },

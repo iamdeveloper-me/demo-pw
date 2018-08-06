@@ -130,6 +130,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { AdmincalenderComponent } from './admin/admincalender/admincalender.component';
 import { MininavbarComponent } from './admin/mininavbar/mininavbar.component';
 import { PortfolioviewComponent } from './vendor/portfolioview/portfolioview.component';
+import { ViewPhotoAlbumsComponent } from './vendor/view-photo-albums/view-photo-albums.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -158,6 +159,7 @@ export function getAuthServiceConfigs() {
         AllPromotionPageComponent,
         PortfolioviewComponent,
         NgbdlocationModalContent,
+        ViewPhotoAlbumsComponent,
         BusinessInfoComponent,
         NgbduModalContent,
         NgbdticketModalContent,

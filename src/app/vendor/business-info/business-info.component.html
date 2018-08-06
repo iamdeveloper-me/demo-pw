@@ -11,9 +11,9 @@
             <div _ngcontent-c4="" class="card marg_bot">
                 <div _ngcontent-c4="" class="card-header">
                     <div class="col-sm-6 busines_img">
-                      <a href=""><img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> 
-                        <span class="busi_camera "> <i class="material-icons"> camera_alt </i> </span>
-                    </a>
+                      <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> 
+                        <span class="busi_camera "> <i class="material-icons" (click)="open(content)"> camera_alt </i> </span>
+   
                     </div>
                     <div class="col-sm-6 busi_contact">
                      <div>
@@ -108,60 +108,59 @@
                 <div _ngcontent-c4="" class="card-header">
                     <h4 _ngcontent-c4="" class="card-title">Link Accounts & Websites</h4>
                 </div>
+              
+               
                 <div _ngcontent-c4="" class="card-body">   
+                    <div class="col-sm-6">
+                        <div class="social-connect  col-sm-12" data-reactid="330">
 
-                    <div class="social-connect col-md-4 col-sm-12" data-reactid="330">
-
-                        <div class="social" data-reactid="332">
-                                <a title="Connect with us on Facebook" class="text-muted" rel="nofollow" target="_blank" href="https://www.facebook.com" data-reactid="333">
-                                    <i class="fa fa-facebook fa-2x" data-reactid="334"></i>
-                                </a>
-                                <input class="return_value" value="{{xyz}}" />
-                                <div class="col-lg-12 editbtn">
-                                        <h4 class="text-right col-lg-12">
-                                            <i class="material-icons"  id="prompt-function" (click)="promptFunction()">edit</i>
-                                        </h4>
-                                </div>
-                                <div class="switbtn">
-                                        <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                                </div>
-                                
-                                <div class="card-block">
-                                    <ng-template #contentt let-c="close" let-d="dismiss">
-                                        <div class="modal-header" style="background-color: white;">
-                                            <h4 class="modal-title">Add your Facebook link </h4>
-                                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
+                                <div class="social" data-reactid="332">
+                                        <a title="Connect with us on Facebook" class="text-muted" rel="nofollow" target="_blank" href="https://www.facebook.com" data-reactid="333">
+                                            <i class="fa fa-facebook fa-2x" data-reactid="334"></i>
+                                        </a>
+                                        <input class="return_value" value="{{xyz}}" />
+                                        <div class="col-lg-12 editbtn">
+                                                <h4 class="text-right col-lg-12">
+                                                    <i class="material-icons"  id="prompt-function" (click)="promptFunction()">edit</i>
+                                                </h4>
                                         </div>
-                                        <div class="modal-body"  style="background-color: white;" >
-                                            <div class="input-effect form-group md-form mt-3">
-                                                    <a title="Connect with us on Facebook" class="text-muted" rel="nofollow" target="_blank" href="https://www.facebook.com" data-reactid="333">
-                                                        <i class="fa fa-facebook fa-2x mar_botom" data-reactid="334"></i>
-                                                    </a>
-                                                <form>  
-                                                        
-                                                        <input type="text" name="xyz" class="form-control" [(ngModel)]="xyz" (click)="abc($event)">
-                                                </form>  
-                                            
-
-                                            
-                                                <span class="focus-border"> </span>
-                                            </div>   
+                                        <div class="switbtn">
+                                                <ui-switch [(ngModel)]="enable" ></ui-switch> 
                                         </div>
-                                        <div class="modal-footer"  style="background-color: white;">
-                                            <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
+                                        
+                                        <div class="card-block">
+                                            <ng-template #contentt let-c="close" let-d="dismiss">
+                                                <div class="modal-header" style="background-color: white;">
+                                                    <h4 class="modal-title">Add your Facebook link </h4>
+                                                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body"  style="background-color: white;" >
+                                                    <div class="input-effect form-group md-form mt-3">
+                                                            <a title="Connect with us on Facebook" class="text-muted" rel="nofollow" target="_blank" href="https://www.facebook.com" data-reactid="333">
+                                                                <i class="fa fa-facebook fa-2x mar_botom" data-reactid="334"></i>
+                                                            </a>
+                                                        <form>  
+                                                                
+                                                                <input type="text" name="xyz" class="form-control" [(ngModel)]="xyz" (click)="abc($event)">
+                                                        </form>  
+                                                    
+        
+                                                    
+                                                        <span class="focus-border"> </span>
+                                                    </div>   
+                                                </div>
+                                                <div class="modal-footer"  style="background-color: white;">
+                                                    <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
+                                                </div>
+                                            </ng-template>
+        
                                         </div>
-                                    </ng-template>
-
+                                    
                                 </div>
-                            
                         </div>
-                    </div>
-                </div>
-                <div _ngcontent-c4="" class="card-body">   
-
-                        <div class="social-connect col-md-4 col-sm-12" data-reactid="330">
+                         <div class="social-connect  col-sm-12" data-reactid="330">
 
                         <div class="social" data-reactid="332">
                                 <a title="Follow us on Pinterest" class="text-muted" rel="nofollow" target="_blank" href="https://www.twitter.com" data-reactid="337">
@@ -210,10 +209,7 @@
                             
                         </div>
                         </div>
-                </div>
-                <div _ngcontent-c4="" class="card-body">   
-
-                        <div class="social-connect col-md-4 col-sm-12" data-reactid="330">
+                        <div class="social-connect col-sm-12" data-reactid="330">
 
                         <div class="social" data-reactid="332">
                                 <a title="Follow us on Google+" class="text-muted" rel="nofollow" target="_blank" href="https://plus.google.com" data-reactid="339">
@@ -262,16 +258,66 @@
                             
                         </div>
                         </div>
-                </div>
-                <div _ngcontent-c4="" class="card-body">   
+                        <div class="social-connect col-sm-12" data-reactid="330">
 
-                        <div class="social-connect col-md-4 col-sm-12" data-reactid="330">
+                            <div class="social" data-reactid="332">
+                                    <a title="Follow us on Instagram" class="text-muted" rel="nofollow" target="_blank" href="https://instagram.com" data-reactid="341">
+                                        <i class="fa fa-instagram fa-2x" data-reactid="342"></i>
+                                    </a>
+                                    <input class="return_value" value="{{zzz}}" />
+                                    <div class="col-lg-12 editbtn">
+                                            <h4 class="text-right col-lg-12">
+                                                <!-- <i class="material-icons" (click)="open(contentttt)">edit</i> -->
+                                                <i class="material-icons"  id="Instagram-function" (click)="Instagram()">edit</i>
+                                            </h4>
+                                    </div>
+                                    <div class="switbtn">
+    
+                                            <ui-switch [(ngModel)]="enable3" ></ui-switch> 
+    
+                                    </div>
+                                    <div class="card-block">
+                                        <ng-template #contentttt let-c="close" let-d="dismiss">
+                                            <div class="modal-header" style="background-color: white;">
+                                                <h4 class="modal-title">Add your Instagram link </h4>
+                                                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body"  style="background-color: white;" >
+                                                <div class="input-effect form-group md-form mt-3">
+                                                        <a title="Follow us on Instagram" class="text-muted" rel="nofollow" target="_blank" href="https://instagram.com" data-reactid="341">
+                                                            <i class="fa fa-instagram fa-2x mar_botom" data-reactid="342"></i>
+                                                        </a>
+                                                    <form>  
+                                                            
+                                                        <input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
+                                                    </form>  
+                                                    
+    
+                                                    
+                                                    <span class="focus-border"> </span>
+                                                </div>   
+                                            </div>
+                                            <div class="modal-footer"  style="background-color: white;">
+                                                <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
+                                            </div>
+                                        </ng-template>
+            
+                                    </div>
+                                
+                            </div>
+                       </div>
+                       <div class="social-connect  col-sm-12" data-reactid="330">
 
                         <div class="social" data-reactid="332">
                                 <a title="Follow us on Instagram" class="text-muted" rel="nofollow" target="_blank" href="https://instagram.com" data-reactid="341">
-                                    <i class="fa fa-instagram fa-2x" data-reactid="342"></i>
+                                    <i class="fa fa-globe fa-2x" data-reactid="342"></i>
                                 </a>
-                                <input class="return_value" value="{{zzz}}" />
+    
+                                
+                                <input class="return_value" value="{{zzz1}}" />
+                                
                                 <div class="col-lg-12 editbtn">
                                         <h4 class="text-right col-lg-12">
                                             <!-- <i class="material-icons" (click)="open(contentttt)">edit</i> -->
@@ -279,9 +325,9 @@
                                         </h4>
                                 </div>
                                 <div class="switbtn">
-
-                                        <ui-switch [(ngModel)]="enable3" ></ui-switch> 
-
+    
+                                        <ui-switch [(ngModel)]="enable4" ></ui-switch> 
+    
                                 </div>
                                 <div class="card-block">
                                     <ng-template #contentttt let-c="close" let-d="dismiss">
@@ -301,7 +347,7 @@
                                                     <input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
                                                 </form>  
                                                 
-
+    
                                                 
                                                 <span class="focus-border"> </span>
                                             </div>   
@@ -315,67 +361,103 @@
                             
                         </div>
                         </div>
+                    </div>
+                    <div class="col-sm-6">
+                            <div>
+                                    <h4 class="card-title">Notes:</h4>
+                                    <div class="noproblum">
+                                        <p>No Website? No Problem!</p>
+                                        <p>1. Copy the link to your profile on Perfect Weddings |Copy|</p>
+                                        <p>Go to your Facebook Page and add the link as your website</p>
+                                        <p>You are done! That was easy, isn’t it? </p>
+                                    </div>
+                                </div>
+                    </div>
+
                 </div>
-                <div _ngcontent-c4="" class="card-body">   
 
-                    <div class="social-connect col-md-4 col-sm-12" data-reactid="330">
-
-                    <div class="social" data-reactid="332">
-                            <a title="Follow us on Instagram" class="text-muted" rel="nofollow" target="_blank" href="https://instagram.com" data-reactid="341">
-                                <i class="fa fa-globe fa-2x" data-reactid="342"></i>
-                            </a>
-
-                            
-                            <input class="return_value" value="{{zzz1}}" />
-                            
-                            <div class="col-lg-12 editbtn">
-                                    <h4 class="text-right col-lg-12">
-                                        <!-- <i class="material-icons" (click)="open(contentttt)">edit</i> -->
-                                        <i class="material-icons"  id="Instagram-function" (click)="Instagram()">edit</i>
-                                    </h4>
-                            </div>
-                            <div class="switbtn">
-
-                                    <ui-switch [(ngModel)]="enable4" ></ui-switch> 
-
-                            </div>
-                            <div class="card-block">
-                                <ng-template #contentttt let-c="close" let-d="dismiss">
-                                    <div class="modal-header" style="background-color: white;">
-                                        <h4 class="modal-title">Add your Instagram link </h4>
-                                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                                        <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body"  style="background-color: white;" >
-                                        <div class="input-effect form-group md-form mt-3">
-                                                <a title="Follow us on Instagram" class="text-muted" rel="nofollow" target="_blank" href="https://instagram.com" data-reactid="341">
-                                                    <i class="fa fa-instagram fa-2x mar_botom" data-reactid="342"></i>
-                                                </a>
-                                            <form>  
-                                                    
-                                                <input type="text" name="pqr" class="form-control" [(ngModel)]="jkl" >
-                                            </form>  
-                                            
-
-                                            
-                                            <span class="focus-border"> </span>
-                                        </div>   
-                                    </div>
-                                    <div class="modal-footer"  style="background-color: white;">
-                                        <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Submit</button>
-                                    </div>
-                                </ng-template>
-    
-                            </div>
-                        
-                    </div>
-                    </div>
-            </div>
-
+               
+                
             </div>  
         </div>    
      </section> 
+
+     <ng-template #content let-c="close" let-d="dismiss">
+        <div class="card-block">
+                        <div class="modal-header" style="background-color: white">
+                          <h4 class="modal-title">Add Gallery</h4>
+                          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" style="background-color: white">
+                          <form>
+                          <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                              <div class="input-effect form-group md-form ">
+                                  <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                  <label>Gallery Name</label>
+                                  <span class="focus-border"></span>
+                              </div>
+                          </div>
+                        </div>
+                          </div>
+                          <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                              <div class="input-effect form-group md-form ">
+                                <select class="effect-16 validate">
+                                   <option>Select Photo Type</option>
+                                  <option>Pre-Wedding Shoot</option>
+                                   <option>Real Wedding Shoot</option>
+                                </select>
+                                  
+                              </div>
+                          </div>
+                        </div>
+                          </div>
+                          <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">
+                                    <input class="effect-16 validate" type="email" placeholder="" required="required">
+                                    <label>Tags</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                          </div>
+                          </div>
+                          <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="form-group">
+                              <div class="input-effect form-group md-form ">  
+                                  <input class="effect-16 validate"  required="required">
+                                  <label>Color Tags</label>
+                                  <span class="focus-border"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                          </div>
+                          <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="form-group">
+                              <div class="input-effect form-group md-form ">  
+                                 <input type="file" class="effect-16 validate" required="required" name="img" multiple>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                          </div>
+                          <button type="submit" class="btn btn-comman pull-right">Update Profile</button>
+                          <div class="clearfix"></div>
+                          </form>
+                        </div>
+        </div>
+      </ng-template>
      <div class="clearfix"></div>
      <app-foot></app-foot>
      <router-outlet></router-outlet>

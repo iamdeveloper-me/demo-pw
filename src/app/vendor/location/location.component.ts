@@ -20,7 +20,7 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
   `
 })
 
-export class NgbdModalContent {
+export class NgbdlocationModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) { }
 }
@@ -157,7 +157,7 @@ export class LocationComponent implements OnInit {
   
 
   enable =  true;
-  enable1 =  true;
+  enable1 =  false;
   enable2 =  true;
   enable3 =  true;
   enable4 =  true;
@@ -210,7 +210,7 @@ openModal(customContent) {
 
 // Open content with dark section
 openContent() {
-    const modalRef = this.modalService.open(NgbdModalContent);
+    const modalRef = this.modalService.open(NgbdlocationModalContent);
     modalRef.componentInstance.name = 'World';
 }
 

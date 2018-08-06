@@ -10,12 +10,11 @@ export class PhotoComponent implements OnInit {
 
   constructor( public _router:Router) { }
 
-  public ngOnInit() {
-    $.getScript('./assets/js/blocksit.min.js');
-    $.getScript('./assets/js/lazy.js');
-    
-    
-  }
+   ngOnInit() {
+  
+   $.getScript('./assets/js/blocksit.min.js');
+   $.getScript('./assets/js/lazy.js');
+   }
 //  save(){
 //    this.ngOnInit();
 //    this._router.navigateByUrl('home/photo');

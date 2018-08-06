@@ -99,7 +99,7 @@ import { GalleryComponent ,NgbdgalleryModalContent } from './vendor/gallery/gall
 import { VendorComponent } from './vendor/vendor.component';
 import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
 import { BusinessInfoComponent ,NgbduModalContent} from "./vendor/business-info/business-info.component";
-import { LocationComponent } from "./vendor/location/location.component";
+import { LocationComponent,NgbdlocationModalContent } from "./vendor/location/location.component";
 import { VideosComponent ,NgbdvedioModalContent} from './vendor/videos/videos.component';
 import { MylistingComponent } from './vendor/mylisting/mylisting.component';
 import { NavemenuComponent } from './vendor/navemenu/navemenu.component';
@@ -130,6 +130,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { AdmincalenderComponent } from './admin/admincalender/admincalender.component';
 import { MininavbarComponent } from './admin/mininavbar/mininavbar.component';
 import { PortfolioviewComponent } from './vendor/portfolioview/portfolioview.component';
+import { ViewPhotoAlbumsComponent } from './vendor/view-photo-albums/view-photo-albums.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -157,7 +158,8 @@ export function getAuthServiceConfigs() {
         NgbdModalContent,
         AllPromotionPageComponent,
         PortfolioviewComponent,
-
+        NgbdlocationModalContent,
+        ViewPhotoAlbumsComponent,
         BusinessInfoComponent,
         NgbduModalContent,
         NgbdticketModalContent,

@@ -5,8 +5,19 @@
     <div id="page-content-wrapper">
      <app-navemenu></app-navemenu>    
     <router-outlet></router-outlet> 
+
+    <div class="container-fluid viewallalbums">
+        <div class="col-sm-4 padd_10px">
+           <a routerLink= "../gallery"><i class="material-icons"> arrow_back_ios </i> </a>  All Portfolio
+        </div>
+  
+        
+        <div class="col-sm-4 text-right padd_10px flot_righ">
+          <span><i class="material-icons"> settings</i></span>
+        </div>
+  </div>
        <div class="container-fluid photo_gallery">
-              <h2>MY PORTFOLIO</h2>
+          
             
         <section class="p-0 container" id="portfolio">
              
@@ -19,58 +30,130 @@
   <div class="container photos_gallery">
     <div class="row">
       <div class='list-group gallery row firt_row'>
-              <div class='col-sm-3 col-xs-6  zoom_effect'>
-                  <a class="thumbnail fancybox" rel="ligthbox" href="http://placehold.it/300x320.png">
-                       <img src="../../assets/img/category/photographer.jpg" class="img-responsive" >
-                      <div class='text-right'>
-                      </div> <!-- text-right / end -->
-                  </a>
-                  <div class="over_like">
-                      <div class="">
-                      <a href=""><i class="fa fa-heart"></i> </a>  <span> 25 </span> 
-                      <span class="flo_right"> <i class="material-icons">settings</i> </span>
-                      </div>
-                  </div>
-              </div> <!-- col-6 / end -->
-                <div class='col-sm-3 col-xs-6 zoom_effect'>
-                  <a class="thumbnail fancybox" rel="ligthbox" href="../../assets/img/category/dj.jpg">
-                       <img src="../../assets/img/category/dj.jpg" class="img-responsive">
-                      <div class='text-right'>
-                      </div> <!-- text-right / end -->
-                  </a>
-                  <div class="over_like">
-                          <div class="">
-                          <a href=""><i class="fa fa-heart"></i> </a>  <span> 25 </span> 
-                          <span class="flo_right"> <i class="material-icons">settings</i> </span>
+          <div class="col-lg-3 col-md-4 col-xs-6 thumb hovereffect">
+         
+              <a class="thumbnail" href="javascript:void(0)" data-image-id="" data-toggle="modal" data-title=""
+                 data-image="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                 data-target="#image-gallery">
+  
+  
+                  <img class="img-thumbnail"
+                       src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                       alt="Another alt text">
+                       <div class="over_like">
+                              <div class="">
+                              <a href=""><i class="fa fa-heart"></i> </a>  <span> 25 </span> 
+                              <div class="dropdown gearicon">
+                                     
+                                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                          <i class="material-icons">
+                                              settings
+                                              </i>
+                                      </button>
+                                      <ul class="dropdown-menu">
+                                        <li><a href="#">Set as Business Cover Image</a></li>
+                                      
+                                      </ul>
+                                    </div>
+                              
+                              </div>
                           </div>
-                      </div>
-              </div> <!-- col-6 / end -->
-                <div class='col-sm-3 col-xs-6 zoom_effect'>
-                  <a class="thumbnail fancybox" rel="ligthbox" href="../../assets/img/category/celebrat.jpg">
-                      <img src="../../assets/img/category/celebrat.jpg" class="img-responsive">
-                      <div class='text-right'>
-                      </div> <!-- text-right / end -->
-                  </a>
-                  <div class="over_like">
-                          <div class="">
-                          <a href=""><i class="fa fa-heart"></i> </a>  <span> 25 </span> 
-                          <span class="flo_right"> <i class="material-icons">settings</i> </span>
+              </a>
+              
+          </div> <!-- col-6 / end -->
+          <div class="col-lg-3 col-md-4 col-xs-6 thumb hovereffect">
+         
+              <a class="thumbnail" href="javascript:void(0)" data-image-id="" data-toggle="modal" data-title=""
+                 data-image="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                 data-target="#image-gallery">
+  
+  
+                  <img class="img-thumbnail"
+                       src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                       alt="Another alt text">
+                       <div class="over_like">
+                              <div class="">
+                              <a href=""><i class="fa fa-heart"></i> </a>  <span> 25 </span> 
+                              <div class="dropdown gearicon">
+                                     
+                                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                          <i class="material-icons">
+                                              settings
+                                              </i>
+                                      </button>
+                                      <ul class="dropdown-menu">
+                                        <li><a href="#">Set as Business Cover Image</a></li>
+                                      
+                                      </ul>
+                                    </div>
+                              
+                              </div>
                           </div>
-                      </div>
-              </div> <!-- col-6 / end -->
-              <div class='col-sm-3 col-xs-6  zoom_effect'>
-                  <a class="thumbnail fancybox" rel="ligthbox" href="../../assets/img/category/dj.jpg">
-                      <img src="../../assets/img/category/dj.jpg" class="img-responsive">
-                      <div class='text-right'>
-                      </div> <!-- text-right / end -->
-                  </a>
-                  <div class="over_like">
-                          <div class="">
-                          <a href=""><i class="fa fa-heart"></i> </a>  <span> 25 </span> 
-                          <span class="flo_right"> <i class="material-icons">settings</i> </span>
+              </a>
+              
+          </div> <!-- col-6 / end -->
+          <div class="col-lg-3 col-md-4 col-xs-6 thumb hovereffect">
+         
+              <a class="thumbnail" href="javascript:void(0)" data-image-id="" data-toggle="modal" data-title=""
+                 data-image="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                 data-target="#image-gallery">
+  
+  
+                  <img class="img-thumbnail"
+                       src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                       alt="Another alt text">
+                       <div class="over_like">
+                              <div class="">
+                              <a href=""><i class="fa fa-heart"></i> </a>  <span> 25 </span> 
+                              <div class="dropdown gearicon">
+                                     
+                                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                          <i class="material-icons">
+                                              settings
+                                              </i>
+                                      </button>
+                                      <ul class="dropdown-menu">
+                                        <li><a href="#">Set as Business Cover Image</a></li>
+                                      
+                                      </ul>
+                                    </div>
+                              
+                              </div>
                           </div>
-                      </div>
-              </div> <!-- col-6 / end -->
+              </a>
+              
+          </div> <!-- col-6 / end -->
+          <div class="col-lg-3 col-md-4 col-xs-6 thumb hovereffect">
+         
+              <a class="thumbnail" href="javascript:void(0)" data-image-id="" data-toggle="modal" data-title=""
+                 data-image="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                 data-target="#image-gallery">
+  
+  
+                  <img class="img-thumbnail"
+                       src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                       alt="Another alt text">
+                       <div class="over_like">
+                              <div class="">
+                              <a href=""><i class="fa fa-heart"></i> </a>  <span> 25 </span> 
+                              <div class="dropdown gearicon">
+                                     
+                                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                          <i class="material-icons">
+                                              settings
+                                              </i>
+                                      </button>
+                                      <ul class="dropdown-menu">
+                                        <li><a href="#">Set as Business Cover Image</a></li>
+                                      
+                                      </ul>
+                                    </div>
+                              
+                              </div>
+                          </div>
+              </a>
+              
+          </div> <!-- col-6 / end -->
           </div> <!-- list-group / end -->
   
   
@@ -79,12 +162,7 @@
   </div> <!-- container / end -->
   
           </section>
-          <div class="text-center View_all_photo">
-             <button>View All Portfolio Photos</button>
-          </div>
-          <div class="text-center foot_text">
-                  Want to grow your Portfolio collection? Get UNLIMITED photos with a premium Account. <a href="">Upgrade </a>
-              </div>
+         
        </div>    	
        
    </div>	 

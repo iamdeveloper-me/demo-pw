@@ -71,6 +71,7 @@ import { AdminusersComponent } from './admin/adminusers/adminusers.component';
 import { ReviewandfeedbackComponent } from './admin/reviewandfeedback/reviewandfeedback.component';
 import { PortfolioviewComponent } from './vendor/portfolioview/portfolioview.component';
 import { ViewPhotoAlbumsComponent } from './vendor/view-photo-albums/view-photo-albums.component';
+import { AlbumsettingComponent } from './vendor/albumsetting/albumsetting.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -98,6 +99,8 @@ const appRoutes: Routes = [
     { path: 'vendor/albumview', component:  AlbumviewComponent  },
     { path: 'vendor/albumviewphoto', component:  ViewPhotoAlbumsComponent  },
     { path: 'vendor/portfolioview', component:  PortfolioviewComponent  },
+    { path: 'vendor/settingalbum', component:  AlbumsettingComponent  },
+   
     { path: 'vendor/business', component:  BusinessInfoComponent  },
     { path: 'vendor/location', component:  LocationComponent  },
     { path: 'vendor/gallery', component: GalleryComponent  },

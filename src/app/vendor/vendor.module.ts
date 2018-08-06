@@ -27,8 +27,13 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
  import { ReviewComponent } from './review/review.component';
  import { EventComponent } from './event/event.component';
 
+
 //import { PortfolioviewComponent } from './portfolioview/portfolioview.component';
 //import { ViewPhotoAlbumsComponent } from './view-photo-albums/view-photo-albums.component';
+
+//import { PortfolioviewphotoComponent } from './portfolioviewphoto/portfolioviewphoto.component';
+//import { AlbumsettingComponent } from './albumsetting/albumsetting.component';
+
 
 // import { BusinessServicesComponent } from './business-services/business-services.component';
 // import { CalendertableComponent } from './calendertable/calendertable.component';
@@ -68,9 +73,9 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
         // MessageComponent,
          ReviewComponent,
          EventComponent,
+
         // PortfolioviewComponent,
         // ViewPhotoAlbumsComponent,
-         
         // BusinessServicesComponent,
         // CalendertableComponent,
         // CreateEventComponent,

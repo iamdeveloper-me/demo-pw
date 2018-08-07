@@ -6,12 +6,26 @@
    <app-navemenu></app-navemenu>    
 	<router-outlet></router-outlet> 
 	   <div class="container-fluid photo_gallery">
-         <div class="createmyalbum text-center">
-            <h2>MY ALBUMS</h2>
-            <p>Create, lable and group your work with albums</p>
-            <span><i class="material-icons"> settings</i></span>
+        <div class="row allport_row">
+           <div class="col-sm-2 padd_10px">
+           <a routerLink= "../gallery"><i class="material-icons"> arrow_back_ios </i> All Portfolio </a>  
+        </div>
+         <div class="createmyalbum text-center col-sm-8">
+            <h2>MY ALBUMS
+           
+            </h2>
+            <span>Create, lable and group your work with albums</span>
+            
          </div>
+
+         <div class="col-sm-2 text-right setting_right">
+                <i class="material-icons"> settings</i>
+        </div>
+    </div> 
           
+        <div class="clearfix"> </div>
+
+
 	    <section class="p-0 container" id="portfolio">
            
      
@@ -21,7 +35,7 @@
          <div class="new_albums"> <button>  + New Albums  </button>  </div>
             <div class='col-sm-3 col-xs-6  zoom_effect'>
                 <a routerLink="../albumviewphoto" class="thumbnail fancybox" rel="ligthbox">
-
+                    <button class="deletebtn">&times;</button>
                      <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" class="img-responsive">
 
                     <div class='text-right'>
@@ -36,6 +50,7 @@
             </div> <!-- col-6 / end -->
               <div class='col-sm-3 col-xs-6 zoom_effect'>
                 <a routerLink="../albumviewphoto" class="thumbnail fancybox" rel="ligthbox">
+                    <button class="deletebtn">&times;</button>
                      <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" class="img-responsive">
                     <div class='text-right'>
                     </div> <!-- text-right / end -->
@@ -49,6 +64,7 @@
             </div> <!-- col-6 / end -->
               <div class='col-sm-3 col-xs-6 zoom_effect'>
                 <a routerLink="../albumviewphoto" class="thumbnail fancybox" rel="ligthbox">
+                    <button class="deletebtn">&times;</button>
                     <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" class="img-responsive">
                     <div class='text-right'>
                     </div> <!-- text-right / end -->
@@ -62,6 +78,7 @@
             </div> <!-- col-6 / end -->
             <div class='col-sm-3 col-xs-6  zoom_effect'>
                 <a routerLink="../albumviewphoto" class="thumbnail fancybox" rel="ligthbox">
+                    <button class="deletebtn">&times;</button>
                     <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" class="img-responsive">
                     <div class='text-right'>
                     </div> <!-- text-right / end -->
@@ -88,7 +105,7 @@
            
               <div class='col-sm-3 col-xs-6  zoom_effect'>
                   <a routerLink="../albumviewphoto" class="thumbnail fancybox" rel="ligthbox">
-  
+                    <button class="deletebtn">&times;</button>
                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" class="img-responsive">
   
                       <div class='text-right'>
@@ -103,6 +120,7 @@
               </div> <!-- col-6 / end -->
                 <div class='col-sm-3 col-xs-6 zoom_effect'>
                   <a routerLink="../albumviewphoto" class="thumbnail fancybox" rel="ligthbox">
+                    <button class="deletebtn">&times;</button>
                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" class="img-responsive">
                       <div class='text-right'>
                       </div> <!-- text-right / end -->
@@ -116,6 +134,7 @@
               </div> <!-- col-6 / end -->
                 <div class='col-sm-3 col-xs-6 zoom_effect'>
                   <a routerLink="../albumviewphoto" class="thumbnail fancybox" rel="ligthbox">
+                    <button class="deletebtn">&times;</button>
                       <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" class="img-responsive">
                       <div class='text-right'>
                       </div> <!-- text-right / end -->
@@ -129,6 +148,7 @@
               </div> <!-- col-6 / end -->
               <div class='col-sm-3 col-xs-6  zoom_effect'>
                   <a routerLink="../albumviewphoto" class="thumbnail fancybox" rel="ligthbox">
+                    <button class="deletebtn">&times;</button>
                       <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" class="img-responsive">
                       <div class='text-right'>
                       </div> <!-- text-right / end -->

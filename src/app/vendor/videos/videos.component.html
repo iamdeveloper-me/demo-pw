@@ -7,59 +7,33 @@
         <div class="container-fluid nopadd">                    
                 <app-navemenu></app-navemenu>
         <router-outlet></router-outlet> 
-<div class="container-fluid">
-    <h2>OVERVIEW: New Accounts</h2>
-</div>
+
 
         <div class="container-fluid">
            <div class="card photo_gallery">
-            <div class="photo_heading">
-            <div class="note">
-                <span>
-                    Note: You can upload only 15 of their best vedios (Free Account only)
-                </span>
-                <span>
-                    You can upload unlimited vedios for paid accounts 
-                    <a href="#">Update Your Plan</a>
-                </span>
-            </div>
-            </div>
+            
 
  <div class="photos_gallery">
-
               <div class="row firt_row"> 
-
-              <div class="col-md-3" >
-                <div class="defaultalbumbtn"  (click)="open(content)">
-                  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/detail_slide.jpg" class="img-responsive">
-                  <div class="albumbox" >
-                    <i class="material-icons" style="font-size:30px;">video_call</i>
-                    <p>
-                      Portfolio<br/>
-                      0 images selected<br/>
-                      Click Here Add Album
-                    </p>
+              <div class="col-sm-12" >
+                  <div class="mob_bot_20px">
+                   <div class="text-center headin_gally">
+                     <h3> <strong> MY VIDEOS </strong> </h3>
+                     <P>Showcase videos that demonstrate your work to reach more clients</P>
+                   </div>
+                   
+                      <div class="text-center">
+                          <p class="padd_top_30px"><i class="material-icons" style="font-size:80px;">video_library</i></p>
+                          <p class="oops">
+                              No video upload yet
+                            </p>
+                            <p class="upload_bt text-center"> <button (click)="open(addvideo)" > Add Video</button>  </p>
+                            <p class="text-center uplod_para"> The current membership is limited to one video link.Switch to premium to add unlimited video <a href=""> Upgrade</a> </p>
+                         
+                      </div>
                   </div>
-                     
                 </div>
-              </div>
-              <div class="col-md-3 my_video_box" >
-                <a  routerLink="../videoview" >
-                  <div class="mainalbumbtn">
-                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/detail_slide.jpg" class="img-responsive">
-                    <div class="albumbox ">
-                        <i class="material-icons" style="font-size:30px;">video_library</i>
-                      <p>
-                        MY VIDEOS<br/>
-                        No videos uploaded yet..<br/>
-                        
-                      </p>
-                     
-                    </div>
-                  </div>
-                </a>
-                <button class="" (click)="open(addvideo)">Add Video</button>
-              </div>
+
                   
               </div>
 
@@ -70,90 +44,46 @@
 </div>
             
         </div>
+
+<div class="container-fluid ">
+        <div class="container-fluid addvideo  text-center ">
+          <div class=" my_video_bg">
+            <h5> <strong> MY VIDEOS </strong> </h5>
+            <P>Showcase videos that demonstrate your work to reach more clients</P>
+             <span class="firt_link"><i class="material-icons">settings</i></span>
+            </div>
+         </div>   
+      <div class="container-fluid addvideo1 ">
+        <div class="my_video_bg11 ">
+      <section class="p-0 container" id="portfolio">
+           <div class="text-right"><button (click)="open(addvideo)">Add Video</button> </div>
+               <div class="photos_gallery">
+                      <div class="row firt_row"> 
+                        <div class="col-md-3 zoom_effect">
+                          <iframe  src="https://www.youtube.com/embed/tgbNymZ7vqY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                        <div class="col-md-3 zoom_effect">
+                          <iframe  src="https://www.youtube.com/embed/QgaTQ5-XfMM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                        <div class="col-md-3 zoom_effect">
+                          <iframe  src="https://www.youtube.com/embed/fz4MzJTeL0c" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                        <div class="col-md-3 zoom_effect">
+                          <iframe  src="https://www.youtube.com/embed/Zo4PRKnqJdg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>	  
+              </div>
+                      </div>
+                  </div>
+            </section>
+          </div>
+      
+      
+        </div>       
+         </div>       
         <app-foot></app-foot>
         </div>
 
 </div>
 </div>
- <ng-template #content let-c="close" let-d="dismiss">
-
-                        
-
-                <div class="card-block">
-                  <div class="modal-header" style="background-color: white">
-                    <h4 class="modal-title">Add Vedio Gallery</h4>
-                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body" style="background-color: white">
-                    <form>
-                    <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                        <div class="input-effect form-group md-form ">
-                            <input class="effect-16 validate" type="text" placeholder="" required="required">
-                            <label>Gallery Name</label>
-                            <span class="focus-border"></span>
-                        </div>
-                    </div>
-                  </div>
-                    </div>
-                    <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                        <div class="input-effect form-group md-form ">
-                          <select class="effect-16 validate">
-                             <option>Select Gallery Type</option>
-                            <option>Pre-Wedding Shoot</option>
-                             <option>Real Wedding Shoot</option>
-                          </select>
-                            
-                        </div>
-                    </div>
-                  </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                          <div class="input-effect form-group md-form ">
-                              <input class="effect-16 validate" type="email" placeholder="" required="required">
-                              <label>Tags</label>
-                              <span class="focus-border"></span>
-                          </div>
-                      </div>
-                    </div>
-                    </div>
-                    <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <div class="form-group">
-                        <div class="input-effect form-group md-form ">  
-                            <input class="effect-16 validate"  required="required">
-                            <label>Color Tags</label>
-                            <span class="focus-border"></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                    </div>
-                    <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <div class="form-group">
-                        <div class="input-effect form-group md-form ">  
-                           <input type="file" class="effect-16 validate" required="required" name="img" multiple>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                    </div>
-                    <button type="submit" class="btn btn-comman pull-right">Update Profile</button>
-                    <div class="clearfix"></div>
-                    </form>
-                  </div>
-  </div>
-                        </ng-template>
 
 
  <ng-template #addvideo let-c="close" let-d="dismiss">

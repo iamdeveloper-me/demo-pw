@@ -201,6 +201,72 @@ busi_person:string = 'Rodriguez'
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
     $('.photogallry').hide();
+
+    function testAnim(x) {
+      $('.modal .modal-dialog').addClass('animated');
+      $('.modal .modal-dialog').addClass('bounceIn');
+  };
+  $('#phone').on('show.bs.modal', function (e) {
+    var anim = $('#entrance').val();
+        testAnim(anim);
+  })
+  $('#phone').on('hide.bs.modal', function (e) {
+    var anim = $('#exit').val();
+        testAnim(anim);
+  })
+ 
+  $('#PERSON').on('show.bs.modal', function (e) {
+    var anim = $('#entrance').val();
+        testAnim(anim);
+  })
+  $('#PERSON').on('hide.bs.modal', function (e) {
+    var anim = $('#exit').val();
+        testAnim(anim);
+  })
+  $('#facebook').on('show.bs.modal', function (e) {
+    var anim = $('#entrance').val();
+        testAnim(anim);
+  })
+  $('#facebook').on('hide.bs.modal', function (e) {
+    var anim = $('#exit').val();
+        testAnim(anim);
+  })
+  
+  $('#twitter').on('show.bs.modal', function (e) {
+    var anim = $('#entrance').val();
+        testAnim(anim);
+  })
+  $('#twitter').on('hide.bs.modal', function (e) {
+    var anim = $('#exit').val();
+        testAnim(anim);
+  })
+  
+  $('#google').on('show.bs.modal', function (e) {
+    var anim = $('#entrance').val();
+        testAnim(anim);
+  })
+  $('#google').on('hide.bs.modal', function (e) {
+    var anim = $('#exit').val();
+        testAnim(anim);
+  })
+  
+  $('#instagram').on('show.bs.modal', function (e) {
+    var anim = $('#entrance').val();
+        testAnim(anim);
+  })
+  $('#instagram').on('hide.bs.modal', function (e) {
+    var anim = $('#exit').val();
+        testAnim(anim);
+  })
+  
+  $('#instagram2').on('show.bs.modal', function (e) {
+    var anim = $('#entrance').val();
+        testAnim(anim);
+  })
+  $('#instagram2').on('hide.bs.modal', function (e) {
+    var anim = $('#exit').val();
+        testAnim(anim);
+  })
   }
 
  

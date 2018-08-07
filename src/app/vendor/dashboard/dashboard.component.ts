@@ -26,18 +26,80 @@ export class DashboardComponent implements OnInit {
   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
   $.getScript('./assets/js/vendorsidebar.js');
   
-
+  
   $("div").click(function(){
     $("div").removeClass( "modal-backdrop");
   });  
 
+  function testAnim(x) {
+    $('.modal .modal-dialog').addClass('animated');
+    $('.modal .modal-dialog').addClass('bounceIn');
+};
+$('#phone').on('show.bs.modal', function (e) {
+  var anim = $('#entrance').val();
+      testAnim(anim);
+})
+$('#phone').on('hide.bs.modal', function (e) {
+  var anim = $('#exit').val();
+      testAnim(anim);
+})
+$('#Description').on('show.bs.modal', function (e) {
+  var anim = $('#entrance').val();
+      testAnim(anim);
+})
+$('#Description').on('hide.bs.modal', function (e) {
+  var anim = $('#exit').val();
+      testAnim(anim);
+})
+$('#Photos').on('show.bs.modal', function (e) {
+  var anim = $('#entrance').val();
+      testAnim(anim);
+})
+$('#Photos').on('hide.bs.modal', function (e) {
+  var anim = $('#exit').val();
+      testAnim(anim);
+})
+$('#Services').on('show.bs.modal', function (e) {
+  var anim = $('#entrance').val();
+      testAnim(anim);
+})
+$('#Services').on('hide.bs.modal', function (e) {
+  var anim = $('#exit').val();
+      testAnim(anim);
+})
+$('#Location').on('show.bs.modal', function (e) {
+  var anim = $('#entrance').val();
+      testAnim(anim);
+})
+$('#Location').on('hide.bs.modal', function (e) {
+  var anim = $('#exit').val();
+      testAnim(anim);
+})
+$('#camera').on('show.bs.modal', function (e) {
+  var anim = $('#entrance').val();
+      testAnim(anim);
+})
+$('#camera').on('hide.bs.modal', function (e) {
+  var anim = $('#exit').val();
+      testAnim(anim);
+})
+
+
+$('#PhoneEdit').on('show.bs.modal', function (e) {
+  var anim = $('#entrance').val();
+      testAnim(anim);
+})
+$('#PhoneEdit').on('hide.bs.modal', function (e) {
+  var anim = $('#exit').val();
+      testAnim(anim);
+})
 
   if(window.location.pathname == '/vendor/dashboard' )
   { $("body").removeClass( "modal-open");
    
     $("body").css({ 'padding-right' : '' });
   }
-
+  
 
   var acc = document.getElementsByClassName("accordion");
 var i;

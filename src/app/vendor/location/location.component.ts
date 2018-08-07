@@ -41,6 +41,7 @@ export class LocationComponent implements OnInit {
     //edit js
     $.getScript('./assets/js/vertical-timeline.js');
 
+    
     function testAnim(x) {
       $('.modal .modal-dialog').addClass('animated');
       $('.modal .modal-dialog').addClass('bounceIn');

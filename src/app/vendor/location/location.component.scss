@@ -323,15 +323,21 @@ textarea.form-control, textarea.form-control{
     position: absolute !important;
     top: -4px !important;
 }
+.img-section iframe{
+width:100%;
+height:400px;
+}
 .acce_time1{
-    position: absolute !important;
-    top: 5px !important;
-    left: -10px !important;
+float:left;
+max-width:50px;
 }
 .acce_time1 .material-icons{
     left: 12px !important;
     position: absolute !important;
     top: 5px !important;
+}
+.custom-form .card .card-body{
+    padding:10px 0px!important;
 }
 .border_left_div{
     min-height: 240px;
@@ -378,10 +384,22 @@ textarea.form-control, textarea.form-control{
 
     right: 0px;
 }
+.registration-date-time {
+float: left;
+    max-width: 40%;
+    margin: 0px 10px;
+    border:1px solid #e5e5e5;
+    }
+.blacktext{
+    color:#000;
+}
+.registration-date-time .form-control{
+  padding:5px!important;  
+}
 .edit_btn1 i{
     color: #000;
 }
-.weekboxinput3:hover .edit_btn1{
+.weekboxinput1:hover .edit_btn1{
     display: block;
 }
 .pad_left_0px:hover .digi_edit{
@@ -410,6 +428,7 @@ textarea.form-control, textarea.form-control{
     position: absolute;
     background: rgba(0, 0, 0, 0.8); 
     bottom: 5px;
+    width:100%;
 }
 .img_overlay input{
     background: transparent !important;
@@ -542,7 +561,10 @@ textarea.form-control, textarea.form-control{
 }
 
 @media(max-width:767px){
-       
+ .img-section iframe{
+width:100%;
+height:300px;
+}      
 .weekboxinput div.col-xs-8{
 	width: 70%!important;
 	float: left;

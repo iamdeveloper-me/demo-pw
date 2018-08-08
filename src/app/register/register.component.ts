@@ -1,4 +1,6 @@
 import { Component} from '@angular/core';
+import { SignupVendorService } from '../shared/service/signup-vendor.service';
+import 'rxjs/Rx';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -6,7 +8,7 @@ import { Component} from '@angular/core';
 })
 export class RegisterComponent  {
 
-
+  user = {"email": "","password": "","firstName": "","lastName": ""}
   ngOnInit() {  
 //  $.material.init();
     $(".loginnav").hide(); 
@@ -14,8 +16,12 @@ export class RegisterComponent  {
                  $(".show").hide();
 
   }
-    constructor( ) {}
+    constructor( private cservice: SignupVendorService) {}
 
     loadScript(){this.ngOnInit;}
-
+    onSubmit() {   
+      alert('responce');
+      this.cservice.signup(this.user).subscribe((response) => console.log(response),(error)=>console.log(error)); 
+      alert('responce');
+    }
 }

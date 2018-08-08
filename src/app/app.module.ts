@@ -133,8 +133,11 @@ import { MininavbarComponent } from './admin/mininavbar/mininavbar.component';
 import { PortfolioviewComponent } from './vendor/portfolioview/portfolioview.component';
 import { ViewPhotoAlbumsComponent } from './vendor/view-photo-albums/view-photo-albums.component';
 import { AlbumsettingComponent } from './vendor/albumsetting/albumsetting.component';
+import { EventListComponent } from './vendor/event-list/event-list.component';
+
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+    
   }
 
 export function getAuthServiceConfigs() {
@@ -158,6 +161,7 @@ export function getAuthServiceConfigs() {
         AppComponent,
         NgbdModalContent,
         AllPromotionPageComponent,
+        EventListComponent,
         AlbumsettingComponent,
         PortfolioviewComponent,
         NgbdlocationModalContent,

@@ -72,6 +72,7 @@ import { ReviewandfeedbackComponent } from './admin/reviewandfeedback/reviewandf
 import { PortfolioviewComponent } from './vendor/portfolioview/portfolioview.component';
 import { ViewPhotoAlbumsComponent } from './vendor/view-photo-albums/view-photo-albums.component';
 import { AlbumsettingComponent } from './vendor/albumsetting/albumsetting.component';
+import { EventListComponent } from './vendor/event-list/event-list.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -100,6 +101,7 @@ const appRoutes: Routes = [
     { path: 'vendor/albumviewphoto', component:  ViewPhotoAlbumsComponent  },
     { path: 'vendor/portfolioview', component:  PortfolioviewComponent  },
     { path: 'vendor/settingalbum', component:  AlbumsettingComponent  },
+    { path: 'vendor/eventlist', component:  EventListComponent  },
    
     { path: 'vendor/business', component:  BusinessInfoComponent  },
     { path: 'vendor/location', component:  LocationComponent  },

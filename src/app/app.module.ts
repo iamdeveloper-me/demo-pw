@@ -30,12 +30,12 @@ import { AppComponent } from './app.component';
 import { ContentLayoutComponent } from "./layouts/content/content-layout.component";
 import { FullLayoutComponent } from "./layouts/full/full-layout.component";
 import { FormsModule } from '@angular/forms';
-
+import { HttpModule } from '@angular/http';
 import { DragulaService } from 'ng2-dragula';
 import { AuthService } from './shared/auth/auth.service';
 import { AuthGuard } from './shared/auth/auth-guard.service';
- import * as $ from 'jquery';
- import { UiSwitchModule } from 'ngx-ui-switch';
+import * as $ from 'jquery';
+import { UiSwitchModule } from 'ngx-ui-switch';
  
 import {
     SocialLoginModule,
@@ -266,6 +266,7 @@ export function getAuthServiceConfigs() {
         UiSwitchModule ,
         HttpClientModule,
         SocialLoginModule,
+        HttpModule,
         //inbox
         QuillModule,
         //calender

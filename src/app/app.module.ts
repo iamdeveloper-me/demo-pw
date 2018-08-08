@@ -12,6 +12,7 @@ import { DateTimePickerComponent } from './vendor/calendertable/date-time-picker
 //indox of vendor
 import { QuillModule } from 'ngx-quill'
 //vendorcharts
+import { PortfolioviewphotoComponent } from './vendor/portfolioviewphoto/portfolioviewphoto.component';
 
 import { ChartsModule } from 'ng2-charts';
 import { ChartistModule} from 'ng-chartist';
@@ -248,7 +249,8 @@ export function getAuthServiceConfigs() {
         AdminusersComponent,
         ReviewandfeedbackComponent,
         AdmincalenderComponent,
-        MininavbarComponent
+        MininavbarComponent,
+        PortfolioviewphotoComponent
 
   ],
     imports: [

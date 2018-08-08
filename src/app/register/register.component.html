@@ -33,7 +33,7 @@
         </div>
     </div>
     <!-- First Step -->
-    <form role="form" action="" method="post" class="mt-25 mtx-0">
+    <form role="form" action="" method="post" class="mt-25 mtx-0" (ngSubmit)="onSubmit(f)" #f="ngForm">
         <div class="row setup-content-2" id="step-1">
             <div class="col-md-12 cate_list">
                 <div class="col-md-3">
@@ -41,6 +41,7 @@
                         <h5>Wedding venues</h5>
                         <li>
                         <input class="styled-checkbox validate" id="styled-checkbox-2" type="checkbox" value="value2" required="required">
+                        type="text" id="email" [(ngModel)] = "user.email" name = "useremail" required
                         <label for="styled-checkbox-2">Hotel </label>
                         </li>
                         <li>

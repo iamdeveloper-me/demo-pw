@@ -18,7 +18,7 @@ export class LocationComponent implements OnInit {
   Sunday = 'Closed';
   Mondayopen = '9:00' ;Mondayclose = '5:00';
   Tuesdayopen= '9:00' ;Tuesdayclose= ' 5:00';
-  Webnesdayopen ='9:00';Webnesdayclose ='5:00';
+  Wednesdayopen ='9:00';Wednesdayclose ='5:00';
   Thursdayopen = '9:00';Thursdayclose = '5:00';
   Fridayopen =  '9:00';Fridayclose=  '5:00';
   Saturday = 'Closed';

@@ -7,14 +7,18 @@
     <router-outlet></router-outlet> 
 
     <div class="container-fluid viewallalbums">
-        <div class="col-sm-4 padd_10px">
-           <a routerLink= "../gallery"><i class="material-icons"> arrow_back_ios </i> </a>  All Portfolio
+        <div class="col-sm-12">
+           <a routerLink= "../gallery" class="pull-left">
+            <i class="material-icons"> arrow_back_ios </i> 
+All Portfolio
+           </a>  
+           <a class="sett_icon pull-right" routerLink="../settingalbum">
+            <i class="material-icons "> settings</i>
+          </a>
         </div>
   
         
-        <div class="col-sm-4 text-right  flot_righ">
-          <a class="sett_icon" routerLink="../settingalbum"><i class="material-icons "> settings</i></a>
-        </div>
+      
   </div>
        <div class="container-fluid photo_gallery">
           

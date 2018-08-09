@@ -82,8 +82,4 @@ export class LocationComponent implements OnInit {
 //model
 closeResult: string;
 
-
-
-
-
 }

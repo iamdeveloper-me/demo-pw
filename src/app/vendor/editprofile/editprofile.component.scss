@@ -6,6 +6,7 @@
   background-color: #fff;
   padding: 20px 0px;
   border-radius: 5px;
+  position: relative;
 }
 .mem_detail{
   background-color: #fff;
@@ -62,12 +63,43 @@
   margin-top: 20px;
 }
 
+
 .mar_top_20px .pad_bt{
   padding: 5px 53px;
 }
 
+.pos_absolute{
+  position: absolute;
+  right: 30px;
+  top: 22px;
+}
+.pos_absolute a{
+  color: #000;
+}
 @media(max-width:767px){
    .myaco_box{
      margin-bottom: 10px;
    }
+   .mem_detail img{
+    max-width: 30% !important;
+    display: inline-block !important;
+  }
+  .member_name{
+    text-align: center;
+  }
+  .mob_center{
+    text-align: center;
+  }
+  .mem_detail .col-xs-12{
+    width: 100% !important;
+    text-align: center !important;
+  }
+  .aco_info h5{
+    font-size: 16px;
+  }
+  .pos_absolute {
+    right: 10px;
+    top: 19px;
+}
+
 }

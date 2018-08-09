@@ -18,26 +18,27 @@
 </div>
 
 <div class="col-md-12">
-    <div class="col-sm-4">
-      <div class="card">
-          <div class="card-header">
-              <h4 class="card-title">Action on Pages</h4>
-              <p>July 15 - July 21</p>
-          </div>
-          <div class="card-body">
-              <div class="card-block">
-                  <div class="height-400">
-                          <canvas height="400" baseChart class="chart" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"
-                          [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" ></canvas>
-                  </div>
-              </div>
-          </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
+
+<div class="col-sm-4">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Page Views</h4>
+                <h4 class="card-title">Enquiries Vs Leads</h4>
+                <p>July 15 - July 21</p>
+            </div>
+            <div class="card-body">
+                <div class="card-block">
+                    <div id="bar-bar1" class="height-400">
+                        <canvas baseChart class="chart" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColors" [legend]="barChartLegend"
+                            [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   <div class="col-sm-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Storefront Views</h4>
                 <p>July 15 - July 21</p>
             </div>
             <div class="card-body">
@@ -50,6 +51,66 @@
             </div>
         </div>
     </div>
+
+
+    <div class="col-sm-4">
+      <div class="card">
+          <div class="card-header">
+              <h4 class="card-title">Actions on Storefront</h4>
+              <p>July 15 - July 21</p>
+          </div>
+          <div class="card-body">
+              <div class="card-block">
+                  <div class="height-400">
+                          <canvas height="400" baseChart class="chart" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"
+                          [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" ></canvas>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+   
+ <div class="col-sm-4">
+      <div class="card">
+          <div class="card-header">
+              <h4 class="card-title">Reach</h4>
+              <p>July 15 - July 21</p>
+          </div>
+          <div class="card-body">
+              <div class="card-block">
+                  <div class="height-400">
+                          <canvas height="400" baseChart class="chart" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"
+                          [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" ></canvas>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+   
+   <div class="col-sm-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">My Gallery Views</h4>
+                <p>July 15 - July 21</p>
+            </div>
+            <div class="card-body">
+                <div class="card-block">
+                    <div id="bar-bar1" class="height-400">
+                        <canvas baseChart class="chart" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColors" [legend]="barChartLegend"
+                            [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="col-md-12">
+
+    
+<!-- 
     <div class="col-sm-4">
         <div class="card">
             <div class="card-header">
@@ -60,16 +121,14 @@
                 <div class="card-block">
                     <div class="height-400">
                             <canvas id="scatter-chart"  height="400" baseChart class="chart" [datasets]="scatterChartData" [labels]="scatterChartLabels" [options]="scatterChartOptions" [colors]="scatterChartColors"
-                            [legend]="scatterChartLegend" [chartType]="scatterChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" ></canvas>
+                            [legend]="scatterChartLegend" [chartType]="scatterChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" >
+                            </canvas>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="col-md-12">
-   <div class="col-sm-4">
+    <div class="col-sm-4">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Page Likes</h4>
@@ -101,27 +160,7 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-4">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Recommendations</h4>
-                <p>July 15 - July 21</p>
-            </div>
-            <div class="card-body">
-                <div class="card-block">
-                    <div id="bar-bar1" class="height-400">
-                        <canvas baseChart class="chart" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColors" [legend]="barChartLegend"
-                            [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="col-md-12">
-
-  <div class="col-sm-6">
+<div class="col-sm-6">
       <div class="card">
           <div class="card-header">
               <h4 class="card-title">Post Engagements</h4>
@@ -152,8 +191,10 @@
               </div>
           </div>
       </div>
-  </div>
+  </div> -->
 </div>
+
+
 </div>
   
 </div>

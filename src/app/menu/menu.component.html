@@ -22,7 +22,7 @@
              <li class="nav-item dropdown ">
                 <a id="dropdownMenuButton" class="nav-link js-scroll-trigger dropdown-toggle mob_arrow" data-toggle="dropdown"  href="#about">Wedding Suppliers</a>
                 <div class="col-md-12 dropdown-menu fmc-dropdown-content-perspective" aria-labelledby="dropdownMenuButton">
-                   <div class="col-md-6 col-xs-12">
+                   <!-- <div class="col-md-6 col-xs-12">
                       <ul>
                          <li>
                             <a href="#" class="dropdown-item"><i class="fa fa-birthday-cake" aria-hidden="true"></i>  <span>Cakes </span> </a>
@@ -90,7 +90,102 @@
                             <a href="#" class="dropdown-item"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i><span>Pamper Packages </span> </a>
                          </li>
                       </ul>
+                   </div> -->
+  
+                   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   
+                   <div class="col-md-6 col-xs-12" *ngFor="let supplier of supArray" >
+                      <ul>
+                         <li>
+                            <a href="#" class="dropdown-item"><i class="fa fa-birthday-cake" aria-hidden="true"></i>  <span>{{supplier.categoryName}} </span> </a>
+                         </li>
+                        </ul>
+                         <!-- <li>
+                            <a href="#" class="dropdown-item"><i class="fa fa-camera" aria-hidden="true"></i>  <span>Decorators & Wedding Stylist </span> </a>
+                         </li>
+                         <li>
+                            <a href="#" class="dropdown-item"><i class="fa fa-glass" aria-hidden="true"></i>  <span>Drinks and Beverages </span> </a>
+                         </li>
+                         <li>
+                            <a href="#" class="dropdown-item"><i class="fa fa-paint-brush" aria-hidden="true"></i> <span>Fashion & Clothing</span> </a>
+                         </li>
+                         <li>
+                            <a href="#" class="dropdown-item"> <i class="fa fa-paint-brush" aria-hidden="true"></i>  <span>Florists, Bouquets and Centerpiece </span> </a>
+                         </li>
+                         <li>
+                            <a href="#" class="dropdown-item"> <i class="fa fa-cutlery" aria-hidden="true"></i>  <span>Food & Catering </span> </a>
+                         </li>
+                         <li>
+                            <a href="#" class="dropdown-item"> <i class="fa fa-camera" aria-hidden="true"> </i>  <span>Footwear</span> </a>
+                         </li>
+                         <li>
+                            <a href="#" class="dropdown-item"> <i class="fa fa-camera" aria-hidden="true"> </i> <span>Honeymoon & Travel</span> </a>
+                         </li>
+                         <li>
+                            <a href="#" class="dropdown-item"> <i class="fa fa-address-card-o" aria-hidden="true"></i>
+                            <span>Invitation Cards & Wedding Stationary </span> </a>
+                         </li>
+                         <li>
+                            <a href="#" class="dropdown-item"><i class="fa fa-camera" aria-hidden="true"> </i> <span>Jewellery & Wedding Rings </span> </a>
+                         </li>
+                      </ul>
                    </div>
+                   <div class="col-md-6 col-xs-12">
+                      <ul>
+                         <li>
+                            <a href="#" class="dropdown-item"> <i class="fa fa-camera" aria-hidden="true"> </i> <span>Make Up, Hair &Mehendi</span> </a>
+                         </li>
+                         <li>
+                            <a href="#" class="dropdown-item"> <i class="fa fa-camera" aria-hidden="true"></i> <span> Marriage Celebrant</span> </a>
+                         </li>
+                         <li>
+                            <a href="#" class="dropdown-item"> <i class="fa fa-music" aria-hidden="true"></i>  <span>Music, DJs & Entertainment </span> </a>
+                         </li>
+                         <li>
+                            <a href="#" class="dropdown-item"><i class="fa fa-paint-brush" aria-hidden="true"></i> <span>Other wedding Supplies & Accessories</span> </a>
+                         </li>
+                         <li>
+                            <a href="#" class="dropdown-item"> <i class="fa fa-paint-brush" aria-hidden="true"></i>  <span>Photography, Videography & Cinematography</span> </a>
+                         </li>
+                         <li>
+                            <a href="#" class="dropdown-item"> <i class="fa fa-venus" aria-hidden="true"></i>  <span>Venues</span> </a>
+                         </li>
+                         <li>
+                            <a href="#" class="dropdown-item"><i class="fa fa-car" aria-hidden="true"></i>  <span>Wedding Cars & Transport</span> </a>
+                         </li>
+                         <li>
+                            <a href="#" class="dropdown-item"> <i class="fa fa-camera" aria-hidden="true"> </i> <span>Wedding Planner & Event Management</span> </a>
+                         </li>
+                         <li>
+                            <a href="#" class="dropdown-item"> <i class="fa fa-camera" aria-hidden="true"> </i> <span>Shape & Fitness </span> </a>
+                         </li>
+                         <li>
+                            <a href="#" class="dropdown-item"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i><span>Pamper Packages </span> </a>
+                         </li>
+                      </ul>
+                   </div> -->
+                </div>
+               
                    <div class="clearfix"> </div>
                    <div class="are_you">
                       <div class="col-md-6 col-xs-12">
@@ -258,10 +353,6 @@
                                    <button class="btn btn-info vendor" routerLink="../vendor/dashboard"  >Log in <i class="fa 
                                     fa-sign-in ml-1"></i></button>
                                     <button type="submit">dfg</button>
-
-                                   <button class="btn btn-info vendor" type="submit" routerLink="../vendor/dashboard"  >Log in <i class="fa 
-                                    fa-sign-in ml-1"></i></button>
-                                    <!-- <button type="submit">dfg</button> -->
                                     <p class="pt-1">
                                         <a  href="#" class="pink-text">Forgot Password</a>
                                     </p>

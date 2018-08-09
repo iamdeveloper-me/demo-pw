@@ -30,12 +30,12 @@ import { AppComponent } from './app.component';
 import { ContentLayoutComponent } from "./layouts/content/content-layout.component";
 import { FullLayoutComponent } from "./layouts/full/full-layout.component";
 import { FormsModule } from '@angular/forms';
-
+import { HttpModule } from '@angular/http';
 import { DragulaService } from 'ng2-dragula';
 import { AuthService } from './shared/auth/auth.service';
 import { AuthGuard } from './shared/auth/auth-guard.service';
- import * as $ from 'jquery';
- import { UiSwitchModule } from 'ngx-ui-switch';
+import * as $ from 'jquery';
+import { UiSwitchModule } from 'ngx-ui-switch';
  
 import {
     SocialLoginModule,
@@ -133,8 +133,11 @@ import { MininavbarComponent } from './admin/mininavbar/mininavbar.component';
 import { PortfolioviewComponent } from './vendor/portfolioview/portfolioview.component';
 import { ViewPhotoAlbumsComponent } from './vendor/view-photo-albums/view-photo-albums.component';
 import { AlbumsettingComponent } from './vendor/albumsetting/albumsetting.component';
+import { EventListComponent } from './vendor/event-list/event-list.component';
+
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+    
   }
 
 export function getAuthServiceConfigs() {
@@ -158,6 +161,7 @@ export function getAuthServiceConfigs() {
         AppComponent,
         NgbdModalContent,
         AllPromotionPageComponent,
+        EventListComponent,
         AlbumsettingComponent,
         PortfolioviewComponent,
         NgbdlocationModalContent,
@@ -262,6 +266,7 @@ export function getAuthServiceConfigs() {
         UiSwitchModule ,
         HttpClientModule,
         SocialLoginModule,
+        HttpModule,
         //inbox
         QuillModule,
         //calender

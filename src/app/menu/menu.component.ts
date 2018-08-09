@@ -1,10 +1,9 @@
-
-
-
 import { TemplateRef } from '@angular/core';
 import { Component,  OnInit , Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { Headers,Http} from '@angular/http';
+
 export class NgbdModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) { }
@@ -159,12 +158,29 @@ remove(){
 
 }
 
-constructor( public _router:Router, private modalService: NgbModal) {}
-    // save() {
-    //     //Do stuff
-    //     this._router.navigateByUrl('home/photo');
-    //     location.reload();      
-    // }
- 
+constructor( public _router:Router, private modalService: NgbModal, private http: Http) {}
+user = {username:' ',password:' '}
+onSubmit(){
+  var username = this.user.username;
+  var password = this.user.password; 
+  const headers = new Headers({'Content-Type':'application/json'});
+  
+ // headers.append('Content-Type', 'application/json');
+  let obs = this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/auth/login",{userName: username , password: password},{headers:headers});
+  obs.subscribe(
+      (data)=> {console.log(data);   
+      console.log(data.status);
+      console.log(data.statusText);
+      if (data.statusText == "OK" ) {
+
+        // let key = 'data';
+        // localStorage.setItem(key, JSON.stringify(res.json().data.result));
+        console.log('Success','Login Successfully')
+
+      }
+      else
+      { console.log('Login Fail')}
+    });
+}
 
 }

@@ -1,9 +1,7 @@
 
 <div id="wrapper" class="toggled">
     <div id="sidebar-wrapper">
-       
             <app-vendorsidebar></app-vendorsidebar>
-        
     </div>
     <div id="page-content-wrapper">    
         <div class="container-fluid nopadd">                    
@@ -36,7 +34,7 @@
                                   <li> 
                                     <i class="material-icons">error_outline</i>
                                     <strong class="blacktext">Business Cover</strong> 
-                                    <button  class="editbtn" data-target="#phone" data-toggle="modal" type="button">Select to Edit</button>
+                                    <button  class="editbtn" data-target="#BusinessCover" data-toggle="modal" type="button">Select to Edit</button>
                                   </li>
                                   <li>
                                   <i class="material-icons">error_outline</i> 
@@ -56,7 +54,7 @@
                                   <li> 
                                     <i class="material-icons">error_outline</i> 
                                     <strong class="blacktext">Services</strong>     
-                                    <button  class="editbtn" data-target="#Services" data-toggle="modal" type="button">
+                                    <button  class="editbtn" data-target="#Service" data-toggle="modal" type="button">
                                       Select to Edit</button>   
                                   </li>
                                   <li>
@@ -97,11 +95,9 @@
                         <i class="material-icons">location_on</i>
                       </div>
                       <div class="col-xs-8 nopadd edithovering">
-                        Main Location: Dubai<br/>
-                        Other: Delhi, Pune... 
-                        <a href="#">+ Add More</a>
-                          <!-- <button class="editbtn">Location Edit</button>  -->
-                          <button  class="editbtn" data-target="#Location" data-toggle="modal" type="button">
+                        <p>{{currentLocation}}</p>
+                        <a>+ Add More</a>
+                          <button  class="editbtn " data-target="#currentLocation" data-toggle="modal" type="button">
                             Location Edit</button>  
                       </div>
                       <div class="col-xs-3 nopadd prolinkmob">
@@ -115,9 +111,8 @@
                         <i class="material-icons">phone</i>
                       </div>
                       <div class="col-xs-8 nopadd edithovering">
-                      555-55555  
-                        <a href="#">+ Add More</a>
-                          <!-- <button class="editbtn">Phone Edit</button>  -->
+                      {{PhoneEdit}}  
+                        <a >+ Add More</a>
                           <button class="editbtn" data-target="#PhoneEdit" data-toggle="modal" type="button">Phone Edit</button>
                       </div>
                     </div>
@@ -130,7 +125,7 @@
                       Membership Type: Free <a routerLink="../membership" class="bluelink">Upgrade to Premium</a>
                       </div>
                       </div>
-  <div class="clearfix"></div>
+                      <div class="clearfix"></div>
                       <div class="col-sm-12 nopadd martop30px marbot15px clearfix">
                         <div class="col-sm-3 col-xs-4 text-center">
                       <a routerlink="../portfolioview" class="blacktext">
@@ -328,7 +323,7 @@
               <div class="card-block nopadd img100per">
                 <ngb-carousel> 
                   <ng-template ngbSlide>
-                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="Random first slide" class="dashimgads">
+                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/makeup.JPG" alt="Random first slide" class="dashimgads">
                     
                   </ng-template>
                   <ng-template ngbSlide>
@@ -336,7 +331,7 @@
                     
                   </ng-template>
                   <ng-template ngbSlide>
-                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="Random third slide" class="dashimgads">
+                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/makeup.JPG" alt="Random third slide" class="dashimgads">
                     
                   </ng-template>
                 </ngb-carousel>
@@ -351,19 +346,18 @@
 </div>
  
 
-<div class="modal fade" id="phone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="BusinessCover" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                    <h4 class="modal-title">Add New Location</h4>
+                    <h4 class="modal-title">Add New Business Cover</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <div class="col-sm-12  text-center">                 
                         <i class="material-icons"> add_location </i>
-                        <p>Have more business branches?</p>
-                        <p> <input class="endent_10px" type="text" placeholder="Enter Location"> </p> 
-
+                        <p>Have more Business Cover?</p>
+                        <p> <input class="endent_10px" type="text" placeholder="Upload Business Cover"> </p> 
                         <p>Premium members only. <span>Upgrade</span> </p>
                 </div>
             </div>
@@ -374,8 +368,6 @@
         </div>
     </div>
 </div>
-
-
 <div class="modal fade" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -385,9 +377,100 @@
           </div>
           <div class="modal-body">
               <div class="col-sm-12  text-center">                 
+                      <!-- <i class="material-icons"> add_location </i> -->
+                      <p>Have more Description?</p>
+                      <p> <textarea class="endent_10px" type="text" placeholder="Enter Description"></textarea> </p> 
+                      <p>Premium members only. <span>Upgrade</span> </p>
+              </div>
+          </div>
+          <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+          </div>
+      </div>
+  </div>
+</div>
+<div class="modal fade" id="Photos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <h4 class="modal-title">Add New Photos</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12  text-center">                 
+                        <i class="material-icons"> add_location </i>
+                        <p>Have more Photos?</p>
+                        <p> <input class="endent_10px" type="text" placeholder="Enter Photos"> </p> 
+  
+                        <p>Premium members only. <span>Upgrade</span> </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Service" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <h4 class="modal-title">Add New Service</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12  text-center">                 
+                        <i class="material-icons"> add_location </i>
+                        <p>Have more Service?</p>
+                        <p> <input class="endent_10px" type="text" placeholder="Enter Service"> </p> 
+  
+                        <p>Premium members only. <span>Upgrade</span> </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <h4 class="modal-title">Add New Location</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12  text-center">                 
+                        <i class="material-icons"> add_location </i>
+                        <p>Have more business Location?</p>
+                        <p> <input class="endent_10px" type="text" placeholder="Enter Location"> </p> 
+  
+                        <p>Premium members only. <span>Upgrade</span> </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="currentLocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+                  <h4 class="modal-title">Add New Current Location</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+              <div class="col-sm-12  text-center">                 
                       <i class="material-icons"> add_location </i>
-                      <p>Have more business branches?</p>
-                      <p> <input class="endent_10px" type="text" placeholder="Enter Location"> </p> 
+                      <p>Add As Current Location?</p>
+                      <p> <input class="endent_10px" type="text" [(ngModel)] = "currentLocation"  placeholder="Enter Current Location"> </p> 
 
                       <p>Premium members only. <span>Upgrade</span> </p>
               </div>
@@ -399,94 +482,18 @@
       </div>
   </div>
 </div>
-
-
-
-<div class="modal fade" id="Photos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                    <h4 class="modal-title">Add New Trading</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <div class="col-sm-12  text-center">                 
-                        <i class="material-icons"> add_location </i>
-                        <p>Have more business branches?</p>
-                        <p> <input class="endent_10px" type="text" placeholder="Enter Location"> </p> 
-  
-                        <p>Premium members only. <span>Upgrade</span> </p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="Services" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                    <h4 class="modal-title">Add New Trading</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <div class="col-sm-12  text-center">                 
-                        <i class="material-icons"> add_location </i>
-                        <p>Have more business branches?</p>
-                        <p> <input class="endent_10px" type="text" placeholder="Enter Location"> </p> 
-  
-                        <p>Premium members only. <span>Upgrade</span> </p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="Location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                    <h4 class="modal-title">Add New Trading</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <div class="col-sm-12  text-center">                 
-                        <i class="material-icons"> add_location </i>
-                        <p>Have more business branches?</p>
-                        <p> <input class="endent_10px" type="text" placeholder="Enter Location"> </p> 
-  
-                        <p>Premium members only. <span>Upgrade</span> </p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="modal fade" id="camera" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                    <h4 class="modal-title">Add New Trading</h4>
+                    <h4 class="modal-title">Add New Profile Picture </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <div class="col-sm-12  text-center">                 
-                        <i class="material-icons"> add_location </i>
-                        <p>Have more business branches?</p>
+                        <i class="material-icons">camera</i>
+                        <p>Change  Profile Picture?</p>
                         <p> <input class="endent_10px" type="text" placeholder="Enter Location"> </p> 
-  
                         <p>Premium members only. <span>Upgrade</span> </p>
                 </div>
             </div>
@@ -497,19 +504,18 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="PhoneEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                    <h4 class="modal-title">Add New Trading</h4>
+                    <h4 class="modal-title">Add New Phone Edit</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <div class="col-sm-12  text-center">                 
                         <i class="material-icons"> add_location </i>
-                        <p>Have more business branches?</p>
-                        <p> <input class="endent_10px" type="text" placeholder="Enter Location"> </p> 
+                        <p>Have more Phone Edit?</p>
+                        <p> <input class="endent_10px" type="text" [(ngModel)] = "PhoneEdit"  placeholder="Enter Phone"> </p> 
   
                         <p>Premium members only. <span>Upgrade</span> </p>
                 </div>
@@ -522,3 +528,4 @@
     </div>
 </div>
 <router-outlet></router-outlet> 
+

@@ -173,8 +173,7 @@ onSubmit(){
       console.log(data.statusText);
       if (data.statusText == "OK" ) {
 
-        // let key = 'data';
-        // localStorage.setItem(key, JSON.stringify(res.json().data.result));
+    
         console.log('Success','Login Successfully')
 
       }

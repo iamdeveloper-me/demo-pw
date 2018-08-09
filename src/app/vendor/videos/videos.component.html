@@ -23,7 +23,7 @@
                    </div>
                    
                       <div class="text-center">
-                          <p class="padd_top_30px"><i class="material-icons" style="font-size:80px;">video_library</i></p>
+                          <p class="padd_top_30px"><i class="material-icons" style="font-size:80px;">missed_video_call</i></p>
                           <p class="oops">
                               No video upload yet
                             </p>
@@ -48,9 +48,9 @@
 <div class="container-fluid ">
         <div class="container-fluid addvideo  text-center ">
           <div class=" my_video_bg">
-            <h5> <strong> MY VIDEOS </strong> </h5>
+            <h3> <strong> MY VIDEOS </strong> </h3>
             <P>Showcase videos that demonstrate your work to reach more clients</P>
-             <span class="firt_link"><i class="material-icons">settings</i></span>
+             <span class="firt_link" (click)="open(newlink)"><i class="material-icons">settings</i></span>
             </div>
          </div>   
       <div class="container-fluid addvideo1 ">
@@ -132,6 +132,66 @@
                               
                            </div>
                                     </ng-template>
+
+
+
+  <ng-template #newlink let-c="close" let-d="dismiss">
+    <div class="card-block">
+        <div class="modal-header text-center" style="background-color: white">
+          <h4 class="modal-title ">New Video </h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="background-color: white">
+          <form>
+          <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+              <div class="input-effect form-group md-form ">
+                  <input class="effect-16 validate" type="text" placeholder="" required="required">
+                  <label>Edit Link</label>
+                  <span class="focus-border"></span>
+              </div>
+          </div>
+        </div>
+          </div>
+          <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+              <div class="input-effect form-group md-form ">
+                  <input class="effect-16 validate" type="text" placeholder="" required="required">
+                  <label>Delete video</label>
+                  <span class="focus-border"></span>
+              </div>
+          </div>
+        </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                  <div class="input-effect form-group md-form ">
+                      <input class="effect-16 validate" type="text" placeholder="" required="required">
+                      <label>Edit Title of video</label>
+                      <span class="focus-border"></span>
+                  </div>
+              </div>
+            </div>
+              </div>
+          
+      
+          
+  
+          <div class="clearfix"></div>
+          </form>
+          <div class="advideobtn text-center">
+              <button>Add Video</button>
+              <button>Cancle</button>
+            </div>
+        </div>
+        
+      </div>
+              </ng-template>
 <router-outlet></router-outlet> 
 
 

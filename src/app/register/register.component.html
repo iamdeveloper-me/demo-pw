@@ -33,86 +33,35 @@
         </div>
     </div>
     <!-- First Step -->
-    <form role="form" action="" method="post" class="mt-25 mtx-0">
+    <form role="form" action="" method="post" class="mt-25 mtx-0" (ngSubmit)="onSubmit()" #f="ngForm">
         <div class="row setup-content-2" id="step-1">
             <div class="col-md-12 cate_list">
-                <div class="col-md-3">
-                    <ul class="unstyled centered">
-                        <h5>Wedding venues</h5>
-                        <li>
-                        <input class="styled-checkbox validate" id="styled-checkbox-2" type="checkbox" value="value2" required="required">
-                        <label for="styled-checkbox-2">Hotel </label>
-                        </li>
-                        <li>
-                            <input class="styled-checkbox validate " id="styled-checkbox-3" type="checkbox" value="value3" required="required">
-                            <label for="styled-checkbox-3">Resort </label>
-                        </li>
-                        <li>
-                            <input class="styled-checkbox validate " id="styled-checkbox-4" type="checkbox" value="value4" required="required">
-                            <label for="styled-checkbox-4">FarmHouse </label>
-                        </li>
-                        <li>
-                            <input class="styled-checkbox validate " id="styled-checkbox-5" type="checkbox" value="value5" required="required">
-                            <label for="styled-checkbox-5">party loung </label>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <ul class="unstyled centered">
-                        <h5>Wedding Makeup</h5>
-                        <li>
-                        <input class="styled-checkbox validate " id="styled-checkbox-6" required="required" type="checkbox" value="value6">
-                        <label for="styled-checkbox-6">Bribal makeup </label>
-                        </li>
-                        <li>
-                            <input class="styled-checkbox validate " id="styled-checkbox-7" required="required" type="checkbox" value="value7">
-                            <label for="styled-checkbox-7">Groom makeup</label>
-                        </li>
-                        <li>
-                            <input class="styled-checkbox validate " id="styled-checkbox-8" required="required"  type="checkbox" value="value8">
-                            <label for="styled-checkbox-8">Family makeup</label>
-                        </li>
-                        <li>
-                            <input class="styled-checkbox validate " id="styled-checkbox-9" required="required" type="checkbox" value="value9">
-                            <label for="styled-checkbox-9">simple makeup</label>
-                        </li>
-                        <li>
-                            <input class="styled-checkbox validate" id="styled-checkbox-10" required="required" type="checkbox" value="value10">
-                            <label for="styled-checkbox-10">party makeup</label>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                        <ul class="unstyled centered">
-                            <h5>Clothing</h5>
+                <div class="data">
+                    <div  class="show" *ngFor="let category of categoryArray">
+                        <div class="col-md-3">
+                            <ul class="unstyled centered">
+                                <h5>{{category.categoryName}}</h5>
                                 <li>
-                                    <input class="styled-checkbox validate" id="styled-checkbox-11" required="required" type="checkbox" value="value11">
-                                    <label for="styled-checkbox-11">Bridal wear</label>
+                                <input class="styled-checkbox validate" id="styled-checkbox-2" type="checkbox" value="value2" required="required">
+                                <label for="styled-checkbox-2">Hotel </label>
                                 </li>
                                 <li>
-                                    <input class="styled-checkbox validate" id="styled-checkbox-12" required="required"  type="checkbox" value="value12">
-                                    <label for="styled-checkbox-12">Groom wear</label>
+                                    <input class="styled-checkbox validate " id="styled-checkbox-3" type="checkbox" value="value3" required="required">
+                                    <label for="styled-checkbox-3">Resort </label>
                                 </li>
                                 <li>
-                                    <input class="styled-checkbox validate" id="styled-checkbox-13" required="required" type="checkbox" value="value13">
-                                    <label for="styled-checkbox-13">family wear</label>
-                                </li>    
-                        </ul>
-                </div>
-                <div class="col-md-3">
-                    <ul class="unstyled centered">
-                    <h5>Wedding catering</h5>
-                        <li>
-                            <input class="styled-checkbox validate" id="styled-checkbox-14" required="required" type="checkbox" value="value14">
-                            <label for="styled-checkbox-14">Indian</label>
-                        </li>  
-                        <li>
-                                <input class="styled-checkbox validate" id="styled-checkbox-15" required="required"  type="checkbox" value="value15">
-                                <label for="styled-checkbox-15">western</label>
-                            </li>  
-                    </ul>
-                </div>
-            </div>
+                                    <input class="styled-checkbox validate " id="styled-checkbox-4" type="checkbox" value="value4" required="required">
+                                    <label for="styled-checkbox-4">FarmHouse </label>
+                                </li>
+                                <li>
+                                    <input class="styled-checkbox validate " id="styled-checkbox-5" type="checkbox" value="value5" required="required">
+                                    <label for="styled-checkbox-5">party loung </label>
+                                </li>
+                            </ul>
+                        </div> 
+                    </div>    
+                </div> 
+            </div> 
             <button class="btn btn-raised gradient-pomegranate white signup_nextbtn" type="button">
             Next
            </button>
@@ -120,151 +69,206 @@
         <!-- Second Step -->
         <div class="row setup-content-2" id="step-2">  
             <div class="col-md-6">
-                    <h3 class="pl-0 my-4 lc_head"> Login Information </h3>
-                    <div class="input-effect form-group md-form mt-3">
-                        <input class="effect-16" type="text" placeholder="">
-                        <label>First Name</label>
+                <h3 class="pl-0 my-4 lc_head"> Login Information </h3>
+                <div class="input-effect form-group md-form mt-3">
+                    <input class="effect-16" type="text" 
+                    placeholder="" 
+                    id="userName" 
+                    [(ngModel)] = "user.logInInfo.userName" 
+                    name = "userName" 
+                    required >
+                    <label>First Name</label>
+                    <span class="focus-border"></span>
+                </div>   
+                <div class="input-effect form-group md-form mt-3">
+                        <input class="effect-16" type="text" 
+                        placeholder=""  
+                        required>
+                        <label>Last Name</label>
                         <span class="focus-border"></span>
-                    </div>   
-                    <div class="input-effect form-group md-form mt-3">
-                            <input class="effect-16" type="text" placeholder="">
-                            <label>Last Name</label>
-                            <span class="focus-border"></span>
-                        </div>   
-                    <div class="input-effect form-group md-form mt-3">
-                        <input class="effect-16" type="text" placeholder="">
-                        <label>Password</label>
-                        <span class="focus-border"></span>
-                    </div>     
-                    <div class="input-effect form-group md-form mt-3 mb-xs-20">
-                        <input class="effect-16" type="text" placeholder="">
-                        <label>confirm Password</label>
-                        <span class="focus-border"></span>
-                    </div>
+                </div>   
+                <div class="input-effect form-group md-form mt-3">
+                    <input class="effect-16" type="password" 
+                    placeholder="" 
+                    id="password" 
+                    [(ngModel)] = "user.logInInfo.password" 
+                    name = "password" required>
+                    <label>Password</label>
+                    <span class="focus-border"></span>
+                </div>     
+                <div class="input-effect form-group md-form mt-3 mb-xs-20">
+                    <input class="effect-16" 
+                    type="password" 
+                    placeholder="" 
+                    id="confirmPassword" 
+                    [(ngModel)] = "user.logInInfo.confirmPassword" 
+                    name = "confirmPassword" 
+                    required>
+                    <label>confirm Password</label>
+                    <span class="focus-border"></span>
+                </div>
             </div>
             <div class="col-md-6">
             <h3 class="pl-0 my-4 lc_head"> Contact Information </h3>
                 <div class="input-effect form-group md-form mt-3">
-                    <input class="effect-16  validate" type="text"id="yourEmail-2" type="text" required="required" placeholder="">
+                    <input class="effect-16  validate" type="text" 
+                    id="contactPerson" 
+                    [(ngModel)] = "user.contactInfo.contactPerson" 
+                    name = "contactPerson" 
+                    required 
+                    placeholder="">
                     <label>contact person </label>
                     <span class="focus-border"></span>
                 </div>
                 <div class="input-effect form-group md-form mt-3">
-                        <input class="effect-16  validate" type="text"id="yourEmail-2" type="email" required="required" placeholder="">
-                        <label>Email</label>
-                        <span class="focus-border"></span>
-                    </div>
-
-                    <div class="input-effect form-group md-form mt-3">
-                            <input class="effect-16  validate" type="text"id="yourEmail-2" type="number" required="required" placeholder="">
-                            <label>Phone no</label>
-                            <span class="focus-border"></span>
-                        </div>
-
-                        <div class="input-effect form-group md-form mt-3">
-                                <input class="effect-16  validate" type="text"id="yourEmail-2" type="text" required="required" placeholder="">
-                                <label>Website</label>
-                                <span class="focus-border"></span>
-                            </div>
-
-
+                    <input class="effect-16  validate" type="email" 
+                    id="email" 
+                    [(ngModel)] = "user.contactInfo.email" 
+                    name = "email" 
+                    required 
+                    placeholder="">
+                    <label>Email</label>
+                    <span class="focus-border"></span>
+                </div>
+                <div class="input-effect form-group md-form mt-3">
+                    <input class="effect-16  validate" type="text"  
+                    id="phone" 
+                    [(ngModel)] = "user.contactInfo.phone" 
+                    name = "phone" 
+                    required
+                    placeholder="">
+                    <label>Phone no</label>
+                    <span class="focus-border"></span>
+                </div>
+                <div class="input-effect form-group md-form mt-3">
+                    <input class="effect-16  validate" 
+                    type="text"
+                    id="website" 
+                    [(ngModel)] = "user.contactInfo.website" 
+                    name = "website" 
+                    required 
+                    placeholder="">
+                    <label>Website</label>
+                    <span class="focus-border"></span>
+                </div>
             </div>
-
             <button class="btn btn-raised gradient-pomegranate white signup_nextbtn" type="button">Next</button>
         </div>
         <!-- Third Step -->
         <div class="row setup-content-2" id="step-3">
-           
-
             <div class="busi_cont">
-            <div class="col-md-12">
-
-
-                 <h3 class="pl-0 my-4 lc_head"> Business Information </h3>
-                
-                <div class="input-effect form-group md-form mt-3 ">
-                        <input class="effect-16 validate" type="text" placeholder="" required="required">
+                <div class="col-md-12">
+                    <h3 class="pl-0 my-4 lc_head"> Business Information </h3>
+                    <div class="input-effect form-group md-form mt-3 ">
+                        <input class="effect-16 validate" 
+                        type="text"
+                        id="countryName" 
+                        [(ngModel)] = "user.businessInfo.country.countryName" 
+                        name = "countryName"  
+                        placeholder="" 
+                        required
+                        >
                         <label>country</label>
                         <span class="focus-border"></span>
-                </div>
-                <div class="input-effect form-group md-form mt-3">
-                        <input class="effect-16 validate" type="text" placeholder="" required="required">
+                    </div>
+                    <div class="input-effect form-group md-form mt-3">
+                        <input class="effect-16 validate" 
+                        type="text"
+                        id="city" 
+                        [(ngModel)] = "user.businessInfo.city" 
+                        name = "city" 
+                        placeholder="" 
+                        required
+                        >
                         <label>state/city</label>
                         <span class="focus-border"></span>
-                </div>
-                <div class="input-effect form-group md-form mt-3">
-                        <input class="effect-16 validate" type="text" placeholder="" required="required">
+                    </div>
+                    <div class="input-effect form-group md-form mt-3">
+                        <input class="effect-16 validate" 
+                        type="text" 
+                        id="postalCode" 
+                        [(ngModel)] = "user.businessInfo.postalCode" 
+                        name = "postalCode" 
+                        placeholder="" 
+                        required>
                         <label>Postal code</label>
                         <span class="focus-bo+rder"></span>
-                </div>               
-                <div class="input-effect form-group md-form mt-3">
-                        <input class="effect-16 validate md-textarea" type="text" placeholder="" required="required">
+                    </div>               
+                    <div class="input-effect form-group md-form mt-3">
+                        <input class="effect-16 validate md-textarea" 
+                        type="text" 
+                        id="address" 
+                        [(ngModel)] = "user.businessInfo.address" 
+                        name = "address"
+                        placeholder="" 
+                        required>
                         <label>Address</label>
                         <span class="focus-border"></span>
-                </div>
-                <div class="input-effect form-group md-form mt-3">
-                        <input class="effect-16 validate " type="text" placeholder="" required="required">
+                    </div>
+                    <div class="input-effect form-group md-form mt-3">
+                        <input class="effect-16 validate" 
+                        type="text" 
+                        placeholder=""
+                        id="nameOfBusiness" 
+                        [(ngModel)] = "user.businessInfo.nameOfBusiness" 
+                        name = "nameOfBusiness" 
+                        required>
                         <label>Name of your Bussiness</label>
                         <span class="focus-border"></span>
+                    </div>
+                <button class="btn btn-raised gradient-pomegranate white signup_nextbtn" style="display:inherit;" type="button">Next</button> 
                 </div>
-           
-            <button class="btn btn-raised gradient-pomegranate white signup_nextbtn" style="display:inherit;" type="button">Next</button> 
-            </div>
-
-
-
-               
-
             </div>
         </div>
         <!-- Fourth Step -->
-<div class="row setup-content-2" id="step-4">
-
-  <div class="col-md-6 mt-xs-20"> 
-
-                    <div class="panel price panel-grey">
-                        <div class="panel-heading arrow_box text-center">
-                        <h3>FREE PLAN</h3>
-                        </div>
-                        <div class="panel-body text-center">
-                            <p class="lead" style="font-size:30px"><strong>$0 / month</strong></p>
-                        </div>
-                        <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item"><i class="icon-ok text-success"></i> Personal use</li>
-                            <li class="list-group-item"><i class="icon-ok text-success"></i> photo upload</li>
-                            <li class="list-group-item"><i class="icon-ok text-success"></i> 27/7 chat</li>
-                        </ul>
-                        <div class="panel-footer">
-                            <a class="btn btn-lg btn-block btn-primary white_text" href="JavaScript:void(0);">BUY NOW!</a>
-                        </div>
+        <div class="row setup-content-2" id="step-4">
+            <div class="col-md-6 mt-xs-20"> 
+                <div class="panel price panel-grey">
+                    <div class="panel-heading arrow_box text-center">
+                    <h3>FREE PLAN</h3>
                     </div>
-
-
+                    <div class="panel-body text-center">
+                        <p class="lead" style="font-size:30px"><strong>$0 / month</strong></p>
+                    </div>
+                    <ul class="list-group list-group-flush text-center">
+                        <li class="list-group-item"><i class="icon-ok text-success"></i> Personal use</li>
+                        <li class="list-group-item"><i class="icon-ok text-success"></i> photo upload</li>
+                        <li class="list-group-item"><i class="icon-ok text-success"></i> 27/7 chat</li>
+                    </ul>
+                    <div class="panel-footer">
+                        <a class="btn btn-lg btn-block btn-primary white_text" href="JavaScript:void(0);">BUY NOW!</a>
+                    </div>
+                </div>
             </div>
-
             <div class="col-md-6">
                 <div class="panel price panel-green">
-                        <div class="panel-heading arrow_box text-center">
+                    <div class="panel-heading arrow_box text-center">
                         <h3>Business Plan</h3>
-                        </div>
-                        <div class="panel-body text-center">
-                            <p class="lead" style="font-size:30px"><strong>$10 / month</strong></p>
-                        </div>
-                        <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item"><i class="icon-ok text-success"></i> Leads</li>
-                            <li class="list-group-item"><i class="icon-ok text-success"></i> Photo upload</li>
-                            <li class="list-group-item"><i class="icon-ok text-success"></i> 27/7 support</li>
-                        </ul>
-                        <div class="panel-footer">
-                            <a class="btn btn-lg btn-block btn-success" href="JavaScript:void(0);">BUY NOW!</a>
-                        </div>
                     </div>
-                    <!-- /PRICE ITEM -->
+                    <div class="panel-body text-center">
+                        <p class="lead" style="font-size:30px"><strong>$10 / month</strong></p>
+                    </div>
+                    <ul class="list-group list-group-flush text-center">
+                        <li class="list-group-item"><i class="icon-ok text-success"></i> Leads</li>
+                        <li class="list-group-item"><i class="icon-ok text-success"></i> Photo upload</li>
+                        <li class="list-group-item"><i class="icon-ok text-success"></i> 27/7 support</li>
+                    </ul>
+                    <div class="panel-footer">
+                        <a class="btn btn-lg btn-block btn-success" href="JavaScript:void(0);">BUY NOW!</a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 text-center">
+                        <button type="button" class="btn btn-success btn-block btn-raised mb-5" id="type-success" (click)="typeSuccess()" type="submit">  Signup Success</button>
+                    </div>
+             
             </div>
-
-
         </div>
     </form>
 </div>   
 <app-foot></app-foot>
 <router-outlet></router-outlet> 
+
+
+
+
+   

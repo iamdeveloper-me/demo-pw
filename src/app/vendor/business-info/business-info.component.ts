@@ -8,6 +8,8 @@ import { Component, OnInit  } from '@angular/core';
 })
 
 export class BusinessInfoComponent implements OnInit {
+  imag = 'https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg';
+ 
   Businesname = 'Rodriguez' ; 
   Description = ' Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer.' ;
   facebook = 'https://www.facebook.com';

@@ -11,7 +11,7 @@
                     <div class="card heightequal365">
                         <div class="card-header">
                             <div class="busines_img">
-                                <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> 
+                                <img src="{{ imag }}"alt=""> 
                                 <span class="busi_camera "> 
                                     <i class="material-icons"> camera_alt </i> 
                                 </span>
@@ -188,12 +188,15 @@
                     <div class="col-sm-12  text-center">                 
                             <!-- <i class="material-icons"> add_location </i> -->
                             <p>Have new business name?</p>
-                            <p> <input class="endent_10px" type="text" [(ngModel)] = "Businesname" (ngModelChange)="Businesname = $event"
+                            <p>Business name : <input class="endent_10px" type="text" [(ngModel)] = "Businesname" (ngModelChange)="Businesname = $event"
                                 placeholder="Enter name"> </p> 
-      
+                            <p>Business picture url :<input class="endent_10px" type="text" [(ngModel)] = "imag"  placeholder="Enter image url"> </p> 
+                                
                             <p>Premium members only. <span>Upgrade</span> </p>
                     </div>
                 </div>
+
+        
                 <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->

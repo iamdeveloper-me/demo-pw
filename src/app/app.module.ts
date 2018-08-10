@@ -100,8 +100,8 @@ import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
 import { GalleryComponent ,NgbdgalleryModalContent } from './vendor/gallery/gallery.component';
 import { VendorComponent } from './vendor/vendor.component';
 import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
-import { BusinessInfoComponent ,NgbduModalContent} from "./vendor/business-info/business-info.component";
-import { LocationComponent,NgbdlocationModalContent } from "./vendor/location/location.component";
+import { BusinessInfoComponent } from "./vendor/business-info/business-info.component";
+import { LocationComponent} from "./vendor/location/location.component";
 import { VideosComponent ,NgbdvedioModalContent} from './vendor/videos/videos.component';
 import { MylistingComponent } from './vendor/mylisting/mylisting.component';
 import { NavemenuComponent } from './vendor/navemenu/navemenu.component';
@@ -165,10 +165,8 @@ export function getAuthServiceConfigs() {
         EventListComponent,
         AlbumsettingComponent,
         PortfolioviewComponent,
-        NgbdlocationModalContent,
         ViewPhotoAlbumsComponent,
         BusinessInfoComponent,
-        NgbduModalContent,
         NgbdticketModalContent,
         CreatePromotionComponent,
         LocationComponent,

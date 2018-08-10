@@ -20,6 +20,12 @@
     padding: 0px 10px;
     margin: 0px;
 }
+.dropdown-menu.show{
+    left:-190px!important;
+}
+ .dropdown-menu.show.left35px{
+ left:160px!important;
+ }
 .btnheadvendor{
     padding: 10px;
     margin-top: 15px;
@@ -107,7 +113,7 @@ margin-top: 10px!important;
     }
     .listing li a.noti-footer{
         color: #ffffff!important;
-        background:#e72e77!important;
+        background:#36cbf0!important;
     }
 
 
@@ -225,9 +231,13 @@ border-radius:10px;
 .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
 .another-file-over-class { border: dotted 3px green; }
 .upload_bt button{
-    background-color: #e72e77;
+    background-color: #36cbf0;
     color: #fff;
     border: none;
+    padding: 5px 39px;
+}
+.upload_bt button:hover{
+    background-color: #e72e77;
 }
 .uplod_para{
     font-size: 11px !important;
@@ -281,9 +291,9 @@ border-radius:10px;
 }
 .port_row .zoom_effect .over_like{
     position: absolute;
-    bottom: 25px;
+    bottom: 23px;
     background: #fff;
-    width: 88%;
+    width: calc(100% - 35px);
     left: 19px;
     padding: 5px;
  }
@@ -293,6 +303,12 @@ border-radius:10px;
  .over_like .fa-heart{
      color: red;
  }
+ .dropdown-toggle, .dropdown-toggle:focus{
+ outline:none!important;
+ -webkit-appreance:none!important;
+ box-shadow:none!important;
+ }
+
  .viev_all{
     margin-bottom: 30px;
  }
@@ -307,11 +323,25 @@ border-radius:10px;
     transition: all .25s;
 }
 .viev_all .btn{
-    border: 1px solid #ccc;
     padding: 5px 31px;
     border-radius: inherit;
     margin-bottom: 20px;
     color: #000;
+    background-color: #36cbf0;
+    color: #fff;
+}
+.viev_all .btn:hover{
+    background-color: #e72e77;
+}
+.colo_blue{
+    background-color: #36cbf0 !important;
+    color: #fff;
+    border: none;
+}
+.colo_blue:hover{
+    background-color: #e72e77 !important;
+    color: #fff;
+
 }
 .deletebtn{
     position: absolute;
@@ -358,6 +388,14 @@ border-radius:10px;
    .mob_bot_20px{
        margin-bottom: 20px;
    }
+
+   .dropdown-menu.show{
+    left:-80px!important;
+}
+ .dropdown-menu.show.left35px{
+ left:-80px!important;
+ }
+
    .zoom_effect .over_like{
     bottom: 2px !important;
    }
@@ -367,5 +405,6 @@ border-radius:10px;
    .headin_gally p{
        font-size: 14px !important;
    }
+
 }
 

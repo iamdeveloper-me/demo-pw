@@ -12,6 +12,15 @@
 .blacktext{
   color:#000!important;
 }
+.maxheight335px{
+  max-height:335px;
+}
+.padtop7px{
+  padding-top:7px!important;
+}
+.padbot0px{
+    padding-bottom:0px!important;
+}
 .viewstore{
 background:rgba(0, 0, 0, 0.8);
 padding:20px 10px;
@@ -26,6 +35,9 @@ a.bluelink{
 .padleft0px{
   padding-left:0px!important;
 }
+.edithovering{
+cursor:pointer!important;
+}
 .edithovering .photoedit{
 display:none;
 position:absolute;
@@ -38,10 +50,12 @@ width: 80px;
 height: 80px;
 border-radius: 50%;
 left: inherit;
+cursor:pointer!important;
 right: inherit;
 }
 .edithovering:hover .photoedit{
 display:block;
+cursor:pointer!important;
 }
 
 .edithovering .editbtn{
@@ -8001,7 +8015,7 @@ text-align:right!important;
       vertical-align: middle;
       position: relative;
       top: -2px;
-      float: left;
+      // float: left;
       padding-right: 10px;
       display: inline-block; }
       .form-check .form-check-sign:before {
@@ -8197,7 +8211,7 @@ text-align:right!important;
     vertical-align: middle;
     position: relative;
     top: -2px;
-    float: left;
+    // float: left;
     padding-right: 10px;
     display: inline-block; }
   
@@ -9747,7 +9761,7 @@ text-align:right!important;
       .navbar .navbar-toggler .navbar-toggler-icon {
         width: 22px;
         height: 2px;
-        vertical-align: middle;
+        // vertical-align: middle;
         outline: 0;
         display: block;
         border-radius: 1px; }
@@ -9867,7 +9881,7 @@ text-align:right!important;
       border-radius: 10px;
       text-align: center;
       line-height: 19px;
-      vertical-align: middle;
+      // vertical-align: middle;
       display: block; }
   
   .navbar .navbar-minimize {
@@ -11580,7 +11594,7 @@ text-align:right!important;
     text-align: center; }
   
   .fixed-plugin .adjustments-line p {
-    float: left;
+    // float: left;
     display: inline-block;
     margin-bottom: 0;
     font-size: 1em;
@@ -12476,7 +12490,7 @@ text-align:right!important;
     margin-top: 0; }
     .card-stats .card-header .card-category:not([class*="text-"]) {
       color: #999999;
-      font-size: 14px; }
+      font-size: 13px; }
   
   .card-stats .card-header + .card-footer {
     border-top: 1px solid #eee;
@@ -13011,63 +13025,7 @@ text-align:right!important;
       max-width: 170px;
       max-height: 120px; } }
   
-  @media screen and (max-width: 767px) {
-    .presentation-page .section-components .components-macbook {
-      max-width: 350px !important;
-      max-height: 250px !important;
-      margin-top: 12vh;
-      left: -12px; }
-    .presentation-page .section-components .coloured-card-img,
-    .presentation-page .section-components .table-img {
-      display: none; }
-    .presentation-page .section-components .social-img {
-      left: -7%;
-      top: 37%; }
-    .presentation-page .section-components .pin-btn-img {
-      top: 54%; }
-    .presentation-page .section-components .share-btn-img {
-      top: 7%; }
-    .presentation-page .section-components .coloured-card-btn-img {
-      top: -2%; }
-    .presentation-page #cd-vertical-nav,
-    .index-page #cd-vertical-nav,
-    .section-page #cd-vertical-nav {
-      display: none; }
-    .index-page .cd-section .tim-typo .tim-note {
-      width: 60px; }
-      .nopa_righ {
-        padding-left: 0px;
-      }
-      .blue_bg1{
-        margin-left: -15px;
-        width: 75px;
-        height: 75px;
-        background: linear-gradient(60deg, #ffa726, #fb8c00);
-      }
-      .blue_bg1 i{
-           text-align: left !important;
-            margin-left: 3px !important;
-      }
-      
-     .displya_name ul li .editbtn{
-display:block;
-     }
-      .displya_name ul li.done .editbtn{
-display:none;
-     }
-     .edithovering .editbtn{
-display:block;
-right:-20px!important;
-     }
-      .mob_dis_none{
-        display: none !important;
-      }
-      .prof_martop{
-        margin-top: 20px !important
-      }
-
-
-       }
+ 
   
   @media screen and (max-width: 400px) {
     .pro-badge {
@@ -13496,8 +13454,9 @@ right:-20px!important;
       border-top-color: white; }
     .dropdown-menu {
       display: none; }
-    .navbar-fixed-top {
-      -webkit-backface-visibility: hidden; }
+    // .navbar-fixed-top {
+    //   // -webkit-backface-visibility: hidden;
+    //  }
     #bodyClick {
       height: 100%;
       width: 100%;
@@ -13751,3 +13710,71 @@ margin-top: 10px!important;
 .modal.fade.show{
   background: rgba(0, 0, 0, 0.8)!important;
 }
+.card.card-stats.marbot10px{
+  margin-bottom:10px!important;
+}
+ @media screen and (max-width: 767px) {
+  .mobileheightauto{
+  height:auto!important;
+  max-height:inherit!important;
+  }
+  .card.card-stats.marbot10px.mobilemarbot30px{
+margin-bottom:30px!important;
+  }
+    .presentation-page .section-components .components-macbook {
+      max-width: 350px !important;
+      max-height: 250px !important;
+      margin-top: 12vh;
+      left: -12px; }
+    .presentation-page .section-components .coloured-card-img,
+    .presentation-page .section-components .table-img {
+      display: none; }
+    .presentation-page .section-components .social-img {
+      left: -7%;
+      top: 37%; }
+    .presentation-page .section-components .pin-btn-img {
+      top: 54%; }
+    .presentation-page .section-components .share-btn-img {
+      top: 7%; }
+    .presentation-page .section-components .coloured-card-btn-img {
+      top: -2%; }
+    .presentation-page #cd-vertical-nav,
+    .index-page #cd-vertical-nav,
+    .section-page #cd-vertical-nav {
+      display: none; }
+    .index-page .cd-section .tim-typo .tim-note {
+      width: 60px; }
+      .nopa_righ {
+        padding-left: 0px;
+      }
+      .blue_bg1{
+        margin-left: -15px;
+        width: 75px;
+        height: 75px;
+        background: linear-gradient(60deg, #ffa726, #fb8c00);
+      }
+      .blue_bg1 i{
+           text-align: left !important;
+            margin-left: 3px !important;
+      }
+      
+     .displya_name ul li .editbtn{
+display:block;
+     }
+      .displya_name ul li.done .editbtn{
+display:none;
+     }
+     .edithovering .editbtn{
+display:block;
+right:-20px!important;
+     }
+      .mob_dis_none{
+        display: none !important;
+      }
+      .prof_martop{
+        margin-top: 20px !important
+      }
+
+
+       }
+

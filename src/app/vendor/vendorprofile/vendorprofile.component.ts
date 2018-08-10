@@ -11,7 +11,7 @@ export class VendorprofileComponent implements OnInit {
   constructor() { }
 
   ngOnInit() { $.getScript('./assets/js/vertical-timeline.js');
-  $.getScript('./assets/js/profile.js');
+  // $.getScript('./assets/js/profile.js');
  
   }
   showPage(page: string) {

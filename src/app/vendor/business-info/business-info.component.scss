@@ -294,8 +294,13 @@ width: 55px;
     border-radius: 100%;
     position: relative;
 }
+.social i.fa{
+    margin-right:15px!important;
+    width:42px;
+}
 .busines_img{
     margin-bottom: 40px;
+    position:relative;
 }
 .busines_img a{
  color: #fff !important;
@@ -368,6 +373,9 @@ width: 55px;
     cursor: pointer;
     position: relative;
 }
+.on_hover{
+    cursor:pointer!important;
+}
 .on_hoverdiv:hover .editbtn{
     display: block !important;
 }
@@ -378,28 +386,37 @@ width: 55px;
     cursor: pointer;
 }
 .switbtn{
-    float: right !important;
+   
+}
+.afternone::after{
+display:none!important;
 }
 .noproblum{
-    border: 1px solid #ccc;
-    margin-top: 20px;
     padding: 10px;
     border-radius:5px;
+    max-width: 49%;
+    text-align: left;
+    margin: 0px auto;
+}
+.social span{
+    display:block;
 }
 .noproblum span{
     display: inline-block;
     color:blue;
     cursor: pointer;
+    border:1px solid #2196f3;
+    padding:3px 10px;
 }
 .noproblum span:hover{
-    color:#000;
+    color:blue;
+}
+.social-connect{
+    margin-bottom:26px!important;
 }
 @media(max-width:767px){
 .social-connect{
     padding: 0px;
-}
-.switbtn{
-    display: none;
 }
 .mobnopadd{
     padding: 0px!important;
@@ -444,12 +461,12 @@ width: 55px;
        width: 100%;
        margin-top: -50px;
     }
-    .on_hover{
-        float: left;
-        margin-left: 100px;
-    }
    
-    
+    .social i.fa-2x  {
+    width:30px;
+    font-size: 30px;
+}
+
 }
 
 //modal

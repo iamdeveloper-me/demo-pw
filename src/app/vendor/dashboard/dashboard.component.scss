@@ -21,6 +21,9 @@
 .padbot0px{
     padding-bottom:0px!important;
 }
+.togglebtnmenu{
+  background:transparent!important;
+}
 .viewstore{
 background:rgba(0, 0, 0, 0.8);
 padding:20px 10px;
@@ -46,8 +49,8 @@ border:0px solid #fff;
 color:#fff!important;
 z-index:99;
 background:rgba(0, 0, 0, 0.8);
-width: 80px;
-height: 80px;
+width: 65px;
+height: 65px;
 border-radius: 50%;
 left: inherit;
 cursor:pointer!important;
@@ -57,7 +60,9 @@ right: inherit;
 display:block;
 cursor:pointer!important;
 }
-
+.progresstext, .progress{
+  float:left;
+}
 .edithovering .editbtn{
 display:none;
 position:absolute;
@@ -97,7 +102,8 @@ color:#fff!important;
   margin-bottom:20px;
 }
 .dashimgads{
-    width: 100%!important;
+  width: 100%!important;
+max-height:330px;
   }
 .profileleftbox{
   max-width:700px!important;
@@ -115,8 +121,8 @@ color:#000!important;
   padding-top:15px!important;
 }
 .oviewviewimgcircle{
-width:80px;
-height:80px;
+width:65px;
+height:65px;
 border-radius:50%;
 }
 .martop15px{
@@ -163,6 +169,9 @@ position:absolute;
 }
 .displya_name ul li.done:hover .editbtn{
 display:none!important;
+}
+.displya_name ul li.done i.material-icons{
+  color:green!important;
 }
 .acordian_panel ul{
   margin: 0;
@@ -331,17 +340,19 @@ display:none!important;
     background-color: #fff;
     color: #444;
     cursor: pointer;
-    padding: 18px;
+    padding:5px 18px;
     width: 100%;
     text-align: left;
     border: none;
     outline: none;
     transition: 0.4s;
 }
-
+.pull-right{
+  float:right!important;
+}
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .acordian_panel{
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 /* Style the accordion panel. Note: hidden by default */
@@ -353,6 +364,8 @@ display:none!important;
 }
 .flo_rigt{
   float: right;
+  min-width:100px;
+  text-align:left;
 }
 .acordian_panel button{
   outline:none !important;
@@ -1179,7 +1192,20 @@ display:none!important;
       font-size: inherit;
       color: inherit;
       word-break: normal; }
-  
+.titlehead{
+line-height:55px;
+font-size:24px;
+}
+  .pinkchip{
+background:#e72e77!important;
+border-radius:15px;
+display:inline-block;
+padding:2px 10px;
+font-size:12px;
+color:#fff;
+text-transform:uppercase;
+  }
+
   .pre-scrollable {
     max-height: 340px;
     overflow-y: scroll; }
@@ -1190,17 +1216,59 @@ display:none!important;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto; }
+.prolinkmob{
+position:absolute;
+right:10px;
+top:0px;
+}
+.pull-left{
+  float:left;
+}
+.desktopnone{
+  display:none;
+}
+.padbot5px{
+  padding-bottom:5px;
+}
+
+.paddtop15{
+  padding-top:15px!important;
+}
     @media (min-width: 576px) 
     {
       .container {
         max-width: 540px; }   
   }
-
+.nav-item .nav-link::after{
+ display:none!important; 
+}
   @media (max-width: 768px) {
   .displya_name{
 width:100%;
+margin-bottom:0px;
   }
- 
+  .desktopnone{
+  display:inline-block;
+}
+.titlehead{
+line-height:50px;
+font-size:20px;
+}
+.edithovering{
+  padding-left:5px!important;
+}
+.mobmartop15px{
+  margin-top:15px!important;
+}
+.mobilenone{
+  display:none!important;
+}
+ .progresstext{
+ padding:0px!important;
+ }
+ .card-header-warning .comp_top {
+ font-weight:bold;
+ }
   .mobpadd10{
   padding:10px!important;
   }
@@ -1221,6 +1289,7 @@ width:100%;
 }
 .prolinkmob{
 text-align:right!important;
+display:none;
 }
   }
     @media (min-width: 768px) {
@@ -1979,6 +2048,7 @@ text-align:right!important;
         border: 0; } }
   
   @media (max-width: 767.98px) {
+
     .table-responsive-md {
       display: block;
       width: 100%;
@@ -13677,6 +13747,14 @@ margin-top: 10px!important;
     float: left !important;
     font-size:20px !important;
   }
+  .upcominghead{
+  font-size:20px!important;
+  text-align:center;
+  line-height:40px!important;
+  }
+  .height360px{
+  height:360px;
+  }
   .blue_bg1{
     background: linear-gradient(60deg, #26c6da, #00acc1) !important;
 }
@@ -13701,11 +13779,18 @@ margin-top: 10px!important;
   background-color: #2196f3 !important;
   color: #fff !important; 
 }
+.bluetext{color:#2196f3;}
 //modal
 .modal-footer button{
   background: #e72e77;
   color: #fff;
   border: none !important;
+}
+.modal-footer button:hover{
+  background: #e72e77;
+  color: #fff;
+  border: none !important;
+  box-shadow:0px 3px 3px #f76ca3;
 }
 .modal.fade.show{
   background: rgba(0, 0, 0, 0.8)!important;
@@ -13774,7 +13859,27 @@ right:-20px!important;
       .prof_martop{
         margin-top: 20px !important
       }
-
-
+ .mobileviewcontent .card-icon{
+ margin-left:auto!important;
+margin-right:auto!important;
+float:inherit!important;
+text-align:center!important;
+max-width:50%!important;
+}
+ .mobileviewcontent .card-category{
+  padding:5px 0px!important;
+  display:block!important;
+  width:100%!important;
+  text-align:center!important;
+  clear:both!important;
+}
+.mobileviewcontent p.card-footer{
+display:none!important;
+}
+.mobileviewcontent h3.card-title{
+  text-align:center!important;
+  margin-top:10px!important;
+  margin-bottom:10px!important;
+  border-top:1px solid #e5e5e5;
+}
        }
-

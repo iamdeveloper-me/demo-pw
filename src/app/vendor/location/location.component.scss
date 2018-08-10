@@ -329,12 +329,17 @@ height:400px;
 }
 .acce_time1{
 float:left;
-max-width:50px;
+width:50px;
+}
+.edit_hide{
+    padding:10px 0px;
+    border-bottom:1px solid #e5e5e5;
+    cursor: pointer;
 }
 .acce_time1 .material-icons{
-    left: 12px !important;
-    position: absolute !important;
-    top: 5px !important;
+    position:absolute;
+    left:0px;
+    top:5px;
 }
 .custom-form .card .card-body{
     padding:10px 0px!important;
@@ -365,10 +370,10 @@ max-width:50px;
     cursor: pointer;
 }
 .edit_btn{
-    float: right;
-    cursor: pointer;
-    display: none
-   
+    display: none;
+    position:absolute;
+    top: 0px;
+    right: 0px;
 }
 .edit_hide:hover .edit_btn{
     display: block;
@@ -433,6 +438,9 @@ float: left;
 }
 .phone_icon1:hover .edit_btn1{
     display:block;
+}
+.phone_icon1 .edit_hide{
+    padding-bottom: 20px;
 }
 .digi_edit{
     margin-top: -24px;
@@ -578,33 +586,27 @@ float: left;
 .new_location .col-sm-8{
     padding-left: 0;
 }
+h4.mainhead{
+    line-height:40px;
+}
 .map_new_loc{
     line-height: 40px;
 }
 .endent_10px{
     text-indent: 10px;
 }
-
+.img-section iframe{
+height:250px;
+}
 @media(max-width:767px){
  .img-section iframe{
 width:100%;
 height:300px;
-}   
+}
 .phonepopuphead{
     margin-left:20px!important;
 }
-#phone .col-xs-2{
-    float:left;
-    width:30%;
-}  
-#phone .col-xs-10{
-    float:left;
-    width:69%;
-} 
-.col-xs-10{
-    float:left;
-    width: calc(100% - 50px);
-} 
+
 .weekboxinput div.col-xs-8{
 	width: 70%!important;
 	float: left;
@@ -614,6 +616,11 @@ height:300px;
     position:absolute;
     top:0px;
     right:5px;
+    background: none!important;
+}
+
+.paddtop15px{
+    padding-top: 15px!important;
 }
 .col-xs-5-mob{
     width:40%;
@@ -708,4 +715,10 @@ border-right: 1px solid #ccc !important;
         width: 30%;
     }
 
+}
+.bornone{
+border-bottom:0px solid #fff!important;
+}
+.overhidden{
+overflow:hidden!important;
 }

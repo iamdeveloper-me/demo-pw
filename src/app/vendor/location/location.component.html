@@ -6,17 +6,19 @@
     <div id="page-content-wrapper">
       <app-navemenu></app-navemenu>
         <section id="user-profile">
+          
+          <div class="clearfix"></div>
           <div class="col-sm-12">
-              <h2 class="mainhead">General Information</h2>
+            <div class="custom-form">
+              <div class="col-sm-4">
+              <div  class="card">
+
+            <div class="col-sm-12">
+              <h4 class="mainhead">Location (Primary)</h4>
               <div class="switbtn">
-                <span class="pull-left">Vacation Mode</span>
                 <ui-switch [(ngModel)]="enable" class="pull-left"></ui-switch> 
               </div>
-          </div>
-          <div class="clearfix"></div>
-          <div class="col-sm-12 nopadd border_squar">
-            <div class="custom-form">
-              <div  class="card">
+            </div>
                 <div  class="card-body">
                   <div class="text-center bg-form col-sm-12">
                     <div class="img-section">
@@ -36,134 +38,127 @@
                         
                     </div>
                   </div>
-                </div>
-              </div>
-              <div  class="card">
-                <div  class="card-body">
-                    <div class="col-sm-12 text_left">
-                      <div class=" nopadd weekboxinput">
-                        <div class="col-sm-12 nopadd edit_hide">
-                          <span class="acce_time1 col-sm-1"> 
+                  <div class="col-sm-12 text_left">
+                    <div class=" nopadd weekboxinput">
+                        <div class="col-sm-12  edit_hide" id="address-function" data-target="#address" data-toggle="modal">
+                          <span class="acce_time1 col-sm-1 col-1"> 
                           <i  class="material-icons">location_on</i>  
                           </span> 
-                          <div class="col-sm-10 col-xs-10">
+                          <div class="col-sm-10 col-11">
                               <div>Country: {{Country}}</div>
                               <div>District: {{District}}</div>
                               <div>Street Address: {{StreetAddress}}</div>
+
+                              <i class="material-icons edit_btn"> edit</i>
                           </div>
-                          <div class="col-sm-1" >
-                              <i class="material-icons edit_btn" id="address-function" data-target="#address" data-toggle="modal"> edit</i>
-                          </div>
+                         
                         </div>
                         <div class="clearfix"></div>
-                        <div class="col-lg-12 text_left nopadd phone_icon1">
-                          <div class="col-lg-12 nopadd col-md-12">
-                              <span class="acce_time1 col-sm-1">
-                              <i  class="material-icons">local_phone</i>
-                              </span>
-                              <div class="col-sm-10 col-xs-10">
-                               {{phone1}}
-                               {{phone2}}
-                              </div>
-                              <div class="col-sm-1">
-                                <button  class="btn edit_btn1" data-target="#phone" data-toggle="modal" type="button"><i _ class="material-icons">edit</i></button>
-                              </div>
-                          </div>
-                          <div class="col-lg-12 nopadd col-md-12">
-                              <span class="acce_time1 col-sm-1"> 
-                              <i  class="material-icons">phone_iphone</i>  
-                              </span>
-                              <div class="col-sm-10 col-xs-10">
-                                {{phone3}}
-                              </div>
-                          </div>
-                        </div>
-                        <div class="col-sm-12 new_location">
+                       
+                        <!-- <div class="col-sm-12 new_location">
                           <span class="acce_time1 col-sm-1"> 
                           </span>
                           <div class="col-sm-3 col-xs-8">
                               <button data-target="#location" data-toggle="modal" type="button"> Add New Location </button>
                           </div>
-                        </div>
-                        <div class="clearfix"></div>
-                      </div>
+                        </div> -->
                     </div>
-                </div>
-              </div>
-              <div  class="card">
-                <div  class="card-body">
+                  </div>
+                   <div class="col-lg-12 text_left phone_icon1">
+                     <div class=" nopadd weekboxinput">
+                          <div class="col-lg-12 col-md-12 edit_hide" data-target="#phone" data-toggle="modal">
+                              <span class="acce_time1 col-1">
+                              <i  class="material-icons">local_phone</i>
+                              </span>
+                              <div class="col-sm-10 col-10 mar_bottom_10px">
+                               {{phone1}}
+                               {{phone2}}
+
+                               <i _ class="material-icons edit_btn1">edit</i>
+                              </div>
+                              <div class="clearfix"></div>
+                             <span class="acce_time1 col-1">
+                              <i  class="material-icons">phone_iphone</i>  
+                              </span>
+                             <div class="col-sm-10 col-10">
+                                {{phone3}}
+                              </div>
+                          </div>
+                          </div>
+                    </div>
                     <div class="col-sm-12 text_left">
-                      <span class="acce_time1 col-sm-1">
-                      <i  class="material-icons">access_time</i>   
-                      </span> 
-                      <div class="col-sm-11 col-xs-10 nopadd weekboxinput1">
+                        <div class="edit_hide paddtop15px bornone overhidden">
+                          <span class="acce_time1 col-1">
+                            <i  class="material-icons">access_time</i>   
+                          </span> 
+                          <div class="col-sm-10 col-10 nopadd weekboxinput1" data-toggle="modal" data-target="#week">
                           <div class="col-sm-12 nopadd weekboxinput3">
-                            <div class="col-sm-3 col-xs-5-mob nopadd">Sunday </div>
-                            <div class="col-sm-9 col-xs-7-mob nopadd"> 
+                            <div class="col-sm-4 col-xs-5-mob nopadd">Sunday </div>
+                            <div class="col-sm-8 col-xs-7-mob nopadd"> 
                               {{Sunday}}
-                                <button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#week">
-                                <i class="material-icons">edit</i>
-                                </button>
+                                <i class="material-icons edit_btn1">edit</i>
                             </div>
                           </div>
                           <div class="clearfix"></div>
                           <div class="col-sm-12 nopadd">
-                            <div class="col-sm-3 col-xs-5-mob nopadd">
+                            <div class="col-sm-4 col-xs-5-mob nopadd">
                                 Monday
                             </div>
-                            <div class="col-sm-9 col-xs-7-mob nopadd">
+                            <div class="col-sm-8 col-xs-7-mob nopadd">
                                {{Mondayopen}}AM to {{Mondayclose}}PM
                             </div>
                           </div>
                           <div class="clearfix"></div>
                           <div class="col-sm-12 nopadd">
-                            <div class="col-sm-3 col-xs-5-mob nopadd">
+                            <div class="col-sm-4 col-xs-5-mob nopadd">
                                 Tuesday
                             </div>
-                            <div class="col-sm-9 col-xs-7-mob nopadd">
+                            <div class="col-sm-8 col-xs-7-mob nopadd">
                                 {{Tuesdayopen}}AM to {{Tuesdayclose}}PM
                             </div>
                           </div>
                           <div class="clearfix"></div>
                           <div class="col-sm-12 nopadd">
-                            <div class="col-sm-3 col-xs-5-mob nopadd">
+                            <div class="col-sm-4 col-xs-5-mob nopadd">
                                 Webnesday
                             </div>
-                            <div class="col-sm-9 col-xs-7-mob nopadd">
+                            <div class="col-sm-8 col-xs-7-mob nopadd">
                              {{Wednesdayopen}}AM to {{Wednesdayclose}}PM
                             </div>
                           </div>
                           <div class="clearfix"></div>
                           <div class="col-sm-12 nopadd">
-                            <div class="col-sm-3 col-xs-5-mob nopadd">
+                            <div class="col-sm-4 col-xs-5-mob nopadd">
                                 Thursday
                             </div>
-                            <div class="col-sm-9 col-xs-7-mob nopadd">
+                            <div class="col-sm-8 col-xs-7-mob nopadd">
                              {{Thursdayopen}}AM to {{Thursdayclose}}PM
                             </div>
                           </div>
                           <div class="clearfix"></div>
                           <div class="col-sm-12 nopadd">
-                            <div class="col-sm-3 col-xs-5-mob nopadd">
+                            <div class="col-sm-4 col-xs-5-mob nopadd">
                                 Friday
                             </div>
-                            <div class="col-sm-9 col-xs-7-mob nopadd">
+                            <div class="col-sm-8 col-xs-7-mob nopadd">
                                {{Fridayopen}}AM to {{Fridayclose}}PM
                             </div>
                           </div>
                           <div class="clearfix"></div>
                           <div class="col-sm-12 nopadd">
-                            <div class="col-sm-3 col-xs-5-mob nopadd">
+                            <div class="col-sm-4 col-xs-5-mob nopadd">
                                 Saturday
                             </div>
-                            <div class="col-sm-9 col-xs-7-mob nopadd">
+                            <div class="col-sm-8 col-xs-7-mob nopadd">
                                {{Saturday}}
                             </div>
                           </div>
                           <div class="clearfix"></div>
-                      </div>
+                          </div>
+                        </div>
                     </div>
                 </div>
+              </div>
               </div>
             </div>
           </div>

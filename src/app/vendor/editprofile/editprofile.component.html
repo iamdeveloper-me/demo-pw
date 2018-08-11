@@ -14,7 +14,7 @@
                         <h5> <strong>MY ACCOUNT INFORMATION</strong> </h5>
                         <img  alt="" src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg">
 
-                        <span class="pos_absolute"> <a href=""><i class="material-icons ">mail_outline</i> </a> </span>
+                        <span class="pos_absolute"> <a data-target="#payment"><i class="material-icons ">mail_outline</i> </a> </span>
                         <!-- <span class="pos_absolute"> <a href=""><i class="material-icons  id="Instagram-function" data-target="#instagram2" data-toggle="modal"">mail_outline</i> </a> </span> -->
 
                     </div>
@@ -169,7 +169,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">MY ACCOUNT INFORMATION</h4>
+                <h4 class="modal-title">MY ACCOUNT  INFORMATION</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
@@ -341,4 +341,31 @@
             </div>
         </div>
     </div>    
-    
+
+
+
+    <!--mail popup -->
+    <div class="modal fade" id="payment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                    <h4  class="card-title">Payments Termes </h4>
+                    <div class="card-content selectboxservice"> 
+                            <h5>Enter your Price</h5>
+                            <div>
+                                <label class="price_select">
+                                    <input name="Price" type="text" placeholder="$10" [(ngModel)]="payment"> 
+                                    
+                                </label>
+                            </div>
+                            
+                        
+                        </div>
+        
+
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+                        </div>
+              </div>
+            </div>
+</div>

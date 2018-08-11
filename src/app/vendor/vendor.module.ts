@@ -26,6 +26,7 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
 // import { MessageComponent } from './message/message.component';
  import { ReviewComponent } from './review/review.component';
  import { EventComponent } from './event/event.component';
+import { MailsearchComponent } from './mailsearch/mailsearch.component';
 //import { EventListComponent } from './event-list/event-list.component';
 
 
@@ -74,6 +75,7 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
         // MessageComponent,
          ReviewComponent,
          EventComponent,
+         MailsearchComponent,
         // EventListComponent,
 
         // PortfolioviewComponent,

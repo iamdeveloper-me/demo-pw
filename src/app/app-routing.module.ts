@@ -73,6 +73,7 @@ import { PortfolioviewComponent } from './vendor/portfolioview/portfolioview.com
 import { ViewPhotoAlbumsComponent } from './vendor/view-photo-albums/view-photo-albums.component';
 import { AlbumsettingComponent } from './vendor/albumsetting/albumsetting.component';
 import { EventListComponent } from './vendor/event-list/event-list.component';
+import { MailsearchComponent } from './vendor/mailsearch/mailsearch.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -124,6 +125,7 @@ const appRoutes: Routes = [
     { path: 'vendor/videoview', component:    VedioviewComponent},
     { path: 'vendor/PromoteBusiness', component:    PromoteBusinessComponent},
     { path: 'vendor/statistics', component:  StatisticsComponent},
+    { path: 'vendor/mailseach', component:  MailsearchComponent},
 
   { path: 'User/vendor', component: VendorlistComponent },  
   { path: 'User/Timeline', component: TimelineComponent },

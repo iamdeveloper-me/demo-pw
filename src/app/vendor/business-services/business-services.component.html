@@ -12,22 +12,22 @@
 					<div class="card">	
 						<div  class="card-header text-center">					
 							<div class="subheadtik card-title">Photography, Videography & Cinematography </div>
-							<button type="button" class="btn edit_btn1 top_10px mobeditbtnfirst" data-toggle="modal" data-target="#week">
-								<i class="material-icons">edit</i>
-							</button>
 						</div>
 						<div class="card-body">
-							<div class="card-content selectboxservice"> 
-								<h3>Form 1</h3>
-								<h5>Which Service do you provide</h5>
-									<label>
-										<input name="group1" type="radio" checked=""> Photography,
-										<span>{{Services.value}}</span>
-									</label>
+							<div class="card-content selectboxservice text-center"> 
+								<h5 class="text-center">Which Service do you provide</h5>
+									<div class="card-content selectboxservice inputareacenter" *ngFor="let Service of Services "> 
+							<div>
+							<label>
+							<input name="Service"  type="radio"  [(ngModel)]="Services.value" [value]= "Service">
+								 <span>{{Service}}</span>
+							</label>
+						</div>	
+				</div>
 								<hr class="hr-light">
 							</div>
 							<div class="card-content selectboxservice">
-								<h3>Form 2</h3>
+								<h5 class="text-center">Speciality, Costs of Services $ Experience</h5>
 								<div class="funkyradio">
 									<div class="col-sm-3 col-xs-6">
 										<div class="funkyradio-info">
@@ -41,12 +41,10 @@
 											<label for="checkbox2">Candid Photography</label>
 										</div>
 										<div class="clearfix"></div>
-										<div class="editer">
+										<div class="editer" data-toggle="modal" data-target="#candid">
 											<label>Price:</label>&nbsp;
 											{{candid}}
-											<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#candid">
-													<i class="material-icons">edit</i>
-												</button>
+													<i class="material-icons edit_btn1">edit</i>
 										</div>
 										
 									</div>
@@ -56,12 +54,10 @@
 										<label for="checkbox3">Cinematography</label>
 										</div>
 										<div class="clearfix"></div>
-										<div class="editer">
+										<div class="editer" data-toggle="modal" data-target="#cinema">
 											<label>Price:</label>&nbsp;
 											{{cinema}}
-											<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#cinema">
-													<i class="material-icons">edit</i>
-												</button>
+													<i class="material-icons edit_btn1">edit</i>
 											
 										</div>
 									
@@ -71,12 +67,10 @@
 										<input type="checkbox" name="checkbox" id="checkbox4" checked/>
 										<label for="checkbox4">Studio Shoots</label>
 										</div>
-										<div class="editer">
+										<div class="editer" data-toggle="modal" data-target="#studio">
 											<label>Price:</label>&nbsp;
 										{{studio}}
-											<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#studio">
-													<i class="material-icons">edit</i>
-												</button>
+													<i class="material-icons edit_btn1">edit</i>
 										</div>
 									
 									</div>
@@ -85,12 +79,11 @@
 										<input type="checkbox" name="checkbox" id="checkbox5"/>
 										<label for="checkbox5">Pre-Wedding Shoots</label>
 									</div>
-									<div class="editer">
+									<div class="editer" data-toggle="modal" data-target="#prewed">
 										<label>Price:</label>&nbsp;
 										{{ prewed}}
-										<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#prewed">
-												<i class="material-icons">edit</i>
-											</button>
+									
+												<i class="material-icons edit_btn1">edit</i>
 										</div>
 									
 									</div>
@@ -99,12 +92,10 @@
 										<input type="checkbox" name="checkbox" id="checkbox6"/>
 										<label for="checkbox6">Photos Delivered</label>
 									</div>
-										<div class="editer">
+										<div class="editer"  data-toggle="modal" data-target="#photod">
 											<label>Price:</label>&nbsp;
 											{{photod}}
-											<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#photod">
-													<i class="material-icons">edit</i>
-												</button>
+													<i class="material-icons edit_btn1">edit</i>
 										</div>
 									
 									</div>
@@ -113,11 +104,9 @@
 										<input type="checkbox" name="checkbox" id="checkbox7"/>
 										<label for="checkbox7">Experience</label>
 									</div>
-									<div class="editer">
+									<div class="editer" data-toggle="modal" data-target="#experience">
 										{{experience}}
-											<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#experience">
-													<i class="material-icons">edit</i>
-												</button>
+													<i class="material-icons edit_btn1">edit</i>
 											
 										</div>
 									
@@ -127,12 +116,10 @@
 										<input type="checkbox" name="checkbox" id="checkbox8"/>
 										<label for="checkbox8">Payments Terms</label>
 									</div>
-									<div class="editer">
+									<div class="editer"  data-toggle="modal" data-target="#payment">
 											<label>Price:</label>&nbsp;
 											{{ payment}}
-											<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#payment">
-													<i class="material-icons">edit</i>
-												</button>
+													<i class="material-icons edit_btn1">edit</i>
 										</div>
 									
 									</div>
@@ -141,12 +128,10 @@
 										<input type="checkbox" name="checkbox" id="checkbox9"/>
 										<label for="checkbox9">Travel Costs</label>
 									</div>
-										<div class="editer">
+										<div class="editer" data-toggle="modal" data-target="#travel">
 											<label>Price:</label>&nbsp;
 										{{travel}}
-											<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#travel">
-													<i class="material-icons">edit</i>
-												</button>
+													<i class="material-icons edit_btn1">edit</i>
 										</div>
 									
 									</div>
@@ -154,36 +139,31 @@
 								<hr class="hr-light">
 							</div>
 							<div class="card-content selectboxservice"> 
-								<h3>Form 3</h3>
-								<h5>Do you offer packages</h5>
-								<div>	
+								<h5 class="text-center">Do you offer packages</h5>
+								<div class="col-sm-6 marginauto">	
 									<div class="funkyradio">
-										<div class="col-sm-3 col-xs-6">
+										<div class="col-sm-6 col-xs-6">
 											<div class="funkyradio-info">
 												<input type="checkbox" name="checkbox" id="checkbox11" checked/>
 												<label for="checkbox11">Photos</label>
 											</div>
-											<div class="editer">
+											<div class="editer" data-toggle="modal" data-target="#photo_off">
 												<label>Price:</label>&nbsp;
 											{{photo_off}}
-												<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#photo_off">
-														<i class="material-icons">edit</i>
-													</button>
+														<i class="material-icons edit_btn1">edit</i>
 											</div>
 											
 										</div>
-										<div class="col-sm-3 col-xs-6">
+										<div class="col-sm-6 col-xs-6">
 											<div class="funkyradio-info">
 												<input type="checkbox" name="checkbox" id="checkbox12" checked/>
 												<label for="checkbox12">Photos + Vedios</label>
 											</div>
 											
-											<div class="editer">
+											<div class="editer" data-toggle="modal" data-target="#photo_ved">
 												<label>Price:</label>&nbsp;
 											{{photo_ved}}
-												<button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#photo_ved">
-														<i class="material-icons">edit</i>
-													</button>
+														<i class="material-icons edit_btn1">edit</i>
 											</div>
 												
 										</div>
@@ -202,33 +182,7 @@
 
 
 
-<div class="modal fade" id="week" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-		  <div class="modal-content">
-				<h4  class="card-title">Photography, Videography & Cinematography </h4>
-				 <h5>Which Service do you provide</h5>
-				<div class="card-content selectboxservice" *ngFor="let Service of Services "> 
-							<div>
-							<label>
-								<input 
-								 name="Service" 
-								 type="radio"  
-								 [(ngModel)]="Services.value" 
-								 [value]= "Service"> 
-								 
-								 <span>{{Service}}</span>
-							</label>
-						</div>
-				</div>
-	
 
-					<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
-					</div>
-		  </div>
-		</div>
-	</div>
 <div class="modal fade" id="candid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 		  <div class="modal-content">

@@ -5,10 +5,13 @@
   <div id="page-content-wrapper">
    <app-navemenu></app-navemenu>    
 	<router-outlet></router-outlet> 
-	   <div class="container-fluid photo_gallery">
+  <div class="col-sm-12 container-fluid ">
+	   <div class="photo_gallery">
         <div class="row allport_row">
            <div class="col-sm-2 col-2 padd_10px">
-           <a routerLink= "../gallery"><i class="material-icons"> arrow_back_ios </i> <span class="mob_none"> All Portfolio</span>  </a>  
+           <a routerLink= "../gallery"><i class="material-icons"> arrow_back_ios </i> 
+            <span class="mob_none"> Overview</span>  
+          </a>  
         </div>
          <div class="createmyalbum text-center col-sm-8 col-8">
             <h2>MY ALBUMS
@@ -19,7 +22,7 @@
          </div>
 
          <div class="col-sm-2 col-2 text-right setting_right">
-                <i class="material-icons"> settings</i>
+                <a routerLink= "../albumdetailsetting"> <i class="material-icons"> settings</i></a>
         </div>
     </div> 
           
@@ -170,6 +173,6 @@
         </section>
       
      </div>    	
-     
+     </div>
  </div>	 
 </div> 

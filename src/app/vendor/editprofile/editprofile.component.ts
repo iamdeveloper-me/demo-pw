@@ -12,7 +12,7 @@ pno = "9826812185";
 email = 'hdh@gmail.com' ;
 site = 'dbshjf.com' ;
 about = 'dhcfhkjcklsjnvklifhjvfjnjfhgfn';
-
+payment = '12$';
  constructor() { }
 
   ngOnInit() {   

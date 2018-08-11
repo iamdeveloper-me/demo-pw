@@ -135,6 +135,7 @@ import { ViewPhotoAlbumsComponent } from './vendor/view-photo-albums/view-photo-
 import { AlbumsettingComponent } from './vendor/albumsetting/albumsetting.component';
 import { EventListComponent } from './vendor/event-list/event-list.component';
 import { Albumsetting2Component } from './vendor/albumsetting2/albumsetting2.component';
+import { MailsearchComponent } from './vendor/mailsearch/mailsearch.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -163,6 +164,7 @@ export function getAuthServiceConfigs() {
         NgbdModalContent,
         AllPromotionPageComponent,
         Albumsetting2Component,
+        MailsearchComponent,
         EventListComponent,
         AlbumsettingComponent,
         PortfolioviewComponent,

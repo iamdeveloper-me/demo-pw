@@ -2,7 +2,7 @@
     <div id="sidebar-wrapper">
             <app-vendorsidebar></app-vendorsidebar>
     </div>
-    <div id="page-content-wrapper">    
+    <div id="page-content-wrapper">
         <div class="container-fluid nopadd">                    
             <app-navemenu></app-navemenu>
             <div class="container-fluid Analytics">
@@ -27,40 +27,40 @@
                             <div class="col-md-2"></div> 
                             <div class="col-md-5  displya_name">
                                 <ul>
-                                  <li class="done"> 
+                                  <li class="done" > 
                                     <i class="material-icons">check_circle</i>
-                                    <strong class="blacktext">Trading Name</strong>
+                                    <strong class="blacktext" ngbTooltip="Trading Name">Trading Name</strong>
                                     <button class="editbtn">Select to Edit</button>
                                   </li>
-                                  <li data-target="#BusinessCover" data-toggle="modal"> 
+                                  <li data-target="#BusinessCover" data-toggle="modal" > 
                                     <i class="material-icons">error_outline</i>
-                                    <strong class="blacktext">Business Cover</strong> 
+                                    <strong class="blacktext" ngbTooltip="Business Cover">Business Cover</strong> 
                                     <button  class="editbtn">Edit</button>
                                   </li>
                                   <li  data-target="#Description" data-toggle="modal">
                                   <i class="material-icons">error_outline</i> 
-                                    <strong class="blacktext">Description</strong>  
+                                    <strong class="blacktext"  ngbTooltip="Description">Description</strong>  
                                     <button  class="editbtn" type="button">Edit</button>
                                   </li>
                                 </ul>
                             </div>   
                             <div class="col-md-5 displya_name">
                                 <ul>
-                                  <li  data-target="#Photos" data-toggle="modal"> 
+                                  <li  data-target="#Photos" data-toggle="modal" > 
                                     <i class="material-icons">error_outline</i>
-                                    <strong class="blacktext">Photos</strong>  
+                                    <strong class="blacktext" ngbTooltip="Photos">Photos</strong>  
                                     <button  class="editbtn" type="button">
                                       Edit</button>   
                                   </li>
-                                  <li data-target="#Service" data-toggle="modal"> 
+                                  <li data-target="#Service" data-toggle="modal" > 
                                     <i class="material-icons">error_outline</i> 
-                                    <strong class="blacktext">Services</strong>     
+                                    <strong class="blacktext" ngbTooltip="Services">Services</strong>     
                                     <button  class="editbtn"  type="button">
                                     Edit</button>   
                                   </li>
-                                  <li  data-target="#Location" data-toggle="modal" >
+                                  <li  data-target="#Location" data-toggle="modal"  >
                                     <i class="material-icons">error_outline</i> 
-                                    <strong class="blacktext">Location</strong>  
+                                    <strong class="blacktext" ngbTooltip="Location">Location</strong>  
                                     <button  class="editbtn" type="button">
                                       Edit</button>  
                                   </li>
@@ -79,14 +79,14 @@
                     <div class="col-sm-5 nopadd maxheight335px">
                         <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" class="infoimg" alt="Profile picture"> 
                         <div class="viewstore">
-                          <a href="#">View Storefront</a>
+                          <a href="">View Storefront</a>
                         </div>
                     </div>
 
                     <div class="col-sm-7 nopadd maxheight335px mobileheightauto ">
                       <div class="martop15px"></div>
 
-                        <div class="col-sm-2 mobpadd10 edithovering">
+                        <div class="col-sm-2 col-3 mobpadd10 edithovering">
                             
                           <img src="{{ angularLogo }}" class="oviewviewimgcircle" alt="Profile picture"> 
 
@@ -99,7 +99,7 @@
                         <i class="material-icons">location_on</i>
                       </div>
                       <div class="col-xs-8 nopadd edithovering">
-                        <p data-target="#currentLocation" data-toggle="modal">{{currentLocation}}</p>
+                        <p data-target="#currentLocation" data-toggle="modal">{{currentLocation}}<br/>2 More Branches </p>
                           <button  class="editbtn" type="button">Edit</button>  
                       </div>
                       <div class="prolinkmob">
@@ -118,7 +118,7 @@
                           <button class="editbtn" type="button">Edit</button>
                       </div>
                     </div>
-                      <div class="col-sm-12 nopadd martop15px overhiddenmob mobilenone">
+                      <div class="col-sm-12 nopadd martop12px overhiddenmob mobilenone">
                         <div class="col-xs-1 nopadd">
                         <i class="material-icons">work_outline</i>
                       </div>
@@ -134,24 +134,27 @@
  <div class="clearfix"></div>
                     <div class="col-sm-12 nopadd martop15px marbot15px clearfix">
                         <div class="col-xs-4 text-center">
-                          <a routerlink="../portfolioview" class="blacktext">
+                          <a routerLink="../portfolioview" class="blacktext">
                             <i class="material-icons">photo_library</i>
-                            <strong>1</strong><br/>
+                            <strong>1</strong>
+                            <div class="clearfix"></div>
                             Portfolio
                           </a>
                         </div>
                         <div class="col-xs-4 text-center">
-                          <a routerlink="../Videos" class="blacktext">
+                          <a routerLink="../Videos" class="blacktext">
                             <i class="material-icons">video_library</i>
-                            <strong>0</strong><br/>
+                            <strong>1</strong>
+                            <div class="clearfix"></div>
                             Vedios
                           </a>
                         </div>
                         <div class="col-xs-4 text-center">
-                          <a routerlink="../portfolioview" class="blacktext">
-                          <i class="material-icons">library_books</i>
-                          <strong>0</strong><br/>
-                          Albums
+                           <a routerLink="../albumview" class="blacktext">
+                            <i class="material-icons">library_books</i>
+                            <strong>1</strong>
+                            <div class="clearfix"></div>
+                            Albums
                           </a>
                         </div>
                     </div>
@@ -178,9 +181,9 @@
                       </a>
                      
 <div class="clearfix"></div>
-                     <div class="col-9 pull-left desktopnone blacktext padbot5px text-left">
+                     <div class="col-8 pull-left desktopnone blacktext padbot5px text-left">
                      Membership Type : Free</div>
-                     <div class="col-3 pull-left text-right desktopnone padbot5px"><a routerLink="../membership" class="bluelink">Upgrade</a></div>
+                     <div class="col-4 pull-left text-right desktopnone padbot5px"><a routerLink="../membership" class="bluelink">Upgrade</a></div>
                     </div>
                     </div>
 

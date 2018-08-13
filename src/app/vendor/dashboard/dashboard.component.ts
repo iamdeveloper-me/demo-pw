@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,7 @@ import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 
 })
 export class DashboardComponent implements OnInit {
-    currentLocation = 'Dubai  Other: Delhi, Pune... ';
+    currentLocation = 'Dubai  (Primary Location)';
     PhoneEdit = '5555555' ;
     angularLogo = 'https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg';
 
@@ -21,7 +22,22 @@ export class DashboardComponent implements OnInit {
 
 
   }
+// Variable Declaration
+  x: any;
+  greeting = {};
+  name = 'World';
 
+  // Context and manual triggers section
+  @ViewChild('x') public tooltip: NgbTooltip;
+
+  public changeGreeting(greeting: any): void {
+    const isOpen = this.tooltip.isOpen();
+    this.tooltip.close();
+    if (greeting !== this.greeting || !isOpen) {
+      this.greeting = greeting;
+      this.tooltip.open(greeting);
+    }
+  }
       ngOnInit() {
           $.getScript('./assets/js/prism.min.js');
           $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
@@ -30,7 +46,9 @@ export class DashboardComponent implements OnInit {
           $("div").click(function(){
               $("div").removeClass( "modal-backdrop");
           });  
-
+          $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+          });
             function testAnim(x) {
               $('.modal .modal-dialog').addClass('animated');
               $('.modal .modal-dialog').addClass('bounceIn');

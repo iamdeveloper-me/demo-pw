@@ -141,7 +141,8 @@ import { StorefrontComponent } from './vendor/storefront/storefront.component';
 import { ActionsComponent } from './vendor/actions/actions.component';
 import { ReachComponent } from './vendor/reach/reach.component';
 import { GallerybarComponent } from './vendor/gallerybar/gallerybar.component';
-
+import { EventComponent } from './vendor/event/event.component';
+import { ReviewComponent } from './vendor/review/review.component';
 
 
 
@@ -269,7 +270,9 @@ export function getAuthServiceConfigs() {
         ReviewandfeedbackComponent,
         AdmincalenderComponent,
         MininavbarComponent,
-        PortfolioviewphotoComponent
+        PortfolioviewphotoComponent,
+        EventComponent,
+        ReviewComponent
 
   ],
     imports: [

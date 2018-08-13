@@ -26,6 +26,11 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
 // import { MessageComponent } from './message/message.component';
  import { ReviewComponent } from './review/review.component';
  import { EventComponent } from './event/event.component';
+import { EnquiriesComponent } from './enquiries/enquiries.component';
+import { StorefrontComponent } from './storefront/storefront.component';
+import { ActionsComponent } from './actions/actions.component';
+import { ReachComponent } from './reach/reach.component';
+import { GallerybarComponent } from './gallerybar/gallerybar.component';
 //import { Albumsetting2Component } from './albumsetting2/albumsetting2.component';
 //import { MailsearchComponent } from './mailsearch/mailsearch.component';
 //import { EventListComponent } from './event-list/event-list.component';
@@ -76,6 +81,11 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
         // MessageComponent,
          ReviewComponent,
          EventComponent,
+         EnquiriesComponent,
+         StorefrontComponent,
+         ActionsComponent,
+         ReachComponent,
+         GallerybarComponent,
         // Albumsetting2Component,
         // MailsearchComponent,
         // EventListComponent,

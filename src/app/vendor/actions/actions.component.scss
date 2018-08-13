@@ -95,42 +95,81 @@
   .nopadd{
     padding:0px!important;
   }
-.card{
-  position: relative;
+  .card{
+      padding-bottom: 20px;
+  }
+  .card select{
+      border: none !important; 
+  }
+  .card h6{
+      text-transform: capitalize;
+      font-size: 15px;
+      width: 43%;
+    float: left;
+  }
+  .enquiry{
+      font-size: 20px;
+  }
+
+.text_green{
+    border: 1px solid #ccc;
+    color: green;
+    padding: 10px;
 }
-.card:hover .overlay {
-  opacity: .8;
+.text_orange{
+    border: 1px solid #ccc;
+    color: orange;
+    padding: 10px;
+    border-left: none !important;
 }
-.overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  cursor: pointer;
-  transition: .5s ease;
-  background-color: rgb(87, 88, 88);
+.text_red{
+    border: 1px solid #ccc;
+    color: red;
+    padding: 10px;
+    border-left: none !important;
 }
-.text {
-  color: white;
-  font-size: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  text-align: center;
+.text_size_20px{
+    font-size: 20px;
 }
 
+.inquiri_bg{
+    background-color: rgb(216, 226, 231);
+}
+.date_pic{
+    border: 1px solid #ccc !important;
+    text-indent: 5px;
+}
+.search_item{
+    position: relative;
+    margin-left: 10px;
+}
+.search_item i{
+    position: absolute;
+    right: 10px;
+    top: 0px;
+}
+.search_item input{
+    border: 1px solid #ccc;
+    padding: 6px;
+}
+.sele_option select{
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc !important;
+    padding: 6px 15px;
+    background: #fff;
+}
 
-
-
-
-
+.listing ul li{
+  list-style-type: none;
+  display: inline-block;
+  margin-right: 90px;
+  text-transform: uppercase;
+  color: #e72e77;
+}
+.mar_top_60{
+    margin-top: 60px;
+}
   
   @media(min-width:768px) {
     #wrapper {

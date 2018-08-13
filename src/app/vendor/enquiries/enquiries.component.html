@@ -1,0 +1,129 @@
+
+
+<div id="wrapper" class="toggled">
+    <div id="sidebar-wrapper">
+        <app-vendorsidebar></app-vendorsidebar>
+    </div>
+    <div id="page-content-wrapper">    
+      <app-navemenu></app-navemenu>
+
+<!-- Line Chart Starts -->
+
+<div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Enquiries Vs Leads</h4>
+                <p>July 15 - July 21</p>
+            </div>
+            <div class="card-body">
+                <div class="card-block">
+                    <div id="bar-bar1" class="height-400">
+                        <canvas baseChart class="chart" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColors" [legend]="barChartLegend"
+                            [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="card-title">May Statistics (Photographers- <select ><option >Vacoas-Phoenix</option><option >	Curepipe</option><option >Quatre Bornes</option><option > Port Louis</option><option >		Beau Bassin </option></select>)</h6>  
+                <span class="enquiry"> <strong> Enquiries Stats  </strong> </span>           
+            </div>
+         
+           <div class="col-sm-12 ">
+              <div class="col-sm-4 text_green">
+                 <div class="text-center ">
+                     <p>Highest Leads</p>
+                     <p>72</p>
+                 </div>
+              </div>
+
+              <div class="col-sm-4 text_orange">
+                  <div class="text-center ">
+                      <p>Highest Leads</p>
+                      <p>14</p>
+                  </div>
+               </div>
+
+               <div class="col-sm-4 text_red">
+                  <div class="text-center ">
+                      <p>Highest Leads</p>
+                      <p>0</p>
+                  </div>
+               </div>
+          
+           </div>
+         
+            
+        </div>
+
+
+        <div class="card">
+            <div class="card-header"> 
+                <div class="text-center text_size_20px"><strong> Leads Stats  </strong></div>           
+            </div>
+         
+           <div class="col-sm-12 ">
+              <div class="col-sm-4 text_green">
+                 <div class="text-center ">
+                     <p>Highest Leads</p>
+                     <p>72</p>
+                 </div>
+              </div>
+
+              <div class="col-sm-4 text_orange">
+                  <div class="text-center ">
+                      <p>Highest Leads</p>
+                      <p>14</p>
+                  </div>
+               </div>
+
+               <div class="col-sm-4 text_red">
+                  <div class="text-center ">
+                      <p>Highest Leads</p>
+                      <p>0</p>
+                  </div>
+               </div>
+          
+           </div>
+         
+            
+        </div>
+
+        <div class="card">
+           <div class="col-sm-12 inquiri_bg">
+            <div class="col-sm-4 card-header"> 
+                <div class=" text_size_20px"> Enquiries  </div>           
+            </div>
+            <div class="col-sm-8 card-header text-right">
+                <input class="date_pic"  type="date" ng-reflect-model="9:00">
+                <span class="sele_option"><select ><option >All</option><option >	All</option><option >All</option><option >All</option><option >All </option></select> </span>
+                <span class="search_item"> <input  type="text" ng-reflect-model="9:00" value="Search"> 
+                <i class="material-icons">search</i> </span>
+            </div>
+          </div>  
+
+          <div class="listing">
+            <ul>
+              <li>client name</li>
+              <li>email</li>
+              <li>phone</li>
+              <li>date</li>
+            </ul>
+            <p class="text-center mar_top_60"> You dont have any logs of this yet</p>
+          </div>
+
+
+        </div>
+    </div>
+  
+
+</div>
+  
+</div>
+
+<router-outlet></router-outlet>

@@ -47,7 +47,9 @@ export class DashboardComponent implements OnInit {
               $("div").removeClass( "modal-backdrop");
           });  
           $(document).ready(function(){
+
            // $('[data-toggle="tooltip"]').tooltip();   
+
           });
             function testAnim(x) {
               $('.modal .modal-dialog').addClass('animated');

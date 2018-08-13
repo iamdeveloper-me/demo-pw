@@ -32,7 +32,6 @@ export class NavemenuComponent implements OnInit {
      $('.togglebtnmenu').toggleClass('cross');
       $('.blackoverlaymobile').toggleClass('blockmobile');
       $('#page-content-wrapper').toggleClass('overhidden');
-       $('#wrapper').toggleClass('toggled');
     });
    
     if(window.location.pathname == '/vendor/dashboard' ) {

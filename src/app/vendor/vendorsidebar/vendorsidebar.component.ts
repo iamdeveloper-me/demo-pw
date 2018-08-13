@@ -12,6 +12,12 @@ export class VendorsidebarComponent implements OnInit {
   ngOnInit() { 
     $.getScript('./assets/js/jquery.slimscroll.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
+
+ $(".blackoverlaymain").click(function(){
+       alert("hi");
+    });
+
+
     }
   
 }

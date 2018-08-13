@@ -1,0 +1,34 @@
+
+
+<div id="wrapper" class="toggled">
+    <div id="sidebar-wrapper">
+        <app-vendorsidebar></app-vendorsidebar>
+    </div>
+    <div id="page-content-wrapper">    
+      <app-navemenu></app-navemenu>
+
+<!-- Line Chart Starts -->
+
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Storefront Views</h4>
+            <p>July 15 - July 21</p>
+        </div>
+        <div class="card-body">
+            <div class="card-block">
+                <div class="height-400">
+                        <canvas height="400" baseChart class="chart" [datasets]="areaChartData" [labels]="areaChartLabels" [options]="areaChartOptions" [colors]="areaChartColors"
+                        [legend]="areaChartLegend" [chartType]="areaChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" ></canvas>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+</div>
+  
+</div>
+
+<router-outlet></router-outlet>

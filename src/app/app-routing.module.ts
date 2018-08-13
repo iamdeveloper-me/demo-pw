@@ -75,6 +75,11 @@ import { AlbumsettingComponent } from './vendor/albumsetting/albumsetting.compon
 import { EventListComponent } from './vendor/event-list/event-list.component';
 import { Albumsetting2Component } from './vendor/albumsetting2/albumsetting2.component';
 import { MailsearchComponent } from './vendor/mailsearch/mailsearch.component';
+import { EnquiriesComponent } from './vendor/enquiries/enquiries.component';
+import { StorefrontComponent } from './vendor/storefront/storefront.component';
+import { ActionsComponent } from './vendor/actions/actions.component';
+import { ReachComponent } from './vendor/reach/reach.component';
+import { GallerybarComponent } from './vendor/gallerybar/gallerybar.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -128,6 +133,11 @@ const appRoutes: Routes = [
     { path: 'vendor/statistics', component:  StatisticsComponent},
     { path: 'vendor/albumdetailsetting', component:   Albumsetting2Component  },
     { path: 'vendor/mailseach', component:  MailsearchComponent},
+    { path: 'vendor/enquiry', component:  EnquiriesComponent},
+    { path: 'vendor/storefront', component:  StorefrontComponent},
+    { path: 'vendor/actionfront', component:  ActionsComponent},
+    { path: 'vendor/reachbar', component:  ReachComponent},
+    { path: 'vendor/gallerybar', component:  GallerybarComponent},
 
 
   { path: 'User/vendor', component: VendorlistComponent },  

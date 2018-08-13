@@ -25,7 +25,7 @@ export class MenuComponent implements OnInit {
         $(".user").hide();    
         } 
     
-
+      
              //loginpage
      $("#id9").hide();
      $("#id19").hide();

@@ -5,25 +5,29 @@
   <div id="page-content-wrapper">
    <app-navemenu></app-navemenu>    
   <router-outlet></router-outlet> 
-  
+  <div class="col-sm-12">
   <div class="container-fluid viewallalbums">
-      <div class="col-sm-4 padd_10px">
-            <a routerLink= "../gallery"><i class="material-icons"> arrow_back_ios </i> </a> All Portfolio
-      </div>
-
-      <div class="col-sm-4 text-center">
-         <h4>Sachin weds Trisha</h4>
-         <p class="tittle_album"> <i class="material-icons">album</i> Album Type Pre-Wedding Shoot</p>
-      </div>
-      <div class="col-sm-4 text-right padd_10px">
-        <a class="setting" ><i class="material-icons"> settings</i> </a>
-      </div>
-</div>
-
-
+    <div class="allport_row">
+  <a routerLink= "../albumview" class="leftarrowbacklink"><i class="material-icons"> arrow_back_ios </i>
+    <span class="mob_none"> All Albums</span>
+  </a>
+  <div class="createmyalbum">
+    <h2>SACHIN WEDS TRISHA</h2>
+    <span>Album Type Pre-Wedding Shoot</span>
+  </div>
+  <a routerLink= "../albumdetailsetting" class="rightarrowbacklink"> 
+    <i class="material-icons"> settings</i>
+  </a>
+    </div> 
 <div class="container-fluid photo_gallery">     
     <div class="color_optin text-center">
-      <p> <span class="squar_color"></span> <span class="squar_voilet"></span> <span class="squar_orange"></span> </p>
+      <div class="clearfix"></div>
+<span class="colortags bluebg"></span> 
+        <span class="colortags redbg"></span> 
+        <span class="colortags greenbg"></span> 
+        <span class="colortags purplebg"></span>
+        <div class="clearfix"></div>
+
       <p class="beach_outdoor"> <span>Beach Wedding</span> <span>Outdoor</span> </p>
       <p class="add_photos"><span >Add photos</span> </p>
     </div>     
@@ -343,6 +347,7 @@
     
      </div>    	
      
- </div>	 
+ </div>	
+ </div> 
 </div> 
 

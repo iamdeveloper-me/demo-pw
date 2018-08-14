@@ -16,10 +16,13 @@
             <p>July 15 - July 21</p>
         </div>
         <div class="card-body">
-            <div class="card-block">
-                <div class="height-400">
-                        <canvas height="400" baseChart class="chart" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"
-                        [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" ></canvas>
+            <div class="card-body">
+                <div class="card-block">
+                    <div id="line-chart2" class="height-400 lineChart2 shadow">
+                        <x-chartist [data]="lineChart2.data" [type]="lineChart2.type" [options]="lineChart2.options"
+                            [responsiveOptions]="lineChart2.responsiveOptions" [events]="lineChart2.events">
+                        </x-chartist>
+                    </div>
                 </div>
             </div>
         </div>

@@ -178,6 +178,7 @@ header.masthead {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  position: relative;
 
 }
 
@@ -223,7 +224,7 @@ header.masthead p {
   height: 50px;
 }
 .searchbar button {
-  border-radius: 0px;
+  border-radius: 5px;
   border: 0px solid #fff;
   margin-left: -1px;
   background: #e72e77;
@@ -322,6 +323,49 @@ header.masthead p {
 .mobvendorebtn{
   display:none;
 }
+.home_search i{
+  position: absolute;
+  color: #000;
+  left: 10px;
+  top: 14px;
+}
+.searchbar select{
+  text-indent: 30px;
+}
+.search_btn_pink{
+  border-radius: 5px;
+}
+.search_btn_pink i{
+  font-size: 40px;
+}
+
+.just_picture span i{
+  position: relative;
+  top: 6px;
+  right: 1px;
+}
+.just_picture span{
+  background: rgba(0,0,0,.5);
+  padding: 2px 5px;
+}
+.just_picture{
+  position: absolute;
+  bottom: 10px;
+  left: 45%;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 @media (min-width: 1200px) {
   header.masthead h1 {
     font-size: 4rem;
@@ -366,9 +410,6 @@ header.masthead p {
     .FilterDialog{
     position: fixed; height: 100vh;left:0px; top:0px;width: 100%;background:#333;z-index:999999;overflow:scroll;overflow-x:hidden;
     }
-.mobvendorebtn{
-
-}
 .mobvendorebtn i.firsticon{
 float:left;
 padding:13px;
@@ -512,11 +553,11 @@ box-shadow: inset 0px 15px 34px -18px rgba(204,204,204,1);
     color: #333;
 }
      .section-heading{
-       font-size: 20px;
+       font-size: 22px;
      }
      header.masthead p{
       margin-bottom: 0.25rem !important;
-      font-size: 14px;
+      font-size: 15px;
      }
      .searchbar .form-group{
       display:block;
@@ -538,6 +579,9 @@ box-shadow: inset 0px 15px 34px -18px rgba(204,204,204,1);
     }
     .heading_mob_mar{
        margin-bottom: -90px;
+    }
+    .just_picture{
+      display: none;
     }
    
 }

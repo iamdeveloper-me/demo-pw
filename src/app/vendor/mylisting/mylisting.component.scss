@@ -121,10 +121,10 @@ margin-top: 10px!important;
     .man_info h2{
       padding-bottom: 10px;
     }
-    .revie_name{
-      font-size: 22px;
-    margin-left: 10px;
-    }
+     .man_info img{
+float:left;
+     }
+  
     .man_img{
       background-color: #fff;
       padding: 10px;
@@ -138,10 +138,26 @@ margin-top: 10px!important;
   }
   .rating_star{
     margin-top: 10px;
+    margin-left:60px;
   }
-  .weeks_ago strong{
-    color: #ccc;
+  .font14px{
+  font-size:14px!important;
+  }
+    .revie_name{
+    font-size: 22px;
     margin-left: 10px;
+    float:left;
+    }
+  .textemail{
+  padding-left:60px;
+  }
+  .weeks_ago{
+    color: #ccc;
+    font-size:14px;
+    display:block;
+  }
+  .reviewbadge{
+  float:left;
   }
   .btn-success , .btn-danger{
     color: #fff !important;
@@ -231,18 +247,43 @@ margin-top: 10px!important;
         position: relative;
         top: 14px;
     }
-
+.desktopnone{
+display:none;   
+}
+.lineheight50px{
+  line-height:50px!important;
+}
   @media(max-width:767px){
-   
     .btn-success{
       margin-right: 20px !important;
     }
+  .reply_mas{
+    padding-left:0px;
+}
+.rating_star{
+  text-align:center;
+  margin-left:0px;
+}
+.desktopnone{
+display:block!important;   
+}
+.reply_mas img{
+  display:none;
+}
+.mobilenone{
+  display:none!important;
+}
+.reply_mas .revie_name {margin-left:0px;}
+  .textemail{
+  padding-left:0px!important;
+  }
     .content{
       padding-left: 0;
       padding-right: 0px;
     }
     .man_info {
       margin-bottom: 30px !important;
+      text-align:left;
     }
     .btn_button {
         text-align: center;
@@ -252,5 +293,9 @@ margin-top: 10px!important;
     }
     .reply_mas{
         padding-left: 0 !important;
+    }
+    .sortselect{margin:0px auto 20px auto!important;float:inherit;}
+    .weeks_ago{
+    display:block;
     }
 }

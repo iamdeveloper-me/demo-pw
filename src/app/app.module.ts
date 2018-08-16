@@ -144,6 +144,7 @@ import { GallerybarComponent } from './vendor/gallerybar/gallerybar.component';
 
 import { EventComponent } from './vendor/event/event.component';
 import { ReviewComponent } from './vendor/review/review.component';
+import { VediosettingComponent } from './vendor/vediosetting/vediosetting.component';
 
 
 
@@ -273,7 +274,8 @@ export function getAuthServiceConfigs() {
         MininavbarComponent,
         PortfolioviewphotoComponent,
         EventComponent,
-        ReviewComponent
+        ReviewComponent,
+        VediosettingComponent
 
   ],
     imports: [

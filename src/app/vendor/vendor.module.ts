@@ -21,6 +21,7 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
 // import { LocationComponent } from './location/location.component';
 // import { VideosComponent } from './videos/videos.component';
  import { PromotionsComponent } from './promotions/promotions.component';
+//import { VediosettingComponent } from './vediosetting/vediosetting.component';
 // import { StatisticsComponent } from './statistics/statistics.component';
 // import { MyAccountComponent } from './my-account/my-account.component';
 // import { MessageComponent } from './message/message.component';
@@ -70,6 +71,7 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
         // LocationComponent,
         // VideosComponent,
          PromotionsComponent,
+       // VediosettingComponent,
         // StatisticsComponent,
         // MyAccountComponent,
         // MessageComponent,

@@ -26,11 +26,11 @@
                         
                           <p class="oops">
                             <i class="material-icons" style="font-size:80px;">missed_video_call</i><br/>
-                              No video upload yet
+                             <span> No video upload yet</span>
                             </p>
                             <p class="upload_bt text-center"> <button  (click)="open(addvideo)" > Add Video</button>  </p>
                          
-                            <p class="text-center uplod_para padd_top_30px"> The current membership is limited to one video link.Switch to premium to add unlimited video <a href=""> Upgrade</a> </p>
+                            <p class="text-center uplod_para padd_top_30px"> Want unlimited Videos? <a href=""> Upgrade</a> </p>
                       </div>
 
                        
@@ -53,7 +53,9 @@
           <div class=" my_video_bg">
             <h3> <strong> MY VIDEOS </strong> </h3>
             <P>Showcase videos that demonstrate your work to reach more clients</P>
-             <span class="firt_link" (click)="open(newlink)"><i class="material-icons">settings</i></span>
+             <a class="sett_icon pull-right" routerLink="../vediosetting">
+            <i class="material-icons ">settings</i>
+          </a>
             </div>
          </div>   
       <div class="container-fluid addvideo1 ">

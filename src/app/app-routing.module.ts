@@ -80,7 +80,7 @@ import { StorefrontComponent } from './vendor/storefront/storefront.component';
 import { ActionsComponent } from './vendor/actions/actions.component';
 import { ReachComponent } from './vendor/reach/reach.component';
 import { GallerybarComponent } from './vendor/gallerybar/gallerybar.component';
-
+import { VediosettingComponent } from './vendor/vediosetting/vediosetting.component';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -138,7 +138,7 @@ const appRoutes: Routes = [
     { path: 'vendor/actionfront', component:  ActionsComponent},
     { path: 'vendor/reachbar', component:  ReachComponent},
     { path: 'vendor/gallerybar', component:  GallerybarComponent},
-
+    { path: 'vendor/vediosetting', component:  VediosettingComponent},
 
   { path: 'User/vendor', component: VendorlistComponent },  
   { path: 'User/Timeline', component: TimelineComponent },

@@ -1,7 +1,6 @@
 .nopadd{
     padding:0px!important;
   }
- 
 .navbar{
     width: 100%;
     background: rgba(0, 46, 119, 0.99) !important;
@@ -12,6 +11,9 @@
 } 
 .beforenone::before, .afternone::before{
     display: none;
+}
+.card-block{
+  overflow:hidden;
 }
 .gallery
 {
@@ -123,7 +125,6 @@ margin-top: 10px!important;
 
 .createmyalbum {
      padding: 20px 0px;
-     border: 1px solid #ccc;
      padding-bottom: 10px;
      background-color: #fff;
   }
@@ -161,19 +162,48 @@ margin-top: 10px!important;
         }
     }
 }
-
-.tabbingdesign li{
-    border: none!important;
-    border-radius: 5px;
-	list-style:none;
-	display:inline-block;
-	margin:0px;
-	padding:3px 15px;
-    cursor:pointer;
-    margin-right: 10px;
+.tabbingdesign{
+    padding: 0px;
+    overflow: hidden;
+    margin: 20px auto;
+    width: 270px;
 }
-.tabbingdesign li:hover{
-    box-shadow: 0px 0px 10px #2196f3;
+.tabbingdesign li{
+    list-style: none;
+    display: inline-block;
+    float: left;
+    margin: 0px 0px 10px 0px;
+    padding: 3px 15px;
+    cursor: pointer;
+    text-align: center;
+    background: #e5e5e5;
+    border-radius: 30px;
+    margin: 0px 10px;
+}
+.tabbingdesign li:first-child{
+border-radius:30px 0px 0px 30px;
+margin-right:0px;
+}
+.tabbingdesign li:last-child{
+border-radius:0px 30px 30px 0px;
+margin-left:0px;
+}
+.tabbingdesign li.selected{
+  background-color: #36cbf0 !important;
+    color: #fff;
+}
+.borall{
+  border:1px solid #e5e5e5;
+  border-radius:5px;
+  margin-bottom:20px;
+}
+.whitetext {
+  color:#fff!important;
+}
+.btn-rounded{
+border-radius: 20px;
+padding: 5px 20px;
+margin: 5px;
 }
 .modal-content{
 background:#fff!important;
@@ -182,6 +212,9 @@ background:#fff!important;
 float:left;
 margin-right:10px;
 line-height:30px;
+}
+.card-block p{
+  margin-bottom:5px;
 }
 .serchbox select{
 padding:2px 10px;
@@ -196,20 +229,26 @@ padding: 10px 0px;
 border-radius: 5px;
 }
 .serchbox button{
-	float:right;
 	margin-bottom:0px;
+  text-decoration:none;
+  float:left;
+}
+.serchbox button span{
+display:inline-block;
+margin-left:10px;
+line-height:30px;
 }
 .serchbox{
     position: relative;
+    margin-bottom:20px;
+    overflow:hidden;
 }
 .serchbox button i{
-    position: absolute;
-    right: 165px;
     border: 1px solid #ccc;
     padding: 5px 10px;
     font-size: 20px;
-    top: 3px;
     border-radius: 5px;
+    float:left;
 }
 .serchbox .serac_icon{
     position: absolute;
@@ -280,22 +319,8 @@ border-radius: 5px;
     margin-right: 10px;
 }
 .card_header1{
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 30px;
     padding-bottom: 20px;
     padding-left: 0 !important
-}
-.Registertab{
-    background-color: #36cbf0;
-    color: #fff;
-}
-.Suppliertab{
-    background-color: #36cbf0;
-    color: #fff;
-}
-.Suppliertab ~ .Registertab:hover {
-    box-shadow: 0px 0px 10px #2196f3;
-    color: #fff;
 }
 .modal-footer button{
     background-color: #36cbf0 !important;
@@ -306,22 +331,54 @@ border-radius: 5px;
     box-shadow: 0px 0px 10px #2196f3;
 }
 
-
+ .mob_font_14px , .mob_font_14px p{
+       font-size: 14px;
+   }
   
   @media(max-width: 767px){
+  .mobnopadd{
+  padding:0px;
+  }
      .createmyalbum  h2{
         font-size: 22px;
      }
      .createmyalbum span{
         font-size: 14px;
   }
+  .serchbox button {
+    padding: 0px;
+    margin-left:10px;
+    }
+.serchbox button i {
+    padding: 11px 10px;
+    float: left;
+    }
+  .serchbox button span{
+display:none;
+}
   .serchbox input {
-    width: 100%;
-    margin-bottom: 15px;
- 
+   width: 75%;
    }
-   .tabbingdesign li{
-    margin-right: 43px;
+.locat_tag{padding-left:0px;}
+.locat_tag i, .start_time i{
+float:left;
+height:30px;
+padding:0px;
+position:relative;
+left:0px;
+   }
+   .card-block {
+   padding:10px;
+   }
+   .textboxevent{
+   padding:0px!important;
+   }
+   .textboxevent div{
+   padding:0px;
+   }
+   .textboxevent table td{
+   display:block;
+   width:100%;
    }
    .nopadtopbot{
     padding-bottom: 10px !important;
@@ -332,7 +389,7 @@ border-radius: 5px;
    .start_time{
        display: inline-block;
    }
-   .mob_font_13px{
-       font-size: 13px !important;
+   .mob_font_12px , .mob_font_12px p{
+       font-size: 12px!important;
    }
 }

@@ -27,12 +27,16 @@ export class EventListComponent implements OnInit {
   $(".Suppliertab").click(function(){
     $("#filter").show();
     $("#action").hide();  
+    $(".Suppliertab").addClass("selected"); 
+    $(".Registertab").removeClass("selected");  
   
   });
 
     $(".Registertab").click(function(){
     $("#filter").hide();
-    $("#action").show();  
+    $("#action").show();
+    $(".Suppliertab").removeClass("selected"); 
+    $(".Registertab").addClass("selected");  
   
   });
   }

@@ -25,10 +25,17 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
 // import { StatisticsComponent } from './statistics/statistics.component';
 // import { MyAccountComponent } from './my-account/my-account.component';
 // import { MessageComponent } from './message/message.component';
+
+//  import { ReviewComponent } from './review/review.component';
+//  import { EventComponent } from './event/event.component';
+
+
 ///import { Albumsetting2Component } from './albumsetting2/albumsetting2.component';
 
 //import { MailsearchComponent } from './mailsearch/mailsearch.component';
+
 //import { EventListComponent } from './event-list/event-list.component';
+
 
 
 //import { PortfolioviewComponent } from './portfolioview/portfolioview.component';
@@ -77,6 +84,10 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
         // MessageComponent,
 
         // ReviewComponent,
+        // EventComponent,
+
+
+        // ReviewComponent,
          //EventComponent,
          //EnquiriesComponent,
          //StorefrontComponent,
@@ -86,6 +97,7 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
 
         // Albumsetting2Component,
         // MailsearchComponent,
+
         // EventListComponent,
 
         // PortfolioviewComponent,

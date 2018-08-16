@@ -16,7 +16,7 @@ export class NavemenuComponent implements OnInit {
 
   ngOnInit() {
   
-    
+    $.getScript('./assets/js/navtitle.js');
     $(document).ready(function(){
     $('.togglebtnmenu').on('click', function(){
      //alert("h1");

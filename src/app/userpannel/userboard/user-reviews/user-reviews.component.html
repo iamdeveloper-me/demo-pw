@@ -5,27 +5,34 @@
   <div class="col-sm-12">
   <div class="man_info">
     <h2 class="martop20px"> Reviews </h2>
-     <div class="man_img">
-       <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> <span class="revie_name"> <strong> Peeter Parker </strong> </span>
+    <div *ngFor="let review of reviewArray" >
+      <div class="man_img" >
+        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> 
+        <span class="revie_name"> <strong> {{review.sendByFullName}} Peeter Parker </strong> <br>
+        <h5>{{review.sendByEmail}}</h5>
+        </span>
+        <p class="date">{{review.dateAddedOnString}}</p>
+        <div class="rating_star">
+            <rating [(ngModel)]="review.rating"></rating>
+            <!-- <p>Rate: <b>{{review.rating}}</b></p> -->
+            <!-- <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>  -->
+            <span class="weeks_ago"> <strong> 2 weeks ago   </strong>  </span>
+            
+        </div>
+        <p> {{review.comments}} Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
 
-       <div class="rating_star">
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span> 
-          <span class="weeks_ago"> <strong> 2 weeks ago   </strong>  </span>
-          
-       </div>
-       <p> Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
-
-       <div class="btn_button ">
-         <p> <span><i class="material-icons">thumb_up</i> </span> <span class="share_i"> <i class="material-icons"> share </i> <b> Share </b>  </span>  </p>
-       </div>
-     </div>
-
-     <div class="man_img first_rew">
-        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> <span class="revie_name"> <strong> Peeter Parker </strong> </span>
+        <div class="btn_button ">
+          <p> <span><i class="material-icons">thumb_up</i> </span> <span class="share_i"> <i class="material-icons"> share </i> <b> Share </b>  </span>  </p>
+        </div>
+      </div>
+      <br>
+    </div>
+     <!-- <div class="man_img first_rew">
+        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> <span class="revie_name" > <strong> Peeter Parker </strong> </span>
 
         <div class="rating_star">
            <span class="fa fa-star checked"></span>
@@ -41,7 +48,7 @@
         <div class="btn_button ">
           <p> <span><i class="material-icons">thumb_up</i> </span> <span class="share_i"> <i class="material-icons"> share </i> <b> Share </b> </span>   </p>
         </div>
-      </div>
+      </div> -->
 
      
 

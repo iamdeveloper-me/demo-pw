@@ -128,17 +128,17 @@ $(".tikright").click(function(){
     
 //loginpage
 loadScript(){ 
-    $("#panel9").addClass( "in");
-    $("#panel9").addClass( "active");
-    $("#panel9").addClass( "show");
+    $("#panel9").removeClass( "in");
+    $("#panel9").removeClass( "active");
+    $("#panel9").removeClass( "show");
     $("#panel7").removeClass( "active");
     $("#panel7").removeClass( "show");
     $("#panel7").removeClass( "in");
-    $("#panel8").removeClass( "in");
-    $("#panel8").removeClass( "active");
-    $("#panel8").removeClass( "show");
-   $(".vendorlogin").show();
-   $(".customerlogin").hide();
+    $("#panel8").addClass( "in");
+    $("#panel8").addClass( "active");
+    $("#panel8").addClass( "show");
+//    $(".vendorlogin").show();
+//    $(".customerlogin").hide();
    
    }
    userin(){
@@ -151,8 +151,8 @@ loadScript(){
    $("#panel8").removeClass( "in");
    $("#panel8").removeClass( "active");
    $("#panel8").removeClass( "show");
-   $(".vendorlogin").hide();
-   $(".customerlogin").show();
+//    $(".vendorlogin").hide();
+//    $(".customerlogin").show();
    }
 //end
     

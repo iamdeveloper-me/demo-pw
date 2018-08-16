@@ -6,7 +6,6 @@
       float: right;
       margin-top: 10px !important;
   }
-
   .list-group .list-group-item:first-child {
       -webkit-border-top-left-radius: 0.125rem;
       border-top-left-radius: 0.125rem;
@@ -298,11 +297,13 @@ textarea.form-control, textarea.form-control{
     text-align: left !important;
 }
 .custom-form{
-  
-    padding-top: 20px;
     margin-bottom: 30px !important;
     padding-bottom: 20px;
 }
+.custom-form card{
+    margin-top:0px;
+}
+.martop10px{margin-top:10px;}
 .card-block{
     text-align: left !important;
     padding-left: 0;
@@ -329,12 +330,18 @@ height:400px;
 }
 .acce_time1{
 float:left;
-max-width:50px;
+width:50px;
+}
+.edit_hide{
+    padding:10px 0px;
+    border-bottom:1px solid #e5e5e5;
+    cursor: pointer;
+    overflow: hidden;
 }
 .acce_time1 .material-icons{
-    left: 12px !important;
-    position: absolute !important;
-    top: 5px !important;
+    position:absolute;
+    left:0px;
+    top:5px;
 }
 .custom-form .card .card-body{
     padding:10px 0px!important;
@@ -365,10 +372,10 @@ max-width:50px;
     cursor: pointer;
 }
 .edit_btn{
-    float: right;
-    cursor: pointer;
-    display: none
-   
+    display: none;
+    position:absolute;
+    top: 0px;
+    right: 0px;
 }
 .edit_hide:hover .edit_btn{
     display: block;
@@ -434,6 +441,9 @@ float: left;
 .phone_icon1:hover .edit_btn1{
     display:block;
 }
+.phone_icon1 .edit_hide{
+    padding-bottom: 20px;
+}
 .digi_edit{
     margin-top: -24px;
     margin-right: -18px;
@@ -485,7 +495,7 @@ float: left;
     border: none !important;
 }
 .modal-footer button:hover{
-    background: #e72e77 !important;
+    box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.3)!important;
 
 }
 .county_addres{
@@ -578,134 +588,243 @@ float: left;
 .new_location .col-sm-8{
     padding-left: 0;
 }
+h4.mainhead{
+    line-height:40px;
+}
 .map_new_loc{
     line-height: 40px;
 }
 .endent_10px{
     text-indent: 10px;
 }
+.img-section iframe{
+height:250px;
+}
+.digi_btn{
+    position: absolute;
+    right: 16px;
+    top: 20px;
+}
+
+.bornone{
+border-bottom:0px solid #fff!important;
+}
+.martopbot15px{
+    margin: 15px 0px;
+}
+.card button.borderbtnonly{
+    background-color: #36cbf0  !important; 
+    padding: 5px 10px;
+}
+.card button.borderbtnonly:hover{
+      box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.3)!important;
+}
+
+.overhidden{
+overflow:hidden!important;
+}
+.font80px{
+    font-size:80px;
+}
+.addlocationbox{
+    padding: 30px 0px;
+}
+
+/* Custom Radio Button Start*/
+
+.radiotextsty {
+  color: #A5A4BF;
+  font-size: 18px;
+}
+
+.customradio {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 0px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.customradio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  background-color: white;
+  border-radius: 50%;
+  border:1px solid #BEBEBE;
+}
+
+/* On mouse-over, add a grey background color */
+.customradio:hover input ~ .checkmark {
+  background-color: transparent;
+}
+
+/* When the radio button is checked, add a blue background */
+.customradio input:checked ~ .checkmark {
+  background-color: white;
+  border:1px solid #BEBEBE;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.customradio input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.customradio .checkmark:after {
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #A3A0FB;
+}
+
+/* Custom Radio Button End*/
+
 
 @media(max-width:767px){
- .img-section iframe{
-width:100%;
-height:300px;
-}   
-.phonepopuphead{
-    margin-left:20px!important;
-}
-#phone .col-xs-2{
-    float:left;
-    width:30%;
-}  
-#phone .col-xs-10{
-    float:left;
-    width:69%;
-} 
-.col-xs-10{
-    float:left;
-    width: calc(100% - 50px);
-} 
-.weekboxinput div.col-xs-8{
-	width: 70%!important;
-	float: left;
-}
-.edit_btn, .edit_btn1{
-    display:block;
-    position:absolute;
-    top:0px;
-    right:5px;
-}
-.col-xs-5-mob{
-    width:40%;
-    float:left;
-}
-.col-xs-7-mob{
-    width:60%;
-    float:left;
-}
-.registration-date-time{
-    max-width:42%;
-    float:left;
-    margin:0px 5px 0px 0px;
-}
-.loca_hours .col-sm-2{
-   float:left;
-   width:25%; 
-   padding-left:0px!important;
-}
-.loca_hours .col-sm-3{
-   float:left;
-   width:20%; 
-   padding-left:0px!important;
-}
-.textopenclose{
-    display:none;
-}
-.ui_switch{margin-right:0px;}
-.loca_hours .col-sm-7{
-   float:left;
-   width:55%; 
-}
-.registration-date{
-    margin-bottom:0px!important;
-}
-.modal-dialog{
-    max-width:95%!important;
-}
-.weekboxinput div.col-xs-4{
-	width: 30%!important;
-	float: left;
-}
-.border_left_div2{
-margin-bottom: 20px !important;
-border-right: 1px solid #ccc !important;
-}
-    .col-xs-6{
-    width: 50%!important;
-    float: left;
-    }
-    .digi_edit{
-    margin-top: -20px !important;
-    }
-    .border_left_div1{
-        border-left: 1px solid #ccc !important;
-        margin-top: 20px !important;
-    }
-    .custom-form{
-        padding-bottom: 0px !important;
-    }
-    .border_left_div{
-        min-height: 140px !important;
-    }
-    
-    .mainhead{
-        font-size: 20px;
-        font-weight: 300;
-    }
-    .switbtn ui-switch{
-        margin-left: 5px;
-    }
-
-    .switbtn{
-       
-        margin-top: 4px !important;
-    }
-    .img_overlay{
-        width: 100%;
-    }
-    .phone_icon1 .glyphicon-earphone{
-        top: 40px !important;
+    .img-section iframe{
+   width:100%;
+   height:300px;
+   }
+   .edit_hide .col-11{float:right;}
+   .phonepopuphead{
+       margin-left:20px!important;
+   }
    
-    }
-    .phone_icon1 .glyphicon-phone {
-        top: 68px !important;
-     
-    }
-    .new_location .col-xs-8{
-        width: 70%;
-    }
-    .new_location .col-xs-4{
-        width: 30%;
-    }
-
-}
+   .weekboxinput div.col-xs-8{
+       width: 70%!important;
+       float: left;
+   }
+   .edit_btn, .edit_btn1{
+       display:block;
+       position:absolute;
+       top:0px;
+       right:5px;
+       background: none!important;
+   }
+   
+   .paddtop15px{
+       padding-top: 15px!important;
+   }
+   .col-xs-5-mob{
+       width:40%;
+       float:left;
+       padding-left:15px!important;
+   }
+   .col-3, .col-9{
+       float: left;
+   }
+   .col-xs-7-mob{
+       width:60%;
+       float:left;
+   }
+   .registration-date-time{
+       max-width:42%;
+       float:left;
+       margin:0px 5px 0px 0px;
+   }
+   .loca_hours .col-sm-2{
+      float:left;
+      width:25%; 
+      padding-left:0px!important;
+   }
+   .loca_hours .col-sm-3{
+      float:left;
+      width:20%; 
+      padding-left:0px!important;
+   }
+   .textopenclose{
+       display:none;
+   }
+   .ui_switch{margin-right:0px;}
+   .loca_hours .col-sm-7{
+      float:left;
+      width:55%; 
+   }
+   .registration-date{
+       margin-bottom:0px!important;
+   }
+   .modal-dialog{
+       max-width:95%!important;
+   }
+   .weekboxinput div.col-xs-4{
+       width: 30%!important;
+       float: left;
+   }
+   .border_left_div2{
+   margin-bottom: 20px !important;
+   border-right: 1px solid #ccc !important;
+   }
+       .col-xs-6{
+       width: 50%!important;
+       float: left;
+       }
+       .digi_edit{
+       margin-top: -20px !important;
+       }
+       .border_left_div1{
+           border-left: 1px solid #ccc !important;
+           margin-top: 20px !important;
+       }
+       .custom-form{
+           padding-bottom: 0px !important;
+       }
+       .border_left_div{
+           min-height: 140px !important;
+       }
+       
+       .mainhead{
+           font-size: 20px;
+           font-weight: 300;
+       }
+       .switbtn ui-switch{
+           margin-left: 5px;
+       }
+   
+       .switbtn{
+          
+           margin-top: 4px !important;
+       }
+       .img_overlay{
+           width: 100%;
+       }
+       .phone_icon1 .glyphicon-earphone{
+           top: 40px !important;
+      
+       }
+       .phone_icon1 .glyphicon-phone {
+           top: 68px !important;
+        
+       }
+       .new_location .col-xs-8{
+           width: 70%;
+       }
+       .new_location .col-xs-4{
+           width: 30%;
+       }
+   
+   }

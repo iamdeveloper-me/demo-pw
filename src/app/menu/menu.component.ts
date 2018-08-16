@@ -34,6 +34,7 @@ export class MenuComponent implements OnInit {
         obs.subscribe(data => {
        this.supArray =data as string[]; console.log(data) 
         })
+
       
              //loginpage
      $("#id9").hide();
@@ -70,7 +71,6 @@ export class MenuComponent implements OnInit {
         $(".slidemenu").removeClass("outslide");
         $(".slidemenu").addClass("inslide"); 
         $(".blackoverlaymain").addClass( "blockmobile"); 
-
     });
 
     $(".navbtntik").click(function(){
@@ -81,10 +81,7 @@ export class MenuComponent implements OnInit {
         // setTimeout(function() { $(".slidemenu").removeClass("outslide") }, 500);
         $(".slidemenu").removeClass("inslide"); 
         $(".blackoverlaymain").removeClass( "blockmobile"); 
-
     });
-    
-
        $(".nav-item, .blackoverlaymain").click(function(){
        //alert("hi");
         $(".navbar-toggler").show(); 
@@ -116,6 +113,7 @@ $(".tikright").click(function(){
         $(".slidemenu").removeClass("rtslide");
         $(".blackoverlaymain").removeClass( "blockmobile"); 
     });
+
     $(window).scroll(function () {
     var sc = $(window).scrollTop()
     if (sc > 100) {

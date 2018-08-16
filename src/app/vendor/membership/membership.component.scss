@@ -31,6 +31,9 @@ Pricing table
   padding-left:15px;
   padding-right:15px;
 }
+.greentext{
+  color:green;
+}
 .list-group-item i{
   float:left;
   margin-top:5px;
@@ -45,7 +48,7 @@ Pricing table
     list-style: none;
     display: inline-block;
     float: left;
-    margin: 0px;
+    margin: 0px 0px 10px 0px;
     padding: 3px 15px;
     cursor: pointer;
     width: 43%;
@@ -54,11 +57,29 @@ Pricing table
     border-radius: 30px;
     margin: 0px 10px;
 }
+.tabbingdesign li:first-child{
+border-radius:30px 0px 0px 30px;
+margin-right:0px;
+}
+.tabbingdesign li:last-child{
+border-radius:0px 30px 30px 0px;
+margin-left:0px;
+}
 .tabbingdesign li.selected{
   background-color: #36cbf0 !important;
     color: #fff;
 }
+.panel.card{
+  box-shadow:0px 0px 20px rgba(0, 0, 0, 0.2)!important;
+}
 .tabbingdesign li:hover{
+}
+.list-group .list-group-item{
+padding:0px 30px!important;
+font-size:14px;
+}
+.list-group .list-group-item i{
+  margin-right:10px;
 }
 .navbar{
   width: 100%;
@@ -175,117 +196,70 @@ margin-top: 10px!important;
       color: #ffffff!important;
       background:#e72e77!important;
   }
-
-  /* pricing */
-  
-    /* COMMON PRICING STYLES */
-    .panel.price,
-    .panel.price>.panel-heading{
-      border-radius:0px;
-       -moz-transition: all .3s ease;
-      -o-transition:  all .3s ease;
-      -webkit-transition:  all .3s ease;
-    }
-    .panel.price:hover{
-      box-shadow: 0px 0px 30px rgba(0,0,0, .2);
-    }
-    .panel.price:hover>.panel-heading{
-      box-shadow: 0px 0px 30px rgba(0,0,0, .2) inset;
-    }
-    
-        
-    .panel.price>.panel-heading{
-      box-shadow: 0px 5px 0px rgba(50,50,50, .2) inset;
-      text-shadow:0px 3px 0px rgba(50,50,50, .6);
-    }
-      
-    .price .list-group-item{
-      border-bottom-:1px solid rgba(250,250,250, .5);
-    }
-    
-    .panel.price .list-group-item:last-child {
-      border-bottom-right-radius: 0px;
-      border-bottom-left-radius: 0px;
-    }
-    .panel.price .list-group-item:first-child {
-      border-top-right-radius: 0px;
-      border-top-left-radius: 0px;
-    }
-    
-    .price .panel-footer {
-      color: #fff;
-      border-bottom:0px;
-      background-color:  rgba(0,0,0, .1);
-      box-shadow: 0px 3px 0px rgba(0,0,0, .3);
-    }
-    
-    
-    .panel.price .btn{
-      box-shadow: 0 -1px 0px rgba(50,50,50, .2) inset;
-      border:0px;
-    }
-    
-  /* green panel */
-  
-    
-    .price.panel-green>.panel-heading {
-      color: #fff;
-      background-color: #57AC57;
-      border-color: #71DF71;
-      border-bottom: 1px solid #71DF71;
-    }
-    
-      
-    .price.panel-green>.panel-body {
-      color: #fff;
-      background-color: #65C965;
-    }
-        
-    
-    .price.panel-green>.panel-body .lead{
-        text-shadow: 0px 3px 0px rgba(50,50,50, .3);
-    }
-    
-    .price.panel-green .list-group-item {
-      color: #333;
-      background-color: rgba(50,50,50, .01);
-      font-weight:600;
-      text-shadow: 0px 1px 0px rgba(250,250,250, .75);
-    }
-    /* grey price */
-    
-  
-    .price.panel-grey>.panel-heading {
-      color: #fff;
-      background-color: #6D6D6D;
-      border-color: #B7B7B7;
-      border-bottom: 1px solid #B7B7B7;
-    }
-    
-      
-    .price.panel-grey>.panel-body {
-      color: #fff;
-      background-color: #808080;
-    }
-    
-
-    
-    .price.panel-grey>.panel-body .lead{
-        text-shadow: 0px 3px 0px rgba(50,50,50, .3);
-    }
-    
-    .price.panel-grey .list-group-item {
-      color: #333;
-      background-color: rgba(50,50,50, .01);
-      font-weight:600;
-      text-shadow: 0px 1px 0px rgba(250,250,250, .75);
-    }
-    
-    .white_text{color: #ffffff !important;}
-    .list-group-item{padding: 5px !important;}
-
-    .panel-body.text-center{padding: 10px 0px 0px 0px !important;}
-
+.panel-heading {
+  padding-top:30px;
+  padding-bottom:30px;
+}
+.mostpopulartext{
+font-size: 14px !important;
+    color: orange;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 5px;
+}
+.vouchercodeinput{
+  height:34px;
+  padding:0px 5px;
+}
+.btnbluecode{
+   border-radius: 0px;
+    box-shadow: 0px 0px 0px;
+    padding: 0px 10px;
+    height: 34px;
+    margin: -5px 0px 0px -1px;
+    background:#36cbf0;
+    color:#fff!important;
+    outline:none;
+}
+.panel-footer{
+  background:#fff!important;
+  padding:25px 0px;
+}
+.btnchoosetik{
+  background:#36cbf0!important;
+  color:#fff!important;
+  border-radius:20px!important;
+  text-transform:uppercase!important;
+}
+.panel-heading h3{
+  font-weight:bold;
+  font-size:24px;
+}
+.panel-heading h3 span{
+  font-weight:normal;
+  font-size:18px;
+}
+.pricebig{
+  font-size:45px!important;
+  padding:0px 2px;
+}
+.lineheight16px{
+  line-height:16px!important;
+}
+.pricesec{
+  position:relative;
+  text-align:center;
+}
+.basiccard{
+  border-radius:10px;
+  background:#e5e5e5;
+  margin:0px auto;
+  max-width:50%;
+  font-size:14px;
+  text-align:center;
+  margin-top:18px;
+}
     /* card page */
 
     .credit-card-box .panel-title {
@@ -351,4 +325,13 @@ margin-top: 10px!important;
       .btn-primary{
         background-color: #36cbf0 !important;
         color: #fff;
+        border: none!important;
       }
+      .btn-primary:hover{
+        box-shadow: 0px 0px 10px #2196f3;
+      }
+@media only screen and (max-width: 767px) {
+    .cardimgbox{
+    padding-right:0px!important;
+    }
+}

@@ -5,35 +5,31 @@
     <div id="page-content-wrapper">
      <app-navemenu></app-navemenu>    
     <router-outlet></router-outlet> 
-
+<div class="col-sm-12">
+  <div class="card martop0px">
     <div class="container-fluid viewallalbums">
         <div class="col-sm-12">
-           <a routerLink= "../gallery" class="pull-left">
-            <i class="material-icons"> arrow_back_ios </i> 
-All Portfolio
+           <a routerLink= "../gallery" class="pull-left iconfloatleft">
+            <i class="material-icons"> arrow_back_ios </i> <span>Portfolio & Albums</span>
            </a>  
+            <div class="subheadtik">Portfolio</div>
            <a class="sett_icon pull-right" routerLink="../settingalbum">
-            <i class="material-icons "> settings</i>
+            <i class="material-icons ">settings</i>
           </a>
-        </div>
-  
-        
-      
+        </div>  
   </div>
-       <div class="container-fluid photo_gallery">
-          
-            
-        <section class="p-0 container" id="portfolio">
-             
+   <div class="container-fluid photo_gallery">
+     <section class="p-0 container" id="portfolio">
            <div class="">
                       <div class="drop_zone text-center">
                           <a  (click)="open(content)"> <i class="material-icons">camera_alt</i> </a>  
                           <p>Click to add or drop image here</p>
                       </div>
                     </div>
-  <div class="container photos_gallery">
-    <div class="row">
-      <div class='list-group gallery row firt_row'>
+        <div class="container photos_gallery">
+
+        <div class="row">
+        <div class='list-group gallery row firt_row'>
           <div class="col-lg-3 col-md-4 col-xs-6 thumb hovereffect">
          
               <a class="thumbnail" href="javascript:void(0)" >
@@ -150,14 +146,12 @@ All Portfolio
           </div> <!-- list-group / end -->
   
   
-    </div> <!-- row / end -->
-     
-  </div> <!-- container / end -->
-  
-          </section>
-         
+        </div> <!-- row / end -->
+        </div> <!-- container / end -->
+     </section>
+         </div>
        </div>    	
-       
+       </div>
    </div>	 
   </div> 
   <ng-template #content let-c="close" let-d="dismiss">

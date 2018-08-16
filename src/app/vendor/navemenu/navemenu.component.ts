@@ -9,10 +9,14 @@ import { TranslateService } from '@ngx-translate/core';
 export class NavemenuComponent implements OnInit {
     currentLang = 'en';
     toggleClass = 'ft-maximize';
+
   constructor(public translate: TranslateService) { const browserLang: string = translate.getBrowserLang();
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : 'en'); }
-  
+
+
   ngOnInit() {
+  
+    
     $(document).ready(function(){
     $('.togglebtnmenu').on('click', function(){
      //alert("h1");
@@ -28,8 +32,15 @@ export class NavemenuComponent implements OnInit {
      $('.togglebtnmenu').toggleClass('cross');
       $('.blackoverlaymobile').toggleClass('blockmobile');
       $('#page-content-wrapper').toggleClass('overhidden');
-       $('#wrapper').toggleClass('toggled');
     });
+   
+    if(window.location.pathname == '/vendor/dashboard' ) {
+       //name = "cdscvd";
+      } 
+      else {
+        if(window.location.pathname == '/vendor/business' ) {
+        //   name = 'dcdc';
+        }  }
 });
 
   }

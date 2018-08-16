@@ -135,6 +135,18 @@ import { PortfolioviewComponent } from './vendor/portfolioview/portfolioview.com
 import { ViewPhotoAlbumsComponent } from './vendor/view-photo-albums/view-photo-albums.component';
 import { AlbumsettingComponent } from './vendor/albumsetting/albumsetting.component';
 import { EventListComponent } from './vendor/event-list/event-list.component';
+import { Albumsetting2Component } from './vendor/albumsetting2/albumsetting2.component';
+import { MailsearchComponent } from './vendor/mailsearch/mailsearch.component';
+import { EnquiriesComponent } from './vendor/enquiries/enquiries.component';
+import { StorefrontComponent } from './vendor/storefront/storefront.component';
+import { ActionsComponent } from './vendor/actions/actions.component';
+import { ReachComponent } from './vendor/reach/reach.component';
+import { GallerybarComponent } from './vendor/gallerybar/gallerybar.component';
+
+import { EventComponent } from './vendor/event/event.component';
+import { ReviewComponent } from './vendor/review/review.component';
+
+
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -160,8 +172,15 @@ export function getAuthServiceConfigs() {
 @NgModule({
     declarations: [
         AppComponent,
+        EnquiriesComponent,
         NgbdModalContent,
+        StorefrontComponent,
+        ReachComponent,
+        ActionsComponent,
+        GallerybarComponent,
         AllPromotionPageComponent,
+        Albumsetting2Component,
+        MailsearchComponent,
         EventListComponent,
         AlbumsettingComponent,
         PortfolioviewComponent,
@@ -253,7 +272,9 @@ export function getAuthServiceConfigs() {
         ReviewandfeedbackComponent,
         AdmincalenderComponent,
         MininavbarComponent,
-        PortfolioviewphotoComponent
+        PortfolioviewphotoComponent,
+        EventComponent,
+        ReviewComponent
 
   ],
     imports: [

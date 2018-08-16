@@ -36,9 +36,14 @@
     color: #fff;
 }
 .btn-secondary{
-    background-color: #e72e77 !important;
-    border-color: #e72e77 !important ;
+    background-color: #36cbf0  !important;
+   
 }
+.btn-secondary:hover{
+
+box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.3)!important;
+}
+
 #main-input{width:250px;}
 .input-place{
     position: absolute;top:35px;left: 20px;font-size:23px;color:gray;}
@@ -294,8 +299,13 @@ width: 55px;
     border-radius: 100%;
     position: relative;
 }
+.social i.fa{
+    margin-right:15px!important;
+    width:42px;
+}
 .busines_img{
     margin-bottom: 40px;
+    position:relative;
 }
 .busines_img a{
  color: #fff !important;
@@ -346,6 +356,9 @@ width: 55px;
 .busines_img:hover .busi_camera i{
     display:block;
 }
+.margintop0px{
+    margin-top:0px;
+}
 .widt_incres{
     width: 85%;
     cursor: pointer;
@@ -368,6 +381,9 @@ width: 55px;
     cursor: pointer;
     position: relative;
 }
+.on_hover{
+    cursor:pointer!important;
+}
 .on_hoverdiv:hover .editbtn{
     display: block !important;
 }
@@ -378,28 +394,44 @@ width: 55px;
     cursor: pointer;
 }
 .switbtn{
-    float: right !important;
+   
+}
+.afternone::after{
+display:none!important;
 }
 .noproblum{
-    border: 1px solid #ccc;
-    margin-top: 20px;
     padding: 10px;
     border-radius:5px;
+    max-width: 49%;
+    text-align: left;
+    margin: 0px auto;
+}
+.social span{
+    display:block;
 }
 .noproblum span{
     display: inline-block;
-    color:blue;
+    color:#fff;
     cursor: pointer;
+    background:#2196f3;
+    border-radius:5px;
+    padding:3px 10px;
 }
 .noproblum span:hover{
-    color:#000;
+box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.5);
+}
+.social-connect{
+    margin-bottom:26px!important;
 }
 @media(max-width:767px){
 .social-connect{
     padding: 0px;
 }
-.switbtn{
-    display: none;
+.mobmargintop30px{
+    margin-top:30px!important;
+}
+.noproblum{
+    max-width: 100%;
 }
 .mobnopadd{
     padding: 0px!important;
@@ -444,19 +476,23 @@ width: 55px;
        width: 100%;
        margin-top: -50px;
     }
-    .on_hover{
-        float: left;
-        margin-left: 100px;
-    }
    
-    
+    .social i.fa-2x  {
+    width:30px;
+    font-size: 30px;
+}
+
 }
 
 //modal
 .modal-footer button{
-    background: #e72e77;
+    background: #36cbf0 ;
     color: #fff;
     border: none !important;
+  }
+  .modal-footer button:hover{
+   box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.5)!important;
+ 
   }
   .modal.fade.show{
     background: rgba(0, 0, 0, 0.8)!important;
@@ -465,3 +501,7 @@ width: 55px;
   //modal text area 
   .textareaclass{    width: 91%;
     height: 149px;}
+
+    .width_60{
+        width: 40%;
+    }

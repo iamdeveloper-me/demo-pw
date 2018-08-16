@@ -1,4 +1,3 @@
-
 <div id="wrapper" class="toggled">
     <div id="sidebar-wrapper">
         <app-vendorsidebar></app-vendorsidebar>
@@ -17,9 +16,9 @@
   </div>
 </div>
 
-<div class="col-md-12">
 
-<div class="col-sm-4">
+
+<div class="col-sm-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Enquiries Vs Leads</h4>
@@ -33,9 +32,12 @@
                     </div>
                 </div>
             </div>
+            <div class="overlay" routerLink="../enquiry">
+                    <div class="text">ANALYSE DATA</div>
+                  </div>
         </div>
     </div>
-   <div class="col-sm-4">
+   <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Storefront Views</h4>
@@ -43,17 +45,23 @@
             </div>
             <div class="card-body">
                 <div class="card-block">
-                    <div class="height-400">
-                            <canvas height="400" baseChart class="chart" [datasets]="areaChartData" [labels]="areaChartLabels" [options]="areaChartOptions" [colors]="areaChartColors"
-                            [legend]="areaChartLegend" [chartType]="areaChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" ></canvas>
+                    <div id="area-chart1" class="height-400">
+                        <ngx-charts-area-chart [scheme]="areaChartColorScheme" [results]="areaChartMulti" [gradient]="areaChartGradient" [xAxis]="areaChartShowXAxis"
+                            [yAxis]="areaChartShowYAxis" [legend]="areaChartShowLegend" [showXAxisLabel]="areaChartShowXAxisLabel"
+                            [showYAxisLabel]="areaChartShowYAxisLabel" [xAxisLabel]="areaChartXAxisLabel" [yAxisLabel]="areaChartYAxisLabel"
+                            [autoScale]="areaChartAutoScale" [curve]="areaChartLineInterpolation" (select)="onSelect($event)">
+                        </ngx-charts-area-chart>
                     </div>
                 </div>
             </div>
+            <div class="overlay" routerLink="../storefront">
+                    <div class="text">ANALYSE DATA</div>
+                  </div>
         </div>
     </div>
 
 
-    <div class="col-sm-4">
+    <div class="col-sm-12">
       <div class="card">
           <div class="card-header">
               <h4 class="card-title">Actions on Storefront</h4>
@@ -67,10 +75,13 @@
                   </div>
               </div>
           </div>
+          <div class="overlay" routerLink="../actionfront">
+                <div class="text">ANALYSE DATA</div>
+              </div>
       </div>
     </div>
    
- <div class="col-sm-4">
+ <div class="col-sm-12">
       <div class="card">
           <div class="card-header">
               <h4 class="card-title">Reach</h4>
@@ -84,10 +95,13 @@
                   </div>
               </div>
           </div>
+          <div class="overlay" routerLink="../reachbar">
+                <div class="text">ANALYSE DATA</div>
+              </div>
       </div>
     </div>
    
-   <div class="col-sm-4">
+   <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">My Gallery Views</h4>
@@ -101,11 +115,14 @@
                     </div>
                 </div>
             </div>
+            <div class="overlay" routerLink="../gallerybar">
+                    <div class="text">ANALYSE DATA</div>
+                  </div>
         </div>
     </div>
 
 
-</div>
+
 
 <div class="col-md-12">
 

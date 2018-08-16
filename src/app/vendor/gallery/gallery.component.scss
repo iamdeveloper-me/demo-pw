@@ -1,6 +1,4 @@
-
-
-  .nopadd{
+ .nopadd{
     padding:0px!important;
   }
  
@@ -25,6 +23,9 @@
 }
  .dropdown-menu.show.left35px{
  left:160px!important;
+ }
+  .dropdown-menu.show.leftless25px{
+ left:-100px!important;
  }
 .btnheadvendor{
     padding: 10px;
@@ -119,9 +120,6 @@ margin-top: 10px!important;
 
     .photo_gallery{
       background-color: transparent;
-    
-     
-      padding-bottom: 50px;
       padding-left:20px!important;
       padding-right:20px!important;
     }
@@ -237,7 +235,7 @@ border-radius:10px;
     padding: 5px 39px;
 }
 .upload_bt button:hover{
-    background-color: #e72e77;
+    box-shadow: 0px 0px 10px #2196f3;
 }
 .uplod_para{
     font-size: 11px !important;
@@ -260,12 +258,21 @@ border-radius:10px;
 .headin_gally{
     padding-top: 10px;
     border-bottom: 1px solid #ccc;
+} 
+.headin_gally h5{
+font-weight:bold;
+}
+
+.bold{
+    font-weight: bold;
+}
+.bordernone{
+    border: 0px solid #e5e5e5;
 }
 .port_row{
     background-color: #fff;
     margin-top: 20px;
     border-radius: 5px;
-    padding-top: 20px;
 }
 .port_row h4{
     padding: 10px;
@@ -282,19 +289,21 @@ border-radius:10px;
     color:#000!important;
     padding: 0px!important;
 }
-
+a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active{
+    border:1px solid #ddd;
+}
     .dropdown-toggle::after{
     display:none!important;
 }
 .port_row .zoom_effect {
    position: relative
 }
-.port_row .zoom_effect .over_like{
+.port_row .zoom_effect .over_like{    
     position: absolute;
     bottom: 23px;
     background: #fff;
-    width: calc(100% - 35px);
-    left: 19px;
+    width: calc(100% - 6px);
+    bottom: 2px;
     padding: 5px;
  }
  .over_like .flo_right{
@@ -308,7 +317,6 @@ border-radius:10px;
  -webkit-appreance:none!important;
  box-shadow:none!important;
  }
-
  .viev_all{
     margin-bottom: 30px;
  }
@@ -331,7 +339,7 @@ border-radius:10px;
     color: #fff;
 }
 .viev_all .btn:hover{
-    background-color: #e72e77;
+     box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.3)!important;
 }
 .colo_blue{
     background-color: #36cbf0 !important;
@@ -339,7 +347,7 @@ border-radius:10px;
     border: none;
 }
 .colo_blue:hover{
-    background-color: #e72e77 !important;
+     box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.3)!important;
     color: #fff;
 
 }
@@ -348,7 +356,6 @@ border-radius:10px;
     right: 5px;
     top: 5px;
     color: #ffffff !important;
-    z-index: 999999;
     background: none;
     font-size: 35px !important;
     border: 0px;
@@ -369,6 +376,9 @@ border-radius:10px;
 .overview .note{
     font-size: 16px;
 }
+.martop0px{
+    margin-top:0px;
+}
   @media(max-width: 767px){
     .firt_row .col-md-3{
       margin-bottom: 20px;
@@ -388,14 +398,9 @@ border-radius:10px;
    .mob_bot_20px{
        margin-bottom: 20px;
    }
-
    .dropdown-menu.show{
-    left:-80px!important;
+    left:-100px!important;
 }
- .dropdown-menu.show.left35px{
- left:-80px!important;
- }
-
    .zoom_effect .over_like{
     bottom: 2px !important;
    }
@@ -405,6 +410,8 @@ border-radius:10px;
    .headin_gally p{
        font-size: 14px !important;
    }
-
+.fancybox img{
+    width:100%;
+}
 }
 

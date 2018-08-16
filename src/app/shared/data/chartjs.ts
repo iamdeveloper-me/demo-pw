@@ -2,9 +2,10 @@
 
 export var lineChartData: Array<any> = [
 
-  { data: [65, 59, 80, 81, 56, 55, 40], label: 'My First dataset' },
-  { data: [28, 48, 40, 19, 86, 27, 90], label: 'My Second dataset' },
-  { data: [45, 25, 16, 36, 67, 18, 76], label: 'My Third dataset - No bezier' }
+  { data: [65, 59, 80, 81, 56, 55, 40], label: 'Calls' },
+  { data: [28, 48, 40, 19, 86, 27, 90], label: 'Contact Views' },
+  { data: [45, 25, 16, 36, 67, 18, 76], label: 'Bookmarked' },
+  { data: [35, 15, 16, 26, 47, 18, 46], label: 'Shares' }
 
 ];
 export var lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
@@ -80,6 +81,16 @@ export var lineChartColors: Array<any> = [
     lineTension: 0,
     fill: false,
     borderColor: "#FF7D4D",
+    pointBorderColor: "#FF7D4D",
+    pointBackgroundColor: "#FFF",
+    pointBorderWidth: 2,
+    pointHoverBorderWidth: 2,
+    pointRadius: 4,
+  },
+  {
+    lineTension: 0,
+    fill: false,
+    borderColor: "pink",
     pointBorderColor: "#FF7D4D",
     pointBackgroundColor: "#FFF",
     pointBorderWidth: 2,

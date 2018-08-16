@@ -17,6 +17,9 @@
     transition: 1s;
     position:inherit;
 }
+.nav-link a i.material-icons{
+  color: #000000!important;
+}
 .inslide{
     left:280px!important;
     position: fixed!important;
@@ -160,7 +163,7 @@ border:0px solid #fff!important;
 /* ======================sidebar */
 .togglebtnmenu{
     float: left;
-    background: transparent;
+    background: transparent!important;
     border: 0px solid #e5e5e5;
     box-shadow: none;
     width: 30px;
@@ -206,6 +209,10 @@ border:0px solid #fff!important;
     width: 100%;
     position: absolute;
     padding: 0px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
   }
   .card-body.collapse.show {
 visibility: inherit!important;
@@ -218,7 +225,9 @@ visibility: inherit!important;
   display: block;
   overflow: hidden;
 }
-
+.card{
+  box-shadow: none!important;
+}
 .bookmarkdesign .card{
   margin-bottom: 20px!important;
   border-bottom: 0px solid #fff;
@@ -258,7 +267,38 @@ visibility: inherit!important;
     display: none;
   }
 
+
+
+
+ .line1 {
+    width: 25px;
+    height: 2px;
+    background: #000;
+    position: absolute;
+    top: 15px;
+    /* left: 7px; */
+    border: 0px solid #fff;
+    }
+  .line2 {
+    width: 25px;
+    height: 2px;
+    background: #000;
+    position: absolute;
+    top: 21px;
+    /* left: 7px; */
+    border: 0px solid #fff;
+    }
+    .line3 {
+    width: 25px;
+    height: 2px;
+    background: #000;
+    position: absolute;
+    top: 27px;
+    /* left: 7px; */
+    border: 0px solid #fff;
+    }
 @media(min-width:768px) {
+
     #wrapper {
       padding-left: 0;
     }
@@ -340,56 +380,25 @@ visibility: inherit!important;
     overflow: hidden;
     position: fixed!important;
   }
-  .cross .line1 {
-width: 30px;
-    height: 30px;
-    border-bottom: 2px solid #000;
-    -webkit-transform: translateY(-20px)
- translateX(5px)
- rotate(40deg);
-    position: absolute;
-    top: 16px;
-    right: 4px;
+  .line1, .line2, .line3{
+    transition: all 1s;
+  }
+  .cross .line1
+   {
+    transform: rotate(45deg);
+    transform-origin: 10% 10%;
+    background: #fff!important;
     }
     .cross  .line2 {
-        display: none;
+      opacity: 0;
     }
-    .cross .line3 {
-      width: 30px;
-    height: 30px;
-    border-bottom: 2px solid #000;
-    -webkit-transform: translateY(20px)
- translateX(5px)
- rotate(-40deg);
-    position: absolute;
-      top: -25px;
-    left: -7px;
+    .cross .line3 {  
+    transform: rotate(-45deg);
+    transform-origin: 10% 90%;
+    background: #fff!important;
     }
   }
- .line1 {
-    width: 30px;
-    height: 30px;
-    border-bottom: 2px solid #000;
-    position: absolute;
-    top: -14px;
-    right: 8px;
-    }
-  .line2 {
-   width: 30px;
-    height: 30px;
-    border-bottom: 2px solid #000;
-    position: absolute;
-    top: -6px;
-    right: 8px;
-    }
-    .line3 {
-    width: 30px;
-    height: 30px;
-    border-bottom: 2px solid #000;
-    position: absolute;
-    top: 2px;
-    left: 7px;;
-    }
+
 
 .navbtntik .line11, .tikrightclose .line11 {
 width: 30px;

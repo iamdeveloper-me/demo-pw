@@ -1,9 +1,8 @@
-
 <div id="wrapper" class="toggled">
     <div id="sidebar-wrapper">
             <app-vendorsidebar></app-vendorsidebar>
     </div>
-    <div id="page-content-wrapper">    
+    <div id="page-content-wrapper">
         <div class="container-fluid nopadd">                    
             <app-navemenu></app-navemenu>
             <div class="container-fluid Analytics">
@@ -13,55 +12,57 @@
                     <div class="col-md-12 card">
                       <div class="card-header border_bottom_none card-header-warning card-header-icon"> 
                         <p class="card-category comp_top text-center"> Profile Completion  </p>
-                        <p class="card-category comp_topsubhead text-center">Complete the sections below to enable activation of your statement</p>
+                        <p class="card-category comp_topsubhead text-center">Complete the sections below to enable activation of your view storefront</p>
                       </div>
                       <div class="col-md-12 prof_martop">
-                        <div class="progress">
+                        <div class="progress nopadd col-sm-11 col-10">
                           <div class="progress-bar" role="progressbar" aria-valuenow="70"
                                 aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                <span class="sr-only">70% Complete</span>
                           </div>
                         </div>
+                        <div class="progresstext col-sm-1 col-2 bluetext text-center"><strong>70%</strong></div>
+
+                        <div class="clearfix"></div>
                         <div class="profileleftbox prof_padbot"> 
                             <div class="col-md-2"></div> 
                             <div class="col-md-5  displya_name">
                                 <ul>
-                                  <li class="done"> 
+                                  <li class="done" > 
                                     <i class="material-icons">check_circle</i>
-                                    <strong class="blacktext">Trading Name</strong>
+                                    <strong class="blacktext" ngbTooltip="Trading Name">Trading Name</strong>
                                     <button class="editbtn">Select to Edit</button>
                                   </li>
-                                  <li> 
+                                  <li data-target="#BusinessCover" data-toggle="modal" > 
                                     <i class="material-icons">error_outline</i>
-                                    <strong class="blacktext">Business Cover</strong> 
-                                    <button  class="editbtn" data-target="#BusinessCover" data-toggle="modal" type="button">Select to Edit</button>
+                                    <strong class="blacktext" ngbTooltip="Business Cover">Business Cover</strong> 
+                                    <button  class="editbtn">Edit</button>
                                   </li>
-                                  <li>
+                                  <li  data-target="#Description" data-toggle="modal">
                                   <i class="material-icons">error_outline</i> 
-                                    <strong class="blacktext">Description</strong>  
-                                    <button  class="editbtn" data-target="#Description" data-toggle="modal" type="button">Select to Edit</button>
+                                    <strong class="blacktext"  ngbTooltip="Description">Description</strong>  
+                                    <button  class="editbtn" type="button">Edit</button>
                                   </li>
                                 </ul>
                             </div>   
                             <div class="col-md-5 displya_name">
                                 <ul>
-                                  <li> 
+                                  <li  data-target="#Photos" data-toggle="modal" > 
                                     <i class="material-icons">error_outline</i>
-                                    <strong class="blacktext">Photos</strong>  
-                                    <button  class="editbtn" data-target="#Photos" data-toggle="modal" type="button">
-                                      Select to Edit</button>   
+                                    <strong class="blacktext" ngbTooltip="Photos">Photos</strong>  
+                                    <button  class="editbtn" type="button">
+                                      Edit</button>   
                                   </li>
-                                  <li> 
+                                  <li data-target="#Service" data-toggle="modal" > 
                                     <i class="material-icons">error_outline</i> 
-                                    <strong class="blacktext">Services</strong>     
-                                    <button  class="editbtn" data-target="#Service" data-toggle="modal" type="button">
-                                      Select to Edit</button>   
+                                    <strong class="blacktext" ngbTooltip="Services">Services</strong>     
+                                    <button  class="editbtn"  type="button">
+                                    Edit</button>   
                                   </li>
-                                  <li>
+                                  <li  data-target="#Location" data-toggle="modal"  >
                                     <i class="material-icons">error_outline</i> 
-                                    <strong class="blacktext">Location</strong>  
-                                    <button  class="editbtn" data-target="#Location" data-toggle="modal" type="button">
-                                      Select to Edit</button>  
+                                    <strong class="blacktext" ngbTooltip="Location">Location</strong>  
+                                    <button  class="editbtn" type="button">
+                                      Edit</button>  
                                   </li>
                                 </ul>
                             </div>
@@ -78,87 +79,111 @@
                     <div class="col-sm-5 nopadd maxheight335px">
                         <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" class="infoimg" alt="Profile picture"> 
                         <div class="viewstore">
-                          <a href="#">View Storefront</a>
+                          <a href="">View Storefront</a>
                         </div>
                     </div>
 
                     <div class="col-sm-7 nopadd maxheight335px mobileheightauto ">
                       <div class="martop15px"></div>
-                        <div class="col-sm-2 mobpadd10 edithovering">
-                          <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" class="oviewviewimgcircle" alt="Profile picture"> 
+
+                        <div class="col-sm-2 col-3 mobpadd10 edithovering">
+                            
+                          <img src="{{ angularLogo }}" class="oviewviewimgcircle" alt="Profile picture"> 
+
                           <button class="photoedit" data-target="#camera" data-toggle="modal" type="button"><i class="material-icons">camera</i></button>
                         </div>
-                      <div class="col-sm-10 mobpadd10 blacktext nopadd">
-                      <h2 class="font24px">Vision Photography</h2>
-                      <div class="overhiddenmob">
+                      <div class="col-sm-10 col-9 blacktext nopadd pull-left">
+                      <h2 class="titlehead"><strong>Vision Photography</strong></h2>
+                      <div class="overhiddenmob mobmartop15px">
                       <div class="col-xs-1 nopadd">
                         <i class="material-icons">location_on</i>
                       </div>
                       <div class="col-xs-8 nopadd edithovering">
-                        <p>{{currentLocation}}</p>
-                        <a>+ Add More</a>
-                          <button  class="editbtn " data-target="#currentLocation" data-toggle="modal" type="button">
-                            Location Edit</button>  
+                        <p data-target="#currentLocation" data-toggle="modal">{{currentLocation}}<br/>2 More Branches </p>
+                          <button  class="editbtn" type="button">Edit</button>  
                       </div>
-                      <div class="col-xs-3 nopadd prolinkmob">
-                        <a routerLink="../PromoteBusiness" class="font11px bluelink"><i class="material-icons">assessment</i> <span>Promote Business</span></a><br/>
+                      <div class="prolinkmob">
+                        <a routerLink="../PromoteBusiness" class="font11px bluelink">
+                          <i class="material-icons">assessment</i> <span>Promote Business</span></a><br/>
                           <a routerLink="../statistics" class="font11px bluelink"><i class="material-icons">equalizer</i> <span>Business Insight</span></a>
                       </div>
                     </div>
                       <div class="clearfix"></div>
-                      <div class="overhiddenmob">
+                      <div class="overhiddenmob" >
                         <div class="col-xs-1 nopadd">
                         <i class="material-icons">phone</i>
                       </div>
-                      <div class="col-xs-8 nopadd edithovering">
+                      <div class="col-xs-8 nopadd edithovering"  data-target="#PhoneEdit" data-toggle="modal">
                       {{PhoneEdit}}  
-                        <a >+ Add More</a>
-                          <button class="editbtn" data-target="#PhoneEdit" data-toggle="modal" type="button">Phone Edit</button>
+                          <button class="editbtn" type="button">Edit</button>
                       </div>
                     </div>
-                      <div class="col-sm-12 nopadd martop15px overhiddenmob">
+                      <div class="col-sm-12 nopadd martop12px overhiddenmob mobilenone">
                         <div class="col-xs-1 nopadd">
                         <i class="material-icons">work_outline</i>
                       </div>
                       <div class="col-xs-11 nopadd">
-                      Business Category Chip<br/>
+                      <span class="pinkchip">Wedding Venue</span><br/>
                       Membership Type: Free <a routerLink="../membership" class="bluelink">Upgrade to Premium</a>
                       </div>
                       </div>
                       <div class="clearfix"></div>
-                      <div class="col-sm-12 nopadd martop30px marbot15px clearfix">
-                        <div class="col-sm-3 col-xs-4 text-center">
-                      <a routerlink="../portfolioview" class="blacktext">
-                        <i class="material-icons">photo_library</i>
-                        <strong>1</strong><br/>
-                        Portfolio
-                      </a>
+                      
+                    
+                    </div>
+ <div class="clearfix"></div>
+                    <div class="col-sm-12 nopadd martop15px marbot15px clearfix">
+                        <div class="col-xs-4 text-center">
+                          <a routerLink="../portfolioview" class="blacktext">
+                            <i class="material-icons">photo_library</i>
+                            <strong>1</strong>
+                            <div class="clearfix"></div>
+                            Portfolio
+                          </a>
                         </div>
-                        <div class="col-sm-3 col-xs-4 text-center">
-                          <a routerlink="../Videos" class="blacktext">
+                        <div class="col-xs-4 text-center">
+                          <a routerLink="../Videos" class="blacktext">
                             <i class="material-icons">video_library</i>
-                            <strong>0</strong><br/>
+                            <strong>1</strong>
+                            <div class="clearfix"></div>
                             Vedios
                           </a>
                         </div>
-                        <div class="col-sm-3 col-xs-4 text-center">
-                      <a routerlink="../portfolioview" class="blacktext">
-                        <i class="material-icons">library_books</i>
-                        <strong>0</strong><br/>
-                        Albums
-                      </a>
+                        <div class="col-xs-4 text-center">
+                           <a routerLink="../albumview" class="blacktext">
+                            <i class="material-icons">library_books</i>
+                            <strong>1</strong>
+                            <div class="clearfix"></div>
+                            Albums
+                          </a>
                         </div>
                     </div>
-                    
-                    </div>
+
+  <div class="col-sm-12 bottop desktopnone nopadd paddtop15 martop15px marbot15px clearfix">
+    <div class="col-6 pull-left text-center"> 
+      <a routerLink="../PromoteBusiness" class="font11px bluelink">
+        <i class="material-icons">assessment</i> <br/>
+        Promote Business
+      </a>
+    </div>
+    <div  class="col-6 pull-left  text-center">
+       <a routerLink="../statistics" class="font11px bluelink">
+        <i class="material-icons">equalizer</i> <br/>
+        Business Insight
+      </a>
+    </div>
+  </div>
+
+
                     <div class="col-sm-12 bottop padbot0px padtop7px text-center clearfix">
-                      <a class="text-muted" data-reactid="333" href="https://www.facebook.com" rel="nofollow" target="_blank" title="Connect with us on Facebook"><i class="fa fa-facebook fa-1x" data-reactid="334"></i></a>
-                      &nbsp; &nbsp;
-                      <a class="text-muted" data-reactid="337" href="https://www.pinterest.com" rel="nofollow" target="_blank" title="Follow us on Pinterest"><i class="fa fa-pinterest-p fa-1x" data-reactid="338"></i></a>
-                      &nbsp; &nbsp;
-                      <a class="text-muted" data-reactid="339" href="https://plus.google.com" rel="nofollow" target="_blank" title="Follow us on Google+"><i class="fa fa-google-plus fa-1x" data-reactid="340"></i></a>
-                      &nbsp; &nbsp;
-                      <a class="text-muted" data-reactid="341" href="https://instagram.com" rel="nofollow" target="_blank" title="Follow us on Instagram"><i class="fa fa-instagram fa-1x" data-reactid="342"></i></a>
+                      <a class="text-muted mobilenone" target="_blank">
+                       <i class="material-icons">share</i> Share Vision Photography
+                      </a>
+                     
+<div class="clearfix"></div>
+                     <div class="col-8 pull-left desktopnone blacktext padbot5px text-left">
+                     Membership Type : Free</div>
+                     <div class="col-4 pull-left text-right desktopnone padbot5px"><a routerLink="../membership" class="bluelink">Upgrade</a></div>
                     </div>
                     </div>
 
@@ -168,8 +193,8 @@
                 </div>
               </div>
               <div class="row martop15px">
-                  <div class="col-md-3">
-                        <div class="card card-stats marbot10px mobilemarbot30px">
+                  <div class="col-md-3 col-6 pull-left">
+                        <div class="card card-stats mobileviewcontent marbot10px mobilemarbot30px">
                           <div class="card-header card-header-warning card-header-icon">
                             <div class="card-icon">
                               <i class="material-icons">store</i>
@@ -178,18 +203,18 @@
                             <h3 class="card-title"> 184</h3>
 
                           </div>
-                          <div class="card-footer">
+                          <div class="card-footer mobilenone">
                                   <div class="stats">
                                   <i class="material-icons text-danger">warning</i>
-                                  <a href="#">Storefront views</a>
+                                  <span>Storefront views</span>
                                   </div>
                               </div>
                         </div>     
 
                   </div>
 
-                  <div class="col-md-3">
-                          <div class="card card-stats marbot10px mobilemarbot30px">
+                  <div class="col-md-3 col-6 pull-left">
+                          <div class="card card-stats mobileviewcontent marbot10px mobilemarbot30px">
                             <div class="card-header card-header-warning card-header-icon">
                               <div class="card-icon rose">
                                 <i class="material-icons">equalizer</i>
@@ -197,16 +222,16 @@
                               <p class="card-category">Enquiries & Leads</p>
                               <h3 class="card-title"> 53</h3>
                             </div>
-                            <div class="card-footer">
+                            <div class="card-footer mobilenone">
                                     <div class="stats">
                                     <i class="material-icons ">local_offer</i>
-                                    <a href="#">Contact From & Job Pool</a>
+                                    <span>Contact From & Job Pool</span>
                                     </div>
                                 </div>
                           </div>     
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-6 mobileviewcontent pull-left">
                           <div class="card card-stats marbot10px mobilemarbot30px">
                             <div class="card-header card-header-warning card-header-icon">
                               <div class="card-icon green_bg">
@@ -215,16 +240,16 @@
                               <p class="card-category">Love count</p>
                               <h3 class="card-title"> 4</h3>
                             </div>
-                            <div class="card-footer">
+                            <div class="card-footer mobilenone">
                                     <div class="stats">
                                     <i class="material-icons ">date_range</i>
-                                    <a href="#"> No of times images are bookmark</a>
+                                    <span> No of times images are bookmark</span>
                                     </div>
                                 </div>
                           </div>     
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-6 mobileviewcontent pull-left">
                           <div class="card card-stats marbot10px mobilemarbot30px">
                             <div class="card-header card-header-warning card-header-icon">
                               <div class="card-icon green_bg1">
@@ -233,10 +258,10 @@
                               <p class="card-category">Reviews</p>
                               <h3 class="card-title"> 15</h3>
                             </div>
-                            <div class="card-footer">
+                            <div class="card-footer mobilenone">
                                     <div class="stats">
                                     <i class="material-icons">date_range</i>
-                                    <a href="#"> update</a>
+                                    <span> update</span>
                                     </div>
                                 </div>
                           </div>     
@@ -252,17 +277,17 @@
 
                                 
                                         <div class="col-md-12 mobnopadd padleft0px">
-                                                <div class="card card-stats card_padd_bottom">
+                                                <div class="card card-stats mobileviewcontent card_padd_bottom height360px">
                                                   <div class="card-header border_bottom_none card-header-warning card-header-icon">
                                                     <div class="card-icon  white_bg">
                                                       <i class="material-icons">event_available</i>
                                                     </div>
-                                                    <p class="card-category flot_left">Upcoming Weddings</p>
+                                                    <p class="card-category upcominghead">Upcoming Weddings</p>
                                                     
                                                   </div>
 
                                                   <div class="acordian_panel">
-                                                    <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018 <span class="flo_rigt"> <i class="material-icons ">location_on</i>Indore <i class="material-icons downarrow">keyboard_arrow_down</i> <i class="material-icons uparrow">keyboard_arrow_up</i>  </span>
+                                                    <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018 <span class="flo_rigt"> <i class="material-icons ">location_on</i>Indore <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>  </span>
                                                     </button>
                                                       <div class="panel">
                                                         <ul>
@@ -273,7 +298,8 @@
                                                       </div>
 
                                                       <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018  <span class="flo_rigt"> <i class="material-icons ">location_on</i>Delhi
-                                                      <i class="material-icons downarrow">keyboard_arrow_down</i> <i class="material-icons uparrow">keyboard_arrow_up</i>
+                                                      <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> 
+                                                      <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>
 
                                                       </span>  </button>
                                                       <div class="panel">
@@ -285,7 +311,7 @@
                                                       </div>
                                                       <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018 <span class="flo_rigt"> <i class="material-icons ">location_on</i> Niger
 
-                                                        <i class="material-icons downarrow">keyboard_arrow_down</i> <i class="material-icons uparrow">keyboard_arrow_up</i>
+                                                        <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>
                                                       </span> </button>
                                                       <div class="panel">
                                                         <ul>
@@ -296,7 +322,7 @@
                                                       </div>
 
                                                       <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018 <span class="flo_rigt"> <i class="material-icons ">location_on</i> Niger
-                                                      <i class="material-icons downarrow">keyboard_arrow_down</i> <i class="material-icons uparrow">keyboard_arrow_up</i>
+                                                      <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>
                                                       </span> </button>
                                                       <div class="panel">
                                                         <ul>
@@ -317,7 +343,7 @@
                               
                             </div>
 
-                            <div class="col-sm-6 card max_height_400 mobileheightauto nopadd">
+                            <div class="col-sm-6 card height360px mobileheightauto nopadd">
 
                       <div class="card-body">
               <div class="card-block nopadd img100per">
@@ -354,16 +380,16 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <div class="col-sm-12  text-center">                 
-                        <i class="material-icons"> add_location </i>
+                <div class="col-sm-12 ">                 
+                      
                         <p>Have more Business Cover?</p>
-                        <p> <input class="endent_10px" type="text" placeholder="Upload Business Cover"> </p> 
-                        <p>Premium members only. <span>Upgrade</span> </p>
+                        <p> <input class="endent_10px" type="file" placeholder="Upload Business Cover"> </p> 
+        
                 </div>
             </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+                    <button type="button" class="btn" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-raised" (click)="c('Close click')">Save changes</button> -->
             </div>
         </div>
     </div>
@@ -376,16 +402,16 @@
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           <div class="modal-body">
-              <div class="col-sm-12  text-center">                 
+              <div class="col-sm-12">                 
                       <!-- <i class="material-icons"> add_location </i> -->
                       <p>Have more Description?</p>
-                      <p> <textarea class="endent_10px" type="text" placeholder="Enter Description"></textarea> </p> 
-                      <p>Premium members only. <span>Upgrade</span> </p>
+                      <p> <textarea class="endent_10px text_area_100" type="text" placeholder="Enter Description"></textarea> </p> 
+      
               </div>
           </div>
           <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+                  <button type="button" class="btn" data-dismiss="modal">Close</button>
+                  <!-- <button type="button" class="btn btn-raised" (click)="c('Close click')">Save changes</button> -->
           </div>
       </div>
   </div>
@@ -398,17 +424,17 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <div class="col-sm-12  text-center">                 
-                        <i class="material-icons"> add_location </i>
+                <div class="col-sm-12 ">                 
+                       
                         <p>Have more Photos?</p>
-                        <p> <input class="endent_10px" type="text" placeholder="Enter Photos"> </p> 
+                        <p> <input class="endent_10px" type="file" placeholder="Enter Photos"> </p> 
   
-                        <p>Premium members only. <span>Upgrade</span> </p>
+        
                 </div>
             </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+                    <button type="button" class="btn" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-raised" (click)="c('Close click')">Save changes</button> -->
             </div>
         </div>
     </div>
@@ -421,17 +447,17 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <div class="col-sm-12  text-center">                 
-                        <i class="material-icons"> add_location </i>
+                <div class="col-sm-12 ">                 
+                      
                         <p>Have more Service?</p>
-                        <p> <input class="endent_10px" type="text" placeholder="Enter Service"> </p> 
+                        <p> <input class="endent_10px text_area_100" type="text" placeholder="Enter Service"> </p> 
   
-                        <p>Premium members only. <span>Upgrade</span> </p>
+        
                 </div>
             </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+                    <button type="button" class="btn" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-raised" (click)="c('Close click')">Save changes</button> -->
             </div>
         </div>
     </div>
@@ -444,17 +470,18 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <div class="col-sm-12  text-center">                 
+                <div class="col-sm-12  ">                 
                         <i class="material-icons"> add_location </i>
                         <p>Have more business Location?</p>
-                        <p> <input class="endent_10px" type="text" placeholder="Enter Location"> </p> 
+                        <p> <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235527.4544719866!2d75.72376224220126!3d22.723911730160093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fcad1b410ddb%3A0x96ec4da356240f4!2sIndore%2C+Madhya+Pradesh!5e0!3m2!1sen!2sin!4v1533987190047" width="680" height="100" frameborder="0" style="border:0" allowfullscreen></iframe></p>
+                        <!-- <p> <input class="endent_10px" type="text" placeholder="Enter Location"> </p>  -->
   
-                        <p>Premium members only. <span>Upgrade</span> </p>
+        
                 </div>
             </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+                    <button type="button" class="btn" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-raised" (click)="c('Close click')">Save changes</button> -->
             </div>
         </div>
     </div>
@@ -467,17 +494,18 @@
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           <div class="modal-body">
-              <div class="col-sm-12  text-center">                 
+              <div class="col-sm-12 ">                 
                       <i class="material-icons"> add_location </i>
                       <p>Add As Current Location?</p>
-                      <p> <input class="endent_10px" type="text" [(ngModel)] = "currentLocation"  placeholder="Enter Current Location"> </p> 
+                       <p><iframe [(ngModel)] = "currentLocation" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235527.4544719866!2d75.72376224220126!3d22.723911730160093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fcad1b410ddb%3A0x96ec4da356240f4!2sIndore%2C+Madhya+Pradesh!5e0!3m2!1sen!2sin!4v1533987190047" width="680" height="100" frameborder="0" style="border:0" allowfullscreen></iframe></p>
+                      <!-- <p> <input class="endent_10px" type="text" [(ngModel)] = "currentLocation"  placeholder="Enter Current Location"> </p>  -->
 
-                      <p>Premium members only. <span>Upgrade</span> </p>
+      
               </div>
           </div>
           <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+                  <button type="button" class="btn" data-dismiss="modal">Close</button>
+                  <!-- <button type="button" class="btn btn-raised" (click)="c('Close click')">Save changes</button> -->
           </div>
       </div>
   </div>
@@ -490,16 +518,17 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <div class="col-sm-12  text-center">                 
+                <div class="col-sm-12">                 
                         <i class="material-icons">camera</i>
                         <p>Change  Profile Picture?</p>
-                        <p> <input class="endent_10px" type="text" placeholder="Enter Location"> </p> 
-                        <p>Premium members only. <span>Upgrade</span> </p>
+                        <p> <input type="file" name="pic" [(ngModel)]="angularLogo"></p> 
+                       
+        
                 </div>
             </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+                    <button type="button" class="btn" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-raised" (click)="c('Close click')">Save changes</button> -->
             </div>
         </div>
     </div>
@@ -512,16 +541,16 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <div class="col-sm-12  text-center">                 
+                <div class="col-sm-12 ">                 
                         <i class="material-icons"> add_location </i>
                         <p>Have more Phone Edit?</p>
-                        <p> <input class="endent_10px" type="text" [(ngModel)] = "PhoneEdit"  placeholder="Enter Phone"> </p> 
+                        <p> <input class="endent_10px text_area_100" type="text" [(ngModel)] = "PhoneEdit"  placeholder="Enter Phone"> </p> 
   
-                        <p>Premium members only. <span>Upgrade</span> </p>
+        
                 </div>
             </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn" data-dismiss="modal">Close</button>
                     <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
             </div>
         </div>

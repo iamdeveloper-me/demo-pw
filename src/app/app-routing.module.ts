@@ -73,6 +73,13 @@ import { PortfolioviewComponent } from './vendor/portfolioview/portfolioview.com
 import { ViewPhotoAlbumsComponent } from './vendor/view-photo-albums/view-photo-albums.component';
 import { AlbumsettingComponent } from './vendor/albumsetting/albumsetting.component';
 import { EventListComponent } from './vendor/event-list/event-list.component';
+import { Albumsetting2Component } from './vendor/albumsetting2/albumsetting2.component';
+import { MailsearchComponent } from './vendor/mailsearch/mailsearch.component';
+import { EnquiriesComponent } from './vendor/enquiries/enquiries.component';
+import { StorefrontComponent } from './vendor/storefront/storefront.component';
+import { ActionsComponent } from './vendor/actions/actions.component';
+import { ReachComponent } from './vendor/reach/reach.component';
+import { GallerybarComponent } from './vendor/gallerybar/gallerybar.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -124,6 +131,14 @@ const appRoutes: Routes = [
     { path: 'vendor/videoview', component:    VedioviewComponent},
     { path: 'vendor/PromoteBusiness', component:    PromoteBusinessComponent},
     { path: 'vendor/statistics', component:  StatisticsComponent},
+    { path: 'vendor/albumdetailsetting', component:   Albumsetting2Component  },
+    { path: 'vendor/mailseach', component:  MailsearchComponent},
+    { path: 'vendor/enquiry', component:  EnquiriesComponent},
+    { path: 'vendor/storefront', component:  StorefrontComponent},
+    { path: 'vendor/actionfront', component:  ActionsComponent},
+    { path: 'vendor/reachbar', component:  ReachComponent},
+    { path: 'vendor/gallerybar', component:  GallerybarComponent},
+
 
   { path: 'User/vendor', component: VendorlistComponent },  
   { path: 'User/Timeline', component: TimelineComponent },
@@ -148,6 +163,7 @@ const appRoutes: Routes = [
   { path: 'Admin/Adminusers', component: AdminusersComponent },  
   { path: 'Admin/Reviewandfeedback', component: ReviewandfeedbackComponent },  
   { path: 'Admin/advertising', component:   AdminadvertisingComponent  },  
+  
 
   { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES, canActivate: [AuthGuard] },
   { path: '', component: ContentLayoutComponent, data: { title: 'content Views' }, children: CONTENT_ROUTES, canActivate: [AuthGuard] },

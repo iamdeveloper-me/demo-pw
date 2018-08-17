@@ -206,34 +206,68 @@
 <div class="modal fade" id="facebook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                        <h4 class="modal-title">Add New Facebook link </h4>
+                <div class="modal_head text-center">
+                        <h4 class="modal-title"><strong> Link your Facebook Page </strong>  </h4>
+                        <p>Do you have a Facebook Page for your business?</p>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-<div class="clearfix"></div>
+                    <div class="clearfix"></div>
                 </div>
                 <div class="modal-body">
                     <div class="col-sm-12  text-center">     
-                            <i class="fa fa-facebook fa-2x" data-reactid="334"></i>            
-                            <p>Have more LINK?</p>
-                            <div class="clearfix"></div>
                         <div class="switbtn">
-                                            <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                                    </div>
-                            <p> <input class="endent_10px width_60" type="text" placeholder="Enter link" [(ngModel)] = "facebook" (ngModelChange)="facebook = $event"> </p> 
-      
-                     
+                            <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                            <span class="have_one">Of course, I have one! </span>
+                        </div>              
+                            <div class="clearfix"></div>           
+                                            
+                            <div class="input_facebook input-effect form-group"> 
+                                <i class="fa fa-facebook fa-2x" data-reactid="334" ></i> 
+                                <input class="effect-16 validate endent_10px width_60" type="text" placeholder="Enter the Link here" [(ngModel)] = "facebook" (ngModelChange)="facebook = $event">
+                                <!-- <label>Enter the Link here</label> -->
+                                <span class="focus-border"></span>
+                            </div>          
                     </div>
                 </div>
-                <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <div class="foot_div text-center">
+                        <button type="button" class="btn bt_blue" data-dismiss="modal">SAVE</button> &nbsp;
+                        <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
                 </div>
             </div>
         </div>
 </div>
 <div class="modal fade" id="twitter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+            <div class="modal-content">
+                    <div class="modal_head text-center">
+                            <h4 class="modal-title"><strong> Link your twitter Page </strong>  </h4>
+                            <p>Do you have a Twitter Page for your business?</p>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-sm-12  text-center">     
+                            <div class="switbtn">
+                                <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                                <span class="have_one">Of course, I have one! </span>
+                            </div>              
+                                <div class="clearfix"></div>           
+                                                
+                                <div class="input_facebook input-effect form-group"> 
+                                        <i class="fa fa-facebook fa-2x" data-reactid="334" ></i> 
+                                        <input class="effect-16 validate endent_10px width_60" type="text" placeholder="Enter the Link here" [(ngModel)] = "facebook" (ngModelChange)="facebook = $event">
+                                        <!-- <label>Enter the Link here</label> -->
+                                        <span class="focus-border"></span>
+                                    </div>           
+                        </div>
+                    </div>
+                    <div class="foot_div text-center">
+                            <button type="button" class="btn bt_blue" data-dismiss="modal">SAVE</button> &nbsp;
+                            <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+                    </div>
+                </div>
+        <!-- <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Add New twitter link</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -256,12 +290,41 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 <div class="modal fade" id="google" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+            <div class="modal-content">
+                    <div class="modal_head text-center">
+                            <h4 class="modal-title"><strong> Link your Google Page </strong>  </h4>
+                            <p>Do you have a Google Page for your business?</p>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-sm-12  text-center">     
+                            <div class="switbtn">
+                                <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                                <span class="have_one">Of course, I have one! </span>
+                            </div>              
+                                <div class="clearfix"></div>           
+                                                
+                                <div class="input_facebook input-effect form-group"> 
+                                        <i class="fa fa-facebook fa-2x" data-reactid="334" ></i> 
+                                        <input class="effect-16 validate endent_10px width_60" type="text" placeholder="Enter the Link here" [(ngModel)] = "facebook" (ngModelChange)="facebook = $event">
+                                        <!-- <label>Enter the Link here</label> -->
+                                        <span class="focus-border"></span>
+                                    </div>          
+                        </div>
+                    </div>
+                    <div class="foot_div text-center">
+                            <button type="button" class="btn bt_blue" data-dismiss="modal">SAVE</button> &nbsp;
+                            <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+                    </div>
+                </div>
+        <!-- <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Add New google link</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -284,12 +347,41 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 <div class="modal fade" id="instagram" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+            <div class="modal-content">
+                    <div class="modal_head text-center">
+                            <h4 class="modal-title"><strong> Link your Instagram Page </strong>  </h4>
+                            <p>Do you have a Instagram Page for your business?</p>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-sm-12  text-center">     
+                            <div class="switbtn">
+                                <ui-switch [(ngModel)] ="enable" ></ui-switch> 
+                                <span class="have_one">Of course, I have one! </span>
+                            </div>              
+                                <div class="clearfix"></div>           
+                                                
+                                <div class="input_facebook input-effect form-group"> 
+                                        <i class="fa fa-facebook fa-2x" data-reactid="334" ></i> 
+                                        <input class="effect-16 validate endent_10px width_60" type="text" placeholder="Enter the Link here" [(ngModel)] = "facebook" (ngModelChange)="facebook = $event">
+                                        <!-- <label>Enter the Link here</label> -->
+                                        <span class="focus-border"></span>
+                                    </div>           
+                        </div>
+                    </div>
+                    <div class="foot_div text-center">
+                            <button type="button" class="btn bt_blue" data-dismiss="modal">SAVE</button> &nbsp;
+                            <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+                    </div>
+                </div>
+        <!-- <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Add New instagram link</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -312,12 +404,41 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 <div class="modal fade" id="instagram2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+            <div class="modal-content">
+                    <div class="modal_head text-center">
+                            <h4 class="modal-title"><strong> Link your Trading Page </strong>  </h4>
+                            <p>Do you have a Trading Page for your business?</p>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-sm-12  text-center">     
+                            <div class="switbtn">
+                                <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                                <span class="have_one">Of course, I have one! </span>
+                            </div>              
+                                <div class="clearfix"></div>           
+                                                
+                                <div class="input_facebook input-effect form-group"> 
+                                        <i class="fa fa-facebook fa-2x" data-reactid="334" ></i> 
+                                        <input class="effect-16 validate endent_10px width_60" type="text" placeholder="Enter the Link here" [(ngModel)] = "facebook" (ngModelChange)="facebook = $event">
+                                        <!-- <label>Enter the Link here</label> -->
+                                        <span class="focus-border"></span>
+                                    </div>          
+                        </div>
+                    </div>
+                    <div class="foot_div text-center">
+                            <button type="button" class="btn bt_blue" data-dismiss="modal">SAVE</button> &nbsp;
+                            <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+                    </div>
+                </div>
+        <!-- <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Add New Trading</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -340,6 +461,6 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

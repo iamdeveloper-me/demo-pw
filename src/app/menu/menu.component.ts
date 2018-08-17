@@ -96,7 +96,10 @@ export class MenuComponent implements OnInit {
         $(".slidemenu").removeClass("rtslide");
         $(".tikrightclose").hide();
     });
-    
+    $(".signuplink").click(function(){
+        
+        $("body").removeClass("modal-open"); 
+    });
 $(".tikright").click(function(){
         $(".tool_icons").addClass("in");
         $(".tikright").hide(); 

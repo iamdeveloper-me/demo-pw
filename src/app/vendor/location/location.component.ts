@@ -30,34 +30,7 @@ export class LocationComponent implements OnInit {
     $.getScript('./assets/js/vertical-timeline.js');
 
     
-    function testAnim(x) {
-      $('.modal .modal-dialog').addClass('animated');
-      $('.modal .modal-dialog').addClass('bounceIn');
-  };
-  $('#week').on('show.bs.modal', function (e) {
-    var anim = $('#entrance').val();
-        testAnim(anim);
-  })
-  $('#week').on('hide.bs.modal', function (e) {
-    var anim = $('#exit').val();
-        testAnim(anim);
-  })
-  $('#phone').on('show.bs.modal', function (e) {
-    var anim = $('#entrance').val();
-        testAnim(anim);
-  })
-  $('#phone').on('hide.bs.modal', function (e) {
-    var anim = $('#exit').val();
-        testAnim(anim);
-  })
-  $('#address').on('show.bs.modal', function (e) {
-    var anim = $('#entrance').val();
-        testAnim(anim);
-  })
-  $('#address').on('hide.bs.modal', function (e) {
-    var anim = $('#exit').val();
-        testAnim(anim);
-  })
+
   }
 
 

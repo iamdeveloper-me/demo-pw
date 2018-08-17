@@ -11,9 +11,9 @@ import 'rxjs/Rx';
 })
 export class RegisterComponent  {
   categoryArray:string[];
- user = { logInInfo: {  userName: "", password: "",confirmPassword: ""},
-          contactInfo: { contactPerson: "", email: "",phone: "", website: "", phoneType: "" },
-          businessInfo: { countryId: 0, country: { countryId: 0, countryName: "" }, city: "", postalCode: "",address: "",lat: 0,long: 0, nameOfBusiness: "", businessDetails: ""}
+ user = { logInInfo: {  userName: "", password: "",confirmPassword: "",contactPerson: "",email: "",phone: "", phoneType: ""},
+          contactInfo: {   },
+          businessInfo: { countryId: 0, country: { countryId: 0, countryName: "" }, city: "", website: "",address: "",lat: 0,long: 0, nameOfBusiness: "", businessDetails: ""}
         }
    ngOnInit() {  
     $(".loginnav").hide(); 
@@ -24,6 +24,22 @@ export class RegisterComponent  {
     obs.subscribe(data => {
       this.categoryArray =data as string[];
     })
+
+
+$(".Suppliertab").click(function(){
+    $("#filter").show();
+    $("#action").hide();  
+    $(".Suppliertab").addClass("selected"); 
+    $(".Registertab").removeClass("selected");  
+  
+  });
+
+    $(".Registertab").click(function(){
+    $("#filter").hide();
+    $("#action").show();  
+    $(".Suppliertab").removeClass("selected"); 
+    $(".Registertab").addClass("selected");  
+  });
 
   }
     constructor( private cservice: SignupVendorService,private http: HttpClient) {}

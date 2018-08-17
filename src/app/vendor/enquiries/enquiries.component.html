@@ -9,10 +9,13 @@
 
 <!-- Line Chart Starts -->
 
-<div class="col-sm-12">
-        <div class="card">
+      <div class="col-sm-12">
+        <button class="btn btn-flat btn-primary daily" >Daily</button>
+        <button class="btn btn-flat btn-primary weekly" >Weekly</button>
+        <button class="btn btn-flat btn-primary monthly" >Monthly</button>
+        <div class="card" id="daily">
             <div class="card-header">
-                <h4 class="card-title">Enquiries Vs Leads</h4>
+                <h4 class="card-title">Enquiries Vs Leads Daily Statistics</h4>
                 <p>July 15 - July 21</p>
             </div>
             <div class="card-body">
@@ -23,9 +26,36 @@
                     </div>
                 </div>
             </div>
-            
         </div>
-    </div>
+        <div class="card" id="weekly">
+            <div class="card-header">
+                <h4 class="card-title">Enquiries Vs Leads Weekly Statistics</h4>
+                <p>July 15 - July 21</p>
+            </div>
+            <div class="card-body">
+                <div class="card-block">
+                    <div id="bar-bar1" class="height-400">
+                        <canvas baseChart class="chart" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColors" [legend]="barChartLegend"
+                            [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card" id="monthly">
+            <div class="card-header">
+                <h4 class="card-title">Enquiries Vs Leads Monthly Statistics</h4>
+                <p>July 15 - July 21</p>
+            </div>
+            <div class="card-body">
+                <div class="card-block">
+                    <div id="bar-bar1" class="height-400">
+                        <canvas baseChart class="chart" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColors" [legend]="barChartLegend"
+                            [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
 
     <div class="col-sm-12">
         <div class="card">

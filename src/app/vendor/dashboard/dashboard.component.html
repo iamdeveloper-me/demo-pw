@@ -28,41 +28,49 @@
                             <div class="col-md-5  displya_name">
                                 <ul>
                                   <li class="done" > 
-                                    <i class="material-icons">check_circle</i>
-                                    <strong class="blacktext" ngbTooltip="Trading Name">Trading Name</strong>
+                                    <a routerLink="../business"><i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
+                                    <strong class="blacktext" >Trading Name</strong>
                                     <button class="editbtn">Select to Edit</button>
+                                  </a>
                                   </li>
-                                  <li data-target="#BusinessCover" data-toggle="modal" > 
-                                    <i class="material-icons">error_outline</i>
-                                    <strong class="blacktext" ngbTooltip="Business Cover">Business Cover</strong> 
-                                    <button  class="editbtn">Edit</button>
+                                  <li > 
+                                    <a routerLink="../portfolioview">
+                                    <i class="material-icons"  ngbTooltip="Business Cover">error_outline</i>
+                                    <strong class="blacktext">Business Cover</strong> 
+                                     <span  class="editbtn">Edit</span> 
+                                   </a>
                                   </li>
-                                  <li  data-target="#Description" data-toggle="modal">
-                                  <i class="material-icons">error_outline</i> 
-                                    <strong class="blacktext"  ngbTooltip="Description">Description</strong>  
-                                    <button  class="editbtn" type="button">Edit</button>
+                                  <li>
+                                    <a routerLink="../business">
+                                  <i class="material-icons" ngbTooltip="Description">error_outline</i> 
+                                    <strong class="blacktext">Description</strong>  
+                                     <span  class="editbtn">Edit</span> 
+                                   </a>
                                   </li>
                                 </ul>
                             </div>   
                             <div class="col-md-5 displya_name">
                                 <ul>
-                                  <li  data-target="#Photos" data-toggle="modal" > 
-                                    <i class="material-icons">error_outline</i>
-                                    <strong class="blacktext" ngbTooltip="Photos">Photos</strong>  
-                                    <button  class="editbtn" type="button">
-                                      Edit</button>   
+                                  <li> 
+                                    <a routerLink="../gallery">
+                                    <i class="material-icons" ngbTooltip="Photos">error_outline</i>
+                                    <strong class="blacktext" >Photos</strong>  
+                                    <span  class="editbtn">Edit</span> 
+                                    </a>  
                                   </li>
-                                  <li data-target="#Service" data-toggle="modal" > 
-                                    <i class="material-icons">error_outline</i> 
-                                    <strong class="blacktext" ngbTooltip="Services">Services</strong>     
-                                    <button  class="editbtn"  type="button">
-                                    Edit</button>   
+                                  <li> 
+                                    <a routerLink="../business-services">
+                                    <i class="material-icons" ngbTooltip="Services">error_outline</i> 
+                                    <strong class="blacktext" >Services</strong>     
+                                     <span  class="editbtn">Edit</span>    
+                                   </a>
                                   </li>
-                                  <li  data-target="#Location" data-toggle="modal"  >
-                                    <i class="material-icons">error_outline</i> 
-                                    <strong class="blacktext" ngbTooltip="Location">Location</strong>  
-                                    <button  class="editbtn" type="button">
-                                      Edit</button>  
+                                  <li>
+                                    <a routerLink="../location">
+                                    <i class="material-icons"  ngbTooltip="Location">error_outline</i> 
+                                    <strong class="blacktext">Location</strong>  
+                                     <span  class="editbtn">Edit</span>  
+                                     </a> 
                                   </li>
                                 </ul>
                             </div>
@@ -99,8 +107,14 @@
                         <i class="material-icons">location_on</i>
                       </div>
                       <div class="col-xs-8 nopadd edithovering">
-                        <p data-target="#currentLocation" data-toggle="modal">{{currentLocation}}<br/>2 More Branches </p>
-                          <button  class="editbtn" type="button">Edit</button>  
+                        <!-- <p data-target="#currentLocation" data-toggle="modal">{{currentLocation}}<br/>2 More Branches </p> -->
+
+                        <p>
+                          <a routerLink="../location">
+                          {{currentLocation}}<br/>2 More Branches 
+                        </a>
+                        </p>
+                          <span  class="editbtn">Edit</span>  
                       </div>
                       <div class="prolinkmob">
                         <a routerLink="../PromoteBusiness" class="font11px bluelink">
@@ -113,9 +127,20 @@
                         <div class="col-xs-1 nopadd">
                         <i class="material-icons">phone</i>
                       </div>
-                      <div class="col-xs-8 nopadd edithovering"  data-target="#PhoneEdit" data-toggle="modal">
-                      {{PhoneEdit}}  
-                          <button class="editbtn" type="button">Edit</button>
+                      <div class="col-xs-8 nopadd edithovering">
+                      <!-- <p data-target="#PhoneEdit" data-toggle="modal">{{PhoneEdit}} 
+                      <span class="editbtn">Edit</span> 
+                      </p>  -->
+                      <p >
+                        <a routerLink="../location">
+                        {{PhoneEdit}} 
+                      <span class="editbtn">Edit</span> 
+                    </a>
+                      </p> 
+                            
+
+
+
                       </div>
                     </div>
                       <div class="col-sm-12 nopadd martop12px overhiddenmob mobilenone">

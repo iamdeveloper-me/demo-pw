@@ -21,7 +21,19 @@ $(document).ready(function(){
           } else if(window.location.pathname == '/vendor/PromoteBusiness') {
             $("p:first").replaceWith("<h4  class='navdrandm'> Promotions  </h4>");  
           } else if(window.location.pathname == '/vendor/statistics') {
+            $("p:first").replaceWith("<h4  class='navdrandm'> Statistics  </h4>"); 
+
+          } else if(window.location.pathname == '/vendor/actionfront') {
             $("p:first").replaceWith("<h4  class='navdrandm'> Statistics  </h4>");  
+          } else if(window.location.pathname == '/vendor/enquiry') {
+            $("p:first").replaceWith("<h4  class='navdrandm'> Statistics  </h4>");
+          } else if(window.location.pathname == '/vendor/gallerybar') {
+            $("p:first").replaceWith("<h4  class='navdrandm'> Statistics  </h4>");  
+          } else if(window.location.pathname == '/vendor/reachbar') {
+            $("p:first").replaceWith("<h4  class='navdrandm'> Statistics  </h4>"); 
+          } else if(window.location.pathname == '/vendor/storefront') {
+            $("p:first").replaceWith("<h4  class='navdrandm'> Statistics  </h4>"); 
+
           } else if(window.location.pathname == '/vendor/editprofile') {
             $("p:first").replaceWith("<h4  class='navdrandm'> Edit profile  </h4>");  
           } else if(window.location.pathname == '/vendor/calender') {

@@ -11,7 +11,7 @@
 <div class="col-sm-12"> 
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Enquiries Vs Leads </h4>
+            <h4 class="card-title">Storefront Views</h4>
             <div class="btnholderdaily">
                 <button class="btn  daily" >Daily</button>
                 <button class="btn  weekly" >Weekly</button>
@@ -19,8 +19,8 @@
             </div>
             <p>July 15 - July 21</p>
         </div>
-        <div class="card-body"  id="daily">
-            <div class="card-block">
+        <div class="card-body reportbox"  >
+            <div class="card-block dailyreport">
                 <div id="area-chart1" class="height-400">
                     <ngx-charts-area-chart [scheme]="areaChartColorScheme" [results]="areaChartMulti" [gradient]="areaChartGradient" [xAxis]="areaChartShowXAxis"
                         [yAxis]="areaChartShowYAxis" [legend]="areaChartShowLegend" [showXAxisLabel]="areaChartShowXAxisLabel"
@@ -29,9 +29,7 @@
                     </ngx-charts-area-chart>
                 </div>
             </div>
-        </div>
-        <div class="card-body"  id="weekly">
-            <div class="card-block">
+            <div class="card-block weeklyreport">
                 <div id="area-chart1" class="height-400">
                     <ngx-charts-area-chart [scheme]="weeklyChartColorScheme" [results]="weeklyChartMulti" [gradient]="weeklyChartGradient" [xAxis]="weeklyChartShowXAxis"
                         [yAxis]="weeklyChartShowYAxis" [legend]="weeklyChartShowLegend" [showXAxisLabel]="weeklyChartShowXAxisLabel"
@@ -40,9 +38,7 @@
                     </ngx-charts-area-chart>
                 </div>
             </div>
-        </div>
-        <div class="card-body" id="monthly">
-            <div class="card-block">
+            <div class="card-block monthlyreport">
                 <div id="area-chart1" class="height-400">
                     <ngx-charts-area-chart [scheme]="monthlyChartColorScheme" [results]="monthlyChartMulti" [gradient]="monthlyChartGradient" [xAxis]="monthlyChartShowXAxis"
                         [yAxis]="monthlyChartShowYAxis" [legend]="monthlyChartShowLegend" [showXAxisLabel]="monthlyChartShowXAxisLabel"

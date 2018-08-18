@@ -12,7 +12,7 @@
 <div class="col-sm-12"> 
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Enquiries Vs Leads </h4>
+            <h4 class="card-title">Actions on Storefront </h4>
             <div class="btnholderdaily">
                 <button class="btn  daily" >Daily</button>
                 <button class="btn  weekly" >Weekly</button>
@@ -20,8 +20,8 @@
             </div>
             <p>July 15 - July 21</p>
         </div>
-        <div class="card-body"  id="daily">
-            <div class="card-block">
+        <div class="card-body reportbox">
+            <div class="card-block dailyreport">
                 <div id="line-chart1" class="height-400">
                     <ngx-charts-line-chart [scheme]="lineChartColorScheme" [results]="lineChartMulti" [gradient]="lineChartGradient" [xAxis]="lineChartShowXAxis"
                         [yAxis]="lineChartShowYAxis" [legend]="lineChartShowLegend" [showXAxisLabel]="lineChartShowXAxisLabel"
@@ -30,9 +30,7 @@
                     </ngx-charts-line-chart>
                 </div>
             </div>
-        </div>
-        <div class="card-body"  id="weekly">
-            <div class="card-block">
+            <div class="card-block weeklyreport">
                 <div id="line-chart1" class="height-400">
                     <ngx-charts-line-chart [scheme]="lineweeklyChartColorScheme" [results]="lineweeklyChartMulti" [gradient]="lineweeklyChartGradient" [xAxis]="lineweeklyChartShowXAxis"
                         [yAxis]="lineweeklyChartShowYAxis" [legend]="lineweeklyChartShowLegend" [showXAxisLabel]="lineweeklyChartShowXAxisLabel"
@@ -41,9 +39,7 @@
                     </ngx-charts-line-chart>
                 </div>
             </div>
-        </div>
-        <div class="card-body" id="monthly">
-            <div class="card-block">
+             <div class="card-block monthlyreport">
                 <div id="line-chart1" class="height-400">
                     <ngx-charts-line-chart [scheme]="linemonthlyChartColorScheme" [results]="linemonthlyChartMulti" [gradient]="linemonthlyChartGradient" [xAxis]="linemonthlyChartShowXAxis"
                         [yAxis]="linemonthlyChartShowYAxis" [legend]="linemonthlyChartShowLegend" [showXAxisLabel]="linemonthlyChartShowXAxisLabel"
@@ -53,6 +49,7 @@
                 </div>
             </div>
         </div>
+       
     </div>
 </div>
     <div class="col-sm-12">

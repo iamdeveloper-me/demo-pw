@@ -28,35 +28,30 @@ export class ReachComponent implements OnInit {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
-    $("#weekly").hide();
-    $("#monthly").hide();
-   
+
     $(".weekly").click(function(){
-      $(".weeklyreport").addClass("show");
-      $(".monthlyreport").addClass("hide");
-      $(".dailyreport").addClass("hide");
-      $(".weeklyreport").removeClass("hide");
-      $(".monthlyreport").removeClass("show");
-      $(".dailyreport").removeClass("show");
-    });
+        $(".weeklyreport").show();
+        $(".weeklyreport").css({'position': 'relative'});
+        $(".weeklyreport").css({'z-index': '999'});
+        $(".monthlyreport").hide();
+        $(".dailyreport").hide();
+      });
+
 
      $(".monthly").click(function(){
-        $(".weeklyreport").addClass("hide");
-        $(".monthlyreport").addClass("show");
-        $(".dailyreport").addClass("hide");
-        $(".weeklyreport").removeClass("show");
-        $(".monthlyreport").removeClass("hide");
-        $(".dailyreport").removeClass("show");
+        $(".weeklyreport").hide();
+        $(".monthlyreport").css({'position': 'relative'});
+        $(".monthlyreport").css({'z-index': '999'});
+        $(".monthlyreport").show();
+        $(".dailyreport").hide();
     });
        $(".daily").click(function(){
-        $(".weeklyreport").addClass("hide");
-        $(".monthlyreport").addClass("hide");
-        $(".dailyreport").addClass("show");
-        $(".weeklyreport").removeClass("show");
-        $(".monthlyreport").removeClass("show");
-        $(".dailyreport").removeClass("hide");
+        $(".weeklyreport").hide();
+        $(".monthlyreport").hide();
+        $(".dailyreport").show();
     });
   }
+ 
   lineChart2: Chart = {
     type: 'Line', data: data['line2'],
     options: {

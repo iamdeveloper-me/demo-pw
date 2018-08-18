@@ -29,22 +29,27 @@ export class GallerybarComponent implements OnInit {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
-    $("#weekly").hide();
-    $("#monthly").hide();
-   $(".weekly").click(function(){
-      $("#weekly").show();
-      $("#monthly").hide();
-      $("#daily").hide();
-    });
+
+    $(".weekly").click(function(){
+        $(".weeklyreport").show();
+        $(".weeklyreport").css({'position': 'relative'});
+        $(".weeklyreport").css({'z-index': '999'});
+        $(".monthlyreport").hide();
+        $(".dailyreport").hide();
+      });
+
+
      $(".monthly").click(function(){
-      $("#monthly").show();
-      $("#weekly").hide();
-      $("#daily").hide();
+        $(".weeklyreport").hide();
+        $(".monthlyreport").css({'position': 'relative'});
+        $(".monthlyreport").css({'z-index': '999'});
+        $(".monthlyreport").show();
+        $(".dailyreport").hide();
     });
        $(".daily").click(function(){
-      $("#daily").show();
-      $("#weekly").hide();
-      $("#monthly").hide();
+        $(".weeklyreport").hide();
+        $(".monthlyreport").hide();
+        $(".dailyreport").show();
     });
   }
 

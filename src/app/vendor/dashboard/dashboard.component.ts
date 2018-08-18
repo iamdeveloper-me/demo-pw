@@ -47,13 +47,13 @@ export class DashboardComponent implements OnInit {
           // $("div").click(function(){
             $("div").removeClass( "modal-backdrop");
           // });  
-          $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();
-          });
-          jQuery(document).ready(function ($) {
-            var options = { $AutoPlay: 1 };
-            var jssor1_slider = new $JssorSlider$("jssor_1", options);
-          });
+          // $(document).ready(function(){
+          //   $('[data-toggle="tooltip"]').tooltip();
+          // });
+          // jQuery(document).ready(function ($) {
+          //   var options = { $AutoPlay: 1 };
+          //   var jssor1_slider = new $JssorSlider$("jssor_1", options);
+          // });
           function testAnim(x) {
             $('.modal .modal-dialog').addClass('animated');
             $('.modal .modal-dialog').addClass('bounceIn');

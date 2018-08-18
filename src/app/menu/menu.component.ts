@@ -38,7 +38,7 @@ export class MenuComponent implements OnInit {
         let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories");
         obs.subscribe(data => {
         this.supArray =data as string[]; 
-        // console.log(data) 
+       // console.log(data.json(); ) 
         })
 
       
@@ -184,13 +184,15 @@ onSubmit(){
  // headers.append('Content-Type', 'application/json');
   
  this.cservice.login(this.user).subscribe(
-      (data)=> {console.log(data);   
+      (data)=> {console.log(data.json().auth_token);   
       console.log(data.status);
       console.log(data.statusText);
       if (data.statusText == "OK" ) {
 
 
         console.log('Success','Login Successfully')
+        
+        localStorage.setItem('userToken',data.json().auth_token);
         this.router.navigate(['../vendor/dashboard'])
       }
       else

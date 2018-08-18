@@ -50,5 +50,40 @@ export class EnquiriesComponent implements OnInit {
     //your code here
   
   }
+  
+//daily barchart
+  // barChart
+  public dailybarOptions = chartsData.dailybarOptions;
+  public dailybarLabels = chartsData.dailybarLabels;
+  public dailybarType = chartsData.dailybarType;
+  public dailybarLegend = chartsData.dailybarLegend;
+  public dailybarData = chartsData.dailybarData;
+  public dailybarColors = chartsData.dailybarColors;
 
+  public dailybarClicked(e: any): void {
+    //your code here
+  }
+
+  public dailybarHovered(e: any): void {
+    //your code here
+  
+  }
+
+  
+  //weekly barchart
+  public weeklybarOptions = chartsData.weeklybarOptions;
+  public weeklybarLabels = chartsData.weeklybarLabels;
+  public weeklybarType = chartsData.weeklybarType;
+  public weeklybarLegend = chartsData.weeklybarLegend;
+  public weeklybarData = chartsData.weeklybarData;
+  public weeklybarColors = chartsData.weeklybarColors;
+
+  public weeklybarClicked(e: any): void {
+    //your code here
+  }
+
+  public weeklybarHovered(e: any): void {
+    //your code here
+  
+  }
 }

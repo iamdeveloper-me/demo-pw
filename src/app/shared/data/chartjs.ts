@@ -103,7 +103,7 @@ export var lineChartLegend = true;
 export var lineChartType = 'line';
 
 
-//area chart
+//area chart------------------------------------------------
 export var areaChartData: Array<any> = [
 
   { data: [0, 150, 140, 105, 190, 230, 270], label: 'Series A' },
@@ -354,10 +354,9 @@ export var barChartOptions: any = {
   maintainAspectRatio: false
 
 };
-export var barChartLabels: string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+export var barChartLabels: string[] = ['week1', 'week2', 'week3', 'week4', 'week5', 'week6', 'last week '];
 export var barChartType = 'bar';
 export var barChartLegend = true;
-
 export var barChartData: any[] = [
   { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
   { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
@@ -444,3 +443,79 @@ export var polarChartOptions: any = {
   responsive: true,
   maintainAspectRatio: false
 };
+
+//daily barchart
+export var dailybarOptions: any = {
+  scaleShowVerticalLines: false,
+  responsive: true,
+  maintainAspectRatio: false
+
+};
+export var dailybarLabels: string[] = ['monday', 'tuesday', 'wednessday', 'thrusday', 'friday', 'saturdar', 'sunday'];
+export var dailybarType = 'bar';
+export var dailybarLegend = true;
+export var dailybarData: any[] = [
+  { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+  { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+];
+
+export var dailybarColors: Array<any> = [
+
+
+  {
+
+    backgroundColor: 'rgba(255, 141, 96, 0.8)',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  },
+  {
+
+    backgroundColor: 'rgba(0, 157, 160, 0.8)',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  },
+
+];
+
+//weekly barchart
+export var weeklybarOptions: any = {
+  scaleShowVerticalLines: false,
+  responsive: true,
+  maintainAspectRatio: false
+
+};
+export var weeklybarLabels: string[] = ['July', 'August', 'September', 'October', 'November', 'December', 'January','February','March','April','May','June'];
+export var weeklybarType = 'bar';
+export var weeklybarLegend = true;
+export var weeklybarData: any[] = [
+  { data: [65, 59, 80, 81, 56, 55, 40,30,20,40,10,23], label: 'Series A' },
+  { data: [28, 48, 40, 19, 86, 27, 90,80, 81, 56, 55, 40,], label: 'Series B' }
+];
+
+export var weeklybarColors: Array<any> = [
+  {
+
+    backgroundColor: 'rgba(255, 141, 96, 0.8)',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  },
+  {
+
+    backgroundColor: 'rgba(0, 157, 160, 0.8)',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  },
+
+];

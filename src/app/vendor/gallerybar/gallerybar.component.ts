@@ -29,6 +29,23 @@ export class GallerybarComponent implements OnInit {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
+    $("#weekly").hide();
+    $("#monthly").hide();
+   $(".weekly").click(function(){
+      $("#weekly").show();
+      $("#monthly").hide();
+      $("#daily").hide();
+    });
+     $(".monthly").click(function(){
+      $("#monthly").show();
+      $("#weekly").hide();
+      $("#daily").hide();
+    });
+       $(".daily").click(function(){
+      $("#daily").show();
+      $("#weekly").hide();
+      $("#monthly").hide();
+    });
   }
 
 
@@ -49,6 +66,30 @@ export class GallerybarComponent implements OnInit {
   };
   // Bar Chart Ends
 
- 
-
+  weeklybarChart: Chart = {
+    type: 'Bar',
+    data: data['weeklyBar'],
+    options: {
+        seriesBarDistance: 21,
+        axisX: {
+            showGrid: false, offset: 100
+        },
+        axisY: {
+            scaleMinSpace: 10,
+        }
+    },
+};
+monthlybarChart: Chart = {
+  type: 'Bar',
+  data: data['monthlyBar'],
+  options: {
+      seriesBarDistance: 21,
+      axisX: {
+          showGrid: false, offset: 100
+      },
+      axisY: {
+          scaleMinSpace: 10,
+      }
+  },
+};
 }

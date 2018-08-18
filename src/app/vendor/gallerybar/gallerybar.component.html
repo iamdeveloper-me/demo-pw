@@ -5,29 +5,19 @@
     </div>
     <div id="page-content-wrapper">    
       <app-navemenu></app-navemenu>
-
-            <!-- Line Chart Starts -->
-            <!-- 
-            <div class="col-md-12">
-
-            <div class="col-sm-12 text-center">
-                <p class="text-center">Your Business Performance, It’s all in the numbers! </p>
-            <p class="text-center">Are you a Perfect Wedding Premium or Ultimate Partner? Contact us for support and free training. </p>
-
-            </div>
-            </div> -->
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12"> 
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">My Gallery Views</h4>
-                        <ul>
-                            <li>Portfolio Views</li>
-                            <li>Album Views</li>
-                            <li>Video Views</li>
-                        </ul>
+                        <h4 class="card-title">Enquiries Vs Leads </h4>
+                        <div class="btnholderdaily">
+                            <button class="btn daily" >Daily</button>
+                            <button class="btn weekly" >Weekly</button>
+                            <button class="btn monthly" >Monthly</button>
+                        </div>
+                        <p>July 15 - July 21</p>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body"  id="daily">
                         <div class="card-block">
                             <div id="bar-chart" class="height-400">
                                 <x-chartist [data]="barChart.data" [type]="barChart.type" [options]="barChart.options" [responsiveOptions]="barChart.responsiveOptions"
@@ -36,10 +26,46 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card-body"  id="weekly">
+                        <div class="card-block">
+                            <div id="weekly-bar" class="height-400">
+                                <x-chartist [data]="weeklybarChart.data" [type]="weeklybarChart.type" [options]="weeklybarChart.options" [responsiveOptions]="weeklybarChart.responsiveOptions"
+                                    [events]="weeklybarChart.events">
+                                </x-chartist>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body" id="monthly">
+                        <div class="card-block">
+                               
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block">
+                    <div id="bar-chart" class="height-400">
+                        <x-chartist [data]="weeklybarChart.data" [type]="weeklybarChart.type" [options]="weeklybarChart.options" [responsiveOptions]="weeklybarChart.responsiveOptions"
+                            [events]="weeklybarChart.events">
+                        </x-chartist>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+                <div class="card-body">
+                    <div class="card-block">
+                        <div id="bar-chart" class="height-400">
+                            <x-chartist [data]="monthlybarChart.data" [type]="monthlybarChart.type" [options]="monthlybarChart.options" [responsiveOptions]="monthlybarChart.responsiveOptions"
+                                [events]="monthlybarChart.events">
+                            </x-chartist>
+                        </div>
+                    </div>
+                </div>
+            </div>
 <router-outlet></router-outlet>

@@ -79,3 +79,47 @@ export var areaChartColorScheme = {
 // line, area
 export var areaChartAutoScale = true;
 export var areaChartLineInterpolation = shape.curveBasis;
+
+//weekly
+//Area Charts
+export var weeklyChartView: any[] = [550, 400];
+
+// options
+export var weeklyChartShowXAxis = true;
+export var weeklyChartShowYAxis = true;
+export var weeklyChartGradient = false;
+export var weeklyChartShowLegend = false;
+export var weeklyChartShowXAxisLabel = true;
+export var weeklyChartXAxisLabel = 'Country';
+export var weeklyChartShowYAxisLabel = true;
+export var weeklyChartYAxisLabel = 'Population';
+
+export var weeklyChartColorScheme = {
+    domain: ['#FF8D60', '#FF586B', '#1CBCD8', '#AAAAAA']
+};
+
+// line, area
+export var weeklyChartAutoScale = true;
+export var weeklyChartLineInterpolation = shape.curveBasis;
+//monthly
+
+//Area Charts
+export var monthlyChartView: any[] = [550, 400];
+
+// options
+export var monthlyChartShowXAxis = true;
+export var monthlyChartShowYAxis = true;
+export var monthlyChartGradient = false;
+export var monthlyChartShowLegend = false;
+export var monthlyChartShowXAxisLabel = true;
+export var monthlyChartXAxisLabel = 'Country';
+export var monthlyChartShowYAxisLabel = true;
+export var monthlyChartYAxisLabel = 'Population';
+
+export var monthlyChartColorScheme = {
+    domain: ['#FF8D60', '#FF586B', '#1CBCD8', '#AAAAAA']
+};
+
+// line, area
+export var monthlyChartAutoScale = true;
+export var monthlyChartLineInterpolation = shape.curveBasis;

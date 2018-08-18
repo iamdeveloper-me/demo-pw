@@ -21,18 +21,19 @@ export class NgbdModalContent {
 })
 
 export class MenuComponent implements OnInit {
+
+   // user = {username: "",password: ""};
     supArray:string[];  
-    constructor( private cservice: LoginServiceService ,public _router:Router, private modalService: NgbModal, private http: HttpClient) {}
+    constructor( private router: Router ,private cservice: LoginServiceService ,public _router:Router, private modalService: NgbModal, private http: HttpClient) {}
 
     ngOnInit() { 
         if(window.location.pathname == '/home'||'home/events'||'home/tips'||'home/photo' ) {
-        $(".user").hide();    
+            $(".user").hide();    
         } 
-    
         let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories");
-
         obs.subscribe(data => {
-       this.supArray =data as string[]; console.log(data) 
+        this.supArray =data as string[]; 
+        // console.log(data) 
         })
 
       
@@ -180,7 +181,7 @@ onSubmit(){
 
 
         console.log('Success','Login Successfully')
-
+        this.router.navigate(['../vendor/dashboard'])
       }
       else
       { console.log('Login Fail')}

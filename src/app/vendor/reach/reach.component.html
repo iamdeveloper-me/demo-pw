@@ -8,71 +8,42 @@
       <app-navemenu></app-navemenu>
 
         <!-- Line Chart Starts -->
-        <div class="card-header">
-            <h4 class="card-title">Enquiries Vs Leads </h4>
-            <div>
-                <button class="btn  daily" >Daily</button>
-                <button class="btn  weekly" >Weekly</button>
-                <button class="btn  monthly" >Monthly</button>
-            </div>
-            <p>July 15 - July 21</p>
-        </div>
-            <div class="row dailyreport show">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">fvgfChart</h4>
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">ENQUIRIES VS LEADS</h4>
+                    <div class="btnholderdaily">
+                            <button class="btn  daily" >Daily</button>
+                            <button class="btn  weekly" >Weekly</button>
+                            <button class="btn  monthly" >Monthly</button>
                         </div>
-                        <div class="card-body">
-                            <div class="card-block">
+                </div>
+                <div class="card-body reportbox">
+                    <div class="card-block dailyreport">
+                        <div id="line-chart2" class="height-400 lineChart2 shadow">
+                            <x-chartist [data]="lineChart2.data" [type]="lineChart2.type" [options]="lineChart2.options"
+                                [responsiveOptions]="lineChart2.responsiveOptions" [events]="lineChart2.events">
+                            </x-chartist>
+                        </div>
+                    </div>
+
+                    <div class="card-block weeklyreport">
+                            <div id="line-chart2" class="height-400 lineChart2 shadow">
+                                <x-chartist [data]="weeklylineChart2.data" [type]="weeklylineChart2.type" [options]="weeklylineChart2.options"
+                                    [responsiveOptions]="weeklylineChart2.responsiveOptions" [events]="weeklylineChart2.events">
+                                </x-chartist>
+                            </div>
+                        </div>
+                        <div class="card-block monthlyreport">
                                 <div id="line-chart2" class="height-400 lineChart2 shadow">
                                     <x-chartist [data]="monthlylineChart2.data" [type]="monthlylineChart2.type" [options]="monthlylineChart2.options"
                                         [responsiveOptions]="monthlylineChart2.responsiveOptions" [events]="monthlylineChart2.events">
                                     </x-chartist>
                                 </div>
                             </div>
-                        </div>
-                    </div>
                 </div>
             </div>
-        
-            <div class="row weeklyreport hide"  >
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Line Chart</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="card-block">
-                                    <div id="line-chart2" class="height-400 lineChart2 shadow">
-                                        <x-chartist [data]="weeklylineChart2.data" [type]="weeklylineChart2.type" [options]="weeklylineChart2.options"
-                                            [responsiveOptions]="weeklylineChart2.responsiveOptions" [events]="weeklylineChart2.events">
-                                        </x-chartist>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-        
-            <div class="row monthlyreport hide">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Line Chart</h4>
-                        </div>
-                        <div class="card-body">
-                                <div class="card-block">
-                                        <div id="line-chart2" class="height-400 lineChart2 shadow">
-                                            <x-chartist [data]="lineChart2.data" [type]="lineChart2.type" [options]="lineChart2.options"
-                                                [responsiveOptions]="lineChart2.responsiveOptions" [events]="lineChart2.events">
-                                            </x-chartist>
-                                        </div>
-                                    </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>
     </div>
   
 </div>

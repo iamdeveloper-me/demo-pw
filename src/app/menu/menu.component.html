@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light  headernav" id="mainNav">
     <div class="container mrg_top_menu">
-       <a class="navbar-brand js-scroll-trigger logo_icon" routerLink="../../home"> Perfect Wedding</a>
+       <a class="navbar-brand js-scroll-trigger logo_icon" routerLink="../../home">Perfect Wedding</a>
        <button class="navbar-toggler tik hidden-md hidden-sm hidden-lg" type="button" data-toggle="slide-collapse" data-target="#navbarResponsive"
           aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
        <span class="navbar-toggler-icon"></span>
@@ -319,45 +319,47 @@
                                 </div>  
                         </div>
                     <!--/.Panel 8-->
-                        <div class="tab-pane fade" id="panel9" role="tabpanel">
+                  
+                    <div class="tab-pane fade" id="panel9" role="tabpanel">
 
-                            <form role="form" action="" method="post" (ngSubmit)="onSubmit()" #f="ngForm">
-                                <div class="modal-body mb-1 align_left">
-                                    <div class="input-effect form-group md-form mt-3">
-                                        <input class="effect-16"  type="email" [(ngModel)] = "user.username" name="username" required="required" placeholder="">
-                                        <label>Your Email</label>
-                                        <span class="focus-border"></span>
-                                    </div>   
-                                    <div class="input-effect">
-                                        <input class="effect-16"   type="password" [(ngModel)] = "user.password" name="password" required="required"  placeholder="">
-                                        <label>Password</label>
-                                        <span class="focus-border"></span>
-                                    </div>   
-                                    <div class="text-center mt-2">
+                        <form role="form" action="" method="post" (ngSubmit)="onSubmit()" #f="ngForm">
+                            <div class="modal-body mb-1 align_left">
+                                <div class="input-effect form-group md-form mt-3">
+                                    <input class="effect-16"  type="email" [(ngModel)] = "user.username" name="username" required="required" placeholder="">
+                                    <label>Your Email</label>
+                                    <span class="focus-border"></span>
+                                </div>   
+                                <div class="input-effect">
+                                    <input class="effect-16"   type="password" [(ngModel)] = "user.password" name="password" required="required"  placeholder="">
+                                    <label>Password</label>
+                                    <span class="focus-border"></span>
+                                </div>   
+                                <div class="text-center mt-2">
 
-                                            <p class="pt-1 text-right">
-                                                    <a  href="#" class="blue-text">Forgot Password</a>
-                                                </p>
-                                    <button class="btn btn-vendor vendor" type="submit"   >SIGN IN 
-                                        </button>
-                                        <p class="text-center">or Sign up with: </p>
-                                        
-                                        <!-- routerLink="../vendor/dashboard" -->
-                
-                                        <!-- <p class="pt-1">Not a member? 
-                                            <a  data-dismiss="modal" routerLink="../register" class="blue-text">Sign up</a>
-                                        </p> -->
-                                    </div>    
+                                        <p class="pt-1 text-right">
+                                                <a  href="#" class="blue-text">Forgot Password</a>
+                                            </p>
+                                   <button class="btn btn-vendor vendor" type="submit" routerLink="../vendor/dashboard"  >SIGN IN 
+                                     </button>
+                                     <p class="text-center">or Sign up with: </p>
+                                     
+
+            
+                                    <!-- <p class="pt-1">Not a member? 
+                                        <a  data-dismiss="modal" routerLink="../register" class="blue-text">Sign up</a>
+                                    </p> -->
+                                </div>    
+                            </div>
+                        </form>
+                        <div class="footer_span1 text-center">
+                                <a href=""> <span><i class="fa fa-facebook" aria-hidden="true"></i></span>  </a> 
+                                <a href=""> <span><i class="fa fa-twitter" aria-hidden="true"></i></span>  </a>  
+                                <a href=""><span><i class="fa fa-google-plus" aria-hidden="true"></i></span> </a>  
+                                 <p>Already a member? <a routerLink="../register" class="signuplink">Sign Up </a>  </p>
                                 </div>
-                            </form>
-                            <div class="footer_span1 text-center">
-                                    <a href=""> <span><i class="fa fa-facebook" aria-hidden="true"></i></span>  </a> 
-                                    <a href=""> <span><i class="fa fa-twitter" aria-hidden="true"></i></span>  </a>  
-                                    <a href=""><span><i class="fa fa-google-plus" aria-hidden="true"></i></span> </a>  
-                                    <p>Already a member? <a routerLink="../register">Sign Up </a>  </p>
-                                    </div>
-                        </div>
-                    <!--/.Panel 9-->
+                    </div>
+                   <!--/.Panel 8-->
+
                 </div>
             </div>
         </div>

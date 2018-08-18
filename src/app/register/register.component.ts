@@ -19,6 +19,7 @@ export class RegisterComponent  {
     $(".loginnav").hide(); 
     $.getScript('./assets/js/register.js');             
     $(".show").hide();
+     $("div").removeClass( "modal-backdrop");
     let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories");
 
     obs.subscribe(data => {
@@ -29,16 +30,16 @@ export class RegisterComponent  {
 $(".Suppliertab").click(function(){
     $("#filter").show();
     $("#action").hide();  
-    $(".Suppliertab").addClass("selected"); 
-    $(".Registertab").removeClass("selected");  
+    $(".Suppliertab").addClass("gradint_blue"); 
+    $(".Registertab").removeClass("gradint_blue");  
   
   });
 
     $(".Registertab").click(function(){
     $("#filter").hide();
     $("#action").show();  
-    $(".Suppliertab").removeClass("selected"); 
-    $(".Registertab").addClass("selected");  
+    $(".Suppliertab").removeClass("gradint_blue"); 
+    $(".Registertab").addClass("gradint_blue");  
   });
 
   }

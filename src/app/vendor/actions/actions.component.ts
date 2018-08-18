@@ -35,6 +35,9 @@ export class ActionsComponent implements OnInit {
   }
 
     //Line Charts
+    lineChartMulti = lineChartMulti;
+    linemonthlyChartMulti = linemonthlyChartMulti;
+    lineweeklyChartMulti = lineweeklyChartMulti;
 
     lineChartView: any[] = chartsData.lineChartView;
 

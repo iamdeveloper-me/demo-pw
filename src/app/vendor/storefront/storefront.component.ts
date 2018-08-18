@@ -44,7 +44,7 @@ export class StorefrontComponent implements OnInit {
    
       areaChartMulti = areaChartMulti;
       weeklyChartMulti = weeklyChartMulti;
-  
+      monthlyChartMulti = monthlyChartMulti;
       //Area Charts
   
       areaChartView = chart.areaChartView;

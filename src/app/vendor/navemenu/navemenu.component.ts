@@ -26,6 +26,10 @@ export class NavemenuComponent implements OnInit {
      $('#wrapper').toggleClass('toggled');
     });
 
+
+
+
+
     $('.blackoverlaymobile').on('click', function(){
      //alert("h1");
      $('#wrapper').toggleClass('toggled');

@@ -27,6 +27,7 @@ export class MenuComponent implements OnInit {
     ngOnInit() { 
         if(window.location.pathname == '/home'||'home/events'||'home/tips'||'home/photo' ) {
         $(".user").hide();    
+        $(".tikright").hide(); 
         } 
     
         let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories");
@@ -125,6 +126,8 @@ $(".tikright").click(function(){
         $(".headernav").removeClass("head_small")
     }
 });
+
+
   
     }
 

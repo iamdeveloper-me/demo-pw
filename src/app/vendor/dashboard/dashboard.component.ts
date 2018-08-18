@@ -42,15 +42,21 @@ export class DashboardComponent implements OnInit {
           $.getScript('./assets/js/prism.min.js');
           $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
           $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
+          $.getScript('https://www.jssor.com/script/jssor.slider-27.4.0.min.js');
           $.getScript('./assets/js/vendorsidebar.js');
           // $("div").click(function(){
             $("div").removeClass( "modal-backdrop");
           // });  
-          $(document).ready(function(){
+          //$(document).ready(function(){
 
            // $('[data-toggle="tooltip"]').tooltip();   
 
-          });
+         // });
+          //  jQuery(document).ready(function ($) {
+       // var options = { $AutoPlay: 1 };
+       // var jssor1_slider = new $JssorSlider$("jssor_1", options);
+   // });
+
             function testAnim(x) {
               $('.modal .modal-dialog').addClass('animated');
               $('.modal .modal-dialog').addClass('bounceIn');

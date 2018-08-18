@@ -45,9 +45,9 @@ $(document).ready(function(){
             $("p:first").replaceWith(" <h4  class='navdrandm'> Events </h4>");  
           } else if(window.location.pathname == '/vendor/creatpromo') {
             $("p:first").replaceWith(" <h4  class='navdrandm'> Create Promotion </h4>");  
+          } else if(window.location.pathname == '/vendor/Message') {
+            $("p:first").replaceWith(" <h4  class='navdrandm'> MESSAGES </h4>");  
           }
-
-
           else{}
           
 

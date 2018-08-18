@@ -130,7 +130,7 @@
             </div> 
             <div class="clearfix"></div>
             <div class="col-sm-12 btnholder">
-            <button class="btn gradint_blue white signup_nextbtn btnborradius pull-right" onclick="" type="button">
+            <button class="btn gradint_blue white signup_nextbtn btnborradius pull-right nextBtn-2" onclick="" type="button">
             Next
            </button>
        </div>
@@ -141,7 +141,7 @@
                 <h3 class="pl-0 my-4 lc_head"> Login Information </h3>
                 <div class="input-effect form-group md-form mt-3">
                     <input class="effect-16" type="text" 
-                    placeholder="" 
+                    placeholder="First Name" 
                     id="userName" 
                     [(ngModel)] = "user.logInInfo.userName" 
                     name = "userName" 
@@ -151,7 +151,7 @@
                 </div>   
                 <div class="input-effect form-group md-form mt-3">
                         <input class="effect-16" type="text" 
-                        placeholder=""  
+                        placeholder="Last Name"  
                         required>
                         <label>Last Name</label>
                         <span class="focus-border"></span>
@@ -162,13 +162,13 @@
                    
                     name = "email" 
                     required 
-                    placeholder="">
+                    placeholder="Email">
                     <label>Email</label>
                     <span class="focus-border"></span>
                  </div> <!-- [(ngModel)] = "user.contactInfo.email"   -->
                 <div class="input-effect form-group md-form mt-3">
                     <input class="effect-16" type="password" 
-                    placeholder="" 
+                    placeholder="Password" 
                     id="password" 
                     [(ngModel)] = "user.logInInfo.password" 
                     name = "password" required>
@@ -178,12 +178,12 @@
                 <div class="input-effect form-group md-form mt-3 mb-xs-20">
                     <input class="effect-16" 
                     type="password" 
-                    placeholder="" 
+                    placeholder="Confirm Password" 
                     id="confirmPassword" 
                     [(ngModel)] = "user.logInInfo.confirmPassword" 
                     name = "confirmPassword" 
                     required>
-                    <label>confirm Password</label>
+                    <label>Confirm Password</label>
                     <span class="focus-border"></span>
                 </div>
                  <div class="input-effect form-group md-form mt-3">
@@ -192,14 +192,14 @@
                     
                     name = "phone" 
                     required
-                    placeholder="">
+                    placeholder="Phone no">
                     <label>Phone no</label>
                     <span class="focus-border"></span>
                 </div><!-- [(ngModel)] = "user.contactInfo.phone"  -->
             </div>
               <div class="col-sm-12 btnholder">
-                <button class="btn btn-raised gradint_blue white signup_nextbtn btnborradius pull-left" type="button">Previous</button>
-                <button class="btn btn-raised gradint_blue white signup_nextbtn btnborradius pull-right" type="button">Next</button>
+                <button class="btn btn-raised prevBtn-2 gradint_blue white signup_nextbtn btnborradius pull-left" type="button">Previous</button>
+                <button class="btn btn-raised gradint_blue white signup_nextbtn btnborradius nextBtn-2 pull-right" type="button">Next</button>
             </div>
             
         </div>
@@ -210,7 +210,7 @@
                     <div class="input-effect form-group md-form mt-3">
                         <input class="effect-16 validate" 
                         type="text" 
-                        placeholder=""
+                        placeholder="Name of your Bussiness"
                         id="nameOfBusiness" 
                         [(ngModel)] = "user.businessInfo.nameOfBusiness" 
                         name = "nameOfBusiness" 
@@ -224,10 +224,10 @@
                         id="countryName" 
                         [(ngModel)] = "user.businessInfo.country.countryName" 
                         name = "countryName"  
-                        placeholder="" 
+                        placeholder="Country" 
                         required
                         >
-                        <label>country</label>
+                        <label>Country</label>
                         <span class="focus-border"></span>
                     </div>
                     <div class="input-effect form-group md-form mt-3">
@@ -236,10 +236,10 @@
                         id="city" 
                         [(ngModel)] = "user.businessInfo.city" 
                         name = "city" 
-                        placeholder="" 
+                        placeholder="State/City" 
                         required
                         >
-                        <label>state/city</label>
+                        <label>State/City</label>
                         <span class="focus-border"></span>
                     </div>
                                
@@ -249,7 +249,7 @@
                         id="address" 
                         [(ngModel)] = "user.businessInfo.address" 
                         name = "address"
-                        placeholder="" 
+                        placeholder="Address" 
                         required>
                         <label>Address</label>
                         <span class="focus-border"></span>
@@ -260,7 +260,7 @@
                         id="website" 
                       
                         name = "website" 
-                        placeholder="" 
+                        placeholder="Website" 
                         required>
                         <label>Website</label>
                         <span class="focus-bo+rder"></span>
@@ -268,8 +268,8 @@
                 
                 </div>
                 <div class="col-sm-12 btnholder">
-                <button class="btn btn-raised gradint_blue white signup_nextbtn btnborradius pull-left" type="button">Previous</button>
-                <button class="btn btn-raised gradint_blue white signup_nextbtn btnborradius pull-right" type="button">Next</button>
+                <button class="btn btn-raised gradint_blue white signup_nextbtn prevBtn-2 btnborradius pull-left" type="button">Previous</button>
+                <button class="btn btn-raised gradint_blue white signup_nextbtn nextBtn-2 btnborradius pull-right" type="button">Next</button>
             </div>
         </div>
         <!-- Fourth Step -->
@@ -558,8 +558,8 @@
            </div></div>
             <div class="clearfix"></div>
                         <div class="col-sm-12 btnholder">
-                <button class="btn btn-raised gradint_blue white signup_nextbtn btnborradius pull-left" type="button">Previous</button>
-                <button class="btn btn-raised gradint_blue white signup_nextbtn btnborradius pull-right" type="button">Next</button>
+                <button class="btn btn-raised prevBtn-2 gradint_blue white signup_nextbtn btnborradius pull-left" type="button">Previous</button>
+                <button class="btn btn-raised gradint_blue white nextBtn-2 signup_nextbtn btnborradius pull-right" type="button">Next</button>
             </div>
         </div>
     </form>

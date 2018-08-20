@@ -71,94 +71,6 @@
             </div>
         </section>
         <div class="clearfix"></div>
-        <div class="content">
-            <div class="container">
-                <h3  class="h4">Edit Profile</h3>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                            <h4 class="card-title">Personal Details</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="col-md-12">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="input-effect form-group md-form ">
-                                            <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                            <label>Full Name</label>
-                                            <span class="focus-border"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                </div>
-                                <div class="col-md-12">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="input-effect form-group md-form ">
-                                            <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                            <label>Phone Number</label>
-                                            <span class="focus-border"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="input-effect form-group md-form ">
-                                            <input class="effect-16 validate" type="email" placeholder="" required="required">
-                                            <label>Email</label>
-                                            <span class="focus-border"></span>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                    <div class="form-group">
-                                        <div class="input-effect form-group md-form ">  
-                                            <input class="effect-16 validate"  required="required">
-                                            <label>About Me</label>
-                                            <span class="focus-border"></span>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="form-group text_right">
-                                <button type="submit" class="btn btn-comman ">Update Profile</button>
-
-                                </div>
-                            </div>
-                            
-                        </div>
-                                </div>
-                                <div class="col-md-12 mem_detail">
-                                    <div class="col-md-4 col-xs-12 co-sm-12">
-                                        <img  class="img-responsive" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcNiceIqHAt9m_rLA66TzgW1JD0kSbYfeet3FlrPPFcQmVUJ-5">
-                                    </div>
-                                    <div class="col-md-8 mob_center">
-                                        <div class=""> <h5> <strong>BILLING & INVOICES</strong> </h5> 
-                                            <div class="updatebt mar_top_20px">
-                                                <button class="pad_bt">View</button>
-                                            </div>
-                                        </div>     
-                                    </div>
-                                </div>    
-                            </div> 
-                        </div>
-                    </div>
-                </div>    
-            </div>
-        </div>       
-        <div class="clearfix"></div>
-
         <app-foot></app-foot>
         <router-outlet></router-outlet>
     </div>
@@ -169,23 +81,80 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">MY ACCOUNT  INFORMATION</h4>
+                    <h4 class="card-title">Personal Details</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
-            <div class="modal-body">
-                <div class="col-sm-12  text-center">                 
-                    <i class="fa fa-globe fa-2x" data-reactid="342"></i>
-                    <p>Have more link?</p>
-                    <p>First Name :<input class="endent_10px" type="text" placeholder="Enter link" [(ngModel)]="fname"></p>
-                    <p>Last Name :<input class="endent_10px" type="text" placeholder="Enter link" [(ngModel)]="lname"> </p>
-                    <p>PHONE NUMBER: <input class="endent_10px" type="text" placeholder="Enter link" [(ngModel)] = "pno"></p>
-                    <P>EAMIL :<input class="endent_10px" type="text" placeholder="Enter link" [(ngModel)] = "email"></P>
-                    <p>Website:<input class="endent_10px" type="text" placeholder="Enter link" [(ngModel)] = "site"></p>
-                    <P>ABOUT ME :<input class="endent_10px" type="text" placeholder="Enter link" [(ngModel)] = "about"></P>
-                    <p>Premium members only. <span>Upgrade</span> </p>
+            <div class="modal-body">   
+                <div class="card">         
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">
+                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                    <label>First Name</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-effect form-group md-form ">
+                                        <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                        <label>Last Name</label>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                </div>
+                            </div>                                      
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">
+                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                    <label>Phone Number</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                        </div>                     
+                            <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">
+                                    <input class="effect-16 validate" type="email" placeholder="" required="required">
+                                    <label>Email</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-effect form-group md-form ">
+                                            <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                            <label>Website</label>
+                                            <span class="focus-border"></span>
+                                        </div>
+                                    </div>
+                                    </div>
+                        
+                        
+                        <div class="col-md-12">
+                            <div class="form-group">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">  
+                                    <input class="effect-16 validate"  required="required">
+                                    <label>About Me</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    <div class="col-md-12">
+                       <span><input type="checkbox">&nbsp; Setting &nbsp;  </span> 
+                       <span> <input type="checkbox">&nbsp; Enable </span>
+                    </div>
+
+                    </div> 
                 </div>
             </div>
             <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -341,11 +310,8 @@
             </div>
         </div>
     </div>    
-
-
-
     <!--mail popup -->
-    <div class="modal fade" id="payment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="payment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                     <h4  class="card-title">Payments Termes </h4>

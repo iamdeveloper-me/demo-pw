@@ -9,195 +9,411 @@
   <div class="container-fluid">
   	<div class="content"></div>
 
-	<div class="col-12 nopadd" id="gallery">
-  		<div _ngcontent-c0="" class="card">
-  			<div _ngcontent-c0="" class="card-header">
-  					<div _ngcontent-c0="" class="card-title">
-  					
-  					<span class="acchead">
-			<i class="material-icons">
-			add_to_photos
-			</i>
-            Homepage Gallery  </span> <span _ngcontent-c6="" class="badge badge-pill badge-info">Paid Features</span>
-  				</div>
-  			</div>
-  			<div _ngcontent-c0="" class="card-body">
-  				<div class="col-sm-12 table-responsive">
-  					<table _ngcontent-c5="" class="table table-striped">
-  						<thead _ngcontent-c5="">
-  							<tr _ngcontent-c5="">
-  								<th _ngcontent-c5="">#</th>
-  								<th _ngcontent-c5="">Month</th>
-  								<th _ngcontent-c5="">Week</th>
-  								<th _ngcontent-c5="">Availability</th>
-  								<th _ngcontent-c5="">Proceed to Payment</th>
-  							</tr>
-  						</thead>
-  						<tbody _ngcontent-c5="">
-  							<tr _ngcontent-c5="">
-  								<th _ngcontent-c5="" scope="row">1</th>
-  								<td _ngcontent-c5=""><label>Month</label> January</td>
-  								<td _ngcontent-c5=""><label>Week</label> WK-1 (01Jan-07Jan)</td>
-  								<td _ngcontent-c5=""><label>Availability</label> 2</td>
-  								<td _ngcontent-c5=""><a href="https://www.paypal.com/in/signin" class="btn inblock textwhite  btn-success" target="blank">Proceed</a></td>
-  							</tr>
-  							<tr _ngcontent-c5="">
-  								<th _ngcontent-c5="" scope="row">2</th>
-  								<td _ngcontent-c5=""><label>Month</label> January</td>
-  								<td _ngcontent-c5=""><label>Week</label> WK-2 (08Jan-014Jan)</td>
-  								<td _ngcontent-c5=""><label>Availability</label> <span class="redtext">All Booked</span></td>
-  								<td _ngcontent-c5=""><a href="https://www.paypal.com/in/signin" class="btn inblock textwhite  btn-success" target="blank">Proceed</a></td>
-  							</tr>
-  							<tr _ngcontent-c5="">
-  								<th _ngcontent-c5="" scope="row">3</th>
-  								<td _ngcontent-c5=""><label>Month</label> January</td>
-  								<td _ngcontent-c5=""><label>Week</label> >WK-3 (15Jan-21Jan)</td>
-  								<td _ngcontent-c5=""><label>Availability</label> 2</td>
-  								<td _ngcontent-c5=""><a href="https://www.paypal.com/in/signin" class="btn inblock textwhite  btn-success" target="blank">Proceed</a></td>
-  							</tr>
-  						</tbody>
-  					</table>
-  				</div>
-  			</div>
-  		</div>
-  	</div>
+  <div class="row gulterbot20px">
+    <div class="col-sm-2 col-12 boxcolumn">
+      <div class="card">
+        <div class="row">
+              <a class="iconfloatleft" routerlink="../PromoteBusiness">
+                <i _ngcontent-c6="" class="material-icons"> arrow_back_ios </i>
+              </a>
+            <div class="roundedicon">
+              <img src="https://s3.us-east-2.amazonaws.com/prefect-image/bell.png" class="img-responsive">
+            </div>
+            <div class="codecontainermobile">
+              <input class="vouchercodeinput" placeholder="Voucher Code" type="text">
+              <button class="btn btnbluecode">Enter</button>
+            </div>
+        </div>
+        <h1>Homepage Gallery</h1>
+        <a class="btn gradint_blue borderradius promotebtn gallery">
+          Detail
+        </a>
 
+      </div>
+    </div>
+    <div class="col-sm-6  col-12 boxcolumn">
+      <div class="card tableless100">
+        <table _ngcontent-c5="" class="table table-striped">
+              <thead _ngcontent-c5="">
+                <tr _ngcontent-c5="">
+                  <th _ngcontent-c5="">#</th>
+                  <th _ngcontent-c5="">Month</th>
+                  <th _ngcontent-c5="">Week</th>
+                  <th _ngcontent-c5="">Availability</th>
+                  <th _ngcontent-c5="">Select</th>
+                </tr>
+              </thead>
+              <tbody _ngcontent-c5="">
+                <tr _ngcontent-c5="">
+                  <th class="serialcolum" scope="row">1</th>
+                  <td class="monthcolumn">January</td>
+                  <td>WK-1 (01Jan-07Jan)</td>
+                  <td>2</td>
+                  <td><input type="checkbox" name=""/></td>
+                </tr>
+                <tr _ngcontent-c5="">
+                  <th class="serialcolum" scope="row">2</th>
+                  <td class="monthcolumn">January</td>
+                  <td>WK-2 (08Jan-014Jan)</td>
+                  <td><span class="redtext">All Booked</span></td>
+                  <td><input type="checkbox" name=""/></td>
+                </tr>
+                <tr _ngcontent-c5="">
+                  <th class="serialcolum" scope="row">3</th>
+                  <td class="monthcolumn">January</td>
+                  <td>WK-3 (15Jan-21Jan)</td>
+                  <td>2</td>
+                  <td><input type="checkbox" name=""/></td>
+                </tr>
+              </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-sm-4  col-12 boxcolumn">
+      <div class="card">
+        <strong class="text-center">Select Detailed</strong>
+        <div class="clearfix"></div>
+        <div class="codecontainer">
+          <input class="vouchercodeinput" placeholder="Voucher Code" type="text">
+          <button class="btn btnbluecode">Enter</button>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-sm-12 nopadd">
+          <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>WK-1 (01Jan-07Jan)</td>
+                  <td class="redtext">All Booked</td>
+                  <td>$ 25</td>
+                </tr>
+                <tr>
+                  <td>WK-3 (15Jan-21Jan)</td>
+                  <td class="greentext">Confirmed</td>
+                  <td>$ 25</td>
+                </tr>
+                 <tr>
+                  <td colspan="2"><strong>Total</strong></td>
+                  <td>$ 50</td>
+                </tr>
+              </tbody>
+          </table>
+           <div class="clearfix"></div>
+        <div class="col-sm-12 nopadd text-center">
+          <a href="https://www.paypal.com/in/signin" class="btn inblock textwhite btn-success" target="blank">
+            Proceed
+          </a>
+        </div>
+        </div>
 
-<div class="col-12 nopadd martop30px" id="priority">
-  		<div _ngcontent-c0="" class="card">
-  			<div _ngcontent-c0="" class="card-header">
-  					<div _ngcontent-c0="" class="card-title">
-  					
-  					<span class="acchead">
-			<i class="material-icons">view_list</i>
-            Priority Listings   </span> <span _ngcontent-c6="" class="badge badge-pill badge-info">Paid Features</span>
-  				</div>
-  			</div>
-  			<div _ngcontent-c0="" class="card-body">
-  				<div class="col-sm-12 table-responsive">
-  					<table _ngcontent-c5="" class="table table-striped">
-  						<thead _ngcontent-c5="">
-  							<tr _ngcontent-c5="">
-  								<th _ngcontent-c5="">#</th>
-  								<th _ngcontent-c5="">Month</th>
-  								<th _ngcontent-c5="">Week</th>
-  								<th _ngcontent-c5="">Availability</th>
-  								<th _ngcontent-c5="">Proceed to Payment</th>
-  							</tr>
-  						</thead>
-  						<tbody _ngcontent-c5="">
-  							<tr _ngcontent-c5="">
-  								<th _ngcontent-c5="" scope="row">1</th>
-  								<td _ngcontent-c5=""><label>Month</label> January</td>
-  								<td _ngcontent-c5=""><label>Week</label> WK-1 (01Jan-07Jan)</td>
-  								<td _ngcontent-c5=""><label>Availability</label> 2</td>
-  								<td _ngcontent-c5=""><a href="https://www.paypal.com/in/signin" class="btn inblock textwhite  btn-success" target="blank">Proceed</a></td>
-  							</tr>
-  							<tr _ngcontent-c5="">
-  								<th _ngcontent-c5="" scope="row">2</th>
-  								<td _ngcontent-c5=""><label>Month</label> January</td>
-  								<td _ngcontent-c5=""><label>Week</label> WK-2 (08Jan-014Jan)</td>
-  								<td _ngcontent-c5=""><label>Availability</label> <span class="redtext">All Booked</span></td>
-  								<td _ngcontent-c5=""><a href="https://www.paypal.com/in/signin" class="btn inblock textwhite  btn-success" target="blank">Proceed</a></td>
-  							</tr>
-  							<tr _ngcontent-c5="">
-  								<th _ngcontent-c5="" scope="row">3</th>
-  								<td _ngcontent-c5=""><label>Month</label> January</td>
-  								<td _ngcontent-c5=""><label>Week</label> >WK-3 (15Jan-21Jan)</td>
-  								<td _ngcontent-c5=""><label>Availability</label> 2</td>
-  								<td _ngcontent-c5=""><a href="https://www.paypal.com/in/signin" class="btn inblock textwhite  btn-success" target="blank">Proceed</a></td>
-  							</tr>
-  						</tbody>
-  					</table>
-  				</div>
-  			</div>
-  		</div>
-  	</div>
+      </div>
+    </div>
+  </div>
 
-  	<div class="col-12 nopadd martop30px" id="discounts">
-  		<div _ngcontent-c0="" class="card">
-  			<div _ngcontent-c0="" class="card-header">
-  				<div _ngcontent-c0="" class="card-title">	
-  					<span class="acchead">
-						<i class="material-icons">star_border</i>
-          				Exclusive Perfect Wedding audience discounts   
-          			</span> 
-  				</div>
-  			</div>
-  			<div _ngcontent-c0="" class="card-body">
-  				<div class="col-sm-12 table-responsive">
-  					<div class="col-md-12">
-    					<div class="funkyradio">
-        <div class="funkyradio-success">
+  <div class="row gulterbot20px">
+    <div class="col-sm-2  col-12 boxcolumn">
+      <div class="card">
+        <div class="row">
+              <a class="iconfloatleft" routerlink="../PromoteBusiness">
+                <i _ngcontent-c6="" class="material-icons"> arrow_back_ios </i>
+              </a>
+            <div class="roundedicon">
+          <img src="https://s3.us-east-2.amazonaws.com/prefect-image/home1.png" class="img-responsive">
+      </div>
+            <div class="codecontainermobile">
+              <input class="vouchercodeinput" placeholder="Voucher Code" type="text">
+              <button class="btn btnbluecode">Enter</button>
+            </div>
+        </div>
+        
+        <h1>Priority Listings</h1>
+        <a class="btn gradint_blue borderradius promotebtn gallery">
+          Detail
+        </a>
+      </div>
+    </div>
+    <div class="col-sm-6  col-12 boxcolumn">
+      <div class="card tableless100">
+        <table _ngcontent-c5="" class="table table-striped">
+              <thead _ngcontent-c5="">
+                <tr _ngcontent-c5="">
+                  <th _ngcontent-c5="">#</th>
+                  <th _ngcontent-c5="">Month</th>
+                  <th _ngcontent-c5="">Week</th>
+                  <th _ngcontent-c5="">Availability</th>
+                  <th _ngcontent-c5="">Select</th>
+                </tr>
+              </thead>
+              <tbody _ngcontent-c5="">
+                <tr _ngcontent-c5="">
+                  <th class="serialcolum" scope="row">1</th>
+                  <td class="monthcolumn">January</td>
+                  <td><label>Week</label> WK-1 (01Jan-07Jan)</td>
+                  <td><label>Availability</label> 2</td>
+                  <td><input type="checkbox" name=""/></td>
+                </tr>
+                <tr _ngcontent-c5="">
+                  <th class="serialcolum" scope="row">2</th>
+                  <td class="monthcolumn">January</td>
+                  <td><label>Week</label> WK-2 (08Jan-014Jan)</td>
+                  <td><label>Availability</label> <span class="redtext">All Booked</span></td>
+                  <td><input type="checkbox" name=""/></td>
+                </tr>
+                <tr _ngcontent-c5="">
+                  <th class="serialcolum" scope="row">3</th>
+                  <td  class="monthcolumn">January</td>
+                  <td><label>Week</label> WK-3 (15Jan-21Jan)</td>
+                  <td><label>Availability</label> 2</td>
+                  <td><input type="checkbox" name=""/></td>
+                </tr>
+              </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-sm-4  col-12 boxcolumn">
+      <div class="card">
+        <strong class="text-center">Select Detailed</strong>
+        <div class="clearfix"></div>
+        <div class="codecontainer">
+          <input class="vouchercodeinput" placeholder="Voucher Code" type="text">
+          <button class="btn btnbluecode">Enter</button>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-sm-12 nopadd">
+          <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>WK-1 (01Jan-07Jan)</td>
+                  <td class="redtext">All Booked</td>
+                  <td>$ 25</td>
+                </tr>
+                <tr>
+                  <td>WK-3 (15Jan-21Jan)</td>
+                  <td class="greentext">Confirmed</td>
+                  <td>$ 25</td>
+                </tr>
+                 <tr>
+                  <td colspan="2"><strong>Total</strong></td>
+                  <td>$ 50</td>
+                </tr>
+              </tbody>
+          </table>
+           <div class="clearfix"></div>
+        <div class="col-sm-12 nopadd text-center">
+          <a href="https://www.paypal.com/in/signin" class="btn inblock textwhite btn-success" target="blank">
+            Proceed
+          </a>
+        </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row gulterbot20px">
+    <div class="col-sm-2  col-12 boxcolumn">
+      <div class="card">
+      
+         <div class="row">
+              <a class="iconfloatleft" routerlink="../PromoteBusiness">
+                <i _ngcontent-c6="" class="material-icons"> arrow_back_ios </i>
+              </a>
+              <div class="roundedicon">
+          <img src="https://s3.us-east-2.amazonaws.com/prefect-image/child.png" class="img-responsive"> 
+        </div>
+            <div class="codecontainermobile">
+              <input class="vouchercodeinput" placeholder="Voucher Code" type="text">
+              <button class="btn btnbluecode">Enter</button>
+            </div>
+        </div>
+        <h1>Audience Discounts</h1>
+        <a class="btn gradint_blue borderradius promotebtn gallery">
+          Detail
+        </a>
+      </div>
+    </div> 
+    <div class="col-sm-6  col-12 boxcolumn">
+      <div class="card">
+        <div class="col-md-12">
+          <div class="funkyradio">
+            <div class="funkyradio-success">
             <input type="radio" name="radio" id="radio1" />
             <label for="radio1">Exclusive  5% Off</label>
-        </div>
-        <div class="funkyradio-success">
+            </div>
+            <div class="funkyradio-success">
             <input type="radio" name="radio" id="radio2" />
             <label for="radio2">Exclusive  10% Off</label>
-        </div>
-         <div class="funkyradio-success">
+            </div>
+            <div class="funkyradio-success">
             <input type="radio" name="radio" id="radio3" />
             <label for="radio3">Exclusive  15% Off</label>
-        </div>
-         <div class="funkyradio-success">
+            </div>
+            <div class="funkyradio-success">
             <input type="radio" name="radio" id="radio4" />
             <label for="radio4">Exclusive  20% Off</label>
-        </div>
-         <div class="funkyradio-success">
+            </div>
+            <div class="funkyradio-success">
             <input type="radio" name="radio" id="radio5" />
             <label for="radio5">Engagement Offer</label>
-        </div>
-         <div class="funkyradio-success">
+            </div>
+            <div class="funkyradio-success">
             <input type="radio" name="radio" id="radio6" />
             <label for="radio6">Pre-Wedding Offer</label>
+            </div>
+          </div>
         </div>
-    					</div>
-					</div>
-  				</div>
-  			</div>
-  		</div>
-  	</div>
+      </div>
+    </div>
+    <div class="col-sm-4  col-12 boxcolumn">
+      <div class="card">
+        <strong class="text-center">Select Detailed</strong>
+        <div class="clearfix"></div>
+        <div class="codecontainer">
+          <input class="vouchercodeinput" placeholder="Voucher Code" type="text">
+          <button class="btn btnbluecode">Enter</button>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-sm-12 nopadd">
+          <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>Exclusive 15% Off</td>
+                  <td class="greentext">Confirmed</td>
+                  <td>$ 25</td>
+                </tr>
+                 <tr>
+                  <td colspan="2"><strong>Total</strong></td>
+                  <td>$ 25</td>
+                </tr>
+              </tbody>
+          </table>
+           <div class="clearfix"></div>
+        <div class="col-sm-12 nopadd text-center">
+          <a href="https://www.paypal.com/in/signin" class="btn inblock textwhite btn-success" target="blank">
+            Proceed
+          </a>
+        </div>
+        </div>
 
-<div class="col-12 nopadd martop30px" id="priority">
-  		<div _ngcontent-c0="" class="card">
-  			<div _ngcontent-c0="" class="card-header">
-  					<div _ngcontent-c0="" class="card-title">
-  					
-  					<span class="acchead">
-			<i class="material-icons">loyalty</i>
-            Deals   </span> 
-  				</div>
-  			</div>
-  			<div _ngcontent-c0="" class="card-body">
-  				<div class="col-sm-4">
-  					
-  					<div _ngcontent-c5="" class="card borall"><div _ngcontent-c5="" class="card-body"><div _ngcontent-c5="" class="card-block"><h4 _ngcontent-c5="" class="card-title paddtopbot">10% Discount</h4><p _ngcontent-c5="" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-<p _ngcontent-c5="" class="card-text">Validity: 30 days</p>
-<p _ngcontent-c5="" class="card-text">Enter Code: WED10-OFF</p>
+      </div>
+    </div>
+  </div>
 
-  						<a _ngcontent-c5="" class="btn btn-raised btn-danger">Proceed</a></div></div></div>
-  				</div>
+  <div class="row gulterbot20px">
+    <div class="col-sm-2  col-12 boxcolumn">
+      <div class="card">
+       
 
-  				<div class="col-sm-4">
-  					
-  					<div _ngcontent-c5="" class="card borall"><div _ngcontent-c5="" class="card-body"><div _ngcontent-c5="" class="card-block"><h4 _ngcontent-c5="" class="card-title paddtopbot">Free Photography</h4>
-  						<p _ngcontent-c5="" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-<p _ngcontent-c5="" class="card-text">Validity: 10 days</p>
-<p _ngcontent-c5="" class="card-text">Enter Code: FREE-PHOTO</p>
+        <div class="row">
+              <a class="iconfloatleft" routerlink="../PromoteBusiness">
+                <i _ngcontent-c6="" class="material-icons"> arrow_back_ios </i>
+              </a>
+              <div class="roundedicon">
+          <img src="https://s3.us-east-2.amazonaws.com/prefect-image/horn.png" class="img-responsive">
+        </div>
+            <div class="codecontainermobile">
+              <input class="vouchercodeinput" placeholder="Voucher Code" type="text">
+              <button class="btn btnbluecode">Enter</button>
+            </div>
+        </div>
+        <h1>Deals</h1>
+        <a class="btn gradint_blue borderradius promotebtn gallery">
+          Detail
+        </a>
+      </div>
+    </div>
+    <div class="col-sm-6  col-12 boxcolumn">
+      <div class="card">
+        <div class="col-sm-12 nopadd">
+          <div class="col-sm-6">
+            <div _ngcontent-c5="" class="card borall nopadd">
+              <div _ngcontent-c5="" class="card-body">
+                <div _ngcontent-c5="" class="card-block nopadd">
+                  <h4 _ngcontent-c5="" class="card-title paddtopbot font16px">10% Discount</h4>
+                  <p _ngcontent-c5="" class="card-text">Validity: 30 days</p>
+                  <p _ngcontent-c5="" class="card-text">Code: WED10-OFF</p>
+                  <a _ngcontent-c5="" class="btn btn-raised btn-danger">Proceed</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div _ngcontent-c5="" class="card borall nopadd">
+              <div _ngcontent-c5="" class="card-body">
+                <div _ngcontent-c5="" class="card-block nopadd">
+                  <h4 _ngcontent-c5="" class="card-title paddtopbot font16px">Free Photography</h4>
+                  <p _ngcontent-c5="" class="card-text">Validity: 10 days</p>
+                  <p _ngcontent-c5="" class="card-text">Code: FREEPHOTO</p>
+                  <a _ngcontent-c5="" class="btn btn-raised btn-danger">Proceed</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4  col-12 boxcolumn">
+      <div class="card">
+        <strong class="text-center">Select Detailed</strong>
+        <div class="clearfix"></div>
+        <div class="codecontainer">
+          <input class="vouchercodeinput" placeholder="Voucher Code" type="text">
+          <button class="btn btnbluecode">Enter</button>
+        </div>
+        <div class="clearfix"></div>
+       
 
-  						<a _ngcontent-c5="" class="btn btn-raised btn-danger">Proceed</a></div></div></div>
-  				</div>
-  				<div class="col-sm-4">
-  					
-  					<div _ngcontent-c5="" class="card borall"><div _ngcontent-c5="" class="card-body"><div _ngcontent-c5="" class="card-block"><h4 _ngcontent-c5="" class="card-title paddtopbot">10% Discount</h4><p _ngcontent-c5="" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-<p _ngcontent-c5="" class="card-text">Validity: 30 days</p>
-<p _ngcontent-c5="" class="card-text">Enter Code: WED10-OFF</p>
-  						<a _ngcontent-c5="" class="btn btn-raised btn-danger">Proceed</a></div></div></div>
-  				</div>
-  			</div>
-  		</div>
-  	</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row gulterbot20px">
+    <div class="col-sm-2  col-12 boxcolumn">
+      <div class="card">
+        <div class="row">
+              <a class="iconfloatleft" routerlink="../PromoteBusiness">
+                <i _ngcontent-c6="" class="material-icons"> arrow_back_ios </i>
+              </a>
+          <div class="roundedicon">
+          <img src="https://s3.us-east-2.amazonaws.com/prefect-image/horn.png" class="img-responsive"> 
+        </div>
+            <div class="codecontainermobile">
+              <input class="vouchercodeinput" placeholder="Voucher Code" type="text">
+              <button class="btn btnbluecode">Enter</button>
+            </div>
+        </div>
+        <h1>Homepage Banner</h1>
+        <a class="btn gradint_blue borderradius promotebtn gallery">
+          Detail
+        </a>
+      </div>
+    </div>
+    <div class="col-sm-6  col-12 boxcolumn">
+      <div class="card">
+       
+      </div>
+    </div>
+    <div class="col-sm-4  col-12 boxcolumn">
+      <div class="card">
+        <strong class="text-center">Select Detailed</strong>
+        <div class="clearfix"></div>
+        <div class="codecontainer">
+          <input class="vouchercodeinput" placeholder="Voucher Code" type="text">
+          <button class="btn btnbluecode">Enter</button>
+        </div>
+        <div class="clearfix"></div>
+
+      </div>
+    </div>
+  </div>
+
+	<div class="clearfix"></div>
+
+
+
+
+  	
+
+
 
   </div>
 </div>

@@ -14,6 +14,77 @@
     padding: 0px 10px;
     margin: 0px;
 }
+
+.boxcolumn .card{
+border:1px solid #e5e5e5!important;
+}
+.roundedicon{
+    height: 100px;
+    width: 100px;
+    background: #f5f5f5;
+    border-radius: 50%;
+    margin: 0px auto;
+    padding: 10px;
+    line-height: 75px;
+    text-align: center;
+    box-shadow:0px 0px 10px #ccc;
+}
+.roundedicon img{
+    width:65px;
+    height:65px;
+    float: inherit;
+    display: inline;
+}
+.boxcolumn .card{
+    margin:0px 15px;
+    padding: 20px 15px;
+}
+.boxcolumn .card h1{
+font-size:18px;
+margin:10px 0px;
+padding:0px;
+text-align:center;
+}
+.promotebtn{
+    padding:0px;
+}
+
+.promotedetailbox {
+    position: relative;
+    background: #ffffff;
+    border-top: 2px solid #666;
+    padding:15px;
+    margin-top:15px;
+    display:none;
+}
+.promotedetailbox:after, .promotedetailbox:before {
+    bottom: 100%;
+    left: 9%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+.prioritybox:after, .prioritybox:before {
+    left: 30%!important;
+}
+.audiencebox:after, .audiencebox:before {
+    left: 50%!important;
+}
+.dealsbox:after, .dealsbox:before {
+    left: 71%!important;
+}
+.homebannerbox:after, .homebannerbox:before {
+    left: 91%!important;
+}
+.promotedetailbox:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #666;
+    border-width: 30px;
+    margin-left: -30px;
+}
 .btnheadvendor{
     padding: 10px;
     margin-top: 15px;
@@ -240,4 +311,56 @@ max-width:50px;
      background-color: #fff;
      border-top: none !important;
  }
- 
+ .boxcolumn{
+ padding-bottom:20px;
+ }
+ .padleft0px, .card-title.padleft0px{
+    padding-left: 0px!important;
+ }
+ @media(max-width:768px) {
+
+ .boxcolumn{margin:0px auto;}
+  .boxcolumn .card h1, .boxcolumn .card a{display:none;}
+ .promotedetailbox:after, .promotedetailbox:before {
+    left: 50%important;
+}
+ .boxcolumn .card{
+ margin:0px 5px!important;
+ background: none;
+ padding: 0px;
+ border:0px solid #fff!important;
+ }
+
+.roundedicon{
+    width:100%;
+    min-height:50px;
+    height: auto;
+    background: #f5f5f5;
+    border-radius: 50%;
+    padding:10px;
+    box-shadow:0px 0px 0px #ccc;
+    margin: 0px auto;
+}
+.roundedicon img{
+    width: inherit;
+    height: inherit;
+
+    display: block;
+}
+.prioritybox:after, .prioritybox:before {
+    left: 50%important;
+}
+.audiencebox:after, .audiencebox:before {
+    left: 50%important;
+}
+.dealsbox:after, .dealsbox:before {
+    left: 50%important;
+}
+.homebannerbox:after, .homebannerbox:before {
+    left: 50%important;
+}
+.promotedetailbox:after{
+    border-width: 15px;
+    margin-left: -15px;
+}
+ }

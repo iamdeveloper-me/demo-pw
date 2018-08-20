@@ -127,7 +127,8 @@ img::-moz-selection {
   max-width: 800px;
   position: absolute;
     bottom: 30px;
-    left: 21%;
+    left: 0;
+    right:0;
 }
 
 @media (min-width: 992px) {
@@ -217,22 +218,26 @@ header.masthead p {
   -webkit-appearance: none; 
   -moz-appearance: none;
   appearance: none;       /* remove default arrow */
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Angle_down_font_awesome.svg/512px-Angle_down_font_awesome.svg.png")!important;   /* add custom arrow */
-  background-repeat: no-repeat;
-  background-position:right center;
-  background-size: 10%;
-  border-radius: 0px;
-  border: 0px solid #fff;
-  border-right:1px solid #000;
-  height: 50px;
+    background-image: url(https://s3.us-east-2.amazonaws.com/prefect-image/arro.png) !important;
+    background-repeat: no-repeat;
+    background-position: 292px center;
+    border-radius: 0px;
+    border: 0px solid #fff;
+    border-right: 1px solid #aaa;
+    height: 50px;
+    background-size: 5%;
 }
 .searchbar button {
   border: 0px solid #fff;
   margin-left: -1px;
-  background: #e72e77;
+  background: linear-gradient(40deg,#e60060,#f09) !important;
   color: #fff;
   height: 50px;
+  border-radius: 0px 10px 10px 0px !important;
 }
+
+.round_first{border-radius:10px 0px 0px 10px !important;}
+
 .popularsearchbar{
   color: #fff;
 }
@@ -327,8 +332,8 @@ header.masthead p {
 }
 .home_search i{
   position: absolute;
-  color: #000;
-  left: 10px;
+  color: #aaa;
+  left: 13px;
   top: 14px;
 }
 .searchbar select{
@@ -340,7 +345,7 @@ header.masthead p {
 }
 .search_btn_pink{
   border-radius: 0px !important;
-  width: 70%;
+  width: 100%;
 }
 
 .just_picture span i{

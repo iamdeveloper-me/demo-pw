@@ -11,53 +11,51 @@ import 'rxjs/Rx';
 })
 export class RegisterComponent  {
   categoryArray:string[];
- user = { logInInfo: {  userName: "", password: "",confirmPassword: "",contactPerson: "",email: "",phone: "", phoneType: ""},
-          contactInfo: {   },
-          businessInfo: { countryId: 0, country: { countryId: 0, countryName: "" }, city: "", website: "",address: "",lat: 0,long: 0, nameOfBusiness: "", businessDetails: ""}
-        }
-   ngOnInit() {  
-    $(".loginnav").hide(); 
-    $.getScript('./assets/js/register.js');             
-    $(".show").hide();
-     $("div").removeClass( "modal-backdrop");
-    let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories");
+  planArray:string[];
+  user = 
+{ logInInfo: { firstName: "", lastName: "", password: "", confirmPassword: "" },contactInfo: { contactPerson: "", email: "", phone: "", website: ""}, businessInfo: { countryId: 1, city: "", postalCode: "", address: "", countryName: "" ,nameOfBusiness: "",pricingPlanId: ""}, vendorCategories: [ { categoryId: "" } ] }
 
-    obs.subscribe(data => {
-      this.categoryArray =data as string[];
-    })
+   ngOnInit() {
+            $(".loginnav").hide(); 
+            $.getScript('./assets/js/register.js');             
+            $(".show").hide();
+             $("div").removeClass( "modal-backdrop");
+            let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories");
 
+            obs.subscribe(data => {
+              this.categoryArray = data as string[]; 
+               
+            });
 
-$(".Suppliertab").click(function(){
-    $("#filter").show();
-    $("#action").hide();  
-    $(".Suppliertab").addClass("gradint_blue"); 
-    $(".Registertab").removeClass("gradint_blue");  
-  
-  });
+            let obj = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/pricingplans");
 
-    $(".Registertab").click(function(){
-    $("#filter").hide();
-    $("#action").show();  
-    $(".Suppliertab").removeClass("gradint_blue"); 
-    $(".Registertab").addClass("gradint_blue");  
-  });
+            obj.subscribe(data => {
+              this.planArray = data as string[]; 
+              console.log(data);
+            });
+
+            $(".Suppliertab").click(function(){
+                $("#filter").show();
+                $("#action").hide();  
+                $(".Suppliertab").addClass("gradint_blue"); 
+                $(".Registertab").removeClass("gradint_blue");  
+              });
+                $(".Registertab").click(function(){
+                $("#filter").hide();
+                $("#action").show();  
+                $(".Suppliertab").removeClass("gradint_blue"); 
+                $(".Registertab").addClass("gradint_blue");  
+              });
 
   }
     constructor( private cservice: SignupVendorService,private http: HttpClient) {}
 
-    loadScript(){this.ngOnInit;}
+ loadScript(){this.ngOnInit;}
+
     onSubmit() {   
-      //console.log(this.user); 
-      //this.cservice.signup(this.user).subscribe((response) => console.log(response),(error)=>console.log(error)); 
-   
       this.cservice.signup(this.user).subscribe(( data )  =>  {
         console.log(data);
     });}
 
-
-    // Success Type
-    typeSuccess() {
-      this.cservice.typeSuccess();
-  }
-
 }
+

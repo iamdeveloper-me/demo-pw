@@ -27,14 +27,35 @@ export class MenuComponent implements OnInit {
     constructor( private router: Router ,private cservice: LoginServiceService ,public _router:Router, private modalService: NgbModal, private http: HttpClient) {}
 
     ngOnInit() { 
-        if(window.location.pathname == '/home'||'home/events'||'home/tips'||'home/photo' ) {
-
+        if(window.location.pathname == '/home') {
         $(".user").hide();    
         $(".tikright").hide(); 
-
-            $(".user").hide();    
-
         } 
+         if(window.location.pathname == '/home/photo') {
+        $(".user").hide();    
+        $(".tikright").hide(); 
+        } 
+         if(window.location.pathname == '/home/tips') {
+        $(".user").hide();    
+        $(".tikright").hide(); 
+        } 
+         if(window.location.pathname == '/home/events') {
+        $(".user").hide();    
+        $(".tikright").hide(); 
+        } 
+         if(window.location.pathname == '/home/Careers') {
+        $(".user").hide();    
+        $(".tikright").hide(); 
+        } 
+          if(window.location.pathname == '/home/FAQ') {
+        $(".user").hide();    
+        $(".tikright").hide(); 
+        } 
+          if(window.location.pathname == '/home/contact') {
+        $(".user").hide();    
+        $(".tikright").hide(); 
+        } 
+
         let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories");
         obs.subscribe(data => {
         this.supArray =data as string[]; 
@@ -66,7 +87,8 @@ export class MenuComponent implements OnInit {
        $(".registertab").removeClass( "active");
 
      });
- 
+
+
     
     //end
     $(".tik").click(function(){
@@ -88,8 +110,8 @@ export class MenuComponent implements OnInit {
         $(".slidemenu").removeClass("inslide"); 
         $(".blackoverlaymain").removeClass( "blockmobile"); 
     });
-       $(".nav-item, .blackoverlaymain").click(function(){
-       //alert("hi");
+       $(".homemenu , .blackoverlaymain").click(function(){
+       //alert("ramjane");
         $(".navbar-toggler").show(); 
         $(".navbtntik").hide(); 
         $(".navbar-collapse").removeClass("in");
@@ -98,9 +120,9 @@ export class MenuComponent implements OnInit {
         $(".slidemenu").removeClass("inslide");
         $(".blackoverlaymain").removeClass( "blockmobile"); 
         $(".tool_icons").removeClass("in"); 
-        $(".tikright").show(); 
+        //$(".tikright").show(); 
         $(".slidemenu").removeClass("rtslide");
-        $(".tikrightclose").hide();
+        //$(".tikrightclose").hide();
     });
     $(".signuplink").click(function(){
         

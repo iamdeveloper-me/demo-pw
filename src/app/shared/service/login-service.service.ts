@@ -19,5 +19,6 @@ export class LoginServiceService {
 }
 typeSuccess() {
   this.toastr.success('Account created!', 'Success!');
+  
 }
 }

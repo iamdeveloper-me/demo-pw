@@ -154,11 +154,7 @@ $(".tikright").click(function(){
     }
 });
 
-
-  
     }
-
-    
 //loginpage
 loadScript(){ 
     $("#panel9").removeClass( "in");
@@ -188,7 +184,6 @@ loadScript(){
 //    $(".customerlogin").show();
    }
 //end
-    
 remove(){
     if(window.location.pathname == '/home' )
     {     
@@ -196,11 +191,6 @@ remove(){
         $("body").css({ 'padding-right' : '' }); 
    }
 }
-   
-        
-
-
-
 user = {username:' ',password:' '}
 onSubmit(){ 
  // headers.append('Content-Type', 'application/json');
@@ -209,9 +199,7 @@ onSubmit(){
       (data)=> {console.log(data.json().auth_token);   
       console.log(data.status);
       console.log(data.statusText);
-      if (data.statusText == "OK" ) {
-
-
+    if (data.statusText == "OK" ) {
         console.log('Success','Login Successfully')
         
         localStorage.setItem('userToken',data.json().auth_token);
@@ -219,8 +207,7 @@ onSubmit(){
       }
       else
       { console.log('Login Fail')}
-    });
-   
+    });  
 }
 typeSuccess() {
     this.cservice.typeSuccess();

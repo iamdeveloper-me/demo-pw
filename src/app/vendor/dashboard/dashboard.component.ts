@@ -19,8 +19,6 @@ export class DashboardComponent implements OnInit {
     config.interval = 10000;
     config.wrap = false;
     config.keyboard = false;
-
-
   }
 // Variable Declaration
   x: any;

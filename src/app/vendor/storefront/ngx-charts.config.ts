@@ -9,9 +9,9 @@ export var barChartShowYAxis = true;
 export var barChartGradient = false;
 export var barChartShowLegend = false;
 export var barChartShowXAxisLabel = true;
-export var barChartXAxisLabel = 'Country';
+export var barChartXAxisLabel = 'Boosted = Paid advertising Results through Promoting my business section';
 export var barChartShowYAxisLabel = true;
-export var barChartYAxisLabel = 'Population';
+export var barChartYAxisLabel = 'Normal = Organic Results';
 
 export var barChartColorScheme = {
     domain: ['#009DA0', '#FF8D60', '#FF586B', '#AAAAAA']
@@ -47,9 +47,9 @@ export var lineChartShowYAxis = true;
 export var lineChartGradient = false;
 export var lineChartShowLegend = false;
 export var lineChartShowXAxisLabel = true;
-export var lineChartXAxisLabel = 'Country';
+export var lineChartXAxisLabel = 'Normal';
 export var lineChartShowYAxisLabel = true;
-export var lineChartYAxisLabel = 'Population';
+export var lineChartYAxisLabel = 'Promoted';
 
 export var lineChartColorScheme = {
     domain: ['#009DA0', '#FF8D60', '#FF586B', '#AAAAAA']
@@ -68,9 +68,9 @@ export var areaChartShowYAxis = true;
 export var areaChartGradient = false;
 export var areaChartShowLegend = false;
 export var areaChartShowXAxisLabel = true;
-export var areaChartXAxisLabel = 'Country';
+export var areaChartXAxisLabel = 'Boosted = Paid advertising Results through Promoting my business section';
 export var areaChartShowYAxisLabel = true;
-export var areaChartYAxisLabel = 'Population';
+export var areaChartYAxisLabel = 'Normal = Organic Results';
 
 export var areaChartColorScheme = {
     domain: ['#FF8D60', '#FF586B', '#1CBCD8', '#AAAAAA']
@@ -90,9 +90,9 @@ export var weeklyChartShowYAxis = true;
 export var weeklyChartGradient = false;
 export var weeklyChartShowLegend = false;
 export var weeklyChartShowXAxisLabel = true;
-export var weeklyChartXAxisLabel = 'Country';
+export var weeklyChartXAxisLabel = 'Boosted = Paid advertising Results through Promoting my business section';
 export var weeklyChartShowYAxisLabel = true;
-export var weeklyChartYAxisLabel = 'Population';
+export var weeklyChartYAxisLabel = 'Normal = Organic Results';
 
 export var weeklyChartColorScheme = {
     domain: ['#FF8D60', '#FF586B', '#1CBCD8', '#AAAAAA']
@@ -112,9 +112,9 @@ export var monthlyChartShowYAxis = true;
 export var monthlyChartGradient = false;
 export var monthlyChartShowLegend = false;
 export var monthlyChartShowXAxisLabel = true;
-export var monthlyChartXAxisLabel = 'Country';
+export var monthlyChartXAxisLabel = 'Boosted = Paid advertising Results through Promoting my business section';
 export var monthlyChartShowYAxisLabel = true;
-export var monthlyChartYAxisLabel = 'Population';
+export var monthlyChartYAxisLabel = 'Normal = Organic Results';
 
 export var monthlyChartColorScheme = {
     domain: ['#FF8D60', '#FF586B', '#1CBCD8', '#AAAAAA']

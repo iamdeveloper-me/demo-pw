@@ -9,11 +9,29 @@ export var barChartShowYAxis = true;
 export var barChartGradient = false;
 export var barChartShowLegend = false;
 export var barChartShowXAxisLabel = true;
-export var barChartXAxisLabel = 'Country';
+export var barChartXAxisLabel = 'Boosted = Paid advertising Results through Promoting my business section';
 export var barChartShowYAxisLabel = true;
-export var barChartYAxisLabel = 'Population';
+export var barChartYAxisLabel = 'Normal = Organic Results';
 
 export var barChartColorScheme = {
+    domain: ['#009DA0', '#FF8D60', '#FF586B', '#AAAAAA']
+};
+
+//galleryBar Chart
+
+export var gallerybarChartView: any[] = [550, 400];
+
+// options
+export var gallerybarChartShowXAxis = true;
+export var gallerybarChartShowYAxis = true;
+export var gallerybarChartGradient = false;
+export var gallerybarChartShowLegend = false;
+export var gallerybarChartShowXAxisLabel = true;
+export var gallerybarChartXAxisLabel = 'Boosted = Paid advertising Results through Promoting my business section';
+export var gallerybarChartShowYAxisLabel = true;
+export var gallerybarChartYAxisLabel = 'Normal = Organic Results';
+
+export var gallerybarChartColorScheme = {
     domain: ['#009DA0', '#FF8D60', '#FF586B', '#AAAAAA']
 };
 
@@ -59,6 +77,9 @@ export var lineChartColorScheme = {
 export var lineChartAutoScale = true;
 export var lineChartLineInterpolation = shape.curveBasis;
 
+
+
+
 //Area Charts
 export var areaChartView: any[] = [550, 400];
 
@@ -68,9 +89,9 @@ export var areaChartShowYAxis = true;
 export var areaChartGradient = false;
 export var areaChartShowLegend = false;
 export var areaChartShowXAxisLabel = true;
-export var areaChartXAxisLabel = 'Country';
+export var areaChartXAxisLabel = 'Boosted = Paid advertising Results through Promoting my business section';
 export var areaChartShowYAxisLabel = true;
-export var areaChartYAxisLabel = 'Population';
+export var areaChartYAxisLabel = 'Normal = Organic Results';
 
 export var areaChartColorScheme = {
     domain: ['#FF8D60', '#FF586B', '#1CBCD8', '#AAAAAA']

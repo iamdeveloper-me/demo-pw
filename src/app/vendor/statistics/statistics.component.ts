@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as chartsData from '../../shared/data/chartjs';
-import { barChartSingle, barChartmulti, pieChartSingle, pieChartmulti, lineChartSingle, lineChartMulti, areaChartSingle, areaChartMulti } from '../../shared/data/ngxChart';
+import { barChartmulti, lineChartMulti, areaChartMulti ,reachlineChartMulti,gallerybarChartmulti} from '../../shared/data/ngxChart';
 import * as chart from './ngx-charts.config';
 
 @Component({
@@ -26,21 +26,16 @@ export class StatisticsComponent implements OnInit {
   public lineChartLegend = chartsData.lineChartLegend;
   public lineChartType = chartsData.lineChartType;
  
-  // areaChart
-  public areaChartData = chartsData.areaChartData;
-  public areaChartLabels = chartsData.areaChartLabels;
-  public areaChartOptions = chartsData.areaChartOptions;
-  public areaChartColors = chartsData.areaChartColors;
-  public areaChartLegend = chartsData.areaChartLegend;
-  public areaChartType = chartsData.areaChartType;
+   // reachlineChart
+   public reachlineChartData = chartsData.reachlineChartData;
+   public reachlineChartLabels = chartsData.reachlineChartLabels;
+   public reachlineChartOptions = chartsData.reachlineChartOptions;
+   public reachlineChartColors = chartsData.reachlineChartColors;
+   public reachlineChartLegend = chartsData.reachlineChartLegend;
+   public reachlineChartType = chartsData.reachlineChartType;
+  
 
-  // scatterChart
-  public scatterChartData = chartsData.scatterChartData;
-  public scatterChartLabels = chartsData.scatterChartLabels;
-  public scatterChartOptions = chartsData.scatterChartOptions;
-  public scatterChartColors = chartsData.scatterChartColors;
-  public scatterChartLegend = chartsData.scatterChartLegend;
-  public scatterChartType = chartsData.scatterChartType;
+
 
   // barChart
   public barChartOptions = chartsData.barChartOptions;
@@ -50,36 +45,14 @@ export class StatisticsComponent implements OnInit {
   public barChartData = chartsData.barChartData;
   public barChartColors = chartsData.barChartColors;
 
-  // Doughnut
-  public doughnutChartLabels = chartsData.doughnutChartLabels;
-  public doughnutChartData = chartsData.doughnutChartData;
-  public doughnutChartType = chartsData.doughnutChartType;
-  public doughnutChartColors = chartsData.doughnutChartColors;
-  public doughnutChartOptions = chartsData.doughnutChartOptions;
 
-  // Radar
-  public radarChartLabels = chartsData.radarChartLabels;
-
-  public radarChartData = chartsData.radarChartData;
-  public radarChartType = chartsData.radarChartType;
-  public radarChartColors = chartsData.radarChartColors;
-  public radarChartOptions = chartsData.radarChartOptions;
-
-
-  // Pie
-  public pieChartLabels = chartsData.pieChartLabels;
-  public pieChartData = chartsData.pieChartData;
-  public pieChartType = chartsData.pieChartType;
-  public pieChartColors = chartsData.pieChartColors;
-  public pieChartOptions = chartsData.pieChartOptions;
-
-  // PolarArea
-  public polarAreaChartLabels = chartsData.polarAreaChartLabels;
-  public polarAreaChartData = chartsData.polarAreaChartData;
-  public polarAreaLegend = chartsData.polarAreaLegend;
-  public ploarChartColors = chartsData.ploarChartColors;
-  public polarAreaChartType = chartsData.polarAreaChartType;
-  public polarChartOptions = chartsData.polarChartOptions;
+  // GallerybarChart
+  public gallerybarChartOptions = chartsData.gallerybarChartOptions;
+  public gallerybarChartLabels = chartsData.gallerybarChartLabels;
+  public gallerybarChartType = chartsData.gallerybarChartType;
+  public gallerybarChartLegend = chartsData.gallerybarChartLegend;
+  public gallerybarChartData = chartsData.gallerybarChartData;
+  public gallerybarChartColors = chartsData.gallerybarChartColors;
 
   // events
   public chartClicked(e: any): void {
@@ -93,13 +66,14 @@ export class StatisticsComponent implements OnInit {
   //second area chart 
       //Chart Data
       lineChartMulti = lineChartMulti;
+      reachlineChartMulti = reachlineChartMulti;
       areaChartMulti = areaChartMulti;
       barChartmulti = barChartmulti;
-      pieChartSingle = pieChartSingle;
+      gallerybarChartmulti = gallerybarChartmulti;
   
       //Bar Charts
       barChartView: any[] = chart.barChartView;
-  
+      gallerybarChartView: any[] = chart.gallerybarChartView;
       // options
       barChartShowYAxis = chart.barChartShowYAxis;
       barChartShowXAxis = chart.barChartShowXAxis;
@@ -111,23 +85,6 @@ export class StatisticsComponent implements OnInit {
       barChartYAxisLabel = chart.barChartYAxisLabel;
       barChartColorScheme = chart.barChartColorScheme;
   
-      //Pie Charts
-  
-      pieChartView: any[] = chart.pieChartView;
-  
-      // options
-      pieChartShowLegend = chart.pieChartShowLegend;
-  
-      pieChartColorScheme = chart.pieChartColorScheme;
-  
-      // pie
-      pieChartShowLabels = chart.pieChartShowLabels;
-      pieChartExplodeSlices = chart.pieChartExplodeSlices;
-      pieChartDoughnut = chart.pieChartDoughnut;
-      pieChartGradient = chart.pieChartGradient;
-  
-      pieChart1ExplodeSlices = chart.pieChart1ExplodeSlices;
-      pieChart1Doughnut = chart.pieChart1Doughnut;
   
   
       //Line Charts
@@ -171,7 +128,7 @@ export class StatisticsComponent implements OnInit {
       areaChartLineInterpolation = chart.areaChartLineInterpolation;
   
       constructor() {
-          Object.assign(this, { barChartmulti, pieChartSingle,  lineChartMulti,  areaChartMulti })
+          Object.assign(this, { barChartmulti, lineChartMulti,  areaChartMulti ,gallerybarChartmulti,reachlineChartMulti})
       }
   
       onSelect(event) {

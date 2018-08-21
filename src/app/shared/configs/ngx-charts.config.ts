@@ -9,9 +9,9 @@ export var barChartShowYAxis = true;
 export var barChartGradient = false;
 export var barChartShowLegend = false;
 export var barChartShowXAxisLabel = true;
-export var barChartXAxisLabel = 'Country';
+export var barChartXAxisLabel = 'Boosted = Paid advertising Results through Promoting my business section';
 export var barChartShowYAxisLabel = true;
-export var barChartYAxisLabel = 'Population';
+export var barChartYAxisLabel = 'Normal = Organic Results';
 
 export var barChartColorScheme = {
     domain: ['#009DA0', '#FF8D60', '#FF586B', '#AAAAAA']
@@ -47,9 +47,9 @@ export var lineChartShowYAxis = true;
 export var lineChartGradient = false;
 export var lineChartShowLegend = false;
 export var lineChartShowXAxisLabel = true;
-export var lineChartXAxisLabel = 'Country';
+export var lineChartXAxisLabel = 'Boosted = Paid advertising Results through Promoting my business section';
 export var lineChartShowYAxisLabel = true;
-export var lineChartYAxisLabel = 'Population';
+export var lineChartYAxisLabel = 'Normal = Organic Results';
 
 export var lineChartColorScheme = {
     domain: ['#009DA0', '#FF8D60', '#FF586B', '#AAAAAA']

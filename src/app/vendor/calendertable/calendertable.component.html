@@ -7,22 +7,190 @@
 		<app-navemenu></app-navemenu>
 		<div class="container-fluid">
 		<div class="row calendarcontainer">
-		<div class="col-sm-5 mobnopadd padleft0px">
+		  <div class="col-sm-5 mobnopadd padleft0px">
 				<div class="card mobileviewcontent card_padd_bottom">
 				  <div class="card-header_padd  border_bottom_none card-header-warning card-header-icon">
 					<div class="col-md-12 ">
 							<p class="card-category upcominghead"> <b>  My Wedding Jobs </b> <button class="float_righ"  (click)="addEvent()">Add Job</button></p>
 																
-			         		<p class="mar_top_12px text-center"> 
-								 <button class="first_bt active1">All</button> 
+
+			         		<!-- <p class="mar_top_12px text-center"> 
+								 <button class="first_bt active">All</button> 
+
 								 <button class="first1_bt">Upcoming</button>
 								 <button class="first2_bt">Past</button>
-							 </p>
+							 </p> -->
 					</div>
-					
-					
 				  </div>
+				 
+						<div class="card">
+						  <div class="card-body">
+							<div class="card-block">
+							  <ngb-tabset type="pills">
+								<ngb-tab title="All">
+								  <ng-template ngbTabContent>
+										<div class="acordian_panel">
+												<button class="accordion">
+													<i class="material-icons">date_range</i> 26 September 2018 <span class="flo_rigt"> <i class="material-icons ">location_on</i>Indore 
+													<i class="material-icons downarrow pull-right">keyboard_arrow_down</i> 
+													<i class="material-icons uparrow pull-right">keyboard_arrow_up</i> 
+												 </span>
+												</button>
+												<div class="panel">
+													<ul>
+													  <li>Guests: 1500  </li>
+													  <li>Name: Dakota Rice </li>
+													  <li>Phone: 0731-245687</li>
+													</ul>
+												</div>
+							
+												<button class="accordion">
+													<i class="material-icons">date_range</i> 
+													26 September 2018  
+													<span class="flo_rigt"> 
+													<i class="material-icons ">location_on</i>
+													Delhi
+												    <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> 
+												    <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>
+												    </span>  
+												</button>
+												  <div class="panel">
+													<ul>
+													  <li>Guests: 1500  </li>
+													  <li>Name: Dakota Rice </li>
+													  <li>Phone: 0731-245687</li>
+													</ul>
+												  </div>
 
+												<button class="accordion">
+													    <i class="material-icons">date_range</i> 
+													    26 September 2018 
+													<span class="flo_rigt"> 
+														<i class="material-icons ">location_on</i> 
+														Niger
+														<i class="material-icons downarrow pull-right">keyboard_arrow_down</i>
+														<i class="material-icons uparrow pull-right">keyboard_arrow_up</i>
+												    </span> 
+												</button>
+												  <div class="panel">
+													<ul>
+													  <li>Guests: 1500  </li>
+													  <li>Name: Dakota Rice </li>
+													  <li>Phone: 0731-245687</li>
+													</ul>
+												  </div>
+							
+												  <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018 <span class="flo_rigt"> <i class="material-icons ">location_on</i> Niger
+												  <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>
+												  </span> </button>
+												  <div class="panel">
+													<ul>
+													  <li>Guests: 1500  </li>
+													  <li>Name: Dakota Rice </li>
+													  <li>Phone: 0731-245687</li>
+													</ul>
+												  </div>
+											
+										</div>     
+								  </ng-template>
+								</ngb-tab>
+								
+								
+								<ngb-tab>
+								  <ng-template ngbTabTitle><b>Upcoming</b></ng-template>
+								  <ng-template ngbTabContent>
+										<div class="acordian_panel">
+												<button class="accordion"><i class="material-icons">date_range</i> 26 September 2018 <span class="flo_rigt"> <i class="material-icons ">location_on</i>Indore 
+													<i class="material-icons downarrow pull-right">keyboard_arrow_down</i> 
+													<i class="material-icons uparrow pull-right">keyboard_arrow_up</i> 
+												 </span>
+												</button>
+												  <div class="panel">
+													<ul>
+													  <li>Guests: 1500  </li>
+													  <li>Name: Dakota Rice </li>
+													  <li>Phone: 0731-245687</li>
+													</ul>
+												  </div>
+							
+												  <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018  <span class="flo_rigt"> <i class="material-icons ">location_on</i>Delhi
+												  <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> 
+												  <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>
+							
+												  </span>  </button>
+												  <div class="panel">
+													<ul>
+													  <li>Guests: 1500  </li>
+													  <li>Name: Dakota Rice </li>
+													  <li>Phone: 0731-245687</li>
+													</ul>
+												  </div>
+												  
+											
+										</div> 
+								  </ng-template>
+								</ngb-tab>
+
+								<ngb-tab title="Past">
+								  <ng-template ngbTabContent>
+										<div class="acordian_panel">
+												<button class="accordion"><i class="material-icons">date_range</i> 26 September 2018 <span class="flo_rigt"> <i class="material-icons ">location_on</i>Indore 
+													<i class="material-icons downarrow pull-right">keyboard_arrow_down</i> 
+													<i class="material-icons uparrow pull-right">keyboard_arrow_up</i> 
+												 </span>
+												</button>
+												  <div class="panel">
+													<ul>
+													  <li>Guests: 1500  </li>
+													  <li>Name: Dakota Rice </li>
+													  <li>Phone: 0731-245687</li>
+													</ul>
+												  </div>
+							
+												  <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018  <span class="flo_rigt"> <i class="material-icons ">location_on</i>Delhi
+												  <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> 
+												  <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>
+							
+												  </span>  </button>
+												  <div class="panel">
+													<ul>
+													  <li>Guests: 1500  </li>
+													  <li>Name: Dakota Rice </li>
+													  <li>Phone: 0731-245687</li>
+													</ul>
+												  </div>
+												  <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018 <span class="flo_rigt"> <i class="material-icons ">location_on</i> Niger
+							
+													<i class="material-icons downarrow pull-right">keyboard_arrow_down</i> <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>
+												  </span> </button>
+												  <div class="panel">
+													<ul>
+													  <li>Guests: 1500  </li>
+													  <li>Name: Dakota Rice </li>
+													  <li>Phone: 0731-245687</li>
+													</ul>
+												  </div>
+							
+												  <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018 <span class="flo_rigt"> <i class="material-icons ">location_on</i> Niger
+												  <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>
+												  </span> </button>
+												  <div class="panel">
+													<ul>
+													  <li>Guests: 1500  </li>
+													  <li>Name: Dakota Rice </li>
+													  <li>Phone: 0731-245687</li>
+													</ul>
+												  </div>
+											
+										</div> 
+								  </ng-template>
+								</ngb-tab>
+							  </ngb-tabset>
+							</div>
+						  </div>
+						</div>
+				
+<!-- 
 				  <div class="acordian_panel">
 					<button class="accordion"><i class="material-icons">date_range</i> 26 September 2018 <span class="flo_rigt"> <i class="material-icons ">location_on</i>Indore 
 						<i class="material-icons downarrow pull-right">keyboard_arrow_down</i> 
@@ -72,7 +240,7 @@
 						</ul>
 					  </div>
 				
-				  </div>                                                  
+				  </div>                                                   -->
 				</div>     
 		  </div> 
 		<div class="col-sm-7">
@@ -253,4 +421,5 @@
 			</div>
 		</div>
 	</ng-template>
+
 	<router-outlet></router-outlet>

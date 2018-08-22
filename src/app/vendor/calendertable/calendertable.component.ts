@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+
 import {
   ChangeDetectionStrategy,
   ViewChild,
@@ -46,14 +48,23 @@ const colors: any = {
 })
 export class CalendertableComponent implements OnInit {
 
+  
+  t: any;
+  currentJustify = 'start';
+  currentOrientation = 'horizontal';
+
+  public beforeChange($event: NgbTabChangeEvent) {
+    if ($event.nextId === 'bar') {
+      $event.preventDefault();
+    }
+  };
   ngOnInit() {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
 
 
-
-
+  
 
     //accordian my wedding job 
     var acc = document.getElementsByClassName("accordion");

@@ -9,14 +9,15 @@
 
     <div class="col-sm-12"> 
         <div class="card">
-            <div class="card-header">
+            <div class="card-header mob_text_center">
                 <h4 class="card-title">Enquiries Vs Leads</h4>
+                <p>July 15 - July 21</p>
                 <div class="btnholderdaily">
                     <button class="btn  daily" >Daily</button>
                     <button class="btn  weekly" >Weekly</button>
                     <button class="btn  monthly" >Monthly</button>
                 </div>
-                <p>July 15 - July 21</p>
+                
             </div>
             <div class="card-body"  id="daily">
                 <div class="card-block">
@@ -48,29 +49,29 @@
 
     <div class="col-sm-12">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header mob_text_center">
                 <h6 class="card-title">May Statistics (Photographers- <select ><option >Vacoas-Phoenix</option><option >	Curepipe</option><option >Quatre Bornes</option><option > Port Louis</option><option >		Beau Bassin </option></select>)</h6>  
-                <span class="enquiry"> <strong> Enquiries Stats  </strong> </span>           
+                <p class="enquiry"> <strong> Enquiries Stats  </strong> </p>           
             </div>
          
-           <div class="col-sm-12 ">
-              <div class="col-sm-4 text_green">
+           <div class="col-md-12 ">
+              <div class="col-md-4 col-4 text_green">
                  <div class="text-center ">
-                     <p>Highest Leads</p>
+                     <p>Highest Enquiries</p>
                      <p>72</p>
                  </div>
               </div>
 
-              <div class="col-sm-4 text_orange">
+              <div class="col-md-4 col-4 text_orange">
                   <div class="text-center ">
-                      <p>Highest Leads</p>
+                      <p>Highest Enquiries</p>
                       <p>14</p>
                   </div>
                </div>
 
-               <div class="col-sm-4 text_red">
+               <div class="col-md-4 col-4 text_red">
                   <div class="text-center ">
-                      <p>Highest Leads</p>
+                      <p>Highest Enquiries</p>
                       <p>0</p>
                   </div>
                </div>
@@ -86,22 +87,22 @@
                 <div class="text-center text_size_20px"><strong> Leads Stats  </strong></div>           
             </div>
          
-           <div class="col-sm-12 ">
-              <div class="col-sm-4 text_green">
+           <div class="col-md-12 ">
+              <div class="col-md-4 col-4 text_green">
                  <div class="text-center ">
                      <p>Highest Leads</p>
                      <p>72</p>
                  </div>
               </div>
 
-              <div class="col-sm-4 text_orange">
+              <div class="col-md-4 col-4 text_orange">
                   <div class="text-center ">
                       <p>Highest Leads</p>
                       <p>14</p>
                   </div>
                </div>
 
-               <div class="col-sm-4 text_red">
+               <div class="col-md-4 col-4 text_red">
                   <div class="text-center ">
                       <p>Highest Leads</p>
                       <p>0</p>
@@ -114,11 +115,11 @@
         </div>
 
         <div class="card">
-           <div class="col-sm-12 inquiri_bg">
-            <div class="col-sm-4 card-header"> 
+           <div class="col-md-12 inquiri_bg">
+            <div class="col-md-4 col-12 card-header"> 
                 <div class=" text_size_20px"> Enquiries  </div>           
             </div>
-            <div class="col-sm-8 card-header text-right">
+            <div class="col-md-8 col-12 card-header  text-right text_lef">
                 <input class="date_pic"  type="date" ng-reflect-model="9:00">
                 <span class="sele_option"><select ><option >All</option><option >	All</option><option >All</option><option >All</option><option >All </option></select> </span>
                 <span class="search_item"> <input  type="text" ng-reflect-model="9:00" value="Search"> 
@@ -126,14 +127,20 @@
             </div>
           </div>  
 
-          <div class="listing">
-            <ul>
-              <li>client name</li>
-              <li>email</li>
-              <li>phone</li>
-              <li>date</li>
-            </ul>
-            <p class="text-center mar_top_60"> You dont have any logs of this yet</p>
+          <div class="listing table-responsive">
+              <table class="table table-bordered" width="70%" border="0" cellspacing="0" cellpadding="0">
+                  <tr class="border_th_none">
+                      <th>client name </th>
+                      <th>email </th>
+                      <th>phone </th>
+                      <th>date </th>
+                  </tr>
+                  <tr class="border_th_none">
+                        <td colspan="4">
+                        <p class="text-center">You dont have any logs of this yet</p>
+                        </td>
+                    </tr>
+              </table>      
           </div>
 
 

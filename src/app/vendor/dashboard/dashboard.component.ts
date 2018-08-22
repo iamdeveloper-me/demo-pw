@@ -1,6 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+import {  Headers, RequestOptions} from '@angular/http';
+import {
+  Http,
+  Response
+} from '@angular/http';
+// Add the RxJS Observable operators we need in this app.
+
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +21,7 @@ export class DashboardComponent implements OnInit {
     PhoneEdit = '5555555' ;
     angularLogo = 'https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg';
 
-    constructor(config: NgbCarouselConfig) {
+    constructor(config: NgbCarouselConfig ,public http: Http) {
     // customize default values of carousels used by this component tree
     config.interval = 10000;
     config.wrap = false;
@@ -24,7 +31,7 @@ export class DashboardComponent implements OnInit {
   x: any;
   greeting = {};
   name = 'World';
-
+baseUrl = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
   // Context and manual triggers section
   @ViewChild('x') public tooltip: NgbTooltip;
 
@@ -36,15 +43,32 @@ export class DashboardComponent implements OnInit {
       this.tooltip.open(greeting);
     }
   }
-      ngOnInit() {
+ // supArray:string[];  
+      ngOnInit()  {
+        let headers = new Headers();
+        var authToken = localStorage.getItem('userToken');
+        headers.append('Accept', 'application/json')
+        headers.append('Content-Type', 'application/json');
+        headers.append("Authorization",'Bearer '+authToken);
+
+        this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile',{headers:headers}).subscribe(data =>{
+          debugger
+          console.log(data)
+        });;
+     
+        // this.http.get(this.baseUrl+"api/Reviews/myreviews",{headers:headers})
+      // return this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile" + "/dashboard/home",{headers})
+      //   .map(response => response.json())
+      //   // .catch(this.handleError);
+
+
+
           $.getScript('./assets/js/prism.min.js');
           $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
           $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
           $.getScript('https://www.jssor.com/script/jssor.slider-27.4.0.min.js');
           $.getScript('./assets/js/vendorsidebar.js');
-          $("div").click(function(){
-            $("div").removeClass( "modal-backdrop");
-           });  
+        
           // 
           function testAnim(x) {
             $('.modal .modal-dialog').addClass('animated');
@@ -114,9 +138,10 @@ export class DashboardComponent implements OnInit {
             var anim = $('#exit').val();
                 testAnim(anim);
           })
+           
           if(window.location.pathname == '/vendor/dashboard' )
           { $("body").removeClass( "modal-open");
-          
+            $("div").removeClass( "modal-backdrop"); 
             $("body").css({ 'padding-right' : '' });
           }
           

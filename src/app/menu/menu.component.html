@@ -1,14 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light  headernav" id="mainNav">
     <div class="container mrg_top_menu">
        <a class="navbar-brand js-scroll-trigger logo_icon" routerLink="/home">Perfect Wedding</a>
-       <button class="navbar-toggler tik hidden-md hidden-sm hidden-lg" type="button" data-toggle="slide-collapse" data-target="#navbarResponsive"
-          aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+       <button class="navbar-toggler tik hidden-md hidden-sm hidden-lg" type="button" data-toggle="slide-collapse">
+       <!-- <span class="navbar-toggler-icon"></span>
        <span class="navbar-toggler-icon"></span>
-       <span class="navbar-toggler-icon"></span>
-       <span class="navbar-toggler-icon"></span>
-         <!--  <div class="line1"></div>
+       <span class="navbar-toggler-icon"></span> -->
+          <div class="line1"></div>
           <div class="line2"></div>
-          <div class="line3"></div> -->
+          <div class="line3"></div>
        </button>
        <button class="navbtntik hidden-md hidden-sm hidden-lg" data-toggle="slide-collapse" type="button">
           <div class="line11"></div>
@@ -27,18 +26,52 @@
                 <a class="nav-link js-scroll-trigger mobileshow" routerLink="/home" >Home</a>   
             </li>
 
-            <li class="nav-item dropdown homemenu ">
-                <a id="dropdownMenuButton" class="nav-link js-scroll-trigger dropdown-toggle mob_arrow" data-toggle="dropdown"  href="#about">Wedding Suppliers</a>
-                    <div class="col-md-12 dropdown-menu fmc-dropdown-content-perspective" aria-labelledby="dropdownMenuButton">
-                        <div class="col-md-6 col-xs-12" *ngFor="let supplier of supArray" >
-                            <ul>
-                                <li>
-                                    <a href="#" class="dropdown-item"><i class="fa fa-birthday-cake" aria-hidden="true"></i>  
+            <li class="nav-item dropdown">
+                <a id="dropdownMenuButton" class="nav-link dropdown-toggle mobilenone" data-toggle="dropdown">Wedding Suppliers</a>
+
+                <a class="mobileslidewednav mobileshow" data-toggle="dropdown">Wedding Suppliers</a>
+
+                    <div class="col-md-12 dropdown-menu mobileshowwebnav fmc-dropdown-content-perspective" aria-labelledby="dropdownMenuButton">
+                     <!--    <div class="col-md-6 col-xs-12" *ngFor="let supplier of supArray" > -->
+                            <ul class="weddingicon">
+                                <li class="backsilde mobileshow">
+                                    <i class="material-icons">arrow_back_ios</i>
+                                    Wedding Suppliers 
+                                </li>
+                                <li><a href="#" class="dropdown-item"><i class="cake" aria-hidden="true"><img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.svg"/> </i>Cakes</a></li>
+                               
+                                <li><a href="#" class="dropdown-item">
+                                    <i class="cake" aria-hidden="true"><img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_decorator.svg"/></i> Decorators & Wedding Stylist</a></li>
+                                <li><a href="#" class="dropdown-item"><i class="cake" aria-hidden="true"><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i> Drinks and Beverages</a></li>
+
+                                <li><a href="#" class="dropdown-item"><i class="cake" aria-hidden="true"><img src="https://s3.us-east-2.amazonaws.com/prefect-image/fashion_clothing.svg"/></i> Fashion & Clothing</a></li>
+
+                                <li><a href="#" class="dropdown-item"><i class="cake" aria-hidden="true"><img src="https://s3.us-east-2.amazonaws.com/prefect-image/florist.svg"/></i> Florists, Bouquets and Centerpiece</a></li>
+                                <li><a href="#" class="dropdown-item"><i class="cake" aria-hidden="true">No</i> Food & Catering</a></li>
+                                <li><a href="#" class="dropdown-item"><i class="cake" aria-hidden="true"><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Footwear.svg"/></i> Footwear</a></li>
+                                <li><a href="#" class="dropdown-item"><i class="cake" aria-hidden="true"><img src="https://s3.us-east-2.amazonaws.com/prefect-image/honeymoon.svg"/></i> Honeymoon & Travel</a></li>
+                                <li><a href="#" class="dropdown-item"><i class="cake" aria-hidden="true"><img src="https://s3.us-east-2.amazonaws.com/prefect-image/stationary.svg"/></i> Invitation Cards & Wedding Stationary</a></li>
+                                <li><a href="#" class="dropdown-item"><i class="cake" aria-hidden="true"><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Jewellery.svg"/></i> Jewellery & Wedding Rings</a></li>
+                                <li><a href="#" class="dropdown-item"><i class="cake" aria-hidden="true"><img src="https://s3.us-east-2.amazonaws.com/prefect-image/make_up.svg"/></i> Make Up, Hair & Mehendi</a></li>  
+                                <li><a href="#" class="dropdown-item"><i class="cake" aria-hidden="true">No</i> Marriage Celebrant</a></li>
+                                <li><a href="#" class="dropdown-item"><i class="cake" aria-hidden="true"><img src="https://s3.us-east-2.amazonaws.com/prefect-image/music_dj.svg"/></i> Music, DJs & Entertainment</a></li>
+                                <li><a href="#" class="dropdown-item"><i class="cake" aria-hidden="true"><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Wedding Planner.svg"/></i> Other wedding Supplies & Accessories</a></li>
+                                
+                                <li><a href="#" class="dropdown-item"><i class="cake" aria-hidden="true">No</i> Photography, Videography & Cinematography</a></li>
+                                  
+                                <li><a href="#" class="dropdown-item"><i class="cake" aria-hidden="true">No</i> Venues</a></li>
+                               
+                                <li><a href="#" class="dropdown-item"><i class="cake" aria-hidden="true"><img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_car.svg"/></i> Wedding Cars & Transport</a></li>
+
+                                <li><a href="#" class="dropdown-item"><i class="cake" aria-hidden="true">No</i> Wedding Planner & Event Management</a></li>
+                                <li><a href="#" class="dropdown-item"><i class="cake" aria-hidden="true">No</i> Shape & Fitness</a></li>   
+                                <!-- <li>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="fa fa-birthday-cake" aria-hidden="true"></i>  
                                         <span>{{supplier.categoryName}}</span> 
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
-                        </div>
                    <div class="clearfix"> </div>
                         <div class="are_you">
                       <div class="col-md-6 col-xs-12">

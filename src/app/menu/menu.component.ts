@@ -93,7 +93,9 @@ export class MenuComponent implements OnInit {
     //end
     $(".tik").click(function(){
         $(".navbar-collapse").addClass("in");
-        $(".navbar-toggler").hide();
+        //$(".navbar-toggler").hide();
+        $(".navbar-toggler").addClass("cross")
+
         $(".navbtntik").show(); 
         $(".navbar-toggler").removeClass("tik");
         $(".slidemenu").removeClass("outslide");
@@ -105,8 +107,11 @@ export class MenuComponent implements OnInit {
         $(".navbar-toggler").show(); 
         $(".navbtntik").hide(); 
         $(".navbar-collapse").removeClass("in");
-        // $(".slidemenu").addClass("outslide");  
-        // setTimeout(function() { $(".slidemenu").removeClass("outslide") }, 500);
+        $(".navbar-toggler").removeClass("cross")
+        $(".navbar-toggler").addClass("tik");
+
+        $(".slidemenu").addClass("rtslide111");  
+        setTimeout(function() { $(".slidemenu").removeClass("rtslide111") }, 500);
         $(".slidemenu").removeClass("inslide"); 
         $(".blackoverlaymain").removeClass( "blockmobile"); 
     });
@@ -124,6 +129,24 @@ export class MenuComponent implements OnInit {
         $(".slidemenu").removeClass("rtslide");
         //$(".tikrightclose").hide();
     });
+
+
+     $(".mobileslidewednav").click(function(){
+       // alert("hi");
+       //$("mobileshowwebnav").addClass("lefttik");
+         //$("mobileshowwebnav").css('left', '-20px!important');
+
+    });
+     $(".backsilde").click(function(){
+       // alert("bye");
+      
+         //$("mobileshowwebnav").css('left', '-20px!important');
+
+    });
+
+
+
+
     $(".signuplink").click(function(){
         
         $("body").removeClass("modal-open"); 

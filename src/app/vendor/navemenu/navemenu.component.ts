@@ -28,15 +28,14 @@ export class NavemenuComponent implements OnInit {
 
 
  $(".navuserlink").click(function(){
-    //alert("hi")
        $(".blackoverlaymainuser").addClass( "blockmobile");
-       $(".blackoverlaymainuser").css( 'right' ,"0px");
-        $(".blackoverlaymainuser").css( 'z-index', "9999");
+       $(".blackoverlaymainuser").css( 'right' , '0px');
+       $(".blackoverlaymainuser").css( 'z-index' , '9999');
      });
  $(".blackoverlaymainuser").click(function(){
     //alert("bye")
        $(".blackoverlaymainuser").removeClass( "blockmobile");
-       $(".blackoverlaymainuser").css( 'right', "-100%");
+       $(".blackoverlaymainuser").css( 'right' , '-100%');
      });
 
 

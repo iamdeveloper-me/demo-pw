@@ -251,12 +251,6 @@ a.mobileslidewednav{
     text-overflow: ellipsis;
     padding: 3px 10px;
 }
-.backsilde{
-font-size: .9rem!important;
-    font-weight: 600!important;
-    text-transform: uppercase!important;
-    color: #212529!important;
-}
   .mobileshowwebnav {
     min-width: inherit;
     top:-72px;
@@ -265,6 +259,7 @@ font-size: .9rem!important;
     display: block;
     overflow: scroll;
     transition: left 1s;
+    padding-top: 0px;
   }
   .show .mobileshowwebnav {
     left:-16px!important;
@@ -425,8 +420,35 @@ background:#fff;
  #mainNav {
  padding-left: 5px;padding-right: 5px;
  }
+ .weddingicon li.backsilde{
+font-size: .9rem!important;
+    font-weight: 600!important;
+    text-transform: uppercase!important;
+    color: #212529!important;
+    background: #e5e5e5;
 }
-
+ .weddingicon li.backsilde i.material-icons{
+  margin-left: 10px;
+    float: left;
+    font-size: 20px;
+    line-height: 30px;
+}
+.mobileslidewednav::after {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+    transform: translateY(1px) translateX(5px) rotate(-90deg);
+    -webkit-transform: translateY(1px) translateX(5px) rotate(-90deg);
+    -moz-transform: translateY(1px) translateX(5px) rotate(-90deg);
+}
+}
   .loginboxmodal  .nav>li>a{
   padding:10px!important;
   }

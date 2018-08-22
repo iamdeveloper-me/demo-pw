@@ -111,7 +111,7 @@ export class MenuComponent implements OnInit {
         $(".navbar-toggler").addClass("tik");
 
         $(".slidemenu").addClass("rtslide111");  
-        setTimeout(function() { $(".slidemenu").removeClass("rtslide111") }, 500);
+        setTimeout(function() { $(".slidemenu").removeClass("rtslide111") }, 1000);
         $(".slidemenu").removeClass("inslide"); 
         $(".blackoverlaymain").removeClass( "blockmobile"); 
     });

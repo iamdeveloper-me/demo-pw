@@ -10,24 +10,29 @@ export class CreatePromotionComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-      $(document).ready(function(){
+     
     $('.togglebtnmenu').on('click', function(){
      //alert("h1");
-      $(this).toggleClass('cross');
-     $('.blackoverlaymobile').toggleClass('blockmobile');
-    $('#page-content-wrapper').toggleClass('overhidden');
+    //$(this).toggleClass('cross');
+      //$('.blackoverlaymobile').toggleClass('blockmobile');
+    //$('#page-content-wrapper').toggleClass('overhidden');
      $('#wrapper').toggleClass('toggled');
     });
 
-    $('.blackoverlaymobile').on('click', function(){
-     //alert("h1");
-     $('#wrapper').toggleClass('toggled');
-     $('.togglebtnmenu').toggleClass('cross');
-      $('.blackoverlaymobile').toggleClass('blockmobile');
-      $('#page-content-wrapper').toggleClass('overhidden');
-       $('#wrapper').toggleClass('toggled');
+  
+
+     $('.mobilefixedcart').on('click', function(){
+     //alert("hi  ");
+     $('.mobilefixedcart').toggleClass('bottom0px');
+      //$('.mobilebtncart').addClass('nonevisi');
     });
-});
+
+      
+    
+
+
+
+
   }
 
 }

@@ -12,8 +12,9 @@ import 'rxjs/Rx';
 export class RegisterComponent  {
   categoryArray:string[];
   planArray:string[];
+
   user = 
-{ logInInfo: { firstName: "", lastName: "", password: "", confirmPassword: "" },contactInfo: { contactPerson: "", email: "", phone: "", website: ""}, businessInfo: { countryId: 1, city: "", postalCode: "", address: "", countryName: "" ,nameOfBusiness: "",pricingPlanId: ""}, vendorCategories: [ { categoryId: "" } ] }
+  {logInInfo: { firstName: "", lastName: "", password: "", confirmPassword: "" },contactInfo: { contactPerson: "", email: "", phone: "", website: ""}, businessInfo: { countryId: 1, city: "", postalCode: "", address: "", countryName: "" ,nameOfBusiness: "",pricingPlanId: ""}, vendorCategories: [ { categoryId: "" } ] }
 
    ngOnInit() {
             $(".loginnav").hide(); 
@@ -31,7 +32,7 @@ export class RegisterComponent  {
 
             obj.subscribe(data => {
               this.planArray = data as string[]; 
-              console.log(data);
+              
             });
 
             $(".Suppliertab").click(function(){
@@ -53,9 +54,11 @@ export class RegisterComponent  {
  loadScript(){this.ngOnInit;}
 
     onSubmit() {   
-      this.cservice.signup(this.user).subscribe(( data )  =>  {
-        console.log(data);
+      this.cservice.signup(this.user).subscribe(( data )  =>  {console.log(data.json())
+        
     });}
-
+idgenerate(users){
+ this.user.businessInfo.pricingPlanId = users.pricingPlanId
 }
 
+}

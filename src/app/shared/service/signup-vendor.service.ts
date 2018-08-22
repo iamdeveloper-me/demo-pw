@@ -10,7 +10,7 @@ export class SignupVendorService {
 
   signup(user)
   {
-    console.log(user);
+    
     var firstname = user.logInInfo.firstName;
     var lastname = user.logInInfo.lastName;
     var upassword = user.logInInfo.password;
@@ -23,17 +23,18 @@ export class SignupVendorService {
     var postalcode = user.businessInfo.postalCode;
     var address =user.businessInfo.address ;
     var nameOfBusiness = user.businessInfo.nameOfBusiness;
-    var planId = user.businessInfo[0].pricingPlanId
+    var planId = user.businessInfo;
     var categoryId = user.vendorCategories[0].categoryId;
     const header = new Headers({'Content-Type': 'application/json'});
-    
-    console.log(planId)
+ 
     return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/register',
       { logInInfo: {  firstName: firstname,lastName:lastname, password:upassword,confirmPassword: cpassword},
           contactInfo: { contactPerson: "mahi", email: email,phone: phone, website: website},
-          businessInfo: {countryId:1, city: city, postalCode: postalcode,address: address, nameOfBusiness: nameOfBusiness, pricingPlanId:planId },
+          businessInfo: {countryId:1, city: city, postalCode: postalcode,address: address, nameOfBusiness: nameOfBusiness, pricingPlanId:planId['pricingPlanId'] },
          vendorCategories: [ { categoryId: categoryId }]
         } ,{headers: header});
+
+
     }
 
      typeSuccess() {

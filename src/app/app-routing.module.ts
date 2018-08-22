@@ -81,6 +81,10 @@ import { ActionsComponent } from './vendor/actions/actions.component';
 import { ReachComponent } from './vendor/reach/reach.component';
 import { GallerybarComponent } from './vendor/gallerybar/gallerybar.component';
 import { VediosettingComponent } from './vendor/vediosetting/vediosetting.component';
+import { PromotionPriorityComponent } from './vendor/promotion-priority/promotion-priority.component';
+import { PromotionAudienceComponent } from './vendor/promotion-audience/promotion-audience.component';
+import { PromotionDealsComponent } from './vendor/promotion-deals/promotion-deals.component';
+import { PromotionHomepageComponent } from './vendor/promotion-homepage/promotion-homepage.component';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -139,6 +143,10 @@ const appRoutes: Routes = [
     { path: 'vendor/reachbar', component:  ReachComponent},
     { path: 'vendor/gallerybar', component:  GallerybarComponent},
     { path: 'vendor/vediosetting', component:  VediosettingComponent},
+    { path: 'vendor/priority', component:  PromotionPriorityComponent},
+    { path: 'vendor/audience', component:  PromotionAudienceComponent},
+    { path: 'vendor/deals', component:  PromotionDealsComponent},
+    { path: 'vendor/homepage', component:  PromotionHomepageComponent},
 
   { path: 'User/vendor', component: VendorlistComponent },  
   { path: 'User/Timeline', component: TimelineComponent },

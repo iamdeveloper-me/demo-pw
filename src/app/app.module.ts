@@ -148,6 +148,11 @@ import { ReviewComponent } from './vendor/review/review.component';
 import { VediosettingComponent } from './vendor/vediosetting/vediosetting.component';
 
 
+import { PromotionPriorityComponent } from './vendor/promotion-priority/promotion-priority.component';
+import { PromotionAudienceComponent } from './vendor/promotion-audience/promotion-audience.component';
+import { PromotionDealsComponent } from './vendor/promotion-deals/promotion-deals.component';
+import { PromotionHomepageComponent } from './vendor/promotion-homepage/promotion-homepage.component';
+
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -174,8 +179,12 @@ export function getAuthServiceConfigs() {
     declarations: [
         AppComponent,
         EnquiriesComponent,
+        PromotionPriorityComponent,
         NgbdModalContent,
         StorefrontComponent,
+        PromotionHomepageComponent,
+        PromotionAudienceComponent,
+        PromotionDealsComponent,
         ReachComponent,
         ActionsComponent,
         GallerybarComponent,

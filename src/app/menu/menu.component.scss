@@ -184,7 +184,15 @@
 .mobileshow{
   display:none;
 }
+.dropdown-menu ul li{
+  width:50%;
+  float: left;
+}
 
+.weddingicon li a img{width: 20px!important;}
+.weddingicon .dropdown-item{
+  font-size:14px!important;
+}
       @media (min-width: 992px) {
         #mainNav {
           border-color: transparent;
@@ -228,8 +236,47 @@
         }
       }
 @media (max-width:767px){
+.mobilenone{
+  display: none;
+}
+a.mobileslidewednav{
+  font-size: .9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #212529;
+}
+.weddingicon .dropdown-item{
+   white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 3px 10px;
+}
+.backsilde{
+font-size: .9rem!important;
+    font-weight: 600!important;
+    text-transform: uppercase!important;
+    color: #212529!important;
+}
+  .mobileshowwebnav {
+    min-width: inherit;
+    top:-72px;
+    left:265px;
+    width: 282px;
+    display: block;
+    overflow: scroll;
+    transition: left 1s;
+  }
+  .show .mobileshowwebnav {
+    left:-16px!important;
+  }
 .mobileshow{
   display:block;
+}
+.navbar-toggler{
+  top: 10px;
+}
+.navbar-toggler div{
+background:#fff;
 }
 .dark_footer{
   padding:10px 0px!important;
@@ -286,6 +333,13 @@
         background-color:unset !important;
          color: #e72e77 !important;
        }
+       .dropdown-menu ul li{
+  width:100%;
+  float:inherit;
+}
+.mobinherit{
+  position: inherit!important;
+}
        .navbar-collapse{
         background: #ffffff!important;
         
@@ -293,13 +347,13 @@
       .navbar-collapse{
         overflow: hidden;
       }
-      .dropdown-menu{
-        z-index: 99999;
-        display: none !important;
-      }
+     
       .navbar-toggler{
         position: absolute;
       }
+      .navbtntik{
+        opacity: 0;
+     }
      .navbtntik, .tikrightclose{
       padding: 0.25rem 0.75rem;
       font-size: 1.25rem;

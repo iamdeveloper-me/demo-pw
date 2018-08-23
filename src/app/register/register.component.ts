@@ -4,6 +4,7 @@ import { HttpClient} from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import 'rxjs/Rx';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -60,5 +61,9 @@ export class RegisterComponent  {
 idgenerate(users){
  this.user.businessInfo.pricingPlanId = users.pricingPlanId
 }
+
+ typeSuccess() {
+        this.cservice.typeSuccess();
+    }
 
 }

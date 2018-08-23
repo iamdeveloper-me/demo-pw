@@ -33,11 +33,12 @@
       <div class="col-md-12 cate_list">
          <div class="data">
             <!--   <div  class="show" *ngFor="let category of categoryArray"> -->
-            <div  class="show" *ngFor="let category of categoryArray">
+            <div  class="show" >
                <div class="col-md-12 nopadd">
                   <ul class="unstyled centered">
-                    <li>
-                    <input 
+                    <li class="col-md-4" *ngFor="let category of categoryArray">
+                    <input
+                    
                     type="radio" 
                     name="category"
                     id="category"
@@ -308,12 +309,12 @@
                <div class="row">
                   <div class="col-sm-12">
                      <div class="card martop0px">
-                        <div class="col-md-12 membershipsilder" *ngFor="let plan of planArray" >
+                        <div class="col-md-12 membershipsilder" >
                            <ngb-carousel >
-                              <ng-template ngbSlide >
+                              <ng-template ngbSlide *ngFor="let plan of planArray" >
                                  <div >
                                     <div class="panel card" >
-                                       <div class="panel-heading arrow_box text-center">
+                                       <div class="panel-heading arrow_box text-center" >
                                           <h3>{{plan.title}}</h3>
                                           <div class="pricesec">
                                              <table align="center">
@@ -451,9 +452,9 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="card martop0px">
-                                        <div class="col-md-12 membershipsilder" *ngFor="let plan of planArray">
+                                        <div class="col-md-12 membershipsilder" >
                                             <ngb-carousel>
-                                                <ng-template ngbSlide>
+                                                <ng-template ngbSlide *ngFor="let plan of planArray" >
                                                     <div>
                     <div class="panel card">
                         <div class="panel-heading arrow_box text-center">
@@ -587,7 +588,7 @@
       <div class="clearfix"></div>
       <div class="col-sm-12 btnholder">
          <button class="btn btn-raised prevBtn-2 gradint_blue white signup_nextbtn btnborradius pull-left" type="button">Previous</button>
-         <button class="btn btn-raised gradint_blue white nextBtn-2 signup_nextbtn btnborradius pull-right" type="submit">Next</button>
+         <button class="btn btn-raised gradint_blue white nextBtn-2 signup_nextbtn btnborradius pull-right" type="submit" id="type-success" (click)="typeSuccess()">Submit</button>
       </div>
    </div>
    </form>

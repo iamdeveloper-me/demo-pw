@@ -3,6 +3,7 @@ $("#menu-toggle").click(function(e) {
     $("#wrapper").toggleClass("toggled");
 });
 
+
 if(window.location.pathname == '/vendor/dashboard' ) {
     $("#dashboard").addClass("colour");
     $("#Services").removeClass("colour");
@@ -202,11 +203,4 @@ if(window.location.pathname == '/vendor/dashboard' ) {
     $("#dashboard").removeClass("colour");
 }else{}
 
-$(document).ready(function(){
-       $('[data-toggle="tooltip"]').tooltip();
-    });
-    jQuery(document).ready(function ($) {
-      var options = { $AutoPlay: 1 };
-      var jssor1_slider = new $JssorSlider$("jssor_1", options);
-     });
 

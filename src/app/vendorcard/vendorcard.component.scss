@@ -16,7 +16,8 @@
   .subheadertext{
     line-height: normal;
     padding: 0px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
   }
   .popup-gallery .galleryview{
     padding: 10px;
@@ -68,7 +69,7 @@
     outline: none;
   }
   .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
-    height: 200px;
+    height: 150px;
     width: 100%;
   }
   
@@ -107,12 +108,12 @@
   position: absolute;
   left: -35px;
   opacity:0.4;
-  top: 150px;
+  top: 118px;
 }
 .btn_pre{
   position: absolute;
   right: -35px;
-  top: 150px;
+  top: 118px;
   opacity:0.4;
 }
 
@@ -150,6 +151,10 @@
 }
 .vender_headin{
   margin-bottom: 50px;
+}
+
+.vender_headin h2{
+  font-size: 1.4rem !important;
 }
 .homeTools[_ngcontent-c3]{
   background-color: unset !important;
@@ -205,6 +210,10 @@
   margin: 0;
   padding: 0;
 } 
+.card-body h6{
+  font-weight: bold !important;
+  margin-bottom: 5px !important;
+}
 
 .list span{
   font-size: 12px;
@@ -251,6 +260,10 @@
 }
 .caroosel_headin{
 margin-bottom:30px;
+}
+.caroosel_headin h3{
+  font-size: 1.4rem;
+  font-weight: 500;
 }
 .mar_lef_20 a{
    margin-left: -20px !important;
@@ -373,7 +386,7 @@ pure-u-1, .pure-u-1-10, .pure-u-1-11, .pure-u-1-12, .pure-u-1-13, .pure-u-1-14, 
 }
 
 .homeTools__itemIcon {
-  background: url(https://cdn1.weddingwire.in/assets/img/home/sprite_tools.svg?v=1) no-repeat scroll 50% 0 transparent;
+  background: url(https://s3.us-east-2.amazonaws.com/prefect-image/search.svg) no-repeat scroll 50% 0 transparent;
       background-position-x: 50%;
       background-position-y: 0px;
       background-size: auto auto;
@@ -383,38 +396,66 @@ pure-u-1, .pure-u-1-10, .pure-u-1-11, .pure-u-1-12, .pure-u-1-13, .pure-u-1-14, 
   margin: 5px auto 0;
   display: block;
 }
-.homeTools__itemIcon--guests {
-  background-position: 50% -330px;
+.homeTools__itemIcon1 {
+  background: url(https://s3.us-east-2.amazonaws.com/prefect-image/guest-list.svg) no-repeat scroll 50% 0 transparent;
+      background-position-x: 50%;
+      background-position-y: 0px;
+      background-size: auto auto;
+  background-size: 60%;
+  width: 90px;
+  height: 70px;
+  margin: 5px auto 0;
+  display: block;
 }
-.homeTools__itemIcon--checklist {
-  background-position: 50% -120px;
+.homeTools__itemIcon2 {
+  background: url(https://s3.us-east-2.amazonaws.com/prefect-image/Checklist.svg) no-repeat scroll 50% 0 transparent;
+      background-position-x: 50%;
+      background-position-y: 0px;
+      background-size: auto auto;
+  background-size: 60%;
+  width: 90px;
+  height: 70px;
+  margin: 5px auto 0;
+  display: block;
 }
-.homeTools__itemIcon--budget {
-  background-position: 50% -230px;
-}
-.homeTools__itemIcon--wedsite {
-  background-position: 50% -445px;
+.homeTools__itemIcon3 {
+  background: url(https://s3.us-east-2.amazonaws.com/prefect-image/budget.svg) no-repeat scroll 50% 0 transparent;
+      background-position-x: 50%;
+      background-position-y: 0px;
+      background-size: auto auto;
+  background-size: 60%;
+  width: 90px;
+  height: 70px;
+  margin: 5px auto 0;
+  display: block;
 }
 .h4 {
-  font-size: 22px;
+  font-size: 20px;
+  margin-bottom: 0;
 }
+
 .h3{font-weight: 400;}
 
-
+.font_size_22{
+  margin-bottom: 0;
+  font-size: 22px !important;
+}
 .browse_cat .btn-primary{
   background-color: #e72e77 !important;
   color: #fff !important;
   border-color: #e72e77;
 }
 
-.btc{     margin-top: 30px;
-    margin-bottom: 0px;
-    width: 320px;
-    border: none;
-    height: 45px;
-    position: relative;
-    top: 15px;
-    transition: 0.3s;
+.btc{     
+  margin-top: 30px;
+  margin-bottom: 0px;
+  width: 240px;
+  border: none;
+  height: 38px;
+  position: relative;
+  top: 15px;
+  transition: 0.3s;
+  font-size: 1.0rem;
 }
 .browse_cat .btc:hover{background-color:#bd1b5b !important;}
 
@@ -440,16 +481,18 @@ li{line-height:1.5rem !important;}
 .pad_left_0 i{
   font-size: 40px;
 }
+.pad_left_5px{
+  padding-left: 5px !important;
+}
+.span_positin{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
 .span_positin span{
   display: inline-block;
   color: rgb(31, 236, 236);
 }
-.span_positin i{
-  font-size: 20px;
-    position: relative;
-    top: 4px;
-    right: 10px;
-}
+
 .pric_200{
   margin-top: -8px;
   color:#e72e77;
@@ -460,7 +503,8 @@ li{line-height:1.5rem !important;}
   border: none;
   border-radius: 10px;
   font-weight: bold;
-  padding: 2px 10px;
+  padding: 2px 8px;
+  font-size: 12px;
 }
 .locat_icon i{
   position: relative;
@@ -473,6 +517,9 @@ li{line-height:1.5rem !important;}
 }
 .statr_point .checked{
   color: #e72e77;
+}
+.statr_point{
+  margin-bottom: 5px !important;
 }
 .book_mark i{
   position: absolute;
@@ -494,8 +541,8 @@ li{line-height:1.5rem !important;}
 .mob_padd_30px{
   background-color:#fcfcfc;
   height: auto;
-  margin: 50px 0 30px 0;
-  padding: 30px 0px 40px 0; 
+  margin: 30px 0 30px 0;
+  padding: 20px 0px 40px 0; 
 }
 
 .procard{background: url("https://s3.us-east-2.amazonaws.com/prefect-image/pro.png"); width: 58px; height: 53px; position: absolute;top: 0; left: 0;}

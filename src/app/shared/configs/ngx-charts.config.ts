@@ -122,3 +122,51 @@ export var linemonthlyChartColorScheme = {
 // line, area
 export var linemonthlyChartAutoScale = true;
 export var linemonthlyChartLineInterpolation = shape.curveBasis;
+//reach
+////////////////////////////weekly
+
+//Line Charts
+
+export var weeklylineChartView: any[] = [550, 400];
+
+// options
+export var weeklylineChartShowXAxis = true;
+export var weeklylineChartShowYAxis = true;
+export var weeklylineChartGradient = false;
+export var weeklylineChartShowLegend = false;
+export var weeklylineChartShowXAxisLabel = true;
+export var weeklylineChartXAxisLabel = 'Boosted = Paid advertising Results through Promoting my business section';
+export var weeklylineChartShowYAxisLabel = true;
+export var weeklylineChartYAxisLabel = 'Normal = Organic Results';
+
+export var weeklylineChartColorScheme = {
+    domain: ['#009DA0', '#FF8D60', '#FF586B', '#AAAAAA']
+};
+
+// line, area
+export var weeklylineChartAutoScale = true;
+export var weeklylineChartLineInterpolation = shape.curveBasis;
+
+
+//////////////////monthly
+//Line Charts
+
+export var monthlylineChartView: any[] = [550, 400];
+
+// options
+export var monthlylineChartShowXAxis = true;
+export var monthlylineChartShowYAxis = true;
+export var monthlylineChartGradient = false;
+export var monthlylineChartShowLegend = false;
+export var monthlylineChartShowXAxisLabel = true;
+export var monthlylineChartXAxisLabel = 'Boosted = Paid advertising Results through Promoting my business section';
+export var monthlylineChartShowYAxisLabel = true;
+export var monthlylineChartYAxisLabel = 'Normal = Organic Results';
+
+export var monthlylineChartColorScheme = {
+    domain: ['#009DA0', '#FF8D60', '#FF586B', '#AAAAAA']
+};
+
+// line, area
+export var monthlylineChartAutoScale = true;
+export var monthlylineChartLineInterpolation = shape.curveBasis;

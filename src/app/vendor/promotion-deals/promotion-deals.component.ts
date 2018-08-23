@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-create-promotion',
-  templateUrl: './create-promotion.component.html',
-  styleUrls: ['./create-promotion.component.scss']
+  selector: 'app-promotion-deals',
+  templateUrl: './promotion-deals.component.html',
+  styleUrls: ['./promotion-deals.component.scss']
 })
-export class CreatePromotionComponent implements OnInit {
+export class PromotionDealsComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit() {
-     
+
     $('.togglebtnmenu').on('click', function(){
      //alert("h1");
     //$(this).toggleClass('cross');
@@ -26,12 +26,6 @@ export class CreatePromotionComponent implements OnInit {
      $('.mobilefixedcart').toggleClass('bottom0px');
       //$('.mobilebtncart').addClass('nonevisi');
     });
-
-      
-    
-
-
-
 
   }
 

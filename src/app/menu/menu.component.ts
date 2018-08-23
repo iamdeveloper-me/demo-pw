@@ -31,14 +31,35 @@ export class MenuComponent implements OnInit {
     constructor( private router: Router ,private cservice: LoginServiceService ,public _router:Router, private modalService: NgbModal, private http: Http, private uservice: SignupVendorService,) {}
 
     ngOnInit() { 
-        if(window.location.pathname == '/home'||'home/events'||'home/tips'||'home/photo' ) {
-
+        if(window.location.pathname == '/home') {
         $(".user").hide();    
         $(".tikright").hide(); 
-
-            $(".user").hide();    
-
         } 
+         if(window.location.pathname == '/home/photo') {
+        $(".user").hide();    
+        $(".tikright").hide(); 
+        } 
+         if(window.location.pathname == '/home/tips') {
+        $(".user").hide();    
+        $(".tikright").hide(); 
+        } 
+         if(window.location.pathname == '/home/events') {
+        $(".user").hide();    
+        $(".tikright").hide(); 
+        } 
+         if(window.location.pathname == '/home/Careers') {
+        $(".user").hide();    
+        $(".tikright").hide(); 
+        } 
+          if(window.location.pathname == '/home/FAQ') {
+        $(".user").hide();    
+        $(".tikright").hide(); 
+        } 
+          if(window.location.pathname == '/home/contact') {
+        $(".user").hide();    
+        $(".tikright").hide(); 
+        } 
+
         let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories");
         obs.subscribe(data => {
         this.supArray = data.json() as string[]; 
@@ -81,12 +102,15 @@ export class MenuComponent implements OnInit {
        $(".registertab").removeClass( "active");
 
      });
- 
+
+
     
     //end
     $(".tik").click(function(){
         $(".navbar-collapse").addClass("in");
-        $(".navbar-toggler").hide();
+        //$(".navbar-toggler").hide();
+        $(".navbar-toggler").addClass("cross")
+
         $(".navbtntik").show(); 
         $(".navbar-toggler").removeClass("tik");
         $(".slidemenu").removeClass("outslide");
@@ -98,13 +122,16 @@ export class MenuComponent implements OnInit {
         $(".navbar-toggler").show(); 
         $(".navbtntik").hide(); 
         $(".navbar-collapse").removeClass("in");
-        // $(".slidemenu").addClass("outslide");  
-        // setTimeout(function() { $(".slidemenu").removeClass("outslide") }, 500);
+        $(".navbar-toggler").removeClass("cross")
+        $(".navbar-toggler").addClass("tik");
+
+        $(".slidemenu").addClass("rtslide111");  
+        setTimeout(function() { $(".slidemenu").removeClass("rtslide111") }, 1000);
         $(".slidemenu").removeClass("inslide"); 
         $(".blackoverlaymain").removeClass( "blockmobile"); 
     });
-       $(".nav-item, .blackoverlaymain").click(function(){
-       //alert("hi");
+       $(".homemenu , .blackoverlaymain").click(function(){
+       //alert("ramjane");
         $(".navbar-toggler").show(); 
         $(".navbtntik").hide(); 
         $(".navbar-collapse").removeClass("in");
@@ -113,10 +140,28 @@ export class MenuComponent implements OnInit {
         $(".slidemenu").removeClass("inslide");
         $(".blackoverlaymain").removeClass( "blockmobile"); 
         $(".tool_icons").removeClass("in"); 
-        $(".tikright").show(); 
+        //$(".tikright").show(); 
         $(".slidemenu").removeClass("rtslide");
-        $(".tikrightclose").hide();
+        //$(".tikrightclose").hide();
     });
+
+
+     $(".mobileslidewednav").click(function(){
+       // alert("hi");
+       //$("mobileshowwebnav").addClass("lefttik");
+         //$("mobileshowwebnav").css('left', '-20px!important');
+
+    });
+     $(".backsilde").click(function(){
+       // alert("bye");
+      
+         //$("mobileshowwebnav").css('left', '-20px!important');
+
+    });
+
+
+
+
     $(".signuplink").click(function(){
         
         $("body").removeClass("modal-open"); 

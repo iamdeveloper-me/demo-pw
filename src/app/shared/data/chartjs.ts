@@ -102,7 +102,107 @@ export var lineChartColors: Array<any> = [
 export var lineChartLegend = true;
 export var lineChartType = 'line';
 
+//reachline chart
 
+export var reachlineChartData: Array<any> = [
+
+  { data: [65, 59, 80, 81, 56, 55, 40], label: 'Normal' },
+  { data: [28, 48, 40, 19, 86, 27, 90], label: 'Promoted (Paid)' },
+ 
+];
+export var reachlineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+export var reachlineChartOptions: any = {
+  animation: {
+    duration: 1000, // general animation time
+    easing: 'easeOutBack'
+  },
+  hover: {
+    animationDuration: 1000, // duration of animations when hovering an item
+    mode: 'label'
+  },
+  responsiveAnimationDuration: 1000, // animation duration after a resize
+  responsive: true,
+  maintainAspectRatio: false,
+  legend: {
+    position: 'bottom',
+  },
+  scales: {
+    xAxes: [{
+      display: true,
+      gridLines: {
+        color: "#f3f3f3",
+        drawTicks: false,
+      },
+      scaleLabel: {
+        display: true,
+        labelString: 'Month'
+      }
+    }],
+    yAxes: [{
+      display: true,
+      gridLines: {
+        color: "#f3f3f3",
+        drawTicks: false,
+      },
+      scaleLabel: {
+        display: true,
+        labelString: 'Value'
+      }
+    }]
+  },
+  title: {
+    display: true,
+    text: 'Chart.js Line Chart - Legend'
+  }
+};
+export var reachlineChartColors: Array<any> = [
+
+  {
+
+    fill: false,
+    borderDash: [5, 5],
+    borderColor: "#9C27B0",
+    pointBorderColor: "#9C27B0",
+    pointBackgroundColor: "#FFF",
+    pointBorderWidth: 2,
+    pointHoverBorderWidth: 2,
+    pointRadius: 4,
+  },
+  {
+
+    fill: false,
+    borderDash: [5, 5],
+    borderColor: "#00A5A8",
+    pointBorderColor: "#00A5A8",
+    pointBackgroundColor: "#FFF",
+    pointBorderWidth: 2,
+    pointHoverBorderWidth: 2,
+    pointRadius: 4,
+  },
+  {
+    lineTension: 0,
+    fill: false,
+    borderColor: "#FF7D4D",
+    pointBorderColor: "#FF7D4D",
+    pointBackgroundColor: "#FFF",
+    pointBorderWidth: 2,
+    pointHoverBorderWidth: 2,
+    pointRadius: 4,
+  },
+  {
+    lineTension: 0,
+    fill: false,
+    borderColor: "pink",
+    pointBorderColor: "#FF7D4D",
+    pointBackgroundColor: "#FFF",
+    pointBorderWidth: 2,
+    pointHoverBorderWidth: 2,
+    pointRadius: 4,
+  },
+
+];
+export var reachlineChartLegend = true;
+export var reachlineChartType = 'line';
 //area chart------------------------------------------------
 export var areaChartData: Array<any> = [
 
@@ -358,8 +458,8 @@ export var barChartLabels: string[] = ['week1', 'week2', 'week3', 'week4', 'week
 export var barChartType = 'bar';
 export var barChartLegend = true;
 export var barChartData: any[] = [
-  { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-  { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+  { data: [65, 59, 80, 81, 56, 55, 40], label: 'ENQUIRIES' },
+  { data: [28, 48, 40, 19, 86, 27, 90], label: 'LEADS' }
 ];
 
 export var barChartColors: Array<any> = [
@@ -377,6 +477,54 @@ export var barChartColors: Array<any> = [
   {
 
     backgroundColor: 'rgba(0, 157, 160, 0.8)',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  },
+
+];
+// gallerybarChart
+export var gallerybarChartOptions: any = {
+  scaleShowVerticalLines: false,
+  responsive: true,
+  maintainAspectRatio: false
+
+};
+export var gallerybarChartLabels: string[] = ['week1', 'week2', 'week3', 'week4', 'week5', 'week6', 'last week '];
+export var gallerybarChartType = 'bar';
+export var gallerybarChartLegend = true;
+export var gallerybarChartData: any[] = [
+  { data: [65, 59, 80, 81, 56, 55, 40], label: 'Portfolio Views' },
+  { data: [28, 48, 40, 19, 86, 27, 90], label: 'Album Views' },
+  { data: [28, 48, 40, 49, 16, 27, 30], label: 'Video Views' }
+];
+
+export var gallerybarChartColors: Array<any> = [
+
+
+  {
+
+    backgroundColor: 'rgba(255, 141, 96, 0.8)',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  },
+  {
+
+    backgroundColor: 'rgba(0, 157, 160, 0.8)',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  },
+  {
+
+    backgroundColor: 'rgba(0, 137, 120, 0.8)',
     borderColor: 'rgba(148,159,177,1)',
     pointBackgroundColor: 'rgba(148,159,177,1)',
     pointBorderColor: '#fff',
@@ -455,8 +603,8 @@ export var dailybarLabels: string[] = ['monday', 'tuesday', 'wednessday', 'thrus
 export var dailybarType = 'bar';
 export var dailybarLegend = true;
 export var dailybarData: any[] = [
-  { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-  { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+  { data: [65, 59, 80, 81, 56, 55, 40], label: 'ENQUIRIES' },
+  { data: [28, 48, 40, 19, 86, 27, 90], label: 'LEADS' }
 ];
 
 export var dailybarColors: Array<any> = [
@@ -494,8 +642,8 @@ export var weeklybarLabels: string[] = ['July', 'August', 'September', 'October'
 export var weeklybarType = 'bar';
 export var weeklybarLegend = true;
 export var weeklybarData: any[] = [
-  { data: [65, 59, 80, 81, 56, 55, 40,30,20,40,10,23], label: 'Series A' },
-  { data: [28, 48, 40, 19, 86, 27, 90,80, 81, 56, 55, 40,], label: 'Series B' }
+  { data: [65, 59, 80, 81, 56, 55, 40,30,20,40,10,23], label: 'ENQUIRIES' },
+  { data: [28, 48, 40, 19, 86, 27, 90,80, 81, 56, 55, 40,], label: 'LEADS' }
 ];
 
 export var weeklybarColors: Array<any> = [

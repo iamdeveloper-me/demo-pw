@@ -3,225 +3,123 @@
         <app-vendorsidebar></app-vendorsidebar>
     </div>
     <div id="page-content-wrapper">    
-      <app-navemenu></app-navemenu>
+        <app-navemenu></app-navemenu>
 
-<!-- Line Chart Starts -->
+        <!-- Line Chart Starts -->
 
-<div class="col-md-12">
-
-  <div class="col-sm-12 text-center">
-
-     <p class="text-center">
-            <i class="material-icons font48px" style="position:absolute; top:-25px;">trending_up</i> 
-            <i class="material-icons font48px">
-                    bar_chart
-                    </i>
-                    <br/>
-         Your Business Performance, It’s all in the numbers! </p>
-
-<p class="text-center">Are you a Perfect Wedding Premium or Ultimate Partner? Contact us for support and free training. </p>
-
-  </div>
-</div>
-
-
-
-<div class="col-sm-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Enquiries Vs Leads</h4>
-                <p>July 15 - July 21</p>
+            <div class="col-md-12">
+                <div class="col-sm-12 text-center">
+                    <p class="text-center">
+                        <i class="material-icons font48px" style="position:absolute; top:-25px;">trending_up</i> 
+                        <i class="material-icons font48px">bar_chart</i>
+                        <br/>
+                        Your Business Performance, It’s all in the numbers! </p>
+                    <p class="text-center">Are you a Perfect Wedding Premium or Ultimate Partner? Contact us for support and free training. </p>
+                </div>
             </div>
-            <div class="card-body">
-                <div class="card-block">
-                    <div id="bar-bar1" class="height-400">
-                        <canvas baseChart class="chart" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColors" [legend]="barChartLegend"
-                            [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Enquiries Vs Leads</h4>
+                        <p>July 15 - July 21</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-block">
+                            <div id="bar-bar1" class="height-400">
+                                <canvas baseChart class="chart" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColors" [legend]="barChartLegend"
+                                    [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overlay" routerLink="../enquiry">
+                            <div class="text">ANALYSE DATA</div>
+                        </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Storefront Views</h4>
+                        <p>July 15 - July 21</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-block">
+                            <div id="area-chart1" class="height-400">
+                                <ngx-charts-area-chart [scheme]="areaChartColorScheme" [results]="areaChartMulti" [gradient]="areaChartGradient" [xAxis]="areaChartShowXAxis"
+                                    [yAxis]="areaChartShowYAxis" [legend]="areaChartShowLegend" [showXAxisLabel]="areaChartShowXAxisLabel"
+                                    [showYAxisLabel]="areaChartShowYAxisLabel" [xAxisLabel]="areaChartXAxisLabel" [yAxisLabel]="areaChartYAxisLabel"
+                                    [autoScale]="areaChartAutoScale" [curve]="areaChartLineInterpolation" (select)="onSelect($event)">
+                                </ngx-charts-area-chart>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overlay" routerLink="../storefront">
+                            <div class="text">ANALYSE DATA</div>
                     </div>
                 </div>
             </div>
-            <div class="overlay" routerLink="../enquiry">
+
+            <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Actions on Storefront</h4>
+                    <p>July 15 - July 21</p>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="height-400">
+                            <canvas height="400" baseChart class="chart" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"
+                            [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" ></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="overlay" routerLink="../actionfront">
                     <div class="text">ANALYSE DATA</div>
-                  </div>
-        </div>
-    </div>
-   <div class="col-sm-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Storefront Views</h4>
-                <p>July 15 - July 21</p>
-            </div>
-            <div class="card-body">
-                <div class="card-block">
-                    <div id="area-chart1" class="height-400">
-                        <ngx-charts-area-chart [scheme]="areaChartColorScheme" [results]="areaChartMulti" [gradient]="areaChartGradient" [xAxis]="areaChartShowXAxis"
-                            [yAxis]="areaChartShowYAxis" [legend]="areaChartShowLegend" [showXAxisLabel]="areaChartShowXAxisLabel"
-                            [showYAxisLabel]="areaChartShowYAxisLabel" [xAxisLabel]="areaChartXAxisLabel" [yAxisLabel]="areaChartYAxisLabel"
-                            [autoScale]="areaChartAutoScale" [curve]="areaChartLineInterpolation" (select)="onSelect($event)">
-                        </ngx-charts-area-chart>
-                    </div>
                 </div>
             </div>
-            <div class="overlay" routerLink="../storefront">
-                    <div class="text">ANALYSE DATA</div>
-                  </div>
-        </div>
-    </div>
-
-
-    <div class="col-sm-12">
-      <div class="card">
-          <div class="card-header">
-              <h4 class="card-title">Actions on Storefront</h4>
-              <p>July 15 - July 21</p>
-          </div>
-          <div class="card-body">
-              <div class="card-block">
-                  <div class="height-400">
-                          <canvas height="400" baseChart class="chart" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"
-                          [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" ></canvas>
-                  </div>
-              </div>
-          </div>
-          <div class="overlay" routerLink="../actionfront">
-                <div class="text">ANALYSE DATA</div>
-              </div>
-      </div>
-    </div>
-   
- <div class="col-sm-12">
-      <div class="card">
-          <div class="card-header">
-              <h4 class="card-title">Reach</h4>
-              <p>July 15 - July 21</p>
-          </div>
-          <div class="card-body">
-              <div class="card-block">
-                  <div class="height-400">
-                          <canvas height="400" baseChart class="chart" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"
-                          [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" ></canvas>
-                  </div>
-              </div>
-          </div>
-          <div class="overlay" routerLink="../reachbar">
-                <div class="text">ANALYSE DATA</div>
-              </div>
-      </div>
-    </div>
-   
-   <div class="col-sm-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">My Gallery Views</h4>
-                <p>July 15 - July 21</p>
             </div>
-            <div class="card-body">
-                <div class="card-block">
-                    <div id="bar-bar1" class="height-400">
-                        <canvas baseChart class="chart" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColors" [legend]="barChartLegend"
-                            [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+        
+            <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title"> Reach (Normal + Promoted/Boosted)</h4>
+                    <p>July 15 - July 21</p>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="height-400">
+                            <canvas height="400" baseChart class="chart" [datasets]="reachlineChartData" [labels]="reachlineChartLabels" [options]="reachlineChartOptions" [colors]="reachlineChartColors"
+                            [legend]="reachlineChartLegend" [chartType]="reachlineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" ></canvas>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="overlay" routerLink="../gallerybar">
-                    <div class="text">ANALYSE DATA</div>
-                  </div>
-        </div>
-    </div>
-
-
-
-
-<div class="col-md-12">
-
-    
-<!-- 
-    <div class="col-sm-4">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Page Previews</h4>
-                <p>July 15 - July 21</p>
-            </div>
-            <div class="card-body">
-                <div class="card-block">
-                    <div class="height-400">
-                            <canvas id="scatter-chart"  height="400" baseChart class="chart" [datasets]="scatterChartData" [labels]="scatterChartLabels" [options]="scatterChartOptions" [colors]="scatterChartColors"
-                            [legend]="scatterChartLegend" [chartType]="scatterChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" >
-                            </canvas>
+                <div class="overlay" routerLink="../reachbar">
+                        <div class="text">ANALYSE DATA</div>
                     </div>
+            </div>
+            </div>
+        
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">My Gallery Views</h4>
+                        <p>July 15 - July 21</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-block">
+                            <div id="bar-bar1" class="height-400">
+                                <canvas baseChart class="chart" [datasets]="gallerybarChartData" [labels]="gallerybarChartLabels" [options]="gallerybarChartOptions" [colors]="gallerybarChartColors" [legend]="gallerybarChartLegend"
+                                    [chartType]="gallerybarChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overlay" routerLink="../gallerybar">
+                            <div class="text">ANALYSE DATA</div>
+                        </div>
                 </div>
             </div>
-        </div>
     </div>
-    <div class="col-sm-4">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Page Likes</h4>
-                <p>July 15 - July 21</p>
-            </div>
-            <div class="card-body">
-                <div class="card-block">
-                    <div id="bar-doughnut" class="height-400">
-                        <canvas baseChart  class="chart" [data]="doughnutChartData" [labels]="doughnutChartLabels" [options]="doughnutChartOptions" [chartType]="doughnutChartType" [colors]="doughnutChartColors" 
-                            (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Reach</h4>
-                <p>July 15 - July 21</p>
-            </div>
-            <div class="card-body">
-                <div class="card-block">
-                    <div id="radar-chart1" class="height-400">
-                        <canvas baseChart class="chart" [datasets]="radarChartData" [labels]="radarChartLabels" [options]="radarChartOptions" [chartType]="radarChartType" [colors]="radarChartColors" (chartHover)="chartHovered($event)"
-                            (chartClick)="chartClicked($event)"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<div class="col-sm-6">
-      <div class="card">
-          <div class="card-header">
-              <h4 class="card-title">Post Engagements</h4>
-              <p>July 15 - July 21</p>
-          </div>
-          <div class="card-body">
-              <div class="card-block">
-                  <div id="pie-chart1" class="height-400">
-                      <canvas baseChart class="chart" [data]="pieChartData" [labels]="pieChartLabels" [options]="pieChartOptions" [chartType]="pieChartType" (chartHover)="chartHovered($event)" [colors]="pieChartColors"
-                          (chartClick)="chartClicked($event)"></canvas>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  <div class="col-sm-6">
-      <div class="card">
-          <div class="card-header">
-              <h4 class="card-title">Page Followers</h4>
-              <p>July 15 - July 21</p>
-          </div>
-          <div class="card-body">
-              <div class="card-block">
-                  <div id="area-chart1" class="height-400">
-                      <canvas baseChart class="chart" [data]="polarAreaChartData" [options]="polarChartOptions" [labels]="polarAreaChartLabels" [legend]="polarAreaLegend" [chartType]="polarAreaChartType" [colors] ="ploarChartColors"
-                          (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div> -->
 </div>
-
-
-</div>
-  
-</div>
-
 <router-outlet></router-outlet>

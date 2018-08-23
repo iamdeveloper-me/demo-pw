@@ -21,6 +21,10 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
 // import { LocationComponent } from './location/location.component';
 // import { VideosComponent } from './videos/videos.component';
  import { PromotionsComponent } from './promotions/promotions.component';
+//import { PromotionPriorityComponent } from './promotion-priority/promotion-priority.component';
+//import { PromotionAudienceComponent } from './promotion-audience/promotion-audience.component';
+//import { PromotionDealsComponent } from './promotion-deals/promotion-deals.component';
+//import { PromotionHomepageComponent } from './promotion-homepage/promotion-homepage.component';
 //import { VediosettingComponent } from './vediosetting/vediosetting.component';
 // import { StatisticsComponent } from './statistics/statistics.component';
 // import { MyAccountComponent } from './my-account/my-account.component';
@@ -78,6 +82,10 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
         // LocationComponent,
         // VideosComponent,
          PromotionsComponent,
+        //PromotionPriorityComponent,
+       // PromotionAudienceComponent,
+        //PromotionDealsComponent,
+        //PromotionHomepageComponent,
        // VediosettingComponent,
         // StatisticsComponent,
         // MyAccountComponent,

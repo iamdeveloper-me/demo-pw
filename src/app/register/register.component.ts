@@ -55,15 +55,18 @@ export class RegisterComponent  {
  loadScript(){this.ngOnInit;}
 
     onSubmit() {   
-      this.cservice.signup(this.user).subscribe(( data )  =>  {console.log(data.json())
-        
-    });}
+      this.cservice.signup(this.user).subscribe(( data )  =>  
+      {console.log(data.json())
+        this.cservice.typeSuccess();
+      },error => 
+      alert(error) // error path
+    )}
 idgenerate(users){
  this.user.businessInfo.pricingPlanId = users.pricingPlanId
 }
 
  typeSuccess() {
-        this.cservice.typeSuccess();
+        
     }
 
 }

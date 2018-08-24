@@ -18,7 +18,6 @@ export class LoginServiceService {
   return this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/auth/login",{userName: username , password: password},{headers:headers});
 }
 typeSuccess() {
-  this.toastr.success('Account created!', 'Success!');
-  
+  this.toastr.success('Login successfully', 'Success!');
 }
 }

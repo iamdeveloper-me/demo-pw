@@ -3,11 +3,14 @@ import { Component,  OnInit , Input } from '@angular/core';
 import {LoginServiceService} from '../shared/service/login-service.service';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
-import { HttpClient} from '@angular/common/http';
+//import { HttpClient} from '@angular/common/http';
+import {Headers ,Http,Response } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
+import { SignupVendorService } from '../shared/service/signup-vendor.service';
 import 'rxjs/Rx';
 
 
+import { Observable } from 'rxjs/Rx'; 
 export class NgbdModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) { }
@@ -23,8 +26,9 @@ export class NgbdModalContent {
 export class MenuComponent implements OnInit {
 
    // user = {username: "",password: ""};
-    supArray:string[];  
-    constructor( private router: Router ,private cservice: LoginServiceService ,public _router:Router, private modalService: NgbModal, private http: HttpClient) {}
+    supArray:string[];
+    // homeArray:string[];  
+    constructor( private router: Router ,private cservice: LoginServiceService ,public _router:Router, private modalService: NgbModal, private http: Http, private uservice: SignupVendorService,) {}
 
     ngOnInit() { 
         if(window.location.pathname == '/home') {
@@ -58,12 +62,23 @@ export class MenuComponent implements OnInit {
 
         let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories");
         obs.subscribe(data => {
-        this.supArray =data as string[]; 
-       // console.log(data.json(); ) 
-        })
+        this.supArray = data.json() as string[]; 
+       console.log(data.json()); 
+        });
 
-      
-             //loginpage
+        // let header = new Headers()
+        // let authToken = localStorage.getItem('userToken');
+       // console.log(authToken)
+        // header.append('Authorization', `Bearer ${authToken}`);
+       // console.log(headers)
+        // let obj = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Dashboard/Home",{headers: header})
+       // .map(response => console.log(response) ,alert("tgwtg"));
+         
+        // obj.subscribe(data => {
+        // this.homeArray = data as string[]; 
+        // console.log(data);
+        // })
+     //loginpage
      $("#id9").hide();
      $("#id19").hide();
      $(".signup_click").click(function(){
@@ -102,6 +117,7 @@ export class MenuComponent implements OnInit {
         $(".slidemenu").addClass("inslide"); 
         $(".blackoverlaymain").addClass( "blockmobile"); 
         $(".fixedtik").addClass( "positionfixed"); 
+        $(".dark_footer").hide(); 
 
     });
 
@@ -117,6 +133,7 @@ export class MenuComponent implements OnInit {
         $(".slidemenu").removeClass("inslide"); 
         $(".blackoverlaymain").removeClass( "blockmobile"); 
         setTimeout(function() { $(".fixedtik").removeClass("positionfixed") }, 1000);
+        $(".dark_footer").show();
     });
  
        $(".blackoverlaymain").click(function(){
@@ -135,6 +152,7 @@ export class MenuComponent implements OnInit {
         //$(".tikright").show(); 
         //$(".slidemenu").removeClass("rtslide");
         //$(".tikrightclose").hide();
+         $(".dark_footer").show();
     });
 
 $(".homemenu").click(function(){
@@ -154,6 +172,7 @@ $(".homemenu").click(function(){
         //$(".tikright").show(); 
         //$(".slidemenu").removeClass("rtslide");
         //$(".tikrightclose").hide();
+         $(".dark_footer").show();
     });
 
 
@@ -204,7 +223,11 @@ $(".tikright").click(function(){
     }
 });
 
+
+  
     }
+
+    
 //loginpage
 loadScript(){ 
     $("#panel9").removeClass( "in");
@@ -234,6 +257,7 @@ loadScript(){
 //    $(".customerlogin").show();
    }
 //end
+    
 remove(){
     if(window.location.pathname == '/home' )
     {     
@@ -241,6 +265,8 @@ remove(){
         $("body").css({ 'padding-right' : '' }); 
    }
 }
+   
+  
 user = {username:' ',password:' '}
 onSubmit(){ 
  // headers.append('Content-Type', 'application/json');
@@ -249,17 +275,30 @@ onSubmit(){
       (data)=> {console.log(data.json().auth_token);   
       console.log(data.status);
       console.log(data.statusText);
-    if (data.statusText == "OK" ) {
+      if (data.statusText == "OK" ) {
         console.log('Success','Login Successfully')
-        
         localStorage.setItem('userToken',data.json().auth_token);
         this.router.navigate(['../vendor/dashboard'])
       }
       else
       { console.log('Login Fail')}
-    });  
+    });
+   
 }
+
 typeSuccess() {
     this.cservice.typeSuccess();
 }
+
+
+userSingUp = {email:' ',password:' ',confirmpass:''}
+
+userSubmit(){
+  this.uservice.usignup(this.userSingUp).subscribe(( data )  =>  {
+        console.log(data);
+        // console.log(data.password)
+});
+
 }
+}
+

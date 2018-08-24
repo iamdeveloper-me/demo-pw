@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RatingModule} from "ngx-rating";
 
+
 //calender 
 
 import { CommonModule } from "@angular/common";

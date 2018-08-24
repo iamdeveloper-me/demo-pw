@@ -187,24 +187,30 @@
 		<div class="modal-dialog" role="document">
 				<button type="button " class="close digi_btn" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
 		  <div class="modal-content">
-				<h4  class="card-title">Candid Photography </h4>
+				<h4  class="card-title text-center">Candid Photography </h4>
 				
 				<div class="card-content selectboxservice"> 
-						<h5>Enter your Price</h5>
+						<h5>Select a Starting Price</h5>
 						<div>
 							<label class="price_select">
-								<input name="Price" type="text" placeholder="$10" [(ngModel)]="candid"> 
-								
+								<input name="Price" type="radio" > 
+								  <span> Rs 10,000</span> <br>
+								  <input name="Price" type="radio" > 
+								  <span> Rs 20,000</span>  <br>
+								  <input name="Price" type="radio" > 
+								  <span> Rs 30,000</span>
 							</label>
 						</div>
+						
 						
 					
 					</div>
 	
 
-					<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+					<div class="modal-footer text-center">
+							<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save</button>
+							<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+							
 					</div>
 		  </div>
 		</div>
@@ -212,24 +218,27 @@
 <div class="modal fade" id="cinema" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">
 					<button type="button " class="close digi_btn" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
-			  <div class="modal-content">
-					<h4  class="card-title">Cinematography </h4>
+			  <div class="modal-content ">
+					<h4  class="card-title text-center">Cinematography </h4>
 					<div class="card-content selectboxservice"> 
-							<h5>Enter your Price</h5>
+							<h5>Select a Starting Price</h5>
 							<div>
 								<label class="price_select">
-									<input name="Price" type="text" placeholder="$10" [(ngModel)]="cinema"> 
-									
+									<input name="Price" type="radio" > 
+									  <span> Rs 10,000</span> <br>
+									  <input name="Price" type="radio" > 
+									  <span> Rs 20,000</span>  <br>
+									  <input name="Price" type="radio" > 
+									  <span> Rs 30,000</span>
 								</label>
-							</div>
-							
-						
+							</div>		
 						</div>
 		
 
-						<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								<!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+						<div class="modal-footer text-center">
+								<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save</button>
+								<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+								
 						</div>
 			  </div>
 			</div>
@@ -238,23 +247,24 @@
 				<div class="modal-dialog" role="document">
 						<button type="button " class="close digi_btn" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
 				  <div class="modal-content">
-						<h4  class="card-title">Studio Shoots </h4>
+						<h4  class="card-title text-center">Studio Shoots </h4>
 						<div class="card-content selectboxservice"> 
-								<h5>Enter your Price</h5>
+								<h5>Select a Starting Price</h5>
 								<div>
 									<label class="price_select">
-										<input name="Price" type="text" placeholder="$10" [(ngModel)]="studio"> 
-										
+										<input name="Price" type="radio" > 
+										  <span> Rs 10,000</span> <br>
+										  <input name="Price" type="radio" > 
+										  <span> Rs 20,000</span>  <br>
+										  <input name="Price" type="radio" > 
+										  <span> Rs 30,000</span>
 									</label>
-								</div>
-								
-							
+								</div>		
 							</div>
-			
-
-							<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									<!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+							<div class="modal-footer text-center">
+									<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save</button>
+									<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+									
 							</div>
 				  </div>
 				</div>
@@ -263,23 +273,26 @@
 					<div class="modal-dialog" role="document">
 							<button type="button " class="close digi_btn" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
 					  <div class="modal-content">
-							<h4  class="card-title">Pre-wedding Shoots </h4>
+							<h4  class="card-title text-center">Pre-wedding Shoots </h4>
 							<div class="card-content selectboxservice"> 
-									<h5>Enter your Price</h5>
+									<h5>Select a Starting Price</h5>
 									<div>
 										<label class="price_select">
-											<input name="Price" type="text" placeholder="$10" [(ngModel)]="prewed"> 
-											
+											<input name="Price" type="radio" > 
+											  <span> Rs 10,000</span> <br>
+											  <input name="Price" type="radio" > 
+											  <span> Rs 20,000</span>  <br>
+											  <input name="Price" type="radio" > 
+											  <span> Rs 30,000</span>
 										</label>
-									</div>
-									
-								
+									</div>		
 								</div>
 				
 	
-								<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-										<!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+								<div class="modal-footer text-center">
+										<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save </button>
+										<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+										
 								</div>
 					  </div>
 					</div>
@@ -288,23 +301,26 @@
 						<div class="modal-dialog" role="document">
 								<button type="button " class="close digi_btn" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
 						  <div class="modal-content">
-								<h4  class="card-title"> Photos Delivered </h4>
+								<h4  class="card-title text-center"> Photos Delivered </h4>
 								<div class="card-content selectboxservice"> 
-										<h5>Enter your Price</h5>
+										<h5>Select a Starting Price</h5>
 										<div>
 											<label class="price_select">
-												<input name="Price" type="text" placeholder="$10" [(ngModel)]="photod" > 
-												
+												<input name="Price" type="radio" > 
+												  <span> Rs 10,000</span> <br>
+												  <input name="Price" type="radio" > 
+												  <span> Rs 20,000</span>  <br>
+												  <input name="Price" type="radio" > 
+												  <span> Rs 30,000</span>
 											</label>
-										</div>
-										
-									
+										</div>		
 									</div>
 					
 		
-									<div class="modal-footer">
-											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											<!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+									<div class="modal-footer text-center">
+											<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button>
+											<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+											
 									</div>
 						  </div>
 						</div>
@@ -313,23 +329,28 @@
 							<div class="modal-dialog" role="document">
 									<button type="button " class="close digi_btn" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
 							  <div class="modal-content">
-									<h4  class="card-title">Experience </h4>
+									<h4  class="card-title text-center">Experience </h4>
 									<div class="card-content selectboxservice"> 
 											<h5>Your experience</h5>
 											<div>
-												<label class="price_select">
-													<input name="Price" type="text" placeholder="1 years" [(ngModel)]="experience"> 
-													
-												</label>
-											</div>
+													<label class="price_select">
+														<input name="Price" type="radio" > 
+														  <span> 1 Year</span> <br>
+														  <input name="Price" type="radio" > 
+														  <span> 2 Year</span>  <br>
+														  <input name="Price" type="radio" > 
+														  <span> 3 Year</span>
+													</label>
+												</div>
 											
 										
 										</div>
 						
 			
-										<div class="modal-footer">
-												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-												<!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+										<div class="modal-footer text-center">
+												<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save</button>
+												<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+												
 										</div>
 							  </div>
 							</div>
@@ -338,23 +359,26 @@
 								<div class="modal-dialog" role="document">
 										<button type="button " class="close digi_btn" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
 								  <div class="modal-content">
-										<h4  class="card-title">Payments Termes </h4>
+										<h4  class="card-title text-center">Payments Termes </h4>
 										<div class="card-content selectboxservice"> 
-												<h5>Enter your Price</h5>
+												<h5>Select a Starting Price</h5>
 												<div>
 													<label class="price_select">
-														<input name="Price" type="text" placeholder="$10" [(ngModel)]="payment"> 
-														
+														<input name="Price" type="radio" > 
+														  <span> Rs 10,000</span> <br>
+														  <input name="Price" type="radio" > 
+														  <span> Rs 20,000</span>  <br>
+														  <input name="Price" type="radio" > 
+														  <span> Rs 30,000</span>
 													</label>
-												</div>
-												
-											
+												</div>		
 											</div>
 							
 				
-											<div class="modal-footer">
-													<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-													<!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+											<div class="modal-footer text-center">
+													<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button>
+													<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+													
 											</div>
 								  </div>
 								</div>
@@ -363,23 +387,26 @@
 		<div class="modal-dialog" role="document">
 				<button type="button " class="close digi_btn" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
 			<div class="modal-content">
-				<h4  class="card-title">Travel Cost </h4>
+				<h4  class="card-title text-center">Travel Cost </h4>
 				<div class="card-content selectboxservice"> 
-						<h5>Enter your Price</h5>
+						<h5>Select a Starting Price</h5>
 						<div>
 							<label class="price_select">
-								<input name="Price" type="text" placeholder="$10" [(ngModel)]="travel"> 
-								
+								<input name="Price" type="radio" > 
+								  <span> Rs 10,000</span> <br>
+								  <input name="Price" type="radio" > 
+								  <span> Rs 20,000</span>  <br>
+								  <input name="Price" type="radio" > 
+								  <span> Rs 30,000</span>
 							</label>
-						</div>
-						
-					
+						</div>		
 					</div>
 	
 
-					<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+					<div class="modal-footer text-center">
+							<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save </button>
+							<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+							
 					</div>
 			</div>
 		</div>
@@ -388,23 +415,26 @@
 										<div class="modal-dialog" role="document">
 												<button type="button " class="close digi_btn" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
 										  <div class="modal-content">
-												<h4  class="card-title">Photos </h4>
+												<h4  class="card-title text-center">Photos </h4>
 												<div class="card-content selectboxservice"> 
-														<h5>Enter your Price</h5>
+														<h5>Select a Starting Price</h5>
 														<div>
 															<label class="price_select">
-																<input name="Price" type="text" placeholder="$10" [(ngModel)]="photo_off"> 
-																
+																<input name="Price" type="radio" > 
+																  <span> Rs 10,000</span> <br>
+																  <input name="Price" type="radio" > 
+																  <span> Rs 20,000</span>  <br>
+																  <input name="Price" type="radio" > 
+																  <span> Rs 30,000</span>
 															</label>
-														</div>
-														
-													
+														</div>		
 													</div>
 									
 						
 													<div class="modal-footer">
-															<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-															<!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+															<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save </button>
+															<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+															
 													</div>
 										  </div>
 										</div>
@@ -413,23 +443,26 @@
 		<div class="modal-dialog" role="document">
 		<button type="button " class="close digi_btn" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
 			<div class="modal-content">
-				<h4  class="card-title">Photos Vedios </h4>
+				<h4  class="card-title text-center">Photos Vedios </h4>
 				<div class="card-content selectboxservice"> 
-						<h5>Enter your Price</h5>
+						<h5>Select a Starting Price</h5>
 						<div>
 							<label class="price_select">
-								<input name="Price" type="text" placeholder="$10" [(ngModel)]="photo_ved"> 
-								
+								<input name="Price" type="radio" > 
+								  <span> Rs 10,000</span> <br>
+								  <input name="Price" type="radio" > 
+								  <span> Rs 20,000</span>  <br>
+								  <input name="Price" type="radio" > 
+								  <span> Rs 30,000</span>
 							</label>
-						</div>
-						
-					
+						</div>		
 					</div>
 	
 
-					<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+					<div class="modal-footer text-center">
+							<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button>
+							<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+							
 					</div>
 			</div>
 		</div>

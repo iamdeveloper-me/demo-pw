@@ -12,7 +12,7 @@ export class BusinessServicesComponent implements OnInit {
  
   Price = '12$';
   photo_ved = '344$'; photo_off = '45$'; travel = '233$'; payment='24$'; 
-  experience = '654'; photod = '24$' ;
+  experience = '1 Year'; photod = '24$' ;
   prewed = '556$'; studio= "45$" ;cinema = '23$'; candid = '44$ ' ;
   ngOnInit() {
   $.getScript('./assets/js/vertical-timeline.js');

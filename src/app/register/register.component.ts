@@ -55,7 +55,15 @@ export class RegisterComponent  {
  loadScript(){this.ngOnInit;}
 
     onSubmit() {   
-      this.cservice.signup(this.user).subscribe(( data )  =>  {console.log(data.json())
+      this.cservice.signup(this.user).subscribe(( data )  =>  {
+        console.log(data.json())
+        var abc = data.json()
+        
+       if(data.json().message == 'Account created'){
+         this.cservice.typeSuccess();
+       }else{
+        this.cservice.typeError(); 
+       } 
         
     });}
 idgenerate(users){
@@ -63,7 +71,7 @@ idgenerate(users){
 }
 
  typeSuccess() {
-        this.cservice.typeSuccess();
+        // this.cservice.typeSuccess();
     }
 
 }

@@ -116,6 +116,9 @@ export class MenuComponent implements OnInit {
         $(".slidemenu").removeClass("outslide");
         $(".slidemenu").addClass("inslide"); 
         $(".blackoverlaymain").addClass( "blockmobile"); 
+        $(".fixedtik").addClass( "positionfixed"); 
+        $(".dark_footer").hide(); 
+
     });
 
     $(".navbtntik").click(function(){
@@ -129,21 +132,49 @@ export class MenuComponent implements OnInit {
         setTimeout(function() { $(".slidemenu").removeClass("rtslide111") }, 1000);
         $(".slidemenu").removeClass("inslide"); 
         $(".blackoverlaymain").removeClass( "blockmobile"); 
+        setTimeout(function() { $(".fixedtik").removeClass("positionfixed") }, 1000);
+        $(".dark_footer").show();
     });
-       $(".homemenu , .blackoverlaymain").click(function(){
+ 
+       $(".blackoverlaymain").click(function(){
        //alert("ramjane");
         $(".navbar-toggler").show(); 
         $(".navbtntik").hide(); 
+        $(".navbar-toggler").removeClass("cross")
         $(".navbar-collapse").removeClass("in");
         $(".slidemenu").addClass("outslide");  
-        setTimeout(function() { $(".slidemenu").removeClass("outslide") }, 500);
+        $(".slidemenu").addClass("rtslide111");
+        setTimeout(function() { $(".slidemenu").removeClass("rtslide111") }, 1000);
+        $(".slidemenu").removeClass("inslide");
+        $(".blackoverlaymain").removeClass( "blockmobile"); 
+        $(".tool_icons").removeClass("in"); 
+        setTimeout(function() { $(".fixedtik").removeClass("positionfixed") }, 1000);
+        //$(".tikright").show(); 
+        //$(".slidemenu").removeClass("rtslide");
+        //$(".tikrightclose").hide();
+         $(".dark_footer").show();
+    });
+
+$(".homemenu").click(function(){
+       //alert("ramjane");
+        $(".navbar-toggler").show(); 
+        $(".navbtntik").hide(); 
+        $(".navbar-toggler").removeClass("cross")
+        $(".navbar-collapse").removeClass("in");
+
+        setTimeout(function() { $(".fixedtik").removeClass("positionfixed") }, 1000);
+       // $(".slidemenu").addClass("outslide");  
+        //$(".slidemenu").addClass("rtslide111");
+       // setTimeout(function() { $(".slidemenu").removeClass("rtslide111") }, 1000);
         $(".slidemenu").removeClass("inslide");
         $(".blackoverlaymain").removeClass( "blockmobile"); 
         $(".tool_icons").removeClass("in"); 
         //$(".tikright").show(); 
-        $(".slidemenu").removeClass("rtslide");
+        //$(".slidemenu").removeClass("rtslide");
         //$(".tikrightclose").hide();
+         $(".dark_footer").show();
     });
+
 
 
      $(".mobileslidewednav").click(function(){

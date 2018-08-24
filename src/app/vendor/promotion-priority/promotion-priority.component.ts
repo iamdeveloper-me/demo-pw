@@ -19,8 +19,6 @@ export class PromotionPriorityComponent implements OnInit {
      $('#wrapper').toggleClass('toggled');
     });
 
-  
-
      $('.mobilefixedcart').on('click', function(){
      //alert("hi  ");
      $('.mobilefixedcart').toggleClass('bottom0px');

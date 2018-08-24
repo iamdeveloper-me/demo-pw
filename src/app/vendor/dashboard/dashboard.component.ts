@@ -1,20 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
-import {  Headers, RequestOptions} from '@angular/http';
-import {
-  Http,
-  Response
-} from '@angular/http';
+import { Headers, RequestOptions } from '@angular/http';
+import { Http, Response } from '@angular/http';
 // Add the RxJS Observable operators we need in this app.
-
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-   providers: [NgbCarouselConfig] // add NgbCarouselConfig to the component providers
-
+  providers: [NgbCarouselConfig] // add NgbCarouselConfig to the component providers
 })
 export class DashboardComponent implements OnInit {
     currentLocation = 'Dubai  (Primary Location)';
@@ -31,7 +26,7 @@ export class DashboardComponent implements OnInit {
   x: any;
   greeting = {};
   name = 'World';
-baseUrl = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
+  baseUrl = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
   // Context and manual triggers section
   @ViewChild('x') public tooltip: NgbTooltip;
 

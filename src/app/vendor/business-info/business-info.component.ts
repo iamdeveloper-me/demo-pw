@@ -23,7 +23,8 @@ export class BusinessInfoComponent implements OnInit {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
     $('.photogallry').hide();
-
+    $("div").removeClass( "modal-backdrop"); 
+    $("#instagram2").removeClass( "modal-backdrop"); 
     function testAnim(x) {
       $('.modal .modal-dialog').addClass('animated');
       $('.modal .modal-dialog').addClass('bounceIn');
@@ -38,56 +39,56 @@ export class BusinessInfoComponent implements OnInit {
         testAnim(anim);
   })
   
-  $('#twitter').on('show.bs.modal', function (e) {
+  $('#twitter').on('show.bs', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
   })
-  $('#twitter').on('hide.bs.modal', function (e) {
+  $('#twitter').on('hide.bs', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
   })
   
-  $('#google').on('show.bs.modal', function (e) {
+  $('#google').on('show.bs', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
   })
-  $('#google').on('hide.bs.modal', function (e) {
+  $('#google').on('hide.bs', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
   })
   
-  $('#instagram').on('show.bs.modal', function (e) {
+  $('#instagram').on('show.bs', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
   })
-  $('#instagram').on('hide.bs.modal', function (e) {
+  $('#instagram').on('hide.bs', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
   })
   
-  $('#instagram2').on('show.bs.modal', function (e) {
+  $('#instagram2').on('show.bs', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
   })
-  $('#instagram2').on('hide.bs.modal', function (e) {
+  $('#instagram2').on('hide.bs', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
   })
   
-  $('#Businesname').on('show.bs.modal', function (e) {
+  $('#Businesname').on('show.bs', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
   })
-  $('#Businesname').on('hide.bs.modal', function (e) {
+  $('#Businesname').on('hide.bs', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
   })
   
-  $('#Description').on('show.bs.modal', function (e) {
+  $('#Description').on('show.bs', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
   })
-  $('#Description').on('hide.bs.modal', function (e) {
+  $('#Description').on('hide.bs', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
   })

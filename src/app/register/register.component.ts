@@ -55,18 +55,33 @@ export class RegisterComponent  {
  loadScript(){this.ngOnInit;}
 
     onSubmit() {   
+
       this.cservice.signup(this.user).subscribe(( data )  =>  
       {console.log(data.json())
         this.cservice.typeSuccess();
       },error => 
       alert(error) // error path
     )}
+
+    //   this.cservice.signup(this.user).subscribe(( data )  =>  {
+    //     console.log(data.json())
+    //     var abc = data.json()
+        
+    //    if(data.json().message == 'Account created'){
+    //      this.cservice.typeSuccess();
+    //    }else{
+    //     this.cservice.typeError(); 
+    //    } 
+        
+    // });}
+
 idgenerate(users){
  this.user.businessInfo.pricingPlanId = users.pricingPlanId
 }
 
  typeSuccess() {
-        
+        // this.cservice.typeSuccess();
+
     }
 
 }

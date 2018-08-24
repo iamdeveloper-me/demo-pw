@@ -39,7 +39,16 @@ export class SignupVendorService {
     }
 
      typeSuccess() {
-      this.toastr.success('Account created!', 'Success!');
+      this.toastr.success('Account created!', 'Success !!');
+
+
+
+  }
+     typeError() {
+      this.toastr.error('Account Not Created', 'Error !!');
+      
+
+
   }
 
   usignup(userSingUp){
@@ -53,5 +62,7 @@ export class SignupVendorService {
     else
       console.log("password and confirmpassword does not match");
   }
+
+
 
 }

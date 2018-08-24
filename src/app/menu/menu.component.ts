@@ -117,6 +117,7 @@ export class MenuComponent implements OnInit {
         $(".slidemenu").addClass("inslide"); 
         $(".blackoverlaymain").addClass( "blockmobile"); 
         $(".fixedtik").addClass( "positionfixed"); 
+        $(".dark_footer").hide(); 
 
     });
 
@@ -132,6 +133,7 @@ export class MenuComponent implements OnInit {
         $(".slidemenu").removeClass("inslide"); 
         $(".blackoverlaymain").removeClass( "blockmobile"); 
         setTimeout(function() { $(".fixedtik").removeClass("positionfixed") }, 1000);
+        $(".dark_footer").show();
     });
  
        $(".blackoverlaymain").click(function(){
@@ -150,6 +152,7 @@ export class MenuComponent implements OnInit {
         //$(".tikright").show(); 
         //$(".slidemenu").removeClass("rtslide");
         //$(".tikrightclose").hide();
+         $(".dark_footer").show();
     });
 
 $(".homemenu").click(function(){
@@ -169,6 +172,7 @@ $(".homemenu").click(function(){
         //$(".tikright").show(); 
         //$(".slidemenu").removeClass("rtslide");
         //$(".tikrightclose").hide();
+         $(".dark_footer").show();
     });
 
 

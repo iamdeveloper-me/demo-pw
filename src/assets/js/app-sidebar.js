@@ -4,7 +4,7 @@
  =========================================================
 
  * Product Page: https://www.pixinvent.com/product/apex
- * Copyright 2017 Pixinvent Creative Studio (https://www.pixinvent.com)
+ * Copyright 2017 Pixinvent Creative Studio (://www.pixinvent.com)
 
  =========================================================
 */

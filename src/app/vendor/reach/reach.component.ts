@@ -1,19 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import * as Chartist from 'chartist';
-import { ChartType, ChartEvent } from "ng-chartist/dist/chartist.component";
-
-//Declarations
-declare var require: any;
-const data: any = require('../../shared/data/chartist.json');
-
-//Interface
-export interface Chart {
-    type: ChartType;
-    data: Chartist.IChartistData;
-    options?: any;
-    responsiveOptions?: any;
-    events?: ChartEvent;
-}
+import { lineChartMulti , weeklylineChartMulti,monthlylineChartMulti} from '../../shared/data/ngxChart';
+import * as chartsData from '../../shared/configs/ngx-charts.config';
 
 @Component({
   selector: 'app-reach',
@@ -22,7 +9,7 @@ export interface Chart {
 })
 export class ReachComponent implements OnInit {
 
-  constructor() { }
+  constructor() {   Object.assign(this, { lineChartMulti }) }
 
   ngOnInit() {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
@@ -51,145 +38,73 @@ export class ReachComponent implements OnInit {
         $(".dailyreport").show();
     });
   }
- 
-  lineChart2: Chart = {
-    type: 'Line', data: data['line2'],
-    options: {
-        axisX: {
-            showGrid: false,
-        },
-        axisY: {
-            low: 0,
-            scaleMinSpace: 50,
-        },
-        fullWidth: true,
-        chartPadding: { top: 0, right: 25, bottom: 0, left: 0 },
-    },
-    responsiveOptions: [
-        ['screen and (max-width: 640px) and (min-width: 381px)', {
-            axisX: {
-                labelInterpolationFnc: function (value, index) {
-                    return index % 2 === 0 ? value : null;
-                }
-            }
-        }],
-        ['screen and (max-width: 380px)', {
-            axisX: {
-                labelInterpolationFnc: function (value, index) {
-                    return index % 3 === 0 ? value : null;
-                }
-            }
-        }]
-    ],
-    events: {
-        draw(data: any): void {
-            var circleRadius = 6;
-            if (data.type === 'point') {
-                var circle = new Chartist.Svg('circle', {
-                    cx: data.x,
-                    cy: data.y,
-                    r: circleRadius,
-                    class: 'ct-point-circle'
-                });
+  lineChartMulti = lineChartMulti;
+  //Line Charts
 
-                data.element.replace(circle);
-            }
-        }
-    },
+  lineChartView: any[] = chartsData.lineChartView;
 
-};
+  // options
+  lineChartShowXAxis = chartsData.lineChartShowXAxis;
+  lineChartShowYAxis = chartsData.lineChartShowYAxis;
+  lineChartGradient = chartsData.lineChartGradient;
+  lineChartShowLegend = chartsData.lineChartShowLegend;
+  lineChartShowXAxisLabel = chartsData.lineChartShowXAxisLabel;
+  lineChartXAxisLabel = chartsData.lineChartXAxisLabel;
+  lineChartShowYAxisLabel = chartsData.lineChartShowYAxisLabel;
+  lineChartYAxisLabel = chartsData.lineChartYAxisLabel;
+
+  lineChartColorScheme = chartsData.lineChartColorScheme;
+
+  // line, area
+  lineChartAutoScale = chartsData.lineChartAutoScale;
+  lineChartLineInterpolation = chartsData.lineChartLineInterpolation;
+
+
 //weekly
-weeklylineChart2: Chart = {
-    type: 'Line', data: data['weeklyline2'],
-    options: {
-        axisX: {
-            showGrid: false,
-        },
-        axisY: {
-            low: 0,
-            scaleMinSpace: 50,
-        },
-        fullWidth: true,
-        chartPadding: { top: 0, right: 25, bottom: 0, left: 0 },
-    },
-    responsiveOptions: [
-        ['screen and (max-width: 640px) and (min-width: 381px)', {
-            axisX: {
-                labelInterpolationFnc: function (value, index) {
-                    return index % 2 === 0 ? value : null;
-                }
-            }
-        }],
-        ['screen and (max-width: 380px)', {
-            axisX: {
-                labelInterpolationFnc: function (value, index) {
-                    return index % 3 === 0 ? value : null;
-                }
-            }
-        }]
-    ],
-    events: {
-        draw(data: any): void {
-            var circleRadius = 6;
-            if (data.type === 'point') {
-                var circle = new Chartist.Svg('circle', {
-                    cx: data.x,
-                    cy: data.y,
-                    r: circleRadius,
-                    class: 'ct-point-circle'
-                });
+weeklylineChartMulti = weeklylineChartMulti;
+//Line Charts
 
-                data.element.replace(circle);
-            }
-        }
-    },
+weeklylineChartView: any[] = chartsData.weeklylineChartView;
 
-};
+// options
+weeklylineChartShowXAxis = chartsData.weeklylineChartShowXAxis;
+weeklylineChartShowYAxis = chartsData.weeklylineChartShowYAxis;
+weeklylineChartGradient = chartsData.weeklylineChartGradient;
+weeklylineChartShowLegend = chartsData.weeklylineChartShowLegend;
+weeklylineChartShowXAxisLabel = chartsData.weeklylineChartShowXAxisLabel;
+weeklylineChartXAxisLabel = chartsData.weeklylineChartXAxisLabel;
+weeklylineChartShowYAxisLabel = chartsData.weeklylineChartShowYAxisLabel;
+weeklylineChartYAxisLabel = chartsData.weeklylineChartYAxisLabel;
+
+weeklylineChartColorScheme = chartsData.weeklylineChartColorScheme;
+
+// line, area
+weeklylineChartAutoScale = chartsData.weeklylineChartAutoScale;
+weeklylineChartLineInterpolation = chartsData.weeklylineChartLineInterpolation;
 //monthly
-monthlylineChart2: Chart = {
-    type: 'Line', data: data['monthlyline2'],
-    options: {
-        axisX: {
-            showGrid: false,
-        },
-        axisY: {
-            low: 0,
-            scaleMinSpace: 50,
-        },
-        fullWidth: true,
-        chartPadding: { top: 0, right: 25, bottom: 0, left: 0 },
-    },
-    responsiveOptions: [
-        ['screen and (max-width: 640px) and (min-width: 381px)', {
-            axisX: {
-                labelInterpolationFnc: function (value, index) {
-                    return index % 2 === 0 ? value : null;
-                }
-            }
-        }],
-        ['screen and (max-width: 380px)', {
-            axisX: {
-                labelInterpolationFnc: function (value, index) {
-                    return index % 3 === 0 ? value : null;
-                }
-            }
-        }]
-    ],
-    events: {
-        draw(data: any): void {
-            var circleRadius = 6;
-            if (data.type === 'point') {
-                var circle = new Chartist.Svg('circle', {
-                    cx: data.x,
-                    cy: data.y,
-                    r: circleRadius,
-                    class: 'ct-point-circle'
-                });
+monthlylineChartMulti = monthlylineChartMulti;
+//Line Charts
 
-                data.element.replace(circle);
-            }
-        }
-    },
+monthlylineChartView: any[] = chartsData.monthlylineChartView;
 
-};
+// options
+monthlylineChartShowXAxis = chartsData.monthlylineChartShowXAxis;
+monthlylineChartShowYAxis = chartsData.monthlylineChartShowYAxis;
+monthlylineChartGradient = chartsData.monthlylineChartGradient;
+monthlylineChartShowLegend = chartsData.monthlylineChartShowLegend;
+monthlylineChartShowXAxisLabel = chartsData.monthlylineChartShowXAxisLabel;
+monthlylineChartXAxisLabel = chartsData.monthlylineChartXAxisLabel;
+monthlylineChartShowYAxisLabel = chartsData.monthlylineChartShowYAxisLabel;
+monthlylineChartYAxisLabel = chartsData.monthlylineChartYAxisLabel;
+
+monthlylineChartColorScheme = chartsData.monthlylineChartColorScheme;
+
+// line, area
+monthlylineChartAutoScale = chartsData.monthlylineChartAutoScale;
+monthlylineChartLineInterpolation = chartsData.monthlylineChartLineInterpolation;
+
+
+onSelect(event) {
+   //your code here
+}
 }

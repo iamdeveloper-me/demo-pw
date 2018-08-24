@@ -19,6 +19,8 @@ export class VendorComponent implements OnInit {
   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
   $.getScript('./assets/js/vendorsidebar.js');
+  $("div").removeClass( "modal-backdrop"); 
+
     // //sidebar toggle event listner
     // this.elementRef.nativeElement.querySelector('#sidebarToggle')
     //     .addEventListener('click', this.onClick.bind(this));

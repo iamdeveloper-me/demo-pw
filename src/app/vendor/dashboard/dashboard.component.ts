@@ -12,10 +12,12 @@ import { Http, Response } from '@angular/http';
   providers: [NgbCarouselConfig] // add NgbCarouselConfig to the component providers
 })
 export class DashboardComponent implements OnInit {
-    currentLocation = 'Dubai  (Primary Location)';
+   
     PhoneEdit = '5555555' ;
     angularLogo = 'https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg';
-
+   
+     
+   
     constructor(config: NgbCarouselConfig ,public http: Http) {
     // customize default values of carousels used by this component tree
     config.interval = 10000;
@@ -29,6 +31,8 @@ export class DashboardComponent implements OnInit {
   baseUrl = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
   // Context and manual triggers section
   @ViewChild('x') public tooltip: NgbTooltip;
+  private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
+  vendor: any = {};
 
   public changeGreeting(greeting: any): void {
     const isOpen = this.tooltip.isOpen();
@@ -47,9 +51,12 @@ export class DashboardComponent implements OnInit {
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
 
-        this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile',{headers:headers}).subscribe(data =>{
-          debugger
-          console.log(data)
+        this.http.get(this.url,{headers:headers}).subscribe(data =>{
+    
+          this.vendor = data.json();
+        
+          console.log(this.vendor);
+          //console.log(data.json());
         });;
      
       // this.http.get(this.baseUrl+"api/Reviews/myreviews",{headers:headers})

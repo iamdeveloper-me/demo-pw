@@ -9,9 +9,12 @@
      <div class="row">
         <div class="container-fluid Profile_com">
            <div  matchHeight ="card ">
-              <div class="col-md-12 card">
+              <div class="col-md-12 card">  
                  <div class="card-header border_bottom_none card-header-warning card-header-icon">
-                    <p class="card-category comp_top text-center"> Profile Completion  </p>
+                    <p class="card-category comp_top text-center"> Profile Completion</p>
+                    
+                      <!-- <h1 *ngIf="vendor">{{vendor.contactPerson}}</h1> -->
+
                     <p class="card-category comp_topsubhead text-center">Complete the sections below to enable activation of your view storefront</p>
                  </div>
                  <div class="col-md-12 prof_martop">
@@ -96,7 +99,7 @@
                        <button class="photoedit" data-target="#camera" data-toggle="modal" type="button"><i class="material-icons">camera</i></button>
                     </div>
                     <div class="col-sm-10 col-9 blacktext nopadd pull-left">
-                       <h2 class="titlehead"><strong>Vision Photography</strong></h2>
+                       <h2 class="titlehead"><strong>{{vendor.nameOfBusiness}}</strong></h2>
                        <div class="overhiddenmob mobmartop15px">
                           <div class="col-xs-1 nopadd">
                              <i class="material-icons">location_on</i>
@@ -105,7 +108,7 @@
                              <!-- <p data-target="#currentLocation" data-toggle="modal">{{currentLocation}}<br/>2 More Branches </p> -->
                              <p>
                                 <a routerLink="../location">
-                                {{currentLocation}}<br/>2 More Branches 
+                                  {{vendor.city}}<br/>2 More Branches, {{vendor.address}}
                                 </a>
                              </p>
                              <span  class="editbtn">Edit</span>  
@@ -122,9 +125,6 @@
                              <i class="material-icons">phone</i>
                           </div>
                           <div class="col-xs-8 nopadd edithovering">
-                             <!-- <p data-target="#PhoneEdit" data-toggle="modal">{{PhoneEdit}} 
-                                <span class="editbtn">Edit</span> 
-                                </p>  -->
                              <p >
                                 <a routerLink="../location">
                                 {{PhoneEdit}} 
@@ -341,4 +341,8 @@
         </div>
      </div>
   </div>
+
+
+
+  
   <router-outlet></router-outlet>

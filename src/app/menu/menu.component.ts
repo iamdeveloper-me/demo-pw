@@ -1,6 +1,6 @@
 import { TemplateRef } from '@angular/core';
 import { Component,  OnInit , Input } from '@angular/core';
-import {LoginServiceService} from '../shared/service/login-service.service';
+import { LoginServiceService } from '../shared/service/login-service.service';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 //import { HttpClient} from '@angular/common/http';
@@ -59,12 +59,25 @@ export class MenuComponent implements OnInit {
         $(".user").hide();    
         $(".tikright").hide(); 
         } 
+        if(window.location.pathname == '/home/searchresult') {
+        $(".user").hide();    
+        $(".tikright").hide(); 
+        } 
+        
+
+
+        let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories");
+        obs.subscribe(data => {
+        this.supArray = data.json() as string[]; 
+       console.log(data.json()); 
+        });
 
     //     let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories");
     //     obs.subscribe(data => {
     //     this.supArray = data.json() as string[]; 
     //    console.log(data.json()); 
     //     });
+
 
         // let header = new Headers()
         // let authToken = localStorage.getItem('userToken');

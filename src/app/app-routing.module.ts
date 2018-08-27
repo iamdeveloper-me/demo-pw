@@ -15,7 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
 import { BusinessInfoComponent } from "./vendor/business-info/business-info.component";
 import { LocationComponent } from "./vendor/location/location.component";
-import { BusinessServicesComponent } from "./vendor/business-services/business-services.component";
+//import { } from "./vendor/business-services/business-services.component";
 import { MembershipComponent } from "./vendor/membership/membership.component";
 
 import { DetailpageComponent } from './detailpage/detailpage.component';
@@ -85,6 +85,7 @@ import { PromotionPriorityComponent } from './vendor/promotion-priority/promotio
 import { PromotionAudienceComponent } from './vendor/promotion-audience/promotion-audience.component';
 import { PromotionDealsComponent } from './vendor/promotion-deals/promotion-deals.component';
 import { PromotionHomepageComponent } from './vendor/promotion-homepage/promotion-homepage.component';
+//import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -128,7 +129,7 @@ const appRoutes: Routes = [
     { path: 'vendor/Videos', component:    VideosComponent},
     { path: 'vendor/editprofile', component:   EditprofileComponent },
     { path: 'vendor/mylisting', component:   MylistingComponent },
-    { path: 'vendor/business-services', component:  BusinessServicesComponent  },
+    //{ path: 'vendor/business-services', component:  BusinessServicesComponent  },
     { path: 'vendor/membership', component:  MembershipComponent  },
     { path: 'vendor/calender', component:  CalendertableComponent},
     { path: 'vendor/Message', component:  MessageComponent},

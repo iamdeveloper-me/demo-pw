@@ -189,12 +189,69 @@
   float: left;
 }
 
+
+#navbarResponsive ul .nav-item{
+height:60px!important;
+position:relative;
+}
+#navbarResponsive ul .nav-item a{
+line-height:60px!important;
+padding-bottom:0px!important;
+padding-top:0px!important;
+}
+#navbarResponsive ul .nav-item:after, #navbarResponsive .nav-item:before {
+ content: "";
+    position: absolute;
+    transition: -webkit-transform .2s ease;
+    transition: transform .2s ease;
+    transition: transform .2s ease,-webkit-transform .2s ease;
+}
+#navbarResponsive ul .nav-item:before {
+    width: 0;
+    height: 0;
+    border-top: 5px solid #ff75a2;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    bottom: -4px;
+    left: 50%;
+    -webkit-transform: translateX(-50%) scale(0);
+    transform: translateX(-50%) scale(0);
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    z-index: 9999;
+}
+#navbarResponsive ul .nav-item:after {
+    width: 100%;
+    height: 2px;
+    background-color: #ff75a2;
+    bottom: 0;
+    left: 0;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+}
+#navbarResponsive ul .nav-item:hover:before {
+    -webkit-transform: translateX(-50%) scale(1);
+    transform: translateX(-50%) scale(1);
+}
+#navbarResponsive ul .nav-item:hover:after {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+}
+
 .weddingicon li a img{
-  width: 30px!important;
+  width: 25px!important;
 }
 .weddingicon .dropdown-item{
   font-size:14px!important;
+  line-height:normal!important;
 }
+#navbarResponsive ul li .dropdown-menu ul li a{
+line-height:40px!important;
+}
+.regi a{
+  line-height:32px!important;
+}
+
       @media (min-width: 992px) {
         #mainNav {
           border-color: transparent;
@@ -241,6 +298,19 @@
 .mobilenone{
   display: none;
 }
+#navbarResponsive ul .nav-item:after, #navbarResponsive .nav-item:before {
+  display:none!important;
+}
+#navbarResponsive ul .nav-item:hover:before {
+   display:none!important;
+}
+#navbarResponsive ul .nav-item:hover:after {
+ display:none!important;
+}
+#navbarResponsive ul .nav-item:after, #navbarResponsive .nav-item:before {
+  display:none;
+}
+
 .weddingicon li a img{
   width: 24px!important;
 }
@@ -274,6 +344,7 @@ a.mobileslidewednav{
 .iconright{
   float: right;
   margin-right: 25px;
+  margin-top:15px;
 }
 .mobileshow{
   display:block;
@@ -394,9 +465,7 @@ background:#fff;
 .in{
   left: 0px!important;
 }
-.fmc-dropdown-perspective{
-     margin-top: 30px;
-}
+
 #navbarResponsive{
    background-color: #f3f3f3 !important;
 }
@@ -438,6 +507,8 @@ font-size: .9rem!important;
     color: #212529!important;
     background: #e5e5e5;
     text-align: center;
+    height:35px!important;
+    line-height:35px!important;
 }.are_you{display: none;}
  .weddingicon li.backsilde i.material-icons{
   margin-left: 10px;

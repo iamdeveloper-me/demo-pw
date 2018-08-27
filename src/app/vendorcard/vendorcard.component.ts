@@ -22,6 +22,8 @@ export class VendorcardComponent implements OnInit {
     $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');
     $.getScript('./assets/jss/plugins/chartist.min.js');
     $.getScript('./assets/jss/plugins/bootstrap-notify.js');
+    $.getScript('./assets/js/owljsor.js');
+    $.getScript('./assets/js/curosselfun.js');
  
   }
 

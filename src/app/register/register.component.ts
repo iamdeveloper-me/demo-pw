@@ -18,10 +18,12 @@ export class RegisterComponent  {
   user = 
   {logInInfo: { firstName: "", lastName: "", password: "", confirmPassword: "" },contactInfo: { contactPerson: "", email: "", phone: "", website: ""}, businessInfo: { countryId: 1, city: "", postalCode: "", address: "", countryName: "" ,nameOfBusiness: "",pricingPlanId: "" ,payFrequency:""}, vendorCategories: [ { categoryId: "" } ] }
 
+
    ngOnInit() {
             $(".loginnav").hide(); 
             $.getScript('./assets/js/register.js');             
             $(".show").hide();
+
             $("div").removeClass( "modal-backdrop");
             let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories");
             obs.subscribe(data => { this.categoryArray = data as string[];  
@@ -35,6 +37,7 @@ export class RegisterComponent  {
             let obj = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/pricingplans");
             obj.subscribe(data => {
               this.planArray = data as string[]; 
+
             });
 
             $(".Suppliertab").click(function(){
@@ -43,7 +46,9 @@ export class RegisterComponent  {
                 $(".Suppliertab").addClass("gradint_blue"); 
                 $(".Registertab").removeClass("gradint_blue");  
               });
-            $(".Registertab").click(function(){
+
+                $(".Registertab").click(function(){
+
                 $("#filter").hide();
                 $("#action").show();  
                 $(".Suppliertab").removeClass("gradint_blue"); 

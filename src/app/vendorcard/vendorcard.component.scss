@@ -5,6 +5,11 @@
     max-width: 650px;
     margin: 0 auto;
   }
+.imgfloatleft{
+  float:left;
+  max-width:25px;
+  margin-right:10px;
+}
   #headcss
   { padding-top: 0px;
   }
@@ -24,7 +29,8 @@
     padding: 10px;
   }
   .popup-gallery .galleryview img{
-    height: 200px ;
+    height: inherit;
+    max-height:234px;
   }
   .portfolio-box .portfolio-box-caption {
     position: absolute;
@@ -40,7 +46,13 @@
     -moz-transition: all 0.2s;
     transition: all 0.2s;
   }
-  
+  .portfolio-box-caption-content img{
+    display:block;
+    max-width:50px;
+    margin-bottom:10px;
+    margin-left:auto;
+    margin-right:auto;
+  }
   .portfolio-box .portfolio-box-caption .portfolio-box-caption-content {
     position: absolute;
     top: 50%;
@@ -138,7 +150,7 @@
      padding: 0px !important;
   }
   figure.effect-layla img{
-    height: 380px !important;
+    height: inherit !important;
   }
 .vendors_tools{
   background-image: url("https://s3.us-east-2.amazonaws.com/prefect-image/parallax_bg.jpg");
@@ -243,6 +255,9 @@
 //   background-color: green;
 //   padding: 5px 10px;
 // }
+.fa-star.checked{
+  color:#ffe413!important;
+}
 .card-body span{
   display: block;
 }
@@ -496,17 +511,19 @@ li{line-height:1.5rem !important;}
 .span_positin{
   padding-left: 0 !important;
   padding-right: 0 !important;
-  line-height: 1;
+  float:right;
+  max-width:70px;
+  padding-top:7px;
 }
+
 .span_positin span{
   display: inline-block;
-  color: rgb(31, 236, 236);
-  margin-left: 15px;
-}
-.span_positin img{
-  position: relative;
-  top: -6px;
-  right: -10px;
+  color: #b215ff;
+  margin-left: 10px;
+  float:right;
+  width:34px;
+  line-height:14px;
+  text-align:center;
 }
 
 .pric_200{
@@ -530,11 +547,15 @@ li{line-height:1.5rem !important;}
   margin-bottom: 0;
     font-size: 0.80rem;
 }
-.statr_point .checked{
-  color: #e72e77;
-}
 .statr_point{
   margin-bottom: 5px !important;
+  font-size:12px!important; 
+}
+.span_positin img{
+  float:left;
+  max-width:25px;
+  max-height:25px;
+  top:0px;
 }
 .book_mark i{
   position: absolute;
@@ -543,7 +564,7 @@ li{line-height:1.5rem !important;}
   font-size: 20px;
   cursor: pointer;
   background: rgba(255,255,255,0.8);
-  padding:10px;
+  padding:5px;
   border-radius:100%;
   transition:0.5s;
 }
@@ -605,12 +626,15 @@ li{line-height:1.5rem !important;}
     }
  
     .galleryview{
-
        padding-left: 0px !important;
     }
     .galleryview a{
       position: relative;
-
+    }
+    .galleryview img{
+      height:inherit;
+      max-height:234px;
+      width:100%;
     }
     .displ_none{
       display: inherit;
@@ -623,10 +647,6 @@ li{line-height:1.5rem !important;}
 
    margin-top: 6px;
 }
-
-.portfolio-box img {
-   height: 170px !important;
-  }
   .mob_margin_top_100{
     padding-right: 30px !important;
   }
@@ -644,23 +664,51 @@ li{line-height:1.5rem !important;}
     float: left;
   }
   .grid-hover figure{
-    min-width: 170px !important;
-    margin: 10px 0px !important;
-    border-radius: 0px;
+    min-width: 140px !important;
   }
   figure.effect-layla figcaption{
-    padding: 2rem;
-    top: 50px;
+    padding: 0px;
+    top:0px;
+    bottom:0px;
   }
+
   figure.effect-layla h2{
-    font-size: 13px !important;
+    font-size: 12px !important;
+    padding-top: 65px!important;
+     -webkit-transform: translate3d(0, 0px, 0)!important;
+     transform: translate3d(0, 0px, 0)!important!important;
 }
-  figure.effect-layla img{
-    height: 170px !important;
-  }
   .grid-hover figure{
     max-height: 140px !important;
 }
  
+.portfolio-box .portfolio-box-caption {
+    height: 30px;
+    opacity: 1;
+  }
+
+  .portfolio-box .portfolio-box-caption .portfolio-box-caption-content {
+    position: relative;
+    top:0px;
+    padding:0px 5px;
+  }
+.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .text-faded{
+    max-width:25px;
+    margin:0px;
+    float:left;
+    max-height: 30px;
+    padding-top: 2px;
+  }
+.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name{
+  float:right;
+  width:calc(100% - 35px);
+  font-size:12px!important;
+  padding:0px;
+  line-height:30px;
 }
 
+}
+  figure.effect-layla img {
+    -webkit-transform: translate3d(0, 0, 0)!important;
+     transform: translate3d(0, 0, 0)!important;
+}

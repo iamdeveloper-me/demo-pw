@@ -58,7 +58,7 @@ export class DashboardComponent implements OnInit {
         
           console.log(this.vendor);
           //console.log(data.json());
-
+          });
         this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile',{headers:headers}).subscribe(data =>{
        
         console.log(data)
@@ -71,14 +71,16 @@ export class DashboardComponent implements OnInit {
       // return this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile" + "/dashboard/home",{headers})
       //   .map(response => response.json())
       //   // .catch(this.handleError);
-      // 
+
   
 
 
           $.getScript('./assets/js/prism.min.js');
           $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
           $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
+
           $.getScript('https://www.jssor.com/script/jssor.slider-27.4.0.min.js');
+
           $.getScript('./assets/js/owljsor.js');
           $.getScript('./assets/js/vendorsidebar.js');
         

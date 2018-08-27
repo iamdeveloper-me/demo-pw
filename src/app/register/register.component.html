@@ -37,10 +37,10 @@
                <div class="col-md-12 nopadd">
                   <ul class="unstyled centered">
                     <li class="col-md-4" *ngFor="let category of categoryArray">
-                    <input
-                    
+                    <input                 
                     type="radio" 
-                    name="category"
+                    name="category"               
+                  
                     id=" {{category.categoryId}} "
                     checked
                     [value]="category.categoryId"
@@ -49,6 +49,7 @@
                     <label>{{category.categoryName}} </label>
                        
                     </li>
+
                   </ul>
                </div>
             </div>
@@ -270,8 +271,10 @@
                                         [value]="category.categoryId"
                                         [(ngModel)]= "user.vendorCategories[0].categoryId"
                                             > -->
+
                                         <!-- <input type="hidden" name="b_id" id="1" [(ngModel)] = "plan.monthlyPrice
                                         "> -->
+
                                           <button 
                                           type="button" 
                                           (click)= 
@@ -368,7 +371,9 @@
                   </div>
                </div>
             </section>
-            <section id="action" style="display: none;">
+
+           <section id="action" style="display: none;">
+
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="card martop0px">
@@ -408,11 +413,7 @@
                         <!-- <input type="hidden" name="b_id" id="2" [(ngModel)] = "plan.annualPrice
                         "> -->
                         <div class="panel-footer text-center">
-                             <button 
-                                type="button" 
-                                (click)= 
-                                "annualPrice(plan)"
-                            >
+                             <button type="button" (click)= "annualPrice(plan)">
                                 CURRENT PLAN 
                             </button>
                        <!--  <a class="btn  borderradius gradint_blue" href="JavaScript:void(0);" disabled="disabled">CURRENT PLAN </a> -->
@@ -503,7 +504,9 @@
                                     </div>
                                 </div>
                             </div>
-            </section>
+
+                        </section>
+
          </div>
       </div>
       

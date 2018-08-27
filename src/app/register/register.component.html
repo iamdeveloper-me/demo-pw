@@ -37,99 +37,19 @@
                <div class="col-md-12 nopadd">
                   <ul class="unstyled centered">
                     <li class="col-md-4" *ngFor="let category of categoryArray">
-                    <input
-                    
+                    <input                 
                     type="radio" 
-                    name="category"
-                    id="category"
-                    
+                    name="category"               
+                  
+                    id=" {{category.categoryId}} "
                     checked
                     [value]="category.categoryId"
                     [(ngModel)]= "user.vendorCategories[0].categoryId"
-                    
                     > 
-                        <label>{{category.categoryName}} </label>
-                        <!--   -->
+                    <label>{{category.categoryName}} </label>
+                       
                     </li>
 
-                     <!-- <li class="col-md-4">
-                        <input class="styled-checkbox validate" type="radio" id="Cakes" 
-                           value="Cakes" name="category" required="required"> 
-                        <label for="Cakes">Cakes</label>
-                     </li>
-                     <li class="col-md-4">
-                        <input class="styled-checkbox validate" type="radio" value="Decorators" id="Decorators" name="category" required="required"> 
-                        <label for="Decorators">Decorators & Wedding Stylist</label>
-                     </li>
-                     <li class="col-md-4">
-                        <input class="styled-checkbox validate" type="radio" id="Drinks" value="Drinks" name="category" required="required"> 
-                        <label for="Drinks">Drinks and Beverages</label>
-                     </li>
-                     <li class="col-md-4">
-                        <input class="styled-checkbox validate" type="radio" value="Fashion" id="Fashion" name="category" required="required"> 
-                        <label for="Fashion">Fashion & Clothing</label>
-                     </li>
-                     <li class="col-md-4">
-                        <input class="styled-checkbox validate" type="radio" value="Florists" id="Florists" name="category" required="required"> 
-                        <label for="Florists">Florists, Bouquets and Centerpiece</label>
-                     </li>
-                     <li class="col-md-4">
-                        <input class="styled-checkbox validate" type="radio" value="Food" id="Food" name="category" required="required"> 
-                        <label for="Food">Food & Catering</label>
-                     </li>
-                     <li class="col-md-4">
-                        <input class="styled-checkbox validate" type="radio" value="Footwear" id="Footwear" name="category" required="required"> 
-                        <label for="Footwear">Footwear</label>
-                     </li>
-                     <li class="col-md-4">
-                        <input class="styled-checkbox validate" type="radio" value="Honeymoon" id="Honeymoon" name="category" required="required"> 
-                        <label for="Honeymoon">Honeymoon & Travel</label>
-                     </li>
-                     <li class="col-md-4">
-                        <input class="styled-checkbox validate" type="radio" value="Invitation" id="Invitation" name="category" required="required"> 
-                        <label for="Invitation">Invitation Cards & Wedding Stationary</label>
-                     </li>
-                     <li class="col-md-4">
-                        <input class="styled-checkbox validate" type="radio" value="Jewellery" id="Jewellery" name="category" required="required"> 
-                        <label for="Jewellery">Jewellery & Wedding Rings</label>
-                     </li>
-                     <li class="col-md-4">
-                        <input class="styled-checkbox validate" type="radio" value="Makeup" id="Makeup" name="category" required="required"> 
-                        <label for="Makeup">Make Up, Hair & Mehendi</label>
-                     </li>
-                     <li class="col-md-4">
-                        <input class="styled-checkbox validate" type="radio" value="Celebrant" id="Celebrant" name="category" required="required"> 
-                        <label for="Celebrant">Marriage Celebrant</label>
-                     </li>
-                     <li class="col-md-4">
-                        <input class="styled-checkbox validate" type="radio" value="Music" id="Music" name="category" required="required"> 
-                        <label for="Music">Music, DJs & Entertainment</label>
-                     </li>
-                     <li class="col-md-4">
-                        <input class="styled-checkbox validate" type="radio" value="Other" id="Other" name="category" required="required"> 
-                        <label for="Other">Other wedding Supplies & Accessories</label>
-                     </li>
-                     <li class="col-md-4">
-                        <input class="styled-checkbox validate" type="radio" value="Photography" id="Photography" name="category" required="required"> 
-                        <label for="Photography">Photography, Videography & Cinematography</label>
-                     </li>
-                     <li class="col-md-4">
-                        <input class="styled-checkbox validate" type="radio" value="Venues" id="Venues" name="category" required="required"> 
-                        <label for="Venues">Venues</label>
-                     </li>
-                     <li class="col-md-4">
-                        <input class="styled-checkbox validate" type="radio" value="Cars" id="Cars" name="category" required="required"> 
-                        <label for="Cars">Wedding Cars & Transport</label>
-                     </li>
-                     <li class="col-md-4">
-                        <input class="styled-checkbox validate" type="radio" value="Planner" id="Planner" name="category" required="required"> 
-                        <label for="Planner">Wedding Planner & Event Management</label>
-                     </li>
-                     <li class="col-md-4">
-                        <input class="styled-checkbox validate" type="radio" value="Fitness" id="Fitness" name="category" required="required"> 
-                        <label for="Fitness">
-                        Shape & Fitness</label>
-                     </li> -->
                   </ul>
                </div>
             </div>
@@ -351,7 +271,10 @@
                                         [value]="category.categoryId"
                                         [(ngModel)]= "user.vendorCategories[0].categoryId"
                                             > -->
-                                        <!-- <input type="hidden" name="b_id" id="b_id" [(ngModel)] = "bird_obj.id"> -->
+
+                                        <!-- <input type="hidden" name="b_id" id="1" [(ngModel)] = "plan.monthlyPrice
+                                        "> -->
+
                                           <button 
                                           type="button" 
                                           (click)= 
@@ -448,7 +371,9 @@
                   </div>
                </div>
             </section>
+
            <section id="action" style="display: none;">
+
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="card martop0px">
@@ -485,12 +410,10 @@
                             <li class="list-group-item"><i class="material-icons bluetext">report</i> 1 location</li>
                             <li class="list-group-item"><i class="material-icons bluetext">report</i> Low Priority in Search Results</li>
                         </ul>
+                        <!-- <input type="hidden" name="b_id" id="2" [(ngModel)] = "plan.annualPrice
+                        "> -->
                         <div class="panel-footer text-center">
-                             <button 
-                                type="button" 
-                                (click)= 
-                                "idgenerate(plan)"
-                            >
+                             <button type="button" (click)= "annualPrice(plan)">
                                 CURRENT PLAN 
                             </button>
                        <!--  <a class="btn  borderradius gradint_blue" href="JavaScript:void(0);" disabled="disabled">CURRENT PLAN </a> -->
@@ -581,7 +504,9 @@
                                     </div>
                                 </div>
                             </div>
+
                         </section>
+
          </div>
       </div>
       

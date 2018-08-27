@@ -16,9 +16,11 @@ export class SignupVendorService {
     var lastname = user.logInInfo.lastName;
     var upassword = user.logInInfo.password;
     var cpassword = user.logInInfo.confirmPassword;
+
     //var contactPerson = user.contactInfo.contactPerson;
+
     var email = user.contactInfo.email;
-    var phone = user.contactInfo.phone;
+    // var phone = user.contactInfo.phone;
     var website = user.contactInfo.website;
     var city = user.businessInfo.city;
     var postalcode = user.businessInfo.postalCode;
@@ -30,9 +32,11 @@ export class SignupVendorService {
  
     return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/register',
       { logInInfo: {  firstName: firstname,lastName:lastname, password:upassword,confirmPassword: cpassword},
-          contactInfo: { contactPerson: "mahi", email: email,phone: phone, website: website},
-          businessInfo: {countryId:1, city: city, postalCode: postalcode,address: address, nameOfBusiness: nameOfBusiness, pricingPlanId:planId['pricingPlanId'] },
-         vendorCategories: [ { categoryId: categoryId }]
+
+        contactInfo: { contactPerson: firstname, email: email, phone: "9826812185", website: website},
+        businessInfo: {countryId:1, city: city, postalCode: postalcode,address: address, nameOfBusiness: nameOfBusiness, 
+                       pricingPlanId:planId['pricingPlanId'] ,payFrequency:planId['payFrequency'] },
+        vendorCategories: [ { categoryId: categoryId }]
         } ,{headers: header});
 
 
@@ -41,16 +45,17 @@ export class SignupVendorService {
      typeSuccess() {
       this.toastr.success('Account created!', 'Success !!');
 
+ 
 
 
   }
      typeError() {
       this.toastr.error('Account Not Created', 'Error !!');
-      
+    
 
 
   }
-
+     
   usignup(userSingUp){
     var email = userSingUp.email;
     var password = userSingUp.password;

@@ -65,11 +65,19 @@ export class MenuComponent implements OnInit {
         } 
         
 
+
         let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories");
         obs.subscribe(data => {
         this.supArray = data.json() as string[]; 
        console.log(data.json()); 
         });
+
+    //     let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories");
+    //     obs.subscribe(data => {
+    //     this.supArray = data.json() as string[]; 
+    //    console.log(data.json()); 
+    //     });
+
 
         // let header = new Headers()
         // let authToken = localStorage.getItem('userToken');

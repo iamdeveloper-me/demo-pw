@@ -1,4 +1,6 @@
 import { Component, OnInit  } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Headers, RequestOptions } from '@angular/http';
 
 @Component({
   selector: 'app-business-info',
@@ -8,6 +10,9 @@ import { Component, OnInit  } from '@angular/core';
 })
 
 export class BusinessInfoComponent implements OnInit {
+
+  constructor(public http: Http) {
+  }
   imag = 'https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg';
  
   Businesname = 'Rodriguez' ; 
@@ -19,6 +24,23 @@ export class BusinessInfoComponent implements OnInit {
   instagram2 = ' www.perfectwedding.com' ;
 
   ngOnInit() {
+
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+    
+    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessinfo',{headers:headers}).subscribe(data =>{
+
+      console.log(data);
+    });;
+ 
+  // this.http.get(this.baseUrl+"api/Reviews/myreviews",{headers:headers})
+  // return this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile" + "/dashboard/home",{headers})
+  //   .map(response => response.json())
+  //   // .catch(this.handleError);
+
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
@@ -100,7 +122,7 @@ abc(event){
     }
      closeResult: string;
 
-      constructor( ) { }
+      
 
 enable =  true;
 enable1 =  true;

@@ -51,18 +51,27 @@ export class DashboardComponent implements OnInit {
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
 
+
         this.http.get(this.url,{headers:headers}).subscribe(data =>{
     
           this.vendor = data.json();
         
           console.log(this.vendor);
           //console.log(data.json());
-        });;
+
+        this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile',{headers:headers}).subscribe(data =>{
+       
+        console.log(data)
+
+        })
+
+
      
       // this.http.get(this.baseUrl+"api/Reviews/myreviews",{headers:headers})
       // return this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile" + "/dashboard/home",{headers})
       //   .map(response => response.json())
       //   // .catch(this.handleError);
+      // 
   
 
 
@@ -171,8 +180,4 @@ export class DashboardComponent implements OnInit {
 
    
 }
-
-
-
-
 

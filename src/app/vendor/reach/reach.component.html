@@ -20,33 +20,33 @@
                 </div>
                 <div class="card-body reportbox">
                     <div class="card-block dailyreport">
-                        <div id="line-chart1" class="height-400">
-                                <ngx-charts-line-chart [scheme]="lineChartColorScheme" [results]="lineChartMulti" [gradient]="lineChartGradient" [xAxis]="lineChartShowXAxis"
-                                    [yAxis]="lineChartShowYAxis" [legend]="lineChartShowLegend" [showXAxisLabel]="lineChartShowXAxisLabel"
-                                    [showYAxisLabel]="lineChartShowYAxisLabel" [xAxisLabel]="lineChartXAxisLabel" [yAxisLabel]="lineChartYAxisLabel"
-                                    [autoScale]="lineChartAutoScale" [curve]="lineChartLineInterpolation" (select)="onSelect($event)">
-                                </ngx-charts-line-chart>
+                        <div id="line-chart2" class="height-400">
+                            <ngx-charts-line-chart  [scheme]="lineChartColorScheme" [results]="lineChartMulti" [gradient]="lineChartGradient"
+                                [xAxis]="lineChartShowXAxis" [yAxis]="lineChartShowYAxis" [legend]="lineChartShowLegend" [showXAxisLabel]="lineChartShowXAxisLabel"
+                                [showYAxisLabel]="lineChartShowYAxisLabel" [xAxisLabel]="lineChartXAxisLabel" [yAxisLabel]="lineChartYAxisLabel"
+                                [autoScale]="lineChartAutoScale" (select)="onSelect($event)">
+                            </ngx-charts-line-chart>
                         </div>
                     </div>
 
                     <div class="card-block weeklyreport">
-                        <div id="line-chart1" class="height-400">
-                            <ngx-charts-line-chart [scheme]="weeklylineChartColorScheme" [results]="weeklylineChartMulti" [gradient]="weeklylineChartGradient" [xAxis]="weeklylineChartShowXAxis"
-                                [yAxis]="weeklylineChartShowYAxis" [legend]="weeklylineChartShowLegend" [showXAxisLabel]="weeklylineChartShowXAxisLabel"
+                        <div id="line-chart2" class="height-400">
+                            <ngx-charts-line-chart  [scheme]="weeklylineChartColorScheme" [results]="weeklylineChartMulti" [gradient]="weeklylineChartGradient"
+                                [xAxis]="weeklylineChartShowXAxis" [yAxis]="weeklylineChartShowYAxis" [legend]="weeklylineChartShowLegend" [showXAxisLabel]="weeklylineChartShowXAxisLabel"
                                 [showYAxisLabel]="weeklylineChartShowYAxisLabel" [xAxisLabel]="weeklylineChartXAxisLabel" [yAxisLabel]="weeklylineChartYAxisLabel"
-                                [autoScale]="weeklylineChartAutoScale" [curve]="weeklylineChartLineInterpolation" (select)="onSelect($event)">
+                                [autoScale]="weeklylineChartAutoScale" (select)="onSelect($event)">
                             </ngx-charts-line-chart>
-                        </div> 
+                        </div>
                     </div>
                     <div class="card-block monthlyreport">
                             
-                        <div id="line-chart1" class="height-400">
-                                <ngx-charts-line-chart [scheme]="monthlylineChartColorScheme" [results]="monthlylineChartMulti" [gradient]="monthlylineChartGradient" [xAxis]="monthlylineChartShowXAxis"
-                                    [yAxis]="monthlylineChartShowYAxis" [legend]="monthlylineChartShowLegend" [showXAxisLabel]="monthlylineChartShowXAxisLabel"
+                            <div id="line-chart2" class="height-400">
+                                <ngx-charts-line-chart  [scheme]="monthlylineChartColorScheme" [results]="monthlylineChartMulti" [gradient]="monthlylineChartGradient"
+                                    [xAxis]="monthlylineChartShowXAxis" [yAxis]="monthlylineChartShowYAxis" [legend]="monthlylineChartShowLegend" [showXAxisLabel]="monthlylineChartShowXAxisLabel"
                                     [showYAxisLabel]="monthlylineChartShowYAxisLabel" [xAxisLabel]="monthlylineChartXAxisLabel" [yAxisLabel]="monthlylineChartYAxisLabel"
-                                    [autoScale]="monthlylineChartAutoScale" [curve]="monthlylineChartLineInterpolation" (select)="onSelect($event)">
+                                    [autoScale]="monthlylineChartAutoScale" (select)="onSelect($event)">
                                 </ngx-charts-line-chart>
-                            </div> 
+                            </div>
                     </div>
                 </div>
             </div>

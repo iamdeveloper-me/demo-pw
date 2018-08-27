@@ -40,6 +40,7 @@ export class DashboardComponent implements OnInit {
   }
  // supArray:string[];  
       ngOnInit()  {
+      
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         headers.append('Accept', 'application/json')
@@ -51,17 +52,17 @@ export class DashboardComponent implements OnInit {
           console.log(data)
         });;
      
-        // this.http.get(this.baseUrl+"api/Reviews/myreviews",{headers:headers})
+      // this.http.get(this.baseUrl+"api/Reviews/myreviews",{headers:headers})
       // return this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile" + "/dashboard/home",{headers})
       //   .map(response => response.json())
       //   // .catch(this.handleError);
-
+  
 
 
           $.getScript('./assets/js/prism.min.js');
           $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
           $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
-          $.getScript('https://www.jssor.com/script/jssor.slider-27.4.0.min.js');
+          $.getScript('./assets/js/owljsor.js');
           $.getScript('./assets/js/vendorsidebar.js');
         
           // 

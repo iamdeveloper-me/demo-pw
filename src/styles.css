@@ -1,4 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+#supplierscarousel .owl-dots{
+  display:none!important;
+}
+#supplierscarousel .owl-nav .owl-next{
+    left: -50px!important;
+     right: inherit!important;
+    float: left;
+    width: 36px;
+    height: 78px;
+    text-indent:-9999px;
+    outline: none!important;
+    background:url("https://s3.us-east-2.amazonaws.com/prefect-image/home-top-left.png")!important;
+}
+
+#supplierscarousel .owl-nav .owl-prev{
+  right: -50px!important;
+  left: inherit!important;
+    float: right;
+    width: 36px;
+    height: 78px;
+    text-indent:-9999px;
+    outline: none!important;
+    background:url("https://s3.us-east-2.amazonaws.com/prefect-image/home-top-right.png")!important;
+}
 
 .text-bold{
     font-weight: bold;
@@ -73,6 +97,7 @@ h4.navdrandm{
 .inslide{
     left:280px!important;
     position: fixed!important;
+    width: 100%;
 }
 .rtslide{
     left:-280px!important;
@@ -81,6 +106,7 @@ h4.navdrandm{
 .rtslide111{
     left:0px!important;
     position: fixed!important;
+    width: 100%;
 }
 .switch-medium{
   width: 40px!important;
@@ -365,6 +391,7 @@ visibility: inherit!important;
 .footer_bg{
   display:none!important;
 }
+
     #wrapper {
       padding-left: 0;
     }
@@ -389,6 +416,12 @@ visibility: inherit!important;
 @media(max-width:768px) {
   .modal-dialog{
     max-width:95%!important;
+}
+#supplierscarousel .owl-nav{
+  display: none!important;
+}
+#supplierscarousel .owl-dots{
+  display:block!important;
 }
 .dropdown-menu{z-index: 999999;}
 h4.navdrandm{
@@ -677,3 +710,36 @@ float: left;
 
 }
 
+ 
+.owl-nav button {
+  position: absolute;
+  top: 50%;
+  background-color: #000;
+  color: #fff;
+  margin: 0;
+  transition: all 0.3s ease-in-out;
+}
+.owl-nav button.owl-prev {
+  left: 0;
+}
+.owl-nav button.owl-next {
+  right: 0;
+}
+.owl-dots {
+  text-align: center;
+  padding-top: 15px;
+}
+.owl-dots button.owl-dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: inline-block;
+  background: #ccc;
+  margin: 0 3px;
+}
+.owl-dots button.owl-dot.active {
+  background-color: #000;
+}
+.owl-dots button.owl-dot:focus {
+  outline: none;
+}

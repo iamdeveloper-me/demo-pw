@@ -1,444 +1,464 @@
-
-<app-menu></app-menu> 
+<app-menu></app-menu>
 <div class="sign_up_container container" id="up">
-    <h2 class="text-center font-bold pt-4 pb-5 mb-5"><strong> Vendor Registration </strong></h2>
-    <!-- Stepper -->
-    <div class="steps-form-2" (click)="loadScript()">
-        <div class="steps-row-2 setup-panel-2 d-flex justify-content-between">
-            <div class="steps-step-2">
-                <a href="#step-1" type="button" class="first_step btn btn-amber btn-circle-2 waves-effect ml-0" data-toggle="tooltip" data-placement="top" title="Your Business Category "><i class="fa fa-folder-open-o" aria-hidden="true"></i>
-                    
-                </a>
-                <div class="clearfix"></div>
-                <p class="ml-yb">   Your Business Category  </p>
-            </div>
-            <div class="steps-step-2">
-                <a href="#step-2" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="General Information"><i class="fa fa-pencil" aria-hidden="true"></i>
-                    
-                </a>
-                <p> General Information  </p>
-            </div>
-            <div class="steps-step-2">
-                <a href="#step-3" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Business Information"><i class="fa fa-photo" aria-hidden="true"></i>
-                    
-                </a>
-                <p> Business Information </p>
-            </div>
-            <div class="steps-step-2">
-                <a href="#step-4" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Payment"><i class="fa fa-check" aria-hidden="true"></i>
-                    
-                </a>
-                <p> Payment   </p>  
-            </div>
-        </div>
-    </div>
-    <!-- First Step -->
-    <form role="form" action="" method="post" class="mt-25 mtx-0" (ngSubmit)="onSubmit()" #f="ngForm">
-        <div class="row setup-content-2" id="step-1">
-            <div class="col-md-12 cate_list">
-                <div class="data">
-                  <!--   <div  class="show" *ngFor="let category of categoryArray"> -->
-                      <div  class="show">
-                        <div class="col-md-12 nopadd">
-                            <ul class="unstyled centered">
-                                <li class="col-md-4">
-                                    <input class="styled-checkbox validate" type="radio" id="Cakes" 
-                                    value="Cakes" name="category" required="required"> 
-                                 <label for="Cakes">Cakes</label>
-                                </li>
-                                <li class="col-md-4">
-                                    <input class="styled-checkbox validate" type="radio" value="Decorators" id="Decorators" name="category" required="required"> 
-                                 <label for="Decorators">Decorators & Wedding Stylist</label>
-                                </li>
-                                  <li class="col-md-4">
-                                    <input class="styled-checkbox validate" type="radio" id="Drinks" value="Drinks" name="category" required="required"> 
-                                 <label for="Drinks">Drinks and Beverages</label>
-                                </li>
-                                 <li class="col-md-4">
-                                    <input class="styled-checkbox validate" type="radio" value="Fashion" id="Fashion" name="category" required="required"> 
-                                 <label for="Fashion">Fashion & Clothing</label>
-                                </li>
-                                 <li class="col-md-4">
-                                    <input class="styled-checkbox validate" type="radio" value="Florists" id="Florists" name="category" required="required"> 
-                                 <label for="Florists">Florists, Bouquets and Centerpiece</label>
-                                </li>
-                                 <li class="col-md-4">
-                                    <input class="styled-checkbox validate" type="radio" value="Food" id="Food" name="category" required="required"> 
-                                 <label for="Food">Food & Catering</label>
-                                </li>
-                                 <li class="col-md-4">
-                                    <input class="styled-checkbox validate" type="radio" value="Footwear" id="Footwear" name="category" required="required"> 
-                                 <label for="Footwear">Footwear</label>
-                                </li>
-                                 <li class="col-md-4">
-                                    <input class="styled-checkbox validate" type="radio" value="Honeymoon" id="Honeymoon" name="category" required="required"> 
-                                 <label for="Honeymoon">Honeymoon & Travel</label>
-                                </li>
-                                 <li class="col-md-4">
-                                    <input class="styled-checkbox validate" type="radio" value="Invitation" id="Invitation" name="category" required="required"> 
-                                 <label for="Invitation">Invitation Cards & Wedding Stationary</label>
-                                </li>
-
-                                 <li class="col-md-4">
-                                    <input class="styled-checkbox validate" type="radio" value="Jewellery" id="Jewellery" name="category" required="required"> 
-                                 <label for="Jewellery">Jewellery & Wedding Rings</label>
-                                </li>
-                                 <li class="col-md-4">
-                                    <input class="styled-checkbox validate" type="radio" value="Makeup" id="Makeup" name="category" required="required"> 
-                                 <label for="Makeup">Make Up, Hair & Mehendi</label>
-                                </li>
-                                 <li class="col-md-4">
-                                    <input class="styled-checkbox validate" type="radio" value="Celebrant" id="Celebrant" name="category" required="required"> 
-                                 <label for="Celebrant">Marriage Celebrant</label>
-                                </li>
-                                 <li class="col-md-4">
-                                    <input class="styled-checkbox validate" type="radio" value="Music" id="Music" name="category" required="required"> 
-                                 <label for="Music">Music, DJs & Entertainment</label>
-                                </li>
-                                 <li class="col-md-4">
-                                    <input class="styled-checkbox validate" type="radio" value="Other" id="Other" name="category" required="required"> 
-                                 <label for="Other">Other wedding Supplies & Accessories</label>
-                                </li>
-                                 <li class="col-md-4">
-                                    <input class="styled-checkbox validate" type="radio" value="Photography" id="Photography" name="category" required="required"> 
-                                 <label for="Photography">Photography, Videography & Cinematography</label>
-                                </li>
-
-                                 <li class="col-md-4">
-                                    <input class="styled-checkbox validate" type="radio" value="Venues" id="Venues" name="category" required="required"> 
-                                 <label for="Venues">Venues</label>
-                                </li>
-
-                                 <li class="col-md-4">
-                                    <input class="styled-checkbox validate" type="radio" value="Cars" id="Cars" name="category" required="required"> 
-                                 <label for="Cars">Wedding Cars & Transport</label>
-                                </li>
-
-                                 <li class="col-md-4">
-                                    <input class="styled-checkbox validate" type="radio" value="Planner" id="Planner" name="category" required="required"> 
-                                 <label for="Planner">Wedding Planner & Event Management</label>
-                                </li>
-                                  <li class="col-md-4">
-                                    <input class="styled-checkbox validate" type="radio" value="Fitness" id="Fitness" name="category" required="required"> 
-                                 <label for="Fitness">
-                                Shape & Fitness</label>
-                                </li>
-                            </ul>
-                        </div> 
-                    </div>    
-                </div> 
-            </div> 
+   <h2 class="text-center font-bold pt-4 pb-5 mb-5"><strong> Vendor Registration </strong></h2>
+   <!-- Stepper -->
+   <div class="steps-form-2" (click)="loadScript()">
+      <div class="steps-row-2 setup-panel-2 d-flex justify-content-between">
+         <div class="steps-step-2">
+            <a href="#step-1" type="button" class="first_step btn btn-amber btn-circle-2 waves-effect ml-0" data-toggle="tooltip" data-placement="top" title="Your Business Category "><i class="fa fa-folder-open-o" aria-hidden="true"></i>
+            </a>
             <div class="clearfix"></div>
-            <div class="col-sm-12 btnholder">
-            <button class="btn gradint_blue white signup_nextbtn btnborradius pull-right nextBtn-2" onclick="" type="button">
-            Next
-           </button>
-       </div>
-        </div>
-        <!-- Second Step -->
-        <div class="row setup-content-2" id="step-2">  
-            <div class="logininfobox">
-                <h3 class="pl-0 my-4 lc_head"> Login Information </h3>
-                <div class="input-effect form-group md-form mt-3">
-                    <input class="effect-16" type="text" 
-                    placeholder="First Name" 
-                    id="userName" 
-                    [(ngModel)] = "user.logInInfo.userName" 
-                    name = "userName" 
-                    required >
-                    <label>First Name</label>
-                    <span class="focus-border"></span>
-                </div>   
-                <div class="input-effect form-group md-form mt-3">
-                        <input class="effect-16" type="text" 
-                        placeholder="Last Name"  
-                        required>
-                        <label>Last Name</label>
-                        <span class="focus-border"></span>
-                </div>  
-                 <div class="input-effect form-group md-form mt-3">
-                    <input class="effect-16  validate" type="email" 
-                    id="email" 
-                   
-                    name = "email" 
-                    required 
-                    placeholder="Email">
-                    <label>Email</label>
-                    <span class="focus-border"></span>
-                 </div> <!-- [(ngModel)] = "user.contactInfo.email"   -->
-                <div class="input-effect form-group md-form mt-3">
-                    <input class="effect-16" type="password" 
-                    placeholder="Password" 
-                    id="password" 
-                    [(ngModel)] = "user.logInInfo.password" 
-                    name = "password" required>
-                    <label>Password</label>
-                    <span class="focus-border"></span>
-                </div>     
-                <div class="input-effect form-group md-form mt-3 mb-xs-20">
-                    <input class="effect-16" 
-                    type="password" 
-                    placeholder="Confirm Password" 
-                    id="confirmPassword" 
-                    [(ngModel)] = "user.logInInfo.confirmPassword" 
-                    name = "confirmPassword" 
-                    required>
-                    <label>Confirm Password</label>
-                    <span class="focus-border"></span>
-                </div>
-                 <div class="input-effect form-group md-form mt-3">
-                    <input class="effect-16  validate" type="text"  
-                    id="phone" 
+            <p class="ml-yb">   Your Business Category  </p>
+         </div>
+         <div class="steps-step-2">
+            <a href="#step-2" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="General Information"><i class="fa fa-pencil" aria-hidden="true"></i>
+            </a>
+            <p> General Information  </p>
+         </div>
+         <div class="steps-step-2">
+            <a href="#step-3" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Business Information"><i class="fa fa-photo" aria-hidden="true"></i>
+            </a>
+            <p> Business Information </p>
+         </div>
+         <div class="steps-step-2">
+            <a href="#step-4" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Payment"><i class="fa fa-check" aria-hidden="true"></i>
+            </a>
+            <p> Payment   </p>
+         </div>
+      </div>
+   </div>
+   <!-- First Step -->
+   <form role="form" action="" method="post" class="mt-25 mtx-0" (ngSubmit)="onSubmit()" #f="ngForm">
+   <div class="row setup-content-2" id="step-1">
+      <div class="col-md-12 cate_list">
+         <div class="data">
+            <!--   <div  class="show" *ngFor="let category of categoryArray"> -->
+            <div  class="show" >
+               <div class="col-md-12 nopadd">
+                  <ul class="unstyled centered">
+                    <li class="col-md-4" *ngFor="let category of categoryArray">
+                    <input
                     
-                    name = "phone" 
-                    required
-                    placeholder="Phone no">
-                    <label>Phone no</label>
-                    <span class="focus-border"></span>
-                </div><!-- [(ngModel)] = "user.contactInfo.phone"  -->
-            </div>
-              <div class="col-sm-12 btnholder">
-                <button class="btn btn-raised prevBtn-2 gradint_blue white signup_nextbtn btnborradius pull-left" type="button">Previous</button>
-                <button class="btn btn-raised gradint_blue white signup_nextbtn btnborradius nextBtn-2 pull-right" type="button">Next</button>
-            </div>
-            
-        </div>
-        <!-- Third Step -->
-        <div class="row setup-content-2" id="step-3">
-                <div class="logininfobox">
-                    <h3 class="pl-0 my-4 lc_head"> Business Information </h3>
-                    <div class="input-effect form-group md-form mt-3">
-                        <input class="effect-16 validate" 
-                        type="text" 
-                        placeholder="Name of your Bussiness"
-                        id="nameOfBusiness" 
-                        [(ngModel)] = "user.businessInfo.nameOfBusiness" 
-                        name = "nameOfBusiness" 
-                        required>
-                        <label>Name of your Bussiness</label>
-                        <span class="focus-border"></span>
-                    </div>
-                    <div class="input-effect form-group md-form mt-3 ">
-                        <input class="effect-16 validate" 
-                        type="text"
-                        id="countryName" 
-                        [(ngModel)] = "user.businessInfo.country.countryName" 
-                        name = "countryName"  
-                        placeholder="Country" 
-                        required
-                        >
-                        <label>Country</label>
-                        <span class="focus-border"></span>
-                    </div>
-                    <div class="input-effect form-group md-form mt-3">
-                        <input class="effect-16 validate" 
-                        type="text"
-                        id="city" 
-                        [(ngModel)] = "user.businessInfo.city" 
-                        name = "city" 
-                        placeholder="State/City" 
-                        required
-                        >
-                        <label>State/City</label>
-                        <span class="focus-border"></span>
-                    </div>
-                               
-                    <div class="input-effect form-group md-form mt-3">
-                        <input class="effect-16 validate md-textarea" 
-                        type="text" 
-                        id="address" 
-                        [(ngModel)] = "user.businessInfo.address" 
-                        name = "address"
-                        placeholder="Address" 
-                        required>
-                        <label>Address</label>
-                        <span class="focus-border"></span>
-                    </div>
-                     <div class="input-effect form-group md-form mt-3">
-                        <input class="effect-16 validate" 
-                        type="text" 
-                        id="website" 
-                      
-                        name = "website" 
-                        placeholder="Website" 
-                        required>
-                        <label>Website</label>
-                        <span class="focus-bo+rder"></span>
-                     </div>     <!--[(ngModel)] = "user.businessInfo.postalCode"  -->
-                
-                </div>
-                <div class="col-sm-12 btnholder">
-                <button class="btn btn-raised gradint_blue white signup_nextbtn prevBtn-2 btnborradius pull-left" type="button">Previous</button>
-                <button class="btn btn-raised gradint_blue white signup_nextbtn nextBtn-2 btnborradius pull-right" type="button">Next</button>
-            </div>
-        </div>
-        <!-- Fourth Step -->
-        <div class="row setup-content-2" id="step-4">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div>
-                            <p class="text-center"><strong>PICK THE BEST PLAN FOR YOU</strong></p>
-                           <ul class="tabbingdesign">
-                                <li class="card-title gradint_blue Suppliertab">Monthly</li>
-                                <li class="card-title Registertab">Annually</li>
-                            </ul>   
-                            <span class="arrowimg">
-                                <img src="https://s3.us-east-2.amazonaws.com/prefect-image/imgpsh_fullsize.png"/>
-                            </span>
-                            <p class="text-center">Paying Annually you get <br/><strong>2 additional months for free!</strong></p> 
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="col-sm-12">
-                            <div class="col-sm-12 mobtextcenter">
-                            <input type="text" class="vouchercodeinput" placeholder="Voucher Code" />
-                            <button class="btn btnbluecode gradint_blue">Enter</button>
+                    type="radio" 
+                    name="category"
+                    id="category"
+                    
+                    checked
+                    [value]="category.categoryId"
+                    [(ngModel)]= "user.vendorCategories[0].categoryId"
+                    
+                    > 
+                        <label>{{category.categoryName}} </label>
+                        <!--   -->
+                    </li>
 
-                            <span class="greentext">Voucher Applied 50% Off</span>
-                            </div>
-                        </div>
+                     <!-- <li class="col-md-4">
+                        <input class="styled-checkbox validate" type="radio" id="Cakes" 
+                           value="Cakes" name="category" required="required"> 
+                        <label for="Cakes">Cakes</label>
+                     </li>
+                     <li class="col-md-4">
+                        <input class="styled-checkbox validate" type="radio" value="Decorators" id="Decorators" name="category" required="required"> 
+                        <label for="Decorators">Decorators & Wedding Stylist</label>
+                     </li>
+                     <li class="col-md-4">
+                        <input class="styled-checkbox validate" type="radio" id="Drinks" value="Drinks" name="category" required="required"> 
+                        <label for="Drinks">Drinks and Beverages</label>
+                     </li>
+                     <li class="col-md-4">
+                        <input class="styled-checkbox validate" type="radio" value="Fashion" id="Fashion" name="category" required="required"> 
+                        <label for="Fashion">Fashion & Clothing</label>
+                     </li>
+                     <li class="col-md-4">
+                        <input class="styled-checkbox validate" type="radio" value="Florists" id="Florists" name="category" required="required"> 
+                        <label for="Florists">Florists, Bouquets and Centerpiece</label>
+                     </li>
+                     <li class="col-md-4">
+                        <input class="styled-checkbox validate" type="radio" value="Food" id="Food" name="category" required="required"> 
+                        <label for="Food">Food & Catering</label>
+                     </li>
+                     <li class="col-md-4">
+                        <input class="styled-checkbox validate" type="radio" value="Footwear" id="Footwear" name="category" required="required"> 
+                        <label for="Footwear">Footwear</label>
+                     </li>
+                     <li class="col-md-4">
+                        <input class="styled-checkbox validate" type="radio" value="Honeymoon" id="Honeymoon" name="category" required="required"> 
+                        <label for="Honeymoon">Honeymoon & Travel</label>
+                     </li>
+                     <li class="col-md-4">
+                        <input class="styled-checkbox validate" type="radio" value="Invitation" id="Invitation" name="category" required="required"> 
+                        <label for="Invitation">Invitation Cards & Wedding Stationary</label>
+                     </li>
+                     <li class="col-md-4">
+                        <input class="styled-checkbox validate" type="radio" value="Jewellery" id="Jewellery" name="category" required="required"> 
+                        <label for="Jewellery">Jewellery & Wedding Rings</label>
+                     </li>
+                     <li class="col-md-4">
+                        <input class="styled-checkbox validate" type="radio" value="Makeup" id="Makeup" name="category" required="required"> 
+                        <label for="Makeup">Make Up, Hair & Mehendi</label>
+                     </li>
+                     <li class="col-md-4">
+                        <input class="styled-checkbox validate" type="radio" value="Celebrant" id="Celebrant" name="category" required="required"> 
+                        <label for="Celebrant">Marriage Celebrant</label>
+                     </li>
+                     <li class="col-md-4">
+                        <input class="styled-checkbox validate" type="radio" value="Music" id="Music" name="category" required="required"> 
+                        <label for="Music">Music, DJs & Entertainment</label>
+                     </li>
+                     <li class="col-md-4">
+                        <input class="styled-checkbox validate" type="radio" value="Other" id="Other" name="category" required="required"> 
+                        <label for="Other">Other wedding Supplies & Accessories</label>
+                     </li>
+                     <li class="col-md-4">
+                        <input class="styled-checkbox validate" type="radio" value="Photography" id="Photography" name="category" required="required"> 
+                        <label for="Photography">Photography, Videography & Cinematography</label>
+                     </li>
+                     <li class="col-md-4">
+                        <input class="styled-checkbox validate" type="radio" value="Venues" id="Venues" name="category" required="required"> 
+                        <label for="Venues">Venues</label>
+                     </li>
+                     <li class="col-md-4">
+                        <input class="styled-checkbox validate" type="radio" value="Cars" id="Cars" name="category" required="required"> 
+                        <label for="Cars">Wedding Cars & Transport</label>
+                     </li>
+                     <li class="col-md-4">
+                        <input class="styled-checkbox validate" type="radio" value="Planner" id="Planner" name="category" required="required"> 
+                        <label for="Planner">Wedding Planner & Event Management</label>
+                     </li>
+                     <li class="col-md-4">
+                        <input class="styled-checkbox validate" type="radio" value="Fitness" id="Fitness" name="category" required="required"> 
+                        <label for="Fitness">
+                        Shape & Fitness</label>
+                     </li> -->
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-sm-12 btnholder">
+         <button class="btn gradint_blue white signup_nextbtn btnborradius pull-right nextBtn-2" onclick="" type="button">
+         Next
+         </button>
+      </div>
+   </div>
+   <!-- Second Step -->
+   <div class="row setup-content-2" id="step-2">
+      <div class="logininfobox">
+         <h3 class="pl-0 my-4 lc_head"> Login Information </h3>
+         <div class="input-effect form-group md-form mt-3">
+            <input class="effect-16" type="text" 
+            placeholder="First Name" 
+            id="firstName" 
+            [(ngModel)] = "user.logInInfo.firstName" 
+            name = "firstName" 
+            required >
+            <label>First Name</label>
+            <span class="focus-border"></span>
+         </div>
+         <div class="input-effect form-group md-form mt-3">
+            <input class="effect-16" type="text" 
+            placeholder="Last Name"  [(ngModel)] = "user.logInInfo.lastName" 
+            name = "lastName" 
+            required>
+            <label>Last Name</label>
+            <span class="focus-border"></span>
+         </div>
+         <div class="input-effect form-group md-form mt-3">
+            <input class="effect-16  validate" type="email" 
+               id="email" 
+               name = "email" 
+               [(ngModel)] = "user.contactInfo.email" 
+               required 
+               placeholder="Email">
+            <label>Email</label>
+            <span class="focus-border"></span>
+         </div>
+         <!-- [(ngModel)] = "user.contactInfo.email"   -->
+         <div class="input-effect form-group md-form mt-3">
+            <input class="effect-16" type="password" 
+            placeholder="Password" 
+            id="password" 
+            [(ngModel)] = "user.logInInfo.password" 
+            name = "password" required minlength="6">
+            <label>Password</label>
+            <span class="focus-border"></span>
+         </div>
+         <div class="input-effect form-group md-form mt-3 mb-xs-20">
+            <input class="effect-16" 
+            type="password" 
+            placeholder="Confirm Password" 
+            id="confirmPassword" 
+            [(ngModel)] = "user.logInInfo.confirmPassword" 
+            name = "confirmPassword" 
+            required>
+            <label>Confirm Password</label>
+            <span class="focus-border"></span>
+         </div>
+         <div class="input-effect form-group md-form mt-3">
+            <input class="effect-16  validate" type="text"  
+            id="phone" 
+            [(ngModel)] = "user.contactInfo.phone" 
+            name = "phone" 
+            required
+            placeholder="Phone no">
+            <label>Phone no</label>
+            <span class="focus-border"></span>
+         </div>
+         <!-- [(ngModel)] = "user.contactInfo.phone"  -->
+      </div>
+      <div class="col-sm-12 btnholder">
+         <button class="btn btn-raised prevBtn-2 gradint_blue white signup_nextbtn btnborradius pull-left" type="button">Previous</button>
+         <button class="btn btn-raised gradint_blue white signup_nextbtn btnborradius nextBtn-2 pull-right" type="button">Next</button>
+      </div>
+   </div>
+   <!-- Third Step -->
+   <div class="row setup-content-2" id="step-3">
+      <div class="logininfobox">
+         <h3 class="pl-0 my-4 lc_head"> Business Information </h3>
+         <div class="input-effect form-group md-form mt-3">
+            <input class="effect-16 validate" 
+            type="text" 
+            placeholder="Name of your Bussiness"
+            id="nameOfBusiness" 
+            [(ngModel)] = "user.businessInfo.nameOfBusiness" 
+            name = "nameOfBusiness" 
+            required>
+            <label>Name of your Bussiness</label>
+            <span class="focus-border"></span>
+         </div>
+         <div class="input-effect form-group md-form mt-3 ">
+            <input class="effect-16 validate" 
+            type="text"
+            id="countryName" 
+            [(ngModel)] = "user.businessInfo.countryName" 
+            name = "countryName"  
+            placeholder="Country" 
+            required
+            >
+            <label>Country</label>
+            <span class="focus-border"></span>
+         </div>
+         <div class="input-effect form-group md-form mt-3">
+            <input class="effect-16 validate" 
+            type="text"
+            id="city" 
+            [(ngModel)] = "user.businessInfo.city" 
+            name = "city" 
+            placeholder="State/City" 
+            required
+            >
+            <label>State/City</label>
+            <span class="focus-border"></span>
+         </div>
+         <div class="input-effect form-group md-form mt-3">
+            <input class="effect-16 validate md-textarea" 
+            type="text" 
+            id="address" 
+            [(ngModel)] = "user.businessInfo.address" 
+            name = "address"
+            placeholder="Address" 
+            required>
+            <label>Address</label>
+            <span class="focus-border"></span>
+         </div>
+         <div class="input-effect form-group md-form mt-3">
+            <input class="effect-16 validate" 
+            type="text" 
+            id="website" 
+            [(ngModel)] = "user.contactInfo.website"
+            name = "website" 
+            placeholder="Website" 
+            required>
+            <label>Website</label>
+            <span class="focus-bo+rder"></span>
+         </div>
+         <!--[(ngModel)] = "user.businessInfo.postalCode"  -->
+      </div>
+      <div class="col-sm-12 btnholder">
+         <button class="btn btn-raised gradint_blue white signup_nextbtn prevBtn-2 btnborradius pull-left" type="button">Previous</button>
+         <button class="btn btn-raised gradint_blue white signup_nextbtn nextBtn-2 btnborradius pull-right" type="button">Next</button>
+      </div>
+   </div>
+   <!-- Fourth Step -->
+   <div class="row setup-content-2" id="step-4">
+      <div class="col-md-12">
+         <div class="card">
+            <div>
+               <p class="text-center"><strong>PICK THE BEST PLAN FOR YOU</strong></p>
+               <ul class="tabbingdesign">
+                  <li class="card-title gradint_blue Suppliertab">Monthly</li>
+                  <li class="card-title Registertab">Annually</li>
+               </ul>
+               <span class="arrowimg">
+               <img src="https://s3.us-east-2.amazonaws.com/prefect-image/imgpsh_fullsize.png"/>
+               </span>
+               <p class="text-center">Paying Annually you get <br/><strong>2 additional months for free!</strong></p>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12">
+               <div class="col-sm-12 mobtextcenter">
+                  <input type="text" class="vouchercodeinput" placeholder="Voucher Code" />
+                  <button class="btn btnbluecode gradint_blue">Enter</button>
+                  <span class="greentext">Voucher Applied 50% Off</span>
+               </div>
+            </div>
 
-<section id="filter">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="card martop0px">
-                                        <div class="col-md-12 membershipsilder">
-                                            <ngb-carousel>
-                                                <ng-template ngbSlide>
-                                                    <div>
-                                                        <div class="panel card">
-                        <div class="panel-heading arrow_box text-center">
-                            <h3>BASIC <span>(Free!)</span></h3>
-                            <div class="pricesec">
-                            <table align="center">
-                                <tr>
-                                    <td>MUR</td>
-                                    <td class="pricebig">8</td>
-                                    <td class="text-left lineheight16px">00<br/>/Month</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="basiccard">Billed Annually</div>
-                        </div>
-                        <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
-                            <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
-                            <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
-                            <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
-                            <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
-                            <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
-                            <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
-                            <li class="list-group-item"><i class="material-icons redtext">cancel</i> Pinned reviews</li>
-                            <li class="list-group-item"><i class="material-icons bluetext">report</i> Limited Photos</li>
-                            <li class="list-group-item"><i class="material-icons redtext">cancel</i> No Album</li>
-                            <li class="list-group-item"><i class="material-icons redtext">cancel</i> No Performance analytics</li>
-                            <li class="list-group-item"><i class="material-icons bluetext">report</i> 1 location</li>
-                            <li class="list-group-item"><i class="material-icons bluetext">report</i> Low Priority in Search Results</li>
-                        </ul>
-                        <div class="panel-footer text-center">
-                        <a class="btn borderradius gradint_blue" href="JavaScript:void(0);" disabled="disabled">CURRENT PLAN </a>
-                        </div>
-                                                        </div>
-                                                    </div>
-                                                </ng-template>
-                                                <ng-template ngbSlide>
-                                                <div>
-                                                <div class="panel card">
-                                                    <div class="panel-heading arrow_box text-center">
-                                                        <span class="mostpopulartext">Most Popular <i class="fa fa-star"></i></span>
-                                                        <h3>PREMIUM</h3>
-                                                        <div class="pricesec">
-                                                            <table align="center">
-                                                                <tr>
-                                                                    <td>MUR</td>
-                                                                    <td class="pricebig">59</td>
-                                                                    <td class="text-left lineheight16px">00<br/>/Month</td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
-                                                        <div class="basiccard">Billed Annually</div>
-                                                    </div>
-                                                    <ul class="list-group list-group-flush text-center">
-                                                    <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
-                                                    <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
-                                                    <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
-                                                    <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
-                                                    <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
-                                                    <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
-                                                    <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
-                                                    <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Pinned reviews</li>
-                                                    <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Unlimited Photos</li>
-                                                    <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Unlimited Album</li>
-                                                    <li class="list-group-item"><i class="material-icons">report</i> Basic Performance analytics</li>
-                                                    <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Multiple location</li>
-                                                    <li class="list-group-item"><i class="material-icons">report</i> Medium Priority in Search Results</li>
-                                                    </ul>
-                                                    <div class="panel-footer text-center">
-                                                    <a class="btn  borderradius gradint_blue" href="JavaScript:void(0);">Choose Plan</a>
-                                                    </div>
-                                                </div>
-                                                <!-- /PRICE ITEM -->
-                                                </div>
-                                                </ng-template>
-                                                <ng-template ngbSlide>
-                                                    <div>
-                    <div class="panel card">
-                        <div class="panel-heading arrow_box text-center">
-                            <span class="mostpopulartext">Most Popular <i class="fa fa-star"></i></span>
-                            <h3>PREMIUM</h3>
-                        <div class="pricesec">
-                            <table align="center">
-                                <tr>
-                        <td>MUR</td>
-                        <td class="pricebig">59</td>
-                        <td class="text-left lineheight16px">00<br/>/Month</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="basiccard">Billed Annually</div>
-                        </div>
-                        <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item"><i class="material-icons">check_circle</i> Storefront</li>
-                            <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
-                            <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
-                            <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
-                            <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
-                            <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
-                            <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
-                            <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Pinned reviews</li>
-                            <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Unlimited Photos</li>
-                            <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Unlimited Album</li>
-                            <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Advanced Performance analytics</li>
-                            <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Multiple location</li>
-                            <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Highest Priority in Search Results</li>
-                        </ul>
-                        <div class="panel-footer text-center">
-                            <a class="btn borderradius gradint_blue" href="JavaScript:void(0);">Choose Plan</a>
-                        </div>
-                    </div>
-                                                    <!-- /PRICE ITEM -->
-                                                    </div>
-                                                </ng-template>
-                                            </ngb-carousel>
-                                        </div>
+
+            <section id="filter">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="card martop0px">
+                        <div class="col-md-12 membershipsilder" >
+                           <ngb-carousel >
+                              <ng-template ngbSlide *ngFor="let plan of planArray" >
+                                 <div >
+                                    <div class="panel card" >
+                                       <div class="panel-heading arrow_box text-center" >
+                                          <h3>{{plan.title}}</h3>
+                                          <div class="pricesec">
+                                             <table align="center">
+                                                <tr>
+                                                   <td>MUR</td>
+                                                   <td class="pricebig">8</td>
+                                                   <td class="text-left lineheight16px">00<br/>/Month</td>
+                                                </tr>
+                                             </table>
+                                          </div>
+                                          <div class="basiccard">Billed Annually</div>
+                                       </div>
+                                       <ul class="list-group list-group-flush text-center">
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
+                                          <li class="list-group-item"><i class="material-icons redtext">cancel</i> Pinned reviews</li>
+                                          <li class="list-group-item"><i class="material-icons bluetext">report</i> Limited Photos</li>
+                                          <li class="list-group-item"><i class="material-icons redtext">cancel</i> No Album</li>
+                                          <li class="list-group-item"><i class="material-icons redtext">cancel</i> No Performance analytics</li>
+                                          <li class="list-group-item"><i class="material-icons bluetext">report</i> 1 location</li>
+                                          <li class="list-group-item"><i class="material-icons bluetext">report</i> Low Priority in Search Results</li>
+                                       </ul>
+                                       <!-- <div class="panel-footer text-center">
+                                          <a class="btn borderradius gradint_blue" href="JavaScript:void(0);" disabled="disabled">CURRENT PLAN </a>
+                                       </div> -->
+                                       <div class="panel-footer text-center">
+                                        <!-- <input name="category"
+                                        id="category"
+                                        [value]="category.categoryId"
+                                        [(ngModel)]= "user.vendorCategories[0].categoryId"
+                                            > -->
+                                        <!-- <input type="hidden" name="b_id" id="b_id" [(ngModel)] = "bird_obj.id"> -->
+                                          <button 
+                                          type="button" 
+                                          (click)= 
+                                          "idgenerate(plan)"
+                                           >
+                                           CURRENT PLAN 
+                                          </button>
+                                       </div>
                                     </div>
-                                </div>
-                            </div>
-                        </section>
+                                 </div>
 
-
-
-                        
-                        <section id="action" style="display: none;">
+                              </ng-template>
+                              <!-- <ng-template ngbSlide>
+                                 <div>
+                                    <div class="panel card">
+                                       <div class="panel-heading arrow_box text-center">
+                                          <span class="mostpopulartext">Most Popular <i class="fa fa-star"></i></span>
+                                          <h3>PREMIUM</h3>
+                                          <div class="pricesec">
+                                             <table align="center">
+                                                <tr>
+                                                   <td>MUR</td>
+                                                   <td class="pricebig">59</td>
+                                                   <td class="text-left lineheight16px">00<br/>/Month</td>
+                                                </tr>
+                                             </table>
+                                          </div>
+                                          <div class="basiccard">Billed Annually</div>
+                                       </div>
+                                       <ul class="list-group list-group-flush text-center">
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Pinned reviews</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Unlimited Photos</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Unlimited Album</li>
+                                          <li class="list-group-item"><i class="material-icons">report</i> Basic Performance analytics</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Multiple location</li>
+                                          <li class="list-group-item"><i class="material-icons">report</i> Medium Priority in Search Results</li>
+                                       </ul>
+                                       <div class="panel-footer text-center">
+                                          <a class="btn  borderradius gradint_blue" href="JavaScript:void(0);">Choose Plan</a>
+                                       </div>
+                                    </div>
+                                 -->    <!-- /PRICE ITEM -->
+                               <!--   </div>
+                              </ng-template>
+                              <ng-template ngbSlide>
+                                 <div>
+                                    <div class="panel card">
+                                       <div class="panel-heading arrow_box text-center">
+                                          <span class="mostpopulartext">Most Popular <i class="fa fa-star"></i></span>
+                                          <h3>PREMIUM</h3>
+                                          <div class="pricesec">
+                                             <table align="center">
+                                                <tr>
+                                                   <td>MUR</td>
+                                                   <td class="pricebig">59</td>
+                                                   <td class="text-left lineheight16px">00<br/>/Month</td>
+                                                </tr>
+                                             </table>
+                                          </div>
+                                          <div class="basiccard">Billed Annually</div>
+                                       </div>
+                                       <ul class="list-group list-group-flush text-center">
+                                          <li class="list-group-item"><i class="material-icons">check_circle</i> Storefront</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Pinned reviews</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Unlimited Photos</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Unlimited Album</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Advanced Performance analytics</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Multiple location</li>
+                                          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Highest Priority in Search Results</li>
+                                       </ul>
+                                       <div class="panel-footer text-center">
+                                          <a class="btn borderradius gradint_blue" href="JavaScript:void(0);">Choose Plan</a>
+                                       </div>
+                                    </div> -->
+                                    <!-- /PRICE ITEM -->
+                                <!--  </div>
+                              </ng-template> -->
+                           </ngb-carousel>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+           <section id="action" style="display: none;">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="card martop0px">
-                                        <div class="col-md-12 membershipsilder">
+                                        <div class="col-md-12 membershipsilder" >
                                             <ngb-carousel>
-                                                <ng-template ngbSlide>
+                                                <ng-template ngbSlide *ngFor="let plan of planArray" >
                                                     <div>
                     <div class="panel card">
                         <div class="panel-heading arrow_box text-center">
-                            <h3>BASIC <span>(Free!)</span></h3>
+                            <h3>{{plan.title}}</h3>
                             <div class="pricesec">
                             <table align="center">
                                 <tr>
@@ -466,12 +486,19 @@
                             <li class="list-group-item"><i class="material-icons bluetext">report</i> Low Priority in Search Results</li>
                         </ul>
                         <div class="panel-footer text-center">
-                        <a class="btn  borderradius gradint_blue" href="JavaScript:void(0);" disabled="disabled">CURRENT PLAN </a>
+                             <button 
+                                type="button" 
+                                (click)= 
+                                "idgenerate(plan)"
+                            >
+                                CURRENT PLAN 
+                            </button>
+                       <!--  <a class="btn  borderradius gradint_blue" href="JavaScript:void(0);" disabled="disabled">CURRENT PLAN </a> -->
                         </div>
                     </div>
                                                     </div>
                                                 </ng-template>
-                                                <ng-template ngbSlide>
+                                                <!-- <ng-template ngbSlide>
                                                 <div>
                                                 <div class="panel card">
                                                     <div class="panel-heading arrow_box text-center">
@@ -508,11 +535,11 @@
                                                     </div>
                                                 </div>
                                                 <!-- /PRICE ITEM -->
-                                                </div>
+                                                <!-- </div>
                                                 </ng-template>
                                                 <ng-template ngbSlide>
-                                                    <div>
-                    <div class="panel card">
+                                                    <div> -->
+                    <!-- <div class="panel card">
                         <div class="panel-heading arrow_box text-center">
                             <span class="mostpopulartext">Most Popular <i class="fa fa-star"></i></span>
                             <h3>PREMIUM</h3>
@@ -547,27 +574,24 @@
                         </div>
                     </div>
                                                     <!-- /PRICE ITEM -->
-                                                    </div>
-                                                </ng-template>
+                                                   <!--  </div>
+                                                </ng-template>  --> 
                                             </ngb-carousel>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </section>
-           </div></div>
-            <div class="clearfix"></div>
-                        <div class="col-sm-12 btnholder">
-                <button class="btn btn-raised prevBtn-2 gradint_blue white signup_nextbtn btnborradius pull-left" type="button">Previous</button>
-                <button class="btn btn-raised gradint_blue white nextBtn-2 signup_nextbtn btnborradius pull-right" type="button">Next</button>
-            </div>
-        </div>
-    </form>
-</div>   
+         </div>
+      </div>
+      
+      <div class="clearfix"></div>
+      <div class="col-sm-12 btnholder">
+         <button class="btn btn-raised prevBtn-2 gradint_blue white signup_nextbtn btnborradius pull-left" type="button">Previous</button>
+         <button class="btn btn-raised gradint_blue white nextBtn-2 signup_nextbtn btnborradius pull-right" type="submit" id="type-success" >Submit</button>
+      </div>
+   </div>
+   </form>
+</div>
 <app-foot></app-foot>
-<router-outlet></router-outlet> 
-
-
-
-
-   
+<router-outlet></router-outlet>

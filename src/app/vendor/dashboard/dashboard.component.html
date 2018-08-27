@@ -1,378 +1,346 @@
 <div id="wrapper" class="toggled">
-    <div id="sidebar-wrapper">
-            <app-vendorsidebar></app-vendorsidebar>
-    </div>
-    <div id="page-content-wrapper">
-        <div class="container-fluid nopadd">                    
-            <app-navemenu></app-navemenu>
-            <div class="container-fluid Analytics">
-              <div class="row">
-                <div class="container-fluid Profile_com"> 
-                  <div  matchHeight ="card ">
-                    <div class="col-md-12 card">
-                      <div class="card-header border_bottom_none card-header-warning card-header-icon"> 
-                        <p class="card-category comp_top text-center"> Profile Completion  </p>
-                        <p class="card-category comp_topsubhead text-center">Complete the sections below to enable activation of your view storefront</p>
-                    
-                      </div>
-                      <div class="col-md-12 prof_martop">
-                        <div class="progress nopadd col-sm-11 col-10">
-                          <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                          </div>
-                        </div>
-                        <div class="progresstext col-sm-1 col-2 bluetext text-center"><strong>70%</strong></div>
-
-                        <div class="clearfix"></div>
-                        <div class="profileleftbox prof_padbot"> 
-                            <div class="col-md-2"></div> 
-                            <div class="col-md-5  displya_name">
-                                <ul>
-                                  <li class="done" > 
-                                    <a routerLink="../business"><i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
-                                    <strong class="blacktext" >Trading Name</strong>
-                                    <button class="editbtn">Select to Edit</button>
-                                  </a>
-                                  </li>
-                                  <li > 
-                                    <a routerLink="../portfolioview">
-                                    <i class="material-icons"  ngbTooltip="Business Cover">error_outline</i>
-                                    <strong class="blacktext">Business Cover</strong> 
-                                     <span  class="editbtn">Edit</span> 
-                                   </a>
-                                  </li>
-                                  <li>
-                                    <a routerLink="../business">
-                                  <i class="material-icons" ngbTooltip="Description">error_outline</i> 
-                                    <strong class="blacktext">Description</strong>  
-                                     <span  class="editbtn">Edit</span> 
-                                   </a>
-                                  </li>
-                                </ul>
-                            </div>   
-                            <div class="col-md-5 displya_name">
-                                <ul>
-                                  <li> 
-                                    <a routerLink="../gallery">
-                                    <i class="material-icons" ngbTooltip="Photos">error_outline</i>
-                                    <strong class="blacktext" >Photos</strong>  
-                                    <span  class="editbtn">Edit</span> 
-                                    </a>  
-                                  </li>
-                                  <li> 
-                                    <a routerLink="../business-services">
-                                    <i class="material-icons" ngbTooltip="Services">error_outline</i> 
-                                    <strong class="blacktext" >Services</strong>     
-                                     <span  class="editbtn">Edit</span>    
-                                   </a>
-                                  </li>
-                                  <li>
-                                    <a routerLink="../location">
-                                    <i class="material-icons"  ngbTooltip="Location">error_outline</i> 
-                                    <strong class="blacktext">Location</strong>  
-                                     <span  class="editbtn">Edit</span>  
-                                     </a> 
-                                  </li>
-                                </ul>
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="container-fluid Profile_com"> 
-                  <div class="card overviewbox">
-                    <div class="card-body nopadd" style="overflow: hidden;">
-                    <div class="col-sm-5 nopadd maxheight335px">
-                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" class="infoimg" alt="Profile picture"> 
-                        <div class="viewstore">
-                          <a href="">View Storefront</a>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-7 nopadd maxheight335px mobileheightauto ">
-                      <div class="martop15px"></div>
-
-                        <div class="col-sm-2 col-3 mobpadd10 edithovering">
-                            
-                          <img src="{{ angularLogo }}" class="oviewviewimgcircle" alt="Profile picture"> 
-
-                          <button class="photoedit" data-target="#camera" data-toggle="modal" type="button"><i class="material-icons">camera</i></button>
-                        </div>
-                      <div class="col-sm-10 col-9 blacktext nopadd pull-left">
-                      <h2 class="titlehead"><strong>Vision Photography</strong></h2>
-                      <div class="overhiddenmob mobmartop15px">
-                      <div class="col-xs-1 nopadd">
-                        <i class="material-icons">location_on</i>
-                      </div>
-                      <div class="col-xs-8 nopadd edithovering">
-                        <!-- <p data-target="#currentLocation" data-toggle="modal">{{currentLocation}}<br/>2 More Branches </p> -->
-
-                        <p>
-                          <a routerLink="../location">
-                          {{currentLocation}}<br/>2 More Branches 
-                        </a>
-                        </p>
-                          <span  class="editbtn">Edit</span>  
-                      </div>
-                      <div class="prolinkmob">
-                        <a routerLink="../PromoteBusiness" class="font11px bluelink">
-                          <i class="material-icons">assessment</i> <span>Promote Business</span></a><br/>
-                          <a routerLink="../statistics" class="font11px bluelink"><i class="material-icons">equalizer</i> <span>Business Insight</span></a>
-                      </div>
-                    </div>
-                      <div class="clearfix"></div>
-                      <div class="overhiddenmob" >
-                        <div class="col-xs-1 nopadd">
-                        <i class="material-icons">phone</i>
-                      </div>
-                      <div class="col-xs-8 nopadd edithovering">
-                      <!-- <p data-target="#PhoneEdit" data-toggle="modal">{{PhoneEdit}} 
-                      <span class="editbtn">Edit</span> 
-                      </p>  -->
-                      <p >
-                        <a routerLink="../location">
-                        {{PhoneEdit}} 
-                      <span class="editbtn">Edit</span> 
-                    </a>
-                      </p> 
-                            
-
-
-
-                      </div>
-                    </div>
-                      <div class="col-sm-12 nopadd martop12px overhiddenmob mobilenone">
-                        <div class="col-xs-1 nopadd">
-                        <i class="material-icons">work_outline</i>
-                      </div>
-                      <div class="col-xs-11 nopadd">
-                      <span class="pinkchip">Wedding Venue</span><br/>
-                      Membership Type: Free <a routerLink="../membership" class="bluelink">Upgrade to Premium</a>
-                      </div>
-                      </div>
-                      <div class="clearfix"></div>
-                      
-                    
-                    </div>
- <div class="clearfix"></div>
-                    <div class="col-sm-12 nopadd martop15px marbot15px clearfix">
-                        <div class="col-xs-4 text-center">
-                          <a routerLink="../portfolioview" class="blacktext">
-                            <i class="material-icons">photo_library</i>
-                            <strong>1</strong>
-                            <div class="clearfix"></div>
-                            Portfolio
-                          </a>
-                        </div>
-                        <div class="col-xs-4 text-center">
-                          <a routerLink="../Videos" class="blacktext">
-                            <i class="material-icons">video_library</i>
-                            <strong>1</strong>
-                            <div class="clearfix"></div>
-                            Vedios
-                          </a>
-                        </div>
-                        <div class="col-xs-4 text-center">
-                           <a routerLink="../albumview" class="blacktext">
-                            <i class="material-icons">library_books</i>
-                            <strong>1</strong>
-                            <div class="clearfix"></div>
-                            Albums
-                          </a>
-                        </div>
-                    </div>
-
-  <div class="col-sm-12 bottop desktopnone nopadd paddtop15 martop15px marbot15px clearfix">
-    <div class="col-6 pull-left text-center"> 
-      <a routerLink="../PromoteBusiness" class="font11px bluelink">
-        <i class="material-icons">assessment</i> <br/>
-        Promote Business
-      </a>
-    </div>
-    <div  class="col-6 pull-left  text-center">
-       <a routerLink="../statistics" class="font11px bluelink">
-        <i class="material-icons">equalizer</i> <br/>
-        Business Insight
-      </a>
-    </div>
+  <div id="sidebar-wrapper">
+     <app-vendorsidebar></app-vendorsidebar>
   </div>
-
-
-                    <div class="col-sm-12 bottop padbot0px padtop7px text-center clearfix">
-                      <a class="text-muted mobilenone" target="_blank">
-                       <i class="material-icons">share</i> Share Vision Photography
-                      </a>
-                     
-<div class="clearfix"></div>
-                     <div class="col-8 pull-left desktopnone blacktext padbot5px text-left">
-                     Membership Type : Free</div>
-                     <div class="col-4 pull-left text-right desktopnone padbot5px"><a routerLink="../membership" class="bluelink">Upgrade</a></div>
+  <div id="page-content-wrapper">
+  <div class="container-fluid nopadd">
+  <app-navemenu></app-navemenu>
+  <div class="container-fluid Analytics">
+     <div class="row">
+        <div class="container-fluid Profile_com">
+           <div  matchHeight ="card ">
+              <div class="col-md-12 card">
+                 <div class="card-header border_bottom_none card-header-warning card-header-icon">
+                    <p class="card-category comp_top text-center"> Profile Completion  </p>
+                    <p class="card-category comp_topsubhead text-center">Complete the sections below to enable activation of your view storefront</p>
+                 </div>
+                 <div class="col-md-12 prof_martop">
+                    <div class="progress nopadd col-sm-11 col-10">
+                       <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                          aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                       </div>
                     </div>
+                    <div class="progresstext col-sm-1 col-2 bluetext text-center"><strong>70%</strong></div>
+                    <div class="clearfix"></div>
+                    <div class="profileleftbox prof_padbot">
+                       <div class="col-md-2"></div>
+                       <div class="col-md-5  displya_name">
+                          <ul>
+                             <li class="done" > 
+                                <a routerLink="../business"><i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
+                                <strong class="blacktext" >Trading Name</strong>
+                                <button class="editbtn">Select to Edit</button>
+                                </a>
+                             </li>
+                             <li > 
+                                <a routerLink="../portfolioview">
+                                <i class="material-icons"  ngbTooltip="Business Cover">error_outline</i>
+                                <strong class="blacktext">Business Cover</strong> 
+                                <span  class="editbtn">Edit</span> 
+                                </a>
+                             </li>
+                             <li>
+                                <a routerLink="../business">
+                                <i class="material-icons" ngbTooltip="Description">error_outline</i> 
+                                <strong class="blacktext">Description</strong>  
+                                <span  class="editbtn">Edit</span> 
+                                </a>
+                             </li>
+                          </ul>
+                       </div>
+                       <div class="col-md-5 displya_name">
+                          <ul>
+                             <li> 
+                                <a routerLink="../gallery">
+                                <i class="material-icons" ngbTooltip="Photos">error_outline</i>
+                                <strong class="blacktext" >Photos</strong>  
+                                <span  class="editbtn">Edit</span> 
+                                </a>  
+                             </li>
+                             <li> 
+                                <a routerLink="../business-services">
+                                <i class="material-icons" ngbTooltip="Services">error_outline</i> 
+                                <strong class="blacktext" >Services</strong>     
+                                <span  class="editbtn">Edit</span>    
+                                </a>
+                             </li>
+                             <li>
+                                <a routerLink="../location">
+                                <i class="material-icons"  ngbTooltip="Location">error_outline</i> 
+                                <strong class="blacktext">Location</strong>  
+                                <span  class="editbtn">Edit</span>  
+                                </a> 
+                             </li>
+                          </ul>
+                       </div>
                     </div>
-
-                    
-                    </div>
-                  </div>
-                </div>
+                 </div>
               </div>
-              <div class="row martop15px">
-                  <div class="col-md-3 col-6 pull-left">
-                        <div class="card card-stats mobileviewcontent marbot10px mobilemarbot30px">
-                          <div class="card-header card-header-warning card-header-icon">
-                            <div class="card-icon">
-                              <i class="material-icons">store</i>
-                            </div>
-                            <p class="card-category">Impressions</p>
-                            <h3 class="card-title"> 184</h3>
-
+           </div>
+        </div>
+     </div>
+     <div class="row">
+        <div class="container-fluid Profile_com">
+           <div class="card overviewbox">
+              <div class="card-body nopadd" style="overflow: hidden;">
+                 <div class="col-sm-5 nopadd maxheight335px">
+                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" class="infoimg" alt="Profile picture"> 
+                    <div class="viewstore">
+                       <a href="">View Storefront</a>
+                    </div>
+                 </div>
+                 <div class="col-sm-7 nopadd maxheight335px mobileheightauto ">
+                    <div class="martop15px"></div>
+                    <div class="col-sm-2 col-3 mobpadd10 edithovering">
+                       <img src="{{ angularLogo }}" class="oviewviewimgcircle" alt="Profile picture"> 
+                       <button class="photoedit" data-target="#camera" data-toggle="modal" type="button"><i class="material-icons">camera</i></button>
+                    </div>
+                    <div class="col-sm-10 col-9 blacktext nopadd pull-left">
+                       <h2 class="titlehead"><strong>Vision Photography</strong></h2>
+                       <div class="overhiddenmob mobmartop15px">
+                          <div class="col-xs-1 nopadd">
+                             <i class="material-icons">location_on</i>
                           </div>
-                          <div class="card-footer mobilenone">
-                                  <div class="stats">
-                                  <i class="material-icons text-danger">warning</i>
-                                  <span>Storefront views</span>
-                                  </div>
-                              </div>
-                        </div>     
-
-                  </div>
-
-                  <div class="col-md-3 col-6 pull-left">
-                          <div class="card card-stats mobileviewcontent marbot10px mobilemarbot30px">
-                            <div class="card-header card-header-warning card-header-icon">
-                              <div class="card-icon rose">
-                                <i class="material-icons">equalizer</i>
-                              </div>
-                              <p class="card-category">Enquiries & Leads</p>
-                              <h3 class="card-title"> 53</h3>
-                            </div>
-                            <div class="card-footer mobilenone">
-                                    <div class="stats">
-                                    <i class="material-icons ">local_offer</i>
-                                    <span>Contact From & Job Pool</span>
-                                    </div>
-                                </div>
-                          </div>     
+                          <div class="col-xs-8 nopadd edithovering">
+                             <!-- <p data-target="#currentLocation" data-toggle="modal">{{currentLocation}}<br/>2 More Branches </p> -->
+                             <p>
+                                <a routerLink="../location">
+                                {{currentLocation}}<br/>2 More Branches 
+                                </a>
+                             </p>
+                             <span  class="editbtn">Edit</span>  
+                          </div>
+                          <div class="prolinkmob">
+                             <a routerLink="../PromoteBusiness" class="font11px bluelink">
+                             <i class="material-icons">assessment</i> <span>Promote Business</span></a><br/>
+                             <a routerLink="../statistics" class="font11px bluelink"><i class="material-icons">equalizer</i> <span>Business Insight</span></a>
+                          </div>
+                       </div>
+                       <div class="clearfix"></div>
+                       <div class="overhiddenmob" >
+                          <div class="col-xs-1 nopadd">
+                             <i class="material-icons">phone</i>
+                          </div>
+                          <div class="col-xs-8 nopadd edithovering">
+                             <!-- <p data-target="#PhoneEdit" data-toggle="modal">{{PhoneEdit}} 
+                                <span class="editbtn">Edit</span> 
+                                </p>  -->
+                             <p >
+                                <a routerLink="../location">
+                                {{PhoneEdit}} 
+                                <span class="editbtn">Edit</span> 
+                                </a>
+                             </p>
+                          </div>
+                       </div>
+                       <div class="col-sm-12 nopadd martop12px overhiddenmob mobilenone">
+                          <div class="col-xs-1 nopadd">
+                             <i class="material-icons">work_outline</i>
+                          </div>
+                          <div class="col-xs-11 nopadd">
+                             <span class="pinkchip">Wedding Venue</span><br/>
+                             Membership Type: Free <a routerLink="../membership" class="bluelink">Upgrade to Premium</a>
+                          </div>
+                       </div>
+                       <div class="clearfix"></div>
                     </div>
-
-                    <div class="col-md-3 col-6 mobileviewcontent pull-left">
-                          <div class="card card-stats marbot10px mobilemarbot30px">
-                            <div class="card-header card-header-warning card-header-icon">
-                              <div class="card-icon green_bg">
-                                <i class="material-icons">favorite_border</i>
-                              </div>
-                              <p class="card-category">Love count</p>
-                              <h3 class="card-title"> 4</h3>
-                            </div>
-                            <div class="card-footer mobilenone">
-                                    <div class="stats">
-                                    <i class="material-icons ">date_range</i>
-                                    <span> No of times images are bookmark</span>
-                                    </div>
-                                </div>
-                          </div>     
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12 nopadd martop15px marbot15px clearfix">
+                       <div class="col-xs-4 text-center">
+                          <a routerLink="../portfolioview" class="blacktext">
+                             <i class="material-icons">photo_library</i>
+                             <strong>1</strong>
+                             <div class="clearfix"></div>
+                             Portfolio
+                          </a>
+                       </div>
+                       <div class="col-xs-4 text-center">
+                          <a routerLink="../Videos" class="blacktext">
+                             <i class="material-icons">video_library</i>
+                             <strong>1</strong>
+                             <div class="clearfix"></div>
+                             Vedios
+                          </a>
+                       </div>
+                       <div class="col-xs-4 text-center">
+                          <a routerLink="../albumview" class="blacktext">
+                             <i class="material-icons">library_books</i>
+                             <strong>1</strong>
+                             <div class="clearfix"></div>
+                             Albums
+                          </a>
+                       </div>
                     </div>
-
-                    <div class="col-md-3 col-6 mobileviewcontent pull-left">
-                          <div class="card card-stats marbot10px mobilemarbot30px">
-                            <div class="card-header card-header-warning card-header-icon">
-                              <div class="card-icon green_bg1">
-                                <i class="material-icons">message</i>
-                              </div>
-                              <p class="card-category">Reviews</p>
-                              <h3 class="card-title"> 15</h3>
-                            </div>
-                            <div class="card-footer mobilenone">
-                                    <div class="stats">
-                                    <i class="material-icons">date_range</i>
-                                    <span> update</span>
-                                    </div>
-                                </div>
-                          </div>     
+                    <div class="col-sm-12 bottop desktopnone nopadd paddtop15 martop15px marbot15px clearfix">
+                       <div class="col-6 pull-left text-center"> 
+                          <a routerLink="../PromoteBusiness" class="font11px bluelink">
+                          <i class="material-icons">assessment</i> <br/>
+                          Promote Business
+                          </a>
+                       </div>
+                       <div  class="col-6 pull-left  text-center">
+                          <a routerLink="../statistics" class="font11px bluelink">
+                          <i class="material-icons">equalizer</i> <br/>
+                          Business Insight
+                          </a>
+                       </div>
                     </div>
-
+                    <div class="col-sm-12 bottop padbot0px padtop7px text-center clearfix">
+                       <a class="text-muted mobilenone" target="_blank">
+                       <i class="material-icons">share</i> Share Vision Photography
+                       </a>
+                       <div class="clearfix"></div>
+                       <div class="col-8 pull-left desktopnone blacktext padbot5px text-left">
+                          Membership Type : Free
+                       </div>
+                       <div class="col-4 pull-left text-right desktopnone padbot5px"><a routerLink="../membership" class="bluelink">Upgrade</a></div>
+                    </div>
+                 </div>
               </div>
-            </div>
-            <div class="container-fluid Profile_com "> 
-                    <div  matchHeight ="card ">
+           </div>
+        </div>
+     </div>
+     <div class="row martop15px">
+        <div class="col-md-3 col-6 pull-left">
+           <div class="card card-stats mobileviewcontent marbot10px mobilemarbot30px">
+              <div class="card-header card-header-warning card-header-icon">
+                 <div class="card-icon">
+                    <i class="material-icons">store</i>
+                 </div>
+                 <p class="card-category">Impressions</p>
+                 <h3 class="card-title"> 184</h3>
+              </div>
+              <div class="card-footer mobilenone">
+                 <div class="stats">
+                    <i class="material-icons text-danger">warning</i>
+                    <span>Storefront views</span>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div class="col-md-3 col-6 pull-left">
+           <div class="card card-stats mobileviewcontent marbot10px mobilemarbot30px">
+              <div class="card-header card-header-warning card-header-icon">
+                 <div class="card-icon rose">
+                    <i class="material-icons">equalizer</i>
+                 </div>
+                 <p class="card-category">Enquiries & Leads</p>
+                 <h3 class="card-title"> 53</h3>
+              </div>
+              <div class="card-footer mobilenone">
+                 <div class="stats">
+                    <i class="material-icons ">local_offer</i>
+                    <span>Contact From & Job Pool</span>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div class="col-md-3 col-6 mobileviewcontent pull-left">
+           <div class="card card-stats marbot10px mobilemarbot30px">
+              <div class="card-header card-header-warning card-header-icon">
+                 <div class="card-icon green_bg">
+                    <i class="material-icons">favorite_border</i>
+                 </div>
+                 <p class="card-category">Love count</p>
+                 <h3 class="card-title"> 4</h3>
+              </div>
+              <div class="card-footer mobilenone">
+                 <div class="stats">
+                    <i class="material-icons ">date_range</i>
+                    <span> No of times images are bookmark</span>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div class="col-md-3 col-6 mobileviewcontent pull-left">
+           <div class="card card-stats marbot10px mobilemarbot30px">
+              <div class="card-header card-header-warning card-header-icon">
+                 <div class="card-icon green_bg1">
+                    <i class="material-icons">message</i>
+                 </div>
+                 <p class="card-category">Reviews</p>
+                 <h3 class="card-title"> 15</h3>
+              </div>
+              <div class="card-footer mobilenone">
+                 <div class="stats">
+                    <i class="material-icons">date_range</i>
+                    <span> update</span>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+  <div class="container-fluid Profile_com ">
+  <div  matchHeight ="card ">
+    <div class="col-sm-6 mobnopadd padleft0px">
+     <div class="col-md-12 mobnopadd padleft0px">
+        <div class="card card-stats mobileviewcontent card_padd_bottom height360px">
+           <div class="card-header border_bottom_none card-header-warning card-header-icon">
+              <div class="card-icon  white_bg">
+                 <i class="material-icons">event_available</i>
+              </div>
+              <p class="card-category upcominghead">Upcoming Weddings</p>
+           </div>
+           <div class="acordian_panel">
+              <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018 <span class="flo_rigt"> <i class="material-icons ">location_on</i>Indore <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>  </span>
+              </button>
+              <div class="panel">
+                 <ul>
+                    <li>Guests: 1500  </li>
+                    <li>Name: Dakota Rice </li>
+                    <li>Phone: 0731-245687</li>
+                 </ul>
+              </div>
+              <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018  <span class="flo_rigt"> <i class="material-icons ">location_on</i>Delhi
+              <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> 
+              <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>
+              </span>  </button>
+              <div class="panel">
+                 <ul>
+                    <li>Guests: 1500  </li>
+                    <li>Name: Dakota Rice </li>
+                    <li>Phone: 0731-245687</li>
+                 </ul>
+              </div>
+              <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018 <span class="flo_rigt"> <i class="material-icons ">location_on</i> Niger
+              <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>
+              </span> </button>
+              <div class="panel">
+                 <ul>
+                    <li>Guests: 1500  </li>
+                    <li>Name: Dakota Rice </li>
+                    <li>Phone: 0731-245687</li>
+                 </ul>
+              </div>
+              <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018 <span class="flo_rigt"> <i class="material-icons ">location_on</i> Niger
+              <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>
+              </span> </button>
+              <div class="panel">
+                 <ul>
+                    <li>Guests: 1500  </li>
+                    <li>Name: Dakota Rice </li>
+                    <li>Phone: 0731-245687</li>
+                 </ul>
+              </div>
+           </div>
 
-                        
-                        <div class="col-sm-6 mobnopadd padleft0px">     
 
-                                
-                                        <div class="col-md-12 mobnopadd padleft0px">
-                                                <div class="card card-stats mobileviewcontent card_padd_bottom height360px">
-                                                  <div class="card-header border_bottom_none card-header-warning card-header-icon">
-                                                    <div class="card-icon  white_bg">
-                                                      <i class="material-icons">event_available</i>
-                                                    </div>
-                                                    <p class="card-category upcominghead">Upcoming Weddings</p>
-                                                    
-                                                  </div>
-
-                                                  <div class="acordian_panel">
-                                                    <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018 <span class="flo_rigt"> <i class="material-icons ">location_on</i>Indore <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>  </span>
-                                                    </button>
-                                                      <div class="panel">
-                                                        <ul>
-                                                          <li>Guests: 1500  </li>
-                                                          <li>Name: Dakota Rice </li>
-                                                          <li>Phone: 0731-245687</li>
-                                                        </ul>
-                                                      </div>
-
-                                                      <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018  <span class="flo_rigt"> <i class="material-icons ">location_on</i>Delhi
-                                                      <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> 
-                                                      <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>
-
-                                                      </span>  </button>
-                                                      <div class="panel">
-                                                        <ul>
-                                                          <li>Guests: 1500  </li>
-                                                          <li>Name: Dakota Rice </li>
-                                                          <li>Phone: 0731-245687</li>
-                                                        </ul>
-                                                      </div>
-                                                      <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018 <span class="flo_rigt"> <i class="material-icons ">location_on</i> Niger
-
-                                                        <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>
-                                                      </span> </button>
-                                                      <div class="panel">
-                                                        <ul>
-                                                          <li>Guests: 1500  </li>
-                                                          <li>Name: Dakota Rice </li>
-                                                          <li>Phone: 0731-245687</li>
-                                                        </ul>
-                                                      </div>
-
-                                                      <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018 <span class="flo_rigt"> <i class="material-icons ">location_on</i> Niger
-                                                      <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>
-                                                      </span> </button>
-                                                      <div class="panel">
-                                                        <ul>
-                                                          <li>Guests: 1500  </li>
-                                                          <li>Name: Dakota Rice </li>
-                                                          <li>Phone: 0731-245687</li>
-                                                        </ul>
-                                                      </div>
-                                                
-                                                  </div>                                                  
-                                                </div>     
-                                          </div>                                                          
-                            </div>
-
-                            <div class="col-sm-6 card height360px mobileheightauto nopadd">
-
-                      <div class="card-body">
-              <div class="card-block nopadd" id="demo">
-
-    </div> 
-</div>
  
-
-
-
-<router-outlet></router-outlet> 
-
+        </div>
+     </div>
+    </div>
+    <div class="col-sm-6 card height360px mobileheightauto nopadd">
+      <div class="card-body">
+     <div class="card-block nopadd" id="demo">
+        <div id="carousel" class="owl-carousel">
+          <div class="item"> <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> </div>
+          <div class="item"> <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> </div>
+          <div class="item"> <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> </div>
+          <div class="item"> <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> </div>
+        </div>
+     </div>
+      </div>
+    </div>
+  </div></div>
+  <router-outlet></router-outlet>

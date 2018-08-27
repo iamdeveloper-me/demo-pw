@@ -1,398 +1,360 @@
 <div id="wrapper" class="toggled">
-    <div id="sidebar-wrapper">
-        <app-vendorsidebar></app-vendorsidebar>
-        <router-outlet></router-outlet>  
-    </div>
-    <div id="page-content-wrapper">    
-        <app-navemenu></app-navemenu>
-        <section class="p-0 " id="portfolio">
-            <div class="col-sm-12 mob_margin_30px">
-                <div class="col-sm-5 mobnopadd padleft0px ">
-                    <div class="card heightequal365 margintop0px mobmargintop30px">
-                        <div class="card-header">
-                            <div class="busines_img">
-                                <img src="{{ imag }}"alt=""> 
-                                <span class="busi_camera "> 
-                                    <i class="material-icons"> camera_alt </i> 
-                                </span>
-                            </div>
-                            <div class="busi_contact">
-                                <h6>Business name or Contact Person</h6>
-                                <div class="on_hover" data-target="#Businesname" data-toggle="modal" id="Instagram-function" >
-                                    <div>{{Businesname}}</div>
-                                    <span class="text-right col-lg-12 editbtn">
-                                        <i class="material-icons"  >edit</i>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="on_hoverdiv" data-target="#Description" data-toggle="modal" id="description-function" >
-                                <h6 class="text-center">Business Description</h6>
-                                <span class=" editbtn  editbtn11" >
-                                    <i class="material-icons"   >edit</i>
-                                </span>
-                                <div class="col-lg-12 col-md-12 add_text text-center">
-                                    {{Description}}               
-                                </div>
-                            </div>
+   <div id="sidebar-wrapper">
+      <app-vendorsidebar></app-vendorsidebar>
+      <router-outlet></router-outlet>
+   </div>
+   <div id="page-content-wrapper">
+      <app-navemenu></app-navemenu>
+      <section class="p-0 " id="portfolio">
+         <div class="col-sm-12 mob_margin_30px">
+            <div class="col-sm-5 mobnopadd padleft0px ">
+               <div class="card heightequal365 margintop0px mobmargintop30px">
+                  <div class="card-header">
+                     <div class="busines_img">
+                        <img src="{{ imag }}"alt=""> 
+                        <span class="busi_camera "> 
+                        <i class="material-icons"> camera_alt </i> 
+                        </span>
+                     </div>
+                     <div class="busi_contact">
+                        <h6>Business name or Contact Person</h6>
+                        <div class="on_hover" data-target="#Businesname" data-toggle="modal" id="Instagram-function" >
+                           <div>{{vendor.nameOfBusiness}}</div>
+                           <span class="text-right col-lg-12 editbtn">
+                           <i class="material-icons"  >edit</i>
+                           </span>
                         </div>
-                    </div>
-                </div>
-                <div class="col-sm-7 linkbox margintop0px heightequal365 card padright0px">
-                    <div class="card-header">
-                        <h6 class="card-title text-center">Link Accounts & Websites</h6>
-                    </div>
-                    <div class="card-body">   
-                        <div class="col-sm-9">
-                            <div class="social-connect  col-sm-12" data-reactid="330">
-                                <div class="social" data-reactid="332">
-                                    <i class="fa fa-facebook fa-2x" data-reactid="334"></i>
-                                    <span id="prompt-function"  data-target="#facebook" data-toggle="modal" data-reactid="333">
-                                        
-                                        {{facebook}}
-                                    </span>
-                                    <div class="col-lg-12 editbtn">
-                                            <h4 class="text-right col-lg-12">
-                                                <i class="material-icons">edit</i>
-                                            </h4>
-                                    </div>
-                                  
-                                </div>
-                            </div>
-                            <div class="social-connect  col-sm-12" data-reactid="330">
-                                <div class="social" data-reactid="332">
-                                     <i class="fa fa-twitter fa-2x " data-reactid="338"></i>
-                                    <span id="Pinterest-function" data-target="#twitter" data-toggle="modal"  data-reactid="337">
-                                       {{twitter}}
-                                    </span>
-                                    <div class="col-lg-12 editbtn">
-                                        <h4 class="text-right col-lg-12">
-                                            <i class="material-icons">edit</i>
-                                        </h4>
-                                    </div>
-                                   <!--  <div class="switbtn">
-                                        <ui-switch [(ngModel)]="enable1" ></ui-switch> 
-                                    </div>   --> 
-                                </div>
-                            </div>
-                            <div class="social-connect col-sm-12" data-reactid="330">
-                                <div class="social" data-reactid="332">
-                                     <i class="fa fa-google-plus fa-2x" data-reactid="340"></i>
-                                    <span id="Google-function" data-target="#google" data-toggle="modal" data-reactid="339">
-                                   {{google}}
-                                    </span>
-                                
-                                    <div class="col-lg-12 editbtn">
-
-                                        <h4 class="text-right col-lg-12">
-                                            <i class="material-icons">edit </i>
-                                        </h4>
-
-                                    </div>
-                                   <!--  <div class="switbtn">
-                                        <ui-switch [(ngModel)]="enable2" ></ui-switch>
-                                    </div>  -->
-                                </div>
-
-                            </div>
-                            <div class="social-connect col-sm-12" data-reactid="330">
-                                <div class="social" data-reactid="332">
-                                     <i class="fa fa-instagram fa-2x" data-reactid="342"></i>
-                                        <span id="Instagram-function" data-target="#instagram" data-toggle="modal" data-reactid="341">
-                                       
-                                        {{instagram}}
-                                        </span>
-                                        <div class="col-lg-12 editbtn">
-                                                <h4 class="text-right col-lg-12">
-                                                 <i class="material-icons">edit</i>
-                                                </h4>
-                                        </div>
-                                       <!--  <div class="switbtn">
-        
-                                                <ui-switch [(ngModel)]="enable3" ></ui-switch> 
-        
-                                        </div> -->
-
-                                </div>
-                            </div>
-                            <div class="social-connect  col-sm-12" data-reactid="330">
-                                <div class="social" data-reactid="332">
-                                    <i class="fa fa-globe fa-2x" data-reactid="342"></i>
-                                    <span id="Instagram-function" data-target="#instagram2" data-toggle="modal" data-reactid="341">
-                                       {{instagram2}}
-                                    </span>
-                                    <div class="col-lg-12 editbtn">
-                                        <h4 class="text-right col-lg-12">
-                                            <i class="material-icons">edit</i>
-                                        </h4>
-                                    </div>
-                                    <!-- <div class="switbtn">
-                                        <ui-switch [(ngModel)]="enable4" ></ui-switch> 
-                                    </div> -->
-                                </div>
-                            </div>
+                     </div>
+                     <div class="clearfix"></div>
+                     <div class="on_hoverdiv" data-target="#Description" data-toggle="modal" id="description-function" >
+                        <h6 class="text-center">Business Description </h6>
+                        <span class=" editbtn  editbtn11" >
+                        <i class="material-icons"   >edit</i>
+                        </span>
+                        <div class="col-lg-12 col-md-12 add_text text-center">
+                           {{vendor.businessDetails}}               
                         </div>
-                    </div>   
-
-                </div>  
+                     </div>
+                  </div>
+               </div>
             </div>
-            <div class="col-sm-12 mob_margin_30px">
-                <div class="card col-sm-12 notebox text-center">
-                
-                        <p>No Website? No Problem!</p>
-                        <div class="noproblum">
-                            <p>1. Copy the link to your profile on Perfect Weddings 
-                                <span>Copy</span></p>
-                            <p>2. Go to your Facebook Page and add the link as your website</p>
-                            <p>3. You are done! That was easy, isn’t it?</p>
+            <div class="col-sm-7 linkbox margintop0px heightequal365 card padright0px">
+               <div class="card-header">
+                  <h6 class="card-title text-center">Link Accounts & Websites</h6>
+               </div>
+               <div class="card-body">
+                  <div class="col-sm-9">
+                     <div class="social-connect  col-sm-12" data-reactid="330">
+                        <div class="social" data-reactid="332">
+                           <i class="fa fa-facebook fa-2x" data-reactid="334"></i>
+                           <span id="prompt-function"  data-target="#facebook" data-toggle="modal" data-reactid="333">
+                           {{vendor.facebookURL}}
+                           </span>
+                           <div class="col-lg-12 editbtn">
+                              <h4 class="text-right col-lg-12">
+                                 <i class="material-icons">edit</i>
+                              </h4>
+                           </div>
                         </div>
-              
-                </div>
-            </div>    
-        </section> 
-        <div class="clearfix"></div>
-        <app-foot></app-foot>
-    </div>
-    
+                     </div>
+                     <div class="social-connect  col-sm-12" data-reactid="330">
+                        <div class="social" data-reactid="332">
+                           <i class="fa fa-twitter fa-2x " data-reactid="338"></i>
+                           <span id="Pinterest-function" data-target="#twitter" data-toggle="modal"  data-reactid="337">
+                           {{vendor.twitterURL}}
+                           </span>
+                           <div class="col-lg-12 editbtn">
+                              <h4 class="text-right col-lg-12">
+                                 <i class="material-icons">edit</i>
+                              </h4>
+                           </div>
+                           <!--  <div class="switbtn">
+                              <ui-switch [(ngModel)]="enable1" ></ui-switch> 
+                              </div>   --> 
+                        </div>
+                     </div>
+                     <div class="social-connect col-sm-12" data-reactid="330">
+                        <div class="social" data-reactid="332">
+                           <i class="fa fa-google-plus fa-2x" data-reactid="340"></i>
+                           <span id="Google-function" data-target="#google" data-toggle="modal" data-reactid="339">
+                           {{vendor.googleURL}}
+                           </span>
+                           <div class="col-lg-12 editbtn">
+                              <h4 class="text-right col-lg-12">
+                                 <i class="material-icons">edit </i>
+                              </h4>
+                           </div>
+                           <!--  <div class="switbtn">
+                              <ui-switch [(ngModel)]="enable2" ></ui-switch>
+                              </div>  -->
+                        </div>
+                     </div>
+                     <div class="social-connect col-sm-12" data-reactid="330">
+                        <div class="social" data-reactid="332">
+                           <i class="fa fa-instagram fa-2x" data-reactid="342"></i>
+                           <span id="Instagram-function" data-target="#instagram" data-toggle="modal" data-reactid="341">
+                           {{vendor.instalURL}}
+                           </span>
+                           <div class="col-lg-12 editbtn">
+                              <h4 class="text-right col-lg-12">
+                                 <i class="material-icons">edit</i>
+                              </h4>
+                           </div>
+                           <!--  <div class="switbtn">
+                              <ui-switch [(ngModel)]="enable3" ></ui-switch> 
+                              </div> -->
+                        </div>
+                     </div>
+                     <div class="social-connect  col-sm-12" data-reactid="330">
+                        <div class="social" data-reactid="332">
+                           <i class="fa fa-globe fa-2x" data-reactid="342"></i>
+                           <span id="Instagram-function" data-target="#instagram2" data-toggle="modal" data-reactid="341">
+                           {{instagram2}}
+                           </span>
+                           <div class="col-lg-12 editbtn">
+                              <h4 class="text-right col-lg-12">
+                                 <i class="material-icons">edit</i>
+                              </h4>
+                           </div>
+                           <!-- <div class="switbtn">
+                              <ui-switch [(ngModel)]="enable4" ></ui-switch> 
+                              </div> -->
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-sm-12 mob_margin_30px">
+            <div class="card col-sm-12 notebox text-center">
+               <p>No Website? No Problem!</p>
+               <div class="noproblum">
+                  <p>1. Copy the link to your profile on Perfect Weddings 
+                     <span>Copy</span>
+                  </p>
+                  <p>2. Go to your Facebook Page and add the link as your website</p>
+                  <p>3. You are done! That was easy, isn’t it?</p>
+               </div>
+            </div>
+         </div>
+      </section>
+      <div class="clearfix"></div>
+      <app-foot></app-foot>
+   </div>
 </div>
-
 <div class="modal fade" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                        <h4 class="modal-title">Edit Business Description</h4>
-                        <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                      
-                    <div class="col-sm-12  text-center">      
-                              
-                        <textarea  class="textareaclass" type="text" [(ngModel)] = "Description" (ngModelChange)="Description = $event" placeholder="Enter Description"></textarea> 
-                     
-                    </div>
-                </div>
-                <div class="modal-footer text-center">
-                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
-                    <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
-                </div>
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header text-center">
+            <h4 class="modal-title">Edit Business Description</h4>
+            <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         </div>
+         <div class="modal-body">
+            <div class="col-sm-12  text-center">      
+               <textarea  class="textareaclass" type="text" [(ngModel)] = "Description" (ngModelChange)="Description = $event" placeholder="Enter Description"></textarea> 
             </div>
-        </div>
+         </div>
+         <div class="modal-footer text-center">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+            <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+         </div>
+      </div>
+   </div>
 </div>
 <div class="modal fade" id="Businesname" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                        <h4 class="modal-title">Edit Business Name or Contact</h4>
-                        <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-sm-12  text-center">                 
-                            <!-- <i class="material-icons"> add_location </i> -->
-                        
-                            <p class="input_para"><input class="endent_10px width_60" type="text" [(ngModel)] = "Businesname" (ngModelChange)="Businesname = $event"
-                                placeholder="Vision Photography"> </p> 
-                            <!-- <p>Business picture url :<input class="endent_10px width_60" type="text" [(ngModel)] = "imag"  placeholder="Enter image url"> </p>  -->
-                                       
-                    </div>
-                </div>
-
-        
-                <div class="modal-footer text-center">
-                        <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save</button> -->
-                        <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
-                       
-                </div>
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header text-center">
+            <h4 class="modal-title">Edit Business Name or Contact</h4>
+            <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         </div>
+         <div class="modal-body">
+            <div class="col-sm-12  text-center">
+               <!-- <i class="material-icons"> add_location </i> -->
+               <p class="input_para"><input class="endent_10px width_60" type="text" [(ngModel)] = "Businesname" (ngModelChange)="Businesname = $event"
+                  placeholder="Vision Photography"> 
+               </p>
+               <!-- <p>Business picture url :<input class="endent_10px width_60" type="text" [(ngModel)] = "imag"  placeholder="Enter image url"> </p>  -->
             </div>
-        </div>
+         </div>
+         <div class="modal-footer text-center">
+            <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save</button> -->
+            <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+         </div>
+      </div>
+   </div>
 </div>
 <div class="modal fade" id="facebook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal_head text-center">
-                        <h4 class="modal-title"><strong> Link your Facebook Page </strong>  </h4>
-                        <p>Do you have a Facebook Page for your business?</p>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-
-                    <div class="clearfix"></div>
-                </div>
-                <div class="modal-body">
-                    <div class="col-sm-12  text-center">     
-                        <div class="switbtn">
-                            <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                            <span class="have_one">Of course, I have one! </span>
-                        </div>    
-                         
-                            <div class="clearfix"></div>           
-                                            
-                            <div class="input_facebook input-effect form-group"> 
-                                <i class="fa fa-facebook fa-2x" data-reactid="334" ></i> 
-                                <input class="effect-16 validate endent_10px width_60" type="text" placeholder="Enter the Link here" [(ngModel)] = "facebook" (ngModelChange)="facebook = $event">
-                                <!-- <label>Enter the Link here</label> -->
-                            
-                            </div>          
-                    </div>
-                </div>
-                <div class="foot_div text-center">
-                        <button type="button" class="btn bt_blue" data-dismiss="modal">SAVE</button> &nbsp;
-                        <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
-                </div>
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal_head text-center">
+            <h4 class="modal-title"><strong> Link your Facebook Page </strong>  </h4>
+            <p>Do you have a Facebook Page for your business?</p>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="clearfix"></div>
+         </div>
+         <div class="modal-body">
+            <div class="col-sm-12  text-center">
+               <div class="switbtn">
+                  <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                  <span class="have_one">Of course, I have one! </span>
+               </div>
+               <div class="clearfix"></div>
+               <div class="input_facebook input-effect form-group">
+                  <i class="fa fa-facebook fa-2x" data-reactid="334" ></i> 
+                  <input class="effect-16 validate endent_10px width_60" type="text" placeholder="Enter the Link here" [(ngModel)] = "facebook" (ngModelChange)="facebook = $event">
+                  <!-- <label>Enter the Link here</label> -->
+               </div>
             </div>
-        </div>
+         </div>
+         <div class="foot_div text-center">
+            <button type="button" class="btn bt_blue" data-dismiss="modal">SAVE</button> &nbsp;
+            <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+         </div>
+      </div>
+   </div>
 </div>
 <div class="modal fade" id="twitter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                    <div class="modal_head text-center">
-                            <h4 class="modal-title"><strong> Link your twitter Page </strong>  </h4>
-                            <p>Do you have a Twitter Page for your business?</p>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-sm-12  text-center">     
-                            <div class="switbtn">
-                                <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                                <span class="have_one">Of course, I have one! </span>
-                            </div>              
-                                <div class="clearfix"></div>           
-                                                
-                                <div class="input_facebook input-effect form-group"> 
-                                        <i class="fa fa-twitter fa-2x" data-reactid="334" ></i> 
-                                        <input class="effect-16 validate endent_10px width_60" type="text" placeholder="Enter the Link here" [(ngModel)] = "twitter" (ngModelChange)="twitter = $event">
-                                        <!-- <label>Enter the Link here</label> -->
-                                    
-                                    </div>           
-                        </div>
-                    </div>
-                    <div class="foot_div text-center">
-                            <button type="button" class="btn bt_blue" data-dismiss="modal">SAVE</button> &nbsp;
-                            <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
-                    </div>
-                </div>
-    </div>
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal_head text-center">
+            <h4 class="modal-title"><strong> Link your twitter Page </strong>  </h4>
+            <p>Do you have a Twitter Page for your business?</p>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="clearfix"></div>
+         </div>
+         <div class="modal-body">
+            <div class="col-sm-12  text-center">
+               <div class="switbtn">
+                  <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                  <span class="have_one">Of course, I have one! </span>
+               </div>
+               <div class="clearfix"></div>
+               <div class="input_facebook input-effect form-group">
+                  <i class="fa fa-twitter fa-2x" data-reactid="334" ></i> 
+                  <input class="effect-16 validate endent_10px width_60" type="text" placeholder="Enter the Link here" [(ngModel)] = "twitter" (ngModelChange)="twitter = $event">
+                  <!-- <label>Enter the Link here</label> -->
+               </div>
+            </div>
+         </div>
+         <div class="foot_div text-center">
+            <button type="button" class="btn bt_blue" data-dismiss="modal">SAVE</button> &nbsp;
+            <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+         </div>
+      </div>
+   </div>
 </div>
 <div class="modal fade" id="google" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                    <div class="modal_head text-center">
-                            <h4 class="modal-title"><strong> Link your Google Page </strong>  </h4>
-                            <p>Do you have a Google Page for your business?</p>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-sm-12  text-center">     
-                            <div class="switbtn">
-                                <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                                <span class="have_one">Of course, I have one! </span>
-                            </div>              
-                                <div class="clearfix"></div>           
-                                                
-                                <div class="input_facebook input-effect form-group"> 
-                                        <i class="fa fa-google-plus fa-2x" data-reactid="334" style="font-size:1.6em" ></i> 
-                                        <input class="effect-16 validate endent_10px width_60" type="text" placeholder="Enter the Link here" [(ngModel)] = "google" (ngModelChange)="google = $event">
-                                        <!-- <label>Enter the Link here</label> -->
-                                   
-                                    </div>          
-                        </div>
-                    </div>
-                    <div class="foot_div text-center">
-                            <button type="button" class="btn bt_blue" data-dismiss="modal">SAVE</button> &nbsp;
-                            <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
-                    </div>
-                </div>
-     
-    </div>
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal_head text-center">
+            <h4 class="modal-title"><strong> Link your Google Page </strong>  </h4>
+            <p>Do you have a Google Page for your business?</p>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="clearfix"></div>
+         </div>
+         <div class="modal-body">
+            <div class="col-sm-12  text-center">
+               <div class="switbtn">
+                  <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                  <span class="have_one">Of course, I have one! </span>
+               </div>
+               <div class="clearfix"></div>
+               <div class="input_facebook input-effect form-group">
+                  <i class="fa fa-google-plus fa-2x" data-reactid="334" style="font-size:1.6em" ></i> 
+                  <input class="effect-16 validate endent_10px width_60" type="text" placeholder="Enter the Link here" [(ngModel)] = "google" (ngModelChange)="google = $event">
+                  <!-- <label>Enter the Link here</label> -->
+               </div>
+            </div>
+         </div>
+         <div class="foot_div text-center">
+            <button type="button" class="btn bt_blue" data-dismiss="modal">SAVE</button> &nbsp;
+            <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+         </div>
+      </div>
+   </div>
 </div>
 <div class="modal fade" id="instagram" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                    <div class="modal_head text-center">
-                            <h4 class="modal-title"><strong> Link your Instagram Page </strong>  </h4>
-                            <p>Do you have a Instagram Page for your business?</p>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-sm-12  text-center">     
-                            <div class="switbtn">
-                                <ui-switch [(ngModel)] ="enable" ></ui-switch> 
-                                <span class="have_one">Of course, I have one! </span>
-                            </div>              
-                                <div class="clearfix"></div>           
-                                                
-                                <div class="input_facebook input-effect form-group"> 
-                                        <i class="fa fa-instagram fa-2x" data-reactid="334" ></i> 
-                                        <input class="effect-16 validate endent_10px width_60" type="text" placeholder="Enter the Link here" [(ngModel)] = "instagram" (ngModelChange)="instagram = $event">
-                                        <!-- <label>Enter the Link here</label> -->
-                                      
-                                    </div>           
-                        </div>
-                    </div>
-                    <div class="foot_div text-center">
-                            <button type="button" class="btn bt_blue" data-dismiss="modal">SAVE</button> &nbsp;
-                            <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
-                    </div>
-                </div>
-    </div>
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal_head text-center">
+            <h4 class="modal-title"><strong> Link your Instagram Page </strong>  </h4>
+            <p>Do you have a Instagram Page for your business?</p>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="clearfix"></div>
+         </div>
+         <div class="modal-body">
+            <div class="col-sm-12  text-center">
+               <div class="switbtn">
+                  <ui-switch [(ngModel)] ="enable" ></ui-switch> 
+                  <span class="have_one">Of course, I have one! </span>
+               </div>
+               <div class="clearfix"></div>
+               <div class="input_facebook input-effect form-group">
+                  <i class="fa fa-instagram fa-2x" data-reactid="334" ></i> 
+                  <input class="effect-16 validate endent_10px width_60" type="text" placeholder="Enter the Link here" [(ngModel)] = "instagram" (ngModelChange)="instagram = $event">
+                  <!-- <label>Enter the Link here</label> -->
+               </div>
+            </div>
+         </div>
+         <div class="foot_div text-center">
+            <button type="button" class="btn bt_blue" data-dismiss="modal">SAVE</button> &nbsp;
+            <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+         </div>
+      </div>
+   </div>
 </div>
 <div class="modal fade" id="instagram2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                    <div class="modal_head text-center">
-                            <h4 class="modal-title"><strong> Link your Website </strong>  </h4>
-                            <p>Do you have a Trading Page for your business?</p>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-sm-12  text-center">     
-                            <div class="switbtn">
-                                <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                                <span class="have_one">Of course, I have one! </span>
-                            </div>              
-                                <div class="clearfix"></div>           
-                                                
-                                <div class="input_facebook input-effect form-group"> 
-                                        <i class="fa fa-globe fa-2x" data-reactid="334" ></i> 
-                                        <input class="effect-16 validate endent_10px width_60" type="text" placeholder="Enter the Link here" [(ngModel)] = "instagram2" (ngModelChange)="instagram2 = $event">
-                                        <!-- <label>Enter the Link here</label> -->
-                                
-                                    </div>          
-                        </div>
-                    </div>
-                    <div class="foot_div text-center">
-                            <button type="button" class="btn bt_blue" data-dismiss="modal">SAVE</button> &nbsp;
-                            <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
-                    </div>
-                </div>
-        <!-- <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Add New Trading</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal_head text-center">
+            <h4 class="modal-title"><strong> Link your Website </strong>  </h4>
+            <p>Do you have a Trading Page for your business?</p>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="clearfix"></div>
+         </div>
+         <div class="modal-body">
+            <div class="col-sm-12  text-center">
+               <div class="switbtn">
+                  <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                  <span class="have_one">Of course, I have one! </span>
+               </div>
+               <div class="clearfix"></div>
+               <div class="input_facebook input-effect form-group">
+                  <i class="fa fa-globe fa-2x" data-reactid="334" ></i> 
+                  <input class="effect-16 validate endent_10px width_60" type="text" placeholder="Enter the Link here" [(ngModel)] = "instagram2" (ngModelChange)="instagram2 = $event">
+                  <!-- <label>Enter the Link here</label> -->
+               </div>
             </div>
-            <div class="modal-body">
-                <div class="col-sm-12  text-center">                 
-                    <i class="fa fa-globe fa-2x" data-reactid="342"></i>
-                    <p>Have more link?</p>
-                     <div class="clearfix"></div>
-                        <div class="switbtn">
-                                            <ui-switch [(ngModel)]="enable4" ></ui-switch> 
-                                    </div>
-<div class="clearfix"></div>
-                    <p> <input class="endent_10px width_60" type="text" placeholder="Enter link" 
-                        [(ngModel)] = "instagram2" (ngModelChange)="instagram2 = $event"> </p> 
-                
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div> -->
-    </div>
+         </div>
+         <div class="foot_div text-center">
+            <button type="button" class="btn bt_blue" data-dismiss="modal">SAVE</button> &nbsp;
+            <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+         </div>
+      </div>
+      <!-- <div class="modal-content">
+         <div class="modal-header">
+             <h4 class="modal-title">Add New Trading</h4>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         
+         </div>
+         <div class="modal-body">
+             <div class="col-sm-12  text-center">                 
+                 <i class="fa fa-globe fa-2x" data-reactid="342"></i>
+                 <p>Have more link?</p>
+                  <div class="clearfix"></div>
+                     <div class="switbtn">
+                                         <ui-switch [(ngModel)]="enable4" ></ui-switch> 
+                                 </div>
+         <div class="clearfix"></div>
+                 <p> <input class="endent_10px width_60" type="text" placeholder="Enter link" 
+                     [(ngModel)] = "instagram2" (ngModelChange)="instagram2 = $event"> </p> 
+             
+             </div>
+         </div>
+         <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         </div>
+         </div> -->
+   </div>
 </div>

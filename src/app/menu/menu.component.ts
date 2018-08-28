@@ -31,7 +31,7 @@ export class MenuComponent implements OnInit {
     constructor( private router: Router ,private cservice: LoginServiceService ,public _router:Router, private modalService: NgbModal, private http: Http, private uservice: SignupVendorService,) {}
 
     ngOnInit() { 
-        if(window.location.pathname == '/home') {
+        if(window.location.pathname == '/home')   {
         $(".user").hide();    
         $(".tikright").hide(); 
         } 
@@ -63,7 +63,14 @@ export class MenuComponent implements OnInit {
         $(".user").hide();    
         $(".tikright").hide(); 
         } 
-        
+        if(window.location.pathname == '/home/category') {
+        $(".user").hide();    
+        $(".tikright").hide(); 
+        } 
+        if(window.location.pathname == '/home/searchresult') {
+        $(".user").hide();    
+        $(".tikright").hide(); 
+        } 
 
 
         let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories");

@@ -361,7 +361,9 @@ header.masthead p {
 .just_picture{
   position: absolute;
   bottom: 10px;
-  left: 45%;
+  left: 0px;
+  margin: 0px auto;
+  right:0px;
 
 }
 
@@ -427,6 +429,7 @@ background:#e72e77;
 color:#ffffff!important;
 margin-right:0px;
 padding-left: 4px;
+border-radius:0px 5px 5px 0px;
 }
 .mobvendorebtn {
   background:#ffffff;
@@ -448,6 +451,7 @@ padding-left: 4px;
   transition:0.1s all ease-in;
   text-indent: 10px;
   padding-left: 30px;
+  border-radius:5px;
 }
 .mobvendorebtn span{
   display: block;
@@ -553,6 +557,9 @@ background:rgb(250, 250, 250);
 -moz-box-shadow: inset 0px 15px 34px -18px rgba(204,204,204,1);
 box-shadow: inset 0px 15px 34px -18px rgba(204,204,204,1);
 }
+.city-body{
+height:100vh;
+}
 .text-tertiary{
     text-align: left;
     padding: 10px 20px;
@@ -564,7 +571,23 @@ box-shadow: inset 0px 15px 34px -18px rgba(204,204,204,1);
     padding: 6px 20px;
     font-size: 16px;
     color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+.category-body .regular i img{
+    width: 24px!important;
+}
+.category-body .regular i {
+    margin-right: 15px;
+}
+.city-body .regular i.material-icons {
+    float: left;
+    color:#999;
+    font-size:20px;
+    margin-right:10px;
+}
+
      .section-heading{
 
        font-size: 15px;
@@ -597,10 +620,10 @@ box-shadow: inset 0px 15px 34px -18px rgba(204,204,204,1);
     .heading_mob_mar{
        margin-bottom: -90px;
     }
-    .just_picture{
-      display: none;
-    }
-   
+   .just_picture span{
+  padding:5px;
+  border-radius: 3px;
+}
 }
 
 @media (min-width: 768px) {

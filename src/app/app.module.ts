@@ -86,7 +86,7 @@ import { GuestComponent } from './userpannel/userboard/guest/guest.component';
 import { BudgetComponent } from './userpannel/userboard/budget/budget.component';
 
 
-//import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
+import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
 //import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
 import { CalendertableComponent } from './vendor/calendertable/calendertable.component';
 import { CreateEventComponent } from './vendor/create-event/create-event.component';
@@ -242,7 +242,7 @@ export function getAuthServiceConfigs() {
          VideosComponent,
          NgbdvedioModalContent,
 
-     //  BusinessServicesComponent ,
+        BusinessServicesComponent ,
         CategoryComponent,
         VendorlistComponent,
         ToolComponent,

@@ -12,10 +12,12 @@ import { NgForm } from '@angular/forms';
 })
 
 export class BusinessInfoComponent implements OnInit {
+
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessinfo'
  
   vendor: any = {};
-  modelfield =[];
+  
+  modelfield : any = {};
   constructor(public http: Http) {
   }
   imag = 'https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg';
@@ -143,7 +145,7 @@ export class BusinessInfoComponent implements OnInit {
              //var infopicture = info.value.pictureUrl;
              var infoinsta = info.value.instagram;
              //console.log(infoinsta);
-
+    
               let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
               headers.append('Accept', 'application/json')

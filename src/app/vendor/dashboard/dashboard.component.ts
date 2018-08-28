@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
-import { Headers, RequestOptions } from '@angular/http';
-import { Http, Response } from '@angular/http';
+import { Http,Headers } from '@angular/http';
 // Add the RxJS Observable operators we need in this app.
 
 @Component({
@@ -52,18 +51,12 @@ export class DashboardComponent implements OnInit {
         headers.append("Authorization",'Bearer '+authToken);
 
 
-        this.http.get(this.url,{headers:headers}).subscribe(data =>{
-    
-          this.vendor = data.json();
-        
-          console.log(this.vendor);
-          //console.log(data.json());
-          });
-        this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile',{headers:headers}).subscribe(data =>{
-       
-        console.log(data)
+        this.http.get(this.url,{headers:headers}).subscribe(
+          data =>{ this.vendor = data.json();
+                   console.log(this.vendor);
+                 });
 
-        })
+        // this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile',{headers:headers}).subscribe(data =>{console.log(data)})
 
 
      

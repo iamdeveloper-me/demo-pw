@@ -1,5 +1,5 @@
 import { Component, OnInit ,Input} from '@angular/core';
-
+import { Http,Headers } from '@angular/http';
 @Component({
   selector: 'app-location',
   templateUrl: './location.component.html',
@@ -22,7 +22,45 @@ export class LocationComponent implements OnInit {
   Thursdayopen = '9:00';Thursdayclose = '5:00';
   Fridayopen =  '9:00';Fridayclose=  '5:00';
   Saturday = 'Closed';
+  constructor(public http: Http) {}
+  private urlget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mylocations'
+  private urlpost: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/savelocation'
+  
+  vendor: any = {};
   ngOnInit(): void {
+
+
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+
+
+    this.http.get(this.urlget,{headers:headers}).subscribe(
+      data =>{ 
+               console.log(data.json());
+             });
+
+   this.http.post(this.urlpost,{
+    vendorLocationId: 0,
+    title: "bedhbewjcdfnewjcfj",
+    countryId: 1,
+    vendorId: 12,
+    country: {
+      countryId: 1,
+      countryName: "india"
+    },
+    city: "indore",
+    postalCode: "5456",
+    address: "string",
+    phone: "646546565",
+    mobile: "4826812459"
+  },{headers:headers}).subscribe(
+              data =>{ 
+                       console.log(data.json());
+                     });
+
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');

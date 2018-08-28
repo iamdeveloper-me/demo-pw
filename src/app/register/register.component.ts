@@ -14,7 +14,7 @@ export class RegisterComponent  {
   categoryArray:string[];
   planArray:string[];
 
-  user = 
+  user =
   {logInInfo: { firstName: "", lastName: "", password: "", confirmPassword: "" },contactInfo: { contactPerson: "", email: "", phone: "", website: ""}, businessInfo: { countryId: 1, city: "", postalCode: "", address: "", countryName: "" ,nameOfBusiness: "",pricingPlanId: ""}, vendorCategories: [ { categoryId: "" } ] }
 
    ngOnInit() {

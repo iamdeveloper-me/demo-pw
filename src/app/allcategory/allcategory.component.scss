@@ -23,8 +23,9 @@
 }
 .box_img img{
   border-radius: 5px;
-  height: 180px;
-  width: 100%;
+  min-height: 165px;
+  max-height: 165px;
+  max-width: 100%;
 }
 .abc{position: relative;    transition: all .25s;
    
@@ -55,10 +56,12 @@
   top: 10px;
   left: 10px;
   color: #fff; position: absolute;
+  text-shadow: 0PX 0PX ;
 
 }
 .cakes_hover i, .cakes_hover img {
   width: 40px;
+  min-height: inherit;
   height: 40px;
   padding: 10px;
   border-radius: 100%;
@@ -113,6 +116,22 @@
     background-size: cover;
   
  }*/
+ .box_img img{
+  border-radius: 5px;
+  min-height: 165px;
+  max-height:inherit;
+  width: 100%;
+}
+.cakes_hover i, .cakes_hover img {
+  width: 40px;
+  min-height: inherit;
+  height: 40px;
+  padding: 10px;
+  border-radius: 100%;
+}
+.cakes_hover h5 {
+    margin-top: 100px;
+}
  .mob_dis_none{
    display: none;
  }

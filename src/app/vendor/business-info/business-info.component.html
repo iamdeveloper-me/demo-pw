@@ -6,7 +6,7 @@
    <div id="page-content-wrapper">
       <app-navemenu></app-navemenu>
       <section class="p-0 " id="portfolio">
-         <div class="col-sm-12 mob_margin_30px">
+         <div class="col-sm-12 mob_margin_30px" (click)="openModel(vendor)">
             <div class="col-sm-5 mobnopadd padleft0px ">
                <div class="card heightequal365 margintop0px mobmargintop30px">
                   <div class="card-header">
@@ -17,18 +17,20 @@
                         </span>
                      </div>
                      <div class="busi_contact">
-                        <h6>Business name or Contact Person</h6>
+                    
+                        <h6 >Business name or Contact Person</h6>
                         <div class="on_hover" data-target="#Businesname" data-toggle="modal" id="Instagram-function" >
                            <div>{{vendor.nameOfBusiness}}</div>
                            <span class="text-right col-lg-12 editbtn">
                            <i class="material-icons"  >edit</i>
                            </span>
+                         
                         </div>
                      </div>
                      <div class="clearfix"></div>
                      <div class="on_hoverdiv" data-target="#Description" data-toggle="modal" id="description-function" >
                         <h6 class="text-center">Business Description </h6>
-                        <span class=" editbtn  editbtn11" >
+                        <span class=" editbtn  editbtn11" s>
                         <i class="material-icons"   >edit</i>
                         </span>
                         <div class="col-lg-12 col-md-12 add_text text-center">
@@ -48,7 +50,7 @@
                         <div class="social" data-reactid="332">
                            <i class="fa fa-facebook fa-2x" data-reactid="334"></i>
                            <span id="prompt-function"  data-target="#facebook" data-toggle="modal" data-reactid="333">
-                           {{vendor.facebookURL}}
+                                :  {{vendor.facebookURL}}
                            </span>
                            <div class="col-lg-12 editbtn">
                               <h4 class="text-right col-lg-12">
@@ -61,7 +63,7 @@
                         <div class="social" data-reactid="332">
                            <i class="fa fa-twitter fa-2x " data-reactid="338"></i>
                            <span id="Pinterest-function" data-target="#twitter" data-toggle="modal"  data-reactid="337">
-                           {{vendor.twitterURL}}
+                               :{{vendor.twitterURL}}
                            </span>
                            <div class="col-lg-12 editbtn">
                               <h4 class="text-right col-lg-12">
@@ -77,7 +79,7 @@
                         <div class="social" data-reactid="332">
                            <i class="fa fa-google-plus fa-2x" data-reactid="340"></i>
                            <span id="Google-function" data-target="#google" data-toggle="modal" data-reactid="339">
-                           {{vendor.googleURL}}
+                             : {{vendor.googleURL}}
                            </span>
                            <div class="col-lg-12 editbtn">
                               <h4 class="text-right col-lg-12">
@@ -93,7 +95,7 @@
                         <div class="social" data-reactid="332">
                            <i class="fa fa-instagram fa-2x" data-reactid="342"></i>
                            <span id="Instagram-function" data-target="#instagram" data-toggle="modal" data-reactid="341">
-                           {{vendor.instalURL}}
+                             : {{vendor.instalURL}}
                            </span>
                            <div class="col-lg-12 editbtn">
                               <h4 class="text-right col-lg-12">
@@ -109,7 +111,7 @@
                         <div class="social" data-reactid="332">
                            <i class="fa fa-globe fa-2x" data-reactid="342"></i>
                            <span id="Instagram-function" data-target="#instagram2" data-toggle="modal" data-reactid="341">
-                           {{instagram2}}
+                              :{{instagram2}}
                            </span>
                            <div class="col-lg-12 editbtn">
                               <h4 class="text-right col-lg-12">
@@ -142,46 +144,69 @@
       <app-foot></app-foot>
    </div>
 </div>
+
+ <form (ngSubmit)="upForm(info)" #info="ngForm"> 
+
 <div class="modal fade" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header text-center">
-            <h4 class="modal-title">Edit Business Description</h4>
-            <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-         </div>
-         <div class="modal-body">
-            <div class="col-sm-12  text-center">      
-               <textarea  class="textareaclass" type="text" [(ngModel)] = "Description" (ngModelChange)="Description = $event" placeholder="Enter Description"></textarea> 
+       
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title">Edit Business Description {{modelfield}}</h4>
+                    <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-12  text-center">
+                    <!-- <i class="material-icons"> add_location </i> -->
+                    <div class="col-sm-12  text-center">      
+                    <textarea  class="textareaclass" type="text" 
+                    id="businessDetails" 
+                    placeholder="Enter Description"
+                    [(ngModel)] = "modelfield.businessDetails" 
+                    (ngModelChange)="Description = $event" 
+                     name="businessDetails"
+                    ></textarea> 
+                    </div>
+                    <!-- <p>Business picture url :<input class="endent_10px width_60" type="text" [(ngModel)] = "imag"  placeholder="Enter image url"> </p>  -->
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="submit" class="btn btn-secondary btn-raised">Save</button> 
+                    <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+                </div>
             </div>
-         </div>
-         <div class="modal-footer text-center">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
-            <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
-         </div>
-      </div>
+       
    </div>
 </div>
 <div class="modal fade" id="Businesname" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header text-center">
-            <h4 class="modal-title">Edit Business Name or Contact</h4>
-            <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-         </div>
-         <div class="modal-body">
-            <div class="col-sm-12  text-center">
-               <!-- <i class="material-icons"> add_location </i> -->
-               <p class="input_para"><input class="endent_10px width_60" type="text" [(ngModel)] = "Businesname" (ngModelChange)="Businesname = $event"
-                  placeholder="Vision Photography"> 
-               </p>
-               <!-- <p>Business picture url :<input class="endent_10px width_60" type="text" [(ngModel)] = "imag"  placeholder="Enter image url"> </p>  -->
+      
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title">Edit Business Name or Contact {{modelfield}}</h4>
+                    <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-12  text-center">
+                    <!-- <i class="material-icons"> add_location </i> -->
+                    <p class="input_para">
+                    <input class="endent_10px width_60" 
+                    type="text" 
+                    [(ngModel)] = "modelfield.nameOfBusiness" 
+                    (ngModelChange)="Businesname = $event"
+                     id="Businesname" 
+                     name="Businesname"
+                     placeholder="Vision Photography"> 
+                    </p>
+                    <!-- <p>Business picture url :<input class="endent_10px width_60" type="text" [(ngModel)] = "imag"  placeholder="Enter image url"> </p>  -->
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="submit" class="btn btn-secondary btn-raised">Save</button> 
+                    <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+                </div>
             </div>
-         </div>
-         <div class="modal-footer text-center">
-            <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save</button> -->
-            <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
-         </div>
-      </div>
+         
    </div>
 </div>
 <div class="modal fade" id="facebook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -202,13 +227,20 @@
                <div class="clearfix"></div>
                <div class="input_facebook input-effect form-group">
                   <i class="fa fa-facebook fa-2x" data-reactid="334" ></i> 
-                  <input class="effect-16 validate endent_10px width_60" type="text" placeholder="Enter the Link here" [(ngModel)] = "facebook" (ngModelChange)="facebook = $event">
+
+                  <input class="effect-16 validate endent_10px width_60" 
+                  type="text" 
+                  placeholder="Enter the Link here" 
+                  (ngModelChange)="facebook = $event"
+                  [(ngModel)] = "modelfield.facebookURL" 
+                     id="facebook" 
+                     name="facebook">
                   <!-- <label>Enter the Link here</label> -->
                </div>
             </div>
          </div>
          <div class="foot_div text-center">
-            <button type="button" class="btn bt_blue" data-dismiss="modal">SAVE</button> &nbsp;
+            <button type="submit" class="btn btn-secondary btn-raised" >Save</button>  &nbsp;
             <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
          </div>
       </div>
@@ -232,13 +264,21 @@
                <div class="clearfix"></div>
                <div class="input_facebook input-effect form-group">
                   <i class="fa fa-twitter fa-2x" data-reactid="334" ></i> 
-                  <input class="effect-16 validate endent_10px width_60" type="text" placeholder="Enter the Link here" [(ngModel)] = "twitter" (ngModelChange)="twitter = $event">
+                  
+                  <input class="effect-16 validate endent_10px width_60" 
+                  type="text" 
+                  placeholder="Enter the Link here" 
+                  (ngModelChange)="twitter = $event"
+                  [(ngModel)] = "modelfield.twitterURL" 
+                     id="twitter" 
+                     name="twitter">
                   <!-- <label>Enter the Link here</label> -->
                </div>
             </div>
          </div>
          <div class="foot_div text-center">
-            <button type="button" class="btn bt_blue" data-dismiss="modal">SAVE</button> &nbsp;
+             <button type="submit" class="btn btn-secondary btn-raised">Save</button>  &nbsp;
+          
             <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
          </div>
       </div>
@@ -262,13 +302,19 @@
                <div class="clearfix"></div>
                <div class="input_facebook input-effect form-group">
                   <i class="fa fa-google-plus fa-2x" data-reactid="334" style="font-size:1.6em" ></i> 
-                  <input class="effect-16 validate endent_10px width_60" type="text" placeholder="Enter the Link here" [(ngModel)] = "google" (ngModelChange)="google = $event">
+                  <input class="effect-16 validate endent_10px width_60" 
+                  type="text" 
+                  placeholder="Enter the Link here" 
+                  [(ngModel)] = "modelfield.googleURL" 
+                  (ngModelChange)="google = $event"
+                  id="google" 
+                  name="google">
                   <!-- <label>Enter the Link here</label> -->
                </div>
             </div>
          </div>
          <div class="foot_div text-center">
-            <button type="button" class="btn bt_blue" data-dismiss="modal">SAVE</button> &nbsp;
+            <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
             <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
          </div>
       </div>
@@ -292,13 +338,20 @@
                <div class="clearfix"></div>
                <div class="input_facebook input-effect form-group">
                   <i class="fa fa-instagram fa-2x" data-reactid="334" ></i> 
-                  <input class="effect-16 validate endent_10px width_60" type="text" placeholder="Enter the Link here" [(ngModel)] = "instagram" (ngModelChange)="instagram = $event">
+                  <input class="effect-16 validate endent_10px width_60" 
+                  type="text" 
+                  placeholder="Enter the Link here" 
+                  (ngModelChange)="instagram = $event"
+                  [(ngModel)] = "modelfield.instalURL" 
+                  id="instagram" 
+                  name="instagram">
+             
                   <!-- <label>Enter the Link here</label> -->
                </div>
             </div>
          </div>
          <div class="foot_div text-center">
-            <button type="button" class="btn bt_blue" data-dismiss="modal">SAVE</button> &nbsp;
+            <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
             <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
          </div>
       </div>
@@ -358,3 +411,5 @@
          </div> -->
    </div>
 </div>
+
+ </form>  

@@ -14,12 +14,12 @@ import 'rxjs/Rx';
 export class RegisterComponent  {
   categoryArray:string[];
   planArray:string[];
+
   countryArray:string[];
   user = 
   {logInInfo: { firstName: "", lastName: "", password: "", confirmPassword: "" },contactInfo: { contactPerson: "", email: "", phone: "", website: ""}, businessInfo: { countryId: 1, city: "", postalCode: "", address: "", countryName: "" ,nameOfBusiness: "",pricingPlanId: "" ,payFrequency:""}, vendorCategories: [ { categoryId: "" } ] }
 
-
-   ngOnInit() {
+  ngOnInit() {
             $(".loginnav").hide(); 
             $.getScript('./assets/js/register.js');             
             $(".show").hide();

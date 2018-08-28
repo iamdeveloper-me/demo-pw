@@ -1,6 +1,8 @@
 import { Component, OnInit  } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-business-info',
@@ -10,7 +12,10 @@ import { Headers, RequestOptions } from '@angular/http';
 })
 
 export class BusinessInfoComponent implements OnInit {
+  private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessinfo'
+ 
   vendor: any = {};
+  modelfield =[];
   constructor(public http: Http) {
   }
   imag = 'https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg';
@@ -24,56 +29,24 @@ export class BusinessInfoComponent implements OnInit {
   instagram2 = ' www.perfectwedding.com' ;
 
   ngOnInit() {
-
+    
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
   
-    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessinfo',{headers:headers}).subscribe(data =>{
+    this.http.get(this.url,{headers:headers}).subscribe(data =>{
+    console.log(data.json());
     this.vendor = data.json();
     this.facebook = data.json().facebookURL ;
-    this.vendor = data.json();
     this.twitter = data.json().twitterURL ;
-    this.vendor = data.json();
     this.instagram = data.json().instalURL ;
-    this.vendor = data.json();
     this.google = data.json().googleURL;
-    this.vendor = data.json();
     this.Businesname = data.json().nameOfBusiness ;
-    this.vendor = data.json();
     this.Description = data.json().businessDetails ;    
 
-
-
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization",'Bearer '+authToken);
-
-   // console.log(x)
-            // var u = x.value.facebookURL;
-            // var e = x.value.twitterURL;
-            // var j = x.value.googleURL;
-            // var k = x.value.businessDetails;
-            // var m = x.value.nameOfBusiness;
-            // var n = x.value.contactPerson;
-            // var o = x.value.pictureUrl;
-            // var p = x.value.instalURL;
-
-    let obs = this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatebusinessinfo",
-    {nameOfBusiness: "food bunisess",businessDetails: "various type of food",contactPerson: "www.contactperson.com",pictureUrl: "www.picture.com",facebookURL:"https://www.facebook.com",twitterURL:"https://www.twitter.com",googleURL:"https://plus.google.com",instalURL:"https://instagram.com"},{headers:headers});            
-    obs.subscribe((response) => console.log(response),(error)=>console.log(error));
-
-
-    });;
- 
-  // this.http.get(this.baseUrl+"api/Reviews/myreviews",{headers:headers})
-  // return this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile" + "/dashboard/home",{headers})
-  //   .map(response => response.json())
-  //   // .catch(this.handleError);
+    });
 
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
@@ -149,14 +122,54 @@ export class BusinessInfoComponent implements OnInit {
         testAnim(anim);
   })
   }
-
  
+  openModel(b){
+    //alert("hh");
+    this.modelfield = b;
+    //console.log(this.modelfield);
+  }
+
+
+  upForm(info){
+             //console.log(info);
+             var infofacebook = info.value.facebook;
+            
+             var infotwitter = info.value.twitter;
+         
+             var infogoogle = info.value.google;
+              var infodetails = info.value.businessDetails ;
+              var infobusiness =   info.value.Businesname;
+             // var infoperson = info.value.contactPerson;
+             //var infopicture = info.value.pictureUrl;
+             var infoinsta = info.value.instagram;
+             //console.log(infoinsta);
+
+              let headers = new Headers();
+              var authToken = localStorage.getItem('userToken');
+              headers.append('Accept', 'application/json')
+              headers.append('Content-Type', 'application/json');
+              headers.append("Authorization",'Bearer '+authToken);
+            
+ 
+              let updatebusinessinfo = this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatebusinessinfo",
+                           {   
+                               nameOfBusiness: infobusiness,
+                               businessDetails: infodetails,
+                                contactPerson: 'scsc',
+                               //pictureUrl: infopicture,
+                              facebookURL: infofacebook,
+                             twitterURL: infotwitter,
+                             googleURL:  infogoogle,
+                              instalURL: infoinsta ,
+                           
+                          },{headers:headers});  
+
+            updatebusinessinfo.subscribe((response) => console.log(response),(error)=>console.log(error));
+     }
 abc(event){
       console.log(event)
     }
      closeResult: string;
-
-      
 
 enable =  true;
 enable1 =  true;

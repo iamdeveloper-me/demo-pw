@@ -31,7 +31,7 @@ export class MylistingComponent implements OnInit {
     this.http.post(this.url,{
       rating: 0,
       comments: "string",
-      sendToUserId: 1
+      sendToUserId: '34e8ea73-a8b3-4776-b032-a4c8b085671f'
     },{headers:headers}).subscribe(
       data =>{ this.review = data.json();
                console.log(this.review);

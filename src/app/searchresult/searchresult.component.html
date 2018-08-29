@@ -327,7 +327,7 @@
     <div class="col-sm-9">
       <div class="photo_cont">
       <div class="container-fluid nopadd">
-          <div class="searchtopbar">
+          <!-- <div class="searchtopbar">
         <div class="col-sm-2 searchinput50 fixedsearch left0">
           <select class="cityinput2">
               <option>All Cities</option>
@@ -345,7 +345,7 @@
         <div class="col-sm-8 mobserchfieldpage">
           <input type="text" name="" placeholder="Search" class="searchinput">
         </div>
-          </div>
+          </div> -->
           <div id="citybox" class="FilterDialog" style="display: none;">
             <div class="searchmobtitlebar">
               <img alt="close" class="icon-small margin-r-10" src="https://s3.us-east-2.amazonaws.com/prefect-image/cross-grey.png">
@@ -496,10 +496,23 @@
 							</h4>
 						</div>
 						<div id="collapse0" class="panel-collapse collapse ">
-							<div><input type="text" class="cityinput" placeholder="Type the city"/></div>
+							<div class="city_position">
+                <input type="text" class="cityinput" placeholder="Type the city"/>
+                <i class="material-icons">search</i>
+              </div>
 
-							<div class="cityscroll">
-								<div class="checkbox1">
+							<div class="cityscroll22">
+                  <div class="regular" routerLink="searchresult"> <input type="checkbox">  <i class="material-icons">location_on</i> Black River</div>
+                  <div class="regular" routerLink="searchresult"> <input type="checkbox">  <i class="material-icons">location_on</i> Flacq</div>
+                  <div class="regular" routerLink="searchresult"> <input type="checkbox">  <i class="material-icons">location_on</i> Grand Port</div>
+                  <div class="regular" routerLink="searchresult"> <input type="checkbox">  <i class="material-icons">location_on</i> Moka</div>
+                  <div class="regular" routerLink="searchresult"> <input type="checkbox">  <i class="material-icons">location_on</i> Pamplemousses</div>
+                  <div class="regular" routerLink="searchresult"> <input type="checkbox">  <i class="material-icons">location_on</i> Plaines-Wilhems</div>
+                  <div class="regular" routerLink="searchresult"> <input type="checkbox">  <i class="material-icons">location_on</i> Port-Louis</div>
+                  <div class="regular" routerLink="searchresult"> <input type="checkbox">  <i class="material-icons">location_on</i> Riviere du Rempart</div>
+                  <div class="regular" routerLink="searchresult"> <input type="checkbox">  <i class="material-icons">location_on</i> Savanne</div>
+                  <div class="regular" routerLink="searchresult"> <input type="checkbox">  <i class="material-icons">location_on</i> Rodrigues</div>
+								<!-- <div class="checkbox1">
 										<label>
 											<input type="checkbox" value="">
 											Delhi NCR
@@ -528,7 +541,7 @@
 											<input type="checkbox" value="">
 											Pune
 										</label>
-									</div>
+									</div> -->
 							</div>
 							
 						</div>
@@ -542,13 +555,16 @@
 						</div>
 						<div id="collapse1" class="panel-collapse collapse" >
 							<div data-role="main" class="ui-content">
-	    						<form method="post" action="/action_page_post.php">
-							      <div data-role="rangeslider">
+                  <form method="post" action="/action_page_post.php">
+                    <p> <input type="checkbox" name="" id=""> < 50000 </p>
+                    <p> <input type="checkbox" name="" id=""> < 50000 </p>
+                    <p> <input type="checkbox" name="" id=""> < 50000 </p>
+							      <!-- <div data-role="rangeslider">
 							        <label for="price-min">Price:</label>
 							        <input type="range" name="price-min" id="price-min" value="200" min="0" max="1000">
 							        <label for="price-max">Price:</label>
 							        <input type="range" name="price-max" id="price-max" value="800" min="0" max="1000">
-							      </div>
+							      </div> -->
 							    </form>
 	  						</div>
 						</div>
@@ -561,37 +577,52 @@
 							</h4>
 						</div>
 						<div id="collapse2" class="panel-collapse collapse " >
-									<div class="checkbox1">
-										<label>
-											<input type="checkbox" value="">
-											citroen
-										</label>
-									</div>
-									<div class="checkbox1">
-										<label>
-											<input type="checkbox" value="">
-											citroen
-										</label>
-									</div>
-									<div class="checkbox1">
-										<label>
-											<input type="checkbox" value="">
-											citroen
-										</label>
-									</div>
-									<div class="checkbox1">
-										<label>
-											<input type="checkbox" value="">
-											citroen
-										</label>
-									</div>
-									<div class="checkbox1">
-										<label>
-											<input type="checkbox" value="">
-											citroen
-										</label>
-									</div>
-								
+                <div class="category-body">
+                    <div class="searchmobtitlebar city_position">
+                      <i class="material-icons">search</i>
+                      <input class="cityinput" type="text" value="" id="search" placeholder="Type to Search Category">
+                    </div>
+                  <!-- <div class="regular">All Categories</div> -->
+                  <div class="regular"><input type="checkbox"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i><b> All Categories </b>  
+                  </div>
+                  <div class="regular"><input type="checkbox"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Wedding_cake.svg"/></i>Cakes
+                  </div>
+                  <div class="regular">
+                      <input type="checkbox">
+                    <i>
+                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_decorator.svg"/>
+                  </i> Decorators & Wedding Stylist</div>
+                  <div class="regular">
+                      <input type="checkbox">
+                      <i>
+                      <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/>
+                    </i> Drinks and Beverages</div>
+                  <div class="regular">
+                      <input type="checkbox">
+                      <i>
+                      <img src="https://s3.us-east-2.amazonaws.com/prefect-image/Fashion&Clothing.svg"/></i> Fashion & Clothing</div>
+                  <div class="regular">
+                      <input type="checkbox">
+                      <i>
+                      <img src="https://s3.us-east-2.amazonaws.com/prefect-image/florist.svg"/></i> Florists, Bouquets and Centerpiece</div>
+                  <div class="regular">
+                      <input type="checkbox">
+                    <i>
+                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_car.svg"/> </i> Food & Catering</div>
+                  <div class="regular"> <input type="checkbox"> <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Footwear.svg"/></i> Footwear</div>
+                  <div class="regular"><input type="checkbox">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/honeymoon.svg"/></i> Honeymoon & Travel</div>
+                  <div class="regular"><input type="checkbox">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/stationary.svg"/></i> Invitation Cards & Wedding Stationary</div>
+                  <div class="regular"><input type="checkbox">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Jewellery.svg"/></i> Jewellery & Wedding Rings</div>
+                  <div class="regular"><input type="checkbox">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/make_up.svg"/></i> Make Up, Hair & Mehendi</div>
+                  <div class="regular"><input type="checkbox">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i> Marriage Celebrant</div>
+                  <div class="regular"><input type="checkbox">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/music_dj.svg"/></i> Music, DJs & Entertainment</div>
+                  <div class="regular"><input type="checkbox">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Wedding Planner.svg"/></i> Other wedding Supplies & Accessories</div>
+                  <div class="regular"><input type="checkbox">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Photography.svg"/></i> Photography, Videography & Cinematography</div>
+                  <div class="regular"><input type="checkbox">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Venues.svg" alt=""> </i> Venues</div>
+                  <div class="regular"><input type="checkbox">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_car.svg"/></i> Wedding Cars & Transport</div>
+                  <div class="regular"><input type="checkbox"> <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/> </i> Wedding Planner & Event Management</div>
+                  <div class="regular"><input type="checkbox">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Shape&Fitness.svg" alt=""> </i> Shape & Fitness</div>
+                </div>
 						</div>
 						<!-- Customer Rating -->
 						<div class="panel-heading" >
@@ -601,34 +632,34 @@
 						</div>
 						<div id="collapse3" class="panel-collapse collapse">
 							
-									<div class="checkbox1">
+									<div class="checkbox1 radio">
 										<label>
-											<input type="checkbox" value="">
-											1 <i class="fa fa-star"></i>  & above
+											<input type="radio" value="">
+											Any
 										</label>
 									</div>
-								<div class="checkbox1">
+								<div class="checkbox1 radio">
 										<label>
-											<input type="checkbox" value="">
-											2 <i class="fa fa-star"></i>  & above
+											<input type="radio" value="">
+											1.0+
 										</label>
 									</div>
-									<div class="checkbox1">
+									<div class="checkbox1 radio">
 										<label>
-											<input type="checkbox" value="">
-											3 <i class="fa fa-star"></i>  & above
+											<input type="radio" value="">
+											2.0+ 
 										</label>
 									</div>
-									<div class="checkbox1">
+									<div class="checkbox1 radio">
 										<label>
-											<input type="checkbox" value="">
-											4 <i class="fa fa-star"></i>  & above
+											<input type="radio" value="">
+											3.0+ 
 										</label>
 									</div>
-									<div class="checkbox1">
+									<div class="checkbox1 radio">
 										<label>
-											<input type="checkbox" value="">
-											5 <i class="fa fa-star"></i>  & above
+											<input type="radio" value="">
+											4.0+
 										</label>
 									</div>
 						</div>

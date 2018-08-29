@@ -244,6 +244,7 @@ transform: translateY(0px) translateX(0px) rotate(-135deg);
 padding:10px 20px 10px 10px;
 font-weight: bold;
 border-bottom:0px solid #e5e5e5;
+color: #000 !important;
 
 }
 .panel-collapse{
@@ -284,7 +285,64 @@ display: block;
 	margin: 10px 0px;
 }
 .cityinput{
-	width: 100%;
+  width: 100%;
+  border-radius: 50px;
+    border: none;
+    text-indent: 30px;
+    box-shadow: 1px 1px 1px 0px;
+    cursor: pointer;
+    padding: 5px;
+}
+.city_position{
+  position: relative;
+}
+.searchmobtitlebar{
+  position: relative;
+}
+.category-body .icon-small{
+  width: auto;
+    max-height: 15px;
+    vertical-align: middle;
+    position: absolute;
+    top: 15px;
+    left: 10px;
+}
+.category-body .regular, .city-body .regular {
+  text-align: left;
+  padding: 6px 0px;
+  font-size: 16px;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.category-body[_ngcontent-c2] .regular[_ngcontent-c2] i[_ngcontent-c2] {
+  margin-right: 15px;
+}
+.category-body .regular i img {
+  margin-right: 10px;
+  margin-left: 10px;
+  width: 24px !important;
+}
+.regular .all_categry{
+  margin-left: 10px;
+  font-weight: bold;
+}
+.cityscroll22{
+  margin-top: 10px;
+}
+.cityscroll22 .material-icons{
+  font-size: 20px;
+  position: relative;
+  top: 4px;
+  margin-left:5px;
+}
+.city_position .material-icons{
+  position: absolute;
+  left: 10px;
+  top: 7px;
+  color: #e72e77
 }
 .filterbox h4.panel-title a{
 display: block;
@@ -820,6 +878,14 @@ margin-bottom:30px;
   padding-left: 0 !important;
   padding-right: 0 !important; 
 }
+/* jitendra css  */
+
+.collapse.show{
+  display: block!important;
+  }
+/*End jitendra css  */
+
+
  @media (max-width:767px){
 .searchfilterbox .panel-heading h3.panel-title{
 font-weight: bold;

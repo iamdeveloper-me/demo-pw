@@ -25,7 +25,7 @@
   border-radius: 5px;
   min-height: 165px;
   max-height: 165px;
-  max-width: 100%;
+  width: 100%;
 }
 .abc{position: relative;    transition: all .25s;
    
@@ -54,7 +54,7 @@
 .cakes_hover {
   position: absolute;
   top: 10px;
-  left: 10px;
+  left: 25px;
   color: #fff; position: absolute;
   text-shadow: 0PX 0PX ;
 
@@ -106,6 +106,15 @@
   margin-top: 50px;
   margin-bottom: 0;
 }
+.box_img img.img-responsive{
+  transition: all 0.3s;
+}
+.box_img:hover img.img-responsive{
+  transform: scale(1.2);
+}
+.box_img a{
+display:block;overflow: hidden;border-radius:5px;}
+
 
 @media(max-width: 767px){
  /*.mob_parallax{
@@ -117,23 +126,38 @@
   
  }*/
  .box_img img{
-  border-radius: 5px;
-  min-height: 165px;
+  border-radius: 0px;
+  min-height: inherit;
   max-height:inherit;
   width: 100%;
+  margin-top: -50px;
 }
-.cakes_hover i, .cakes_hover img {
-  width: 40px;
-  min-height: inherit;
-  height: 40px;
-  padding: 10px;
-  border-radius: 100%;
+ .cakes_hover img {
+   display: none;
 }
 .cakes_hover h5 {
-    margin-top: 100px;
+    margin-top: 50px;
+}
+.cakes_hover p{
+  display: none;
 }
  .mob_dis_none{
    display: none;
  }
- 
+ .mob_padd0{
+   padding: 0px;
+ }
+ .box_img{
+   margin-bottom: 0px;
+   padding: 0;
+   height: 150px;
+   border-bottom: 2px solid #fff;
+   overflow: hidden;
+ }
+ .cakes_hover{
+   left: 0;
+   width: 100%;
+   text-align: center;
+   text-shadow: 10px 10px 20px #000!important;
+ }
 }

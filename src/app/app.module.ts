@@ -53,7 +53,7 @@ import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { BannerComponent } from './banner/banner.component';
 import { FootComponent } from './foot/foot.component';
-import { LoginComponent } from './login/login.component';
+
 import { VendorcardComponent } from './vendorcard/vendorcard.component';
 import { RegisterComponent } from './register/register.component';
 import { SearchresultComponent } from './searchresult/searchresult.component';
@@ -206,7 +206,6 @@ export function getAuthServiceConfigs() {
         MenuComponent,
         BannerComponent,
         FootComponent,
-        LoginComponent,
         RegisterComponent,
         VendorcardComponent,
         NavemenuComponent,

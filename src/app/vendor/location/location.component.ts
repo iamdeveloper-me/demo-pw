@@ -39,27 +39,28 @@ export class LocationComponent implements OnInit {
 
     this.http.get(this.urlget,{headers:headers}).subscribe(
       data =>{ 
-               console.log(data.json());
+               console.log( data.json());
              });
 
-   this.http.post(this.urlpost,{
-    vendorLocationId: 0,
-    title: "bedhbewjcdfnewjcfj",
-    countryId: 1,
-    vendorId: 12,
-    country: {
-      countryId: 1,
-      countryName: "india"
-    },
-    city: "indore",
-    postalCode: "5456",
-    address: "string",
-    phone: "646546565",
-    mobile: "4826812459"
-  },{headers:headers}).subscribe(
-              data =>{ 
-                       console.log(data.json());
-                     });
+  //  this.http.post(this.urlpost,{
+  //   vendorLocationId: 0,
+  //   title: "string",
+  //   countryId: 1,
+  //   vendorId: 12,
+  //   country: {
+  //     countryId: 1,
+  //     countryName: "india"
+  //   },
+  //   city: "string",
+  //   postalCode: "string",
+  //   address: "string",
+  //   phone: "string",
+  //   mobile: "string"
+
+  // },{headers:headers}).subscribe(
+  //             data =>{ 
+  //                      console.log(data.json());
+  //                    });
 
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');

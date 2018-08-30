@@ -17,7 +17,10 @@ export class RegisterComponent  {
 
   countryArray:string[];
   user = 
-  {logInInfo: { firstName: "", lastName: "", password: "", confirmPassword: "" },contactInfo: { contactPerson: "", email: "", phone: "", website: ""}, businessInfo: { countryId: 1, city: "", postalCode: "", address: "", countryName: "" ,nameOfBusiness: "",pricingPlanId: "" ,payFrequency:""}, vendorCategories: [ { categoryId: "" } ] }
+  {logInInfo: { firstName: "", lastName: "", password: "", confirmPassword: "" },
+  contactInfo: { contactPerson: "", email: "", phone: "", website: ""},
+   businessInfo: { countryId: "", city: "", postalCode: "", address: "", countryName: "" ,nameOfBusiness: "",pricingPlanId: "" ,payFrequency:""}, 
+   vendorCategories: [ { categoryId: "" } ] }
 
   ngOnInit() {
             $(".loginnav").hide(); 
@@ -66,10 +69,12 @@ export class RegisterComponent  {
       { console.log(data.json())
         this.cservice.typeSuccess();
         this.router.navigate(['../home'])
-      },error => 
-      alert(error) // error path
-    )}
+       }
+      ,error => {console.log(error);
+     this.cservice.typeWarning(error);
+    })
 
+  }
     //   this.cservice.signup(this.user).subscribe(( data )  =>  {
     //     console.log(data.json())
     //     var abc = data.json()

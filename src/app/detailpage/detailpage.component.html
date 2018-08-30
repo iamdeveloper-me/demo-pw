@@ -327,38 +327,43 @@
 
 
 <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre">
-
    <div class="vp_review_txt_title large_subtext "> Reviews </div>
+    <form  (ngSubmit)="putReview(review)" #f="ngForm">
+        <div class="vp_review_txt">
+            <div class="vp_giveReviewBox">
+            <span>Give A Review:</span>
 
+            <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
+                <div class="jq-ry-group-wrapper">
+                <div class="jq-ry-normal-group jq-ry-group">
+                    <span class="fa fa-star checked star_mar1"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>   
+                </div>
+                </div>
+            </span>
 
-   <div class="vp_review_txt">
-     <div class="vp_giveReviewBox">
-        <span>Give A Review:</span>
-
-        <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
-
-          <div class="jq-ry-group-wrapper">
-            <div class="jq-ry-normal-group jq-ry-group">
-               <span class="fa fa-star checked star_mar1"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>   
+            <div class="textInput">
+                
+                    <input 
+                    placeholder="Write a Review" 
+                    type="text" 
+                    class="textInputInner"
+                    required
+                    [(ngModel)] = "review.comments" 
+                    name="comments"
+                    >
+                    <button type="submit" class="textInputSubmit" value="SUBMIT">SUBMIT</button>
+                    <input class="submitedRating" type="hidden" value="0">
+                    <div class="errorInValidation sendAReview">
+                    Your review is empty. SUBMIT again to send this anyway 
+                    </div>
             </div>
-          </div>
-        </span>
-
-    <div class="textInput">
-         <input placeholder="Write a Review" type="text" class="textInputInner">
-         <input type="submit" class="textInputSubmit" value="SUBMIT">
-         <input class="submitedRating" type="hidden" value="0">
-         <div class="errorInValidation sendAReview">
-           Your review is empty. SUBMIT again to send this anyway 
-         </div>
-    </div>
-
-     </div>
-   </div>
+        </div>
+        </div>
+    </form>    
 </div>
 
 

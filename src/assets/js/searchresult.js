@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');$('#products .item').removeClass('col-sm-6 grid-group-item');});
-    $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('col-sm-6 list-group-item');$('#products .item').addClass('col-sm-6 grid-group-item');});
+    $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item col-sm-12');$('#products .item').removeClass('grid-group-item col-sm-4');});
+    $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item col-sm-12');$('#products .item').addClass('grid-group-item col-sm-4');});
 });
 
 function toggleChevron(e) {

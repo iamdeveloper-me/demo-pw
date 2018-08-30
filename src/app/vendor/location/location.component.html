@@ -7,171 +7,162 @@
       <app-navemenu></app-navemenu>
         <section id="user-profile">
           <div class="clearfix"></div>
-          <div class="col-sm-12 nopadd">
-            <div class="custom-form">
-              <div class="col-sm-4 ">
-              <div  class="card martop10px">
-            <div class="col-sm-12">
-              <h4 class="mainhead">Location (Primary)</h4>
-              <div class="switbtn">
-                <ui-switch [(ngModel)]="enable" class="pull-left"></ui-switch> 
-              </div>
-            </div>
-                <div  class="card-body">
-                  <div class="text-center bg-form col-sm-12">
-                    <div class="img-section">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3060153584!2d-74.2598711799434!3d40.69714940555201!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1533112990233" 
-                          frameborder="0" style="border:0" allowfullscreen></iframe>
-                        <div class="img_overlay">
-                          <div class="col-lg-12 col-md-12 pad_left_0px">
-                              <input type="text" class="form-control form-input" value="Digital Photography" placeholder="Company Name" disabled id="companyname">
-                              <button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#photo_ved">
-                              <i class="material-icons">edit</i>
-                              </button>
+            <div class="col-sm-12 nopadd" (click)="openModel(countryArray)">
+                <div class="custom-form">
+                    <div class="col-sm-4 "   *ngFor="let data of countryArray" >
+                        <div  class="card martop10px">
+
+                          <div class="col-sm-12">
+
+                            <h4 class="mainhead">Location (Primary) </h4>{{data.isPrimary}}  <br>
+                            
+                            <div class="switbtn">
+                            
+                              <ui-switch [(ngModel)]="enable" class="pull-left" ></ui-switch> 
+                            </div>
                           </div>
-                          <div class="col-lg-12 col-md-12 pad_left_0px">
-                              <input type="text" class="form-control form-input martop0px" value="Photography, Vediography" placeholder="Company Title" disabled id="companytitle">
+                          <div  class="card-body">
+                            <div class="text-center bg-form col-sm-12">
+                              <div class="img-section">
+                                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3060153584!2d-74.2598711799434!3d40.69714940555201!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1533112990233" 
+                                    frameborder="0" style="border:0" allowfullscreen></iframe>
+                                  <div class="img_overlay">
+                                    <div class="col-lg-12 col-md-12 pad_left_0px">
+                                        <input type="text" class="form-control form-input" value="Digital Photography" placeholder="Company Name" disabled id="companyname">
+                                        <button type="button" class="btn edit_btn1" data-toggle="modal" data-target="#photo_ved">
+                                        <i class="material-icons">edit</i>
+                                        </button>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 pad_left_0px">
+                                        <input type="text" class="form-control form-input martop0px" value="Photography, Vediography" placeholder="Company Title" disabled id="companytitle">
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-12 text_left">
+                              <div class=" nopadd weekboxinput">
+                                  <div class="col-sm-12  edit_hide" id="address-function" data-target="#address" data-toggle="modal">
+                                    <span class="acce_time1 col-sm-1 col-1"> 
+                                    <i  class="material-icons">location_on</i>  
+                                    </span> 
+                                    <div class="col-sm-10 col-11">
+                                        <div>Country: {{data.country}}</div>
+                                        <div>District: {{data.address}}</div>
+                                        <div>postalCode: {{data.postalCode}}</div>
+                                        <div>Street Address: </div>
+                                        <div>city: {{data.city}}</div>
+                                        <i class="material-icons edit_btn"> edit</i>
+                                    </div>
+                                  </div>
+                                  <div class="clearfix"></div>
+                              </div>
+                            </div>
+                            <div class="col-lg-12 text_left phone_icon1">
+                              <div class=" nopadd weekboxinput">
+                                    <div class="col-lg-12 col-md-12 edit_hide" (click)="openModel(data)" data-target="#phone" data-toggle="modal">
+                                        <span class="acce_time1 col-1">
+                                        <i  class="material-icons">local_phone</i>
+                                        </span>
+                                        <div class="col-sm-10 col-11 mar_bottom_10px">
+                                        {{data.mobile}}
+                                        <i _ class="material-icons edit_btn1"  >edit</i>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                      <span class="acce_time1 col-1">
+                                        <i  class="material-icons">phone_iphone</i>  
+                                        </span>
+                                      <div class="col-sm-10 col-11">
+                                          {{data.phone}}
+                                        </div>
+                                    </div>
+                                    </div>
+                              </div>
+                              <div class="col-sm-12 text_left">
+                                  <div class="edit_hide paddtop15px bornone">
+                                    <span class="acce_time1 col-1">
+                                      <i  class="material-icons">access_time</i>   
+                                    </span> 
+                                    <div class="col-sm-10 col-11 nopadd weekboxinput1" data-toggle="modal" data-target="#week">
+                                    <div class="col-sm-12 nopadd weekboxinput3">
+                                      <div class="col-sm-4 col-xs-5-mob nopadd">Sunday </div>
+                                      <div class="col-sm-8 col-xs-7-mob nopadd"> 
+                                        {{Sunday}}
+                                          <i class="material-icons edit_btn1">edit</i>
+                                      </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-12 nopadd">
+                                      <div class="col-sm-4 col-xs-5-mob nopadd">
+                                          Monday
+                                      </div>
+                                      <div class="col-sm-8 col-xs-7-mob nopadd">
+                                        {{Mondayopen}}AM to {{Mondayclose}}PM
+                                      </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-12 nopadd">
+                                      <div class="col-sm-4 col-xs-5-mob nopadd">
+                                          Tuesday
+                                      </div>
+                                      <div class="col-sm-8 col-xs-7-mob nopadd">
+                                          {{Tuesdayopen}}AM to {{Tuesdayclose}}PM
+                                      </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-12 nopadd">
+                                      <div class="col-sm-4 col-xs-5-mob nopadd">
+                                          Webnesday
+                                      </div>
+                                      <div class="col-sm-8 col-xs-7-mob nopadd">
+                                      {{Wednesdayopen}}AM to {{Wednesdayclose}}PM
+                                      </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-12 nopadd">
+                                      <div class="col-sm-4 col-xs-5-mob nopadd">
+                                          Thursday
+                                      </div>
+                                      <div class="col-sm-8 col-xs-7-mob nopadd">
+                                      {{Thursdayopen}}AM to {{Thursdayclose}}PM
+                                      </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-12 nopadd">
+                                      <div class="col-sm-4 col-xs-5-mob nopadd">
+                                          Friday
+                                      </div>
+                                      <div class="col-sm-8 col-xs-7-mob nopadd">
+                                        {{Fridayopen}}AM to {{Fridayclose}}PM
+                                      </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-12 nopadd">
+                                      <div class="col-sm-4 col-xs-5-mob nopadd">
+                                          Saturday
+                                      </div>
+                                      <div class="col-sm-8 col-xs-7-mob nopadd">
+                                        {{Saturday}}
+                                      </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    </div>
+                                  </div>
+                              </div>
                           </div>
                         </div>
-                        
                     </div>
-                  </div>
-                  <div class="col-sm-12 text_left">
-                    <div class=" nopadd weekboxinput">
-                        <div class="col-sm-12  edit_hide" id="address-function" data-target="#address" data-toggle="modal">
-                          <span class="acce_time1 col-sm-1 col-1"> 
-                          <i  class="material-icons">location_on</i>  
-                          </span> 
-                          <div class="col-sm-10 col-11">
-                              <div>Country: {{Country}}</div>
-                              <div>District: {{District}}</div>
-                              <div>Street Address: {{StreetAddress}}</div>
-
-                              <i class="material-icons edit_btn"> edit</i>
-                          </div>
-                         
-                        </div>
-                        <div class="clearfix"></div>
-                       
-                         
-                    </div>
-                  </div>
-                   <div class="col-lg-12 text_left phone_icon1">
-                     <div class=" nopadd weekboxinput">
-                          <div class="col-lg-12 col-md-12 edit_hide" data-target="#phone" data-toggle="modal">
-                              <span class="acce_time1 col-1">
-                              <i  class="material-icons">local_phone</i>
-                              </span>
-                              <div class="col-sm-10 col-11 mar_bottom_10px">
-                               {{phone1}}
-                               {{phone2}}
-
-                               <i _ class="material-icons edit_btn1">edit</i>
-                              </div>
-                              <div class="clearfix"></div>
-                             <span class="acce_time1 col-1">
-                              <i  class="material-icons">phone_iphone</i>  
-                              </span>
-                             <div class="col-sm-10 col-11">
-                                {{phone3}}
-                              </div>
-                          </div>
-                          </div>
-                    </div>
-                    <div class="col-sm-12 text_left">
-                        <div class="edit_hide paddtop15px bornone">
-                          <span class="acce_time1 col-1">
-                            <i  class="material-icons">access_time</i>   
-                          </span> 
-                          <div class="col-sm-10 col-11 nopadd weekboxinput1" data-toggle="modal" data-target="#week">
-                          <div class="col-sm-12 nopadd weekboxinput3">
-                            <div class="col-sm-4 col-xs-5-mob nopadd">Sunday </div>
-                            <div class="col-sm-8 col-xs-7-mob nopadd"> 
-                              {{Sunday}}
-                                <i class="material-icons edit_btn1">edit</i>
+                    <div class="col-sm-4">
+                        <div  class="card martop10px">
+                            <div class="text-center bg-form col-sm-12 addlocationbox">
+                            <i class="material-icons font80px">  add_location </i>
+                            <div>Have more business branches?</div>
+                            <button data-target="#location" data-toggle="modal" type="button" class="martopbot15px borderbtnonly"> Add New Location </button>
+                            <div>Premium members only. 
+                              <a routerLink="../membership" class="bluelink">Upgrade</a>
                             </div>
-                          </div>
-                          <div class="clearfix"></div>
-                          <div class="col-sm-12 nopadd">
-                            <div class="col-sm-4 col-xs-5-mob nopadd">
-                                Monday
-                            </div>
-                            <div class="col-sm-8 col-xs-7-mob nopadd">
-                               {{Mondayopen}}AM to {{Mondayclose}}PM
-                            </div>
-                          </div>
-                          <div class="clearfix"></div>
-                          <div class="col-sm-12 nopadd">
-                            <div class="col-sm-4 col-xs-5-mob nopadd">
-                                Tuesday
-                            </div>
-                            <div class="col-sm-8 col-xs-7-mob nopadd">
-                                {{Tuesdayopen}}AM to {{Tuesdayclose}}PM
-                            </div>
-                          </div>
-                          <div class="clearfix"></div>
-                          <div class="col-sm-12 nopadd">
-                            <div class="col-sm-4 col-xs-5-mob nopadd">
-                                Webnesday
-                            </div>
-                            <div class="col-sm-8 col-xs-7-mob nopadd">
-                             {{Wednesdayopen}}AM to {{Wednesdayclose}}PM
-                            </div>
-                          </div>
-                          <div class="clearfix"></div>
-                          <div class="col-sm-12 nopadd">
-                            <div class="col-sm-4 col-xs-5-mob nopadd">
-                                Thursday
-                            </div>
-                            <div class="col-sm-8 col-xs-7-mob nopadd">
-                             {{Thursdayopen}}AM to {{Thursdayclose}}PM
-                            </div>
-                          </div>
-                          <div class="clearfix"></div>
-                          <div class="col-sm-12 nopadd">
-                            <div class="col-sm-4 col-xs-5-mob nopadd">
-                                Friday
-                            </div>
-                            <div class="col-sm-8 col-xs-7-mob nopadd">
-                               {{Fridayopen}}AM to {{Fridayclose}}PM
-                            </div>
-                          </div>
-                          <div class="clearfix"></div>
-                          <div class="col-sm-12 nopadd">
-                            <div class="col-sm-4 col-xs-5-mob nopadd">
-                                Saturday
-                            </div>
-                            <div class="col-sm-8 col-xs-7-mob nopadd">
-                               {{Saturday}}
-                            </div>
-                          </div>
-                          <div class="clearfix"></div>
-                          </div>
                         </div>
                     </div>
                 </div>
-              </div>
-              </div>
- <div class="col-sm-4">
-              <div  class="card martop10px">
-                     <div class="text-center bg-form col-sm-12 addlocationbox">
-
-
-<i class="material-icons font80px">
-add_location
-</i>
-<div>Have more business branches?</div>
-<button data-target="#location" data-toggle="modal" type="button" class="martopbot15px borderbtnonly"> Add New Location </button>
-
-<div>Premium members only. <a routerLink="../membership" class="bluelink">Upgrade</a> </div>
-                     </div>
-              </div>
-            </div>
-
-
-
-
-
             </div>
           </div>
           <div class="clearfix"></div>
@@ -180,301 +171,317 @@ add_location
        <router-outlet></router-outlet>
     </div>
  </div>
- <div class="modal fade" id="location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-       <div class="modal-content">
-          <div class="modal-header">
-             <h4 class="modal-title">Add New Location</h4>
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          </div>
-          <div class="modal-body">
-             <div class="col-sm-12  text-center">
-                <i class="material-icons"> add_location </i>
-                <p>Have more business branches?</p>
-                <!-- <input class="endent_10px" type="text" placeholder="Enter Location"> -->
-                <p> <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.562064237219!2d77.22732101467972!3d28.61291198242557!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce2daa9eb4d0b%3A0x717971125923e5d!2sIndia+Gate!5e0!3m2!1sen!2sin!4v1534139472754" width="680" height="100" frameborder="0" style="border:0" allowfullscreen></iframe>  </p>
-                <p>Premium members only. <span>Upgrade</span> </p>
-             </div>
-          </div>
-          <div class="modal-footer">
-             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-             <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
-          </div>
-       </div>
-    </div>
- </div>
- <div class="modal fade" id="phone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-       <div class="modal-content">
-          <div class="modal-header">
-             <h4 class="modal-title">Phone Number</h4>
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          </div>
-          <div class="modal-body">
-             <h6 class="col-xs-offset-2 phonepopuphead">Primary Number</h6>
-             <div class="col-sm-2 col-3">
-                <select>
-                   <option>Phone</option>
-                   <option>Mobile</option>
-                </select>
-             </div>
-             <div class="col-sm-10 col-9 nopadd">
-                <input type="text" class="inputbottombor"  placeholder="0731-245326"  id="phone1" [(ngModel)] ="phone1">
-             </div>
-             <div class="clearfix"></div>
-             <h6 class="col-xs-offset-2 phonepopuphead">Second Number</h6>
-             <div class="col-sm-2 col-3">
-                <select>
-                   <option>Phone</option>
-                   <option>Mobile</option>
-                </select>
-             </div>
-             <div class="col-sm-10 col-9 nopadd">
-                <input type="text" class="inputbottombor" placeholder="0731-245326"  id="phone1" [(ngModel)] ="phone2">
-                <button class="deletebtn">
-                <i class="material-icons">clear</i>
-                </button>
-             </div>
-             <div class="clearfix"></div>
-             <h6 class="col-xs-offset-2 phonepopuphead">iphone Number</h6>
-             <div class="col-xs-2">
-                <select>
-                   <option>Phone</option>
-                   <option>Mobile</option>
-                </select>
-             </div>
-             <div class="col-xs-10 nopadd">
-                <input type="text" class="inputbottombor" placeholder="0731-245326"  id="phone1" [(ngModel)] ="phone3">
-                <button class="deletebtn">
-                <i class="material-icons">clear</i>
-                </button>
-             </div>
-             <div class="clearfix"></div>
-             <div class="col-sm-12"><br/>
-                <a href=""> ADD PHONE NUMBER </a>   
-             </div>
-          </div>
-          <div class="modal-footer">
-             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-       </div>
-    </div>
- </div>
- <div class="modal fade" id="week" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-       <div class="modal-content">
-          <div class="modal-header">
-             <h4 class="modal-title">Trading Hours</h4>
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-             <span aria-hidden="true">&times;</span>
-             </button>
-          </div>
-          <div class="col-sm-12 loca_hours sund_top">
-             <div class="col-sm-2">
-                Sunday
-             </div>
-             <div class="col-sm-3 line_height">
-                <span class="ui_switch">
-                <ui-switch [(ngModel)]="enable1" disabled class="pull-left">
-                </ui-switch>
-                </span>   <span class="textopenclose">Close</span>
-             </div>
-          </div>
-          <div class="col-sm-12 loca_hours">
-             <div class="col-sm-2">
-                Monday
-             </div>
-             <div class="col-sm-3">
-                <span class="ui_switch">
-                <ui-switch [(ngModel)]="enable2" checked class="pull-left"></ui-switch>
-                </span>
-                <span class="textopenclose">Open</span>
-             </div>
-             <div class="col-sm-7">
-                   <div class="form-group registration-date">
-                      <div class="input-group registration-date-time col-sm-6">
-                         <input class="form-control" type="time" [(ngModel)]="Mondayopen">
-                      </div>
-                      <div class="input-group registration-date-time col-sm-6">
-                         <input class="form-control" type="time" [(ngModel)]="Mondayclose">
-                      </div>
-                   </div>
-               
-             </div>
-          </div>
-          <div class="col-sm-12 loca_hours">
-             <div class="col-sm-2">
-                Tuesday
-             </div>
-             <div class="col-sm-3">
-                <span class="ui_switch"><ui-switch [(ngModel)]="enable3" checked class="pull-left"></ui-switch></span>    
-                <span class="textopenclose">Open</span>
-             </div>
-             <div class="col-sm-7">
-                   <div class="form-group registration-date">
-                      <div class="input-group registration-date-time col-sm-6">
-                         <input class="form-control" type="time" [(ngModel)]="Tuesdayopen">
-                      </div>
-                      <div class="input-group registration-date-time col-sm-6">
-                         <input class="form-control" type="time" [(ngModel)]="Tuesdayclose">
-                      </div>
-                   </div>
-             </div>
-          </div>
-          <div class="col-sm-12 loca_hours">
-             <div class="col-sm-2">
-                Wednesday
-             </div>
-             <div class="col-sm-3">
-                <span class="ui_switch"><ui-switch [(ngModel)]="enable4" checked class="pull-left"></ui-switch> </span>    
-                <span class="textopenclose">Open</span>
-             </div>
-             <div class="col-sm-7">
-              
-                   <div class="form-group registration-date">
-                      <div class="input-group registration-date-time col-sm-6">
-                         <input class="form-control" type="time" [(ngModel)]="Wednesdayopen">
-                      </div>
-                      <div class="input-group registration-date-time col-sm-6">
-                         <input class="form-control" type="time" [(ngModel)]="Wednesdayclose">
-                      </div>
-                   </div>
-              
-             </div>
-          </div>
-          <div class="col-sm-12 loca_hours">
-             <div class="col-sm-2">
-                Thursday
-             </div>
-             <div class="col-sm-3">
-                <span class="ui_switch"><ui-switch [(ngModel)]="enable5" checked class="pull-left"></ui-switch> </span>    <span class="textopenclose">Open</span>
-             </div>
-             <div class="col-sm-7">
-                   <div class="form-group registration-date">
-                      <div class="input-group registration-date-time col-sm-6">
-                         <input class="form-control" type="time" [(ngModel)]="Thursdayopen">
-                      </div>
-                      <div class="input-group registration-date-time col-sm-6">
-                         <input class="form-control" type="time" [(ngModel)]="Thursdayclose">
-                      </div>
-                   </div>
-             </div>
-          </div>
-          <div class="col-sm-12 loca_hours">
-             <div class="col-sm-2">
-                Friday
-             </div>
-             <div class="col-sm-3">
-                <span class="ui_switch"><ui-switch [(ngModel)]="enable6" checked class="pull-left"></ui-switch> </span>    <span class="textopenclose">Open</span>
-             </div>
-             <div class="col-sm-7">
-               
-                   <div class="form-group registration-date">
-                      <div class="input-group registration-date-time col-sm-6">
-                         <input class="form-control" type="time" [(ngModel)]="Fridayopen">
-                      </div>
-                      <div class="input-group registration-date-time col-sm-6">
-                         <input class="form-control" type="time" [(ngModel)]="Fridayclose">
-                      </div>
-                   </div>
-              
-             </div>
-          </div>
-          <div class="col-sm-12 loca_hours">
-             <div class="col-sm-2">
-                Saturday
-             </div>
-             <div class="col-sm-3">
-                <span class="ui_switch"><ui-switch [(ngModel)]="enable7" checked class="pull-left"></ui-switch> </span>    <span class="textopenclose">Open</span>
-             </div>
-             <div class="col-sm-7">
-              
-                   <div class="form-group registration-date">
-                      <div class="input-group registration-date-time col-sm-6">
-                         <input class="form-control" type="time" >
-                      </div>
-                      <div class="input-group registration-date-time col-sm-6">
-                         <input class="form-control" type="time">
-                      </div>
-                   </div>
-               
-             </div>
-          </div>
-          <div class="modal-footer">
-             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-       </div>
-    </div>
- </div>
- <div class="modal fade" id="photo_ved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-       <div class="modal-content">
-          <h4  class="card-title">Digital Photography </h4>
-          <button type="button " class="close digi_btn" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
-          <div class="card-content selectboxservice">
-             <div class="form-group">
-                <label for="comment">Map Location:</label>
-                
-                <!-- <textarea class="form-control" rows="5" id="comment"></textarea> -->
-             </div>
-             <div>
-                <label class="digi_lable">
-     
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.562064237219!2d77.22732101467972!3d28.61291198242557!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce2daa9eb4d0b%3A0x717971125923e5d!2sIndia+Gate!5e0!3m2!1sen!2sin!4v1534139472754" width="730" height="100" frameborder="0" style="border:0" allowfullscreen></iframe>
-                <input name="group1" type="radio" checked=""> <span>Photography </span>
-                </label>
-             </div>
-             <div>
-                <label>
-                <input name="group1" type="radio"> <span> Vediography</span> 
-                </label>
-             </div>
-          </div>
-          <div class="modal-footer">
-             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-             <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
-          </div>
-       </div>
-    </div>
- </div>
- <div class="modal fade" id="address" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-       <div class="modal-content">
-          <div class="modal-header">
-              <h4 class="modal-title">Address</h4>
-              <button type="button" class="close" aria-label="Close" >
-              <span aria-hidden="true">&times;</span>
-              </button>
-           </div>
-           <div class="col-sm-12 county_addres">
-              <div class="col-sm-2">
-                 Country
-              </div>
-              <div class="col-sm-2">
-                 <input type="text" placeholder=" Enter Your Country" [(ngModel)] = "Country">
-              </div>
-           </div>
-           <div class="col-sm-12 county_addres">
-              <div class="col-sm-2">
-                 District
-              </div>
-              <div class="col-sm-2">
-                 <input type="text" placeholder=" Enter Your District" [(ngModel)] = "District">        
-                 
-              </div>
-           </div>
-           <div class="col-sm-12 county_addres mar_bottom_10px">
-              <div class="col-sm-2">
-                 Address
-              </div>
-              <div class="col-sm-2">
-                 <input type="text" placeholder=" Street Address" [(ngModel)] = "StreetAddress">
-              </div>
-           </div>
-           <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-           </div>
-       </div>
 
+
+ <form (ngSubmit)="upForm(info)" #info="ngForm" > 
+    <div class="modal fade" id="location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Add New Location</h4>
+                <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="col-sm-12  text-center">
+                    <i class="material-icons"> add_location </i>
+                    <p>Have more business branches?</p>
+                    <!-- <input class="endent_10px" type="text" placeholder="Enter Location"> -->
+                    <p> <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.562064237219!2d77.22732101467972!3d28.61291198242557!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce2daa9eb4d0b%3A0x717971125923e5d!2sIndia+Gate!5e0!3m2!1sen!2sin!4v1534139472754" width="680" height="100" frameborder="0" style="border:0" allowfullscreen></iframe>  </p>
+                    <p>Premium members only. <span>Upgrade</span> </p>
+                </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+              </div>
+          </div>
+        </div>
     </div>
- </div>
+    <div class="modal fade" id="phone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" *ngFor="let data of modelfield">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content" >
+              <div class="modal-header">
+                <h4 class="modal-title">Phone Number  </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body">
+                <h6 class="col-xs-offset-2 phonepopuphead">Primary Number</h6>
+                <div class="col-sm-2 col-3">
+                    <select>
+                      <option>Phone</option>
+                      <option>Mobile</option>
+                    </select>
+                </div>
+                <div class="col-sm-10 col-9 nopadd">
+                    <input type="text" 
+                    class="inputbottombor"  
+                    placeholder="0731-245326"  
+                    [(ngModel)] ="data.mobile"
+                    id="phone" 
+                     name="phone">
+                    <input type="text" 
+                    class="inputbottombor"  
+                    placeholder="0731-245326"  
+                    [(ngModel)] ="data.vendorLocationId"
+                    id="phone" 
+                     name="phone">
+                </div>
+                <div class="clearfix"></div>
+                <h6 class="col-xs-offset-2 phonepopuphead">Second Number</h6>
+                <div class="col-sm-2 col-3">
+                    <select>
+                      <option>Phone</option>
+                      <option>Mobile</option>
+                    </select>
+                </div>
+                <div class="col-sm-10 col-9 nopadd">
+                    <input type="text" 
+                    class="inputbottombor" 
+                    placeholder="0731-245326"  
+                    id="phone1" 
+                     name="phone1"
+                    [(ngModel)] ="data.phone">
+                    <button class="deletebtn">
+                    <i class="material-icons">clear</i>
+                    </button>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-12"><br/>
+                    <a href=""> ADD PHONE NUMBER </a>   
+                </div>
+              </div>
+              <div class="modal-footer">
+              <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+        </div>
+    </div>
+    <div class="modal fade" id="week" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Trading Hours</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="col-sm-12 loca_hours sund_top">
+                <div class="col-sm-2">
+                    Sunday
+                </div>
+                <div class="col-sm-3 line_height">
+                    <span class="ui_switch">
+                    <ui-switch [(ngModel)]="enable1" disabled class="pull-left">
+                    </ui-switch>
+                    </span>   <span class="textopenclose">Close</span>
+                </div>
+              </div>
+              <div class="col-sm-12 loca_hours">
+                <div class="col-sm-2">
+                    Monday
+                </div>
+                <div class="col-sm-3">
+                    <span class="ui_switch">
+                    <ui-switch [(ngModel)]="enable2" checked class="pull-left"></ui-switch>
+                    </span>
+                    <span class="textopenclose">Open</span>
+                </div>
+                <div class="col-sm-7">
+                      <div class="form-group registration-date">
+                          <div class="input-group registration-date-time col-sm-6">
+                            <input class="form-control" type="time" [(ngModel)]="Mondayopen">
+                          </div>
+                          <div class="input-group registration-date-time col-sm-6">
+                            <input class="form-control" type="time" [(ngModel)]="Mondayclose">
+                          </div>
+                      </div>
+                  
+                </div>
+              </div>
+              <div class="col-sm-12 loca_hours">
+                <div class="col-sm-2">
+                    Tuesday
+                </div>
+                <div class="col-sm-3">
+                    <span class="ui_switch"><ui-switch [(ngModel)]="enable3" checked class="pull-left"></ui-switch></span>    
+                    <span class="textopenclose">Open</span>
+                </div>
+                <div class="col-sm-7">
+                      <div class="form-group registration-date">
+                          <div class="input-group registration-date-time col-sm-6">
+                            <input class="form-control" type="time" [(ngModel)]="Tuesdayopen">
+                          </div>
+                          <div class="input-group registration-date-time col-sm-6">
+                            <input class="form-control" type="time" [(ngModel)]="Tuesdayclose">
+                          </div>
+                      </div>
+                </div>
+              </div>
+              <div class="col-sm-12 loca_hours">
+                <div class="col-sm-2">
+                    Wednesday
+                </div>
+                <div class="col-sm-3">
+                    <span class="ui_switch"><ui-switch [(ngModel)]="enable4" checked class="pull-left"></ui-switch> </span>    
+                    <span class="textopenclose">Open</span>
+                </div>
+                <div class="col-sm-7">
+                  
+                      <div class="form-group registration-date">
+                          <div class="input-group registration-date-time col-sm-6">
+                            <input class="form-control" type="time" [(ngModel)]="Wednesdayopen">
+                          </div>
+                          <div class="input-group registration-date-time col-sm-6">
+                            <input class="form-control" type="time" [(ngModel)]="Wednesdayclose">
+                          </div>
+                      </div>
+                  
+                </div>
+              </div>
+              <div class="col-sm-12 loca_hours">
+                <div class="col-sm-2">
+                    Thursday
+                </div>
+                <div class="col-sm-3">
+                    <span class="ui_switch"><ui-switch [(ngModel)]="enable5" checked class="pull-left"></ui-switch> </span>    <span class="textopenclose">Open</span>
+                </div>
+                <div class="col-sm-7">
+                      <div class="form-group registration-date">
+                          <div class="input-group registration-date-time col-sm-6">
+                            <input class="form-control" type="time" [(ngModel)]="Thursdayopen">
+                          </div>
+                          <div class="input-group registration-date-time col-sm-6">
+                            <input class="form-control" type="time" [(ngModel)]="Thursdayclose">
+                          </div>
+                      </div>
+                </div>
+              </div>
+              <div class="col-sm-12 loca_hours">
+                <div class="col-sm-2">
+                    Friday
+                </div>
+                <div class="col-sm-3">
+                    <span class="ui_switch"><ui-switch [(ngModel)]="enable6" checked class="pull-left"></ui-switch> </span>    <span class="textopenclose">Open</span>
+                </div>
+                <div class="col-sm-7">
+                  
+                      <div class="form-group registration-date">
+                          <div class="input-group registration-date-time col-sm-6">
+                            <input class="form-control" type="time" [(ngModel)]="Fridayopen">
+                          </div>
+                          <div class="input-group registration-date-time col-sm-6">
+                            <input class="form-control" type="time" [(ngModel)]="Fridayclose">
+                          </div>
+                      </div>
+                  
+                </div>
+              </div>
+              <div class="col-sm-12 loca_hours">
+                <div class="col-sm-2">
+                    Saturday
+                </div>
+                <div class="col-sm-3">
+                    <span class="ui_switch"><ui-switch [(ngModel)]="enable7" checked class="pull-left"></ui-switch> </span>    <span class="textopenclose">Open</span>
+                </div>
+                <div class="col-sm-7">
+                  
+                      <div class="form-group registration-date">
+                          <div class="input-group registration-date-time col-sm-6">
+                            <input class="form-control" type="time" >
+                          </div>
+                          <div class="input-group registration-date-time col-sm-6">
+                            <input class="form-control" type="time">
+                          </div>
+                      </div>
+                  
+                </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+        </div>
+    </div>
+    <div class="modal fade" id="photo_ved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <h4  class="card-title">Digital Photography </h4>
+              <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
+              <button type="button " class="close digi_btn" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+              <div class="card-content selectboxservice">
+                <div class="form-group">
+                    <label for="comment">Map Location:</label>
+                  
+                    
+                    <!-- <textarea class="form-control" rows="5" id="comment"></textarea> -->
+                </div>
+                <div>
+                    <label class="digi_lable">
+        
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.562064237219!2d77.22732101467972!3d28.61291198242557!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce2daa9eb4d0b%3A0x717971125923e5d!2sIndia+Gate!5e0!3m2!1sen!2sin!4v1534139472754" width="730" height="100" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    <input name="group1" type="radio" checked=""> <span>Photography </span>
+                    </label>
+                  
+                </div>
+                <div>
+                    <label>
+                    <input name="group1" type="radio"> <span> Vediography</span> 
+                    </label>
+                            </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
+                <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+              </div>
+          </div>
+        </div>
+    </div>
+    <div class="modal fade" id="address" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title">Address</h4>
+                  <button type="button" class="close" aria-label="Close" >
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="col-sm-12 county_addres">
+                  <div class="col-sm-2">
+                    Country
+                  </div>
+                  <div class="col-sm-2">
+                
+                  </div>
+              </div>
+              <div class="col-sm-12 county_addres">
+                  <div class="col-sm-2">
+                    District
+                  </div>
+                  <div class="col-sm-2">
+                  
+                    
+                  </div>
+              </div>
+              <div class="col-sm-12 county_addres mar_bottom_10px">
+                  <div class="col-sm-2">
+                    Street Address
+                  </div>
+                  <div class="col-sm-2">
+                  
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+        </div>
+    </div>
+</form>  

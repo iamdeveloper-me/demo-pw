@@ -147,37 +147,41 @@
 
 <form (ngSubmit)="upForm(info)" #info="ngForm"> 
 
+
     <div class="modal fade" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        
-                <div class="modal-content">
-                    <div class="modal-header text-center">
-                        <h4 class="modal-title">Edit Business Description {{modelfield}}</h4>
-                        <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-sm-12  text-center">
-                        <!-- <i class="material-icons"> add_location </i> -->
-                        <div class="col-sm-12  text-center">      
-                        <textarea  class="textareaclass" type="text" 
-                        id="businessDetails" 
-                        placeholder="Enter Description"
-                        [(ngModel)] = "modelfield.businessDetails" 
-                        (ngModelChange)="Description = $event" 
-                        name="businessDetails"
-                        ></textarea> 
+        <div class="modal-dialog" role="document">
+            
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title">Edit Business Description {{modelfield}}</h4>
+                            <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
-                        <!-- <p>Business picture url :<input class="endent_10px width_60" type="text" [(ngModel)] = "imag"  placeholder="Enter image url"> </p>  -->
+                        <div class="modal-body">
+                            <div class="col-sm-12  text-center">
+                            <!-- <i class="material-icons"> add_location </i> -->
+                            <div class="col-sm-12  text-center">      
+                            <textarea  class="textareaclass" type="text" 
+                            id="businessDetails" 
+                            placeholder="Enter Description"
+                            [(ngModel)] = "modelfield.businessDetails" 
+                            (ngModelChange)="Description = $event" 
+                            name="businessDetails"
+                            ></textarea> 
+                            </div>
+                            <!-- <p>Business picture url :<input class="endent_10px width_60" type="text" [(ngModel)] = "imag"  placeholder="Enter image url"> </p>  -->
+                            </div>
                         </div>
+                        <div class="modal-footer text-center">
+                            <button type="submit" class="btn btn-secondary btn-raised">Save</button> 
+                            <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+                        </div>
+
                     </div>
-                    <div class="modal-footer text-center">
-                        <button type="submit" class="btn btn-secondary btn-raised">Save</button> 
-                        <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
-                    </div>
-                </div>
-        
+            
+        </div>
     </div>
-    </div>
+
+
     <div class="modal fade" id="Businesname" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         
@@ -209,82 +213,73 @@
             
     </div>
     </div>
-    <div class="modal fade" id="facebook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal_head text-center">
-                <h4 class="modal-title"><strong> Link your Facebook Page </strong>  </h4>
-                <p>Do you have a Facebook Page for your business?</p>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <div class="clearfix"></div>
-            </div>
-            <div class="modal-body">
-                <div class="col-sm-12  text-center">
-                <div class="switbtn">
-                    <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                    <span class="have_one">Of course, I have one! </span>
-                </div>
-                <div class="clearfix"></div>
-                <div class="input_facebook input-effect form-group">
-                    <i class="fa fa-facebook fa-2x" data-reactid="334" ></i> 
 
-                    <input class="effect-16 validate endent_10px width_60" 
-                    type="text" 
-                    name="facebook"
-                    placeholder="Enter the Link here" 
-                    (ngModelChange)="facebook = $event"
-                    [(ngModel)] = "modelfield.facebookURL" 
-                        id="facebook" 
-                        >
-                    <!-- <label>Enter the Link here</label> -->
+
+    <div class="modal fade" id="facebook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal_head text-center">
+                    <h4 class="modal-title"><strong> Link your Facebook Page </strong>  </h4>
+                    <p>Do you have a Facebook Page for your business?</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="clearfix"></div>
                 </div>
-                </div>
-            </div>
-            <div class="foot_div text-center">
-                <button type="submit" class="btn btn-secondary btn-raised" >Save</button>  &nbsp;
-                <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+                <div class="modal-body">
+                    <div class="col-sm-12  text-center">
+                        <div class="switbtn">
+                            <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                            <span class="have_one">Of course, I have one! </span>
+                        </div>
+                            <div class="clearfix"></div>
+                            <div class="input_facebook input-effect form-group">
+                                <i class="fa fa-facebook fa-2x" data-reactid="334" ></i> 
+
+                                <input class="effect-16 validate endent_10px width_60" 
+                                type="text" 
+                                name="facebook"
+                                placeholder="Enter the Link here" 
+                                (ngModelChange)="facebook = $event"
+                                [(ngModel)] = "modelfield.facebookURL" 
+                                id="facebook">
+                                <!-- <label>Enter the Link here</label> -->
+                        </div>
+                    </div>    
+                </div>       
             </div>
         </div>
-    </div>
-    </div>
-    <div class="modal fade" id="twitter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal_head text-center">
-                <h4 class="modal-title"><strong> Link your twitter Page </strong>  </h4>
-                <p>Do you have a Twitter Page for your business?</p>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <div class="clearfix"></div>
-            </div>
-            <div class="modal-body">
-                <div class="col-sm-12  text-center">
-                <div class="switbtn">
-                    <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                    <span class="have_one">Of course, I have one! </span>
-                </div>
-                <div class="clearfix"></div>
-                <div class="input_facebook input-effect form-group">
-                    <i class="fa fa-twitter fa-2x" data-reactid="334" ></i> 
-                    
-                    <input class="effect-16 validate endent_10px width_60" 
-                    type="text" 
-                    placeholder="Enter the Link here" 
-                    (ngModelChange)="twitter = $event"
-                    [(ngModel)] = "modelfield.twitterURL" 
-                        id="twitter" 
-                        name="twitter">
-                    <!-- <label>Enter the Link here</label> -->
-                </div>
-                </div>
+    </div>    
+
+
+    <div class="modal fade" id="Businesname" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+           <div class="modal-dialog" role="document">
+            
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title">Edit Business Name or Contact </h4>
+                            <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="input_facebook input-effect form-group">
+                            <i class="fa fa-twitter fa-2x" data-reactid="334" ></i> 
+                            
+                            <input class="effect-16 validate endent_10px width_60" 
+                            type="text" 
+                            placeholder="Enter the Link here" 
+                            (ngModelChange)="twitter = $event"
+                            [(ngModel)] = "modelfield.twitterURL" 
+                                id="twitter" 
+                                name="twitter">
+                            <!-- <label>Enter the Link here</label> -->
+                        </div>
+                    </div>
             </div>
             <div class="foot_div text-center">
                 <button type="submit" class="btn btn-secondary btn-raised">Save</button>  &nbsp;
             
                 <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
             </div>
-        </div>
     </div>
-    </div>
+ 
     <div class="modal fade" id="google" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -321,6 +316,8 @@
         </div>
     </div>
     </div>
+
+
     <div class="modal fade" id="instagram" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -358,66 +355,44 @@
         </div>
     </div>
     </div>
-    <div class="modal fade" id="instagram2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal_head text-center">
-                <h4 class="modal-title"><strong> Link your Website </strong>  </h4>
-                <p>Do you have a Trading Page for your business?</p>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <div class="clearfix"></div>
-            </div>
-            <div class="modal-body">
-                <div class="col-sm-12  text-center">
-                <div class="switbtn">
-                    <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                    <span class="have_one">Of course, I have one! </span>
-                </div>
-                <div class="clearfix"></div>
-                <div class="input_facebook input-effect form-group">
-                    <i class="fa fa-globe fa-2x" data-reactid="334" ></i> 
-                    <input class="effect-16 validate endent_10px width_60" 
-                    type="text" 
-                    placeholder="Enter the Link here" 
-                    (ngModelChange)="instagram = $event"
-                    [(ngModel)] = "modelfield.perfectWeddingURL" 
-                    id="perfectWedding" 
-                    name="perfectWedding"
-                    >
-                    <!-- <label>Enter the Link here</label> -->
-                </div>
-                </div>
-            </div>
-            <div class="foot_div text-center">
-                <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
-                <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
-            </div>
-        </div>
-        <!-- <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Add New Trading</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            
-            </div>
-            <div class="modal-body">
-                <div class="col-sm-12  text-center">                 
-                    <i class="fa fa-globe fa-2x" data-reactid="342"></i>
-                    <p>Have more link?</p>
-                    <div class="clearfix"></div>
-                        <div class="switbtn">
-                                            <ui-switch [(ngModel)]="enable4" ></ui-switch> 
-                                    </div>
-            <div class="clearfix"></div>
-                    <p> <input class="endent_10px width_60" type="text" placeholder="Enter link" 
-                        [(ngModel)] = "instagram2" (ngModelChange)="instagram2 = $event"> </p> 
-                
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-            </div> -->
-    </div>
-    </div>
 
+
+    <div class="modal fade" id="instagram2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal_head text-center">
+                    <h4 class="modal-title"><strong> Link your Website </strong>  </h4>
+                    <p>Do you have a Trading Page for your business?</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-12  text-center">
+                    <div class="switbtn">
+                        <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                        <span class="have_one">Of course, I have one! </span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="input_facebook input-effect form-group">
+                        <i class="fa fa-globe fa-2x" data-reactid="334" ></i> 
+                        <input class="effect-16 validate endent_10px width_60" 
+                        type="text" 
+                        placeholder="Enter the Link here" 
+                        (ngModelChange)="instagram = $event"
+                        [(ngModel)] = "modelfield.perfectWeddingURL" 
+                        id="perfectWedding" 
+                        name="perfectWedding"
+                        >
+                        <!-- <label>Enter the Link here</label> -->
+                    </div>
+                    </div>
+                </div>
+                <div class="foot_div text-center">
+                    <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
+                    <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+                </div>
+            </div>
+        </div> 
+    </div>   
+      
 </form>  

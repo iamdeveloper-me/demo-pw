@@ -262,14 +262,7 @@ $(".tikright").click(function(){
         $(".blackoverlaymain").removeClass( "blockmobile"); 
     });
 
-    $(window).scroll(function () {
-    var sc = $(window).scrollTop()
-    if (sc > 100) {
-        $(".headernav").addClass("head_small")
-    } else {
-        $(".headernav").removeClass("head_small")
-    }
-});
+ 
 
 
   

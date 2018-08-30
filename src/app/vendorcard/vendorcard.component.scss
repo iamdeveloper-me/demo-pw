@@ -76,7 +76,29 @@
   .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
     font-size: 18px;
   }
-  
+    .locationbox {
+      margin:15px 0px;
+      border-radius: 10px;
+    }
+    .locationbox img {
+      border-radius: 10px;
+    }
+  .locationbox h2{
+position:absolute;
+bottom: 10px;
+text-align:left;
+font-size: 18px;
+color: #fff;
+text-shadow: 0px 0px 20px #000;
+left:25px;
+font-weight: bold;
+text-transform:uppercase;
+  }
+  .locationbox h2 span{
+    font-weight: 600;
+    font-size: 16px;
+  text-transform:capitalize;
+  }
   .portfolio-box:hover .portfolio-box-caption {
     opacity: 1;
   }
@@ -85,8 +107,8 @@
     outline: none;
   }
   .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
-    height: 150px;
     width: 100%;
+    border-radius:0px;
   }
   
   .card{
@@ -138,19 +160,8 @@
    margin-top: 50px;
    margin-bottom: 50px;
   }
-  figure.effect-layla h2{
-    padding-top: 0% !important;
-    font-size: 20px;
-  }
-  .grid-hover figure{
-    max-height: 250px !important;
-    border-radius: 10px;
-  }
   .grid-hover{
      padding: 0px !important;
-  }
-  figure.effect-layla img{
-    height: inherit !important;
   }
 .vendors_tools{
   background-image: url("https://s3.us-east-2.amazonaws.com/prefect-image/parallax_bg.jpg");
@@ -186,11 +197,15 @@
   top: 25%;
 }
 .bordre_rad1{
-  border: 1px solid rgb(228, 223, 223);
+  border: 0px solid #fff!important;
   border-radius: 1px;
   font-size: 14px;
   position: relative;
+  box-shadow:0px 0px 20px #e5e5e5!important;
+  margin-top:20px!important;
+  margin-bottom:20px!important;
 }
+
 .card-body a{
   color: #444;
 }
@@ -595,6 +610,10 @@ li{line-height:1.5rem !important;}
 .mob300pxwidth{
   width:300px!important;
 }
+
+.mobnopadd{
+  padding:0px!important;
+}
 .popup-gallery .galleryview{
   padding: 5px;
 }
@@ -647,28 +666,10 @@ li{line-height:1.5rem !important;}
   .mobile_div_left div{
     float: left;
   }
-  .grid-hover figure{
-    min-width: 140px !important;
-    margin: 0px;
-  }
-  figure.effect-layla figcaption{
-    padding: 0px;
-    top:inherit;
-    height: inherit;
-    bottom:0px;
-    padding: 10px 0px;
-  }
-  figure.effect-layla h2{
-    font-size: 12px !important;
-    padding-top: 65px!important;
-    -webkit-transform: translate3d(0, 0px, 0)!important;
-    transform: translate3d(0, 0px, 0)!important!important;
-}
 .portfolio-box .portfolio-box-caption {
     height: 30px;
     opacity: 1;
   }
-
   .portfolio-box .portfolio-box-caption .portfolio-box-caption-content {
     position: relative;
     top:0px;
@@ -691,8 +692,12 @@ li{line-height:1.5rem !important;}
 .grid-hover .row .col-6{
   padding: 5px!important;
 }
-}
-  figure.effect-layla img {
-    -webkit-transform: translate3d(0, 0, 0)!important;
-     transform: translate3d(0, 0, 0)!important;
+
+  .locationbox h2{
+font-size: 12px;
+color: #fff;
+  }
+  .locationbox h2 span{
+    font-size: 12px;
+  }
 }

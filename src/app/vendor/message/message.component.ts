@@ -1,4 +1,4 @@
-
+import { MessageService } from '../../shared/service/vendor/message.service';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { InboxService } from './inbox.service';
@@ -10,23 +10,58 @@ import { Mail, Message } from './inbox.model';
   providers: [InboxService]
 })
 export class MessageComponent implements OnInit {
-
+  historyArr:string[];
+  // mreadArr:string[];
+  // markred:string[];
   public isCollapsed = true;
   public isCollapsed1 = false;
   public isMessageSelected = true;
   closeResult: string;
   mail: Mail[];
   message: Message;
-  constructor(private elRef: ElementRef, private modalService: NgbModal, private inboxService: InboxService) {
+  constructor(private elRef: ElementRef, private modalService: NgbModal, private inboxService: InboxService, private hservice: MessageService) {
     this.mail = this.inboxService.inbox.filter((mail: Mail) => mail.mailType === 'Inbox');
     this.message = this.inboxService.message.filter((message: Message) => message.mailId === 4)[0];
   }
 
+  
+  
   ngOnInit() {
     $.getScript('./assets/js/inbox.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
+
+
+      
+      this.hservice.vendorHis().subscribe(( data )  =>  
+      { 
+        console.log(data.json());
+        console.log("oooooooooo");
+        this.historyArr = data.json() as string[] ; 
+      },error => 
+      alert(error) // error path
+    )
+
+    // this.hservice.marksread().subscribe(( data )  =>  
+    //   { 
+    //     console.log(data.json());
+    //     console.log("tttttttttttttt");
+    //     this.mreadArr = data.json() as string[] ; 
+    //   },error => 
+    //   alert(error) // error path
+    // )
+  
+
+    //   this.hservice.markstared().subscribe(( data )  =>  
+    //   { 
+    //     console.log(data.json());
+    //     console.log("tttttttttttttt");
+    //     this.markred = data.json() as string[] ; 
+    //   },error => 
+    //   alert(error) // error path
+    // )
+  
   }
 
   //inbox user list click event function

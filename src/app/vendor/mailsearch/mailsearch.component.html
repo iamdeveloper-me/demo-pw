@@ -48,9 +48,19 @@
                 <hr>
 
 
-                <p class="type_massege"> <input type="text" name="" id="" placeholder="Type Massege......"> <span class="plus"><i class="material-icons">
+               <!--  <p class="type_massege"> <input type="text" name="" id="" placeholder="Type Massege......" (ngSubmit)="onSubmit()" #f="ngForm"> <span class="plus"><i class="material-icons">
                     add
-                    </i></span> </p>
+                    </i></span> </p> -->
+                <form role="form" action="" method="post" class="mt-25 mtx-0" (ngSubmit)="onSubmit()" #f="ngForm">
+                 <p class="type_massege"> 
+                  <input type="text" name="" id="" placeholder="Type Massege......" > 
+                  <span class="plus">
+                    <button type="submit" class="material-icons">
+                    add
+                    </button>
+                  </span> 
+                </p>
+              </form>
                </div>
              
              </div>

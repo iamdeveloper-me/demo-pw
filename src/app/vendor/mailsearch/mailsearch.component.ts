@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from '../../shared/service/vendor/message.service';
 
 @Component({
   selector: 'app-mailsearch',
@@ -6,10 +7,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mailsearch.component.scss']
 })
 export class MailsearchComponent implements OnInit {
-
-  constructor() { }
+  vendorMsg = {messageId:" ",
+    subject:" ",
+    message:" ",
+    sendToUserId:" ",
+    sendByUserId:" ",
+    replyTo:" ",
+    sentDate:" ",
+    messageStatus:" "} 
+  constructor(private vservice: MessageService) { }
 
   ngOnInit() {
   }
+  loadScript(){this.ngOnInit;}
 
+    onSubmit() {   
+   	  	
+      this.vservice.message(this.vendorMsg).subscribe(( data )  =>  
+      { console.log(data.json())
+        
+      },error => 
+      alert(error) // error path
+    )}
 }

@@ -354,7 +354,7 @@
 
 <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection">
    <div class="vp_review_txt_title large_subtext "> Reviews </div>
-    <form  (ngSubmit)="putReview()" #f="ngForm">
+    <form  (ngSubmit)="putReview(review)" #f="ngForm">
         <div class="vp_review_txt">
             <div class="vp_giveReviewBox">
             <span>Give A Review:</span>
@@ -362,11 +362,7 @@
             <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
                 <div class="jq-ry-group-wrapper">
                 <div class="jq-ry-normal-group jq-ry-group">
-                    <span class="fa fa-star checked star_mar1"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>   
+                        <rating [(ngModel)]="review.rating"></rating>  
                 </div>
                 </div>
             </span>

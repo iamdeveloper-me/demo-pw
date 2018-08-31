@@ -33,6 +33,7 @@ export class LocationComponent implements OnInit {
   location: any = {};
 
   countryArray:string[];
+
   ngOnInit(): void {
 
     let headers = new Headers();
@@ -43,6 +44,7 @@ export class LocationComponent implements OnInit {
                       
     this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
     this.countryArray = data.json() as string[]
+  
     console.log( data.json() as string[] );
 
   

@@ -30,14 +30,14 @@ export class MylistingComponent implements OnInit {
           console.log(this.countryArray);  
              });
 
-    this.http.post(this.url,{
-      rating: 2,
-      comments: "Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time",
-      rateVendorID: '65de65c1-d50d-4277-90be-16aad31024a9'
-    },{headers:headers}).subscribe(
-      data =>{ 
-               console.log( data.json());
-             });
+    // this.http.post(this.url,{
+    //   rating: 2,
+    //   comments: "Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time",
+    //   rateVendorID: '65de65c1-d50d-4277-90be-16aad31024a9'
+    // },{headers:headers}).subscribe(
+    //   data =>{ 
+    //            console.log( data.json());
+    //          });
 
 
            

@@ -65,7 +65,7 @@ export class DetailpageComponent implements OnInit {
 review =  {  rating: '3',
              comments: "",
              rateVendorID: 'a96129c3-8861-43aa-8bc9-1c155f1ffd79' }
-putReview(){
+putReview(review){
  
 var headers = new Headers();
 var authToken = localStorage.getItem('userToken');
@@ -73,42 +73,32 @@ headers.append('Accept', 'application/json')
 headers.append('Content-Type', 'application/json');
 headers.append("Authorization",'Bearer '+authToken);
 
-this.http.post(this.url,{
-   rating: 4,
-   comments: "Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time",
-   rateVendorID: '65de65c1-d50d-4277-90be-16aad31024a9'
- },{headers:headers}).subscribe(
-   data =>{ 
-            console.log( data.json());
-          });
-
-console.log("dcxzs");
-
-// //console.log(review);
-// var rating1 = review.rating;
-// var comments1 = review.comments;
-// var rateVendorID1 = review.rateVendorID
-// var headers = new Headers();
-// var authToken = localStorage.getItem('userToken');
-// headers.append('Accept', 'application/json')
-// headers.append('Content-Type', 'application/json');
-// headers.append("Authorization",'Bearer '+authToken);
-
-// console.log(comments1);
-// console.log(rating1);
-// console.log(rateVendorID1);
-// this.http.post(this.url,
-//  {
+//this.http.post(this.url,{
 //    rating: 4,
-//    comments: "stringdcdfcd",
-//    rateVendorID: "34e8ea73-a8b3-4776-b032-a4c8b085671f"
-//  },
-//   {headers:headers}).subscribe(
-//   data =>{ 
-//            console.log( data.json());
-//          },error=>{console.log(error)});
+//    comments: "Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time",
+//    rateVendorID: '65de65c1-d50d-4277-90be-16aad31024a9'
+//  },{headers:headers}).subscribe(
+//    data =>{ 
+//             console.log( data.json());
+//           });
 
-// // console.log("dcxzs"); }     
+// console.log("dcxzs");
+
+ console.log(review);
+ var rating1 = review.rating;
+ var comments1 = review.comments;
+ var rateVendorID1 = review.rateVendorID
+
+
+console.log(comments1);
+ console.log(rating1);
+console.log(rateVendorID1);
+this.http.post(this.url,{ rating: rating1, comments: comments1,rateVendorID: "34e8ea73-a8b3-4776-b032-a4c8b085671f"},
+  {headers:headers}).subscribe(data =>{  console.log( data.json());
+                                        },error=>{console.log(error)}
+                              );
+
+console.log("dcxzs"); 
         }   
         
         

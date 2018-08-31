@@ -1,64 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Http,Headers } from '@angular/http';
 @Component({
   selector: 'app-vendorlist',
   templateUrl: './vendorlist.component.html',
   styleUrls: ['./vendorlist.component.scss']
 })
 export class VendorlistComponent implements OnInit {
-
-  constructor() { }
+  private urlg: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Reviews/myreviews'
+  countryArray:string[];
+  constructor(public http: Http) { }
 
   ngOnInit() {  $("li").removeClass("user");
   $("#login").hide();
 
-//   $(document).ready(function(){
+    $(document).ready(function(){
+          $('.filterbtn').click(function(e){
+              $(".filterboxtik").toggleClass( "in");
+          });
+          $('.closebtn').click(function(e){
+            $(this).parent('.yikyik').addClass("hip");
+            });
+    });
 
-//     $(".filter-button").click(function(){
-//         var value = $(this).attr('data-filter');
-        
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+     alert("drfvc");
 
-//         if(value == "all")
-//         {
-//             //$('.filter').removeClass('hidden');
-//             $('.filter').show('1000');
-//         }
-//         else
-//         {
-// //            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
-// //            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
-//             $(".filter").not('.'+value).hide('3000');
-//             $('.filter').filter('.'+value).show('3000');
-
-            
-//         }
-
-
-
-
-
-//     });
-    
-//     if ($(".filter-button").removeClass("active")) {
-// $(this).removeClass("active");
-// }
-// $(this).addClass("active");
-
-// });
-
- $(document).ready(function(){
-$('.filterbtn').click(function(e){
-//alert("hi")
-    $(".filterboxtik").toggleClass( "in");
-});
-});
- $(document).ready(function(){
-$('.closebtn').click(function(e){
-//alert("hi")
-$(this).parent('.yikyik').addClass("hip");
-});
-});
-
+     this.http.get(this.urlg,{headers:headers}).subscribe(
+      data =>{ 
+        this.countryArray = data.json();  
+          console.log(this.countryArray);  
+             });
 
 
   }

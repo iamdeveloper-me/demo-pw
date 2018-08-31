@@ -9,19 +9,16 @@
           <div class="clearfix"></div>
             <div class="col-sm-12 nopadd" (click)="openModel(countryArray)">
                 <div class="custom-form">
-                    <div class="col-sm-4 "   *ngFor="let data of countryArray" >
-                        <div  class="card martop10px">
-
-                          <div class="col-sm-12">
-
-                            <h4 class="mainhead">Location (Primary) </h4>{{data.isPrimary}}  <br>
-                            
+                    <div class="col-sm-4 "   *ngFor="let data of countryArray;let i=index" >
+                        <div  class="card martop10px" >
+                          <div class="col-sm-12"  > 
+                            <h4 class="mainhead" *ngIf="i==0"> Location (Primary) </h4>
+                            <h4 class="mainhead" *ngIf="i>0"> Location (Secondary) </h4>
                             <div class="switbtn">
-                            
-                              <ui-switch [(ngModel)]="enable" class="pull-left" ></ui-switch> 
+                              <ui-switch class="pull-left"  ></ui-switch> 
                             </div>
                           </div>
-                          <div  class="card-body">
+                          <div  class="card-body"> 
                             <div class="text-center bg-form col-sm-12">
                               <div class="img-section">
                                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3060153584!2d-74.2598711799434!3d40.69714940555201!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1533112990233" 
@@ -179,7 +176,7 @@
           <div class="modal-content">
               <div class="modal-header">
                 <h4 class="modal-title">Add New Location</h4>
-                <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
+                <button type="submit" class="btn bt_blue" data-dismiss="modal"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                    <span aria-hidden="true">&times;</span>
                 </button>
@@ -194,7 +191,7 @@
                 </div>
               </div>
               <div class="modal-footer">
-                  <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
+                  <button type="submit" class="btn bt_blue" data-dismiss="modal"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
               </div>
@@ -255,7 +252,7 @@
                 </div>
               </div>
               <div class="modal-footer">
-              <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
+                  <button type="submit" class="btn bt_blue" data-dismiss="modal"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>
           </div>
@@ -402,7 +399,8 @@
                 </div>
               </div>
               <div class="modal-footer">
-                  <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
+                  
+                  <button type="submit" class="btn bt_blue" data-dismiss="modal"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>
           </div>
@@ -412,7 +410,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
               <h4  class="card-title">Digital Photography </h4>
-              <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
+              <button type="submit" class="btn bt_blue" data-dismiss="modal"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
               <button type="button " class="close digi_btn" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
               <div class="card-content selectboxservice">
                 <div class="form-group">
@@ -437,7 +435,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
+                <button type="submit" class="btn bt_blue" data-dismiss="modal"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
                 <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
               </div>
           </div>
@@ -448,7 +446,7 @@
           <div class="modal-content">
               <div class="modal-header">
                   <h4 class="modal-title">Address</h4>
-                  <button type="button" class="close" aria-label="Close" >
+                  <button type="button" data-dismiss="modal" aria-label="Close" >
                   <span aria-hidden="true">&times;</span>
                   </button>
               </div>
@@ -478,7 +476,7 @@
                   </div>
               </div>
               <div class="modal-footer">
-                  <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
+                  <button type="submit" class="btn bt_blue" data-dismiss="modal"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>
           </div>

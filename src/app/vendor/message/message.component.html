@@ -37,16 +37,17 @@
                                   </td>
                                   <td class="view-message displaymobblock  dont-show">
                                   
-                                  <div>Aakruti{{history}}</div>
+                                  <div>Aakruti</div>
                                  <span _ngcontent-c0="" class="label label-info">Administrator </span>
                                   
                                 </td>
                                   
                                   <td class="view-message displaymobblock">
                                   <div>
-                                    <strong routerLink= "../mailseach">Added a new class: Login Class Fast Site</strong>
+                                    <strong routerLink= "../mailseach">{{history.subject}}</strong>
                                   </div>
-                                  <div class="secondarytext">Hello can we please see your available packages? We are in sydeny, thanks.</div>
+                                  <!-- <div class="secondarytext">Hello can we please see your available packages? We are in sydeny, thanks.</div> -->
+                                   <div class="secondarytext">{{history.message}}</div>
                                 </td>
                                   <td class="view-message  secondarytext text-right">
                                       <i class="fa fa-star"></i>

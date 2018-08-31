@@ -11,7 +11,7 @@ import { Mail, Message } from './inbox.model';
 })
 export class MessageComponent implements OnInit {
   historyArr:string[];
-  // mreadArr:string[];
+  mreadArr:string[];
   // markred:string[];
   public isCollapsed = true;
   public isCollapsed1 = false;
@@ -36,6 +36,7 @@ export class MessageComponent implements OnInit {
       
       this.hservice.vendorHis().subscribe(( data )  =>  
       { 
+        console.log("tttttttttttt");
         console.log(data.json());
         console.log("oooooooooo");
         this.historyArr = data.json() as string[] ; 
@@ -46,7 +47,7 @@ export class MessageComponent implements OnInit {
     // this.hservice.marksread().subscribe(( data )  =>  
     //   { 
     //     console.log(data.json());
-    //     console.log("tttttttttttttt");
+    //     console.log("jjjjjjjj");
     //     this.mreadArr = data.json() as string[] ; 
     //   },error => 
     //   alert(error) // error path

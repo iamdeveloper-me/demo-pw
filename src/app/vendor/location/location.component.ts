@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./location.component.scss']
 })
 export class LocationComponent implements OnInit {
+  data 
   modelfield : any = {};
   currentPage: string = "About"
   obj = [];
@@ -44,8 +45,8 @@ export class LocationComponent implements OnInit {
                       
     this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
     this.countryArray = data.json() as string[]
-   console.log( data.json() as string[] );
-   console.log( data.json());
+  // console.log( data.json() as string[] );
+  // console.log( data.json());
 });
    
 
@@ -79,8 +80,8 @@ export class LocationComponent implements OnInit {
   openModel(b){
     //console.log(b);
     this.modelfield  = b;
-    console.log("asdxsdcs-----------------------------------------");
-  console.log(b);
+   // console.log("asdxsdcs-----------------------------------------");
+  //console.log(b);
   }
   upForm(info){
 
@@ -96,16 +97,16 @@ var infocountryId = info.value.countryId;
 var infopostalCode = info.value.postalCode;
 var infophone = info.value.phone;
 var infotitle = info.value.title;
-    // console.log(infovendorLocationId );
-    //  console.log( infotitle);
-    //   console.log( infocountryId );
-    //    console.log( infovendorId);
+     console.log(infovendorLocationId );
+     console.log( infotitle);
+       console.log( infocountryId );
+        console.log( infovendorId);
         console.log( infocountryName);
-    //      console.log(infocity);
-    //       console.log(infopostalCode);
-    //       console.log(infoaddress);
-    //       console.log(infophone);
-    //       console.log( infomobile );
+         console.log(infocity);
+          console.log(infopostalCode);
+         console.log(infoaddress);
+         console.log(infophone);
+         console.log( infomobile );
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -126,7 +127,19 @@ var infotitle = info.value.title;
          mobile:   infomobile ,
        }
        console.log(data)
-     this.http.post(this.urlpost,data,{headers:headers}).subscribe( (data)=> { console.log(data)}
+
+     this.http.post(this.urlpost,{
+      vendorLocationId: infovendorLocationId,
+     title: infotitle,
+     countryId: infocountryId,
+      vendorId: infovendorId,
+     country: {countryId: infocountryId,countryName: infocountryName},
+     city:  infocity,
+      postalCode:  infopostalCode,
+      address:  infoaddress,
+      phone: infophone,
+      mobile:   infomobile ,
+    },{headers:headers}).subscribe( (data)=> { console.log(data)}
 ,      (responce)=>{ console.log(responce); });
    }
 abc(event){

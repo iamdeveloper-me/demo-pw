@@ -125,6 +125,10 @@ export class MenuComponent implements OnInit {
         $(".user").hide();    
         $(".tikright").hide(); 
         } 
+        if(window.location.pathname == '/home/detailprofile') {
+        $(".user").hide();    
+        $(".tikright").hide(); 
+        } 
 
      //loginpage
      $("#id9").hide();
@@ -148,7 +152,6 @@ export class MenuComponent implements OnInit {
        $("#panel7").addClass( "in");
        $(".logintab").addClass( "active");
        $(".registertab").removeClass( "active");
-
      });
 
 

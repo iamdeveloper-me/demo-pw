@@ -5,6 +5,7 @@
 }
 .brows_head{
     font-size: 2rem;
+    margin-bottom:30px;
 }
 
 // .box_img h6 ,.box_img p{
@@ -117,6 +118,14 @@ display:block;overflow: hidden;border-radius:5px;}
 
 
 @media(max-width: 767px){
+[aos="fade"] {
+  opacity: 0;
+  transition-property: opacity;
+}
+
+[aos="fade"].aos-animate {
+  opacity: 1;
+}
  /*.mob_parallax{
     background-image: url('../../assets/img/parallax1.jpg');
     background-attachment: fixed;
@@ -125,6 +134,10 @@ display:block;overflow: hidden;border-radius:5px;}
     background-size: cover;
   
  }*/
+ .all_category{
+
+   padding-top: 62px;
+}
  .box_img img{
   border-radius: 0px;
   min-height: inherit;
@@ -134,6 +147,9 @@ display:block;overflow: hidden;border-radius:5px;}
 }
  .cakes_hover img {
    display: none;
+}
+.box_img a {
+    border-radius: 0px;
 }
 .cakes_hover h5 {
     margin-top: 50px;
@@ -153,6 +169,7 @@ display:block;overflow: hidden;border-radius:5px;}
    height: 150px;
    border-bottom: 2px solid #fff;
    overflow: hidden;
+   border-radius:0px;
  }
  .cakes_hover{
    left: 0;

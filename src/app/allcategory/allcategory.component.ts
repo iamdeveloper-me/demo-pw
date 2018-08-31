@@ -10,6 +10,10 @@ export class AllcategoryComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+ 	$.getScript('./assets/js/stopExecutionOnTimeout.js');
+ 	$.getScript('./assets/js/aos.js');
   }
 
+
 }
+

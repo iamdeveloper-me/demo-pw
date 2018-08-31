@@ -70,9 +70,6 @@ import { AllcategoryComponent } from './allcategory/allcategory.component';
 import { SupplierByCityComponent } from './supplier-by-city/supplier-by-city.component';
 import { SupplierByCateComponent } from './supplier-by-cate/supplier-by-cate.component';
 import { CategoryComponent } from './category/category.component';
-
-
-
 import { VendorlistComponent } from './userpannel/userboard/vendorlist/vendorlist.component';
 import { ToolComponent } from './userpannel/userboard/tool/tool.component';
 import { UserpannelComponent } from './userpannel/userpannel.component';
@@ -81,6 +78,7 @@ import { InspirationsComponent } from './userpannel/userboard/inspirations/inspi
 import { UserReviewsComponent } from './userpannel/userboard/user-reviews/user-reviews.component';
 import { UserbannerComponent } from './userpannel/userboard/userbanner/userbanner.component';
 import { TimelineComponent } from './userpannel/userboard/timeline/timeline.component';
+import { UsermessageComponent } from './userpannel/userboard/usermessage/usermessage.component';
 import { BookmarkComponent ,NgbdbookmarkModalContent } from './userpannel/userboard/bookmark/bookmark.component';
 import { GuestComponent } from './userpannel/userboard/guest/guest.component';
 import { BudgetComponent } from './userpannel/userboard/budget/budget.component';
@@ -247,6 +245,7 @@ export function getAuthServiceConfigs() {
         VendorlistComponent,
         ToolComponent,
         TimelineComponent ,
+        UsermessageComponent,
         BookmarkComponent,
         NgbdbookmarkModalContent,
         GuestComponent,

@@ -43,37 +43,10 @@ export class LocationComponent implements OnInit {
                       
     this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
     this.countryArray = data.json() as string[]
-    console.log( data.json() as string[] );
-
-  
-
-
-
-    this.http.get(this.urlget,{headers:headers}).subscribe(
-      data =>{ 
-               console.log( data.json());
-             });});
-
-  //  this.http.post(this.urlpost,{
-  //   vendorLocationId: 0,
-  //   title: "string",
-  //   countryId: 1,
-  //   vendorId: 12,
-  //   country: {
-  //     countryId: 1,
-  //     countryName: "india"
-  //   },
-  //   city: "string",
-  //   postalCode: "string",
-  //   address: "string",
-  //   phone: "string",
-  //   mobile: "string"
-
-  // },{headers:headers}).subscribe(
-  //             data =>{ 
-  //                      console.log(data.json());
-  //                    });
-
+   console.log( data.json() as string[] );
+   console.log( data.json());
+});
+   
 
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
@@ -103,41 +76,61 @@ export class LocationComponent implements OnInit {
   })
   }
   openModel(b){
-    console.log(b);
+    //console.log(b);
     this.modelfield  = b;
-    
+    console.log("asdxsdcs-----------------------------------------");
+  console.log(b);
   }
   upForm(info){
 
-console.log('------------------------------------------------'+info);
+ console.log(info);
 
-// var phone = info.value.phone;
-//     let headers = new Headers();
-//     var authToken = localStorage.getItem('userToken');
-//     headers.append('Accept', 'application/json')
-//     headers.append('Content-Type', 'application/json');
-//     headers.append("Authorization",'Bearer '+authToken);
-//     console.log(info);
-  
-//     this.http.post(this.urlpost,{
-//       vendorLocationId: 0,
-//       title: "mahi",
-//       countryId: 1,
-//       vendorId: 12,
-//       country: {
-//         countryId: 1,
-//         countryName: "india"
-//       },
-//       city: "indore",
-//       postalCode: "5456",
-//       address: "string",
-//       phone: phone,
-//       mobile: "4826812459"
-//     },{headers:headers}).subscribe( data =>{ console.log(data.json()); });
-  
-  
-  }
-
+var infovendorLocationId = info.value.vendorLocationId;
+var infoaddress = info.value.address;
+var infocity = info.value.city;
+var infomobile = info.value.mobile;
+var infovendorId = info.value.vendorId;
+var infocountryName = info.value.country;
+var infocountryId = info.value.countryId;
+var infopostalCode = info.value.postalCode;
+var infophone = info.value.phone;
+var infotitle = info.value.title;
+    // console.log(infovendorLocationId );
+    //  console.log( infotitle);
+    //   console.log( infocountryId );
+    //    console.log( infovendorId);
+        console.log( infocountryName);
+    //      console.log(infocity);
+    //       console.log(infopostalCode);
+    //       console.log(infoaddress);
+    //       console.log(infophone);
+    //       console.log( infomobile );
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+    // console.log(info);
+   // console.log(infophone)
+  var data = {
+         vendorLocationId: infovendorLocationId,
+        title: infotitle,
+       // countryId: infocountryId,
+         vendorId: infovendorId,
+        country: {countryId: infocountryId,countryName: infocountryName},
+        city:  infocity,
+         postalCode:  infopostalCode,
+         address:  infoaddress,
+         phone: infophone,
+         mobile:   infomobile ,
+       }
+       console.log(data)
+     this.http.post(this.urlpost,data,{headers:headers}).subscribe( (data)=> { console.log(data)}
+,      (responce)=>{ console.log(responce); },(error)=>  {console.log(error)});
+   }
+abc(event){
+      console.log(event)
+    }
   enable =  true;
   enable1 =  false;
   enable2 =  true;

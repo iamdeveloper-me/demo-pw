@@ -12,6 +12,17 @@ constructor(private router: Router){
 }
 
 ngOnInit() {
+
+
+
+    $.getScript('./assets/jss/core/popper.min.js');
+    $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
+    $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');
+    $.getScript('./assets/jss/plugins/chartist.min.js');
+    $.getScript('./assets/jss/plugins/bootstrap-notify.js');
+    $.getScript('./assets/js/owljsor.js');
+    $.getScript('./assets/js/curosselfun.js');
+ 
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     if(!authToken) 

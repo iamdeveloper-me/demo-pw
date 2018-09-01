@@ -1,4 +1,6 @@
 <!-- Card Dark -->
+
+
 <div id="wrapper" class="toggled">
     <div id="sidebar-wrapper">
        <app-vendorsidebar></app-vendorsidebar>
@@ -8,6 +10,19 @@
         <section id="user-profile">
           <div class="clearfix"></div>
             <div class="col-sm-12 nopadd">
+                <div class="col-sm-4">
+                    <div  class="card martop10px">
+                        <div class="text-center bg-form col-sm-12 addlocationbox">
+                          <i class="material-icons font80px">  add_location </i>
+                          <div>Have more business branches?</div>
+                          <button data-target="#location" (click)="openModel(data)"  data-toggle="modal" type="button" class="martopbot15px borderbtnonly"> Add New Location </button>
+                          <div>Premium members only.
+                            <a routerLink="../membership" class="bluelink">Upgrade</a>
+                          </div>
+                        </div>
+                    </div>
+                 </div>
+
                 <div class="custom-form">
 
                     <div class="col-sm-4 "   *ngFor="let data of countryArray;let i=index" >
@@ -15,10 +30,14 @@
                           <div class="col-sm-12"  > 
                             <h4 class="mainhead" *ngIf="i==0"> Location (Primary) </h4>
                             <h4 class="mainhead" *ngIf="i>0"> Location (Secondary) </h4>
-                            <div class="switbtn">
-                              <ui-switch [(ngModel)]="enable" class="pull-left"  ></ui-switch> 
-
-                            </div>
+                              
+                  
+                              <div class="switbtn" >
+                                <ui-switch 
+                                [(ngModel)]="modelfield.isPrimary" 
+                                id="isPrimary" name="isPrimary" class="pull-left" ></ui-switch> 
+                              </div>
+                  
                           </div>
                           <div  class="card-body"> 
                             <div class="text-center bg-form col-sm-12">
@@ -27,7 +46,17 @@
                                     frameborder="0" style="border:0" allowfullscreen></iframe>
                                   <div class="img_overlay">
                                     <div class="col-lg-12 col-md-12 pad_left_0px">
-                                        <input type="text" class="form-control form-input" value="Digital Photography" placeholder="Company Name" disabled id="companyname">
+                                        <input 
+                                        type="text" 
+                                        class="form-control form-input" 
+           
+                                        placeholder="Company Name" 
+                                        disabled id="companyname"
+                                        [(ngModel)] ="data.title"
+                                        id="title"
+                                        name="title"
+                                        >
+                                     
                                         <button type="button" class="btn edit_btn1" (click)="openModel(data)"  data-toggle="modal" data-target="#photo_ved">
                                         <i class="material-icons">edit</i>
                                         </button>
@@ -84,7 +113,7 @@
                                     <div class="col-sm-12 nopadd weekboxinput3">
                                       <div class="col-sm-4 col-xs-5-mob nopadd">Sunday </div>
                                       <div class="col-sm-8 col-xs-7-mob nopadd">
-                                        {{Sunday}}
+                                        {{data.sundayOpen}}AM to {{data.sundayClose}}PM
                                           <i class="material-icons edit_btn1">edit</i>
                                       </div>
                                     </div>
@@ -94,7 +123,7 @@
                                           Monday
                                       </div>
                                       <div class="col-sm-8 col-xs-7-mob nopadd">
-                                        {{Mondayopen}}AM to {{Mondayclose}}PM
+                                        {{data.mondayOpen}}AM to {{data.mondayClose}}PM
                                       </div>
                                     </div>
                                     <div class="clearfix"></div>
@@ -103,7 +132,7 @@
                                           Tuesday
                                       </div>
                                       <div class="col-sm-8 col-xs-7-mob nopadd">
-                                          {{Tuesdayopen}}AM to {{Tuesdayclose}}PM
+                                          {{data.tuesdayOpen}}AM to {{data.tuesdayClose}}PM
                                       </div>
                                     </div>
                                     <div class="clearfix"></div>
@@ -112,7 +141,7 @@
                                           Webnesday
                                       </div>
                                       <div class="col-sm-8 col-xs-7-mob nopadd">
-                                      {{Wednesdayopen}}AM to {{Wednesdayclose}}PM
+                                      {{data.wednesdayOpen}}AM to {{data.wednesdayClose}}PM
                                       </div>
                                     </div>
                                     <div class="clearfix"></div>
@@ -121,7 +150,7 @@
                                           Thursday
                                       </div>
                                       <div class="col-sm-8 col-xs-7-mob nopadd">
-                                      {{Thursdayopen}}AM to {{Thursdayclose}}PM
+                                      {{data.thursdayOpen}}AM to {{data.thursdayClose}}PM
                                       </div>
                                     </div>
                                     <div class="clearfix"></div>
@@ -130,7 +159,7 @@
                                           Friday
                                       </div>
                                       <div class="col-sm-8 col-xs-7-mob nopadd">
-                                        {{Fridayopen}}AM to {{Fridayclose}}PM
+                                        {{data.fridayOpen}}AM to {{data.fridayClose}}PM
                                       </div>
                                     </div>
                                     <div class="clearfix"></div>
@@ -139,7 +168,7 @@
                                           Saturday
                                       </div>
                                       <div class="col-sm-8 col-xs-7-mob nopadd">
-                                        {{Saturday}}
+                                        {{data.saturdayOpen}}AM to {{data.saturdayClose}}PM
                                       </div>
                                     </div>
                                     <div class="clearfix"></div>
@@ -149,18 +178,7 @@
                           </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div  class="card martop10px">
-                            <div class="text-center bg-form col-sm-12 addlocationbox">
-                            <i class="material-icons font80px">  add_location </i>
-                            <div>Have more business branches?</div>
-                            <button data-target="#location" (click)="openModel(data)"  data-toggle="modal" type="button" class="martopbot15px borderbtnonly"> Add New Location </button>
-                            <div>Premium members only.
-                              <a routerLink="../membership" class="bluelink">Upgrade</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+             
             </div>
           </div>
           <div class="clearfix"></div>
@@ -170,20 +188,15 @@
     </div>
  </div>
 
-
- <form (ngSubmit)="upForm(info)" #info="ngForm" >
   
+<form (ngSubmit)="upForm(info)" #info="ngForm" >
     <div class="modal fade" id="location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
                 <h4 class="modal-title">Add New Location</h4>
 
-                  <input type="text"
-                    class="inputbottombor"
-                    [(ngModel)] ="modelfield.title"
-                    id="title" 
-                    name="title">
+              
                 <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -290,12 +303,38 @@
                 <div class="col-sm-2">
                     Sunday
                 </div>
-                <div class="col-sm-3 line_height">
+                <div class="col-sm-3">
                     <span class="ui_switch">
-                    <ui-switch [(ngModel)]="enable1" disabled class="pull-left">
-                    </ui-switch>
-                    </span>   <span class="textopenclose">Close</span>
+                        <ui-switch 
+                        [(ngModel)] ="modelfield.isSundayOpen"
+                        id="isSundayOpen" 
+                        name="isSundayOpen"
+                        checked 
+                        class="pull-left"> </ui-switch>
+                    </span>
+                    <span class="textopenclose">Open</span>
                 </div>
+                <div class="col-sm-7">
+                  <div class="form-group registration-date">
+                      <div class="input-group registration-date-time col-sm-6">
+                        <input class="form-control" 
+                               type="time" 
+                               class="inputbottombor"
+                               [(ngModel)] ="modelfield.sundayOpen"
+                               id="sundayOpen" 
+                                name="sundayOpen">
+
+                      </div>
+                      <div class="input-group registration-date-time col-sm-6">
+                            <input 
+                            class="form-control" 
+                            type="time" 
+                            [(ngModel)] ="modelfield.sundayClose"
+                            id="sundayClose" 
+                            name="sundayClose">
+                      </div>
+                  </div>
+            </div>
               </div>
               <div class="col-sm-12 loca_hours">
                 <div class="col-sm-2">
@@ -303,17 +342,32 @@
                 </div>
                 <div class="col-sm-3">
                     <span class="ui_switch">
-                    <ui-switch [(ngModel)]="enable2" checked class="pull-left"></ui-switch>
+                        <ui-switch 
+                        [(ngModel)] ="modelfield.isMondayOpen"
+                        id="isMondayOpen" 
+                        name="isMondayOpen"
+                        checked 
+                        class="pull-left"> </ui-switch>
                     </span>
                     <span class="textopenclose">Open</span>
                 </div>
                 <div class="col-sm-7">
                       <div class="form-group registration-date">
                           <div class="input-group registration-date-time col-sm-6">
-                            <input class="form-control" type="time" [(ngModel)]="Mondayopen">
+                            <input class="form-control" 
+                            type="time" 
+                            [(ngModel)] ="modelfield.mondayOpen"
+                            id="mondayOpen" 
+                            name="mondayOpen"
+                            >
                           </div>
                           <div class="input-group registration-date-time col-sm-6">
-                            <input class="form-control" type="time" [(ngModel)]="Mondayclose">
+                            <input class="form-control" 
+                            type="time" 
+                            [(ngModel)] ="modelfield.mondayClose"
+                            id="mondayClose" 
+                            name="mondayClose"
+                            >
                           </div>
                       </div>
 
@@ -324,16 +378,30 @@
                     Tuesday
                 </div>
                 <div class="col-sm-3">
-                    <span class="ui_switch"><ui-switch [(ngModel)]="enable3" checked class="pull-left"></ui-switch></span>
+                    <span class="ui_switch">
+                      <ui-switch 
+                      [(ngModel)]="modelfield.isTuesdayOpen"
+                      id="isTuesdayOpen" 
+                      name="isTuesdayOpen" 
+                      checked 
+                      class="pull-left">
+                      </ui-switch></span>
                     <span class="textopenclose">Open</span>
                 </div>
                 <div class="col-sm-7">
                       <div class="form-group registration-date">
                           <div class="input-group registration-date-time col-sm-6">
-                            <input class="form-control" type="time" [(ngModel)]="Tuesdayopen">
+                            <input class="form-control" 
+                            type="time" 
+                            [(ngModel)] ="modelfield.tuesdayOpen"
+                            id="tuesdayOpen" 
+                            name="tuesdayOpen">
                           </div>
                           <div class="input-group registration-date-time col-sm-6">
-                            <input class="form-control" type="time" [(ngModel)]="Tuesdayclose">
+                            <input class="form-control" type="time" 
+                            [(ngModel)] ="modelfield.tuesdayClose"
+                            id="tuesdayClose" 
+                            name="tuesdayClose">
                           </div>
                       </div>
                 </div>
@@ -343,17 +411,29 @@
                     Wednesday
                 </div>
                 <div class="col-sm-3">
-                    <span class="ui_switch"><ui-switch [(ngModel)]="enable4" checked class="pull-left"></ui-switch> </span>
+                    <span class="ui_switch">
+                      <ui-switch 
+                      [(ngModel)]="modelfield.isWednesdayOpen"
+                      id="isWednesdayOpen" 
+                      name="isWednesdayOpen" 
+                      checked class="pull-left"
+                      ></ui-switch> </span>
                     <span class="textopenclose">Open</span>
                 </div>
                 <div class="col-sm-7">
 
                       <div class="form-group registration-date">
                           <div class="input-group registration-date-time col-sm-6">
-                            <input class="form-control" type="time" [(ngModel)]="Wednesdayopen">
+                            <input class="form-control" type="time"
+                            [(ngModel)] ="modelfield.wednesdayOpen"
+                            id="wednesdayOpen" 
+                            name="wednesdayOpen">
                           </div>
                           <div class="input-group registration-date-time col-sm-6">
-                            <input class="form-control" type="time" [(ngModel)]="Wednesdayclose">
+                            <input class="form-control" type="time" 
+                            [(ngModel)] ="modelfield.wednesdayClose"
+                            id="wednesdayClose" 
+                            name="wednesdayClose">
                           </div>
                       </div>
 
@@ -364,15 +444,28 @@
                     Thursday
                 </div>
                 <div class="col-sm-3">
-                    <span class="ui_switch"><ui-switch [(ngModel)]="enable5" checked class="pull-left"></ui-switch> </span>    <span class="textopenclose">Open</span>
+                    <span class="ui_switch">
+                      <ui-switch 
+                      [(ngModel)]="modelfield.isThursdayOpen"
+                      id="isThursdayOpen" 
+                      name="isThursdayOpen" 
+                      checked class="pull-left"
+                      ></ui-switch> </span>    <span class="textopenclose">Open</span>
                 </div>
                 <div class="col-sm-7">
                       <div class="form-group registration-date">
                           <div class="input-group registration-date-time col-sm-6">
-                            <input class="form-control" type="time" [(ngModel)]="Thursdayopen">
+                            <input class="form-control" type="time" 
+                            [(ngModel)] ="modelfield.thursdayOpen"
+                            id="thursdayOpen" 
+                            name="thursdayOpen">
                           </div>
                           <div class="input-group registration-date-time col-sm-6">
-                            <input class="form-control" type="time" [(ngModel)]="Thursdayclose">
+                            <input class="form-control" type="time"
+                            [(ngModel)] ="modelfield.thursdayClose"
+                            id="thursdayClose" 
+                            name="thursdayClose"
+                            >
                           </div>
                       </div>
                 </div>
@@ -382,16 +475,29 @@
                     Friday
                 </div>
                 <div class="col-sm-3">
-                    <span class="ui_switch"><ui-switch [(ngModel)]="enable6" checked class="pull-left"></ui-switch> </span>    <span class="textopenclose">Open</span>
+                    <span class="ui_switch">
+                      <ui-switch 
+                      [(ngModel)]="modelfield.isFridayOpen"
+                      id="isFridayOpen" 
+                      name="isFridayOpen" 
+                      checked class="pull-left"
+                      ></ui-switch> </span>    <span class="textopenclose">Open</span>
                 </div>
                 <div class="col-sm-7">
 
                       <div class="form-group registration-date">
                           <div class="input-group registration-date-time col-sm-6">
-                            <input class="form-control" type="time" [(ngModel)]="Fridayopen">
+                            <input class="form-control" type="time"
+                            [(ngModel)] ="modelfield.fridayOpen"
+                            id="fridayOpen" 
+                            name="fridayOpen">
                           </div>
                           <div class="input-group registration-date-time col-sm-6">
-                            <input class="form-control" type="time" [(ngModel)]="Fridayclose">
+                            <input class="form-control" type="time"
+                            [(ngModel)] ="modelfield.fridayClose"
+                            id="fridayClose" 
+                            name="fridayClose"
+                            >
                           </div>
                       </div>
 
@@ -402,16 +508,28 @@
                     Saturday
                 </div>
                 <div class="col-sm-3">
-                    <span class="ui_switch"><ui-switch [(ngModel)]="enable7" checked class="pull-left"></ui-switch> </span>    <span class="textopenclose">Open</span>
+                    <span class="ui_switch">
+                      <ui-switch 
+                      [(ngModel)]="modelfield.isSaturdayOpen"
+                      id="isSaturdayOpen" 
+                      name="isSaturdayOpen" 
+                      checked class="pull-left"
+                      ></ui-switch> </span>    <span class="textopenclose">Open</span>
                 </div>
                 <div class="col-sm-7">
 
                       <div class="form-group registration-date">
                           <div class="input-group registration-date-time col-sm-6">
-                            <input class="form-control" type="time" >
+                            <input class="form-control" type="time" 
+                            [(ngModel)] ="modelfield.saturdayOpen"
+                            id="saturdayOpen" 
+                            name="saturdayOpen">
                           </div>
                           <div class="input-group registration-date-time col-sm-6">
-                            <input class="form-control" type="time">
+                            <input class="form-control" type="time"
+                            [(ngModel)] ="modelfield.saturdayClose"
+                            id="saturdayClose" 
+                            name="saturdayClose">
                           </div>
                       </div>
 
@@ -419,7 +537,7 @@
               </div>
               <div class="modal-footer">
                   
-                  <button type="submit" class="btn bt_blue" data-dismiss="modal"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+                  <button type="submit" class="btn bt_blue" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>
           </div>
@@ -428,33 +546,23 @@
     <div class="modal fade" id="photo_ved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
-              <h4  class="card-title">Digital Photography </h4>
-              <button type="submit" class="btn bt_blue" data-dismiss="modal"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-              <button type="button " class="close digi_btn" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+              <h4  class="card-title">{{modelfield.title}}</h4>
+           
               <div class="card-content selectboxservice">
                 <div class="form-group">
-                    <label for="comment">Map Location:</label>
+                    <label for="comment">Change your title:</label>
 
-
+                    <input type="text"
+                    class="inputbottombor"
+                    [(ngModel)] ="modelfield.title"
+                    id="title1" 
+                    name="title1">
                     <!-- <textarea class="form-control" rows="5" id="comment"></textarea> -->
                 </div>
-                <div>
-                    <label class="digi_lable">
-
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.562064237219!2d77.22732101467972!3d28.61291198242557!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce2daa9eb4d0b%3A0x717971125923e5d!2sIndia+Gate!5e0!3m2!1sen!2sin!4v1534139472754" width="730" height="100" frameborder="0" style="border:0" allowfullscreen></iframe>
-                    <input name="group1" type="radio" checked=""> <span>Photography </span>
-                    </label>
-
-                </div>
-                <div>
-                    <label>
-                    <input name="group1" type="radio"> <span> Vediography</span>
-                    </label>
-                            </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn bt_blue" data-dismiss="modal"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+                <button type="submit" class="btn bt_blue" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
                 <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
               </div>
           </div>

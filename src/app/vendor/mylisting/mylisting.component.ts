@@ -22,7 +22,6 @@ export class MylistingComponent implements OnInit {
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
-     alert("drfvc");
 
      this.http.get(this.urlg,{headers:headers}).subscribe(
       data =>{ 

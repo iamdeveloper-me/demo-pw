@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http,Headers } from '@angular/http';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-detailpage',
   templateUrl: './detailpage.component.html',
@@ -8,7 +9,7 @@ import { Http,Headers } from '@angular/http';
 export class DetailpageComponent implements OnInit {
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Reviews/postreview'
 
-  constructor(public http: Http) { }
+  constructor(public http: Http,public toastr: ToastrService) { }
   
   ngOnInit() {
   //  window.location.reload;
@@ -62,7 +63,7 @@ export class DetailpageComponent implements OnInit {
        });
 
 }
-review =  {  rating: '3',
+review =  {  rating: '',
              comments: "",
              rateVendorID: 'a96129c3-8861-43aa-8bc9-1c155f1ffd79' }
 putReview(review){
@@ -73,16 +74,9 @@ headers.append('Accept', 'application/json')
 headers.append('Content-Type', 'application/json');
 headers.append("Authorization",'Bearer '+authToken);
 
-//this.http.post(this.url,{
-//    rating: 4,
-//    comments: "Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time",
-//    rateVendorID: '65de65c1-d50d-4277-90be-16aad31024a9'
-//  },{headers:headers}).subscribe(
-//    data =>{ 
-//             console.log( data.json());
-//           });
-
-// console.log("dcxzs");
+if(!authToken) 
+{  this.toastr.error('Login To Give Your Review', 'Inconceivable!');
+}
 
  console.log(review);
  var rating1 = review.rating;
@@ -91,9 +85,9 @@ headers.append("Authorization",'Bearer '+authToken);
 
 
 console.log(comments1);
- console.log(rating1);
+console.log(rating1);
 console.log(rateVendorID1);
-this.http.post(this.url,{ rating: rating1, comments: comments1,rateVendorID: "34e8ea73-a8b3-4776-b032-a4c8b085671f"},
+this.http.post(this.url,{ rating: rating1, comments: comments1,rateVendorID: "74ae3dbf-a882-42b3-96cd-84a42749820e"},
   {headers:headers}).subscribe(data =>{  console.log( data.json());
                                         },error=>{console.log(error)}
                               );

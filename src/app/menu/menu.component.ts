@@ -28,7 +28,7 @@ export class MenuComponent implements OnInit {
      this.cservice.login(this.user).subscribe(
           (data)=> {
               console.log(data.json());
-          if (data.statusText == "OK" ) {
+          if (data.statusText == "OK" && data.json().role =="Vendors" ) {
             this.typeSuccess();
             localStorage.setItem('userToken',data.json().auth_token);
             this.router.navigate(['../vendor/dashboard'])
@@ -57,7 +57,7 @@ export class MenuComponent implements OnInit {
      this.cservice.login(this.user).subscribe(
           (data)=> {
               console.log(data.json());
-          if (data.statusText == "OK" ) {
+          if (data.statusText == "OK"  && data.json().role =="Users") {
             this.typeSuccess();
             localStorage.setItem('userToken',data.json().auth_token);
             this.router.navigate(['../User/vendor'])
@@ -83,6 +83,16 @@ export class MenuComponent implements OnInit {
     });
     
     }
+
+ //----------------userpanellogout
+ 
+ 
+  
+ logout(){
+
+    localStorage.clear();
+    this.router.navigate(['../home']);
+   }
 
     ngOnInit() { 
         if(window.location.pathname == '/home')   {

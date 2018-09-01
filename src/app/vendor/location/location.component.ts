@@ -11,22 +11,8 @@ import { Observable } from 'rxjs';
 export class LocationComponent implements OnInit {
   data 
   modelfield : any = {};
-  currentPage: string = "About"
   obj = [];
-  name= 'fgdfgdfgdfgdf'
-  Country = 'India'; 
-  District = 'Delhi';
-  StreetAddress = '12, Park Street road';
-  phone1 = '0731-666666';
-  phone2 = '0731-555555';
-  phone3 = '1234567890';
-  Sunday = 'Closed';
-  Mondayopen = '9:00' ;Mondayclose = '5:00';
-  Tuesdayopen= '9:00' ;Tuesdayclose= ' 5:00';
-  Wednesdayopen ='9:00';Wednesdayclose ='5:00';
-  Thursdayopen = '9:00';Thursdayclose = '5:00';
-  Fridayopen =  '9:00';Fridayclose=  '5:00';
-  Saturday = 'Closed';
+  
   constructor(public http: Http) {}
   private urlget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mylocations'
   private urlpost: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savelocation'
@@ -45,7 +31,7 @@ export class LocationComponent implements OnInit {
                       
     this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
     this.countryArray = data.json() as string[]
-  // console.log( data.json() as string[] );
+     console.log( data.json() as string[] );
   // console.log( data.json());
 });
    
@@ -96,57 +82,98 @@ var infocountryName = info.value.country;
 var infocountryId = info.value.countryId;
 var infopostalCode = info.value.postalCode;
 var infophone = info.value.phone;
-var infotitle = info.value.title;
-     console.log(infovendorLocationId );
-     console.log( infotitle);
-       console.log( infocountryId );
-        console.log( infovendorId);
-        console.log( infocountryName);
-         console.log(infocity);
-          console.log(infopostalCode);
-         console.log(infoaddress);
-         console.log(infophone);
-         console.log( infomobile );
+var infotitle = info.value.title1;
+var infosundayOpen =  info.value.sundayOpen;
+var infosundayClose =  info.value.sundayClose;
+
+var infomondayOpen =  info.value.mondayOpen;
+var infomondayClose =  info.value.mondayClose;
+
+var infotuesdayOpen =  info.value.tuesdayOpen;
+var infotuesdayClose =  info.value.tuesdayClose;
+
+var infowednesdayOpen =  info.value.wednesdayOpen;
+var infowednesdayClose =  info.value.wednesdayClose;
+
+var infothursdayOpen =  info.value.thursdayOpen;
+var infothursdayClose =  info.value.thursdayClose;
+
+var infofridayOpen =  info.value.fridayOpen;
+var infofridayClose =  info.value.fridayClose;
+
+var infosaturdayOpen =  info.value.saturdayOpen;
+var infosaturdayClose =  info.value.saturdayClose;
+
+ var infoisFridayOpen  = info.value.isFridayOpen;
+
+ var infoisMondayOpen =  info.value.isMondayOpen;
+
+ var infoisPrimary =  info.value.isPrimary;
+
+ var infoisSaturdayOpen = info.value.isSaturdayOpen;
+
+ var infoisSundayOpen = info.value.isSundayOpen ;
+
+ var infoisThursdayOpen = info.value.isThursdayOpen;
+
+ var infoisTuesdayOpen = info.value.isTuesdayOpen;
+
+ var infoisWednesdayOpen =  info.value.isWednesdayOpen;
+
+
+     console.log(  infoisMondayOpen  );
+  
+
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
-    // console.log(info);
-   // console.log(infophone)
-  var data = {
-         vendorLocationId: infovendorLocationId,
-        title: infotitle,
-       // countryId: infocountryId,
-         vendorId: infovendorId,
-        country: {countryId: infocountryId,countryName: infocountryName},
-        city:  infocity,
-         postalCode:  infopostalCode,
-         address:  infoaddress,
-         phone: infophone,
-         mobile:   infomobile ,
-       }
-       console.log(data)
+
 
      this.http.post(this.urlpost,{
       vendorLocationId: infovendorLocationId,
-     title: infotitle,
-     countryId: infocountryId,
+      title: infotitle,
+      countryId: infocountryId,
       vendorId: infovendorId,
-     country: {countryId: infocountryId,countryName: infocountryName},
-     city:  infocity,
+      country: {countryId: infocountryId,countryName: infocountryName},
+      city:  infocity,
       postalCode:  infopostalCode,
       address:  infoaddress,
       phone: infophone,
       mobile:   infomobile ,
+      sundayOpen:     infosundayOpen,
+      sundayClose:    infosundayClose,
+      mondayOpen:     infomondayOpen,
+      mondayClose:    infomondayClose,
+      tuesdayOpen:    infotuesdayOpen,
+      tuesdayClose:   infotuesdayClose,
+      wednesdayOpen:  infowednesdayOpen,
+      wednesdayClose: infowednesdayClose,
+      thursdayOpen:   infothursdayOpen,
+      thursdayClose:  infothursdayClose,
+      fridayOpen:     infofridayOpen,
+      fridayClose:    infofridayClose,
+      saturdayOpen:   infosaturdayOpen,
+      saturdayClose:  infosaturdayClose,
+      isFridayOpen:   infoisFridayOpen,
+      isMondayOpen:   infoisMondayOpen,
+      isPrimary:      infoisPrimary,
+      isSaturdayOpen: infoisSaturdayOpen,
+      isSundayOpen:   infoisSundayOpen,
+      isThursdayOpen: infoisThursdayOpen,
+      isTuesdayOpen:  infoisTuesdayOpen,
+      isWednesdayOpen:infoisWednesdayOpen,
+     
+
     },{headers:headers}).subscribe( (data)=> { console.log(data)}
 ,      (responce)=>{ console.log(responce); });
    }
 abc(event){
       console.log(event)
     }
-  enable =  true;
-  enable1 =  false;
+  p =  true;
+  enable1 =  true;
   enable2 =  true;
   enable3 =  true;
   enable4 =  true;

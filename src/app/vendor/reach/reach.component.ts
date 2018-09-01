@@ -64,6 +64,7 @@ reachweeklylineChartView: any[] = chartsData.reachweeklylineChartView;
 
 // options
 reachweeklylineChartShowXAxis = chartsData.reachweeklylineChartShowXAxis;
+reachweeklylineChartShowYAxis = chartsData.reachweeklylineChartShowYAxis;
 reachweeklylineChartGradient = chartsData.reachweeklylineChartGradient;
 reachweeklylineChartShowLegend = chartsData.reachweeklylineChartShowLegend;
 reachweeklylineChartShowXAxisLabel = chartsData.reachweeklylineChartShowXAxisLabel;
@@ -88,6 +89,7 @@ reachmonthlylineChartView: any[] = chartsData.reachmonthlylineChartView;
 
 // options
 reachmonthlylineChartShowXAxis = chartsData.reachmonthlylineChartShowXAxis;
+reachmonthlylineChartShowYAxis = chartsData.reachmonthlylineChartShowYAxis;
 reachmonthlylineChartGradient = chartsData.reachmonthlylineChartGradient;
 reachmonthlylineChartShowLegend = chartsData.reachmonthlylineChartShowLegend;
 reachmonthlylineChartShowXAxisLabel = chartsData.reachmonthlylineChartShowXAxisLabel;

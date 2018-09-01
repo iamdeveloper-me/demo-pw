@@ -1182,7 +1182,6 @@ export var reachmonthlylineChartMulti = [
 
   {
     "name": "Promoted",
-    "name": "USA",
     "series": [
       {
         "name": "July",

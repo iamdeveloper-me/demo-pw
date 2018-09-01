@@ -13,7 +13,7 @@ export class AllcategoryComponent implements OnInit {
  	$.getScript('./assets/js/stopExecutionOnTimeout.js');
 
 
- 	$(function(){
+ 	
 	$(window).scroll( function(){
 		
 		var bottom_of_window = $(window).scrollTop() + $(window).height();
@@ -27,8 +27,7 @@ export class AllcategoryComponent implements OnInit {
 				$(this).removeClass('showing');
 			}
 		});
-  }
+  })
 
-
-}
+	}}
 

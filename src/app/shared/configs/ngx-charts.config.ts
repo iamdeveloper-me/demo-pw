@@ -146,7 +146,7 @@ export var reachlineChartColorScheme = {
 };
 
 // line, area
-export var reachreachlineChartAutoScale = true;
+export var reachlineChartAutoScale = true;
 export var reachlineChartLineInterpolation = shape.curveBasis;
 
 ///////monthly 

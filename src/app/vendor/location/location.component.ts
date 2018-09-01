@@ -172,24 +172,12 @@ var infosaturdayClose =  info.value.saturdayClose;
 abc(event){
       console.log(event)
     }
-  p =  true;
-  enable1 =  true;
-  enable2 =  true;
-  enable3 =  true;
-  enable4 =  true;
-  enable5 =  true;
-  enable6 =  true;
-  enable7 =  true;
-  count = 0;
-  onSubmit() { }
+  
 
-  onChange() {
-    this.count++;
-  }
 
-  showPage(page: string) {
-    this.currentPage = page;
-}
+//   showPage(page: string) {
+//     this.currentPage = page;
+// }
 //model
 closeResult: string;
 }

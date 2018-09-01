@@ -236,7 +236,7 @@ export var lineChartSingle = [
 
 export var lineChartMulti = [
   {
-    "name": "Germany",
+    "name": "Contact Clicks",
     "series": [
       {
         "name": "monday",
@@ -270,7 +270,7 @@ export var lineChartMulti = [
   },
 
   {
-    "name": "USA",
+    "name": "Bookmarked",
     "series": [
       {
         "name": "monday",
@@ -303,7 +303,7 @@ export var lineChartMulti = [
     ]
   },
   {
-    "name": "USA",
+    "name": "Calls",
     "series": [
       {
         "name": "monday",
@@ -336,7 +336,7 @@ export var lineChartMulti = [
     ]
   },
   {
-    "name": "USA",
+    "name": "Shares",
     "series": [
       {
         "name": "monday",
@@ -1061,7 +1061,7 @@ export var reachlineChartSingle = [
 
 export var reachlineChartMulti = [
   {
-    "name": "Germany",
+    "name": "Organic",
     "series": [
       {
         "name": "monday",
@@ -1095,7 +1095,7 @@ export var reachlineChartMulti = [
   },
 
   {
-    "name": "USA",
+    "name": "Promoted",
     "series": [
       {
         "name": "monday",
@@ -1127,76 +1127,11 @@ export var reachlineChartMulti = [
       }
     ]
   },
-  {
-    "name": "USA",
-    "series": [
-      {
-        "name": "monday",
-        "value": 450
-      },
-      {
-        "name": "tuesday",
-        "value": 500
-      },
-      {
-        "name": "wednessday",
-        "value": 605
-      },
-      {
-        "name": "thrusday",
-        "value": 950
-      },      
-      {
-        "name": "friday",
-        "value": 250
-      },
-      {
-        "name": "saturday",
-        "value": 475
-      },      
-      {
-        "name": "sunday",
-        "value": 630
-      }
-    ]
-  },
-  {
-    "name": "USA",
-    "series": [
-      {
-        "name": "monday",
-        "value": 650
-      },
-      {
-        "name": "tuesday",
-        "value": 100
-      },
-      {
-        "name": "wednessday",
-        "value": 605
-      },
-      {
-        "name": "thrusday",
-        "value": 750
-      },      
-      {
-        "name": "friday",
-        "value": 850
-      },
-      {
-        "name": "saturday",
-        "value": 575
-      },      
-      {
-        "name": "sunday",
-        "value": 430
-      }
-    ]
-  },
+
 ];
-export var reachlinemonthlyChartMulti = [
+export var reachmonthlylineChartMulti = [
   {
-    "name": "Germany",
+    "name": "Organic",
     "series": [
       {
         "name": "July",
@@ -1246,6 +1181,7 @@ export var reachlinemonthlyChartMulti = [
   },
 
   {
+    "name": "Promoted",
     "name": "USA",
     "series": [
       {
@@ -1294,108 +1230,11 @@ export var reachlinemonthlyChartMulti = [
       }
     ]
   },
-  {
-    "name": "USA",
-    "series": [
-      {
-        "name": "July",
-        "value": 750
-      },
-      {
-        "name": "August",
-        "value": 200
-      },
-      {
-        "name": "September",
-        "value": 305
-      },
-      {
-        "name": "October",
-        "value": 150
-      },      
-      {
-        "name": "November",
-        "value": 450
-      },
-      {
-        "name": "December",
-        "value": 875
-      },      
-      {
-        "name": "January",
-        "value": 230
-      },
-      {
-        "name": "Febuary",
-        "value": 760
-      },
-      {
-        "name": "March",
-        "value": 560
-      },
-      {
-        "name": "April",
-        "value": 660
-      },
-      {
-        "name": "June",
-        "value": 360
-      }
-    ]
-  },
-  {
-    "name": "USA",
-    "series": [
-      {
-        "name": "July",
-        "value": 750
-      },
-      {
-        "name": "August",
-        "value": 200
-      },
-      {
-        "name": "September",
-        "value": 205
-      },
-      {
-        "name": "October",
-        "value": 150
-      },      
-      {
-        "name": "November",
-        "value": 350
-      },
-      {
-        "name": "December",
-        "value": 575
-      },      
-      {
-        "name": "January",
-        "value": 230
-      },
-      {
-        "name": "Febuary",
-        "value": 360
-      },
-      {
-        "name": "March",
-        "value": 660
-      },
-      {
-        "name": "April",
-        "value": 860
-      },
-      {
-        "name": "June",
-        "value": 560
-      }
-    ]
-  },
+
 ];
-export var reachlineweeklyChartMulti = [
+export var reachweeklylineChartMulti = [
   {
-    "name": "Germany",
+    "name": "Organic",
     "series": [
       {
         "name": "week1",
@@ -1429,7 +1268,7 @@ export var reachlineweeklyChartMulti = [
   },
 
   {
-    "name": "USA",
+    "name": "Promoted",
     "series": [
       {
         "name": "week1",
@@ -1462,73 +1301,6 @@ export var reachlineweeklyChartMulti = [
     ]
   },
   
-  {
-    "name": "USA",
-    "series": [
-      {
-        "name": "week1",
-        "value": 250
-      },
-      {
-        "name": "week2",
-        "value": 400
-      },
-      {
-        "name": "week3",
-        "value": 805
-      },
-      {
-        "name": "week4",
-        "value": 750
-      },      
-      {
-        "name": "week5",
-        "value": 650
-      },
-      {
-        "name": "week6",
-        "value": 875
-      },      
-      {
-        "name": "week7",
-        "value": 430
-      }
-    ]
-  },
-  
-  {
-    "name": "USA",
-    "series": [
-      {
-        "name": "week1",
-        "value": 250
-      },
-      {
-        "name": "week2",
-        "value": 400
-      },
-      {
-        "name": "week3",
-        "value": 505
-      },
-      {
-        "name": "week4",
-        "value": 650
-      },      
-      {
-        "name": "week5",
-        "value": 850
-      },
-      {
-        "name": "week6",
-        "value": 575
-      },      
-      {
-        "name": "week7",
-        "value": 830
-      }
-    ]
-  },
 ];
 
 //Area Chart

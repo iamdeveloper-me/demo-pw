@@ -194,8 +194,8 @@ export class CalendertableComponent implements OnInit {
       color: colors.red,
       draggable: true,
       resizable: {
-        beforeStart: true,
-        afterEnd: true
+      beforeStart: true,
+      afterEnd: true
       },
       actions: this.actions,
     }

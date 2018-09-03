@@ -13,6 +13,10 @@
                 <div class="card-header mob_veiw_center">
                     <h4 class="card-title mob_veiw">Reach (Normal + Promoted/Boosted)</h4>
                     <div class="btnholderdaily">
+                         <button class="btn  backbtn" routerLink="../statistics">
+                      <i class="material-icons">arrow_back_ios</i>
+                      Back
+                    </button>
                             <button class="btn  daily" >Daily</button>
                             <button class="btn  weekly" >Weekly</button>
                             <button class="btn  monthly" >Monthly</button>
@@ -21,30 +25,30 @@
                 <div class="card-body reportbox">
                     <div class="card-block dailyreport">
                         <div id="line-chart2" class="height-400">
-                            <ngx-charts-line-chart  [scheme]="lineChartColorScheme" [results]="lineChartMulti" [gradient]="lineChartGradient"
-                                [xAxis]="lineChartShowXAxis" [yAxis]="lineChartShowYAxis" [legend]="lineChartShowLegend" [showXAxisLabel]="lineChartShowXAxisLabel"
-                                [showYAxisLabel]="lineChartShowYAxisLabel" [xAxisLabel]="lineChartXAxisLabel" [yAxisLabel]="lineChartYAxisLabel"
-                                [autoScale]="lineChartAutoScale" (select)="onSelect($event)">
+                            <ngx-charts-line-chart  [scheme]="reachlineChartColorScheme" [results]="reachlineChartMulti" [gradient]="reachlineChartGradient"
+                                [xAxis]="reachlineChartShowXAxis" [yAxis]="reachlineChartShowYAxis" [legend]="reachlineChartShowLegend" [showXAxisLabel]="reachlineChartShowXAxisLabel"
+                                [showYAxisLabel]="reachlineChartShowYAxisLabel" [xAxisLabel]="reachlineChartXAxisLabel" [yAxisLabel]="reachlineChartYAxisLabel"
+                                [autoScale]="reachlineChartAutoScale" (select)="onSelect($event)">
                             </ngx-charts-line-chart>
                         </div>
                     </div>
 
                     <div class="card-block weeklyreport">
                         <div id="line-chart2" class="height-400">
-                            <ngx-charts-line-chart  [scheme]="weeklylineChartColorScheme" [results]="weeklylineChartMulti" [gradient]="weeklylineChartGradient"
-                                [xAxis]="weeklylineChartShowXAxis" [yAxis]="weeklylineChartShowYAxis" [legend]="weeklylineChartShowLegend" [showXAxisLabel]="weeklylineChartShowXAxisLabel"
-                                [showYAxisLabel]="weeklylineChartShowYAxisLabel" [xAxisLabel]="weeklylineChartXAxisLabel" [yAxisLabel]="weeklylineChartYAxisLabel"
-                                [autoScale]="weeklylineChartAutoScale" (select)="onSelect($event)">
+                            <ngx-charts-line-chart  [scheme]="reachweeklylineChartColorScheme" [results]="reachweeklylineChartMulti" [gradient]="reachweeklylineChartGradient"
+                                [xAxis]="reachweeklylineChartShowXAxis" [yAxis]="reachweeklylineChartShowYAxis" [legend]="reachweeklylineChartShowLegend" [showXAxisLabel]="reachweeklylineChartShowXAxisLabel"
+                                [showYAxisLabel]="reachweeklylineChartShowYAxisLabel" [xAxisLabel]="reachweeklylineChartXAxisLabel" [yAxisLabel]="reachweeklylineChartYAxisLabel"
+                                [autoScale]="reachweeklylineChartAutoScale" (select)="onSelect($event)">
                             </ngx-charts-line-chart>
                         </div>
                     </div>
                     <div class="card-block monthlyreport">
                             
                             <div id="line-chart2" class="height-400">
-                                <ngx-charts-line-chart  [scheme]="monthlylineChartColorScheme" [results]="monthlylineChartMulti" [gradient]="monthlylineChartGradient"
-                                    [xAxis]="monthlylineChartShowXAxis" [yAxis]="monthlylineChartShowYAxis" [legend]="monthlylineChartShowLegend" [showXAxisLabel]="monthlylineChartShowXAxisLabel"
-                                    [showYAxisLabel]="monthlylineChartShowYAxisLabel" [xAxisLabel]="monthlylineChartXAxisLabel" [yAxisLabel]="monthlylineChartYAxisLabel"
-                                    [autoScale]="monthlylineChartAutoScale" (select)="onSelect($event)">
+                                <ngx-charts-line-chart  [scheme]="reachmonthlylineChartColorScheme" [results]="reachmonthlylineChartMulti" [gradient]="reachmonthlylineChartGradient"
+                                    [xAxis]="reachmonthlylineChartShowXAxis" [yAxis]="reachmonthlylineChartShowYAxis" [legend]="reachmonthlylineChartShowLegend" [showXAxisLabel]="reachmonthlylineChartShowXAxisLabel"
+                                    [showYAxisLabel]="reachmonthlylineChartShowYAxisLabel" [xAxisLabel]="reachmonthlylineChartXAxisLabel" [yAxisLabel]="reachmonthlylineChartYAxisLabel"
+                                    [autoScale]="reachmonthlylineChartAutoScale" (select)="onSelect($event)">
                                 </ngx-charts-line-chart>
                             </div>
                     </div>

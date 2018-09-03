@@ -11,13 +11,13 @@ export class SignupVendorService {
 
   signup(user)
   {
-    
+    console.log(user);
     var firstname = user.logInInfo.firstName;
     var lastname = user.logInInfo.lastName;
     var upassword = user.logInInfo.password;
     var cpassword = user.logInInfo.confirmPassword;
 
-    //var contactPerson = user.contactInfo.contactPerson;
+    var contactPerson = user.contactInfo.contactPerson;
 
     var email = user.contactInfo.email;
     // var phone = user.contactInfo.phone;
@@ -33,7 +33,7 @@ export class SignupVendorService {
     return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/register',
       { logInInfo: {  firstName: firstname,lastName:lastname, password:upassword,confirmPassword: cpassword},
 
-        contactInfo: { contactPerson: firstname, email: email, phone: "9826812185", website: website},
+        contactInfo: { contactPerson: contactPerson, email: email, phone: "9826812185", website: website},
         businessInfo: {countryId:1, city: city, postalCode: postalcode,address: address, nameOfBusiness: nameOfBusiness, 
                        pricingPlanId:planId['pricingPlanId'] ,payFrequency:planId['payFrequency'] },
         vendorCategories: [ { categoryId: categoryId }]
@@ -51,11 +51,10 @@ export class SignupVendorService {
   }
      typeError() {
       this.toastr.error('Account Not Created', 'Error !!');
-    
-
-
   }
-     
+  typeWarning(error) {
+    this.toastr.warning(error);
+  }
   usignup(userSingUp){
     var email = userSingUp.email;
     var password = userSingUp.password;

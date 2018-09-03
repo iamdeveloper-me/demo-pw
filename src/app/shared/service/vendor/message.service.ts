@@ -10,7 +10,7 @@ export class MessageService {
  
   constructor(config: NgbCarouselConfig ,public http: Http) { }
 
-  vmessage(vendor){
+  message(vendor){
 
     console.log(vendor.sendByEmail);
     // var messageId = 0;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { lineChartMulti , weeklylineChartMulti,monthlylineChartMulti} from '../../shared/data/ngxChart';
+import { reachlineChartMulti , reachweeklylineChartMulti, reachmonthlylineChartMulti} from '../../shared/data/ngxChart';
 import * as chartsData from '../../shared/configs/ngx-charts.config';
 
 @Component({
@@ -9,7 +9,7 @@ import * as chartsData from '../../shared/configs/ngx-charts.config';
 })
 export class ReachComponent implements OnInit {
 
-  constructor() {   Object.assign(this, { lineChartMulti }) }
+  constructor() {   Object.assign(this, {  reachlineChartMulti , reachweeklylineChartMulti, reachmonthlylineChartMulti }) }
 
   ngOnInit() {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
@@ -38,70 +38,70 @@ export class ReachComponent implements OnInit {
         $(".dailyreport").show();
     });
   }
-  lineChartMulti = lineChartMulti;
+  reachlineChartMulti = reachlineChartMulti;
   //Line Charts
-
-  lineChartView: any[] = chartsData.lineChartView;
-
+  reachlineChartView: any[] = chartsData. reachlineChartView;
   // options
-  lineChartShowXAxis = chartsData.lineChartShowXAxis;
-  lineChartShowYAxis = chartsData.lineChartShowYAxis;
-  lineChartGradient = chartsData.lineChartGradient;
-  lineChartShowLegend = chartsData.lineChartShowLegend;
-  lineChartShowXAxisLabel = chartsData.lineChartShowXAxisLabel;
-  lineChartXAxisLabel = chartsData.lineChartXAxisLabel;
-  lineChartShowYAxisLabel = chartsData.lineChartShowYAxisLabel;
-  lineChartYAxisLabel = chartsData.lineChartYAxisLabel;
-
-  lineChartColorScheme = chartsData.lineChartColorScheme;
-
+  reachlineChartShowXAxis = chartsData.reachlineChartShowXAxis;
+  reachlineChartShowYAxis = chartsData.reachlineChartShowYAxis;
+  reachlineChartGradient = chartsData.reachlineChartGradient;
+  reachlineChartShowLegend = chartsData.reachlineChartShowLegend;
+  reachlineChartShowXAxisLabel = chartsData.reachlineChartShowXAxisLabel;
+  reachlineChartXAxisLabel = chartsData.reachlineChartXAxisLabel;
+  reachlineChartShowYAxisLabel = chartsData.reachlineChartShowYAxisLabel;
+  reachlineChartYAxisLabel = chartsData.reachlineChartYAxisLabel;
+  reachlineChartColorScheme = chartsData.reachlineChartColorScheme;
   // line, area
-  lineChartAutoScale = chartsData.lineChartAutoScale;
-  lineChartLineInterpolation = chartsData.lineChartLineInterpolation;
+  reachlineChartAutoScale = chartsData.reachlineChartAutoScale;
+  reachlineChartLineInterpolation = chartsData.reachlineChartLineInterpolation;
 
 
-//weekly
-weeklylineChartMulti = weeklylineChartMulti;
+////////////////////////////////////////////////////////////////////////weekly
+reachweeklylineChartMulti = reachweeklylineChartMulti;
 //Line Charts
 
-weeklylineChartView: any[] = chartsData.weeklylineChartView;
+reachweeklylineChartView: any[] = chartsData.reachweeklylineChartView;
 
 // options
-weeklylineChartShowXAxis = chartsData.weeklylineChartShowXAxis;
-weeklylineChartShowYAxis = chartsData.weeklylineChartShowYAxis;
-weeklylineChartGradient = chartsData.weeklylineChartGradient;
-weeklylineChartShowLegend = chartsData.weeklylineChartShowLegend;
-weeklylineChartShowXAxisLabel = chartsData.weeklylineChartShowXAxisLabel;
-weeklylineChartXAxisLabel = chartsData.weeklylineChartXAxisLabel;
-weeklylineChartShowYAxisLabel = chartsData.weeklylineChartShowYAxisLabel;
-weeklylineChartYAxisLabel = chartsData.weeklylineChartYAxisLabel;
+reachweeklylineChartShowXAxis = chartsData.reachweeklylineChartShowXAxis;
+reachweeklylineChartShowYAxis = chartsData.reachweeklylineChartShowYAxis;
+reachweeklylineChartGradient = chartsData.reachweeklylineChartGradient;
+reachweeklylineChartShowLegend = chartsData.reachweeklylineChartShowLegend;
+reachweeklylineChartShowXAxisLabel = chartsData.reachweeklylineChartShowXAxisLabel;
+reachweeklylineChartXAxisLabel = chartsData.reachweeklylineChartXAxisLabel;
+reachweeklylineChartShowYAxisLabel = chartsData.reachweeklylineChartShowYAxisLabel;
+reachweeklylineChartYAxisLabel = chartsData.reachweeklylineChartYAxisLabel;
 
-weeklylineChartColorScheme = chartsData.weeklylineChartColorScheme;
+reachweeklylineChartColorScheme = chartsData.reachweeklylineChartColorScheme;
 
 // line, area
-weeklylineChartAutoScale = chartsData.weeklylineChartAutoScale;
-weeklylineChartLineInterpolation = chartsData.weeklylineChartLineInterpolation;
-//monthly
-monthlylineChartMulti = monthlylineChartMulti;
+reachweeklylineChartAutoScale = chartsData.reachweeklylineChartAutoScale;
+reachweeklylineChartLineInterpolation = chartsData.reachweeklylineChartLineInterpolation;
+
+
+
+
+////////////////////////////////////////////////////////////////////monthly
+reachmonthlylineChartMulti = reachmonthlylineChartMulti;
 //Line Charts
 
-monthlylineChartView: any[] = chartsData.monthlylineChartView;
+reachmonthlylineChartView: any[] = chartsData.reachmonthlylineChartView;
 
 // options
-monthlylineChartShowXAxis = chartsData.monthlylineChartShowXAxis;
-monthlylineChartShowYAxis = chartsData.monthlylineChartShowYAxis;
-monthlylineChartGradient = chartsData.monthlylineChartGradient;
-monthlylineChartShowLegend = chartsData.monthlylineChartShowLegend;
-monthlylineChartShowXAxisLabel = chartsData.monthlylineChartShowXAxisLabel;
-monthlylineChartXAxisLabel = chartsData.monthlylineChartXAxisLabel;
-monthlylineChartShowYAxisLabel = chartsData.monthlylineChartShowYAxisLabel;
-monthlylineChartYAxisLabel = chartsData.monthlylineChartYAxisLabel;
+reachmonthlylineChartShowXAxis = chartsData.reachmonthlylineChartShowXAxis;
+reachmonthlylineChartShowYAxis = chartsData.reachmonthlylineChartShowYAxis;
+reachmonthlylineChartGradient = chartsData.reachmonthlylineChartGradient;
+reachmonthlylineChartShowLegend = chartsData.reachmonthlylineChartShowLegend;
+reachmonthlylineChartShowXAxisLabel = chartsData.reachmonthlylineChartShowXAxisLabel;
+reachmonthlylineChartXAxisLabel = chartsData.reachmonthlylineChartXAxisLabel;
+reachmonthlylineChartShowYAxisLabel = chartsData.reachmonthlylineChartShowYAxisLabel;
+reachmonthlylineChartYAxisLabel = chartsData.reachmonthlylineChartYAxisLabel;
 
-monthlylineChartColorScheme = chartsData.monthlylineChartColorScheme;
+reachmonthlylineChartColorScheme = chartsData.reachmonthlylineChartColorScheme;
 
 // line, area
-monthlylineChartAutoScale = chartsData.monthlylineChartAutoScale;
-monthlylineChartLineInterpolation = chartsData.monthlylineChartLineInterpolation;
+reachmonthlylineChartAutoScale = chartsData.reachmonthlylineChartAutoScale;
+reachmonthlylineChartLineInterpolation = chartsData.reachmonthlylineChartLineInterpolation;
 
 
 onSelect(event) {

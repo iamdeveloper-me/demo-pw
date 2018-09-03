@@ -1,21 +1,15 @@
-import { TemplateRef } from '@angular/core';
+
 import { Component,  OnInit , Input } from '@angular/core';
 import { LoginServiceService } from '../shared/service/login-service.service';
-import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
-//import { HttpClient} from '@angular/common/http';
-import {Headers ,Http,Response } from '@angular/http';
-import { ToastrService } from 'ngx-toastr';
 import { SignupVendorService } from '../shared/service/signup-vendor.service';
 import 'rxjs/Rx';
-
-
-import { Observable } from 'rxjs/Rx'; 
+ 
 export class NgbdModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) { }
 }
-
 
 @Component({
   selector: 'app-menu',
@@ -24,11 +18,81 @@ export class NgbdModalContent {
 })
 
 export class MenuComponent implements OnInit {
-
-   // user = {username: "",password: ""};
+    error = {} ;
     supArray:string[];
-    // homeArray:string[];  
-    constructor( private router: Router ,private cservice: LoginServiceService ,public _router:Router, private modalService: NgbModal, private http: Http, private uservice: SignupVendorService,) {}
+    constructor( private router: Router ,private cservice: LoginServiceService , private modalService: NgbModal, private uservice: SignupVendorService,) {}
+    user = {username:' ',password:' '}
+    onSubmit(){ 
+     // headers.append('Content-Type', 'application/json');
+      
+     this.cservice.login(this.user).subscribe(
+          (data)=> {
+              console.log(data.json());
+          if (data.statusText == "OK" && data.json().role =="Vendors" ) {
+            this.typeSuccess();
+            localStorage.setItem('userToken',data.json().auth_token);
+            this.router.navigate(['../vendor/dashboard'])
+          }
+        
+        },(ERROR)=>{     
+            if (ERROR.statusText == "Bad Request" ) {
+                this.error  = ERROR.json().login_failure[0];
+            
+              this.typeWarning();
+            }});
+       
+    }
+    
+    typeSuccess() {
+        this.cservice.typeSuccess();
+    }
+        typeWarning() {
+            this.cservice.typeWarning();
+        }
+    //--------------------------------user login 
+
+ userlogin(){ 
+     // headers.append('Content-Type', 'application/json');
+      
+     this.cservice.login(this.user).subscribe(
+          (data)=> {
+              console.log(data.json());
+          if (data.statusText == "OK"  && data.json().role =="Users") {
+            this.typeSuccess();
+            localStorage.setItem('userToken',data.json().auth_token);
+            this.router.navigate(['../User/vendor'])
+          }
+        
+        },(ERROR)=>{     
+            if (ERROR.statusText == "Bad Request" ) {
+                this.error  = ERROR.json().login_failure[0];
+            
+              this.typeWarning();
+            }});
+       
+    }
+
+
+
+    userSingUp = {email:' ',password:' ',confirmpass:''}
+    
+    userSubmit(){
+      this.uservice.usignup(this.userSingUp).subscribe(( data )  =>  {
+            console.log(data);
+            // console.log(data.password)
+    });
+    
+    }
+
+ //----------------userpanellogout
+ 
+ 
+  
+ logout(){
+
+    localStorage.clear();
+    this.router.navigate(['../home']);
+   }
 
     ngOnInit() { 
         if(window.location.pathname == '/home')   {
@@ -71,33 +135,11 @@ export class MenuComponent implements OnInit {
         $(".user").hide();    
         $(".tikright").hide(); 
         } 
+        if(window.location.pathname == '/home/detailprofile') {
+        $(".user").hide();    
+        $(".tikright").hide(); 
+        } 
 
-
-        let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories");
-        obs.subscribe(data => {
-        this.supArray = data.json() as string[]; 
-       console.log(data.json()); 
-        });
-
-    //     let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories");
-    //     obs.subscribe(data => {
-    //     this.supArray = data.json() as string[]; 
-    //    console.log(data.json()); 
-    //     });
-
-
-        // let header = new Headers()
-        // let authToken = localStorage.getItem('userToken');
-       // console.log(authToken)
-        // header.append('Authorization', `Bearer ${authToken}`);
-       // console.log(headers)
-        // let obj = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Dashboard/Home",{headers: header})
-       // .map(response => console.log(response) ,alert("tgwtg"));
-         
-        // obj.subscribe(data => {
-        // this.homeArray = data as string[]; 
-        // console.log(data);
-        // })
      //loginpage
      $("#id9").hide();
      $("#id19").hide();
@@ -120,7 +162,6 @@ export class MenuComponent implements OnInit {
        $("#panel7").addClass( "in");
        $(".logintab").addClass( "active");
        $(".registertab").removeClass( "active");
-
      });
 
 
@@ -252,9 +293,6 @@ loadScript(){
     $("#panel8").addClass( "in");
     $("#panel8").addClass( "active");
     $("#panel8").addClass( "show");
-//    $(".vendorlogin").show();
-//    $(".customerlogin").hide();
-   
    }
    userin(){
    $("#panel9").removeClass( "in");
@@ -266,8 +304,6 @@ loadScript(){
    $("#panel8").removeClass( "in");
    $("#panel8").removeClass( "active");
    $("#panel8").removeClass( "show");
-//    $(".vendorlogin").hide();
-//    $(".customerlogin").show();
    }
 //end
     
@@ -279,39 +315,6 @@ remove(){
    }
 }
    
-  
-user = {username:' ',password:' '}
-onSubmit(){ 
- // headers.append('Content-Type', 'application/json');
-  
- this.cservice.login(this.user).subscribe(
-      (data)=> {console.log(data.json().auth_token);   
-      console.log(data.status);
-      console.log(data.statusText);
-      if (data.statusText == "OK" ) {
-        console.log('Success','Login Successfully')
-        localStorage.setItem('userToken',data.json().auth_token);
-        this.router.navigate(['../vendor/dashboard'])
-      }
-      else
-      { console.log('Login Fail')}
-    });
-   
-}
 
-typeSuccess() {
-    this.cservice.typeSuccess();
-}
-
-
-userSingUp = {email:' ',password:' ',confirmpass:''}
-
-userSubmit(){
-  this.uservice.usignup(this.userSingUp).subscribe(( data )  =>  {
-        console.log(data);
-        // console.log(data.password)
-});
-
-}
 }
 

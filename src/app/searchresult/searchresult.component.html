@@ -347,7 +347,11 @@
            <div class="btn-group">
             <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
             </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
-                class="glyphicon glyphicon-th"></span>Grid</a>
+                class="glyphicon glyphicon-th-large"></span>Grid</a>
+
+                <a href="#" id="photoview" class="btn btn-default btn-sm hidden-lg hidden-sm hidden-md"><span
+                class="glyphicon glyphicon-picture"></span>Photo View</a>
+
         </div>
       </div>
     </div>
@@ -358,168 +362,307 @@
 	<div class="row">
 		<div id="searchfilterbox" class="col-sm-3  nopadd searchfilterbox">
 			<div id="accordion" class="panel">
-					<div class="panel-heading">
-            
+					<div class="panel-heading  hidden-xs"> 
 						<h3 class="panel-title"> 
               <i class="material-icons hidden-xs">sort</i>
               <img alt="close" class="icon-small hidden-sm hidden-md hidden-lg" src="https://s3.us-east-2.amazonaws.com/prefect-image/cross-grey.png"> 
-            Refine by</h3>
-
-
+              Refine by
+            </h3>
 					</div>
 					<div class="panel-body  filterbox" >
 						<!-- location filter -->
-						<div class="panel-heading" >
+            <div class="locationboxmobile">
+						  <div class="panel-heading" >
 							<h4 class="panel-title">
+                  <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
+                    arrow_back_ios
+                  </i>
 								<a data-toggle="collapse" href="#collapse0">Locations
-									<i class="indicator fa fa-caret-down" aria-hidden="true"></i> 
+									<i class="indicator fa fa-caret-down hidden-xs" aria-hidden="true"></i> 
 								</a>
 							</h4>
-						</div>
-						<div id="collapse0" class="panel-collapse collapse ">
-							<div><input type="text" class="cityinput" placeholder="Type the city"/></div>
+						  </div>
+						  <div id="collapse0" class="panel-collapse collapse ">
 
-							<div class="cityscroll">
-								<div class="checkbox1">
-										<label>
-											<input type="checkbox" value="">
-											Delhi NCR
-										</label>
-									</div>
-									<div class="checkbox1" >
-										<label>
-											<input type="checkbox" value="">
-											Mumbai
-										</label>
-									</div>
-									<div class="checkbox1"  >
-										<label>
-											<input type="checkbox" value="">
-											Banglore
-										</label>
-									</div>
-									<div class="checkbox1"  >
-										<label>
-											<input type="checkbox" value="">
-											Indore
-										</label>
-									</div>
-									<div class="checkbox1"  >
-										<label>
-											<input type="checkbox" value="">
-											Pune
-										</label>
-									</div>
-							</div>
-							
-						</div>
+							<div class="city_position">
+                <input type="text" class="cityinput" placeholder="Type the city"/>
+                <i class="material-icons">search</i>
+              </div>
+
+							<div class="cityscroll22">
+                  <div class="funkyradio">
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Black" checked/>
+                      <label for="Black"> 
+                        <i class="material-icons">location_on</i> Black River
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Grand"/>
+                      <label for="Grand"> 
+                        <i class="material-icons">location_on</i> Grand Port
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Flacq"/>
+                      <label for="Flacq"> 
+                        <i class="material-icons">location_on</i> Flacq
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Moka"/>
+                      <label for="Moka"> 
+                        <i class="material-icons">location_on</i> Moka
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Pamplemousses"/>
+                      <label for="Pamplemousses"> 
+                        <i class="material-icons">location_on</i> Pamplemousses
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Plaines"/>
+                      <label for="Plaines"> 
+                        <i class="material-icons">location_on</i> Plaines-Wilhems
+                      </label>
+                    </div>
+                     <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Riviere"/>
+                      <label for="Riviere"> 
+                        <i class="material-icons">location_on</i> Riviere du Rempart
+                      </label>
+                    </div>
+                     <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Savanne"/>
+                      <label for="Savanne"> 
+                        <i class="material-icons">location_on</i> Savanne
+                      </label>
+                    </div>
+                     <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Rodrigues"/>
+                      <label for="Rodrigues"> 
+                        <i class="material-icons">location_on</i> Rodrigues
+                      </label>
+                    </div>
+                  </div>
+							</div>			
+						  </div>
+            </div>
 						<!-- Price Range  -->
-						<div class="panel-heading ">
-							<h4 class="panel-title">
-								<a data-toggle="collapse" href="#collapse1">
-									<i class="indicator fa fa-caret-down" aria-hidden="true"></i> Price Range
-								</a>
-							</h4>
-						</div>
-						<div id="collapse1" class="panel-collapse collapse" >
-							<div data-role="main" class="ui-content">
-	    						<form method="post" action="/action_page_post.php">
-							      <div data-role="rangeslider">
-							        <label for="price-min">Price:</label>
-							        <input type="range" name="price-min" id="price-min" value="200" min="0" max="1000">
-							        <label for="price-max">Price:</label>
-							        <input type="range" name="price-max" id="price-max" value="800" min="0" max="1000">
-							      </div>
-							    </form>
-	  						</div>
-						</div>
+            <div class="priceboxmobile">
+  						<div class="panel-heading ">
+  							<h4 class="panel-title">
+                   <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
+                    arrow_back_ios
+                  </i>
+  								<a data-toggle="collapse" href="#collapse1">
+  									<i class="indicator fa fa-caret-down hidden-xs" aria-hidden="true"></i> Price Range
+  								</a>
+  							</h4>
+  						</div>
+  						<div id="collapse1" class="panel-collapse collapse" >
+                 
+                  <div class="funkyradio">
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="check1" checked/>
+                      <label for="check1"> 
+                        < 50000
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="check2" checked/>
+                      <label for="check2"> 
+                        < 100000
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="check3" checked/>
+                      <label for="check3"> 
+                        < 150000
+                      </label>
+                    </div>
+                  </div>
+  						</div>
+            </div>
 						<!-- Category -->
-						<div class="panel-heading" >
-							<h4 class="panel-title">
-								<a data-toggle="collapse" href="#collapse2">
-									<i class="indicator fa fa-caret-down" aria-hidden="true"></i> Category
-								</a>
-							</h4>
-						</div>
-						<div id="collapse2" class="panel-collapse collapse " >
-									<div class="checkbox1">
-										<label>
-											<input type="checkbox" value="">
-											citroen
-										</label>
-									</div>
-									<div class="checkbox1">
-										<label>
-											<input type="checkbox" value="">
-											citroen
-										</label>
-									</div>
-									<div class="checkbox1">
-										<label>
-											<input type="checkbox" value="">
-											citroen
-										</label>
-									</div>
-									<div class="checkbox1">
-										<label>
-											<input type="checkbox" value="">
-											citroen
-										</label>
-									</div>
-									<div class="checkbox1">
-										<label>
-											<input type="checkbox" value="">
-											citroen
-										</label>
-									</div>
-								
-						</div>
+            <div class="categoryboxmobile">
+  						<div class="panel-heading" >
+  							<h4 class="panel-title">
+                   <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
+                    arrow_back_ios
+                  </i>
+  								<a data-toggle="collapse" href="#collapse2">
+  									<i class="indicator fa fa-caret-down hidden-xs" aria-hidden="true"></i> Category
+  								</a>
+  							</h4>
+  						</div>
+  						<div id="collapse2" class="panel-collapse collapse " >
+                  <div class="category-body">
+                      <div class="searchmobtitlebar city_position">
+                        <i class="material-icons">search</i>
+                        <input class="cityinput" type="text" value="" id="search" placeholder="Type to Search Category">
+                      </div>
+                    <!-- <div class="regular">All Categories</div> -->
+                <div class="cityscroll22"> 
+                  <div class="funkyradio">  
+                    <div class="funkyradio-info">
+                     <input type="checkbox" name="checkbox" id="any" checked/>
+                        <label for="any"> 
+                         <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
+                        <b> All Categories </b>  
+                        </label>
+                    </div>
+                    <div class="funkyradio-info">
+                        <input type="checkbox" name="checkbox" id="Cakes" checked/>
+                        <label for="Cakes"> 
+                          <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Wedding_cake.svg"/></i>Cakes
+                        </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Decorators"/>
+                      <label for="Decorators"> 
+                      <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_decorator.svg"/></i> Decorators & Wedding Stylist
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Drinks"/>
+                      <label for="Drinks"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i> Drinks and Beverages
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Fashion"/>
+                      <label for="Fashion"> 
+                        <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Fashion&Clothing.svg"/></i> Fashion & Clothing
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="any"/>
+                        <label for="any"><i>
+                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/florist.svg"/></i> Florists, Bouquets and Centerpiece
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Food"/>
+                      <label for="Food"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_car.svg"/> </i> Food & Catering
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Footwear"/>
+                      <label for="Footwear"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Footwear.svg"/></i> Footwear
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Honeymoon"/>
+                      <label for="Honeymoon"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/honeymoon.svg"/></i> Honeymoon & Travel
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Invitation"/>
+                      <label for="Invitation"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/stationary.svg"/></i> Invitation Cards & Wedding Stationary
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Jewellery"/>
+                      <label for="Jewellery"> <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Jewellery.svg"/></i> Jewellery & Wedding Rings
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Makeup"/>
+                      <label for="Makeup"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/make_up.svg"/></i> Make Up, Hair & Mehendi
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Marriage"/>
+                      <label for="Marriage"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i> Marriage Celebrant
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Music"/>
+                      <label for="Music"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/music_dj.svg"/></i> Music, DJs & Entertainment
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Supplies"/>
+                      <label for="Supplies"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Wedding Planner.svg"/></i> Other wedding Supplies & Accessories
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Photography"/>
+                      <label for="Photography"> <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Photography.svg"/></i> Photography, Videography & Cinematography
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Venues"/>
+                      <label for="Venues"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Venues.svg" alt=""></i> Venues
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="WeddingCars"/>
+                      <label for="WeddingCars"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_car.svg"/></i> Wedding Cars & Transport
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Management"/>
+                      <label for="Management">  
+                      <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/> </i> Wedding Planner & Event Management
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="Fitness"/>
+                      <label for="Fitness"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Shape&Fitness.svg" alt=""> </i> Shape & Fitness
+                      </label>
+                    </div>
+  						</div>
+            </div>
+            </div>
+          </div></div>
 						<!-- Customer Rating -->
-						<div class="panel-heading" >
-							<h4 class="panel-title">
-								<a data-toggle="collapse" href="#collapse3"><i class="indicator fa fa-caret-down" aria-hidden="true"></i> Customer Rating</a>
-							</h4>
-						</div>
-						<div id="collapse3" class="panel-collapse collapse">
-							
-									<div class="checkbox1">
-										<label>
-											<input type="checkbox" value="">
-											1 <i class="fa fa-star"></i>  & above
-										</label>
-									</div>
-								<div class="checkbox1">
-										<label>
-											<input type="checkbox" value="">
-											2 <i class="fa fa-star"></i>  & above
-										</label>
-									</div>
-									<div class="checkbox1">
-										<label>
-											<input type="checkbox" value="">
-											3 <i class="fa fa-star"></i>  & above
-										</label>
-									</div>
-									<div class="checkbox1">
-										<label>
-											<input type="checkbox" value="">
-											4 <i class="fa fa-star"></i>  & above
-										</label>
-									</div>
-									<div class="checkbox1">
-										<label>
-											<input type="checkbox" value="">
-											5 <i class="fa fa-star"></i>  & above
-										</label>
-									</div>
-						</div>
+            <div class="ratingboxmobile">
+  						<div class="panel-heading" >
+  							<h4 class="panel-title"> 
+                  <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
+                    arrow_back_ios
+                  </i>
+  								<a data-toggle="collapse" href="#collapse3"><i class="indicator fa fa-caret-down hidden-xs" aria-hidden="true"></i> Customer Rating</a>
+  							</h4>
+  						</div>
+  						<div id="collapse3" class="panel-collapse collapse">
+                 <div class="funkyradio">
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="any" checked/>
+                      <label for="any"> 
+                        Any
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="star2" checked/>
+                      <label for="star2"> 
+                        2.0+
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="star3" checked/>
+                      <label for="star3"> 
+                        3.0+
+                      </label>
+                    </div>
+                    <div class="funkyradio-info">
+                      <input type="checkbox" name="checkbox" id="star4" checked/>
+                      <label for="star4"> 
+                        4.0+
+                      </label>
+                    </div>
+                  </div>
+  						</div>
+            </div>
 					</div>
 			</div>
 		</div>
 		<div class="col-sm-9 listingtab">
       <div class="photo_cont">
 	    	<div id="products" class="row list-group" (click)="xyz()">
-	        	<div class="item tik3 tik4 col-sm-4 grid-group-item">
+	        	<div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
 	                <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
                       <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
@@ -562,7 +705,7 @@
                     </div>
 	       		      </div>
             </div>
-	        	  <div class="item tik3 tik4 col-sm-4 grid-group-item">
+	        	  <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
                   <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
                       <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
@@ -605,7 +748,7 @@
                     </div>
                   </div>
             </div>
-              <div class="item tik3 tik4 col-sm-4 grid-group-item">
+              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
                   <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
                       <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
@@ -648,7 +791,7 @@
                     </div>
                   </div>
             </div>
-              <div class="item tik3 tik4 col-sm-4 grid-group-item">
+              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
                   <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
                       <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
@@ -691,7 +834,7 @@
                     </div>
                   </div>
             </div>
-              <div class="item tik3 tik4 col-sm-4 grid-group-item">
+              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
                   <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
                       <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
@@ -734,7 +877,7 @@
                     </div>
                   </div>
             </div>
-              <div class="item tik3 tik4 col-sm-4 grid-group-item">
+              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
                   <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
                       <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
@@ -777,7 +920,7 @@
                     </div>
                   </div>
             </div>
-              <div class="item tik3 tik4 col-sm-4 grid-group-item">
+              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
                   <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
                       <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
@@ -820,7 +963,7 @@
                     </div>
                   </div>
             </div>
-              <div class="item tik3 tik4 col-sm-4 grid-group-item">
+              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
                   <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
                       <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
@@ -863,7 +1006,7 @@
                     </div>
                   </div>
             </div>
-              <div class="item tik3 tik4 col-sm-4 grid-group-item">
+              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
                   <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
                       <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
@@ -906,7 +1049,7 @@
                     </div>
                   </div>
             </div>
-              <div class="item tik3 tik4 col-sm-4 grid-group-item">
+              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
                   <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
                       <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
@@ -949,7 +1092,7 @@
                     </div>
                   </div>
             </div>
-              <div class="item tik3 tik4 col-sm-4 grid-group-item">
+              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
                   <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
                       <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
@@ -992,7 +1135,7 @@
                     </div>
                   </div>
             </div>
-              <div class="item tik3 tik4 col-sm-4 grid-group-item">
+              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
                   <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
                       <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
@@ -1036,30 +1179,104 @@
                   </div>
             </div>
 	    	</div>
-
         <div>
           <div class="page-nation row">
-                                        <ul class="pagination pagination-large">
-                                        <li class="disabled"><span>«</span></li>
-                                        <li class="active"><span>1</span></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">6</a></li>
-                                        <li><a href="#">7</a></li>
-                                        <li><a href="#">8</a></li>
-                                        <li><a href="#">9</a></li>
-                                        <li class="disabled"><span>...</span></li><li>
-                                        <li><a rel="next" href="#">Next</a></li>
-                
-                                     </ul>
-                            </div>
-                  
+            <ul class="pagination pagination-large">
+              <li class="disabled"><span>«</span></li>
+              <li class="active"><span>1</span></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li class="disabled"><span>...</span></li><li>
+              <li><a rel="next" href="#">Next</a></li>
+            </ul>
+          </div>        
         </div>
 		  </div>
     </div>
 </div>
 </div>
+
+
+<div class="filterselectbox">
+
+  <div class="col-sm-12">
+    <button class="clearbtn">Clear</button>
+    <button class="applybtn">Apply</button>
+
+<div class="clearfix"></div>
+
+<p class="text-center">Filters (4)</p>
+
+<div class="filterrow categoryfilter">
+  <h1>Category <i class="material-icons">arrow_right</i></h1>
+  <div>
+    <span class="badge">
+     Cakes <i class="material-icons">clear</i>
+    </span>
+  </div>
+</div>
+<div class="filterrow locationfilter">
+  <h1>Location (2) <i class="material-icons">arrow_right</i></h1>
+  <div>
+    <span class="badge">
+     Black River <i class="material-icons">clear</i>
+    </span>
+     <span class="badge">
+     Grand Port <i class="material-icons">clear</i>
+    </span>
+  </div>
+</div>
+<div class="filterrow pricefilter">
+  <h1>Price Range (1) <i class="material-icons">arrow_right</i></h1>
+  <div>
+    <span class="badge">
+     Any 
+    </span>
+  </div>
+</div>
+<div class="filterrow ratingfilter">
+  <h1>Customer Rating (0)</h1>
+  <div>
+    <button class="rating active">Any</button>
+    <button class="rating">
+    2.0
+    <div>
+      <i class="material-icons">star</i> 
+      <i class="material-icons">star</i> 
+      <i class="material-icons">star_border</i>
+      <i class="material-icons">star_border</i>
+      <i class="material-icons">star_border</i>
+    </div>
+  </button>
+    <button class="rating">
+    3.0
+    <div>
+      <i class="material-icons">star</i> 
+      <i class="material-icons">star</i> 
+      <i class="material-icons">star</i>
+      <i class="material-icons">star_border</i>
+      <i class="material-icons">star_border</i>
+    </div>
+  </button>
+    <button class="rating">4.0
+    <div>
+      <i class="material-icons">star</i> 
+      <i class="material-icons">star</i> 
+      <i class="material-icons">star</i>
+      <i class="material-icons">star</i>
+      <i class="material-icons">star_border</i>
+    </div>
+    </button>
+  </div>
+</div>
+
+  </div>
+
+</div>
+
+
 
 <app-foot> </app-foot>
 <router-outlet></router-outlet>

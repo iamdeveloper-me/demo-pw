@@ -28,7 +28,7 @@ export class BusinessInfoComponent implements OnInit {
   twitter = 'https://www.twitter.com';
   google = 'https://plus.google.com';
   instagram = 'https://instagram.com' ;
-  instagram2 = ' www.perfectwedding.com' ;
+  perfectWedding = ' www.perfectwedding.com' ;
 
   ngOnInit() {
     
@@ -46,8 +46,8 @@ export class BusinessInfoComponent implements OnInit {
     this.instagram = data.json().instalURL ;
     this.google = data.json().googleURL;
     this.Businesname = data.json().nameOfBusiness ;
-    this.Description = data.json().businessDetails ;    
-
+    this.Description = data.json().businessDetails ;  
+    this.perfectWedding = data.json().perfectWeddingURL  ;
     });
 
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
@@ -133,7 +133,7 @@ export class BusinessInfoComponent implements OnInit {
 
 
   upForm(info){
-             //console.log(info);
+            // console.log(info);
              var infofacebook = info.value.facebook;
             
              var infotwitter = info.value.twitter;
@@ -144,7 +144,8 @@ export class BusinessInfoComponent implements OnInit {
              // var infoperson = info.value.contactPerson;
              //var infopicture = info.value.pictureUrl;
              var infoinsta = info.value.instagram;
-             //console.log(infoinsta);
+             var  perfectWeddingsite =   info.value.perfectWedding;
+            // console.log(perfectWeddingsite);
     
               let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
@@ -163,10 +164,12 @@ export class BusinessInfoComponent implements OnInit {
                              twitterURL: infotwitter,
                              googleURL:  infogoogle,
                               instalURL: infoinsta ,
-                           
+                              perfectWeddingURL: perfectWeddingsite,
+                              pictureUrl:'https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg'
+                          
                           },{headers:headers});  
 
-            updatebusinessinfo.subscribe((response) => console.log(response),(error)=>console.log(error));
+            updatebusinessinfo.subscribe((data) => console.log(data),(error)=>console.log(error));
      }
 abc(event){
       console.log(event)

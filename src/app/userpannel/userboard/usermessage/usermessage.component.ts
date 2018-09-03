@@ -23,7 +23,7 @@ export class UsermessageComponent implements OnInit {
 
     onSubmit() {   
    	  	
-      this.vservice.vmessage(this.vendorMsg).subscribe(( data )  =>  
+      this.vservice.message(this.vendorMsg).subscribe(( data )  =>  
       { 
       	console.log(data.json())
         

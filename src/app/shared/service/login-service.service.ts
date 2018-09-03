@@ -20,4 +20,10 @@ export class LoginServiceService {
 typeSuccess() {
   this.toastr.success('Login successfully', 'Success!');
 }
+
+typeWarning() {
+  this.toastr.warning('Field required ');
+}
+
+
 }

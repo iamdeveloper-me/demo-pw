@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-navemenu',
   templateUrl: './navemenu.component.html',
@@ -10,7 +10,7 @@ export class NavemenuComponent implements OnInit {
     currentLang = 'en';
     toggleClass = 'ft-maximize';
     public data = '' ;
-  constructor(public translate: TranslateService) { const browserLang: string = translate.getBrowserLang();
+  constructor(public translate: TranslateService , private router: Router ) { const browserLang: string = translate.getBrowserLang();
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : 'en'); }
 
  
@@ -114,7 +114,10 @@ export class NavemenuComponent implements OnInit {
   
   
   
-  
+  logout(){
+         localStorage.clear();
+         this.router.navigate(['../home']);
+        }
   
   
   

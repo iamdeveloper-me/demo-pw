@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http,Headers } from '@angular/http';
+
 @Component({
   selector: 'app-mylisting',
   templateUrl: './mylisting.component.html',
@@ -8,8 +9,8 @@ import { Http,Headers } from '@angular/http';
 export class MylistingComponent implements OnInit {
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Reviews/postreview'
   private urlg: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Reviews/myreviews'
- 
-  review: any = {};
+  countryArray:string[];
+
   constructor(public http: Http) { }
 
   ngOnInit() {
@@ -21,21 +22,21 @@ export class MylistingComponent implements OnInit {
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
-     alert("drfvc");
 
      this.http.get(this.urlg,{headers:headers}).subscribe(
-      data =>{ this.review = data.json();
-               console.log(this.review);
+      data =>{ 
+        this.countryArray = data.json();  
+          console.log(this.countryArray);  
              });
 
-    this.http.post(this.url,{
-      rating: 0,
-      comments: "string",
-      sendToUserId: '34e8ea73-a8b3-4776-b032-a4c8b085671f'
-    },{headers:headers}).subscribe(
-      data =>{ this.review = data.json();
-               console.log(this.review);
-             });
+    // this.http.post(this.url,{
+    //   rating: 2,
+    //   comments: "Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time",
+    //   rateVendorID: '65de65c1-d50d-4277-90be-16aad31024a9'
+    // },{headers:headers}).subscribe(
+    //   data =>{ 
+    //            console.log( data.json());
+    //          });
 
 
            
@@ -45,3 +46,4 @@ export class MylistingComponent implements OnInit {
   
 
 }
+

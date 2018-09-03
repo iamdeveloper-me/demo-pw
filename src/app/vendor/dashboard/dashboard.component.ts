@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
+import { Router } from '@angular/router';
 // Add the RxJS Observable operators we need in this app.
 
 @Component({
@@ -17,7 +18,7 @@ export class DashboardComponent implements OnInit {
    
      
    
-    constructor(config: NgbCarouselConfig ,public http: Http) {
+    constructor(config: NgbCarouselConfig ,public http: Http ,private router: Router) {
     // customize default values of carousels used by this component tree
     config.interval = 10000;
     config.wrap = false;
@@ -49,8 +50,9 @@ export class DashboardComponent implements OnInit {
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
-
-
+        if(!authToken) 
+       {  this.router.navigate(['../home']);
+        }
         this.http.get(this.url,{headers:headers}).subscribe(
           data =>{ this.vendor = data.json();
                    console.log(this.vendor);

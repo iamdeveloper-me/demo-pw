@@ -127,11 +127,71 @@
 .text_weight{
     font-weight: bold;
 }
+.upcominglisthomepage:first-child{margin-top:20px;}
+.upcominglisthomepage{
+  padding:0px;
+  margin-bottom:20px;
+  overflow:hidden;
+  line-height:20px;
+}
+.upcominglisthomepage .col-sm-9{
+  padding-left: 0px;
+}
+.upcominglisthomepage i{ float:left;margin-right:5px;}
+.upcominglisthomepage ul{
+  padding-left:40px;
+  margin-top:5px;
+  width:100%;
+  clear:both;
+}
+.upcominglisthomepage ul li{
+line-height:20px;
+margin-right:5px;
+list-style:none;
+}
+.viewallbutton{
+  border:1px solid #2196f3;
+  background:#fff;
+  padding:5px 10px;
+}
+.callbutton{
+  border:1px solid green;
+  background:#fff;
+  padding:2px 10px;
+  margin:0px auto;
+  margin-top:5px;
+  display:none;
+}
+.upcomingright{
+padding:0px!important;
+line-height:25px;
+text-align:center;
+}
+.upcomingright i{
+  float:inherit!important;
+  font-size:16px;
+  margin-right:0px!important;
+}
+.calendartab{
+padding-left:0px;
+padding-right:0px;
+}
+.addjob .col-sm-6{
+  width: 46%!important;
+  max-width: 46%!important;
+  margin: 0px 2%!important;
+}
+.addjob .form-inline .input-group{
+  width:97%!important;
+}
   @media(max-width: 767px){
      .d-lg-block{display:none!important;}
      .modal-content{
      max-width:90%;
      }
+    .callbutton{
+  display:block;
+}
      }
   
   
@@ -145,7 +205,7 @@
     position: fixed;
 }
 :focus{outline: none;}
-.input-effect{position:relative; height: 33px; margin-bottom: 47px;}
+.input-effect{position:relative; height: 33px;}
 
 .input-effect .effect-16{
     border: 0;

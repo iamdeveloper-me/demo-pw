@@ -70,6 +70,7 @@ import { AllcategoryComponent } from './allcategory/allcategory.component';
 import { SupplierByCityComponent } from './supplier-by-city/supplier-by-city.component';
 import { SupplierByCateComponent } from './supplier-by-cate/supplier-by-cate.component';
 import { CategoryComponent } from './category/category.component';
+
 import { VendorlistComponent } from './userpannel/userboard/vendorlist/vendorlist.component';
 import { ToolComponent } from './userpannel/userboard/tool/tool.component';
 import { UserpannelComponent } from './userpannel/userpannel.component';
@@ -151,6 +152,9 @@ import { PromotionPriorityComponent } from './vendor/promotion-priority/promotio
 import { PromotionAudienceComponent } from './vendor/promotion-audience/promotion-audience.component';
 import { PromotionDealsComponent } from './vendor/promotion-deals/promotion-deals.component';
 import { PromotionHomepageComponent } from './vendor/promotion-homepage/promotion-homepage.component';
+import { TipslistComponent } from './tipslist/tipslist.component';
+import { EventlistComponent } from './eventlist/eventlist.component';
+
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -178,6 +182,7 @@ export function getAuthServiceConfigs() {
     declarations: [
         AppComponent,
         EnquiriesComponent,
+        TipslistComponent,
         PromotionPriorityComponent,
         NgbdModalContent,
         StorefrontComponent,
@@ -285,6 +290,8 @@ export function getAuthServiceConfigs() {
         EventComponent,
         ReviewComponent,
         VediosettingComponent,
+        TipslistComponent,
+        EventlistComponent,
 
 
   ],

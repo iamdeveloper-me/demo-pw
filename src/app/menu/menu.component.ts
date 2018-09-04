@@ -135,10 +135,22 @@ export class MenuComponent implements OnInit {
         $(".user").hide();    
         $(".tikright").hide(); 
         } 
+
         if(window.location.pathname == '/home/detailprofile') {
         $(".user").hide();    
         $(".tikright").hide(); 
         } 
+
+        if(window.location.pathname == '/home/event_list') {
+            $(".user").hide();    
+            $(".tikright").hide(); 
+            } 
+        if(window.location.pathname == '/home/tips_list') {
+            $(".user").hide();    
+            $(".tikright").hide(); 
+            }
+        
+
 
      //loginpage
      $("#id9").hide();

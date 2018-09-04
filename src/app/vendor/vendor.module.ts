@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { UiSwitchModule } from 'ngx-ui-switch';
-
+import { ImageCropperModule } from 'ng2-img-cropper';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatchHeightModule } from "../shared/directives/match-height.directive";
@@ -63,7 +63,8 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
         NgxChartsModule,
         NgbModule,
         MatchHeightModule,
-        UiSwitchModule 
+        UiSwitchModule ,
+        ImageCropperModule
     ],
     declarations: [
         //NgbdModalContent,

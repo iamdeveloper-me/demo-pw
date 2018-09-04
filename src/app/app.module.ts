@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RatingModule} from "ngx-rating";
 
-import {ImageCropperComponent} from 'ng2-img-cropper';
+//import {ImageCropperComponent} from 'ng2-img-cropper';
 
 //calender 
 
@@ -23,6 +23,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from "./shared/shared.module";
+import { VendorModule } from "./vendor/vendor.module" 
 import { ToastrModule } from 'ngx-toastr';
 import { AgmCoreModule } from '@agm/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -293,7 +294,7 @@ export function getAuthServiceConfigs() {
         VediosettingComponent,
         TipslistComponent,
         EventlistComponent,
-        ImageCropperComponent,
+       // ImageCropperComponent,
 
 
   ],
@@ -309,6 +310,7 @@ export function getAuthServiceConfigs() {
         SocialLoginModule,
         HttpModule,
         RatingModule,
+        VendorModule,
         //inbox
         QuillModule,
         //calender

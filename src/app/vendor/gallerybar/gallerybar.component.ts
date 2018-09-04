@@ -86,6 +86,7 @@ export class GallerybarComponent implements OnInit {
 };
 monthlybarChart: Chart = {
   type: 'Bar',
+  
   data: data['monthlyBar'],
   options: {
       seriesBarDistance: 21,

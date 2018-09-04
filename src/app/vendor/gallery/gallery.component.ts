@@ -2,7 +2,7 @@ import {Component, OnInit ,ChangeDetectionStrategy} from '@angular/core';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { ViewEncapsulation, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { Http,Headers } from '@angular/http';
 
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
@@ -25,7 +25,7 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 })
 export class NgbdgalleryModalContent {
     @Input() name;
-    constructor(public activeModal: NgbActiveModal) { }
+    constructor(public activeModal: NgbActiveModal ) { }
 
 }
 
@@ -38,7 +38,12 @@ export class NgbdgalleryModalContent {
   styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent implements OnInit {
-
+    private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/createupdatealbum' 
+     private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
+    // private removeimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/removeimage'
+     private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ImageUploader/FileUploader'
+    vendor: any = {};
+    fileToUpload:any;
 
   ngOnInit() {
    
@@ -53,12 +58,44 @@ export class GalleryComponent implements OnInit {
   $.getScript('./assets/js/vendorsidebar.js');
 
  
+  let headers = new Headers();
+  var authToken = localStorage.getItem('userToken');
+  headers.append('Accept', 'application/json')
+  headers.append('Content-Type', 'application/json');
+  headers.append("Authorization",'Bearer'+authToken);
+  console.log(authToken);
+  // this.http.post(this.url,{
+  //   albumsId: 0,
+  //   albumName: "string",
+  //   albumType: 1,
+  //   tags: "string",
+  //   colorTags: "string"
+  // },{headers:headers}).subscribe(
+  //   data =>{ this.vendor = data.json();
+  //       console.log("decfdefv========rrr===");
+  //            console.log(this.vendor);
+  //          });
+
+          //  this.http.get(this.albumget,{headers:headers}).subscribe(
+          //   data =>{ this.albumget = data.json();
+          //       console.log("get album");
+          //            console.log(this.albumget);
+          //          });
 
 
+        //    this.http.post(this.uploadimage,{ files: this.fileToUpload , 
+        //                                       albumsId: 2 },{headers:headers}).subscribe(
+        //     data =>{ this.uploadimage = data.json();
+        //         console.log("imageupload");
+        //              console.log(this.uploadimage);
+        //            },(error)=>{console.log(error)});
 
-
-
-
+                //    this.http.get(this.removeimage,{headers:headers}).subscribe(
+                //     data =>{ this.vendor = data.json();
+                //         console.log("removeimage");
+                //              console.log(this.vendor);
+                //            });
+        
 
 
   }
@@ -69,7 +106,7 @@ export class GalleryComponent implements OnInit {
 
     closeResult: string;
 
-    constructor(private modalService: NgbModal) { }
+    constructor(private modalService: NgbModal ,public http: Http ) { }
 
     // Open default modal
     open(content) {
@@ -117,4 +154,59 @@ export class GalleryComponent implements OnInit {
   fileOverAnother(e: any): void {
     this.hasAnotherDropZoneOver = e;
   }
+  handleFileInput(file: FileList) {      
+        this.fileToUpload = file.item(0);   
+                  console.log(this.fileToUpload);    
+                  var reader = new FileReader();  
+                  reader.onload = (event:any) => {       
+                //   this.imageUrl = event.target.result;      
+                 }      
+            reader.readAsDataURL(this.fileToUpload);
+
+
+            let headers = new Headers();
+            var authToken = localStorage.getItem('userToken');
+            headers.append('Accept', 'application/json')
+            headers.append('Content-Type', 'application/json');
+            headers.append("Authorization",'Bearer'+authToken);
+            console.log(this.fileToUpload);
+
+   this.x(this.fileToUpload,x)
+
+
+   var datad = new FormData();
+console.log(datad)
+
+datad.append('albumsId',2+'')
+
+
+console.log(datad)
+
+console.log({ files: this.fileToUpload, albumsId: 2 })
+var x = { files: this.fileToUpload, albumsId: 2 }
+this.x(this.fileToUpload,x)
+
+            this.http.post(this.uploadimage,x,{headers:headers}).subscribe((da)=>{
+                   console.log(da)
+                });
+            }
+
+
+            x(file,x){
+
+                let headers = new Headers();
+                var authToken = localStorage.getItem('userToken');
+                headers.append('Accept', 'application/json')
+                headers.append('Content-Type', 'application/json');
+                headers.append("Authorization",'Bearer'+authToken);
+                console.log(this.fileToUpload);
+                console.log(file)
+
+                this.http.post(this.uploadimage,x,{headers:headers}).subscribe((da)=>{
+                       console.log(da)
+                    });
+                }
+            
+
 }
+

@@ -89,9 +89,9 @@ export var areaChartShowYAxis = true;
 export var areaChartGradient = false;
 export var areaChartShowLegend = true;
 export var areaChartShowXAxisLabel = true;
-export var areaChartXAxisLabel = 'Boosted = Paid advertising Results through Promoting my business section';
+export var areaChartXAxisLabel = '';
 export var areaChartShowYAxisLabel = true;
-export var areaChartYAxisLabel = 'Normal = Organic Results';
+export var areaChartYAxisLabel = '';
 
 export var areaChartColorScheme = {
     domain: ['#FF8D60', '#FF586B', '#1CBCD8', '#AAAAAA']

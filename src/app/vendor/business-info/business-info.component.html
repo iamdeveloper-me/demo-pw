@@ -11,15 +11,21 @@
                <div class="card heightequal365 margintop0px mobmargintop30px">
                   <div class="card-header">
                      <div class="busines_img">
-                        <img src="{{ imag }}"alt=""> 
-                        <span class="busi_camera "> 
-                        <i class="material-icons"> camera_alt </i> 
+                            <i class="material-icons" data-target="#imagecrop" data-toggle="modal" id="description-function"> camera_alt </i> 
+                        <span class="result" *ngIf="data.image" data-target="#imagecrop" data-toggle="modal" id="description-function" >
+                            <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle">
+                    
                         </span>
+                        <!-- <span class="text-right col-lg-12"  data-target="#imagecrop" data-toggle="modal" id="description-function" >
+                            <i class="material-icons"  >camera_alt</i>
+                             <img src="{{ imag }}"alt="">  
+                        </span> -->
                      </div>
+
                      <div class="busi_contact">
                     
                         <h6 >Business name or Contact Person</h6>
-                        <div class="on_hover" data-target="#Businesname" data-toggle="modal" id="Instagram-function" >
+                        <div class="on_hover" data-target="#Business" data-toggle="modal" id="Instagram-function" >
                            <div>{{vendor.nameOfBusiness}}</div>
                            <span class="text-right col-lg-12 editbtn">
                            <i class="material-icons"  >edit</i>
@@ -146,8 +152,6 @@
 </div>
 
 <form (ngSubmit)="upForm(info)" #info="ngForm"> 
-
-
     <div class="modal fade" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             
@@ -173,7 +177,7 @@
                         </div>
                         <div class="modal-footer text-center">
                             
-                            <button type="submit" class="btn btn-secondary btn-raised"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+                            <button type="submit" class="btn btn-secondary btn-raised "><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
                             <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
                         </div>
 
@@ -182,8 +186,7 @@
         </div>
     </div>
 
-
-    <div class="modal fade" id="Businesname" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="Business" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header text-center">
@@ -194,13 +197,20 @@
                   <div class="col-sm-12  text-center">
                   <!-- <i class="material-icons"> add_location </i> -->
                   <p class="input_para">
-                  <input class="endent_10px width_60" 
+                  <!-- <input class="endent_10px width_60" 
                   type="text" 
                   [(ngModel)] = "modelfield.nameOfBusiness" 
                   name="Businesname"
-                  (ngModelChange)="Businesname = $event"
+                  [ngModelOptions]="{standalone: true}"
                   id="Businesname" 
-                  placeholder="Vision Photography"> 
+                  placeholder="Vision Photography">  -->
+                  <input
+                  class="endent_10px width_60" 
+                  type="text"  
+                  [(ngModel)]="modelfield.nameOfBusiness" 
+                   name="Businesname" 
+                    id="Businesname"
+                    placeholder="Vision Photography" >
                   </p>
                   <!-- <p>Business picture url :<input class="endent_10px width_60" type="text" [(ngModel)] = "imag"  placeholder="Enter image url"> </p>  -->
                   </div>
@@ -213,7 +223,6 @@
       </div>
 
     </div>
-
 
     <div class="modal fade" id="facebook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
@@ -251,7 +260,8 @@
               </div>       
         </div>
       </div>
-    </div>    
+    </div> 
+    
     <div class="modal fade" id="twitter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -290,44 +300,44 @@
         </div>  
       </div>  
     </div>
+
     <div class="modal fade" id="google" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-
-      <div class="modal-dialog" role="document">
-          <div class="modal-content">
-              <div class="modal_head text-center">
-                  <h4 class="modal-title"><strong> Link your Google Page </strong>  </h4>
-                  <p>Do you have a Google Page for your business?</p>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <div class="clearfix"></div>
-              </div>
-              <div class="modal-body">
-                  <div class="col-sm-12  text-center">
-                  <div class="switbtn">
-                      <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                      <span class="have_one">Of course, I have one! </span>
-                  </div>
-                  <div class="clearfix"></div>
-                  <div class="input_facebook input-effect form-group">
-                      <i class="fa fa-google-plus fa-2x" data-reactid="334" style="font-size:1.6em" ></i> 
-                      <input class="effect-16 validate endent_10px width_60" 
-                      type="text" 
-                      placeholder="Enter the Link here" 
-                      [(ngModel)] = "modelfield.googleURL" 
-                      (ngModelChange)="google = $event"
-                      id="google" 
-                      name="google">
-                      <!-- <label>Enter the Link here</label> -->
-                  </div>
-                  </div>
-              </div>
-              <div class="foot_div text-center">
-                  <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
-                  <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
-              </div>
-          </div>
-      </div>
-
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal_head text-center">
+                    <h4 class="modal-title"><strong> Link your Google Page </strong>  </h4>
+                    <p>Do you have a Google Page for your business?</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-12  text-center">
+                    <div class="switbtn">
+                        <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                        <span class="have_one">Of course, I have one! </span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="input_facebook input-effect form-group">
+                        <i class="fa fa-google-plus fa-2x" data-reactid="334" style="font-size:1.6em" ></i> 
+                        <input class="effect-16 validate endent_10px width_60" 
+                        type="text" 
+                        placeholder="Enter the Link here" 
+                        [(ngModel)] = "modelfield.googleURL" 
+                        (ngModelChange)="google = $event"
+                        id="google" 
+                        name="google">
+                        <!-- <label>Enter the Link here</label> -->
+                    </div>
+                    </div>
+                </div>
+                <div class="foot_div text-center">
+                    <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
+                    <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+                </div>
+            </div>
+        </div>
     </div>
+
     <div class="modal fade" id="instagram" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
       <div class="modal-dialog" role="document">
@@ -367,6 +377,7 @@
       </div>
 
     </div>
+
     <div class="modal fade" id="instagram2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -404,4 +415,46 @@
             </div>
         </div> 
     </div>   
+
+    <div class="modal fade" id="imagecrop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal_head text-center">
+                        <h4 class="modal-title"><strong> update icon  </strong>  </h4>
+                        <p>Do you have a Trading Page for your business?</p>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-sm-12  text-center">
+                            <div class="switbtn">
+                                <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                                <span class="have_one">Of course, I have one! </span>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="card-block">
+                                <div class="file-upload mb-3">
+                                    <span class="text">Upload File : </span>
+                                    <input 
+                                    id="custom-input" 
+                                    name="pictureUrl"
+                                    type="file"
+                                    #Image accept="image/*"
+                                    webkitdirectory
+                                    [(ngModel)] = "modelfield.pictureUrl"  
+                                    (change)="fileChangeListener($event)">
+                                 
+                                </div>
+                                <img-cropper #cropper [image]="data" [settings]="cropperSettings" class="float-left mr-4"></img-cropper>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="foot_div text-center">
+                            <button type="submit" class="btn btn-secondary btn-raised" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+                        <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+                    </div>
+                </div>
+            </div> 
+        </div> 
 </form>  

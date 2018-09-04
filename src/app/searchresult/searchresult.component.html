@@ -3,7 +3,7 @@
  
 <div class="container-fluid recomslider">
       <!--Carousel Wrapper-->
-
+     
       <div class="caroosel_headin text-center">
          <h3>Featured Wedding Suppliers </h3>
       </div>
@@ -1183,16 +1183,14 @@
 	    	</div>
         <div>
           <div class="page-nation row">
-            <ul class="pagination pagination-large">
-              <li class="disabled"><span>«</span></li>
-              <li class="active"><span>1</span></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li class="disabled"><span>...</span></li><li>
-              <li><a rel="next" href="#">Next</a></li>
-            </ul>
+            <div class="card-body">
+              <div class="card-block">
+                  <ngb-pagination [collectionSize]="70" [(page)]="page2" [boundaryLinks]="true"></ngb-pagination>
+                  <hr>
+                  <p>Current page: {{page2}}</p>
+              </div>
+            </div>
+            
           </div>        
         </div>
 		  </div>
@@ -1277,7 +1275,6 @@
   </div>
 
 </div>
-
 
 
 <app-foot> </app-foot>

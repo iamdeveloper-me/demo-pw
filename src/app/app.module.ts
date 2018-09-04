@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RatingModule} from "ngx-rating";
 
+import {ImageCropperComponent} from 'ng2-img-cropper';
 
 //calender 
 
@@ -292,10 +293,12 @@ export function getAuthServiceConfigs() {
         VediosettingComponent,
         TipslistComponent,
         EventlistComponent,
+        ImageCropperComponent,
 
 
   ],
     imports: [
+    
         BrowserAnimationsModule,
         StoreModule.forRoot({}),
         AppRoutingModule,

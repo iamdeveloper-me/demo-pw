@@ -371,7 +371,7 @@ export var lineChartMulti = [
 ];
 export var linemonthlyChartMulti = [
   {
-    "name": "Germany",
+    "name": "Contact Clicks",
     "series": [
       {
         "name": "July",
@@ -421,7 +421,7 @@ export var linemonthlyChartMulti = [
   },
 
   {
-    "name": "USA",
+    "name": "Bookmarked",
     "series": [
       {
         "name": "July",
@@ -470,7 +470,7 @@ export var linemonthlyChartMulti = [
     ]
   },
   {
-    "name": "USA",
+    "name": "Calls",
     "series": [
       {
         "name": "July",
@@ -519,7 +519,7 @@ export var linemonthlyChartMulti = [
     ]
   },
   {
-    "name": "USA",
+    "name": "Shares",
     "series": [
       {
         "name": "July",
@@ -570,7 +570,7 @@ export var linemonthlyChartMulti = [
 ];
 export var lineweeklyChartMulti = [
   {
-    "name": "Germany",
+    "name": "Contact Clicks",
     "series": [
       {
         "name": "week1",
@@ -604,7 +604,7 @@ export var lineweeklyChartMulti = [
   },
 
   {
-    "name": "USA",
+    "name": "Bookmarked",
     "series": [
       {
         "name": "week1",
@@ -638,7 +638,7 @@ export var lineweeklyChartMulti = [
   },
   
   {
-    "name": "USA",
+    "name": "Calls",
     "series": [
       {
         "name": "week1",
@@ -672,7 +672,7 @@ export var lineweeklyChartMulti = [
   },
   
   {
-    "name": "USA",
+    "name": "Shares",
     "series": [
       {
         "name": "week1",
@@ -708,7 +708,7 @@ export var lineweeklyChartMulti = [
 //reach
 export var monthlylineChartMulti = [
   {
-    "name": "Germany",
+    "name": "Contact Clicks",
     "series": [
       {
         "name": "July",
@@ -758,7 +758,7 @@ export var monthlylineChartMulti = [
   },
 
   {
-    "name": "USA",
+    "name": "Bookmarked",
     "series": [
       {
         "name": "July",
@@ -807,7 +807,7 @@ export var monthlylineChartMulti = [
     ]
   },
   {
-    "name": "USA",
+    "name": "Calls",
     "series": [
       {
         "name": "July",
@@ -856,7 +856,7 @@ export var monthlylineChartMulti = [
     ]
   },
   {
-    "name": "USA",
+    "name": "Shares",
     "series": [
       {
         "name": "July",

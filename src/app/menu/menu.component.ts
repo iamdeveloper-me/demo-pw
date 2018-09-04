@@ -71,7 +71,7 @@ export class MenuComponent implements OnInit {
         $(".user").hide();    
         $(".tikright").hide(); 
         } 
-        if(window.location.pathname == '/home/eventlist') {
+        if(window.location.pathname == '/home/event_list') {
             $(".user").hide();    
             $(".tikright").hide(); 
             } 

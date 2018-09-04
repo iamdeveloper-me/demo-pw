@@ -42,6 +42,7 @@ import { CategoryComponent } from './category/category.component';
 import { VendorlistComponent } from './userpannel/userboard/vendorlist/vendorlist.component';
 import { TimelineComponent } from './userpannel/userboard/timeline/timeline.component';
 import { UsermessageComponent } from './userpannel/userboard/usermessage/usermessage.component';
+import { UsermailsearchComponent } from './userpannel/userboard/usermailsearch/usermailsearch.component';
 import { BookmarkComponent } from './userpannel/userboard/bookmark/bookmark.component';
 import { GuestComponent } from './userpannel/userboard/guest/guest.component';
 import { BudgetComponent } from './userpannel/userboard/budget/budget.component';
@@ -154,6 +155,7 @@ const appRoutes: Routes = [
 
   { path: 'User/Timeline', component: TimelineComponent },
   { path: 'User/Message', component: UsermessageComponent },
+  { path: 'User/usermailsearch', component: UsermailsearchComponent },
   { path: 'User/vendor', component: VendorlistComponent },  
 
   { path: 'User/Bookmarks', component: BookmarkComponent },

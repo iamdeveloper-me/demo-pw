@@ -28,8 +28,10 @@ export class MenuComponent implements OnInit {
      this.cservice.login(this.user).subscribe(
           (data)=> {
               console.log(data.json());
+
           if (data.statusText == "OK" && data.json().role =="Vendors" ) {
             this.typeSuccess();
+            localStorage.setItem('vendorId',data.json().id);
             localStorage.setItem('userToken',data.json().auth_token);
             this.router.navigate(['../vendor/dashboard'])
           }
@@ -59,6 +61,7 @@ export class MenuComponent implements OnInit {
               console.log(data.json());
           if (data.statusText == "OK"  && data.json().role =="Users") {
             this.typeSuccess();
+            localStorage.setItem('userId',data.json().id);
             localStorage.setItem('userToken',data.json().auth_token);
             this.router.navigate(['../User/vendor'])
           }

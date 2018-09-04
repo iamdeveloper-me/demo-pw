@@ -7,26 +7,26 @@ import { MessageService } from '../../shared/service/vendor/message.service';
   styleUrls: ['./mailsearch.component.scss']
 })
 export class MailsearchComponent implements OnInit {
-  vendorMsg = {messageId:" ",
-    subject:" ",
-    message:" ",
-    sendToUserId:" ",
-    sendByUserId:" ",
-    replyTo:" ",
-    sentDate:" ",
-    messageStatus:" "} 
+  // vendorMsg = {messageId:" ",
+  //   subject:" ",
+  //   message:" ",
+  //   sendToUserId:" ",
+  //   sendByUserId:" ",
+  //   replyTo:" ",
+  //   sentDate:" ",
+  //   messageStatus:" ",sendByFirstName:" ",sendByLastName:" ",sendByEmail:" "} 
   constructor(private vservice: MessageService) { }
 
   ngOnInit() {
   }
-  loadScript(){this.ngOnInit;}
+  // loadScript(){this.ngOnInit;}
 
-    onSubmit() {   
+  //   onSubmit() {   
    	  	
-      this.vservice.message(this.vendorMsg).subscribe(( data )  =>  
-      { console.log(data.json())
+  //     this.vservice.vmessage(this.vendorMsg).subscribe(( data )  =>  
+  //     { console.log(data.json())
         
-      },error => 
-      alert(error) // error path
-    )}
+  //     },error => 
+  //     alert(error) // error path
+  //   )}
 }

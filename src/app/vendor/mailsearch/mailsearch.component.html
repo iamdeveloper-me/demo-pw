@@ -67,7 +67,7 @@
                     </i></span> </p> -->
                 <form role="form" action="" method="post" class="mt-25 mtx-0" (ngSubmit)="onSubmit()" #f="ngForm">
                  <p class="type_massege"> 
-                  <input type="text" name="" id="" placeholder="Type Massege......" > 
+                  <input type="text" name="message" id="" placeholder="Type Massege......" [(ngModel)] = "vendorMsg.message"> 
                   <span class="plus">
                     <button type="submit" class="material-icons">
                     add
@@ -75,7 +75,7 @@
                   </span> 
                 </p>
               </form>
-               </div>
+              </div>
              
              </div>
  

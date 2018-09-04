@@ -11,13 +11,20 @@ export class MessageService {
   constructor(config: NgbCarouselConfig ,public http: Http) { }
 
   message(vendor){
-
-    console.log(vendor.sendByEmail);
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    var userId = localStorage.getItem('userId')
+    var vendorId = localStorage.getItem('vendorId')
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+    headers.append('id',userId)
+    
     // var messageId = 0;
     var subject = "hello";
     var message = vendor.message;
-    var sendToUserId = "34e8ea73-a8b3-4776-b032-a4c8b085671f";
-    var sendByUserId = "65de65c1-d50d-4277-90be-16aad31024a9";
+    var sendToUserId = vendorId;
+    var sendByUserId = userId;
     var replyTo = 0;
     // var sentDate = "2018-08-30T06:53:14.594Z";
     // var messageStatus = 0;
@@ -28,8 +35,8 @@ export class MessageService {
     // var messageId = 0;
     // var subject = "location search";
     // var message = "hello world";
-    // var sendToUserId = "34e8ea73-a8b3-4776-b032-a4c8b085671f";
-    // var sendByUserId = "65de65c1-d50d-4277-90be-16aad31024a9";
+    // var sendToUserId = vendor.sendToUserId[0].userId;
+    // var sendByUserId = vendor.sendByUserId[0].id;
     // var replyTo = 0;
     // var sentDate = vendor.sentDate;
     // var messageStatus = vendor.messageStatus;
@@ -37,13 +44,11 @@ export class MessageService {
     // var sendByEmail = vendor.sendByEmail;
 
    
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization",'Bearer '+authToken);
-
-    return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Messages/Post',{subject:subject,message:message,sendToUserId:sendToUserId,sendByUserId:sendByUserId,replyTo:replyTo,sendByFirstName:sendByFirstName,sendByLastName:sendByLastName,sendByEmail:sendByEmail},{headers: headers})
+    
+    alert("jhihuihuih");
+    console.log(headers)
+     console.log(userId)
+    return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Messages/Post',{subject:subject,message:message,replyTo:replyTo,sendByFirstName:sendByFirstName,sendByLastName:sendByLastName,sendByEmail:sendByEmail},{headers: headers})
 
   }
 

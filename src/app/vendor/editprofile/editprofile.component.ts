@@ -12,7 +12,7 @@ lname = "Armoogum";
 pno = "9826812185";
 email = 'hdh@gmail.com' ;
 site = 'dbshjf.com' ;
-about = 'dhcfhkjcklsjnvklifhjvfjnjfhgfn';
+about = 'test';
 payment = '12$';
  constructor(private router: Router,public http: Http ) { }
  private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'

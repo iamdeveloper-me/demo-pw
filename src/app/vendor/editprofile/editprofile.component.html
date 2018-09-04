@@ -7,45 +7,68 @@
         <router-outlet></router-outlet> 
 
         <section class="my_acount container-fluid">
-            <div class=" col-md-12">
-                <div class="col-md-6">
-                <div class="myaco_box">
-                    <div class="aco_info text-center ">
-                        <h5> <strong>MY ACCOUNT INFORMATION</strong> </h5>
-                        <img  alt="" src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg">
+            <div class=" col-md-12 mobpadd">
+                <div class="col-md-6 mobpadd">
+                    <div class="myaco_box">
+                        <div class="aco_info text-center">
 
-                        <span class="pos_absolute"> <a data-target="#payment"><i class="material-icons ">mail_outline</i> </a> </span>
-                        <!-- <span class="pos_absolute"> <a href=""><i class="material-icons  id="Instagram-function" data-target="#instagram2" data-toggle="modal"">mail_outline</i> </a> </span> -->
+                            <h5> <strong>MY ACCOUNT INFORMATION</strong> </h5>
+                            
+                           <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png">
 
-                    </div>
-                    <div class="name_info">
-                    <p>First Name :  {{fname}} {{vendor.firstName}}</p>
-                    <p>Last Name : {{lname}}</p>
-                    <p>PHONE NUMBER : {{vendor.phone}}</p>
-                    <P>EAMIL : {{vendor.vendorContactInfo.email}}</P>
-                    <p>Website: {{vendor.website}}</p>
-                    <P>ABOUT ME : {{vendor.businessDetails}}</P>
-                    </div>
-                    <div class="updatebt text-center">
-                    <button  data-toggle="modal" data-target="#photo_ved">Update Profile</button>
+                            <button class="settingbtnabsolute">
+                                <i class="material-icons ">settings</i>
+                            </button>
+                                
+                             
+                            <!-- <span class="pos_absolute"> <a href=""><i class="material-icons  id="Instagram-function" data-target="#instagram2" data-toggle="modal"">mail_outline</i> </a> </span> -->
+                        </div>
+                        <div class="name_info">
+                            <p>
+                                <strong>First Name</strong> :  
+                                {{fname}} {{vendor.firstName}}</p>
+                            <p> 
+                                <strong>Last Name</strong> : 
+                                {{lname}}
+                            </p>
+                            <p>
+                                <strong>Phone Number</strong> : 
+                                {{vendor.phone}}
+                            </p>
+                            <p>
+                                <strong>Email</strong> : 
+                                {{vendor.email}}
+                            </p>
+                            <p>
+                                <strong>Website</strong>: 
+                                {{vendor.website}}
+                            </p>
+                            <p class="abouttext"> 
+                                <strong>About Me</strong> : 
+                                {{vendor.businessDetails}}
+                            </p>
+                        </div>
+                        <div class="updatebt text-center">
+                            <button  data-toggle="modal" data-target="#photo_ved">Update Profile
+                            </button>
+                        </div>
                     </div>
                 </div>
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-6 mobpadd">
                     <div class="col-md-12 mem_detail">
-                            <div class="col-md-4 col-xs-12 co-sm-12">
-                                <img  class="img-responsive" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcNiceIqHAt9m_rLA66TzgW1JD0kSbYfeet3FlrPPFcQmVUJ-5">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="member_name"> <h5><strong> MEMBERSHIP</strong> </h5>  </div>
-                                <P>Member since : July 2018 (1 Month)</P>
-                                <p class="col_green">Expiry : 5 August 2020( Active) </p>
-                                <p>Plan type: <span>Free</span> <span class="upgrade"><a href=""> Upgrade now </a> </span> </p>
-                            </div>
+                        <div class="col-md-4 col-xs-12 co-sm-12">
+                            <img src="https://s3.us-east-2.amazonaws.com/prefect-image/card_icon.png">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="member_name"> <h5><strong> MEMBERSHIP</strong> </h5>  </div>
+                            <p>Member since : July 2018 (1 Month)</p>
+                            <p class="col_green">Expiry : 5 August 2020( Active) </p>
+                            <p>Plan type: <span>Free</span> <span class="upgrade"><a href="../membership"> Upgrade now </a> </span> </p>
+                        </div>
                     </div>
                     <div class="col-md-12 mem_detail">
                             <div class="col-md-4">
-                                <img  class="img-responsive" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcNiceIqHAt9m_rLA66TzgW1JD0kSbYfeet3FlrPPFcQmVUJ-5">
+                                 <img src="https://s3.us-east-2.amazonaws.com/prefect-image/password_icon.png">
                             </div>
                             <div class="col-md-8">
                                 <div class=""> <h5><strong> ACCOUNT PASSWORD</strong>  </h5> 
@@ -57,7 +80,7 @@
                     </div>
                     <div class="col-md-12 mem_detail">
                         <div class="col-md-4">
-                            <img  class="img-responsive" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcNiceIqHAt9m_rLA66TzgW1JD0kSbYfeet3FlrPPFcQmVUJ-5">
+                            <img  class="img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/invoice_icon.png">
                         </div>
                         <div class="col-md-8">
                             <div class=""> <h5> <strong>BILLING & INVOICES</strong> </h5> 
@@ -104,7 +127,7 @@
                                         <span class="focus-border"></span>
                                     </div>
                                 </div>
-                            </div>                                      
+                        </div>                                      
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div class="input-effect form-group md-form ">
@@ -114,7 +137,7 @@
                                 </div>
                             </div>
                         </div>                     
-                            <div class="col-md-12">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <div class="input-effect form-group md-form ">
                                     <input class="effect-16 validate" type="email" placeholder="" required="required">
@@ -122,18 +145,16 @@
                                     <span class="focus-border"></span>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">
+                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                    <label>Website</label>
+                                    <span class="focus-border"></span>
+                                </div>
                             </div>
-                            <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="input-effect form-group md-form ">
-                                            <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                            <label>Website</label>
-                                            <span class="focus-border"></span>
-                                        </div>
-                                    </div>
-                                    </div>
-                        
-                        
+                        </div>
                         <div class="col-md-12">
                             <div class="form-group">
                             <div class="form-group">
@@ -169,15 +190,47 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <div class="col-sm-12  text-center">                 
-                        <i class="fa fa-globe fa-2x" data-reactid="342"></i>
-                        <p>old pasword  :<input class="endent_10px" type="password" placeholder="Enter old pasword" ></p>
-                        <p>renter pasword  :<input class="endent_10px" type="password" placeholder="Enter renter pasword" ></p>
-                        <p>change pasword  :<input class="endent_10px" type="password" placeholder="Enter change pasword" ></p>
-                        <p>Premium members only. <span>Upgrade</span> </p>
+                    <div class="card">         
+                        <div class="card-body">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-effect form-group md-form ">
+                                        <input class="effect-16 validate" type="password" placeholder="" required="required">
+                                        <label>Old Password</label>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                </div>
+                            </div>  
+                            <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-effect form-group md-form ">
+                                            <input class="effect-16 validate" type="password" placeholder="" required="required">
+                                            <label>New Password</label>
+                                            <span class="focus-border"></span>
+                                        </div>
+                                    </div>
+                            </div>                                      
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-effect form-group md-form ">
+                                        <input class="effect-16 validate" type="password" placeholder="" required="required">
+                                        <label>Confirm Password</label>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    Premium members only. 
+                                    <a href="../membership">Upgrade</a>
+                                </div>
+                            </div> 
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                      &nbsp;&nbsp;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -192,109 +245,99 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <div class="col-sm-12  text-center">                 
+                    <div class="col-sm-12 nopadd">
                             <div class="container">
+                               
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <div class="invoice-title">
-                                            <h2>Invoice</h2><h3 class="pull-right">Order # 12345</h3>
-                                        </div>
-                                        <hr>
                                         <div class="row">
-                                            <div class="col-xs-6">
-                                                <address>
-                                                <strong>Billed To:</strong><br>
-                                                    John Smith<br>
-                                                    1234 Main<br>
-                                                    Apt. 4B<br>
-                                                    Springfield, ST 54321
-                                                </address>
+                                            <div class="col-sm-12 row searchform">
+                                            <div class="col-sm-3 col-6">
+                                                <label>Start Date</label>
+                                                <input type="date" name="startdate">
                                             </div>
-                                            <div class="col-xs-6 text-right">
-                                                <address>
-                                                <strong>Shipped To:</strong><br>
-                                                    Jane Smith<br>
-                                                    1234 Main<br>
-                                                    Apt. 4B<br>
-                                                    Springfield, ST 54321
-                                                </address>
+                                            <div class="col-sm-3  col-6">
+                                                 <label>End Date</label>
+                                                <input type="date" name="enddate">
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <address>
-                                                    <strong>Payment Method:</strong><br>
-                                                    Visa ending **** 4242<br>
-                                                    jsmith@email.com
-                                                </address>
+                                            <div class="col-sm-2  col-6">
+                                                <label>Invoice Number</label>
+                                                <input type="text" name="enddate">
                                             </div>
-                                            <div class="col-xs-6 text-right">
-                                                <address>
-                                                    <strong>Order Date:</strong><br>
-                                                    March 7, 2014<br><br>
-                                                </address>
+                                            <div class="col-sm-2  col-6">
+                                                <label>Invoice Type</label>
+                                                <input type="text" name="enddate">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <button>Search</button>
                                             </div>
                                         </div>
+                                        </div>
+                                       
                                     </div>
                                 </div>
-                                
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 nopadd">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 <h3 class="panel-title"><strong>Order summary</strong></h3>
                                             </div>
                                             <div class="panel-body">
-                                                <div class="table-responsive">
-                                                    <table class="table table-condensed">
-                                                        <thead>
-                                                            <tr>
-                                                                <td><strong>Item</strong></td>
-                                                                <td class="text-center"><strong>Price</strong></td>
-                                                                <td class="text-center"><strong>Quantity</strong></td>
-                                                                <td class="text-right"><strong>Totals</strong></td>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <!-- foreach ($order->lineItems as $line) or some such thing here -->
-                                                            <tr>
-                                                                <td>BS-200</td>
-                                                                <td class="text-center">$10.99</td>
-                                                                <td class="text-center">1</td>
-                                                                <td class="text-right">$10.99</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>BS-400</td>
-                                                                <td class="text-center">$20.00</td>
-                                                                <td class="text-center">3</td>
-                                                                <td class="text-right">$60.00</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>BS-1000</td>
-                                                                <td class="text-center">$600.00</td>
-                                                                <td class="text-center">1</td>
-                                                                <td class="text-right">$600.00</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="thick-line"></td>
-                                                                <td class="thick-line"></td>
-                                                                <td class="thick-line text-center"><strong>Subtotal</strong></td>
-                                                                <td class="thick-line text-right">$670.99</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="no-line"></td>
-                                                                <td class="no-line"></td>
-                                                                <td class="no-line text-center"><strong>Shipping</strong></td>
-                                                                <td class="no-line text-right">$15</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="no-line"></td>
-                                                                <td class="no-line"></td>
-                                                                <td class="no-line text-center"><strong>Total</strong></td>
-                                                                <td class="no-line text-right">$685.99</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
+                                                <div class="table-responsive listtable">
+                                        <table class="table table-condensed table-bordered table-stripped">
+                                            <thead>
+                                                <tr>
+                                                <th>Date</th>
+                                                <th>Invoice Type</th>
+                                                <th>Invoice Number</th>
+                                                <th>Payment Type</th>
+                                                <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                               <tr>
+                                                    <td>25 Aug 2018</td>
+                                                    <td>Promotion Membership</td>
+                                                    <td>123456789</td>
+                                                    <td>Paypal</td>
+                                                    <td>
+                                                        <button data-toggle="modal" data-target="#invoicedetail">View Invoice</button>
+                                                        <button>Save PDF</button>
+                                                    </td>
+                                               </tr>
+                                               <tr>
+                                                    <td>25 Aug 2018</td>
+                                                    <td>Promotion Membership</td>
+                                                    <td>123456789</td>
+                                                    <td>Paypal</td>
+                                                    <td>
+                                                        <button data-toggle="modal" data-target="#invoicedetail">View Invoice</button>
+                                                        <button>Save PDF</button>
+                                                    </td>
+                                               </tr>
+                                               <tr>
+                                                    <td>25 Aug 2018</td>
+                                                    <td>Promotion Membership</td>
+                                                    <td>123456789</td>
+                                                    <td>Paypal</td>
+                                                    <td>
+                                                        <button data-toggle="modal" data-target="#invoicedetail">View Invoice</button>
+                                                        <button>Save PDF</button>
+                                                    </td>
+                                               </tr>
+                                               <tr>
+                                                    <td>25 Aug 2018</td>
+                                                    <td>Promotion Membership</td>
+                                                    <td>123456789</td>
+                                                    <td>Paypal</td>
+                                                    <td>
+                                                    <button data-toggle="modal" data-target="#invoicedetail">View Invoice</button>
+                                                        <button>Save PDF</button>
+                                                    </td>
+                                               </tr>
+                                              
+                                            </tbody>
+                                        </table>
                                                 </div>
                                             </div>
                                         </div>
@@ -304,34 +347,120 @@
                         <p>Premium members only. <span>Upgrade</span> </p>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+               
             </div>
         </div>
-    </div>    
+</div>    
     <!--mail popup -->
-<div class="modal fade" id="payment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="invoicedetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
-                    <h4  class="card-title">Payments Termes </h4>
-                    <div class="card-content selectboxservice"> 
-                            <h5>Enter your Price</h5>
-                            <div>
-                                <label class="price_select">
-                                    <input name="Price" type="text" placeholder="$10" [(ngModel)]="payment"> 
-                                    
-                                </label>
+                <div class="modal-header">
+                    <h4 class="modal-title">Invoice Details
+                         <span class="pull-right">Order # 12345</span>
+                    </h4>
+                   
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                   
+                    <div class="modal-body">
+                    <div class="col-sm-12 nopadd">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <address>
+                                        <strong>Customer Detail</strong><br>
+                                        Customer Id : (# 12345678) <br>
+                                                    John Smith<br>
+                                                    1234 Main, Apt. 4B<br>
+                                                    Springfield, ST 54321
+                                                </address>
+                                            </div>
+                                             <div class="col-xs-6 text-right">
+                                                <address>
+                                                    <strong>Payment Method:</strong><br>
+                                                    Visa ending **** 4242<br>
+                                                    jsmith@email.com<br/>
+                                                </address>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+<div class="col-md-12">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h3 class="panel-title"><strong>Order summary</strong>
+<span class="pull-right"><strong>Date: Mar 7, 2014</strong></span>
+</h3>
+</div>
+<div class="panel-body">
+<div class="table-responsive">
+<table class="table table-condensed">
+<thead>
+<tr>
+<td><strong>Item</strong></td>
+<td class="text-center"><strong>Price</strong></td>
+<td class="text-center"><strong>Quantity</strong></td>
+<td class="text-right"><strong>Totals</strong></td>
+</tr>
+</thead>
+<tbody>
+<!-- foreach ($order->lineItems as $line) or some such thing here -->
+<tr>
+<td>BS-200</td>
+<td class="text-center">$10.99</td>
+<td class="text-center">1</td>
+<td class="text-right">$10.99</td>
+</tr>
+<tr>
+<td>BS-400</td>
+<td class="text-center">$20.00</td>
+<td class="text-center">3</td>
+<td class="text-right">$60.00</td>
+</tr>
+<tr>
+<td>BS-1000</td>
+<td class="text-center">$600.00</td>
+<td class="text-center">1</td>
+<td class="text-right">$600.00</td>
+</tr>
+<tr>
+<td class="thick-line"></td>
+<td class="thick-line"></td>
+<td class="thick-line text-center"><strong>Subtotal</strong></td>
+<td class="thick-line text-right">$670.99</td>
+</tr>
+<tr>
+<td class="no-line"></td>
+<td class="no-line"></td>
+<td class="no-line text-center"><strong>Shipping</strong></td>
+<td class="no-line text-right">$15</td>
+</tr>
+<tr class="litegraybg">
+<td class="no-line"></td>
+<td class="no-line"></td>
+<td class="no-line text-center"><strong>Total</strong></td>
+<td class="no-line text-right">$685.99</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
                             </div>
-                            
-                        
-                        </div>
+                       
+                    </div>
+                </div>
         
 
-                        <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
-                        </div>
+                       
               </div>
             </div>
 </div>

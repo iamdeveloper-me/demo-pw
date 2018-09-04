@@ -14,8 +14,8 @@
   border-radius: 5px;
 }
 .aco_info img{
-  width: 70px;
-    height: 70px;
+  width: 88px;
+    height: 88px;
     border-radius: 100%;
 }
 .name_info{
@@ -27,6 +27,13 @@
   color: #fff;
   padding: 5px 10px;
   border: none;
+  margin-top:10px;
+}
+.abouttext{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width:50ch!important;
 }
 .modal-content .modal-footer .btn {
   margin: 0;
@@ -82,8 +89,15 @@
   right: 30px;
   top: 22px;
 }
-.pos_absolute a{
-  color: #000;
+.settingbtnabsolute{
+  position: absolute;
+  right: 30px;
+  top: 22px;
+  background:#fff;
+  border:0px solid #fff;
+}
+.name_info p{
+  margin-bottom:10px;
 }
 .close_btn{
   position: absolute;
@@ -91,7 +105,80 @@
     right: 20px;
     font-size: 40px;
 }
+  .aco_info h5{
+    margin-bottom:20px;
+  }
+.nopadd{
+  padding:0px;
+}
+.listtable th{
+  font-size:14px;
+}
+.listtable button{
+background:#36cbf0;
+font-size:14px;
+border:0px solid #ccc;
+color:#fff;
+height:25px;
+margin:5px;
+}
+.litegraybg{
+  background:#e5e5e5;
+}
+.modal-title{
+  width:100%!important;
+}
+.searchform{
+  background:#e5e5e5;
+  padding:10px;
+  margin-bottom:20px;
+}
+.searchform div{
+  padding:5px!important;
+}
+.searchform label{
+display:block;
+font-size:12px;
+}
+.searchform input{
+background:#fff;
+font-size:14px;
+border:1px solid #ccc;
+width:100%;
+height:30px;
+}
+.searchform button{
+margin-top:32px;
+background:#36cbf0;
+font-size:14px;
+border:0px solid #ccc;
+width:100%;
+color:#fff;
+height:30px;
+}
 @media(max-width:767px){
+.mem_detail{
+  padding-left:0px;
+  padding-right:0px;
+  text-align:center;
+}
+.searchform{
+  margin:0px!important;
+}
+.mem_detail h5{margin-top:15px;}
+.updatebt {
+  margin-top:0px!important;
+}
+.settingbtnabsolute{
+  right:5px;
+  top:16px;
+}
+.mobpadd{
+  padding:0px!important;
+}
+.name_info p{
+  margin-bottom:3px;
+}
    .myaco_box{
      margin-bottom: 10px;
    }

@@ -71,6 +71,15 @@ export class MenuComponent implements OnInit {
         $(".user").hide();    
         $(".tikright").hide(); 
         } 
+        if(window.location.pathname == '/home/eventlist') {
+            $(".user").hide();    
+            $(".tikright").hide(); 
+            } 
+        if(window.location.pathname == '/home/tips_list') {
+            $(".user").hide();    
+            $(".tikright").hide(); 
+            }
+        
 
 
         let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories");

@@ -85,11 +85,15 @@ import { PromotionPriorityComponent } from './vendor/promotion-priority/promotio
 import { PromotionAudienceComponent } from './vendor/promotion-audience/promotion-audience.component';
 import { PromotionDealsComponent } from './vendor/promotion-deals/promotion-deals.component';
 import { PromotionHomepageComponent } from './vendor/promotion-homepage/promotion-homepage.component';
+import { TipslistComponent } from './tipslist/tipslist.component';
+import { EventlistComponent } from './eventlist/eventlist.component';
 //import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home/searchresult', component: SearchresultComponent },
+  { path: 'home/tips_list', component: TipslistComponent },
+  { path: 'home/event_list', component: EventlistComponent },
   { path: 'home/detailprofile', component:  DetailpageComponent  },
   { path: 'home/gallery', component:  GalleryComponent  },
   { path: 'home/vendor', component:  VendorComponent  },

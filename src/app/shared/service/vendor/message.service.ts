@@ -18,37 +18,23 @@ export class MessageService {
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
-    headers.append('id',userId)
+   
     
     // var messageId = 0;
     var subject = "hello";
     var message = vendor.message;
-    var sendToUserId = vendorId;
-    var sendByUserId = userId;
+    var sendToUserId = userId;
+    var sendByUserId = vendorId;
     var replyTo = 0;
     // var sentDate = "2018-08-30T06:53:14.594Z";
     // var messageStatus = 0;
     var sendByFirstName = "aarti";
     var sendByLastName = "pawar";
     var sendByEmail = vendor.sendByEmail;
-    // console.log(vendor.message);
-    // var messageId = 0;
-    // var subject = "location search";
-    // var message = "hello world";
-    // var sendToUserId = vendor.sendToUserId[0].userId;
-    // var sendByUserId = vendor.sendByUserId[0].id;
-    // var replyTo = 0;
-    // var sentDate = vendor.sentDate;
-    // var messageStatus = vendor.messageStatus;
-    // var sendByFullName = vendor.sendByFullName;
-    // var sendByEmail = vendor.sendByEmail;
-
-   
     
     alert("jhihuihuih");
-    console.log(headers)
-     console.log(userId)
-    return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Messages/Post',{subject:subject,message:message,replyTo:replyTo,sendByFirstName:sendByFirstName,sendByLastName:sendByLastName,sendByEmail:sendByEmail},{headers: headers})
+    console.log(userId)
+    return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Messages/Post',{subject:subject,message:message,replyTo:replyTo,sendByFirstName:sendByFirstName,sendByLastName:sendByLastName,sendByUserId:sendByUserId,sendToUserId:sendToUserId,sendByEmail:sendByEmail},{headers: headers})
 
   }
 

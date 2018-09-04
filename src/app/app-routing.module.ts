@@ -155,7 +155,7 @@ const appRoutes: Routes = [
 
   { path: 'User/Timeline', component: TimelineComponent },
   { path: 'User/Message', component: UsermessageComponent },
-  { path: 'User/usermailsearch', component: UsermailsearchComponent },
+  { path: 'User/mailsearch', component: UsermailsearchComponent },
   { path: 'User/vendor', component: VendorlistComponent },  
 
   { path: 'User/Bookmarks', component: BookmarkComponent },

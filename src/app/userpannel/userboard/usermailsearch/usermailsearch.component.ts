@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from '../../../shared/service/vendor/message.service';
 
 @Component({
   selector: 'app-usermailsearch',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsermailsearchComponent implements OnInit {
 
-  constructor() { }
+  userMsg = {messageId:" ",
+    subject:" ",
+    message:" ",
+    sendToUserId:" ",
+    sendByUserId:" ",
+    replyTo:" ",
+    sentDate:" ",
+    messageStatus:" ",sendByFirstName:" ",sendByLastName:" ",sendByEmail:" "} 
+  constructor(private uservice: MessageService) { }
 
   ngOnInit() {
   }
+  loadScript(){this.ngOnInit;}
 
+    onSubmit() {   
+   	  	
+      this.uservice.message(this.userMsg).subscribe(( data )  =>  
+      { 
+      	console.log(data.json())
+        
+      },error => 
+      alert(error) // error path
+    )}
 }

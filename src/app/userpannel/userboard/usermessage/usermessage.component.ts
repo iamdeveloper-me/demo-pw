@@ -7,27 +7,33 @@ import { MessageService } from '../../../shared/service/vendor/message.service';
 })
 export class UsermessageComponent implements OnInit {
 
-  vendorMsg = {messageId:" ",
-    subject:" ",
-    message:" ",
-    sendToUserId:" ",
-    sendByUserId:" ",
-    replyTo:" ",
-    sentDate:" ",
-    messageStatus:" ",sendByFirstName:" ",sendByLastName:" ",sendByEmail:" "} 
-  constructor(private vservice: MessageService) { }
+  historyArr:string[];
+
+  constructor(private uservice: MessageService) { }
+  
+
 
   ngOnInit() {
-  }
-  loadScript(){this.ngOnInit;}
-
-    onSubmit() {   
-   	  	
-      this.vservice.message(this.vendorMsg).subscribe(( data )  =>  
+    this.uservice.vendorHis().subscribe(( data )  =>  
       { 
-      	console.log(data.json())
-        
+        console.log("tttttttttttt");
+        console.log(data.json());
+        console.log("oooooooooo");
+        this.historyArr = data.json() as string[] ; 
       },error => 
       alert(error) // error path
-    )}
+    )
+
+  }
+  // loadScript(){this.ngOnInit;}
+
+  //   onSubmit() {   
+   	  	
+  //     this.uservice.message(this.userMsg).subscribe(( data )  =>  
+  //     { 
+  //     	console.log(data.json())
+        
+  //     },error => 
+  //     alert(error) // error path
+  //   )}
 }

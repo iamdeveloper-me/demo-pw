@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule ,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { UiSwitchModule } from 'ngx-ui-switch';
 import { ImageCropperModule } from 'ng2-img-cropper';
@@ -119,6 +119,8 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
         // CreatePromotionComponent,
         // AllPromotionPageComponent
 
-    ]
+    ],schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+    ],
 })
 export class VendorModule { }

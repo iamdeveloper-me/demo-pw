@@ -1,8 +1,9 @@
-import {Component, OnInit ,ChangeDetectionStrategy} from '@angular/core';
+import {Component, OnInit ,ChangeDetectionStrategy,ViewChild} from '@angular/core';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { ViewEncapsulation, Input } from '@angular/core';
+import { ImageuploadService } from '../../shared/service/vendor/imageupload.service';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Http,Headers } from '@angular/http';
+
 
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
@@ -29,8 +30,6 @@ export class NgbdgalleryModalContent {
 
 }
 
-
-
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
@@ -38,10 +37,11 @@ export class NgbdgalleryModalContent {
   styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent implements OnInit {
+    gallery = { files: ''}
     private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/createupdatealbum' 
-     private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
+   private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
     // private removeimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/removeimage'
-     private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ImageUploader/FileUploader'
+    
     vendor: any = {};
     fileToUpload:any;
 
@@ -99,114 +99,43 @@ export class GalleryComponent implements OnInit {
 
 
   }
+  constructor(  private imageservice: ImageuploadService ,private modalService: NgbModal ) { }
 
+  @ViewChild("fileInput") fileInput;
 
-
-  //model
-
-    closeResult: string;
-
-    constructor(private modalService: NgbModal ,public http: Http ) { }
-
-    // Open default modal
-    open(content) {
-        this.modalService.open(content).result.then((result) => {
-            this.closeResult = `Closed with: ${result}`;
-        }, (reason) => {
-            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        });
-    }
-
-    // This function is used in open
-    private getDismissReason(reason: any): string {
-        if (reason === ModalDismissReasons.ESC) {
-            return 'by pressing ESC';
-        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-            return 'by clicking on a backdrop';
-        } else {
-            return `with: ${reason}`;
+  addFile(info): void {
+      console.log(info);
+  
+      let fi = this.fileInput.nativeElement;
+      if (fi.files && fi.files[0]) {
+      
+          let fileToUpload = fi.files;
+          this.imageservice
+              .upload(fileToUpload)
+              .subscribe(res => {
+                  console.log(res);
+              },(error)=>{console.log(error)});
+     }
+      }
+  
+      addAlbum(): void {
+       
+   alert("ad");
+    this.imageservice.upalbumload()
+                .subscribe(res => {
+                    console.log(res);
+                },(error)=>{console.log(error)});
+     
         }
+        getAlbum(): void {
+       
+            alert("get");
+             this.imageservice.getalbumload()
+                         .subscribe(res => {
+                             console.log(res);
+                         },(error)=>{console.log(error)});
+              
+                 }
+
     }
-
-    // Open modal with dark section
-    openModal(customContent) {
-        this.modalService.open(customContent, { windowClass: 'dark-modal' });
-    }
-
-    // Open content with dark section
-    openContent() {
-        const modalRef = this.modalService.open(NgbdgalleryModalContent );
-        modalRef.componentInstance.name = 'World';
-    }
-
-    uploader: FileUploader = new FileUploader({
-    url: URL,
-    isHTML5: true
-  });
-  hasBaseDropZoneOver = false;
-  hasAnotherDropZoneOver = false;
-
-  // Angular2 File Upload
-  fileOverBase(e: any): void {
-    this.hasBaseDropZoneOver = e;
-  }
-
-  fileOverAnother(e: any): void {
-    this.hasAnotherDropZoneOver = e;
-  }
-  handleFileInput(file: FileList) {      
-        this.fileToUpload = file.item(0);   
-                  console.log(this.fileToUpload);    
-                  var reader = new FileReader();  
-                  reader.onload = (event:any) => {       
-                //   this.imageUrl = event.target.result;      
-                 }      
-            reader.readAsDataURL(this.fileToUpload);
-
-
-            let headers = new Headers();
-            var authToken = localStorage.getItem('userToken');
-            headers.append('Accept', 'application/json')
-            headers.append('Content-Type', 'application/json');
-            headers.append("Authorization",'Bearer'+authToken);
-            console.log(this.fileToUpload);
-
-   this.x(this.fileToUpload,x)
-
-
-   var datad = new FormData();
-console.log(datad)
-
-datad.append('albumsId',2+'')
-
-
-console.log(datad)
-
-console.log({ files: this.fileToUpload, albumsId: 2 })
-var x = { files: this.fileToUpload, albumsId: 2 }
-this.x(this.fileToUpload,x)
-
-            this.http.post(this.uploadimage,x,{headers:headers}).subscribe((da)=>{
-                   console.log(da)
-                });
-            }
-
-
-            x(file,x){
-
-                let headers = new Headers();
-                var authToken = localStorage.getItem('userToken');
-                headers.append('Accept', 'application/json')
-                headers.append('Content-Type', 'application/json');
-                headers.append("Authorization",'Bearer'+authToken);
-                console.log(this.fileToUpload);
-                console.log(file)
-
-                this.http.post(this.uploadimage,x,{headers:headers}).subscribe((da)=>{
-                       console.log(da)
-                    });
-                }
-            
-
-}
 

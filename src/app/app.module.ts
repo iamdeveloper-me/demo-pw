@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RatingModule} from "ngx-rating";
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 //import {ImageCropperComponent} from 'ng2-img-cropper';
 
@@ -339,6 +340,7 @@ export function getAuthServiceConfigs() {
     ],
 
     providers: [
+        {provide: LocationStrategy, useClass: HashLocationStrategy},
         AuthService,
         AuthGuard,
         DragulaService,

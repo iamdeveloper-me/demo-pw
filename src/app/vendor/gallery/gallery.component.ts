@@ -21,23 +21,22 @@ export class GalleryComponent implements OnInit {
 
     constructor(public http: Http,public shttp:HttpClient ,private imageservice: ImageuploadService) { }
     ngOnInit() {
-      console.log(this.files)
-      let headers = new Headers();
-      var authToken = localStorage.getItem('userToken');
-      headers.append('Accept', 'application/json')
-      headers.append('Content-Type', 'application/json');
-      headers.append("Authorization",'Bearer '+authToken);
-      this.http.get(this.albumget,{headers:headers})
-      .subscribe(data =>{console.log(data.json());  });
-    $.getScript('http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js');
-    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
-    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
-    $.getScript('http://code.jquery.com/jquery-1.11.1.min.js');
-    $.getScript('https://code.jquery.com/ui/1.12.1/jquery-ui.js');
-    $.getScript('./assets/js/vendorsidebar.js');
-
-    }
-
+                  console.log(this.files)
+                  let headers = new Headers();
+                  var authToken = localStorage.getItem('userToken');
+                  headers.append('Accept', 'application/json')
+                  headers.append('Content-Type', 'application/json');
+                  headers.append("Authorization",'Bearer '+authToken);
+                  this.http.get(this.albumget,{headers:headers})
+                  .subscribe(data =>{console.log(data.json());  });
+                 $.getScript('http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js');
+                  $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
+                  $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
+                  $.getScript('http://code.jquery.com/jquery-1.11.1.min.js');
+                  $.getScript('https://code.jquery.com/ui/1.12.1/jquery-ui.js');
+                  $.getScript('./assets/js/vendorsidebar.js');
+            }
+  
     @ViewChild("fileInput") fileInput;
 
     addFile(info): void {
@@ -58,7 +57,7 @@ export class GalleryComponent implements OnInit {
             alert('52+++++++++++++++++++++++++++++')
            // const mapped = Object.keys(fileToUpload).map(key => ({type: key, value: fileToUpload[key]}));
            const dataa = new FormData();
-           dataa.append('files', fileToUpload);
+           dataa.append('files', this.fileToUpload);
            dataa.append('AlbumId', '2');
            console.log(dataa)
 
@@ -76,11 +75,22 @@ export class GalleryComponent implements OnInit {
         }
       }
 
-
-
+  uploader: FileUploader = new FileUploader({
+    url: URL,
+    isHTML5: true
+  });
+  hasBaseDropZoneOver = false;
+  hasAnotherDropZoneOver = false;
 
       onFileSelected(event){
 this.selectedFile = event.target.file[0];
 console.log(this.selectedFile)
       }
-    }
+
+  fileOverAnother(e: any): void {
+    this.hasAnotherDropZoneOver = e;
+  }
+}
+
+
+

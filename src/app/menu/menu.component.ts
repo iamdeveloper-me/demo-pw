@@ -95,60 +95,68 @@ export class MenuComponent implements OnInit {
    }
 
     ngOnInit() { 
-        if(window.location.pathname == '/home')   {
-        $(".user").hide();    
-        $(".tikright").hide(); 
-        } 
-         if(window.location.pathname == '/home/photo') {
-        $(".user").hide();    
-        $(".tikright").hide(); 
-        } 
-         if(window.location.pathname == '/home/tips') {
-        $(".user").hide();    
-        $(".tikright").hide(); 
-        } 
-         if(window.location.pathname == '/home/events') {
-        $(".user").hide();    
-        $(".tikright").hide(); 
-        } 
-         if(window.location.pathname == '/home/Careers') {
-        $(".user").hide();    
-        $(".tikright").hide(); 
-        } 
-          if(window.location.pathname == '/home/FAQ') {
-        $(".user").hide();    
-        $(".tikright").hide(); 
-        } 
-          if(window.location.pathname == '/home/contact') {
-        $(".user").hide();    
-        $(".tikright").hide(); 
-        } 
-        if(window.location.pathname == '/home/searchresult') {
-        $(".user").hide();    
-        $(".tikright").hide(); 
-        } 
-        if(window.location.pathname == '/home/category') {
-        $(".user").hide();    
-        $(".tikright").hide(); 
-        } 
-        if(window.location.pathname == '/home/searchresult') {
-        $(".user").hide();    
-        $(".tikright").hide(); 
-        } 
 
-        if(window.location.pathname == '/home/detailprofile') {
-        $(".user").hide();    
-        $(".tikright").hide(); 
-        } 
+   
 
-        if(window.location.pathname == '/home/event_list') {
-            $(".user").hide();    
-            $(".tikright").hide(); 
-            } 
-        if(window.location.pathname == '/home/tips_list') {
-            $(".user").hide();    
-            $(".tikright").hide(); 
-            }
+        
+
+        if(window.location.href.indexOf("home") > -1)   {
+          $(".user").hide();    
+          $(".tikright").hide(); 
+         } 
+
+
+
+        //  if(window.location.pathname == '/home/photo') {
+        // $(".user").hide();    
+        // $(".tikright").hide(); 
+        // } 
+        //  if(window.location.pathname == '/home/tips') {
+        // $(".user").hide();    
+        // $(".tikright").hide(); 
+        // } 
+        //  if(window.location.pathname == '/home/events') {
+        // $(".user").hide();    
+        // $(".tikright").hide(); 
+        // } 
+        //  if(window.location.pathname == '/home/Careers') {
+        // $(".user").hide();    
+        // $(".tikright").hide(); 
+        // } 
+        //   if(window.location.pathname == '/home/FAQ') {
+        // $(".user").hide();    
+        // $(".tikright").hide(); 
+        // } 
+        //   if(window.location.pathname == '/home/contact') {
+        // $(".user").hide();    
+        // $(".tikright").hide(); 
+        // } 
+        // if(window.location.pathname == '/home/searchresult') {
+        // $(".user").hide();    
+        // $(".tikright").hide(); 
+        // } 
+        // if(window.location.pathname == '/home/category') {
+        // $(".user").hide();    
+        // $(".tikright").hide(); 
+        // } 
+        // if(window.location.pathname == '/home/searchresult') {
+        // $(".user").hide();    
+        // $(".tikright").hide(); 
+        // } 
+
+        // if(window.location.pathname == '/home/detailprofile') {
+        // $(".user").hide();    
+        // $(".tikright").hide(); 
+        // } 
+
+        // if(window.location.pathname == '/home/event_list') {
+        //     $(".user").hide();    
+        //     $(".tikright").hide(); 
+        //     } 
+        // if(window.location.pathname == '/home/tips_list') {
+        //     $(".user").hide();    
+        //     $(".tikright").hide(); 
+        //     }
         
 
 

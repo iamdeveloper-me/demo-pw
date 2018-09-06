@@ -201,32 +201,29 @@ margin: 3px 0px!important;
   max-width: 220px;
   margin-top:5px;
 }
-#products .grid-group-item .thumbnail .caption .vedionum, 
-#products .grid-group-item .thumbnail .caption .imgnum{
-display: none;
-}
-#products .list-group-item .thumbnail .caption .vedionum, 
-#products .list-group-item .thumbnail .caption .imgnum{
-display: block;
-    top: 10px;
-    background: #e5e5e5;
-    padding: 5px;
-    border-radius: 3px;
-}
 
-.imgnum, .vedionum{
-  position: absolute;
-  right: 10px;
-  text-align: center;
-}
 .imgnum{
-  top:10px;
+  position:absolute;
+  left:0px;
+  right:0px;
+  text-align:center;
+margin-top:-35px;
 }
-.vedionum{
-  top:60px!important;
+  .imgnum span{
+    background: #f5f5f5;
+    overflow: hidden;
+    display: inline-block;
+    padding: 2px 5px;
+    margin: 0px 5px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #ccc;
 }
-.imgnum i, .vedionum i{
-  float: left;
+.imgnum span i{
+  float:left;
+}
+#products .list-group-item .card .thumbnail .imgnum{
+  max-width:260px!important;
+  bottom:4px!important;
 }
 #products .list-group-item .thumbnail .caption .locat_icon{
 padding-top: 5px;
@@ -247,7 +244,7 @@ padding: 30px 0px 40px 0;
   top: 7px;
   font-size: 20px;
   cursor: pointer;
-  background: rgba(255,255,255,0.8);
+  background: rgba(229, 229, 229,0.8);
   padding:5px;
   border-radius:100%;
   transition:0.5s;
@@ -1252,7 +1249,7 @@ max-width: 65px;
 padding-right: 5px!important;
 }
 .grid-group-item .span_positin span{
-margin-left:5px;
+margin-left:1px;
 }
 #products .photo-group-item .thumbnail .caption {
   padding: 15px 10px!important;
@@ -1261,10 +1258,6 @@ margin-left:5px;
 }
 #products .photo-group-item .thumbnail img{
 max-height: inherit;
-}
-.imgnum, .vedionum{
-color: #fff;
-text-shadow: 0px 0px 15px #000!important;
 }
 .page-nation{
   margin-bottom: 10px;

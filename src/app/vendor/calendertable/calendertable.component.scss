@@ -172,7 +172,7 @@ text-align:center;
   font-size:16px;
   margin-right:0px!important;
 }
-.calendartab{
+.calendartabjob{
 padding-left:0px;
 padding-right:0px;
 }
@@ -184,6 +184,37 @@ padding-right:0px;
 .addjob .form-inline .input-group{
   width:97%!important;
 }
+
+.tabbingdesign{
+    padding: 0px;
+    overflow: hidden;
+    margin: 20px auto;
+    width: 330px;
+}
+.tabbingdesign li{
+    list-style: none;
+    display: inline-block;
+    float: left;
+    margin: 0px 0px 10px 0px;
+    padding: 3px 15px;
+    cursor: pointer;
+    text-align: center;
+    background: #e5e5e5;
+    border-radius: 30px;
+    margin: 0px 10px;
+}
+.tabbingdesign li:first-child{
+border-radius:30px 0px 0px 30px;
+margin-right:0px;
+}
+.tabbingdesign li:last-child{
+border-radius:0px 30px 30px 0px;
+margin-left:0px;
+}
+.tabbingdesign li.selected{
+  background-color: #36cbf0 !important;
+    color: #fff;
+}
   @media(max-width: 767px){
      .d-lg-block{display:none!important;}
      .modal-content{
@@ -191,6 +222,11 @@ padding-right:0px;
      }
     .callbutton{
   display:block;
+}
+.addjob .col-sm-6{
+  width: 100%!important;
+  max-width: 100%!important;
+  margin: 0px 2%!important;
 }
      }
   

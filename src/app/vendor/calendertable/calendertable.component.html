@@ -6,8 +6,20 @@
 	<div id="page-content-wrapper">
 		<app-navemenu></app-navemenu>
 		<div class="container-fluid">
+			<div>
+				<ul class="tabbingdesign">
+                    <li class="card-title selected weddingjobstab">My Wedding Jobs</li>
+                    
+                    <li class="card-title calendartab">Wedding Calendar
+                    </li>
+                </ul> 
+			</div>
 		<div class="row calendarcontainer">
-		  <div class="col-sm-5 mobnopadd padleft0px">
+
+
+<div class="clearfix"></div>
+<section id="weddingjobs" class="col-sm-12">
+		  <div class="col-sm-12 mobnopadd padleft0px">
 				<div class="card mobileviewcontent card_padd_bottom">
 				  <div class="card-header_padd  border_bottom_none card-header-warning card-header-icon">
 					<div class="col-md-12 ">
@@ -18,7 +30,7 @@
 					
 						<div class="card">
 						  <div class="card-body">
-							<div class="card-block calendartab">
+							<div class="card-block calendartabjob">
 							  <ngb-tabset type="pills">
 								<ngb-tab title="Upcoming">
 								  <ng-template ngbTabContent>
@@ -184,7 +196,9 @@
 						</div>
 				</div>     
 		  </div> 
-		<div class="col-sm-7">
+</section>
+<section id="calendartabing" class="col-sm-12" style="display: none;">
+		<div class="col-sm-12">
 			<section id="calendar">
 
 				<div class="card">
@@ -224,6 +238,7 @@
 			</section>
 
 		</div>
+</section>
 		</div>	
 	</div>	
 	</div>

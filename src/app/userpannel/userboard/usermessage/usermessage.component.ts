@@ -23,17 +23,16 @@ export class UsermessageComponent implements OnInit {
       },error => 
       alert(error) // error path
     )
-
-  }
-  // loadScript(){this.ngOnInit;}
-
-  //   onSubmit() {   
-   	  	
-  //     this.uservice.message(this.userMsg).subscribe(( data )  =>  
+  //   this.uservice.marksread().subscribe(( data )  =>  
   //     { 
-  //     	console.log(data.json())
-        
+  //       console.log("-----------");
+  //       console.log(data.json());
+  //       console.log("++++++++++++");
+  //       this.historyArr = data.json() as string[] ; 
   //     },error => 
   //     alert(error) // error path
-  //   )}
+  //   )
+  }
+  
+ 
 }

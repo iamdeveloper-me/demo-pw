@@ -1,8 +1,6 @@
 import { Component} from '@angular/core';
 import { SignupVendorService } from '../shared/service/signup-vendor.service';
 import { HttpClient} from '@angular/common/http';
-import { NgForm } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import 'rxjs/Rx';
 

@@ -42,6 +42,7 @@ export class BusinessInfoComponent implements OnInit {
 
     this.filedata = image;
   }
+  private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
 
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessinfo'
   vendor: any = {};
@@ -75,7 +76,9 @@ export class BusinessInfoComponent implements OnInit {
             this.Description = data.json().businessDetails ;  
             this.perfectWedding = data.json().perfectWeddingURL  ;
             });
-
+            this.http.get(this.albumget,{headers:headers}).subscribe(data =>{
+              console.log(data.json());  });
+              
             $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
             $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
             $.getScript('./assets/js/vendorsidebar.js');

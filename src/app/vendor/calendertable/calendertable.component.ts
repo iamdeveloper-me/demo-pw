@@ -63,6 +63,21 @@ export class CalendertableComponent implements OnInit {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
 
+$(".weddingjobstab").click(function(){
+    $("#weddingjobs").show();
+    $("#calendartabing").hide();  
+    $(".weddingjobstab").addClass("selected"); 
+    $(".calendartab").removeClass("selected");  
+  
+  });
+
+    $(".calendartab").click(function(){
+    $("#weddingjobs").hide();
+    $("#calendartabing").show();
+    $(".weddingjobstab").removeClass("selected"); 
+    $(".calendartab").addClass("selected");  
+  
+  });
 
   
 

@@ -12,7 +12,9 @@
                   <div class="card-header">
                      <div class="busines_img">
                             <i class="material-icons" data-target="#imagecrop" data-toggle="modal" id="description-function"> camera_alt </i> 
-                            <img src="{{ imag }}"alt="">  
+                            <span class="result" *ngIf="data.image" data-target="#imagecrop" data-toggle="modal" id="description-function">
+                                    <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle">
+                                  </span>
                      </div>
 
                      <div class="busi_contact">

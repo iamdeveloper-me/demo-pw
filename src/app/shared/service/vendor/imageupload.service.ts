@@ -10,6 +10,8 @@ export class ImageuploadService {
 
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ImageUploader/FileUploader'
   constructor(public http: Http ) { }
+
+
   upload(fileToUpload: any) {
     alert("upload");
     let headers = new Headers();
@@ -20,7 +22,7 @@ export class ImageuploadService {
     let input = new FormData();
     input.append("file", fileToUpload);
     console.log(fileToUpload);
-    console.log(authToken)
+    // console.log(headers)
     return this.http
         .post(this.uploadimage,{ files: input, AlbumId: 2 },{headers:headers});
 }
@@ -42,13 +44,4 @@ upalbumload(){
   
 }
 
-getalbumload(){
-  let headers = new Headers();
-  var authToken = localStorage.getItem('userToken');
-  headers.append('Accept', 'application/json')
-  headers.append('Content-Type', 'application/json');
-  headers.append("Authorization",'Bearer'+authToken);
-  console.log(authToken)
-  return this.http.get(this.albumget,{headers:headers});
-}
 }

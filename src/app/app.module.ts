@@ -103,7 +103,7 @@ import { StatisticsComponent } from './vendor/statistics/statistics.component';
 import { AllPromotionPageComponent ,NgbdModalContent} from './vendor/all-promotion-page/all-promotion-page.component';
 import { VendorsidebarComponent } from './vendor/vendorsidebar/vendorsidebar.component';
 import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
-import { GalleryComponent ,NgbdgalleryModalContent } from './vendor/gallery/gallery.component';
+import { GalleryComponent  } from './vendor/gallery/gallery.component';
 import { VendorComponent } from './vendor/vendor.component';
 import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
 import { BusinessInfoComponent } from "./vendor/business-info/business-info.component";
@@ -225,7 +225,7 @@ export function getAuthServiceConfigs() {
         MyaccountComponent,
         EditprofileComponent,
         GalleryComponent,
-        NgbdgalleryModalContent ,  
+        
         ReviewsComponent,
         NgbduserModalContent ,
         VendorsidebarComponent,

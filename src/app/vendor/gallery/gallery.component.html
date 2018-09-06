@@ -18,11 +18,13 @@
                        <form (ngSubmit)="addFile(info)" #info="ngForm"> 
                        <input #fileInput 
                        type="file"
-                       [(ngModel)]="gallery.files" 
+                       [(ngModel)]="files" 
                         name="image" 
                         id="image"/>
                        <button type="submit">Add</button>
                       </form>  
+                      <!-- <input type="file" (change)="onFileSelected($event)">
+                      <input type="submit" (click)="upload()"> -->
                        <P> Collection of the best photo and work to highlight your profile</P>
                      </div>
                      
@@ -46,7 +48,7 @@
                        <div class="text-center headin_gally">
                          <h5>MY ALBUM</h5>
                          <button (click)="addAlbum()">Add</button>
-                         <button (click)="getAlbum()">get</button>
+                        
                          <P>Create, label and group your work with albums</P>
                        </div>
                        

@@ -98,6 +98,8 @@ export class MenuComponent implements OnInit {
    }
 
     ngOnInit() { 
+
+
         if(window.location.pathname == '/home')   {
         $(".user").hide();    
         $(".tikright").hide(); 
@@ -118,7 +120,7 @@ export class MenuComponent implements OnInit {
         $(".user").hide();    
         $(".tikright").hide(); 
         } 
-          if(window.location.pathname == '/home/FAQ') {
+        if(window.location.pathname == '/home/FAQ') {
         $(".user").hide();    
         $(".tikright").hide(); 
         } 

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RatingModule} from "ngx-rating";
 
+import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 
 //calender 
 
@@ -291,6 +292,7 @@ export function getAuthServiceConfigs() {
 
   ],
     imports: [
+        FileUploadModule,
         BrowserAnimationsModule,
         StoreModule.forRoot({}),
         AppRoutingModule,
@@ -332,6 +334,7 @@ export function getAuthServiceConfigs() {
         AuthService,
         AuthGuard,
         DragulaService,
+
         {
             provide: AuthServiceConfig,
             useFactory: getAuthServiceConfigs

@@ -16,8 +16,12 @@ export class GalleryComponent implements OnInit {
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ImageUploader/FileUploader'
   data:any;
   selectedFile =null;
+  files:any;
+
+
     constructor(public http: Http,public shttp:HttpClient ,private imageservice: ImageuploadService) { }
     ngOnInit() {
+      console.log(this.files)
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
       headers.append('Accept', 'application/json')

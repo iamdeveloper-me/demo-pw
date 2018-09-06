@@ -77,7 +77,7 @@ export class MenuComponent implements OnInit {
 
 
 
-    userSingUp = {email:' ',password:' ',confirmpass:''}
+    userSingUp = {email:' ',password:' ',confirmpass:'', firstName:'',lastName:''}
     
     userSubmit(){
       this.uservice.usignup(this.userSingUp).subscribe(( data )  =>  {

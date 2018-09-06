@@ -28,12 +28,13 @@ export class MessageService {
     var replyTo = 0;
     // var sentDate = "2018-08-30T06:53:14.594Z";
     // var messageStatus = 0;
-    var sendByFirstName = "aarti";
-    var sendByLastName = "pawar";
+    var sendByFirstName = vendor.sendByFirstName;
+    var sendByLastName = vendor.sendByLastName;
     var sendByEmail = vendor.sendByEmail;
     
     alert("jhihuihuih");
-    console.log(userId)
+    console.log(sendByFirstName);
+    console.log(sendByLastName);
     return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Messages/Post',{subject:subject,message:message,replyTo:replyTo,sendByFirstName:sendByFirstName,sendByLastName:sendByLastName,sendByUserId:sendByUserId,sendToUserId:sendToUserId,sendByEmail:sendByEmail},{headers: headers})
 
   }

@@ -15,16 +15,27 @@
                     <div class="">
                      <div class="text-center headin_gally">
                        <h5>MY PORTFOLIO</h5>
-                       <form (ngSubmit)="addFile(info)" #info="ngForm"> 
+                       <!-- <form (ngSubmit)="addFile(info)" #info="ngForm"> 
                        <input #fileInput 
                        type="file"
-                       [(ngModel)]="files" 
-                        name="files" 
+                       [(ngModel)]="gallery.files" 
+                        name="image" 
                         id="image"/>
                        <button type="submit">Add</button>
-                      </form>  
-                      <!-- <input type="file" (change)="onFileSelected($event)">
-                      <input type="submit" (click)="upload()"> -->
+                      </form>   -->
+
+
+                      <form (submit)="addFile_t(info)" #info="ngForm"> 
+                        <input #fileInput 
+                        type="file"
+                        [(ngModel)]="gallery.files" 
+                        (change)="ss($event.target.files)"
+                        accept="image/*"
+                         name="filess" 
+                         id="image"/>
+                        <button type="submit">Add</button>
+                       </form> 
+                    
                        <P> Collection of the best photo and work to highlight your profile</P>
                      </div>
                      
@@ -47,7 +58,6 @@
 
                        <div class="text-center headin_gally">
                          <h5>MY ALBUM</h5>
-                         <!-- <button (click)="addAlbum()">Add</button> -->
                         
                          <P>Create, label and group your work with albums</P>
                        </div>
@@ -320,70 +330,138 @@
 
 
 
- 
+
 <div class="modal fade" id="createalbum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="card-block">
-        <div class="modal-header" style="background-color: white">
-          <h4 class="modal-title">Add Portfolio</h4>
-          <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL
-            <span aria-hidden="true">&times;</span>
-          </button>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header text-center">
+            <h4 class="modal-title">Add Portfolio</h4>
+            <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+       
+           <div class="clearfix"></div>
         </div>
-        <div class="modal-body" style="background-color: white">
-          <form>
-          <div class="row">
-        <div class="col-md-12">
-          <div class="form-group">
-              <div class="input-effect form-group md-form ">
-                  <input class="effect-16 validate" type="text" placeholder="" required="required">
-                  <label>Photo Title</label>
-                  <span class="focus-border"></span>
+        <div class="modal-body">
+            <div class="col-sm-12  text-center">
+              <div class="modal-body" style="background-color: white">
+                <form>
+                <div class="row">
+                  <div class="col-md-12">
+                    <section id="file-upload">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="content-header">Angular2 File Upload</div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header">
+                        </div>
+                        <div class="card-block">
+                          <div class="row">
+                            <div class="col-md-12 col-lg-6">
+                              <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader"
+                                class="py-5 mb-3 text-center font-medium-5 text-uppercase grey my-drop-zone">
+                                Base dropzone
+                              </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6">
+                              <div ng2FileDrop [ngClass]="{'another-file-over-class': hasAnotherDropZoneOver}" (fileOver)="fileOverAnother($event)" [uploader]="uploader"
+                                class="py-5 mb-3 text-center font-medium-5 text-uppercase grey my-drop-zone">
+                                Another dropzone
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-3">
+                              <h4>Select files</h4>
+                              <div>Multiple</div>
+                              <label class="custom-file mb-3">
+                                <input type="file" ng2FileSelect [uploader]="uploader" multiple >
+                                <span class="custom-file-control"></span>
+                              </label>
+                    
+                              <div>Single</div>
+                              <label class="custom-file">
+                                <input type="file" ng2FileSelect [uploader]="uploader" >
+                                <span class="custom-file-control"></span>
+                              </label>
+                            </div>
+                    
+                            <div class="col-md-9">
+                              <h4>Upload queue</h4>
+                              <p>Queue length: {{ uploader?.queue?.length }}</p>
+                    
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th width="50%">Name</th>
+                                    <th>Size</th>
+                                    <th>Progress</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let item of uploader.queue">
+                                    <td><strong>{{ item?.file?.name }}</strong></td>
+                                    <td *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                                    <td *ngIf="uploader.isHTML5">
+                                      <div class="progress" style="margin-bottom: 0;">
+                                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                                      </div>
+                                    </td>
+                                    <td class="text-center">
+                                      <span *ngIf="item.isSuccess"><i class="fa fa-ok"></i></span>
+                                      <span *ngIf="item.isCancel"><i class="fa fa-ban"></i></span>
+                                      <span *ngIf="item.isError"><i class="fa fa-remove"></i></span>
+                                    </td>
+                                    <td nowrap>
+                                      <button type="button" class="btn btn-raised btn-success btn-sm" (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                                      <span class="fa fa-upload"></span> Upload
+                                    </button>
+                                      <button type="button" class="btn btn-raised btn-warning btn-sm" (click)="item.cancel()" [disabled]="!item.isUploading">
+                                      <span class="fa fa-ban"></span> Cancel
+                                    </button>
+                                      <button type="button" class="btn btn-raised btn-danger btn-sm" (click)="item.remove()">
+                                      <span class="fa fa-trash"></span> Remove
+                                    </button>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                    
+                              <div>
+                                <p>Queue progress:
+                                  <ngb-progressbar type="primary" [value]="uploader.progress"></ngb-progressbar>
+                                </p>
+                                <button type="button" class="btn btn-raised btn-success" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                                  <span class="fa fa-upload"></span> Upload all
+                                </button>
+                                <button type="button" class="btn btn-raised btn-warning" (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                                  <span class="fa fa-ban"></span> Cancel all
+                                </button>
+                                <button type="button" class="btn btn-raised btn-danger" (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                                  <span class="fa fa-trash"></span> Remove all
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-comman pull-right colo_blue">Update Profile</button>
+                <div class="clearfix"></div>
+                </form>
+                
               </div>
-          </div>
+            </div>    
         </div>
-          </div>
-          <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-                <div class="input-effect form-group md-form ">
-                    <input class="effect-16 validate" type="email" placeholder="" required="required">
-                    <label>Color Theme</label>
-                    <span class="focus-border"></span>
-                </div>
-            </div>
-          </div>
-          </div>
-         
-          <div class="row">
-        <div class="col-md-12">
-            <div class="container">
-                <fieldset class="form-group">
-                    <a href="javascript:void(0)" onclick="$('#pro-image').click()">Upload Image</a>
-                    <input type="file" id="pro-image" name="pro-image" style="display: none;" class="form-control" multiple>
-                </fieldset>
-                <div class="preview-images-zone">
-                    <div class="preview-image preview-show-1">
-                        <div class="image-cancel" data-no="1">x</div>
-                        <div class="image-zone"><img id="pro-img-1" src="https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA5Ny85NTkvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzYzOTcxNjY1LmpwZw=="></div>
-                        <div class="tools-edit-image"><a href="javascript:void(0)" data-no="1" class="btn btn-light btn-edit-image">edit</a></div>
-                    </div>
-                    <div class="preview-image preview-show-2">
-                        <div class="image-cancel" data-no="2">x</div>
-                        <div class="image-zone"><img id="pro-img-2" src="https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/flip.jpg"></div>
-                        <div class="tools-edit-image"><a href="javascript:void(0)" data-no="2" class="btn btn-light btn-edit-image">edit</a></div>
-                    </div>
-                    <div class="preview-image preview-show-3">
-                        <div class="image-cancel" data-no="3">x</div>
-                        <div class="image-zone"><img id="pro-img-3" src="http://i.stack.imgur.com/WCveg.jpg"></div>
-                        <div class="tools-edit-image"><a href="javascript:void(0)" data-no="3" class="btn btn-light btn-edit-image">edit</a></div>
-                    </div>
-                </div>
-            </div>
+        <div class="foot_div text-center">
+                <button type="submit" class="btn btn-secondary btn-raised" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+        
+            <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
         </div>
-          </div>
-          <button type="submit" class="btn btn-comman pull-right colo_blue">Update Profile</button>
-          <div class="clearfix"></div>
-          </form>
-        </div>
-</div>
+    </div>  
+  </div>  
 </div>

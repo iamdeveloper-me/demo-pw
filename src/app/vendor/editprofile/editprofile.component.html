@@ -6,7 +6,7 @@
         <app-navemenu></app-navemenu>
         <router-outlet></router-outlet> 
 
-        <section class="my_acount container-fluid">
+        <section class="my_acount container-fluid mobilefixedcontainer">
             <div class=" col-md-12 mobpadd">
                 <div class="col-md-6 mobpadd">
                     <div class="myaco_box">
@@ -16,12 +16,12 @@
                             
                            <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png">
 
-                            <button class="settingbtnabsolute">
+                            <button data-toggle="modal" data-target="#setting" class="settingbtnabsolute">
                                 <i class="material-icons ">settings</i>
                             </button>
                                 
-                             
-                            <!-- <span class="pos_absolute"> <a href=""><i class="material-icons  id="Instagram-function" data-target="#instagram2" data-toggle="modal"">mail_outline</i> </a> </span> -->
+
+                                
                         </div>
                         <div class="name_info">
                             <p>
@@ -98,7 +98,8 @@
                         <div class="col-md-8">
                             <div class=""> <h5> <strong>BILLING & INVOICES</strong> </h5> 
                                 <div class="updatebt mar_top_20px">
-                                    <button class="pad_bt" data-toggle="modal" data-target="#BILLING">View</button>
+                                    <a routerLink="../invoice"  class="linkbutton">View</a>
+                              
                                 </div>
                             </div>
                         </div>
@@ -250,11 +251,11 @@
         </div>
 </div>    
     
-<div class="modal fade" id="BILLING" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="setting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">BILLING & INVOICES</h4>
+                    <h4 class="modal-title">SUBSCRIPTION SETTINGS</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
@@ -263,217 +264,32 @@
                                
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <div class="row">
-                                            <div class="col-sm-12 row searchform">
-                                            <div class="col-sm-3 col-6">
-                                                <label>Start Date</label>
-                                                <input type="date" name="startdate">
-                                            </div>
-                                            <div class="col-sm-3  col-6">
-                                                 <label>End Date</label>
-                                                <input type="date" name="enddate">
-                                            </div>
-                                            <div class="col-sm-2  col-6">
-                                                <label>Invoice Number</label>
-                                                <input type="text" name="enddate">
-                                            </div>
-                                            <div class="col-sm-2  col-6">
-                                                <label>Invoice Type</label>
-                                                <input type="text" name="enddate">
-                                            </div>
-                                            <div class="col-sm-2">
-                                                <button>Search</button>
-                                            </div>
-                                        </div>
-                                        </div>
-                                       
+                                        <label>
+                                            <input type="checkbox" name=""> Receive Updates
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <label>
+                                            <input type="checkbox" name=""> Marketing Mails
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <label>
+                                            <input type="checkbox" name=""> Receive Notifications
+                                        </label>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12 nopadd">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h3 class="panel-title"><strong>Order summary</strong></h3>
-                                            </div>
-                                            <div class="panel-body">
-                                                <div class="table-responsive listtable">
-                                        <table class="table table-condensed table-bordered table-stripped">
-                                            <thead>
-                                                <tr>
-                                                <th>Date</th>
-                                                <th>Invoice Type</th>
-                                                <th>Invoice Number</th>
-                                                <th>Payment Type</th>
-                                                <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                               <tr>
-                                                    <td>25 Aug 2018</td>
-                                                    <td>Promotion Membership</td>
-                                                    <td>123456789</td>
-                                                    <td>Paypal</td>
-                                                    <td>
-                                                        <button data-toggle="modal" data-target="#invoicedetail">View Invoice</button>
-                                                        <button>Save PDF</button>
-                                                    </td>
-                                               </tr>
-                                               <tr>
-                                                    <td>25 Aug 2018</td>
-                                                    <td>Promotion Membership</td>
-                                                    <td>123456789</td>
-                                                    <td>Paypal</td>
-                                                    <td>
-                                                        <button data-toggle="modal" data-target="#invoicedetail">View Invoice</button>
-                                                        <button>Save PDF</button>
-                                                    </td>
-                                               </tr>
-                                               <tr>
-                                                    <td>25 Aug 2018</td>
-                                                    <td>Promotion Membership</td>
-                                                    <td>123456789</td>
-                                                    <td>Paypal</td>
-                                                    <td>
-                                                        <button data-toggle="modal" data-target="#invoicedetail">View Invoice</button>
-                                                        <button>Save PDF</button>
-                                                    </td>
-                                               </tr>
-                                               <tr>
-                                                    <td>25 Aug 2018</td>
-                                                    <td>Promotion Membership</td>
-                                                    <td>123456789</td>
-                                                    <td>Paypal</td>
-                                                    <td>
-                                                    <button data-toggle="modal" data-target="#invoicedetail">View Invoice</button>
-                                                        <button>Save PDF</button>
-                                                    </td>
-                                               </tr>
-                                              
-                                            </tbody>
-                                        </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
-                        <p>Premium members only. <span>Upgrade</span> </p>
+                        
                     </div>
                 </div>
-               
+               <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                      &nbsp;&nbsp;
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
 </div>    
     <!--mail popup -->
-<div class="modal fade" id="invoicedetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Invoice Details
-                         <span class="pull-right">Order # 12345</span>
-                    </h4>
-                   
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                   
-                    <div class="modal-body">
-                    <div class="col-sm-12 nopadd">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <address>
-                                        <strong>Customer Detail</strong><br>
-                                        Customer Id : (# 12345678) <br>
-                                                    John Smith<br>
-                                                    1234 Main, Apt. 4B<br>
-                                                    Springfield, ST 54321
-                                                </address>
-                                            </div>
-                                             <div class="col-xs-6 text-right">
-                                                <address>
-                                                    <strong>Payment Method:</strong><br>
-                                                    Visa ending **** 4242<br>
-                                                    jsmith@email.com<br/>
-                                                </address>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-<div class="col-md-12">
-<div class="panel panel-default">
-<div class="panel-heading">
-<h3 class="panel-title"><strong>Order summary</strong>
-<span class="pull-right"><strong>Date: Mar 7, 2014</strong></span>
-</h3>
-</div>
-<div class="panel-body">
-<div class="table-responsive">
-<table class="table table-condensed">
-<thead>
-<tr>
-<td><strong>Item</strong></td>
-<td class="text-center"><strong>Price</strong></td>
-<td class="text-center"><strong>Quantity</strong></td>
-<td class="text-right"><strong>Totals</strong></td>
-</tr>
-</thead>
-<tbody>
-<!-- foreach ($order->lineItems as $line) or some such thing here -->
-<tr>
-<td>BS-200</td>
-<td class="text-center">$10.99</td>
-<td class="text-center">1</td>
-<td class="text-right">$10.99</td>
-</tr>
-<tr>
-<td>BS-400</td>
-<td class="text-center">$20.00</td>
-<td class="text-center">3</td>
-<td class="text-right">$60.00</td>
-</tr>
-<tr>
-<td>BS-1000</td>
-<td class="text-center">$600.00</td>
-<td class="text-center">1</td>
-<td class="text-right">$600.00</td>
-</tr>
-<tr>
-<td class="thick-line"></td>
-<td class="thick-line"></td>
-<td class="thick-line text-center"><strong>Subtotal</strong></td>
-<td class="thick-line text-right">$670.99</td>
-</tr>
-<tr>
-<td class="no-line"></td>
-<td class="no-line"></td>
-<td class="no-line text-center"><strong>Shipping</strong></td>
-<td class="no-line text-right">$15</td>
-</tr>
-<tr class="litegraybg">
-<td class="no-line"></td>
-<td class="no-line"></td>
-<td class="no-line text-center"><strong>Total</strong></td>
-<td class="no-line text-right">$685.99</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-                            </div>
-                       
-                    </div>
-                </div>
-        
-
-                       
-              </div>
-            </div>
-</div>

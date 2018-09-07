@@ -6,7 +6,7 @@
     <div id="page-content-wrapper">    
 			<app-navemenu></app-navemenu>
 <router-outlet></router-outlet> 
-<div class="container-fluid membership">
+<div class="container-fluid membership mobilefixedcontainer">
 <div class="col-md-12 nopadd">
 	<div class="card">
 		<div class="row">
@@ -29,7 +29,7 @@
 <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header mobpaddbot0px">
                            <ul class="tabbingdesign">
                                 <li class="card-title selected Suppliertab">Monthly</li>
                                 <li class="card-title Registertab">Annually</li>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="clearfix"></div>
                         <div class="col-sm-12">
-                        	<div class="col-sm-12 mobtextcenter">
+                        	<div class="col-sm-12 mobtextcenter marbot30px">
                         	<input type="text" class="vouchercodeinput" placeholder="Voucher Code" />
                         	<button class="btn btnbluecode">Enter</button>
 
@@ -55,137 +55,117 @@
                             <div class="row">
                                 <div class="col-sm-12">
 	   								<div class="card martop0px">
-                                    	<div class="col-md-12 membershipsilder">
-											<div id="membership" class="owl-carousel">
-            								   <ngb-carousel>
-												 <div class="item">
-             									   <ng-template ngbSlide>
-                									<div>
-														<div class="panel card">
-															<div class="panel-heading arrow_box text-center">
-																<h3>BASIC <span>(Free!)</span></h3>
-																<div class="pricesec">
-																<table align="center">
-																	<tr>
-																		<td>MUR</td>
-																		<td class="pricebig">8</td>
-																		<td class="text-left lineheight16px">00<br/>/Month</td>
-																	</tr>
-																</table>
-															</div>
-															<div class="basiccard">Billed Annually</div>
-															</div>
-															<ul class="list-group list-group-flush text-center">
-																<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
-																<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
-																<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
-																<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
-																<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
-																<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
-																<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
-																<li class="list-group-item"><i class="material-icons redtext">cancel</i> Pinned reviews</li>
-																<li class="list-group-item"><i class="material-icons bluetext">report</i> Limited Photos</li>
-																<li class="list-group-item"><i class="material-icons redtext">cancel</i> No Album</li>
-																<li class="list-group-item"><i class="material-icons redtext">cancel</i> No Performance analytics</li>
-																<li class="list-group-item"><i class="material-icons bluetext">report</i> 1 location</li>
-																<li class="list-group-item"><i class="material-icons bluetext">report</i> Low Priority in Search Results</li>
-															</ul>
-															<div class="panel-footer text-center">
-															<a class="btn btnchoosetik" href="JavaScript:void(0);" disabled="disabled">CURRENT PLAN </a>
-															</div>
-														</div>
-													</div>
-												  </ng-template>
-												  </div>
-												  <div class="item">
-							              		<ng-template ngbSlide>
-							                	<div>
-												<div class="panel card">
-													<div class="panel-heading arrow_box text-center">
-														<span class="mostpopulartext">Most Popular <i class="fa fa-star"></i></span>
-														<h3>PREMIUM</h3>
-														<div class="pricesec">
-															<table align="center">
-																<tr>
-																	<td>MUR</td>
-																	<td class="pricebig">59</td>
-																	<td class="text-left lineheight16px">00<br/>/Month</td>
-																</tr>
-															</table>
-														</div>
-														<div class="basiccard">Billed Annually</div>
-													</div>
-													<ul class="list-group list-group-flush text-center">
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Pinned reviews</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Unlimited Photos</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Unlimited Album</li>
-													<li class="list-group-item"><i class="material-icons">report</i> Basic Performance analytics</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Multiple location</li>
-													<li class="list-group-item"><i class="material-icons">report</i> Medium Priority in Search Results</li>
-													</ul>
-													<div class="panel-footer text-center">
-													<a class="btn btnchoosetik" href="JavaScript:void(0);">Choose Plan</a>
-													</div>
-												</div>
-												<!-- /PRICE ITEM -->
-												</div>
-												  </ng-template>
-												</div>
-												<div class="item">
-              									<ng-template ngbSlide>
-                									<div>
-					<div class="panel card">
-						<div class="panel-heading arrow_box text-center">
-							<span class="mostpopulartext">Most Popular <i class="fa fa-star"></i></span>
-							<h3>PREMIUM</h3>
-						<div class="pricesec">
-							<table align="center">
-								<tr>
-						<td>MUR</td>
-						<td class="pricebig">59</td>
-						<td class="text-left lineheight16px">00<br/>/Month</td>
-								</tr>
-							</table>
-						</div>
-						<div class="basiccard">Billed Annually</div>
-						</div>
-						<ul class="list-group list-group-flush text-center">
-							<li class="list-group-item"><i class="material-icons">check_circle</i> Storefront</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Pinned reviews</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Unlimited Photos</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Unlimited Album</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Advanced Performance analytics</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Multiple location</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Highest Priority in Search Results</li>
-						</ul>
-						<div class="panel-footer text-center">
-							<a class="btn btnchoosetik" href="JavaScript:void(0);">Choose Plan</a>
-						</div>
-					</div>
-													<!-- /PRICE ITEM -->
-													</div>
-												  </ng-template>
-												</div>
-												
-											</ngb-carousel>
+										<div id="membershipcarousel" class="owl-carousel">
+									        <div class="panel card item">
+									            <div class="panel-heading arrow_box text-center">
+									              <span class="mostpopulartext">Free</span>
+																							<h3>Basic</h3>
+									              <div class="pricesec">
+									                <table align="center">
+									                  <tr>
+									                    <td>MUR</td>
+									                    <td class="pricebig">8</td>
+									                    <td class="text-left lineheight16px">00<br/>/Month</td>
+									                  </tr>
+									                </table>
+									              </div>
+									              <div class="basiccard">Billed Annually</div>
+									            </div>
+									        	<ul class="list-group list-group-flush text-center">
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
+										          <li class="list-group-item"><i class="material-icons redtext">cancel</i> Pinned reviews</li>
+										          <li class="list-group-item"><i class="material-icons bluetext">report</i> Limited Photos</li>
+										          <li class="list-group-item"><i class="material-icons redtext">cancel</i> No Album</li>
+										          <li class="list-group-item"><i class="material-icons redtext">cancel</i> No Performance analytics</li>
+										          <li class="list-group-item"><i class="material-icons bluetext">report</i> 1 location</li>
+										          <li class="list-group-item"><i class="material-icons bluetext">report</i> Low Priority in Search Results</li>
+									            </ul>
+									            <div class="panel-footer text-center">
+									              <a class="btn btnchoosetik" href="JavaScript:void(0);" disabled="disabled">CURRENT PLAN
+									              </a>
+									            </div>
+									        </div>
+									        <div class="panel card item">
+									            <div class="panel-heading arrow_box text-center">
+									               <span class="mostpopulartext">Most Popular <i class="fa fa-star"></i></span>
+																							<h3>PREMIUM</h3>
+									              <div class="pricesec">
+									                <table align="center">
+									                  <tr>
+									                    <td>MUR</td>
+									                    <td class="pricebig">59</td>
+									                    <td class="text-left lineheight16px">00<br/>/Month</td>
+									                  </tr>
+									                </table>
+									              </div>
+									              <div class="basiccard">Billed Annually</div>
+									            </div>
+									        	<ul class="list-group list-group-flush text-center">
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Pinned reviews</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i>  Unlimited Photos</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i>
+										           Unlimited Album</li>
+										          <li class="list-group-item"><i class="material-icons">report</i>  Basic Performance analytics</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Multiple location</li>
+										          <li class="list-group-item"><i class="material-icons">report</i> Medium Priority in Search Results</li>
+									            </ul>
+									            <div class="panel-footer text-center">
+									              <a class="btn btnchoosetik" href="JavaScript:void(0);" >CHOOSE PLAN
+									              </a>
+									            </div>
+									        </div>
+									        <div class="panel card item">
+									            <div class="panel-heading arrow_box text-center">
+									               <span class="mostpopulartext">Best Value</span>		<h3>Ultimate</h3>
+									              <div class="pricesec">
+									                <table align="center">
+									                  <tr>
+									                    <td>MUR</td>
+									                    <td class="pricebig">59</td>
+									                    <td class="text-left lineheight16px">00<br/>/Month</td>
+									                  </tr>
+									                </table>
+									              </div>
+									              <div class="basiccard">Billed Annually</div>
+									            </div>
+									        	<ul class="list-group list-group-flush text-center">
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Pinned reviews</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i>  Unlimited Photos</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i>
+										           Unlimited Album</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i>  Advanced Performance analytics</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Multiple location</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Medium Priority in Search Results</li>
+									            </ul>
+									            <div class="panel-footer text-center">
+									              <a class="btn btnchoosetik" href="JavaScript:void(0);" disabled="disabled">CHOOSE PLAN
+									              </a>
+									            </div>
+									        </div>
 										</div>
-          								</div>
-        							</div>
-    							</div>
-							</div>
+          							</div>
+        						</div>
+    						</div>
 						</section>
 						 
                  
@@ -193,136 +173,117 @@
                             <div class="row">
                                 <div class="col-sm-12">
 	   								<div class="card martop0px">
-                                    	<div class="col-md-12 membershipsilder">
-											<div id="membership2" class="owl-carousel">
-            								 <ngb-carousel>
-													<div class="item">
-             									<ng-template ngbSlide>
-                									<div>
-					<div class="panel card">
-						<div class="panel-heading arrow_box text-center">
-							<h3>BASIC <span>(Free!)</span></h3>
-							<div class="pricesec">
-							<table align="center">
-								<tr>
-									<td>MUR</td>
-									<td class="pricebig">8</td>
-									<td class="text-left lineheight16px">00<br/>/Annually</td>
-								</tr>
-							</table>
-						</div>
-						<div class="basiccard">Billed Annually</div>
-						</div>
-						<ul class="list-group list-group-flush text-center">
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
-							<li class="list-group-item"><i class="material-icons redtext">cancel</i> Pinned reviews</li>
-							<li class="list-group-item"><i class="material-icons bluetext">report</i> Limited Photos</li>
-							<li class="list-group-item"><i class="material-icons redtext">cancel</i> No Album</li>
-							<li class="list-group-item"><i class="material-icons redtext">cancel</i> No Performance analytics</li>
-							<li class="list-group-item"><i class="material-icons bluetext">report</i> 1 location</li>
-							<li class="list-group-item"><i class="material-icons bluetext">report</i> Low Priority in Search Results</li>
-						</ul>
-						<div class="panel-footer text-center">
-						<a class="btn btnchoosetik" href="JavaScript:void(0);" disabled="disabled">CURRENT PLAN </a>
-						</div>
-					</div>
-													</div>
-												  </ng-template>
-												  </div>
-												  <div class="item">
-							              		<ng-template ngbSlide>
-							                	<div>
-												<div class="panel card">
-													<div class="panel-heading arrow_box text-center">
-														<span class="mostpopulartext">Most Popular <i class="fa fa-star"></i></span>
-														<h3>PREMIUM</h3>
-														<div class="pricesec">
-															<table align="center">
-																<tr>
-																	<td>MUR</td>
-																	<td class="pricebig">59</td>
-																	<td class="text-left lineheight16px">00<br/>/Annually</td>
-																</tr>
-															</table>
-														</div>
-														<div class="basiccard">Billed Annually</div>
-													</div>
-													<ul class="list-group list-group-flush text-center">
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Pinned reviews</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Unlimited Photos</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Unlimited Album</li>
-													<li class="list-group-item"><i class="material-icons">report</i> Basic Performance analytics</li>
-													<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Multiple location</li>
-													<li class="list-group-item"><i class="material-icons">report</i> Medium Priority in Search Results</li>
-													</ul>
-													<div class="panel-footer text-center">
-													<a class="btn btnchoosetik" href="JavaScript:void(0);">Choose Plan</a>
-													</div>
-												</div>
-												<!-- /PRICE ITEM -->
-												</div>
-												  </ng-template>
-												</div>
-												<div class="item">
-              									<ng-template ngbSlide>
-                									<div>
-					<div class="panel card">
-						<div class="panel-heading arrow_box text-center">
-							<span class="mostpopulartext">Most Popular <i class="fa fa-star"></i></span>
-							<h3>PREMIUM</h3>
-						<div class="pricesec">
-							<table align="center">
-								<tr>
-						<td>MUR</td>
-						<td class="pricebig">59</td>
-						<td class="text-left lineheight16px">00<br/>/Annually</td>
-								</tr>
-							</table>
-						</div>
-						<div class="basiccard">Billed Annually</div>
-						</div>
-						<ul class="list-group list-group-flush text-center">
-							<li class="list-group-item"><i class="material-icons">check_circle</i> Storefront</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Pinned reviews</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Unlimited Photos</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Unlimited Album</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Advanced Performance analytics</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Multiple location</li>
-							<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Highest Priority in Search Results</li>
-						</ul>
-						<div class="panel-footer text-center">
-							<a class="btn btnchoosetik" href="JavaScript:void(0);">Choose Plan</a>
-						</div>
-					</div>
-													<!-- /PRICE ITEM -->
-													</div>
-												  </ng-template>
-												</div>
-											</ngb-carousel>
-											</div>
-          								</div>
-        							</div>
-    							</div>
-							</div>
+										<div id="membershipcarouselann" class="owl-carousel">
+									        <div class="panel card item">
+									            <div class="panel-heading arrow_box text-center">
+									              <span class="mostpopulartext">Free</span>
+																							<h3>Basic</h3>
+									              <div class="pricesec">
+									                <table align="center">
+									                  <tr>
+									                    <td>MUR</td>
+									                    <td class="pricebig">8</td>
+									                    <td class="text-left lineheight16px">00<br/>/Annually</td>
+									                  </tr>
+									                </table>
+									              </div>
+									              <div class="basiccard">Billed Annually</div>
+									            </div>
+									        	<ul class="list-group list-group-flush text-center">
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
+										          <li class="list-group-item"><i class="material-icons redtext">cancel</i> Pinned reviews</li>
+										          <li class="list-group-item"><i class="material-icons bluetext">report</i> Limited Photos</li>
+										          <li class="list-group-item"><i class="material-icons redtext">cancel</i> No Album</li>
+										          <li class="list-group-item"><i class="material-icons redtext">cancel</i> No Performance analytics</li>
+										          <li class="list-group-item"><i class="material-icons bluetext">report</i> 1 location</li>
+										          <li class="list-group-item"><i class="material-icons bluetext">report</i> Low Priority in Search Results</li>
+									            </ul>
+									            <div class="panel-footer text-center">
+									              <a class="btn btnchoosetik" href="JavaScript:void(0);" disabled="disabled">CURRENT PLAN
+									              </a>
+									            </div>
+									        </div>
+									        <div class="panel card item">
+									            <div class="panel-heading arrow_box text-center">
+									               <span class="mostpopulartext">Most Popular <i class="fa fa-star"></i></span>
+																							<h3>PREMIUM</h3>
+									              <div class="pricesec">
+									                <table align="center">
+									                  <tr>
+									                    <td>MUR</td>
+									                    <td class="pricebig">59</td>
+									                    <td class="text-left lineheight16px">00<br/>/Annually</td>
+									                  </tr>
+									                </table>
+									              </div>
+									              <div class="basiccard">Billed Annually</div>
+									            </div>
+									        	<ul class="list-group list-group-flush text-center">
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Pinned reviews</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i>  Unlimited Photos</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i>
+										           Unlimited Album</li>
+										          <li class="list-group-item"><i class="material-icons">report</i>  Basic Performance analytics</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Multiple location</li>
+										          <li class="list-group-item"><i class="material-icons">report</i> Medium Priority in Search Results</li>
+									            </ul>
+									            <div class="panel-footer text-center">
+									              <a class="btn btnchoosetik" href="JavaScript:void(0);" >CHOOSE PLAN
+									              </a>
+									            </div>
+									        </div>
+									        <div class="panel card item">
+									            <div class="panel-heading arrow_box text-center">
+									               <span class="mostpopulartext">Best Value</span>		<h3>Ultimate</h3>
+									              <div class="pricesec">
+									                <table align="center">
+									                  <tr>
+									                    <td>MUR</td>
+									                    <td class="pricebig">59</td>
+									                    <td class="text-left lineheight16px">00<br/>/Annually</td>
+									                  </tr>
+									                </table>
+									              </div>
+									              <div class="basiccard">Billed Annually</div>
+									            </div>
+									        	<ul class="list-group list-group-flush text-center">
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Pinned reviews</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i>  Unlimited Photos</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i>
+										           Unlimited Album</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i>  Advanced Performance analytics</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Multiple location</li>
+										          <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Medium Priority in Search Results</li>
+									            </ul>
+									            <div class="panel-footer text-center">
+									              <a class="btn btnchoosetik" href="JavaScript:void(0);" disabled="disabled">CHOOSE PLAN
+									              </a>
+									            </div>
+									        </div>
+										</div>
+          							</div>
+        						</div>
+    						</div>
 						</section>
 				
 				 

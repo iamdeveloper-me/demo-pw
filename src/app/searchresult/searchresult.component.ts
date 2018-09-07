@@ -16,7 +16,7 @@ export class SearchresultComponent implements OnInit {
   }
 
  ngOnInit() {   
-  $.getScript('./assets/js/owljsor.js');
+  //$.getScript('./assets/js/owljsor.js');
   $.getScript('./assets/js/searchresult.js'); 
    
   $.getScript('./assets/register/js/jquery-2.2.4.min.js');

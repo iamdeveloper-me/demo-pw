@@ -88,7 +88,7 @@ import { PromotionAudienceComponent } from './vendor/promotion-audience/promotio
 import { PromotionDealsComponent } from './vendor/promotion-deals/promotion-deals.component';
 import { PromotionHomepageComponent } from './vendor/promotion-homepage/promotion-homepage.component';
 import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
-
+import { InvoiceDetailComponent } from './vendor/invoice-detail/invoice-detail.component';
 import { TipslistComponent } from './tipslist/tipslist.component';
 import { EventlistComponent } from './eventlist/eventlist.component';
 //import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
@@ -122,7 +122,7 @@ const appRoutes: Routes = [
     { path: 'vendor/portfolioview', component:  PortfolioviewComponent  },
     { path: 'vendor/settingalbum', component:  AlbumsettingComponent  },
     { path: 'vendor/eventlist', component:  EventListComponent  },
-   
+    { path: 'vendor/invoice', component:  InvoiceDetailComponent  },
     { path: 'vendor/business', component:  BusinessInfoComponent  },
     { path: 'vendor/location', component:  LocationComponent  },
     { path: 'vendor/gallery', component: GalleryComponent  },

@@ -3,14 +3,14 @@
   display:none!important;
 }
 #supplierscarousel .owl-nav .owl-next{
-    left: -50px!important;
-     right: inherit!important;
+    right: -50px!important;
+    left: inherit!important;
     float: left;
     width: 36px;
     height: 78px;
     text-indent:-9999px;
     outline: none!important;
-    background:url("https://s3.us-east-2.amazonaws.com/prefect-image/home-top-left.png")!important;
+    background:url("https://s3.us-east-2.amazonaws.com/prefect-image/home-top-right.png")!important;
 }
 .pagination{
   margin: 15px auto;
@@ -32,15 +32,19 @@
   border-radius: 5px;
 }
 #supplierscarousel .owl-nav .owl-prev{
-  right: -50px!important;
-  left: inherit!important;
+  left: -50px!important;
+  right: inherit!important;
     float: right;
     width: 36px;
     height: 78px;
     text-indent:-9999px;
     outline: none!important;
-    background:url("https://s3.us-east-2.amazonaws.com/prefect-image/home-top-right.png")!important;
+    background:url("https://s3.us-east-2.amazonaws.com/prefect-image/home-top-left.png")!important;
 }
+#supplierscarousel .owl-nav .owl-prev.disabled, #supplierscarousel .owl-nav .owl-next.disabled{
+  opacity: .3;
+}
+
 .star-icon.half100:before{
 top:2px!important;
 }
@@ -421,6 +425,24 @@ visibility: inherit!important;
   .membershipsilder .carousel-indicators, .carousel-control-prev, .carousel-control-next{
   display:none!important;
 }
+#membershipcarousel .owl-item{
+  padding:0px 15px!important;
+}
+#membershipcarouselann .owl-item{
+  padding:0px 15px!important;
+}
+
+#membershipcarousel .owl-dots, #membershipcarouselann .owl-dots{
+position: absolute!important;
+top:-40px!important;
+left: 0px!important;
+right: 0px!important;
+} 
+
+#membershipcarousel .owl-nav, #membershipcarouselann .owl-nav{
+  display: none!important;
+} 
+
 #supplierscarousel .owl-nav button{
   top:calc(50% - 50px)!important;
 }
@@ -455,6 +477,12 @@ display: none!important;
     }
   }
 @media(max-width:768px) {
+.navbar {
+  position: fixed;
+}
+.mobilefixedcontainer{
+  margin-top:80px;
+}
   .modal-dialog{
     max-width:95%!important;
 }
@@ -749,11 +777,17 @@ float: left;
     bottom: 0;
     left: 0;
     width: 0;
-    height: 2px;
+    height: 1px;
     background-color: rgb(240, 17, 140);
     transition: 0.4s;
+    z-index: 99;
 }
-
+.input-effect input[type="file"].effect-16 ~ .focus-border {
+    bottom: -6px!important;   
+}
+.input-effect textarea.effect-16 ~ .focus-border {
+    bottom: -24px!important;   
+}
 .input-effect .effect-16:focus ~ label{
     top: -17px;
     font-size: 12px;

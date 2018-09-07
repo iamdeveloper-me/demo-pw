@@ -116,6 +116,8 @@ import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.com
 import { EditprofileComponent } from './vendor/editprofile/editprofile.component';
 import { ReviewsComponent } from './vendor/reviews/reviews.component';
 import { MembershipComponent } from './vendor/membership/membership.component';
+
+
 import { CreatePromotionComponent } from './vendor/create-promotion/create-promotion.component'; 
 
 import {  AdminComponent } from "./admin/admin.component";
@@ -160,6 +162,7 @@ import { PromotionDealsComponent } from './vendor/promotion-deals/promotion-deal
 import { PromotionHomepageComponent } from './vendor/promotion-homepage/promotion-homepage.component';
 import { TipslistComponent } from './tipslist/tipslist.component';
 import { EventlistComponent } from './eventlist/eventlist.component';
+import { InvoiceDetailComponent } from './vendor/invoice-detail/invoice-detail.component';
 
 
 
@@ -192,6 +195,7 @@ export function getAuthServiceConfigs() {
 @NgModule({
     declarations: [
         AppComponent,
+        InvoiceDetailComponent,
         EnquiriesComponent,
         TipslistComponent,
         PromotionPriorityComponent,

@@ -1,17 +1,11 @@
-
-<!-- Card Dark -->
 <div id="wrapper" class="toggled">
-    <div id="sidebar-wrapper" >
-       <app-vendorsidebar></app-vendorsidebar>
- 
-   </div>
-   <div id="page-content-wrapper">    
-       <router-outlet></router-outlet> 
-       <div class="content">
-         <div id ="navmenu">
-           <app-navemenu></app-navemenu>
-         </div>
-         <!-- <section class="Reviews_page container-fluid">
+    <div id="sidebar-wrapper">
+        <app-vendorsidebar></app-vendorsidebar>
+    </div>
+     <div id="page-content-wrapper">    
+        <app-navemenu></app-navemenu>
+        <router-outlet></router-outlet> 
+         <section class="Reviews_page container-fluid mobilefixedcontainer">
              <div class="card martop0px">
               
 
@@ -133,18 +127,14 @@
                       </div>
 
              
-             </div>
- 
-            </div>
-         </section>      -->
-   
-       </div>
+             </div> 
+         </section> 
+       <div class="clearfix"></div>
+        <app-foot></app-foot>
+        <router-outlet></router-outlet>
    </div>
-
- 
-     <app-foot></app-foot>
  </div>
- <router-outlet></router-outlet>
+
  
  
  

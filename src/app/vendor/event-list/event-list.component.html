@@ -5,7 +5,7 @@
     <div id="page-content-wrapper">
         <app-navemenu></app-navemenu>    
         <router-outlet></router-outlet> 
-        <div class="container-fluid">
+        <div class="container-fluid mobilefixedcontainer">
         <div class="col-sm-12 card">  
         <div class="createmyalbum">
             <div class=" text-center">
@@ -257,52 +257,65 @@
 </div> 
 </div>  
 <ng-template #adduser let-c="close" let-d="dismiss">
-                                                <div class="modal-header text-center">
-                                                    <h4 class="modal-title"><b>Create Event</b></h4>
-                                                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                                                    <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="text-center padd_10p">
-                                                <h5>Add Your Event Details below.</h5>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form>
-                                                
-                                                        <div class="form-group">
-                                                            <label>Title</label>
-                                                            <input type="text" name="" class="form-control">
-                                                        </div>
-                                                        <div class="form-group image_input">
-                                                            <label>Image</label>
-                                                            <input type="file" name="" class="form-control">
-                                                        </div>
-                                                        <div class="form-group date_picker">
-                                                            <label>When:</label> <br>
-                                                            <input type="date" name="bday"><input type="time" name="bday"> to  <input type="date" name="bday"><input type="time" name="bday">
-                                                        </div>
-                                                        <div class="form-group date_picker">
-                                                            <label>
-                                                                <a href=""> Add more date and times </a>
-                                                            </label><br>
-                                                            <input type="date" name="bday"><input type="time" name="bday"> to <input type="date" name="bday"><input type="time" name="bday">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Location:</label>
-                                                            <input type="text" name="" class="form-control">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Capacity:</label>
-                                                            <input type="text" name="" class="form-control">                                          
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Description:</label>
-                                                            <input type="text" name="" class="form-control">                                          
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary btn-raised" >Save</button>   
-                                                    <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Cancel</button>
-                                                </div>
+    <div class="modal-header text-center">
+        <h4 class="modal-title"><b>Create Event</b></h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body"> 
+           <form>
+                  <div class="form-group">
+                                <div class="input-effect form-group md-form ">  
+                                    <input class="effect-16 validate"  required="required">
+                                    <label>Title</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">  
+                                    <input  type="file" class="effect-16 validate"  required="required">
+                                    <label>Image</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                            
+                <div class="form-group date_picker">
+                    <label>When:</label> <br>
+                    <input type="date" name="bday"><input type="time" name="bday"> to  <input type="date" name="bday"><input type="time" name="bday">
+                </div>
+                <div class="form-group date_picker">
+                    <label>
+                        <a href=""> Add more date and times </a>
+                    </label><br>
+                    <input type="date" name="bday"><input type="time" name="bday"> to <input type="date" name="bday"><input type="time" name="bday">
+                </div>
+                <div class="form-group">
+                    <div class="input-effect form-group md-form ">  
+                        <input  type="text" class="effect-16 validate"  required="required">
+                        <label>Location</label>
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-effect form-group md-form ">  
+                        <input  type="text" class="effect-16 validate"  required="required">
+                        <label>Capacity</label>
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-effect form-group md-form ">  
+                        <textarea class="effect-16 validate"  required="required"></textarea>
+                        <label>Description</label>
+                        <span class="focus-border"></span>
+                    </div>
+                </div>    
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-raised" >Save</button>   
+                <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Cancel</button>
+            </div>
 </ng-template>

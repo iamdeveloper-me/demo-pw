@@ -78,13 +78,22 @@ $(document).ready(function () {
       }
   });
 
+
  $(window).scroll(function(){
-      if ($(this).scrollTop() > 450) {
-          $('.tabmobile').addClass('tabfixedmobile');
+      if ($(this).scrollTop() > 200) {
+          $('.bottomsticky').addClass('bottomstickydisplay');
       } else  {
-         $('.tabmobile').removeClass('tabfixedmobile');
+         $('.bottomsticky').removeClass('bottomstickydisplay');
       }
   });
+
+ // $(window).scroll(function(){
+ //      if ($(this).scrollTop() > 450) {
+ //          $('.tabmobile').addClass('tabfixedmobile');
+ //      } else  {
+ //         $('.tabmobile').removeClass('tabfixedmobile');
+ //      }
+ //  });
 
 //  $(window).scroll(function(){
 //       if ($(this).scrollTop() > 100) {
@@ -101,6 +110,19 @@ $(document).ready(function () {
 //          $('.leftfixed').addClass('positionfixedleftdesktop');
 //       }
 //   });
+
+
+$(".linkshow").click(function() {
+  alert("hhhh");
+    $('.vp_about_txt_description').addClass('showtik');
+    $('.linkshow').hide();
+    $('.linkless').show();
+});
+$(".linkless").click(function() {
+    $('.vp_about_txt_description').removeClass('showtik');
+    $('.linkshow').show();
+    $('.linkless').hide();
+});
 
 
 
@@ -131,18 +153,34 @@ $(".tradinghours .showless").click(function() {
 $(".reviewbox").click(function() {
     $('html,body').animate({scrollTop: $("#review").offset().top-150},'slow');
     $('.reviewbox').addClass('activebuttontab');
+
+    $('.aboutbox').removeClass('activebuttontab');
+    $('.overviewbox').removeClass('activebuttontab');
+    $('.gallerybox').removeClass('activebuttontab');
 });
 $(".aboutbox").click(function() {
     $('html,body').animate({scrollTop: $("#about").offset().top-150},'slow');
     $('.aboutbox').addClass('activebuttontab');
+
+    $('.reviewbox').removeClass('activebuttontab');
+    $('.overviewbox').removeClass('activebuttontab');
+    $('.gallerybox').removeClass('activebuttontab');
 });
 $(".overviewbox").click(function() {
     $('html,body').animate({scrollTop: $(".weddingvenue").offset().top-150},'slow');
     $('.overviewbox').addClass('activebuttontab');
+
+     $('.reviewbox').removeClass('activebuttontab');
+    $('.aboutbox').removeClass('activebuttontab');
+    $('.gallerybox').removeClass('activebuttontab');
 });
 $(".gallerybox").click(function() {
     $('html,body').animate({scrollTop: $(".gallery").offset().top-150},'slow');
     $('.gallerybox').addClass('activebuttontab');
+
+    $('.reviewbox').removeClass('activebuttontab');
+    $('.aboutbox').removeClass('activebuttontab');
+    $('.overviewbox').removeClass('activebuttontab');
 });
 
 // tab Mobile
@@ -165,4 +203,30 @@ $(".aboutbtn").click(function() {
 $(".reviewbtn").click(function() {
     $('html,body').animate({scrollTop: $(".reviewsection").offset().top-100},'slow');
     $('.reviewbtn').addClass('btnactive');
+});
+
+$(document).ready(function() {
+    var $lightbox = $('#lightbox');
+    
+    $('[data-target="#lightbox"]').on('click', function(event) {
+        var $img = $(this).find('img'), 
+            src = $img.attr('src'),
+            alt = $img.attr('alt'),
+            css = {
+                'maxWidth': $(window).width() - 100,
+                'maxHeight': $(window).height() - 100
+            };
+    
+        $lightbox.find('.close').addClass('hidden');
+        $lightbox.find('img').attr('src', src);
+        $lightbox.find('img').attr('alt', alt);
+        $lightbox.find('img').css("max-width", "100%");
+    });
+    
+    $lightbox.on('shown.bs.modal', function (e) {
+        var $img = $lightbox.find('img');
+            
+        $lightbox.find('.modal-dialog').css({'width': $img.width()});
+        $lightbox.find('.close').removeClass('hidden');
+    });
 });

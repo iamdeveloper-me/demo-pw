@@ -21,6 +21,8 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
 // import { LocationComponent } from './location/location.component';
 // import { VideosComponent } from './videos/videos.component';
  import { PromotionsComponent } from './promotions/promotions.component';
+//import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.component';
+//import { InvoiceComponent } from './invoice/invoice.component';
 //import { PromotionPriorityComponent } from './promotion-priority/promotion-priority.component';
 //import { PromotionAudienceComponent } from './promotion-audience/promotion-audience.component';
 //import { PromotionDealsComponent } from './promotion-deals/promotion-deals.component';
@@ -83,6 +85,8 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
         // LocationComponent,
         // VideosComponent,
          PromotionsComponent,
+     //   InvoiceDetailComponent,
+     //   InvoiceComponent,
         //PromotionPriorityComponent,
        // PromotionAudienceComponent,
         //PromotionDealsComponent,

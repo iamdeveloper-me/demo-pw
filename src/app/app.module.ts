@@ -2,7 +2,7 @@
 import { NgModule} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RatingModule} from "ngx-rating";
-
+import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { ImageCropperModule } from 'ng2-img-cropper';
@@ -302,6 +302,7 @@ export function getAuthServiceConfigs() {
 
   ],
     imports: [
+        FileUploadModule,
         ImageCropperModule,
         BrowserAnimationsModule,
         StoreModule.forRoot({}),

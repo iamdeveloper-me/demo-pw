@@ -60,35 +60,23 @@ export class GalleryComponent implements OnInit {
         if (fi.files && fi.files[0]) {
              
             let fileToUpload = fi.files;
-            let headers = new  HttpHeaders();
+            let headers = new  Headers();
             var authToken = localStorage.getItem('userToken');
-            headers.append('Accept', 'application/json')
-            headers.append('Content-Type', 'multipart/form-data');
+         
             headers.append("Authorization",'Bearer '+authToken);
-            alert("fvf");
+            const formData = new FormData();
+            formData.append('AlbumId','2')
+            for (let image of fileToUpload){
+              formData.append(image.name,image)
+            }
 
        
             console.log(fileToUpload)
   
-            // this.http.post(this.uploadimage,{files: input , AlbumId: 2},{headers:headers})
-            // .subscribe(data =>{console.log(data);},(error)=>{console.log(error)});
+            this.http.post(this.uploadimage,formData,{headers:headers})
+            .subscribe(data =>{console.log(data);},(error)=>{console.log(error)});
        }
         }
-        addFile_t(info){
-          console.log(info);
-
-        }
-        ss(file: FileList){
-          console.log(file.item(0))
-          let headers = new Headers();
-            var authToken = localStorage.getItem('userToken');
-            headers.append('Accept', 'application/json')
-            headers.append('Content-Type', 'application/json');
-            headers.append("Authorization",'Bearer '+authToken);
-            this.http.post(this.uploadimage,{files: [file.item(0)] , AlbumId: 2},{headers:headers}).subscribe((dta)=>{
-              console.log(dta)
-            })
-
-        }
+        
   }
 

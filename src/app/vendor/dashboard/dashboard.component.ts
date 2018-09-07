@@ -4,6 +4,8 @@ import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
 import { Router } from '@angular/router';
 
+// Add the RxJS Observable operators we need in this app.
+
 
 @Component({
   selector: 'app-dashboard',
@@ -15,9 +17,9 @@ export class DashboardComponent implements OnInit {
    
     PhoneEdit = '5555555' ;
     angularLogo = 'https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg';
-   
-     
+    
     constructor(config: NgbCarouselConfig ,public http: Http ,private router: Router) {
+
     config.interval = 10000;
     config.wrap = false;
     config.keyboard = false;

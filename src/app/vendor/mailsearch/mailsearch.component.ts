@@ -14,7 +14,7 @@ export class MailsearchComponent implements OnInit {
     sendByUserId:" ",
     replyTo:" ",
     sentDate:" ",
-    messageStatus:" "} 
+    messageStatus:" ",sendByFirstName:" ",sendByLastName:" ",sendByEmail:" "} 
   constructor(private vservice: MessageService) { }
 
   ngOnInit() {

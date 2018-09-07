@@ -1,0 +1,82 @@
+
+<!-- Card Dark -->
+<div id="wrapper" class="toggled">
+    <div id="sidebar-wrapper" >
+       <app-vendorsidebar></app-vendorsidebar>
+ 
+   </div>
+   <div id="page-content-wrapper">    
+       <router-outlet></router-outlet> 
+       <div class="content">
+         <div id ="navmenu">
+           <app-navemenu></app-navemenu>
+         </div>
+         <section class="Reviews_page container-fluid">
+             <div class="card martop0px">
+               <div class="man_img">
+                 <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> 
+                 <span class="revie_name">Peeter Parker</span>
+                 <span class="pin_tack"><i class="material-icons"> watch_later</i> 21:00</span>
+            
+                 <p class="exellent_par"> Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
+ 
+                <div class="container ">
+                  <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10 light_bg">
+                        <p><strong>Attachments:</strong> </p>
+                        <p>Theme-thumbnail-image.jpg</p>
+                        <button class="btn">Open</button>
+                    </div>
+                    <div class="col-md-1"></div>
+                    
+
+                  </div>
+                
+                </div>
+
+
+                <div class="image2">
+                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> 
+                  <span class="revie_name">Peeter Parker</span>
+                    <span class="pin_tack"><i class="material-icons"> watch_later</i> 21:00</span>
+               
+                    <p class="exellent_par"> Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
+                </div>
+               
+
+                <hr>
+
+
+               <!--  <p class="type_massege"> <input type="text" name="" id="" placeholder="Type Massege......" (ngSubmit)="onSubmit()" #f="ngForm"> <span class="plus"><i class="material-icons">
+                    add
+                    </i></span> </p> -->
+                <form role="form" action="" method="post" class="mt-25 mtx-0" (ngSubmit)="onSubmit()" #f="ngForm">
+                 <p class="type_massege"> 
+                  <input type="text" name="message" id="" placeholder="Type Massege......" [(ngModel)] = "userMsg.message"> 
+                  <span class="plus">
+                    <button type="submit" class="material-icons">
+                    add
+                    </button>
+                  </span> 
+                </p>
+              </form>
+              </div>
+             
+             </div>
+ 
+           
+         </section>     
+   
+       </div>
+   </div>
+ 
+     <app-foot></app-foot>
+ </div>
+ <router-outlet></router-outlet>
+ 
+ 
+ 
+ 
+         
+ 

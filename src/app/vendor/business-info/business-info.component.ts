@@ -153,6 +153,7 @@ export class BusinessInfoComponent implements OnInit {
                 testAnim(anim);
           })
 
+
   }
  
   openModel(b){
@@ -175,8 +176,6 @@ export class BusinessInfoComponent implements OnInit {
             var infopicture = this.filedata.webkitRelativePath ;
             var infoinsta = info.value.instagram;
              var  perfectWeddingsite =   info.value.perfectWedding;
-        
-
               let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
               headers.append('Accept', 'application/json')
@@ -195,7 +194,6 @@ export class BusinessInfoComponent implements OnInit {
                               googleURL:  infogoogle,
                               instalURL: infoinsta ,
                               perfectWeddingURL: perfectWeddingsite,
-                            
                           
                           },{headers:headers});  
 

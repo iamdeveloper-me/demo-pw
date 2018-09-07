@@ -21,6 +21,7 @@ export class DetailpageComponent implements OnInit {
 
        
 
+
 }
 review =  {  rating: '',
              comments: "",

@@ -8,6 +8,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ImageCropperModule } from 'ng2-img-cropper';
 
 
+import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 
 //calender 
 
@@ -86,6 +87,7 @@ import { UserReviewsComponent } from './userpannel/userboard/user-reviews/user-r
 import { UserbannerComponent } from './userpannel/userboard/userbanner/userbanner.component';
 import { TimelineComponent } from './userpannel/userboard/timeline/timeline.component';
 import { UsermessageComponent } from './userpannel/userboard/usermessage/usermessage.component';
+import { UsermailsearchComponent } from './userpannel/userboard/usermailsearch/usermailsearch.component'
 import { BookmarkComponent ,NgbdbookmarkModalContent } from './userpannel/userboard/bookmark/bookmark.component';
 import { GuestComponent } from './userpannel/userboard/guest/guest.component';
 import { BudgetComponent } from './userpannel/userboard/budget/budget.component';
@@ -247,8 +249,8 @@ export function getAuthServiceConfigs() {
         SupplierByCityComponent,
         SupplierByCateComponent,
 
-         VideosComponent,
-         NgbdvedioModalContent,
+        VideosComponent,
+        NgbdvedioModalContent,
 
         BusinessServicesComponent ,
         CategoryComponent,
@@ -256,6 +258,7 @@ export function getAuthServiceConfigs() {
         ToolComponent,
         TimelineComponent ,
         UsermessageComponent,
+        UsermailsearchComponent,
         BookmarkComponent,
         NgbdbookmarkModalContent,
         GuestComponent,
@@ -347,6 +350,7 @@ export function getAuthServiceConfigs() {
         AuthService,
         AuthGuard,
         DragulaService,
+
         {
             provide: AuthServiceConfig,
             useFactory: getAuthServiceConfigs

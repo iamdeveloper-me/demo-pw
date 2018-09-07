@@ -42,6 +42,7 @@ import { CategoryComponent } from './category/category.component';
 import { VendorlistComponent } from './userpannel/userboard/vendorlist/vendorlist.component';
 import { TimelineComponent } from './userpannel/userboard/timeline/timeline.component';
 import { UsermessageComponent } from './userpannel/userboard/usermessage/usermessage.component';
+import { UsermailsearchComponent } from './userpannel/userboard/usermailsearch/usermailsearch.component';
 import { BookmarkComponent } from './userpannel/userboard/bookmark/bookmark.component';
 import { GuestComponent } from './userpannel/userboard/guest/guest.component';
 import { BudgetComponent } from './userpannel/userboard/budget/budget.component';
@@ -86,13 +87,11 @@ import { PromotionPriorityComponent } from './vendor/promotion-priority/promotio
 import { PromotionAudienceComponent } from './vendor/promotion-audience/promotion-audience.component';
 import { PromotionDealsComponent } from './vendor/promotion-deals/promotion-deals.component';
 import { PromotionHomepageComponent } from './vendor/promotion-homepage/promotion-homepage.component';
-
 import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
 
 import { TipslistComponent } from './tipslist/tipslist.component';
 import { EventlistComponent } from './eventlist/eventlist.component';
 //import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
-
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -162,6 +161,7 @@ const appRoutes: Routes = [
 
   { path: 'User/Timeline', component: TimelineComponent },
   { path: 'User/Message', component: UsermessageComponent },
+  { path: 'User/mailsearch', component: UsermailsearchComponent },
   { path: 'User/vendor', component: VendorlistComponent },  
 
   { path: 'User/Bookmarks', component: BookmarkComponent },

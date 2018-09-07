@@ -15,26 +15,17 @@
                     <div class="">
                      <div class="text-center headin_gally">
                        <h5>MY PORTFOLIO</h5>
-                       <!-- <form (ngSubmit)="addFile(info)" #info="ngForm"> 
+                       <form (ngSubmit)="addFile(info)" #info="ngForm"> 
                        <input #fileInput 
                        type="file"
                        [(ngModel)]="gallery.files" 
                         name="image" 
                         id="image"/>
                        <button type="submit">Add</button>
-                      </form>   -->
+                      </form>  
 
 
-                      <form (submit)="addFile_t(info)" #info="ngForm"> 
-                        <input #fileInput 
-                        type="file"
-                        [(ngModel)]="gallery.files" 
-                        (change)="ss($event.target.files)"
-                        accept="image/*"
-                         name="filess" 
-                         id="image"/>
-                        <button type="submit">Add</button>
-                       </form> 
+                     
                     
                        <P> Collection of the best photo and work to highlight your profile</P>
                      </div>

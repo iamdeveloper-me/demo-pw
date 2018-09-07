@@ -119,7 +119,7 @@ const appRoutes: Routes = [
     { path: 'vendor/creatpromo', component:  CreatePromotionComponent  },
     { path: 'vendor/dashboard', component:  DashboardComponent  },
     { path: 'vendor/albumview', component:  AlbumviewComponent  },
-    { path: 'vendor/albumviewphoto', component:  ViewPhotoAlbumsComponent  },
+    { path: 'vendor/albumviewphoto/:id', component:  ViewPhotoAlbumsComponent  },
     { path: 'vendor/portfolioview', component:  PortfolioviewComponent  },
     { path: 'vendor/settingalbum', component:  AlbumsettingComponent  },
     { path: 'vendor/eventlist', component:  EventListComponent  },

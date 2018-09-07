@@ -3,13 +3,13 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
 import { Router } from '@angular/router';
-// Add the RxJS Observable operators we need in this app.
+
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  providers: [NgbCarouselConfig] // add NgbCarouselConfig to the component providers
+  providers: [NgbCarouselConfig]
 })
 export class DashboardComponent implements OnInit {
    
@@ -17,14 +17,12 @@ export class DashboardComponent implements OnInit {
     angularLogo = 'https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg';
    
      
-   
     constructor(config: NgbCarouselConfig ,public http: Http ,private router: Router) {
-    // customize default values of carousels used by this component tree
     config.interval = 10000;
     config.wrap = false;
     config.keyboard = false;
   }
-// Variable Declaration
+
   x: any;
   greeting = {};
   name = 'World';
@@ -57,18 +55,6 @@ export class DashboardComponent implements OnInit {
           data =>{ this.vendor = data.json();
                    console.log(this.vendor);
                  });
-
-        // this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile',{headers:headers}).subscribe(data =>{console.log(data)})
-
-
-     
-      // this.http.get(this.baseUrl+"api/Reviews/myreviews",{headers:headers})
-      // return this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile" + "/dashboard/home",{headers})
-      //   .map(response => response.json())
-      //   // .catch(this.handleError);
-
-  
-
 
           $.getScript('./assets/js/prism.min.js');
           $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');

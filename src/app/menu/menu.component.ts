@@ -32,6 +32,8 @@ export class MenuComponent implements OnInit {
             this.typeSuccess();
             localStorage.setItem('userToken',data.json().auth_token);
             this.router.navigate(['../vendor/dashboard'])
+            $("div").removeClass( "modal-backdrop fade show");
+            $("body").removeClass( "modal-open");
           }
         
         },(ERROR)=>{     
@@ -61,6 +63,8 @@ export class MenuComponent implements OnInit {
             this.typeSuccess();
             localStorage.setItem('userToken',data.json().auth_token);
             this.router.navigate(['../User/vendor'])
+            $("div").removeClass( "modal-backdrop fade show");
+            $("body").removeClass( "modal-open");
           }
         
         },(ERROR)=>{     

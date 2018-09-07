@@ -14,9 +14,12 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 export class GalleryComponent implements OnInit {
   gallery = { files: ''}
   fileToUpload:any;
+  totalAlbum = [];
+  iterations = [1,2]
   private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ImageUploader/FileUploader'
- 
+  private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
+
   uploader: FileUploader = new FileUploader({
     url: URL,
     isHTML5: true
@@ -41,6 +44,13 @@ export class GalleryComponent implements OnInit {
       headers.append("Authorization",'Bearer '+authToken);
       this.http.get(this.albumget,{headers:headers})
       .subscribe(data =>{console.log(data.json());  });
+
+      //Album Get
+      this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
+      .subscribe(data =>{
+       this.totalAlbum =  data.json(); 
+      });
+
     $.getScript('http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
@@ -77,5 +87,41 @@ export class GalleryComponent implements OnInit {
             .subscribe(data =>{console.log(data);},(error)=>{console.log(error)});
        }
         }
+
+        //Album create your token
+        createAlbum(){
+          let headers = new  Headers();
+          var authToken = localStorage.getItem('userToken');
+          headers.append("content-type",'application/json ');
+          headers.append("Authorization",'Bearer '+authToken);
+
+          const album = {
+            "albumsId": 0,
+            "albumName": "string",
+            "albumType": 0,
+            "tags": "string",
+            "colorTags": "string"
+          }
+          this.http.post(this.url+'api/Albums/createupdatealbum',album,{headers:headers})
+            .subscribe(data =>{console.log(data);},(error)=>{console.log(error)});
+        }
         
+
+
+        uploadAll(){
+          const formData = new FormData();
+          for(let file of this.uploader.queue){
+          formData.append(file['some'].name,file['some'])
+          }
+          formData.append('AlbumId', '4')
+          
+          // Headers
+          let headers = new  Headers();
+          var authToken = localStorage.getItem('userToken');
+          headers.append("Authorization",'Bearer '+authToken);
+          
+          //Post Album 2 photos
+          this.http.post(this.uploadimage,formData,{headers:headers})
+            .subscribe(data =>{console.log(data);},(error)=>{console.log(error)});
+        }
   }

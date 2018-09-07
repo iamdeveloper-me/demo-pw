@@ -667,3 +667,119 @@ export var weeklybarColors: Array<any> = [
   },
 
 ];
+//////////////////////////////////////////////////////////////////////////
+
+// barChart monthly
+export var GallerymonthlybarChartOptions: any = {
+  scaleShowVerticalLines: false,
+  responsive: true,
+  maintainAspectRatio: false
+
+};
+export var GallerymonthlybarChartLabels: string[] = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+export var GallerymonthlybarChartType = 'bar';
+export var GallerymonthlybarChartLegend = true;
+export var GallerymonthlybarChartData: any[] = [
+  { data: [65, 59, 80, 81, 56, 55, 40,48, 40, 19, 86, 27], label: 'ENQUIRIES' },
+  { data: [28, 48, 40, 19, 86, 27, 90, 56, 55, 40,48, 40], label: 'LEADS' }
+];
+
+export var GallerymonthlybarChartColors: Array<any> = [
+
+
+  {
+
+    backgroundColor: 'rgba(255, 141, 96, 0.8)',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  },
+  {
+
+    backgroundColor: 'rgba(0, 157, 160, 0.8)',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  },
+
+];
+
+//dailybarchart
+export var GallerydailybarOptions: any = {
+  scaleShowVerticalLines: false,
+  responsive: true,
+  maintainAspectRatio: false
+
+};
+export var GallerydailybarLabels: string[] = ['monday', 'tuesday', 'wednessday', 'thrusday', 'friday', 'saturdar', 'sunday'];
+export var GallerydailybarType = 'bar';
+export var GallerydailybarLegend = true;
+export var GallerydailybarData: any[] = [
+  { data: [65, 59, 80, 81, 56, 55, 40], label: 'ENQUIRIES' },
+  { data: [28, 48, 40, 19, 86, 27, 90], label: 'LEADS' }
+];
+
+export var GallerydailybarColors: Array<any> = [
+
+
+  {
+
+    backgroundColor: 'rgba(255, 141, 96, 0.8)',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  },
+  {
+
+    backgroundColor: 'rgba(0, 157, 160, 0.8)',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  },
+
+];
+
+//weekly barchart
+export var GalleryweeklybarOptions: any = {
+  scaleShowVerticalLines: false,
+  responsive: true,
+  maintainAspectRatio: false
+
+};
+export var GalleryweeklybarLabels: string[] = ['week1', 'week2', 'week3', 'week4', 'week5', 'week6', 'last week '];
+export var GalleryweeklybarType = 'bar';
+export var GalleryweeklybarLegend = true;
+export var GalleryweeklybarData: any[] = [
+  { data: [65, 59, 80, 81, 56, 55, 40,30,20,40,10,23], label: 'ENQUIRIES' },
+  { data: [28, 48, 40, 19, 86, 27, 90,80, 81, 56, 55, 40,], label: 'LEADS' }
+];
+
+export var GalleryweeklybarColors: Array<any> = [
+  {
+
+    backgroundColor: 'rgba(255, 141, 96, 0.8)',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  },
+  {
+
+    backgroundColor: 'rgba(0, 157, 160, 0.8)',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  },
+
+];

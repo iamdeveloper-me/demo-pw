@@ -16,7 +16,7 @@ export class EnquiriesComponent implements OnInit {
     $.getScript('./assets/js/vendorsidebar.js');
      $("#weekly").hide();
      $("#monthly").hide();
-    $(".weekly").click(function(){
+     $(".weekly").click(function(){
        $("#weekly").show();
        $("#monthly").hide();
        $("#daily").hide();

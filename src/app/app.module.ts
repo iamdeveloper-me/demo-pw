@@ -1,3 +1,4 @@
+
  
 import { NgModule} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,6 +10,7 @@ import { ImageCropperModule } from 'ng2-img-cropper';
 
 
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
+
 
 //calender 
 
@@ -25,12 +27,10 @@ import { PortfolioviewphotoComponent } from './vendor/portfolioviewphoto/portfol
 import { ChartsModule } from 'ng2-charts';
 import { ChartistModule} from 'ng-chartist';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from "./shared/shared.module";
 import { VendorModule } from "./vendor/vendor.module" 
 import { ToastrModule } from 'ngx-toastr';
-import { AgmCoreModule } from '@agm/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -38,7 +38,6 @@ import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { ContentLayoutComponent } from "./layouts/content/content-layout.component";
 import { FullLayoutComponent } from "./layouts/full/full-layout.component";
-import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { DragulaService } from 'ng2-dragula';
 import { AuthService } from './shared/auth/auth.service';
@@ -91,8 +90,9 @@ import { UsermailsearchComponent } from './userpannel/userboard/usermailsearch/u
 import { BookmarkComponent ,NgbdbookmarkModalContent } from './userpannel/userboard/bookmark/bookmark.component';
 import { GuestComponent } from './userpannel/userboard/guest/guest.component';
 import { BudgetComponent } from './userpannel/userboard/budget/budget.component';
-
-
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
 //import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
 import { CalendertableComponent } from './vendor/calendertable/calendertable.component';
@@ -162,6 +162,11 @@ import { PromotionDealsComponent } from './vendor/promotion-deals/promotion-deal
 import { PromotionHomepageComponent } from './vendor/promotion-homepage/promotion-homepage.component';
 import { TipslistComponent } from './tipslist/tipslist.component';
 import { EventlistComponent } from './eventlist/eventlist.component';
+
+
+
+
+
 
 
 
@@ -348,6 +353,7 @@ export function getAuthServiceConfigs() {
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         AuthService,
+        GoogleMapsAPIWrapper,
         AuthGuard,
         DragulaService,
 

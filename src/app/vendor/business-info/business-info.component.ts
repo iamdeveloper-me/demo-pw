@@ -139,12 +139,7 @@ export class BusinessInfoComponent implements OnInit {
             //var infopicture = this.filedata.webkitRelativePath ;
             var infoinsta = info.value.instagram;
              var  perfectWeddingsite =   info.value.perfectWedding;
-<<<<<<< HEAD
-=======
-        
 
-
->>>>>>> location
               let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
               headers.append('Accept', 'application/json')
@@ -162,15 +157,10 @@ export class BusinessInfoComponent implements OnInit {
                               googleURL:  infogoogle,
                               instalURL: infoinsta ,
                               perfectWeddingURL: perfectWeddingsite,
-<<<<<<< HEAD
+
                           
                           },{headers:headers});  
-=======
->>>>>>> location
-
-                              pictureUrl:'https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg'
-
-                          },{headers:headers});  
+ 
             updatebusinessinfo.subscribe((data) => console.log(data),(error)=>console.log(error));
      }
 abc(event){

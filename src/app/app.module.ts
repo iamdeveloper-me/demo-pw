@@ -9,8 +9,6 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ImageCropperModule } from 'ng2-img-cropper';
 
 
-import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
-
 
 //calender 
 

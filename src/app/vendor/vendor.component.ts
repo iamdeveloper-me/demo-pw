@@ -1,3 +1,6 @@
+import { Http ,Headers} from '@angular/http';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
 import { Component, OnInit , ElementRef } from '@angular/core';
 
 var fireRefreshEventOnWindow = function () {
@@ -12,10 +15,16 @@ var fireRefreshEventOnWindow = function () {
   styleUrls: ['./vendor.component.scss']
 })
 export class VendorComponent implements OnInit {
+  totalImage = [];
+  private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
+  private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(private http: Http ,private elementRef: ElementRef,  private route: ActivatedRoute  ) { }
 
   ngOnInit() {
+    this.route.params.subscribe( params => 
+      console.log(params) 
+    );
   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
   $.getScript('./assets/js/vendorsidebar.js');
@@ -29,6 +38,19 @@ export class VendorComponent implements OnInit {
     //     .addEventListener('click', this.onClick.bind(this));
     // this.elementRef.nativeElement.querySelector('#cz-sidebar-width')
     //     .addEventListener('click', this.onClick.bind(this));
+    let headers = new Headers();
+      var authToken = localStorage.getItem('userToken');
+      headers.append('Accept', 'application/json')
+      headers.append('Content-Type', 'application/json');
+      headers.append("Authorization",'Bearer '+authToken);
+      this.http.get(this.albumget,{headers:headers})
+      .subscribe(data =>{console.log(data.json());  });
+
+      //Album Get
+      this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
+      .subscribe(data =>{
+       this.totalImage =  data.json()[0].albumImages; 
+      });
 }
 
 

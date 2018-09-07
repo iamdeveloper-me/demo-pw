@@ -1,3 +1,5 @@
+import { Http ,Headers} from '@angular/http';
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-photo-albums.component.scss']
 })
 export class ViewPhotoAlbumsComponent implements OnInit {
-
-  constructor() { }
+  private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
+  totalImage=[]
+  constructor(private http: Http ,  private route: ActivatedRoute) { }
 
   ngOnInit() {
     $(".gearicon").click(function(){
@@ -15,6 +18,23 @@ export class ViewPhotoAlbumsComponent implements OnInit {
       $( this ).toggleClass( "open" );
   });
 
+  this.route.params.subscribe( params => 
+    console.log(params) 
+  );
+
+
+  let headers = new Headers();
+  var authToken = localStorage.getItem('userToken');
+  headers.append('Accept', 'application/json')
+  headers.append('Content-Type', 'application/json');
+  headers.append("Authorization",'Bearer '+authToken);
+
+
+  //Album Get
+  this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
+  .subscribe(data =>{
+   this.totalImage =  data.json()[0].albumImages; 
+  });
 
   let modalId = $('#image-gallery');
 
@@ -110,5 +130,26 @@ $(document)
   });
 
   }
+  
 
+
+
+
+
+
+  //service
+  deleteImage(image){
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+  
+  
+    //Album Get
+    this.http.post(this.url+'api/Albums/removeimage',{AlbumImageId:image.albumImageId},{headers:headers})
+    .subscribe(data =>{
+      console.log(data.json())
+        }); 
+  }
 }

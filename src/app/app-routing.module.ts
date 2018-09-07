@@ -42,6 +42,7 @@ import { CategoryComponent } from './category/category.component';
 import { VendorlistComponent } from './userpannel/userboard/vendorlist/vendorlist.component';
 import { TimelineComponent } from './userpannel/userboard/timeline/timeline.component';
 import { UsermessageComponent } from './userpannel/userboard/usermessage/usermessage.component';
+import { UsermailsearchComponent } from './userpannel/userboard/usermailsearch/usermailsearch.component';
 import { BookmarkComponent } from './userpannel/userboard/bookmark/bookmark.component';
 import { GuestComponent } from './userpannel/userboard/guest/guest.component';
 import { BudgetComponent } from './userpannel/userboard/budget/budget.component';
@@ -86,13 +87,11 @@ import { PromotionPriorityComponent } from './vendor/promotion-priority/promotio
 import { PromotionAudienceComponent } from './vendor/promotion-audience/promotion-audience.component';
 import { PromotionDealsComponent } from './vendor/promotion-deals/promotion-deals.component';
 import { PromotionHomepageComponent } from './vendor/promotion-homepage/promotion-homepage.component';
-
 import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
-
+import { InvoiceDetailComponent } from './vendor/invoice-detail/invoice-detail.component';
 import { TipslistComponent } from './tipslist/tipslist.component';
 import { EventlistComponent } from './eventlist/eventlist.component';
 //import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
-
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -119,11 +118,11 @@ const appRoutes: Routes = [
     { path: 'vendor/creatpromo', component:  CreatePromotionComponent  },
     { path: 'vendor/dashboard', component:  DashboardComponent  },
     { path: 'vendor/albumview', component:  AlbumviewComponent  },
-    { path: 'vendor/albumviewphoto', component:  ViewPhotoAlbumsComponent  },
+    { path: 'vendor/albumviewphoto/:id', component:  ViewPhotoAlbumsComponent  },
     { path: 'vendor/portfolioview', component:  PortfolioviewComponent  },
     { path: 'vendor/settingalbum', component:  AlbumsettingComponent  },
     { path: 'vendor/eventlist', component:  EventListComponent  },
-   
+    { path: 'vendor/invoice', component:  InvoiceDetailComponent  },
     { path: 'vendor/business', component:  BusinessInfoComponent  },
     { path: 'vendor/location', component:  LocationComponent  },
     { path: 'vendor/gallery', component: GalleryComponent  },
@@ -158,10 +157,12 @@ const appRoutes: Routes = [
     { path: 'vendor/deals', component:  PromotionDealsComponent},
     { path: 'vendor/homepage', component:  PromotionHomepageComponent},
 
+
   { path: 'User/vendor', component: VendorlistComponent },  
 
   { path: 'User/Timeline', component: TimelineComponent },
   { path: 'User/Message', component: UsermessageComponent },
+  { path: 'User/mailsearch', component: UsermailsearchComponent },
   { path: 'User/vendor', component: VendorlistComponent },  
 
   { path: 'User/Bookmarks', component: BookmarkComponent },
@@ -169,7 +170,6 @@ const appRoutes: Routes = [
   { path: 'User/Budget', component: BudgetComponent },
   { path: 'User/Inspirations', component: InspirationsComponent },
   { path: 'User/UserReviews', component: UserReviewsComponent },
-  
   { path: 'Admin/dashboard', component:  AdmindashboardComponent },  
   { path: 'Admin/login', component:  AdminComponent },  
   { path: 'Admin/Useraccountlist', component:  UseraccountlistComponent },  

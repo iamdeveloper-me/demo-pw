@@ -16,7 +16,7 @@ export class SearchresultComponent implements OnInit {
   }
 
  ngOnInit() {   
-  $.getScript('./assets/js/owljsor.js');
+  //$.getScript('./assets/js/owljsor.js');
   $.getScript('./assets/js/searchresult.js'); 
    
   $.getScript('./assets/register/js/jquery-2.2.4.min.js');
@@ -29,6 +29,7 @@ export class SearchresultComponent implements OnInit {
   $.getScript('./assets/jss/plugins/chartist.min.js');
   $.getScript('./assets/jss/plugins/bootstrap-notify.js');
   $(".slider_use_anather_compo").hide();
+
   }
   xyz(){
     this._route.navigate(['home/detailprofile']);

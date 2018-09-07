@@ -58,10 +58,12 @@ export class SignupVendorService {
   usignup(userSingUp){
     var email = userSingUp.email;
     var password = userSingUp.password;
-    var confirmpass = userSingUp.confirmpass
+    var confirmpass = userSingUp.confirmpass;
+    var firstName = userSingUp.firstName;
+    var lastName = userSingUp.lastName;
     const header = new Headers({'Content-Type': 'application/json'});
     if (password==confirmpass){
-      return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Accounts',{email: email, password: password } ,{headers: header});
+      return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Accounts',{email: email, password: password ,firstName:firstName, lastName:lastName} ,{headers: header});
     }
     else
       console.log("password and confirmpassword does not match");

@@ -13,11 +13,12 @@ export class MembershipComponent implements OnInit {
 
   ngOnInit() {
     //  Code formatting script
-      $.getScript('./assets/js/prism.min.js');
+    $.getScript('./assets/js/prism.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
-    $.getScript('./assets/js/owljsor.js');
+    
+    $.getScript('./assets/js/membershipslider.js'); 
 
 
     $(".Suppliertab").click(function(){

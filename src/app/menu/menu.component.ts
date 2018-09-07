@@ -28,10 +28,13 @@ export class MenuComponent implements OnInit {
      this.cservice.login(this.user).subscribe(
           (data)=> {
               console.log(data.json());
+
           if (data.statusText == "OK" && data.json().role =="Vendors" ) {
             this.typeSuccess();
+            localStorage.setItem('vendorId',data.json().id);
             localStorage.setItem('userToken',data.json().auth_token);
             this.router.navigate(['../vendor/dashboard'])
+
           }
         
         },(ERROR)=>{     
@@ -59,8 +62,13 @@ export class MenuComponent implements OnInit {
               console.log(data.json());
           if (data.statusText == "OK"  && data.json().role =="Users") {
             this.typeSuccess();
+            this.router.navigate(['../User/vendor'])
+            $("div").removeClass( "modal-backdrop fade show");
+            $("body").removeClass( "modal-open");
+            localStorage.setItem('userId',data.json().id);
             localStorage.setItem('userToken',data.json().auth_token);
             this.router.navigate(['../User/vendor'])
+
           }
         
         },(ERROR)=>{     
@@ -74,7 +82,8 @@ export class MenuComponent implements OnInit {
 
 
 
-    userSingUp = {email:' ',password:' ',confirmpass:''}
+
+    userSingUp = {email:' ',password:' ',confirmpass:'', firstName:'',lastName:''}
     
     userSubmit(){
       this.uservice.usignup(this.userSingUp).subscribe(( data )  =>  {
@@ -95,10 +104,6 @@ export class MenuComponent implements OnInit {
    }
 
     ngOnInit() { 
-
-   
-
-        
 
         if(window.location.href.indexOf("home") > -1)   {
           $(".user").hide();    
@@ -158,7 +163,6 @@ export class MenuComponent implements OnInit {
         //     $(".tikright").hide(); 
         //     }
         
-
 
      //loginpage
      $("#id9").hide();

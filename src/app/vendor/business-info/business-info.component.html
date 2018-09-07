@@ -147,6 +147,7 @@
 </div>
 
 <form (ngSubmit)="upForm(info)" #info="ngForm"> 
+
     <div class="modal fade" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             
@@ -171,7 +172,7 @@
                             </div>
                         </div>
                         <div class="modal-footer text-center">
-                            
+
                             <button type="submit" class="btn btn-secondary btn-raised "><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
                             <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
                         </div>
@@ -412,53 +413,53 @@
     </div>   
 
     <div class="modal fade" id="imagecrop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal_head text-center">
-                        <h4 class="modal-title"><strong> update icon  </strong>  </h4>
-                        <p>Do you have a Trading Page for your business?</p>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-sm-12  text-center">
-                            <div class="switbtn">
-                                <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                                <span class="have_one">Of course, I have one! </span>
-                            </div>
-                                <div class="clearfix"></div>
-                                <section id="tours">
-                                    <div class="row">
-                                      <div class="col-12">
-                                        <div class="card">
-                                          <div class="card-header">
-                                            <h4>Cropper</h4>
-                                          </div>
-                                          <div class="card-block">
-                                            <div class="file-upload mb-3">
-                                              <span class="text">Upload File : </span>
-                                              <input id="custom-input" type="file" (change)="fileChangeListener($event)">
-                                            </div>
-                                            <img-cropper #cropper [image]="data" [settings]="cropperSettings" class="float-left mr-4"></img-cropper>
-                                            <br>
-                                            <span class="result" *ngIf="data.image">
-                                              <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle">
-                                            </span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <!-- Cropper Ends -->
-                                  
-                                </section>
-                            
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal_head text-center">
+                    <h4 class="modal-title"><strong> update icon  </strong>  </h4>
+                    <p>Do you have a Trading Page for your business?</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-12  text-center">
+                        <div class="switbtn">
+                            <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                            <span class="have_one">Of course, I have one! </span>
                         </div>
-                    </div>
-                    <div class="foot_div text-center">
-                            <button type="submit" class="btn btn-secondary btn-raised" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-                        <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+                            <div class="clearfix"></div>
+                            <section id="tours">
+                                <div class="row">
+                                    <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                        <h4>Cropper</h4>
+                                        </div>
+                                        <div class="card-block">
+                                        <div class="file-upload mb-3">
+                                            <span class="text">Upload File : </span>
+                                            <input id="custom-input" type="file" (change)="fileChangeListener($event)">
+                                        </div>
+                                        <img-cropper #cropper [image]="data" [settings]="cropperSettings" class="float-left mr-4"></img-cropper>
+                                        <br>
+                                        <span class="result" *ngIf="data.image">
+                                            <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle">
+                                        </span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <!-- Cropper Ends -->
+                                
+                            </section>
+                        
                     </div>
                 </div>
-            </div> 
+                <div class="foot_div text-center">
+                        <button type="submit" class="btn btn-secondary btn-raised" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+                    <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+                </div>
+            </div>
         </div> 
+    </div> 
 </form>  

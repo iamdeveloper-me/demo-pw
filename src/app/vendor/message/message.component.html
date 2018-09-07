@@ -37,7 +37,7 @@
                                   </td>
                                   <td class="view-message displaymobblock  dont-show">
                                   
-                                  <div>Aakruti</div>
+                                  <div>{{history.sendByFirstName}}  {{history.sendByLastName}}</div>
                                  <span _ngcontent-c0="" class="label label-info">Administrator </span>
                                   
                                 </td>
@@ -51,8 +51,8 @@
                                 </td>
                                   <td class="view-message  secondarytext text-right">
                                       <i class="fa fa-star"></i>
-                                      <div>21/07/2018</div>
-                                  <div>9:27 AM</div>
+                                      <div>{{history.sentDateString}}</div>
+                                  <div>{{history.sentDate|date:"HH:mm"}}</div>
                                 </td>
                               </tr>
                               <tr class="unread">

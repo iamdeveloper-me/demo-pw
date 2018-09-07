@@ -23,23 +23,20 @@
                 <div class="card-body reportbox">
                     <div class="card-block dailyreport">
                         <div id="bar-chart" class="height-400">
-                            <x-chartist [data]="barChart.data" [type]="barChart.type" [options]="barChart.options" [responsiveOptions]="barChart.responsiveOptions"
-                                [events]="barChart.events">
-                            </x-chartist>
+                            <canvas baseChart class="chart" [datasets]="GallerydailybarData" [labels]="GallerydailybarLabels" [options]="GallerydailybarOptions" [colors]="GallerydailybarColors" [legend]="GallerydailybarLegend"
+                            [chartType]="GallerydailybarType" (chartHover)="GallerydailybarHovered($event)" (chartClick)="GallerydailybarClicked($event)"></canvas>
                         </div>
                     </div>
                     <div class="card-block weeklyreport">
                         <div id="bar-chart" class="height-400">
-                            <x-chartist [data]="weeklybarChart.data" [type]="weeklybarChart.type" [options]="weeklybarChart.options" [responsiveOptions]="weeklybarChart.responsiveOptions"
-                                [events]="weeklybarChart.events">
-                            </x-chartist>
+                           <canvas baseChart class="chart" [datasets]="GalleryweeklybarData" [labels]="GalleryweeklybarLabels" [options]="GalleryweeklybarOptions" [colors]="GalleryweeklybarColors" [legend]="GalleryweeklybarLegend"
+                            [chartType]="GalleryweeklybarType" (chartHover)="GalleryweeklybarHovered($event)" (chartClick)="GalleryweeklybarClicked($event)"></canvas>
                         </div>
                     </div>
                     <div class="card-block monthlyreport">
                         <div id="bar-chart" class="height-400">
-                            <x-chartist [data]="monthlybarChart.data" [type]="monthlybarChart.type" [options]="monthlybarChart.options" [responsiveOptions]="monthlybarChart.responsiveOptions"
-                                [events]="monthlybarChart.events">
-                            </x-chartist>
+                           <canvas baseChart class="chart" [datasets]="GallerymonthlybarChartData" [labels]="GallerymonthlybarChartLabels" [options]="GallerymonthlybarChartOptions" [colors]="GallerymonthlybarChartColors" [legend]="GallerymonthlybarChartLegend"
+                            [chartType]="GallerymonthlybarChartType" (chartHover)="GallerymonthlybarChartHovered($event)" (chartClick)="GallerymonthlybarChartClicked($event)"></canvas>
                         </div>
                     </div>
                 </div>

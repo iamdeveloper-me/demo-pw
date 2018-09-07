@@ -1,20 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as Chartist from 'chartist';
-import { ChartType, ChartEvent } from "ng-chartist/dist/chartist.component";
-
-//Declarations
-declare var require: any;
-const data: any = require('../../shared/data/chartist.json');
-
-
-//Interface
-export interface Chart {
-  type: ChartType;
-  data: Chartist.IChartistData;
-  options?: any;
-  responsiveOptions?: any;
-  events?: ChartEvent;
-}
+import * as chartsData from '../../shared/data/chartjs';
 
 @Component({
   selector: 'app-gallerybar',
@@ -53,49 +38,58 @@ export class GallerybarComponent implements OnInit {
     });
   }
 
+ // barChart
+  public GallerymonthlybarChartOptions = chartsData.GallerymonthlybarChartOptions;
+  public GallerymonthlybarChartLabels = chartsData.GallerymonthlybarChartLabels;
+  public GallerymonthlybarChartType = chartsData.GallerymonthlybarChartType;
+  public GallerymonthlybarChartLegend = chartsData.GallerymonthlybarChartLegend;
+  public GallerymonthlybarChartData = chartsData.GallerymonthlybarChartData;
+  public GallerymonthlybarChartColors = chartsData.GallerymonthlybarChartColors;
 
 
-  // Bar Chart Starts
-  barChart: Chart = {
-      type: 'Bar',
-      data: data['Bar'],
-      options: {
-          seriesBarDistance: 21,
-          axisX: {
-              showGrid: false, offset: 100
-          },
-          axisY: {
-              scaleMinSpace: 30,
-          }
-      },
-  };
-  // Bar Chart Ends
+  public chartClicked(e: any): void {
+    //your code here
+  }
 
-  weeklybarChart: Chart = {
-    type: 'Bar',
-    data: data['weeklyBar'],
-    options: {
-        seriesBarDistance: 21,
-        axisX: {
-            showGrid: false, offset: 100
-        },
-        axisY: {
-            scaleMinSpace: 10,
-        }
-    },
-};
-monthlybarChart: Chart = {
-  type: 'Bar',
+  public chartHovered(e: any): void {
+    //your code here
   
-  data: data['monthlyBar'],
-  options: {
-      seriesBarDistance: 21,
-      axisX: {
-          showGrid: false, offset: 100
-      },
-      axisY: {
-          scaleMinSpace: 10,
-      }
-  },
-};
+  }
+  
+//daily barchart
+  // barChart
+  public GallerydailybarData = chartsData.GallerydailybarData;
+  public GallerydailybarLabels = chartsData.GallerydailybarLabels;
+  public GallerydailybarOptions = chartsData.GallerydailybarOptions;
+  public GallerydailybarColors = chartsData.GallerydailybarColors;
+  public GallerydailybarLegend = chartsData.GallerydailybarLegend;
+  public GallerydailybarType = chartsData.GallerydailybarType;
+
+  public dailybarClicked(e: any): void {
+    //your code here
+  }
+
+  public dailybarHovered(e: any): void {
+    //your code here
+  
+  }
+
+  
+  //weekly barchart
+  public GalleryweeklybarData = chartsData.GalleryweeklybarData;
+  public GalleryweeklybarLabels = chartsData.GalleryweeklybarLabels;
+  public GalleryweeklybarOptions = chartsData.GalleryweeklybarOptions;
+  public GalleryweeklybarColors = chartsData.GalleryweeklybarColors;
+  public GalleryweeklybarLegend = chartsData.GalleryweeklybarLegend;
+  public GalleryweeklybarType = chartsData.GalleryweeklybarType;
+
+  public weeklybarClicked(e: any): void {
+    //your code here
+  }
+
+  public weeklybarHovered(e: any): void {
+    //your code here
+  
+  }
+
 }

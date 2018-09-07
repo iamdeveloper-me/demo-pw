@@ -47,11 +47,11 @@ export class GallerybarComponent implements OnInit {
   public GallerymonthlybarChartColors = chartsData.GallerymonthlybarChartColors;
 
 
-  public chartClicked(e: any): void {
+  public GallerymonthlybarClicked(e: any): void {
     //your code here
   }
 
-  public chartHovered(e: any): void {
+  public GallerymonthlybarHovered(e: any): void {
     //your code here
   
   }
@@ -65,11 +65,11 @@ export class GallerybarComponent implements OnInit {
   public GallerydailybarLegend = chartsData.GallerydailybarLegend;
   public GallerydailybarType = chartsData.GallerydailybarType;
 
-  public dailybarClicked(e: any): void {
+  public GallerydailybarClicked(e: any): void {
     //your code here
   }
 
-  public dailybarHovered(e: any): void {
+  public GallerydailybarHovered(e: any): void {
     //your code here
   
   }
@@ -83,11 +83,11 @@ export class GallerybarComponent implements OnInit {
   public GalleryweeklybarLegend = chartsData.GalleryweeklybarLegend;
   public GalleryweeklybarType = chartsData.GalleryweeklybarType;
 
-  public weeklybarClicked(e: any): void {
+  public GalleryweeklybarClicked(e: any): void {
     //your code here
   }
 
-  public weeklybarHovered(e: any): void {
+  public GalleryweeklybarHovered(e: any): void {
     //your code here
   
   }

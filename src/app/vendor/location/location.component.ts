@@ -32,7 +32,7 @@ interface Location {
 })
 export class LocationComponent implements OnInit {
 
-
+ data;
   circleRadius:number = 5000;
   milesToRadius(value) {
     this.circleRadius = value / 0.00062137;

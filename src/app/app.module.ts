@@ -98,7 +98,7 @@ import { CreateEventComponent } from './vendor/create-event/create-event.compone
 import { MessageComponent } from './vendor/message/message.component';
 import { AlbumviewComponent } from './vendor/albumview/albumview.component';
 import { PromoteBusinessComponent , NgbdpromotbusinessModalContent} from './vendor/promote-business/promote-business.component';
-import { VedioviewComponent } from './vendor/vedioview/vedioview.component';
+import { VedioviewComponent  } from './vendor/vedioview/vedioview.component';
 import { StatisticsComponent } from './vendor/statistics/statistics.component';
 import { AllPromotionPageComponent ,NgbdModalContent} from './vendor/all-promotion-page/all-promotion-page.component';
 import { VendorsidebarComponent } from './vendor/vendorsidebar/vendorsidebar.component';
@@ -108,7 +108,7 @@ import { VendorComponent } from './vendor/vendor.component';
 import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
 import { BusinessInfoComponent } from "./vendor/business-info/business-info.component";
 import { LocationComponent} from "./vendor/location/location.component";
-import { VideosComponent ,NgbdvedioModalContent} from './vendor/videos/videos.component';
+import { VideosComponent } from './vendor/videos/videos.component';
 import { MylistingComponent } from './vendor/mylisting/mylisting.component';
 import { NavemenuComponent } from './vendor/navemenu/navemenu.component';
 import { ChatComponent } from "./vendor/chat/chat.component";
@@ -257,7 +257,7 @@ export function getAuthServiceConfigs() {
         SupplierByCateComponent,
 
         VideosComponent,
-        NgbdvedioModalContent,
+      
 
         BusinessServicesComponent ,
         CategoryComponent,

@@ -2,9 +2,9 @@ $(document).ready(function () {
   $("#supplierscarousel").owlCarousel({
       autoplay: true,
       margin: 20,
+      loop: false,
+      lazyLoad: false,
        /*
-      lazyLoad: true,
-      loop: true,
       animateOut: 'fadeOut',
       animateIn: 'fadeIn',
       */
@@ -38,8 +38,8 @@ $(document).ready(function () {
     $("#detailpagecarousel").owlCarousel({
 
       autoplay: false,
-      lazyLoad: true,
-      //loop: true,
+      lazyLoad: false,
+      loop: false,
       margin: 20,
        /*
       animateOut: 'fadeOut',
@@ -113,7 +113,7 @@ $(document).ready(function () {
 
 
 $(".linkshow").click(function() {
-  alert("hhhh");
+  //alert("hhhh");
     $('.vp_about_txt_description').addClass('showtik');
     $('.linkshow').hide();
     $('.linkless').show();

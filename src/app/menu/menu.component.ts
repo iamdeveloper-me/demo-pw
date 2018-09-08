@@ -34,6 +34,8 @@ export class MenuComponent implements OnInit {
             localStorage.setItem('vendorId',data.json().id);
             localStorage.setItem('userToken',data.json().auth_token);
             this.router.navigate(['../vendor/dashboard'])
+            $("body").removeClass( "modal-open");
+            $("div").removeClass( "modal-backdrop");
 
           }
         
@@ -68,6 +70,8 @@ export class MenuComponent implements OnInit {
             localStorage.setItem('userId',data.json().id);
             localStorage.setItem('userToken',data.json().auth_token);
             this.router.navigate(['../User/vendor'])
+            $("body").removeClass( "modal-open");
+            $("div").removeClass( "modal-backdrop");
 
           }
         

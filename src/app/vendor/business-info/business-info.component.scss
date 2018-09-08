@@ -15,7 +15,17 @@
 .mar_botom{
     margin-bottom: 10px;
 }
-
+.switbtn {
+    float: right;
+    margin-top: -10px !important;
+    position:relative;
+    text-align:center;
+}
+.switbtn span.textsmall{
+    display:block;
+    font-size:14px;
+}
+.mainhead{float: left;}
 .Profile-input-file{
     height: 300px;
     width: 100%;
@@ -43,7 +53,31 @@
 
 box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.3)!important;
 }
-
+.acce_time{
+    position: absolute !important;
+    top: 5px !important;
+    left: -10px !important;
+}
+.acce_time .material-icons{
+    left: -4px !important;
+    position: absolute !important;
+    top: -4px !important;
+}
+.acce_time1{
+float:left;
+width:50px;
+}
+.edit_hide{
+    padding:10px 0px;
+    border-bottom:1px solid #e5e5e5;
+    cursor: pointer;
+    overflow: hidden;
+}
+.acce_time1 .material-icons{
+    position:absolute;
+    left:0px;
+    top:5px;
+}
 #main-input{width:250px;}
 .input-place{
     position: absolute;top:35px;left: 20px;font-size:23px;color:gray;}
@@ -56,9 +90,124 @@ box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.3)!important;
 }
 .custom-form{float: left;width:100%;overflow: hidden;
 }
-.img-section{
-    float: left;width: 100%;padding-top:0px;padding-bottom:0px;background: rgba(0,0,0,0.7);position: relative;
+.edit_btn{
+    display: none;
+    position:absolute;
+    top: 0px;
+    right: 0px;
 }
+.edit_hide:hover .edit_btn{
+    display: block;
+}
+
+.edit_btn1{
+    background: transparent;
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    padding: 0px;
+    display: none;
+
+    right: 0px;
+}
+.edit_btn1 i{
+    color: #000;
+}
+.weekboxinput1:hover .edit_btn1{
+    display: block;
+}
+.pad_left_0px:hover .digi_edit{
+    display: block;
+}
+#phone1 , #phone2 ,#suntime ,#montime , #tuetime , #wedtime 
+,#thutime , #fritime , #sattime ,#companyname , #image-input , #companytitle{
+    cursor: pointer !important;
+}
+.phonepopuphead{
+    margin-top:15px;
+}
+.phone_icon{
+    position: absolute !important;
+    top: 6px !important;
+    left: -13px !important;
+}
+.deletebtn{
+    background:transparent;
+    color:#000!important;
+    padding:0px;
+    margin-left:10px;
+    border:0px solid #fff;
+}
+.inputbottombor{
+    border:0px solid #fff;
+    border-bottom:1px solid #999!important;
+}
+.phone_icon1{
+    margin-top: 10px;
+}
+.phone_icon1:hover .edit_btn1{
+    display:block;
+}
+.phone_icon1 .edit_hide{
+    padding-bottom: 20px;
+}
+.digi_edit{
+    margin-top: -24px;
+    margin-right: -18px;
+}
+.loca_hours input{
+    border:none;
+}
+.loca_hours{
+    margin-bottom: 10px;
+}
+.switbtn ui-switch{
+    margin: 0px auto;
+    width: 44px;
+    float: inherit!important;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+}
+.phone_icon1 .glyphicon-earphone{
+    top: 5px !important;
+    left: -22px !important;
+}
+.phone_icon1 .glyphicon-phone{
+    top: 32px !important;
+    left: -20px !important;
+}
+.img-section{
+    width: 100%;padding-top:0px;padding-bottom:0px;
+    background: rgba(0,0,0,0.7);position: relative;
+}
+.img-section iframe{
+ width:100%;   
+ height:250px;
+}
+
+.map_new_loc input{
+    border: none;
+    width: 100%;
+}
+.new_location{
+    padding-left: 0;
+}
+.new_location .col-sm-8{
+    padding-left: 0;
+}
+.new_location{
+    margin-top: 15px;
+}
+.new_location button{
+    background-color: #36cbf0 !important;
+    padding: 10px ;
+}
+.new_location button:hover{
+    background-color: #d43877 !important;
+    padding: 10px ;
+}
+
 .img-section h4{color:#fff;}
 #PicUpload{
     color: #ffffff;
@@ -68,6 +217,34 @@ box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.3)!important;
     position: absolute;
     display: none;
     top:0px;
+}
+.edit_btn1{
+    background: transparent;
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    padding: 0px;
+    display: none;
+    right: 0px;
+}
+.img_overlay{
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8); 
+    bottom: 5px;
+    width:100%;
+}
+.img_overlay input{
+    background: transparent !important;
+    border: none;
+    color: #fff;
+    text-align: center;
+}
+.img_overlay .material-icons{
+    margin-right: 0px;
+    color: #fff;
+}
+.img_overlay:hover .edit_btn1{
+    display: block;
 }
 .camera{
     font-size: 50px;
@@ -307,6 +484,7 @@ width: 55px;
 .busines_img{
     margin-bottom: 40px;
     position:relative;
+
 }
 .busines_img a{
  color: #fff !important;
@@ -348,9 +526,16 @@ width: 55px;
 .busines_img{
     text-align: center;
     width: 100px;
+    height:100px;
+    border-radius:50%;
     padding: 0px;
     margin:0px auto;
+    background:#e5e5e5;
 }
+.mar_bottom_10px{
+    margin-bottom: 10px;
+}
+.busines_img i.material-icons{position:absolute;z-index:999; left:0px;right:0px;bottom:5px;}
 .busi_camera i{
     display: none ;
 }
@@ -393,9 +578,6 @@ width: 55px;
 }
 .add_text textarea{
     cursor: pointer;
-}
-.switbtn{
-   
 }
 .afternone::after{
 display:none!important;
@@ -556,6 +738,87 @@ box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.5);
 .mobmargintop30px{
     margin-top:30px!important;
 }
+.img-section iframe{
+   width:100%;
+   height:300px;
+   }
+   .edit_hide .col-11{float:right;}
+   .phonepopuphead{
+       margin-left:20px!important;
+   }
+   .edit_btn, .edit_btn1{
+       display:block;
+       position:absolute;
+       top:0px;
+       right:5px;
+       background: none!important;
+   }
+   .col-xs-5-mob{
+       width:40%;
+       float:left;
+       padding-left:15px!important;
+   }
+   .col-3, .col-9{
+       float: left;
+   }
+   .col-xs-7-mob{
+       width:60%;
+       float:left;
+   }
+      .loca_hours .col-sm-2{
+      float:left;
+      width:25%; 
+      padding-left:0px!important;
+   }
+   .loca_hours .col-sm-3{
+      float:left;
+      width:20%; 
+      padding-left:0px!important;
+   }
+   .textopenclose{
+       display:none;
+   }
+   .ui_switch{margin-right:0px;}
+   .loca_hours .col-sm-7{
+      float:left;
+      width:55%; 
+   }
+.weekboxinput div.col-xs-8{
+       width: 70%!important;
+       float: left;
+   }
+   .weekboxinput div.col-xs-4{
+       width: 30%!important;
+       float: left;
+   }
+   .mainhead{
+           font-size: 20px;
+           font-weight: 300;
+       }
+       .switbtn ui-switch{
+           margin-left: 5px;
+       }
+   
+       .switbtn{
+           margin-top: 4px !important;
+       }
+       .img_overlay{
+           width: 100%;
+       }
+       .phone_icon1 .glyphicon-earphone{
+           top: 40px !important;
+      
+       }
+       .phone_icon1 .glyphicon-phone {
+           top: 68px !important;
+        
+       }
+       .new_location .col-xs-8{
+           width: 70%;
+       }
+       .new_location .col-xs-4{
+           width: 30%;
+       }
 .noproblum{
     max-width: 100%;
 }

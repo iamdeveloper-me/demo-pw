@@ -101,16 +101,30 @@ export class MenuComponent implements OnInit {
 
     localStorage.clear();
     this.router.navigate(['../home']);
+    $(".user").hide(); 
+    $(".loginclick").show();
    }
 
     ngOnInit() { 
-
-        if(window.location.href.indexOf("home") > -1)   {
+        $(".tikright").hide();
+        var authToken = localStorage.getItem('userToken');
+        if(authToken)
+        {  
+            if(window.location.href.indexOf("home"))
+            {   
+                $(".loginclick").hide();
+                $(".user").show(); 
+                
+            }
+        }
+        else 
+        {
+        if(window.location.href.indexOf("home") > -1) {
           $(".user").hide();    
           $(".tikright").hide(); 
          } 
-
-
+        }
+    
 
         //  if(window.location.pathname == '/home/photo') {
         // $(".user").hide();    
@@ -172,7 +186,7 @@ export class MenuComponent implements OnInit {
        $("#panel8").addClass( "active");
        $("#panel7").removeClass( "active");
        $("#panel7").removeClass( "show");
-       $("#panel7").removeClass( "in");
+       $("#panel7").removeClass( "in"); 
        $(".logintab").removeClass( "active");
        $(".registertab").addClass( "active");
      });

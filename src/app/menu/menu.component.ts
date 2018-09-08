@@ -22,10 +22,11 @@ export class MenuComponent implements OnInit {
     supArray:string[];
     constructor( private router: Router ,private cservice: LoginServiceService , private modalService: NgbModal, private uservice: SignupVendorService,) {}
     user = {username:' ',password:' '}
+    usercouple = {username:' ',password:' '}
     onSubmit(){ 
      // headers.append('Content-Type', 'application/json');
       
-     this.cservice.login(this.user).subscribe(
+     this.cservice.login(this.usercouple).subscribe(
           (data)=> {
               console.log(data.json());
 
@@ -34,7 +35,8 @@ export class MenuComponent implements OnInit {
             localStorage.setItem('vendorId',data.json().id);
             localStorage.setItem('userToken',data.json().auth_token);
             this.router.navigate(['../vendor/dashboard'])
-
+            $("body").removeClass( "modal-open");
+            $("div").removeClass( "modal-backdrop"); 
           }
         
         },(ERROR)=>{     
@@ -68,7 +70,8 @@ export class MenuComponent implements OnInit {
             localStorage.setItem('userId',data.json().id);
             localStorage.setItem('userToken',data.json().auth_token);
             this.router.navigate(['../User/vendor'])
-
+            $("body").removeClass( "modal-open");
+            $("div").removeClass( "modal-backdrop"); 
           }
         
         },(ERROR)=>{     

@@ -81,48 +81,6 @@ export var areaChartAutoScale = true;
 export var areaChartLineInterpolation = shape.curveBasis;
 
 
-//////////////////////////////////////////////////////lineweekly
-export var lineweeklyChartView: any[] = [650, 500];
-
-// options
-export var lineweeklyChartShowXAxis = true;
-export var lineweeklyChartShowYAxis = true;
-export var lineweeklyChartGradient = false;
-export var lineweeklyChartShowLegend = true;
-export var lineweeklyChartShowXAxisLabel = true;
-export var lineweeklyChartXAxisLabel = 'Enquiries';
-export var lineweeklyChartShowYAxisLabel = true;
-export var lineweeklyChartYAxisLabel = 'Leads';
-
-export var lineweeklyChartColorScheme = {
-    domain: ['#009DA0', '#9932CC', '#d65b04', '#FF8D60']
-};
-
-// line, area
-export var lineweeklyChartAutoScale = true;
-export var lineweeklyChartLineInterpolation = shape.curveBasis;
-
-//////////////////////////////////////////////////////linemonthly
-export var linemonthlyChartView: any[] = [750, 600];
-
-// options
-export var linemonthlyChartShowXAxis = true;
-export var linemonthlyChartShowYAxis = true;
-export var linemonthlyChartGradient = false;
-export var linemonthlyChartShowLegend = true;
-export var linemonthlyChartShowXAxisLabel = true;
-export var linemonthlyChartXAxisLabel = 'Enquiries';
-export var linemonthlyChartShowYAxisLabel = true;
-export var linemonthlyChartYAxisLabel = 'Leads';
-
-export var linemonthlyChartColorScheme = {
-    domain: ['#009DA0', '#9932CC', '#d65b04', '#FF8D60']
-};
-
-// line, area
-export var linemonthlyChartAutoScale = true;
-export var linemonthlyChartLineInterpolation = shape.curveBasis;
-//reach
 
 
 

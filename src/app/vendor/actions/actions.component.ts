@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  lineChartMulti ,linemonthlyChartMulti,lineweeklyChartMulti} from '../../shared/data/ngxChart';
-import * as chartsData from '../../shared/configs/ngx-charts.config';
-
+import * as chartsData from '../../shared/data/chartjs';
 
 @Component({
   selector: 'app-actions',
@@ -37,80 +35,51 @@ export class ActionsComponent implements OnInit {
     });
   }
 
-    //Line Charts
-    lineChartMulti = lineChartMulti;
-    linemonthlyChartMulti = linemonthlyChartMulti;
-    lineweeklyChartMulti = lineweeklyChartMulti;
-
-    lineChartView: any[] = chartsData.lineChartView;
-
-    // options
-    lineChartShowXAxis = chartsData.lineChartShowXAxis;
-    lineChartShowYAxis = chartsData.lineChartShowYAxis;
-    lineChartGradient = chartsData.lineChartGradient;
-    lineChartShowLegend = chartsData.lineChartShowLegend;
-    lineChartShowXAxisLabel = chartsData.lineChartShowXAxisLabel;
-    lineChartXAxisLabel = chartsData.lineChartXAxisLabel;
-    lineChartShowYAxisLabel = chartsData.lineChartShowYAxisLabel;
-    lineChartYAxisLabel = chartsData.lineChartYAxisLabel;
-
-    lineChartColorScheme = chartsData.lineChartColorScheme;
-
-    // line, area
-    lineChartAutoScale = chartsData.lineChartAutoScale;
-    lineChartLineInterpolation = chartsData.lineChartLineInterpolation;
-
-    constructor() {
-      Object.assign(this, {   lineChartMulti ,linemonthlyChartMulti, lineweeklyChartMulti })
+  // lineChart
+  public lineChartData = chartsData.lineChartData;
+  public lineChartLabels = chartsData.lineChartLabels;
+  public lineChartOptions = chartsData.lineChartOptions;
+  public lineChartColors = chartsData.lineChartColors;
+  public lineChartLegend = chartsData.lineChartLegend;
+  public lineChartType = chartsData.lineChartType;
+   // events
+   public chartClicked(e: any): void {
+    //your code here
   }
 
-  onSelect(event) {
-     //your code here
+  public chartHovered(e: any): void {
+    //your code here
   }
-//weekly
-lineweeklyChartView: any[] = chartsData.lineweeklyChartView;
 
-// options
-lineweeklyChartShowXAxis = chartsData.lineweeklyChartShowXAxis;
-lineweeklyChartShowYAxis = chartsData.lineweeklyChartShowYAxis;
-lineweeklyChartGradient = chartsData.lineweeklyChartGradient;
-lineweeklyChartShowLegend = chartsData.lineweeklyChartShowLegend;
-lineweeklyChartShowXAxisLabel = chartsData.lineweeklyChartShowXAxisLabel;
-lineweeklyChartXAxisLabel = chartsData.lineweeklyChartXAxisLabel;
-lineweeklyChartShowYAxisLabel = chartsData.lineweeklyChartShowYAxisLabel;
-lineweeklyChartYAxisLabel = chartsData.lineweeklyChartYAxisLabel;
+  //weekly
+  public weeklylineChartData = chartsData.weeklylineChartData;
+  public weeklylineChartLabels = chartsData.weeklylineChartLabels;
+  public weeklylineChartOptions = chartsData.weeklylineChartOptions;
+  public weeklylineChartColors = chartsData.weeklylineChartColors;
+  public weeklylineChartLegend = chartsData.weeklylineChartLegend;
+  public weeklylineChartType = chartsData.weeklylineChartType;
+   // events
+   public weeklychartClicked(e: any): void {
+    //your code here
+  }
 
-lineweeklyChartColorScheme = chartsData.lineweeklyChartColorScheme;
+  public weeklychartHovered(e: any): void {
+    //your code here
+  }
+  /////daily
+  public dailylineChartData = chartsData.dailylineChartData;
+  public dailylineChartLabels = chartsData.dailylineChartLabels;
+  public dailylineChartOptions = chartsData.dailylineChartOptions;
+  public dailylineChartColors = chartsData.dailylineChartColors;
+  public dailylineChartLegend = chartsData.dailylineChartLegend;
+  public dailylineChartType = chartsData.dailylineChartType;
+   // events
+   public dailychartClicked(e: any): void {
+    //your code here
+  }
 
-// line, area
-lineweeklyChartAutoScale = chartsData.lineweeklyChartAutoScale;
-lineweeklyChartLineInterpolation = chartsData.lineweeklyChartLineInterpolation;
-
-
-
-onSelectweekly(event) {
- //your code here
-}
-//monthly
-monthlyChartView: any[] = chartsData.linemonthlyChartView;
-
-// options
-linemonthlyChartShowXAxis = chartsData.linemonthlyChartShowXAxis;
-linemonthlyChartShowYAxis = chartsData.linemonthlyChartShowYAxis;
-linemonthlyChartGradient = chartsData.linemonthlyChartGradient;
-linemonthlyChartShowLegend = chartsData.linemonthlyChartShowLegend;
-linemonthlyChartShowXAxisLabel = chartsData.linemonthlyChartShowXAxisLabel;
-linemonthlyChartXAxisLabel = chartsData.linemonthlyChartXAxisLabel;
-linemonthlyChartShowYAxisLabel = chartsData.linemonthlyChartShowYAxisLabel;
-linemonthlyChartYAxisLabel = chartsData.linemonthlyChartYAxisLabel;
-
-linemonthlyChartColorScheme = chartsData.linemonthlyChartColorScheme;
-
-// line, area
-linemonthlyChartAutoScale = chartsData.linemonthlyChartAutoScale;
-linemonthlyChartLineInterpolation = chartsData.linemonthlyChartLineInterpolation;
-
-onSelectmonthly(event) {
- //your code here
-}
+  public dailychartHovered(e: any): void {
+    //your code here
+  }
+  
 }

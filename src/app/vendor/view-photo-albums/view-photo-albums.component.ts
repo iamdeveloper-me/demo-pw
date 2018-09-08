@@ -1,15 +1,40 @@
-import { Http ,Headers} from '@angular/http';
+import { Http ,Headers } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  ,ChangeDetectionStrategy } from '@angular/core';
 
+import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
+
+const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 @Component({
   selector: 'app-view-photo-albums',
   templateUrl: './view-photo-albums.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./view-photo-albums.component.scss']
 })
+
+
 export class ViewPhotoAlbumsComponent implements OnInit {
+
+  fileToUpload:any;
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
   totalImage=[]
+  private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ImageUploader/FileUploader'
+ 
+  uploader: FileUploader = new FileUploader({
+    url: URL,
+    isHTML5: true
+  });
+  hasBaseDropZoneOver = false;
+  hasAnotherDropZoneOver = false;
+
+  // Angular2 File Upload
+  fileOverBase(e: any): void {
+    this.hasBaseDropZoneOver = e;
+  }
+
+  fileOverAnother(e: any): void {
+    this.hasAnotherDropZoneOver = e;
+  }
   constructor(private http: Http ,  private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -151,5 +176,24 @@ $(document)
     .subscribe(data =>{
       console.log(data.json())
         }); 
+  }
+
+
+
+  uploadAll(){
+    const formData = new FormData();
+    for(let file of this.uploader.queue){
+    formData.append(file['some'].name,file['some'])
+    }
+    formData.append('AlbumId', '4')
+    
+    // Headers
+    let headers = new  Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append("Authorization",'Bearer '+authToken);
+    
+    //Post Album 2 photos
+    this.http.post(this.uploadimage,formData,{headers:headers})
+      .subscribe(data =>{console.log(data);},(error)=>{console.log(error)});
   }
 }

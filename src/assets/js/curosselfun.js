@@ -37,8 +37,8 @@ $(document).ready(function () {
 
     $("#detailpagecarousel").owlCarousel({
 
-      autoplay: false,
-      lazyLoad: false,
+      autoplay: true,
+      lazyLoad: true,
       loop: false,
       margin: 20,
        /*

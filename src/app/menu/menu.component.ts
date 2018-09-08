@@ -22,10 +22,11 @@ export class MenuComponent implements OnInit {
     supArray:string[];
     constructor( private router: Router ,private cservice: LoginServiceService , private modalService: NgbModal, private uservice: SignupVendorService,) {}
     user = {username:' ',password:' '}
+    usercouple = {username:' ',password:' '}
     onSubmit(){ 
      // headers.append('Content-Type', 'application/json');
       
-     this.cservice.login(this.user).subscribe(
+     this.cservice.login(this.usercouple).subscribe(
           (data)=> {
               console.log(data.json());
 
@@ -34,7 +35,8 @@ export class MenuComponent implements OnInit {
             localStorage.setItem('vendorId',data.json().id);
             localStorage.setItem('userToken',data.json().auth_token);
             this.router.navigate(['../vendor/dashboard'])
-
+            $("body").removeClass( "modal-open");
+            $("div").removeClass( "modal-backdrop"); 
           }
         
         },(ERROR)=>{     
@@ -68,7 +70,8 @@ export class MenuComponent implements OnInit {
             localStorage.setItem('userId',data.json().id);
             localStorage.setItem('userToken',data.json().auth_token);
             this.router.navigate(['../User/vendor'])
-
+            $("body").removeClass( "modal-open");
+            $("div").removeClass( "modal-backdrop"); 
           }
         
         },(ERROR)=>{     
@@ -101,16 +104,30 @@ export class MenuComponent implements OnInit {
 
     localStorage.clear();
     this.router.navigate(['../home']);
+    $(".user").hide(); 
+    $(".loginclick").show();
    }
 
     ngOnInit() { 
-
-        if(window.location.href.indexOf("home") > -1)   {
+        $(".tikright").hide();
+        var authToken = localStorage.getItem('userToken');
+        if(authToken)
+        {  
+            if(window.location.href.indexOf("home"))
+            {   
+                $(".loginclick").hide();
+                $(".user").show(); 
+                
+            }
+        }
+        else 
+        {
+        if(window.location.href.indexOf("home") > -1) {
           $(".user").hide();    
           $(".tikright").hide(); 
          } 
-
-
+        }
+    
 
         //  if(window.location.pathname == '/home/photo') {
         // $(".user").hide();    
@@ -172,7 +189,7 @@ export class MenuComponent implements OnInit {
        $("#panel8").addClass( "active");
        $("#panel7").removeClass( "active");
        $("#panel7").removeClass( "show");
-       $("#panel7").removeClass( "in");
+       $("#panel7").removeClass( "in"); 
        $(".logintab").removeClass( "active");
        $(".registertab").addClass( "active");
      });

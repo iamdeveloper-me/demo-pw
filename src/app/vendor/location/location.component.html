@@ -6,21 +6,9 @@
   </div>
   <div id="page-content-wrapper">
       <app-navemenu></app-navemenu>
-      <section id="user-profile">
+      <section id="user-profile" class="">
           <div class="clearfix"></div>
-          <div class="col-sm-12 nopadd">
-              <div class="col-sm-4">
-                  <div class="card martop10px">
-                      <div class="text-center bg-form col-sm-12 addlocationbox">
-                          <i class="material-icons font80px">  add_location </i>
-                          <div>Have more business branches?</div>
-                          <button data-target="#location" (click)="openModel(data)" data-toggle="modal" type="button" class="martopbot15px borderbtnonly"> Add New Location </button>
-                          <div>Premium members only.
-                              <a routerLink="../membership" class="bluelink">Upgrade</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+          <div class="col-sm-12 nopadd mobilefixedcontainer">
 
               <div class="custom-form">
 
@@ -173,11 +161,26 @@
             <div class="clearfix"></div>
             </div>
       </section>
+            <div class="col-sm-4">
+                  <div class="card martop10px">
+                      <div class="text-center bg-form col-sm-12 addlocationbox">
+                          <i class="material-icons font80px">  add_location </i>
+                          <div>Have more business branches?</div>
+                          <button data-target="#location" (click)="openModel(data)" data-toggle="modal" type="button" class="martopbot15px borderbtnonly"> Add New Location </button>
+                          <div>Premium members only.
+                              <a routerLink="../membership" class="bluelink">Upgrade</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+        <div class="clearfix"></div>
       <app-foot></app-foot>
-      <router-outlet></router-outlet>
+     
+    
       </div>
   </div>
-
+  <router-outlet></router-outlet>
   <form (ngSubmit)="upForm(info)" #info="ngForm">
       <div class="modal fade" id="location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
@@ -486,7 +489,7 @@
           </div>
       </div>
 
-      <!-- <div class="modal fade" id="address" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal fade" id="address" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
 
@@ -501,7 +504,7 @@
 
                       <div>
                           <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
-                              <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event,a)'></agm-marker>
+                              <!-- <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event)'></agm-marker> -->
                               <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
                           </agm-map>
                           <div class="container-fluid">
@@ -567,7 +570,7 @@
                   </div>
               </div>
           </div>
-      </div> -->
+      </div>
 
   </form>
 
@@ -583,7 +586,7 @@
               <div class="col-sm-12 county_addres">
                   <div>
                       <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
-                          <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" ></agm-marker>
+                          <!-- <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event)'></agm-marker> -->
                           <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
                       </agm-map>
                       <div class="container-fluid">
@@ -626,3 +629,11 @@
           </div>
       </div>
   </div>
+
+
+
+ 
+
+    
+
+  

@@ -149,6 +149,7 @@ export class LocationComponent implements OnInit {
       }
     })
   }
+
   @ViewChild(AgmMap) map: AgmMap;
   constructor(public mapsApiLoader: MapsAPILoader,public http: Http,
     private zone: NgZone,

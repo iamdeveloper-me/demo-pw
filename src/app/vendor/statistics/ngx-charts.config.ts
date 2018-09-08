@@ -65,9 +65,9 @@ export var lineChartShowYAxis = true;
 export var lineChartGradient = false;
 export var lineChartShowLegend = true;
 export var lineChartShowXAxisLabel = true;
-export var lineChartXAxisLabel = 'Boosted';
+export var lineChartXAxisLabel = '';
 export var lineChartShowYAxisLabel = true;
-export var lineChartYAxisLabel = 'Normal = Organic Results';
+export var lineChartYAxisLabel = '';
 
 export var lineChartColorScheme = {
     domain: ['#009DA0', '#FF8D60', '#FF586B', '#AAAAAA']

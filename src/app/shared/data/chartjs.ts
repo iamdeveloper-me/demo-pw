@@ -33,7 +33,7 @@ export var lineChartOptions: any = {
       },
       scaleLabel: {
         display: true,
-        labelString: 'Month'
+        labelString: ''
       }
     }],
     yAxes: [{
@@ -44,7 +44,7 @@ export var lineChartOptions: any = {
       },
       scaleLabel: {
         display: true,
-        labelString: 'Value'
+        labelString: ''
       }
     }]
   },
@@ -135,7 +135,7 @@ export var reachlineChartOptions: any = {
       },
       scaleLabel: {
         display: true,
-        labelString: 'Month'
+        labelString: ''
       }
     }],
     yAxes: [{
@@ -146,7 +146,7 @@ export var reachlineChartOptions: any = {
       },
       scaleLabel: {
         display: true,
-        labelString: 'Value'
+        labelString: ''
       }
     }]
   },
@@ -676,12 +676,13 @@ export var GallerymonthlybarChartOptions: any = {
   maintainAspectRatio: false
 
 };
-export var GallerymonthlybarChartLabels: string[] = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+export var GallerymonthlybarChartLabels: string[] = ['January','February','March','April','May','June','July'];
 export var GallerymonthlybarChartType = 'bar';
 export var GallerymonthlybarChartLegend = true;
 export var GallerymonthlybarChartData: any[] = [
-  { data: [65, 59, 80, 81, 56, 55, 40,48, 40, 19, 86, 27], label: 'ENQUIRIES' },
-  { data: [28, 48, 40, 19, 86, 27, 90, 56, 55, 40,48, 40], label: 'LEADS' }
+  { data: [65, 59, 80, 81, 56, 55, 40], label: 'Portfolio Views' },
+  { data: [28, 48, 40, 19, 86, 27, 90], label: 'Album Views' },
+  { data: [28, 48, 40, 49, 16, 27, 30], label: 'Video Views' }
 ];
 
 export var GallerymonthlybarChartColors: Array<any> = [
@@ -719,8 +720,9 @@ export var GallerydailybarLabels: string[] = ['monday', 'tuesday', 'wednessday',
 export var GallerydailybarType = 'bar';
 export var GallerydailybarLegend = true;
 export var GallerydailybarData: any[] = [
-  { data: [65, 59, 80, 81, 56, 55, 40], label: 'ENQUIRIES' },
-  { data: [28, 48, 40, 19, 86, 27, 90], label: 'LEADS' }
+  { data: [65, 59, 80, 81, 56, 55, 40], label: 'Portfolio Views' },
+  { data: [28, 48, 40, 19, 86, 27, 90], label: 'Album Views' },
+  { data: [28, 48, 40, 49, 16, 27, 30], label: 'Video Views' }
 ];
 
 export var GallerydailybarColors: Array<any> = [
@@ -758,8 +760,9 @@ export var GalleryweeklybarLabels: string[] = ['week1', 'week2', 'week3', 'week4
 export var GalleryweeklybarType = 'bar';
 export var GalleryweeklybarLegend = true;
 export var GalleryweeklybarData: any[] = [
-  { data: [65, 59, 80, 81, 56, 55, 40,30,20,40,10,23], label: 'ENQUIRIES' },
-  { data: [28, 48, 40, 19, 86, 27, 90,80, 81, 56, 55, 40,], label: 'LEADS' }
+  { data: [65, 59, 80, 81, 56, 55, 40], label: 'Portfolio Views' },
+  { data: [28, 48, 40, 19, 86, 27, 90], label: 'Album Views' },
+  { data: [28, 48, 40, 49, 16, 27, 30], label: 'Video Views' }
 ];
 
 export var GalleryweeklybarColors: Array<any> = [
@@ -783,3 +786,213 @@ export var GalleryweeklybarColors: Array<any> = [
   },
 
 ];
+
+/////////action weekly
+
+
+export var weeklylineChartData: Array<any> = [
+
+  { data: [65, 59, 80, 81, 56, 55, 40], label: 'Calls' },
+  { data: [28, 48, 40, 19, 86, 27, 90], label: 'Contact Views' },
+  { data: [45, 25, 16, 36, 67, 18, 76], label: 'Bookmarked' },
+  { data: [35, 15, 16, 26, 47, 18, 46], label: 'Shares' }
+
+];
+export var weeklylineChartLabels: Array<any> = [ 'week1', 'week2', 'week3', 'week4', 'week5', 'week6', 'last week '];
+export var weeklylineChartOptions: any = {
+  animation: {
+    duration: 1000, // general animation time
+    easing: 'easeOutBack'
+  },
+  hover: {
+    animationDuration: 1000, // duration of animations when hovering an item
+    mode: 'label'
+  },
+  responsiveAnimationDuration: 1000, // animation duration after a resize
+  responsive: true,
+  maintainAspectRatio: false,
+  legend: {
+    position: 'bottom',
+  },
+  scales: {
+    xAxes: [{
+      display: true,
+      gridLines: {
+        color: "#f3f3f3",
+        drawTicks: false,
+      },
+      scaleLabel: {
+        display: true,
+        labelString: ''
+      }
+    }],
+    yAxes: [{
+      display: true,
+      gridLines: {
+        color: "#f3f3f3",
+        drawTicks: false,
+      },
+      scaleLabel: {
+        display: true,
+        labelString: ''
+      }
+    }]
+  },
+  title: {
+    display: true,
+    text: 'Chart.js Line Chart - Legend'
+  }
+};
+export var weeklylineChartColors: Array<any> = [
+
+  {
+
+    fill: false,
+    borderDash: [5, 5],
+    borderColor: "#9C27B0",
+    pointBorderColor: "#9C27B0",
+    pointBackgroundColor: "#FFF",
+    pointBorderWidth: 2,
+    pointHoverBorderWidth: 2,
+    pointRadius: 4,
+  },
+  {
+
+    fill: false,
+    borderDash: [5, 5],
+    borderColor: "#00A5A8",
+    pointBorderColor: "#00A5A8",
+    pointBackgroundColor: "#FFF",
+    pointBorderWidth: 2,
+    pointHoverBorderWidth: 2,
+    pointRadius: 4,
+  },
+  {
+    lineTension: 0,
+    fill: false,
+    borderColor: "#FF7D4D",
+    pointBorderColor: "#FF7D4D",
+    pointBackgroundColor: "#FFF",
+    pointBorderWidth: 2,
+    pointHoverBorderWidth: 2,
+    pointRadius: 4,
+  },
+  {
+    lineTension: 0,
+    fill: false,
+    borderColor: "pink",
+    pointBorderColor: "#FF7D4D",
+    pointBackgroundColor: "#FFF",
+    pointBorderWidth: 2,
+    pointHoverBorderWidth: 2,
+    pointRadius: 4,
+  },
+
+];
+export var weeklylineChartLegend = true;
+export var weeklylineChartType = 'line';
+
+
+///////////////daily
+
+export var dailylineChartData: Array<any> = [
+
+  { data: [65, 59, 80, 81, 56, 55, 40], label: 'Calls' },
+  { data: [28, 48, 40, 19, 86, 27, 90], label: 'Contact Views' },
+  { data: [45, 25, 16, 36, 67, 18, 76], label: 'Bookmarked' },
+  { data: [35, 15, 16, 26, 47, 18, 46], label: 'Shares' }
+
+];
+export var dailylineChartLabels: Array<any> = ['monday', 'tuesday', 'wednessday', 'thrusday', 'friday', 'saturdar', 'sunday'];
+export var dailylineChartOptions: any = {
+  animation: {
+    duration: 1000, // general animation time
+    easing: 'easeOutBack'
+  },
+  hover: {
+    animationDuration: 1000, // duration of animations when hovering an item
+    mode: 'label'
+  },
+  responsiveAnimationDuration: 1000, // animation duration after a resize
+  responsive: true,
+  maintainAspectRatio: false,
+  legend: {
+    position: 'bottom',
+  },
+  scales: {
+    xAxes: [{
+      display: true,
+      gridLines: {
+        color: "#f3f3f3",
+        drawTicks: false,
+      },
+      scaleLabel: {
+        display: true,
+        labelString: ''
+      }
+    }],
+    yAxes: [{
+      display: true,
+      gridLines: {
+        color: "#f3f3f3",
+        drawTicks: false,
+      },
+      scaleLabel: {
+        display: true,
+        labelString: ''
+      }
+    }]
+  },
+  title: {
+    display: true,
+    text: 'Chart.js Line Chart - Legend'
+  }
+};
+export var dailylineChartColors: Array<any> = [
+
+  {
+
+    fill: false,
+    borderDash: [5, 5],
+    borderColor: "#9C27B0",
+    pointBorderColor: "#9C27B0",
+    pointBackgroundColor: "#FFF",
+    pointBorderWidth: 2,
+    pointHoverBorderWidth: 2,
+    pointRadius: 4,
+  },
+  {
+
+    fill: false,
+    borderDash: [5, 5],
+    borderColor: "#00A5A8",
+    pointBorderColor: "#00A5A8",
+    pointBackgroundColor: "#FFF",
+    pointBorderWidth: 2,
+    pointHoverBorderWidth: 2,
+    pointRadius: 4,
+  },
+  {
+    lineTension: 0,
+    fill: false,
+    borderColor: "#FF7D4D",
+    pointBorderColor: "#FF7D4D",
+    pointBackgroundColor: "#FFF",
+    pointBorderWidth: 2,
+    pointHoverBorderWidth: 2,
+    pointRadius: 4,
+  },
+  {
+    lineTension: 0,
+    fill: false,
+    borderColor: "pink",
+    pointBorderColor: "#FF7D4D",
+    pointBackgroundColor: "#FFF",
+    pointBorderWidth: 2,
+    pointHoverBorderWidth: 2,
+    pointRadius: 4,
+  },
+
+];
+export var dailylineChartLegend = true;
+export var dailylineChartType = 'line';

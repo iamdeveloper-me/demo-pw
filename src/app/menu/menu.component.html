@@ -269,19 +269,27 @@
                             <div class="input-effect form-group md-form mt-3">
                                 <input class="effect-16"  
                                 type="email"
-                                 [(ngModel)] = "user.username" 
+                                 [(ngModel)] = "usercouple.username" 
                                  name="username" 
                                  id="username"
-                                 autocomplete="username"
                                   required
                                   placeholder="">
                                 <label>Your Email</label>
                                 <span class="focus-border"></span>
                             </div>  
+                            <!-- <div class="input-effect">
+                                <input class="effect-16"   
+                                type="password"
+                                [(ngModel)] = "usercouple.password" 
+                                [ngModelOptions]="{standalone: true}"
+                                 >        
+                                 <label>Password</label>
+                                <span class="focus-border"></span>                                     
+                            </div>    -->
                             <div class="input-effect">
                                 <input class="effect-16"   
                                 type="password" 
-                                [(ngModel)] = "user.password" 
+                                [(ngModel)] = "usercouple.password" 
                                 name="password" 
                                 autocomplete="current-password"
                                 required

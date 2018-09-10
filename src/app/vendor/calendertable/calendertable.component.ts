@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
-
+import { Http,Headers } from '@angular/http';
+import { DatePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ViewChild,
@@ -47,8 +48,28 @@ const colors: any = {
   styleUrls: ['./calendertable.component.scss']
 })
 export class CalendertableComponent implements OnInit {
-
   
+  jobArray:string[];
+event = {  
+    vendorJobsId: 0,
+   clientName: "",
+   numberOfPeople: 0,
+   clientPhoneNumber: "",
+   jobLocation: "",
+   lat: 0,
+   long: 0,
+   jobDate: "",
+   jobTime: "",
+   userId: "",
+   vendorId: 0
+ }
+  
+ private urlgetremove: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob'
+
+  vendor: any = {};
+  private url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/createupdatejobs';
+  private geturl: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/myjobs';
+
   t: any;
   currentJustify = 'start';
   currentOrientation = 'horizontal';
@@ -58,7 +79,55 @@ export class CalendertableComponent implements OnInit {
       $event.preventDefault();
     }
   };
+ // myDate = new Date();
+  test: string;
+  dates: string;
+  entry: string;
+   myDate = new Date(); 
+  constructor(private modal: NgbModal,public http: Http,private datePipe: DatePipe) { 
+  
+   // this.myDate  = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+   // this.myDate = this.datePipe.format(this.myDate, 'yyyy-MM-dd');
+   // console.log(this.datePipe.transform(date,"yyyy-MM-dd")); //output : 2018-02-13
+
+   this.test = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+  }
+
   ngOnInit() {
+  
+
+  
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+  
+    this.http.get(this.geturl,{headers:headers}).subscribe(data =>{
+  
+    this.jobArray = data.json() as string[]; 
+ 
+    for (let entry of data.json()) {
+     this.dates = this.datePipe.transform(entry.jobDate, 'yyyy-MM-dd');  
+     }
+  
+   
+    });
+ 
+   
+
+
+
+    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob',
+   {headers:headers}).subscribe((data) => { 
+       console.log( data.json() as string[] );
+    // console.log( data.json());
+    });
+    
+
+    var isValid = false ;
+
+
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
@@ -78,8 +147,6 @@ $(".weddingjobstab").click(function(){
     $(".calendartab").addClass("selected");  
   
   });
-
-  
 
     //accordian my wedding job 
     var acc = document.getElementsByClassName("accordion");
@@ -169,8 +236,6 @@ $(".weddingjobstab").click(function(){
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) { }
-
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
       if (
@@ -220,4 +285,48 @@ $(".weddingjobstab").click(function(){
     this.handleEvent('Add new event', this.newEvent);
      this.refresh.next();
   }
+
+job(jo){
+  console.log(jo)
+  var contactname =    jo.event.clientName;
+  var contactnumber =  jo.event.contactnumber ;
+  var guest =          jo.event.guest;
+  var location =       jo.event.location;
+  var starts =         jo.event.start;
+  var end =            jo.event.end; 
+  let headers = new Headers();
+  var authToken = localStorage.getItem('userToken');
+  var userId = localStorage.getItem('vendorId');
+  headers.append('Accept', 'application/json')
+  headers.append('Content-Type', 'application/json');
+  headers.append("Authorization",'Bearer '+authToken);
+
+  this.http.post(this.url,{       vendorJobsId: 0,
+    clientName: contactname,
+    numberOfPeople: guest,
+    clientPhoneNumber: contactnumber,
+    jobLocation: location,
+    lat: 0,
+    long: 0,
+    jobDate: starts,
+    jobTime: end,
+    userId: userId,
+    vendorId: 12 },{headers:headers}).subscribe(
+    data =>{ this.vendor = data.json(); console.log(this.vendor);});
+  
+  }
+  deletevent(id){
+    alert(id)
+    var deleteid = id ;
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+    this.http.get(this.urlgetremove + deleteid,{headers:headers}).subscribe(data =>{
+     console.log(data.json());
+    },error =>{ console.log(error)});
+  }
+
+ 
 }

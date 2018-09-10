@@ -31,7 +31,7 @@ interface Location {
   styleUrls: ['./location.component.scss']
 })
 export class LocationComponent implements OnInit {
-
+  myDate = new Date();
  data;
   circleRadius:number = 5000;
   milesToRadius(value) {
@@ -112,6 +112,7 @@ export class LocationComponent implements OnInit {
     this.findLocation(full_address) ;
   }
   findLocation(address) {
+    console.log(address);
     if (!this.geocoder) this.geocoder = new google.maps.Geocoder()
     this.geocoder.geocode({
       'address': address
@@ -168,8 +169,7 @@ export class LocationComponent implements OnInit {
   modelfield : any = {};
   obj = [];
 
-
-
+ 
   private urlget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mylocations'
   private urlpost: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savelocation'
 
@@ -187,10 +187,9 @@ export class LocationComponent implements OnInit {
                       
     this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
     this.countryArray = data.json() as string[]
-     console.log( data.json() as string[] );
+     //console.log( data.json() as string[] );
   // console.log( data.json());
 });
-   
 
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');

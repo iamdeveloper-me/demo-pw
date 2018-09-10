@@ -27,6 +27,7 @@ export class SignupVendorService {
     var address =user.businessInfo.address ;
     var nameOfBusiness = user.businessInfo.nameOfBusiness;
     var planId = user.businessInfo;
+    console.log(planId);
     var categoryId = user.vendorCategories[0].categoryId;
     const header = new Headers({'Content-Type': 'application/json'});
  

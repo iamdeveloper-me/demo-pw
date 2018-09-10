@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RatingModule} from "ngx-rating";
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-
+import {DatePipe} from '@angular/common';
 import { ImageCropperModule } from 'ng2-img-cropper';
 
 
@@ -356,6 +356,7 @@ export function getAuthServiceConfigs() {
         GoogleMapsAPIWrapper,
         AuthGuard,
         DragulaService,
+        DatePipe,
 
         {
             provide: AuthServiceConfig,

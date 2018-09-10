@@ -7,7 +7,7 @@
 
 <!-- Line Chart Starts -->
 
-<div class="col-sm-12"> 
+<div class="col-sm-12 mobilefixedcontainer"> 
     <div class="card">
         <div class="card-header mob_veiw">
             <h4 class="card-title">Actions on Storefront </h4>
@@ -26,29 +26,23 @@
         <div class="card-body reportbox">
             <div class="card-block dailyreport">
                 <div id="line-chart1" class="height-400">
-                    <ngx-charts-line-chart [scheme]="lineChartColorScheme" [results]="lineChartMulti" [gradient]="lineChartGradient" [xAxis]="lineChartShowXAxis"
-                        [yAxis]="lineChartShowYAxis" [legend]="lineChartShowLegend" [showXAxisLabel]="lineChartShowXAxisLabel"
-                        [showYAxisLabel]="lineChartShowYAxisLabel" [xAxisLabel]="lineChartXAxisLabel" [yAxisLabel]="lineChartYAxisLabel"
-                        [autoScale]="lineChartAutoScale" [curve]="lineChartLineInterpolation" (select)="onSelect($event)">
-                    </ngx-charts-line-chart>
+                    <canvas height="400" baseChart class="chart" [datasets]="dailylineChartData" [labels]="dailylineChartLabels" [options]="dailylineChartOptions" [colors]="lineChartColors"
+                    [legend]="dailylineChartLegend" [chartType]="dailylineChartType" (chartHover)="dailychartHovered($event)" (chartClick)="dailychartClicked($event)" ></canvas>
+
                 </div>
             </div>
             <div class="card-block weeklyreport">
                 <div id="line-chart1" class="height-400">
-                    <ngx-charts-line-chart [scheme]="lineweeklyChartColorScheme" [results]="lineweeklyChartMulti" [gradient]="lineweeklyChartGradient" [xAxis]="lineweeklyChartShowXAxis"
-                        [yAxis]="lineweeklyChartShowYAxis" [legend]="lineweeklyChartShowLegend" [showXAxisLabel]="lineweeklyChartShowXAxisLabel"
-                        [showYAxisLabel]="lineweeklyChartShowYAxisLabel" [xAxisLabel]="lineweeklyChartXAxisLabel" [yAxisLabel]="lineweeklyChartYAxisLabel"
-                        [autoScale]="lineweeklyChartAutoScale" [curve]="lineweeklyChartLineInterpolation" (select)="onSelectweekly($event)">
-                    </ngx-charts-line-chart>
+                    <canvas height="400" baseChart class="chart" [datasets]="weeklylineChartData" [labels]="weeklylineChartLabels" [options]="weeklylineChartOptions" [colors]="weeklylineChartColors"
+                    [legend]="weeklylineChartLegend" [chartType]="weeklylineChartType" (chartHover)="weeklychartHovered($event)" (chartClick)="weeklychartClicked($event)" ></canvas>
+
                 </div>
             </div>
              <div class="card-block monthlyreport">
                 <div id="line-chart1" class="height-400">
-                    <ngx-charts-line-chart [scheme]="linemonthlyChartColorScheme" [results]="linemonthlyChartMulti" [gradient]="linemonthlyChartGradient" [xAxis]="linemonthlyChartShowXAxis"
-                        [yAxis]="linemonthlyChartShowYAxis" [legend]="linemonthlyChartShowLegend" [showXAxisLabel]="linemonthlyChartShowXAxisLabel"
-                        [showYAxisLabel]="linemonthlyChartShowYAxisLabel" [xAxisLabel]="linemonthlyChartXAxisLabel" [yAxisLabel]="linemonthlyChartYAxisLabel"
-                        [autoScale]="linemonthlyChartAutoScale" [curve]="linemonthlyChartLineInterpolation" (select)="onSelectmonthly($event)">
-                    </ngx-charts-line-chart>
+                    <canvas height="400" baseChart class="chart" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"
+                    [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" ></canvas>
+
                 </div>
             </div>
         </div>

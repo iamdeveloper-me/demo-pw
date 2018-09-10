@@ -14,8 +14,10 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 export class GalleryComponent implements OnInit {
   gallery = { files: ''}
   fileToUpload:any;
-  totalAlbum = [];
-  iterations = [1,2]
+  totalAlbum:string[];
+
+  iterations = [1,2];
+ 
   private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ImageUploader/FileUploader'
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
@@ -48,7 +50,7 @@ export class GalleryComponent implements OnInit {
       //Album Get
       this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
       .subscribe(data =>{
-       this.totalAlbum =  data.json(); 
+       this.totalAlbum =  data.json()  as string[]; 
       });
 
     $.getScript('http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js');
@@ -89,7 +91,9 @@ export class GalleryComponent implements OnInit {
         }
 
         //Album create your token
-        createAlbum(){
+        createAlbum(Album){
+          console.log(Album);
+          var  albumtype = Album.value.albumName;
           let headers = new  Headers();
           var authToken = localStorage.getItem('userToken');
           headers.append("content-type",'application/json ');
@@ -97,7 +101,7 @@ export class GalleryComponent implements OnInit {
 
           const album = {
             "albumsId": 0,
-            "albumName": "string",
+            "albumName": albumtype,
             "albumType": 0,
             "tags": "string",
             "colorTags": "string"

@@ -51,9 +51,16 @@ export class SearchresultComponent implements OnInit {
    isDisabled = true;
 
    // Toggle Disabled
-   toggleDisabled() {
-       this.isDisabled = !this.isDisabled;
-   }
+   // toggleDisabled() {
+   //     this.isDisabled = !this.isDisabled;
+   // }
   
-
+   // $(".panel-title").click(function(){
+   // alert("hi")
+   //     $(".panel-collapse").addClass( "in" );
+   //   });
+   //   $(".panel-title").click(function(){
+   // alert("hi")
+   //     $(".show").removeClass( "in" );
+   //   });
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ngAfterViewInit } from '@angular/core';
 import * as chartsData from '../../shared/data/chartjs';
 import { barChartmulti, lineChartMulti, areaChartMulti ,reachlineChartMulti,gallerybarChartmulti} from '../../shared/data/ngxChart';
 import * as chart from './ngx-charts.config';
@@ -11,11 +11,16 @@ import * as chart from './ngx-charts.config';
 export class StatisticsComponent implements OnInit {
 
 
-
+     ngAfterViewInit() {    
+    this.chartparent.nativeElement.getElementsByClassName('chart-legend')[0].children[0].style.width = '100%';
+  }
   ngOnInit() {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
+
+
+
   }
 
   // lineChart
@@ -139,3 +144,4 @@ export class StatisticsComponent implements OnInit {
 }
 
 
+ 

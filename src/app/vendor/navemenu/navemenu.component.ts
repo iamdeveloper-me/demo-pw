@@ -12,12 +12,8 @@ export class NavemenuComponent implements OnInit {
     public data = '' ;
   constructor(public translate: TranslateService , private router: Router ) { const browserLang: string = translate.getBrowserLang();
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : 'en'); }
-
  
   ngOnInit() {
-
-      
-      
       if(window.location.pathname == '/vendor/dashboard' ) { 
           this.data = 'Dashboard';
       } else if(window.location.pathname == '/vendor/business' ) {

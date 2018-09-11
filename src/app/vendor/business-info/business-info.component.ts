@@ -1,6 +1,3 @@
-
-
-
 import { NgForm } from '@angular/forms';
 import { CropperSettings, ImageCropperComponent } from 'ng2-img-cropper';
 import { Component, OnInit ,Input , ViewChild, NgZone,} from '@angular/core';

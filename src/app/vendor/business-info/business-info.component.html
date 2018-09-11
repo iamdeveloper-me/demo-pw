@@ -45,7 +45,7 @@
                                              <i  class="material-icons">location_on</i>
                                             </span>
                                             <div class="col-sm-10 col-11">
-                                                <div>Country: {{data.country}}</div>
+                                                <div>Country: {{data.address}}</div>
                                                 <div>Address: {{data.address}}</div>
                                                 <div>Address: {{data.address}}</div>
                                                 <div>Address: {{data.address}}</div>
@@ -202,6 +202,7 @@
                                <i class="fa fa-facebook fa-2x" data-reactid="334"></i>
                                <span id="prompt-function"  data-target="#facebook" data-toggle="modal" data-reactid="333">
                                     :  {{vendor.facebookURL}}
+                                    
                                </span>
                                <div class="col-lg-12 editbtn">
                                   <h4 class="text-right col-lg-12">
@@ -221,9 +222,7 @@
                                      <i class="material-icons">edit</i>
                                   </h4>
                                </div>
-                               <!--  <div class="switbtn">
-                                  <ui-switch [(ngModel)]="enable1" ></ui-switch> 
-                                  </div>   --> 
+                            
                             </div>
                          </div>
                          <div class="social-connect col-sm-12" data-reactid="330">
@@ -237,9 +236,7 @@
                                      <i class="material-icons">edit </i>
                                   </h4>
                                </div>
-                               <!--  <div class="switbtn">
-                                  <ui-switch [(ngModel)]="enable2" ></ui-switch>
-                                  </div>  -->
+                             
                             </div>
                          </div>
                          <div class="social-connect col-sm-12" data-reactid="330">
@@ -253,9 +250,7 @@
                                      <i class="material-icons">edit</i>
                                   </h4>
                                </div>
-                               <!--  <div class="switbtn">
-                                  <ui-switch [(ngModel)]="enable3" ></ui-switch> 
-                                  </div> -->
+                              
                             </div>
                          </div>
                          <div class="social-connect  col-sm-12" data-reactid="330">
@@ -269,9 +264,7 @@
                                      <i class="material-icons">edit</i>
                                   </h4>
                                </div>
-                               <!-- <div class="switbtn">
-                                  <ui-switch [(ngModel)]="enable4" ></ui-switch> 
-                                  </div> -->
+                              
                             </div>
                          </div>
                       </div>
@@ -370,11 +363,19 @@
       </div>
     </div>
 
+    <h2>Toggle Switch</h2>
+
+
+
     <div class="modal fade" id="facebook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal_head text-center">
-                <h4 class="modal-title"><strong> Link your Facebook Page </strong>  </h4>
+                <h4 class="modal-title"><strong> Link your Facebook Page 
+                       
+
+                </strong>  
+                </h4>
                 <p>Do you have a Facebook Page for your business?</p>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <div class="clearfix"></div>
@@ -382,7 +383,6 @@
             <div class="modal-body">
                 <div class="col-sm-12  text-center">
                     <div class="switbtn">
-                        <ui-switch [(ngModel)]="enable" ></ui-switch> 
                         <span class="have_one">Of course, I have one! </span>
                         <span class="have_one">No, I don't! </span>
                     </div>
@@ -413,7 +413,8 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h4 class="modal-title">Edit Business Name or Contact </h4>
+                <h4 class="modal-title">Edit Business Name or Contact 
+                  </h4>
                 <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
            
                <div class="clearfix"></div>
@@ -421,8 +422,8 @@
             <div class="modal-body">
                 <div class="col-sm-12  text-center">
                     <div class="switbtn">
-                        <ui-switch [(ngModel)]="enable" ></ui-switch> 
                         <span class="have_one">Of course, I have one! </span>
+                        
                     </div>
                         <div class="clearfix"></div>
                         <div class="input_facebook input-effect form-group">
@@ -460,7 +461,7 @@
                 <div class="modal-body">
                     <div class="col-sm-12  text-center">
                     <div class="switbtn">
-                        <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                     
                         <span class="have_one">Of course, I have one! </span>
                         <span class="have_one">No, I Don't! </span>
                     </div>
@@ -499,7 +500,7 @@
               <div class="modal-body">
                   <div class="col-sm-12  text-center">
                   <div class="switbtn">
-                      <ui-switch [(ngModel)] ="enable" ></ui-switch> 
+                   
                       <span class="have_one">Of course, I have one! </span>
                   </div>
                   <div class="clearfix"></div>
@@ -538,7 +539,7 @@
                 <div class="modal-body">
                     <div class="col-sm-12  text-center">
                     <div class="switbtn">
-                        <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                        
                         <span class="have_one">Of course, I have one! </span>
                     </div>
                     <div class="clearfix"></div>
@@ -576,7 +577,7 @@
                 <div class="modal-body">
                     <div class="col-sm-12  text-center">
                         <div class="switbtn">
-                            <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                         
                             <span class="have_one">Of course, I have one! </span>
                         </div>
                             <div class="clearfix"></div>
@@ -590,7 +591,10 @@
                                         <div class="card-block">
                                         <div class="file-upload mb-3">
                                             <span class="text">Upload File : </span>
-                                            <input id="custom-input" type="file" (change)="fileChangeListener($event)">
+                                            <input
+                                             id="custom-input" 
+                                             type="file" 
+                                             (change)="fileChangeListener($event)">
                                         </div>
                                         <img-cropper #cropper [image]="data" [settings]="cropperSettings" class="float-left mr-4"></img-cropper>
                                         <br>

@@ -1,6 +1,4 @@
 
-
-
 import { NgForm } from '@angular/forms';
 import { CropperSettings, ImageCropperComponent } from 'ng2-img-cropper';
 import { Component, OnInit ,Input , ViewChild, NgZone,} from '@angular/core';
@@ -38,7 +36,6 @@ interface Location {
 
 export class BusinessInfoComponent implements OnInit {
 
-  
   circleRadius:number = 5000;
   milesToRadius(value) {
     this.circleRadius = value / 0.00062137;
@@ -180,10 +177,13 @@ export class BusinessInfoComponent implements OnInit {
     var file: File = $event.target.files[0];
     var myReader: FileReader = new FileReader();
     var that = this;
+    
     myReader.onloadend = function (loadEvent: any) {
       image.src = loadEvent.target.result;
       that.cropper.setImage(image);
+         console.log(image.src);
 
+       
     };
 
     myReader.readAsDataURL(file);
@@ -208,13 +208,7 @@ export class BusinessInfoComponent implements OnInit {
   }  
   
   
- 
-
-
-
   ngOnInit() {
-
-    
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -225,13 +219,26 @@ export class BusinessInfoComponent implements OnInit {
     console.log(data.json());
     this.vendor = data.json();
     this.facebook = data.json().facebookURL ;
+
     this.twitter = data.json().twitterURL ;
     this.instagram = data.json().instalURL ;
     this.google = data.json().googleURL;
     this.Businesname = data.json().nameOfBusiness ;
     this.Description = data.json().businessDetails ;  
     this.perfectWedding = data.json().perfectWeddingURL  ;
-    });
+   
+    // console.log(this.facebook);
+    // console.log(this.instagram);
+    // console.log(this.google);
+    // console.log(this.twitter);
+
+    //         if (this.facebook=="" || this.twitter=="" || this.instagram=="" || this.google=="" ) {
+    //           console.log('false');
+    //         } 
+    //         else {
+    //           console.log('true');
+    //         }
+  })
 
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
@@ -311,14 +318,12 @@ export class BusinessInfoComponent implements OnInit {
   }
 
   openModel(b){
-    //alert("hh");
     this.modelfield = b;
-    //console.log(this.modelfield);
   }
-  upForm(info){
+    upForm(info){
 
             console.log(info);
-            console.log(info.value.businessDetails );
+            // console.log(info.value.businessDetails );
         //    console.log (this.filedata);
             var infofacebook = info.value.facebook;
             var infotwitter = info.value.twitter;
@@ -353,16 +358,16 @@ export class BusinessInfoComponent implements OnInit {
  
             updatebusinessinfo.subscribe((data) => console.log(data),(error)=>console.log(error));
      }
-abc(event){
+    abc(event){
       console.log(event)
     }
      closeResult: string;
 
-enable =  true;
-enable1 =  true;
-enable2 =  true;
-enable3 =  true;
-enable4 =  true;
+// enable =  true;
+// enable1 =  true;
+// enable2 =  true;
+// enable3 =  true;
+// enable4 =  true;
   
 }
 

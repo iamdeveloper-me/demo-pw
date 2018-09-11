@@ -18,7 +18,9 @@ export class NavemenuComponent implements OnInit {
   ngOnInit() {
 
       var firstName = localStorage.getItem('firstName');
-      alert(firstName)
+      alert(firstName);
+
+      
       
       // if(window.location.pathname == '/vendor/dashboard' ) { 
       //     this.data = 'Dashboard';

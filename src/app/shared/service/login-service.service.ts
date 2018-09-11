@@ -25,5 +25,7 @@ typeWarning() {
   this.toastr.warning('Field required ');
 }
 
-
+typeLogout() {
+  this.toastr.success('Logout successfully', 'Success!');
+}
 }

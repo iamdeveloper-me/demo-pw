@@ -56,6 +56,7 @@ export class DashboardComponent implements OnInit {
         this.http.get(this.url,{headers:headers}).subscribe(
           data =>{ this.vendor = data.json();
                    console.log(this.vendor);
+                   localStorage.setItem('firstName',data.json().firstName);
                  });
 
           $.getScript('./assets/js/prism.min.js');

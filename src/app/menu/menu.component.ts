@@ -51,9 +51,13 @@ export class MenuComponent implements OnInit {
     typeSuccess() {
         this.cservice.typeSuccess();
     }
-        typeWarning() {
-            this.cservice.typeWarning();
-        }
+    typeWarning() {
+        this.cservice.typeWarning();
+    }
+    typeLogout() {
+        this.cservice.typeLogout();
+    }
+
     //--------------------------------user login 
 
  userlogin(){ 
@@ -106,6 +110,8 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['../home']);
     $(".user").hide(); 
     $(".loginclick").show();
+    this.typeLogout();
+    
    }
 
     ngOnInit() { 

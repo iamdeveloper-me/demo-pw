@@ -2,7 +2,7 @@ $(document).ready(function () {
   $("#supplierscarousel").owlCarousel({
       autoplay: true,
       margin: 20,
-      loop: false,
+      loop: true,
       lazyLoad: false,
        /*
       animateOut: 'fadeOut',
@@ -39,7 +39,7 @@ $(document).ready(function () {
 
       autoplay: true,
       lazyLoad: true,
-      loop: false,
+      loop: true,
       margin: 20,
        /*
       animateOut: 'fadeOut',
@@ -228,5 +228,15 @@ $(document).ready(function() {
             
         $lightbox.find('.modal-dialog').css({'width': $img.width()});
         $lightbox.find('.close').removeClass('hidden');
+    });
+});
+
+
+$(document).ready(function(){
+    //FANCYBOX
+    //https://github.com/fancyapps/fancyBox
+    $(".fancybox").fancybox({
+        openEffect: "none",
+        closeEffect: "none"
     });
 });

@@ -50,9 +50,6 @@
                                           <div class="col-sm-10 col-11">
                                               <div>Country: {{data.country}}</div>
                                               <div>Address: {{data.address}}</div>
-                                              <div>Address: {{data.address}}</div>
-                                              <div>Address: {{data.address}}</div>
-                                              <div>Address: {{data.address}}</div>
                                               <div>postalCode: {{data.postalCode}}</div>
                                               <div>city: {{data.city}}</div>
                                               <i class="material-icons edit_btn"> edit</i>
@@ -67,7 +64,7 @@
                                           <span class="acce_time1 col-1">
                                       <i  class="material-icons">local_phone</i>
                                       </span>
-                                          <div class="col-sm-10 col-11 mar_bottom_10px">
+                                          <div class="col-sm-10 col-11 minheight30px">
                                               {{data.mobile}}
                                               <i _ class="material-icons edit_btn1">edit</i>
                                           </div>
@@ -75,7 +72,7 @@
                                           <span class="acce_time1 col-1">
                                       <i  class="material-icons">phone_iphone</i>
                                       </span>
-                                          <div class="col-sm-10 col-11">
+                                          <div class="col-sm-10 col-11 minheight30px">
                                               {{data.phone}}
                                           </div>
                                       </div>
@@ -157,11 +154,8 @@
                           </div>
                       </div>
                   </div>
-              </div>
-            <div class="clearfix"></div>
-            </div>
-      </section>
-            <div class="col-sm-4">
+
+                  <div class="col-sm-4">
                   <div class="card martop10px">
                       <div class="text-center bg-form col-sm-12 addlocationbox">
                           <i class="material-icons font80px">  add_location </i>
@@ -173,6 +167,11 @@
                       </div>
                   </div>
               </div>
+              </div>
+            <div class="clearfix"></div>
+            </div>
+      </section>
+            
 
         <div class="clearfix"></div>
       <app-foot></app-foot>
@@ -182,39 +181,7 @@
   </div>
   <router-outlet></router-outlet>
   <form (ngSubmit)="upForm(info)" #info="ngForm">
-      <div class="modal fade" id="location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h4 class="modal-title">Add New Location</h4>
-
-                      <button type="submit" class="btn bt_blue">SAVE</button> &nbsp;
-
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                      <div class="col-sm-12  text-center">
-                          <i class="material-icons"> add_location </i>
-                          <p>Have more business branches?</p>
-                          <!-- <input class="endent_10px" type="text" placeholder="Enter Location"> -->
-                          <p>
-                              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.562064237219!2d77.22732101467972!3d28.61291198242557!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce2daa9eb4d0b%3A0x717971125923e5d!2sIndia+Gate!5e0!3m2!1sen!2sin!4v1534139472754" width="680" height="100" frameborder="0" style="border:0" allowfullscreen></iframe>
-                          </p>
-                          <p>Premium members only. <span>Upgrade</span> </p>
-                      </div>
-                  </div>
-
-              </div>
-              <div class="modal-footer">
-                  <button type="submit" class="btn bt_blue" data-dismiss="modal"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
-              </div>
-          </div>
-      </div>
-
+   
       <div class="modal fade" id="phone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -223,59 +190,41 @@
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   </div>
                   <div class="modal-body">
-                    <div class="row">
-                      <div class="col-sm-12 nopadd">
-                        <div class="col-sm-6">
-                          <h6 class="col-xs-offset-2 phonepopuphead">Primary Number</h6>
-                          <div class="col-sm-2 col-3">
-                            <select>
-                              <option>
-                                <i class="material-icons">phone_iphone</i>
-                              </option>
-                              <option>
-                                <i class="material-icons">call</i>
-                              </option>
-                            </select>
-                          </div>
-                          <div class="col-sm-10 col-9 nopadd">
-                            <input type="text" class="inputbottombor" [(ngModel)]="modelfield.mobile" id="mobile" name="mobile">
-                          </div>
-                        </div>
-                        <div class="col-sm-6">
-                              <h6 class="col-xs-offset-2 phonepopuphead">Second Number</h6>
-                              <div class="col-sm-2 col-3">
-                               <select>
+                      <h6 class="col-xs-offset-2 phonepopuphead">Primary Number
+
+              </h6>
+                      <div class="col-sm-2 col-3">
+                          <select>
                               <option>Phone</option>
                               <option>Mobile</option>
-                                </select>
-                              </div>
-                              <div class="col-sm-10 col-9 nopadd">
-                                  <input type="text" class="inputbottombor" placeholder="0731-245326" id="phone" name="phone" [(ngModel)]="modelfield.phone">
-                                  <button class="deletebtn">
-                                      <i class="material-icons">clear</i>
-                                  </button>
-                              </div>
-                        </div>
+                          </select>
                       </div>
-                    </div>
-
-                    <div class="clearfix"></div>
-                      <div class="col-sm-12">
-                          <br/>
-                          <a href=""> ADD PHONE NUMBER </a>
+                      <div class="col-sm-10 col-9 nopadd">
+                          <input type="text" class="inputbottombor" [(ngModel)]="modelfield.mobile" id="mobile" name="mobile">
                       </div>
-                      <div class="clearfix"></div>
                       <input type="hidden" class="inputbottombor" [(ngModel)]="modelfield.vendorLocationId" id="vendorLocationId" name="vendorLocationId">
                       <input type="hidden" class="inputbottombor" [(ngModel)]="modelfield.countryId" id="countryId" name="countryId">
                       <input type="hidden" class="inputbottombor" [(ngModel)]="modelfield.vendorId" id="vendorId" name="vendorId">
                       <div class="clearfix"></div>
-
+                      <h6 class="col-xs-offset-2 phonepopuphead">Second Number</h6>
+                      <div class="col-sm-2 col-3">
+                          <select>
+                              <option>Phone</option>
+                              <option>Mobile</option>
+                          </select>
+                      </div>
+                      <div class="col-sm-10 col-9 nopadd">
+                          <input type="text" class="inputbottombor" placeholder="0731-245326" id="phone" name="phone" [(ngModel)]="modelfield.phone">
+                          <button class="deletebtn">
+                              <i class="material-icons">clear</i>
+                          </button>
+                      </div>
+                      <div class="clearfix"></div>
+                      <div class="col-sm-12">
+                          <br/>
+                          <a href=""> ADD PHONE NUMBER </a>
+                      </div>
                   </div>
-                      
-                      
-                      
-                      
-                      
                   <div class="modal-footer">
                       <button type="submit" class="btn bt_blue"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -506,149 +455,130 @@
               </div>
           </div>
       </div>
-
-      <div class="modal fade" id="address" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-              <div class="modal-content">
-
-                  <div class="modal-header">
-                      <h4 class="modal-title">Address {{modelfield.city}}</h4>
-
-                      <button (click)='updateOnMap()' type="submit" class="btn btn-primary">Search</button>
-
-                      <button type="button" class="close" aria-label="Close">
-
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div class="col-sm-12 county_addres">
-
-                      <div>
-                          <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
-                              <!-- <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event)'></agm-marker> -->
-                              <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
-                          </agm-map>
-                          <div class="container-fluid">
-                              <div class='row'></div>
-                              <div class="form-group">
-                                  <input class='col-sm-10' type='text' [(ngModel)]='location.address_level_1' class="form-control" placeholder='Office, Apt, Home, Street'>
-                              </div>
-                              <div class="form-group">
-                                  <input class='col-sm-10' [(ngModel)]='location.address_level_2' class='form-control' placeholder='City' />
-                              </div>
-
-                              <div class="form-group">
-                                  <input class='col-sm-10' [(ngModel)]='location.address_state' class='form-control' placeholder='State'>
-                              </div>
-
-                              <div class="form-group">
-                                  <input class='col-sm-10' [(ngModel)]='location.address_country' class='form-control' placeholder='State'>
-                              </div>
-
-                              <div class="form-group">
-                                  <input class='col-sm-10' [(ngModel)]='location.address_zip' class='form-control' placeholder='Zip'>
-                              </div>
-
-                              
-                          </div>
-                          <div class="container-fluid">
-
-                          </div>
-                      </div>
-                      <div class="col-sm-2">
-                          Country
-                          <input type="text" class="inputbottombor" [(ngModel)]="modelfield.countryName" id="country" name="country">
-                      </div>
-                  </div>
-                  <div class="col-sm-12 county_addres">
-                      <div class="col-sm-2">
-                          city:
-                          <input type="text" class="inputbottombor" [(ngModel)]="modelfield.city" id="city" name="city">
-                      </div>
-                  </div>
-                  <div class="col-sm-12 county_addres mar_bottom_10px">
-                      <div class="col-sm-2">
-                          Address:
-                          <input type="text" class="inputbottombor" [(ngModel)]="modelfield.address" id="address" name="address">
-                      </div>
-                  </div>
-                  <div class="col-sm-12 county_addres mar_bottom_10px">
-                      <div class="col-sm-2">
-                          post code :
-                          <input type="text" class="inputbottombor" [(ngModel)]="modelfield.postalCode" id="postalCode" name="postalCode">
-                      </div>
-
-                  </div>
-                  <div class="modal-footer">
-                      <button type="submit" class="btn bt_blue">SAVE</button> &nbsp;
-
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-
   </form>
+
+
+
+
+    <form (ngSubmit)="cerate(add)" #add="ngForm">
+        <div class="modal fade" id="location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add New Location</h4>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                          <div class="input-effect form-group md-form">
+                            <input class="effect-16 validate"  [(ngModel)]="vendorLocationId" id="Country" name="Country">
+                            <label>Country</label>
+                            <span class="focus-border"></span>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="input-effect form-group md-form">
+                            <input class="effect-16 validate"  [(ngModel)]="Address" id="Address" name="Address">
+                            <label>Address</label>
+                            <span class="focus-border"></span>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="input-effect form-group md-form">
+                            <input class="effect-16 validate" [(ngModel)]="postalCode" id="postalCode" name="postalCode">
+                            <label>Postal Code</label>
+                            <span class="focus-border"></span>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="input-effect form-group md-form">
+                            <input class="effect-16 validate" [(ngModel)]="city" id="city" name="city">
+                            <label>City</label>
+                            <span class="focus-border"></span>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="input-effect form-group md-form">
+                            <input class="effect-16 validate"  [(ngModel)]="Phone" id="Phone" name="Phone">
+                            <label>Phone</label>
+                            <span class="focus-border"></span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn bt_blue" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <!-- <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Save changes</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>    
+   </form>
+
 
   <div class="modal fade" id="googlemap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
                   <h4 class="modal-title">Address</h4>
-
-                  <!-- <button type="button" class="pull-right" onclick="alert('location')">Use my location</button> -->
-
-                  <button type="button" class="close" data-dismiss="modal">
+                  <button type="button" class="close" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
-              <div class="col-sm-12 county_addres">
+              <div class="modal-body county_addres">
                   <div>
                       <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
-                          <!-- <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event)'></agm-marker> -->
+                          <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event)'></agm-marker>
                           <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
                       </agm-map>
-                      <div class="container-fluid martop10px">
-                        <div class="row">
-                          <div class="col-sm-12 nopadd">
-                            <div class="col-sm-6">
-                                <input class="" type='text' [(ngModel)]='location.address_level_1' class="" placeholder='Office, Apt, Home, Street'>
-                            </div>
-                            <div class="col-sm-6">
-                                <input class='' [(ngModel)]='location.address_level_2' class='' placeholder='City' />
-                            </div>
-                            <div class="col-sm-6">
-                                <input class='' [(ngModel)]='location.address_state' class='' placeholder='State'>
-                            </div>
-                            <div class="col-sm-6">
-                                <input class='' [(ngModel)]='location.address_country' class='' placeholder='Country'>
-                            </div>
-                            <div class="col-sm-6">
-                                <input class='' [(ngModel)]='location.address_zip' class='' placeholder='Zip Code'>
-                            </div>
-                            <div class="clearfix"></div>
-                             <div class="col-sm-6">
-                              <button (click)='updateOnMap()' type="submit" class="btn btn-secondary">Search</button>
+                      <div class="container-fluid martop30px">
+                          <div class="form-group">
+                            <div class="input-effect md-form">
+                                <input class="effect-16 validate" type='text'   [(ngModel)]='location.address_level_1' placeholder=''>
+                                <label>Address Line 1</label>
+                                <span class="focus-border"></span>
                             </div>
                           </div>
-                        </div>
+                          <div class="form-group">
+                            <div class="input-effect md-form">
+                                <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_level_2' placeholder=''>
+                                <label>Address Line 2</label>
+                                <span class="focus-border"></span>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="input-effect md-form">
+                                <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_state' placeholder=''>
+                                <label>State / Province / Region</label>
+                                <span class="focus-border"></span>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="input-effect md-form">
+                                <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_country' placeholder=''>
+                                <label>Country</label>
+                                <span class="focus-border"></span>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="input-effect md-form">
+                                <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_country' placeholder=''>
+                                <label>Postal / Zip code</label>
+                                <span class="focus-border"></span>
+                            </div>
+                          </div>
+                          <!-- <button type="button" onclick="alert('location')">Use my location</button> -->
+                          <button (click)='updateOnMap()' type="submit" class="btn btn-primary whitetext">Search</button>
                       </div>
                   </div>
               </div>
-            <div class="modal-footer">
-        <button type="submit" class="btn bt_blue">SAVE</button> &nbsp;
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+              <div class="modal-footer">
+                  <button type="submit" class="btn bt_blue"    (click)='locationForm(location)' >SAVE</button> &nbsp;
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
           </div>
       </div>
-      
   </div>
-     
-
-
-
- 
-
-    
-
-  

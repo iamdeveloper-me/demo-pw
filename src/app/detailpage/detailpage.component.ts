@@ -18,7 +18,7 @@ export class DetailpageComponent implements OnInit {
     $.getScript('./assets/js/prism.min.js'); 
     $.getScript('./assets/js/owljsor.js');
     $.getScript('./assets/js/curosselfun.js');
-    $.getScript('https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js');
+    $.getScript('./assets/js/jquery.fancybox.min.js');
           
 
        

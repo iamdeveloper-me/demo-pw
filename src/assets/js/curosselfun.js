@@ -205,6 +205,17 @@ $(".reviewbtn").click(function() {
     $('.reviewbtn').addClass('btnactive');
 });
 
+$(".callbtn").click(function() {
+     $('.callinfo').show();
+     $('.callbtn').hide();
+     $('.callbtnhide').show();
+});
+$(".callbtnhide").click(function() {
+      $('.callinfo').hide();
+     $('.callbtn').show();
+     $('.callbtnhide').hide();
+});
+
 $(document).ready(function() {
     var $lightbox = $('#lightbox');
     

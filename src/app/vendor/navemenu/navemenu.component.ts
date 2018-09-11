@@ -13,12 +13,12 @@ export class NavemenuComponent implements OnInit {
     public data = '' ;
   constructor(public translate: TranslateService ,private cservice: LoginServiceService, private router: Router ) { const browserLang: string = translate.getBrowserLang();
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : 'en'); }
+
  
   ngOnInit() {
-<<<<<<< HEAD
 
       var firstName = localStorage.getItem('firstName');
-      alert(firstName);
+      // alert(firstName);
 
       
       
@@ -29,11 +29,6 @@ export class NavemenuComponent implements OnInit {
         this.data = 'Dashboard';
       }
       else if(window.location.href.indexOf('/vendor/business')>-1 ){
-=======
-      if(window.location.pathname == '/vendor/dashboard' ) { 
-          this.data = 'Dashboard';
-      } else if(window.location.pathname == '/vendor/business' ) {
->>>>>>> master
           this.data = 'Business information ';
       } else if(window.location.href.indexOf('/vendor/location')>-1) {
         this.data = ' Location Trading ';

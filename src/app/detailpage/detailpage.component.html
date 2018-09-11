@@ -1,9 +1,19 @@
 <app-menu></app-menu>
 <div class="container mobnopadd">
 
-
-  <div class="col-sm-9 detail_page">
+<div class="col-sm-12 detail_page">
+  <div class="martop0px">
+      <ol class="breadcrumb breadcrumbcontainer">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Wedding Suppliers</a></li>
+             <li><a href="#">Photography, Videography</a></li>
+            <li class="active">Myfair Banquets</li>
+      </ol>
+   </div>
+</div>
+  <div class="col-sm-9">
         <!-- carosel slider -->
+   
    <div class="boxLightStyles martop0px">
         <div id="detailpagecarousel" class="owl-carousel detailpagecarousel">
           <div class="item"> 
@@ -612,10 +622,10 @@
           </div>
       </div>
 
-        <div class="col-sm-3 detail_page hidden-xs">
+        <div class="col-sm-3 hidden-xs">
             <div class="left_side_box_text left_details leftfixed">
                   
-              <div class="left_box_section">
+              <div class="left_box_section paddleftrite0px">
                 <div class="hotellogo">
                     <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg"/>
                   </div>
@@ -636,47 +646,44 @@
                                   <span>3.0</span> 
                               </div>
                   </div>  
-                  <!-- <div class="col-sm-12 text-center">
-                    <button class="sharebookmarkbtn">
-                      <i class="material-icons"></i>
-                    </button>
-                    <button class="sharebookmarkbtn">
-                      <i class="material-icons"></i>
-                    </button>
-                    </div> -->
+                  <div class="clearfix"></div>
                    <div class="col-sm-12">
                       <div class="featurebtn row">
-                        <!-- <div class="col-sm-6 hidden-xs">
-                          <button class="buttoncontactbor">
-                            <i class="material-icons">call</i>
-                            Call
-                          </button>
-                        </div>
-                        <div class="col-sm-6 hidden-xs">
-                          <button class="buttoncontactbor">
-                            <i class="material-icons">mail_outline</i>
-                            Message
-                          </button>
-                        </div> -->
+                        
                         <div class="col-3">
-                           <i class="material-icons">call</i>
+                          <button class="btn purple-gradient borradius50per callbtn">
+                            <i class="material-icons">call</i>
+                          </button>
+                           <button class="btn purple-gradient borradius50per callbtnhide" style="display: none;">
+                            <i class="material-icons">call</i>
+                          </button>
                           <div class="featurehead">Call</div>
                         </div>
                         <div class="col-3">
-                          <i class="material-icons">mail_outline</i>
+                           <button class="btn purple-gradient borradius50per" data-toggle="modal" data-target="#address">
+                              <i class="material-icons">mail_outline</i>
+                            </button>
                           <div class="featurehead">Message</div>
                         </div>
                         <div class="col-3">
-                          <i class="material-icons">bookmark_border</i>
+                           <button class="btn purple-gradient borradius50per">
+                            <i class="material-icons">bookmark_border</i>
+                          </button>
                           <div class="featurehead">Bookmark</div>
                         </div>
                         <div class="col-3">
+                           <button class="btn purple-gradient borradius50per">
                           <i class="material-icons">share</i>
+                        </button>
                           <div class="featurehead">Share</div>
                         </div>
                       </div>
-                    </div>
-
+                      <div class="callinfo">
+                            <strong>Contact Number</strong><br/>
+                            +91-99999 12345
+                          </div>
+                   </div>
+                      
               </div>
              
             
@@ -714,11 +721,21 @@
               </div>
              
               <div class="left_box_section overviewsection tradinghours">
-                  <div class="large_subtext"> 
+                  <div class="large_subtext text-center "> 
                     Trading Hours
                   </div>
                  
                  <div class="clearfix"></div>
+                 <table class="tabledesignwork text-center ">
+                          <tr>
+                            <th><strong>Wed</strong></th>
+                            <th>
+                                12:00PM-12:00PM 
+                                <span class="greentext">Open</span>
+                            </th>
+                          </tr>
+                        </table>
+                         <div class="clearfix"></div>
                       <div class="detailtabclick detailtra">
                         <table class="tabledesignwork">
                           <tr>
@@ -755,8 +772,8 @@
                         </table>
                       </div>
                     <div class="clearfix"></div>
-                    <div class="text-center showdetail">Show More</div>
-                     <div class="text-center showless" style="display: none;">Show less</div>
+                    <div class="text-center showdetail text-center ">Show More</div>
+                     <div class="text-center showless text-center " style="display: none;">Show less</div>
               </div>
               <div class="left_box_section contactsection">
                   <div class="large_subtext"> 
@@ -822,20 +839,57 @@
   </div>
 </div>
 
-<div id="lightbox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <button type="button" class="close hidden" data-dismiss="modal" aria-hidden="true"><i class="material-icons">
-clear
-</i></button>
-        <div class="modal-content">
-            <div class="modal-body">
-                <img src="" alt="" />
+    <div id="lightbox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <button type="button" class="close hidden" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="" alt="" />
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-
+ <div class="modal fade" id="address" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h4 class="modal-title">Send Message</h4>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="container">
+                            <div class="input-effect  form-group mt-3">
+                              <input class="effect-16" name="text" placeholder="" required="" type="name">
+                              <label>Your Name</label>
+                              <span class="focus-border"></span>
+                            </div>
+                            <div class="input-effect  form-group mt-3">
+                              <input class="effect-16" name="email" placeholder="" required="" type="text">
+                              <label>Your Email</label>
+                              <span class="focus-border"></span>
+                            </div>
+                            <div class="input-effect  form-group mt-3">
+                              <input class="effect-16" name="phone" placeholder="" required="" type="tel">
+                              <label>Your Phone Number</label>
+                              <span class="focus-border"></span>
+                            </div>
+                            <div class="input-effect  form-group mt-3">
+                              <textarea class="effect-16" placeholder=''></textarea>
+                              <label>Message</label>
+                              <span class="focus-border"></span>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group btnholder">
+                              <button type="submit" class="btn btn-secondary">SAVE</button> 
+                              &nbsp;
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
+                    </div>
+                  </div>
+                  
+              </div>
+          </div>
+      </div>
 
 <app-foot></app-foot>
 

@@ -48,8 +48,6 @@
                                                 <div>Country: {{data.country}}</div>
                                                 <div>Address: {{data.address}}</div>
                                                 <div>Address: {{data.address}}</div>
-                                                <div>Address: {{data.address}}</div>
-                                                <div>Address: {{data.address}}</div>
                                                 <div>postalCode: {{data.postalCode}}</div>
                                                 <div>city: {{data.city}}</div>
                                                 <i class="material-icons edit_btn"> edit</i>
@@ -96,8 +94,7 @@
                                                     <div class="col-sm-4 col-xs-5-mob nopadd">
                                                         Monday
                                                     </div>
-                                                    <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                      
+                                                    <div class="col-sm-8 col-xs-7-mob nopadd">   
                                                     </div>
                                                 </div>
                                                 <div class="clearfix"></div>
@@ -106,7 +103,6 @@
                                                         Tuesday
                                                     </div>
                                                     <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                       
                                                     </div>
                                                 </div>
                                                 <div class="clearfix"></div>
@@ -279,18 +275,7 @@
                 </div>
              </div>   
          </div>
-         <div class="col-sm-12 mob_margin_30px">
-            <div class="card col-sm-12 notebox text-center">
-               <p>No Website? No Problem!</p>
-               <div class="noproblum">
-                  <p>1. Copy the link to your profile on Perfect Weddings 
-                     <span>Copy</span>
-                  </p>
-                  <p>2. Go to your Facebook Page and add the link as your website</p>
-                  <p>3. You are done! That was easy, isn’t it?</p>
-               </div>
-            </div>
-         </div>
+         
       </section>
       <div class="clearfix"></div>
       <app-foot></app-foot>
@@ -380,13 +365,13 @@
                 <div class="clearfix"></div>
             </div>
             <div class="modal-body">
-                <div class="col-sm-12  text-center">
-                    <div class="switbtn">
+              <div class="switbtn switbtncenter">
                         <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                        <span class="have_one">Of course, I have one! </span>
                         <span class="have_one">No, I don't! </span>
                     </div>
                         <div class="clearfix"></div>
+                <div class="col-sm-12  text-center">
+                    
                         <div class="input_facebook input-effect form-group">
                             <i class="fa fa-facebook fa-2x" data-reactid="334" ></i> 
 
@@ -414,17 +399,19 @@
         <div class="modal-content">
             <div class="modal-header text-center">
                 <h4 class="modal-title">Edit Business Name or Contact </h4>
+                 <p>Do you have a Twitter Page for your business?</p>
                 <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
            
                <div class="clearfix"></div>
             </div>
             <div class="modal-body">
-                <div class="col-sm-12  text-center">
-                    <div class="switbtn">
+              <div class="switbtn switbtncenter">
                         <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                        <span class="have_one">Of course, I have one! </span>
+                        <span class="have_one">Yes, I have one! </span>
                     </div>
                         <div class="clearfix"></div>
+                <div class="col-sm-12  text-center">
+                    
                         <div class="input_facebook input-effect form-group">
                             <i class="fa fa-twitter fa-2x" data-reactid="334" ></i> 
                             
@@ -458,13 +445,13 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="modal-body">
-                    <div class="col-sm-12  text-center">
-                    <div class="switbtn">
+                   <div class="switbtn switbtncenter">
                         <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                        <span class="have_one">Of course, I have one! </span>
-                        <span class="have_one">No, I Don't! </span>
+                        <span class="have_one">No, I don't! </span>
                     </div>
                     <div class="clearfix"></div>
+                    <div class="col-sm-12  text-center">
+                   
                     <div class="input_facebook input-effect form-group">
                         <i class="fa fa-google-plus fa-2x" data-reactid="334" style="font-size:1.6em" ></i> 
                         <input class="effect-16 validate endent_10px width_60" 
@@ -497,12 +484,13 @@
                   <div class="clearfix"></div>
               </div>
               <div class="modal-body">
-                  <div class="col-sm-12  text-center">
-                  <div class="switbtn">
+                <div class="switbtn switbtncenter">
                       <ui-switch [(ngModel)] ="enable" ></ui-switch> 
-                      <span class="have_one">Of course, I have one! </span>
+                      <span class="have_one">Yes, I have one! </span>
                   </div>
                   <div class="clearfix"></div>
+                  <div class="col-sm-12  text-center">
+                  
                   <div class="input_facebook input-effect form-group">
                       <i class="fa fa-instagram fa-2x" data-reactid="334" ></i> 
                       <input class="effect-16 validate endent_10px width_60" 
@@ -536,12 +524,12 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="modal-body">
-                    <div class="col-sm-12  text-center">
-                    <div class="switbtn">
+                   <div class="switbtn switbtncenter">
                         <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                        <span class="have_one">Of course, I have one! </span>
+                        <span class="have_one">Yes, I have one! </span>
                     </div>
                     <div class="clearfix"></div>
+                    <div class="col-sm-12  text-center">
                     <div class="input_facebook input-effect form-group">
                         <i class="fa fa-globe fa-2x" data-reactid="334" ></i> 
                         <input class="effect-16 validate endent_10px width_60" 
@@ -555,6 +543,19 @@
                         <!-- <label>Enter the Link here</label> -->
                     </div>
                     </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12 mob_margin_30px">
+            <div class="card col-sm-12 notebox text-center">
+               <p>No Website? No Problem!</p>
+               <div class="noproblum">
+                  <p>1. Copy the link to your profile on Perfect Weddings 
+                     <span>Copy</span>
+                  </p>
+                  <p>2. Go to your Facebook Page and add the link as your website</p>
+                  <p>3. You are done! That was easy, isn’t it?</p>
+               </div>
+            </div>
+         </div>
                 </div>
                 <div class="foot_div text-center">
                         <button type="submit" class="btn btn-secondary btn-raised" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
@@ -575,9 +576,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="col-sm-12  text-center">
-                        <div class="switbtn">
+                        <div class="switbtn switbtncenter">
                             <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                            <span class="have_one">Of course, I have one! </span>
+                            <span class="have_one">Yes, I have one! </span>
                         </div>
                             <div class="clearfix"></div>
                             <section id="tours">

@@ -21,9 +21,9 @@ $(document).ready(function () {
   $("#supplierscarousel").owlCarousel({
       autoplay: true,
       margin: 20,
+      loop: true,
        /*
       lazyLoad: true,
-      loop: true,
       animateOut: 'fadeOut',
       animateIn: 'fadeIn',
       */

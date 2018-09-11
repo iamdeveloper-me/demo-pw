@@ -22,7 +22,7 @@ export var lineChartOptions: any = {
   responsive: true,
   maintainAspectRatio: false,
   legend: {
-    position: 'bottom',
+    position: 'top',
   },
   scales: {
     xAxes: [{

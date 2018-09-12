@@ -45,7 +45,9 @@ export class NavemenuComponent implements OnInit {
       } else if(window.location.href.indexOf('/vendor/membership')>-1) {
        this.data = 'Membership ';
       } else if(window.location.href.indexOf('/vendor/PromoteBusiness')>-1) {
-        this.data = 'Promotions ';
+        this.data = 'Promote Business ';
+      } else if(window.location.href.indexOf('/vendor/discountdeals')>-1) {
+        this.data = 'Discount & Deals ';
       } else if(window.location.href.indexOf('/vendor/statistics')>-1) {
         this.data = 'Statistics';
       } else if(window.location.href.indexOf('/vendor/actionfront')>-1) {

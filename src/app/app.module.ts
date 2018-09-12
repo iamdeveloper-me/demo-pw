@@ -6,6 +6,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import {DatePipe} from '@angular/common';
 import { ImageCropperModule } from 'ng2-img-cropper';
 
+import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.component';
 
 
 //calender 
@@ -117,6 +118,11 @@ import { MembershipComponent } from './vendor/membership/membership.component';
 
 
 import { CreatePromotionComponent } from './vendor/create-promotion/create-promotion.component'; 
+
+
+
+
+
 
 import {  AdminComponent } from "./admin/admin.component";
 import { AdminsidebarComponent } from './admin/adminsidebar/adminsidebar.component';
@@ -232,7 +238,7 @@ export function getAuthServiceConfigs() {
         MyaccountComponent,
         EditprofileComponent,
         GalleryComponent,
-        
+        DiscountdealsComponent,
         ReviewsComponent,
         NgbduserModalContent ,
         VendorsidebarComponent,
@@ -253,7 +259,6 @@ export function getAuthServiceConfigs() {
         AllcategoryComponent,
         SupplierByCityComponent,
         SupplierByCateComponent,
-
         VideosComponent,
       
 

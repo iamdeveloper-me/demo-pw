@@ -11,7 +11,7 @@
       </ol>
    </div>
 </div>
-  <div class="col-sm-9">
+  <div class="col-sm-9 mobnopadd">
         <!-- carosel slider -->
    
    <div class="boxLightStyles martop0px">
@@ -86,21 +86,29 @@
                   
                    <div class="col-sm-12">
                       <div class="featurebtn row">
-                      
+                        
                         <div class="col-3">
-                           <i class="material-icons">call</i>
+                          <button class="btn purple-gradient borradius50per">
+                            <i class="material-icons">call</i>
+                          </button>
                           <div class="featurehead">Call</div>
                         </div>
                         <div class="col-3">
-                          <i class="material-icons">mail_outline</i>
+                           <button class="btn purple-gradient borradius50per" data-toggle="modal" data-target="#address">
+                              <i class="material-icons">mail_outline</i>
+                            </button>
                           <div class="featurehead">Message</div>
                         </div>
                         <div class="col-3">
-                          <i class="material-icons">bookmark_border</i>
+                           <button class="btn purple-gradient borradius50per">
+                            <i class="material-icons">bookmark_border</i>
+                          </button>
                           <div class="featurehead">Bookmark</div>
                         </div>
                         <div class="col-3">
+                           <button class="btn purple-gradient borradius50per">
                           <i class="material-icons">share</i>
+                        </button>
                           <div class="featurehead">Share</div>
                         </div>
                       </div>
@@ -119,7 +127,11 @@
                   <i class="material-icons">camera_enhance</i>
                   Gallery
                 </button>
-                <button class="aboutbox">
+                <button class="aboutbox hidden-xs">
+                  <i class="material-icons">insert_comment</i>
+                  About
+                </button>
+                 <button class="aboutbox hidden-sm hidden-md hidden-lg mobileabout">
                   <i class="material-icons">insert_comment</i>
                   About
                 </button>
@@ -133,7 +145,7 @@
                 </button>
               </div>
 
-    <div class="vp_about_txt aboutsection" id="about">
+    <div class="vp_about_txt aboutsection hidden-xs" id="about">
       <div class="boxLightStyles hideShowMeNow vp_about box_section_light r_s_pre"> 
 
         <div class="vp_about_txt">
@@ -184,6 +196,16 @@
                   </div>
                  
                  <div class="clearfix"></div>
+                 <table class="tabledesignwork text-center ">
+                          <tr>
+                            <th><strong>Wed</strong></th>
+                            <th>
+                                12:00PM-12:00PM 
+                                <span class="greentext">Open</span>
+                            </th>
+                          </tr>
+                        </table>
+                         <div class="clearfix"></div>
                       <div class="detailtabclick detailtra">
                         <table class="tabledesignwork">
                           <tr>
@@ -227,7 +249,7 @@
 
 
     <div class="boxLightStyles hideShowMeNow vp_services box_section_light1 r_s_pre  weddingvenue">
-<div class="left_box_section overviewsection startprice onlymobilesection">
+        <div class="left_box_section overviewsection startprice onlymobilesection">
                   <div class="vp_mainDetails_starting_price">
                     <div class="large_subtext bob_pa_left text-center"> 
                       Starting Price: <span class="">₹ 1500</span>
@@ -258,8 +280,8 @@
                      <div class="text-center showless" style="display: none;">Show less</div>
                    
                   </div>
-              </div>
-      <div class="vp_services_txt">
+        </div>
+        <div class="vp_services_txt">
         <div class="servicecontainer_0 servicecontainer">
            <div class="servicerow">
                <span class="vp_services_txt_span marriager_text_without_underline"> Wedding Venues </span>
@@ -290,7 +312,7 @@
               </div>
             </div>
         </div>
-      </div>
+        </div>
     </div>
     <div class="boxLightStyles hideShowMeNow vp_venues box_section_light r_s_pre hidden-xs">
 
@@ -377,43 +399,10 @@
        <div class="vp_services_txt_seeMore marriager_text "> <a href="#"> See More </a></div>
       </div>
     </div>
-    <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection"  id="review">
-      <div class="vp_review_txt_title large_subtext "> Reviews </div>
-        <form  (ngSubmit)="putReview(review)" #f="ngForm">
-            <div class="vp_review_txt">
-                <div class="vp_giveReviewBox">
-                <span>Give A Review:</span>
 
-                <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
-                    <div class="jq-ry-group-wrapper">
-                    <div class="jq-ry-normal-group jq-ry-group">
-                            <rating [(ngModel)]="review.rating"  name="rating"></rating>  
-                    </div>
-                    </div>
-                </span>
 
-                <div class="textInput">
-                    
-                        <input 
-                        placeholder="Write a Review" 
-                        type="text" 
-                        class="textInputInner"
-                        required
-                        [(ngModel)] = "review.comments" 
-                        name="comments"
-                        >
-                        <button type="submit" class="textInputSubmit" value="SUBMIT">SUBMIT</button>
-                        <input class="submitedRating" type="hidden" value="0">
-                        <div class="errorInValidation sendAReview">
-                        Your review is empty. SUBMIT again to send this anyway 
-                        </div>
-                </div>
-            </div>
-            </div>
-        </form>    
-    </div>
 
-    <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection gallery">
+        <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection gallery">
       <div class="large_subtext"> 
         Portfolio & Albums 
         <span>(112 Photos)</span> 
@@ -469,6 +458,150 @@
           </div>
       </div>     
     </div>
+
+    <div class="clearfix"></div>
+     <div class="onlymobilesection"><div class="vp_about_txt aboutsection" id="aboutmobile">
+        <div class="boxLightStyles hideShowMeNow vp_about box_section_light r_s_pre"> 
+
+        <div class="vp_about_txt">
+          <div class="vp_about_txt_title large_subtext ">
+            About Us 
+          </div>
+          <div class="vp_about_txt_description ">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.....
+            <div class="clearfix"></div>
+            <div class="onlymobilesection">
+                <ul class="wed_me_social">
+                  <li>
+                    <a href="#">
+                      <i aria-hidden="true" class="fa fa-facebook"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i aria-hidden="true" class="fa fa-twitter"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i aria-hidden="true" class="fa fa-instagram"></i>
+                    </a>
+                  </li>
+                </ul>
+
+                <div  class="">Indore:</div>
+                <div class="branchAddress"> New Plasiya, 143-D,AB Road,M.P </div>
+                <div class="" data-lattitude="19.012" data-longitude="72.822">View in Map </div>
+                
+            </div>
+        </div>
+        <div class="vp_about_txt_readMore marriager_text ">
+          <a href="">Read More</a>
+               <span class="linkshow"> Show More </span>
+               <span class="linkless"> Show less </span>
+        </div>
+
+        </div>
+        </div>
+        <div class="left_box_section overviewsection tradinghours onlymobilesection">
+                  <div class="large_subtext"> 
+                    Trading Hours
+                  </div>
+                 
+                 <div class="clearfix"></div>
+                 <table class="tabledesignwork text-center ">
+                          <tr>
+                            <th><strong>Wed</strong></th>
+                            <th>
+                                12:00PM-12:00PM 
+                                <span class="greentext">Open</span>
+                            </th>
+                          </tr>
+                        </table>
+                         <div class="clearfix"></div>
+                      <div class="detailtabclick detailtra">
+                        <table class="tabledesignwork">
+                          <tr>
+                            <td width="35%">Mon</td>
+                            <td>12:00PM-12:00PM</td>
+                          </tr>
+                          <tr>
+                            <td>Tue</td>
+                              <td>12:00PM-12:00PM</td>
+                          </tr>
+                          <tr>
+                            <th><strong>Wed</strong></th>
+                            <th>
+                                12:00PM-12:00PM 
+                                <span class="greentext">Open</span>
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>Thu</td>
+                              <td>12:00PM-12:00PM</td>
+                          </tr>
+                          <tr>
+                            <td>Fri</td>
+                              <td>12:00PM-12:00PM</td>
+                          </tr>
+                          <tr>
+                            <td>Sat</td>
+                              <td>12:00PM-12:00PM</td>
+                          </tr>
+                          <tr>
+                            <td>Sun</td>
+                             <td>12:00PM-12:00PM</td>
+                          </tr>
+                        </table>
+                      </div>
+                    <div class="clearfix"></div>
+                    <div class="text-center showdetail">Show More</div>
+                     <div class="text-center showless" style="display: none;">Show less</div>
+        </div>
+     </div>
+   </div>
+
+
+<div class="clearfix"></div>
+
+
+    <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection"  id="review">
+      <div class="vp_review_txt_title large_subtext "> Reviews </div>
+        <form  (ngSubmit)="putReview(review)" #f="ngForm">
+            <div class="vp_review_txt">
+                <div class="vp_giveReviewBox">
+                <span>Give A Review:</span>
+
+                <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
+                    <div class="jq-ry-group-wrapper">
+                    <div class="jq-ry-normal-group jq-ry-group">
+                            <rating [(ngModel)]="review.rating"  name="rating"></rating>  
+                    </div>
+                    </div>
+                </span>
+
+                <div class="textInput">
+                    
+                        <input 
+                        placeholder="Write a Review" 
+                        type="text" 
+                        class="textInputInner"
+                        required
+                        [(ngModel)] = "review.comments" 
+                        name="comments"
+                        >
+                        <button type="submit" class="textInputSubmit" value="SUBMIT">SUBMIT</button>
+                        <input class="submitedRating" type="hidden" value="0">
+                        <div class="errorInValidation sendAReview">
+                        Your review is empty. SUBMIT again to send this anyway 
+                        </div>
+                </div>
+            </div>
+            </div>
+        </form>    
+    </div>
+
+
 <div class="clearfix"></div>
 
     <div class="boxLightStyles  box_section_light vp_similarVendors r_s_pre hidden-xs">
@@ -825,13 +958,19 @@
           <div class="row">
             <div class="col-12">
               <div class="col-4">
-                <i class="material-icons">call</i>
+                <button class="btn purple-gradient borradius50per">
+                    <i class="material-icons">call</i>
+                </button>
               </div>
               <div class="col-4">
-                <i class="material-icons">mail_outline</i>
+                <button class="btn purple-gradient borradius50per" data-target="#address" data-toggle="modal">
+                  <i class="material-icons">mail_outline</i>
+                </button>
               </div>
               <div class="col-4">
-                <i class="material-icons">bookmark_border</i>
+                <button class="btn purple-gradient borradius50per">
+                  <i class="material-icons">bookmark_border</i>
+                </button>
               </div>
             </div>
           </div>

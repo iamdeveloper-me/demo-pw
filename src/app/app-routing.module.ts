@@ -26,6 +26,7 @@ import { FaquestionComponent } from './faquestion/faquestion.component';
 import { TermsandconComponent } from './termsandcon/termsandcon.component';
 import { CareersComponent } from './careers/careers.component';
 import { AdvertiseComponent } from './advertise/advertise.component';
+import { FootCupleComponent } from './foot-cuple/foot-cuple.component';
 import { UserboardComponent } from './userpannel/userboard/userboard.component';
 import { InspirationsComponent } from './userpannel/userboard/inspirations/inspirations.component';
 import { UserReviewsComponent } from './userpannel/userboard/user-reviews/user-reviews.component';
@@ -114,6 +115,7 @@ const appRoutes: Routes = [
   { path: 'home/TermsandConditions', component: TermsandconComponent  },
   { path: 'home/Careers', component:  CareersComponent  },
   { path: 'home/Advertise', component:  AdvertiseComponent },
+  { path: 'home/cuplefoot', component:  FootCupleComponent },
 
     { path: 'vendor/creatpromo', component:  CreatePromotionComponent  },
     { path: 'vendor/dashboard', component:  DashboardComponent  },

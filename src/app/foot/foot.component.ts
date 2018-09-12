@@ -16,6 +16,34 @@ export class FootComponent implements OnInit {
       $(this).toggleClass("hide_menus");
   });
 
+  $(".wedding-icon1").click(function() {
+  //alert("hi");
+    $('html,body').animate({
+        scrollTop: $("#venders1").offset().top},
+        'slow');
+});
+
+$(".wedding-icon3").click(function() {
+  //alert("hi");
+    $('html,body').animate({
+        scrollTop: $("#checklist1").offset().top},
+        'slow');
+});
+
+$(".wedding-icon2").click(function() {
+  //alert("hi");
+    $('html,body').animate({
+        scrollTop: $("#guestlist1").offset().top},
+        'slow');
+});
+
+ $(".wedding-icon4").click(function() {
+  //alert("hi");
+    $('html,body').animate({
+        scrollTop: $("#control1").offset().top},
+        'slow');
+});
+
     
   }
 

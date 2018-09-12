@@ -161,6 +161,7 @@ import { PromotionHomepageComponent } from './vendor/promotion-homepage/promotio
 import { TipslistComponent } from './tipslist/tipslist.component';
 import { EventlistComponent } from './eventlist/eventlist.component';
 import { InvoiceDetailComponent } from './vendor/invoice-detail/invoice-detail.component';
+import { FootCupleComponent } from './foot-cuple/foot-cuple.component';
 
 
 
@@ -306,6 +307,7 @@ export function getAuthServiceConfigs() {
         VediosettingComponent,
         TipslistComponent,
         EventlistComponent,
+        FootCupleComponent,
 
 
   ],

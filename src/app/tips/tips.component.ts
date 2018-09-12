@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tips.component.scss']
 })
 export class TipsComponent implements OnInit {
-
    page = 4;
    page1 = 4;
    page2 = 4;
@@ -21,7 +20,6 @@ export class TipsComponent implements OnInit {
 
   ngOnInit() {
 
-   
   }
 
 }

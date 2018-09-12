@@ -187,7 +187,7 @@ export class LocationComponent implements OnInit {
      console.log( data.json() as string[] );
     // console.log( data.countryId );
 
-});
+})
    
 
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
@@ -221,20 +221,20 @@ export class LocationComponent implements OnInit {
     this.modelfield  = b;
     this.address  = c;
   }
-  upForm(info,addr)
+  upForm(info)
   {
 
-    console.log(addr);
+    console.log( this.modelfield );
     console.log(info);
 
     var infovendorLocationId = info.value.vendorLocationId;
-    var infoaddress = info.value.address;
-    var infocity = info.value.city;
+    var infoaddress =this.modelfield.address;
+    var infocity = this.modelfield.city;
     var infomobile = info.value.mobile;
     var infovendorId = info.value.vendorId;
-    var infocountryName = info.value.country;
+    var infocountryName =this.modelfield.country;
     var infocountryId = info.value.countryId;
-    var infopostalCode = info.value.postalCode;
+    var infopostalCode = this.modelfield.postalCode;
     var infophone = info.value.phone;
     var infotitle = info.value.title1;
     var infosundayOpen =  info.value.sundayOpen;
@@ -324,19 +324,15 @@ export class LocationComponent implements OnInit {
     ,      (responce)=>{ console.log(responce); });
        }
    
-cerate(b){
-console.log(b);
+cerate(e){
+console.log(e);
 
-var address = b.value.Address ;
-var country = b.value.Country ;
-var Phone = b.value.Phone ;
-var city = b.value.city ;
-var postalCode = b.value.postalCode ;
+var address = e.value.Address ;
+var country = e.value.Country ;
+var Phone = e.value.Phone ;
+var city = e.value.city ;
+var postalCode = e.value.postalCode ;
 
-
-       
-
-  
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         var countryId = localStorage.getItem('countryid');
@@ -356,7 +352,7 @@ var postalCode = b.value.postalCode ;
           postalCode:  postalCode,
           address:  address,
           phone: Phone,
-          mobile:   'info' ,
+          mobile:      'info' ,
           sundayOpen:     'info',
           sundayClose:    'info',
           mondayOpen:     'info',
@@ -388,7 +384,7 @@ var postalCode = b.value.postalCode ;
 }
 
 
-   locationForm(info,addr)
+   locationForm(info)
    {
  
      console.log(this.modelfield );

@@ -32,8 +32,9 @@ export class MenuComponent implements OnInit {
 
           if (data.statusText == "OK" && data.json().role =="Vendors" ) {
             this.typeSuccess();
-            localStorage.setItem('vendorId',data.json().id);
+            localStorage.setItem('userId',data.json().id);
             localStorage.setItem('userToken',data.json().auth_token);
+         
             this.router.navigate(['../vendor/dashboard'])
             $("body").removeClass( "modal-open");
             $("div").removeClass( "modal-backdrop"); 

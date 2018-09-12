@@ -39,8 +39,6 @@ const colors: any = {
     secondary: '#FDF1BA'
   }
 };
-
-
 @Component({
   selector: 'app-calendertable',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -48,28 +46,30 @@ const colors: any = {
   styleUrls: ['./calendertable.component.scss']
 })
 export class CalendertableComponent implements OnInit {
+   jobArray:string[];
+   
+   events: CalendarEvent[] = [];
+   event = {  vendorJobsId: 0,
+              clientName: "",
+              numberOfPeople: 0,
+              clientPhoneNumber: "",
+              jobLocation: "",
+              lat: 0,
+              long: 0,
+              jobDate: "",
+              jobTime: "",
+              userId: "",
+              vendorId: 0
+             }
   
-  jobArray:string[];
-event = {  
-    vendorJobsId: 0,
-   clientName: "",
-   numberOfPeople: 0,
-   clientPhoneNumber: "",
-   jobLocation: "",
-   lat: 0,
-   long: 0,
-   jobDate: "",
-   jobTime: "",
-   userId: "",
-   vendorId: 0
- }
-  
- private urlgetremove: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob'
-
-  vendor: any = {};
+  private urlgetremove: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob'
   private url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/createupdatejobs';
   private geturl: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/myjobs';
-
+  vendor: any = {};
+  test: string;
+  dates: string;
+  entry: string;
+  myDate = new Date(); 
   t: any;
   currentJustify = 'start';
   currentOrientation = 'horizontal';
@@ -79,55 +79,32 @@ event = {
       $event.preventDefault();
     }
   };
- // myDate = new Date();
-  test: string;
-  dates: string;
-  entry: string;
-   myDate = new Date(); 
-  constructor(private modal: NgbModal,public http: Http,private datePipe: DatePipe) { 
-  
-   // this.myDate  = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
-   // this.myDate = this.datePipe.format(this.myDate, 'yyyy-MM-dd');
-   // console.log(this.datePipe.transform(date,"yyyy-MM-dd")); //output : 2018-02-13
 
+  constructor(private modal: NgbModal,public http: Http,private datePipe: DatePipe) { 
    this.test = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
   }
 
   ngOnInit() {
-  
-
-  
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
-  
     this.http.get(this.geturl,{headers:headers}).subscribe(data =>{
-  
     this.jobArray = data.json() as string[]; 
- 
     for (let entry of data.json()) {
-     this.dates = this.datePipe.transform(entry.jobDate, 'yyyy-MM-dd');  
+      this.events.push({
+          title: entry.clientName,
+          start: entry.clientName,
+      });
      }
-  
-   
     });
- 
-   
 
-
-
+    console.log(this.events);
     this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob',
    {headers:headers}).subscribe((data) => { 
        console.log( data.json() as string[] );
-    // console.log( data.json());
     });
-    
-
-    var isValid = false ;
-
-
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
@@ -170,18 +147,13 @@ $(".weddingjobstab").click(function(){
   }
 
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
-
   view: string = 'month';
-
   newEvent: CalendarEvent;
-
   viewDate: Date = new Date();
-
   modalData: {
     action: string;
     event: CalendarEvent;
   };
-
   actions: CalendarEventAction[] = [
     {
       label: '<i class="fa fa-fw fa-pencil"></i>',
@@ -197,46 +169,12 @@ $(".weddingjobstab").click(function(){
       }
     }
   ];
-
   refresh: Subject<any> = new Subject();
-
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: new Date(),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    }
-  ];
-
+ 
+  // events: CalendarEvent[] = [];
   activeDayIsOpen: boolean = true;
-
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+     console.log('Event clicked', event);
     if (isSameMonth(date, this.viewDate)) {
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
@@ -249,9 +187,8 @@ $(".weddingjobstab").click(function(){
       }
     }
   }
-
   eventTimesChanged({
-      event,
+    event,
     newStart,
     newEnd
     }: CalendarEventTimesChangedEvent): void {
@@ -315,6 +252,7 @@ job(jo){
     data =>{ this.vendor = data.json(); console.log(this.vendor);});
   
   }
+
   deletevent(id){
     alert(id)
     var deleteid = id ;
@@ -323,7 +261,8 @@ job(jo){
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
-    this.http.get(this.urlgetremove + deleteid,{headers:headers}).subscribe(data =>{
+    console.log(this.urlgetremove + '/' + deleteid);
+    this.http.get(this.urlgetremove + '/' + deleteid,{headers:headers}).subscribe(data =>{
      console.log(data.json());
     },error =>{ console.log(error)});
   }

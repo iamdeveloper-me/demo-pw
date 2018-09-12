@@ -1,244 +1,166 @@
-.events{
-
-  padding-top: 100px;
-  background-color: #fff;
-  margin-bottom: 50px;
+.eventbanner{
+	padding-top:0px;
+}
+.nopadd{
+	padding:0px;
+}
+.eventsearchbox{
+	max-width:90%;
+	padding:20px;
+	background:#fff;
+	border-radius:10px;
+	margin:-80px auto 30px auto;
+	z-index:9;
+	position:relative;
+}
+.eventsearchbox h1{
+	margin:10px auto 30px auto;
+	text-align:center;
+	color:#dc0070;
+	font-size:30px;
+}
+.eventsearchbox input{
+	border-radius:20px;
+	border:0px solid #fff;
+	box-shadow:0px 0px 10px #ccc;
+}
+.eventsearchbox select{
+    -webkit-appreance:none;
+	border-radius:20px;
+	border:0px solid #fff;
+	box-shadow:0px 0px 10px #ccc;
+}
+.eventlisting .card-block{
+	padding:10px!important;
+	position:relative;
+}
+.eventdate{
+padding:3px 0px 0px 0px;
+}
+.eventdate span{
+    text-align: center;
+    display: block;
+    color: #dc0070;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 600;
+}
+.eventdate span.date{
+	color: #000 !important;
+    font-size: 14px !important;
+    font-weight: 600;
+}
+.eventtitle{
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    min-height: 60px;
+    line-height: 20px;
+}
+.eventvenue{
+	text-align:left;
+	font-size:14px;
+}
+.eventbtnholder{
+	position:absolute;
+	right:5px;
+	top:-50px;
+}
+.eventlisting .cardshadow{
+	overflow:hidden!important;
+	box-shadow:0px 0px 10px #ccc!important;
+}
+.ribbon {
+  width: 110px;
+  height: 110px;
+  overflow: hidden;
+  position: absolute;
+  transform: rotate(45deg);
+  right:0px;
+  top:0px;
+}
+.ribbon span {
+  position: absolute;
+  display: block;
+  width: 110px;
+  padding: 10px 0;
+  background-color: #3498db;
+  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+  color: #fff;
+  font: 700 14px/1 'Lato', sans-serif;
+  text-shadow: 0 1px 1px rgba(0,0,0,.2);
+  text-transform: uppercase;
+  text-align: center;
 }
 
-.events hr{
-    width: 4%;
-    margin-top: -5px;
-    border-color: pink;
-    border-width: 2px;
-  
+.eventbtnholder button i{display:flex;}
+.purple-gradient {
+    background: -webkit-linear-gradient(50deg,#ff6ec4,#7873f5)!important;
+    background: -o-linear-gradient(50deg,#ff6ec4,#7873f5)!important;
+    background: linear-gradient(40deg,#ff6ec4,#7873f5)!important;
+    padding:5px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 5px 0 rgba(0,0,0,.12);
+    outline:none;
+    border:0px;
+    margin:0px 3px;
+    color:#fff;
 }
-.eventsbtn{
-	float:right;
+.borradius50per{
+    border-radius:50%;
 }
- @import url("http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,400italic");
-    @import url("//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css");
-    body {
-		padding: 60px 0px;
-		background-color: rgb(220, 220, 220);
-	}
-    
-    .event-list {
-		list-style: none;
-		font-family: 'Lato', sans-serif;
-		margin: 0px;
-		padding: 0px;
-	}
-	.event-list > li {
-		background-color: rgb(255, 255, 255);
-		box-shadow: 0px 0px 5px rgb(51, 51, 51);
-		box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.7);
-		padding: 0px;
-		margin: 0px 0px 20px;
-	}
-	.event-list > li > time {
-		display: inline-block;
-		width: 100%;
-		color: rgb(255, 255, 255);
-		background-color:rgba(0, 46, 119, 0.7);
-		padding: 5px;
-		text-align: center;
-		text-transform: uppercase;
-	}
-	.event-list > li:nth-child(even) > time {
-		background-color: #e72e77;
-	}
-	.event-list > li > time > span {
-		display: none;
-	}
-	.event-list > li > time > .day {
-		display: block;
-		font-size: 30pt;
-		font-weight: 100;
-		line-height: 1;
-		padding-top: 24px;
-	}
-	.event-list > li time > .month {
-		display: block;
-		font-size: 24pt;
-		font-weight: 900;
-		line-height: 1;
-	}
-	.event-list > li > img {
-		width: 100%;
-	}
-	.event-list > li > .info {
-		padding-top: 5px;
-		text-align: center;
-	}
-	.event-list > li > .info > .title {
-		font-size: 17pt;
-		font-weight: 700;
-		margin: 0px;
-	}
-	.event-list > li > .info > .desc {
-		font-size: 13pt;
-		font-weight: 300;
-		margin: 0px;
-	}
-	.event-list > li > .info > ul,
-	.event-list > li > .social > ul {
-		display: table;
-		list-style: none;
-		margin: 10px 0px 0px;
-		padding: 0px;
-		width: 100%;
-		text-align: center;
-	}
-	.event-list > li > .social > ul {
-		margin: 0px;
-	}
-	.event-list > li > .info > ul > li,
-	.event-list > li > .social > ul > li {
-		display: table-cell;
-		cursor: pointer;
-		color: rgb(30, 30, 30);
-		font-size: 11pt;
-		font-weight: 300;
-        padding: 3px 0px;
-	}
-    .event-list > li > .info > ul > li > a {
-		display: block;
-		width: 100%;
-		color: rgb(30, 30, 30);
-		text-decoration: none;
-	} 
-    .event-list > li > .social > ul > li {    
-        padding: 0px;
-    }
-    .event-list > li > .social > ul > li > a {
-        padding: 3px 0px;
-	} 
-	.event-list > li > .info > ul > li:hover,
-	.event-list > li > .social > ul > li:hover {
-		color: rgb(30, 30, 30);
-		background-color: rgb(200, 200, 200);
-	}
-	.facebook a,
-	.twitter a,
-	.google-plus a {
-		display: block;
-		width: 100%;
-		color: rgb(75, 110, 168) !important;
-	}
-	.twitter a {
-		color: rgb(79, 213, 248) !important;
-	}
-	.google-plus a {
-		color: rgb(221, 75, 57) !important;
-	}
-	.facebook:hover a {
-		color: rgb(255, 255, 255) !important;
-		background-color: rgb(75, 110, 168) !important;
-	}
-	.twitter:hover a {
-		color: rgb(255, 255, 255) !important;
-		background-color: rgb(79, 213, 248) !important;
-	}
-	.google-plus:hover a {
-		color: rgb(255, 255, 255) !important;
-		background-color: rgb(221, 75, 57) !important;
-	}
-
-	.event-list > li > .social > ul > li > a{
-  
-      padding: 0 !important;    
-	}
-
-	.regi_now{
-       background-color: #af3449;
-       border-radius: 10px;
-       padding: 5px 10px;
-       color: #fff;
-       margin-left: 30%;
-	}
-.info{padding-left: 20px; padding-right: 20px !important;}	
-.info h5{color: #000; margin-bottom: 0;}
-@media (min-width: 768px) {
-		.event-list > li {
-			position: relative;
-			display: block;
-			width: 100%;
-			height: 120px;
-			padding: 0px;
-		}
-		.event-list > li > time,
-		.event-list > li > img  {
-			display: inline-block;
-		}
-		.event-list > li > time,
-		.event-list > li > img {
-			width: 120px;
-			float: left;
-		}
-		.event-list > li > .info {
-			background-color: rgb(245, 245, 245);
-			overflow: hidden;
-		}
-		.event-list > li > time,
-		.event-list > li > img {
-			width: 120px;
-			height: 120px;
-			padding: 0px;
-			margin: 0px;
-		}
-		.event-list > li > .info {
-			position: relative;
-			height: 120px;
-			text-align: left;
-			padding-right: 40px;
-		}	
-		.event-list > li > .info > .title, 
-		.event-list > li > .info > .desc {
-			padding: 0px 10px;
-		}
-		.event-list > li > .info > ul {
-			position: absolute;
-			left: 0px;
-			bottom: 0px;
-		}
-		.event-list > li > .social {
-			position: absolute;
-			top: 0px;
-			right: 0px;
-			display: block;
-			width: 40px;
-		}
-        .event-list > li > .social > ul {
-            border-left: 1px solid rgb(230, 230, 230);
-        }
-		.event-list > li > .social > ul > li {			
-			display: block;
-            padding: 0px;
-		}
-		.event-list > li > .social > ul > li > a {
-			display: block;
-			width: 40px;
-			padding: 10px 0px 9px;
-		}
-		.eventsbtn{
-	float:none!important;
+.totalpage{
+  color:#aeaeaf;
+  position: absolute;
+  top:5px;
+  right: 10px; 
+  text-transform:uppercase;
+  font-weight: bold;
+  }
+.page-nation{
+  position: relative;
 }
-
-		.event-list > li > .info{
-
-			padding-bottom: 60px;
-		  }
-		  .btn{
-			  width: 100%;
-			  margin-top: 10px;
-		  }
-		  .event-list > li > time > .day{
-
-			padding-top: 0px;
-		  }
-		  .events[_ngcontent-c0] hr[_ngcontent-c0]{
-			  width: 14%;
-		  }
+@media(max-width: 768px){
+.totalpage{
+  position: relative; 
+  text-align:center;
+  display:block;
+  margin-top:-7px;
+  margin-bottom:20px;
+  }
+	.eventbanner{
+	padding-top:60px;
 	}
-
-
+	.eventdate{
+		display:none;
+	}
+	.eventtitle{
+	    font-size: 16px;
+	    font-weight: 600;
+	    text-align: center;
+	    min-height: inherit;
+	    line-height: 20px;
+	}
+	.eventvenue{
+		text-align:center;
+	}
+	.eventsearchbox{
+	max-width:100%;
+	padding:10px 10px 0px;
+	background:#fff;
+	border-radius:10px;
+	margin:-25px auto 0px auto;
+	box-shadow:0px 0px 10px #ccc;
+}
+.eventsearchbox h1{
+	margin:5px auto 10px auto;
+	font-size:16px;
+	font-weight:bold;
+}
+.eventsearchbox input{
+margin-bottom:15px;
+}
+.eventsearchbox select{
+margin-bottom:15px;
+}
+}

@@ -166,6 +166,18 @@ $(".aboutbox").click(function() {
     $('.overviewbox').removeClass('activebuttontab');
     $('.gallerybox').removeClass('activebuttontab');
 });
+
+$(".mobileabout").click(function() {
+    $('html,body').animate({scrollTop: $("#aboutmobile").offset().top-150},'slow');
+    $('.mobileabout').addClass('activebuttontab');
+    $('.reviewbox').removeClass('activebuttontab');
+    $('.overviewbox').removeClass('activebuttontab');
+    $('.gallerybox').removeClass('activebuttontab');
+});
+
+
+
+
 $(".overviewbox").click(function() {
     $('html,body').animate({scrollTop: $(".weddingvenue").offset().top-150},'slow');
     $('.overviewbox').addClass('activebuttontab');
@@ -203,6 +215,17 @@ $(".aboutbtn").click(function() {
 $(".reviewbtn").click(function() {
     $('html,body').animate({scrollTop: $(".reviewsection").offset().top-100},'slow');
     $('.reviewbtn').addClass('btnactive');
+});
+
+$(".callbtn").click(function() {
+     $('.callinfo').show();
+     $('.callbtn').hide();
+     $('.callbtnhide').show();
+});
+$(".callbtnhide").click(function() {
+      $('.callinfo').hide();
+     $('.callbtn').show();
+     $('.callbtnhide').hide();
 });
 
 $(document).ready(function() {

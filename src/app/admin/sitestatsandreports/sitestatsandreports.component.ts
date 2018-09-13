@@ -13,5 +13,4 @@ export class SitestatsandreportsComponent implements OnInit {
   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
   $.getScript('./assets/js/vendorsidebar.js');
   }
-
 }

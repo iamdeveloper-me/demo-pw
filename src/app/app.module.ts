@@ -168,6 +168,8 @@ import { TipslistComponent } from './tipslist/tipslist.component';
 import { EventlistComponent } from './eventlist/eventlist.component';
 import { InvoiceDetailComponent } from './vendor/invoice-detail/invoice-detail.component';
 import { FootCupleComponent } from './foot-cuple/foot-cuple.component';
+import { TaskboardComponent } from './admin/taskboard/taskboard.component';
+import { SiteFeedbackComponent } from './admin/site-feedback/site-feedback.component';
 
 
 
@@ -313,6 +315,8 @@ export function getAuthServiceConfigs() {
         TipslistComponent,
         EventlistComponent,
         FootCupleComponent,
+        TaskboardComponent,
+        SiteFeedbackComponent,
 
 
   ],

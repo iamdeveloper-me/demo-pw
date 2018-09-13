@@ -1,6 +1,4 @@
 
-
-
 import { NgForm } from '@angular/forms';
 import { CropperSettings, ImageCropperComponent } from 'ng2-img-cropper';
 import { Component, OnInit ,Input , ViewChild, NgZone,} from '@angular/core';
@@ -38,7 +36,6 @@ interface Location {
 
 export class BusinessInfoComponent implements OnInit {
 
-  
   circleRadius:number = 5000;
   milesToRadius(value) {
     this.circleRadius = value / 0.00062137;
@@ -163,16 +160,16 @@ export class BusinessInfoComponent implements OnInit {
   google;
   Businesname;
   perfectWedding;
-
-  private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessinfo'
   private urlpost: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savelocation'
+
   private urlget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mylocations'
- 
+  private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessinfo'
   vendor: any = {};
   modelfield: any = {};
-  countryArray:string[];
+
+  countryArray:any= {};
   data: any;
-  vendorlocatonid;
+
   cropperSettings: CropperSettings;
 
   @ViewChild('cropper', undefined)
@@ -183,10 +180,13 @@ export class BusinessInfoComponent implements OnInit {
     var file: File = $event.target.files[0];
     var myReader: FileReader = new FileReader();
     var that = this;
+    
     myReader.onloadend = function (loadEvent: any) {
       image.src = loadEvent.target.result;
       that.cropper.setImage(image);
+         console.log(image.src);
 
+       
     };
 
     myReader.readAsDataURL(file);
@@ -212,36 +212,36 @@ export class BusinessInfoComponent implements OnInit {
   
   
   ngOnInit() {
-
-                      
-   
-
-    
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
-
-
-    this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
-      this.countryArray = data.json() as string[]
-      // console.log(data.json() as string[]);
-      // console.log(data.json()[0].vendorLocationId);
-       this.vendorlocatonid = data.json()[0].vendorLocationId;
-  })
   
     this.http.get(this.url,{headers:headers}).subscribe(data =>{
- //   console.log(data.json());
+  //  console.log(data.json());
     this.vendor = data.json();
     this.facebook = data.json().facebookURL ;
+
     this.twitter = data.json().twitterURL ;
     this.instagram = data.json().instalURL ;
     this.google = data.json().googleURL;
     this.Businesname = data.json().nameOfBusiness ;
     this.Description = data.json().businessDetails ;  
     this.perfectWedding = data.json().perfectWeddingURL  ;
-    });
+   
+    // console.log(this.facebook);
+    // console.log(this.instagram);
+    // console.log(this.google);
+    // console.log(this.twitter);
+
+    //         if (this.facebook=="" || this.twitter=="" || this.instagram=="" || this.google=="" ) {
+    //           console.log('false');
+    //         } 
+    //         else {
+    //           console.log('true');
+    //         }
+  })
 
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
@@ -317,18 +317,24 @@ export class BusinessInfoComponent implements OnInit {
         testAnim(anim);
   })
 
-
+  this.location.marker.draggable = true;
+ 
+                      
+    this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
+    this.countryArray = data.json() as string[]
+   //  console.log( data.json() as string[] );
+    // console.log( data.countryId );
+    })
   }
 
   openModel(b){
-    //alert("hh");
     this.modelfield = b;
-    //console.log(this.modelfield);
   }
-  upForm(info){
 
-         //   console.log(info);
-        //   console.log(info.value.businessDetails );
+    upForm(info){
+
+        //    console.log(info);
+            // console.log(info.value.businessDetails );
         //    console.log (this.filedata);
             var infofacebook = info.value.facebook;
             var infotwitter = info.value.twitter;
@@ -363,219 +369,109 @@ export class BusinessInfoComponent implements OnInit {
  
             updatebusinessinfo.subscribe((data) => console.log(data),(error)=>console.log(error));
      }
-abc(event){
+    abc(event){
       console.log(event)
     }
      closeResult: string;
 
 
-    //  =====================================================================
-    upForminfo(infoo)
-    {
-  
-    //  console.log( this.modelfield );
-      console.log(infoo);
-  
-      var infovendorLocationId = infoo.value.vendorLocationId;
-      var infoaddress =this.modelfield.address;
-      var infocity = this.modelfield.city;
-      var infomobile = infoo.value.mobile;
-  
-      var infocountryName =this.modelfield.country;
+     locationForm(info){
+
+       alert("fvfr");
+
+     
+     console.log(this.countryArray);
    
-      var infopostalCode = this.modelfield.postalCode;
-      var infophone = infoo.value.phone;
-      var infotitle = infoo.value.title1;
-      var infosundayOpen =  infoo.value.sundayOpen;
-      var infosundayClose =  infoo.value.sundayClose;
-      
-      var infomondayOpen =  infoo.value.mondayOpen;
-      var infomondayClose =  infoo.value.mondayClose;
-      
-      var infotuesdayOpen =  infoo.value.tuesdayOpen;
-      var infotuesdayClose =  infoo.value.tuesdayClose;
-      
-      var infowednesdayOpen =  infoo.value.wednesdayOpen;
-      var infowednesdayClose =  infoo.value.wednesdayClose;
-      
-      var infothursdayOpen =  infoo.value.thursdayOpen;
-      var infothursdayClose =  infoo.value.thursdayClose;
-      
-      var infofridayOpen =  infoo.value.fridayOpen;
-      var infofridayClose =  infoo.value.fridayClose;
-      
-      var infosaturdayOpen =  infoo.value.saturdayOpen;
-      var infosaturdayClose =  infoo.value.saturdayClose;
-      
-       var infoisFridayOpen  = infoo.value.isFridayOpen;
-      
-       var infoisMondayOpen =  infoo.value.isMondayOpen;
-      
-       var infoisPrimary =  infoo.value.isPrimary;
-      
-       var infoisSaturdayOpen = infoo.value.isSaturdayOpen;
-      
-       var infoisSundayOpen = infoo.value.isSundayOpen ;
-      
-       var infoisThursdayOpen = infoo.value.isThursdayOpen;
-      
-       var infoisTuesdayOpen = infoo.value.isTuesdayOpen;
-      
-       var infoisWednesdayOpen =  infoo.value.isWednesdayOpen;
-      
-      
-        //   console.log(  infoisMondayOpen  );
-        
-      
-          let headers = new Headers();
-          var authToken = localStorage.getItem('userToken');
-          var countryId = localStorage.getItem('countryid');
-          var vendorId = localStorage.getItem('vendorid');
-       //   console.log( countryId);
-        //  console.log( vendorId);
-          headers.append('Accept', 'application/json')
-          headers.append('Content-Type', 'application/json');
-          headers.append("Authorization",'Bearer '+authToken);
-          
-  
-  
-          this.http.post(this.urlpost,{
-            vendorLocationId: this.vendorlocatonid,
-            title: "dvdv",
-            countryId: countryId,
-            vendorId: vendorId,
-            country: {countryId: countryId,countryName: infocountryName},
-            city:  "indore",
-            postalCode: "125468",
-            address:  infoaddress,
-            phone: infophone,
-            mobile:   infomobile ,
-            sundayOpen:     infosundayOpen,
-            sundayClose:    infosundayClose,
-            mondayOpen:     infomondayOpen,
-            mondayClose:    infomondayClose,
-            tuesdayOpen:    infotuesdayOpen,
-            tuesdayClose:   infotuesdayClose,
-            wednesdayOpen:  infowednesdayOpen,
-            wednesdayClose: infowednesdayClose,
-            thursdayOpen:   infothursdayOpen,
-            thursdayClose:  infothursdayClose,
-            fridayOpen:     infofridayOpen,
-            fridayClose:    infofridayClose,
-            saturdayOpen:   infosaturdayOpen,
-            saturdayClose:  infosaturdayClose,
-            isFridayOpen:   true,
-            isMondayOpen:   true,
-            isPrimary:      true,
-            isSaturdayOpen: true,
-            isSundayOpen:   true,
-            isThursdayOpen: true,
-            isTuesdayOpen:  true,
-            isWednesdayOpen:true,
-           
-      
-          },{headers:headers}).subscribe( (data)=> { console.log(data)}
-      ,      (responce)=>{ console.log(responce); });
-         }
-
-         locationForm(info)
-         {
-       
-           console.log(this.modelfield );
-           console.log(info);
-       
-          
-       
-       var addraddresslineone = info.address_level_1;
-       var city = info.address_state;
-       var Country = info.address_country;
-       var Postalcode = info.address_zip ;
-       var lat = info.lat;
-       var lng = info.lng;
-       var infovendorLocationId = this.modelfield.vendorLocationId;
-       var infomobile = this.modelfield.mobile;
-       var infovendorId = this.modelfield.vendorId;
-       var infocountryId = this.modelfield.countryId;
-       var infophone = this.modelfield.phone;
-       var infotitle = this.modelfield.title;
-       console.log(infotitle);
-       var infosundayOpen = this.modelfield.sundayOpen;
-       var infosundayClose =  this.modelfield.sundayClose;
-       var infomondayOpen =  this.modelfield.mondayOpen;
-       var infomondayClose =  this.modelfield.mondayClose;
-       var infotuesdayOpen =  this.modelfield.tuesdayOpen;
-       var infotuesdayClose =  this.modelfield.tuesdayClose;
-       var infowednesdayOpen = this.modelfield.wednesdayOpen;
-       var infowednesdayClose = this.modelfield.wednesdayClose;
-       var infothursdayOpen =  this.modelfield.thursdayOpen;
-       var infothursdayClose = this.modelfield.thursdayClose;
-       var infofridayOpen = this.modelfield.fridayOpen;
-       var infofridayClose = this.modelfield.fridayClose;
-       var infosaturdayOpen = this.modelfield.saturdayOpen;
-       var infosaturdayClose = this.modelfield.saturdayClose;
-       var infoisFridayOpen  =this.modelfield.isFridayOpen;
-       var infoisMondayOpen =  this.modelfield.isMondayOpen;
-       var infoisPrimary = this.modelfield.isPrimary;
-       var infoisSaturdayOpen = this.modelfield.isSaturdayOpen;
-       var infoisSundayOpen = this.modelfield.isSundayOpen ;
-       var infoisThursdayOpen = this.modelfield.isThursdayOpen;
-       var infoisTuesdayOpen = this.modelfield.isTuesdayOpen;
-       var infoisWednesdayOpen = this.modelfield.isWednesdayOpen;
-       
-       
-           let headers = new Headers();
-           var authToken = localStorage.getItem('userToken');
-           headers.append('Accept', 'application/json')
-           headers.append('Content-Type', 'application/json');
-           headers.append("Authorization",'Bearer '+authToken);
-       
-       
-            this.http.post(this.urlpost,{
-             vendorLocationId: infovendorLocationId,
-             title: infotitle,
-             countryId: infocountryId,
-             vendorId: infovendorId,
-             lat: lat,
-             long: lng,
-             country: {countryId: infocountryId,countryName: Country},
-             city:  city,
-             postalCode:  Postalcode,
-             address:  addraddresslineone,
-             phone: infophone,
-             mobile:   infomobile ,
-             sundayOpen:     infosundayOpen,
-             sundayClose:    infosundayClose,
-             mondayOpen:     infomondayOpen,
-             mondayClose:    infomondayClose,
-             tuesdayOpen:    infotuesdayOpen,
-             tuesdayClose:   infotuesdayClose,
-             wednesdayOpen:  infowednesdayOpen,
-             wednesdayClose: infowednesdayClose,
-             thursdayOpen:   infothursdayOpen,
-             thursdayClose:  infothursdayClose,
-             fridayOpen:     infofridayOpen,
-             fridayClose:    infofridayClose,
-             saturdayOpen:   infosaturdayOpen,
-             saturdayClose:  infosaturdayClose,
-             isFridayOpen:   infoisFridayOpen,
-             isMondayOpen:   infoisMondayOpen,
-             isPrimary:      infoisPrimary,
-             isSaturdayOpen: infoisSaturdayOpen,
-             isSundayOpen:   infoisSundayOpen,
-             isThursdayOpen: infoisThursdayOpen,
-             isTuesdayOpen:  infoisTuesdayOpen,
-             isWednesdayOpen:infoisWednesdayOpen,
-           },{headers:headers}).subscribe( (data)=> { console.log(data)}
-       ,      (responce)=>{ console.log(responce); });
-          }
-
-enable =  true;
-enable1 =  true;
-enable2 =  true;
-enable3 =  true;
-enable4 =  true;
+     console.log(info);
+     console.log(this.countryArray[0].vendorLocationId);
+ 
+ var addraddresslineone = info.address_level_1;
+ var city = info.address_state;
+ var Country = info.address_country;
+ var Postalcode = info.address_zip ;
+ var lat = info.lat;
+ var lng = info.lng;
+ var infovendorLocationId =this.countryArray[0].vendorLocationId;
+ var infomobile =  this.countryArray[0].mobile;
+ var infovendorId =  this.countryArray[0].vendorId;
+ var infocountryId = this.countryArray[0].countryId;
+ var infophone =  this.countryArray[0].phone;
+ var infotitle = this.countryArray[0].title;
+// console.log(infotitle);
+ var infosundayOpen =  this.countryArray[0].sundayOpen;
+ var infosundayClose =  this.countryArray[0].sundayClose;
+ var infomondayOpen =   this.countryArray[0].mondayOpen;
+ var infomondayClose =   this.countryArray[0].mondayClose;
+ var infotuesdayOpen =   this.countryArray[0].tuesdayOpen;
+ var infotuesdayClose =  this.countryArray[0].tuesdayClose;
+ var infowednesdayOpen =  this.countryArray[0].wednesdayOpen;
+ var infowednesdayClose =  this.countryArray[0].wednesdayClose;
+ var infothursdayOpen =   this.countryArray[0].thursdayOpen;
+ var infothursdayClose = this.countryArray[0].thursdayClose;
+ var infofridayOpen =  this.countryArray[0].fridayOpen;
+ var infofridayClose =  this.countryArray[0].fridayClose;
+ var infosaturdayOpen =  this.countryArray[0].saturdayOpen;
+ var infosaturdayClose =  this.countryArray[0].saturdayClose;
+ var infoisFridayOpen  = this.countryArray[0].isFridayOpen;
+ var infoisMondayOpen =   this.countryArray[0].isMondayOpen;
+ var infoisPrimary =  this.countryArray[0].isPrimary;
+ var infoisSaturdayOpen =  this.countryArray[0].isSaturdayOpen;
+ var infoisSundayOpen =  this.countryArray[0].isSundayOpen ;
+ var infoisThursdayOpen =  this.countryArray[0].isThursdayOpen;
+ var infoisTuesdayOpen =  this.countryArray[0].isTuesdayOpen;
+ var infoisWednesdayOpen =  this.countryArray[0].isWednesdayOpen;
+ 
+ 
+     let headers = new Headers();
+     var authToken = localStorage.getItem('userToken');
+     
+     headers.append('Accept', 'application/json')
+     headers.append('Content-Type', 'application/json');
+     headers.append("Authorization",'Bearer '+authToken);
+ 
+ 
+      this.http.post(this.urlpost,{
+       vendorLocationId: infovendorLocationId,
+       title: infotitle,
+       countryId: infocountryId,
+       vendorId: infovendorId,
+       lat: lat,
+       long: lng,
+       country: {countryId: infocountryId,countryName: Country},
+       city:  city,
+       postalCode:  Postalcode,
+       address:  addraddresslineone,
+       phone: infophone,
+       mobile:   infomobile ,
+       sundayOpen:     infosundayOpen,
+       sundayClose:    infosundayClose,
+       mondayOpen:     infomondayOpen,
+       mondayClose:    infomondayClose,
+       tuesdayOpen:    infotuesdayOpen,
+       tuesdayClose:   infotuesdayClose,
+       wednesdayOpen:  infowednesdayOpen,
+       wednesdayClose: infowednesdayClose,
+       thursdayOpen:   infothursdayOpen,
+       thursdayClose:  infothursdayClose,
+       fridayOpen:     infofridayOpen,
+       fridayClose:    infofridayClose,
+       saturdayOpen:   infosaturdayOpen,
+       saturdayClose:  infosaturdayClose,
+       isFridayOpen:   infoisFridayOpen,
+       isMondayOpen:   infoisMondayOpen,
+       isPrimary:      infoisPrimary,
+       isSaturdayOpen: infoisSaturdayOpen,
+       isSundayOpen:   infoisSundayOpen,
+       isThursdayOpen: infoisThursdayOpen,
+       isTuesdayOpen:  infoisTuesdayOpen,
+       isWednesdayOpen:infoisWednesdayOpen,
+     },{headers:headers}).subscribe( (data)=> { console.log(data)}
+ ,      (responce)=>{ console.log(responce); });
+     }
+// enable =  true;
+// enable1 =  true;
+// enable2 =  true;
+// enable3 =  true;
+// enable4 =  true;
   
 }
-
-
-

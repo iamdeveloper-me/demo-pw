@@ -3,9 +3,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RatingModule} from "ngx-rating";
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-
+import {DatePipe} from '@angular/common';
 import { ImageCropperModule } from 'ng2-img-cropper';
 
+import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.component';
 
 
 //calender 
@@ -118,6 +119,11 @@ import { MembershipComponent } from './vendor/membership/membership.component';
 
 import { CreatePromotionComponent } from './vendor/create-promotion/create-promotion.component'; 
 
+
+
+
+
+
 import {  AdminComponent } from "./admin/admin.component";
 import { AdminsidebarComponent } from './admin/adminsidebar/adminsidebar.component';
 import { AdminnavbarComponent } from './admin/adminnavbar/adminnavbar.component';
@@ -161,6 +167,7 @@ import { PromotionHomepageComponent } from './vendor/promotion-homepage/promotio
 import { TipslistComponent } from './tipslist/tipslist.component';
 import { EventlistComponent } from './eventlist/eventlist.component';
 import { InvoiceDetailComponent } from './vendor/invoice-detail/invoice-detail.component';
+import { FootCupleComponent } from './foot-cuple/foot-cuple.component';
 
 
 
@@ -232,7 +239,7 @@ export function getAuthServiceConfigs() {
         MyaccountComponent,
         EditprofileComponent,
         GalleryComponent,
-        
+        DiscountdealsComponent,
         ReviewsComponent,
         NgbduserModalContent ,
         VendorsidebarComponent,
@@ -253,7 +260,6 @@ export function getAuthServiceConfigs() {
         AllcategoryComponent,
         SupplierByCityComponent,
         SupplierByCateComponent,
-
         VideosComponent,
       
 
@@ -306,6 +312,7 @@ export function getAuthServiceConfigs() {
         VediosettingComponent,
         TipslistComponent,
         EventlistComponent,
+        FootCupleComponent,
 
 
   ],
@@ -356,6 +363,7 @@ export function getAuthServiceConfigs() {
         GoogleMapsAPIWrapper,
         AuthGuard,
         DragulaService,
+        DatePipe,
 
         {
             provide: AuthServiceConfig,

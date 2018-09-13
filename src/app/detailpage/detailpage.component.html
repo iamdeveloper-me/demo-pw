@@ -1,30 +1,25 @@
 <app-menu></app-menu>
 <div class="container mobnopadd">
 
-
-  <div class="col-sm-9 detail_page">
+<div class="col-sm-12 detail_page">
+  <div class="martop0px">
+      <ol class="breadcrumb breadcrumbcontainer">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Wedding Suppliers</a></li>
+             <li><a href="#">Photography, Videography</a></li>
+            <li class="active">Myfair Banquets</li>
+      </ol>
+   </div>
+</div>
+  <div class="col-sm-9 mobnopadd">
         <!-- carosel slider -->
+   
    <div class="boxLightStyles martop0px">
         <div id="detailpagecarousel" class="owl-carousel detailpagecarousel">
           <div class="item"> 
+             <a class="fancybox" rel="ligthbox" href="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg">
             <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> 
-            <div class="namecontainer">Album Name</div>
-            <div class="numcontainer">15/20</div>
-            <div class="linkcontainer">
-              <button><i class="material-icons">favorite_border</i></button>
-              <button><i class="material-icons">share</i></button>
-            </div>
-          </div>
-          <div class="item"> <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> 
-            <div class="namecontainer">Album Name</div>
-            <div class="numcontainer">15/20</div>
-            <div class="linkcontainer">
-              <button><i class="material-icons">favorite_border</i></button>
-              <button><i class="material-icons">share</i></button>
-            </div>
-          </div>
-          <div class="item"> 
-            <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> 
+            </a>
             <div class="namecontainer">Album Name</div>
             <div class="numcontainer">15/20</div>
             <div class="linkcontainer">
@@ -33,7 +28,31 @@
             </div>
           </div>
           <div class="item"> 
+            <a class="fancybox" rel="ligthbox" href="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg">
             <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> 
+            </a> 
+            <div class="namecontainer">Album Name</div>
+            <div class="numcontainer">15/20</div>
+            <div class="linkcontainer">
+              <button><i class="material-icons">favorite_border</i></button>
+              <button><i class="material-icons">share</i></button>
+            </div>
+          </div>
+          <div class="item"> 
+            <a class="fancybox" rel="ligthbox" href="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg">
+            <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> 
+            </a> 
+            <div class="namecontainer">Album Name</div>
+            <div class="numcontainer">15/20</div>
+            <div class="linkcontainer">
+              <button><i class="material-icons">favorite_border</i></button>
+              <button><i class="material-icons">share</i></button>
+            </div>
+          </div>
+          <div class="item"> 
+            <a class="fancybox" rel="ligthbox" href="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg">
+            <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> 
+            </a> 
             <div class="namecontainer">Album Name</div>
             <div class="numcontainer">15/20</div>
             <div class="linkcontainer">
@@ -67,21 +86,29 @@
                   
                    <div class="col-sm-12">
                       <div class="featurebtn row">
-                      
+                        
                         <div class="col-3">
-                           <i class="material-icons">call</i>
+                          <button class="btn purple-gradient borradius50per">
+                            <i class="material-icons">call</i>
+                          </button>
                           <div class="featurehead">Call</div>
                         </div>
                         <div class="col-3">
-                          <i class="material-icons">mail_outline</i>
+                           <button class="btn purple-gradient borradius50per" data-toggle="modal" data-target="#address">
+                              <i class="material-icons">mail_outline</i>
+                            </button>
                           <div class="featurehead">Message</div>
                         </div>
                         <div class="col-3">
-                          <i class="material-icons">bookmark_border</i>
+                           <button class="btn purple-gradient borradius50per">
+                            <i class="material-icons">bookmark_border</i>
+                          </button>
                           <div class="featurehead">Bookmark</div>
                         </div>
                         <div class="col-3">
+                           <button class="btn purple-gradient borradius50per">
                           <i class="material-icons">share</i>
+                        </button>
                           <div class="featurehead">Share</div>
                         </div>
                       </div>
@@ -100,7 +127,11 @@
                   <i class="material-icons">camera_enhance</i>
                   Gallery
                 </button>
-                <button class="aboutbox">
+                <button class="aboutbox hidden-xs">
+                  <i class="material-icons">insert_comment</i>
+                  About
+                </button>
+                 <button class="aboutbox hidden-sm hidden-md hidden-lg mobileabout">
                   <i class="material-icons">insert_comment</i>
                   About
                 </button>
@@ -114,7 +145,7 @@
                 </button>
               </div>
 
-    <div class="vp_about_txt aboutsection" id="about">
+    <div class="vp_about_txt aboutsection hidden-xs" id="about">
       <div class="boxLightStyles hideShowMeNow vp_about box_section_light r_s_pre"> 
 
         <div class="vp_about_txt">
@@ -165,6 +196,16 @@
                   </div>
                  
                  <div class="clearfix"></div>
+                 <table class="tabledesignwork text-center ">
+                          <tr>
+                            <th><strong>Wed</strong></th>
+                            <th>
+                                12:00PM-12:00PM 
+                                <span class="greentext">Open</span>
+                            </th>
+                          </tr>
+                        </table>
+                         <div class="clearfix"></div>
                       <div class="detailtabclick detailtra">
                         <table class="tabledesignwork">
                           <tr>
@@ -208,7 +249,7 @@
 
 
     <div class="boxLightStyles hideShowMeNow vp_services box_section_light1 r_s_pre  weddingvenue">
-<div class="left_box_section overviewsection startprice onlymobilesection">
+        <div class="left_box_section overviewsection startprice onlymobilesection">
                   <div class="vp_mainDetails_starting_price">
                     <div class="large_subtext bob_pa_left text-center"> 
                       Starting Price: <span class="">₹ 1500</span>
@@ -239,8 +280,8 @@
                      <div class="text-center showless" style="display: none;">Show less</div>
                    
                   </div>
-              </div>
-      <div class="vp_services_txt">
+        </div>
+        <div class="vp_services_txt">
         <div class="servicecontainer_0 servicecontainer">
            <div class="servicerow">
                <span class="vp_services_txt_span marriager_text_without_underline"> Wedding Venues </span>
@@ -271,7 +312,7 @@
               </div>
             </div>
         </div>
-      </div>
+        </div>
     </div>
     <div class="boxLightStyles hideShowMeNow vp_venues box_section_light r_s_pre hidden-xs">
 
@@ -358,43 +399,10 @@
        <div class="vp_services_txt_seeMore marriager_text "> <a href="#"> See More </a></div>
       </div>
     </div>
-    <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection"  id="review">
-      <div class="vp_review_txt_title large_subtext "> Reviews </div>
-        <form  (ngSubmit)="putReview(review)" #f="ngForm">
-            <div class="vp_review_txt">
-                <div class="vp_giveReviewBox">
-                <span>Give A Review:</span>
 
-                <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
-                    <div class="jq-ry-group-wrapper">
-                    <div class="jq-ry-normal-group jq-ry-group">
-                            <rating [(ngModel)]="review.rating"  name="rating"></rating>  
-                    </div>
-                    </div>
-                </span>
 
-                <div class="textInput">
-                    
-                        <input 
-                        placeholder="Write a Review" 
-                        type="text" 
-                        class="textInputInner"
-                        required
-                        [(ngModel)] = "review.comments" 
-                        name="comments"
-                        >
-                        <button type="submit" class="textInputSubmit" value="SUBMIT">SUBMIT</button>
-                        <input class="submitedRating" type="hidden" value="0">
-                        <div class="errorInValidation sendAReview">
-                        Your review is empty. SUBMIT again to send this anyway 
-                        </div>
-                </div>
-            </div>
-            </div>
-        </form>    
-    </div>
 
-    <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection gallery">
+        <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection gallery">
       <div class="large_subtext"> 
         Portfolio & Albums 
         <span>(112 Photos)</span> 
@@ -450,6 +458,150 @@
           </div>
       </div>     
     </div>
+
+    <div class="clearfix"></div>
+     <div class="onlymobilesection"><div class="vp_about_txt aboutsection" id="aboutmobile">
+        <div class="boxLightStyles hideShowMeNow vp_about box_section_light r_s_pre"> 
+
+        <div class="vp_about_txt">
+          <div class="vp_about_txt_title large_subtext ">
+            About Us 
+          </div>
+          <div class="vp_about_txt_description ">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.....
+            <div class="clearfix"></div>
+            <div class="onlymobilesection">
+                <ul class="wed_me_social">
+                  <li>
+                    <a href="#">
+                      <i aria-hidden="true" class="fa fa-facebook"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i aria-hidden="true" class="fa fa-twitter"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i aria-hidden="true" class="fa fa-instagram"></i>
+                    </a>
+                  </li>
+                </ul>
+
+                <div  class="">Indore:</div>
+                <div class="branchAddress"> New Plasiya, 143-D,AB Road,M.P </div>
+                <div class="" data-lattitude="19.012" data-longitude="72.822">View in Map </div>
+                
+            </div>
+        </div>
+        <div class="vp_about_txt_readMore marriager_text ">
+          <a href="">Read More</a>
+               <span class="linkshow"> Show More </span>
+               <span class="linkless"> Show less </span>
+        </div>
+
+        </div>
+        </div>
+        <div class="left_box_section overviewsection tradinghours onlymobilesection">
+                  <div class="large_subtext"> 
+                    Trading Hours
+                  </div>
+                 
+                 <div class="clearfix"></div>
+                 <table class="tabledesignwork text-center ">
+                          <tr>
+                            <th><strong>Wed</strong></th>
+                            <th>
+                                12:00PM-12:00PM 
+                                <span class="greentext">Open</span>
+                            </th>
+                          </tr>
+                        </table>
+                         <div class="clearfix"></div>
+                      <div class="detailtabclick detailtra">
+                        <table class="tabledesignwork">
+                          <tr>
+                            <td width="35%">Mon</td>
+                            <td>12:00PM-12:00PM</td>
+                          </tr>
+                          <tr>
+                            <td>Tue</td>
+                              <td>12:00PM-12:00PM</td>
+                          </tr>
+                          <tr>
+                            <th><strong>Wed</strong></th>
+                            <th>
+                                12:00PM-12:00PM 
+                                <span class="greentext">Open</span>
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>Thu</td>
+                              <td>12:00PM-12:00PM</td>
+                          </tr>
+                          <tr>
+                            <td>Fri</td>
+                              <td>12:00PM-12:00PM</td>
+                          </tr>
+                          <tr>
+                            <td>Sat</td>
+                              <td>12:00PM-12:00PM</td>
+                          </tr>
+                          <tr>
+                            <td>Sun</td>
+                             <td>12:00PM-12:00PM</td>
+                          </tr>
+                        </table>
+                      </div>
+                    <div class="clearfix"></div>
+                    <div class="text-center showdetail">Show More</div>
+                     <div class="text-center showless" style="display: none;">Show less</div>
+        </div>
+     </div>
+   </div>
+
+
+<div class="clearfix"></div>
+
+
+    <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection"  id="review">
+      <div class="vp_review_txt_title large_subtext "> Reviews </div>
+        <form  (ngSubmit)="putReview(review)" #f="ngForm">
+            <div class="vp_review_txt">
+                <div class="vp_giveReviewBox">
+                <span>Give A Review:</span>
+
+                <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
+                    <div class="jq-ry-group-wrapper">
+                    <div class="jq-ry-normal-group jq-ry-group">
+                            <rating [(ngModel)]="review.rating"  name="rating"></rating>  
+                    </div>
+                    </div>
+                </span>
+
+                <div class="textInput">
+                    
+                        <input 
+                        placeholder="Write a Review" 
+                        type="text" 
+                        class="textInputInner"
+                        required
+                        [(ngModel)] = "review.comments" 
+                        name="comments"
+                        >
+                        <button type="submit" class="textInputSubmit" value="SUBMIT">SUBMIT</button>
+                        <input class="submitedRating" type="hidden" value="0">
+                        <div class="errorInValidation sendAReview">
+                        Your review is empty. SUBMIT again to send this anyway 
+                        </div>
+                </div>
+            </div>
+            </div>
+        </form>    
+    </div>
+
+
 <div class="clearfix"></div>
 
     <div class="boxLightStyles  box_section_light vp_similarVendors r_s_pre hidden-xs">
@@ -603,10 +755,10 @@
           </div>
       </div>
 
-        <div class="col-sm-3 detail_page hidden-xs">
+        <div class="col-sm-3 hidden-xs">
             <div class="left_side_box_text left_details leftfixed">
                   
-              <div class="left_box_section">
+              <div class="left_box_section paddleftrite0px">
                 <div class="hotellogo">
                     <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg"/>
                   </div>
@@ -627,47 +779,44 @@
                                   <span>3.0</span> 
                               </div>
                   </div>  
-                  <!-- <div class="col-sm-12 text-center">
-                    <button class="sharebookmarkbtn">
-                      <i class="material-icons"></i>
-                    </button>
-                    <button class="sharebookmarkbtn">
-                      <i class="material-icons"></i>
-                    </button>
-                    </div> -->
+                  <div class="clearfix"></div>
                    <div class="col-sm-12">
                       <div class="featurebtn row">
-                        <!-- <div class="col-sm-6 hidden-xs">
-                          <button class="buttoncontactbor">
-                            <i class="material-icons">call</i>
-                            Call
-                          </button>
-                        </div>
-                        <div class="col-sm-6 hidden-xs">
-                          <button class="buttoncontactbor">
-                            <i class="material-icons">mail_outline</i>
-                            Message
-                          </button>
-                        </div> -->
+                        
                         <div class="col-3">
-                           <i class="material-icons">call</i>
+                          <button class="btn purple-gradient borradius50per callbtn">
+                            <i class="material-icons">call</i>
+                          </button>
+                           <button class="btn purple-gradient borradius50per callbtnhide" style="display: none;">
+                            <i class="material-icons">call</i>
+                          </button>
                           <div class="featurehead">Call</div>
                         </div>
                         <div class="col-3">
-                          <i class="material-icons">mail_outline</i>
+                           <button class="btn purple-gradient borradius50per" data-toggle="modal" data-target="#address">
+                              <i class="material-icons">mail_outline</i>
+                            </button>
                           <div class="featurehead">Message</div>
                         </div>
                         <div class="col-3">
-                          <i class="material-icons">bookmark_border</i>
+                           <button class="btn purple-gradient borradius50per">
+                            <i class="material-icons">bookmark_border</i>
+                          </button>
                           <div class="featurehead">Bookmark</div>
                         </div>
                         <div class="col-3">
+                           <button class="btn purple-gradient borradius50per">
                           <i class="material-icons">share</i>
+                        </button>
                           <div class="featurehead">Share</div>
                         </div>
                       </div>
-                    </div>
-
+                      <div class="callinfo">
+                            <strong>Contact Number</strong><br/>
+                            +91-99999 12345
+                          </div>
+                   </div>
+                      
               </div>
              
             
@@ -705,11 +854,21 @@
               </div>
              
               <div class="left_box_section overviewsection tradinghours">
-                  <div class="large_subtext"> 
+                  <div class="large_subtext text-center "> 
                     Trading Hours
                   </div>
                  
                  <div class="clearfix"></div>
+                 <table class="tabledesignwork text-center ">
+                          <tr>
+                            <th><strong>Wed</strong></th>
+                            <th>
+                                12:00PM-12:00PM 
+                                <span class="greentext">Open</span>
+                            </th>
+                          </tr>
+                        </table>
+                         <div class="clearfix"></div>
                       <div class="detailtabclick detailtra">
                         <table class="tabledesignwork">
                           <tr>
@@ -746,8 +905,8 @@
                         </table>
                       </div>
                     <div class="clearfix"></div>
-                    <div class="text-center showdetail">Show More</div>
-                     <div class="text-center showless" style="display: none;">Show less</div>
+                    <div class="text-center showdetail text-center ">Show More</div>
+                     <div class="text-center showless text-center " style="display: none;">Show less</div>
               </div>
               <div class="left_box_section contactsection">
                   <div class="large_subtext"> 
@@ -799,13 +958,19 @@
           <div class="row">
             <div class="col-12">
               <div class="col-4">
-                <i class="material-icons">call</i>
+                <button class="btn purple-gradient borradius50per">
+                    <i class="material-icons">call</i>
+                </button>
               </div>
               <div class="col-4">
-                <i class="material-icons">mail_outline</i>
+                <button class="btn purple-gradient borradius50per" data-target="#address" data-toggle="modal">
+                  <i class="material-icons">mail_outline</i>
+                </button>
               </div>
               <div class="col-4">
-                <i class="material-icons">bookmark_border</i>
+                <button class="btn purple-gradient borradius50per">
+                  <i class="material-icons">bookmark_border</i>
+                </button>
               </div>
             </div>
           </div>
@@ -813,20 +978,57 @@
   </div>
 </div>
 
-<div id="lightbox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <button type="button" class="close hidden" data-dismiss="modal" aria-hidden="true"><i class="material-icons">
-clear
-</i></button>
-        <div class="modal-content">
-            <div class="modal-body">
-                <img src="" alt="" />
+    <div id="lightbox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <button type="button" class="close hidden" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="" alt="" />
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-
+ <div class="modal fade" id="address" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h4 class="modal-title">Send Message</h4>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="container">
+                            <div class="input-effect  form-group mt-3">
+                              <input class="effect-16" name="text" placeholder="" required="" type="name">
+                              <label>Your Name</label>
+                              <span class="focus-border"></span>
+                            </div>
+                            <div class="input-effect  form-group mt-3">
+                              <input class="effect-16" name="email" placeholder="" required="" type="text">
+                              <label>Your Email</label>
+                              <span class="focus-border"></span>
+                            </div>
+                            <div class="input-effect  form-group mt-3">
+                              <input class="effect-16" name="phone" placeholder="" required="" type="tel">
+                              <label>Your Phone Number</label>
+                              <span class="focus-border"></span>
+                            </div>
+                            <div class="input-effect  form-group mt-3">
+                              <textarea class="effect-16" placeholder=''></textarea>
+                              <label>Message</label>
+                              <span class="focus-border"></span>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group btnholder">
+                              <button type="submit" class="btn btn-secondary">SAVE</button> 
+                              &nbsp;
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
+                    </div>
+                  </div>
+                  
+              </div>
+          </div>
+      </div>
 
 <app-foot></app-foot>
 

@@ -32,8 +32,9 @@ export class MenuComponent implements OnInit {
 
           if (data.statusText == "OK" && data.json().role =="Vendors" ) {
             this.typeSuccess();
-            localStorage.setItem('vendorId',data.json().id);
+            localStorage.setItem('userId',data.json().id);
             localStorage.setItem('userToken',data.json().auth_token);
+         
             this.router.navigate(['../vendor/dashboard'])
             $("body").removeClass( "modal-open");
             $("div").removeClass( "modal-backdrop"); 
@@ -51,9 +52,13 @@ export class MenuComponent implements OnInit {
     typeSuccess() {
         this.cservice.typeSuccess();
     }
-        typeWarning() {
-            this.cservice.typeWarning();
-        }
+    typeWarning() {
+        this.cservice.typeWarning();
+    }
+    typeLogout() {
+        this.cservice.typeLogout();
+    }
+
     //--------------------------------user login 
 
  userlogin(){ 
@@ -106,6 +111,8 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['../home']);
     $(".user").hide(); 
     $(".loginclick").show();
+    this.typeLogout();
+    
    }
 
     ngOnInit() { 

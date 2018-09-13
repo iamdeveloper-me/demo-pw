@@ -38,7 +38,7 @@ export class RegisterComponent  {
             let obj = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/pricingplans");
             obj.subscribe(data => {
               this.planArray = data as string[]; 
-
+              console.log(this.planArray);
             });
 
             $(".Suppliertab").click(function(){
@@ -86,6 +86,7 @@ export class RegisterComponent  {
     // });}
 
 idgenerate(users){
+  console.log(users)
    this.user.businessInfo.pricingPlanId = users.pricingPlanId;
    this.user.businessInfo.payFrequency = '1';
    console.log(this.user.businessInfo.payFrequency );

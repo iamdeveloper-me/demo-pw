@@ -2,7 +2,7 @@ $(document).ready(function () {
   $("#supplierscarousel").owlCarousel({
       autoplay: true,
       margin: 20,
-      loop: false,
+      loop: true,
       lazyLoad: false,
        /*
       animateOut: 'fadeOut',
@@ -39,7 +39,7 @@ $(document).ready(function () {
 
       autoplay: true,
       lazyLoad: true,
-      loop: false,
+      loop: true,
       margin: 20,
        /*
       animateOut: 'fadeOut',
@@ -166,6 +166,18 @@ $(".aboutbox").click(function() {
     $('.overviewbox').removeClass('activebuttontab');
     $('.gallerybox').removeClass('activebuttontab');
 });
+
+$(".mobileabout").click(function() {
+    $('html,body').animate({scrollTop: $("#aboutmobile").offset().top-150},'slow');
+    $('.mobileabout').addClass('activebuttontab');
+    $('.reviewbox').removeClass('activebuttontab');
+    $('.overviewbox').removeClass('activebuttontab');
+    $('.gallerybox').removeClass('activebuttontab');
+});
+
+
+
+
 $(".overviewbox").click(function() {
     $('html,body').animate({scrollTop: $(".weddingvenue").offset().top-150},'slow');
     $('.overviewbox').addClass('activebuttontab');
@@ -205,6 +217,17 @@ $(".reviewbtn").click(function() {
     $('.reviewbtn').addClass('btnactive');
 });
 
+$(".callbtn").click(function() {
+     $('.callinfo').show();
+     $('.callbtn').hide();
+     $('.callbtnhide').show();
+});
+$(".callbtnhide").click(function() {
+      $('.callinfo').hide();
+     $('.callbtn').show();
+     $('.callbtnhide').hide();
+});
+
 $(document).ready(function() {
     var $lightbox = $('#lightbox');
     
@@ -228,5 +251,15 @@ $(document).ready(function() {
             
         $lightbox.find('.modal-dialog').css({'width': $img.width()});
         $lightbox.find('.close').removeClass('hidden');
+    });
+});
+
+
+$(document).ready(function(){
+    //FANCYBOX
+    //https://github.com/fancyapps/fancyBox
+    $(".fancybox").fancybox({
+        openEffect: "none",
+        closeEffect: "none"
     });
 });

@@ -50,12 +50,16 @@ export class DashboardComponent implements OnInit {
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
+     
         if(!authToken) 
        {  this.router.navigate(['../home']);
         }
         this.http.get(this.url,{headers:headers}).subscribe(
           data =>{ this.vendor = data.json();
                    console.log(this.vendor);
+                   localStorage.setItem('firstName',data.json().firstName);
+                   localStorage.setItem('countryid',data.json().countryId);
+                   localStorage.setItem('vendorid',data.json().vendorId);
                  });
 
           $.getScript('./assets/js/prism.min.js');

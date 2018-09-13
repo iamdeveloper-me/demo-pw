@@ -2,7 +2,7 @@ import { Component, OnInit ,Input } from '@angular/core';
 import * as tableData from '../../shared/data/smart-data-table';
 import { LocalDataSource } from 'ng2-smart-table';
 import { NgbModal,  ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { Http,Headers } from '@angular/http';
 export class NgbduserModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) { }
@@ -15,10 +15,10 @@ export class NgbduserModalContent {
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit {
-
-
-
   ngOnInit() {
+
+
+
     $("#action").hide();
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
@@ -45,7 +45,7 @@ export class EventListComponent implements OnInit {
   filterSource: LocalDataSource;
   alertSource: LocalDataSource;
 
-  constructor(private modalService: NgbModal) {
+  constructor(private modalService: NgbModal,public http: Http) {
       this.source = new LocalDataSource(tableData.data); // create the source
       this.filterSource = new LocalDataSource(tableData.filerdata); // create the source
       this.alertSource = new LocalDataSource(tableData.alertdata); // create the source
@@ -117,11 +117,14 @@ export class EventListComponent implements OnInit {
 
   // Open default modal
   open(content) {
+      console.log(content);
       this.modalService.open(content).result.then((result) => {
           this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       });
+
+
   }
 
   // This function is used in open

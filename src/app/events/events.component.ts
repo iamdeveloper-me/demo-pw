@@ -11,5 +11,5 @@ export class EventsComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  page2 = 4;
 }

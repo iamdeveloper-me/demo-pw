@@ -1,0 +1,114 @@
+
+<div id="wrapper" class="toggled">
+    <div id="sidebar-wrapper">
+       
+            <app-adminsidebar></app-adminsidebar>
+        
+    </div>
+    <div id="page-content-wrapper">    
+        <div class="container-fluid nopadd">                    
+            <app-adminnavbar></app-adminnavbar>
+                      
+
+
+                      <section class="lisa-amold">
+                          <div class="container">
+                               <div class="row">
+                                    <div clsss="col-md-2">
+                                        <img src="../../assets/img/0011.jpg">
+                                    </div>
+                                    <div clsss="col-md-2">
+                                        
+                                        <ul class="first-ul">
+                                            <b>Lisa Amold</b>
+                                            <li><i class="fa fa-envelope" aria-hidden="true"></i>Email:</li>
+                                            <li><i class="fa fa-phone" aria-hidden="true"></i>Phone:</li>
+                                            <li><i class="fa fa-windows" aria-hidden="true"></i>City:</li>
+                                            <li><i class="fa fa-globe" aria-hidden="true"></i>Country:</li>
+                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>Address:</li>
+                                        </ul>
+                                    </div>
+                                    <div clsss="col-md-7">
+                                        <ul class="second-ul">
+                                            <b></b>
+                                            <li>dgdhj@gmail.com</li>
+                                            <li>+123456789</li>
+                                            <li>New York</li>
+                                            <li>USA</li>
+                                            <li>E-112,Auston Street, New York, USA</li>
+                                        </ul>
+                                    </div>
+                                    <div clsss="col-md-1">
+                                        <ul class="reset-password">
+                                            <li data-toggle="modal" data-target="#cPassword">RESET PASSWORD</li>
+                                            <li>DISABLE ACCOUNT</li>
+                                        </ul>
+                                    </div>
+                               </div>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                        <h4>Summery</h4>
+                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
+                                    </div>    
+                               </div>  
+                          </div>  
+                      </section>
+            <app-foot></app-foot>
+        </div>
+    </div> 
+</div>
+
+
+
+    
+    <div class="modal fade" id="cPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Change Password</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">         
+                        <div class="card-body">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-effect form-group md-form ">
+                                        <input class="effect-16 validate" type="password" placeholder="" required="required">
+                                        <label>Old Password</label>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                </div>
+                            </div>  
+                            <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-effect form-group md-form ">
+                                            <input class="effect-16 validate" type="password" placeholder="" required="required">
+                                            <label>New Password</label>
+                                            <span class="focus-border"></span>
+                                        </div>
+                                    </div>
+                            </div>                                      
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-effect form-group md-form ">
+                                        <input class="effect-16 validate" type="password" placeholder="" required="required">
+                                        <label>Confirm Password</label>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                </div>
+                            </div> 
+                             
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                      &nbsp;&nbsp;
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+</div>   
+
+<router-outlet></router-outlet> 

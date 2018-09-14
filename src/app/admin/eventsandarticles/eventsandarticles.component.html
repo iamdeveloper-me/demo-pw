@@ -8,8 +8,75 @@
     <div id="page-content-wrapper">    
         <div class="container-fluid nopadd">                    
             <app-adminnavbar></app-adminnavbar>
-                      events and article
-      
+                      
+
+<section class="taskboard-app-form bg-blue-grey bg-lighten-5">
+    <div class="card">
+      <div class="card-block pt-3">
+        <h5 class="text-bold-500">Search by</h5>
+        <form class="taskboard-app-input row">
+          <fieldset class="form-group position-relative has-icon-left col-md-3 col-12 mb-1">
+           
+            <input class="form-control" placeholder="Title" type="text">
+            
+          </fieldset>
+          <fieldset class="form-group position-relative has-icon-left col-md-3 col-12 mb-1">
+            
+            <input class="form-control" placeholder="Event type" type="text">
+            
+          </fieldset>
+          <fieldset class="form-group position-relative has-icon-left col-md-4 col-12 mb-1">
+           
+            <input class="form-control" placeholder="Email" type="text">
+            
+          </fieldset>
+          <fieldset class="form-group position-relative has-icon-left col-md-2 col-12 mb-1">
+           
+            <button class="btn btn-block btn-sucesss">Search</button>
+            
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </section>
+ 
+        
+    <div class="card-body">
+        <div class="card-block table-responsive">
+            <table class="table table-bordered table-striped">
+               <tr>
+                 <th>Title</th>
+                 <th>Publisher Details</th>
+                 <th>Date</th>
+                 <th>Status</th>
+                 <th>Action</th>
+              </tr>
+              <tr>
+                 <td>Event Title</td>
+                 <td>
+                     Jane Smith<br/>
+                     <span class="blue">smith09@gmail.com</span>
+                 </td>
+                 <td class="text-center">25 Sep 2018</td>
+                 <td class="text-center">
+                  <i class="material-icons yellow">check</i><br/>
+                  <span>Publisher</span>
+                </td>
+                 <td>
+                   <button class="btn btn-success">View</button>&nbsp;&nbsp;
+                   <button class="btn btn-secondary">Hide</button><br/>
+                   <button class="btn btn-info">Edit</button>&nbsp;&nbsp;
+                   <button class="btn btn-warning">Delete</button>
+                 </td>
+              </tr>
+                                               
+            </table>
+        </div>
+    </div>
+
+
+
+        
             <app-foot></app-foot>
         </div>
     </div> 

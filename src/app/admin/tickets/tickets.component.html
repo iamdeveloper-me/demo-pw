@@ -1,57 +1,346 @@
-
 <div id="wrapper" class="toggled">
     <div id="sidebar-wrapper">
-       
-            <app-adminsidebar></app-adminsidebar>
-        
+        <app-adminsidebar></app-adminsidebar>
     </div>
     <div id="page-content-wrapper">    
         <div class="container-fluid nopadd">                    
             <app-adminnavbar></app-adminnavbar>
-               tickets
-               <ng-template #content let-c="close" let-d="dismiss">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Modal title</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>One fine body&hellip;</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
-                    </div>
-                </ng-template>
+            <div class="container-fluid">
 
-                <button class="btn btn-lg btn-outline-primary" (click)="open(content)">add new tickets</button>
 
-               <section id="action">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Confirm Action</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="card-block">
-                                        <ng2-smart-table [settings]="alertsettings" [source]="alertSource" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onSaveConfirm($event)"
-                                            (createConfirm)="onCreateConfirm($event)">
-                                        </ng2-smart-table>
+
+
+
+                <div class="card">
+
+                    <div class="col-md-12 mb-30">
+                        <!-- Column -->
+                            <div class="col-md-4">
+                                <div class="box box-inverse box-info">
+                                    <div class="box-body text-center">
+                                        <h1 class="font-light text-white">2,064</h1>
+                                        <h6 class="text-white mb-10">Total Tickets</h6>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            <!-- Column -->
+                            <div class="col-md-4">
+                                <div class="box box-success box-inverse">
+                                    <div class="box-body text-center">
+                                        <h1 class="font-light text-white">1,738</h1>
+                                        <h6 class="text-white mb-10">Open Tickets</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Column -->
+                            <div class="col-md-4">
+                                <div class="box box-inverse box-danger">
+                                    <div class="box-body text-center">
+                                        <h1 class="font-light text-white">1100</h1>
+                                        <h6 class="text-white mb-10">Resolved Tickets</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Column -->
                     </div>
-                </section>
+
+
+
+
+                        <div class="card-header mobpaddbot0px">
+                           <ul class="tabbingdesignheading">
+                                <li class="card-title selected openticket">Open Ticket</li>
+                                <li class="card-title closeticket">Resolved Tickets</li>
+                            </ul>
+                        </div>
+            <div class="row martop30px" id="openticketdetail">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <ul class="tabbingdesign">
+                                <li class="card-title alltab">All</li>
+                                <li class="card-title imagetab">Images</li>
+                                 <li class="card-title listingtab">Listing</li>
+                                  <li class="card-title phonetab">
+                                      Phone/General
+                                  </li>
+                                  <li class="btnli">
+                                      <button data-toggle="modal" data-target="#Newticket">Add New Ticket</button> 
+                                  </li>
+                            </ul>   
+
+
+                              
+                        </div>
+                        <section>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card martop0px">
+                                        <div class="card-header nopadtopbot"> 
+                                          
+
+                                            <div class="serchbox">
+                                                <label>Show</label>
+                                                <select>
+                                                    <option>05</option>
+                                                    <option>10</option>
+                                                    <option>15</option>
+                                                    <option>20</option>
+                                                </select>
+
+                                                <input type="text" placeholder="Type to filter the name column" name="">
+
+                                               
+
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-block table-responsive">
+                                                <table class="table table-bordered table-striped">
+                                                    <tr>
+                                                            <th>Ticket ID</th>
+                                                            <th>Type</th>
+                                                            <th>Item ID</th>
+                                                            <th>Class</th>
+                                                            <th>DATE</th>
+                                                            <th>NAME</th>
+                                                            <th>DETAILS</th>
+                                                    </tr>
+                                                    <tr class="imagetabdetail">
+                                                            <td>#39124</td>
+                                                            <td>Image</td>
+                                                            <td>325451215</td>
+                                                            <td>A</td>
+                                                            <td>july 25, 2018</td>
+                                                            <td>Ada.Hoppe</td>
+                                                            <td>
+                                                            <a routerLink="../../Admin/userdetails">View</a></td>
+                                                    </tr>
+                                                    <tr class="listingtabdetail">
+                                                            <td>#39124</td>
+                                                            <td>Listing</td>
+                                                            <td>325451215</td>
+                                                            <td>D</td>
+                                                            <td>july 25, 2017</td>
+                                                            <td>Alisa</td>
+                                                            <td><a href="#">View</a></td>
+                                                    </tr>
+                                                    <tr  class="phonetabdetail">
+                                                            <td>#39124</td>
+                                                            <td>Phone/Genral</td>
+                                                            <td>325451215</td>
+                                                            <td>E</td>
+                                                            <td>july 25, 2017</td>
+                                                            <td>August</td>
+                                                            <td><a href="#">View</a></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                  
+
+
+
+                  
+
+
+
+
+                    </div>    
+                </div>
+            </div> 
+
+            
+              <div class="row martop30px" id="closeticketdetail">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <ul class="tabbingdesign">
+                                <li class="card-title alltab">All</li>
+                                <li class="card-title imagetab">Images</li>
+                                 <li class="card-title listingtab">Listing</li>
+                                  <li class="card-title phonetab">
+                                      Phone/General
+                                  </li>
+                                  <li class="btnli">
+                                      <button data-toggle="modal" data-target="#Newticket">Add New Ticket</button> 
+                                  </li>
+                            </ul>    
+                        </div>
+                        <section>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card martop0px">
+                                        <div class="card-header nopadtopbot"> 
+                                          
+
+                                            <div class="serchbox">
+                                                <label>Show</label>
+                                                <select>
+                                                    <option>05</option>
+                                                    <option>10</option>
+                                                    <option>15</option>
+                                                    <option>20</option>
+                                                </select>
+
+                                                <input type="text" placeholder="Type to filter the name column" name="">
+
+                                                 <button class="btn btn-small btn-link" (click)="open()"><span class="add-btn">+</span>Add New Supplier</button>
+
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-block table-responsive">
+                                                <table class="table table-bordered table-striped">
+                                                    <tr>
+                                                            <th>Ticket ID</th>
+                                                            <th>Type</th>
+                                                            <th>Item ID</th>
+                                                            <th>Class</th>
+                                                            <th>DATE</th>
+                                                            <th>NAME</th>
+                                                            <th>DETAILS</th>
+                                                    </tr>
+                                                    <tr class="imagetabdetail">
+                                                            <td>#39124</td>
+                                                            <td>Image</td>
+                                                            <td>325451215</td>
+                                                            <td>A</td>
+                                                            <td>july 25, 2018</td>
+                                                            <td>Ada.Hoppe</td>
+                                                            <td>
+                                                            <a>View</a></td>
+                                                    </tr>
+                                                    <tr class="listingtabdetail">
+                                                            <td>#39124</td>
+                                                            <td>Listing</td>
+                                                            <td>325451215</td>
+                                                            <td>D</td>
+                                                            <td>july 25, 2017</td>
+                                                            <td>Alisa</td>
+                                                            <td><a href="#">View</a></td>
+                                                    </tr>
+                                                    <tr  class="phonetabdetail">
+                                                            <td>#39124</td>
+                                                            <td>Phone/Genral</td>
+                                                            <td>325451215</td>
+                                                            <td>E</td>
+                                                            <td>july 25, 2017</td>
+                                                            <td>August</td>
+                                                            <td><a href="#">View</a></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>    
+                </div>
+            </div> 
+            <div>
+                    <section class="group-list">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <ul class="list-name">
+                                            <li class="abc1"><span>A:</span>Abusive Content</li>
+                                            <li class="abc2"><span>B:</span>Dublicate or spam</li>
+                                            <li class="abc3"><span>C:</span>Wrong Category</li>
+                                            <li class="abc4"><span>D:</span>Scam or Fraud</li>
+                                            <li class="abc5"><span>E:</span>Item no longer Abailable</li>
+                                            <li class="abc5"><span>F:</span>Incorrect Pricing</li>
+                                            <li class="abc6"><span>G:s</span>Other</li>
+                                        </ul>
+                                    </div>    
+                                </div>    
+                            </div>    
+                    </section>
+            </div>
+        </div>
+</div>
             <app-foot></app-foot>
         </div>
     </div> 
 </div>
-
-
-
-    
-    
-
 <router-outlet></router-outlet> 
+
+<div class="modal fade" id="Newticket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <h4 class="card-title">Create Tickets</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">   
+                <div class="card">         
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">
+                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                    <label>First Name</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-effect form-group md-form ">
+                                        <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                        <label>Last Name</label>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                </div>
+                        </div>                                      
+                                         
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">
+                                    <input class="effect-16 validate" type="email" placeholder="" required="required">
+                                    <label>Email</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">
+                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                    <label>Report Class</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                        </div>   
+                       
+                        <div class="col-md-12">
+                            <div class="form-group">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">  
+                                    <input class="effect-16 validate"  required="required">
+                                    <label>Description</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    
+
+                    </div> 
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>   

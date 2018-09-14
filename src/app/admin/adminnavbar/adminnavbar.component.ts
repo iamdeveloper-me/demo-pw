@@ -13,7 +13,70 @@ export class AdminnavbarComponent implements OnInit {
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : 'en'); }
   
 
-  ngOnInit() {
+  ngOnInit() { 
+
+    if(window.location.href.indexOf("/Admin/dashboard")>-1){
+        this.data = 'Dashboard';
+      }
+      else if(window.location.href.indexOf('/Admin/taskboard')>-1) {
+        this.data = 'Taskboard'; 
+      }
+      else if(window.location.href.indexOf('/Admin/Useraccountlist')>-1) {
+        this.data = 'User Accounts'; 
+      }
+      else if(window.location.href.indexOf('/Admin/userdetails')>-1) {
+        this.data = 'User Details'; 
+      }
+      else if(window.location.href.indexOf('/Admin/userdetails')>-1) {
+        this.data = 'User Details'; 
+      }
+      else if(window.location.href.indexOf('/Admin/Email')>-1) {
+        this.data = 'Messages'; 
+      }
+      else if(window.location.href.indexOf('/Admin/Tickets')>-1) {
+        this.data = 'Tickets'; 
+      }
+      else if(window.location.href.indexOf('/Admin/advertising')>-1) {
+        this.data = 'Advertising'; 
+      }
+      else if(window.location.href.indexOf('/Admin/Events')>-1) {
+        this.data = 'Events Management'; 
+      }
+      else if(window.location.href.indexOf('/Admin/tipsandartical')>-1) {
+        this.data = 'Tips & Articles'; 
+      }
+      else if(window.location.href.indexOf('/Admin/advertising')>-1) {
+        this.data = 'Advertising'; 
+      }
+      else if(window.location.href.indexOf('/Admin/Reviewandfeedback')>-1) {
+        this.data = 'Vendor Review'; 
+      }
+      else if(window.location.href.indexOf('/Admin/site-feedback')>-1) {
+        this.data = 'Site Feedback'; 
+      }
+      else if(window.location.href.indexOf('/Admin/Adminusers')>-1) {
+        this.data = 'Admin Users'; 
+      }
+      else if(window.location.href.indexOf('/Admin/Sitestats')>-1) {
+        this.data = 'Stats & Report'; 
+      }
+      else if(window.location.href.indexOf('/Admin/userdetails')>-1) {
+        this.data = 'User Details'; 
+      }
+      else if(window.location.href.indexOf('/Admin/Customerbillings')>-1) {
+        this.data = 'Invoices'; 
+      }
+      
+      else{}
+
+
+
+
+
+
+
+
+
     $(document).ready(function(){
       $('.togglebtnmenu').on('click', function(){
        //alert("h1");

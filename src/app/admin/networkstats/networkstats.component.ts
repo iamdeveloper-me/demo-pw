@@ -17,4 +17,11 @@ export class NetworkstatsComponent implements OnInit {
     public barChartLegend = chartsData.barChartLegend;
     public barChartData = chartsData.barChartData;
     public barChartColors = chartsData.barChartColors;
+    public chartClicked(e: any): void {
+      //your code here
+    }
+  
+    public chartHovered(e: any): void {
+      //your code here
+    }
 }

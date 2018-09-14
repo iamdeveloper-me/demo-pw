@@ -56,4 +56,11 @@ export class SalesstatsComponent implements OnInit {
           },
       };
       // Line chart configuration Ends
+      public chartClicked(e: any): void {
+        //your code here
+      }
+    
+      public chartHovered(e: any): void {
+        //your code here
+      }
 }

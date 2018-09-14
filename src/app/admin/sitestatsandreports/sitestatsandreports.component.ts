@@ -14,4 +14,5 @@ export class SitestatsandreportsComponent implements OnInit {
   $.getScript('./assets/js/vendorsidebar.js');
   }
 
+  open(a){console.log(a);}
 }

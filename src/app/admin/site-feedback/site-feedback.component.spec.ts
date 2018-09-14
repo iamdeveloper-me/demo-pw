@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UseraccountlistComponent } from './useraccountlist.component';
+import { SiteFeedbackComponent } from './site-feedback.component';
 
-describe('UseraccountlistComponent', () => {
-  let component: UseraccountlistComponent;
-  let fixture: ComponentFixture<UseraccountlistComponent>;
+describe('SiteFeedbackComponent', () => {
+  let component: SiteFeedbackComponent;
+  let fixture: ComponentFixture<SiteFeedbackComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UseraccountlistComponent ]
+      declarations: [ SiteFeedbackComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UseraccountlistComponent);
+    fixture = TestBed.createComponent(SiteFeedbackComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

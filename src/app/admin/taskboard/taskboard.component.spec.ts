@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UseraccountlistComponent } from './useraccountlist.component';
+import { TaskboardComponent } from './taskboard.component';
 
-describe('UseraccountlistComponent', () => {
-  let component: UseraccountlistComponent;
-  let fixture: ComponentFixture<UseraccountlistComponent>;
+describe('TaskboardComponent', () => {
+  let component: TaskboardComponent;
+  let fixture: ComponentFixture<TaskboardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UseraccountlistComponent ]
+      declarations: [ TaskboardComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UseraccountlistComponent);
+    fixture = TestBed.createComponent(TaskboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

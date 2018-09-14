@@ -61,8 +61,8 @@
 											</ngb-tab>
 											<ngb-tab title="Past">
 												<ng-template ngbTabContent>
-														<div class="upcominglisthomepage"  *ngFor="let job of jobArray">
-																<div  *ngIf="job.jobDate < test" >
+														<div *ngFor="let job of jobArray">
+																<div class="upcominglisthomepage"  *ngIf="job.jobDate < test" >
 																	 <div class="col-sm-5 col-8">
 																		 <i class="material-icons">date_range</i>  {{job.jobDate |  date:'medium' }}<br/>
 																		 <ul>
@@ -107,7 +107,7 @@
 																</div>
 																<div class="col-sm-4 col-4 upcomingright">
 																			
-																		<button type="button" (click)= "deletevent(job.vendorJobsId)" class="btn btn-danger whitetext" >delete {{job.vendorJobsId}}</button>
+																		<button type="button" (click)= "deletevent(job)" class="btn btn-danger whitetext" >delete {{job.vendorJobsId}}</button>
 																	</div>
 														</div> 
 												</ng-template>
@@ -147,7 +147,11 @@
 											 [activeDayIsOpen]="activeDayIsOpen" 
 											 (dayClicked)="dayClicked($event.day)" 
 											  
+
 											 (eventTimesChanged)="eventTimesChanged($event)"   (click)="addEvent()">
+
+										
+
 											</mwl-calendar-month-view>												
 										</div>
 									</div>

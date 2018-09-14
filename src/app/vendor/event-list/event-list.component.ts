@@ -1,6 +1,5 @@
-import { Component, OnInit ,Input } from '@angular/core';
-import * as tableData from '../../shared/data/smart-data-table';
-import { LocalDataSource } from 'ng2-smart-table';
+import { Component, OnInit ,Input } from '@angular/core'
+
 import { NgbModal,  ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
 export class NgbduserModalContent {
@@ -8,113 +7,81 @@ export class NgbduserModalContent {
   constructor(public activeModal: NgbActiveModal) { }
 }
 
-
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit {
+    private eventposturl: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/createupdateevent'
+    private myeventgeturl: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/myevents'
+    private eventdetailgeturl: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/eventdetails'
+    private removeeventgeturl: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent'
+    private  servicesgeturl: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/services';
   ngOnInit() {
 
-
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+  
+    this.http.post(this.eventposturl,{
+        eventId: 0,
+        eventTitle: "string",
+        filesId: 0,
+        venueName: "string",
+        location: "string",
+        lat: 0,
+        long: 0,
+        capacity: 0,
+        entry: "string",
+        entryFee: 0,
+        eventDescription: "string",
+        eventsDates: [
+          {
+            eventsMoreDatesId: 0,
+            eventId: 0,
+            eventDate: "2018-09-14T06:50:38.768Z",
+            startTime: "2018-09-14T06:50:38.768Z",
+            endTime: "2018-09-14T06:50:38.768Z"
+          }
+        ]
+      },{headers:headers}).subscribe(data =>{
+    console.log(data.json());
+ 
+  })
+        this.http.get(this.myeventgeturl,{headers:headers}).subscribe(data =>{
+        console.log(data.json());})
+        this.http.get(this.eventdetailgeturl,{headers:headers}).subscribe(data =>{
+        console.log(data.json());})
+        this.http.get(this.removeeventgeturl,{headers:headers}).subscribe(data =>{
+        console.log(data.json());})
+        this.http.get(this.servicesgeturl,{headers:headers}).subscribe(data =>{
+            console.log(data.json());})
 
     $("#action").hide();
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
-  $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
-  $.getScript('./assets/js/vendorsidebar.js');
+    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
+    $.getScript('./assets/js/vendorsidebar.js');
   
-  $(".Suppliertab").click(function(){
-    $("#filter").show();
-    $("#action").hide();  
-    $(".Suppliertab").addClass("selected"); 
-    $(".Registertab").removeClass("selected");  
-  
-  });
+    $(".Suppliertab").click(function(){
+        $("#filter").show();
+        $("#action").hide();  
+        $(".Suppliertab").addClass("selected"); 
+        $(".Registertab").removeClass("selected");  
+    });
 
-    $(".Registertab").click(function(){
-    $("#filter").hide();
-    $("#action").show();
-    $(".Suppliertab").removeClass("selected"); 
-    $(".Registertab").addClass("selected");  
-  
-  });
+        $(".Registertab").click(function(){
+        $("#filter").hide();
+        $("#action").show();
+        $(".Suppliertab").removeClass("selected"); 
+        $(".Registertab").addClass("selected");  
+    });
   }
-
-  source: LocalDataSource;
-  filterSource: LocalDataSource;
-  alertSource: LocalDataSource;
-
-  constructor(private modalService: NgbModal,public http: Http) {
-      this.source = new LocalDataSource(tableData.data); // create the source
-      this.filterSource = new LocalDataSource(tableData.filerdata); // create the source
-      this.alertSource = new LocalDataSource(tableData.alertdata); // create the source
-  }
-
-  settings = tableData.settings;
-  filtersettings = tableData.filtersettings;
-  alertsettings = tableData.alertsettings;
-
-
-  // And the listener code which asks the DataSource to filter the data:
-  onSearch(query: string = '') {
-      this.source.setFilter([
-          // fields we want to inclue in the search
-          {
-              field: 'id',
-              search: query,
-          },
-          {
-              field: 'name',
-              search: query,
-          },
-          {
-              field: 'username',
-              search: query,
-          },
-          {
-              field: 'email',
-              search: query,
-          },
-      ], false);
-      // second parameter specifying whether to perform 'AND' or 'OR' search 
-      // (meaning all columns should contain search query or at least one)
-      // 'AND' by default, so changing to 'OR' by setting false here
-  }
-
-  //  For confirm action On Delete
-  onDeleteConfirm(event) {
-      if (window.confirm('Are you sure you want to delete?')) {
-          event.confirm.resolve();
-      } else {
-          event.confirm.reject();
-      }
-  }
-
-  //  For confirm action On Save
-  onSaveConfirm(event) {
-      if (window.confirm('Are you sure you want to save?')) {
-          event.newData['name'] += ' + added in code';
-          event.confirm.resolve(event.newData);
-      } else {
-          event.confirm.reject();
-      }
-  }
-
-  //  For confirm action On Create
-  onCreateConfirm(event) {
-      if (window.confirm('Are you sure you want to create?')) {
-          event.newData['name'] += ' + added in code';
-          event.confirm.resolve(event.newData);
-      } else {
-          event.confirm.reject();
-      }
-  }
+  constructor(private modalService: NgbModal,public http: Http) {}
   /////////////////////////////////popupmodel
-
   closeResult: string;
-
-
   // Open default modal
   open(content) {
       console.log(content);
@@ -123,10 +90,7 @@ export class EventListComponent implements OnInit {
       }, (reason) => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       });
-
-
   }
-
   // This function is used in open
   private getDismissReason(reason: any): string {
       if (reason === ModalDismissReasons.ESC) {
@@ -137,13 +101,11 @@ export class EventListComponent implements OnInit {
           return `with: ${reason}`;
       }
   }
-
   // Open modal with dark section
   openModal(customContent) {
       this.modalService.open(customContent, { windowClass: 'dark-modal' });
   }
-
-  // Open content with dark section
+   // Open content with dark section
   openContent() {
       const modalRef = this.modalService.open( NgbduserModalContent);
       modalRef.componentInstance.name = 'World';

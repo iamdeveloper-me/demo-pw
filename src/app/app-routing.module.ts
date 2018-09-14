@@ -104,6 +104,8 @@ import { BusinessServicesComponent } from './vendor/business-services/business-s
 import { InvoiceDetailComponent } from './vendor/invoice-detail/invoice-detail.component';
 import { TipslistComponent } from './tipslist/tipslist.component';
 import { EventlistComponent } from './eventlist/eventlist.component';
+import { UserdetailsComponent } from './admin/userdetails/userdetails.component';
+
 //import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -203,6 +205,8 @@ const appRoutes: Routes = [
   
   { path: 'Admin/taskboard', component:   TaskboardComponent  },
   { path: 'Admin/site-feedback', component:   SiteFeedbackComponent  },
+  { path: 'Admin/userdetails', component:   UserdetailsComponent  },
+
 
 
 

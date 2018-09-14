@@ -28,7 +28,7 @@
                       <div class="inbox-body">
                           <table class="table table-inbox table-hover">
                             <tbody>
-                              <tr class="unread" *ngFor="let history of historyArr">
+                              <tr class="unread" >
                                   <td class="inbox-small-cells">
                                       <input type="checkbox" class="mail-checkbox">
                                   </td>
@@ -37,22 +37,21 @@
                                   </td>
                                   <td class="view-message displaymobblock  dont-show">
                                   
-                                  <div>{{history.sendByFirstName}}  {{history.sendByLastName}}</div>
+                                
                                  <span _ngcontent-c0="" class="label label-info">Administrator </span>
                                   
                                 </td>
                                   
                                   <td class="view-message displaymobblock">
                                   <div>
-                                    <strong routerLink= "../mailseach">{{history.subject}}</strong>
+                                    <strong routerLink= "../mailseach"></strong>
                                   </div>
                                   <!-- <div class="secondarytext">Hello can we please see your available packages? We are in sydeny, thanks.</div> -->
-                                   <div class="secondarytext">{{history.message}}</div>
+                                   <div class="secondarytext"></div>
                                 </td>
                                   <td class="view-message  secondarytext text-right">
                                       <i class="fa fa-star"></i>
-                                      <div>{{history.sentDateString}}</div>
-                                  <div>{{history.sentDate|date:"HH:mm"}}</div>
+                                 
                                 </td>
                               </tr>
                               <tr class="unread">

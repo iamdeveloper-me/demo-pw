@@ -6,7 +6,47 @@
         <div class="container-fluid nopadd">                    
             <app-adminnavbar></app-adminnavbar>
             <div class="container-fluid">
+
+
+
+
+
                 <div class="card">
+
+                    <div class="col-md-12 mb-30">
+                        <!-- Column -->
+                            <div class="col-md-4">
+                                <div class="box box-inverse box-info">
+                                    <div class="box-body text-center">
+                                        <h1 class="font-light text-white">2,064</h1>
+                                        <h6 class="text-white mb-10">Total Tickets</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Column -->
+                            <div class="col-md-4">
+                                <div class="box box-success box-inverse">
+                                    <div class="box-body text-center">
+                                        <h1 class="font-light text-white">1,738</h1>
+                                        <h6 class="text-white mb-10">Open Tickets</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Column -->
+                            <div class="col-md-4">
+                                <div class="box box-inverse box-danger">
+                                    <div class="box-body text-center">
+                                        <h1 class="font-light text-white">1100</h1>
+                                        <h6 class="text-white mb-10">Resolved Tickets</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Column -->
+                    </div>
+
+
+
+
                         <div class="card-header mobpaddbot0px">
                            <ul class="tabbingdesignheading">
                                 <li class="card-title selected openticket">Open Ticket</li>
@@ -24,7 +64,13 @@
                                   <li class="card-title phonetab">
                                       Phone/General
                                   </li>
-                            </ul>    
+                                  <li class="btnli">
+                                      <button data-toggle="modal" data-target="#Newticket">Add New Ticket</button> 
+                                  </li>
+                            </ul>   
+
+
+                              
                         </div>
                         <section>
                             <div class="row">
@@ -44,7 +90,7 @@
 
                                                 <input type="text" placeholder="Type to filter the name column" name="">
 
-                                                 <button class="btn btn-small btn-link" data-toggle="modal" data-target="#Newticket">Add New Ticket</button>
+                                               
 
                                             </div>
                                            
@@ -122,6 +168,9 @@
                                   <li class="card-title phonetab">
                                       Phone/General
                                   </li>
+                                  <li class="btnli">
+                                      <button data-toggle="modal" data-target="#Newticket">Add New Ticket</button> 
+                                  </li>
                             </ul>    
                         </div>
                         <section>
@@ -167,7 +216,7 @@
                                                             <td>july 25, 2018</td>
                                                             <td>Ada.Hoppe</td>
                                                             <td>
-                                                            <a routerLink="../../Admin/userdetails">View</a></td>
+                                                            <a>View</a></td>
                                                     </tr>
                                                     <tr class="listingtabdetail">
                                                             <td>#39124</td>
@@ -283,10 +332,7 @@
                             </div>
                             </div>
                         </div>
-                    <div class="col-md-12">
-                       <span><input type="checkbox">&nbsp; Setting &nbsp;  </span> 
-                       <span> <input type="checkbox">&nbsp; Enable </span>
-                    </div>
+                    
 
                     </div> 
                 </div>

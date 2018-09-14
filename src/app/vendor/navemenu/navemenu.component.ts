@@ -85,14 +85,14 @@ export class NavemenuComponent implements OnInit {
       } else if(window.location.href.indexOf('/vendor/Message')>-1) {
         this.data = 'MESSAGES'; 
       }
-       else if(window.location.href.indexOf('/Admin/dashboard')>-1) {
+      else if(window.location.href.indexOf('/Admin/dashboard')>-1) {
         this.data = 'Dashboard'; 
       }
       else if(window.location.href.indexOf('/Admin/Customerbillings')>-1) {
-        this.data = 'Invoices'; 
+        this.data = 'Invoicesfdfsdfsdfd'; 
       }
-      else if(window.location.href.indexOf('/Admin/Customerbillings')>-1) {
-        this.data = 'Invoices'; 
+      else if(window.location.href.indexOf('/Admin/Taskboard')>-1) {
+        this.data = 'Taskboard'; 
       }
       else{}
       

@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./adminnavbar.component.scss']
 })
 export class AdminnavbarComponent implements OnInit {
-
+  public data = '' ;
   currentLang = 'en';
     toggleClass = 'ft-maximize';
   constructor(public translate: TranslateService) { const browserLang: string = translate.getBrowserLang();

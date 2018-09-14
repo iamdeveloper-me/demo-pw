@@ -107,6 +107,15 @@ import { EventlistComponent } from './eventlist/eventlist.component';
 import { UserdetailsComponent } from './admin/userdetails/userdetails.component';
 
 //import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
+import { DetailstatsComponent } from './admin/detailstats/detailstats.component';
+import { SalesstatsComponent } from './admin/salesstats/salesstats.component';
+import { CRMstatsComponent } from './admin/crmstats/crmstats.component';
+import { NetworkstatsComponent } from './admin/networkstats/networkstats.component';
+import { CategorystatsComponent } from './admin/categorystats/categorystats.component';
+import { VendorstatsComponent } from './admin/vendorstats/vendorstats.component';
+
+
+
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -188,6 +197,7 @@ const appRoutes: Routes = [
   { path: 'User/Budget', component: BudgetComponent },
   { path: 'User/Inspirations', component: InspirationsComponent },
   { path: 'User/UserReviews', component: UserReviewsComponent },
+
   { path: 'Admin/dashboard', component:  AdmindashboardComponent },  
   { path: 'Admin/login', component:  AdminComponent },  
   { path: 'Admin/Useraccountlist', component:  UseraccountlistComponent },  
@@ -205,13 +215,18 @@ const appRoutes: Routes = [
   
   { path: 'Admin/taskboard', component:   TaskboardComponent  },
   { path: 'Admin/site-feedback', component:   SiteFeedbackComponent  },
+
   { path: 'Admin/userdetails', component:   UserdetailsComponent  },
 
 
+  { path: 'Admin/visitor-detail-stats', component:   DetailstatsComponent  },
 
 
-
-
+  { path: 'Admin/Sales-stats', component:   SalesstatsComponent  },
+  { path: 'Admin/CRM-stats', component:   CRMstatsComponent  },
+  { path: 'Admin/Network-stats', component:   NetworkstatsComponent  },
+  { path: 'Admin/Category-stats', component:   CategorystatsComponent  },
+  { path: 'Admin/Vendor-stats', component:   VendorstatsComponent  },
 
   { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES, canActivate: [AuthGuard] },
   { path: '', component: ContentLayoutComponent, data: { title: 'content Views' }, children: CONTENT_ROUTES, canActivate: [AuthGuard] },

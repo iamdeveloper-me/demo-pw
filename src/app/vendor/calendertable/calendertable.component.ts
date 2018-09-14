@@ -86,31 +86,10 @@ export class CalendertableComponent implements OnInit {
   }
 
   ngOnInit() {
-<<<<<<< HEAD
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization",'Bearer '+authToken);
-    this.http.get(this.geturl,{headers:headers}).subscribe(data =>{
-    this.jobArray = data.json() as string[]; 
-    for (let entry of data.json()) {
-      this.events.push({
-          title: entry.clientName,
-          start: entry.clientName,
-      });
-     }
-    });
 
-    console.log(this.events);
-    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob',
-   {headers:headers}).subscribe((data) => { 
-       console.log( data.json() as string[] );
-    });
-=======
     
      this.getEvents();
->>>>>>> mahima
+
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
@@ -152,8 +131,7 @@ $(".weddingjobstab").click(function(){
           }
   }
 
-<<<<<<< HEAD
-=======
+
 
   getEvents(){
     
@@ -174,7 +152,7 @@ $(".weddingjobstab").click(function(){
    });
    
   }
->>>>>>> mahima
+
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
   view: string = 'month';
   newEvent: CalendarEvent;
@@ -202,13 +180,7 @@ $(".weddingjobstab").click(function(){
     
   ];
   refresh: Subject<any> = new Subject();
-<<<<<<< HEAD
- 
-  // events: CalendarEvent[] = [];
-  activeDayIsOpen: boolean = true;
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-     console.log('Event clicked', event);
-=======
+
   events: CalendarEvent[] = [
     {
       start: subDays(startOfDay(new Date()), 1),
@@ -249,7 +221,7 @@ $(".weddingjobstab").click(function(){
   dayClicked({ date, events}: { date: Date; events: CalendarEvent[] }): void {
          
     
->>>>>>> mahima
+
     if (isSameMonth(date, this.viewDate)) {
       if ( (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) || events.length === 0)
         {
@@ -343,13 +315,10 @@ job(jo){
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
-<<<<<<< HEAD
-    console.log(this.urlgetremove + '/' + deleteid);
-    this.http.get(this.urlgetremove + '/' + deleteid,{headers:headers}).subscribe(data =>{
-=======
+
     console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob?VendorJobId'+'='+deleteid);
     this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob?VendorJobId'+'='+deleteid,{headers:headers}).subscribe(data =>{
->>>>>>> mahima
+
      console.log(data.json());
      this.jobArray.splice(this.jobArray.indexOf(deleteid),1);
     },error =>{ console.log(error)});

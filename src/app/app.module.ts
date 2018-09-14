@@ -170,7 +170,7 @@ import { InvoiceDetailComponent } from './vendor/invoice-detail/invoice-detail.c
 import { FootCupleComponent } from './foot-cuple/foot-cuple.component';
 import { TaskboardComponent } from './admin/taskboard/taskboard.component';
 import { SiteFeedbackComponent } from './admin/site-feedback/site-feedback.component';
-import { FootCupleComponent } from './foot-cuple/foot-cuple.component';
+
 
 
 
@@ -317,11 +317,9 @@ export function getAuthServiceConfigs() {
         TipslistComponent,
         EventlistComponent,
         FootCupleComponent,
-<<<<<<< HEAD
         TaskboardComponent,
         SiteFeedbackComponent,
-=======
->>>>>>> mahima
+
 
 
   ],

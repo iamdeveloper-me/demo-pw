@@ -132,7 +132,7 @@ import { UseraccountlistComponent ,NgbduserModalContent } from './admin/useracco
 import { CustomerbillingsComponent } from './admin/customerbillings/customerbillings.component';
 import { CalenderandnotesComponent } from './admin/calenderandnotes/calenderandnotes.component';
 import { EmailComponent } from './admin/email/email.component';
-import { TicketsComponent ,NgbdticketModalContent} from './admin/tickets/tickets.component';
+import { TicketsComponent } from './admin/tickets/tickets.component';
 import { MessageschatComponent } from './admin/messageschat/messageschat.component';
 import { AdminadvertisingComponent } from './admin/adminadvertising/adminadvertising.component';
 import { SocialfeedComponent } from './admin/socialfeed/socialfeed.component';
@@ -170,7 +170,8 @@ import { InvoiceDetailComponent } from './vendor/invoice-detail/invoice-detail.c
 import { FootCupleComponent } from './foot-cuple/foot-cuple.component';
 import { TaskboardComponent } from './admin/taskboard/taskboard.component';
 import { SiteFeedbackComponent } from './admin/site-feedback/site-feedback.component';
-import { FootCupleComponent } from './foot-cuple/foot-cuple.component';
+import { UserdetailsComponent } from './admin/userdetails/userdetails.component';
+
 
 
 
@@ -224,7 +225,7 @@ export function getAuthServiceConfigs() {
         PortfolioviewComponent,
         ViewPhotoAlbumsComponent,
         BusinessInfoComponent,
-        NgbdticketModalContent,
+        
         CreatePromotionComponent,
         LocationComponent,
         FullLayoutComponent,
@@ -317,11 +318,10 @@ export function getAuthServiceConfigs() {
         TipslistComponent,
         EventlistComponent,
         FootCupleComponent,
-<<<<<<< HEAD
         TaskboardComponent,
         SiteFeedbackComponent,
-=======
->>>>>>> mahima
+        UserdetailsComponent,
+
 
 
   ],

@@ -70,6 +70,15 @@ import { EmailComponent } from './admin/email/email.component';
 import { TicketsComponent } from './admin/tickets/tickets.component';
 import { MessageschatComponent } from './admin/messageschat/messageschat.component';
 import { AdminadvertisingComponent } from './admin/adminadvertising/adminadvertising.component';
+import { TaskboardComponent } from './admin/taskboard/taskboard.component';
+
+import { SiteFeedbackComponent } from './admin/site-feedback/site-feedback.component';
+
+
+
+
+
+
 import { SocialfeedComponent } from './admin/socialfeed/socialfeed.component';
 import { EventsandarticlesComponent } from './admin/eventsandarticles/eventsandarticles.component';
 import { SitestatsandreportsComponent } from './admin/sitestatsandreports/sitestatsandreports.component';
@@ -192,6 +201,13 @@ const appRoutes: Routes = [
   { path: 'Admin/Reviewandfeedback', component: ReviewandfeedbackComponent },  
   { path: 'Admin/advertising', component:   AdminadvertisingComponent  },  
   
+  { path: 'Admin/taskboard', component:   TaskboardComponent  },
+  { path: 'Admin/site-feedback', component:   SiteFeedbackComponent  },
+
+
+
+
+
 
   { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES, canActivate: [AuthGuard] },
   { path: '', component: ContentLayoutComponent, data: { title: 'content Views' }, children: CONTENT_ROUTES, canActivate: [AuthGuard] },

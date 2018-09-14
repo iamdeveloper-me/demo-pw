@@ -58,5 +58,5 @@ export class DiscountdealsComponent implements OnInit {
      });
 
   }
-
+open(c){console.log(c);}
 }

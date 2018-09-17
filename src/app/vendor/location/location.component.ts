@@ -32,8 +32,13 @@ interface Location {
 })
 
 export class LocationComponent implements OnInit {
-
+  Country;
+  postalCode;
+  city;
+  Phone;
+  Address;
  data;
+ m;
   circleRadius:number = 5000;
   milesToRadius(value) {
     this.circleRadius = value / 0.00062137;
@@ -43,7 +48,7 @@ export class LocationComponent implements OnInit {
    return this.circleRadius * 0.00062137;
  }
   
-  markerDragEnd(m: any, $event: any) {
+  markerDragEnd(m: any) {
     this.location.marker.lat = m.coords.lat;
     this.location.marker.lng = m.coords.lng;
     this.findAddressByCoordinates();
@@ -217,10 +222,10 @@ export class LocationComponent implements OnInit {
         testAnim(anim);
   })
   }
-  openModel(b,c)
+  openModel(b)
   {
     this.modelfield  = b;
-    this.address  = c;
+   // this.address  = c;
   }
   upForm(info)
   {

@@ -17,8 +17,9 @@ export class DetailpageComponent implements OnInit {
    // $.getScript('./assets/js/jsorslider.js');
     $.getScript('./assets/js/prism.min.js'); 
     $.getScript('./assets/js/owljsor.js');
-    $.getScript('./assets/js/curosselfun.js');
     $.getScript('./assets/js/jquery.fancybox.min.js');
+    $.getScript('./assets/js/curosselfun.js');
+    
           
 
        

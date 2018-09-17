@@ -35,7 +35,7 @@ interface Location {
 })
 
 export class BusinessInfoComponent implements OnInit {
-
+  m;
   circleRadius:number = 5000;
   milesToRadius(value) {
     this.circleRadius = value / 0.00062137;
@@ -45,7 +45,7 @@ export class BusinessInfoComponent implements OnInit {
    return this.circleRadius * 0.00062137;
  }
   
-  markerDragEnd(m: any, $event: any) {
+  markerDragEnd(m: any) {
     this.location.marker.lat = m.coords.lat;
     this.location.marker.lng = m.coords.lng;
     this.findAddressByCoordinates();

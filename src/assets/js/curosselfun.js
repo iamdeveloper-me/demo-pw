@@ -166,6 +166,18 @@ $(".aboutbox").click(function() {
     $('.overviewbox').removeClass('activebuttontab');
     $('.gallerybox').removeClass('activebuttontab');
 });
+
+$(".mobileabout").click(function() {
+    $('html,body').animate({scrollTop: $("#aboutmobile").offset().top-150},'slow');
+    $('.mobileabout').addClass('activebuttontab');
+    $('.reviewbox').removeClass('activebuttontab');
+    $('.overviewbox').removeClass('activebuttontab');
+    $('.gallerybox').removeClass('activebuttontab');
+});
+
+
+
+
 $(".overviewbox").click(function() {
     $('html,body').animate({scrollTop: $(".weddingvenue").offset().top-150},'slow');
     $('.overviewbox').addClass('activebuttontab');

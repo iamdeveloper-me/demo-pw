@@ -26,6 +26,7 @@ import { FaquestionComponent } from './faquestion/faquestion.component';
 import { TermsandconComponent } from './termsandcon/termsandcon.component';
 import { CareersComponent } from './careers/careers.component';
 import { AdvertiseComponent } from './advertise/advertise.component';
+import { FootCupleComponent } from './foot-cuple/foot-cuple.component';
 import { UserboardComponent } from './userpannel/userboard/userboard.component';
 import { InspirationsComponent } from './userpannel/userboard/inspirations/inspirations.component';
 import { UserReviewsComponent } from './userpannel/userboard/user-reviews/user-reviews.component';
@@ -34,6 +35,9 @@ import { RegisterComponent} from './register/register.component';
 import { EventsComponent } from './events/events.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.component';
+
+import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.component';
+
 import { VendorComponent } from './vendor/vendor.component';
 import { AllcategoryComponent } from './allcategory/allcategory.component';
 import { GalleryComponent } from './vendor/gallery/gallery.component';
@@ -66,6 +70,15 @@ import { EmailComponent } from './admin/email/email.component';
 import { TicketsComponent } from './admin/tickets/tickets.component';
 import { MessageschatComponent } from './admin/messageschat/messageschat.component';
 import { AdminadvertisingComponent } from './admin/adminadvertising/adminadvertising.component';
+import { TaskboardComponent } from './admin/taskboard/taskboard.component';
+
+import { SiteFeedbackComponent } from './admin/site-feedback/site-feedback.component';
+
+
+
+
+
+
 import { SocialfeedComponent } from './admin/socialfeed/socialfeed.component';
 import { EventsandarticlesComponent } from './admin/eventsandarticles/eventsandarticles.component';
 import { SitestatsandreportsComponent } from './admin/sitestatsandreports/sitestatsandreports.component';
@@ -91,7 +104,18 @@ import { BusinessServicesComponent } from './vendor/business-services/business-s
 import { InvoiceDetailComponent } from './vendor/invoice-detail/invoice-detail.component';
 import { TipslistComponent } from './tipslist/tipslist.component';
 import { EventlistComponent } from './eventlist/eventlist.component';
+import { UserdetailsComponent } from './admin/userdetails/userdetails.component';
+
 //import { BusinessServicesComponent } from './vendor/business-services/business-services.component';
+import { DetailstatsComponent } from './admin/detailstats/detailstats.component';
+import { SalesstatsComponent } from './admin/salesstats/salesstats.component';
+import { CRMstatsComponent } from './admin/crmstats/crmstats.component';
+import { NetworkstatsComponent } from './admin/networkstats/networkstats.component';
+import { CategorystatsComponent } from './admin/categorystats/categorystats.component';
+import { VendorstatsComponent } from './admin/vendorstats/vendorstats.component';
+
+
+
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -114,6 +138,7 @@ const appRoutes: Routes = [
   { path: 'home/TermsandConditions', component: TermsandconComponent  },
   { path: 'home/Careers', component:  CareersComponent  },
   { path: 'home/Advertise', component:  AdvertiseComponent },
+  { path: 'home/cuplefoot', component:  FootCupleComponent },
 
     { path: 'vendor/creatpromo', component:  CreatePromotionComponent  },
     { path: 'vendor/dashboard', component:  DashboardComponent  },
@@ -128,6 +153,8 @@ const appRoutes: Routes = [
     { path: 'vendor/gallery', component: GalleryComponent  },
     { path: 'vendor/allpromotion', component: AllPromotionPageComponent  },
     { path: 'vendor/profile', component:  VendorprofileComponent  },
+
+     { path: 'vendor/discountdeals', component:  DiscountdealsComponent  },
     // {
     //   path: 'vendor/chat',
     //   loadChildren: './chat/chat.module#ChatModule',
@@ -170,6 +197,7 @@ const appRoutes: Routes = [
   { path: 'User/Budget', component: BudgetComponent },
   { path: 'User/Inspirations', component: InspirationsComponent },
   { path: 'User/UserReviews', component: UserReviewsComponent },
+
   { path: 'Admin/dashboard', component:  AdmindashboardComponent },  
   { path: 'Admin/login', component:  AdminComponent },  
   { path: 'Admin/Useraccountlist', component:  UseraccountlistComponent },  
@@ -185,6 +213,20 @@ const appRoutes: Routes = [
   { path: 'Admin/Reviewandfeedback', component: ReviewandfeedbackComponent },  
   { path: 'Admin/advertising', component:   AdminadvertisingComponent  },  
   
+  { path: 'Admin/taskboard', component:   TaskboardComponent  },
+  { path: 'Admin/site-feedback', component:   SiteFeedbackComponent  },
+
+  { path: 'Admin/userdetails', component:   UserdetailsComponent  },
+
+
+  { path: 'Admin/visitor-detail-stats', component:   DetailstatsComponent  },
+
+
+  { path: 'Admin/Sales-stats', component:   SalesstatsComponent  },
+  { path: 'Admin/CRM-stats', component:   CRMstatsComponent  },
+  { path: 'Admin/Network-stats', component:   NetworkstatsComponent  },
+  { path: 'Admin/Category-stats', component:   CategorystatsComponent  },
+  { path: 'Admin/Vendor-stats', component:   VendorstatsComponent  },
 
   { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES, canActivate: [AuthGuard] },
   { path: '', component: ContentLayoutComponent, data: { title: 'content Views' }, children: CONTENT_ROUTES, canActivate: [AuthGuard] },

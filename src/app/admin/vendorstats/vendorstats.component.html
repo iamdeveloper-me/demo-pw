@@ -1,0 +1,40 @@
+<div id="wrapper" class="toggled">
+    <div id="sidebar-wrapper">
+        <app-adminsidebar></app-adminsidebar>
+    </div>
+    <div id="page-content-wrapper">    
+        <div class="container-fluid nopadd">                    
+            <app-adminnavbar></app-adminnavbar>
+            <div class="container-fluid">
+       
+                  
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Bar Chart</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-block">
+                                    <div id="bar-bar1" class="height-400">
+                                        <canvas baseChart class="chart" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColors" [legend]="barChartLegend"
+                                            [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+      
+            </div>
+            <app-foot></app-foot>
+        </div>
+    </div> 
+</div>
+
+
+
+    
+    
+
+<router-outlet></router-outlet> 

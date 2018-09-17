@@ -24,6 +24,7 @@ import {
   CalendarEventAction,
   CalendarEventTimesChangedEvent
 } from 'angular-calendar';
+import { getEventsInPeriod } from 'calendar-utils';
 
 const colors: any = {
   red: {
@@ -39,8 +40,6 @@ const colors: any = {
     secondary: '#FDF1BA'
   }
 };
-
-
 @Component({
   selector: 'app-calendertable',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -48,28 +47,30 @@ const colors: any = {
   styleUrls: ['./calendertable.component.scss']
 })
 export class CalendertableComponent implements OnInit {
-  
-  jobArray:string[];
-event = {  
-    vendorJobsId: 0,
-   clientName: "",
-   numberOfPeople: 0,
-   clientPhoneNumber: "",
-   jobLocation: "",
-   lat: 0,
-   long: 0,
-   jobDate: "",
-   jobTime: "",
-   userId: "",
-   vendorId: 0
- }
-  
- private urlgetremove: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob'
+   jobArray:string[];
+   
 
-  vendor: any = {};
+   event = {  vendorJobsId: 0,
+              clientName: "",
+              numberOfPeople: 0,
+              clientPhoneNumber: "",
+              jobLocation: "",
+              lat: 0,
+              long: 0,
+              jobDate: "",
+              jobTime: "",
+              userId: "",
+              vendorId: 0
+             }
+
+  private urlgetremove: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob'
   private url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/createupdatejobs';
   private geturl: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/myjobs';
-
+  vendor: any = {};
+  test: string;
+  dates: string;
+  entry: string;
+  myDate = new Date(); 
   t: any;
   currentJustify = 'start';
   currentOrientation = 'horizontal';
@@ -79,54 +80,15 @@ event = {
       $event.preventDefault();
     }
   };
- // myDate = new Date();
-  test: string;
-  dates: string;
-  entry: string;
-   myDate = new Date(); 
-  constructor(private modal: NgbModal,public http: Http,private datePipe: DatePipe) { 
-  
-   // this.myDate  = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
-   // this.myDate = this.datePipe.format(this.myDate, 'yyyy-MM-dd');
-   // console.log(this.datePipe.transform(date,"yyyy-MM-dd")); //output : 2018-02-13
 
+  constructor(private modal: NgbModal,public http: Http,private datePipe: DatePipe) { 
    this.test = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
   }
 
   ngOnInit() {
-  
 
-  
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization",'Bearer '+authToken);
-  
-    this.http.get(this.geturl,{headers:headers}).subscribe(data =>{
-  
-    this.jobArray = data.json() as string[]; 
- 
-    for (let entry of data.json()) {
-     this.dates = this.datePipe.transform(entry.jobDate, 'yyyy-MM-dd');  
-     }
-  
-   
-    });
- 
-   
-
-
-
-    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob',
-   {headers:headers}).subscribe((data) => { 
-       console.log( data.json() as string[] );
-    // console.log( data.json());
-    });
     
-
-    var isValid = false ;
-
+     this.getEvents();
 
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
@@ -169,19 +131,36 @@ $(".weddingjobstab").click(function(){
           }
   }
 
+
+
+  getEvents(){
+    
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+    this.http.get(this.geturl,{headers:headers}).subscribe(data =>{
+    this.jobArray = data.json() as string[]; 
+    //  for (let entry of data.json()) {
+    //   this.events.push({
+    //       title: entry.clientName,
+    //       start: entry.clientName,
+    //   });
+    //    }
+    //    console.log(this.events);
+   });
+   
+  }
+
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
-
   view: string = 'month';
-
   newEvent: CalendarEvent;
-
   viewDate: Date = new Date();
-
   modalData: {
     action: string;
     event: CalendarEvent;
   };
-
   actions: CalendarEventAction[] = [
     {
       label: '<i class="fa fa-fw fa-pencil"></i>',
@@ -195,9 +174,11 @@ $(".weddingjobstab").click(function(){
         this.events = this.events.filter(iEvent => iEvent !== event);
         this.handleEvent('This event is deleted!', event);
       }
-    }
-  ];
 
+    }
+    
+    
+  ];
   refresh: Subject<any> = new Subject();
 
   events: CalendarEvent[] = [
@@ -235,23 +216,30 @@ $(".weddingjobstab").click(function(){
   ];
 
   activeDayIsOpen: boolean = true;
+  
+  
+  dayClicked({ date, events}: { date: Date; events: CalendarEvent[] }): void {
+         
+    
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
-      if (
-        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0
-      ) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
+      if ( (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) || events.length === 0)
+        {
+          this.activeDayIsOpen = false;
+       
+        } else {
+          this.activeDayIsOpen = true;
         this.viewDate = date;
-      }
+        }
+        if( (isSameDay(this.viewDate, date) && this.activeDayIsOpen === false) || events.length === 0){
+          this.modal.open(this.modalContent, { size: 'lg' });
+         
+        }
+
     }
   }
-
   eventTimesChanged({
-      event,
+    event,
     newStart,
     newEnd
     }: CalendarEventTimesChangedEvent): void {
@@ -315,18 +303,25 @@ job(jo){
     data =>{ this.vendor = data.json(); console.log(this.vendor);});
   
   }
+
   deletevent(id){
     alert(id)
-    var deleteid = id ;
+    console.log(id);
+   
+    // var vendorjobsid 
+    var deleteid = id.vendorJobsId ;
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
-    this.http.get(this.urlgetremove + deleteid,{headers:headers}).subscribe(data =>{
+
+    console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob?VendorJobId'+'='+deleteid);
+    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob?VendorJobId'+'='+deleteid,{headers:headers}).subscribe(data =>{
+
      console.log(data.json());
+     this.jobArray.splice(this.jobArray.indexOf(deleteid),1);
     },error =>{ console.log(error)});
   }
 
- 
 }

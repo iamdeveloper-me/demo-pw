@@ -6,6 +6,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import {DatePipe} from '@angular/common';
 import { ImageCropperModule } from 'ng2-img-cropper';
 
+import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.component';
+
 
 
 //calender 
@@ -118,6 +120,11 @@ import { MembershipComponent } from './vendor/membership/membership.component';
 
 import { CreatePromotionComponent } from './vendor/create-promotion/create-promotion.component'; 
 
+
+
+
+
+
 import {  AdminComponent } from "./admin/admin.component";
 import { AdminsidebarComponent } from './admin/adminsidebar/adminsidebar.component';
 import { AdminnavbarComponent } from './admin/adminnavbar/adminnavbar.component';
@@ -126,7 +133,7 @@ import { UseraccountlistComponent ,NgbduserModalContent } from './admin/useracco
 import { CustomerbillingsComponent } from './admin/customerbillings/customerbillings.component';
 import { CalenderandnotesComponent } from './admin/calenderandnotes/calenderandnotes.component';
 import { EmailComponent } from './admin/email/email.component';
-import { TicketsComponent ,NgbdticketModalContent} from './admin/tickets/tickets.component';
+import { TicketsComponent } from './admin/tickets/tickets.component';
 import { MessageschatComponent } from './admin/messageschat/messageschat.component';
 import { AdminadvertisingComponent } from './admin/adminadvertising/adminadvertising.component';
 import { SocialfeedComponent } from './admin/socialfeed/socialfeed.component';
@@ -161,6 +168,21 @@ import { PromotionHomepageComponent } from './vendor/promotion-homepage/promotio
 import { TipslistComponent } from './tipslist/tipslist.component';
 import { EventlistComponent } from './eventlist/eventlist.component';
 import { InvoiceDetailComponent } from './vendor/invoice-detail/invoice-detail.component';
+import { FootCupleComponent } from './foot-cuple/foot-cuple.component';
+import { TaskboardComponent } from './admin/taskboard/taskboard.component';
+
+import { UserdetailsComponent } from './admin/userdetails/userdetails.component';
+
+import { SiteFeedbackComponent } from './admin/site-feedback/site-feedback.component';
+import { DetailstatsComponent } from './admin/detailstats/detailstats.component';
+import { SalesstatsComponent } from './admin/salesstats/salesstats.component';
+import { CRMstatsComponent } from './admin/crmstats/crmstats.component';
+import { NetworkstatsComponent } from './admin/networkstats/networkstats.component';
+import { CategorystatsComponent } from './admin/categorystats/categorystats.component';
+import { VendorstatsComponent } from './admin/vendorstats/vendorstats.component';
+
+
+
 
 
 
@@ -213,7 +235,7 @@ export function getAuthServiceConfigs() {
         PortfolioviewComponent,
         ViewPhotoAlbumsComponent,
         BusinessInfoComponent,
-        NgbdticketModalContent,
+        
         CreatePromotionComponent,
         LocationComponent,
         FullLayoutComponent,
@@ -232,7 +254,7 @@ export function getAuthServiceConfigs() {
         MyaccountComponent,
         EditprofileComponent,
         GalleryComponent,
-        
+        DiscountdealsComponent,
         ReviewsComponent,
         NgbduserModalContent ,
         VendorsidebarComponent,
@@ -253,7 +275,6 @@ export function getAuthServiceConfigs() {
         AllcategoryComponent,
         SupplierByCityComponent,
         SupplierByCateComponent,
-
         VideosComponent,
       
 
@@ -306,10 +327,25 @@ export function getAuthServiceConfigs() {
         VediosettingComponent,
         TipslistComponent,
         EventlistComponent,
+        FootCupleComponent,
+        TaskboardComponent,
+        SiteFeedbackComponent,
+
+        UserdetailsComponent,
+
+        DetailstatsComponent,
+        SalesstatsComponent,
+        CRMstatsComponent,
+        NetworkstatsComponent,
+        CategorystatsComponent,
+        VendorstatsComponent,
+
+
 
 
   ],
     imports: [
+       
         FileUploadModule,
         ImageCropperModule,
         BrowserAnimationsModule,

@@ -45,7 +45,9 @@ export class NavemenuComponent implements OnInit {
       } else if(window.location.href.indexOf('/vendor/membership')>-1) {
        this.data = 'Membership ';
       } else if(window.location.href.indexOf('/vendor/PromoteBusiness')>-1) {
-        this.data = 'Promotions ';
+        this.data = 'Promote Business ';
+      } else if(window.location.href.indexOf('/vendor/discountdeals')>-1) {
+        this.data = 'Discount & Deals ';
       } else if(window.location.href.indexOf('/vendor/statistics')>-1) {
         this.data = 'Statistics';
       } else if(window.location.href.indexOf('/vendor/actionfront')>-1) {
@@ -82,6 +84,15 @@ export class NavemenuComponent implements OnInit {
         this.data = 'Create Promotion';
       } else if(window.location.href.indexOf('/vendor/Message')>-1) {
         this.data = 'MESSAGES'; 
+      }
+      else if(window.location.href.indexOf('/Admin/dashboard')>-1) {
+        this.data = 'Dashboard'; 
+      }
+      else if(window.location.href.indexOf('/Admin/Customerbillings')>-1) {
+        this.data = 'Invoicesfdfsdfsdfd'; 
+      }
+      else if(window.location.href.indexOf('/Admin/Taskboard')>-1) {
+        this.data = 'Taskboard'; 
       }
       else{}
       

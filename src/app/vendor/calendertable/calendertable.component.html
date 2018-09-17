@@ -61,8 +61,8 @@
 											</ngb-tab>
 											<ngb-tab title="Past">
 												<ng-template ngbTabContent>
-														<div class="upcominglisthomepage"  *ngFor="let job of jobArray">
-																<div  *ngIf="job.jobDate < test" >
+														<div *ngFor="let job of jobArray">
+																<div class="upcominglisthomepage"  *ngIf="job.jobDate < test" >
 																	 <div class="col-sm-5 col-8">
 																		 <i class="material-icons">date_range</i>  {{job.jobDate |  date:'medium' }}<br/>
 																		 <ul>
@@ -107,7 +107,7 @@
 																</div>
 																<div class="col-sm-4 col-4 upcomingright">
 																			
-																		<button type="button" (click)= "deletevent(job.vendorJobsId)" class="btn btn-danger whitetext" >delete {{job.vendorJobsId}}</button>
+																		<button type="button" (click)= "deletevent(job)" class="btn btn-danger whitetext" >delete {{job.vendorJobsId}}</button>
 																	</div>
 														</div> 
 												</ng-template>
@@ -141,7 +141,12 @@
 											</div>
 										</div>
 										<div [ngSwitch]="view">
-											<mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+											<mwl-calendar-month-view *ngSwitchCase="'month'" 
+											[viewDate]="viewDate"
+											 [events]="events" [refresh]="refresh" 
+											 [activeDayIsOpen]="activeDayIsOpen" 
+											 (dayClicked)="dayClicked($event.day)" 
+											 (eventTimesChanged)="eventTimesChanged($event)" >
 											</mwl-calendar-month-view>												
 										</div>
 									</div>
@@ -159,8 +164,90 @@
 
 
 
-
 <ng-template #modalContent let-close="close" class="even_picker">
+
+	<div class="card-block" style="background: #fff;">
+		<div class="modal-header">
+			<h5 class="modal-title">{{ modalData?.action }}</h5>
+			<button type="button" class="close" (click)="close()">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+
+		<div class="modal-body">
+				<div class="form-group">	
+			      <input 
+					type="text" 
+					name="event-contactname" 
+					class="effect-16" 
+					[(ngModel)]="modalData?.event.clientName" 
+					(keyup)="refresh.next()"
+					>
+					<label>Client Name</label>
+				
+		        </div>
+			<div class="form-group">
+				<label>Event Title:</label>
+				<input type="text" name="event-title" class="form-control" [(ngModel)]="modalData?.event.title" (keyup)="refresh.next()">
+			</div>
+			<div class="form-group">
+					<input
+						type="text" 
+						name="event-contactnumber" 
+						class="effect-16" 
+						[(ngModel)]="modalData?.event.contactnumber" 
+						(keyup)="refresh.next()">
+					<label>Client Number</label>
+					
+			</div>
+			<div class="form-group">		
+		            <input 
+					type="text
+					" name="event-location"
+						class="effect-16"
+						[(ngModel)]="modalData?.event.location" 
+						(keyup)="refresh.next()">
+					<label>Event Location:</label>
+	        </div>				
+			<div class="row">
+				<div class="col-md-6 col-12">
+					<div class="form-group">
+						<label>Primary Color:</label>
+						<input type="color" name="primary-color" [(ngModel)]="modalData?.event.color.primary" (change)="refresh.next()">
+					</div>	
+				</div>
+				<div class="col-md-6 col-12">
+					<div class="form-group">
+						<label>Secondary Color:</label>
+						<input type="color" name="secondary-color" [(ngModel)]="modalData?.event.color.secondary" (change)="refresh.next()">
+					</div>	
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-12">
+					<div class="form-group">
+						<label>Starts At:</label>
+						<mwl-demo-utils-date-time-picker name="starts-at" [(ngModel)]="modalData?.event.start" (ngModelChange)="refresh.next()" placeholder="Not set">
+						</mwl-demo-utils-date-time-picker>
+					</div>
+				</div>
+				<div class="col-md-6 col-12">
+					<div class="form-group">
+						<label>Ends At:</label>
+						<mwl-demo-utils-date-time-picker name="ends-at" [(ngModel)]="modalData?.event.end" (ngModelChange)="refresh.next()" placeholder="Not set">
+						</mwl-demo-utils-date-time-picker>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="submit" class="btn btn-outline-secondary"  (click)="job(modalData)" (click)="close()">SAVE</button>
+			<button type="button" class="btn btn-outline-secondary" (click)="close()">CANCEL</button>
+		</div>
+	</div>
+	
+</ng-template> 
+<!-- <ng-template #modalContent let-close="close" class="even_picker">
 
 	<div class="card-block" style="background: #fff;">
 		<div class="modal-header">
@@ -270,6 +357,6 @@
 		</div>
 	</div>
 	
-</ng-template>
+</ng-template> -->
 
 	<router-outlet></router-outlet>

@@ -1,23 +1,409 @@
-
-<div id="wrapper" class="toggled">
-    <div id="sidebar-wrapper">
-       
-            <app-adminsidebar></app-adminsidebar>
-        
-    </div>
-    <div id="page-content-wrapper">    
-        <div class="container-fluid nopadd">                    
-            <app-adminnavbar></app-adminnavbar>
-                   customer billings
-      
-            <app-foot></app-foot>
+<div id="wrapper" class="toggled">      
+  <div id="sidebar-wrapper">
+       <app-adminsidebar></app-adminsidebar>
+  </div>
+  <div id="page-content-wrapper">
+    <div class="container-fluid nopadd">                    
+          <app-adminnavbar></app-adminnavbar>   
+        <router-outlet></router-outlet>
+        <div class="col-sm-12 nopadd mobilefixedcontainer">
+            <div class="container">
+               <div class="col-sm-12 row searchform">
+                                            <div class="col-sm-3 col-6">
+                                                <label>Start Date</label>
+                                                <input type="date" name="startdate">
+                                            </div>
+                                            <div class="col-sm-3  col-6">
+                                                <label>End Date</label>
+                                                <input type="date" name="enddate">
+                                            </div>
+                                            <div class="col-sm-2  col-6">
+                                                <label>Invoice Number</label>
+                                                <input type="text" name="enddate">
+                                            </div>
+                                            <div class="col-sm-2  col-6">
+                                                <label>Payment Status</label>
+                                                <select>
+                                                    <option>Paid</option>
+                                                    <option>Unpaid</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-2 col-6">
+                                                <label>Purpose</label>
+                                                <select>
+                                                    <option>Banner</option>
+                                                    <option>Homepage Ads</option>
+                                                    <option>Top Listing</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-3 col-6">
+                                                <label>Customer Name</label>
+                                                <input type="text" name="custname">
+                                            </div>
+                                            <div class="col-sm-3  col-6">
+                                                <label>Customer ID</label>
+                                                <input type="text" name="custid">
+                                            </div>
+                                            <div class="col-sm-2  col-6">
+                                                <label>Phone Number</label>
+                                                <input type="text" name="custtel">
+                                            </div>
+                                            <div class="col-sm-2  col-6">
+                                                <label>Email</label>
+                                                <input type="email" name="email">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <button>Search</button>
+                                            </div>
+                </div>
+            </div>    
+            <div class="container">   
+                
+                                    <div class="col-md-12 nopadd">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title"><strong>Invoice History</strong>
+                                                    <button class="addbtn" data-toggle="modal" data-target="#addnewinvoice">Add New</button>
+                                                </h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="table-responsive listtable">
+                                        <table class="table table-condensed table-bordered table-stripped">
+                                            <thead>
+                                                <tr>
+                                                 <th>Invoice Number</th>
+                                                 <th>Customer Detail</th>
+                                                 <th>Date</th>
+                                                 <th>Payment Status</th>
+                                                 <th>Purpose</th>
+                                                 <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                               <tr>
+                                                    <td>001234</td>
+                                                    <td>John Methew<br/>
+                                                        067532356736<br/>
+                                                        john@gmail.com<br/>
+                                                        +91-98232 12345
+                                                    </td>
+                                                    <td>12 Sep 2018</td>
+                                                    <td><span>Paid</span></td>
+                                                    <td>
+                                                        <span class="green">Membership
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                         <button data-toggle="modal" data-target="#invoicedetail">
+                                                        View Invoice
+                                                        </button><br/>
+                                                        <button>
+                                                        Send Invoice
+                                                        </button><br/>
+                                                        <button>
+                                                        Print Invoice
+                                                        </button>
+                                                    </td>
+                                               </tr>
+                                               <tr>
+                                                    <td>001234</td>
+                                                    <td>John Methew<br/>
+                                                        067532356736<br/>
+                                                        john@gmail.com<br/>
+                                                        +91-98232 12345
+                                                    </td>
+                                                    <td>12 Sep 2018</td>
+                                                    <td><span class="red">Unpaid</span></td>
+                                                    <td>
+                                                        <span class="blue">
+                                                            Banner
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                         <button data-toggle="modal" data-target="#invoicedetail">
+                                                        View Invoice
+                                                        </button><br/>
+                                                        <button>
+                                                        Send Invoice
+                                                        </button><br/>
+                                                        <button>
+                                                        Print Invoice
+                                                        </button>
+                                                    </td>
+                                               </tr>
+                                               <tr>
+                                                    <td>001234</td>
+                                                    <td>John Methew<br/>
+                                                        067532356736<br/>
+                                                        john@gmail.com<br/>
+                                                        +91-98232 12345
+                                                    </td>
+                                                    <td>12 Sep 2018</td>
+                                                    <td><span>Paid</span></td>
+                                                    <td>
+                                                        <span class="blue">
+                                                            Homepage Advertising
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                         <button data-toggle="modal" data-target="#invoicedetail">
+                                                        View Invoice
+                                                        </button><br/>
+                                                        <button>
+                                                        Send Invoice
+                                                        </button><br/>
+                                                        <button>
+                                                        Print Invoice
+                                                        </button>
+                                                    </td>
+                                               </tr>
+                                               <tr>
+                                                    <td>001234</td>
+                                                    <td>John Methew<br/>
+                                                        067532356736<br/>
+                                                        john@gmail.com<br/>
+                                                        +91-98232 12345
+                                                    </td>
+                                                    <td>12 Sep 2018</td>
+                                                    <td><span>Paid</span></td>
+                                                    <td>
+                                                        <span class="purple">
+                                                            Top Listing Ads
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <button data-toggle="modal" data-target="#invoicedetail">
+                                                        View Invoice
+                                                        </button><br/>
+                                                        <button>
+                                                        Send Invoice
+                                                        </button><br/>
+                                                        <button>
+                                                        Print Invoice
+                                                        </button>
+                                                    </td>
+                                               </tr>
+                                            </tbody>
+                                        </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+            </div>
+            
         </div>
-    </div> 
+    </div>
+
+     <app-foot></app-foot>
+        <router-outlet></router-outlet>
+  </div>
+</div>
+
+<div class="modal fade" id="invoicedetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Invoice Details
+                         <span class="pull-right">Order # 12345</span>
+                    </h4>
+                   
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                   
+                  <div class="modal-body">
+                    <div class="col-sm-12 nopadd">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <address>
+                                        <strong>Customer Detail</strong><br>
+                                        Customer Id : (# 12345678) <br>
+                                                    John Smith<br>
+                                                    1234 Main, Apt. 4B<br>
+                                                    Springfield, ST 54321
+                                                </address>
+                                            </div>
+                                             <div class="col-xs-6 text-right">
+                                                <address>
+                                                    <strong>Payment Method:</strong><br>
+                                                    Visa ending **** 4242<br>
+                                                    jsmith@email.com<br/>
+                                                </address>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                <div class="col-md-12">
+                                <div class="panel panel-default">
+                                <div class="panel-heading">
+                                <h3 class="panel-title"><strong>Order summary</strong>
+                                <span class="pull-right"><strong>Date: Mar 7, 2014</strong></span>
+                                </h3>
+                                </div>
+                                <div class="panel-body">
+                                <div class="table-responsive">
+                                <table class="table table-condensed">
+                                <thead>
+                                <tr>
+                                <td><strong>Item</strong></td>
+                                <td class="text-center"><strong>Price</strong></td>
+                                <td class="text-center"><strong>Quantity</strong></td>
+                                <td class="text-right"><strong>Totals</strong></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                <tr>
+                                <td>BS-200</td>
+                                <td class="text-center">$10.99</td>
+                                <td class="text-center">1</td>
+                                <td class="text-right">$10.99</td>
+                                </tr>
+                                <tr>
+                                <td>BS-400</td>
+                                <td class="text-center">$20.00</td>
+                                <td class="text-center">3</td>
+                                <td class="text-right">$60.00</td>
+                                </tr>
+                                <tr>
+                                <td>BS-1000</td>
+                                <td class="text-center">$600.00</td>
+                                <td class="text-center">1</td>
+                                <td class="text-right">$600.00</td>
+                                </tr>
+                                <tr>
+                                <td class="thick-line"></td>
+                                <td class="thick-line"></td>
+                                <td class="thick-line text-center"><strong>Subtotal</strong></td>
+                                <td class="thick-line text-right">$670.99</td>
+                                </tr>
+                                <tr>
+                                <td class="no-line"></td>
+                                <td class="no-line"></td>
+                                <td class="no-line text-center"><strong>Shipping</strong></td>
+                                <td class="no-line text-right">$15</td>
+                                </tr>
+                                <tr class="litegraybg">
+                                <td class="no-line"></td>
+                                <td class="no-line"></td>
+                                <td class="no-line text-center"><strong>Total</strong></td>
+                                <td class="no-line text-right">$685.99</td>
+                                </tr>
+                                </tbody>
+                                </table>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                            </div>
+                       
+                    </div>
+                </div>
+        
+
+                       
+              </div>
+            </div>
 </div>
 
 
-
-    
-    
-
-<router-outlet></router-outlet> 
+<div class="modal fade" id="addnewinvoice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add New Invoice
+                         <span class="pull-right">Order # 12345</span>
+                    </h4>
+                   
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                   
+                <div class="modal-body">
+                    <div class="card">         
+                        <div class="card-body">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-effect form-group md-form ">
+                                        <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                        <label>Customer Name</label>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                </div>
+                            </div>  
+                            <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-effect form-group md-form ">
+                                            <input class="effect-16 validate" type="email" placeholder="" required="required">
+                                            <label>Email</label>
+                                            <span class="focus-border"></span>
+                                        </div>
+                                    </div>
+                            </div>                                      
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-effect form-group md-form ">
+                                        <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                        <label>Phone Number</label>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                </div>
+                            </div>                     
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-effect form-group md-form ">
+                                        <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                        <label>Amount</label>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-effect form-group md-form ">
+                                        <input class="effect-16 validate" type="date" placeholder="" required="required">
+                                        <label>Due Date</label>
+                                        <span class="focus-border dateborder"></span>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-effect form-group md-form ">
+                                        <select  class="effect-16 validate" required="required">
+                                            <option class="green">Paid</option>
+                                            <option class="red">Unpaid</option>
+                                        </select>
+                                        <label>Payment Status</label>
+                                        <span class="focus-border dateborder"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-effect form-group md-form ">
+                                        <select  class="effect-16 validate" required="required">
+                                            <option>Banner</option>
+                                            <option>Homepage Ads</option>
+                                            <option>Top Listing</option>
+                                        </select>
+                                        <label>Purpose</label>
+                                        <span class="focus-border dateborder"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                 <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>  
+              </div>
+            </div>
+</div>

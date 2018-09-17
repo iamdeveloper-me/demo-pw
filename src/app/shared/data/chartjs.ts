@@ -996,3 +996,71 @@ export var dailylineChartColors: Array<any> = [
 ];
 export var dailylineChartLegend = true;
 export var dailylineChartType = 'line';
+
+////////////////Admin stats
+
+///1) sales
+// Doughnut
+export var salesdoughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+export var salesdoughnutChartData: number[] = [350, 450, 100];
+export var salesdoughnutChartColors: any[] = [{ backgroundColor: ["pink", "rgba(28, 188, 216, 0.8)", "yellow"] }];
+export var salesdoughnutChartType = 'doughnut';
+export var salesdoughnutChartOptions: any = {
+  animation: false,
+  responsive: true,
+  maintainAspectRatio: false
+};
+
+///2)Crm
+
+export var CrmdoughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+export var CrmdoughnutChartData: number[] = [350, 450, 100];
+export var CrmdoughnutChartColors: any[] = [{ backgroundColor: ["green", "rgba(28, 188, 216, 0.8)", "black"] }];
+export var CrmdoughnutChartType = 'doughnut';
+export var CrmdoughnutChartOptions: any = {
+  animation: false,
+  responsive: true,
+  maintainAspectRatio: false
+};
+///3) visitor
+export var visitordoughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+export var visitordoughnutChartData: number[] = [350, 450, 100];
+export var visitordoughnutChartColors: any[] = [{ backgroundColor: ["green", "pink", "black"] }];
+export var visitordoughnutChartType = 'doughnut';
+export var visitordoughnutChartOptions: any = {
+  animation: false,
+  responsive: true,
+  maintainAspectRatio: false
+};
+
+//4)network 
+export var networkdoughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+export var networkdoughnutChartData: number[] = [350, 450, 100];
+export var networkdoughnutChartColors: any[] = [{ backgroundColor: ["green", "pink", "black"] }];
+export var networkdoughnutChartType = 'doughnut';
+export var networkdoughnutChartOptions: any = {
+  animation: false,
+  responsive: true,
+  maintainAspectRatio: false
+};
+//5)category
+export var categorydoughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+export var categorydoughnutChartData: number[] = [350, 450, 100];
+export var categorydoughnutChartColors: any[] = [{ backgroundColor: ["green", "red", "black"] }];
+export var categorydoughnutChartType = 'doughnut';
+export var categorydoughnutChartOptions: any = {
+  animation: false,
+  responsive: true,
+  maintainAspectRatio: false
+};
+//6) vendor
+
+export var vendordoughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+export var vendordoughnutChartData: number[] = [350, 450, 100];
+export var vendordoughnutChartColors: any[] = [{ backgroundColor: ["gray", "yellow", "black"] }];
+export var vendordoughnutChartType = 'doughnut';
+export var vendordoughnutChartOptions: any = {
+  animation: false,
+  responsive: true,
+  maintainAspectRatio: false
+};

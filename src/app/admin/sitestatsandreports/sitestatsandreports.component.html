@@ -1,15 +1,112 @@
-
 <div id="wrapper" class="toggled">
     <div id="sidebar-wrapper">
-       
-            <app-adminsidebar></app-adminsidebar>
-        
+        <app-adminsidebar></app-adminsidebar>
     </div>
     <div id="page-content-wrapper">    
         <div class="container-fluid nopadd">                    
             <app-adminnavbar></app-adminnavbar>
-                      site statics and reports
-      
+            <div class="container-fluid">
+                <!-- Doughnut Chart Starts -->
+                    <div class="row">  
+                        <div class="col-sm-12">
+                            <div class="col-sm-4">   
+                                <div class="card" routerLink="../Sales-stats">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Sales</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="card-block">
+                                            <div id="bar-doughnut" class="height-200">
+                                                <canvas baseChart  class="chart" [data]="salesdoughnutChartData" [labels]="salesdoughnutChartLabels" [options]="salesdoughnutChartOptions" [chartType]="salesdoughnutChartType" [colors]="salesdoughnutChartColors" 
+                                                    (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                                
+                            <div class="col-sm-4">
+                                <div class="card" routerLink="../CRM-stats">
+                                        <div class="card-header">
+                                            <h4 class="card-title">CRM</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-block">
+                                                <div id="bar-doughnut" class="height-200">
+                                                    <canvas baseChart  class="chart" [data]="CrmdoughnutChartData" [labels]="CrmdoughnutChartLabels" [options]="CrmdoughnutChartOptions" [chartType]="CrmdoughnutChartType" [colors]="CrmdoughnutChartColors" 
+                                                        (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card" routerLink="../visitor-detail-stats">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Visitor Traffic</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-block">
+                                                <div id="bar-doughnut" class="height-200">
+                                                    <canvas baseChart  class="chart" [data]="visitordoughnutChartData" [labels]="visitordoughnutChartLabels" [options]="visitordoughnutChartOptions" [chartType]="visitordoughnutChartType" [colors]="visitordoughnutChartColors" 
+                                                        (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                    <div class="row">  
+                        <div class="col-sm-12">
+                            <div class="col-sm-4">   
+                                <div class="card" routerLink="../Network-stats">
+                                            <div class="card-header">
+                                                <h4 class="card-title">Network Referrals</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="card-block">
+                                                    <div id="bar-doughnut" class="height-200">
+                                                        <canvas baseChart  class="chart" [data]="networkdoughnutChartData" [labels]="networkdoughnutChartLabels" [options]="networkdoughnutChartOptions" [chartType]="networkdoughnutChartType" [colors]="networkdoughnutChartColors" 
+                                                            (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                </div>
+                            </div>  
+                            <div class="col-sm-4">       
+                                <div class="card" routerLink="../Category-stats">
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Category Stats</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="card-block">
+                                                        <div id="bar-doughnut" class="height-200">
+                                                            <canvas baseChart  class="chart" [data]="categorydoughnutChartData" [labels]="categorydoughnutChartLabels" [options]="categorydoughnutChartOptions" [chartType]="categorydoughnutChartType" [colors]="categorydoughnutChartColors" 
+                                                                (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                </div>
+                            </div>  
+                            <div class="col-sm-4">       
+                                <div class="card" routerLink="../visitor-detail-stats">
+                                                    <div class="card-header">
+                                                        <h4 class="card-title">Doughnut Chart</h4>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="card-block">
+                                                            <div id="bar-doughnut" class="height-200">
+                                                                <canvas baseChart  class="chart" [data]="vendordoughnutChartData" [labels]="vendordoughnutChartLabels" [options]="vendordoughnutChartOptions" [chartType]="vendordoughnutChartType" [colors]="vendordoughnutChartColors" 
+                                                                    (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                </div>
+                            </div>    
+                        </div>
+                    </div> 
+            </div>
             <app-foot></app-foot>
         </div>
     </div> 

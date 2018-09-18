@@ -13,7 +13,7 @@
                 <span>Increase your brand awareness through event hosting. It's free!</span>
             </div>  
 
-             <ul class="tabbingdesign">
+              <ul class="tabbingdesign">
                                 <li class="card-title selected Suppliertab">Past Event</li>
                                 <li class="card-title Registertab">Upcoming Event</li>
                             </ul> 
@@ -27,20 +27,21 @@
                                 <div class="serchbox">
                                     <input type="text" placeholder="Search...." name="">
                                       <button class="btn btn-small btn-link" (click)="open(adduser)"> 
-                                        <i class="material-icons"> add </i> <span> <strong> Create New Event </strong> </span></button>
+                                        <i class="material-icons"> add </i> <span> <strong> Create New Event {{test}}</strong> </span></button>
                                 </div>
                            
                              
                         </div>
                         <div class="clearfix"></div>
-                        <section id="filter"  *ngFor="let data of eventArray;let i=index">
+                        <section id="filter2"  >
                            
-                                <div class="col-sm-12 nopadd" >
-                                    <div class="card martop0px" >
-                                        <div class="card-body borall">
+                                <div class="col-sm-12 nopadd"   *ngFor="let data of eventArray;let i=index" >
+                                    <div class="card martop0px"  *ngFor="let name of data.eventsDates"   >
+                                        <div class="card-body borall" *ngIf="name.eventDate < test" >
                                             <div class="card-block">
                                                 <div class="col-md-4 col-12 pad_0px">
-                                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" class="img-responsive">
+                                                    
+                                                    <img src="{{data.files.path}}" class="img-responsive">
                                                 </div>
                                                 <div class="col-md-8 col-12 textboxevent">
                                                     <table>
@@ -73,15 +74,18 @@
                                                                 </div>
                                                                 <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
                                                                 <p>
-                                                                    <i class="material-icons">access_time </i><strong>End Time  {{data.createdOn | date :  "shortTime" }}</strong>
+                                                                    <i class="material-icons">access_time </i><strong>End Time  {{data.createdOn | date :  "shortTime" }} </strong>
                                                                 </p>
                                                                 
                                                                 </div>
-                                                                <div class="col-md-12 col-12 mar_top_10px"></div>
-                                                                <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
+                                                                <div class="col-md-12 col-12 mar_top_10px" ></div>
+                                                                <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px" *ngFor="let name of data.eventsDates"   >
+                                                                            
                                                                 <p>
-                                                                    <i class="material-icons">date_range </i><strong> Recurring  Date {{data.createdOn | date}} </strong>
+                                                                    <i class="material-icons">date_range </i><strong > Recurring  Date {{name.eventDate | date}}  </strong>
                                                                 </p>
+                                                                
+
                                                               
                                                                 </div>
                                                                 </div>
@@ -104,7 +108,80 @@
                                     </div>
                                 </div>
                         </section>
-                      
+                        <section id="action2">
+                                <div class="col-sm-12 nopadd"   *ngFor="let data of eventArray;let i=index" >
+                                        <div class="card martop0px"  *ngFor="let name of data.eventsDates"   >
+                                            <div class="card-body borall"  *ngIf="name.eventDate >= test" >
+                                                <div class="card-block">
+                                                    <div class="col-md-4 col-12 pad_0px">
+                                                        
+                                                        <img src="{{data.files.path}}" class="img-responsive">
+                                                    </div>
+                                                    <div class="col-md-8 col-12 textboxevent">
+                                                        <table>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
+                                                                    <div class="club_heading">
+                                                                    <h5>Busselton Lions Club Saturday Morning Shed Sales </h5>
+                                                                    </div>
+                                                                    <p>
+                                                                    <strong> Capacity:{{data.capacity}}</strong>
+                                                                    </p>
+                                                                    <p>
+                                                                    <strong> Venue:{{data.venueName}}</strong>
+                                                                    </p>  
+                                                                    <p> 
+                                                                    <strong>Event Town:{{data.location}}</strong> 
+                                                                    </p>  
+                                                                    <p> 
+                                                                    <strong>Entry Fee:{{data.entryFee}}</strong> 
+                                                                    </p> 
+                                                                    <p class="locat_tag"> 
+                                                                    <i class="material-icons"> location_on</i>  306 Queen Elizabeth Ave, Bovell WA 6280, Australia
+                                                                    </p> 
+                                                                    <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
+                                                                    <p>
+                                                                        <i class="material-icons">access_time </i> <strong> Start Time {{data.createdOn | date :  "shortTime" }}</strong>  
+                                                                    </p>
+                                                                    
+                                                                    </div>
+                                                                    <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
+                                                                    <p>
+                                                                        <i class="material-icons">access_time </i><strong>End Time  {{data.createdOn | date :  "shortTime" }} </strong>
+                                                                    </p>
+                                                                    
+                                                                    </div>
+                                                                    <div class="col-md-12 col-12 mar_top_10px" ></div>
+                                                                    <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px" *ngFor="let name of data.eventsDates"   >
+                                                                                
+                                                                    <p>
+                                                                        <i class="material-icons">date_range </i><strong > Recurring  Date {{name.eventDate | date}}  </strong>
+                                                                    </p>
+                                                                    
+    
+                                                                  
+                                                                    </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <button class="btn btn-success whitetext btn-rounded"(click)= "editevent(data)"  data-target="#Description" data-toggle="modal" id="description-function">Edit{{data.eventId}}</button>
+                                                                     <button class="btn btn-warning whitetext btn-rounded" (click)= "deletevent(data.eventId)">Delete {{data.eventId}} </button>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>  
+                                                    <div class="col-md-12 pad_0px">
+                                                        <p>
+                                                            <strong>Description</strong><br/>
+                                                            {{data.eventDescription}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </section>
                     </div>    
                 </div>
         </div> 

@@ -1,19 +1,31 @@
 import { Component, OnInit ,Input ,ViewChild} from '@angular/core'
 import { NgbModal,  ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
+import { DatePipe } from '@angular/common';
+
+
+
 export class NgbduserModalContent {
   @Input() name;
-  constructor(public activeModal: NgbActiveModal) { }
-}
-
+  constructor(public activeModal: NgbActiveModal) {} 
+     
+    }
+    
+  
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit {
-    eventArray:any= {};
-    modelfield:any= {}
+    eventArray:any= [];
+    modelfield:any= {};
+    test: string;
+    myDate = new Date(); 
+    imageToShow: any;
+    imageService: any;
+    isImageLoading: any;
+
     private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader';
     private eventposturl: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/createupdateevent'
    
@@ -44,27 +56,48 @@ export class EventListComponent implements OnInit {
         // this.http.get(this.servicesgeturl,{headers:headers}).subscribe(data =>{
         //     console.log(data.json());})
 
-    $("#action").hide();
+   
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
-  
+
+    $("#filter2").show();
+    $("#action2").hide(); 
+
     $(".Suppliertab").click(function(){
-        $("#filter").show();
-        $("#action").hide();  
+        $("#filter2").show();
+        $("#action2").hide();  
         $(".Suppliertab").addClass("selected"); 
         $(".Registertab").removeClass("selected");  
     });
 
         $(".Registertab").click(function(){
-        $("#filter").hide();
-        $("#action").show();
+        $("#filter2").hide();
+        $("#action2").show();
         $(".Suppliertab").removeClass("selected"); 
         $(".Registertab").addClass("selected");  
     });
   }
+createImageFromBlob(image: Blob) {
+   let reader = new FileReader();
+   reader.addEventListener("load", () => {
+      this.imageToShow = reader.result;
+   }, false);
 
-
+   if (image) {
+      reader.readAsDataURL(image);
+   }
+}
+getImageFromService() {
+        this.isImageLoading = true;
+        this.imageService.getImage('https://s3.us-east-2.amazonaws.com/prefect-image/efc074d5-ccb0-41af-94c8-3d51acaa1a65username.png').subscribe(data => {
+          this.createImageFromBlob(data);
+          this.isImageLoading = false;
+        }, error => {
+          this.isImageLoading = false;
+          console.log(error);
+        });
+        }
   list:any = { 
 eventTitle: "string",
  
@@ -149,7 +182,7 @@ console.log(list.eventTitle);
         .subscribe(data =>{console.log(data);},(error)=>{console.log(error)});
    }
     }
-  constructor(private modalService: NgbModal,public http: Http) {}
+  constructor(private modalService: NgbModal,public http: Http,private datePipe: DatePipe) { this.test = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');}
   /////////////////////////////////popupmodel
   closeResult: string;
   // Open default modal
@@ -247,4 +280,4 @@ console.log(list.eventTitle);
     },error =>{ console.log(error)});
   }
   }
-
+  

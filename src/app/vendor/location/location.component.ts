@@ -32,6 +32,7 @@ interface Location {
 })
 export class LocationComponent implements OnInit {
   Country;
+  mobile;
   postalCode;
   city;
   Phone;
@@ -167,7 +168,7 @@ export class LocationComponent implements OnInit {
       this.geocoder = new google.maps.Geocoder();
       });
      }
-
+     enable = true;
   modelfield : any = {};
   address : any = {};
   obj = [];

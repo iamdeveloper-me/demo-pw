@@ -255,6 +255,10 @@ findLocation(address) {
   
   
   ngOnInit() {
+
+
+   
+
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -264,7 +268,7 @@ findLocation(address) {
 
     this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
       this.countryArray = data.json() as string[];
-      this.primarylocation = this.countryArray[0];
+     // this.primarylocation = this.countryArray[0];
       console.log(  data.json()[0]);
        this.vendorlocatonid = data.json()[0].vendorLocationId;
   })
@@ -357,6 +361,21 @@ findLocation(address) {
 
   }
 
+  phone(){
+    $(".mobileid").show(); 
+       $(".Trading").hide(); 
+       $(".title").hide();
+   }
+   title(){
+    $(".mobileid").hide(); 
+    $(".Trading").hide(); 
+    $(".title").show();
+   }
+   trading(){
+    $(".Trading").show(); 
+    $(".mobileid").hide(); 
+    $(".title").hide();
+   }
   update(c){
     this.updatefield = c; 
     console.log(this.updatefield);
@@ -405,8 +424,15 @@ findLocation(address) {
           isWednesdayOpen:info.isWednesdayOpen,
          
     
-        },{headers:headers}).subscribe( (data)=> { console.log(data)}
-    ,      (responce)=>{ console.log(responce); });
+        },{headers:headers}).subscribe(  (responce)=>{ console.log(responce.status);
+          if(responce.status == 200)
+          {
+           
+            alert("saved");
+            
+          }
+    }
+);
   }
 
 
@@ -455,54 +481,56 @@ findLocation(address) {
 
 
      primelocation(location){  
-    console.log(this.primarylocation.city);
-    console.log(location);
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization",'Bearer '+authToken);
+          console.log(this.updatefield);
+          console.log(location);
+
+          this.primarylocation = this.updatefield;
+          let headers = new Headers();
+          var authToken = localStorage.getItem('userToken');
+          headers.append('Accept', 'application/json')
+          headers.append('Content-Type', 'application/json');
+          headers.append("Authorization",'Bearer '+authToken);
 
 
-     this.http.post(this.urlpost,{
-      vendorLocationId: this.primarylocation.vendorLocationId ,
-      title: this.primarylocation.title,
-      countryId: this.primarylocation.countryId,
-      vendorId: this.primarylocation.vendorId,
-      lat: location.lat,
-      long: location.lng,
-      country: {countryId: this.primarylocation.countryId,countryName: location.address_country},
-      city:  location.address_level_1 ,
-      postalCode: location.address_zip,
-      address: location.address_state ,
-      phone: this.primarylocation.phone,
-      mobile:   this.primarylocation.mobile ,
-      sundayOpen:    this.primarylocation.sundayOpen,
-      sundayClose:    this.primarylocation.sundayClose,
-      mondayOpen:     this.primarylocation.mondayOpen,
-      mondayClose:    this.primarylocation.mondayClose,
-      tuesdayOpen:    this.primarylocation.tuesdayOpen,
-      tuesdayClose:   this.primarylocation.tuesdayClose,
-      wednesdayOpen:  this.primarylocation.wednesdayOpen,
-      wednesdayClose: this.primarylocation.wednesdayClose,
-      thursdayOpen:   this.primarylocation.thursdayOpen,
-      thursdayClose:  this.primarylocation.thursdayClose,
-      fridayOpen:    this.primarylocation.fridayOpen,
-      fridayClose:    this.primarylocation.fridayClose,
-      saturdayOpen:   this.primarylocation.saturdayOpen,
-      saturdayClose:  this.primarylocation.saturdayClose,
-      isFridayOpen:   this.primarylocation.isFridayOpen,
-      isMondayOpen:  this.primarylocation.isMondayOpen,
-      isPrimary:     this.primarylocation.isPrimary,
-      isSaturdayOpen: this.primarylocation.isSaturdayOpen,
-      isSundayOpen:  this.primarylocation.isSundayOpen,
-      isThursdayOpen: this.primarylocation.isThursdayOpen,
-      isTuesdayOpen:  this.primarylocation.isTuesdayOpen,
-      isWednesdayOpen:this.primarylocation.isWednesdayOpen,
-    },{headers:headers}).subscribe( (data)=> { console.log(data)}
-,      (responce)=>{ console.log(responce); });
+          this.http.post(this.urlpost,{
+            vendorLocationId: this.primarylocation.vendorLocationId ,
+            title: this.primarylocation.title,
+            countryId: this.primarylocation.countryId,
+            vendorId: this.primarylocation.vendorId,
+            lat: location.lat,
+            long: location.lng,
+            country: {countryId: this.primarylocation.countryId,countryName: location.address_country},
+            city:  location.address_level_1 ,
+            postalCode: location.address_zip,
+            address: location.address_state ,
+            phone: this.primarylocation.phone,
+            mobile:   this.primarylocation.mobile ,
+            sundayOpen:    this.primarylocation.sundayOpen,
+            sundayClose:    this.primarylocation.sundayClose,
+            mondayOpen:     this.primarylocation.mondayOpen,
+            mondayClose:    this.primarylocation.mondayClose,
+            tuesdayOpen:    this.primarylocation.tuesdayOpen,
+            tuesdayClose:   this.primarylocation.tuesdayClose,
+            wednesdayOpen:  this.primarylocation.wednesdayOpen,
+            wednesdayClose: this.primarylocation.wednesdayClose,
+            thursdayOpen:   this.primarylocation.thursdayOpen,
+            thursdayClose:  this.primarylocation.thursdayClose,
+            fridayOpen:    this.primarylocation.fridayOpen,
+            fridayClose:    this.primarylocation.fridayClose,
+            saturdayOpen:   this.primarylocation.saturdayOpen,
+            saturdayClose:  this.primarylocation.saturdayClose,
+            isFridayOpen:   this.primarylocation.isFridayOpen,
+            isMondayOpen:  this.primarylocation.isMondayOpen,
+            isPrimary:     this.primarylocation.isPrimary,
+            isSaturdayOpen: this.primarylocation.isSaturdayOpen,
+            isSundayOpen:  this.primarylocation.isSundayOpen,
+            isThursdayOpen: this.primarylocation.isThursdayOpen,
+            isTuesdayOpen:  this.primarylocation.isTuesdayOpen,
+            isWednesdayOpen:this.primarylocation.isWednesdayOpen,
+          },{headers:headers}).subscribe( (data)=> { console.log(data)}
+      ,      (responce)=>{ console.log(responce); });
     
-  }
+      }
 enable =  true;
 enable1 =  true;
 enable2 =  true;

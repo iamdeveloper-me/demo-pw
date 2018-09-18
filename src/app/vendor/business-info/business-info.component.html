@@ -6,277 +6,270 @@
         <div id="page-content-wrapper">
            <app-navemenu></app-navemenu>
            <section class="p-0 mobilefixedcontainer" id="portfolio">
-              <div class="col-sm-12 mob_margin_30px" >
-                 <div class="col-sm-4">
-                    <div class="card heightequal365 margintop0px mobmargintop30px"  >
-                       <div class="custom-form">
-                          <div class="col-sm-12 nopadd">
-                             <div class="card martop10px">
-                                <div class="col-sm-12">
-                                   <h4 class="mainhead" > Location (Primary) </h4>
-                                   <div class="switbtn">
-                                      <span class="textsmall">Vacation Mode</span>
-                                      <ui-switch  id="isPrimary" name="isPrimary" class="pull-left"></ui-switch>
-                                   </div>
-                                </div>
-                                <div class="card-body"  >
-                                   <div class="text-center bg-form col-sm-12">
-                                      <div class="img-section">
-                                            <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
-                                <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event)'></agm-marker>
-                                <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
-                            </agm-map>
-                                         <div class="img_overlay">
-                                            <div class="col-lg-12 col-md-12 pad_left_0px">
-                                               <!-- <input type="text" class="form-control form-input" placeholder="Company Name" disabled id="companyname" [(ngModel)]="data.title" id="title" name="title"> -->
-                                               <button type="button" class="btn edit_btn1" (click)="update(countryArray[0])" data-target="#phone" data-toggle="modal">
-                                               <i class="material-icons">edit</i>
-                                               </button>
+                <div class="col-sm-12 mob_margin_30px" >
+                        <div class="col-sm-4" >
+                            <div class="card heightequal365 margintop0px mobmargintop30px" >
+                            <div class="custom-form" *ngFor="let data of countryArray;let i=index"  >
+                                <div class="col-sm-12 nopadd" *ngIf="data.isPrimary == true">
+                                    <div class="card martop10px">
+                                        <div class="col-sm-12">
+                                        <h4 class="mainhead" > Location (Primary) </h4>
+                                        <div class="switbtn" style="position: absolute;right:0px;">
+                                                <ui-switch (ngModel)="data.isPrimary" id="isPrimary" name="isPrimary" class="pull-left" style="position:relative;"></ui-switch>
                                             </div>
-                                            <div class="col-lg-12 col-md-12 pad_left_0px">
-                                               <input type="text" class="form-control form-input martop0px" value="Photography, Vediography" placeholder="Company Title" disabled id="companytitle">
-                                            </div>
-                                         </div>
-                                      </div>
-                                   </div>
-                                   <div class="col-sm-12 text_left">
-                                      <div class=" nopadd weekboxinput">
-                                         <div class="col-sm-12  edit_hide" id="address-function" data-target="#googlemap"  data-toggle="modal">
-                                            <span class="acce_time1 col-sm-1 col-1">
-                                            <i  class="material-icons">location_on</i>
-                                            </span>
-                                            <div class="col-sm-10 col-11">
-                                               <div>Address Line 1: {{location.address_level_1}} / {{countryArray[0].address}}  </div>
-                                               <div>Address Line 2:  {{location.address_level_2}}</div>
-                                               <div>State / Province / Region: {{location.address_state}} / {{countryArray[0].city}}</div>
-                                               <div>Country:  {{location.address_country}} / {{countryArray[0].country}}</div>
-                                               <div>Postal / Zip code: {{location.address_zip}} / {{countryArray[0].postalCode}}</div>
-                                               <i class="material-icons edit_btn"> edit</i>
-                                            </div>
-                                         </div>
-                                         <div class="clearfix"></div>
-                                      </div>
-                                   </div>
-                                   <div class="col-lg-12 text_left phone_icon1">
-                                      <div class=" nopadd weekboxinput">
-                                         <div class="col-lg-12 col-md-12 edit_hide" (click)="update(countryArray[0])" data-target="#phone" data-toggle="modal">
-                                            <span class="acce_time1 col-1">
-                                            <i  class="material-icons">local_phone</i>
-                                            </span>
-                                            <div class="col-sm-10 col-11 mar_bottom_10px"> 
-                                                    Mobile :  {{countryArray[0].mobile}}<i _ class="material-icons edit_btn1">edit</i>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                            <span class="acce_time1 col-1">
-                                            <i  class="material-icons">phone_iphone</i>
-                                            </span>
-                                            <div class="col-sm-10 col-11">
-                                               Phone :  {{countryArray[0].phone}}
-                                            </div>
-                                         </div>
-                                      </div>
-                                   </div>
-                                   <div class="col-sm-12 text_left">
-                                      <div class="edit_hide paddtop15px bornone">
-                                         <span class="acce_time1 col-1">
-                                         <i  class="material-icons">access_time</i>
-                                         </span>
-                                         <div class="col-lg-12 col-md-12 edit_hide" (click)="update(countryArray[0])" data-target="#phone" data-toggle="modal">
-      
-                                                <div class="col-sm-12 nopadd weekboxinput3">
-                                                    <div class="col-sm-4 col-xs-5-mob nopadd">Sunday </div>
-                                                    <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                        {{countryArray[0].sundayOpen}}AM to {{countryArray[0].sundayClose}}PM
-                                                        <i class="material-icons edit_btn1">edit</i>
-      
+                                        </div>
+                                        <div class="card-body"  >
+                                        <div class="text-center bg-form col-sm-12">
+                                            <div class="img-section">
+                                                    <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
+                                        <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event)'></agm-marker>
+                                        <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
+                                    </agm-map>
+                                                <div class="img_overlay" (click)="update(data)" data-target="#phone" data-toggle="modal">
+                                                    <div class="col-lg-12 col-md-12 pad_left_0px" (click) = "title()" >
+                                                    {{data.title}}
                                                     </div>
-                                                    <div class="clearfix"></div>
-                                                    <div class="col-sm-12 nopadd">
-                                                        <div class="col-sm-4 col-xs-5-mob nopadd">
-                                                            Monday
-                                                        </div>
-                                                        <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                            {{countryArray[0].mondayOpen}}AM to {{countryArray[0].mondayClose}}PM
-                                                        </div>
-                                                    </div>
-                                                    <div class="clearfix"></div>
-                                                    <div class="col-sm-12 nopadd">
-                                                        <div class="col-sm-4 col-xs-5-mob nopadd">
-                                                            Tuesday
-                                                        </div>
-                                                        <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                            {{countryArray[0].tuesdayOpen}}AM to {{countryArray[0].tuesdayClose}}PM
-                                                        </div>
-                                                    </div>
-                                                    <div class="clearfix"></div>
-                                                    <div class="col-sm-12 nopadd">
-                                                        <div class="col-sm-4 col-xs-5-mob nopadd">
-                                                            Webnesday
-                                                        </div>
-                                                        <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                            {{countryArray[0].wednesdayOpen}}AM to {{countryArray[0].wednesdayClose}}PM
-                                                        </div>
-                                                    </div>
-                                                    <div class="clearfix"></div>
-                                                    <div class="col-sm-12 nopadd">
-                                                        <div class="col-sm-4 col-xs-5-mob nopadd">
-                                                            Thursday
-                                                        </div>
-                                                        <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                            {{countryArray[0].thursdayOpen}}AM to {{countryArray[0].thursdayClose}}PM
-                                                        </div>
-                                                    </div>
-                                                    <div class="clearfix"></div>
-                                                    <div class="col-sm-12 nopadd">
-                                                        <div class="col-sm-4 col-xs-5-mob nopadd">
-                                                            Friday
-                                                        </div>
-                                                        <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                            {{countryArray[0].fridayOpen}}AM to {{countryArray[0].fridayClose}}PM
-                                                        </div>
-                                                    </div>
-                                                    <div class="clearfix"></div>
-                                                    <div class="col-sm-12 nopadd">
-                                                        <div class="col-sm-4 col-xs-5-mob nopadd">
-                                                            Saturday
-                                                        </div>
-                                                        <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                            {{countryArray[0].saturdayOpen}}AM to {{countryArray[0].saturdayClose}}PM
-                                                        </div>
-                                                    </div>
-                                                    <div class="clearfix"></div>
                                                 </div>
                                             </div>
-                                      </div>
-                                   </div>
+                                        </div>
+                                        <div class="col-sm-12 text_left">
+                                            <div class=" nopadd weekboxinput">
+                                                <div class="col-sm-12  edit_hide" id="address-function" (click)="update(data)" data-target="#googlemap"  data-toggle="modal">
+                                                    <span class="acce_time1 col-sm-1 col-1">
+                                                    <i  class="material-icons">location_on</i>
+                                                    </span>
+                                                    <div class="col-sm-10 col-11">
+                                                    <div>Address Line 1: {{location.address_level_1}} / {{data.address}}  </div>
+                                                    <div>Address Line 2:  {{location.address_level_2}}</div>
+                                                    <div>State / Province / Region: {{location.address_state}} / {{data.city}}</div>
+                                                    <div>Country:  {{location.address_country}} / {{data.country}}</div>
+                                                    <div>Postal / Zip code: {{location.address_zip}} / {{data.postalCode}}</div>
+                                                    <i class="material-icons edit_btn"> edit</i>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 text_left phone_icon1" (click) = "phone()"  >
+                                            <div class=" nopadd weekboxinput">
+                                                <div class="col-lg-12 col-md-12 edit_hide" (click)="update(data)" data-target="#phone" data-toggle="modal">
+                                                    <span class="acce_time1 col-1">
+                                                    <i  class="material-icons">local_phone</i>
+                                                    </span>
+                                                    <div class="col-sm-10 col-11 mar_bottom_10px"> 
+                                                            Mobile :  {{data.mobile}}<i _ class="material-icons edit_btn1">edit</i>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <span class="acce_time1 col-1">
+                                                    <i  class="material-icons">phone_iphone</i>
+                                                    </span>
+                                                    <div class="col-sm-10 col-11">
+                                                    Phone :  {{data.phone}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 text_left" (click) = "trading()">
+                                            <div class="edit_hide paddtop15px bornone">
+                                                    <span class="acce_time1 col-1">
+                                                            <i  class="material-icons">access_time</i>
+                                                            </span>
+                                                <div class="col-lg-12 col-md-12 edit_hide" (click)="update(data)" data-target="#phone" data-toggle="modal">
+                                                        <i _ class="material-icons edit_btn1">edit</i>
+                                                        <div class="col-sm-12 nopadd weekboxinput3">
+                                                            <div class="col-sm-4 col-xs-5-mob nopadd">Sunday </div>
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd">
+                                                                {{data.sundayOpen}}AM to {{data.sundayClose}}PM
+                                                                <i class="material-icons edit_btn1">edit</i>
+            
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <div class="col-sm-12 nopadd">
+                                                                <div class="col-sm-4 col-xs-5-mob nopadd">
+                                                                    Monday
+                                                                </div>
+                                                                <div class="col-sm-8 col-xs-7-mob nopadd">
+                                                                    {{data.mondayOpen}}AM to {{data.mondayClose}}PM
+                                                                </div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <div class="col-sm-12 nopadd">
+                                                                <div class="col-sm-4 col-xs-5-mob nopadd">
+                                                                    Tuesday
+                                                                </div>
+                                                                <div class="col-sm-8 col-xs-7-mob nopadd">
+                                                                    {{data.tuesdayOpen}}AM to {{data.tuesdayClose}}PM
+                                                                </div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <div class="col-sm-12 nopadd">
+                                                                <div class="col-sm-4 col-xs-5-mob nopadd">
+                                                                    Webnesday
+                                                                </div>
+                                                                <div class="col-sm-8 col-xs-7-mob nopadd">
+                                                                    {{data.wednesdayOpen}}AM to {{data.wednesdayClose}}PM
+                                                                </div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <div class="col-sm-12 nopadd">
+                                                                <div class="col-sm-4 col-xs-5-mob nopadd">
+                                                                    Thursday
+                                                                </div>
+                                                                <div class="col-sm-8 col-xs-7-mob nopadd">
+                                                                    {{data.thursdayOpen}}AM to {{data.thursdayClose}}PM
+                                                                </div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <div class="col-sm-12 nopadd">
+                                                                <div class="col-sm-4 col-xs-5-mob nopadd">
+                                                                    Friday
+                                                                </div>
+                                                                <div class="col-sm-8 col-xs-7-mob nopadd">
+                                                                    {{data.fridayOpen}}AM to {{data.fridayClose}}PM
+                                                                </div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <div class="col-sm-12 nopadd">
+                                                                <div class="col-sm-4 col-xs-5-mob nopadd">
+                                                                    Saturday
+                                                                </div>
+                                                                <div class="col-sm-8 col-xs-7-mob nopadd">
+                                                                    {{data.saturdayOpen}}AM to {{data.saturdayClose}}PM
+                                                                </div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
                                 </div>
-                             </div>
-                          </div>
-                       </div>
-                    </div>
-                 </div>
+                            </div>
+                            </div>
+                        </div>
+    
 
-
-                 <div class="col-sm-8 mobnopadd padleft0px" (click)="openModel(vendor)">
-                    <div class=" mobnopadd padleft0px ">
-                       <div class="card heightequal365 margintop0px mobmargintop30px">
-                          <div class="card-header">
-                             <div class="busines_img">
-                                <i class="material-icons" data-target="#imagecrop" data-toggle="modal" id="description-function"> camera_alt </i> 
-                                <span class="result" *ngIf="data.image" data-target="#imagecrop" data-toggle="modal" id="description-function">
-                                <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle">
-                                </span>
-                             </div>
-                             <div class="busi_contact">
-                                <h6 >Business name or Contact Person</h6>
-                                <div class="on_hover" data-target="#Business" data-toggle="modal" id="Instagram-function" >
-                                   <div>{{vendor.nameOfBusiness}}</div>
-                                   <span class="text-right col-lg-12 editbtn">
-                                   <i class="material-icons"  >edit</i>
-                                   </span>
+                        <div class="col-sm-8 mobnopadd padleft0px" (click)="openModel(vendor)">
+                        <div class=" mobnopadd padleft0px ">
+                        <div class="card heightequal365 margintop0px mobmargintop30px">
+                            <div class="card-header">
+                                <div class="busines_img">
+                                    <i class="material-icons" data-target="#imagecrop" data-toggle="modal" id="description-function"> camera_alt </i> 
+                                    <span class="result" *ngIf="data.image" data-target="#imagecrop" data-toggle="modal" id="description-function">
+                                    <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle">
+                                    </span>
                                 </div>
-                             </div>
-                             <div class="clearfix"></div>
-                             <div class="on_hoverdiv" data-target="#Description" data-toggle="modal" id="description-function" >
-                                <h6 class="text-center">Business Description </h6>
-                                <span class=" editbtn  editbtn11" s>
-                                <i class="material-icons"   >edit</i>
-                                </span>
-                                <div class="col-lg-12 col-md-12 add_text text-center">
-                                   {{vendor.businessDetails}}               
+                                <div class="busi_contact">
+                                    <h6 >Business name or Contact Person</h6>
+                                    <div class="on_hover" data-target="#Business" data-toggle="modal" id="Instagram-function" >
+                                    <div>{{vendor.nameOfBusiness}}</div>
+                                    <span class="text-right col-lg-12 editbtn">
+                                    <i class="material-icons"  >edit</i>
+                                    </span>
+                                    </div>
                                 </div>
-                             </div>
-                          </div>
-                       </div>
-                    </div>
-                    <div class=" linkbox margintop0px heightequal365 card padright0px">
-                       <div class="card-header">
-                          <h6 class="card-title text-center">Link Accounts & Websites</h6>
-                       </div>
-                       <div class="card-body">
-                          <div class="col-sm-9">
-                             <div class="social-connect  col-sm-12" data-reactid="330">
-                                <div class="social" data-reactid="332">
-                                   <i class="fa fa-facebook fa-2x" data-reactid="334"></i>
-                                   <span id="prompt-function"  data-target="#facebook" data-toggle="modal" data-reactid="333">
-                                   :  {{vendor.facebookURL}}
-                                   </span>
-                                   <div class="col-lg-12 editbtn">
-                                      <h4 class="text-right col-lg-12">
-                                         <i class="material-icons">edit</i>
-                                      </h4>
-                                   </div>
+                                <div class="clearfix"></div>
+                                <div class="on_hoverdiv" data-target="#Description" data-toggle="modal" id="description-function" >
+                                    <h6 class="text-center">Business Description </h6>
+                                    <span class=" editbtn  editbtn11" s>
+                                    <i class="material-icons"   >edit</i>
+                                    </span>
+                                    <div class="col-lg-12 col-md-12 add_text text-center">
+                                    {{vendor.businessDetails}}               
+                                    </div>
                                 </div>
-                             </div>
-                             <div class="social-connect  col-sm-12" data-reactid="330">
-                                <div class="social" data-reactid="332">
-                                   <i class="fa fa-twitter fa-2x " data-reactid="338"></i>
-                                   <span id="Pinterest-function" data-target="#twitter" data-toggle="modal"  data-reactid="337">
-                                   :{{vendor.twitterURL}}
-                                   </span>
-                                   <div class="col-lg-12 editbtn">
-                                      <h4 class="text-right col-lg-12">
-                                         <i class="material-icons">edit</i>
-                                      </h4>
-                                   </div>
-                                   <!--  <div class="switbtn">
-                                      <ui-switch [(ngModel)]="enable1" ></ui-switch> 
-                                      </div>   --> 
+                            </div>
+                        </div>
+                        </div>
+                        <div class=" linkbox margintop0px heightequal365 card padright0px">
+                        <div class="card-header">
+                            <h6 class="card-title text-center">Link Accounts & Websites</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="col-sm-9">
+                                <div class="social-connect  col-sm-12" data-reactid="330">
+                                    <div class="social" data-reactid="332">
+                                    <i class="fa fa-facebook fa-2x" data-reactid="334"></i>
+                                    <span id="prompt-function"  data-target="#facebook" data-toggle="modal" data-reactid="333">
+                                    :  {{vendor.facebookURL}}
+                                    </span>
+                                    <div class="col-lg-12 editbtn">
+                                        <h4 class="text-right col-lg-12">
+                                            <i class="material-icons">edit</i>
+                                        </h4>
+                                    </div>
+                                    </div>
                                 </div>
-                             </div>
-                             <div class="social-connect col-sm-12" data-reactid="330">
-                                <div class="social" data-reactid="332">
-                                   <i class="fa fa-google-plus fa-2x" data-reactid="340"></i>
-                                   <span id="Google-function" data-target="#google" data-toggle="modal" data-reactid="339">
-                                   : {{vendor.googleURL}}
-                                   </span>
-                                   <div class="col-lg-12 editbtn">
-                                      <h4 class="text-right col-lg-12">
-                                         <i class="material-icons">edit </i>
-                                      </h4>
-                                   </div>
-                                   <!--  <div class="switbtn">
-                                      <ui-switch [(ngModel)]="enable2" ></ui-switch>
-                                      </div>  -->
+                                <div class="social-connect  col-sm-12" data-reactid="330">
+                                    <div class="social" data-reactid="332">
+                                    <i class="fa fa-twitter fa-2x " data-reactid="338"></i>
+                                    <span id="Pinterest-function" data-target="#twitter" data-toggle="modal"  data-reactid="337">
+                                    :{{vendor.twitterURL}}
+                                    </span>
+                                    <div class="col-lg-12 editbtn">
+                                        <h4 class="text-right col-lg-12">
+                                            <i class="material-icons">edit</i>
+                                        </h4>
+                                    </div>
+                                    <!--  <div class="switbtn">
+                                        <ui-switch [(ngModel)]="enable1" ></ui-switch> 
+                                        </div>   --> 
+                                    </div>
                                 </div>
-                             </div>
-                             <div class="social-connect col-sm-12" data-reactid="330">
-                                <div class="social" data-reactid="332">
-                                   <i class="fa fa-instagram fa-2x" data-reactid="342"></i>
-                                   <span id="Instagram-function" data-target="#instagram" data-toggle="modal" data-reactid="341">
-                                   : {{vendor.instalURL}}
-                                   </span>
-                                   <div class="col-lg-12 editbtn">
-                                      <h4 class="text-right col-lg-12">
-                                         <i class="material-icons">edit</i>
-                                      </h4>
-                                   </div>
-                                   <!--  <div class="switbtn">
-                                      <ui-switch [(ngModel)]="enable3" ></ui-switch> 
-                                      </div> -->
+                                <div class="social-connect col-sm-12" data-reactid="330">
+                                    <div class="social" data-reactid="332">
+                                    <i class="fa fa-google-plus fa-2x" data-reactid="340"></i>
+                                    <span id="Google-function" data-target="#google" data-toggle="modal" data-reactid="339">
+                                    : {{vendor.googleURL}}
+                                    </span>
+                                    <div class="col-lg-12 editbtn">
+                                        <h4 class="text-right col-lg-12">
+                                            <i class="material-icons">edit </i>
+                                        </h4>
+                                    </div>
+                                    <!--  <div class="switbtn">
+                                        <ui-switch [(ngModel)]="enable2" ></ui-switch>
+                                        </div>  -->
+                                    </div>
                                 </div>
-                             </div>
-                             <div class="social-connect  col-sm-12" data-reactid="330">
-                                <div class="social" data-reactid="332">
-                                   <i class="fa fa-globe fa-2x" data-reactid="342"></i>
-                                   <span id="Instagram-function" data-target="#instagram2" data-toggle="modal" data-reactid="341">
-                                   :{{vendor.perfectWeddingURL}}
-                                   </span>
-                                   <div class="col-lg-12 editbtn">
-                                      <h4 class="text-right col-lg-12">
-                                         <i class="material-icons">edit</i>
-                                      </h4>
-                                   </div>
-                                   <!-- <div class="switbtn">
-                                      <ui-switch [(ngModel)]="enable4" ></ui-switch> 
-                                      </div> -->
+                                <div class="social-connect col-sm-12" data-reactid="330">
+                                    <div class="social" data-reactid="332">
+                                    <i class="fa fa-instagram fa-2x" data-reactid="342"></i>
+                                    <span id="Instagram-function" data-target="#instagram" data-toggle="modal" data-reactid="341">
+                                    : {{vendor.instalURL}}
+                                    </span>
+                                    <div class="col-lg-12 editbtn">
+                                        <h4 class="text-right col-lg-12">
+                                            <i class="material-icons">edit</i>
+                                        </h4>
+                                    </div>
+                                    <!--  <div class="switbtn">
+                                        <ui-switch [(ngModel)]="enable3" ></ui-switch> 
+                                        </div> -->
+                                    </div>
                                 </div>
-                             </div>
-                          </div>
-                       </div>
-                    </div>
-                 </div>
-              </div>
+                                <div class="social-connect  col-sm-12" data-reactid="330">
+                                    <div class="social" data-reactid="332">
+                                    <i class="fa fa-globe fa-2x" data-reactid="342"></i>
+                                    <span id="Instagram-function" data-target="#instagram2" data-toggle="modal" data-reactid="341">
+                                    :{{vendor.perfectWeddingURL}}
+                                    </span>
+                                    <div class="col-lg-12 editbtn">
+                                        <h4 class="text-right col-lg-12">
+                                            <i class="material-icons">edit</i>
+                                        </h4>
+                                    </div>
+                                    <!-- <div class="switbtn">
+                                        <ui-switch [(ngModel)]="enable4" ></ui-switch> 
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                </div>
            </section>
            <div class="clearfix"></div>
            <app-foot></app-foot>
@@ -372,7 +365,7 @@
                     <div class="col-sm-12  text-center">
                         <div class="switbtn">
                         <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                        <span class="have_one">Of course, I have one! </span>
+                        <span class="have_one">Yes, I have one! </span>
                         <span class="have_one">No, I don't! </span>
                         </div>
                         <div class="clearfix"></div>
@@ -408,7 +401,7 @@
                     <div class="col-sm-12  text-center">
                         <div class="switbtn">
                         <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                        <span class="have_one">Of course, I have one! </span>
+                        <span class="have_one">Yes, I have one! </span>
                         </div>
                         <div class="clearfix"></div>
                         <div class="input_facebook input-effect form-group">
@@ -444,7 +437,7 @@
                     <div class="col-sm-12  text-center">
                         <div class="switbtn">
                         <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                        <span class="have_one">Of course, I have one! </span>
+                        <span class="have_one">Yes, I have one! </span>
                         <span class="have_one">No, I Don't! </span>
                         </div>
                         <div class="clearfix"></div>
@@ -481,7 +474,7 @@
                     <div class="col-sm-12  text-center">
                         <div class="switbtn">
                         <ui-switch [(ngModel)] ="enable" ></ui-switch> 
-                        <span class="have_one">Of course, I have one! </span>
+                        <span class="have_one">Yes, I have one! </span>
                         </div>
                         <div class="clearfix"></div>
                         <div class="input_facebook input-effect form-group">
@@ -517,7 +510,7 @@
                     <div class="col-sm-12  text-center">
                         <div class="switbtn">
                         <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                        <span class="have_one">Of course, I have one! </span>
+                        <span class="have_one">Yes, I have one! </span>
                         </div>
                         <div class="clearfix"></div>
                         <div class="input_facebook input-effect form-group">
@@ -566,7 +559,7 @@
                     <div class="col-sm-12  text-center">
                         <div class="switbtn">
                         <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                        <span class="have_one">Of course, I have one! </span>
+                        <span class="have_one">Yes, I have one! </span>
                         </div>
                         <div class="clearfix"></div>
                         <section id="tours">
@@ -638,9 +631,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Address</h4>
-                        <button type="button" class="close" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
                     </div>
                     <div class="modal-body county_addres">
                         <div>
@@ -685,7 +678,7 @@
                                   </div>
                                 </div>
                                 <!-- <button type="button" onclick="alert('location')">Use my location</button> -->
-                                <button (click)='updateOnMap()' type="submit" class="btn btn-primary whitetext">Search</button>
+                                <!-- <button (click)='updateOnMap()' type="submit" class="btn btn-primary whitetext">Search</button> -->
                             </div>
                         </div>
                     </div>
@@ -696,11 +689,16 @@
                 </div>
             </div>
     </div>
-    <div class="modal fade" id="phone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade phone" id="phone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <form (ngSubmit)="updatefrom(updatefield)" #infoo="ngForm">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">                    
+                 
+                <div class="modal-content mobileid" >
+                      
+                    <div class="modal-header">  
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>                  
                         <h4 class="modal-title">Phone Number</h4>
                     </div>
                     <div class="modal-body">
@@ -722,201 +720,214 @@
                         <div class="col-sm-10 col-9 nopadd">
                             <input type="number" class="inputbottombor" minlength=10 maxlength=10 placeholder="000-000-0000" id="phone" name="phone" [(ngModel)]="updatefield.phone">
                         </div>
-
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Trading Hours</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="col-sm-12 loca_hours sund_top">
-                                <div class="col-sm-2">
-                                    Sunday
-                                </div>
-                                <div class="col-sm-3">
-                                    <span class="ui_switch">
-                                    <ui-switch 
-                                    [(ngModel)] ="updatefield.isSundayOpen"
-                                    id="isSundayOpen" 
-                                    name="isSundayOpen"
-                                    checked 
-                                    class="pull-left"> </ui-switch>
-                                    </span>
-                                    <span class="textopenclose">Open</span>
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="form-group registration-date">
-                                        <div class="input-group registration-date-time col-sm-6">
-                                            <input class="form-control" type="time" class="inputbottombor" [(ngModel)]="updatefield.sundayOpen" id="sundayOpen" name="sundayOpen">
-                                        </div>
-                                        <div class="input-group registration-date-time col-sm-6">
-                                            <input class="form-control" type="time" [(ngModel)]="updatefield.sundayClose" id="sundayClose" name="sundayClose">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 loca_hours">
-                                <div class="col-sm-2">
-                                    Monday
-                                </div>
-                                <div class="col-sm-3">
-                                    <span class="ui_switch">
-                                    <ui-switch 
-                                    [(ngModel)] ="updatefield.isMondayOpen"
-                                    id="isMondayOpen" 
-                                    name="isMondayOpen"
-                                    checked 
-                                    class="pull-left"> </ui-switch>
-                                    </span>
-                                    <span class="textopenclose">Open</span>
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="form-group registration-date">
-                                    <div class="input-group registration-date-time col-sm-6">
-                                        <input class="form-control" type="time" [(ngModel)]="updatefield.mondayOpen" id="mondayOpen" name="mondayOpen">
-                                    </div>
-                                    <div class="input-group registration-date-time col-sm-6">
-                                        <input class="form-control" type="time" [(ngModel)]="updatefield.mondayClose" id="mondayClose" name="mondayClose">
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 loca_hours">
-                                <div class="col-sm-2">
-                                    Tuesday
-                                </div>
-                                <div class="col-sm-3">
-                                    <span class="ui_switch">
-                                    <ui-switch 
-                                    [(ngModel)]="updatefield.isTuesdayOpen"
-                                    id="isTuesdayOpen" 
-                                    name="isTuesdayOpen" 
-                                    checked 
-                                    class="pull-left">
-                                    </ui-switch></span>
-                                    <span class="textopenclose">Open</span>
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="form-group registration-date">
-                                    <div class="input-group registration-date-time col-sm-6">
-                                        <input class="form-control" type="time" [(ngModel)]="updatefield.tuesdayOpen" id="tuesdayOpen" name="tuesdayOpen">
-                                    </div>
-                                    <div class="input-group registration-date-time col-sm-6">
-                                        <input class="form-control" type="time" [(ngModel)]="updatefield.tuesdayClose" id="tuesdayClose" name="tuesdayClose">
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 loca_hours">
-                                <div class="col-sm-2">
-                                    Wednesday
-                                </div>
-                                <div class="col-sm-3">
-                                    <span class="ui_switch">
-                                    <ui-switch 
-                                    [(ngModel)]="updatefield.isWednesdayOpen"
-                                    id="isWednesdayOpen" 
-                                    name="isWednesdayOpen" 
-                                    checked class="pull-left"
-                                    ></ui-switch> </span>
-                                    <span class="textopenclose">Open</span>
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="form-group registration-date">
-                                    <div class="input-group registration-date-time col-sm-6">
-                                        <input class="form-control" type="time" [(ngModel)]="updatefield.wednesdayOpen" id="wednesdayOpen" name="wednesdayOpen">
-                                    </div>
-                                    <div class="input-group registration-date-time col-sm-6">
-                                        <input class="form-control" type="time" [(ngModel)]="updatefield.wednesdayClose" id="wednesdayClose" name="wednesdayClose">
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 loca_hours">
-                                <div class="col-sm-2">
-                                    Thursday
-                                </div>
-                                <div class="col-sm-3">
-                                    <span class="ui_switch">
-                                    <ui-switch 
-                                    [(ngModel)]="updatefield.isThursdayOpen"
-                                    id="isThursdayOpen" 
-                                    name="isThursdayOpen" 
-                                    checked class="pull-left"
-                                    ></ui-switch> </span> <span class="textopenclose">Open</span>
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="form-group registration-date">
-                                    <div class="input-group registration-date-time col-sm-6">
-                                        <input class="form-control" type="time" [(ngModel)]="updatefield.thursdayOpen" id="thursdayOpen" name="thursdayOpen">
-                                    </div>
-                                    <div class="input-group registration-date-time col-sm-6">
-                                        <input class="form-control" type="time" [(ngModel)]="updatefield.thursdayClose" id="thursdayClose" name="thursdayClose">
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 loca_hours">
-                                <div class="col-sm-2">
-                                    Friday
-                                </div>
-                                <div class="col-sm-3">
-                                    <span class="ui_switch">
-                                    <ui-switch 
-                                    [(ngModel)]="updatefield.isFridayOpen"
-                                    id="isFridayOpen" 
-                                    name="isFridayOpen" 
-                                    checked class="pull-left"
-                                    ></ui-switch> </span> <span class="textopenclose">Open</span>
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="form-group registration-date">
-                                    <div class="input-group registration-date-time col-sm-6">
-                                        <input class="form-control" type="time" [(ngModel)]="updatefield.fridayOpen" id="fridayOpen" name="fridayOpen">
-                                    </div>
-                                    <div class="input-group registration-date-time col-sm-6">
-                                        <input class="form-control" type="time" [(ngModel)]="updatefield.fridayClose" id="fridayClose" name="fridayClose">
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 loca_hours">
-                                <div class="col-sm-2">
-                                    Saturday
-                                </div>
-                                <div class="col-sm-3">
-                                    <span class="ui_switch">
-                                    <ui-switch 
-                                    [(ngModel)]="updatefield.isSaturdayOpen"
-                                    id="isSaturdayOpen" 
-                                    name="isSaturdayOpen" 
-                                    checked class="pull-left"
-                                    ></ui-switch> </span> <span class="textopenclose">Open</span>
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="form-group registration-date">
-                                    <div class="input-group registration-date-time col-sm-6">
-                                        <input class="form-control" type="time" [(ngModel)]="updatefield.saturdayOpen" id="saturdayOpen" name="saturdayOpen">
-                                    </div>
-                                    <div class="input-group registration-date-time col-sm-6">
-                                        <input class="form-control" type="time" [(ngModel)]="updatefield.saturdayClose" id="saturdayClose" name="saturdayClose">
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                        title
-                            <input type="text" class="inputbottombor" [(ngModel)]="updatefield.title" id="title" name="title">
-                            <input class="form-control" type="hidden" class="inputbottombor" [(ngModel)]="updatefield.city" id="city" name="city">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                            <button type="submit" class="btn bt_blue"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
+                <div class="modal-content Trading" >
+                    <div class="modal-header">
+                        <h4 class="modal-title">Trading Hours</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-sm-12 loca_hours sund_top">
+                            <div class="col-sm-2">
+                                Sunday
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="ui_switch">
+                                <ui-switch 
+                                [(ngModel)] ="updatefield.isSundayOpen"
+                                id="isSundayOpen" 
+                                name="isSundayOpen"
+                                checked 
+                                class="pull-left"> </ui-switch>
+                                </span>
+                                <span class="textopenclose">Open</span>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-group registration-date">
+                                    <div class="input-group registration-date-time col-sm-6">
+                                        <input class="form-control" type="time" class="inputbottombor" [(ngModel)]="updatefield.sundayOpen" id="sundayOpen" name="sundayOpen">
+                                    </div>
+                                    <div class="input-group registration-date-time col-sm-6">
+                                        <input class="form-control" type="time" [(ngModel)]="updatefield.sundayClose" id="sundayClose" name="sundayClose">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 loca_hours">
+                            <div class="col-sm-2">
+                                Monday
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="ui_switch">
+                                <ui-switch 
+                                [(ngModel)] ="updatefield.isMondayOpen"
+                                id="isMondayOpen" 
+                                name="isMondayOpen"
+                                checked 
+                                class="pull-left"> </ui-switch>
+                                </span>
+                                <span class="textopenclose">Open</span>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-group registration-date">
+                                <div class="input-group registration-date-time col-sm-6">
+                                    <input class="form-control" type="time" [(ngModel)]="updatefield.mondayOpen" id="mondayOpen" name="mondayOpen">
+                                </div>
+                                <div class="input-group registration-date-time col-sm-6">
+                                    <input class="form-control" type="time" [(ngModel)]="updatefield.mondayClose" id="mondayClose" name="mondayClose">
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 loca_hours">
+                            <div class="col-sm-2">
+                                Tuesday
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="ui_switch">
+                                <ui-switch 
+                                [(ngModel)]="updatefield.isTuesdayOpen"
+                                id="isTuesdayOpen" 
+                                name="isTuesdayOpen" 
+                                checked 
+                                class="pull-left">
+                                </ui-switch></span>
+                                <span class="textopenclose">Open</span>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-group registration-date">
+                                <div class="input-group registration-date-time col-sm-6">
+                                    <input class="form-control" type="time" [(ngModel)]="updatefield.tuesdayOpen" id="tuesdayOpen" name="tuesdayOpen">
+                                </div>
+                                <div class="input-group registration-date-time col-sm-6">
+                                    <input class="form-control" type="time" [(ngModel)]="updatefield.tuesdayClose" id="tuesdayClose" name="tuesdayClose">
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 loca_hours">
+                            <div class="col-sm-2">
+                                Wednesday
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="ui_switch">
+                                <ui-switch 
+                                [(ngModel)]="updatefield.isWednesdayOpen"
+                                id="isWednesdayOpen" 
+                                name="isWednesdayOpen" 
+                                checked class="pull-left"
+                                ></ui-switch> </span>
+                                <span class="textopenclose">Open</span>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-group registration-date">
+                                <div class="input-group registration-date-time col-sm-6">
+                                    <input class="form-control" type="time" [(ngModel)]="updatefield.wednesdayOpen" id="wednesdayOpen" name="wednesdayOpen">
+                                </div>
+                                <div class="input-group registration-date-time col-sm-6">
+                                    <input class="form-control" type="time" [(ngModel)]="updatefield.wednesdayClose" id="wednesdayClose" name="wednesdayClose">
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 loca_hours">
+                            <div class="col-sm-2">
+                                Thursday
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="ui_switch">
+                                <ui-switch 
+                                [(ngModel)]="updatefield.isThursdayOpen"
+                                id="isThursdayOpen" 
+                                name="isThursdayOpen" 
+                                checked class="pull-left"
+                                ></ui-switch> </span> <span class="textopenclose">Open</span>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-group registration-date">
+                                <div class="input-group registration-date-time col-sm-6">
+                                    <input class="form-control" type="time" [(ngModel)]="updatefield.thursdayOpen" id="thursdayOpen" name="thursdayOpen">
+                                </div>
+                                <div class="input-group registration-date-time col-sm-6">
+                                    <input class="form-control" type="time" [(ngModel)]="updatefield.thursdayClose" id="thursdayClose" name="thursdayClose">
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 loca_hours">
+                            <div class="col-sm-2">
+                                Friday
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="ui_switch">
+                                <ui-switch 
+                                [(ngModel)]="updatefield.isFridayOpen"
+                                id="isFridayOpen" 
+                                name="isFridayOpen" 
+                                checked class="pull-left"
+                                ></ui-switch> </span> <span class="textopenclose">Open</span>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-group registration-date">
+                                <div class="input-group registration-date-time col-sm-6">
+                                    <input class="form-control" type="time" [(ngModel)]="updatefield.fridayOpen" id="fridayOpen" name="fridayOpen">
+                                </div>
+                                <div class="input-group registration-date-time col-sm-6">
+                                    <input class="form-control" type="time" [(ngModel)]="updatefield.fridayClose" id="fridayClose" name="fridayClose">
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 loca_hours">
+                            <div class="col-sm-2">
+                                Saturday
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="ui_switch">
+                                <ui-switch 
+                                [(ngModel)]="updatefield.isSaturdayOpen"
+                                id="isSaturdayOpen" 
+                                name="isSaturdayOpen" 
+                                checked class="pull-left"
+                                ></ui-switch> </span> <span class="textopenclose">Open</span>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-group registration-date">
+                                <div class="input-group registration-date-time col-sm-6">
+                                    <input class="form-control" type="time" [(ngModel)]="updatefield.saturdayOpen" id="saturdayOpen" name="saturdayOpen">
+                                </div>
+                                <div class="input-group registration-date-time col-sm-6">
+                                    <input class="form-control" type="time" [(ngModel)]="updatefield.saturdayClose" id="saturdayClose" name="saturdayClose">
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+                <div class="modal-content title" >
+                    <div class="modal-header">
+                            <h4 class="modal-title">Title</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    <div class="col-sm-12">
+                            Title:
+                        <input type="text" class="inputbottombor" [(ngModel)]="updatefield.title" id="title" name="title">
+                        <input class="form-control" type="hidden" class="inputbottombor" [(ngModel)]="updatefield.city" id="city" name="city">
+                    </div>
+                </div>
+                <div class="modal-content">    
+                    <div class="modal-footer">
+                            <button type="submit" class="btn bt_blue"  ><i class="glyphicon glyphicon-ok" > </i> Save</button>&nbsp;
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>    
             </div>
+      
         </form>
     </div> 

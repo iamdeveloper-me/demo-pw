@@ -1,6 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+  padding-right: 0px!important;
+}
 #supplierscarousel .owl-dots{
   display:none!important;
+}
+.nopadd{
+  padding: 0px;
 }
 #supplierscarousel .owl-nav .owl-next{
     right: -50px!important;
@@ -192,9 +198,15 @@ h4.navdrandm{
 .rtslide{
     left:-280px!important;
     position: fixed!important;
+    width: 100%;
 }
 .rtslide111{
     left:0px!important;
+    position: fixed!important;
+    width: 100%;
+}
+.rtslide333{
+    left:-250px!important;
     position: fixed!important;
     width: 100%;
 }
@@ -370,14 +382,30 @@ border:0px solid #fff!important;
     margin-left: -250px;
     overflow-y: auto;
     -webkit-transition: all 0.5s ease;
-  background:rgba(0, 46, 119, 0.7) !important;
+    background:rgba(0, 46, 119, 0.7) !important;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
   }
-  
   #wrapper.toggled #sidebar-wrapper {
     width: 250px;
+  }
+  #wrappervendorsidbar {
+    z-index: 1000;
+    position: fixed;
+    right: 280px;
+    width: 0;
+    height: 100%;
+    margin-right: -280px;
+    overflow-y: auto;
+    -webkit-transition: all 0.5s ease;
+    background:rgba(0, 46, 119, 0.7) !important;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+  #wrappervendor.toggled #wrappervendorsidbar {
+    width: 280px;
   }
   #page-content-wrapper {
     width: 100%;
@@ -510,6 +538,14 @@ display: none!important;
     top: 49px!important;
     overflow: hidden!important;
     display: none;
+}
+.vendorappbtn, .vendorappbtnclose{
+  background: none;
+  color: #fff!important;
+  border:0px;
+}
+.vendorappbtn i, .vendorappbtnclose i{
+  margin-top:5px;
 }
 @media(min-width:768px) {
 .footer_bg{
@@ -783,7 +819,7 @@ float: right;
     overflow: hidden;
     padding-left: 0px;
     padding-right: 0px;
-    margin-right: 20px;
+    margin-right: 2px;
     margin-top: 2px;
     outline: none !important;
     background: #ccc;

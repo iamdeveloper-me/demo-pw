@@ -349,3 +349,9 @@ function readImage() {
       console.log('Browser not support');
   }
 }
+
+
+
+  $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+  })

@@ -1,4 +1,3 @@
-
 import { Component,  OnInit , Input } from '@angular/core';
 import { LoginServiceService } from '../shared/service/login-service.service';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -111,27 +110,77 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['../home']);
     $(".user").hide(); 
     $(".loginclick").show();
-    this.typeLogout();
+    $("#sidebar-wrapper").hide();
+    $(".tool_icons").hide();
+    $(".tikright").hide();
+    $(".vendorappbtn").hide();
+    $(".vendorappbtnclose").hide();
     
+    this.typeLogout();
    }
 
     ngOnInit() { 
         $(".tikright").hide();
+        $(".tool_icons").hide();
+        $("#sidebar-wrapper").hide();
+        $(".vendorappbtn").hide();
+
+        var vendorid = localStorage.getItem('vendorid')
+        //alert(vendorid)
         var authToken = localStorage.getItem('userToken');
         if(authToken)
         {  
-            if(window.location.href.indexOf("home"))
+            
+            if(window.location.href.indexOf("home") && vendorid)
             {   
+                //alert("jjllll") 
                 $(".loginclick").hide();
-                $(".user").show(); 
+                $(".user").show();
+                $(".vendorappbtn").show();
+                $("#wrappervendorsidbar").show(); 
+
                 
             }
+            else
+
+            {   
+                $(".loginclick").hide();
+                $("#wrappervendorsidbar").hide(); 
+                $(".tikright").show();
+                $(".tool_icons").show();
+                $(".vendorappbtn").hide();
+
+            //    if(window.location.href.indexOf("home") && !(vendorid)){
+            //     alert("oooooooooo")
+              
+            //     $(".loginclick").hide();
+            //     $(".user").show(); 
+            //     $(".tikright").show();
+            //     $(".tool_icons").show();
+            //     $("#sidebar-wrapper").show(); 
+            // }
         }
+        }
+        // else if (authToken && vendorid)
+        // {
+        //     alert("hiiii")
+        //     if(window.location.href.indexOf("home"))
+        //     {
+        //     alert("kkkkk")
+            
+        //     $(".material-icons").show();
+            
+        //     }
+        //     // $(".tool_icons").show();
+        //     // $("#sidebar-wrapper").show();
+        // }
+
         else 
         {
         if(window.location.href.indexOf("home") > -1) {
           $(".user").hide();    
           $(".tikright").hide(); 
+          $(".tool_icons").hide();
          } 
         }
     
@@ -258,10 +307,10 @@ export class MenuComponent implements OnInit {
         $(".blackoverlaymain").removeClass( "blockmobile"); 
         $(".tool_icons").removeClass("in"); 
         setTimeout(function() { $(".fixedtik").removeClass("positionfixed") }, 1000);
-        //$(".tikright").show(); 
-        //$(".slidemenu").removeClass("rtslide");
-        //$(".tikrightclose").hide();
-         $(".dark_footer").show();
+        $(".tikright").show(); 
+        $(".slidemenu").removeClass("rtslide");
+        $(".tikrightclose").hide();
+        $(".dark_footer").show();
     });
 
 $(".homemenu").click(function(){
@@ -294,31 +343,49 @@ $(".homemenu").click(function(){
     });
      $(".backsilde").click(function(){
        // alert("bye");
-      
-         //$("mobileshowwebnav").css('left', '-20px!important');
-
+      //$("mobileshowwebnav").css('left', '-20px!important');
     });
-
-
-
-
-    $(".signuplink").click(function(){
-        
+    $(".signuplink").click(function(){  
         $("body").removeClass("modal-open"); 
     });
-$(".tikright").click(function(){
+    $(".tikright").click(function(){
         $(".tool_icons").addClass("in");
         $(".tikright").hide(); 
         $(".tikrightclose").show();
         $(".slidemenu").addClass("rtslide");
-         $(".slidemenu").removeClass("outslide");
+        $(".slidemenu").removeClass("outslide");
         $(".blackoverlaymain").addClass( "blockmobile"); 
     });
+
+    $(".vendorappbtn").click(function(){
+        alert("open");
+        $("#wrappervendor").addClass('toggled');
+        $(".vendorappbtnclose").show(); 
+        $(".vendorappbtn").hide(); 
+        $(".slidemenu").addClass("rtslide");
+        $(".slidemenu").removeClass("outslide");
+        $(".blackoverlaymain").addClass( "blockmobile"); 
+     });
+
+    $(".vendorappbtnclose").click(function(){
+        alert("close");
+        $("#wrappervendor").removeClass('toggled');
+        $(".vendorappbtnclose").hide(); 
+        $(".vendorappbtn").show(); 
+        $(".slidemenu").addClass("outslide");
+        $(".slidemenu").addClass("rtslide111");
+        setTimeout(function() { $(".slidemenu").removeClass("rtslide111") }, 1000);
+        $(".slidemenu").removeClass("rtslide");
+        $(".blackoverlaymain").removeClass( "blockmobile"); 
+     });
+     
     $(".tikrightclose").click(function(){    
         $(".tool_icons").removeClass("in");
         $(".tikright").show(); 
         $(".tikrightclose").hide();
         $(".slidemenu").addClass("outslide");
+        $(".slidemenu").addClass("rtslide111");
+        setTimeout(function() { $(".slidemenu").removeClass("rtslide111") }, 1000);
         $(".slidemenu").removeClass("rtslide");
         $(".blackoverlaymain").removeClass( "blockmobile"); 
     });

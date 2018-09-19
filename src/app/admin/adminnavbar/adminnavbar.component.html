@@ -17,24 +17,9 @@
 
                         <div id="navbarSupportedContent" class="headerrightbar">
                      
-                          <!--   <ul class="navbar-nav linkbtnholder">                           
-                                <li class="nav-item">
-                                    <a href="javascript:void(0)" class="btn btn-outline-light btnheadvendor" routerLink="gallery"> <i class="material-icons">add_a_photo</i> &nbsp;Manage Photos</a>
-                                </li>
-                                <li class="nav-item">
-                                    
-                                    <a href="javascript:void(0)" class="btn btn-outline-light btnheadvendor" routerLink="dashboard">
-                                         <i class="material-icons">build</i> &nbsp;Edit
-                                    </a>
-                                </li>    
-                            </ul> -->
+                         
                             <ul class="navbar-nav listing right_listing" style="display:none;">
-                                   <!--  <li class="nav-item mr-2">
-                                        <a href="javascript:;" class="nav-link" id="navbar-fullscreen" appToggleFullscreen (click)="ToggleClass()">                            
-                                            <i class="{{toggleClass}} font-medium-3 blue-grey darken-4"></i>
-                                            <p class="d-none">fullscreen</p>
-                                        </a>
-                                    </li> -->
+                                  
                                     <li class="nav-item" ngbDropdown placement="bottom-right">
                                             <a class="nav-link position-relative" id="dropdownBasic2" ngbDropdownToggle>
                                                 <i class="ft-bell font-medium-3 blue-grey darken-4"></i>
@@ -102,16 +87,7 @@
                                     </li>  
                             </ul>
                             <ul class="navbar-nav listing right_listing">    
-                                 <!--    <li class="nav-item" placement="bottom-right">
-                                        <a class="nav-link position-relative">
-                                            <i class="material-icons">info </i>
-                                        </a>              
-                                    </li>
-                                    <li class="nav-item" placement="bottom-right">
-                                        <a class="nav-link position-relative">
-                                            <i class="material-icons"> add</i>
-                                        </a>       
-                                    </li> -->
+                                 
                                     <li class="nav-item" ngbDropdown placement="bottom-right">
                                         <a class="nav-link position-relative" id="dropdownBasic2" ngbDropdownToggle>
                                             <i class="ft-bell font-medium-3 blue-grey darken-4"></i>
@@ -145,30 +121,33 @@
                                             <a class="noti-footer primary text-center d-block border-top border-top-blue-grey border-top-lighten-4 text-bold-400 py-1">Read All Notifications</a>
                                         </div>
                                     </li>
-                                    <li class="nav-item" ngbDropdown placement="bottom-right">
-                                            <a class="nav-link position-relative" id="dropdownBasic3" ngbDropdownToggle>
-                                                <i class="ft-user font-medium-3 blue-grey darken-4"></i>
-                                                <p class="d-none">User Settings</p>
+                                    <li class="nav-item usernavmenu" ngbDropdown placement="bottom-right">
+                                             <a class="nav-link afternone navuserlink position-relative" id="dropdownBasic3" ngbDropdownToggle>
+                                                <i class="material-icons">account_circle</i>
                                             </a>
-                                            <div ngbDropdownMenu aria-labelledby="dropdownBasic3">                           
-                                                <a class="dropdown-item py-1" routerLink="profile">
-                                                    <i class="ft-edit mr-2"></i>
-                                                    <span>My Profile</span>
-                                                </a>
-                                                <a class="dropdown-item py-1" routerLink="chat">
+
+                                        <div class="blackoverlaymainuser">
+                                            <div ngbDropdownMenu aria-labelledby="dropdownBasic3">  <a class="dropdown-item py-1"   routerLink="chat">
                                                     <i class="ft-mail mr-2"></i>
                                                     <span>My Inbox</span>
-                                                </a>
-                                                <a class="dropdown-item py-1" href="javascript:;">
+                                              </a>
+                                                <a class="dropdown-item py-1" routerLink="chat">
                                                     <i class="ft-settings mr-2"></i>
-                                                    <span>Settings</span>
+                                                    <span>My Account</span>
                                                 </a>
                                                 <div class="dropdown-divider"></div>
                                                 <a class="dropdown-item" href="javascript:;">
                                                     <i class="ft-power mr-2"></i>
                                                     <span>Logout</span>
                                                 </a>
+
+                                                <button class="cross hidden-sm hidden-md hidden-lg" type="button">
+                                                        <div class="line1"></div>
+                                                        <div class="line2"></div>
+                                                        <div class="line3"></div>
+                                                </button>
                                             </div>
+                                        </div>
                                     </li>  
                             </ul>
                         </div>

@@ -358,7 +358,7 @@ $(".homemenu").click(function(){
     });
 
     $(".vendorappbtn").click(function(){
-        alert("open");
+        //alert("open");
         $("#wrappervendor").addClass('toggled');
         $(".vendorappbtnclose").show(); 
         $(".vendorappbtn").hide(); 
@@ -368,7 +368,7 @@ $(".homemenu").click(function(){
      });
 
     $(".vendorappbtnclose").click(function(){
-        alert("close");
+       // alert("close");
         $("#wrappervendor").removeClass('toggled');
         $(".vendorappbtnclose").hide(); 
         $(".vendorappbtn").show(); 

@@ -11,18 +11,18 @@
             <div class=" text-center">
                 <h2>MY EVENTS</h2>       
                 <span>Increase your brand awareness through event hosting. It's free!
-                        <form (ngSubmit)="addFile(info)" #info="ngForm"> 
-                                <input #fileInput 
-                                 type="file"
-                                [(ngModel)]="gallery.files" 
-                                 name="image" 
-                                  id="image"/>
-                            <button type= "submit">vfgdhgh</button>
-                        </form>
+                    <form (ngSubmit)="addFile(info)" #info="ngForm"> 
+                        <input #fileInput 
+                         type="file"
+                        [(ngModel)]="gallery.files" 
+                         name="image" 
+                          id="image"/>
+                    <button type= "submit">generate fileid</button>
+                </form>
                 </span>
             </div>  
 
-             <ul class="tabbingdesign">
+              <ul class="tabbingdesign">
                                 <li class="card-title selected Suppliertab">Past Event</li>
                                 <li class="card-title Registertab">Upcoming Event</li>
                             </ul> 
@@ -36,21 +36,22 @@
                                 <div class="serchbox">
                                     <input type="text" placeholder="Search...." name="">
                                       <button class="btn btn-small btn-link" (click)="open(adduser)"> 
-                                        <i class="material-icons"> add </i> <span> <strong> Create New Event </strong> </span></button>
+                                        <i class="material-icons"> add </i> <span> <strong> Create New Event {{test}}</strong> </span></button>
                                 </div>
                            
                              
                         </div>
 
                         <div class="clearfix"></div>
-                        <section id="filter">
+                        <section id="filter2"  >
                            
-                                <div class="col-sm-12 nopadd">
-                                    <div class="card martop0px">
-                                        <div class="card-body borall">
+                                <div class="col-sm-12 nopadd"   *ngFor="let data of eventArray;let i=index" >
+                                    <div class="card martop0px"  *ngFor="let name of data.eventsDates"   >
+                                        <div class="card-body borall" *ngIf="name.eventDate < test" >
                                             <div class="card-block">
                                                 <div class="col-md-4 col-12 pad_0px">
-                                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" class="img-responsive">
+                                                    
+                                                    <img src="{{data.files.path}}" class="img-responsive">
                                                 </div>
                                                 <div class="col-md-8 col-12 textboxevent">
                                                     <table>
@@ -58,118 +59,50 @@
                                                             <td>
                                                                 <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
                                                                 <div class="club_heading">
-                                                                <h5>Busselton Lions Club Saturday Morning Shed Sales</h5>
+                                                                <h5>Busselton Lions Club Saturday Morning Shed Sales </h5>
                                                                 </div>
                                                                 <p>
-                                                                <strong> Capacity:</strong> 120 person
+                                                                <strong> Capacity:{{data.capacity}}</strong>
                                                                 </p>
                                                                 <p>
-                                                                <strong> Venue:</strong> Busselton Lions Club Shed 
+                                                                <strong> Venue:{{data.venueName}}</strong>
                                                                 </p>  
                                                                 <p> 
-                                                                <strong>Event Town:</strong>Busselton 
+                                                                <strong>Event Town:{{data.location}}</strong> 
                                                                 </p>  
-                                                                <p class="locat_tag"> 
-                                                                <i class="material-icons"> location_on</i>306 Queen Elizabeth Ave, Bovell WA 6280, Australia
+                                                                <p> 
+                                                                <strong>Entry Fee:{{data.entryFee}}</strong> 
                                                                 </p> 
-                                                                <div class="col-sm-offset-2 col-md-4 col-6 start_time">
-                                                                <p>
-                                                                    <i class="material-icons">access_time </i> <strong> Start Time</strong>  
-                                                                </p>
-                                                                <p> 7:00 AM</p>
-                                                                </div>
-                                                                <div class="col-md-6 col-6 start_time">
-                                                                <p>
-                                                                    <i class="material-icons">access_time </i><strong>End Time</strong>
-                                                                </p>
-                                                                <p>13:00 PM</p>
-                                                                </div>
-                                                                <div class="col-md-12 col-12 mar_top_10px"></div>
-                                                                <div class="col-sm-offset-2 col-md-4 col-6 start_time">
-                                                                <p>
-                                                                    <i class="material-icons">date_range </i><strong> Next Date</strong>  
-                                                                </p>
-                                                                <p>7:00 AM</p>
-                                                                </div>
-                                                                <div class="col-md-6 col-6 start_time">
-                                                                <p>
-                                                                    <i class="material-icons">date_range </i><strong> Recurring  Date</strong>
-                                                                </p>
-                                                                <p> 13:00 PM</p>
-                                                                </div>
-                                                                </div>
-                                                            </td>
-                                                            <td class="text-center">
-                                                                <button class="btn btn-success whitetext btn-rounded">Edit</button>
-                                                                 <button class="btn btn-warning whitetext btn-rounded">Delete</button>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>  
-                                                <div class="col-md-12 pad_0px">
-                                                    <p>
-                                                        <strong>Description</strong><br/>
-                                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                                        </p><p> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body borall">
-                                            <div class="card-block">
-                                                <div class="col-md-4 col-12 pad_0px">
-                                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" class="img-responsive">
-                                                </div>
-                                                <div class="col-md-8 col-12 textboxevent">
-                                                    <table>
-                                                        <tr>
-                                                            <td>
+                                                                <p class="locat_tag"> 
+                                                                <i class="material-icons"> location_on</i>  306 Queen Elizabeth Ave, Bovell WA 6280, Australia
+                                                                </p> 
                                                                 <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
-                                                                <div class="club_heading">
-                                                                <h5>Busselton Lions Club Saturday Morning Shed Sales</h5>
+                                                                <p>
+                                                                    <i class="material-icons">access_time </i> <strong> Start Time {{data.createdOn | date :  "shortTime" }}</strong>  
+                                                                </p>
+                                                                
                                                                 </div>
+                                                                <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
                                                                 <p>
-                                                                <strong> Capacity:</strong> 120 person
+                                                                    <i class="material-icons">access_time </i><strong>End Time  {{data.createdOn | date :  "shortTime" }} </strong>
                                                                 </p>
-                                                                <p>
-                                                                <strong> Venue:</strong> Busselton Lions Club Shed 
-                                                                </p>  
-                                                                <p> 
-                                                                <strong>Event Town:</strong>Busselton 
-                                                                </p>  
-                                                                <p class="locat_tag"> 
-                                                                <i class="material-icons"> location_on</i>306 Queen Elizabeth Ave, Bovell WA 6280, Australia
-                                                                </p> 
-                                                                <div class="col-sm-offset-2 col-md-4 col-6 start_time">
-                                                                <p>
-                                                                    <i class="material-icons">access_time </i> <strong> Start Time</strong>  
-                                                                </p>
-                                                                <p> 7:00 AM</p>
+                                                                
                                                                 </div>
-                                                                <div class="col-md-6 col-6 start_time">
+                                                                <div class="col-md-12 col-12 mar_top_10px" ></div>
+                                                                <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px" *ngFor="let name of data.eventsDates"   >
+                                                                            
                                                                 <p>
-                                                                    <i class="material-icons">access_time </i><strong>End Time</strong>
+                                                                    <i class="material-icons">date_range </i><strong > Recurring  Date {{name.eventDate | date}}  </strong>
                                                                 </p>
-                                                                <p>13:00 PM</p>
-                                                                </div>
-                                                                <div class="col-md-12 col-12 mar_top_10px"></div>
-                                                                <div class="col-sm-offset-2 col-md-4 col-6 start_time">
-                                                                <p>
-                                                                    <i class="material-icons">date_range </i><strong> Next Date</strong>  
-                                                                </p>
-                                                                <p>7:00 AM</p>
-                                                                </div>
-                                                                <div class="col-md-6 col-6 start_time">
-                                                                <p>
-                                                                    <i class="material-icons">date_range </i><strong> Recurring  Date</strong>
-                                                                </p>
-                                                                <p> 13:00 PM</p>
+                                                                
+
+                                                              
                                                                 </div>
                                                                 </div>
                                                             </td>
                                                             <td class="text-center">
-                                                                <button class="btn btn-success whitetext btn-rounded">Edit</button>
-                                                                 <button class="btn btn-warning whitetext btn-rounded">Delete</button>
+                                                                <button class="btn btn-success whitetext btn-rounded"(click)= "editevent(data)"  data-target="#Description" data-toggle="modal" id="description-function">Edit{{data.eventId}}</button>
+                                                                 <button class="btn btn-warning whitetext btn-rounded" (click)= "deletevent(data.eventId)">Delete {{data.eventId}} </button>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -177,8 +110,7 @@
                                                 <div class="col-md-12 pad_0px">
                                                     <p>
                                                         <strong>Description</strong><br/>
-                                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                                        </p><p> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
+                                                        {{data.eventDescription}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -186,79 +118,79 @@
                                     </div>
                                 </div>
                         </section>
-                        <section id="action">
-                                <div class="col-sm-12 nopadd">
-                                    <div class="card martop0px">
-                                        <div class="card-body borall">
-                                            <div class="card-block">
-                                                <div class="col-md-4 col-12 pad_0px">
-                                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" class="img-responsive">
-                                                </div>
-                                                <div class="col-md-8 col-12 textboxevent">
-                                                    <table>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
-                                                                <div class="club_heading">
-                                                                <h5>Busselton Lions Club Saturday Morning Shed Sales</h5>
-                                                                </div>
-                                                                <p>
-                                                                <strong> Capacity:</strong> 120 person
-                                                                </p>
-                                                                <p>
-                                                                <strong> Venue:</strong> Busselton Lions Club Shed 
-                                                                </p>  
-                                                                <p> 
-                                                                <strong>Event Town:</strong>Busselton 
-                                                                </p>  
-                                                                <p class="locat_tag"> 
-                                                                <i class="material-icons"> location_on</i>306 Queen Elizabeth Ave, Bovell WA 6280, Australia
-                                                                </p> 
-                                                                <div class="col-sm-offset-2 col-md-4 col-6 start_time">
-                                                                <p>
-                                                                    <i class="material-icons">access_time </i> <strong> Start Time</strong>  
-                                                                </p>
-                                                                <p> 7:00 AM</p>
-                                                                </div>
-                                                                <div class="col-md-6 col-6 start_time">
-                                                                <p>
-                                                                    <i class="material-icons">access_time </i><strong>End Time</strong>
-                                                                </p>
-                                                                <p>13:00 PM</p>
-                                                                </div>
-                                                                <div class="col-md-12 col-12 mar_top_10px"></div>
-                                                                <div class="col-sm-offset-2 col-md-4 col-6 start_time">
-                                                                <p>
-                                                                    <i class="material-icons">date_range </i><strong> Next Date</strong>  
-                                                                </p>
-                                                                <p>7:00 AM</p>
-                                                                </div>
-                                                                <div class="col-md-6 col-6 start_time">
-                                                                <p>
-                                                                    <i class="material-icons">date_range </i><strong> Recurring  Date</strong>
-                                                                </p>
-                                                                <p> 13:00 PM</p>
-                                                                </div>
-                                                                </div>
-                                                            </td>
-                                                            <td class="text-center">
-                                                                <button class="btn btn-success whitetext btn-rounded">Edit</button>
-                                                                 <button class="btn btn-warning whitetext btn-rounded">Delete</button>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>  
-                                                <div class="col-md-12 pad_0px">
-                                                    <p>
-                                                        <strong>Description</strong><br/>
-                                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                                        </p><p> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
-                                                    </p>
+                        <section id="action2">
+                                <div class="col-sm-12 nopadd"   *ngFor="let data of eventArray;let i=index" >
+                                        <div class="card martop0px"  *ngFor="let name of data.eventsDates"   >
+                                            <div class="card-body borall"  *ngIf="name.eventDate >= test" >
+                                                <div class="card-block">
+                                                    <div class="col-md-4 col-12 pad_0px">
+                                                        
+                                                        <img src="{{data.files.path}}" class="img-responsive">
+                                                    </div>
+                                                    <div class="col-md-8 col-12 textboxevent">
+                                                        <table>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
+                                                                    <div class="club_heading">
+                                                                    <h5>Busselton Lions Club Saturday Morning Shed Sales </h5>
+                                                                    </div>
+                                                                    <p>
+                                                                    <strong> Capacity:{{data.capacity}}</strong>
+                                                                    </p>
+                                                                    <p>
+                                                                    <strong> Venue:{{data.venueName}}</strong>
+                                                                    </p>  
+                                                                    <p> 
+                                                                    <strong>Event Town:{{data.location}}</strong> 
+                                                                    </p>  
+                                                                    <p> 
+                                                                    <strong>Entry Fee:{{data.entryFee}}</strong> 
+                                                                    </p> 
+                                                                    <p class="locat_tag"> 
+                                                                    <i class="material-icons"> location_on</i>  306 Queen Elizabeth Ave, Bovell WA 6280, Australia
+                                                                    </p> 
+                                                                    <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
+                                                                    <p>
+                                                                        <i class="material-icons">access_time </i> <strong> Start Time {{data.createdOn | date :  "shortTime" }}</strong>  
+                                                                    </p>
+                                                                    
+                                                                    </div>
+                                                                    <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
+                                                                    <p>
+                                                                        <i class="material-icons">access_time </i><strong>End Time  {{data.createdOn | date :  "shortTime" }} </strong>
+                                                                    </p>
+                                                                    
+                                                                    </div>
+                                                                    <div class="col-md-12 col-12 mar_top_10px" ></div>
+                                                                    <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px" *ngFor="let name of data.eventsDates"   >
+                                                                                
+                                                                    <p>
+                                                                        <i class="material-icons">date_range </i><strong > Recurring  Date {{name.eventDate | date}}  </strong>
+                                                                    </p>
+                                                                    
+    
+                                                                  
+                                                                    </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <button class="btn btn-success whitetext btn-rounded"(click)= "editevent(data)"  data-target="#Description" data-toggle="modal" id="description-function">Edit{{data.eventId}}</button>
+                                                                     <button class="btn btn-warning whitetext btn-rounded" (click)= "deletevent(data.eventId)">Delete {{data.eventId}} </button>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>  
+                                                    <div class="col-md-12 pad_0px">
+                                                        <p>
+                                                            <strong>Description</strong><br/>
+                                                            {{data.eventDescription}}
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                         </section>
                     </div>    
                 </div>
@@ -266,68 +198,226 @@
     </div>	 
 </div> 
 </div>  
+
 <ng-template #adduser let-c="close" let-d="dismiss">
-    <div class="modal-header text-center">
-         
-        <h4 class="modal-title" ><b>Create Event</b> </h4>
-     
-        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body"> 
-           <form>
-                  <div class="form-group">
+        <form (ngSubmit)="event(list)" #list="ngForm" >
+                <div class="modal-header text-center">
+                    <h4 class="modal-title"><b>Create Event </b></h4>
+                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"> 
+                    
+                            <div class="form-group">
+                                            <div class="input-effect form-group md-form ">  
+                                                <input class="effect-16 validate" 
+                                                 required="required" 
+                                                 [(ngModel)]="list.eventTitle"  
+                                                 id="Title" 
+                                                 name="Title" >
+                                                <label>Title</label>
+                                                <span class="focus-border"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-effect form-group md-form ">  
+                                                <input  type="file" class="effect-16 validate"  required="required" [(ngModel)]="list.filesId"  
+                                                id="Image" 
+                                                name="Image">
+                                                <label>Image</label>
+                                                <span class="focus-border"></span>
+                                            </div>
+                                            
+                                        </div>
+                                        
+                            <div class="form-group date_picker">
+                                <label>event date:</label> <br>
+                                <input type="date"
+                                 name="eventdate" 
+                                 id="eventdate"
+                                 [(ngModel)]="list.eventDate">
+                            </div>
+                            <div class="form-group date_picker">
+                                <label>
+                                    <a href=""> start time </a>
+                                </label><br>
+                               <input type="time" 
+                               name="starttime"
+                               id="starttime"
+                               [(ngModel)]="list.startTime">
+                            </div>
+                            <div class="form-group date_picker">
+                                    <label>
+                                        <a href="">end time </a>
+                                    </label><br>
+                                   <input type="time" 
+                                   name="endtime"
+                                   id="endtime"
+                                   [(ngModel)]="list.endTime">
+                                </div>
+                            <div class="form-group">
                                 <div class="input-effect form-group md-form ">  
-                                    <input class="effect-16 validate"  required="required">
-                                    <label>Title</label>
+                                    <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.location" name="Location" id="Location">
+                                    <label>Location</label>
                                     <span class="focus-border"></span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-effect form-group md-form ">  
-                                    <input  type="file" class="effect-16 validate"  required="required">
-                                    <label>Image</label>
+                                    <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.capacity" name="Capacity" id="Capacity">
+                                    <label>Capacity</label>
                                     <span class="focus-border"></span>
                                 </div>
                             </div>
-                            
-                <div class="form-group date_picker">
-                    <label>When:</label> <br>
-                    <input type="date" name="bday"><input type="time" name="bday"> to  <input type="date" name="bday"><input type="time" name="bday">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form "> 
+                                    <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.eventDescription" name="eventDescription" id="eventDescription"> 
+                                    <textarea class="effect-16 validate"  required="required"></textarea>
+                                    <label>Description</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>   
+                            <div class="form-group">
+                                    <div class="input-effect form-group md-form ">  
+                                        <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.entry" name="entry" id="entry">
+                                        <textarea class="effect-16 validate"  required="required"></textarea>
+                                        <label>Entry</label>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                </div> 
+                                <div class="form-group">
+                                        <div class="input-effect form-group md-form ">
+                                        <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.venueName" name="venueName" id="venueName">
+                                            <textarea class="effect-16 validate"  required="required"></textarea>
+                                            <label>VenueName</label>
+                                            <span class="focus-border"></span>
+                                        </div>
+                                    </div>  
+                
                 </div>
-                <div class="form-group date_picker">
-                    <label>
-                        <a href=""> Add more date and times </a>
-                    </label><br>
-                    <input type="date" name="bday"><input type="time" name="bday"> to <input type="date" name="bday"><input type="time" name="bday">
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary btn-raised" >Save</button>   
+                    <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Cancel</button>
                 </div>
-                <div class="form-group">
-                    <div class="input-effect form-group md-form ">  
-                        <input  type="text" class="effect-16 validate"  required="required">
-                        <label>Location</label>
-                        <span class="focus-border"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-effect form-group md-form ">  
-                        <input  type="text" class="effect-16 validate"  required="required">
-                        <label>Capacity</label>
-                        <span class="focus-border"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-effect form-group md-form ">  
-                        <textarea class="effect-16 validate"  required="required"></textarea>
-                        <label>Description</label>
-                        <span class="focus-border"></span>
-                    </div>
-                </div>    
-                    
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-raised" >Save</button>   
-                <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Cancel</button>
-            </div>
+        </form>
 </ng-template>
+
+<form (ngSubmit)="editsave(data)" #data="ngForm" >
+    <div class="modal fade" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title">Edit Business Description</h4>
+            </div>
+            <div class="modal-body">     
+                 
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title"><b>edit Event  {{modelfield }} </b></h4>
+                                <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body"> 
+                                
+                                        <div class="form-group">
+                                                        <div class="input-effect form-group md-form ">  
+                                                            <input class="effect-16 validate whitebg" 
+                                                            required="required" 
+                                                            [(ngModel)]="modelfield.eventTitle"  
+                                                            id="Title" 
+                                                            name="Title" >
+                                                            <input class="effect-16 validate" 
+                                                             type="hidden"
+                                                            [(ngModel)]="modelfield.eventId"  
+                                                            id="id" 
+                                                            name="id" >
+                                                            <label>Title{{modelfield.title}}</label>
+                                                            <span class="focus-border"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="input-effect form-group md-form ">  
+                                                            <input  type="file" class="effect-16 validate"  required="required" [(ngModel)]="modelfield.filesId"  
+                                                            id="Image" 
+                                                            name="Image">
+                                                            <label>Image{{modelfield.filesId}}</label>
+                                                            <span class="focus-border"></span>
+                                                        </div>
+                                                    </div>
+                                                    
+                                        <div class="form-group date_picker">
+                                            <label>event date: {{modelfield.eventDate}}</label> <br>
+                                            <input type="date"
+                                            name="eventdate" 
+                                            id="eventdate"
+                                            [(ngModel)]="modelfield.eventDate">
+                                        </div>
+                                        <div class="form-group date_picker">
+                                            <label>
+                                                <a href=""> start time {{modelfield.startTime}} </a>
+                                            </label><br>
+                                        <input type="time" 
+                                        name="starttime"
+                                        id="starttime"
+                                        [(ngModel)]="modelfield.startTime">
+                                        </div>
+                                        <div class="form-group date_picker">
+                                                <label>
+                                                    <a href="">end time{{modelfield.endTime}}</a>
+                                                </label><br>
+                                            <input type="time" 
+                                            name="endtime"
+                                            id="endtime"
+                                            [(ngModel)]="modelfield.endTime">
+                                            </div>
+                                        <div class="form-group">
+                                            <div class="input-effect form-group md-form ">  
+                                                <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="modelfield.location" name="Location" id="Location">
+                                                <label>Location}</label>
+                                                <span class="focus-border"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-effect form-group md-form ">  
+                                                <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="modelfield.capacity" name="Capacity" id="Capacity">
+                                                <label>Capacity</label>
+                                                <span class="focus-border"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-effect form-group md-form "> 
+                                                <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="modelfield.eventDescription" name="eventDescription" id="eventDescription"> 
+                                                <textarea class="effect-16 validate"  required="required"></textarea>
+                                                <label>Description</label>
+                                                <span class="focus-border"></span>
+                                            </div>
+                                        </div>   
+                                        <div class="form-group">
+                                                <div class="input-effect form-group md-form ">  
+                                                    <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="modelfield.entry" name="entry" id="entry">
+                                                    <textarea class="effect-16 validate"  required="required"></textarea>
+                                                    <label>Entry</label>
+                                                    <span class="focus-border"></span>
+                                                </div>
+                                            </div> 
+                                            <div class="form-group">
+                                                    <div class="input-effect form-group md-form ">
+                                                    <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="modelfield.venueName" name="venueName" id="venueName">
+                                                        <textarea class="effect-16 validate"  required="required"></textarea>
+                                                        <label>VenueName</label>
+                                                        <span class="focus-border"></span>
+                                                    </div>
+                                                </div>  
+                            
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-secondary btn-raised" >Save</button>   
+                                <button type="button" class="btn btn-secondary btn-raised"  data-dismiss="modal" >Cancel</button>
+                            </div>
+                        
+            </div>     
+            </div>
+        </div>
+    </div>
+</form>   

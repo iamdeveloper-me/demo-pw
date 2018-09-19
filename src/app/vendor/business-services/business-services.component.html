@@ -6,7 +6,7 @@
 	<div class="container-fluid nopadd"> 
 		<app-navemenu></app-navemenu>
 		<router-outlet></router-outlet> 
-        <div class="container-fluid mobilefixedcontainer"> 
+        <div class="container-fluid mobilefixedcontainer" > 
 			<section id="user-profile">
 				<div class="col-12 nopadd">
 					<div class="card margintop0px">	
@@ -20,8 +20,18 @@
 							<div>
 							<label>
 							<input name="Service"  type="radio"  [(ngModel)]="Services.value" [value]= "Service">
-								 <span>{{Service}}</span>
+								 <span>{{Service.serviceName}}</span>
+								 <span class="ui_switch">
+									<ui-switch 
+									[(ngModel)] ="Service.isActive"
+								
+									name="isActive"
+									checked 
+									class="pull-left"> </ui-switch>
+									</span>
 							</label>
+						
+								<span class="textopenclose">Open </span>
 						</div>	
 				</div>
 								<hr class="hr-light">
@@ -38,7 +48,7 @@
 									<div class="col-sm-3 col-xs-6">
 										<div class="funkyradio-info">
 											<input type="checkbox" name="checkbox" id="checkbox2" checked/>
-											<label for="checkbox2">Candid Photography</label>
+											<label for="checkbox2">Candid Photography  </label>
 										</div>
 										<div class="clearfix"></div>
 										<div class="editer" data-toggle="modal" data-target="#candid">

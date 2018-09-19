@@ -159,10 +159,12 @@
                                     <i class="material-icons" data-target="#imagecrop" data-toggle="modal" id="description-function"> camera_alt </i> 
                                     <span class="result" *ngIf="data.image" data-target="#imagecrop" data-toggle="modal" id="description-function">
                                     <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle">
-                                    </span>
+                                   
+                                </span>
+                                <!-- <img src="{{vendor.files.path}}" class="img-responsive"> -->
                                 </div>
                                 <div class="busi_contact">
-                                    <h6 >Business name or Contact Person</h6>
+                                    <h6 >Business name or Contact Person </h6>
                                     <div class="on_hover" data-target="#Business" data-toggle="modal" id="Instagram-function" >
                                     <div>{{vendor.nameOfBusiness}}</div>
                                     <span class="text-right col-lg-12 editbtn">
@@ -567,6 +569,14 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
+
+                                     
+                                                <input #fileInput 
+                                                 type="file"
+                                                [(ngModel)]="gallery.files" 
+                                                 name="image" 
+                                                  id="image"/>
+                                       
                                     <div class="card-header">
                                     <h4>Cropper</h4>
                                     </div>

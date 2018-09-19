@@ -26,8 +26,15 @@ export class GalleryComponent implements OnInit {
     url: URL,
     isHTML5: true
   });
+
+  
+
+
+
   hasBaseDropZoneOver = false;
   hasAnotherDropZoneOver = false;
+
+  
 
   // Angular2 File Upload
   fileOverBase(e: any): void {
@@ -52,6 +59,19 @@ export class GalleryComponent implements OnInit {
       .subscribe(data =>{
        this.totalAlbum =  data.json()  as string[]; 
       });
+
+      $(document).on('click', ".saveall", function() {
+        //alert("hi")
+        // $(this).parents('.modal').modal('toggle');
+        // $(this).parents('.modal').removeClass('show');
+        // $(this).parents('.modal').modal('hide');
+        $(this).parents('.modal').css("display", "none");
+        $(this).parents('.modal').removeClass("show");
+        $('.modal-backdrop').hide();
+        $('.modal-backdrop').removeClass("fade");
+        $('.modal-backdrop').removeClass("show");
+        $('body').removeClass("modal-open");
+     });
 
     $.getScript('http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');

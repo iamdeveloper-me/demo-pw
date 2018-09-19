@@ -54,10 +54,7 @@
                 </div>
               </div>     
           </div>
-        </div>
-
-
-        
+        </div>      
         <div class="container-fluid nopadd">
           <div class="card">
             <div  class="text-center headin_gally col-sm-12 bordernone">
@@ -116,7 +113,7 @@
             <div class="text-center viev_all"> <a href="" class="btn" routerLink="../albumview">View All</a> </div>
           </div> 
         </div> 
-<!-- desfcefedf{{totalAlbum[0].albumName}} --> 
+        <!-- desfcefedf{{totalAlbum[0].albumName}} --> 
       </div>
       <app-foot></app-foot>
     </div>
@@ -128,77 +125,45 @@
 
 <form (ngSubmit)="addFile(info)" #info="ngForm"> 
   <div class="modal fade" id="imageupload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-  <div class="modal-content">
-  <div class="modal-header text-center">
-      <h4 class="modal-title">Add Portfolio</h4>
-      <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-
-      <div class="clearfix"></div>
-  </div>
-  <div class="modal-body">
-      <div class="col-sm-12  text-center">
-        <div class="modal-body" style="background-color: white">
-              <!-- <input #fileInput 
-              type="file"
-              [(ngModel)]="gallery.files" 
-                name="image" 
-                id="image"/> -->
-            
-                
-          <button type="submit" class="btn btn-comman pull-right colo_blue">Update Profile</button>
-          <div class="clearfix"></div>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+            <h4 class="modal-title">Add Portfolio</h4>
+            <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="clearfix"></div>
         </div>
-      </div>    
-  </div>
-  <div class="foot_div text-center">
-<<<<<<< HEAD
-          <button type="submit" class="btn btn-secondary btn-raised saveall" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-=======
-          <button type="submit" class="btn btn-secondary btn-raised saveall" > Save</button>&nbsp;
->>>>>>> abhi
-
-      <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
-  </div>
-  </div>  
-  </div>  
+        <div class="modal-body">
+            <div class="col-sm-12  text-center">
+              <div class="modal-body" style="background-color: white">
+                    <!-- <input #fileInput 
+                    type="file"
+                    [(ngModel)]="gallery.files" 
+                      name="image" 
+                      id="image"/> -->
+                  
+                      
+                <button type="submit" class="btn btn-comman pull-right colo_blue">Update Profile</button>
+                <div class="clearfix"></div>
+              </div>
+            </div>    
+        </div>
+        <div class="foot_div text-center">
+            <button type="submit" class="btn btn-secondary btn-raised saveall" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+            <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+        </div>
+      </div>  
+    </div>  
   </div>
 </form>  
 
 
-        <div class="clearfix"></div>
-    </div>
-    <div class="modal-body">
-        <div class="col-sm-12  text-center">
-          <div class="modal-body" style="background-color: white">
-                <!-- <input #fileInput 
-                type="file"
-                [(ngModel)]="gallery.files" 
-                  name="image" 
-                  id="image"/> -->
-              
-                  
-            <button type="submit" class="btn btn-comman pull-right colo_blue">Update Profile</button>
-            <div class="clearfix"></div>
-          </div>
-        </div>    
-    </div>
-    <div class="foot_div text-center">
-            <button type="submit" class="btn btn-secondary btn-raised" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-
-        <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
-    </div>
-    </div>  
-    </div>  
-    </div>
-  </form>  
+  
   <div class="modal fade" id="uploadphoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
           <div class="modal-header text-center">
               <h4 class="modal-title">Add Portfolio</h4>
-              <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-         
+              <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>       
              <div class="clearfix"></div>
           </div>
           <div class="modal-body">
@@ -309,50 +274,40 @@
               </div>    
           </div>
           <div class="foot_div text-center">
-
-
-                  <button type="submit" class="btn btn-secondary btn-raised saveall" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-
-          
+              <button type="submit" class="btn btn-secondary btn-raised saveall" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp; 
               <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
-
           </div>
       </div>  
     </div>  
   </div>
   <form (ngSubmit)="createAlbum(Album)" #Album="ngForm"> 
-  <div class="modal fade" id="createalbum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header text-center">
-            <h4 class="modal-title">Create  Album </h4>
-                <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          
-        </div>
-        <div class="modal-body">
-            <div class="col-sm-12  text-center">
-              <div class="modal-body" style="background-color: white">
-                Album name :
-                <input type="text" [(ngModel)]="Album.albumName" name="albumName" id="albumName"/>
-                <button type="submit">create album</button>
-                  
-                <button type="submit" class="btn btn-comman pull-right colo_blue">Update Profile</button>
-                <div class="clearfix"></div>
-              </div>
-            </div>    
-        </div>
-        <div class="foot_div text-center">
-<<<<<<< HEAD
-                <button type="submit" class="btn btn-secondary btn-raised saveall" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-=======
-                <button type="submit" class="btn btn-secondary btn-raised saveall" >Save</button>&nbsp;
->>>>>>> abhi
-
-            <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
-        </div>
+    <div class="modal fade" id="createalbum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+              <h4 class="modal-title">Create  Album </h4>
+                  <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            
+          </div>
+          <div class="modal-body">
+              <div class="col-sm-12  text-center">
+                <div class="modal-body" style="background-color: white">
+                  Album name :
+                  <input type="text" [(ngModel)]="Album.albumName" name="albumName" id="albumName"/>
+                  <button type="submit">create album</button>
+                    
+                  <button type="submit" class="btn btn-comman pull-right colo_blue">Update Profile</button>
+                  <div class="clearfix"></div>
+                </div>
+              </div>    
+          </div>
+          <div class="foot_div text-center">
+              <button type="submit" class="btn btn-secondary btn-raised saveall" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+              <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+          </div>
+        </div>  
       </div>  
-    </div>  
-  </div>
+    </div>
   </form>  
 
 

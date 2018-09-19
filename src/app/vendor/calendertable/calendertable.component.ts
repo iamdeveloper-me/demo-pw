@@ -66,7 +66,7 @@ export class CalendertableComponent implements OnInit {
   private urlgetremove: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob'
   private url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/createupdatejobs';
   private geturl: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/myjobs';
-  vendor: any = {};
+  vendor: any = [];
   test: string;
   dates: string;
   entry: string;
@@ -86,8 +86,6 @@ export class CalendertableComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    
      this.getEvents();
 
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
@@ -142,13 +140,7 @@ $(".weddingjobstab").click(function(){
     headers.append("Authorization",'Bearer '+authToken);
     this.http.get(this.geturl,{headers:headers}).subscribe(data =>{
     this.jobArray = data.json() as string[]; 
-    //  for (let entry of data.json()) {
-    //   this.events.push({
-    //       title: entry.clientName,
-    //       start: entry.clientName,
-    //   });
-    //    }
-    //    console.log(this.events);
+
    });
    
   }
@@ -284,12 +276,14 @@ job(jo){
   var end =            jo.event.end; 
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
-  var userId = localStorage.getItem('vendorId');
+  var userId = localStorage.getItem('userId');
+  var vendorid = localStorage.getItem('vendorid');
   headers.append('Accept', 'application/json')
   headers.append('Content-Type', 'application/json');
   headers.append("Authorization",'Bearer '+authToken);
 
-  this.http.post(this.url,{       vendorJobsId: 0,
+  this.http.post(this.url,{      
+    vendorJobsId: 0,
     clientName: contactname,
     numberOfPeople: guest,
     clientPhoneNumber: contactnumber,
@@ -299,17 +293,21 @@ job(jo){
     jobDate: starts,
     jobTime: end,
     userId: userId,
-    vendorId: 12 },{headers:headers}).subscribe(
-    data =>{ this.vendor = data.json(); console.log(this.vendor);});
+    vendorId: vendorid },{headers:headers}).subscribe(
+    data =>{ const vendor = data.json(); 
+            
+      this.vendor.push(vendor);
+             console.log(this.vendor.push(vendor));
+            });
   
   }
 
-  deletevent(id){
-    alert(id)
-    console.log(id);
+  deletevent(job,index){
+   // alert(id)
+    console.log(job);
+    this.jobArray.splice(index, 1);
    
-    // var vendorjobsid 
-    var deleteid = id.vendorJobsId ;
+    var deleteid = job.vendorJobsId ;
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -317,11 +315,10 @@ job(jo){
     headers.append("Authorization",'Bearer '+authToken);
 
     console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob?VendorJobId'+'='+deleteid);
-    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob?VendorJobId'+'='+deleteid,{headers:headers}).subscribe(data =>{
-
+    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob?VendorJobId'+'='+deleteid,{headers:headers}).subscribe(
+      data =>{
      console.log(data.json());
-     this.jobArray.splice(this.jobArray.indexOf(deleteid),1);
     },error =>{ console.log(error)});
-  }
+ }
 
 }

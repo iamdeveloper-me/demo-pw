@@ -43,6 +43,8 @@ export class BusinessInfoComponent implements OnInit {
   google;
   Businesname;
   perfectWedding;
+  private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader';
+
   private urllocationpost: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savelocation'
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessinfo'
 
@@ -273,7 +275,7 @@ findLocation(address) {
     this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
       this.countryArray = data.json() as string[];
      // this.primarylocation = this.countryArray[0];
-      console.log(  data.json()[0]);
+      console.log(  data.json());
       // this.vendorlocatonid = data.json()[0].vendorLocationId;
   })
   
@@ -288,7 +290,7 @@ findLocation(address) {
     this.Businesname = data.json().nameOfBusiness ;
     this.Description = data.json().businessDetails ;  
     this.perfectWedding = data.json().perfectWeddingURL  ;
-   
+    console.log(data.json());
     // console.log(this.facebook);
     // console.log(this.instagram);
     // console.log(this.google);
@@ -463,19 +465,49 @@ findLocation(address) {
 
 
   //businessinformation 
-  openModel(b){
-    this.modelfield = b; 
-    console.log(this.modelfield);
-  }
+
+  gallery = { files: ''}
+  @ViewChild("fileInput") fileInput;
+
+  addFile(info): void {
+    let fi = this.fileInput.nativeElement;
+    if (fi.files && fi.files[0]) {
+         
+        let fileToUpload = fi.files;
+        let headers = new  Headers();
+        var authToken = localStorage.getItem('userToken');
+     
+        headers.append("Authorization",'Bearer '+authToken);
+        const formData = new FormData();
+        formData.append('AlbumId','2')
+        for (let image of fileToUpload){
+          formData.append(image.name,image)
+        }
+        this.http.post(this.uploadimage,formData,{headers:headers})
+                                   }
+    }
+    openModel(b){
+      this.modelfield = b; 
+     // console.log(this.modelfield);
+    }
   upForm(info){
+  var data = this.addFile(info);
+  console.log(data);
+          //this.addFile(info);
+
+
             var infofacebook = info.value.facebook;
             var infotwitter = info.value.twitter;
             var infogoogle = info.value.google;
+            var fileId = this.addFile(info);
             var infodetails = info.value.businessDetails ;
             var infobusiness =   info.value.Businesname;
             var infoinsta = info.value.instagram;
             var  perfectWeddingsite =   info.value.perfectWedding;
+            
 
+          
+              
               let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
               headers.append('Accept', 'application/json')
@@ -488,6 +520,7 @@ findLocation(address) {
                               businessDetails: infodetails,
                               contactPerson: 'scsc',
                              // pictureUrl: infopicture,
+                             fileId:fileId,
                               facebookURL: infofacebook,
                               twitterURL: infotwitter,
                               googleURL:  infogoogle,

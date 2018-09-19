@@ -168,7 +168,7 @@ console.log(list.eventTitle);
 
    
         console.log(fileToUpload)
-
+        alert("xcbvdfg");
         this.http.post(this.uploadimage,formData,{headers:headers})
         .subscribe(data =>{console.log(data);},(error)=>{console.log(error)});
    }

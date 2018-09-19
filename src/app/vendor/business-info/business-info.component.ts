@@ -36,6 +36,7 @@ interface Location {
 
 export class BusinessInfoComponent implements OnInit {
 
+
   facebook;
   Description;
   twitter;
@@ -264,6 +265,9 @@ findLocation(address) {
   
   
   ngOnInit() {
+
+    
+
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -277,7 +281,7 @@ findLocation(address) {
      // this.primarylocation = this.countryArray[0];
       console.log(  data.json());
       // this.vendorlocatonid = data.json()[0].vendorLocationId;
-  })
+    })
   
     this.http.get(this.url,{headers:headers}).subscribe(data =>{
 
@@ -302,81 +306,90 @@ findLocation(address) {
     //         else {
     //           console.log('true');
     //         }
-  })
+    })
 
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
+
+
+    $("#Instagram-function").click(function() {
+    });
+  
+  
     $('.photogallry').hide();
     $("div").removeClass( "modal-backdrop"); 
     $("#instagram2").removeClass( "modal-backdrop"); 
     function testAnim(x) {
       $('.modal .modal-dialog').addClass('animated');
       $('.modal .modal-dialog').addClass('bounceIn');
-  };
+
+
+      
+   };
  
-  $('#facebook').on('show.bs.modal', function (e) {
+   $('#facebook').on('show.bs.modal', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
-  })
-  $('#facebook').on('hide.bs.modal', function (e) {
+   })
+   $('#facebook').on('hide.bs.modal', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
-  })
+   })
   
-  $('#twitter').on('show.bs', function (e) {
+   $('#twitter').on('show.bs', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
-  })
-  $('#twitter').on('hide.bs', function (e) {
+   })
+   $('#twitter').on('hide.bs', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
-  })
+   })
   
-  $('#google').on('show.bs', function (e) {
+   $('#google').on('show.bs', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
-  })
-  $('#google').on('hide.bs', function (e) {
+   })
+   $('#google').on('hide.bs', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
-  })
+   })
   
-  $('#instagram').on('show.bs', function (e) {
+   $('#instagram').on('show.bs', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
-  })
-  $('#instagram').on('hide.bs', function (e) {
+   })
+   $('#instagram').on('hide.bs', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
-  })
+   })
   
-  $('#instagram2').on('show.bs', function (e) {
+   $('#instagram2').on('show.bs', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
-  })
-  $('#instagram2').on('hide.bs', function (e) {
+   })
+   $('#instagram2').on('hide.bs', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
-  })
+   })
   
-  $('#Businesname').on('show.bs', function (e) {
+   $('#Businesname').on('show.bs', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
-  })
-  $('#Businesname').on('hide.bs', function (e) {
+   })
+   $('#Businesname').on('hide.bs', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
-  })
+   })
   
-  $('#Description').on('show.bs', function (e) {
+   $('#Description').on('show.bs', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
-  })
-  $('#Description').on('hide.bs', function (e) {
+   })
+   $('#Description').on('hide.bs', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
-  })
+   })
 
   this.location.marker.draggable = true;
  
@@ -386,8 +399,39 @@ findLocation(address) {
    //  console.log( data.json() as string[] );
     // console.log( data.countryId );
     })
+
+
+$(document).on('click', ".saveall", function() {
+      //alert("hi")
+      // $(this).parents('.modal').modal('toggle');
+      // $(this).parents('.modal').removeClass('show');
+      // $(this).parents('.modal').modal('hide');
+      $(this).parents('.modal').css("display", "none");
+      $(this).parents('.modal').removeClass("show");
+      $('.modal-backdrop').hide();
+      $('.modal-backdrop').removeClass("fade");
+      $('.modal-backdrop').removeClass("show");
+      $('body').removeClass("modal-open");
+   });
+
+ //    $(".namesave").click(function() {
+ //      alert("hi")
+ //      $('#Business').hide();
+ //      $('#Business').removeClass("show");
+ //   });
+ // $(".save").click(function() {
+ //      alert("hi")
+ //      $('#Description').hide();
+ //      $('#Description').removeClass("show");
+ //   });
+
+    
   }
 
+
+
+
+  
   phone(){
     $(".mobileid").show(); 
        $(".Trading").hide(); 
@@ -456,7 +500,7 @@ findLocation(address) {
           {
            
             alert("saved");
-            
+            $('.modal').hide();
           }
     }
 );
@@ -491,10 +535,10 @@ findLocation(address) {
      // console.log(this.modelfield);
     }
   upForm(info){
+
   var data = this.addFile(info);
   console.log(data);
           //this.addFile(info);
-
 
             var infofacebook = info.value.facebook;
             var infotwitter = info.value.twitter;
@@ -530,9 +574,18 @@ findLocation(address) {
                           
                           },{headers:headers});  
  
-            updatebusinessinfo.subscribe((data) => console.log(data),(error)=>console.log(error));
+            updatebusinessinfo.subscribe((responce)=>{ console.log(responce.status);
+              if(responce.status == 200)
+              {
+               
+                alert("saved");
+                
+                
+              }
+        });
+            
      }
-
+  
   abc(event){
 
       console.log(event)

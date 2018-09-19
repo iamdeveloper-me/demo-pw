@@ -60,6 +60,19 @@ export class GalleryComponent implements OnInit {
     $.getScript('https://code.jquery.com/ui/1.12.1/jquery-ui.js');
     $.getScript('./assets/js/vendorsidebar.js');
 
+    $(document).on('click', ".saveall", function() {
+      //alert("hi")
+      // $(this).parents('.modal').modal('toggle');
+      // $(this).parents('.modal').removeClass('show');
+      // $(this).parents('.modal').modal('hide');
+      $(this).parents('.modal').css("display", "none");
+      $(this).parents('.modal').removeClass("show");
+      $('.modal-backdrop').hide();
+      $('.modal-backdrop').removeClass("fade");
+      $('.modal-backdrop').removeClass("show");
+      $('body').removeClass("modal-open");
+    });
+
     }
 
 

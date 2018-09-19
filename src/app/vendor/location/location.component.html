@@ -269,6 +269,7 @@
                                         <input class="form-control" type="time" [(ngModel)]="modelfield.sundayClose" id="sundayClose" name="sundayClose">
                                     </div>
                                 </div>
+  
                             </div>
                         </div>
                         <div class="col-sm-12 loca_hours">
@@ -433,8 +434,20 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
+  
+                    <div class="col-sm-4">
+                    <div class="card martop10px">
+                        <div class="text-center bg-form col-sm-12 addlocationbox">
+                            <i class="material-icons font80px">  add_location </i>
+                            <div>Have more business branches?</div>
+                            <button data-target="#location" (click)="openModel(data)" data-toggle="modal" type="button" class="martopbot15px borderbtnonly"> Add New Location </button>
+                            <div>Premium members only.
+                                <a routerLink="../membership" class="bluelink">Upgrade</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+           </div>
       
             <div class="modal fade" id="photo_ved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
@@ -538,51 +551,61 @@
                         <h4 class="modal-title">Address</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
-                    <div class="modal-body county_addres">
-                        <div>
-                            <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
-                                <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd(m)'></agm-marker>
-                                <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
-                            </agm-map>
-                            <div class="container-fluid martop30px">
-                                <div class="form-group">
-                                  <div class="input-effect md-form">
-                                      <input class="effect-16 validate" type='text'   [(ngModel)]='location.address_level_1' placeholder=''>
-                                      <label>Address Line 1</label>
-                                      <span class="focus-border"></span>
-                                  </div>
+                    <div class="col-sm-12 loca_hours sund_top">
+                        <div class="col-sm-2">
+                            Sunday
+                        </div>
+                        <div class="col-sm-3">
+                            <span class="ui_switch">
+                        <ui-switch 
+                        [(ngModel)] ="modelfield.isSundayOpen"
+                        id="isSundayOpen" 
+                        name="isSundayOpen"
+                        checked 
+                        class="pull-left"> </ui-switch>
+                    </span>
+                            <span class="textopenclose">Open</span>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group registration-date">
+                                <div class="input-group registration-date-time col-sm-6">
+                                    <input class="form-control" type="time" class="inputbottombor" [(ngModel)]="modelfield.sundayOpen" id="sundayOpen" name="sundayOpen">
+  
                                 </div>
-                                <div class="form-group">
-                                  <div class="input-effect md-form">
-                                      <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_level_2' placeholder=''>
-                                      <label>Address Line 2</label>
-                                      <span class="focus-border"></span>
-                                  </div>
+                                <div class="input-group registration-date-time col-sm-6">
+                                    <input class="form-control" type="time" [(ngModel)]="modelfield.sundayClose" id="sundayClose" name="sundayClose">
                                 </div>
-                                <div class="form-group">
-                                  <div class="input-effect md-form">
-                                      <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_state' placeholder=''>
-                                      <label>State / Province / Region</label>
-                                      <span class="focus-border"></span>
-                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 loca_hours">
+                        <div class="col-sm-2">
+                            Monday
+                        </div>
+                        <div class="col-sm-3">
+                            <span class="ui_switch">
+                        <ui-switch 
+                        [(ngModel)] ="modelfield.isMondayOpen"
+                        id="isMondayOpen" 
+                        name="isMondayOpen"
+                        checked 
+                        class="pull-left"> </ui-switch>
+                    </span>
+                            <span class="textopenclose">Open</span>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group registration-date">
+                                <div class="input-group registration-date-time col-sm-6">
+                                    <input class="form-control" type="time" [(ngModel)]="modelfield.mondayOpen" id="mondayOpen" name="mondayOpen">
                                 </div>
-                                <div class="form-group">
-                                  <div class="input-effect md-form">
-                                      <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_country' placeholder=''>
-                                      <label>Country</label>
-                                      <span class="focus-border"></span>
-                                  </div>
-                                </div>
-                                <div class="form-group">
-                                  <div class="input-effect md-form">
-                                      <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_zip' placeholder=''>
-                                      <label>Postal / Zip code</label>
-                                      <span class="focus-border"></span>
-                                  </div>
+                                <div class="input-group registration-date-time col-sm-6">
+                                    <input class="form-control" type="time" [(ngModel)]="modelfield.mondayClose" id="mondayClose" name="mondayClose">
                                 </div>
                               
                                 <button (click)='updateOnMap()' type="submit" class="btn btn-primary whitetext">Search</button>
+
                             </div>
+  
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -657,5 +680,3 @@
                     </div>
                 </div>
         </div>
-
-

@@ -1,86 +1,152 @@
 import { Component, OnInit ,Input ,ViewChild} from '@angular/core'
-
 import { NgbModal,  ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
-import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
+import { DatePipe } from '@angular/common';
+
 export class NgbduserModalContent {
   @Input() name;
-  constructor(public activeModal: NgbActiveModal) { }
-}
-
+  constructor(public activeModal: NgbActiveModal) {} 
+     
+    }
+    
+  
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit {
-    private  uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader';
+    eventArray:any= [];
+    modelfield:any= {};
+    test: string;
+    myDate = new Date(); 
+    imageToShow: any;
+    imageService: any;
+    isImageLoading: any;
+
+    private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader';
     private eventposturl: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/createupdateevent'
+   
     private myeventgeturl: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/myevents'
     private eventdetailgeturl: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/eventdetails'
     private removeeventgeturl: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent'
     private  servicesgeturl: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/services';
   ngOnInit() {
-
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
-  
-    this.http.post(this.eventposturl,{
-        eventId: 0,
-        eventTitle: "string",
-        filesId: 1,
-        venueName: "string",
-        location: "string",
-        lat: 0,
-        long: 0,
-        capacity: 0,
-        entry: "string",
-        entryFee: 0,
-        eventDescription: "string",
-        eventsDates: [
-          {
-            eventsMoreDatesId: 0,
-            eventId: 0,
-            eventDate: "2018-09-14T06:50:38.768Z",
-            startTime: "2018-09-14T06:50:38.768Z",
-            endTime: "2018-09-14T06:50:38.768Z"
-          }
-        ]
-      },{headers:headers}).subscribe(data =>{
-    console.log(data.json());
- 
-  })
-        // this.http.get(this.myeventgeturl,{headers:headers}).subscribe(data =>{
-        // console.log(data.json());})
-        // this.http.get(this.eventdetailgeturl,{headers:headers}).subscribe(data =>{
+        this.http.get(this.myeventgeturl,{headers:headers}).subscribe(data =>{
+      
+        this.eventArray = data.json() as string[];
+        console.log( this.eventArray);
+    })
+
+        // this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/eventdetails?Id' +'='+37 ,{headers:headers}).subscribe(data =>{
         // console.log(data.json());})
         // this.http.get(this.removeeventgeturl,{headers:headers}).subscribe(data =>{
         // console.log(data.json());})
         // this.http.get(this.servicesgeturl,{headers:headers}).subscribe(data =>{
         //     console.log(data.json());})
-
-    $("#action").hide();
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
-  
+
+    $("#filter2").show();
+    $("#action2").hide(); 
+
     $(".Suppliertab").click(function(){
-        $("#filter").show();
-        $("#action").hide();  
+        $("#filter2").show();
+        $("#action2").hide();  
         $(".Suppliertab").addClass("selected"); 
         $(".Registertab").removeClass("selected");  
     });
 
         $(".Registertab").click(function(){
-        $("#filter").hide();
-        $("#action").show();
+        $("#filter2").hide();
+        $("#action2").show();
         $(".Suppliertab").removeClass("selected"); 
         $(".Registertab").addClass("selected");  
     });
   }
+createImageFromBlob(image: Blob) {
+   let reader = new FileReader();
+   reader.addEventListener("load", () => {
+      this.imageToShow = reader.result;
+   }, false);
+
+   if (image) {
+      reader.readAsDataURL(image);
+   }
+}
+getImageFromService() {
+        this.isImageLoading = true;
+        this.imageService.getImage('https://s3.us-east-2.amazonaws.com/prefect-image/efc074d5-ccb0-41af-94c8-3d51acaa1a65username.png').subscribe(data => {
+          this.createImageFromBlob(data);
+          this.isImageLoading = false;
+        }, error => {
+          this.isImageLoading = false;
+          console.log(error);
+        });
+        }
+  list:any = { 
+eventTitle: "string",
+ 
+  venueName: "string",
+  location: "string",
+ 
+  entry: "string",
+
+  eventDescription: "string",
+  eventsDates: [
+    {
+      
+      eventDate: "2018-09-17T08:51:07.539Z",
+      startTime: "2018-09-17T08:51:07.539Z",
+      endTime: "2018-09-17T08:51:07.539Z"
+    }
+  ]}
+  event(list){
+console.log(list.eventTitle);
+    let headers = new Headers();
+              var authToken = localStorage.getItem('userToken');
+              headers.append('Accept', 'application/json')
+              headers.append('Content-Type', 'application/json');
+              headers.append("Authorization",'Bearer '+authToken);
+              
+    this.http.post(this.eventposturl,{
+       
+        eventId: 0,
+        eventTitle: list.eventTitle,
+        filesId: 1,
+        venueName: list.venueName,
+         location: list.location,
+         lat: 0,
+        long: 0,
+        capacity: 0,
+        entry: list.entry,
+        entryFee: 0,
+        eventDescription: list.eventDescription,
+        eventsDates: [
+          {
+             eventsMoreDatesId: 0,
+             eventId: 0,
+             eventDate:list.eventDate ,
+             startTime:list.startTime ,
+             endTime:list.endTime ,
+          }
+        ]
+      },{headers:headers}).subscribe(data =>{
+    console.log(data.json());
+
+
+
+
+  })
+
+  }
+
   gallery = { files: ''}
   @ViewChild("fileInput") fileInput;
   addFile(info): void {
@@ -107,7 +173,7 @@ export class EventListComponent implements OnInit {
         .subscribe(data =>{console.log(data);},(error)=>{console.log(error)});
    }
     }
-  constructor(private modalService: NgbModal,public http: Http) {}
+  constructor(private modalService: NgbModal,public http: Http,private datePipe: DatePipe) { this.test = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');}
   /////////////////////////////////popupmodel
   closeResult: string;
   // Open default modal
@@ -139,5 +205,70 @@ export class EventListComponent implements OnInit {
       modalRef.componentInstance.name = 'World';
   }
 
+  editevent(v){
+    console.log(v);
+    this.modelfield = v;
+    console.log( this.modelfield );
+  }
+
+
+  editsave(data){
+    console.log(data);
+    let headers = new Headers();
+              var authToken = localStorage.getItem('userToken');
+              headers.append('Accept', 'application/json')
+              headers.append('Content-Type', 'application/json');
+              headers.append("Authorization",'Bearer '+authToken);
+              
+    this.http.post(this.eventposturl,{
+       
+        eventId: data.value.id,
+        eventTitle: data.value.Title,
+        filesId: 1,
+        venueName: data.value.venueName,
+         location: data.value.Location,
+         lat: 0,
+        long: 0,
+        capacity: data.value.Capacity,
+        entry: data.value.entry,
+        entryFee: 0,
+        eventDescription: data.value.eventDescription,
+        eventsDates: [
+          {
+             eventsMoreDatesId: 0,
+             eventId: 0,
+             eventDate: data.value.eventDate ,
+             startTime: data.value.startTime ,
+             endTime: data.value.endTime ,
+          }
+        ]
+      },{headers:headers}).subscribe(data =>{
+    console.log(data.json());
+
+
+
+
+  })
 
 }
+
+  
+
+  deletevent(id){
+    alert(id)
+    console.log(id);
+   
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+    console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id'+'='+id);
+    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id'+'='+id,{headers:headers}).subscribe(data =>{
+
+     console.log(data.json());
+   
+    },error =>{ console.log(error)});
+  }
+  }
+  

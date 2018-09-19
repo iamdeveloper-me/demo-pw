@@ -180,6 +180,7 @@ import { CRMstatsComponent } from './admin/crmstats/crmstats.component';
 import { NetworkstatsComponent } from './admin/networkstats/networkstats.component';
 import { CategorystatsComponent } from './admin/categorystats/categorystats.component';
 import { VendorstatsComponent } from './admin/vendorstats/vendorstats.component';
+import { AdminuseraccountComponent } from './admin/adminuseraccount/adminuseraccount.component';
 
 
 
@@ -339,6 +340,7 @@ export function getAuthServiceConfigs() {
         NetworkstatsComponent,
         CategorystatsComponent,
         VendorstatsComponent,
+        AdminuseraccountComponent,
 
 
 

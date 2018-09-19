@@ -25,6 +25,116 @@
             		</div>	
             	</div>
             </section>	
+
+<section class="chart-div">
+	<div class="container">
+		<div class="row">  
+    <div class="col-sm-6"> 
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Vendors</h4>
+            </div>
+            <div class="card-body">
+                <div class="card-block">
+                    <div id="bar-doughnut" class="height-200">
+                        <canvas baseChart  class="chart" [data]="visitordoughnutChartData" [labels]="visitordoughnutChartLabels" [options]="visitordoughnutChartOptions" [chartType]="visitordoughnutChartType" [colors]="visitordoughnutChartColors" 
+                         (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                         </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6"> 
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Users</h4>
+            </div>
+            <div class="card-body">
+                <div class="card-block">
+                    <div id="bar-doughnut" class="height-200">
+                        <canvas baseChart  class="chart" [data]="visitordoughnutChartData" [labels]="visitordoughnutChartLabels" [options]="visitordoughnutChartOptions" [chartType]="visitordoughnutChartType" [colors]="visitordoughnutChartColors" 
+                         (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                         </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+	</div>	
+</section>
+<section class="table-div">
+	<div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <div _ngcontent-c16="" class="btn-group">
+                    <a href="#">All (14)</a> 
+                    &nbsp;&nbsp;|&nbsp;&nbsp; 
+                    <a href="#">Unread (03)</a> 
+                    &nbsp;&nbsp;|&nbsp;&nbsp; 
+                    <a href="#">Viewed (03)</a> 
+                    &nbsp;&nbsp;|&nbsp;&nbsp; 
+                    <a href="#">Stared (03)</a></div>
+            </div>
+    		<div class="card-body">
+                <div class="card-block table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th>#</th>
+                            <th></th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Gender</th>
+                            <th>Email</th>
+                            <th>Rating</th>
+                            <th>Actions</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td><i class="fa fa-star-o" aria-hidden="true"></i></td>
+                            <td>John</td>
+                            <td>Carter</td>
+                            <td>male</td>
+                            <td>jhomcarter@gmail.com</td>
+                            <td>4</td>
+                            <td><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-times" aria-hidden="true"></i></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><i class="fa fa-star-o" aria-hidden="true"></i></td>
+                            <td>Peter</td>
+                            <td>Parker</td>
+                            <td>male</td>
+                            <td>peterparker@gmail.com</td>
+                            <td>3</td>
+                            <td><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-times" aria-hidden="true"></i></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><i class="fa fa-star" aria-hidden="true"></i></td>
+                            <td>Jhon</td>
+                            <td>Rambo</td>
+                            <td>male</td>
+                            <td>jhomcarter@gmail.com</td>
+                            <td>5</td>
+                            <td><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-times" aria-hidden="true"></i></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+	</div>	
+</section>
+
+
+            <app-foot></app-foot>
+        </div>
+    </div> 
+</div>
+<router-outlet></router-outlet> 
+
+
 <!--basic-modal-->
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
   <div class="modal-dialog">
@@ -34,14 +144,14 @@
         
       </div>
       <div class="modal-body">
-      	<img src="../../assets/img/popup-image1.jpg">
+        <img src="../../assets/img/popup-image1.jpg">
         <h3>If you like weddingwire.co.uk<br>Recommend Us!</h3>
         <ul>
-        	<li><i class="fa fa-star" aria-hidden="true"></i></li>
-        	<li><i class="fa fa-star" aria-hidden="true"></i></li>
-        	<li><i class="fa fa-star" aria-hidden="true"></i></li>
-        	<li><i class="fa fa-star" aria-hidden="true"></i></li>
-        	<li><i class="fa fa-star" aria-hidden="true"></i></li>
+            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+            <li><i class="fa fa-star" aria-hidden="true"></i></li>
         </ul>
       </div>
       <div class="modal-footer">
@@ -63,11 +173,11 @@
         <img src="../../assets/img/popup-image2.jpg">
         <h3>How was your<br>experience with us?</h3>
         <ul>
-        	<li><i class="fa fa-star" aria-hidden="true"></i></li>
-        	<li><i class="fa fa-star" aria-hidden="true"></i></li>
-        	<li><i class="fa fa-star" aria-hidden="true"></i></li>
-        	<li><i class="fa fa-star" aria-hidden="true"></i></li>
-        	<li><i class="fa fa-star" aria-hidden="true"></i></li>
+            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+            <li><i class="fa fa-star" aria-hidden="true"></i></li>
         </ul>
       </div>
       <div class="modal-footer">
@@ -78,103 +188,3 @@
   </div>
 </div>
 <!--large-modal-end-->
-<section class="chart-div">
-	<div class="container">
-		<div class="row">  
-    <div class="col-sm-6"> 
-        <div class="card" routerLink="../visitor-detail-stats">
-            <div class="card-header">
-                <h4 class="card-title">Visitor Traffic</h4>
-            </div>
-            <div class="card-body">
-                <div class="card-block">
-                    <div id="bar-doughnut" class="height-200">
-                        <canvas baseChart  class="chart" [data]="visitordoughnutChartData" [labels]="visitordoughnutChartLabels" [options]="visitordoughnutChartOptions" [chartType]="visitordoughnutChartType" [colors]="visitordoughnutChartColors" 
-                         (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                         </canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6"> 
-        <div class="card" routerLink="../visitor-detail-stats">
-            <div class="card-header">
-                <h4 class="card-title">Visitor Traffic</h4>
-            </div>
-            <div class="card-body">
-                <div class="card-block">
-                    <div id="bar-doughnut" class="height-200">
-                        <canvas baseChart  class="chart" [data]="visitordoughnutChartData" [labels]="visitordoughnutChartLabels" [options]="visitordoughnutChartOptions" [chartType]="visitordoughnutChartType" [colors]="visitordoughnutChartColors" 
-                         (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                         </canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-	</div>	
-</section>
-<section class="table-div">
-	<div class="container-fluid">
-		<div class="card-body">
-            <div class="card-block table-responsive">
-                <table class="table">
-                    <tr>
-                        <th>#</th>
-                        <th></th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Gender</th>
-                        <th>Email</th>
-                        <th>Rating</th>
-                        <th>Actions</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td><i class="fa fa-star-o" aria-hidden="true"></i></td>
-                        <td>John</td>
-                        <td>Carter</td>
-                        <td>male</td>
-                        <td>jhomcarter@gmail.com</td>
-                        <td>4</td>
-                        <td><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-times" aria-hidden="true"></i></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><i class="fa fa-star-o" aria-hidden="true"></i></td>
-                        <td>Peter</td>
-                        <td>Parker</td>
-                        <td>male</td>
-                        <td>peterparker@gmail.com</td>
-                        <td>3</td>
-                        <td><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-times" aria-hidden="true"></i></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><i class="fa fa-star" aria-hidden="true"></i></td>
-                        <td>Jhon</td>
-                        <td>Rambo</td>
-                        <td>male</td>
-                        <td>jhomcarter@gmail.com</td>
-                        <td>5</td>
-                        <td><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-times" aria-hidden="true"></i></td>
-                    </tr>
-                </table>
-                                                   <!--  <ng2-smart-table [settings]="alertsettings" [source]="alertSource" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onSaveConfirm($event)"
-                                                        (createConfirm)="onCreateConfirm($event)">
-                                                    </ng2-smart-table> -->
-                                              
-                                                   <!--  <ng2-smart-table [settings]="filtersettings" [source]="filterSource"></ng2-smart-table> -->
-            </div>
-        </div>
-	</div>	
-</section>
-
-
-            <app-foot></app-foot>
-        </div>
-    </div> 
-</div>
-<router-outlet></router-outlet> 

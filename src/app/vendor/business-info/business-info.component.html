@@ -14,899 +14,903 @@
                                 <div class="col-sm-12 nopadd" *ngIf="data.isPrimary == true">
                                     <div class="card martop10px">
                                         <div class="col-sm-12">
-                                        <h4 class="mainhead" > Location (Primary) </h4>
-                                        <div class="switbtn" style="position: absolute;right:0px;">
+                                            <h4 class="mainhead" > Location (Primary) </h4>
+                                            <div class="switbtn" style="position: absolute;right:0px;">
                                                 <ui-switch (ngModel)="data.isPrimary" id="isPrimary" name="isPrimary" class="pull-left" style="position:relative;"></ui-switch>
                                             </div>
+
                                         </div>
-                                        <div class="card-body"  >
-                                        <div class="text-center bg-form col-sm-12">
-                                            <div class="img-section">
-                                                    <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
-                                        <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event)'></agm-marker>
-                                        <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
-                                    </agm-map>
-                                                <div class="img_overlay" (click)="update(data)" data-target="#phone" data-toggle="modal">
-                                                    <div class="col-lg-12 col-md-12 pad_left_0px" (click) = "title()" >
-                                                    {{data.title}}
-                                                    </div>
+                                    </div>
+                                    <div class="card-body"  >
+                                    <div class="text-center bg-form col-sm-12">
+                                        <div class="img-section">
+                                                <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
+                                    <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event)'></agm-marker>
+                                    <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
+                                </agm-map>
+                                            <div class="img_overlay" (click)="update(data)" data-target="#phone" data-toggle="modal">
+                                                <div class="col-lg-12 col-md-12 pad_left_0px" (click) = "title()" >
+                                                {{data.title}}
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12 text_left">
-                                            <div class=" nopadd weekboxinput">
-                                                <div class="col-sm-12  edit_hide" id="address-function" (click)="update(data)" data-target="#googlemap"  data-toggle="modal">
-                                                    <span class="acce_time1 col-sm-1 col-1">
-                                                    <i  class="material-icons">location_on</i>
-                                                    </span>
-                                                    <div class="col-sm-10 col-11">
-                                                    <div>Address Line 1: {{location.address_level_1}} / {{data.address}}  </div>
-                                                    <div>Address Line 2:  {{location.address_level_2}}</div>
-                                                    <div>State / Province / Region: {{location.address_state}} / {{data.city}}</div>
-                                                    <div>Country:  {{location.address_country}} / {{data.country}}</div>
-                                                    <div>Postal / Zip code: {{location.address_zip}} / {{data.postalCode}}</div>
-                                                    <i class="material-icons edit_btn"> edit</i>
-                                                    </div>
+                                    </div>
+                                    <div class="col-sm-12 text_left">
+                                        <div class=" nopadd weekboxinput">
+                                            <div class="col-sm-12  edit_hide" id="address-function" (click)="update(data)" data-target="#googlemap"  data-toggle="modal">
+                                                <span class="acce_time1 col-sm-1 col-1">
+                                                <i  class="material-icons">location_on</i>
+                                                </span>
+                                                <div class="col-sm-10 col-11">
+                                                <div>Address Line 1: {{location.address_level_1}} / {{data.address}}  </div>
+                                                <div>Address Line 2:  {{location.address_level_2}}</div>
+                                                <div>State / Province / Region: {{location.address_state}} / {{data.city}}</div>
+                                                <div>Country:  {{location.address_country}} / {{data.country}}</div>
+                                                <div>Postal / Zip code: {{location.address_zip}} / {{data.postalCode}}</div>
+                                                <i class="material-icons edit_btn"> edit</i>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 text_left phone_icon1" (click) = "phone()"  >
+                                        <div class=" nopadd weekboxinput">
+                                            <div class="col-lg-12 col-md-12 edit_hide" (click)="update(data)" data-target="#phone" data-toggle="modal">
+                                                <span class="acce_time1 col-1">
+                                                <i  class="material-icons">local_phone</i>
+                                                </span>
+                                                <div class="col-sm-10 col-11 mar_bottom_10px"> 
+                                                        Mobile :  {{data.mobile}}<i _ class="material-icons edit_btn1">edit</i>
                                                 </div>
                                                 <div class="clearfix"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 text_left phone_icon1" (click) = "phone()"  >
-                                            <div class=" nopadd weekboxinput">
-                                                <div class="col-lg-12 col-md-12 edit_hide" (click)="update(data)" data-target="#phone" data-toggle="modal">
-                                                    <span class="acce_time1 col-1">
-                                                    <i  class="material-icons">local_phone</i>
-                                                    </span>
-                                                    <div class="col-sm-10 col-11 mar_bottom_10px"> 
-                                                            Mobile :  {{data.mobile}}<i _ class="material-icons edit_btn1">edit</i>
-                                                    </div>
-                                                    <div class="clearfix"></div>
-                                                    <span class="acce_time1 col-1">
-                                                    <i  class="material-icons">phone_iphone</i>
-                                                    </span>
-                                                    <div class="col-sm-10 col-11">
-                                                    Phone :  {{data.phone}}
-                                                    </div>
+                                                <span class="acce_time1 col-1">
+                                                <i  class="material-icons">phone_iphone</i>
+                                                </span>
+                                                <div class="col-sm-10 col-11">
+                                                Phone :  {{data.phone}}
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12 text_left" (click) = "trading()">
-                                            <div class="edit_hide paddtop15px bornone">
-                                                    <span class="acce_time1 col-1">
-                                                            <i  class="material-icons">access_time</i>
-                                                            </span>
-                                                <div class="col-lg-12 col-md-12 edit_hide" (click)="update(data)" data-target="#phone" data-toggle="modal">
-                                                        <i _ class="material-icons edit_btn1">edit</i>
-                                                        <div class="col-sm-12 nopadd weekboxinput3">
-                                                            <div class="col-sm-4 col-xs-5-mob nopadd">Sunday </div>
-                                                            <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                                {{data.sundayOpen}}AM to {{data.sundayClose}}PM
-                                                                <i class="material-icons edit_btn1">edit</i>
-            
-                                                            </div>
-                                                            <div class="clearfix"></div>
-                                                            <div class="col-sm-12 nopadd">
-                                                                <div class="col-sm-4 col-xs-5-mob nopadd">
-                                                                    Monday
-                                                                </div>
-                                                                <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                                    {{data.mondayOpen}}AM to {{data.mondayClose}}PM
-                                                                </div>
-                                                            </div>
-                                                            <div class="clearfix"></div>
-                                                            <div class="col-sm-12 nopadd">
-                                                                <div class="col-sm-4 col-xs-5-mob nopadd">
-                                                                    Tuesday
-                                                                </div>
-                                                                <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                                    {{data.tuesdayOpen}}AM to {{data.tuesdayClose}}PM
-                                                                </div>
-                                                            </div>
-                                                            <div class="clearfix"></div>
-                                                            <div class="col-sm-12 nopadd">
-                                                                <div class="col-sm-4 col-xs-5-mob nopadd">
-                                                                    Webnesday
-                                                                </div>
-                                                                <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                                    {{data.wednesdayOpen}}AM to {{data.wednesdayClose}}PM
-                                                                </div>
-                                                            </div>
-                                                            <div class="clearfix"></div>
-                                                            <div class="col-sm-12 nopadd">
-                                                                <div class="col-sm-4 col-xs-5-mob nopadd">
-                                                                    Thursday
-                                                                </div>
-                                                                <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                                    {{data.thursdayOpen}}AM to {{data.thursdayClose}}PM
-                                                                </div>
-                                                            </div>
-                                                            <div class="clearfix"></div>
-                                                            <div class="col-sm-12 nopadd">
-                                                                <div class="col-sm-4 col-xs-5-mob nopadd">
-                                                                    Friday
-                                                                </div>
-                                                                <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                                    {{data.fridayOpen}}AM to {{data.fridayClose}}PM
-                                                                </div>
-                                                            </div>
-                                                            <div class="clearfix"></div>
-                                                            <div class="col-sm-12 nopadd">
-                                                                <div class="col-sm-4 col-xs-5-mob nopadd">
-                                                                    Saturday
-                                                                </div>
-                                                                <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                                    {{data.saturdayOpen}}AM to {{data.saturdayClose}}PM
-                                                                </div>
-                                                            </div>
-                                                            <div class="clearfix"></div>
+                                    </div>
+                                    <div class="col-sm-12 text_left" (click) = "trading()">
+                                        <div class="edit_hide paddtop15px bornone">
+                                                <span class="acce_time1 col-1">
+                                                        <i  class="material-icons">access_time</i>
+                                                        </span>
+                                            <div class="col-lg-12 col-md-12 edit_hide" (click)="update(data)" data-target="#phone" data-toggle="modal">
+                                                    <i _ class="material-icons edit_btn1">edit</i>
+                                                    <div class="col-sm-12 nopadd weekboxinput3">
+                                                        <div class="col-sm-4 col-xs-5-mob nopadd">Sunday </div>
+                                                        <div class="col-sm-8 col-xs-7-mob nopadd">
+                                                            {{data.sundayOpen}}AM to {{data.sundayClose}}PM
+                                                            <i class="material-icons edit_btn1">edit</i>
+        
                                                         </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="col-sm-12 nopadd">
+                                                            <div class="col-sm-4 col-xs-5-mob nopadd">
+                                                                Monday
+                                                            </div>
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd">
+                                                                {{data.mondayOpen}}AM to {{data.mondayClose}}PM
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="col-sm-12 nopadd">
+                                                            <div class="col-sm-4 col-xs-5-mob nopadd">
+                                                                Tuesday
+                                                            </div>
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd">
+                                                                {{data.tuesdayOpen}}AM to {{data.tuesdayClose}}PM
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="col-sm-12 nopadd">
+                                                            <div class="col-sm-4 col-xs-5-mob nopadd">
+                                                                Webnesday
+                                                            </div>
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd">
+                                                                {{data.wednesdayOpen}}AM to {{data.wednesdayClose}}PM
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="col-sm-12 nopadd">
+                                                            <div class="col-sm-4 col-xs-5-mob nopadd">
+                                                                Thursday
+                                                            </div>
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd">
+                                                                {{data.thursdayOpen}}AM to {{data.thursdayClose}}PM
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="col-sm-12 nopadd">
+                                                            <div class="col-sm-4 col-xs-5-mob nopadd">
+                                                                Friday
+                                                            </div>
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd">
+                                                                {{data.fridayOpen}}AM to {{data.fridayClose}}PM
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="col-sm-12 nopadd">
+                                                            <div class="col-sm-4 col-xs-5-mob nopadd">
+                                                                Saturday
+                                                            </div>
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd">
+                                                                {{data.saturdayOpen}}AM to {{data.saturdayClose}}PM
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
                                                     </div>
-                                            </div>
+                                                </div>
                                         </div>
-                                        </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>
                         </div>
-    
+                        </div>
+                    </div>
 
-                        <div class="col-sm-8 mobnopadd padleft0px" (click)="openModel(vendor)">
-                        <div class=" mobnopadd padleft0px ">
-                        <div class="card heightequal365 margintop0px mobmargintop30px">
-                            <div class="card-header">
-                                <div class="busines_img">
-                                    <i class="material-icons" data-target="#imagecrop" data-toggle="modal" id="description-function"> camera_alt </i> 
-                                    <span class="result" *ngIf="data.image" data-target="#imagecrop" data-toggle="modal" id="description-function">
-                                    <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle">
-                                    </span>
-                                </div>
-                                <div class="busi_contact">
-                                    <h6 >Business name or Contact Person</h6>
-                                    <div class="on_hover" data-target="#Business" data-toggle="modal" id="Instagram-function" >
-                                    <div>{{vendor.nameOfBusiness}}</div>
-                                    <span class="text-right col-lg-12 editbtn">
-                                    <i class="material-icons"  >edit</i>
-                                    </span>
-                                    </div>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="on_hoverdiv" data-target="#Description" data-toggle="modal" id="description-function" >
-                                    <h6 class="text-center">Business Description </h6>
-                                    <span class=" editbtn  editbtn11" s>
-                                    <i class="material-icons"   >edit</i>
-                                    </span>
-                                    <div class="col-lg-12 col-md-12 add_text text-center">
-                                    {{vendor.businessDetails}}               
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                        <div class=" linkbox margintop0px heightequal365 card padright0px">
+
+                    <div class="col-sm-8 mobnopadd padleft0px" (click)="openModel(vendor)">
+                    <div class=" mobnopadd padleft0px ">
+                    <div class="card heightequal365 margintop0px mobmargintop30px">
                         <div class="card-header">
-                            <h6 class="card-title text-center">Link Accounts & Websites</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="col-sm-9">
-                                <div class="social-connect  col-sm-12" data-reactid="330">
-                                    <div class="social" data-reactid="332">
-                                    <i class="fa fa-facebook fa-2x" data-reactid="334"></i>
-                                    <span id="prompt-function"  data-target="#facebook" data-toggle="modal" data-reactid="333">
-                                    :  {{vendor.facebookURL}}
-                                    </span>
-                                    <div class="col-lg-12 editbtn">
-                                        <h4 class="text-right col-lg-12">
-                                            <i class="material-icons">edit</i>
-                                        </h4>
-                                    </div>
-                                    </div>
+                            <div class="busines_img">
+                                <i class="material-icons" data-target="#imagecrop" data-toggle="modal" id="description-function"> camera_alt </i> 
+                                <span class="result" *ngIf="data.image" data-target="#imagecrop" data-toggle="modal" id="description-function">
+                                <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle">
+                                </span>
+                            </div>
+                            <div class="busi_contact">
+                                <h6 >Business name or Contact Person</h6>
+                                <div class="on_hover" data-target="#Business" data-toggle="modal" id="Instagram-function" >
+                                <div>{{vendor.nameOfBusiness}}</div>
+                                <span class="text-right col-lg-12 editbtn">
+                                <i class="material-icons"  >edit</i>
+                                </span>
+
                                 </div>
-                                <div class="social-connect  col-sm-12" data-reactid="330">
-                                    <div class="social" data-reactid="332">
-                                    <i class="fa fa-twitter fa-2x " data-reactid="338"></i>
-                                    <span id="Pinterest-function" data-target="#twitter" data-toggle="modal"  data-reactid="337">
-                                    :{{vendor.twitterURL}}
-                                    </span>
-                                    <div class="col-lg-12 editbtn">
-                                        <h4 class="text-right col-lg-12">
-                                            <i class="material-icons">edit</i>
-                                        </h4>
-                                    </div>
-                                    <!--  <div class="switbtn">
-                                        <ui-switch [(ngModel)]="enable1" ></ui-switch> 
-                                        </div>   --> 
-                                    </div>
-                                </div>
-                                <div class="social-connect col-sm-12" data-reactid="330">
-                                    <div class="social" data-reactid="332">
-                                    <i class="fa fa-google-plus fa-2x" data-reactid="340"></i>
-                                    <span id="Google-function" data-target="#google" data-toggle="modal" data-reactid="339">
-                                    : {{vendor.googleURL}}
-                                    </span>
-                                    <div class="col-lg-12 editbtn">
-                                        <h4 class="text-right col-lg-12">
-                                            <i class="material-icons">edit </i>
-                                        </h4>
-                                    </div>
-                                    <!--  <div class="switbtn">
-                                        <ui-switch [(ngModel)]="enable2" ></ui-switch>
-                                        </div>  -->
-                                    </div>
-                                </div>
-                                <div class="social-connect col-sm-12" data-reactid="330">
-                                    <div class="social" data-reactid="332">
-                                    <i class="fa fa-instagram fa-2x" data-reactid="342"></i>
-                                    <span id="Instagram-function" data-target="#instagram" data-toggle="modal" data-reactid="341">
-                                    : {{vendor.instalURL}}
-                                    </span>
-                                    <div class="col-lg-12 editbtn">
-                                        <h4 class="text-right col-lg-12">
-                                            <i class="material-icons">edit</i>
-                                        </h4>
-                                    </div>
-                                    <!--  <div class="switbtn">
-                                        <ui-switch [(ngModel)]="enable3" ></ui-switch> 
-                                        </div> -->
-                                    </div>
-                                </div>
-                                <div class="social-connect  col-sm-12" data-reactid="330">
-                                    <div class="social" data-reactid="332">
-                                    <i class="fa fa-globe fa-2x" data-reactid="342"></i>
-                                    <span id="Instagram-function" data-target="#instagram2" data-toggle="modal" data-reactid="341">
-                                    :{{vendor.perfectWeddingURL}}
-                                    </span>
-                                    <div class="col-lg-12 editbtn">
-                                        <h4 class="text-right col-lg-12">
-                                            <i class="material-icons">edit</i>
-                                        </h4>
-                                    </div>
-                                    <!-- <div class="switbtn">
-                                        <ui-switch [(ngModel)]="enable4" ></ui-switch> 
-                                        </div> -->
-                                    </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="on_hoverdiv" data-target="#Description" data-toggle="modal" id="description-function" >
+                                <h6 class="text-center">Business Description </h6>
+                                <span class=" editbtn  editbtn11" s>
+                                <i class="material-icons"   >edit</i>
+                                </span>
+                                <div class="col-lg-12 col-md-12 add_text text-center">
+                                {{vendor.businessDetails}}               
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    </div>
+                    <div class=" linkbox margintop0px heightequal365 card padright0px">
+                    <div class="card-header">
+                        <h6 class="card-title text-center">Link Accounts & Websites</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="col-sm-9">
+                            <div class="social-connect  col-sm-12" data-reactid="330">
+                                <div class="social" data-reactid="332">
+                                <i class="fa fa-facebook fa-2x" data-reactid="334"></i>
+                                <span id="prompt-function"  data-target="#facebook" data-toggle="modal" data-reactid="333">
+                                :  {{vendor.facebookURL}}
+                                </span>
+                                <div class="col-lg-12 editbtn">
+                                    <h4 class="text-right col-lg-12">
+                                        <i class="material-icons">edit</i>
+                                    </h4>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="social-connect  col-sm-12" data-reactid="330">
+                                <div class="social" data-reactid="332">
+                                <i class="fa fa-twitter fa-2x " data-reactid="338"></i>
+                                <span id="Pinterest-function" data-target="#twitter" data-toggle="modal"  data-reactid="337">
+                                :{{vendor.twitterURL}}
+                                </span>
+                                <div class="col-lg-12 editbtn">
+                                    <h4 class="text-right col-lg-12">
+                                        <i class="material-icons">edit</i>
+                                    </h4>
+                                </div>
+                                <!--  <div class="switbtn">
+                                    <ui-switch [(ngModel)]="enable1" ></ui-switch> 
+                                    </div>   --> 
+                                </div>
+                            </div>
+                            <div class="social-connect col-sm-12" data-reactid="330">
+                                <div class="social" data-reactid="332">
+                                <i class="fa fa-google-plus fa-2x" data-reactid="340"></i>
+                                <span id="Google-function" data-target="#google" data-toggle="modal" data-reactid="339">
+                                : {{vendor.googleURL}}
+                                </span>
+                                <div class="col-lg-12 editbtn">
+                                    <h4 class="text-right col-lg-12">
+                                        <i class="material-icons">edit </i>
+                                    </h4>
+                                </div>
+                                <!--  <div class="switbtn">
+                                    <ui-switch [(ngModel)]="enable2" ></ui-switch>
+                                    </div>  -->
+                                </div>
+                            </div>
+                            <div class="social-connect col-sm-12" data-reactid="330">
+                                <div class="social" data-reactid="332">
+                                <i class="fa fa-instagram fa-2x" data-reactid="342"></i>
+                                <span id="Instagram-function" data-target="#instagram" data-toggle="modal" data-reactid="341">
+                                : {{vendor.instalURL}}
+                                </span>
+                                <div class="col-lg-12 editbtn">
+                                    <h4 class="text-right col-lg-12">
+                                        <i class="material-icons">edit</i>
+                                    </h4>
+                                </div>
+                                <!--  <div class="switbtn">
+                                    <ui-switch [(ngModel)]="enable3" ></ui-switch> 
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="social-connect  col-sm-12" data-reactid="330">
+                                <div class="social" data-reactid="332">
+                                <i class="fa fa-globe fa-2x" data-reactid="342"></i>
+                                <span id="Instagram-function" data-target="#instagram2" data-toggle="modal" data-reactid="341">
+                                :{{vendor.perfectWeddingURL}}
+                                </span>
+                                <div class="col-lg-12 editbtn">
+                                    <h4 class="text-right col-lg-12">
+                                        <i class="material-icons">edit</i>
+                                    </h4>
+                                </div>
+                                <!-- <div class="switbtn">
+                                    <ui-switch [(ngModel)]="enable4" ></ui-switch> 
+                                    </div> -->
+                                </div>
+                            </div>
                         </div>
-                        </div>
+                    </div>
+                    </div>
+                    </div>
+              
+              </section>
+              <div class="clearfix"></div>
+              <app-foot></app-foot>
+        </div>
+</div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<form (ngSubmit)="upForm(info)" #info="ngForm"> 
+    <div class="modal fade" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title">Edit Business Description {{modelfield}}</h4>
+                <button  type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12  text-center">
+                    <!-- <i class="material-icons"> add_location </i> -->
+                    <div class="col-sm-12  text-center">      
+                    <textarea  class="textareaclass" type="text" 
+                    id="businessDetails" 
+                    placeholder="Enter Description"
+                    [(ngModel)] = "modelfield.businessDetails" 
+                    (ngModelChange)="Description = $event" 
+                    name="businessDetails"
+                    ></textarea> 
+                    </div>
+                    <!-- <p>Business picture url :<input class="endent_10px width_60" type="text" [(ngModel)] = "imag"  placeholder="Enter image url"> </p>  -->
                 </div>
-           </section>
-           <div class="clearfix"></div>
-           <app-foot></app-foot>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="submit" class="btn btn-secondary btn-raised descsave saveall"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+                <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
         </div>
     </div>
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-    <form (ngSubmit)="upForm(info)" #info="ngForm"> 
-        <div class="modal fade" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <h4 class="modal-title">Edit Business Description {{modelfield}}</h4>
-                    <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-sm-12  text-center">
-                        <!-- <i class="material-icons"> add_location </i> -->
-                        <div class="col-sm-12  text-center">      
-                        <textarea  class="textareaclass" type="text" 
-                        id="businessDetails" 
-                        placeholder="Enter Description"
-                        [(ngModel)] = "modelfield.businessDetails" 
-                        (ngModelChange)="Description = $event" 
-                        name="businessDetails"
-                        ></textarea> 
-                        </div>
-                        <!-- <p>Business picture url :<input class="endent_10px width_60" type="text" [(ngModel)] = "imag"  placeholder="Enter image url"> </p>  -->
-                    </div>
-                </div>
-                <div class="modal-footer text-center">
-                    <button type="submit" class="btn btn-secondary btn-raised "><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-                    <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
-                </div>
+    <div class="modal fade" id="Business" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title">Edit Business Name or Contact {{modelfield}}</h4>
+                <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
-            </div>
-        </div>
-        <div class="modal fade" id="Business" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <h4 class="modal-title">Edit Business Name or Contact {{modelfield}}</h4>
-                    <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-sm-12  text-center">
-                        <!-- <i class="material-icons"> add_location </i> -->
-                        <p class="input_para">
-                        <!-- <input class="endent_10px width_60" 
-                            type="text" 
-                            [(ngModel)] = "modelfield.nameOfBusiness" 
-                            name="Businesname"
-                            [ngModelOptions]="{standalone: true}"
-                            id="Businesname" 
-                            placeholder="Vision Photography">  -->
-                        <input
-                        class="endent_10px width_60" 
-                        type="text"  
-                        [(ngModel)]="modelfield.nameOfBusiness" 
-                        name="Businesname" 
-                        id="Businesname"
-                        placeholder="Vision Photography" >
-                        </p>
-                        <!-- <p>Business picture url :<input class="endent_10px width_60" type="text" [(ngModel)] = "imag"  placeholder="Enter image url"> </p>  -->
-                    </div>
-                </div>
-                <div class="modal-footer text-center">
-                    <button type="submit" class="btn btn-secondary btn-raised">Save</button> 
-                    <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class="modal fade" id="facebook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal_head text-center">
-                    <h4 class="modal-title"><strong> Link your Facebook Page </strong>  </h4>
-                    <p>Do you have a Facebook Page for your business?</p>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="modal-body">
-                    <div class="col-sm-12  text-center">
-                        <div class="switbtn">
-                        <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                        <span class="have_one">Yes, I have one! </span>
-                        <span class="have_one">No, I don't! </span>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="input_facebook input-effect form-group">
-                        <i class="fa fa-facebook fa-2x" data-reactid="334" ></i> 
-                        <input class="effect-16 validate endent_10px width_60" 
+            <div class="modal-body">
+                <div class="col-sm-12  text-center">
+                    <!-- <i class="material-icons"> add_location </i> -->
+                    <p class="input_para">
+                    <!-- <input class="endent_10px width_60" 
                         type="text" 
-                        name="facebook"
-                        placeholder="Enter the Link here" 
-                        (ngModelChange)="facebook = $event"
-                        [(ngModel)] = "modelfield.facebookURL" 
-                        id="facebook">
-                        <!-- <label>Enter the Link here</label> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer text-center">
-                    <button type="submit" class="btn btn-secondary btn-raised">Save</button> 
-                    <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class="modal fade" id="twitter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <h4 class="modal-title">Edit Business Name or Contact </h4>
-                    <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="modal-body">
-                    <div class="col-sm-12  text-center">
-                        <div class="switbtn">
-                        <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                        <span class="have_one">Yes, I have one! </span>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="input_facebook input-effect form-group">
-                        <i class="fa fa-twitter fa-2x" data-reactid="334" ></i> 
-                        <input class="effect-16 validate endent_10px width_60" 
-                        type="text" 
-                        placeholder="Enter the Link here" 
-                        (ngModelChange)="twitter = $event"
-                        [(ngModel)] = "modelfield.twitterURL" 
-                        id="twitter" 
-                        name="twitter">
-                        <!-- <label>Enter the Link here</label> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="foot_div text-center">
-                    <button type="submit" class="btn btn-secondary btn-raised" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-                    <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+                        [(ngModel)] = "modelfield.nameOfBusiness" 
+                        name="Businesname"
+                        [ngModelOptions]="{standalone: true}"
+                        id="Businesname" 
+                        placeholder="Vision Photography">  -->
+                    <input
+                    class="endent_10px width_60" 
+                    type="text"  
+                    [(ngModel)]="modelfield.nameOfBusiness" 
+                    name="Businesname" 
+                    id="Businesname"
+                    placeholder="Vision Photography" >
+                    </p>
+                    <!-- <p>Business picture url :<input class="endent_10px width_60" type="text" [(ngModel)] = "imag"  placeholder="Enter image url"> </p>  -->
                 </div>
             </div>
+            <div class="modal-footer text-center">
+                <button type="submit" class="btn btn-secondary btn-raised namesave saveall">Save</button> 
+                <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
             </div>
         </div>
-        <div class="modal fade" id="google" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal_head text-center">
-                    <h4 class="modal-title"><strong> Link your Google Page </strong>  </h4>
-                    <p>Do you have a Google Page for your business?</p>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+    </div>
+    <div class="modal fade" id="facebook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal_head text-center">
+                <h4 class="modal-title"><strong> Link your Facebook Page </strong>  </h4>
+                <p>Do you have a Facebook Page for your business?</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12  text-center">
+                    <div class="switbtn">
+                    <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                    <span class="have_one">Yes, I have one! </span>
+                    <span class="have_one">No, I don't! </span>
+                    </div>
                     <div class="clearfix"></div>
-                </div>
-                <div class="modal-body">
-                    <div class="col-sm-12  text-center">
-                        <div class="switbtn">
-                        <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                        <span class="have_one">Yes, I have one! </span>
-                        <span class="have_one">No, I Don't! </span>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="input_facebook input-effect form-group">
-                        <i class="fa fa-google-plus fa-2x" data-reactid="334" style="font-size:1.6em" ></i> 
-                        <input class="effect-16 validate endent_10px width_60" 
-                        type="text" 
-                        placeholder="Enter the Link here" 
-                        [(ngModel)] = "modelfield.googleURL" 
-                        (ngModelChange)="google = $event"
-                        id="google" 
-                        name="google">
-                        <!-- <label>Enter the Link here</label> -->
-                        </div>
+                    <div class="input_facebook input-effect form-group">
+                    <i class="fa fa-facebook fa-2x" data-reactid="334" ></i> 
+                    <input class="effect-16 validate endent_10px width_60" 
+                    type="text" 
+                    name="facebook"
+                    placeholder="Enter the Link here" 
+                    (ngModelChange)="facebook = $event"
+                    [(ngModel)] = "modelfield.facebookURL" 
+                    id="facebook">
+                    <!-- <label>Enter the Link here</label> -->
                     </div>
                 </div>
-                <div class="foot_div text-center">
-                    <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
-                    <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
-                </div>
             </div>
+            <div class="modal-footer text-center">
+                <button type="submit" class="btn btn-secondary btn-raised saveall">Save</button> 
+                <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
             </div>
         </div>
-        <div class="modal fade" id="instagram" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal_head text-center">
-                    <h4 class="modal-title"><strong> Link your Instagram Page </strong>  </h4>
-                    <p>Do you have a Instagram Page for your business?</p>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+    </div>
+    <div class="modal fade" id="twitter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title">Edit Business Name or Contact </h4>
+                <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12  text-center">
+                    <div class="switbtn">
+                    <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                    <span class="have_one">Yes, I have one! </span>
+                    </div>
                     <div class="clearfix"></div>
-                </div>
-                <div class="modal-body">
-                    <div class="col-sm-12  text-center">
-                        <div class="switbtn">
-                        <ui-switch [(ngModel)] ="enable" ></ui-switch> 
-                        <span class="have_one">Yes, I have one! </span>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="input_facebook input-effect form-group">
-                        <i class="fa fa-instagram fa-2x" data-reactid="334" ></i> 
-                        <input class="effect-16 validate endent_10px width_60" 
-                        type="text" 
-                        placeholder="Enter the Link here" 
-                        (ngModelChange)="instagram = $event"
-                        [(ngModel)] = "modelfield.instalURL" 
-                        id="instagram" 
-                        name="instagram">
-                        <!-- <label>Enter the Link here</label> -->
-                        </div>
+                    <div class="input_facebook input-effect form-group">
+                    <i class="fa fa-twitter fa-2x" data-reactid="334" ></i> 
+                    <input class="effect-16 validate endent_10px width_60" 
+                    type="text" 
+                    placeholder="Enter the Link here" 
+                    (ngModelChange)="twitter = $event"
+                    [(ngModel)] = "modelfield.twitterURL" 
+                    id="twitter" 
+                    name="twitter">
+                    <!-- <label>Enter the Link here</label> -->
                     </div>
                 </div>
-                <div class="foot_div text-center">
-                    <button type="submit" class="btn bt_blue" >SAVE</button> &nbsp;
-                    <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
-                </div>
             </div>
+            <div class="foot_div text-center">
+                <button type="submit" class="btn btn-secondary btn-raised saveall" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+                <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
             </div>
         </div>
-        <div class="modal fade" id="instagram2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal_head text-center">
-                    <h4 class="modal-title"><strong> Link your Website </strong>  </h4>
-                    <p>Do you have a Trading Page for your business?</p>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="modal-body">
-                    <div class="col-sm-12  text-center">
-                        <div class="switbtn">
-                        <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                        <span class="have_one">Yes, I have one! </span>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="input_facebook input-effect form-group">
-                        <i class="fa fa-globe fa-2x" data-reactid="334" ></i> 
-                        <input class="effect-16 validate endent_10px width_60" 
-                        type="text" 
-                        placeholder="Enter the Link here" 
-                        (ngModelChange)="instagram = $event"
-                        [(ngModel)] = "modelfield.perfectWeddingURL" 
-                        id="perfectWedding" 
-                        name="perfectWedding"
-                        >
-                        <!-- <label>Enter the Link here</label> -->
-                        </div>
+        </div>
+    </div>
+    <div class="modal fade" id="google" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal_head text-center">
+                <h4 class="modal-title"><strong> Link your Google Page </strong>  </h4>
+                <p>Do you have a Google Page for your business?</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12  text-center">
+                    <div class="switbtn">
+                    <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                    <span class="have_one">Yes, I have one! </span>
+                    <span class="have_one">No, I Don't! </span>
                     </div>
-                </div>
-                <div class="foot_div text-center">
-                    <button type="submit" class="btn btn-secondary btn-raised" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-                    <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
-                </div>
-                <div class="col-sm-12 mob_margin_30px">
-                    <div class="card col-sm-12 notebox text-center">
-                        <p>No Website? No Problem!</p>
-                        <div class="noproblum">
-                        <p>1. Copy the link to your profile on Perfect Weddings 
-                            <span>Copy</span>
-                        </p>
-                        <p>2. Go to your Facebook Page and add the link as your website</p>
-                        <p>3. You are done! That was easy, isn’t it?</p>
-                        </div>
+                    <div class="clearfix"></div>
+                    <div class="input_facebook input-effect form-group">
+                    <i class="fa fa-google-plus fa-2x" data-reactid="334" style="font-size:1.6em" ></i> 
+                    <input class="effect-16 validate endent_10px width_60" 
+                    type="text" 
+                    placeholder="Enter the Link here" 
+                    [(ngModel)] = "modelfield.googleURL" 
+                    (ngModelChange)="google = $event"
+                    id="google" 
+                    name="google">
+                    <!-- <label>Enter the Link here</label> -->
                     </div>
                 </div>
             </div>
+            <div class="foot_div text-center">
+                <button type="submit" class="btn bt_blue saveall" >SAVE</button> &nbsp;
+                <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
             </div>
         </div>
-        <div class="modal fade" id="imagecrop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal_head text-center">
-                    <h4 class="modal-title"><strong> update icon  </strong>  </h4>
-                    <p>Do you have a Trading Page for your business?</p>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+    </div>
+    <div class="modal fade" id="instagram" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal_head text-center">
+                <h4 class="modal-title"><strong> Link your Instagram Page </strong>  </h4>
+                <p>Do you have a Instagram Page for your business?</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12  text-center">
+                    <div class="switbtn">
+                    <ui-switch [(ngModel)] ="enable" ></ui-switch> 
+                    <span class="have_one">Yes, I have one! </span>
+                    </div>
                     <div class="clearfix"></div>
+                    <div class="input_facebook input-effect form-group">
+                    <i class="fa fa-instagram fa-2x" data-reactid="334" ></i> 
+                    <input class="effect-16 validate endent_10px width_60" 
+                    type="text" 
+                    placeholder="Enter the Link here" 
+                    (ngModelChange)="instagram = $event"
+                    [(ngModel)] = "modelfield.instalURL" 
+                    id="instagram" 
+                    name="instagram">
+                    <!-- <label>Enter the Link here</label> -->
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <div class="col-sm-12  text-center">
-                        <div class="switbtn">
-                        <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                        <span class="have_one">Yes, I have one! </span>
-                        </div>
-                        <div class="clearfix"></div>
-                        <section id="tours">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                    <h4>Cropper</h4>
-                                    </div>
-                                    <div class="card-block">
-                                    <div class="file-upload mb-3">
-                                        <span class="text">Upload File : </span>
-                                        <input id="custom-input" type="file" (change)="fileChangeListener($event)">
-                                    </div>
-                                    <img-cropper #cropper [image]="data" [settings]="cropperSettings" class="float-left mr-4"></img-cropper>
-                                    <br>
-                                    <span class="result" *ngIf="data.image">
-                                    <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle">
-                                    </span>
-                                    </div>
+            </div>
+            <div class="foot_div text-center">
+                <button type="submit" class="btn bt_blue saveall" >SAVE</button> &nbsp;
+                <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="modal fade" id="instagram2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal_head text-center">
+                <h4 class="modal-title"><strong> Link your Website </strong>  </h4>
+                <p>Do you have a Trading Page for your business?</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12  text-center">
+                    <div class="switbtn">
+                    <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                    <span class="have_one">Yes, I have one! </span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="input_facebook input-effect form-group">
+                    <i class="fa fa-globe fa-2x" data-reactid="334" ></i> 
+                    <input class="effect-16 validate endent_10px width_60" 
+                    type="text" 
+                    placeholder="Enter the Link here" 
+                    (ngModelChange)="instagram = $event"
+                    [(ngModel)] = "modelfield.perfectWeddingURL" 
+                    id="perfectWedding" 
+                    name="perfectWedding"
+                    >
+                    <!-- <label>Enter the Link here</label> -->
+                    </div>
+                </div>
+            </div>
+            <div class="foot_div text-center">
+                <button type="submit" class="btn btn-secondary btn-raised saveall" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+                <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+            </div>
+            <div class="col-sm-12 mob_margin_30px">
+                <div class="card col-sm-12 notebox text-center">
+                    <p>No Website? No Problem!</p>
+                    <div class="noproblum">
+                    <p>1. Copy the link to your profile on Perfect Weddings 
+                        <span>Copy</span>
+                    </p>
+                    <p>2. Go to your Facebook Page and add the link as your website</p>
+                    <p>3. You are done! That was easy, isn’t it?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="modal fade" id="imagecrop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal_head text-center">
+                <h4 class="modal-title"><strong> update icon  </strong>  </h4>
+                <p>Do you have a Trading Page for your business?</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12  text-center">
+                    <div class="switbtn">
+                    <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                    <span class="have_one">Yes, I have one! </span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <section id="tours">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                <h4>Cropper</h4>
+                                </div>
+                                <div class="card-block">
+                                <div class="file-upload mb-3">
+                                    <span class="text">Upload File : </span>
+                                    <input id="custom-input" type="file" (change)="fileChangeListener($event)">
+                                </div>
+                                <img-cropper #cropper [image]="data" [settings]="cropperSettings" class="float-left mr-4"></img-cropper>
+                                <br>
+                                <span class="result" *ngIf="data.image">
+                                <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle">
+                                </span>
                                 </div>
                             </div>
                         </div>
-                        <!-- Cropper Ends -->
-                        </section>
                     </div>
-                </div>
-                <div class="foot_div text-center">
-                    <button type="submit" class="btn btn-secondary btn-raised" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-                    <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+                    <!-- Cropper Ends -->
+                    </section>
                 </div>
             </div>
+            <div class="foot_div text-center">
+                <button type="submit" class="btn btn-secondary btn-raised" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+                <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
             </div>
         </div>
-    </form> 
-     
-    <div class="modal fade" id="googlemap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Address</h4>
+        </div>
+    </div>
+</form> 
+ 
+<div class="modal fade" id="googlemap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Address</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                </div>
+
+                <div class="modal-body county_addres">
+                    <div>
+                        <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
+                            <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event , m)'></agm-marker>
+                            <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
+                        </agm-map>
+                        <div class="container-fluid martop30px">
+                            <div class="form-group">
+                              <div class="input-effect md-form">
+                                  <input class="effect-16 validate" type='text'   [(ngModel)]='location.address_level_1' placeholder=''>
+                                  <label>Address Line 1</label>
+                                  <span class="focus-border"></span>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <div class="input-effect md-form">
+                                  <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_level_2' placeholder=''>
+                                  <label>Address Line 2</label>
+                                  <span class="focus-border"></span>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <div class="input-effect md-form">
+                                  <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_state' placeholder=''>
+                                  <label>State / Province / Region</label>
+                                  <span class="focus-border"></span>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <div class="input-effect md-form">
+                                  <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_country' placeholder=''>
+                                  <label>Country</label>
+                                  <span class="focus-border"></span>
+                              </div>
+
+                            </div>
+                            <div class="form-group">
+                              <div class="input-effect md-form">
+                                  <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_zip' placeholder=''>
+                                  <label>Postal / Zip code</label>
+                                  <span class="focus-border"></span>
+                              </div>
+                            </div>
+                            <!-- <button type="button" onclick="alert('location')">Use my location</button> -->
+                            <!-- <button (click)='updateOnMap()' type="submit" class="btn btn-primary whitetext">Search</button> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn bt_blue"    (click)='primelocation(location)' >SAVE</button> &nbsp;
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+</div>
+
+<div class="modal fade phone" id="phone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <form (ngSubmit)="updatefrom(updatefield)" #infoo="ngForm">
+        <div class="modal-dialog" role="document">
+             
+            <div class="modal-content mobileid" >
+                  
+                <div class="modal-header">  
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
-                                </button>
+                                </button>                  
+                    <h4 class="modal-title">Phone Number</h4>
+                </div>
+                <div class="modal-body">
+                    <h6 class="col-xs-offset-2 phonepopuphead">Primary Number</h6>
+                    <div class="col-sm-2 col-3">
+                        <select>
+                        <option>Phone</option>
+                        </select>
                     </div>
-                    <div class="modal-body county_addres">
-                        <div>
-                            <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
-                                <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event , m)'></agm-marker>
-                                <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
-                            </agm-map>
-                            <div class="container-fluid martop30px">
-                                <div class="form-group">
-                                  <div class="input-effect md-form">
-                                      <input class="effect-16 validate" type='text'   [(ngModel)]='location.address_level_1' placeholder=''>
-                                      <label>Address Line 1</label>
-                                      <span class="focus-border"></span>
-                                  </div>
-                                </div>
-                                <div class="form-group">
-                                  <div class="input-effect md-form">
-                                      <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_level_2' placeholder=''>
-                                      <label>Address Line 2</label>
-                                      <span class="focus-border"></span>
-                                  </div>
-                                </div>
-                                <div class="form-group">
-                                  <div class="input-effect md-form">
-                                      <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_state' placeholder=''>
-                                      <label>State / Province / Region</label>
-                                      <span class="focus-border"></span>
-                                  </div>
-                                </div>
-                                <div class="form-group">
-                                  <div class="input-effect md-form">
-                                      <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_country' placeholder=''>
-                                      <label>Country</label>
-                                      <span class="focus-border"></span>
-                                  </div>
-                                </div>
-                                <div class="form-group">
-                                  <div class="input-effect md-form">
-                                      <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_zip' placeholder=''>
-                                      <label>Postal / Zip code</label>
-                                      <span class="focus-border"></span>
-                                  </div>
-                                </div>
-                                <!-- <button type="button" onclick="alert('location')">Use my location</button> -->
-                                <!-- <button (click)='updateOnMap()' type="submit" class="btn btn-primary whitetext">Search</button> -->
-                            </div>
-                        </div>
+                    <div class="col-sm-10 col-9 nopadd">
+                        <input type="text" class="inputbottombor"   [(ngModel)]="updatefield.mobile" id="no" name="no">
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn bt_blue"    (click)='primelocation(location)' >SAVE</button> &nbsp;
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <h6 class="col-xs-offset-2 phonepopuphead">Second Number</h6>
+                    <div class="col-sm-2 col-3">
+                        <select>
+                        <option>Mobile</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-10 col-9 nopadd">
+                        <input type="number" class="inputbottombor" minlength=10 maxlength=10 placeholder="000-000-0000" id="phone" name="phone" [(ngModel)]="updatefield.phone">
                     </div>
                 </div>
             </div>
-    </div>
-
-    <div class="modal fade phone" id="phone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <form (ngSubmit)="updatefrom(updatefield)" #infoo="ngForm">
-            <div class="modal-dialog" role="document">
-                 
-                <div class="modal-content mobileid" >
-                      
-                    <div class="modal-header">  
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>                  
-                        <h4 class="modal-title">Phone Number</h4>
+            <div class="modal-content Trading" >
+                <div class="modal-header">
+                    <h4 class="modal-title">Trading Hours</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-12 loca_hours sund_top">
+                        <div class="col-sm-2">
+                            Sunday
+                        </div>
+                        <div class="col-sm-3">
+                            <span class="ui_switch">
+                            <ui-switch 
+                            [(ngModel)] ="updatefield.isSundayOpen"
+                            id="isSundayOpen" 
+                            name="isSundayOpen"
+                            checked 
+                            class="pull-left"> </ui-switch>
+                            </span>
+                            <span class="textopenclose">Open</span>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group registration-date">
+                                <div class="input-group registration-date-time col-sm-6">
+                                    <input class="form-control" type="time" class="inputbottombor" [(ngModel)]="updatefield.sundayOpen" id="sundayOpen" name="sundayOpen">
+                                </div>
+                                <div class="input-group registration-date-time col-sm-6">
+                                    <input class="form-control" type="time" [(ngModel)]="updatefield.sundayClose" id="sundayClose" name="sundayClose">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <h6 class="col-xs-offset-2 phonepopuphead">Primary Number</h6>
-                        <div class="col-sm-2 col-3">
-                            <select>
-                            <option>Phone</option>
-                            </select>
+                    <div class="col-sm-12 loca_hours">
+                        <div class="col-sm-2">
+                            Monday
                         </div>
-                        <div class="col-sm-10 col-9 nopadd">
-                            <input type="text" class="inputbottombor"   [(ngModel)]="updatefield.mobile" id="no" name="no">
+                        <div class="col-sm-3">
+                            <span class="ui_switch">
+                            <ui-switch 
+                            [(ngModel)] ="updatefield.isMondayOpen"
+                            id="isMondayOpen" 
+                            name="isMondayOpen"
+                            checked 
+                            class="pull-left"> </ui-switch>
+                            </span>
+                            <span class="textopenclose">Open</span>
                         </div>
-                        <h6 class="col-xs-offset-2 phonepopuphead">Second Number</h6>
-                        <div class="col-sm-2 col-3">
-                            <select>
-                            <option>Mobile</option>
-                            </select>
+                        <div class="col-sm-7">
+                            <div class="form-group registration-date">
+                            <div class="input-group registration-date-time col-sm-6">
+                                <input class="form-control" type="time" [(ngModel)]="updatefield.mondayOpen" id="mondayOpen" name="mondayOpen">
+                            </div>
+                            <div class="input-group registration-date-time col-sm-6">
+                                <input class="form-control" type="time" [(ngModel)]="updatefield.mondayClose" id="mondayClose" name="mondayClose">
+                            </div>
+                            </div>
                         </div>
-                        <div class="col-sm-10 col-9 nopadd">
-                            <input type="number" class="inputbottombor" minlength=10 maxlength=10 placeholder="000-000-0000" id="phone" name="phone" [(ngModel)]="updatefield.phone">
+                    </div>
+                    <div class="col-sm-12 loca_hours">
+                        <div class="col-sm-2">
+                            Tuesday
+                        </div>
+                        <div class="col-sm-3">
+                            <span class="ui_switch">
+                            <ui-switch 
+                            [(ngModel)]="updatefield.isTuesdayOpen"
+                            id="isTuesdayOpen" 
+                            name="isTuesdayOpen" 
+                            checked 
+                            class="pull-left">
+                            </ui-switch></span>
+                            <span class="textopenclose">Open</span>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group registration-date">
+                            <div class="input-group registration-date-time col-sm-6">
+                                <input class="form-control" type="time" [(ngModel)]="updatefield.tuesdayOpen" id="tuesdayOpen" name="tuesdayOpen">
+                            </div>
+                            <div class="input-group registration-date-time col-sm-6">
+                                <input class="form-control" type="time" [(ngModel)]="updatefield.tuesdayClose" id="tuesdayClose" name="tuesdayClose">
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 loca_hours">
+                        <div class="col-sm-2">
+                            Wednesday
+                        </div>
+                        <div class="col-sm-3">
+                            <span class="ui_switch">
+                            <ui-switch 
+                            [(ngModel)]="updatefield.isWednesdayOpen"
+                            id="isWednesdayOpen" 
+                            name="isWednesdayOpen" 
+                            checked class="pull-left"
+                            ></ui-switch> </span>
+                            <span class="textopenclose">Open</span>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group registration-date">
+                            <div class="input-group registration-date-time col-sm-6">
+                                <input class="form-control" type="time" [(ngModel)]="updatefield.wednesdayOpen" id="wednesdayOpen" name="wednesdayOpen">
+                            </div>
+                            <div class="input-group registration-date-time col-sm-6">
+                                <input class="form-control" type="time" [(ngModel)]="updatefield.wednesdayClose" id="wednesdayClose" name="wednesdayClose">
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 loca_hours">
+                        <div class="col-sm-2">
+                            Thursday
+                        </div>
+                        <div class="col-sm-3">
+                            <span class="ui_switch">
+                            <ui-switch 
+                            [(ngModel)]="updatefield.isThursdayOpen"
+                            id="isThursdayOpen" 
+                            name="isThursdayOpen" 
+                            checked class="pull-left"
+                            ></ui-switch> </span> <span class="textopenclose">Open</span>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group registration-date">
+                            <div class="input-group registration-date-time col-sm-6">
+                                <input class="form-control" type="time" [(ngModel)]="updatefield.thursdayOpen" id="thursdayOpen" name="thursdayOpen">
+                            </div>
+                            <div class="input-group registration-date-time col-sm-6">
+                                <input class="form-control" type="time" [(ngModel)]="updatefield.thursdayClose" id="thursdayClose" name="thursdayClose">
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 loca_hours">
+                        <div class="col-sm-2">
+                            Friday
+                        </div>
+                        <div class="col-sm-3">
+                            <span class="ui_switch">
+                            <ui-switch 
+                            [(ngModel)]="updatefield.isFridayOpen"
+                            id="isFridayOpen" 
+                            name="isFridayOpen" 
+                            checked class="pull-left"
+                            ></ui-switch> </span> <span class="textopenclose">Open</span>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group registration-date">
+                            <div class="input-group registration-date-time col-sm-6">
+                                <input class="form-control" type="time" [(ngModel)]="updatefield.fridayOpen" id="fridayOpen" name="fridayOpen">
+                            </div>
+                            <div class="input-group registration-date-time col-sm-6">
+                                <input class="form-control" type="time" [(ngModel)]="updatefield.fridayClose" id="fridayClose" name="fridayClose">
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 loca_hours">
+                        <div class="col-sm-2">
+                            Saturday
+                        </div>
+                        <div class="col-sm-3">
+                            <span class="ui_switch">
+                            <ui-switch 
+                            [(ngModel)]="updatefield.isSaturdayOpen"
+                            id="isSaturdayOpen" 
+                            name="isSaturdayOpen" 
+                            checked class="pull-left"
+                            ></ui-switch> </span> <span class="textopenclose">Open</span>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group registration-date">
+                            <div class="input-group registration-date-time col-sm-6">
+                                <input class="form-control" type="time" [(ngModel)]="updatefield.saturdayOpen" id="saturdayOpen" name="saturdayOpen">
+                            </div>
+                            <div class="input-group registration-date-time col-sm-6">
+                                <input class="form-control" type="time" [(ngModel)]="updatefield.saturdayClose" id="saturdayClose" name="saturdayClose">
+                            </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-content Trading" >
-                    <div class="modal-header">
-                        <h4 class="modal-title">Trading Hours</h4>
+            </div>    
+            <div class="modal-content title" >
+                <div class="modal-header">
+                        <h4 class="modal-title">Title</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-sm-12 loca_hours sund_top">
-                            <div class="col-sm-2">
-                                Sunday
-                            </div>
-                            <div class="col-sm-3">
-                                <span class="ui_switch">
-                                <ui-switch 
-                                [(ngModel)] ="updatefield.isSundayOpen"
-                                id="isSundayOpen" 
-                                name="isSundayOpen"
-                                checked 
-                                class="pull-left"> </ui-switch>
-                                </span>
-                                <span class="textopenclose">Open</span>
-                            </div>
-                            <div class="col-sm-7">
-                                <div class="form-group registration-date">
-                                    <div class="input-group registration-date-time col-sm-6">
-                                        <input class="form-control" type="time" class="inputbottombor" [(ngModel)]="updatefield.sundayOpen" id="sundayOpen" name="sundayOpen">
-                                    </div>
-                                    <div class="input-group registration-date-time col-sm-6">
-                                        <input class="form-control" type="time" [(ngModel)]="updatefield.sundayClose" id="sundayClose" name="sundayClose">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 loca_hours">
-                            <div class="col-sm-2">
-                                Monday
-                            </div>
-                            <div class="col-sm-3">
-                                <span class="ui_switch">
-                                <ui-switch 
-                                [(ngModel)] ="updatefield.isMondayOpen"
-                                id="isMondayOpen" 
-                                name="isMondayOpen"
-                                checked 
-                                class="pull-left"> </ui-switch>
-                                </span>
-                                <span class="textopenclose">Open</span>
-                            </div>
-                            <div class="col-sm-7">
-                                <div class="form-group registration-date">
-                                <div class="input-group registration-date-time col-sm-6">
-                                    <input class="form-control" type="time" [(ngModel)]="updatefield.mondayOpen" id="mondayOpen" name="mondayOpen">
-                                </div>
-                                <div class="input-group registration-date-time col-sm-6">
-                                    <input class="form-control" type="time" [(ngModel)]="updatefield.mondayClose" id="mondayClose" name="mondayClose">
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 loca_hours">
-                            <div class="col-sm-2">
-                                Tuesday
-                            </div>
-                            <div class="col-sm-3">
-                                <span class="ui_switch">
-                                <ui-switch 
-                                [(ngModel)]="updatefield.isTuesdayOpen"
-                                id="isTuesdayOpen" 
-                                name="isTuesdayOpen" 
-                                checked 
-                                class="pull-left">
-                                </ui-switch></span>
-                                <span class="textopenclose">Open</span>
-                            </div>
-                            <div class="col-sm-7">
-                                <div class="form-group registration-date">
-                                <div class="input-group registration-date-time col-sm-6">
-                                    <input class="form-control" type="time" [(ngModel)]="updatefield.tuesdayOpen" id="tuesdayOpen" name="tuesdayOpen">
-                                </div>
-                                <div class="input-group registration-date-time col-sm-6">
-                                    <input class="form-control" type="time" [(ngModel)]="updatefield.tuesdayClose" id="tuesdayClose" name="tuesdayClose">
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 loca_hours">
-                            <div class="col-sm-2">
-                                Wednesday
-                            </div>
-                            <div class="col-sm-3">
-                                <span class="ui_switch">
-                                <ui-switch 
-                                [(ngModel)]="updatefield.isWednesdayOpen"
-                                id="isWednesdayOpen" 
-                                name="isWednesdayOpen" 
-                                checked class="pull-left"
-                                ></ui-switch> </span>
-                                <span class="textopenclose">Open</span>
-                            </div>
-                            <div class="col-sm-7">
-                                <div class="form-group registration-date">
-                                <div class="input-group registration-date-time col-sm-6">
-                                    <input class="form-control" type="time" [(ngModel)]="updatefield.wednesdayOpen" id="wednesdayOpen" name="wednesdayOpen">
-                                </div>
-                                <div class="input-group registration-date-time col-sm-6">
-                                    <input class="form-control" type="time" [(ngModel)]="updatefield.wednesdayClose" id="wednesdayClose" name="wednesdayClose">
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 loca_hours">
-                            <div class="col-sm-2">
-                                Thursday
-                            </div>
-                            <div class="col-sm-3">
-                                <span class="ui_switch">
-                                <ui-switch 
-                                [(ngModel)]="updatefield.isThursdayOpen"
-                                id="isThursdayOpen" 
-                                name="isThursdayOpen" 
-                                checked class="pull-left"
-                                ></ui-switch> </span> <span class="textopenclose">Open</span>
-                            </div>
-                            <div class="col-sm-7">
-                                <div class="form-group registration-date">
-                                <div class="input-group registration-date-time col-sm-6">
-                                    <input class="form-control" type="time" [(ngModel)]="updatefield.thursdayOpen" id="thursdayOpen" name="thursdayOpen">
-                                </div>
-                                <div class="input-group registration-date-time col-sm-6">
-                                    <input class="form-control" type="time" [(ngModel)]="updatefield.thursdayClose" id="thursdayClose" name="thursdayClose">
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 loca_hours">
-                            <div class="col-sm-2">
-                                Friday
-                            </div>
-                            <div class="col-sm-3">
-                                <span class="ui_switch">
-                                <ui-switch 
-                                [(ngModel)]="updatefield.isFridayOpen"
-                                id="isFridayOpen" 
-                                name="isFridayOpen" 
-                                checked class="pull-left"
-                                ></ui-switch> </span> <span class="textopenclose">Open</span>
-                            </div>
-                            <div class="col-sm-7">
-                                <div class="form-group registration-date">
-                                <div class="input-group registration-date-time col-sm-6">
-                                    <input class="form-control" type="time" [(ngModel)]="updatefield.fridayOpen" id="fridayOpen" name="fridayOpen">
-                                </div>
-                                <div class="input-group registration-date-time col-sm-6">
-                                    <input class="form-control" type="time" [(ngModel)]="updatefield.fridayClose" id="fridayClose" name="fridayClose">
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 loca_hours">
-                            <div class="col-sm-2">
-                                Saturday
-                            </div>
-                            <div class="col-sm-3">
-                                <span class="ui_switch">
-                                <ui-switch 
-                                [(ngModel)]="updatefield.isSaturdayOpen"
-                                id="isSaturdayOpen" 
-                                name="isSaturdayOpen" 
-                                checked class="pull-left"
-                                ></ui-switch> </span> <span class="textopenclose">Open</span>
-                            </div>
-                            <div class="col-sm-7">
-                                <div class="form-group registration-date">
-                                <div class="input-group registration-date-time col-sm-6">
-                                    <input class="form-control" type="time" [(ngModel)]="updatefield.saturdayOpen" id="saturdayOpen" name="saturdayOpen">
-                                </div>
-                                <div class="input-group registration-date-time col-sm-6">
-                                    <input class="form-control" type="time" [(ngModel)]="updatefield.saturdayClose" id="saturdayClose" name="saturdayClose">
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>    
-                <div class="modal-content title" >
-                    <div class="modal-header">
-                            <h4 class="modal-title">Title</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                    </div>
-                    <div class="col-sm-12">
-                            Title:
-                        <input type="text" class="inputbottombor" [(ngModel)]="updatefield.title" id="title" name="title">
-                        <input class="form-control" type="hidden" class="inputbottombor" [(ngModel)]="updatefield.city" id="city" name="city">
-
-                    </div>
-                    <div class="modal-footer">
-    
-                        <button type="submit" class="btn bt_blue"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
                 </div>
+                <div class="col-sm-12">
+                        Title:
+                    <input type="text" class="inputbottombor" [(ngModel)]="updatefield.title" id="title" name="title">
+                    <input class="form-control" type="hidden" class="inputbottombor" [(ngModel)]="updatefield.city" id="city" name="city">
 
-                <div class="modal-content">    
-                    <div class="modal-footer">
-                            <button type="submit" class="btn bt_blue"  ><i class="glyphicon glyphicon-ok" > </i> Save</button>&nbsp;
+                </div>
+                <div class="modal-footer">
 
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>    
+                    <button type="submit" class="btn bt_blue"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
-        </form>
-    </div> 
 
+            <div class="modal-content">    
+                <div class="modal-footer">
+                        <button type="submit" class="btn bt_blue"  ><i class="glyphicon glyphicon-ok" > </i> Save</button>&nbsp;
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>    
+        </div>
+    </form>
+</div> 

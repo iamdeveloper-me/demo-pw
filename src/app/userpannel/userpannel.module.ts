@@ -45,7 +45,7 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
         // InspirationsComponent,
         // UserReviewsComponent,
         // UserbannerComponent,
-        ],
+  ],
     providers: [],
 })
 export class UserpannelModule { }

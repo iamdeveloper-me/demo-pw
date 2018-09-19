@@ -179,8 +179,11 @@ import { SalesstatsComponent } from './admin/salesstats/salesstats.component';
 import { CRMstatsComponent } from './admin/crmstats/crmstats.component';
 import { NetworkstatsComponent } from './admin/networkstats/networkstats.component';
 import { CategorystatsComponent } from './admin/categorystats/categorystats.component';
+import { AdminuseraccountComponent } from './admin/adminuseraccount/adminuseraccount.component';
 import { VendorstatsComponent } from './admin/vendorstats/vendorstats.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { CustomFormsModule } from 'ng2-validation';
+import { MatchHeightModule } from "./shared/directives/match-height.directive";
 
 
 
@@ -339,13 +342,17 @@ export function getAuthServiceConfigs() {
         NetworkstatsComponent,
         CategorystatsComponent,
         VendorstatsComponent,
+        AdminuseraccountComponent,
 
 
 
 
   ],
     imports: [
-       
+        ReactiveFormsModule,
+        CustomFormsModule,
+        MatchHeightModule,
+        
         FileUploadModule,
         ImageCropperModule,
         BrowserAnimationsModule,

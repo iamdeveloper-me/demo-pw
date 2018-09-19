@@ -1,0 +1,291 @@
+<div id="wrapper" class="toggled">
+    <div id="sidebar-wrapper">
+        <app-adminsidebar></app-adminsidebar>   
+    </div>
+    <div id="page-content-wrapper">    
+        <app-adminnavbar></app-adminnavbar>
+        <router-outlet></router-outlet> 
+
+        <section class="my_acount container-fluid mobilefixedcontainer">
+            <div class=" col-md-12 mobpadd">
+                <div class="col-md-6 mobpadd">
+                    <div class="myaco_box">
+                        <div class="aco_info text-center">
+
+                            <h5> <strong>MY ACCOUNT INFORMATION</strong> </h5>
+                            
+                           <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png">
+
+                            <button data-toggle="modal" data-target="#setting" class="settingbtnabsolute">
+                                <i class="material-icons ">settings</i>
+                            </button>
+                                
+
+                                
+                        </div>
+                        <div class="name_info">
+                            <p>
+                                <strong>First Name</strong> :  
+                               dgvfddf</p>
+                            <p> 
+                                <strong>Last Name</strong> : 
+                            dfvdgv
+                            </p>
+                            <p>
+                                <strong>Phone Number</strong> : 
+                              dxfvdzf
+                            </p>
+                            <p>
+                                <strong>Email</strong> : 
+                               xdfvdgfg
+                            </p>
+                            <p>
+                                <strong>Website</strong>: 
+                               dfgdsgdgrfdgfr
+                            </p>
+                            <p class="abouttext"> 
+                                <strong>About Me</strong> : 
+                              dfdgfdgf
+                            </p>
+                        </div>
+                        <div class="updatebt text-center">
+                            <button  data-toggle="modal" data-target="#photo_ved">Update Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+               
+                <div class="col-md-6 mobpadd">
+                    <div class="col-md-12 mem_detail">
+                        <div class="col-md-4 col-xs-12 co-sm-12">
+                            <img src="https://s3.us-east-2.amazonaws.com/prefect-image/card_icon.png">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="member_name"> <h5><strong> MEMBERSHIP</strong> </h5>  </div>
+                            <p>Member since : July 2018 (1 Month)</p>
+                            <p class="col_green">Expiry : 5 August 2020( Active) </p>
+                            <p>Plan type: <span>Free</span> <span class="upgrade"><a href="../membership"> Upgrade now </a> </span> </p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mem_detail">
+                            <div class="col-md-4">
+                                 <img src="https://s3.us-east-2.amazonaws.com/prefect-image/password_icon.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class=""> <h5><strong> ACCOUNT PASSWORD</strong>  </h5> 
+                                    <div class="updatebt mar_top_20px">
+                                        <button data-toggle="modal" data-target="#cPassword">Change Password</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-md-12 mem_detail">
+                        <div class="col-md-4">
+                            <img  class="img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/invoice_icon.png">
+                        </div>
+                        <div class="col-md-8">
+                            <div class=""> <h5> <strong>BILLING & INVOICES</strong> </h5> 
+                                <div class="updatebt mar_top_20px">
+                                    <a routerLink="../invoice"  class="linkbutton">View</a>
+                              
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="clearfix"></div>
+        <app-foot></app-foot>
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+
+<div class="modal fade" id="photo_ved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <h4 class="card-title">Personal Details</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">   
+                <div class="card">         
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">
+                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                    <label>First Name</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-effect form-group md-form ">
+                                        <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                        <label>Last Name</label>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                </div>
+                        </div>                                      
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">
+                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                    <label>Phone Number</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                        </div>                     
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">
+                                    <input class="effect-16 validate" type="email" placeholder="" required="required">
+                                    <label>Email</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">
+                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                    <label>Website</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">  
+                                    <input class="effect-16 validate"  required="required">
+                                    <label>About Me</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    <div class="col-md-12">
+                       <span><input type="checkbox">&nbsp; Setting &nbsp;  </span> 
+                       <span> <input type="checkbox">&nbsp; Enable </span>
+                    </div>
+
+                    </div> 
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>    
+
+<div class="modal fade" id="cPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Change Password</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">         
+                        <div class="card-body">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-effect form-group md-form ">
+                                        <input class="effect-16 validate" type="password" placeholder="" required="required">
+                                        <label>Old Password</label>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                </div>
+                            </div>  
+                            <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-effect form-group md-form ">
+                                            <input class="effect-16 validate" type="password" placeholder="" required="required">
+                                            <label>New Password</label>
+                                            <span class="focus-border"></span>
+                                        </div>
+                                    </div>
+                            </div>                                      
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-effect form-group md-form ">
+                                        <input class="effect-16 validate" type="password" placeholder="" required="required">
+                                        <label>Confirm Password</label>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    Premium members only. 
+                                    <a href="../membership">Upgrade</a>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                      &nbsp;&nbsp;
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+</div>    
+    
+<div class="modal fade" id="setting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">SUBSCRIPTION SETTINGS</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-12 nopadd">
+                            <div class="container">
+                               
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                            <div class="switbtn">
+                                                <ui-switch  id="receiveUpdates" name="receiveUpdates">
+                                                    
+                                                </ui-switch>
+                                                <span class="texthead">Receive Updates</span>
+                                            </div>
+                                            
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="switbtn">
+                                                <ui-switch  id="marketingMails" name="marketingMails">
+                                                    
+                                                </ui-switch>
+                                                <span class="texthead">Marketing Mails</span>
+                                            </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="switbtn">
+                                                <ui-switch  id="notifications" name="notifications"></ui-switch>
+                                                <span class="texthead">Notifications</span>
+                                            </div>
+                                    </div>
+                                </div>
+                                
+                            </div>    
+                    </div>
+                </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+</div>    
+    <!--mail popup -->

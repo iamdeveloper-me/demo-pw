@@ -10,16 +10,7 @@
         <div class="createmyalbum">
             <div class=" text-center">
                 <h2>MY EVENTS</h2>       
-                <span>Increase your brand awareness through event hosting. It's free!
-                    <form (ngSubmit)="addFile(info)" #info="ngForm"> 
-                        <input #fileInput 
-                         type="file"
-                        [(ngModel)]="gallery.files" 
-                         name="image" 
-                          id="image"/>
-                    <button type= "submit">generate fileid</button>
-                </form>
-                </span>
+                <span>Increase your brand awareness through event hosting. It's free!</span>
             </div>  
 
               <ul class="tabbingdesign">
@@ -41,7 +32,6 @@
                            
                              
                         </div>
-
                         <div class="clearfix"></div>
                         <section id="filter2"  >
                            
@@ -102,7 +92,8 @@
                                                             </td>
                                                             <td class="text-center">
                                                                 <button class="btn btn-success whitetext btn-rounded"(click)= "editevent(data)"  data-target="#Description" data-toggle="modal" id="description-function">Edit{{data.eventId}}</button>
-                                                                 <button class="btn btn-warning whitetext btn-rounded" (click)= "deletevent(data.eventId)">Delete {{data.eventId}} </button>
+                                                                
+                                                                 <button class="btn btn-warning whitetext btn-rounded" (click)= "deletevent(data,i)">Delete {{data.eventId}} </button>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -119,7 +110,7 @@
                                 </div>
                         </section>
                         <section id="action2">
-                                <div class="col-sm-12 nopadd"   *ngFor="let data of eventArray;let i=index" >
+                                <div class="col-sm-12 nopadd"   *ngFor="let data of eventArray;let i=index " >
                                         <div class="card martop0px"  *ngFor="let name of data.eventsDates"   >
                                             <div class="card-body borall"  *ngIf="name.eventDate >= test" >
                                                 <div class="card-block">
@@ -133,7 +124,9 @@
                                                                 <td>
                                                                     <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
                                                                     <div class="club_heading">
-                                                                    <h5>Busselton Lions Club Saturday Morning Shed Sales </h5>
+                                                                    <h5>Busselton Lions Club Saturday Morning Shed Sales
+                                                                       
+                                                                    </h5>
                                                                     </div>
                                                                     <p>
                                                                     <strong> Capacity:{{data.capacity}}</strong>
@@ -228,7 +221,6 @@
                                                 <label>Image</label>
                                                 <span class="focus-border"></span>
                                             </div>
-                                            
                                         </div>
                                         
                             <div class="form-group date_picker">
@@ -297,7 +289,8 @@
                 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary btn-raised" >Save</button>   
+                    <button type="submit" class="btn btn-secondary btn-raise saveall" >Save</button>   
+                    <button class="btn btn-success whitetext btn-rounded"(click)= " addEvent(data)"  data-target="#Description" data-toggle="modal" id="description-function">Add{{data.eventId}}</button>
                     <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Cancel</button>
                 </div>
         </form>
@@ -412,8 +405,9 @@
                             
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-secondary btn-raised" >Save</button>   
-                                <button type="button" class="btn btn-secondary btn-raised"  data-dismiss="modal" >Cancel</button>
+                                <button type="submit" class="btn btn-secondary btn-raised saveall" >Save</button>   
+                              
+                                <button type="button" class="btn btn-secondary btn-raised">Cancel</button>
                             </div>
                         
             </div>     

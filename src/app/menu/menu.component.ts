@@ -115,6 +115,7 @@ export class MenuComponent implements OnInit {
     $(".tikright").hide();
     $(".vendorappbtn").hide();
     $(".vendorappbtnclose").hide();
+    $(".notifiybtn ").hide();
     
     this.typeLogout();
    }
@@ -124,7 +125,7 @@ export class MenuComponent implements OnInit {
         $(".tool_icons").hide();
         $("#sidebar-wrapper").hide();
         $(".vendorappbtn").hide();
-
+        $(".notifiybtn").hide();
         var vendorid = localStorage.getItem('vendorid')
         //alert(vendorid)
         var authToken = localStorage.getItem('userToken');
@@ -137,9 +138,8 @@ export class MenuComponent implements OnInit {
                 $(".loginclick").hide();
                 $(".user").show();
                 $(".vendorappbtn").show();
-                $("#wrappervendorsidbar").show(); 
-
-                
+                $("#wrappervendorsidbar").show();
+                $(".notifiybtn ").show();
             }
             else
 
@@ -149,6 +149,7 @@ export class MenuComponent implements OnInit {
                 $(".tikright").show();
                 $(".tool_icons").show();
                 $(".vendorappbtn").hide();
+                $(".notifiybtn ").show();
 
             //    if(window.location.href.indexOf("home") && !(vendorid)){
             //     alert("oooooooooo")
@@ -158,6 +159,7 @@ export class MenuComponent implements OnInit {
             //     $(".tikright").show();
             //     $(".tool_icons").show();
             //     $("#sidebar-wrapper").show(); 
+
             // }
         }
         }

@@ -89,7 +89,7 @@
 											</ngb-tab>
 											<ngb-tab title="All">
 												<ng-template ngbTabContent>
-														<div class="upcominglisthomepage"  *ngFor="let job of jobArray">
+														<div class="upcominglisthomepage"  *ngFor="let job of jobArray ; let i = index" >
 																<div class="col-sm-5 col-8">
 																	<i class="material-icons">date_range</i>  {{job.jobDate |  date:'medium' }}<br/>
 																	<ul>
@@ -107,7 +107,7 @@
 																</div>
 																<div class="col-sm-4 col-4 upcomingright">
 																			
-																		<button type="button" (click)= "deletevent(job)" class="btn btn-danger whitetext" >delete {{job.vendorJobsId}}</button>
+																		<button type="button" (click)= "deletevent(job,i)" class="btn btn-danger whitetext" >delete {{job.vendorJobsId}}</button>
 																	</div>
 														</div> 
 												</ng-template>

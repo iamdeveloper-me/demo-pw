@@ -36,6 +36,7 @@ interface Location {
 
 export class BusinessInfoComponent implements OnInit {
 
+
   facebook;
   Description;
   twitter;
@@ -43,6 +44,8 @@ export class BusinessInfoComponent implements OnInit {
   google;
   Businesname;
   perfectWedding;
+  private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader';
+
   private urllocationpost: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savelocation'
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessinfo'
 
@@ -262,6 +265,9 @@ findLocation(address) {
   
   
   ngOnInit() {
+
+    
+
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -273,9 +279,9 @@ findLocation(address) {
     this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
       this.countryArray = data.json() as string[];
      // this.primarylocation = this.countryArray[0];
-      console.log(  data.json()[0]);
+      console.log(  data.json());
       // this.vendorlocatonid = data.json()[0].vendorLocationId;
-  })
+    })
   
     this.http.get(this.url,{headers:headers}).subscribe(data =>{
 
@@ -288,7 +294,7 @@ findLocation(address) {
     this.Businesname = data.json().nameOfBusiness ;
     this.Description = data.json().businessDetails ;  
     this.perfectWedding = data.json().perfectWeddingURL  ;
-   
+    console.log(data.json());
     // console.log(this.facebook);
     // console.log(this.instagram);
     // console.log(this.google);
@@ -300,81 +306,90 @@ findLocation(address) {
     //         else {
     //           console.log('true');
     //         }
-  })
+    })
 
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
+
+
+    $("#Instagram-function").click(function() {
+    });
+  
+  
     $('.photogallry').hide();
     $("div").removeClass( "modal-backdrop"); 
     $("#instagram2").removeClass( "modal-backdrop"); 
     function testAnim(x) {
       $('.modal .modal-dialog').addClass('animated');
       $('.modal .modal-dialog').addClass('bounceIn');
-  };
+
+
+      
+   };
  
-  $('#facebook').on('show.bs.modal', function (e) {
+   $('#facebook').on('show.bs.modal', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
-  })
-  $('#facebook').on('hide.bs.modal', function (e) {
+   })
+   $('#facebook').on('hide.bs.modal', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
-  })
+   })
   
-  $('#twitter').on('show.bs', function (e) {
+   $('#twitter').on('show.bs', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
-  })
-  $('#twitter').on('hide.bs', function (e) {
+   })
+   $('#twitter').on('hide.bs', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
-  })
+   })
   
-  $('#google').on('show.bs', function (e) {
+   $('#google').on('show.bs', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
-  })
-  $('#google').on('hide.bs', function (e) {
+   })
+   $('#google').on('hide.bs', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
-  })
+   })
   
-  $('#instagram').on('show.bs', function (e) {
+   $('#instagram').on('show.bs', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
-  })
-  $('#instagram').on('hide.bs', function (e) {
+   })
+   $('#instagram').on('hide.bs', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
-  })
+   })
   
-  $('#instagram2').on('show.bs', function (e) {
+   $('#instagram2').on('show.bs', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
-  })
-  $('#instagram2').on('hide.bs', function (e) {
+   })
+   $('#instagram2').on('hide.bs', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
-  })
+   })
   
-  $('#Businesname').on('show.bs', function (e) {
+   $('#Businesname').on('show.bs', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
-  })
-  $('#Businesname').on('hide.bs', function (e) {
+   })
+   $('#Businesname').on('hide.bs', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
-  })
+   })
   
-  $('#Description').on('show.bs', function (e) {
+   $('#Description').on('show.bs', function (e) {
     var anim = $('#entrance').val();
         testAnim(anim);
-  })
-  $('#Description').on('hide.bs', function (e) {
+   })
+   $('#Description').on('hide.bs', function (e) {
     var anim = $('#exit').val();
         testAnim(anim);
-  })
+   })
 
   this.location.marker.draggable = true;
  
@@ -384,8 +399,39 @@ findLocation(address) {
    //  console.log( data.json() as string[] );
     // console.log( data.countryId );
     })
+
+
+$(document).on('click', ".saveall", function() {
+      //alert("hi")
+      // $(this).parents('.modal').modal('toggle');
+      // $(this).parents('.modal').removeClass('show');
+      // $(this).parents('.modal').modal('hide');
+      $(this).parents('.modal').css("display", "none");
+      $(this).parents('.modal').removeClass("show");
+      $('.modal-backdrop').hide();
+      $('.modal-backdrop').removeClass("fade");
+      $('.modal-backdrop').removeClass("show");
+      $('body').removeClass("modal-open");
+   });
+
+ //    $(".namesave").click(function() {
+ //      alert("hi")
+ //      $('#Business').hide();
+ //      $('#Business').removeClass("show");
+ //   });
+ // $(".save").click(function() {
+ //      alert("hi")
+ //      $('#Description').hide();
+ //      $('#Description').removeClass("show");
+ //   });
+
+    
   }
 
+
+
+
+  
   phone(){
     $(".mobileid").show(); 
        $(".Trading").hide(); 
@@ -454,7 +500,7 @@ findLocation(address) {
           {
            
             alert("saved");
-            
+            $('.modal').hide();
           }
     }
 );
@@ -463,19 +509,49 @@ findLocation(address) {
 
 
   //businessinformation 
-  openModel(b){
-    this.modelfield = b; 
-    console.log(this.modelfield);
-  }
+
+  gallery = { files: ''}
+  @ViewChild("fileInput") fileInput;
+
+  addFile(info): void {
+    let fi = this.fileInput.nativeElement;
+    if (fi.files && fi.files[0]) {
+         
+        let fileToUpload = fi.files;
+        let headers = new  Headers();
+        var authToken = localStorage.getItem('userToken');
+     
+        headers.append("Authorization",'Bearer '+authToken);
+        const formData = new FormData();
+        formData.append('AlbumId','2')
+        for (let image of fileToUpload){
+          formData.append(image.name,image)
+        }
+        this.http.post(this.uploadimage,formData,{headers:headers})
+                                   }
+    }
+    openModel(b){
+      this.modelfield = b; 
+     // console.log(this.modelfield);
+    }
   upForm(info){
+
+  var data = this.addFile(info);
+  console.log(data);
+          //this.addFile(info);
+
             var infofacebook = info.value.facebook;
             var infotwitter = info.value.twitter;
             var infogoogle = info.value.google;
+            var fileId = this.addFile(info);
             var infodetails = info.value.businessDetails ;
             var infobusiness =   info.value.Businesname;
             var infoinsta = info.value.instagram;
             var  perfectWeddingsite =   info.value.perfectWedding;
+            
 
+          
+              
               let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
               headers.append('Accept', 'application/json')
@@ -488,6 +564,7 @@ findLocation(address) {
                               businessDetails: infodetails,
                               contactPerson: 'scsc',
                              // pictureUrl: infopicture,
+                             fileId:fileId,
                               facebookURL: infofacebook,
                               twitterURL: infotwitter,
                               googleURL:  infogoogle,
@@ -497,9 +574,18 @@ findLocation(address) {
                           
                           },{headers:headers});  
  
-            updatebusinessinfo.subscribe((data) => console.log(data),(error)=>console.log(error));
+            updatebusinessinfo.subscribe((responce)=>{ console.log(responce.status);
+              if(responce.status == 200)
+              {
+               
+                alert("saved");
+                
+                
+              }
+        });
+            
      }
-
+  
   abc(event){
 
       console.log(event)

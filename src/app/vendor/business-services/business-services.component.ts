@@ -29,7 +29,7 @@ export class BusinessServicesComponent implements OnInit {
     this.data = {};
   
   }  
-  
+ c(){} 
 
 
 
@@ -52,6 +52,21 @@ export class BusinessServicesComponent implements OnInit {
   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
   $.getScript('./assets/js/vendorsidebar.js');
+
+
+
+   $(document).on('click', ".saveall", function() {
+      //alert("hi")
+      // $(this).parents('.modal').modal('toggle');
+      // $(this).parents('.modal').removeClass('show');
+      // $(this).parents('.modal').modal('hide');
+      $(this).parents('.modal').css("display", "none");
+      $(this).parents('.modal').removeClass("show");
+      $('.modal-backdrop').hide();
+      $('.modal-backdrop').removeClass("fade");
+      $('.modal-backdrop').removeClass("show");
+      $('body').removeClass("modal-open");
+   });
   }
 
 

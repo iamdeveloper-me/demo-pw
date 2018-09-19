@@ -114,7 +114,7 @@ import { NetworkstatsComponent } from './admin/networkstats/networkstats.compone
 import { CategorystatsComponent } from './admin/categorystats/categorystats.component';
 import { VendorstatsComponent } from './admin/vendorstats/vendorstats.component';
 
-
+import { AdminuseraccountComponent } from './admin/adminuseraccount/adminuseraccount.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -227,6 +227,7 @@ const appRoutes: Routes = [
   { path: 'Admin/Network-stats', component:   NetworkstatsComponent  },
   { path: 'Admin/Category-stats', component:   CategorystatsComponent  },
   { path: 'Admin/Vendor-stats', component:   VendorstatsComponent  },
+ { path: 'Admin/adminaccount', component:   AdminuseraccountComponent  },
 
   { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES, canActivate: [AuthGuard] },
   { path: '', component: ContentLayoutComponent, data: { title: 'content Views' }, children: CONTENT_ROUTES, canActivate: [AuthGuard] },

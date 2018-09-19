@@ -3,8 +3,6 @@ import { NgbModal,  ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng
 import { Http,Headers } from '@angular/http';
 import { DatePipe } from '@angular/common';
 
-
-
 export class NgbduserModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) {} 
@@ -39,10 +37,6 @@ export class EventListComponent implements OnInit {
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
-  
-
-
-  
         this.http.get(this.myeventgeturl,{headers:headers}).subscribe(data =>{
       
         this.eventArray = data.json() as string[];
@@ -55,8 +49,6 @@ export class EventListComponent implements OnInit {
         // console.log(data.json());})
         // this.http.get(this.servicesgeturl,{headers:headers}).subscribe(data =>{
         //     console.log(data.json());})
-
-   
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
@@ -155,7 +147,6 @@ console.log(list.eventTitle);
 
   }
 
- 
   gallery = { files: ''}
   @ViewChild("fileInput") fileInput;
   addFile(info): void {

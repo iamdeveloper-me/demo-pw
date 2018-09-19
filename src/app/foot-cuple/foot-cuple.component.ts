@@ -10,6 +10,9 @@ export class FootCupleComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+   $.getScript('./assets/js/curosselfun.js');
+   
+  
   }
 
 }

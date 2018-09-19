@@ -90,7 +90,6 @@
 }
 .loginhome i{
   float:left;
-  margin-right:5px;
   margin-top:2px;
 }
 .loginhome span{
@@ -353,7 +352,6 @@ position:relative;
 #navbarResponsive ul .nav-item:after, #navbarResponsive .nav-item:before {
   display:none;
 }
-
 .weddingicon li a img{
   width: 24px!important;
 }
@@ -422,7 +420,11 @@ background:#fff;
 }
 .loginhome{
   position:absolute;
-  right:0px;
+  width:40px;
+  right:5px;
+}
+.loginhome.dropdown{
+  right:40px;
 }
 #mainNav .container::before,#mainNav .container::after{
   display: none;
@@ -784,12 +786,15 @@ a.blue-text{
     background-position: left center;
     font-size: 16px;
   }
-
-
-.tikright{ background: url('https://s3.us-east-2.amazonaws.com/prefect-image/dots.png');
-  width: 6px; height: 29px; background-repeat:no-repeat; border: none;
+.tikright{ background: url('https://s3.us-east-2.amazonaws.com/prefect-image/dots.png center');
+  width: 30px; height: 29px; background-repeat:no-repeat; border: none;
+  position:fixed;right:5px;text-align:center;
 }
-
+.tikright i{
+  font-size:30px;
+  color:#fff;
+  float:inherit;
+}
 //user icon 
 .header-joined {
   margin-top: 2px;
@@ -831,6 +836,18 @@ a.blue-text{
 
 
 
+
+.sidebar-nav>.sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+  }
+.sidebar-nav>.sidebar-brand a .material-icons{top: 5px!important;
+  position: relative;
+  }
+  .sidebar-nav>.sidebar-brand a {
+    color: #999999;
+  }
 
 
 

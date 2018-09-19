@@ -11,21 +11,23 @@
       
                     <div class="custom-form">
                     <!-- <div class="col-sm-4"></div> -->
-                        <div class="col-sm-4 " *ngFor="let data of countryArray;let i=index">
-                            <div class="card martop10px">
+                        <div class="col-sm-4 " *ngFor="let data of countryArray;let i=index"  >
+                            <div class="card martop10px" *ngIf="data.isPrimary == false">
                                 <div class="col-sm-12">
-                                    <h4 class="mainhead" *ngIf="i==0"> Location (Primary) </h4>
-                                    <h4 class="mainhead" *ngIf="i>0"> Location (Secondary) </h4>
-      
+                                    <h4 class="mainhead" > secondary {{data.isPrimary}} </h4>
+                                   
                                     <div class="switbtn">
-                                        <ui-switch [(ngModel)]="modelfield.isPrimary" id="isPrimary" name="isPrimary" class="pull-left"></ui-switch>
+                                        <ui-switch (ngModel)="data.isPrimary" ></ui-switch>
                                     </div>
       
                                 </div>
                                 <div class="card-body">
                                     <div class="text-center bg-form col-sm-12">
                                         <div class="img-section">
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3060153584!2d-74.2598711799434!3d40.69714940555201!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1533112990233" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                                <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
+                                                        <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd(m)'></agm-marker>
+                                                        <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
+                                                    </agm-map>
                                             <div class="img_overlay">
                                                 <div class="col-lg-12 col-md-12 pad_left_0px">
                                                     <input type="text" class="form-control form-input" placeholder="Company Name" disabled id="companyname" [(ngModel)]="data.title" id="title" name="title">
@@ -48,12 +50,11 @@
                                         </span>
                                                 <div class="col-sm-10 col-11">
                                                     
-                                                    <div>Address line : {{data.address}}</div>
-                                                   
-                                                    <div>Country: {{data.country}}</div>
-                                                    <div>State / Province / Region: {{data.city}} </div>
-                                                    <div>Postal Code: {{data.postalCode}}</div>
-                                                    <div>City: {{data.city}}</div>
+                                                    <div>Address Line 1: {{location.address_level_1}} / {{data.address}}  </div>
+                                                    <div>Address Line 2:  {{location.address_level_2}}</div>
+                                                    <div>State / Province / Region: {{location.address_state}} / {{data.city}}</div>
+                                                    <div>Country:  {{location.address_country}} / {{data.country}}</div>
+                                                    <div>Postal / Zip code: {{location.address_zip}} / {{data.postalCode}}</div>
                                                     <i class="material-icons edit_btn"> edit</i>
                                                 </div>
                                             </div>
@@ -438,8 +439,9 @@
             <div class="modal fade" id="photo_ved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="card-title"></h4>
-      
+                    
                         <div class="card-content selectboxservice">
                             <div class="form-group">
                                 <label for="comment">Change your title:</label>
@@ -473,20 +475,22 @@
                               </button>
                           </div>
                           <div class="modal-body">
-                              <!-- <div class="form-group">
+                              <div class="form-group">
                                 <div class="input-effect form-group md-form">
-                                  <input class="effect-16 validate" type="hidden" [(ngModel)]="vendorLocationId" id="Country" name="Country">
-                                  <label>Country</label>
+                                     
+                                            
                                   <span class="focus-border"></span>
                                 </div>
-                              </div> -->
+                              </div>
                               <div class="form-group">
                                 <div class="input-effect form-group md-form">
                                   <input class="effect-16 validate"  [(ngModel)]="Country" id="Country" name="Country">
                                   <label>Country</label>
                                   <span class="focus-border"></span>
                                 </div>
+                               
                               </div>
+
                               <div class="form-group">
                                 <div class="input-effect form-group md-form">
                                   <input class="effect-16 validate"  [(ngModel)]="Address" id="Address" name="Address">
@@ -526,15 +530,13 @@
               </div>    
          </form>
       
-      
+<!--       
         <div class="modal fade" id="googlemap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Address</h4>
-                        <button type="button" class="close" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body county_addres">
                         <div>
@@ -578,7 +580,7 @@
                                       <span class="focus-border"></span>
                                   </div>
                                 </div>
-                                <!-- <button type="button" onclick="alert('location')">Use my location</button> -->
+                              
                                 <button (click)='updateOnMap()' type="submit" class="btn btn-primary whitetext">Search</button>
                             </div>
                         </div>
@@ -589,70 +591,70 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+
+
+        <div class="modal fade" id="googlemap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Address</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                        </div>
+                        <div class="modal-body county_addres">
+                            <div>
+                                <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
+                                    <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event)'></agm-marker>
+                                    <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
+                                </agm-map>
+                                <div class="container-fluid martop30px">
+                                    <div class="form-group">
+                                      <div class="input-effect md-form">
+                                          <input class="effect-16 validate" type='text'   [(ngModel)]='location.address_level_1' placeholder=''>
+                                          <label>Address Line 1</label>
+                                          <span class="focus-border"></span>
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <div class="input-effect md-form">
+                                          <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_level_2' placeholder=''>
+                                          <label>Address Line 2</label>
+                                          <span class="focus-border"></span>
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <div class="input-effect md-form">
+                                          <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_state' placeholder=''>
+                                          <label>State / Province / Region</label>
+                                          <span class="focus-border"></span>
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <div class="input-effect md-form">
+                                          <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_country' placeholder=''>
+                                          <label>Country</label>
+                                          <span class="focus-border"></span>
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <div class="input-effect md-form">
+                                          <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_zip' placeholder=''>
+                                          <label>Postal / Zip code</label>
+                                          <span class="focus-border"></span>
+                                      </div>
+                                    </div>
+                                    <!-- <button type="button" onclick="alert('location')">Use my location</button> -->
+                                    <!-- <button (click)='updateOnMap()' type="submit" class="btn btn-primary whitetext">Search</button> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn bt_blue"      (click)='locationForm(location)' >SAVE</button> &nbsp;
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
         </div>
 
-
-
-  <div class="modal fade" id="googlemap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h4 class="modal-title">Address</h4>
-                  <button type="button" class="close" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <div class="modal-body county_addres">
-                  <div>
-                      <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
-                          <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd(m)'></agm-marker>
-                          <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
-                      </agm-map>
-                      <div class="container-fluid martop30px">
-                          <div class="form-group">
-                            <div class="input-effect md-form">
-                                <input class="effect-16 validate" type='text'   [(ngModel)]='location.address_level_1' placeholder=''>
-                                <label>Address Line 1</label>
-                                <span class="focus-border"></span>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <div class="input-effect md-form">
-                                <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_level_2' placeholder=''>
-                                <label>Address Line 2</label>
-                                <span class="focus-border"></span>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <div class="input-effect md-form">
-                                <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_state' placeholder=''>
-                                <label>State / Province / Region</label>
-                                <span class="focus-border"></span>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <div class="input-effect md-form">
-                                <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_country' placeholder=''>
-                                <label>Country</label>
-                                <span class="focus-border"></span>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <div class="input-effect md-form">
-                                <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_zip' placeholder=''>
-                                <label>Postal / Zip code</label>
-                                <span class="focus-border"></span>
-                            </div>
-                          </div>
-                          <!-- <button type="button" onclick="alert('location')">Use my location</button> -->
-                          <button (click)='updateOnMap()' type="submit" class="btn btn-primary whitetext">Search</button>
-                      </div>
-                  </div>
-              </div>
-              <div class="modal-footer">
-                  <button type="submit" class="btn bt_blue"    (click)='locationForm(location)' >SAVE</button> &nbsp;
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-          </div>
-      </div>
-  </div>

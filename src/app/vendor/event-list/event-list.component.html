@@ -10,7 +10,16 @@
         <div class="createmyalbum">
             <div class=" text-center">
                 <h2>MY EVENTS</h2>       
-                <span>Increase your brand awareness through event hosting. It's free!</span>
+                <span>Increase your brand awareness through event hosting. It's free!
+                        <form (ngSubmit)="addFile(info)" #info="ngForm"> 
+                                <input #fileInput 
+                                 type="file"
+                                [(ngModel)]="gallery.files" 
+                                 name="image" 
+                                  id="image"/>
+                            <button type= "submit">vfgdhgh</button>
+                        </form>
+                </span>
             </div>  
 
              <ul class="tabbingdesign">
@@ -32,6 +41,7 @@
                            
                              
                         </div>
+
                         <div class="clearfix"></div>
                         <section id="filter">
                            
@@ -258,7 +268,9 @@
 </div>  
 <ng-template #adduser let-c="close" let-d="dismiss">
     <div class="modal-header text-center">
-        <h4 class="modal-title"><b>Create Event</b></h4>
+         
+        <h4 class="modal-title" ><b>Create Event</b> </h4>
+     
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>

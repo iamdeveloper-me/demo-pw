@@ -2,6 +2,8 @@ import { Component, OnInit ,Input ,ViewChild} from '@angular/core'
 import { NgbModal,  ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
 import { DatePipe } from '@angular/common';
+import { Subject } from 'rxjs';
+
 
 export class NgbduserModalContent {
   @Input() name;
@@ -18,6 +20,7 @@ export class NgbduserModalContent {
 export class EventListComponent implements OnInit {
     eventArray:any= [];
     modelfield:any= {};
+    refresh: Subject<any> = new Subject();
     test: string;
     myDate = new Date(); 
     imageToShow: any;
@@ -69,7 +72,27 @@ export class EventListComponent implements OnInit {
         $(".Suppliertab").removeClass("selected"); 
         $(".Registertab").addClass("selected");  
     });
+
+    $(document).on('click', ".saveall", function() {
+      //alert("hi")
+      // $(this).parents('.modal').modal('toggle');
+      // $(this).parents('.modal').removeClass('show');
+      // $(this).parents('.modal').modal('hide');
+      $(this).parents('.modal').css("display", "none");
+      $(this).parents('.modal').removeClass("show");
+      $('.modal-backdrop').hide();
+      $('.modal-backdrop').removeClass("fade");
+      $('.modal-backdrop').removeClass("show");
+      $('body').removeClass("modal-open");
+   });
+
+
   }
+
+
+
+
+
 createImageFromBlob(image: Blob) {
    let reader = new FileReader();
    reader.addEventListener("load", () => {
@@ -114,33 +137,34 @@ console.log(list.eventTitle);
               headers.append('Accept', 'application/json')
               headers.append('Content-Type', 'application/json');
               headers.append("Authorization",'Bearer '+authToken);
-              
-    this.http.post(this.eventposturl,{
+             var data_obj= {
        
-        eventId: 0,
-        eventTitle: list.eventTitle,
-        filesId: 1,
-        venueName: list.venueName,
-         location: list.location,
-         lat: 0,
-        long: 0,
-        capacity: 0,
-        entry: list.entry,
-        entryFee: 0,
-        eventDescription: list.eventDescription,
-        eventsDates: [
-          {
-             eventsMoreDatesId: 0,
-             eventId: 0,
-             eventDate:list.eventDate ,
-             startTime:list.startTime ,
-             endTime:list.endTime ,
-          }
-        ]
-      },{headers:headers}).subscribe(data =>{
+                eventId: 0,
+                eventTitle: list.eventTitle,
+                filesId: 1,
+                venueName: list.venueName,
+                 location: list.location,
+                 lat: 0,
+                long: 0,
+                capacity: 0,
+                entry: list.entry,
+                entryFee: 0,
+                eventDescription: list.eventDescription,
+                eventsDates: [
+                  {
+                     eventsMoreDatesId: 0,
+                     eventId: 0,
+                     eventDate:list.eventDate ,
+                     startTime:list.startTime ,
+                     endTime:list.endTime ,
+                  }
+                ]
+              }
+    this.http.post(this.eventposturl,data_obj,{headers:headers}).subscribe(data =>{
     console.log(data.json());
-
-
+    console.log(this.eventArray)
+    this.eventArray.push(data_obj)
+    console.log(this.eventArray)
 
 
   })
@@ -254,10 +278,11 @@ console.log(list.eventTitle);
 
   
 
-  deletevent(id){
-    alert(id)
-    console.log(id);
-   
+  deletevent(data,index){
+    //alert(id)
+   // console.log(id);
+    var id = data.eventId;
+    this.eventArray.splice(index,1);
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -270,5 +295,16 @@ console.log(list.eventTitle);
    
     },error =>{ console.log(error)});
   }
+
+
+  addEvent(): void {
+    // this.eventArray.push({     
+    //   filesId: 1, 
+    //   draggable: true,
+    //   resizable: {
+    //   }
+    // });
+    // this.refresh.next();
   }
+}
   

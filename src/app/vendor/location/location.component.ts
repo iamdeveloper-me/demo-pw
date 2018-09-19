@@ -195,6 +195,18 @@ export class LocationComponent implements OnInit {
     // console.log( data.countryId );
 
 })
+$(document).on('click', ".saveall", function() {
+  //alert("hi")
+  // $(this).parents('.modal').modal('toggle');
+  // $(this).parents('.modal').removeClass('show');
+  // $(this).parents('.modal').modal('hide');
+  $(this).parents('.modal').css("display", "none");
+  $(this).parents('.modal').removeClass("show");
+  $('.modal-backdrop').hide();
+  $('.modal-backdrop').removeClass("fade");
+  $('.modal-backdrop').removeClass("show");
+  $('body').removeClass("modal-open");
+});
    
 
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');

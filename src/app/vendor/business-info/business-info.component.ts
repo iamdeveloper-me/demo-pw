@@ -68,6 +68,7 @@ export class BusinessInfoComponent implements OnInit {
 
   cropperSettings: CropperSettings;
   updatefield =    { 
+
 title: "",
 countryId: "",
 vendorId: "",
@@ -273,7 +274,7 @@ findLocation(address) {
       this.countryArray = data.json() as string[];
      // this.primarylocation = this.countryArray[0];
       console.log(  data.json()[0]);
-       this.vendorlocatonid = data.json()[0].vendorLocationId;
+      // this.vendorlocatonid = data.json()[0].vendorLocationId;
   })
   
     this.http.get(this.url,{headers:headers}).subscribe(data =>{

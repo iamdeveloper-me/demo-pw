@@ -1,6 +1,4 @@
 
-
-
 import { NgForm } from '@angular/forms';
 import { CropperSettings, ImageCropperComponent } from 'ng2-img-cropper';
 import { Component, OnInit ,Input , ViewChild, NgZone,} from '@angular/core';
@@ -37,6 +35,7 @@ interface Location {
 })
 
 export class BusinessInfoComponent implements OnInit {
+
   facebook;
   Description;
   twitter;
@@ -46,8 +45,11 @@ export class BusinessInfoComponent implements OnInit {
   perfectWedding;
   private urllocationpost: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savelocation'
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessinfo'
+
   private urlpost: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savelocation'
+
   private urlget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mylocations'
+
  
   vendor: any = { nameOfBusiness: '',
     businessDetails: '',
@@ -61,8 +63,9 @@ export class BusinessInfoComponent implements OnInit {
   modelfield: any = {};
   primarylocation:any = {};
   countryArray:string[];
+
   data: any;
-  vendorlocatonid;
+
   cropperSettings: CropperSettings;
   updatefield =    { 
 title: "",
@@ -226,10 +229,13 @@ findLocation(address) {
     var file: File = $event.target.files[0];
     var myReader: FileReader = new FileReader();
     var that = this;
+    
     myReader.onloadend = function (loadEvent: any) {
       image.src = loadEvent.target.result;
       that.cropper.setImage(image);
+         console.log(image.src);
 
+       
     };
 
     myReader.readAsDataURL(file);
@@ -255,15 +261,12 @@ findLocation(address) {
   
   
   ngOnInit() {
-
-
-   
-
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
+
 
 
     this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
@@ -274,15 +277,29 @@ findLocation(address) {
   })
   
     this.http.get(this.url,{headers:headers}).subscribe(data =>{
+
     this.vendor = data.json();
     this.facebook = data.json().facebookURL ;
+
     this.twitter = data.json().twitterURL ;
     this.instagram = data.json().instalURL ;
     this.google = data.json().googleURL;
     this.Businesname = data.json().nameOfBusiness ;
     this.Description = data.json().businessDetails ;  
     this.perfectWedding = data.json().perfectWeddingURL  ;
-    });
+   
+    // console.log(this.facebook);
+    // console.log(this.instagram);
+    // console.log(this.google);
+    // console.log(this.twitter);
+
+    //         if (this.facebook=="" || this.twitter=="" || this.instagram=="" || this.google=="" ) {
+    //           console.log('false');
+    //         } 
+    //         else {
+    //           console.log('true');
+    //         }
+  })
 
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
@@ -358,7 +375,14 @@ findLocation(address) {
         testAnim(anim);
   })
 
-
+  this.location.marker.draggable = true;
+ 
+                      
+    this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
+    this.countryArray = data.json() as string[]
+   //  console.log( data.json() as string[] );
+    // console.log( data.countryId );
+    })
   }
 
   phone(){
@@ -474,10 +498,13 @@ findLocation(address) {
  
             updatebusinessinfo.subscribe((data) => console.log(data),(error)=>console.log(error));
      }
+
   abc(event){
+
       console.log(event)
     }
      closeResult: string;
+
 
 
      primelocation(location){  
@@ -536,8 +563,6 @@ enable1 =  true;
 enable2 =  true;
 enable3 =  true;
 enable4 =  true;
+
   
 }
-
-
-

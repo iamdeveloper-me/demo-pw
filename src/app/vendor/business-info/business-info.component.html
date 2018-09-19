@@ -1,4 +1,4 @@
-    <div id="wrapper" class="toggled">
+<div id="wrapper" class="toggled">
         <div id="sidebar-wrapper">
            <app-vendorsidebar></app-vendorsidebar>
            <router-outlet></router-outlet>
@@ -286,7 +286,7 @@
      
      
      
-     <form (ngSubmit)="upForm(info)" #info="ngForm"> 
+    <form (ngSubmit)="upForm(info)" #info="ngForm"> 
         <div class="modal fade" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -624,7 +624,7 @@
             </div>
             </div>
         </div>
-     </form> 
+    </form> 
      
     <div class="modal fade" id="googlemap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -689,6 +689,7 @@
                 </div>
             </div>
     </div>
+
     <div class="modal fade phone" id="phone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <form (ngSubmit)="updatefrom(updatefield)" #infoo="ngForm">
             <div class="modal-dialog" role="document">
@@ -918,8 +919,15 @@
                             Title:
                         <input type="text" class="inputbottombor" [(ngModel)]="updatefield.title" id="title" name="title">
                         <input class="form-control" type="hidden" class="inputbottombor" [(ngModel)]="updatefield.city" id="city" name="city">
+
+                    </div>
+                    <div class="modal-footer">
+    
+                        <button type="submit" class="btn bt_blue"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
+
                 <div class="modal-content">    
                     <div class="modal-footer">
                             <button type="submit" class="btn bt_blue"  ><i class="glyphicon glyphicon-ok" > </i> Save</button>&nbsp;
@@ -928,6 +936,6 @@
                     </div>
                 </div>    
             </div>
-      
         </form>
     </div> 
+

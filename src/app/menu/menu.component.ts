@@ -116,6 +116,7 @@ export class MenuComponent implements OnInit {
     $(".vendorappbtn").hide();
     $(".vendorappbtnclose").hide();
     $(".notifiybtn ").hide();
+    $(".userhomemenu").hide();
     
     this.typeLogout();
    }
@@ -126,6 +127,7 @@ export class MenuComponent implements OnInit {
         $("#sidebar-wrapper").hide();
         $(".vendorappbtn").hide();
         $(".notifiybtn").hide();
+        $(".userhomemenu").hide();
         var vendorid = localStorage.getItem('vendorid')
         //alert(vendorid)
         var authToken = localStorage.getItem('userToken');
@@ -148,6 +150,7 @@ export class MenuComponent implements OnInit {
                 $("#wrappervendorsidbar").hide(); 
                 $(".tikright").show();
                 $(".tool_icons").show();
+                $(".userhomemenu").show();
                 $(".vendorappbtn").hide();
                 $(".notifiybtn ").show();
 
@@ -359,6 +362,16 @@ $(".homemenu").click(function(){
         $(".blackoverlaymain").addClass( "blockmobile"); 
     });
 
+  $(".navuserlink").click(function(){
+            $(".blackoverlaymainuser").addClass( "blockmobile");
+            $(".blackoverlaymainuser").css( 'right' , '0px');
+            $(".blackoverlaymainuser").css( 'z-index' , '9999');
+          });
+   $(".blackoverlaymainuser").click(function(){
+      $(".blackoverlaymainuser").removeClass( "blockmobile");
+      $(".blackoverlaymainuser").css( 'right' , '-100%');
+    });
+ 
     $(".vendorappbtn").click(function(){
         //alert("open");
         $("#wrappervendor").addClass('toggled');

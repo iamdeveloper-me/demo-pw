@@ -13,9 +13,7 @@
        </button>
       <!-- Mobile Navigation button -->
       <!-- User app button -->
-       <button class="hidden-md hidden-sm hidden-lg tikright" data-toggle="slide-collapse" type="button">
-        <i class="material-icons">more_vert</i>
-       </button>
+       
        <button class="hidden-md hidden-sm hidden-lg tikrightclose" data-toggle="slide-collapse" type="button" style="display:none;">
           <div class="line11"></div>
           <div class="line33"></div>
@@ -115,55 +113,109 @@
            
           </ul>
        </div>
-       <button class="notifiybtn" ngbDropdown placement="bottom-right">
-         <i class="ft-bell font-medium-3"></i>
-         <span class="notification badge badge-pill badge-danger">4</span>
-         <p class="d-none">Notifications</p>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="notification-dropdown notification_mob1 ">
-                                                <div class="noti-list">
-                                                    <a class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
-                                                        <i class="ft-bell info float-left d-block font-large-1 mt-1 mr-2"></i>
-                                                        <span class="noti-wrapper">
-                                                            <span class="noti-title line-height-1 d-block text-bold-400 info">New Order Received</span>
-                                                            <span class="noti-text">Lorem ipsum dolor sit ametitaque in, et!</span>
-                                                        </span>
-                                                    </a>
-                                                    <a class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
-                                                        <i class="ft-bell warning float-left d-block font-large-1 mt-1 mr-2"></i>
-                                                        <span class="noti-wrapper">
-                                                            <span class="noti-title line-height-1 d-block text-bold-400 warning">New User Registered</span>
-                                                            <span class="noti-text">Lorem ipsum dolor sit ametitaque in </span>
-                                                        </span>
-                                                    </a>
-                                                    <a class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
-                                                        <i class="ft-bell danger float-left d-block font-large-1 mt-1 mr-2"></i>
-                                                        <span class="noti-wrapper">
-                                                            <span class="noti-title line-height-1 d-block text-bold-400 danger">New Order Received</span>
-                                                            <span class="noti-text">Lorem ipsum dolor sit ametest?</span>
-                                                        </span>
-                                                    </a>
-                                                    <a class="dropdown-item noti-container py-3">
-                                                        <i class="ft-bell success float-left d-block font-large-1 mt-1 mr-2"></i>
-                                                        <span class="noti-wrapper">
-                                                            <span class="noti-title line-height-1 d-block text-bold-400 success">New User Registered</span>
-                                                            <span class="noti-text">Lorem ipsum dolor sit ametnatus aut.</span>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <a class="noti-footer primary text-center d-block border-top border-top-blue-grey border-top-lighten-4 text-bold-400 py-1">Read All Notifications</a>
-            </div>
-      </button>
 
-        <button class="user loginhome" ngbDropdown placement="bottom-right">
-          <i class="material-icons" id="dropdownBasic3" ngbDropdownToggle>account_circle
-          </i>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic3" >
-            <a class="dropdown-item" (click)= "logout()">
-                <i class="ft-power mr-2"></i>
-                <span>Logout</span>
-           </a>
-          </div>
-      </button>
+   
+
+
+         <ul class="navbar-nav right_listing"> 
+          <li class="nav-item notilink" ngbDropdown placement="bottom-right">
+                                        <a class="nav-link position-relative afternone" id="dropdownBasic2" ngbDropdownToggle>
+                                                <i class="material-icons">email</i>
+                                            <!-- <i class="ft-bell font-medium-3 blue-grey darken-4"></i> -->
+                                            <span class="notification badge badge-pill badge-danger">4</span>
+                                            <p class="d-none">Notifications</p>
+                                        </a>
+                                        <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="notification-dropdown">
+                                            <div class="noti-list">
+                                                <a class="dropdown-item afternone noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
+                                                    <i class="material-icons info float-left d-block font-large-1 mt-1 mr-2"> mail_outline </i>
+                                                    <!-- <i class="ft-bell info float-left d-block font-large-1 mt-1 mr-2"></i> -->
+                                                    <span class="noti-wrapper">
+                                                        <span class="noti-title line-height-1 d-block text-bold-400 info">New Order Received</span>
+                                                        <span class="noti-text">Lorem ipsum dolor sit ametitaque in, et!</span>
+                                                    </span>
+                                                </a>
+                                                <a class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
+                                                        <i class="material-icons warning float-left d-block font-large-1 mt-1 mr-2"> mail_outline </i>
+                                                  
+                                                    <span class="noti-wrapper">
+                                                        <span class="noti-title line-height-1 d-block text-bold-400 warning">New User Registered</span>
+                                                        <span class="noti-text">Lorem ipsum dolor sit ametitaque in </span>
+                                                    </span>
+                                                </a>
+                                                <a class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
+                                                        <i class="material-icons danger float-left d-block font-large-1 mt-1 mr-2"> mail_outline </i>
+                                          
+                                                    <span class="noti-wrapper">
+                                                        <span class="noti-title line-height-1 d-block text-bold-400 danger">New Order Received</span>
+                                                        <span class="noti-text">Lorem ipsum dolor sit ametest?</span>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <a class="noti-footer primary text-center d-block border-top border-top-blue-grey border-top-lighten-4 text-bold-400 py-1">Read All Notifications</a>
+                                        </div>
+           </li>
+            <li class="nav-item usernavmenu" ngbDropdown placement="bottom-right">
+              <a class="nav-link afternone navuserlink position-relative" id="dropdownBasic3" ngbDropdownToggle>
+                <i class="material-icons">account_circle</i>
+                <p class="d-none">User Settings</p>
+              </a>
+              <div class="blackoverlaymainuser">
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic3" class="userhomemenu">
+                  <a class="dropdown-item">
+                    <span class="bg-icon_tools_s452c8ca858_16"></span>
+                    <span>My Wedding</span>
+                  </a>
+                 <a class="dropdown-item">
+                      <span class="bg-icon_tools_s452c8ca858_14"></span>
+                      <span>My Inspirations</span>
+                 </a>
+                 <a class="dropdown-item">
+                      <span class="bg-icon_tools_s452c8ca858_10"></span>
+                      <span>Checklist</span>
+                 </a>
+                 <a class="dropdown-item">
+                      <span class="bg-icon_tools_s452c8ca858_05"></span>
+                      <span>My Suppliers</span>
+                 </a>
+                 <a class="dropdown-item">
+                      <span class="bg-icon_tools_s452c8ca858_10"></span>
+                      <span>Guest List</span>
+                 </a>
+                 <a class="dropdown-item">
+                      <span class="bg-icon_tools_s452c8ca858_02"></span>
+                      <span>Budget Planner</span>
+                 </a>
+                 <a class="dropdown-item">
+                      <span class="bg-icon_tools_s452c8ca858_09"></span>
+                      <span>My Reveiws</span>
+                 </a>
+                 <a class="dropdown-item">
+                      <i class="ft-power mr-2"></i>
+                      <span>My Accounts</span>
+                 </a>
+                 <a class="dropdown-item">
+                      <i class="ft-power mr-2"></i>
+                      <span>Inbox</span>
+                 </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" (click)="logout()">
+                  <i class="ft-power mr-2"></i>
+                  <span>Logout</span>
+                  </a>
+                </div>
+                <button class="cross hidden-sm hidden-md hidden-lg" type="button">
+                 <div class="line1"></div>
+                 <div class="line2"></div>
+                 <div class="line3"></div>
+                </button>
+              </div>
+            </li>  
+          </ul>
+
+
+
+     
 
 
 
@@ -182,18 +234,13 @@
       
 
       <button id="login" class="loginhome loginclick" data-target="#MMM"  data-toggle="modal" (click)="remove()" >
-            <i class="material-icons">account_circle</i>
-                <span>LogIn/Sign up</span>
+          <i class="material-icons">account_circle</i>
+          <span>LogIn/Sign up</span>
       </button>
 
-         <button id="login" class="loginhome loginclick" data-target="#MMM"  data-toggle="modal" (click)="remove()" >
+      <button id="login" class="loginhome loginclick" data-target="#MMM"  data-toggle="modal" (click)="remove()" >
 
-         </button>
-      
-
-
-
-
+      </button>
       <!-- login logout button -->  
     </div>
 </nav>

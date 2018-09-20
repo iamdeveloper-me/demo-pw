@@ -21,7 +21,9 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
     ],
     exports: [],
     declarations: [
+
        ],
+
     providers: [],
 })
 export class UserpannelModule { }

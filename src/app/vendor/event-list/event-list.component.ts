@@ -279,17 +279,17 @@ console.log(list.eventTitle);
   
 
   deletevent(data,index){
-    //alert(id)
-   // console.log(id);
-    var id = data.eventId;
+    alert(data)
+    console.log(data);
+   
     this.eventArray.splice(index,1);
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
-    console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id'+'='+id);
-    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id'+'='+id,{headers:headers}).subscribe(data =>{
+    console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id'+'='+data);
+    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id'+'='+data,{headers:headers}).subscribe(data =>{
 
      console.log(data.json());
    
@@ -297,14 +297,6 @@ console.log(list.eventTitle);
   }
 
 
-  addEvent(): void {
-    // this.eventArray.push({     
-    //   filesId: 1, 
-    //   draggable: true,
-    //   resizable: {
-    //   }
-    // });
-    // this.refresh.next();
-  }
+
 }
   

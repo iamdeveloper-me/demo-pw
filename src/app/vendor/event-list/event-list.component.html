@@ -49,7 +49,7 @@
                                                             <td>
                                                                 <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
                                                                 <div class="club_heading">
-                                                                <h5>Busselton Lions Club Saturday Morning Shed Sales </h5>
+                                                                <h5> {{data.eventTitle}} </h5>
                                                                 </div>
                                                                 <p>
                                                                 <strong> Capacity:{{data.capacity}}</strong>
@@ -64,7 +64,7 @@
                                                                 <strong>Entry Fee:{{data.entryFee}}</strong> 
                                                                 </p> 
                                                                 <p class="locat_tag"> 
-                                                                <i class="material-icons"> location_on</i>  306 Queen Elizabeth Ave, Bovell WA 6280, Australia
+                                                                <i class="material-icons"> location_on</i>  {{data.location}}      ===> 306 Queen Elizabeth Ave, Bovell WA 6280, Australia
                                                                 </p> 
                                                                 <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
                                                                 <p>
@@ -203,6 +203,7 @@
                 <div class="modal-body"> 
                     
                             <div class="form-group">
+
                                             <div class="input-effect form-group md-form ">  
                                                 <input class="effect-16 validate" 
                                                  required="required" 
@@ -213,11 +214,22 @@
                                                 <span class="focus-border"></span>
                                             </div>
                                         </div>
+
+
+
+
                                         <div class="form-group">
                                             <div class="input-effect form-group md-form ">  
                                                 <input  type="file" class="effect-16 validate"  required="required" [(ngModel)]="list.filesId"  
                                                 id="Image" 
                                                 name="Image">
+
+                                            <!-- <input #fileInput 
+                                                type="file"
+                                                [(ngModel)]="gallery.files" 
+                                                name="image" 
+                                                id="image"/> -->
+                                            
                                                 <label>Image</label>
                                                 <span class="focus-border"></span>
                                             </div>
@@ -290,7 +302,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-secondary btn-raise saveall" >Save</button>   
-                    <button class="btn btn-success whitetext btn-rounded"(click)= " addEvent(data)"  data-target="#Description" data-toggle="modal" id="description-function">Add{{data.eventId}}</button>
+                   
                     <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Cancel</button>
                 </div>
         </form>
@@ -402,13 +414,12 @@
                                                         <span class="focus-border"></span>
                                                     </div>
                                                 </div>  
-                            
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-secondary btn-raised saveall" >Save</button>   
-                              
-                                <button type="button" class="btn btn-secondary btn-raised">Cancel</button>
-                            </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-secondary btn-raise saveall" >Save</button>   
+                                               
+                                                <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Cancel</button>
+                                            </div>
                         
             </div>     
             </div>

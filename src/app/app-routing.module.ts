@@ -151,7 +151,6 @@ const appRoutes: Routes = [
   { path: 'home/Advertise', component:  AdvertiseComponent },
   { path: 'home/cuplefoot', component:  FootCupleComponent },
  
-
  
 
     { path: 'vendor/creatpromo', component:  CreatePromotionComponent  },

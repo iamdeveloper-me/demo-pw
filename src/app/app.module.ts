@@ -188,6 +188,7 @@ import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
 
 import { UseraccountComponent } from './userpannel/userboard/useraccount/useraccount.component';
 
+
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
     
@@ -339,6 +340,7 @@ export function getAuthServiceConfigs() {
         CategorystatsComponent,
         VendorstatsComponent,
         AdminuseraccountComponent,
+       
         
         
 

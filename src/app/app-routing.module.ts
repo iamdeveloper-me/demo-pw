@@ -122,10 +122,9 @@ import { VendorstatsComponent } from './admin/vendorstats/vendorstats.component'
 
 import { AdminuseraccountComponent } from './admin/adminuseraccount/adminuseraccount.component';
 
-<<<<<<< Updated upstream
-=======
+
 import { UseraccountComponent } from './userpannel/userboard/useraccount/useraccount.component';
->>>>>>> Stashed changes
+
 
 
 const appRoutes: Routes = [

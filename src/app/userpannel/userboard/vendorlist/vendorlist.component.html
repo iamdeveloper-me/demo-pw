@@ -12,6 +12,10 @@
 				<i class="material-icons">done_all </i> All
 				<span class="badge bg-success white">6</span>
 			</button>
+			<button class="btn btn-default filter-button" data-filter="all">
+				<i class="material-icons">done_all </i> Saved
+				<span class="badge bg-success white">6</span>
+			</button>
 			<button class="btn btn-default filter-button" data-filter="listed"><i class="material-icons">favorite</i> ShortListed <span class="badge bg-success white">2</span></button>
 			<button class="btn btn-default filter-button" data-filter="Booked"><i class="material-icons">check_circle_outline</i> Booked <span class="badge bg-success white">4</span></button>
 		</div>
@@ -46,85 +50,6 @@
 
 			<div class="col-sm-9 col-md-9">
 				<div class="row listdetail">
-					<div class="card col-sm-4 nopadd martop0px filter listed" *ngFor="let category of countryArray">
-						<div class="card-body">
-							<div class="card-img">
-								<img alt="Card image cap" class="card-img-top img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg">
-								<h4 class="card-title">
-									<span>Pandit</span>
-									<span class="boldtext">Amit Sharma</span>
-									<span>Pune</span>
-								</h4>
-								<span class="icontikmik"><i class="material-icons">favorite</i></span>
-								
-								<a class="btn btn-floating halfway-fab">
-									<i class="material-icons closebtn">close</i>
-								</a>
-							</div>
-							<div class="card-block">
-								<div>
-									<select name="Status" class="form-control selectbox">
-										<option value="1">
-											Not available 
-										</option>
-										<option value="2">
-											Discarded                                                
-										</option>
-										<option value="3">Evaluating                                                
-										</option>
-										<option value="4">Preselection                                                
-										</option>
-										<option value="5">Negotiation                                                
-										</option>
-										<option value="6" selected="">Reserved                                                
-										</option>
-									</select>
-								</div>
-								<div class="col-sm-12 nopadd martop15px">
-									<div class="col-sm-9 col-xs-9 font12px nopadd">
-										GOOD
-										<div>
-											
-											<i class="material-icons">
-												<rating [(ngModel)]="category.rating">favorite_border</rating>
-											</i>
-											
-											<!-- <i class="material-icons">
-											favorite_border
-											</i><i class="material-icons">
-											favorite_border
-											</i><i class="material-icons">
-											favorite_border
-											</i><i class="material-icons">
-											favorite_border
-											</i><i class="material-icons">
-											favorite_border
-											</i> -->
-										</div>
-									</div>
-									<div class="col-sm-3 col-xs-3 font12px nopadd">
-											Price
-											<div>
-												<i class="material-icons pull-left font18px">attach_money</i> 100
-											</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="card-footer border-top-blue-grey border-top-lighten-5 text-muted">
-							
-							<span class="tags text-center">
-								<a href="#" class="badge bg-default white">Telephone</a>
-								&nbsp;&nbsp;
-								<a href="#" class="badge bg-default white">Contact Us</a>
-							</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-sm-9 col-md-9">
-				<div class="row listdetail">
 					<div class="card col-sm-4 nopadd martop0px filter listed" >
 						<div class="card-body">
 							<div class="card-img">
@@ -134,13 +59,41 @@
 									<span class="boldtext">Amit Sharma</span>
 									<span>Pune</span>
 								</h4>
-								<span class="icontikmik"><i class="material-icons">favorite</i></span>
+								<h4 class="card-title1">
+									<span>Price</span>
+									<p>$<span>100</span></p>
+									
+								</h4>
+								<div class="box">
+										<div class="text">
+											<p>close</p>
+										</div>	
+								</div>
 								
 								<a class="btn btn-floating halfway-fab">
 									<i class="material-icons closebtn">close</i>
 								</a>
 							</div>
-							<div class="card-block">
+							<div class="change-btn">
+								<a href="#" class="btn11">CHANGE STATUS</a>
+							</div>
+							<div class="my-nots">
+								<p class="nots11">my personal nots about this supplier</p>
+							</div>
+							<div class="social-icon">
+								<ul>
+									<li>
+										<i class="fa fa-phone" aria-hidden="true"></i>
+									</li>
+									<li>
+										<i class="fa fa-envelope-o" aria-hidden="true"></i>
+									</li>
+									<li>
+										<i class="fa fa-share-alt" aria-hidden="true"></i>
+									</li>
+								</ul>
+							</div>		
+						<!-- 	<div class="card-block">
 								<div>
 									<select name="Status" class="form-control selectbox">
 										<option value="1">
@@ -186,22 +139,206 @@
 											</div>
 									</div>
 								</div>
-							</div>
-						</div>
-						<div class="card-footer border-top-blue-grey border-top-lighten-5 text-muted">
-							
-							<span class="tags text-center">
-								<a href="#" class="badge bg-default white">Telephone</a>
-								&nbsp;&nbsp;
-								<a href="#" class="badge bg-default white">Contact Us</a>
-							</span>
+							</div> -->
 						</div>
 					</div>
+
+
+
+					<div class="card col-sm-4 nopadd martop0px filter listed" >
+						<div class="card-body">
+							<div class="card-img">
+								<img alt="Card image cap" class="card-img-top img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg">
+								<h4 class="card-title">
+									<span>Pandit</span>
+									<span class="boldtext">Amit Sharma</span>
+									<span>Pune</span>
+								</h4>
+								<h4 class="card-title1">
+									<span>Price</span>
+									<p>$<span>100</span></p>
+									
+								</h4>
+								<div class="box">
+										<div class="text">
+											<p>close</p>
+										</div>	
+								</div>
+								
+								<a class="btn btn-floating halfway-fab">
+									<i class="material-icons closebtn">close</i>
+								</a>
+							</div>
+							<div class="change-btn">
+								<a href="#" class="btn11">CHANGE STATUS</a>
+							</div>
+							<div class="my-nots">
+								<p class="nots11">my personal nots about this supplier</p>
+							</div>
+							<div class="social-icon">
+								<ul>
+									<li>
+										<i class="fa fa-phone" aria-hidden="true"></i>
+									</li>
+									<li>
+										<i class="fa fa-envelope-o" aria-hidden="true"></i>
+									</li>
+									<li>
+										<i class="fa fa-share-alt" aria-hidden="true"></i>
+									</li>
+								</ul>
+							</div>		
+						<!-- 	<div class="card-block">
+								<div>
+									<select name="Status" class="form-control selectbox">
+										<option value="1">
+											Not available 
+										</option>
+										<option value="2">
+											Discarded                                                
+										</option>
+										<option value="3">Evaluating                                                
+										</option>
+										<option value="4">Preselection                                                
+										</option>
+										<option value="5">Negotiation                                                
+										</option>
+										<option value="6" selected="">Reserved                                                
+										</option>
+									</select>
+								</div>
+								<div class="col-sm-12 nopadd martop15px">
+									<div class="col-sm-9 col-xs-9 font12px nopadd">
+										GOOD
+										<div>
+											
+										
+											
+											<i class="material-icons">
+											favorite_border
+											</i><i class="material-icons">
+											favorite_border
+											</i><i class="material-icons">
+											favorite_border
+											</i><i class="material-icons">
+											favorite_border
+											</i><i class="material-icons">
+											favorite_border
+											</i> 
+										</div>
+									</div>
+									<div class="col-sm-3 col-xs-3 font12px nopadd">
+											Price
+											<div>
+												<i class="material-icons pull-left font18px">attach_money</i> 100
+											</div>
+									</div>
+								</div>
+							</div> -->
+						</div>
+					</div>
+
+
+
+					<div class="card col-sm-4 nopadd martop0px filter listed" >
+						<div class="card-body">
+							<div class="card-img">
+								<img alt="Card image cap" class="card-img-top img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg">
+								<h4 class="card-title">
+									<span>Pandit</span>
+									<span class="boldtext">Amit Sharma</span>
+									<span>Pune</span>
+								</h4>
+								<h4 class="card-title1">
+									<span>Price</span>
+									<p>$<span>100</span></p>
+									
+								</h4>
+								<div class="box">
+										<div class="text">
+											<p>close</p>
+										</div>	
+								</div>
+								
+								<a class="btn btn-floating halfway-fab">
+									<i class="material-icons closebtn">close</i>
+								</a>
+							</div>
+							<div class="change-btn">
+								<a href="#" class="btn11">CHANGE STATUS</a>
+							</div>
+							<div class="my-nots">
+								<p class="nots11">my personal nots about this supplier</p>
+							</div>
+							<div class="social-icon">
+								<ul>
+									<li>
+										<i class="fa fa-phone" aria-hidden="true"></i>
+									</li>
+									<li>
+										<i class="fa fa-envelope-o" aria-hidden="true"></i>
+									</li>
+									<li>
+										<i class="fa fa-share-alt" aria-hidden="true"></i>
+									</li>
+								</ul>
+							</div>		
+						<!-- 	<div class="card-block">
+								<div>
+									<select name="Status" class="form-control selectbox">
+										<option value="1">
+											Not available 
+										</option>
+										<option value="2">
+											Discarded                                                
+										</option>
+										<option value="3">Evaluating                                                
+										</option>
+										<option value="4">Preselection                                                
+										</option>
+										<option value="5">Negotiation                                                
+										</option>
+										<option value="6" selected="">Reserved                                                
+										</option>
+									</select>
+								</div>
+								<div class="col-sm-12 nopadd martop15px">
+									<div class="col-sm-9 col-xs-9 font12px nopadd">
+										GOOD
+										<div>
+											
+										
+											
+											<i class="material-icons">
+											favorite_border
+											</i><i class="material-icons">
+											favorite_border
+											</i><i class="material-icons">
+											favorite_border
+											</i><i class="material-icons">
+											favorite_border
+											</i><i class="material-icons">
+											favorite_border
+											</i> 
+										</div>
+									</div>
+									<div class="col-sm-3 col-xs-3 font12px nopadd">
+											Price
+											<div>
+												<i class="material-icons pull-left font18px">attach_money</i> 100
+											</div>
+									</div>
+								</div>
+							</div> -->
+						</div>
+					</div>
+
+
+
 				</div>
 			</div>
 	</div>
 </div>
-
 
 
 

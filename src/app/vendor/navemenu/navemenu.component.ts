@@ -116,11 +116,11 @@ export class NavemenuComponent implements OnInit {
           });
       $('.blackoverlaymobile').on('click', function(){
       //alert("h1");
-      $('#wrapper').toggleClass('toggled');
-      $('.togglebtnmenu').toggleClass('cross');
+        $('#wrapper').toggleClass('toggled');
+        $('.togglebtnmenu').toggleClass('cross');
         $('.blackoverlaymobile').toggleClass('blockmobile');
         $('#page-content-wrapper').toggleClass('overhidden');
-          });
+      });
            });
   }
     

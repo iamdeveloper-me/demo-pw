@@ -12,6 +12,7 @@ import { SearchresultComponent } from './searchresult/searchresult.component';
 import { AuthGuard } from './shared/auth/auth-guard.service';
 
 import { HomeComponent } from './home/home.component';
+
 import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
 import { BusinessInfoComponent } from "./vendor/business-info/business-info.component";
 import { LocationComponent } from "./vendor/location/location.component";
@@ -30,6 +31,12 @@ import { FootCupleComponent } from './foot-cuple/foot-cuple.component';
 import { UserboardComponent } from './userpannel/userboard/userboard.component';
 import { InspirationsComponent } from './userpannel/userboard/inspirations/inspirations.component';
 import { UserReviewsComponent } from './userpannel/userboard/user-reviews/user-reviews.component';
+
+
+
+
+
+
 
 import { RegisterComponent} from './register/register.component';
 import { EventsComponent } from './events/events.component';
@@ -50,7 +57,6 @@ import { UsermailsearchComponent } from './userpannel/userboard/usermailsearch/u
 import { BookmarkComponent } from './userpannel/userboard/bookmark/bookmark.component';
 import { GuestComponent } from './userpannel/userboard/guest/guest.component';
 import { BudgetComponent } from './userpannel/userboard/budget/budget.component';
-
 import { CalendertableComponent } from './vendor/calendertable/calendertable.component';
 import { CreateEventComponent } from './vendor/create-event/create-event.component';
 import { MessageComponent } from './vendor/message/message.component';
@@ -116,6 +122,11 @@ import { VendorstatsComponent } from './admin/vendorstats/vendorstats.component'
 
 import { AdminuseraccountComponent } from './admin/adminuseraccount/adminuseraccount.component';
 
+
+import { UseraccountComponent } from './userpannel/userboard/useraccount/useraccount.component';
+
+
+
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -139,6 +150,8 @@ const appRoutes: Routes = [
   { path: 'home/Careers', component:  CareersComponent  },
   { path: 'home/Advertise', component:  AdvertiseComponent },
   { path: 'home/cuplefoot', component:  FootCupleComponent },
+ 
+ 
 
     { path: 'vendor/creatpromo', component:  CreatePromotionComponent  },
     { path: 'vendor/dashboard', component:  DashboardComponent  },
@@ -184,6 +197,8 @@ const appRoutes: Routes = [
     { path: 'vendor/deals', component:  PromotionDealsComponent},
     { path: 'vendor/homepage', component:  PromotionHomepageComponent},
 
+  
+
 
   { path: 'User/vendor', component: VendorlistComponent },  
 
@@ -197,7 +212,7 @@ const appRoutes: Routes = [
   { path: 'User/Budget', component: BudgetComponent },
   { path: 'User/Inspirations', component: InspirationsComponent },
   { path: 'User/UserReviews', component: UserReviewsComponent },
-
+   { path: 'User/myaccount', component: UseraccountComponent },
   { path: 'Admin/dashboard', component:  AdmindashboardComponent },  
   { path: 'Admin/login', component:  AdminComponent },  
   { path: 'Admin/Useraccountlist', component:  UseraccountlistComponent },  

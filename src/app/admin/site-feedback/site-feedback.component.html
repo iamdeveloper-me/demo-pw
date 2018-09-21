@@ -6,7 +6,7 @@
         <div class="container-fluid nopadd">
             <app-adminnavbar></app-adminnavbar>
            
-            <section class="feedback-div">
+            <!-- <section class="feedback-div">
             	<div class="container">
             		<div class="row">
             			  <div class="col-md-3 row mb-4">
@@ -18,51 +18,43 @@
 						    <div class="col text-center">
 						      <a href="#" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#largeModal">Click to open Modal</a>
 						    </div>
-						  </div>
-            			<div class="col-md-6">
-            				
-            			</div>			
+						  </div>		
             		</div>	
             	</div>
-            </section>	
+            </section> -->	
 
 <section class="chart-div">
 	<div class="container">
-		<div class="row">  
-    <div class="col-sm-6"> 
-        <div class="card">
+		<div class="row card padbot30px"> 
             <div class="card-header">
-                <h4 class="card-title">Vendors</h4>
-            </div>
-            <div class="card-body">
-                <div class="card-block">
+                <h4 class="chartmainhead">Site Evaluation
+                    <select class="selectbox">
+                        <option>2018</option>
+                        <option>2019</option>
+                    </select>
+                </h4>
+               
+            </div> 
+            <div class="col-sm-12 row">
+                <div class="col-sm-6"> 
+                    <h4 class="charttitle">Vendors</h4>
                     <div id="bar-doughnut" class="height-200">
-                        <canvas baseChart  class="chart" [data]="visitordoughnutChartData" [labels]="visitordoughnutChartLabels" [options]="visitordoughnutChartOptions" [chartType]="visitordoughnutChartType" [colors]="visitordoughnutChartColors" 
-                         (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                         </canvas>
+                    <canvas baseChart  class="chart" [data]="visitordoughnutChartData" [labels]="visitordoughnutChartLabels" [options]="visitordoughnutChartOptions" [chartType]="visitordoughnutChartType" [colors]="visitordoughnutChartColors" 
+                     (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                     </canvas>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6"> 
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Users</h4>
-            </div>
-            <div class="card-body">
-                <div class="card-block">
+                <div class="col-sm-6"> 
+                    <h4 class="charttitle">Users</h4>
                     <div id="bar-doughnut" class="height-200">
-                        <canvas baseChart  class="chart" [data]="visitordoughnutChartData" [labels]="visitordoughnutChartLabels" [options]="visitordoughnutChartOptions" [chartType]="visitordoughnutChartType" [colors]="visitordoughnutChartColors" 
-                         (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                         </canvas>
+                    <canvas baseChart  class="chart" [data]="visitordoughnutChartData" [labels]="visitordoughnutChartLabels" [options]="visitordoughnutChartOptions" [chartType]="visitordoughnutChartType" [colors]="visitordoughnutChartColors" 
+                     (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                     </canvas>
                     </div>
-                </div>
+                </div>        
             </div>
         </div>
-    </div>
-</div>
-	</div>	
+    </div>	
 </section>
 <section class="table-div">
 	<div class="container-fluid">

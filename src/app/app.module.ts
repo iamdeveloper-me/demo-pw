@@ -10,6 +10,7 @@ import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.com
 
 
 
+
 //calender 
 
 import { CommonModule } from "@angular/common";
@@ -102,7 +103,6 @@ import { VedioviewComponent  } from './vendor/vedioview/vedioview.component';
 import { StatisticsComponent } from './vendor/statistics/statistics.component';
 import { AllPromotionPageComponent ,NgbdModalContent} from './vendor/all-promotion-page/all-promotion-page.component';
 import { VendorsidebarComponent } from './vendor/vendorsidebar/vendorsidebar.component';
-import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
 import { GalleryComponent  } from './vendor/gallery/gallery.component';
 import { VendorComponent } from './vendor/vendor.component';
 import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
@@ -119,7 +119,6 @@ import { MembershipComponent } from './vendor/membership/membership.component';
 
 
 import { CreatePromotionComponent } from './vendor/create-promotion/create-promotion.component'; 
-
 
 
 
@@ -185,13 +184,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation';
 import { MatchHeightModule } from "./shared/directives/match-height.directive";
 
+import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
 
-
-
-
-
-
-
+import { UseraccountComponent } from './userpannel/userboard/useraccount/useraccount.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -254,7 +249,7 @@ export function getAuthServiceConfigs() {
         ChatComponent,
         MylistingComponent,
         SearchresultComponent,
-        MyaccountComponent,
+    
         EditprofileComponent,
         GalleryComponent,
         DiscountdealsComponent,
@@ -288,6 +283,7 @@ export function getAuthServiceConfigs() {
         TimelineComponent ,
         UsermessageComponent,
         UsermailsearchComponent,
+        UseraccountComponent,
         BookmarkComponent,
         NgbdbookmarkModalContent,
         GuestComponent,
@@ -322,6 +318,7 @@ export function getAuthServiceConfigs() {
         SitestatsandreportsComponent,
         AdminusersComponent,
         ReviewandfeedbackComponent,
+        MyaccountComponent,
         AdmincalenderComponent,
         MininavbarComponent,
         PortfolioviewphotoComponent,
@@ -343,6 +340,9 @@ export function getAuthServiceConfigs() {
         CategorystatsComponent,
         VendorstatsComponent,
         AdminuseraccountComponent,
+       
+        
+        
 
 
 

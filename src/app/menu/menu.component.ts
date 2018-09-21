@@ -108,24 +108,18 @@ export class MenuComponent implements OnInit {
 
     localStorage.clear();
     this.router.navigate(['../home']);
-    $(".user").hide(); 
     $(".loginclick").show();
     $("#sidebar-wrapper").hide();
-    $(".tool_icons").hide();
-    $(".tikright").hide();
-    $(".vendorappbtn").hide();
-    $(".vendorappbtnclose").hide();
-    $(".notifiybtn ").hide();
+    $(".userlogindisplay").hide();
+    $(".vendorlogindisplay").hide();
     
     this.typeLogout();
    }
 
     ngOnInit() { 
-        $(".tikright").hide();
-        $(".tool_icons").hide();
         $("#sidebar-wrapper").hide();
-        $(".vendorappbtn").hide();
-        $(".notifiybtn").hide();
+        $(".userlogindisplay").hide();
+        $(".vendorlogindisplay").hide();
         var vendorid = localStorage.getItem('vendorid')
         //alert(vendorid)
         var authToken = localStorage.getItem('userToken');
@@ -134,22 +128,18 @@ export class MenuComponent implements OnInit {
             
             if(window.location.href.indexOf("home") && vendorid)
             {   
-                //alert("jjllll") 
+                // alert("jjllll") 
                 $(".loginclick").hide();
-                $(".user").show();
-                $(".vendorappbtn").show();
-                $("#wrappervendorsidbar").show();
-                $(".notifiybtn ").show();
+                $(".vendorlogindisplay").show();
+                $(".userlogindisplay").hide();
             }
             else
 
             {   
-                $(".loginclick").hide();
-                $("#wrappervendorsidbar").hide(); 
-                $(".tikright").show();
-                $(".tool_icons").show();
-                $(".vendorappbtn").hide();
-                $(".notifiybtn ").show();
+                $(".loginclick").hide(); 
+                $(".vendorlogindisplay").hide();
+                $(".userlogindisplay").show();
+
 
             //    if(window.location.href.indexOf("home") && !(vendorid)){
             //     alert("oooooooooo")
@@ -350,40 +340,27 @@ $(".homemenu").click(function(){
     $(".signuplink").click(function(){  
         $("body").removeClass("modal-open"); 
     });
-    $(".tikright").click(function(){
-        $(".tool_icons").addClass("in");
-        $(".tikright").hide(); 
-        $(".tikrightclose").show();
-        $(".slidemenu").addClass("rtslide");
-        $(".slidemenu").removeClass("outslide");
-        $(".blackoverlaymain").addClass( "blockmobile"); 
+    
+
+  $(".navuserlink").click(function(){
+            $(".blackoverlaymainuser").addClass( "blockmobile");
+            $(".blackoverlaymainuser").css( 'right' , '0px');
+            $(".blackoverlaymainuser").css( 'z-index' , '9999');
+          });
+
+  $(".navvendorlink").click(function(){
+            $(".blackoverlaymainuser").addClass( "blockmobile");
+            $(".blackoverlaymainuser").css( 'right' , '0px');
+            $(".blackoverlaymainuser").css( 'z-index' , '9999');
+          });
+
+   $(".blackoverlaymainuser").click(function(){
+      $(".blackoverlaymainuser").removeClass( "blockmobile");
+      $(".blackoverlaymainuser").css( 'right' , '-100%');
     });
-
-    $(".vendorappbtn").click(function(){
-        //alert("open");
-        $("#wrappervendor").addClass('toggled');
-        $(".vendorappbtnclose").show(); 
-        $(".vendorappbtn").hide(); 
-        $(".slidemenu").addClass("rtslide");
-        $(".slidemenu").removeClass("outslide");
-        $(".blackoverlaymain").addClass( "blockmobile"); 
-     });
-
-    $(".vendorappbtnclose").click(function(){
-       // alert("close");
-        $("#wrappervendor").removeClass('toggled');
-        $(".vendorappbtnclose").hide(); 
-        $(".vendorappbtn").show(); 
-        $(".slidemenu").addClass("outslide");
-        $(".slidemenu").addClass("rtslide111");
-        setTimeout(function() { $(".slidemenu").removeClass("rtslide111") }, 1000);
-        $(".slidemenu").removeClass("rtslide");
-        $(".blackoverlaymain").removeClass( "blockmobile"); 
-     });
-     
-    $(".tikrightclose").click(function(){    
-        $(".tool_icons").removeClass("in");
-        $(".tikright").show(); 
+ 
+    
+    $(".tikrightclose").click(function(){ 
         $(".tikrightclose").hide();
         $(".slidemenu").addClass("outslide");
         $(".slidemenu").addClass("rtslide111");

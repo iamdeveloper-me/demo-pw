@@ -21,6 +21,8 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
 // import { LocationComponent } from './location/location.component';
 // import { VideosComponent } from './videos/videos.component';
  import { PromotionsComponent } from './promotions/promotions.component';
+// import { DemopageComponent } from './demopage/demopage.component';
+
 
 //import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.component';
 //import { InvoiceComponent } from './invoice/invoice.component';
@@ -86,6 +88,8 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
         // LocationComponent,
         // VideosComponent,
          PromotionsComponent,
+        // DemopageComponent,
+      
      //   InvoiceDetailComponent,
      //   InvoiceComponent,
         //PromotionPriorityComponent,

@@ -1023,9 +1023,9 @@ export var CrmdoughnutChartOptions: any = {
   maintainAspectRatio: false
 };
 ///3) visitor
-export var visitordoughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-export var visitordoughnutChartData: number[] = [350, 450, 100];
-export var visitordoughnutChartColors: any[] = [{ backgroundColor: ["green", "pink", "black"] }];
+export var visitordoughnutChartLabels: string[] = ['star1', 'star2', 'star3','star4','star5'];
+export var visitordoughnutChartData: number[] = [350, 450, 100, 300, 150];
+export var visitordoughnutChartColors: any[] = [{ backgroundColor: ["green", "pink", "black","yellow","brown"] }];
 export var visitordoughnutChartType = 'doughnut';
 export var visitordoughnutChartOptions: any = {
   animation: false,

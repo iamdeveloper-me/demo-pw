@@ -284,7 +284,7 @@ $(window).scroll(function() {
 });
 $(window).scroll(function() {    
     var scroll = $(window).scrollTop();
-    if(scroll >= 1150) {
+    if(scroll >= 1160) {
         $(".aboutbox").addClass("activebuttontab");
         $(".overviewbox").removeClass("activebuttontab");
          $(".gallerybox").removeClass("activebuttontab");
@@ -293,7 +293,7 @@ $(window).scroll(function() {
 });
 $(window).scroll(function() {    
     var scroll = $(window).scrollTop();
-    if(scroll >= 1400) {
+    if(scroll >= 1420) {
       $(".gallerybox").addClass("activebuttontab");
         $(".aboutbox").removeClass("activebuttontab");
         $(".overviewbox").removeClass("activebuttontab");
@@ -302,7 +302,7 @@ $(window).scroll(function() {
 }); 
 $(window).scroll(function() {    
     var scroll = $(window).scrollTop();
-    if(scroll >= 1800) {
+    if(scroll >= 1820) {
        $(".reviewbox").addClass("activebuttontab");
        $(".gallerybox").removeClass("activebuttontab");
         $(".aboutbox").removeClass("activebuttontab");
@@ -313,7 +313,7 @@ $(window).scroll(function() {
 
 
 $(window).scroll(function(){
-      if ($(this).scrollTop() > 400) {
+      if ($(this).scrollTop() > 270) {
           $('.icon-div').addClass('fixedpostioneddesktop');
       } else  {
          $('.icon-div').removeClass('fixedpostioneddesktop');

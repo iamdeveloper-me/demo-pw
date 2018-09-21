@@ -22,7 +22,8 @@ export class RegisterComponent  {
 
   ngOnInit() {
             $(".loginnav").hide(); 
-            $.getScript('./assets/js/register.js');             
+            $.getScript('./assets/js/register.js');  
+            $.getScript('./assets/js/membershipslider.js');            
             $(".show").hide();
 
             $("div").removeClass( "modal-backdrop");

@@ -32,6 +32,12 @@ import { UserboardComponent } from './userpannel/userboard/userboard.component';
 import { InspirationsComponent } from './userpannel/userboard/inspirations/inspirations.component';
 import { UserReviewsComponent } from './userpannel/userboard/user-reviews/user-reviews.component';
 
+
+
+
+
+
+
 import { RegisterComponent} from './register/register.component';
 import { EventsComponent } from './events/events.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
@@ -116,6 +122,10 @@ import { VendorstatsComponent } from './admin/vendorstats/vendorstats.component'
 
 import { AdminuseraccountComponent } from './admin/adminuseraccount/adminuseraccount.component';
 
+<<<<<<< Updated upstream
+=======
+import { UseraccountComponent } from './userpannel/userboard/useraccount/useraccount.component';
+>>>>>>> Stashed changes
 
 
 const appRoutes: Routes = [
@@ -204,7 +214,7 @@ const appRoutes: Routes = [
   { path: 'User/Budget', component: BudgetComponent },
   { path: 'User/Inspirations', component: InspirationsComponent },
   { path: 'User/UserReviews', component: UserReviewsComponent },
-
+   { path: 'User/myaccount', component: UseraccountComponent },
   { path: 'Admin/dashboard', component:  AdmindashboardComponent },  
   { path: 'Admin/login', component:  AdminComponent },  
   { path: 'Admin/Useraccountlist', component:  UseraccountlistComponent },  

@@ -9,8 +9,8 @@
         <div class="col-sm-12 card">  
         <div class="createmyalbum">
             <div class=" text-center">
-                <h2>MY EVENTS</h2>       
-                <span>Increase your brand awareness through event hosting. It's free!</span>
+                <h2>MY EVENTS {{eventArray}}</h2>       
+                <span>Increase your brand awareness through event hosting. It's free! </span>
             </div>  
 
               <ul class="tabbingdesign">
@@ -26,10 +26,29 @@
                             
                                 <div class="serchbox">
                                     <input type="text" placeholder="Search...." name="">
-                                      <button class="btn btn-small btn-link" (click)="open(adduser)"> 
-                                        <i class="material-icons"> add </i> <span> <strong> Create New Event {{test}}</strong> </span></button>
+                                    <button class="btn btn-small btn-link" (click)="open(adduser)"> 
+                                    
+                                    
+                                        <i class="material-icons"> add </i> <span> <strong> Create New Event {{fileIdfield.filesId}}</strong> </span></button>
+                                    
+                                
+                                    
                                 </div>
-                           
+                                  
+                                <form (ngSubmit)="addFile(info)" #info="ngForm" class="    padding-left: 84%">
+                                        <input #fileInput 
+                                            type="file"
+                                            [(ngModel)]="gallery.files" 
+                                            name="image" 
+                                            id="image"/>                     
+                                      
+                                        <button type="submit" class="btn btn-small btn-link" >
+                                                <i class="material-icons"> add </i>
+                                            upload event image </button>   
+                                        <span class="focus-border"></span>
+                                </form>   
+                                            
+                                  
                              
                         </div>
                         <div class="clearfix"></div>
@@ -39,16 +58,33 @@
                                     <div class="card martop0px"  *ngFor="let name of data.eventsDates"   >
                                         <div class="card-body borall" *ngIf="name.eventDate < test" >
                                             <div class="card-block">
-                                                <div class="col-md-4 col-12 pad_0px">
-                                                    
-                                                    <img src="{{data.files.path}}" class="img-responsive">
+                                           
+                                              
+                                                <div class="col-md-4 col-12 pad_0px " >
+                                                       <img  src="{{data.files.path}} " class="img-responsive"> 
+                                                  
+                                                    <!-- <p>{{data.files.path}}</p> -->
                                                 </div>
+                                           
+                                              
                                                 <div class="col-md-8 col-12 textboxevent">
                                                     <table>
                                                         <tr>
                                                             <td>
                                                                 <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
                                                                 <div class="club_heading">
+                                                                        <!-- <form (ngSubmit)="addFile(info)" #info="ngForm" >
+                                                                                <input #fileInput 
+                                                                                    type="file"
+                                                                                    [(ngModel)]="gallery.files" 
+                                                                                    name="image" 
+                                                                                    id="image"/>
+                        
+                                                                    
+                                                                                <label>Image</label>
+                                                                                <button type="submit" class="btn btn-secondary btn-raise saveall" (click) = "addFile(info)">upload</button>   
+                                                                                <span class="focus-border"></span>
+                                                                         </form> -->
                                                                 <h5> {{data.eventTitle}} </h5>
                                                                 </div>
                                                                 <p>
@@ -64,17 +100,17 @@
                                                                 <strong>Entry Fee:{{data.entryFee}}</strong> 
                                                                 </p> 
                                                                 <p class="locat_tag"> 
-                                                                <i class="material-icons"> location_on</i>  {{data.location}}      ===> 306 Queen Elizabeth Ave, Bovell WA 6280, Australia
+                                                                <i class="material-icons"> location_on</i>  {{data.location}}      
                                                                 </p> 
-                                                                <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
+                                                                <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px" *ngFor="let name of data.eventsDates">
                                                                 <p>
-                                                                    <i class="material-icons">access_time </i> <strong> Start Time {{data.createdOn | date :  "shortTime" }}</strong>  
+                                                                    <i class="material-icons">access_time </i> <strong> Start Time {{name.startTime  | date :  "shortTime" }}</strong>  
                                                                 </p>
                                                                 
                                                                 </div>
-                                                                <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
+                                                                <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px" *ngFor="let name of data.eventsDates">
                                                                 <p>
-                                                                    <i class="material-icons">access_time </i><strong>End Time  {{data.createdOn | date :  "shortTime" }} </strong>
+                                                                    <i class="material-icons">access_time </i><strong>End Time  {{name.endTime | date :  "shortTime" }} </strong>
                                                                 </p>
                                                                 
                                                                 </div>
@@ -90,7 +126,7 @@
                                                                 </div>
                                                                 </div>
                                                             </td>
-                                                            <td class="text-center">
+                                                            <td class="text-center">s
                                                                 <button class="btn btn-success whitetext btn-rounded"(click)= "editevent(data)"  data-target="#Description" data-toggle="modal" id="description-function">Edit{{data.eventId}}</button>
                                                                 
                                                                  <button class="btn btn-warning whitetext btn-rounded" (click)= "deletevent(data,i)">Delete {{data.eventId}} </button>
@@ -111,12 +147,12 @@
                         </section>
                         <section id="action2">
                                 <div class="col-sm-12 nopadd"   *ngFor="let data of eventArray;let i=index " >
-                                        <div class="card martop0px"  *ngFor="let name of data.eventsDates"   >
-                                            <div class="card-body borall"  *ngIf="name.eventDate >= test" >
+                                        <div class="card martop0px"  *ngFor="let name of data.eventsDates"  >
+                                            <div class="card-body borall"  *ngIf="name.eventDate > test">
                                                 <div class="card-block">
                                                     <div class="col-md-4 col-12 pad_0px">
                                                         
-                                                        <img src="{{data.files.path}}" class="img-responsive">
+                                                        <img  src="{{data.files.path}}" class="img-responsive">
                                                     </div>
                                                     <div class="col-md-8 col-12 textboxevent">
                                                         <table>
@@ -124,7 +160,7 @@
                                                                 <td>
                                                                     <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
                                                                     <div class="club_heading">
-                                                                    <h5>Busselton Lions Club Saturday Morning Shed Sales
+                                                                    <h5> {{data.eventTitle}}
                                                                        
                                                                     </h5>
                                                                     </div>
@@ -141,17 +177,17 @@
                                                                     <strong>Entry Fee:{{data.entryFee}}</strong> 
                                                                     </p> 
                                                                     <p class="locat_tag"> 
-                                                                    <i class="material-icons"> location_on</i>  306 Queen Elizabeth Ave, Bovell WA 6280, Australia
+                                                                    <i class="material-icons"> location_on</i> {{data.location}}  
                                                                     </p> 
-                                                                    <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
+                                                                    <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px"  *ngFor="let name of data.eventsDates">
                                                                     <p>
-                                                                        <i class="material-icons">access_time </i> <strong> Start Time {{data.createdOn | date :  "shortTime" }}</strong>  
+                                                                        <i class="material-icons">access_time </i> <strong> Start Time {{name.startTime | date :  "shortTime" }}</strong>  
                                                                     </p>
                                                                     
                                                                     </div>
-                                                                    <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
+                                                                    <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px"  *ngFor="let name of data.eventsDates">
                                                                     <p>
-                                                                        <i class="material-icons">access_time </i><strong>End Time  {{data.createdOn | date :  "shortTime" }} </strong>
+                                                                        <i class="material-icons">access_time </i><strong>End Time  {{name.endTime | date :  "shortTime" }} </strong>
                                                                     </p>
                                                                     
                                                                     </div>
@@ -169,7 +205,7 @@
                                                                 </td>
                                                                 <td class="text-center">
                                                                     <button class="btn btn-success whitetext btn-rounded"(click)= "editevent(data)"  data-target="#Description" data-toggle="modal" id="description-function">Edit{{data.eventId}}</button>
-                                                                     <button class="btn btn-warning whitetext btn-rounded" (click)= "deletevent(data.eventId)">Delete {{data.eventId}} </button>
+                                                                     <button class="btn btn-warning whitetext btn-rounded" (click)= "deletevent(data)">Delete {{data.eventId}} </button>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -191,121 +227,119 @@
     </div>	 
 </div> 
 </div>  
-
+{{date |json}}
 <ng-template #adduser let-c="close" let-d="dismiss">
-        <form (ngSubmit)="event(list)" #list="ngForm" >
-                <div class="modal-header text-center">
-                    <h4 class="modal-title"><b>Create Event </b></h4>
-                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+ <form (ngSubmit)="event(list)" #list="ngForm" > 
+        <div class="modal-header text-center">
+            <h4 class="modal-title"><b>Create Event  {{fileIdfield.filesId}}</b></h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body"> 
+            <div class="form-group">
+                <div class="input-effect form-group md-form ">  
+                    <input class="effect-16 validate" 
+                    required="required" 
+                    [(ngModel)]="list.eventTitle"  
+                    id="Title" 
+                    name="Title" >
+                    <label>Title</label>
+                    <span class="focus-border"></span>
                 </div>
-                <div class="modal-body"> 
+            </div>
+            <div class="form-group">
+                <div class="input-effect form-group md-form "> 
+                    <!-- <input  type="file" accept="image/*" class="effect-16 validate"  required="required" [(ngModel)]="list.filesId"  
+                    id="Image" 
+                    name="Image"> -->
+                    <input type="hidden"
+                    name="filesId" 
+                    id="filesId"
+                    [value]="fileIdfield.filesId"
+                    [(ngModel)]="fileIdfield.filesId">     
                     
-                            <div class="form-group">
-
-                                            <div class="input-effect form-group md-form ">  
-                                                <input class="effect-16 validate" 
-                                                 required="required" 
-                                                 [(ngModel)]="list.eventTitle"  
-                                                 id="Title" 
-                                                 name="Title" >
-                                                <label>Title</label>
-                                                <span class="focus-border"></span>
-                                            </div>
-                                        </div>
-
-
-
-
-                                        <div class="form-group">
-                                            <div class="input-effect form-group md-form ">  
-                                                <input  type="file" class="effect-16 validate"  required="required" [(ngModel)]="list.filesId"  
-                                                id="Image" 
-                                                name="Image">
-
-                                            <!-- <input #fileInput 
-                                                type="file"
-                                                [(ngModel)]="gallery.files" 
-                                                name="image" 
-                                                id="image"/> -->
-                                            
-                                                <label>Image</label>
-                                                <span class="focus-border"></span>
-                                            </div>
-                                        </div>
-                                        
-                            <div class="form-group date_picker">
-                                <label>event date:</label> <br>
-                                <input type="date"
-                                 name="eventdate" 
-                                 id="eventdate"
-                                 [(ngModel)]="list.eventDate">
-                            </div>
-                            <div class="form-group date_picker">
-                                <label>
-                                    <a href=""> start time </a>
-                                </label><br>
-                               <input type="time" 
-                               name="starttime"
-                               id="starttime"
-                               [(ngModel)]="list.startTime">
-                            </div>
-                            <div class="form-group date_picker">
-                                    <label>
-                                        <a href="">end time </a>
-                                    </label><br>
-                                   <input type="time" 
-                                   name="endtime"
-                                   id="endtime"
-                                   [(ngModel)]="list.endTime">
-                                </div>
-                            <div class="form-group">
-                                <div class="input-effect form-group md-form ">  
-                                    <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.location" name="Location" id="Location">
-                                    <label>Location</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-effect form-group md-form ">  
-                                    <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.capacity" name="Capacity" id="Capacity">
-                                    <label>Capacity</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-effect form-group md-form "> 
-                                    <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.eventDescription" name="eventDescription" id="eventDescription"> 
-                                    <textarea class="effect-16 validate"  required="required"></textarea>
-                                    <label>Description</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>   
-                            <div class="form-group">
-                                    <div class="input-effect form-group md-form ">  
-                                        <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.entry" name="entry" id="entry">
-                                        <textarea class="effect-16 validate"  required="required"></textarea>
-                                        <label>Entry</label>
-                                        <span class="focus-border"></span>
-                                    </div>
-                                </div> 
-                                <div class="form-group">
-                                        <div class="input-effect form-group md-form ">
-                                        <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.venueName" name="venueName" id="venueName">
-                                            <textarea class="effect-16 validate"  required="required"></textarea>
-                                            <label>VenueName</label>
-                                            <span class="focus-border"></span>
-                                        </div>
-                                    </div>  
-                
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary btn-raise saveall" >Save</button>   
-                   
-                    <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Cancel</button>
+            </div>             
+            <div class="form-group date_picker">
+                <label>event date:</label> <br>
+                <input type="date"
+                    name="eventdate" 
+                    id="eventdate"
+                    [(ngModel)]="list.eventDate">
+            </div>
+            <div class="form-group date_picker">
+                <label>
+                    <a href=""> start time </a>
+                </label><br>
+                <input type="time" 
+                name="starttime"
+                id="starttime"
+                [(ngModel)]="list.startTime">
+            </div>
+            <div class="form-group date_picker">
+                    <label>
+                        <a href="">end time </a>
+                    </label><br>
+                    <input type="time" 
+                    name="endtime"
+                    id="endtime"
+                    [(ngModel)]="list.endTime">
+            </div>
+            <div class="form-group">
+                <div class="input-effect form-group md-form ">  
+                    <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.location" name="Location" id="Location">
+                    <label>Location</label>
+                    <span class="focus-border"></span>
                 </div>
-        </form>
+            </div>
+            <div class="form-group">
+                <div class="input-effect form-group md-form "> 
+                    <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.capacity" name="Capacity" id="Capacity">
+                    <label>Capacity</label>
+                    <span class="focus-border"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-effect form-group md-form "> 
+                    <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.eventDescription" name="eventDescription" id="eventDescription"> 
+                  
+                    <label>Description</label>
+                    <span class="focus-border"></span>
+                </div>
+            </div>   
+            <div class="form-group">
+                    <div class="input-effect form-group md-form ">  
+                        <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.entry" name="entry" id="entry">
+                      
+                        <label>Entry</label>
+                        <span class="focus-border"></span>
+                    </div>
+            </div> 
+            <div class="form-group">
+                    <div class="input-effect form-group md-form ">
+                    <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.venueName" name="venueName" id="venueName">
+                     
+                        <label>VenueName</label>
+                        <span class="focus-border"></span>
+                    </div>
+            </div>  
+            <div class="form-group">
+                    <div class="input-effect form-group md-form ">
+                    <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.entryFee" name="entryFee" id="entryFee">
+                      
+                        <label>entryFee</label>
+                        <span class="focus-border"></span>
+                    </div>
+            </div> 
+     
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-secondary btn-raise "  >Save</button>   
+            
+            <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Cancel</button>
+        </div> 
+   </form>     
 </ng-template>
 
 <form (ngSubmit)="editsave(data)" #data="ngForm" >
@@ -313,7 +347,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header text-center">
-                <h4 class="modal-title">Edit Business Description</h4>
+                <h4 class="modal-title">Edit Business  {{eventdate | json}}</h4>
             </div>
             <div class="modal-body">     
                  
@@ -341,40 +375,47 @@
                                                             <span class="focus-border"></span>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <div class="input-effect form-group md-form ">  
-                                                            <input  type="file" class="effect-16 validate"  required="required" [(ngModel)]="modelfield.filesId"  
-                                                            id="Image" 
-                                                            name="Image">
-                                                            <label>Image{{modelfield.filesId}}</label>
-                                                            <span class="focus-border"></span>
-                                                        </div>
-                                                    </div>
+                                                    <!-- <div class="form-group">
+                                                            <form (ngSubmit)="addFile(info)" #info="ngForm" class="    padding-left: 84%">
+                                                                    <input #fileInput 
+                                                                        type="file"
+                                                                        [(ngModel)]="gallery.files" 
+                                                                        name="image" 
+                                                                        id="image"/>                     
+                                                                  
+                                                                    <button type="submit" class="btn btn-small btn-link" >
+                                                                            <i class="material-icons"> add </i>
+                                                                        upload event image </button>   
+                                                                    <span class="focus-border"></span>
+                                                            </form>   
+                                                    </div> -->
                                                     
                                         <div class="form-group date_picker">
                                             <label>event date: {{modelfield.eventDate}}</label> <br>
                                             <input type="date"
                                             name="eventdate" 
                                             id="eventdate"
-                                            [(ngModel)]="modelfield.eventDate">
+                                            [(ngModel)]="eventdate">
+                                           
                                         </div>
                                         <div class="form-group date_picker">
                                             <label>
-                                                <a href=""> start time {{modelfield.startTime}} </a>
+                                                <a href=""> start time {{startime}} </a>
                                             </label><br>
                                         <input type="time" 
                                         name="starttime"
                                         id="starttime"
-                                        [(ngModel)]="modelfield.startTime">
+                                        [(ngModel)]="startime">
                                         </div>
                                         <div class="form-group date_picker">
                                                 <label>
-                                                    <a href="">end time{{modelfield.endTime}}</a>
+                                                    <a href="">end time{{endTime}}</a>
                                                 </label><br>
                                             <input type="time" 
                                             name="endtime"
                                             id="endtime"
-                                            [(ngModel)]="modelfield.endTime">
+                                            
+                                            [(ngModel)]="endtime">
                                             </div>
                                         <div class="form-group">
                                             <div class="input-effect form-group md-form ">  
@@ -393,7 +434,6 @@
                                         <div class="form-group">
                                             <div class="input-effect form-group md-form "> 
                                                 <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="modelfield.eventDescription" name="eventDescription" id="eventDescription"> 
-                                                <textarea class="effect-16 validate"  required="required"></textarea>
                                                 <label>Description</label>
                                                 <span class="focus-border"></span>
                                             </div>
@@ -401,15 +441,23 @@
                                         <div class="form-group">
                                                 <div class="input-effect form-group md-form ">  
                                                     <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="modelfield.entry" name="entry" id="entry">
-                                                    <textarea class="effect-16 validate"  required="required"></textarea>
+                                                  
                                                     <label>Entry</label>
+                                                    <span class="focus-border"></span>
+                                                </div>
+                                            </div> 
+                                            <div class="form-group">
+                                                <div class="input-effect form-group md-form ">  
+                                                    <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="modelfield.entryFee" name="entryFee" id="entryFee">
+                                                 
+                                                    <label>entryFee</label>
                                                     <span class="focus-border"></span>
                                                 </div>
                                             </div> 
                                             <div class="form-group">
                                                     <div class="input-effect form-group md-form ">
                                                     <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="modelfield.venueName" name="venueName" id="venueName">
-                                                        <textarea class="effect-16 validate"  required="required"></textarea>
+                                                      
                                                         <label>VenueName</label>
                                                         <span class="focus-border"></span>
                                                     </div>

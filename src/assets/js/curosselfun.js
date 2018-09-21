@@ -285,17 +285,17 @@ $(window).scroll(function() {
 $(window).scroll(function() {    
     var scroll = $(window).scrollTop();
     if(scroll >= 1160) {
-        $(".aboutbox").addClass("activebuttontab");
+        $(".aboutbox").removeClass("activebuttontab");
         $(".overviewbox").removeClass("activebuttontab");
-         $(".gallerybox").removeClass("activebuttontab");
+         $(".gallerybox").addClass("activebuttontab");
           $(".reviewbox").removeClass("activebuttontab");
     } 
 });
 $(window).scroll(function() {    
     var scroll = $(window).scrollTop();
-    if(scroll >= 1420) {
-      $(".gallerybox").addClass("activebuttontab");
-        $(".aboutbox").removeClass("activebuttontab");
+    if(scroll >= 1560) {
+      $(".gallerybox").removeClass("activebuttontab");
+        $(".aboutbox").addClass("activebuttontab");
         $(".overviewbox").removeClass("activebuttontab");
         $(".reviewbox").removeClass("activebuttontab");
     } 

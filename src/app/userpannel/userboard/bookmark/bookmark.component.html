@@ -1,29 +1,46 @@
 <app-menu></app-menu>
 <app-tool></app-tool>
 <div class="container-fluid">
-	<div class="col-sm-12">
-		<h2 class="mainhead">CheckList</h2>
+	<div class="col-sm-12 mobmartop80px">
 
-     
+        <div class="card">
+            <div class="px-3 py-3">
+            <div>
+                <h2 class="text-center">My Checklist</h2>
+                <div class="text-center">
+                    <div class="col-sm-2 hidden-xs">
+                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/checklist-icon.png">
+                    </div>
+                    <div class="span4tik col-sm-8" style="position: relative;">
+                    <span class="tools-boxProgress-tooltip" style="left:25px;">25%</span>
+                     <ngb-progressbar showValue="true" type="success" [value]="25"></ngb-progressbar>
+                     1 of 112 tasks completed
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn addtaskbtn filterbtn">
+                            <i class="material-icons">
+                                filter_list
+                            </i>
+                        </button>
+                        <button class="btn addtaskbtn" (click)="open(content)">
+                            <i class="material-icons">add_circle_outline</i>
+                            New Task
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
 
-<button class="btn addtaskbtn" (click)="open(content)">
-			<i class="material-icons">add_circle_outline</i>
-			New Task
-		</button>
-
-		<button class="btn addtaskbtn filterbtn">
-			<i class="material-icons">
-filter_list
-</i>
-		
-		</button>
+<div class="clearfix"></div>
 	</div>
     <div>
         <div class="col-sm-3 col-md-3 filterbox filterboxtik">
-        	<div class="card" style="margin-top:0PX;">
+        	<div class="card hidden-xs" style="margin-top:0PX;">
         		<div class="card-body" >
         			<div class="px-3 py-3">
         				<h2>BY STATUS</h2>
+                        <a href="#"><span class="default"></span> All <span class="badge badge-pill badge-default">1</span></a>
         				<a href="#"><span class="active"></span> Done <span class="badge badge-pill badge-default">1</span></a>
         				<a href="#"><span class="warning"></span>To Do List <span class="badge badge-pill badge-default">94</span></a>
         			</div>
@@ -68,19 +85,17 @@ filter_list
 
 
 
-        <div class="col-sm-6 col-md-6">
-<ngb-accordion [closeOthers]="true" activeIds="1" class="bookmarkdesign">
+        <div class="col-sm-9 col-md-9">
+<!-- <ngb-accordion [closeOthers]="true" activeIds="1" class="bookmarkdesign">
         <ngb-panel id="1">
-        	
-        	 <ng-template ngbPanelTitle>
-           
+            <ng-template ngbPanelTitle>
                     <h3 class="panel-title pull-left mobfloatnone">FROM 10 TO 12 MONTHS </h3>
-                   <div class="pull-right mobfloatnone">
+                    <div class="pull-right mobfloatnone">
                         Before March 2018
-                    </div>
-                
-          </ng-template>
-          <ng-template ngbPanelContent>
+                    </div>     
+            </ng-template>
+            <ng-template ngbPanelContent>
+
            
                     <div class="CheckListdiv">
                     	<i class="material-icons tikchecklist">check</i>
@@ -126,10 +141,8 @@ filter_list
                     		Events
                     	</span>
                     	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
-                    </div>
-                
-          </ng-template>
-     
+                    </div>     
+            </ng-template>
         </ngb-panel>
         <ngb-panel id="2">
           <ng-template ngbPanelTitle>
@@ -191,15 +204,13 @@ filter_list
           </ng-template>
         </ngb-panel>
         <ngb-panel>
-        	 <ng-template ngbPanelTitle>
-        	
+        	<ng-template ngbPanelTitle>
                     <h3 class="panel-title pull-left mobfloatnone">FROM 04 TO 06 MONTHS </h3>
-                   <div class="pull-right mobfloatnone">
+                    <div class="pull-right mobfloatnone">
                         Before Aug 2018
                     </div>
             </ng-template>
-          <ng-template ngbPanelContent>
-            
+            <ng-template ngbPanelContent>
                     <div class="CheckListdiv">
                     	<i class="material-icons tikchecklist">check</i>
                     	<span>
@@ -244,58 +255,67 @@ filter_list
                     		Events
                     	</span>
                     	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
-                    </div>
-              
-          </ng-template>
+                    </div>    
+            </ng-template>
         </ngb-panel>
-      </ngb-accordion>
+</ngb-accordion> -->
 
-   <div class="CheckListdiv">
+            <div class="tabsectionmobile hidden-lg hidden-sm hidden-md">
+                <a class="todobtncheck">
+                    <i class="material-icons">schedule</i>
+                    <br/>To Do
+                </a>
+                <a class="donebtncheck">
+                    <i class="material-icons">sentiment_satisfied</i>
+                    <br/>Complete
+                </a>
+                  <a class="allbtncheck">
+                    <i class="material-icons">adjust</i>
+                    <br/>All</a>
+            </div>
+            <div class="clearfix"></div>
+                    
+               <div class="panel-body nopadd card martop0px">
+
+
+                    <div class="CheckListdiv donecheckbox">
                     	<i class="material-icons tikchecklist">check</i>
                     	<span>
                     		<strong>Check if your wedding date is on an auspicious day</strong>
                     		<br/>
                     		Events
+                            <br/>
+                            From 10 to 12 months <span class="badge badge-success">Done</span>
                     	</span>
                     	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
                     </div>
-
-
-
-              <!-- <div class="panel-body nopadd">
-                    <div class="CheckListdiv">
-                    	<i class="material-icons tikchecklist">check</i>
-                    	<span>
-                    		<strong>Check if your wedding date is on an auspicious day</strong>
-                    		<br/>
-                    		Events
-                    	</span>
-                    	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
+                    <div class="CheckListdiv donecheckbox">
+                        <i class="material-icons tikchecklist">check</i>
+                        <span>
+                            <strong>Check if your wedding date is on an auspicious day</strong>
+                            <br/>
+                            Events
+                            <br/>
+                            From 10 to 12 months <span class="badge badge-success">Done</span>
+                        </span>
+                        <button class="deletebtnhover"><i class="material-icons">delete</i></button>
                     </div>
-                </div> -->
+                    <div class="CheckListdiv todocheckbox">
+                        <i class="material-icons tikchecklist">check</i>
+                        <span>
+                            <strong>Check if your wedding date is on an auspicious day</strong>
+                            <br/>
+                            Events
+                            <br/>
+                            From 10 to 12 months <span class="badge badge-warning">To Do List</span>
+                        </span>
+                        <button class="deletebtnhover"><i class="material-icons">delete</i></button>
+                    </div>
+                </div>
 
           
 
            
-        </div>
-        <div class="col-sm-3 col-md-3 filterbox">
-			<div  class="card" style="margin-top:0PX;">
-	<div class="card-body" >
-		<div class="px-3 py-3">
-			<div>
-        		<h2 class="text-center">My Checklist</h2>
-        		<div class="text-center">
-        			<img src="https://s3.us-east-2.amazonaws.com/prefect-image/checklist-icon.png">
-        			<div class="span4tik" style="position: relative;">
-  					<span class="tools-boxProgress-tooltip" style="left:25px;">25%</span>
-	  				 <ngb-progressbar showValue="true" type="success" [value]="25"></ngb-progressbar>
-	  				 1 of 112 tasks completed
-					</div>
-				</div>
-        	</div>
-		</div>
-	</div>
-			</div>
         </div>
     </div>
 </div>

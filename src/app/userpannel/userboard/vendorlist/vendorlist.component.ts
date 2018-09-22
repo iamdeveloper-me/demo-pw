@@ -20,6 +20,32 @@ export class VendorlistComponent implements OnInit {
           $('.closebtn').click(function(e){
             $(this).parent('.yikyik').addClass("hip");
             });
+
+           $('.allbtn').click(function(e){
+              $(".bookedbox").show();
+              $(".savedbox").show();
+              $(".shortlistbox").show();
+          });
+           $('.bookbtn').click(function(e){
+              $(".bookedbox").show();
+              $(".savedbox").hide();
+              $(".shortlistbox").hide();
+          });
+            $('.savebtn').click(function(e){
+              $(".bookedbox").hide();
+              $(".savedbox").show();
+              $(".shortlistbox").hide();
+          });
+             $('.shortlistbtn').click(function(e){
+              $(".bookedbox").hide();
+              $(".savedbox").hide();
+              $(".shortlistbox").show();
+          });
+
+
+
+
+
     });
 
     let headers = new Headers();

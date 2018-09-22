@@ -110,6 +110,24 @@ $('.filterbtn').click(function(e){
     $(".filterbox").toggleClass( "in");
 });
 
+$('.todobtncheck').click(function(e){
+//alert("hi")
+    $(".todocheckbox").show();
+    $(".donecheckbox").hide();
+});
+$('.donebtncheck').click(function(e){
+//alert("hi")
+    $(".todocheckbox").hide();
+    $(".donecheckbox").show();
+});
+$('.allbtncheck').click(function(e){
+//alert("hi")
+    $(".todocheckbox").show();
+    $(".donecheckbox").show();
+});
+
+
+
   }
 
 

@@ -67,7 +67,7 @@
     
             <div class="card-header padleft0px">
                 <h4 _ngcontent-c0="" class="card-title">
-                Recent  Ads for Vision Photography
+                Recent  Deals
               </h4>
             </div>
               <div class="card-body">
@@ -95,11 +95,9 @@
                           </div>
                         </td>
                         <td class="text-center">
-                           <button class="btn btn-warning">
-                            <i class="fa fa-eye" aria-hidden="true"></i> View
-                          </button>
+                          
                           <div class="clearfix"></div>
-                          <button class="btn btn-info">
+                          <button class="btn btn-info" data-toggle="modal" data-target="#editdeal">
                             <i class="fa fa-pencil" aria-hidden="true"></i> Edit
                           </button>
                           <div class="clearfix"></div>
@@ -130,11 +128,11 @@
                         </td>
                        
                         <td class="text-center">
-                           <button class="btn btn-warning">
+                          <!--  <button class="btn btn-warning" >
                             <i class="fa fa-eye" aria-hidden="true"></i> View
-                          </button>
+                          </button> -->
                           <div class="clearfix"></div>
-                          <button class="btn btn-info">
+                          <button class="btn btn-info" data-toggle="modal" data-target="#editdeal">
                             <i class="fa fa-pencil" aria-hidden="true"></i> Edit
                           </button>
                           <div class="clearfix"></div>
@@ -165,11 +163,11 @@
                         </td>
                         
                         <td class="text-center">
-                          <button class="btn btn-warning">
+                          <!-- <button class="btn btn-warning">
                             <i class="fa fa-eye" aria-hidden="true"></i> View
-                          </button>
+                          </button> -->
                           <div class="clearfix"></div>
-                          <button class="btn btn-info">
+                          <button class="btn btn-info" data-toggle="modal" data-target="#editdeal">
                             <i class="fa fa-pencil" aria-hidden="true"></i> Edit
                           </button>
                           <div class="clearfix"></div>
@@ -248,6 +246,83 @@
         <div class="modal-content">
             <div class="modal-header">
                     <h4 class="card-title">Deal Details</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">   
+                <div class="card">         
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">
+                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                    <label>Deal Title</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-effect form-group md-form ">
+                                        <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                        <label>Discription</label>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-md-12 row">
+                            <div class="col-md-6 radio-btn">
+                                <label><input type="radio" name="optradio" checked>Choose date</label>
+                             </div>
+                             <div class="col-md-6 radio-btn">
+                                <label><input type="radio" name="optradio" checked>Never Expire</label>
+                             </div> 
+                        </div>  
+                        <div class="col-md-12 row">
+                            <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">
+                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                    <label>Start Date</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">
+                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                    <label>End Date</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                        </div> 
+                        </div>                                      
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form ">
+                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                    <label>Terms & Condition of your deal</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                        </div>  
+                    </div> 
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary save-btn" data-dismiss="modal"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<div class="modal fade" id="editdeal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <h4 class="card-title">Edit Deal Details</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">   

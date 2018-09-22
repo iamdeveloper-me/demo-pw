@@ -5,7 +5,7 @@ import { UserpannelRoutingModule } from "./userpannel-routing.module";
 import { ChartistModule } from 'ng-chartist';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatchHeightModule } from "../shared/directives/match-height.directive";
-import { UseraccountComponent } from './userboard/useraccount/useraccount.component';
+//import { UseraccountComponent } from './userboard/useraccount/useraccount.component';
 
 
 
@@ -23,7 +23,8 @@ import { UseraccountComponent } from './userboard/useraccount/useraccount.compon
     exports: [],
     declarations: [
 
-       UseraccountComponent],
+      // UseraccountComponent
+    ],
 
     providers: [],
 })

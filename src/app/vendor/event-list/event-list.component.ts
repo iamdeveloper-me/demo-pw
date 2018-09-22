@@ -3,6 +3,7 @@ import { NgbModal,  ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng
 import { Http,Headers } from '@angular/http';
 import { DatePipe } from '@angular/common';
 import { Subject } from 'rxjs';
+import { NgForm } from '@angular/forms';
 
 
 export class NgbduserModalContent {
@@ -20,6 +21,10 @@ export class NgbduserModalContent {
 export class EventListComponent implements OnInit {
     eventArray:any= [];
     modelfield:any= {};
+    eventdate:any;
+    endtime:any;
+    startime:any= {};
+    fileIdfield:any= {};
     refresh: Subject<any> = new Subject();
     test: string;
     myDate = new Date(); 
@@ -41,9 +46,11 @@ export class EventListComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
         this.http.get(this.myeventgeturl,{headers:headers}).subscribe(data =>{
-      
+         
         this.eventArray = data.json() as string[];
-        console.log( this.eventArray);
+        console.log( data.json());
+       //szzzzzzzzzzzzzzzzzz debugger
+       
     })
 
         // this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/eventdetails?Id' +'='+37 ,{headers:headers}).subscribe(data =>{
@@ -113,64 +120,28 @@ getImageFromService() {
           console.log(error);
         });
         }
-  list:any = { 
-eventTitle: "string",
+// path = "https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg";
+path = "https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg";
+   data:any = [  {files:  {path: "https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg"} }]   
+  list:any = {    files: "",
+                  eventTitle: "",
+                  venueName: "",
+                  filesId: "",
+                  location: "",
+                  lat: "",
+                  long: "",
+                  capacity: "",
+                  entryFee: "",
+                  entry: "",
+                  eventDescription: "",
+                  eventsDates: [
+                    {
+                      eventDate: "",
+                      startTime: "",
+                      endTime: ""
+                    } ]
+             }
  
-  venueName: "string",
-  location: "string",
- 
-  entry: "string",
-
-  eventDescription: "string",
-  eventsDates: [
-    {
-      
-      eventDate: "2018-09-17T08:51:07.539Z",
-      startTime: "2018-09-17T08:51:07.539Z",
-      endTime: "2018-09-17T08:51:07.539Z"
-    }
-  ]}
-  event(list){
-console.log(list.eventTitle);
-    let headers = new Headers();
-              var authToken = localStorage.getItem('userToken');
-              headers.append('Accept', 'application/json')
-              headers.append('Content-Type', 'application/json');
-              headers.append("Authorization",'Bearer '+authToken);
-             var data_obj= {
-       
-                eventId: 0,
-                eventTitle: list.eventTitle,
-                filesId: 1,
-                venueName: list.venueName,
-                 location: list.location,
-                 lat: 0,
-                long: 0,
-                capacity: 0,
-                entry: list.entry,
-                entryFee: 0,
-                eventDescription: list.eventDescription,
-                eventsDates: [
-                  {
-                     eventsMoreDatesId: 0,
-                     eventId: 0,
-                     eventDate:list.eventDate ,
-                     startTime:list.startTime ,
-                     endTime:list.endTime ,
-                  }
-                ]
-              }
-    this.http.post(this.eventposturl,data_obj,{headers:headers}).subscribe(data =>{
-    console.log(data.json());
-    console.log(this.eventArray)
-    this.eventArray.push(data_obj)
-    console.log(this.eventArray)
-
-
-  })
-
-  }
-
   gallery = { files: ''}
   @ViewChild("fileInput") fileInput;
   addFile(info): void {
@@ -194,9 +165,68 @@ console.log(list.eventTitle);
         console.log(fileToUpload)
         alert("xcbvdfg");
         this.http.post(this.uploadimage,formData,{headers:headers})
-        .subscribe(data =>{console.log(data);},(error)=>{console.log(error)});
+        .subscribe(data =>{  this.fileIdfield = data.json() as string[] ,console.log( this.fileIdfield ), console.log( data.json())},(error)=>{console.log(error)});
    }
     }
+  event(list){
+    console.log(list);
+    console.log(list.value.filesId);
+console.log(list.capacity);
+// console.log(list.eventDate);
+// console.log(list.startTime );
+// console.log(list.endTime );
+
+
+if(  typeof(list.value.filesId) == "undefined") 
+{ alert("plz upload event image ");
+  list.value.filesId = 1 
+ console.log(list.value.filesId);}else
+{
+
+                        let headers = new Headers();
+                        var authToken = localStorage.getItem('userToken');
+                        headers.append('Accept', 'application/json')
+                        headers.append('Content-Type', 'application/json');
+                        headers.append("Authorization",'Bearer '+authToken);
+                      var data_obj= {
+                
+                          eventId: 0,
+                          eventTitle: list.value.Title,
+                          filesId: list.value.filesId,
+                          venueName: list.value.venueName,
+                          location: list.value.Location,
+                          lat: 0,
+                          long: 0,
+                          capacity: list.capacity,
+                          entry: list.value.entry,
+                          entryFee: list.value.entryFee,
+                          eventDescription: list.value.eventDescription,
+                          eventsDates: [
+                            {
+                              eventsMoreDatesId: 0,
+                              eventId: 0,
+                              eventDate: list.eventDate ,
+                              startTime: list.startTime,
+                              endTime:  list.endTime ,
+                            }
+                          ]
+                        }
+
+
+                        // startTime: list.eventDate+"T"+list.startTime+":00" ,
+                        // endTime:  list.endTime+"T"+list.endTime+":00" ,
+              this.http.post(this.eventposturl,data_obj,{headers:headers}).subscribe(data =>{
+              console.log(data.json());
+              console.log(this.eventArray)
+              this.eventArray.push(data_obj)
+              console.log(this.eventArray)
+
+             //  debugger
+            })
+          }
+  }
+
+  
   constructor(private modalService: NgbModal,public http: Http,private datePipe: DatePipe) { this.test = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');}
   /////////////////////////////////popupmodel
   closeResult: string;
@@ -232,47 +262,59 @@ console.log(list.eventTitle);
   editevent(v){
     console.log(v);
     this.modelfield = v;
-    console.log( this.modelfield );
+    this.eventdate = v.eventsDates[0].eventDate.split('T')[0]
+    this.endtime = v.eventsDates[0].endTime.split('T')[1]
+    this.startime = v.eventsDates[0].startTime.split('T')[1]
+    // console.log( this.eventdate );
+    // console.log( this.endtime );
+    // console.log( this.startime );
+    // console.log( this.modelfield );
+    
   }
 
-
-  editsave(data){
+  editsave(data :any ){
     console.log(data);
+
+
     let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
               headers.append('Accept', 'application/json')
               headers.append('Content-Type', 'application/json');
               headers.append("Authorization",'Bearer '+authToken);
               
-    this.http.post(this.eventposturl,{
+
+
+            const  editData = {
        
-        eventId: data.value.id,
-        eventTitle: data.value.Title,
-        filesId: 1,
-        venueName: data.value.venueName,
-         location: data.value.Location,
-         lat: 0,
-        long: 0,
-        capacity: data.value.Capacity,
-        entry: data.value.entry,
-        entryFee: 0,
-        eventDescription: data.value.eventDescription,
-        eventsDates: [
-          {
-             eventsMoreDatesId: 0,
-             eventId: 0,
-             eventDate: data.value.eventDate ,
-             startTime: data.value.startTime ,
-             endTime: data.value.endTime ,
-          }
-        ]
-      },{headers:headers}).subscribe(data =>{
+                eventId: data.value.id,
+                eventTitle: data.value.Title,
+                filesId: 1,
+                venueName: data.value.venueName,
+                 location: data.value.Location,
+                 lat: 0,
+                long: 0,
+                capacity: data.value.Capacity,
+                entry: data.value.entry,
+                entryFee: 0,
+                eventDescription: data.value.eventDescription,
+                eventsDates: [
+                  {
+                     eventsMoreDatesId: 0,
+                     eventId: 0,
+                     eventDate: this.eventdate ,
+                     startTime:  this.startime,
+                     endTime:  this.endtime,
+                  }
+                ]
+              }
+              console.log(editData)
+    this.http.post(this.eventposturl,editData,{headers:headers}).subscribe(data =>{
     console.log(data.json());
 
+    })
 
 
-
-  })
+  
 
 }
 
@@ -280,16 +322,17 @@ console.log(list.eventTitle);
 
   deletevent(data,index){
     alert(data)
-    console.log(data);
-   
+   // console.log(id);
+    var id = data.eventId;
+    console.log(id);
     this.eventArray.splice(index,1);
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
-    console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id'+'='+data);
-    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id'+'='+data,{headers:headers}).subscribe(data =>{
+    console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id'+'='+id);
+    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id'+'='+id,{headers:headers}).subscribe(data =>{
 
      console.log(data.json());
    

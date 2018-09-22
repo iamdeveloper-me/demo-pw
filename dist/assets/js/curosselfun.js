@@ -319,3 +319,66 @@ $(window).scroll(function(){
          $('.icon-div').removeClass('fixedpostioneddesktop');
       }
   });
+
+
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+    if(scroll >= 300) {
+    $('.wedding-icon1').addClass('btnactive');
+    $('.wedding-icon2').removeClass('btnactive');
+    $('.wedding-icon3').removeClass('btnactive');
+    $('.wedding-icon4').removeClass('btnactive');
+    } 
+}); 
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+    if(scroll >= 740) {
+    $('.wedding-icon3').addClass('btnactive');
+    $('.wedding-icon1').removeClass('btnactive');
+    $('.wedding-icon2').removeClass('btnactive');
+    $('.wedding-icon4').removeClass('btnactive');
+    } 
+});
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+    if(scroll >= 1200) {
+    $('.wedding-icon2').addClass('btnactive');
+    $('.wedding-icon1').removeClass('btnactive');
+    $('.wedding-icon3').removeClass('btnactive');
+    $('.wedding-icon4').removeClass('btnactive');
+    } 
+});
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+    if(scroll >= 1670) {
+    $('.wedding-icon4').addClass('btnactive');
+    $('.wedding-icon1').removeClass('btnactive');
+    $('.wedding-icon2').removeClass('btnactive');
+    $('.wedding-icon3').removeClass('btnactive');
+    } 
+});
+$(".wedding-icon1").click(function() {
+    $('.wedding-icon1').addClass('btnactive');
+    $('.wedding-icon2').removeClass('btnactive');
+    $('.wedding-icon3').removeClass('btnactive');
+    $('.wedding-icon4').removeClass('btnactive');
+});
+
+$(".wedding-icon2").click(function() {
+    $('.wedding-icon2').addClass('btnactive');
+    $('.wedding-icon1').removeClass('btnactive');
+    $('.wedding-icon3').removeClass('btnactive');
+    $('.wedding-icon4').removeClass('btnactive');
+});
+$(".wedding-icon3").click(function() {
+    $('.wedding-icon3').addClass('btnactive');
+    $('.wedding-icon1').removeClass('btnactive');
+    $('.wedding-icon2').removeClass('btnactive');
+    $('.wedding-icon4').removeClass('btnactive');
+});
+$(".wedding-icon4").click(function() {
+    $('.wedding-icon4').addClass('btnactive');
+    $('.wedding-icon1').removeClass('btnactive');
+    $('.wedding-icon2').removeClass('btnactive');
+    $('.wedding-icon3').removeClass('btnactive');
+});

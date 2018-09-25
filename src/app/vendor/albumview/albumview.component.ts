@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { Http,Headers } from '@angular/http';
 
 export class NgbdgalleryModalContent {
   @Input() name;
@@ -17,35 +17,41 @@ export class NgbdgalleryModalContent {
 })
 export class AlbumviewComponent implements OnInit {
 
-
+    private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
+    eventArray:any = {};
 
   ngOnInit() {
 
-  
-   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+   
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+
+    this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
+        this.eventArray = data.json()
+    
+        console.log(this.eventArray);
+        
+       })
+
+     
+    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
 
-
-      $.getScript('https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js');
     $.getScript('https://code.jquery.com/jquery-1.11.1.min.js');
 
-   //$(document).ready(function(){
-   //$(".fancybox").fancybox({
-    //alert('hi');
-   //    openEffect: "none",
-   //    closeEffect: "none"
-   //});
 
 
-   
   
   }
   //model
 
   closeResult: string;
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal,public http: Http) { }
 
   // Open default modal
   open(content) {

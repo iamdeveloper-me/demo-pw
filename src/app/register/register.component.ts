@@ -27,7 +27,7 @@ export class RegisterComponent  {
             $(".show").hide();
 
             $("div").removeClass( "modal-backdrop");
-            let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories");
+            let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories/allcategories");
             obs.subscribe(data => { this.categoryArray = data as string[];  
             });
           

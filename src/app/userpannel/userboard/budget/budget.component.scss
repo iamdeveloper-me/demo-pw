@@ -68,11 +68,12 @@
     outline: none;
     transition: 0.4s;
     border-radius: 5px;
+    box-shadow:0px 0px 10px #ccc;
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .accordion:hover {
-    background-color:inherit;
+    background-color:#fff;
 }
 
 /* Style the accordion panel. Note: hidden by default */
@@ -108,7 +109,14 @@
 }
 .checkbox{
     background-color: #fff;
-    padding: 10px;
+    padding:0px;
+    border-radius:0px;
+    padding:10px;
+    margin:0px;
+    border-bottom:1px solid #e5e5e5;
+}
+.checkbox:last-child{
+    border-bottom:0px solid #e5e5e5;
 }
 .positi_rel{
     position: relative;
@@ -135,12 +143,49 @@
   .accordion.active .uparrow{
   display:inline;
   }
-
+.addbtn{
+    margin:25px;
+    max-width:100px;
+    float:right;
+}
+.martop0px{
+    margin-top:0px;
+}
+.headtable{
+    max-width:450px;
+    margin:15px auto;
+}
+.headtable i{
+    display: block;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    width: 40px;
+    height: 40px;
+    line-height: 39px;
+    margin: 0px auto 5px auto;
+}
+.headtable div{
+    display:grid;
+    font-size:11px;
+    padding:0px 10px;
+    line-height:15px;   
+}
   .flo_right{
       float: right;
   }
  .rental{
     color:  #e72e77;
+ }
+  .rental i{
+  font-size:14px;
+  color:#999;
+ }
+ .btnround{
+    border-radius: 50%;
+    color: #fff !important;
+    border: 0px solid #fff;
+    padding: 4px 6px;
+    line-height: 16px;
  }
   .colo_pink{
     color:  #e72e77;
@@ -154,7 +199,72 @@
 .martop20px{
     margin-top: 20px!important;
 }
+.timeline{
+    position: relative;
+}
+.filterbox h2 {
+    font-size: 18px;
+    color: #333;
+    text-transform: uppercase;
+}
+/*Line*/
+.timeline>li::before{
+    content:'';
+    position: absolute;
+    width: 1px;
+    background-color: #E7E7E7;
+    top: 0;
+    bottom: 0;
+    left:5px;
+}
 
+/*Circle*/
+.timeline>li::after{
+    text-align: center;
+    padding-top:10px;
+    z-index: 10;
+    content:counter(item);
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border:0px solid white;
+    background-color: #E7E7E7;
+    border-radius: 50%;
+    top:11px;
+    left:0px;
+    text-indent:-9999px;
+}
+.btn-pink{
+background:#e72e77;
+color:#ffffff!important;
+}
+.timeline li a{
+    display:block;
+}
+.timeline li a .badge{
+    float:right;
+    margin-top:6px;
+}
+.textareafocus{
+    bottom: -24px!important;
+}
+.pinkbtn{
+    border-radius: 0px;
+    border: 0px solid #fff;
+    background: #e72e77;
+    color: #fff;
+    height: 50px;
+    margin-top: 20px;
+}
+/*Content*/
+.timeline>li{
+    padding: 0px 0px 5px 20px;
+    margin-left: 0px;
+    position: relative;
+    list-style: none;
+    width:100%;
+    float:left;
+}
  @media(max-width:767px){
     .mainhead{
         float: inherit;

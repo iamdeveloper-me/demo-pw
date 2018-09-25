@@ -370,6 +370,24 @@ margin-right: 5px;
   padding-top: 5px;
 }
 
+
+
+@media only screen 
+and (min-device-width : 992px) 
+and (max-device-width : 1100px) {
+#navbarResponsive{
+  margin-left: 4% !important;
+}
+
+.navbar-nav.right_listing > li{
+  width: inherit!important;
+}
+
+}
+
+
+
+
 @media (min-width: 992px) {
         #mainNav {
           border-color: transparent;
@@ -413,15 +431,32 @@ margin-right: 5px;
           color: #F05F40;
         }
 }
-@media (max-width:767px){
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 800px) {
+.mobileshowwebnav {
+    top:-41px!important;
+    left:-283px!important;
+    width:293px!important;
+  }
+.locationbox h2 {
+    font-size:15px !important;
+}
+}
+
+@media (max-width:991px){
+  /*.mobileshowwebnav{
+    
+    left: -9px !important;
+  }
+  .navbar-toggler{
+    top: 10px;
+  }*/
 .right_listing{
     position: absolute;
     top: 6px;
     margin-right: 0px;
     right: 6px;
-}
-.navbar-nav.right_listing > li{
-  width: inherit!important;
 }
 .right_listing .nav-link {
   color: #fff!important;
@@ -429,6 +464,10 @@ margin-right: 5px;
 .vendorappbtn, .vendorappbtnclose{
   position:absloute;
   right:0px;
+}
+
+.navbar-nav.right_listing > li{
+  width: inherit!important;
 }
 #mainNav .navbar-brand{
   position:absolute;
@@ -624,7 +663,6 @@ background:#fff;
       height: 100%; 
       width: 280px;
       display: block;
-      
     }
       .navbar-collapse {
         transition: .5s;

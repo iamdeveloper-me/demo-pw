@@ -23,6 +23,10 @@ $(document).ready(function () {
           items: 1,
           stagePadding: 40
         },
+        768: {
+          items: 2,
+          stagePadding: 40
+        },
     
         1024: {
           items: 4

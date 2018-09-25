@@ -10,10 +10,41 @@ export class InspirationsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {  
+
+
      $("li").removeClass("user");
      $("#login").hide();
 
+$('.allclick').click(function(e){
+//alert("hi")
+    $(".photobox").show();
+    $(".eventbox").show();
+});
+$('.photoclick').click(function(e){
+//alert("hi")
+    $(".photobox").show();
+    $(".eventbox").hide();
+});
+$('.eventclick').click(function(e){
+//alert("hi")
+    $(".photobox").hide();
+    $(".eventbox").show();
+});
 
+
+
+$('.filterbtnmobile').click(function(e){
+//alert("hi")
+    $(".FilterDialog").show();
+});
+$('.icon-small').click(function(e){
+//alert("hi")
+    $(".FilterDialog").hide();
+});
+$('.regular').click(function(e){
+//alert("hi")
+    $(".FilterDialog").hide();
+});
 
   let modalId = $('#image-gallery');
 

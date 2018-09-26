@@ -11,6 +11,7 @@
 .inspirationhead .btntik{
   padding:5px;
   font-size:16px;
+  cursor:pointer;
 }
 .sortselect{
   float: right;
@@ -240,39 +241,118 @@ text-align:center;
 .category-body .regular i {
     margin-right: 15px;
 }
- .filterbtnmobile{
-    display: none;
-    }
-      @media(max-width:767px){
-    .inspirationhead{
-margin-top:60px;
-    }
-    .filterbtnmobile{
-    position: fixed;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    right: 5%;
-    bottom: 20%;
-    color: white;
-    font-weight: bold;
-    border-radius: 50%;
-    box-shadow: 0 0 10px -1px black;
-    z-index: 10;
-    cursor: pointer;
-    background: #e72e77;
-    display: block;
+.filterbtnmobile{
+  display: none;
 }
-          .hovereffect{
-            height: 8% !important;
-          }
-          .thumb{
-            margin-bottom: 0px !important;
-            padding-left: 30px !important;
-          }
-          .insp_left{
-            margin-left: 0px;
-          }
-         
-      }
+.eventlisting .card-block{
+  padding:10px!important;
+  position:relative;
+}
+.eventdate{
+padding:3px 0px 0px 0px;
+}
+.eventdate span{
+    text-align: center;
+    display: block;
+    color: #dc0070;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 600;
+}
+.eventdate span.date{
+  color: #000 !important;
+    font-size: 14px !important;
+    font-weight: 600;
+}
+.eventtitle{
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    min-height: 60px;
+    line-height: 20px;
+}
+.eventvenue{
+  text-align:left;
+  font-size:14px;
+}
+.eventbtnholder{
+  position:absolute;
+  right:5px;
+  top:-50px;
+}
+.eventlisting .cardshadow{
+  overflow:hidden!important;
+  box-shadow:0px 0px 10px #ccc!important;
+}
+.ribbon {
+  width: 110px;
+  height: 110px;
+  overflow: hidden;
+  position: absolute;
+  transform: rotate(45deg);
+  right:0px;
+  top:0px;
+}
+.ribbon span {
+  position: absolute;
+  display: block;
+  width: 110px;
+  padding: 10px 0;
+  background-color: #3498db;
+  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+  color: #fff;
+  font: 700 14px/1 'Lato', sans-serif;
+  text-shadow: 0 1px 1px rgba(0,0,0,.2);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.eventbtnholder button i{display:flex;}
+.purple-gradient {
+    background: -webkit-linear-gradient(50deg,#ff6ec4,#7873f5)!important;
+    background: -o-linear-gradient(50deg,#ff6ec4,#7873f5)!important;
+    background: linear-gradient(40deg,#ff6ec4,#7873f5)!important;
+    padding:5px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 5px 0 rgba(0,0,0,.12);
+    outline:none;
+    border:0px;
+    margin:0px 3px;
+    color:#fff;
+}
+.borradius50per{
+    border-radius:50%;
+}
+
+@media(max-width:767px){
+.inspirationhead{
+margin-top:60px;
+}
+.filterbtnmobile{
+position: fixed;
+width: 50px;
+height: 50px;
+line-height: 50px;
+text-align: center;
+right: 5%;
+bottom: 20%;
+color: white;
+font-weight: bold;
+border-radius: 50%;
+box-shadow: 0 0 10px -1px black;
+z-index: 10;
+cursor: pointer;
+background: #e72e77;
+display: block;
+}
+.hovereffect{
+height: 8% !important;
+}
+.thumb{
+margin-bottom: 0px !important;
+padding-left: 30px !important;
+}
+.insp_left{
+margin-left: 0px;
+}
+}

@@ -9,9 +9,9 @@ margin-bottom: 20px;
 margin-top: 20px;
 overflow: hidden;
 }
-.searchtopbar div{
+/*.searchtopbar div{
     padding: 0px;
-}
+}*/
 
 .totalpage{
   color:#aeaeaf;
@@ -82,7 +82,7 @@ a.gp-ic{
     cursor: pointer;
     height: 30px;
     position: absolute;
-    right: 4px;
+    right: 20px;
     top: 4px;
     width: 30px;
 
@@ -94,9 +94,7 @@ a.gp-ic{
 .mar_left_75{
    margin-left: 75px;
 }
-.Search_img{
-margin-left: 50px
-}
+
 .searchtopbar input, .searchtopbar select{
     width: 100%;
     background: #ffffff;
@@ -166,6 +164,9 @@ margin:10px 0px;
 
 
 @media(max-width: 767px){
+.mar_left_75[_ngcontent-c5] {
+    margin-left: 44px;
+}
 .totalpage{
   position: relative; 
   text-align:center;
@@ -177,19 +178,20 @@ margin:10px 0px;
 float:left;
 width:50%;
 }
-  .mar_left_75{
+  /*.mar_left_75{
        margin-left: 0px !important;
     }
     .Search_img{
     margin-left: 0px;
-  }
+  }*/
   .tips{
     position: fixed;
     z-index: 1;
     padding-top: 0;
     top: 50px;
+    width: 100%;
 }
-.searchtopbar{
+/*.searchtopbar{
 margin-bottom:0px;
 margin-top:10px;
 overflow: hidden;
@@ -202,7 +204,7 @@ overflow: hidden;
   border-bottom:0px;
   botder-top:0px;
 }
-
+*/
 .Venders{padding-top:95px;}
 .col-xs-6{width: 50%;}
 
@@ -211,5 +213,30 @@ overflow: hidden;
   padding-left:0px;
   padding-right:0px;
 }
+}
+@media only screen and (max-width: 960px) {
+   
+}
+@media only screen and (max-width: 767px) {
+   .mar_left_75{
+    padding: 0;
+}
+button.navbar-toggler.tik.hidden-md.hidden-lg {
+    left: 4px !important;
+}
+}
+section.tips.fixedtik {
+    z-index: 9999;
+}
+@media only screen and (max-width: 360px) {
+   select.cityinput2, input.searchinput {
+    font-size: 14px;
+}
+// .Search_img{
+//     height: 25px;
+//     right: 20px;
+//     top: 10px;
+//     width: 24px;
+// }
 }
 

@@ -1,6 +1,6 @@
+import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
 import { Http,Headers } from '@angular/http';
-
 @Component({
   selector: 'app-business-services',
   templateUrl: './business-services.component.html',
@@ -17,22 +17,41 @@ export class BusinessServicesComponent implements OnInit {
   
   data: any;
   // serviceArray:any= {};
-
+  selectedEntry;
   Services = [];
   categoryserveice = [];
+  services_all =[]
   Price = '12$';
   photo_ved = '344$'; photo_off = '45$'; travel = '233$'; payment='24$'; 
   experience = '1 Year'; photod = '24$' ;
   prewed = '556$'; studio= "45$" ;cinema = '23$'; candid = '44$ ' ;
 
+  readioSelected:any;
+  readioSelected_serv:any
+  showcontent:boolean=false;
 
+  service_data:any;
+  field_length=[]
+  customFields:[];
+  price = []
+  strating_price= []
+  b= []
+  c= []
+  p =[]
+  q =[]
+  r =[]
+
+  delivery_type= []
+  payment_terms = []
+  travel_cost = []
+  experien = []
   constructor(public http: Http)
   {
 
     this.data = {};
   
   }  
- c(){} 
+ 
 
 
 
@@ -55,6 +74,7 @@ export class BusinessServicesComponent implements OnInit {
     
     console.log(data.json());
     this.categoryserveice = data.json() as string[]
+    debugger
   });
 
   $.getScript('./assets/js/vertical-timeline.js');
@@ -81,6 +101,40 @@ export class BusinessServicesComponent implements OnInit {
 
     })
 
+  }
+  onSelectionChange(entry){
+    this.selectedEntry = entry;
+    console.log(this.selectedEntry)
+  }
+  showContent(){
+    this.showcontent=this.readioSelected;
+    console.log(this.readioSelected)
+    console.log(this.categoryserveice[this.readioSelected])
+    this.service_data = this.categoryserveice[this.readioSelected];
+     this.services_all = this.service_data['services']
+     console.log(this.services_all)
+  }
+  
+  serv_all(data){
+    console.log(data) 
+    console.log(this.readioSelected_serv )
+  }
+  selection(data){
+    this.customFields = data['customFields']
+    console.log(this.customFields)
+    this.strating_price = this.customFields[0]
+
+    this.p = this.strating_price['customFieldOptionList']
+
+
+    this.b = this.customFields[1]
+
+    this.q = this.b['customFieldOptionList']
+
+
+    this.c = this.customFields[2]
+
+    this.r = this.c['customFieldOptionList']
   }
 }
 

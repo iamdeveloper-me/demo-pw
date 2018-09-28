@@ -10,6 +10,9 @@ export class InspirationsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {  
+    $.getScript('./assets/js/jquery.fancybox.min.js');
+    $.getScript('./assets/js/prism.min.js'); 
+    $.getScript('./assets/js/curosselfun.js');
 
 
      $("li").removeClass("user");
@@ -23,11 +26,15 @@ $('.allclick').click(function(e){
 $('.photoclick').click(function(e){
 //alert("hi")
     $(".photobox").show();
+    $(".photoclick").addClass("pink");
+    $(".eventclick").removeClass("pink");
     $(".eventbox").hide();
 });
 $('.eventclick').click(function(e){
 //alert("hi")
     $(".photobox").hide();
+    $(".photoclick").removeClass("pink");
+    $(".eventclick").addClass("pink");
     $(".eventbox").show();
 });
 

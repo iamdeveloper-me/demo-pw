@@ -66,7 +66,12 @@ export class AdminnavbarComponent implements OnInit {
       else if(window.location.href.indexOf('/Admin/Customerbillings')>-1) {
         this.data = 'Invoices'; 
       }
-      
+      else if(window.location.href.indexOf('/Admin/adminexpenses')>-1) {
+        this.data = 'Admin Expenses'; 
+      }
+
+
+
       else{}
 
 

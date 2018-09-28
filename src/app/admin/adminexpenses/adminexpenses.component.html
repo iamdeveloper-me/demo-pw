@@ -1,0 +1,181 @@
+<div id="wrapper" class="toggled">
+    <div id="sidebar-wrapper">
+        <app-adminsidebar></app-adminsidebar>   
+    </div>
+    <div id="page-content-wrapper">    
+        <div class="container-fluid nopadd">    
+            <app-adminnavbar></app-adminnavbar>
+            <div class="container-fluid"> 
+            <div class="card">
+                 <div class="col-sm-12 row searchform">
+                                            <div class="col-sm-4 col-6">
+                                                <label>From</label>
+                                                <input type="date" name="startdate">
+                                            </div>
+                                            <div class="col-sm-4 col-6">
+                                                <label>To</label>
+                                                <input type="date" name="enddate">
+                                            </div>
+                                             <div class="col-sm-4  col-6">
+                                                <label>Merchant</label>
+                                                <select>
+                                                    <option>Rent</option>
+                                                    <option>Hotel</option>
+                                                    <option>Parking</option>
+                                                    <option>Taxi</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-4 col-6">
+                                                <label>Min Amount</label>
+                                                <input type="Number" name="startdate">
+                                            </div>
+                                            <div class="col-sm-4  col-6">
+                                                <label>Max Amount</label>
+                                                <input type="Number" name="startdate">
+                                            </div>
+                                           
+                                            <div class="col-sm-4  col-6">
+                                                <label style="width: 100%;">Status</label>
+                                                    <label class="checklable"> 
+                                                            <input type="checkbox"/>
+                                                            <span>New</span>
+                                                    </label>
+                                                    <label class="checklable"> 
+                                                            <input type="checkbox"/>
+                                                            <span>In Progress</span>
+                                                    </label>
+                                                    <label class="checklable"> 
+                                                            <input type="checkbox"/>
+                                                            <span>reimbursed</span>
+                                                    </label>    
+                                               
+                                            </div>
+                                                              </div>
+            </div>  
+                <div class="card">
+                 
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12 table-responsive">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col" class="font14px">Date</th>
+                                <th scope="col" class="font14px">Merchant</th>
+                                <th scope="col" class="font14px">Status</th>
+                                <th scope="col" class="font14px">Comments</th>
+                                <th scope="col" class="font14px">Total</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                               <td>25 Sep 2018</td>
+                               <td>Parking</td>
+                               <td><span class="red">New</span></td>
+                               <td> Expense from my business trip.</td>
+                               <td>$150.00</td>
+                              </tr>
+                              <tr>
+                               <td>25 Sep 2018</td>
+                               <td>Taxi</td>
+                               <td><span class="gray"><em>In Progress</em></span></td>
+                               <td> Expense from my business trip.</td>
+                               <td>$150.00</td>
+                              </tr>
+                              <tr>
+                               <td>25 Sep 2018</td>
+                               <td>Hotel</td>
+                               <td><span class="green">Reimbursed</span></td>
+                               <td> Expense from my business trip.</td>
+                               <td>$150.00</td>
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>  
+            <app-foot></app-foot>
+        </div>
+    </div> 
+</div>
+
+<button class="addbtn" data-toggle="modal" data-target="#addexpenses">
+    <i class="material-icons">add</i>
+</button>
+
+
+<div class="modal fade" id="addexpenses" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Expenses
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                   
+                <div class="modal-body">
+                    <div class="card">         
+                        <div class="card-body">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="md-form">
+                                        <label>Merchant</label>
+                                        <select  class="form-control" required="required">
+                                            <option class="green">Taxi</option>
+                                            <option class="red">Parking</option>
+                                            <option class="red">Hotel</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="md-form">
+                                        <label>Total</label>
+                                        <input class="form-control" type="text" placeholder="$00.00" required="required">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="md-form">
+                                        <label>Date</label>
+                                        <input class="form-control" type="date" placeholder="" required="required">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="md-form">
+                                        <label>Comment</label>
+                                        <textarea class="form-control"> </textarea>  
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="col-md-6 height100">
+                               
+    <h3 class="receipthead">Receipt Here
+
+        <div class="fileUpload btn fake-shadow">
+                <span>Select Receipt</span>
+                <input id="logo-id" name="logo" type="file" class="attachment_upload">
+              </div>
+    </h3>
+   
+        
+    <div class="form-group">
+        <div class="main-img-preview">
+            <img class="thumbnail img-preview" src="" title="Preview Logo">
+            <div class="input-group-btn">
+              
+        </div>
+    </div>    
+</div>
+                            </div>                              
+                                     
+                            
+                        </div> 
+                    </div>
+                </div>
+                 <div class="modal-footer">
+                    <button type="button" class="btn btn-info whitetext" data-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>  
+              </div>
+            </div>
+</div>
+    
+<router-outlet></router-outlet> 

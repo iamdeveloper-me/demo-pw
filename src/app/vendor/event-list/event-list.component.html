@@ -152,7 +152,7 @@
                                                 <div class="card-block">
                                                     <div class="col-md-4 col-12 pad_0px">
                                                         
-                                                        <img  src="{{data.files.path}}" class="img-responsive">
+                                                        <img  src="{data.files.path}" class="img-responsive">
                                                     </div>
                                                     <div class="col-md-8 col-12 textboxevent">
                                                         <table>
@@ -248,8 +248,7 @@
                     <span class="focus-border"></span>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="input-effect form-group md-form "> 
+          
                     <!-- <input  type="file" accept="image/*" class="effect-16 validate"  required="required" [(ngModel)]="list.filesId"  
                     id="Image" 
                     name="Image"> -->
@@ -259,33 +258,53 @@
                     [value]="fileIdfield.filesId"
                     [(ngModel)]="fileIdfield.filesId">     
                     
-                </div>
-            </div>             
+                          
             <div class="form-group date_picker">
-                <label>event date:</label> <br>
+                <label  style="width:100%;">event date:</label> <br>
                 <input type="date"
                     name="eventdate" 
                     id="eventdate"
-                    [(ngModel)]="list.eventDate">
+                    [(ngModel)]="list.eventDate"  style="width:100%;">
             </div>
-            <div class="form-group date_picker">
-                <label>
+            <div class="form-group date_picker col-sm-6" style="padding-left: 0px;">
+                <label style="width:100%;">
                     <a href=""> start time </a>
                 </label><br>
                 <input type="time" 
                 name="starttime"
                 id="starttime"
-                [(ngModel)]="list.startTime">
+                [(ngModel)]="list.startTime" style="width:100%;">
             </div>
-            <div class="form-group date_picker">
-                    <label>
+            <div class="form-group date_picker  col-sm-6" style="padding-right:0px;">
+                    <label style="width:100%;">
                         <a href="">end time </a>
                     </label><br>
                     <input type="time" 
                     name="endtime"
                     id="endtime"
-                    [(ngModel)]="list.endTime">
+                    [(ngModel)]="list.endTime" style="width:100%;">
             </div>
+            <div class="clearfix"></div>
+              <div class="form-group">
+                    <div class="input-effect form-group md-form ">
+                    <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.venueName" name="venueName" id="venueName">
+                     
+                        <label>VenueName</label>
+                        <span class="focus-border"></span>
+                    </div>
+            </div> 
+            <div class="form-group">
+                <div class="input-effect form-group md-form ">  
+                    <select  class="effect-16 validate"  name="Eventtown" id="Eventtown">
+                        <option>District 1</option>
+                         <option>District 2</option>
+                    </select>
+                    
+                    <span class="focus-border"></span>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
             <div class="form-group">
                 <div class="input-effect form-group md-form ">  
                     <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.location" name="Location" id="Location">
@@ -316,14 +335,7 @@
                         <span class="focus-border"></span>
                     </div>
             </div> 
-            <div class="form-group">
-                    <div class="input-effect form-group md-form ">
-                    <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.venueName" name="venueName" id="venueName">
-                     
-                        <label>VenueName</label>
-                        <span class="focus-border"></span>
-                    </div>
-            </div>  
+           
             <div class="form-group">
                     <div class="input-effect form-group md-form ">
                     <input  type="text" class="effect-16 validate"  required="required"  [(ngModel)]="list.entryFee" name="entryFee" id="entryFee">

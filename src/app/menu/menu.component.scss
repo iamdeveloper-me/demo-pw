@@ -1,6 +1,10 @@
 
 .logincontainer{padding: 0px!important;max-width: 340px!important;background: #ffffff;margin-left: auto;margin-right: auto;border-radius: 5px;}
-
+.userimgtop{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+}
 .notifiybtn{
 background: transparent;
     border: 0px solid #fff;
@@ -13,6 +17,15 @@ background: transparent;
 .notification-dropdown{
   top:50px!important;
   min-width:320px!important;
+}
+.forgotlock{
+  margin:30px auto auto;
+}
+.forgothead{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 30px;
 }
 #mainNav {
     border-bottom: 1px solid rgba(33, 37, 41, 0.1);
@@ -370,6 +383,24 @@ margin-right: 5px;
   padding-top: 5px;
 }
 
+
+
+@media only screen 
+and (min-device-width : 992px) 
+and (max-device-width : 1100px) {
+#navbarResponsive{
+  margin-left: 4% !important;
+}
+
+.navbar-nav.right_listing > li{
+  width: inherit!important;
+}
+
+}
+
+
+
+
 @media (min-width: 992px) {
         #mainNav {
           border-color: transparent;
@@ -413,15 +444,21 @@ margin-right: 5px;
           color: #F05F40;
         }
 }
-@media (max-width:767px){
+
+
+@media (max-width:991px){
+  /*.mobileshowwebnav{
+    
+    left: -9px !important;
+  }
+  .navbar-toggler{
+    top: 10px;
+  }*/
 .right_listing{
     position: absolute;
     top: 6px;
     margin-right: 0px;
     right: 6px;
-}
-.navbar-nav.right_listing > li{
-  width: inherit!important;
 }
 .right_listing .nav-link {
   color: #fff!important;
@@ -429,6 +466,10 @@ margin-right: 5px;
 .vendorappbtn, .vendorappbtnclose{
   position:absloute;
   right:0px;
+}
+
+.navbar-nav.right_listing > li{
+  width: inherit!important;
 }
 #mainNav .navbar-brand{
   position:absolute;
@@ -489,7 +530,7 @@ a.mobileslidewednav{
   .mobileshowwebnav {
     min-width: inherit;
     top:-53px;
-    left:265px;
+    left:-8px;
     width: 282px;
     display: block;
     overflow: scroll;
@@ -624,7 +665,6 @@ background:#fff;
       height: 100%; 
       width: 280px;
       display: block;
-      
     }
       .navbar-collapse {
         transition: .5s;
@@ -691,6 +731,8 @@ font-size: .9rem!important;
   width:375px!important;
 }
 }
+
+
   .loginboxmodal  .nav>li>a{
   padding:10px!important;
   }
@@ -971,5 +1013,54 @@ a.dropdown-item img {
     width: 27px !important;
     margin-right: 10px;
 }
+@media only screen and (max-width: 960px) {
+    button.navbar-toggler.hidden-md.hidden-lg.tik {
+    left: 11px;
+    top: 6px;
+}
+}
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 800px) {
+.mobileshowwebnav {
+    top:-41px!important;
+    left:-283px!important;
+    width:293px!important;
+  }
+.locationbox h2 {
+    font-size:15px !important;
+}
+button.navbar-toggler.hidden-md.hidden-lg.tik {
+    top: 20px !important;
+}
+button.navbar-toggler.hidden-md.hidden-lg.tik {
+    left: 11px !important;
+}
+}
+@media only screen and (max-width: 767px) {
+button.navbar-toggler.tik.hidden-md.hidden-lg {
+    left: 11px !important;
+}
+button.navbar-toggler.hidden-md.hidden-lg.tik {
+    top: 20px !important;
+}
 
+}
 
+/*pankaj work*/
+
+@media (max-width:767px){
+ .imgsection img{
+  max-width: 32px;
+  margin-top: 5px;
+ }
+ .userhomemenu a{
+  display: block;
+  padding:5px 10px;
+  color:#333;
+ }
+ .userhomemenu img{
+  max-width: 25px;
+  margin-right: 10px;
+ }
+}

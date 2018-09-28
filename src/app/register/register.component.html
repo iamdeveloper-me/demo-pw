@@ -1,5 +1,4 @@
 <app-menu></app-menu>
-<app-tool></app-tool>
 <div class="sign_up_container container" id="up">
    <h2 class="text-center font-bold pt-4 pb-5 mb-5"><strong> Vendor Registration </strong></h2>
    <!-- Stepper -->
@@ -37,7 +36,7 @@
                 <div  class="show" >
                 <div class="col-md-12 nopadd">
                     <ul class="unstyled centered">
-                        <li class="col-md-4" *ngFor="let category of categoryArray">
+                        <li class="col-md-4 col-sm-4" *ngFor="let category of categoryArray">
                         <input                 
                         type="radio" 
                         name="category"               
@@ -228,7 +227,7 @@
                 <label>Address</label>
                 <span class="focus-border"></span>
             </div>
-            <div class="input-effect form-group md-form mt-3">
+            <!-- <div class="input-effect form-group md-form mt-3">
                     <input class="effect-16 validate" 
                     type="text" 
                     id="contactPerson" 
@@ -238,7 +237,7 @@
                     required>
                     <label>Contact Person</label>
                     <span class="focus-bo+rder"></span>
-                </div>
+                </div> -->
             <div class="input-effect form-group md-form mt-3">
                 <input class="effect-16 validate" 
                 type="text" 
@@ -267,7 +266,9 @@
                 <ul class="tabbingdesign">
                     <li class="card-title gradint_blue Suppliertab">Monthly</li>
                     <li class="card-title Registertab">Annually</li>
+                    <img src="../../assets/img/arrow.svg" class="tabarrow" />
                 </ul>
+               <div class="clearfix"></div>
                 <span class="arrowimg">
                     <img src="https://s3.us-east-2.amazonaws.com/prefect-image/imgpsh_fullsize.png"/>
                 </span>

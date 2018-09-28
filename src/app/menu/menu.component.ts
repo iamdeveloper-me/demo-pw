@@ -2,6 +2,7 @@ import { Component,  OnInit , Input } from '@angular/core';
 import { LoginServiceService } from '../shared/service/login-service.service';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { Http,Headers } from '@angular/http';
 import { SignupVendorService } from '../shared/service/signup-vendor.service';
 import 'rxjs/Rx';
  
@@ -19,7 +20,10 @@ export class NgbdModalContent {
 export class MenuComponent implements OnInit {
     error = {} ;
     supArray:string[];
-    constructor( private router: Router ,private cservice: LoginServiceService , private modalService: NgbModal, private uservice: SignupVendorService,) {}
+    private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
+    vendor: any = {};
+  
+    constructor( private router: Router ,public http: Http,private cservice: LoginServiceService , private modalService: NgbModal, private uservice: SignupVendorService,) {}
     user = {username:' ',password:' '}
     usercouple = {username:' ',password:' '}
     onSubmit(){ 
@@ -126,6 +130,19 @@ export class MenuComponent implements OnInit {
         if(authToken)
         {  
             
+      var firstName = localStorage.getItem('firstName');
+      let headers = new Headers();
+      var authToken = localStorage.getItem('userToken');
+      headers.append('Accept', 'application/json')
+      headers.append('Content-Type', 'application/json');
+      headers.append("Authorization",'Bearer '+authToken);
+  
+
+
+      this.http.get(this.url,{headers:headers}).subscribe(
+        data =>{ this.vendor = data.json();
+                 console.log(this.vendor);
+                               });
             if(window.location.href.indexOf("home") && vendorid)
             {   
                 // alert("jjllll") 
@@ -133,6 +150,8 @@ export class MenuComponent implements OnInit {
                 $(".vendorlogindisplay").show();
                 $(".userlogindisplay").hide();
             }
+
+            
             else
 
             {   
@@ -387,6 +406,12 @@ loadScript(){
     $("#panel8").addClass( "in");
     $("#panel8").addClass( "active");
     $("#panel8").addClass( "show");
+    $("#panel10").removeClass( "in");
+    $("#panel10").removeClass( "active");
+    $("#panel10").removeClass( "show");
+    $("#panel11").removeClass( "in");
+    $("#panel11").removeClass( "active");
+    $("#panel11").removeClass( "show");
    }
    userin(){
    $("#panel9").removeClass( "in");
@@ -398,6 +423,46 @@ loadScript(){
    $("#panel8").removeClass( "in");
    $("#panel8").removeClass( "active");
    $("#panel8").removeClass( "show");
+    $("#panel10").removeClass( "in");
+    $("#panel10").removeClass( "active");
+    $("#panel10").removeClass( "show");
+    $("#panel11").removeClass( "in");
+    $("#panel11").removeClass( "active");
+    $("#panel11").removeClass( "show");
+   }
+forgotbox(){ 
+    $("#panel9").removeClass( "in");
+    $("#panel9").removeClass( "active");
+    $("#panel9").removeClass( "show");
+    $("#panel7").removeClass( "active");
+    $("#panel7").removeClass( "show");
+    $("#panel7").removeClass( "in");
+    $("#panel8").removeClass( "in");
+    $("#panel8").removeClass( "active");
+    $("#panel8").removeClass( "show");
+    $("#panel10").addClass( "in");
+    $("#panel10").addClass( "active");
+    $("#panel10").addClass( "show");
+    $("#panel11").removeClass( "in");
+    $("#panel11").removeClass( "active");
+    $("#panel11").removeClass( "show");
+   }
+forgotvendor(){ 
+    $("#panel9").removeClass( "in");
+    $("#panel9").removeClass( "active");
+    $("#panel9").removeClass( "show");
+    $("#panel7").removeClass( "active");
+    $("#panel7").removeClass( "show");
+    $("#panel7").removeClass( "in");
+    $("#panel8").removeClass( "in");
+    $("#panel8").removeClass( "active");
+    $("#panel8").removeClass( "show");
+    $("#panel10").removeClass( "in");
+    $("#panel10").removeClass( "active");
+    $("#panel10").removeClass( "show");
+    $("#panel11").addClass( "in");
+    $("#panel11").addClass( "active");
+    $("#panel11").addClass( "show");
    }
 //end
     

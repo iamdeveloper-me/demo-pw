@@ -99,6 +99,8 @@ $.getScript('https://code.jquery.com/jquery-1.11.1.min.js');
 $('.tikchecklist').click(function(e){
 //alert("hi")
     $(this).parent('.CheckListdiv').toggleClass('doneListdiv');
+    $(this).parent('.CheckListdiv').toggleClass('donecheckbox');
+    $(this).parent('.CheckListdiv').toggleClass('todocheckbox');   
 });
 $('.deletebtnhover').click(function(e){
 //alert("hi")

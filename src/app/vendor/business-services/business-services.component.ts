@@ -8,15 +8,25 @@ import { Http,Headers } from '@angular/http';
 
 })
 export class BusinessServicesComponent implements OnInit {
-
-
-
+  
+// 
+  cardtitle:string;
+  costserviceTrue:boolean = false;
+  // toggle
+  optionone:boolean = false;
+  optiontwo:boolean = false;
+  optionthree:boolean = false;
+  optionfour:boolean = false;
+  optionfive:boolean = false;
+  optionsix:boolean = false;
+  optionseven:boolean = false;
   private urlget: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/services'
   private serveiceget: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories/categorieswithservices'
   
   
   data: any;
-  // serviceArray:any= {};
+  categoryId;
+ 
   selectedEntry;
   Services = [];
   categoryserveice = [];
@@ -28,23 +38,40 @@ export class BusinessServicesComponent implements OnInit {
 
   readioSelected:any;
   readioSelected_serv:any
+  RoleServiceService:any
   showcontent:boolean=false;
 
   service_data:any;
   field_length=[]
-  customFields:[];
+  customFields=[];
   price = []
   strating_price= []
   b= []
   c= []
+  d =[]
+  e=[]
+  f=[]
+  g=[]
   p =[]
   q =[]
   r =[]
+  s=[]
+  t=[]
+  u=[]
+  v=[]
 
   delivery_type= []
   payment_terms = []
   travel_cost = []
   experien = []
+
+  a_lable:string
+  b_lable:string
+  c_lable:string
+  d_lable:string
+  e_lable:string
+  f_lable:string
+  g_lable:string
   constructor(public http: Http)
   {
 
@@ -67,8 +94,14 @@ export class BusinessServicesComponent implements OnInit {
     this.http.get(this.urlget,{headers:headers}).subscribe(data =>{
     
     console.log(data.json());
+    
     this.Services = data.json() as string[]
+    this.cardtitle = 'Api for get service data when registration';
+    console.log(data['data']);
+    console.log(this.categoryId);
+
   });
+
 
   this.http.get(this.serveiceget,{headers:headers}).subscribe(data =>{
     
@@ -76,6 +109,8 @@ export class BusinessServicesComponent implements OnInit {
     this.categoryserveice = data.json() as string[]
     debugger
   });
+
+  
 
   $.getScript('./assets/js/vertical-timeline.js');
   // $.getScript('./assets/js/profile.js'); 
@@ -108,11 +143,10 @@ export class BusinessServicesComponent implements OnInit {
   }
   showContent(){
     this.showcontent=this.readioSelected;
-    console.log(this.readioSelected)
-    console.log(this.categoryserveice[this.readioSelected])
+    this.cardtitle = this.categoryserveice[this.readioSelected].categoryName
     this.service_data = this.categoryserveice[this.readioSelected];
-     this.services_all = this.service_data['services']
-     console.log(this.services_all)
+    this.services_all = this.service_data['services']
+    this.costserviceTrue = true;
   }
   
   serv_all(data){
@@ -123,18 +157,91 @@ export class BusinessServicesComponent implements OnInit {
     this.customFields = data['customFields']
     console.log(this.customFields)
     this.strating_price = this.customFields[0]
-
+    this.a_lable = this.strating_price['name'];
     this.p = this.strating_price['customFieldOptionList']
 
 
     this.b = this.customFields[1]
-
+    this.b_lable = this.b['name'];
     this.q = this.b['customFieldOptionList']
 
 
     this.c = this.customFields[2]
-
+    this.c_lable = this.c['name'];
     this.r = this.c['customFieldOptionList']
+
+    this.d = this.customFields[3]
+    this.d_lable = this.d['name'];
+    this.s = this.d['customFieldOptionList']
+
+    
+    this.e = this.customFields[4]
+    this.e_lable = this.e['name'];
+    this.t = this.e['customFieldOptionList']
+
+    this.f = this.customFields[5]
+    this.f_lable = this.f['name'];
+    this.u = this.f['customFieldOptionList']
+
+
+    this.g = this.customFields[6]
+    this.g_lable = this.g['name'];
+    this.v = this.g['customFieldOptionList']
+  }
+
+  option_one(){
+    this.optionone = !this.optionone;
+  }
+  option_two(){
+    this.optiontwo = !this.optiontwo;
+  }
+  option_three(){
+    this.optionthree = !this.optionthree;
+  }
+  option_four(){
+    this.optionfour = !this.optionfour;
+  }
+  option_five(){
+    this.optionfive = !this.optionfive;
+  }
+  option_six(){
+    this.optionsix = !this.optionsix;
+  }
+  option_seven(){
+    this.optionseven = !this.optionseven;
+  }
+  arrayEmpty(){
+    this.services_all = []
+    this.costserviceTrue = false
+
+    this.a_lable = ''
+    this.strating_price = []
+    this.p = []
+    
+    this.b_lable = ''
+    this.q = []
+    this.b = []
+
+    this.c_lable = ''
+    this.r = []
+    this.c = []
+    
+    this.d_lable = ''
+    this.s = []
+    this.d = []
+    
+    this.e_lable = ''
+    this.t = []
+    this.e = []
+
+    this.f_lable = ''
+    this.u = []
+    this.f = []
+
+    this.g_lable = ''
+    this.v = []
+    this.g = []
+    
   }
 }
 

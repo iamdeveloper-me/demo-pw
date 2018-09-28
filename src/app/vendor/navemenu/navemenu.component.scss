@@ -1,7 +1,7 @@
 .navbar{
     width: 100%;
     background:#ffffff !important;
-    padding: 5px 15px !important;
+    padding: 5px 0 !important;
      border-bottom: 1px solid #e6eaee;
     }
 .headervendor{
@@ -115,7 +115,14 @@ a:hover.navbar-brand {
 .noti-footer{
     border-top: none !important;
 }
-
+.navbar .navbar-nav {
+    margin-right: 0;
+}
+@media only screen and (max-width: 1024px) {
+.boxcolumn .card h1{
+    font-size: 13px !important;
+}
+ }
 @media only screen and (max-width: 767px) {
     .navbar-brand{display: none !important;}
     .togglebtnmenu{margin: 8px 0px 0px 10px;}

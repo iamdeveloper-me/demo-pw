@@ -3,435 +3,170 @@
         <app-adminsidebar></app-adminsidebar>   
     </div>
     <div id="page-content-wrapper">    
-        <div class="container-fluid nopadd">                    
+        <div class="container-fluid nopadd">    
             <app-adminnavbar></app-adminnavbar>
-            <div class="container-fluid">   
+            <div class="container-fluid"> 
             <div class="card">
-                <div class="search-div">
-                        <input class="searchinput" placeholder="Search" type="text">
-                        <button class="addbtn" class="addbtn" data-toggle="modal" data-target="#addnewmember">
-                            <i class="material-icons">add</i>
-                            Add Member
-                        </button>
-                        <div class="selectoption">
-                            <label>Show</label>
-                            <select>
-                                <option>All</option>
-                            </select>
-                        </div>
-                </div>  
-                <div class="clearfix"></div>
-                <div class="col-sm-12 table-responsive">
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col"></th>
-                            <th scope="col" class="font14px">Users</th>
-                            <th scope="col" class="font14px">Message</th>
-                            <th scope="col" class="font14px">Tickets</th>
-                            <th scope="col" class="font14px">Events</th>
-                            <th scope="col" class="font14px">Feedbacks</th>
-                            <th scope="col">
-                                <i class="material-icons">
-                                    more_horiz
-                                </i>
-                            </th>
-                            <th scope="col">
-                                <i class="material-icons">
-                                    more_horiz
-                                </i>
-                            </th>
-                            <th>
-                                Actions
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                                <div class="userdetailbox">
-                                    <img src="https://www.shareicon.net/data/128x128/2015/09/18/103157_man_512x512.png" class="image-circle"/>
-
-                                    <span class="blue">Eric Lewis</span>&nbsp;
-                                    <span class="font12px">(Owner)</span><br/>
-                                    <span class="font12px">Team Member</span>
-                                </div>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td></td>
-                            <td>
-                                <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Edit Member Details">
-                                    <i class="material-icons">how_to_reg</i>
-                                </button>&nbsp;&nbsp;
-                                <button  class="btn btn-warning"  data-toggle="tooltip" data-placement="top" title="Edit Access Privileges">
-                                    <i class="material-icons">edit</i>
-                                </button>&nbsp;&nbsp;
-                                <button  class="btn btn-danger"  data-toggle="tooltip" data-placement="top" title="Remove">  
-                                    <i class="material-icons">clear</i>
-                                </button>   
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                                <div class="userdetailbox">
-                                    <img src="https://www.shareicon.net/data/128x128/2015/09/18/103157_man_512x512.png" class="image-circle"/>
-
-                                    <span class="blue">Eric Lewis</span>&nbsp;
-                                    <span class="font12px">(Owner)</span><br/>
-                                    <span class="font12px">Team Member</span>
-                                </div>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td></td>
-                            <td>
-                                <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Edit Member Details">
-                                    <i class="material-icons">how_to_reg</i>
-                                </button>&nbsp;&nbsp;
-                                <button  class="btn btn-warning"  data-toggle="tooltip" data-placement="top" title="Edit Access Privileges">
-                                    <i class="material-icons">edit</i>
-                                </button>&nbsp;&nbsp;
-                                <button  class="btn btn-danger"  data-toggle="tooltip" data-placement="top" title="Remove">  
-                                    <i class="material-icons">clear</i>
-                                </button>  
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                                <div class="userdetailbox">
-                                    <img src="https://www.shareicon.net/data/128x128/2015/09/18/103157_man_512x512.png" class="image-circle"/>
-
-                                    <span class="blue">Eric Lewis</span>&nbsp;
-                                    <span class="font12px">(Owner)</span><br/>
-                                    <span class="font12px">Team Member</span>
-                                </div>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td></td>
-                            <td>
-                               <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Edit Member Details">
-                                    <i class="material-icons">how_to_reg</i>
-                                </button>&nbsp;&nbsp;
-                                <button  class="btn btn-warning"  data-toggle="tooltip" data-placement="top" title="Edit Access Privileges">
-                                    <i class="material-icons">edit</i>
-                                </button>&nbsp;&nbsp;
-                                <button  class="btn btn-danger"  data-toggle="tooltip" data-placement="top" title="Remove">  
-                                    <i class="material-icons">clear</i>
-                                </button>   
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                                <div class="userdetailbox">
-                                    <img src="https://www.shareicon.net/data/128x128/2015/09/18/103157_man_512x512.png" class="image-circle"/>
-
-                                    <span class="blue">Eric Lewis</span>&nbsp;
-                                    <span class="font12px">(Owner)</span><br/>
-                                    <span class="font12px">Team Member</span>
-                                </div>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td></td>
-                            <td>
-                                <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Edit Member Details">
-                                    <i class="material-icons">how_to_reg</i>
-                                </button>&nbsp;&nbsp;
-                                <button  class="btn btn-warning"  data-toggle="tooltip" data-placement="top" title="Edit Access Privileges">
-                                    <i class="material-icons">edit</i>
-                                </button>&nbsp;&nbsp;
-                                <button  class="btn btn-danger"  data-toggle="tooltip" data-placement="top" title="Remove">  
-                                    <i class="material-icons">clear</i>
-                                </button>     
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                                <div class="userdetailbox">
-                                    <img src="https://www.shareicon.net/data/128x128/2015/09/18/103157_man_512x512.png" class="image-circle"/>
-
-                                    <span class="blue">Eric Lewis</span>&nbsp;
-                                    <span class="font12px">(Owner)</span><br/>
-                                    <span class="font12px">Team Member</span>
-                                </div>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td class="green">
-                                <i class="material-icons">
-                                    done
-                                </i>
-                            </td>
-                            <td></td>
-                            <td>
-                                <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Edit Member Details">
-                                    <i class="material-icons">how_to_reg</i>
-                                </button>&nbsp;&nbsp;
-                                <button  class="btn btn-warning"  data-toggle="tooltip" data-placement="top" title="Edit Access Privileges">
-                                    <i class="material-icons">edit</i>
-                                </button>&nbsp;&nbsp;
-                                <button  class="btn btn-danger"  data-toggle="tooltip" data-placement="top" title="Remove">  
-                                    <i class="material-icons">clear</i>
-                                </button>     
-                            </td>
-                          </tr>
-                        </tbody>
-                    </table>
+                 <div class="col-sm-12 row searchform">
+                                            <div class="col-sm-4 col-6">
+                                                <label>From</label>
+                                                <input type="date" name="startdate">
+                                            </div>
+                                            <div class="col-sm-4 col-6">
+                                                <label>To</label>
+                                                <input type="date" name="enddate">
+                                            </div>
+                                             <div class="col-sm-4  col-6">
+                                                <label>Merchant</label>
+                                                <select>
+                                                    <option>Rent</option>
+                                                    <option>Hotel</option>
+                                                    <option>Parking</option>
+                                                    <option>Taxi</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-4 col-6">
+                                                <label>Min Amount</label>
+                                                <input type="Number" name="startdate">
+                                            </div>
+                                            <div class="col-sm-4  col-6">
+                                                <label>Max Amount</label>
+                                                <input type="Number" name="startdate">
+                                            </div>
+                                           
+                                            <div class="col-sm-4  col-6">
+                                                <label style="width: 100%;">Status</label>
+                                                    <label class="checklable"> 
+                                                            <input type="checkbox"/>
+                                                            <span>New</span>
+                                                    </label>
+                                                    <label class="checklable"> 
+                                                            <input type="checkbox"/>
+                                                            <span>In Progress</span>
+                                                    </label>
+                                                    <label class="checklable"> 
+                                                            <input type="checkbox"/>
+                                                            <span>reimbursed</span>
+                                                    </label>    
+                                               
+                                            </div>
+                                                              </div>
+            </div>  
+                <div class="card">
+                 
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12 table-responsive">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col" class="font14px">Date</th>
+                                <th scope="col" class="font14px">Merchant</th>
+                                <th scope="col" class="font14px">Status</th>
+                                <th scope="col" class="font14px">Comments</th>
+                                <th scope="col" class="font14px">Total</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                               <td>25 Sep 2018</td>
+                               <td>Parking</td>
+                               <td><span class="red">New</span></td>
+                               <td> Expense from my business trip.</td>
+                               <td>$150.00</td>
+                              </tr>
+                              <tr>
+                               <td>25 Sep 2018</td>
+                               <td>Taxi</td>
+                               <td><span class="gray"><em>In Progress</em></span></td>
+                               <td> Expense from my business trip.</td>
+                               <td>$150.00</td>
+                              </tr>
+                              <tr>
+                               <td>25 Sep 2018</td>
+                               <td>Hotel</td>
+                               <td><span class="green">Reimbursed</span></td>
+                               <td> Expense from my business trip.</td>
+                               <td>$150.00</td>
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-                   </div>  
+            </div>  
             <app-foot></app-foot>
         </div>
     </div> 
 </div>
 
+<button class="addbtn" data-toggle="modal" data-target="#addexpenses">
+    <i class="material-icons">add</i>
+</button>
 
 
-    <div class="modal fade" id="addnewmember" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="addexpenses" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Admin User Details
+                    <h4 class="modal-title">Add Expenses
                     </h4>
-                   
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                    
                 <div class="modal-body">
                     <div class="card">         
                         <div class="card-body">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <div class="input-effect form-group md-form ">
-                                        <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                        <label>First Name</label>
-                                        <span class="focus-border"></span>
+                                    <div class="md-form">
+                                        <label>Merchant</label>
+                                        <select  class="form-control" required="required">
+                                            <option class="green">Taxi</option>
+                                            <option class="red">Parking</option>
+                                            <option class="red">Hotel</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="md-form">
+                                        <label>Total</label>
+                                        <input class="form-control" type="text" placeholder="$00.00" required="required">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="md-form">
+                                        <label>Date</label>
+                                        <input class="form-control" type="date" placeholder="" required="required">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="md-form">
+                                        <label>Comment</label>
+                                        <textarea class="form-control"> </textarea>  
                                     </div>
                                 </div>
                             </div> 
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="input-effect form-group md-form ">
-                                        <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                        <label>Last Name</label>
-                                        <span class="focus-border"></span>
-                                    </div>
-                                </div>
-                            </div>  
-                            <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="input-effect form-group md-form ">
-                                            <input class="effect-16 validate" type="email" placeholder="" required="required">
-                                            <label>Email</label>
-                                            <span class="focus-border"></span>
-                                        </div>
-                                    </div>
-                            </div>                                      
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="input-effect form-group md-form ">
-                                        <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                        <label>Phone Number</label>
-                                        <span class="focus-border"></span>
-                                    </div>
-                                </div>
-                            </div>                     
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="input-effect form-group md-form ">
-                                        <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                        <label>Address</label>
-                                        <span class="focus-border"></span>
-                                    </div>
-                                </div>
-                            </div>
-                           
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="input-effect form-group md-form ">
-                                        <select  class="effect-16 validate" required="required">
-                                            <option class="green">Team Member</option>
-                                            <option class="red">Team Lead</option>
-                                        </select>
-                                        <label></label>
-                                        <span class="focus-border dateborder"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <label>Access Privileges</label>
-                                        <div class="funkyradio">
-                                            <div class="funkyradio-info">
-                                              <input type="checkbox" name="checkbox" id="Users" checked/>
-                                              <label for="Users" data-toggle="tooltip" data-placement="top" title="User Description Here"> 
-                                                Users
-                                              </label>
-                                            </div>
-                                            <div class="funkyradio-info">
-                                              <input type="checkbox" name="checkbox" id="Message"/>
-                                              <label for="Message" data-toggle="tooltip" data-placement="top" title="Message Description Here"> 
-                                                Message
-                                              </label>
-                                            </div>
-                                            <div class="funkyradio-info">
-                                              <input type="checkbox" name="checkbox" id="Tickets"/>
-                                              <label for="Tickets" data-toggle="tooltip" data-placement="top" title="Tickets Description Here"> 
-                                                 Tickets
-                                              </label>
-                                            </div>
-                                            <div class="funkyradio-info">
-                                              <input type="checkbox" name="checkbox" id="Events"/>
-                                              <label for="Events" data-toggle="tooltip" data-placement="top" title="Events Description Here"> 
-                                                 Events
-                                              </label>
-                                            </div>
-                                            <div class="funkyradio-info">
-                                              <input type="checkbox" name="checkbox" id="Feedback"/>
-                                              <label for="Feedback" data-toggle="tooltip" data-placement="top" title="Feedback Description Here"> 
-                                                 Feedback
-                                              </label>
-                                            </div>
-                                        </div>
-                                        
-                                       
-                            </div>
+                            <div class="col-md-6 height100">
+                               
+    <h3 class="receipthead">Receipt Here
+
+        <div class="fileUpload btn fake-shadow">
+                <span>Select Receipt</span>
+                <input id="logo-id" name="logo" type="file" class="attachment_upload">
+              </div>
+    </h3>
+   
+        
+    <div class="form-group">
+        <div class="main-img-preview">
+            <img class="thumbnail img-preview" src="" title="Preview Logo">
+            <div class="input-group-btn">
+              
+        </div>
+    </div>    
+</div>
+                            </div>                              
+                                     
+                            
                         </div> 
                     </div>
                 </div>
@@ -443,5 +178,4 @@
             </div>
 </div>
     
-
 <router-outlet></router-outlet> 

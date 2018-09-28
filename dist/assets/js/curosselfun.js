@@ -23,6 +23,10 @@ $(document).ready(function () {
           items: 1,
           stagePadding: 40
         },
+        768: {
+          items: 2,
+          stagePadding: 40
+        },
     
         1024: {
           items: 4
@@ -382,3 +386,24 @@ $(".wedding-icon4").click(function() {
     $('.wedding-icon2').removeClass('btnactive');
     $('.wedding-icon3').removeClass('btnactive');
 });
+
+
+window.onload = function(){
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+               document.querySelector('.img-preview').setAttribute('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    var imageInput = document.querySelector('#logo-id');
+    imageInput.onchange=changeEventHandler;
+    
+    function changeEventHandler(event) {
+        readURL(this);
+    }
+};

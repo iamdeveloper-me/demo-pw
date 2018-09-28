@@ -187,6 +187,8 @@ import { MatchHeightModule } from "./shared/directives/match-height.directive";
 import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
 
 import { UseraccountComponent } from './userpannel/userboard/useraccount/useraccount.component';
+import { ErrorComponent } from './error/error.component';
+import { AdminexpensesComponent } from './admin/adminexpenses/adminexpenses.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -340,6 +342,8 @@ export function getAuthServiceConfigs() {
         CategorystatsComponent,
         VendorstatsComponent,
         AdminuseraccountComponent,
+        ErrorComponent,
+        AdminexpensesComponent,
        
         
         

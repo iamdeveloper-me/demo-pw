@@ -163,14 +163,14 @@
               <div class="blackoverlaymainuser">
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic3" class="userhomemenu">
                    <div class="vendorpicsec">
-                    <div class="imgsection">
-                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png"/>
-                    </div>
-                    <div class="detailsection">
+                      <div class="imgsection">
+                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png"/>
+                      </div>
+                      <div class="detailsection">
                       <div><strong>User Name</strong></div>
                       <div>User@gmail.com</div>
-                    </div>
-                  </div>
+                      </div>
+                   </div>
                   <a class="dropdown-item hidden-sm hidden-md hidden-lg"  routerLink="/User/Timeline">
                     <img src="../../assets/img/wedding-ring.png">
                     <span>My Wedding</span>
@@ -208,9 +208,9 @@
                       <img src="../../assets/img/settings.png">
                       <span>My Accounts</span>
                  </a>
-                 <a class="dropdown-item" routerLink="../vendor/dashboard">
+                 <a class="dropdown-item" routerLink="/User/Message">
                        <img src="../../assets/img/mail.png">
-                      <span>Inbox</span>
+                       <span>Inbox</span>
                  </a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" (click)="logout()">
@@ -345,7 +345,7 @@
               <!-- Tab panels -->
               <div class="tab-content">
                   <!--Panel 7-->
-                      <div class="tab-pane fade in active" id="panel7" role="tabpanel">
+                    <div class="tab-pane fade in active" id="panel7" role="tabpanel">
                           <!--Body-->
                           <form role="form" action="" method="post" id="id7" (ngSubmit)="userlogin()" #f="ngForm" >
                               <div class="modal-body mb-1 align_left">
@@ -375,7 +375,7 @@
                                   </div>   
                                   <div class="text-center mt-2" >
                                           <p class="pt-1 text-right">
-                                                  <a  href="#" class="pink-text">Forgot Password</a>
+                                                  <a (click)="forgotbox()" class="pink-text">Forgot Password</a>
                                           </p>
                                       <button class="btn btn-info" type="submit">SIGN IN
                                           <!-- <i class="fa fa-sign-in ml-1"></i> -->
@@ -394,7 +394,7 @@
                           <a href=""><span><i class="fa fa-google-plus" aria-hidden="true"></i></span> </a>  
                           <p>Already a member? <a (click)="loadScript()">Sign Up </a>  </p>
                           </div>     
-                      </div>
+                    </div>
                   <!--/.Panel 7-->
                   <!--Panel 8-->
                       <div class="tab-pane fade" id="panel8" role="tabpanel">
@@ -442,7 +442,7 @@
                               </div>  
                       </div>
                   <!--/.Panel 8-->
-                
+                 <!--/.Panel 9-->
                   <div class="tab-pane fade" id="panel9" role="tabpanel">
                           
                       <form role="form" action="" method="post" (ngSubmit)="onSubmit()" #f="ngForm">
@@ -480,7 +480,7 @@
                               </div>   
                               <div class="text-center mt-2">
                                   <p class="pt-1 text-right">
-                                      <a  href="#" class="blue-text">Forgot Password</a>
+                                      <a (click)="forgotvendor()" class="blue-text">Forgot Password</a>
                                   </p>
                                   <button class="btn btn-vendor vendor" 
                                   type="submit" 
@@ -494,7 +494,79 @@
                                <p>Not a member? <a routerLink="../register" class="signuplink">Sign Up </a></p>
                               </div>
                   </div>
-                 <!--/.Panel 8-->
+                 <!--/.Panel 9-->
+                 <!--/.Panel 10-->
+                  <div class="tab-pane fade" id="panel10" role="tabpanel">
+                          
+                      <form role="form" action="" method="post" (ngSubmit)="onSubmit()" #f="ngForm">
+                         <div class="text-center"> 
+                          <img src="../../assets/img/lockpink.png" class="forgotlock" /></div>
+                        <h1 class="forgothead">Forgot Your Password? Don't Worry!</h1>
+                          <div class="modal-body mb-1 align_left">
+                              <div class="input-effect form-group md-form mt-3">
+                                  <input class="effect-16"  
+                                  type="email"
+                                   [(ngModel)] = "usercouple.username" 
+                                   name="username" 
+                                   id="username"
+                                    required
+                                    placeholder="">
+                                  <label>Your Email</label>
+                                  <span class="focus-border"></span>
+                              </div>  
+                             
+                                
+                              <div class="text-center mt-2">
+                                  <button class="btn btn-info" 
+                                  type="submit" 
+                                  id="type-success" 
+                                  >Send link 
+                                  </button>
+                              </div>    
+                          </div>
+                      </form>
+                      <div class="footer_span1 text-center">
+                               <p><a (click)="userin()" class="pink-text"> Return To Sign In</a></p>
+                              </div>
+                  </div>
+                 <!--/.Panel 10-->
+            <div class="tab-pane fade" id="panel11" role="tabpanel">
+                          
+                      <form role="form" action="" method="post" (ngSubmit)="onSubmit()" #f="ngForm">
+                         <div class="text-center"> 
+                          <img src="../../assets/img/lockblue.png" class="forgotlock" /></div>
+                        <h1 class="forgothead">Forgot Your Password? Don't Worry!</h1>
+                          <div class="modal-body mb-1 align_left">
+                              <div class="input-effect form-group md-form mt-3">
+                                  <input class="effect-16"  
+                                  type="email"
+                                   [(ngModel)] = "usercouple.username" 
+                                   name="username" 
+                                   id="username"
+                                    required
+                                    placeholder="">
+                                  <label>Your Email</label>
+                                  <span class="focus-border"></span>
+                              </div>  
+                             
+                                
+                              <div class="text-center mt-2">
+                                  <button class="btn btn-vendor vendor" 
+                                  type="submit" 
+                                  id="type-success" 
+                                  >Send link 
+                                  </button>
+                              </div>    
+                          </div>
+                      </form>
+                      <div class="footer_span1 text-center">
+                               <p><a (click)="loadScript()" class="blue-text"> Return To Sign In</a></p>
+                              </div>
+                  </div>
+
+
+
+
 
               </div>
           </div>

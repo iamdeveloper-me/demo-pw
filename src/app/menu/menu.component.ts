@@ -387,6 +387,12 @@ loadScript(){
     $("#panel8").addClass( "in");
     $("#panel8").addClass( "active");
     $("#panel8").addClass( "show");
+    $("#panel10").removeClass( "in");
+    $("#panel10").removeClass( "active");
+    $("#panel10").removeClass( "show");
+    $("#panel11").removeClass( "in");
+    $("#panel11").removeClass( "active");
+    $("#panel11").removeClass( "show");
    }
    userin(){
    $("#panel9").removeClass( "in");
@@ -398,6 +404,46 @@ loadScript(){
    $("#panel8").removeClass( "in");
    $("#panel8").removeClass( "active");
    $("#panel8").removeClass( "show");
+    $("#panel10").removeClass( "in");
+    $("#panel10").removeClass( "active");
+    $("#panel10").removeClass( "show");
+    $("#panel11").removeClass( "in");
+    $("#panel11").removeClass( "active");
+    $("#panel11").removeClass( "show");
+   }
+forgotbox(){ 
+    $("#panel9").removeClass( "in");
+    $("#panel9").removeClass( "active");
+    $("#panel9").removeClass( "show");
+    $("#panel7").removeClass( "active");
+    $("#panel7").removeClass( "show");
+    $("#panel7").removeClass( "in");
+    $("#panel8").removeClass( "in");
+    $("#panel8").removeClass( "active");
+    $("#panel8").removeClass( "show");
+    $("#panel10").addClass( "in");
+    $("#panel10").addClass( "active");
+    $("#panel10").addClass( "show");
+    $("#panel11").removeClass( "in");
+    $("#panel11").removeClass( "active");
+    $("#panel11").removeClass( "show");
+   }
+forgotvendor(){ 
+    $("#panel9").removeClass( "in");
+    $("#panel9").removeClass( "active");
+    $("#panel9").removeClass( "show");
+    $("#panel7").removeClass( "active");
+    $("#panel7").removeClass( "show");
+    $("#panel7").removeClass( "in");
+    $("#panel8").removeClass( "in");
+    $("#panel8").removeClass( "active");
+    $("#panel8").removeClass( "show");
+    $("#panel10").removeClass( "in");
+    $("#panel10").removeClass( "active");
+    $("#panel10").removeClass( "show");
+    $("#panel11").addClass( "in");
+    $("#panel11").addClass( "active");
+    $("#panel11").addClass( "show");
    }
 //end
     

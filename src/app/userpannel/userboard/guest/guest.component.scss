@@ -55,13 +55,34 @@ margin-bottom:20px;
     padding: 6px;
     border-radius: 5px;
 }
-.searchinput{
-    border-radius: 3px;
+.inspirationhead h2{
+    padding-top:20px;
+}
+.serabar{
+    padding:20px 0px;
+    margin:0px;
+}
+.text-right{
+    text-align:right;
+}
+.serabar label{
+    line-height:30px;
+    font-weight:normal;
 }
 .serabar .searchinput{
     width: 100%;
     text-indent: 10px;
     padding: 5px;
+     border-radius: 20px;
+    border:1px solid #e5e5e5;
+}
+.serabar select{
+    width:150px;
+    text-indent: 10px;
+    padding: 5px;
+    border-radius: 20px;
+    border:1px solid #e5e5e5;
+    margin-left:10px;
 }
 .icon .material-icons{
     position: absolute;
@@ -92,30 +113,133 @@ margin-bottom:20px;
 
 /* Style the accordion panel. Note: hidden by default */
 .panel {
-    padding: 0 ;
+    padding: 0;
     background-color: transparent;
     display: none;
     overflow: hidden;
+    border-radius: 0px;
+    border: 1px solid #e5e5e5;
+    box-shadow: none;
+    margin-top: -3px;
+    margin-bottom:0px;
+}
+.pull-left{
+    float:left;
 }
 .accordin{
     margin-bottom: 30px;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+}
+.accordinholder{
+  margin-bottom:20px;
 }
 .accordion i{
     position: relative;
     top: 8px;
     font-size: 40px;
 }
-.accordion span{
-    display: block;
-    position: relative;
-    top: -20px;
-    left: 50px;
+.marleft10px{
+    margin-left:10px;
 }
 .accordion{
-    padding: 5px 5px 0 10px !important;
-    background-color: #fff !important
+    padding: 8px 5px 8px 10px !important;
+    background-color: #e5e5e5 !important;
+    border-radius: 5px;
+    margin: 0px;
+}
+.boxdetail{
+    max-width:300px;
+    margin:0px auto 20px;
+}
+.col-sm-3 .card a{
+    margin-bottom:20px;
+    display:inline-block;
+} 
+.roundbox{
+    border-radius:50%;
+    width:90px;
+    height:90px;
+    background:#e5e5e5;
+    text-align:center;
+    padding-top:20px;
+    font-weight:bold;
+    font-size:12px;
+    margin:4px;
+    float:left;
+}
+.roundbox i{
+display:block;
+}
+.pull-right{
+    float:right!important;
+}
+
+.martop0px{
+    margin-top:0px;
+}
+.sidebarhead{
+    font-size:20px;
+    text-align:center;
+    padding:10px 0px 5px 0px;
+    text-transform:uppercase;
+}
+
+.timeline{
+    position: relative;
+    margin:0px auto;
+    width:80%;
+}
+.timeline>li{
+    padding: 0px 0px 5px 20px;
+    margin-left: 0px;
+    position: relative;
+    list-style: none;
+    width:100%;
+    float:left;
+}
+.timeline>li::before{
+    content:'';
+    position: absolute;
+    width: 1px;
+    background-color: #E7E7E7;
+    top: 0;
+    bottom: 0;
+    left:5px;
+}
+
+/*Circle*/
+.timeline>li::after{
+    text-align: center;
+    padding-top:10px;
+    z-index: 10;
+    content:counter(item);
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border:0px solid white;
+    background-color: #E7E7E7;
+    border-radius: 50%;
+    top:11px;
+    left:0px;
+    text-indent:-9999px;
+}
+.btn-pink{
+background:#e72e77;
+color:#ffffff!important;
+}
+.timeline li a{
+    display:block;
+}
+.timeline li a .badge{
+    float:right;
+    margin-top:6px;
+}
+.btnplain{
+  background:none;
+  border:0px solid #fff;
+  outline:none;
+}
+.btnplain i{
+font-size:25px!important;
 }
 .accordion:hover{
     background-color: #fff;
@@ -130,6 +254,9 @@ margin-bottom:20px;
 .checkbox{
     background-color: #fff;
     padding: 10px;
+    margin:0px;
+    border-bottom:1px solid #e5e5e5;
+    border-radius:0px;
 }
 .positi_rel{
     position: relative;
@@ -140,14 +267,12 @@ margin-bottom:20px;
     display: none;
 }
 .downarrow{
-    position: absolute !important;
-    right: 20px !important;
-    top: 20px !important;
+    font-size: 30px;
+    line-height: 30px;
 }
 .uparrow{
-    position: absolute !important;
-    right: 20px !important;
-    top: 20px !important;
+    font-size: 30px;
+    line-height: 30px;
 }
 
   .accordion.active .downarrow{

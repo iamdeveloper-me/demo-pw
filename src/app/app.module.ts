@@ -272,7 +272,7 @@ export function getAuthServiceConfigs() {
         TermsandconComponent,
         CareersComponent,
         AdvertiseComponent,
-       // VendorComponent,
+        //VendorComponent,
         DashboardComponent,
         UserpannelComponent,
         UserboardComponent,

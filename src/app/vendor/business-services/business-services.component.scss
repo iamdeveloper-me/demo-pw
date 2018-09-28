@@ -121,6 +121,7 @@ position: absolute;
 }
 .selectboxservice{
     cursor: pointer;
+    margin-top: 50px;
 }
 .inputareacenter{
   width:30%;
@@ -381,7 +382,113 @@ margin-top: 10px!important;
 .card .top_10px{
     top: 10px !important;
 }
+//modal
+.modal-footer button{
+    background: #36cbf0;
+    color: #fff;
+    border: none !important;
+  }
+  .modal-footer button:hover{ 
+      box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.3);
+  }
+  .modal-footer{
+      display: block;
+  }
+  .margintop0px{
+      margin-top:0px;
+  }
+  .digi_btn{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+  .btn_inherit{
+      background-color: #8b8e91  !important;
+  }
+  .btn_inherit:hover{
+      box-shadow: 0 8px 10px 0 rgba(126, 127, 128, 0.5) !important;
+  }
+  
+  /* The container1 */
+  .container1 {
+      display: block;
+      position: relative;
+      margin-bottom: 12px;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+  }
+  
+  /* Hide the browser's default radio button */
+  .container1 input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+  }
+  
+  /* Create a custom radio button */
+  .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 25px;
+      width: 25px;
+      background-color: #eee;
+      border-radius: 50%;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container1:hover input ~ .checkmark {
+      background-color: #ccc;
+  }
+  
+  /* When the radio button is checked, add a blue background */
+  .container1 input:checked ~ .checkmark {
+      background-color: #2196F3;
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .container1 input:checked ~ .checkmark:after {
+      display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  .container1 .checkmark:after {
+       top: 9px;
+      left: 9px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+  }
+  .ulbox_text{
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      padding: 10px;
+  }
+  .ulbox_text ul{
+      margin: 0;
+      padding: 0;
+  }
+  .ulbox_text ul li{
+      list-style-type: none;
+  }
 
+
+@media(max-width:1024px){
+  .subheadtik{
+     max-width: 60%;
+  }
+}
 @media(max-width:767px){
 .inputareacenter{
   width:70%!important;
@@ -407,32 +514,21 @@ margin-top: 10px!important;
   display:block!important;
 }
 }
-//modal
-.modal-footer button{
-  background: #36cbf0;
-  color: #fff;
-  border: none !important;
+@media(max-width:375px){
+    .subheadtik{
+        font-size: 12px;
+    }
+    .selectboxservice{
+        margin-top: 20px;
+    }
+    .mobCenter div{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+   
+   
 }
-.modal-footer button:hover{ 
-    box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.3);
-}
-.modal-footer{
-    display: block;
-}
-.margintop0px{
-    margin-top:0px;
-}
-.digi_btn{
-  position: absolute;
-  right: 10px;
-  top: 10px;
-}
-.btn_inherit{
-    background-color: #8b8e91  !important;
-}
-.btn_inherit:hover{
-    box-shadow: 0 8px 10px 0 rgba(126, 127, 128, 0.5) !important;
-}
+
 
 .container1 .checkmark:after {
     top: 9px;
@@ -505,3 +601,4 @@ margin-top: 10px!important;
 .container1 input:checked ~ .checkmark:after {
     display: block;
 }
+

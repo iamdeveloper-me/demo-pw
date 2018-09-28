@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { Http,Headers } from '@angular/http';
 import { LoginServiceService } from '../../shared/service/login-service.service';
 @Component({
   selector: 'app-navemenu',
@@ -10,14 +11,29 @@ import { LoginServiceService } from '../../shared/service/login-service.service'
 export class NavemenuComponent implements OnInit {
     currentLang = 'en';
     toggleClass = 'ft-maximize';
+    private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
+    vendor: any = {};
+  
     public data = '' ;
-  constructor(public translate: TranslateService ,private cservice: LoginServiceService, private router: Router ) { const browserLang: string = translate.getBrowserLang();
+    constructor(public translate: TranslateService ,public http: Http,private cservice: LoginServiceService, private router: Router ) { const browserLang: string = translate.getBrowserLang();
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : 'en'); }
 
  
   ngOnInit() {
 
       var firstName = localStorage.getItem('firstName');
+      let headers = new Headers();
+      var authToken = localStorage.getItem('userToken');
+      headers.append('Accept', 'application/json')
+      headers.append('Content-Type', 'application/json');
+      headers.append("Authorization",'Bearer '+authToken);
+  
+
+
+      this.http.get(this.url,{headers:headers}).subscribe(
+        data =>{ this.vendor = data.json();
+                 console.log(this.vendor);
+                               });
       // alert(firstName);
 
       

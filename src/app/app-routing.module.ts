@@ -46,7 +46,7 @@ import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.com
 
 import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.component';
 
-import { VendorComponent } from './vendor/vendor.component';
+// import { VendorComponent } from './vendor/vendor.component';
 import { AllcategoryComponent } from './allcategory/allcategory.component';
 import { GalleryComponent } from './vendor/gallery/gallery.component';
 import { VideosComponent } from './vendor/videos/videos.component';
@@ -129,6 +129,7 @@ import { AdminsidebarComponent } from './admin/adminsidebar/adminsidebar.compone
 
 
 import { UseraccountComponent } from './userpannel/userboard/useraccount/useraccount.component';
+import { VendorComponent } from './dashboard/vendor/vendor.component';
 
 
 

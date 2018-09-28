@@ -28,7 +28,7 @@ import { ChartistModule} from 'ng-chartist';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from "./shared/shared.module";
-import { VendorModule } from "./vendor/vendor.module" 
+// import { VendorModule } from "./vendor/vendor.module" 
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -104,7 +104,7 @@ import { StatisticsComponent } from './vendor/statistics/statistics.component';
 import { AllPromotionPageComponent ,NgbdModalContent} from './vendor/all-promotion-page/all-promotion-page.component';
 import { VendorsidebarComponent } from './vendor/vendorsidebar/vendorsidebar.component';
 import { GalleryComponent  } from './vendor/gallery/gallery.component';
-import { VendorComponent } from './vendor/vendor.component';
+// import { VendorComponent } from './vendor/vendor/vendor.component';
 import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
 import { BusinessInfoComponent } from "./vendor/business-info/business-info.component";
 import { LocationComponent} from "./vendor/location/location.component";
@@ -191,6 +191,10 @@ import { ErrorComponent } from './error/error.component';
 import { AdminexpensesComponent } from './admin/adminexpenses/adminexpenses.component';
 
 
+//import { VendorComponent } from './dashboard/vendor/vendor.component';
+
+
+
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
     
@@ -268,7 +272,7 @@ export function getAuthServiceConfigs() {
         TermsandconComponent,
         CareersComponent,
         AdvertiseComponent,
-        VendorComponent,
+       // VendorComponent,
         DashboardComponent,
         UserpannelComponent,
         UserboardComponent,
@@ -369,7 +373,7 @@ export function getAuthServiceConfigs() {
         SocialLoginModule,
         HttpModule,
         RatingModule,
-        VendorModule,
+        // VendorModule,
         //inbox
         QuillModule,
         //calender

@@ -11,141 +11,150 @@
 				<div class="col-12 nopadd">
 					<div class="card margintop0px">	
 						<div  class="card-header text-center">					
-							<div class="subheadtik card-title">Photography, Videography & Cinematography </div>
+							
+							<div  data-toggle="modal" data-target="#service_title">
+							   <div class="subheadtik card-title">{{cardtitle}} 
+									<span class="glyphicon glyphicon-pencil" (click)="arrayEmpty()"></span>
+							   </div>
+							   
+							</div>
 						</div>
 						<div class="card-body">
 							<div class="card-content selectboxservice text-center"> 
-								<h5 class="text-center">Which Service do you provide</h5>
-									<div class="card-content selectboxservice inputareacenter" *ngFor="let Service of Services "> 
-							<div>
-							<label>
-							<input name="Service"  type="radio"  [(ngModel)]="Services.value" [value]= "Service">
-								 <span>{{Service.serviceName}}</span>
-								 <span class="ui_switch">
-									<ui-switch 
-									[(ngModel)] ="Service.isActive"
-								
-									name="isActive"
-									checked 
-									class="pull-left"> </ui-switch>
-									</span>
-							</label>
-						
-								<span class="textopenclose">Open </span>
-						</div>	
-				</div>
-								<hr class="hr-light">
-							</div>
-							<div class="card-content selectboxservice">
-								<h5 class="text-center">Speciality, Costs of Services $ Experience</h5>
-								<div class="funkyradio">
-									<div class="col-sm-3 col-xs-6">
-										<div class="funkyradio-info">
-											<input type="checkbox" name="checkbox" id="checkbox1" checked/>
-											<label for="checkbox1">Drone Capture</label>
+									<h5 class="text-center">Which service do you provide</h5>
+									<div class="container">
+											<div class="row ">
+												<div class="col-md-3" *ngFor="let data of services_all;let a= index">
+													<label class="container1">{{data.serviceName}}
+															<input name="service"  type="radio"  [(ngModel)]="readioSelected_serv" value= "{{a}}" name="customRadioA" (change)="selection(data)">
+														<span class="checkmark"></span>
+													</label>
+												</div>
+											</div>
+	
 										</div>
-									</div>
-									<div class="col-sm-3 col-xs-6">
-										<div class="funkyradio-info">
-											<input type="checkbox" name="checkbox" id="checkbox2" checked/>
-											<label for="checkbox2">Candid Photography  </label>
-										</div>
-										<div class="clearfix"></div>
-										<div class="editer" data-toggle="modal" data-target="#candid">
-											<label>Price:</label>&nbsp;
-											{{candid}}
-													<i class="material-icons edit_btn1">edit</i>
+									<!-- <div >
+										<div class="col-sm-3 col-xs-6" *ngFor="let data of services_all;let a= index">
+											<div>
+												<input name="service"  type="radio"  [(ngModel)]="readioSelected_serv" value= "{{a}}" name="customRadioA" (change)="selection(data)">
+												<label for="checkbox1">{{data.serviceName}}</label>
+											</div>
 										</div>
 										
-									</div>
-									<div class="col-sm-3 col-xs-6">
-										<div class="funkyradio-info">
-										<input type="checkbox" name="checkbox" id="checkbox3" checked/>
-										<label for="checkbox3">Cinematography</label>
-										</div>
-										<div class="clearfix"></div>
-										<div class="editer" data-toggle="modal" data-target="#cinema">
-											<label>Price:</label>&nbsp;
-											{{cinema}}
-													<i class="material-icons edit_btn1">edit</i>
+									</div> -->
+									<hr class="hr-light">
+							</div>
+							<br>
+							<div class="card-content selectboxservice">
+								<h5 class="text-center">Speciality, Costs of Services $ Experience</h5>
+								<div class="container">
+                                        <div class="row">
+                                            <div class="col-md-2"><label for="checkbox1" (click)="option_one()">{{strating_price.name}}</label>
+                                                
+														<ng-container *ngIf="optionone">
+															<div class="ulbox_text">
+																<ul *ngFor="let px of p" >
+																	<li >
+																		<input type="radio" name="price">{{px.displayText}}
+																			
+																	</li>
+																</ul>
+															</div>
+														</ng-container>
+                                                
+											</div>
 											
-										</div>
-									
-									</div>
-									<div class="col-sm-3 col-xs-6">
-										<div class="funkyradio-info">
-										<input type="checkbox" name="checkbox" id="checkbox4" checked/>
-										<label for="checkbox4">Studio Shoots</label>
-										</div>
-										<div class="editer" data-toggle="modal" data-target="#studio">
-											<label>Price:</label>&nbsp;
-										{{studio}}
-													<i class="material-icons edit_btn1">edit</i>
-										</div>
-									
-									</div>
-									<div class="col-sm-3 col-xs-6">
-									<div class="funkyradio-info">
-										<input type="checkbox" name="checkbox" id="checkbox5"/>
-										<label for="checkbox5">Pre-Wedding Shoots</label>
-									</div>
-									<div class="editer" data-toggle="modal" data-target="#prewed">
-										<label>Price:</label>&nbsp;
-										{{ prewed}}
-									
-												<i class="material-icons edit_btn1">edit</i>
-										</div>
-									
-									</div>
-									<div class="col-sm-3 col-xs-6">
-									<div class="funkyradio-info">
-										<input type="checkbox" name="checkbox" id="checkbox6"/>
-										<label for="checkbox6">Photos Delivered</label>
-									</div>
-										<div class="editer"  data-toggle="modal" data-target="#photod">
-											<label>Price:</label>&nbsp;
-											{{photod}}
-													<i class="material-icons edit_btn1">edit</i>
-										</div>
-									
-									</div>
-									<div class="col-sm-3 col-xs-6">
-									<div class="funkyradio-info">
-										<input type="checkbox" name="checkbox" id="checkbox7"/>
-										<label for="checkbox7">Experience</label>
-									</div>
-									<div class="editer" data-toggle="modal" data-target="#experience">
-										{{experience}}
-													<i class="material-icons edit_btn1">edit</i>
+											<div class="col-md-2"><label for="checkbox1" (click)="option_two()">{{b_lable}}</label>
+                                                
+												<ng-container *ngIf="optiontwo">
+													<div class="ulbox_text">
+															<ul *ngFor="let px of q">
+																	<li>
+																		<input type="radio" name="b">{{px.displayText}}
+																			
+																	</li>
+															</ul>
+													</div>
+												</ng-container>
+										
+											</div>
 											
-										</div>
-									
-									</div>
-									<div class="col-sm-3 col-xs-6">
-									<div class="funkyradio-info">
-										<input type="checkbox" name="checkbox" id="checkbox8"/>
-										<label for="checkbox8">Payments Terms</label>
-									</div>
-									<div class="editer"  data-toggle="modal" data-target="#payment">
-											<label>Price:</label>&nbsp;
-											{{ payment}}
-													<i class="material-icons edit_btn1">edit</i>
-										</div>
-									
-									</div>
-									<div class="col-sm-3 col-xs-6">
-									<div class="funkyradio-info">
-										<input type="checkbox" name="checkbox" id="checkbox9"/>
-										<label for="checkbox9">Travel Costs</label>
-									</div>
-										<div class="editer" data-toggle="modal" data-target="#travel">
-											<label>Price:</label>&nbsp;
-										{{travel}}
-													<i class="material-icons edit_btn1">edit</i>
-										</div>
-									
-									</div>
-								</div>
+											<div class="col-md-2"><label for="checkbox1" (click)="option_three()">{{c_lable}}</label>
+                                                
+												<ng-container *ngIf="optionthree">
+													<div class="ulbox_text">
+															<ul *ngFor="let rx of r">
+																	<li>
+																		<input type="radio" name="c">{{rx.displayText}}
+																			
+																	</li>
+														    </ul>
+													</div>
+												</ng-container>
+										
+											</div>
+											<div class="col-md-2"><label for="checkbox1" (click)="option_four()">{{d_lable}}</label>
+                                                
+												<ng-container *ngIf="optionfour">
+													<div class="ulbox_text">
+															<ul *ngFor="let sx of s">
+																	<li>
+																		<input type="radio" name="d">{{sx.displayText}}
+																			
+																	</li>
+														    </ul>
+													</div>
+												</ng-container>
+										
+											</div>
+											<div class="col-md-2"><label for="checkbox1" (click)="option_five()">{{e_lable}}</label>
+                                                
+												<ng-container *ngIf="optionfive">
+													<div class="ulbox_text">
+															<ul *ngFor="let tx of t">
+																	<li>
+																		<input type="radio" name="e">{{tx.displayText}}
+																			
+																	</li>
+														    </ul>
+													</div>
+												</ng-container>
+										
+											</div>
+											
+											<div class="col-md-2"><label for="checkbox1" (click)="option_six()">{{f_lable}}</label>
+                                                
+												<ng-container *ngIf="optionsix">
+													<div class="ulbox_text">
+															<ul *ngFor="let ux of u">
+																	<li>
+																		<input type="radio" name="f">{{ux.displayText}}
+																			
+																	</li>
+														    </ul>
+													</div>
+												</ng-container>
+										
+									        </div>
+
+											<div class="col-md-2"><label for="checkbox1" (click)="option_seven()">{{g_lable}}</label>
+                                                
+												<ng-container *ngIf="optionseven">
+													<div class="ulbox_text">
+															<ul *ngFor="let vx of v">
+																	<li>
+																		<input type="radio" name="g">{{vx.displayText}}
+																			
+																	</li>
+														    </ul>
+													</div>
+												</ng-container>
+										
+									        </div>
+
+                                        </div>
+                                    </div>
+								
 								<hr class="hr-light">
 							</div>
 							<div class="card-content selectboxservice"> 
@@ -193,299 +202,55 @@
 
 
 
-<div class="modal fade" id="candid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+
+
+
+
+
+	
+
+
+
+	<!-- My Work -->
+
+	<div class="modal fade" id="service_title" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 				
 		  <div class="modal-content">
-		  	<button type="button " class="close digi_btn" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-				<h4  class="card-title text-center">Candid Photography </h4>
-				
+			  <button type="button " class="close digi_btn" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+				<h4  class="card-title text-center">Service Name</h4>
 				<div class="card-content selectboxservice"> 
-						<h5>Select a Starting Price</h5>
-						<div>
-							<label class="price_select">
-								<input name="Price" type="radio" > 
-								  <span> Rs 10,000</span> <br>
-								  <input name="Price" type="radio" > 
-								  <span> Rs 20,000</span>  <br>
-								  <input name="Price" type="radio" > 
-								  <span> Rs 30,000</span>
-							</label>
-						</div>
 						
-						
-					
+						<div class="" *ngFor="let category of categoryserveice;let i = index;" > 
+										<div class="col-sm-3" >
+											<label>
+												
+											<input name="Service"  type="radio"  [(ngModel)]="readioSelected" value= "{{i}}" name="customRadio">
+												<span>{{category.categoryName}}</span>
+												<span class="ui_switch">
+													<!-- <ui-switch 
+													[(ngModel)] ="category.isActive"
+												
+													name="isActive"
+													checked 
+													class="pull-left"> </ui-switch> -->
+													</span>
+											</label> 
+											
+											
+										</div>	
+									</div>
+									
 					</div>
 	
 
 					<div class="modal-footer text-center">
-							<button type="button" class="btn btn-secondary btn-raised saveall" >Save</button>
+							<button type="button" class="btn btn-secondary btn-raised saveall" (click)="showContent()" >Save </button>
 							<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
 							
 					</div>
+					
 		  </div>
 		</div>
-	</div>
-<div class="modal fade" id="cinema" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			<div class="modal-dialog" role="document">
-					
-			  <div class="modal-content ">
-			  	<button type="button " class="close digi_btn" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-					<h4  class="card-title text-center">Cinematography </h4>
-					<div class="card-content selectboxservice"> 
-							<h5>Select a Starting Price</h5>
-							<div>
-								<label class="price_select">
-									<input name="Price" type="radio" > 
-									  <span> Rs 10,000</span> <br>
-									  <input name="Price" type="radio" > 
-									  <span> Rs 20,000</span>  <br>
-									  <input name="Price" type="radio" > 
-									  <span> Rs 30,000</span>
-								</label>
-							</div>		
-						</div>
-		
-
-						<div class="modal-footer text-center">
-								<button type="button" class="btn btn-secondary btn-raised saveall" >Save</button>
-								<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
-								
-						</div>
-			  </div>
-			</div>
 </div>
-<div class="modal fade" id="studio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-				<div class="modal-dialog" role="document">
-						
-				  <div class="modal-content">
-				  	<button type="button " class="close digi_btn" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-						<h4  class="card-title text-center">Studio Shoots </h4>
-						<div class="card-content selectboxservice"> 
-								<h5>Select a Starting Price</h5>
-								<div>
-									<label class="price_select">
-										<input name="Price" type="radio" > 
-										  <span> Rs 10,000</span> <br>
-										  <input name="Price" type="radio" > 
-										  <span> Rs 20,000</span>  <br>
-										  <input name="Price" type="radio" > 
-										  <span> Rs 30,000</span>
-									</label>
-								</div>		
-							</div>
-							<div class="modal-footer text-center">
-									<button type="button" class="btn btn-secondary btn-raised saveall" >Save</button>
-									<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
-									
-							</div>
-				  </div>
-				</div>
-	</div>
-<div class="modal fade" id="prewed" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-					<div class="modal-dialog" role="document">
-							
-					  <div class="modal-content">
-					  	<button type="button " class="close digi_btn" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-							<h4  class="card-title text-center">Pre-wedding Shoots </h4>
-							<div class="card-content selectboxservice"> 
-									<h5>Select a Starting Price</h5>
-									<div>
-										<label class="price_select">
-											<input name="Price" type="radio" > 
-											  <span> Rs 10,000</span> <br>
-											  <input name="Price" type="radio" > 
-											  <span> Rs 20,000</span>  <br>
-											  <input name="Price" type="radio" > 
-											  <span> Rs 30,000</span>
-										</label>
-									</div>		
-								</div>
-				
-	
-								<div class="modal-footer text-center">
-										<button type="button" class="btn btn-secondary btn-raised saveall">Save </button>
-										<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
-										
-								</div>
-					  </div>
-					</div>
-	</div>
-<div class="modal fade" id="photod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-						<div class="modal-dialog" role="document">
-								
-						  <div class="modal-content">
-						  	<button type="button " class="close digi_btn" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-								<h4  class="card-title text-center"> Photos Delivered </h4>
-								<div class="card-content selectboxservice"> 
-										<h5>Select a Starting Price</h5>
-										<div>
-											<label class="price_select">
-												<input name="Price" type="radio" > 
-												  <span> Rs 10,000</span> <br>
-												  <input name="Price" type="radio" > 
-												  <span> Rs 20,000</span>  <br>
-												  <input name="Price" type="radio" > 
-												  <span> Rs 30,000</span>
-											</label>
-										</div>		
-									</div>
-					
-		
-									<div class="modal-footer text-center">
-											<button type="button" class="btn btn-secondary btn-raised saveall" >Save</button>
-											<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
-											
-									</div>
-						  </div>
-						</div>
-	</div>
-<div class="modal fade" id="experience" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-							<div class="modal-dialog" role="document">
-								
-							  <div class="modal-content">
-<button type="button " class="close digi_btn" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-
-									<h4  class="card-title text-center">Experience </h4>
-									<div class="card-content selectboxservice"> 
-											<h5>Your experience</h5>
-											<div>
-													<label class="price_select">
-														<input name="Price" type="radio" > 
-														  <span> 1 Year</span> <br>
-														  <input name="Price" type="radio" > 
-														  <span> 2 Year</span>  <br>
-														  <input name="Price" type="radio" > 
-														  <span> 3 Year</span>
-													</label>
-												</div>
-											
-										
-										</div>
-						
-			
-										<div class="modal-footer text-center">
-												<button type="button" class="btn btn-secondary btn-raised saveall" >Save</button>
-												<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
-												
-										</div>
-							  </div>
-							</div>
-	</div>
- <div class="modal fade" id="payment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-								<div class="modal-dialog" role="document">
-										
-								  <div class="modal-content">
-								  	<button type="button " class="close digi_btn" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-										<h4  class="card-title text-center">Payments Termes </h4>
-										<div class="card-content selectboxservice"> 
-												<h5>Select a Starting Price</h5>
-												<div>
-													<label class="price_select">
-														<input name="Price" type="radio" > 
-														  <span> Rs 10,000</span> <br>
-														  <input name="Price" type="radio" > 
-														  <span> Rs 20,000</span>  <br>
-														  <input name="Price" type="radio" > 
-														  <span> Rs 30,000</span>
-													</label>
-												</div>		
-											</div>
-							
-				
-											<div class="modal-footer text-center">
-													<button type="button" class="btn btn-secondary btn-raised saveall">Save</button>
-													<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
-													
-											</div>
-								  </div>
-								</div>
-	</div>
- <div class="modal fade" id="travel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-				
-			<div class="modal-content">
-				<button type="button " class="close digi_btn" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-				<h4  class="card-title text-center">Travel Cost </h4>
-				<div class="card-content selectboxservice"> 
-						<h5>Select a Starting Price</h5>
-						<div>
-							<label class="price_select">
-								<input name="Price" type="radio" > 
-								  <span> Rs 10,000</span> <br>
-								  <input name="Price" type="radio" > 
-								  <span> Rs 20,000</span>  <br>
-								  <input name="Price" type="radio" > 
-								  <span> Rs 30,000</span>
-							</label>
-						</div>		
-					</div>
-	
-
-					<div class="modal-footer text-center">
-							<button type="button" class="btn btn-secondary btn-raised saveall" >Save </button>
-							<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
-							
-					</div>
-			</div>
-		</div>
-	</div>
-<div class="modal fade" id="photo_off" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-										<div class="modal-dialog" role="document">
-												
-										  <div class="modal-content">
-										  	<button type="button " class="close digi_btn" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-												<h4  class="card-title text-center">Photos </h4>
-												<div class="card-content selectboxservice"> 
-														<h5>Select a Starting Price</h5>
-														<div>
-															<label class="price_select">
-																<input name="Price" type="radio" > 
-																  <span> Rs 10,000</span> <br>
-																  <input name="Price" type="radio" > 
-																  <span> Rs 20,000</span>  <br>
-																  <input name="Price" type="radio" > 
-																  <span> Rs 30,000</span>
-															</label>
-														</div>		
-													</div>
-									
-						
-													<div class="modal-footer text-center">
-															<button type="button" class="btn btn-secondary btn-raised saveall" >Save </button>
-															<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
-															
-													</div>
-										  </div>
-										</div>
-	</div>
-  <div class="modal fade" id="photo_ved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-		
-			<div class="modal-content">
-				<button type="button " class="close digi_btn" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-				<h4  class="card-title text-center">Photos Vedios </h4>
-				<div class="card-content selectboxservice"> 
-						<h5>Select a Starting Price</h5>
-						<div>
-							<label class="price_select">
-								<input name="Price" type="radio" > 
-								  <span> Rs 10,000</span> <br>
-								  <input name="Price" type="radio" > 
-								  <span> Rs 20,000</span>  <br>
-								  <input name="Price" type="radio" > 
-								  <span> Rs 30,000</span>
-							</label>
-						</div>		
-					</div>
-	
-
-					<div class="modal-footer text-center">
-							<button type="button" class="btn btn-secondary btn-raised saveall" >Save</button>
-							<button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
-							
-					</div>
-			</div>
-		</div>
-	</div>
-	

@@ -16,169 +16,107 @@
 						<div class="card-body">
 							<div class="card-content selectboxservice text-center"> 
 								<h5 class="text-center">Which Service do you provide</h5>
-									<div class="card-content selectboxservice inputareacenter" *ngFor="let Service of Services "> 
-							<div>
-							<label>
-							<input name="Service"  type="radio"  [(ngModel)]="Services.value" [value]= "Service">
-								 <span>{{Service.serviceName}}</span>
-								 <span class="ui_switch">
-									<ui-switch 
-									[(ngModel)] ="Service.isActive"
-								
-									name="isActive"
-									checked 
-									class="pull-left"> </ui-switch>
-									</span>
-							</label>
-						
-								<span class="textopenclose">Open </span>
-						</div>	
-				</div>
 								<hr class="hr-light">
+								<div class="container">
+									<div class="row ">
+										<div class="col-md-4">
+												<label class="container1">One
+														<input type="radio" checked="checked" name="radio">
+														<span class="checkmark"></span>
+													  </label>
+										</div>
+										<div class="col-md-4">
+												<label class="container1">One
+														<input type="radio" checked="checked" name="radio">
+														<span class="checkmark"></span>
+													  </label>
+										</div>
+										<div class="col-md-4">
+												<label class="container1">One
+														<input type="radio" checked="checked" name="radio">
+														<span class="checkmark"></span>
+													  </label>
+										</div>
+									</div>
+										
+								  </div>	
+								
 							</div>
 							<div class="card-content selectboxservice">
 								<h5 class="text-center">Speciality, Costs of Services $ Experience</h5>
-								<div class="funkyradio">
-									<div class="col-sm-3 col-xs-6">
-										<div class="funkyradio-info">
-											<input type="checkbox" name="checkbox" id="checkbox1" checked/>
-											<label for="checkbox1">Drone Capture</label>
-										</div>
-									</div>
-									<div class="col-sm-3 col-xs-6">
-										<div class="funkyradio-info">
-											<input type="checkbox" name="checkbox" id="checkbox2" checked/>
-											<label for="checkbox2">Candid Photography  </label>
-										</div>
-										<div class="clearfix"></div>
-										<div class="editer" data-toggle="modal" data-target="#candid">
-											<label>Price:</label>&nbsp;
-											{{candid}}
-													<i class="material-icons edit_btn1">edit</i>
-										</div>
-										
-									</div>
-									<div class="col-sm-3 col-xs-6">
-										<div class="funkyradio-info">
-										<input type="checkbox" name="checkbox" id="checkbox3" checked/>
-										<label for="checkbox3">Cinematography</label>
-										</div>
-										<div class="clearfix"></div>
-										<div class="editer" data-toggle="modal" data-target="#cinema">
-											<label>Price:</label>&nbsp;
-											{{cinema}}
-													<i class="material-icons edit_btn1">edit</i>
-											
-										</div>
-									
-									</div>
-									<div class="col-sm-3 col-xs-6">
-										<div class="funkyradio-info">
-										<input type="checkbox" name="checkbox" id="checkbox4" checked/>
-										<label for="checkbox4">Studio Shoots</label>
-										</div>
-										<div class="editer" data-toggle="modal" data-target="#studio">
-											<label>Price:</label>&nbsp;
-										{{studio}}
-													<i class="material-icons edit_btn1">edit</i>
-										</div>
-									
-									</div>
-									<div class="col-sm-3 col-xs-6">
-									<div class="funkyradio-info">
-										<input type="checkbox" name="checkbox" id="checkbox5"/>
-										<label for="checkbox5">Pre-Wedding Shoots</label>
-									</div>
-									<div class="editer" data-toggle="modal" data-target="#prewed">
-										<label>Price:</label>&nbsp;
-										{{ prewed}}
-									
-												<i class="material-icons edit_btn1">edit</i>
-										</div>
-									
-									</div>
-									<div class="col-sm-3 col-xs-6">
-									<div class="funkyradio-info">
-										<input type="checkbox" name="checkbox" id="checkbox6"/>
-										<label for="checkbox6">Photos Delivered</label>
-									</div>
-										<div class="editer"  data-toggle="modal" data-target="#photod">
-											<label>Price:</label>&nbsp;
-											{{photod}}
-													<i class="material-icons edit_btn1">edit</i>
-										</div>
-									
-									</div>
-									<div class="col-sm-3 col-xs-6">
-									<div class="funkyradio-info">
-										<input type="checkbox" name="checkbox" id="checkbox7"/>
-										<label for="checkbox7">Experience</label>
-									</div>
-									<div class="editer" data-toggle="modal" data-target="#experience">
-										{{experience}}
-													<i class="material-icons edit_btn1">edit</i>
-											
-										</div>
-									
-									</div>
-									<div class="col-sm-3 col-xs-6">
-									<div class="funkyradio-info">
-										<input type="checkbox" name="checkbox" id="checkbox8"/>
-										<label for="checkbox8">Payments Terms</label>
-									</div>
-									<div class="editer"  data-toggle="modal" data-target="#payment">
-											<label>Price:</label>&nbsp;
-											{{ payment}}
-													<i class="material-icons edit_btn1">edit</i>
-										</div>
-									
-									</div>
-									<div class="col-sm-3 col-xs-6">
-									<div class="funkyradio-info">
-										<input type="checkbox" name="checkbox" id="checkbox9"/>
-										<label for="checkbox9">Travel Costs</label>
-									</div>
-										<div class="editer" data-toggle="modal" data-target="#travel">
-											<label>Price:</label>&nbsp;
-										{{travel}}
-													<i class="material-icons edit_btn1">edit</i>
-										</div>
+								<hr class="hr-light">
+								<div class="container">
+									<div class="row mobCenter">
+											<div class="col-md-3"> <h5>Pre-wedding </h5> 
+													<div class="ulbox_text">
+														<ul>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+														</ul>
+													</div>
+											   </div>
+											   <div class="col-md-3"> <h5>Pre-wedding </h5> 
+													<div class="ulbox_text">
+														<ul>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+														</ul>
+													</div>
+											   </div>
+											   <div class="col-md-3"> <h5>Pre-wedding </h5> 
+													<div class="ulbox_text">
+														<ul>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+														</ul>
+													</div>
+											   </div>
+											   <div class="col-md-3"> <h5>Pre-wedding </h5> 
+													<div class="ulbox_text">
+														<ul>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+															<li > <input type="radio"> asdfgh hh</li>
+														</ul>
+													</div>
+											   </div>
 									
 									</div>
 								</div>
-								<hr class="hr-light">
+							
+
 							</div>
 							<div class="card-content selectboxservice"> 
 								<h5 class="text-center">Do you offer packages</h5>
-								<div class="col-sm-6 marginauto">	
-									<div class="funkyradio">
-										<div class="col-sm-6 col-xs-6">
-											<div class="funkyradio-info">
-												<input type="checkbox" name="checkbox" id="checkbox11" checked/>
-												<label for="checkbox11">Photos</label>
-											</div>
-											<div class="editer" data-toggle="modal" data-target="#photo_off">
-												<label>Price:</label>&nbsp;
-											{{photo_off}}
-														<i class="material-icons edit_btn1">edit</i>
-											</div>
-											
-										</div>
-										<div class="col-sm-6 col-xs-6">
-											<div class="funkyradio-info">
-												<input type="checkbox" name="checkbox" id="checkbox12" checked/>
-												<label for="checkbox12">Photos + Vedios</label>
-											</div>
-											
-											<div class="editer" data-toggle="modal" data-target="#photo_ved">
-												<label>Price:</label>&nbsp;
-											{{photo_ved}}
-														<i class="material-icons edit_btn1">edit</i>
-											</div>
+								<hr class="hr-light">
+								<div class="container">
+										<div class="row">
+												<!-- <div class="col-md-4">
+														<label class="container2">One
+																<input type="checkbox" checked="checked">
+																<span class="checkmark2"></span>
+															  </label>
+												</div> -->
 												
+										
 										</div>
 									</div>
-								</div>
+								
 							</div>
 						</div>
 					</div>

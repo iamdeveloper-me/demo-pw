@@ -10,6 +10,7 @@ import { Full_ROUTES } from "./shared/routes/full-layout.routes";
 import { CONTENT_ROUTES } from "./shared/routes/content-layout.routes";
 import { SearchresultComponent } from './searchresult/searchresult.component';
 import { AuthGuard } from './shared/auth/auth-guard.service';
+import { ErrorComponent } from './error/error.component';
 
 import { HomeComponent } from './home/home.component';
 
@@ -45,7 +46,7 @@ import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.com
 
 import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.component';
 
-import { VendorComponent } from './vendor/vendor.component';
+// import { VendorComponent } from './vendor/vendor.component';
 import { AllcategoryComponent } from './allcategory/allcategory.component';
 import { GalleryComponent } from './vendor/gallery/gallery.component';
 import { VideosComponent } from './vendor/videos/videos.component';
@@ -67,7 +68,7 @@ import { VedioviewComponent } from './vendor/vedioview/vedioview.component';
 import { CreatePromotionComponent } from './vendor/create-promotion/create-promotion.component';
 import { AllPromotionPageComponent } from './vendor/all-promotion-page/all-promotion-page.component';
 
-import {  AdminComponent } from "./admin/admin.component";
+import { AdminComponent } from "./admin/admin.component";
 import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
 import { UseraccountlistComponent } from './admin/useraccountlist/useraccountlist.component';
 import { CustomerbillingsComponent } from './admin/customerbillings/customerbillings.component';
@@ -80,6 +81,9 @@ import { TaskboardComponent } from './admin/taskboard/taskboard.component';
 
 import { SiteFeedbackComponent } from './admin/site-feedback/site-feedback.component';
 
+
+
+import { AdminexpensesComponent } from './admin/adminexpenses/adminexpenses.component';
 
 
 
@@ -121,13 +125,16 @@ import { CategorystatsComponent } from './admin/categorystats/categorystats.comp
 import { VendorstatsComponent } from './admin/vendorstats/vendorstats.component';
 
 import { AdminuseraccountComponent } from './admin/adminuseraccount/adminuseraccount.component';
+import { AdminsidebarComponent } from './admin/adminsidebar/adminsidebar.component';
 
 
 import { UseraccountComponent } from './userpannel/userboard/useraccount/useraccount.component';
+import { VendorComponent } from './dashboard/vendor/vendor.component';
 
 
 
 const appRoutes: Routes = [
+
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home/searchresult', component: SearchresultComponent },
@@ -223,7 +230,9 @@ const appRoutes: Routes = [
   { path: 'Admin/Messageschat', component:   MessageschatComponent   },    
   { path: 'Admin/Events', component:  EventsandarticlesComponent},  
   { path: 'Admin/tipsandartical', component: SocialfeedComponent  },  
-  { path: 'Admin/Sitestats', component: SitestatsandreportsComponent },  
+  { path: 'Admin/Sitestats', component: SitestatsandreportsComponent }, 
+  { path: 'Admin/adminexpenses', component: AdminexpensesComponent },  
+ 
   { path: 'Admin/Adminusers', component: AdminusersComponent },  
   { path: 'Admin/Reviewandfeedback', component: ReviewandfeedbackComponent },  
   { path: 'Admin/advertising', component:   AdminadvertisingComponent  },  
@@ -246,6 +255,8 @@ const appRoutes: Routes = [
 
   { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES, canActivate: [AuthGuard] },
   { path: '', component: ContentLayoutComponent, data: { title: 'content Views' }, children: CONTENT_ROUTES, canActivate: [AuthGuard] },
+  { path: '**', component: ErrorComponent },
+
 ];
 
 @NgModule({

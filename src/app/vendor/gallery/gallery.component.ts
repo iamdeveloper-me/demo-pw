@@ -178,10 +178,10 @@ export class GalleryComponent implements OnInit {
         headers.append("Authorization",'Bearer '+authToken);
       //poryfolio get
 
-        this.http.get(this.getportfolio,{headers:headers}).subscribe(data =>{  
-        console.log(data.json());
+        this.http.get(this.getportfolio,{headers:headers}).subscribe(res =>{  
+       // console.log(data.json());
        
-        this.portfolio =  data.json();
+        this.portfolio = res.json();
         console.log(this.portfolio);
        })
         }

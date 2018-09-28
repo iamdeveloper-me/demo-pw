@@ -513,7 +513,8 @@ $(document).on('click', ".saveall", function() {
   gallery = { files: ''}
   @ViewChild("fileInput") fileInput;
 
-  addFile(info): void {
+  addFile(infoo): void {
+   
     let fi = this.fileInput.nativeElement;
     if (fi.files && fi.files[0]) {
          
@@ -527,17 +528,57 @@ $(document).on('click', ".saveall", function() {
         for (let image of fileToUpload){
           formData.append(image.name,image)
         }
-        this.http.post(this.uploadimage,formData,{headers:headers})
-                                   }
+       
+
+        this.http.post(this.uploadimage,formData,{headers:headers}).subscribe( (data)=>{console.log(data.json().filesId);
+        
+          this.http.get(this.url,{headers:headers}).subscribe(res =>{console.log(res.json().nameOfBusiness);
+          
+            let updatebusinessinfo = this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatebusinessinfo",
+           {   
+              nameOfBusiness: res.json().nameOfBusiness,
+              businessDetails: res.json().businessDetails,
+               contactPerson: 'scsc',
+        //     // pictureUrl: infopicture,
+               fileId:    data.json().filesId,
+             facebookURL: res.json().facebookURL,
+             twitterURL: res.json().twitterURL,
+             googleURL:  res.json().googleURL,
+            instalURL: res.json().instalURL ,
+          perfectWeddingURL: res.json().perfectWeddingURL,
+
+         
+          },
+        {headers:headers})
+
+updatebusinessinfo.subscribe((responce)=>{ console.log(responce.status);
+if(responce.status == 200)
+{
+
+alert("photo uploded");
+
+
+}
+});
+   
+          
+          });
+             
+        
+        
+        });
+      }
     }
     openModel(b){
       this.modelfield = b; 
-     // console.log(this.modelfield);
+       // console.log(this.modelfield);
     }
+
+
   upForm(info){
 
   var data = this.addFile(info);
-  console.log(data);
+  console.log(info);
           //this.addFile(info);
 
             var infofacebook = info.value.facebook;
@@ -590,10 +631,7 @@ $(document).on('click', ".saveall", function() {
 
       console.log(event)
     }
-     closeResult: string;
-
-
-
+         closeResult: string;
      primelocation(location){  
           console.log(this.updatefield);
           console.log(location);

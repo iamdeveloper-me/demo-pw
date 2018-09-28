@@ -22,39 +22,36 @@
             <div class="clearfix"> </div>
             <section class="p-0 container" id="portfolio">
                 <div class="container photos_gallery">
-                <div class="row">
-                    <div class='list-group gallery row firt_row'>
-                        <div class="new_albums"> <button>  + New Albums  </button>  </div>
-                            <div class='col-sm-3 col-xs-6  zoom_effect' *ngFor="let  data of eventArray;let i=index">
-                                <a routerLink="../albumviewphoto" class="thumbnail " rel="ligthbox">
-                                    <button class="deletebtn">&times;</button>
-                                    <img class="img-thumbnail"
-                                    src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                                    alt="Another alt text">
+                    <div class="row">
+                        <div class='list-group gallery row firt_row'>
+                            <div class="new_albums"> <button>  + New Albums  </button>  </div>
+                                <div class='col-sm-3 col-xs-6  zoom_effect' *ngFor="let  data of eventArray;let i=index">
+                                    <a routerLink="../albumviewphoto" class="thumbnail " rel="ligthbox">
+                                        <button class="deletebtn">&times;</button>
+                                        <img class="img-thumbnail"
+                                        src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                                        alt="Another alt text">
+                                        <div class="over_like">
+                                            <div class="text-center">
+                                            <span> Album name :{{data.albumName}} </span> 
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <strong>Album Id : {{data.albumsId }} </strong><br/>
+                                            <span> Colour Tag :{{data.colorTags}} </span> <br/>
+                                            <span> tags:{{data.tags }} </span> <br/>
+                                            <span> Created Date :{{data.dateAddedOn}} </span> 
+                                        </div>
+                                    </a>
                                     <div class="over_like">
                                         <div class="text-center">
-                                        <span> Album name :{{data.albumName}} </span> 
+                                            <strong>John Weds Joie</strong><br/>
+                                            <span> 25 Photos </span> 
                                         </div>
                                     </div>
-                                    <div class="text-center">
-                                        <strong>Album Id : {{data.albumsId }} </strong><br/>
-                                        <span> Colour Tag :{{data.colorTags}} </span> <br/>
-                                        <span> tags:{{data.tags }} </span> <br/>
-                                        <span> Created Date :{{data.dateAddedOn}} </span> 
-                                    </div>
-                                    <div class='text-right'>
-                                    </div> <!-- text-right / end -->
-                                </a>
-                                <div class="over_like">
-                                    <div class="text-center">
-                                        <strong>John Weds Joie</strong><br/>
-                                        <span> 25 Photos </span> 
-                                    </div>
-                                </div>
-                            </div> <!-- col-6 / end -->
-                            
-                    </div> <!-- list-group / end -->
-                </div> <!-- row / end -->
+                                </div> <!-- col-6 / end -->    
+                        </div> <!-- list-group / end -->
+                    </div> <!-- row / end -->
                 </div> <!-- container / end -->
             </section> 
         </div>    	

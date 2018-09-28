@@ -2,6 +2,7 @@ import { Component,  OnInit , Input } from '@angular/core';
 import { LoginServiceService } from '../shared/service/login-service.service';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { Http,Headers } from '@angular/http';
 import { SignupVendorService } from '../shared/service/signup-vendor.service';
 import 'rxjs/Rx';
  
@@ -19,7 +20,10 @@ export class NgbdModalContent {
 export class MenuComponent implements OnInit {
     error = {} ;
     supArray:string[];
-    constructor( private router: Router ,private cservice: LoginServiceService , private modalService: NgbModal, private uservice: SignupVendorService,) {}
+    private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
+    vendor: any = {};
+  
+    constructor( private router: Router ,public http: Http,private cservice: LoginServiceService , private modalService: NgbModal, private uservice: SignupVendorService,) {}
     user = {username:' ',password:' '}
     usercouple = {username:' ',password:' '}
     onSubmit(){ 
@@ -126,6 +130,19 @@ export class MenuComponent implements OnInit {
         if(authToken)
         {  
             
+      var firstName = localStorage.getItem('firstName');
+      let headers = new Headers();
+      var authToken = localStorage.getItem('userToken');
+      headers.append('Accept', 'application/json')
+      headers.append('Content-Type', 'application/json');
+      headers.append("Authorization",'Bearer '+authToken);
+  
+
+
+      this.http.get(this.url,{headers:headers}).subscribe(
+        data =>{ this.vendor = data.json();
+                 console.log(this.vendor);
+                               });
             if(window.location.href.indexOf("home") && vendorid)
             {   
                 // alert("jjllll") 
@@ -133,6 +150,8 @@ export class MenuComponent implements OnInit {
                 $(".vendorlogindisplay").show();
                 $(".userlogindisplay").hide();
             }
+
+            
             else
 
             {   

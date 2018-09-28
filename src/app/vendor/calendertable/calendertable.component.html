@@ -5,7 +5,7 @@
 	</div>
 	<div id="page-content-wrapper">
 		<app-navemenu></app-navemenu>
-		<div class="container-fluid mobilefixedcontainer">
+		<div class="container mobilefixedcontainer">
 			<div>
 				<ul class="tabbingdesign">
                     <li class="card-title selected weddingjobstab">My Wedding Jobs</li>
@@ -13,8 +13,16 @@
                     <li class="card-title calendartab">Wedding Calendar
                     </li>
 				</ul> 
-				{{test }}
+			
 			</div>
+				<div class="row">
+					<div class="container">
+						<div class="col-md-12">
+									{{test }}
+						</div>	
+					</div>	
+				</div>	
+
 			<div class="row calendarcontainer">
 				<div class="clearfix"></div>
 				<section id="weddingjobs" class="col-sm-12">
@@ -247,116 +255,5 @@
 	</div>
 	
 </ng-template> 
-<!-- <ng-template #modalContent let-close="close" class="even_picker">
-
-	<div class="card-block" style="background: #fff;">
-		<div class="modal-header">
-			<h5 class="modal-title">{{ modalData?.action }}</h5>
-			<button type="button" class="close" (click)="close()">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-
-		<div class="modal-body">
-			<div class="col-sm-12">
-
-				<div class="form-body">
-					<div class="addjob">
-						<div class="col-sm-6">
-							<div class="input-effect form-group md-form mt-3">
-								<input 
-								type="text" 
-								name="event-contactname" 
-								class="effect-16" 
-								[(ngModel)]="modalData?.event.clientName" 
-								(keyup)="refresh.next()"
-								>
-								<label>Client Name</label>
-								<span class="focus-border"></span>
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="input-effect form-group md-form mt-3">
-								<input
-									type="text" 
-									name="event-contactnumber" 
-									class="effect-16" 
-									[(ngModel)]="modalData?.event.contactnumber" 
-									(keyup)="refresh.next()">
-								<label>Client Number</label>
-								<span class="focus-border"></span>
-							</div>
-						</div>
-					</div>
-					<div class="clearfix"></div>
-					<div class="addjob">
-						<div class="col-sm-6">
-							<div>
-								<label>Starts At:</label>
-							</div>
-							<mwl-demo-utils-date-time-picker 
-							name="starts-at" 
-							[(ngModel)]="modalData?.event.start"
-								(ngModelChange)="refresh.next()"
-								placeholder="Not set">
-							</mwl-demo-utils-date-time-picker>
-							
-						</div>
-						<div class="col-sm-6">
-								<div>
-									<label>Ends At:</label>
-								</div>
-								<mwl-demo-utils-date-time-picker 
-								name="ends-at" 
-								[(ngModel)]="modalData?.event.end" 
-								(ngModelChange)="refresh.next()"
-									placeholder="Not set">
-								</mwl-demo-utils-date-time-picker>
-						</div>
-					</div>
-					<div class="clearfix"></div>
-					<div class="addjob">
-						<div class="col-sm-6">
-								<div class="input-effect form-group md-form mt-3">
-									<input 
-									type="text
-									" name="event-location"
-										class="effect-16"
-										[(ngModel)]="modalData?.event.location" 
-										(keyup)="refresh.next()">
-									<label>Event Location:</label>
-									<span class="focus-border"></span>
-								</div>
-							</div>
-						
-						<div class="col-sm-6">
-							
-
-							<div class="input-effect form-group md-form mt-3">
-								<input
-									type="text" 
-									name="event-guest" 
-									class="effect-16" 
-									[(ngModel)]="modalData?.event.guest"
-									(keyup)="refresh.next()">
-								<label>Number of Guest:</label>
-								<span class="focus-border"></span>
-							</div>
-													
-						</div>
-					</div>
-
-				
-
-				</div>
-			</div>
-		</div>
-		<div class="modal-footer">
-			<button type="submit" class="btn btn-outline-secondary"  (click)="job(modalData)" (click)="close()">SAVE</button>
-			<button type="button" class="btn btn-outline-secondary" (click)="close()">CANCEL</button>
-		</div>
-	</div>
-	
-</ng-template> -->
 
 	<router-outlet></router-outlet>

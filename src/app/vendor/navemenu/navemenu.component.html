@@ -79,6 +79,7 @@
                                     <li class="nav-item" ngbDropdown placement="bottom-right">
                                             <a class="nav-link position-relative" id="dropdownBasic3" ngbDropdownToggle>
                                               <i class="material-icons">account_circle</i>
+                                        
                                                 <p class="d-none">User Settings</p>
                                             </a>
                                             <div ngbDropdownMenu aria-labelledby="dropdownBasic3">     
@@ -154,7 +155,8 @@
                                     <li class="nav-item usernavmenu" ngbDropdown placement="bottom-right">
                                             <a class="nav-link afternone navuserlink position-relative" id="dropdownBasic3" ngbDropdownToggle>
                                                  <i class="material-icons">account_circle</i>
-                                                <p class="d-none">User Settings</p>
+                                                 <img [src] = "vendor.profileImage" class="userimgtop" >
+                                                <p class="d-none">User Settings {{vendor.profileImage}}</p>
                                             </a>
                                             <div class="blackoverlaymainuser">
                                             <div ngbDropdownMenu aria-labelledby="dropdownBasic3">                           

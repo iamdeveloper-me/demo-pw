@@ -13,7 +13,7 @@
 						<div  class="card-header text-center">					
 							
 							<div  data-toggle="modal" data-target="#service_title">
-							   <div class="subheadtik card-title">{{cardtitle}} 
+							   <div class="subheadtik card-title">{{first_category.categoryName}} add More
 									<span class="glyphicon glyphicon-pencil" (click)="arrayEmpty()"></span>
 							   </div>
 							   
@@ -22,7 +22,7 @@
 						<div class="card-body">
 							<div class="card-content selectboxservice text-center"> 
 
-									<h5 class="text-center">Which service do you provide</h5>
+									<h5 class="text-center">Which service do you provide  </h5>
 									<div class="container">
 											<div class="row ">
 												<div class="col-md-3" *ngFor="let data of services_all;let a= index">
@@ -50,14 +50,18 @@
 								<h5 class="text-center">Speciality, Costs of Services $ Experience</h5>
 								<div class="container">
                                         <div class="row">
-                                            <div class="col-md-2"><label for="checkbox1" (click)="option_one()">{{strating_price.name}}</label>
-                                                
+                                            <div class="col-md-2"><label  for="checkbox1" >
+													<input type="checkbox" [(ngModel)]="isChecked" id="abc" (change)="checkValue(isChecked?'optionone':'B')">
+															{{strating_price.name}}
+													</label>
+                                                 
 														<ng-container *ngIf="optionone">
 															<div class="ulbox_text">
+																	
 																<ul *ngFor="let px of p" >
 																	<li >
-																		<input type="radio" name="price">{{px.displayText}}
 																			
+																		<input type="radio" name="price">{{px.displayText}}	
 																	</li>
 																</ul>
 															</div>
@@ -65,7 +69,8 @@
                                                 
 											</div>
 											
-											<div class="col-md-2"><label for="checkbox1" (click)="option_two()">{{b_lable}}</label>
+											<div class="col-md-2"><label for="checkbox1" >
+													<input type="checkbox" [(ngModel)]="isChecked" id="abce" (change)="checkValue(isChecked?'optiontwo':'B')">	{{b_lable}}</label>
                                                 
 												<ng-container *ngIf="optiontwo">
 													<div class="ulbox_text">
@@ -80,7 +85,8 @@
 										
 											</div>
 											
-											<div class="col-md-2"><label for="checkbox1" (click)="option_three()">{{c_lable}}</label>
+											<div class="col-md-2"><label for="checkbox1">
+													<input type="checkbox" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'optionthree':'B')">	{{c_lable}}</label>
                                                 
 												<ng-container *ngIf="optionthree">
 													<div class="ulbox_text">
@@ -94,7 +100,9 @@
 												</ng-container>
 										
 											</div>
-											<div class="col-md-2"><label for="checkbox1" (click)="option_four()">{{d_lable}}</label>
+											<div class="col-md-2"><label for="checkbox1" >	
+													<input type="checkbox" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'optionfour':'B')">	
+												{{d_lable}}</label>
                                                 
 												<ng-container *ngIf="optionfour">
 													<div class="ulbox_text">
@@ -108,7 +116,8 @@
 												</ng-container>
 										
 											</div>
-											<div class="col-md-2"><label for="checkbox1" (click)="option_five()">{{e_lable}}</label>
+											<div class="col-md-2"><label for="checkbox1" >
+													<input type="checkbox" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'optionfive':'B')">	{{e_lable}}</label>
                                                 
 												<ng-container *ngIf="optionfive">
 													<div class="ulbox_text">
@@ -123,7 +132,8 @@
 										
 											</div>
 											
-											<div class="col-md-2"><label for="checkbox1" (click)="option_six()">{{f_lable}}</label>
+											<div class="col-md-2"><label for="checkbox1">
+													<input type="checkbox" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'optionsix':'B')">	{{f_lable}}</label>
                                                 
 												<ng-container *ngIf="optionsix">
 													<div class="ulbox_text">
@@ -138,7 +148,8 @@
 										
 									        </div>
 
-											<div class="col-md-2"><label for="checkbox1" (click)="option_seven()">{{g_lable}}</label>
+											<div class="col-md-2"><label for="checkbox1">
+													<input type="checkbox" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'optionseven':'B')">	{{g_lable}}</label>
                                                 
 												<ng-container *ngIf="optionseven">
 													<div class="ulbox_text">

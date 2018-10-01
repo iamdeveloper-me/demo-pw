@@ -157,7 +157,6 @@ $(".tradinghours .showless").click(function() {
 $(".reviewbox").click(function() {
     $('html,body').animate({scrollTop: $("#review").offset().top-150},'slow');
     $('.reviewbox').addClass('activebuttontab');
-
     $('.aboutbox').removeClass('activebuttontab');
     $('.overviewbox').removeClass('activebuttontab');
     $('.gallerybox').removeClass('activebuttontab');
@@ -185,17 +184,10 @@ $(".mobileabout").click(function() {
 $(".overviewbox").click(function() {
     $('html,body').animate({scrollTop: $(".weddingvenue").offset().top-150},'slow');
     $('.overviewbox').addClass('activebuttontab');
-
-     $('.reviewbox').removeClass('activebuttontab');
+    $('.reviewbox').removeClass('activebuttontab');
     $('.aboutbox').removeClass('activebuttontab');
     $('.gallerybox').removeClass('activebuttontab');
 });
-
-
-
-
-
-
 
 $(".gallerybox").click(function() {
     $('html,body').animate({scrollTop: $(".gallery").offset().top-150},'slow');
@@ -407,3 +399,4 @@ window.onload = function(){
         readURL(this);
     }
 };
+

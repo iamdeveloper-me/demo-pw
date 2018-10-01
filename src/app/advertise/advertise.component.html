@@ -1,26 +1,26 @@
 <div id="wrappervendor" class="" >
   <app-menu></app-menu>
-<div style="margin:100px 0px; "> </div>
+
  
 <div class="freq_ask">
     <div class="fre_text">
-       <section class="banner-div ">
-    <img src="../../assets/img/mockup-1.png" alt="banner image" class="mt-7 ml-5 position-absolute banner-img w-30 first-img">
-    <img src="../../assets/img/mockup-2.png" alt="banner image" class="mt-7 ml-5 position-absolute banner-img w-30 second-img" style="margin-left:65% !important; margin-top:25% !important;">
-    <div class="banner-content text-center pt-max position-relative">
-      <p class="text-white">We work hard, we result perfect</p>
-      <h1 class="text-white">Creative Digital Agency</h1>
-      <h3 class="white">Multi Purpose Template</h3>
-      <a href="#about" class="primary-btn banner-btn">Explore Us</a>
-      <br>
-      <i class="fa fa-chevron-down white mt-5 arrow bounce downtik" aria-hidden="true"></i>
+      <section class="banner-div ">
+          <img src="../../assets/img/mockup-1.png" alt="banner image" class="mt-7 ml-5 position-absolute banner-img w-30 first-img">
+          <img src="../../assets/img/mockup-2.png" alt="banner image" class="mt-7 ml-5 position-absolute banner-img w-30 second-img" style="margin-left:65% !important; margin-top:25% !important;">
+          <div class="banner-content text-center pt-max position-relative">
+            <p class="text-white">We work hard, we result perfect</p>
+            <h1 class="text-white">Creative Digital Agency</h1>
+            <h3 class="white">Multi Purpose Template</h3>
+            <a href="#about" class="primary-btn banner-btn">Explore Us</a>
+            <br>
+            <i class="fa fa-chevron-down white mt-5 arrow bounce downtik" aria-hidden="true"></i>
+          </div>
+      </section>
     </div>
-</section>
-
+</div>  
 
 <section class="business-features">
-
-        <h3>Business features</h3> 
+    <h3>Business features</h3> 
     <div class="row">
       <div class="col-md-3 social-icon">
           <i class="fa fa-desktop" aria-hidden="true"></i>
@@ -165,27 +165,25 @@
               </div>      
             </form>
          </div>
-  </div>
+      </div>
 </section>
 
 
 
 <script>
-    
-    $('.carousel').carousel({
+  $('.carousel').carousel({
     pause: "false" /* Change to true to make it paused when your mouse cursor enter the background */
-});
-
-$(".downtik").click(function() {
-	//alert("hi");
-    $('html,body').animate({
-        scrollTop: $(".business-features").offset().top},
-        'slow');
-});
-
+  });
+  $(".downtik").click(function() {
+  	//alert("hi");
+      $('html,body').animate({
+          scrollTop: $(".business-features").offset().top},
+          'slow');
+  });
 </script>
 
 
-<app-foot></app-foot>
+
 </div>
+<app-foot></app-foot>
 <router-outlet></router-outlet>

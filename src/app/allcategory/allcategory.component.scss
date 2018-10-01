@@ -123,21 +123,20 @@ display:block;overflow: hidden;border-radius:5px;}
 
 
 @media(max-width: 767px){
-
-
-
-    .fade-ani{opacity:0;position:relative;transition:all ease-out .3s 0s;}
-    .fade-up{bottom:-50px;}
+    .fade-ani{opacity:.3;position:relative;transition:all ease-out .3s 0s;}
+/*  .fade-up{bottom:-10px;}*/
+    .fade-up h5{margin-top:90px!important;transition:all ease-out 1s;}
     .fade-down{top:-50px;}
     .fade-left{left:-50px;}
     .fade-right{right:-50px;}
-    
     .fade-ani.showing{}
     .fade-in.showing{opacity:1;}
     .fade-up.showing{bottom:0px;opacity:1;}
     .fade-down.showing{top:-0px;opacity:1;}
     .fade-left.showing{left:-0px;opacity:1;}
     .fade-right.showing{right:-0px;opacity:1;}
+
+    .fade-up.showing h5{margin-top:50px!important;}
 
  /*.mob_parallax{
     background-image: url('../../assets/img/parallax1.jpg');

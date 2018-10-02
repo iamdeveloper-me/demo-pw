@@ -10,7 +10,7 @@ import { Http,Headers } from '@angular/http';
 export class BusinessServicesComponent implements OnInit {
   
 // 
-  cardtitle:string;
+
   costserviceTrue:boolean = false;
   // toggle
   optionone:boolean = false;
@@ -28,8 +28,9 @@ export class BusinessServicesComponent implements OnInit {
   categoryId;
  
   selectedEntry;
-  
+  min:any = {};
   Services = [];
+  first_category:any = {};
   categoryserveice = [];
   services_all =[]
   Price = '12$';
@@ -87,29 +88,40 @@ export class BusinessServicesComponent implements OnInit {
 
   ngOnInit() {
 
+    
+    $('.field').hide();
+
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
+    var categoryid = localStorage.getItem('categoryid');
+    console.log(categoryid);
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
-  
-    this.http.get(this.urlget,{headers:headers}).subscribe(data =>{
-    
-    console.log(data.json());
-    
-    this.Services = data.json() as string[]
-    this.cardtitle = 'Api for get service data when registration';
-    console.log(data['data']);
-    console.log(this.categoryId);
+    this.http.get(this.urlget,{headers:headers}).subscribe(data =>{ 
+    this.Services = data.json() as string[];
 
   });
 
 
   this.http.get(this.serveiceget,{headers:headers}).subscribe(data =>{
     
-    console.log(data.json());
     this.categoryserveice = data.json() as string[]
-    debugger
+
+
+   // console.log( this.categoryserveice.find(categoryId == categoryid ));
+    for(var i = 0; i < this.categoryserveice.length; i++){
+      this.min = this.categoryserveice[i]; 
+      if(this.min.categoryId == categoryid )
+      {alert("dfdf");
+      this.first_category = this.min;
+      console.log( this.first_category);
+      }
+    }
+    // debugger
+   // console.log(this.categoryserveice.find(e => e.foo === categoryid))
+
+    
   });
 
   
@@ -145,7 +157,7 @@ export class BusinessServicesComponent implements OnInit {
   }
   showContent(){
     this.showcontent=this.readioSelected;
-    this.cardtitle = this.categoryserveice[this.readioSelected].categoryName
+    //this.cardtitle = this.categoryserveice[this.readioSelected].categoryName
     this.service_data = this.categoryserveice[this.readioSelected];
     this.services_all = this.service_data['services']
     this.costserviceTrue = true;
@@ -156,6 +168,7 @@ export class BusinessServicesComponent implements OnInit {
     console.log(this.readioSelected_serv )
   }
   selection(data){
+    $('.field').show();
     this.customFields = data['customFields']
     console.log(this.customFields)
     this.strating_price = this.customFields[0]

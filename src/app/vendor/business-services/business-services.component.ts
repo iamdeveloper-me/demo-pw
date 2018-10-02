@@ -109,7 +109,7 @@ export class BusinessServicesComponent implements OnInit {
     
     console.log(data.json());
     this.categoryserveice = data.json() as string[]
-    debugger
+    
   });
 
   

@@ -76,8 +76,8 @@ export class AlbumsettingComponent implements OnInit {
   headers.append('Accept', 'application/json')
   headers.append('Content-Type', 'application/json');
   headers.append("Authorization",'Bearer '+authToken);
-  console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/removeimage?id'+'='+id);
-  this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/removeimage?id'+'='+id,{headers:headers}).subscribe(data =>{
+  console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/removeimage?AlbumImageId'+'='+id);
+  this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/removeimage?AlbumImageId'+'='+id,{headers:headers}).subscribe(data =>{
 
    console.log(data.json());
  

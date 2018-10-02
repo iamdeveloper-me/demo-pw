@@ -61,7 +61,9 @@
                                            
                                               
                                                 <div class="col-md-4 col-12 pad_0px " >
-                                                       <img  src="{{data.files.path}} " class="img-responsive"> 
+                                                      
+                                                       <img [src] = "data.files.path" class="img-responsive">
+                  
                                                   
                                                     <!-- <p>{{data.files.path}}</p> -->
                                                 </div>
@@ -136,7 +138,8 @@
                                                 </div>  
                                                 <div class="col-md-12 pad_0px">
                                                     <p>
-                                                        <strong>Description</strong><br/>
+                                                        <strong>Description dfed   {{data.entryFee}}</strong><br/>
+                                                        {{data.entryFee}}
                                                         {{data.eventDescription}}
                                                     </p>
                                                 </div>
@@ -152,7 +155,7 @@
                                                 <div class="card-block">
                                                     <div class="col-md-4 col-12 pad_0px">
                                                         
-                                                        <img  src="{data.files.path}" class="img-responsive">
+                                                        <img [src] = "data.files.path" class="img-responsive">
                                                     </div>
                                                     <div class="col-md-8 col-12 textboxevent">
                                                         <table>
@@ -212,7 +215,7 @@
                                                     </div>  
                                                     <div class="col-md-12 pad_0px">
                                                         <p>
-                                                            <strong>Description</strong><br/>
+                                                            <strong>Description  dfed   {{data.entryFee}}</strong><br/>
                                                             {{data.eventDescription}}
                                                         </p>
                                                     </div>

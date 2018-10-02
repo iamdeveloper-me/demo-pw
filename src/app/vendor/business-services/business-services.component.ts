@@ -108,6 +108,7 @@ export class BusinessServicesComponent implements OnInit {
     
     this.categoryserveice = data.json() as string[]
 
+
    // console.log( this.categoryserveice.find(categoryId == categoryid ));
     for(var i = 0; i < this.categoryserveice.length; i++){
       this.min = this.categoryserveice[i]; 
@@ -256,32 +257,6 @@ export class BusinessServicesComponent implements OnInit {
     this.v = []
     this.g = []
     
-  }
-
-  checkValue(event: any){
-    console.log(event);
-    if(event == 'optionone'){
-      this.option_one();
-    }
-    if(event == 'optiontwo'){
-      this.option_two();
-    }
-    if(event == 'optionthree'){
-      this.option_three();
-    }
-    if(event == 'optionfour'){
-      this.option_four();
-    }
-    if(event == 'optionfive'){
-      this.option_five();
-    }
-    if(event == 'optionsix'){
-      this.option_six();
-    }
-    if(event == 'optionseven'){
-      this.option_seven();
-    }
-   
   }
 }
 

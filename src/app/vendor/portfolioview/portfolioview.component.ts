@@ -1,8 +1,10 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild ,ChangeDetectionStrategy} from '@angular/core';
 import { ViewEncapsulation, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
+import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
+const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 export class NgbdgalleryModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) { }
@@ -12,19 +14,19 @@ export class NgbdgalleryModalContent {
 @Component({
   selector: 'app-portfolioview',
   templateUrl: './portfolioview.component.html',
-  styleUrls: ['./portfolioview.component.scss']
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./portfolioview.component.scss'],
+  
 })
 export class PortfolioviewComponent implements OnInit {
-
+    fileToUpload:any;
     PortgetArray:any= {};
     PortpostArray:any= {};
     // Portpost1Array:any= {};
+    private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader'
+    private addportfolio: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/addportfolio'
 
     private mygeturl: string  = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myportfolio"
-    private myposturl: string  = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/addportfolio"
-    // private mypost1url: string  = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savelisting"
-
-
 
   ngOnInit() {
 
@@ -39,9 +41,6 @@ export class PortfolioviewComponent implements OnInit {
         console.log(data.json());
     })
 
-    
-
-    
    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
    $.getScript('./assets/js/vendorsidebar.js');
@@ -55,30 +54,7 @@ export class PortfolioviewComponent implements OnInit {
 
    gallery = { files: ''}
    @ViewChild("fileInput") fileInput;
-   addFile(info): void {
-     console.log(info);
- 
-     let fi = this.fileInput.nativeElement;
-     if (fi.files && fi.files[0]) {
-          
-         let fileToUpload = fi.files;
-         let headers = new  Headers();
-         var authToken = localStorage.getItem('userToken');
-      
-         headers.append("Authorization",'Bearer '+authToken);
-         const formData = new FormData();
-         formData.append('AlbumId','2')
-         for (let image of fileToUpload){
-           formData.append(image.name,image)
-         }
- 
-    
-         console.log(fileToUpload)
- 
-         this.http.post(this.myposturl,formData,{headers:headers})
-         .subscribe(data =>{console.log(data);},(error)=>{console.log(error)});
-    }
-     }
+
    constructor(private modalService: NgbModal, public http: Http ) { }
  
    // Open default modal
@@ -112,37 +88,48 @@ export class PortfolioviewComponent implements OnInit {
        modalRef.componentInstance.name = 'World';
    }
  
-   
- hasBaseDropZoneOver = false;
- hasAnotherDropZoneOver = false;
- 
- // Angular2 File Upload
- fileOverBase(e: any): void {
-   this.hasBaseDropZoneOver = e;
- }
- 
- fileOverAnother(e: any): void {
-   this.hasAnotherDropZoneOver = e;
- }
+   uploader: FileUploader = new FileUploader({
+    url: URL,
+    isHTML5: true
+  });
+  hasBaseDropZoneOver = false;
+  hasAnotherDropZoneOver = false;
+
+  // Angular2 File Upload
+  fileOverBase(e: any): void {
+    this.hasBaseDropZoneOver = e;
+  }
+
+  fileOverAnother(e: any): void {
+    this.hasAnotherDropZoneOver = e;
+  }
 
  list:any = {
     "filesId": 1
   }
-      event(list){
-        let headers = new Headers();
-                  var authToken = localStorage.getItem('userToken');
-                  headers.append('Accept', 'application/json')
-                  headers.append('Content-Type', 'application/json');
-                  headers.append("Authorization",'Bearer '+authToken);
-                  
-        this.http.post(this.myposturl,
-            {
-            filesId: 1
-          
-        },{headers:headers}).subscribe(data =>{
-        console.log(data.json());
-        console.log(this.PortpostArray);
+  uploadAll(){
+    const formData = new FormData();
+    for(let file of this.uploader.queue){
+    formData.append(file['some'].name,file['some'])
+    }        
+    // Headers
+    let headers = new  Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append("Authorization",'Bearer '+authToken);
     
-      })
-    }
+    //Post Album 2 photos
+    this.http.post(this.uploadimage,formData,{headers:headers})
+      .subscribe(data =>{ 
+        console.log(data.json().filesId);
+      
+        this.http.post(this.addportfolio,{filesId:data.json().filesId},{headers:headers})
+      .subscribe(data =>{ 
+        console.log(data.json());
+      
+      
+      
+      },(error)=>{console.log(error)});
+      
+      },(error)=>{console.log(error)});
+  }
 }

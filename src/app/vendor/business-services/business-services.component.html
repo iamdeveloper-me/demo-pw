@@ -20,173 +20,89 @@
 							</div>
 						</div>
 						<div class="card-body">
-							<div class="card-content selectboxservice text-center"> 
+							<form (ngSubmit)="serveicedata(service)" #service="ngForm" >
+								<div class="card-content selectboxservice text-center"> 
 
-									<h5 class="text-center">Which service do you provide  </h5>
-									<div class="container">
-											<div class="row ">
-												<div class="col-md-3" *ngFor="let data of services_all;let a= index">
-													<label class="container1">{{data.serviceName}}
-															<input name="service"  type="radio"  [(ngModel)]="readioSelected_serv" value= "{{a}}" name="customRadioA" (change)="selection(data)">
-														<span class="checkmark"></span>
-													</label>
+										<h5 class="text-center">Which service do you provide</h5>
+										<div class="container">
+												<div class="row ">
+													<div class="col-md-3" *ngFor="let data of services_all;let a= index">
+														<label class="container1">{{data.serviceName}}
+																<input name="service"  type="radio"  [(ngModel)]="readioSelected_serv" value= "{{a}}" name="customRadioA" (change)="selection(data)">
+															<span class="checkmark"></span>
+														</label>
+													</div>
+												</div>
+
+											</div>
+										<!-- <div >
+											<div class="col-sm-3 col-xs-6" *ngFor="let data of services_all;let a= index">
+												<div>
+													<input name="service"  type="radio"  [(ngModel)]="readioSelected_serv" value= "{{a}}" name="customRadioA" (change)="selection(data)">
+													<label for="checkbox1">{{data.serviceName}}</label>
 												</div>
 											</div>
-	
-										</div>
-									<!-- <div >
-										<div class="col-sm-3 col-xs-6" *ngFor="let data of services_all;let a= index">
-											<div>
-												<input name="service"  type="radio"  [(ngModel)]="readioSelected_serv" value= "{{a}}" name="customRadioA" (change)="selection(data)">
-												<label for="checkbox1">{{data.serviceName}}</label>
-											</div>
-										</div>
-										
-									</div> -->
-									<hr class="hr-light">
-							</div>
-							<br>
-							<div class="card-content selectboxservice">
-								<h5 class="text-center">Speciality, Costs of Services $ Experience</h5>
-								<div class="container">
-                                        <div class="row">
-                                            <div class="col-md-2"><label  for="checkbox1" >
-													<input type="checkbox" [(ngModel)]="isChecked" id="abc" (change)="checkValue(isChecked?'optionone':'B')">
-															{{strating_price.name}}
-													</label>
-                                                 
-														<ng-container *ngIf="optionone">
-															<div class="ulbox_text">
-																	
-																<ul *ngFor="let px of p" >
-																	<li >
-																			
-																		<input type="radio" name="price">{{px.displayText}}	
-																	</li>
-																</ul>
-															</div>
-														</ng-container>
-                                                
-											</div>
 											
-											<div class="col-md-2"><label for="checkbox1" >
-													<input type="checkbox" [(ngModel)]="isChecked" id="abce" (change)="checkValue(isChecked?'optiontwo':'B')">	{{b_lable}}</label>
-                                                
-												<ng-container *ngIf="optiontwo">
-													<div class="ulbox_text">
-															<ul *ngFor="let px of q">
-																	<li>
-																		<input type="radio" name="b">{{px.displayText}}
-																			
-																	</li>
-															</ul>
-													</div>
-												</ng-container>
-										
-											</div>
-											
-											<div class="col-md-2"><label for="checkbox1">
-													<input type="checkbox" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'optionthree':'B')">	{{c_lable}}</label>
-                                                
-												<ng-container *ngIf="optionthree">
-													<div class="ulbox_text">
-															<ul *ngFor="let rx of r">
-																	<li>
-																		<input type="radio" name="c">{{rx.displayText}}
-																			
-																	</li>
-														    </ul>
-													</div>
-												</ng-container>
-										
-											</div>
-											<div class="col-md-2"><label for="checkbox1" >	
-													<input type="checkbox" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'optionfour':'B')">	
-												{{d_lable}}</label>
-                                                
-												<ng-container *ngIf="optionfour">
-													<div class="ulbox_text">
-															<ul *ngFor="let sx of s">
-																	<li>
-																		<input type="radio" name="d">{{sx.displayText}}
-																			
-																	</li>
-														    </ul>
-													</div>
-												</ng-container>
-										
-											</div>
-											<div class="col-md-2"><label for="checkbox1" >
-													<input type="checkbox" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'optionfive':'B')">	{{e_lable}}</label>
-                                                
-												<ng-container *ngIf="optionfive">
-													<div class="ulbox_text">
-															<ul *ngFor="let tx of t">
-																	<li>
-																		<input type="radio" name="e">{{tx.displayText}}
-																			
-																	</li>
-														    </ul>
-													</div>
-												</ng-container>
-										
-											</div>
-											
-											<div class="col-md-2"><label for="checkbox1">
-													<input type="checkbox" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'optionsix':'B')">	{{f_lable}}</label>
-                                                
-												<ng-container *ngIf="optionsix">
-													<div class="ulbox_text">
-															<ul *ngFor="let ux of u">
-																	<li>
-																		<input type="radio" name="f">{{ux.displayText}}
-																			
-																	</li>
-														    </ul>
-													</div>
-												</ng-container>
-										
-									        </div>
+										</div> -->
+										<hr class="hr-light">
+								</div>
+								<br>
+								<div class="card-content selectboxservice">
+									<h5 class="text-center">Speciality, Costs of Services $ Experience</h5>
 
-											<div class="col-md-2"><label for="checkbox1">
-													<input type="checkbox" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'optionseven':'B')">	{{g_lable}}</label>
-                                                
-												<ng-container *ngIf="optionseven">
-													<div class="ulbox_text">
-															<ul *ngFor="let vx of v">
-																	<li>
-																		<input type="radio" name="g">{{vx.displayText}}
-																			
-																	</li>
-														    </ul>
-													</div>
-												</ng-container>
-										
-									        </div>
+									<div class="container">
+											<div class="row">
+												<div class="col-md-2" *ngFor="let data of customFields;let i=index" >
+													<label >
+															<input name="{{data.customFieldId}}"  type="checkbox"   value= "{{data.customFieldId}}"  (change)="checkbox(data)" id="{{data.customFieldId}}" >
 
-                                        </div>
-                                    </div>
-								
-								<hr class="hr-light">
 
-							</div>
-							<div class="card-content selectboxservice"> 
-								<h5 class="text-center">Do you offer packages</h5>
-								<hr class="hr-light">
-								<div class="container">
-										<div class="row">
-												<!-- <div class="col-md-4">
-														<label class="container2">One
-																<input type="checkbox" checked="checked">
-																<span class="checkmark2"></span>
-															  </label>
-												</div> -->
+															<!-- <input type="checkbox" value="{{timeslot.id}}" name="{{timeslot.id}}"  [checked]="(facility.timeslotids && (-1 !== facility.timeslotids.indexOf(timeslot.id)) ? 'checked' : '')" (change) ="updateSelectedTimeslots($event)" /> -->
+															{{data.name}}
+															
+													</label> 
+												</div>
 												
-										
+											</div>
+											<div class="row">
+													<div class="col-md-2 " >
+														<div *ngFor="let px of customFieldOptionList" class="ulbox_text">
+															<ul *ngFor="let l of px.customFieldOptionList
+															" >
+																<li >
+																	
+																	<input type="radio" name="price">{{l.displayText}}
+																		
+																</li>
+															</ul>
+														</div>	
+														</div>
+											</div>
 										</div>
+									
+									<hr class="hr-light">
+
+
+								</div>
+								<div class="card-content selectboxservice"> 
+									<h5 class="text-center">Do you offer packages</h5>
+									<hr class="hr-light">
+									<div class="container">
+											<div class="row">
+													<!-- <div class="col-md-4">
+															<label class="container2">One
+																	<input type="checkbox" checked="checked">
+																	<span class="checkmark2"></span>
+																	</label>
+													</div> -->
+													
+											
+											</div>
+
 									</div>
-								
-							</div>
+									
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>

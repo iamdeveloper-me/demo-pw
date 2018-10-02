@@ -9,9 +9,9 @@
       <div class="container-fluid mobilefixedcontainer">  
           <div  class="photo_gallery">   
             <div class="row firt_row ">   
-                <div class="col-sm-12 mar_bot_30px card martop0px" >    
+                <div class="col-sm-12 mar_bot_30px card martop0px portfolio" >    
                     <div class="text-center headin_gally">
-                      <h5>MY PORTFOLIO  </h5> 
+                      <h5>MY PORTFOLIO </h5> 
                       <P> Collection of the best photo and work to highlight your profile</P>               
                     </div>
                     <div class="mainalbumbtn">
@@ -36,7 +36,7 @@
                             </p>
                     </div>
                 </div>
-                <div class="col-sm-12 card " >
+                <div class="col-sm-12 card album" >
                   <div class="" >
                     <div class="text-center headin_gally">
                       <h5 >MY ALBUM </h5>
@@ -61,7 +61,7 @@
                 </div>     
             </div>
           </div>      
-          <div class="container-fluid nopadd">
+          <div class="container-fluid nopadd album2">
             <div class="card">
               <div  class="headin_gally col-sm-12 bordernone">
                   <h5 ><i class="material-icons">camera_alt</i> MY PORTFOLIO </h5>
@@ -75,12 +75,12 @@
                 <!-- routerLink="../portfolioview " -->
                 <div class="clearfix"></div>
                 <div class="text-center viev_all"> 
-                  <a  class="btn"  >View All</a> 
+                  <a  class="btn" routerLink="../portfoli" >pView All</a> 
                 </div>
               </div>
             </div>
           </div> 
-          <div class="container-fluid nopadd albumlist"  >
+          <div class="container-fluid nopadd albumlist portfolio2"  >
             <div class="card">
               <div  class="text-center headin_gally col-sm-12 bordernone">
                 <h5 ><i class="material-icons">photo_library</i> MY ALBUM  </h5>
@@ -99,13 +99,13 @@
                     <div class="text-center">
                         <strong>Album Id :  </strong><br/>
                         <span> Colour Tag : </span> <br/>
-                        <span> tags:{{data.tags }} </span> <br/>
-                        <span> Created Date :{{data.dateAddedOn}} </span> 
+                        <span> tags: </span> <br/>
+                        <span> Created Date : </span> 
                     </div>
                 </div>   
               </div>
               <!-- routerLink="../albumview" -->
-              <div class="text-center viev_all"> <a class="btn" >View All</a> </div>
+              <div class="text-center viev_all"> <a class="btn" routerLink="../albumview">View All</a> </div>
             </div> 
           </div> 
           <app-foot></app-foot>
@@ -275,17 +275,13 @@
                 <div class="col-sm-12  text-center">
                   <div class="modal-body" style="background-color: white">
                     Album name :
-                    <input type="text" [(ngModel)]="Album.albumName" name="albumName" id="albumName"/>
-                    <button type="submit">create album</button>
-                      
-                    <button type="submit" class="btn btn-comman pull-right colo_blue">Update Profile</button>
+                    <input type="text" [(ngModel)]="Album.albumName" name="albumName" id="albumName"/><br>
                     <div class="clearfix"></div>
                   </div>
                 </div>    
             </div>
             <div class="foot_div text-center">
-
-                    <button type="submit" class="btn btn-secondary btn-raised saveall"  ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+                <button type="submit" class="btn btn-secondary btn-raised "  ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
                 <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
             </div>
           </div>  

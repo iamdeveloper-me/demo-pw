@@ -62,6 +62,11 @@ export class DashboardComponent implements OnInit {
                    localStorage.setItem('countryid',data.json().countryId);
                    localStorage.setItem('vendorid',data.json().vendorId);
                    localStorage.setItem('basic-plan',data.json().pricingPlan.pricingPlanId);
+                   if(!this.vendor.profileImage )
+                   {
+                   console.log(this.vendor.profileImage);
+                   this.vendor.profileImage = "https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg"
+                  }
                  });
 
           $.getScript('./assets/js/prism.min.js');

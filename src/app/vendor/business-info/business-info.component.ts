@@ -36,7 +36,6 @@ interface Location {
 
 export class BusinessInfoComponent implements OnInit {
 
-
   facebook;
   Description;
   twitter;
@@ -62,7 +61,9 @@ export class BusinessInfoComponent implements OnInit {
     twitterURL: '',
     googleURL:  '',
     instalURL:'',
-    perfectWeddingURL: ''};
+    perfectWeddingURL: '',
+    files:{path:''}
+  };
   modelfield: any = {};
   primarylocation:any = {};
   countryArray:string[];
@@ -245,22 +246,28 @@ findLocation(address) {
     myReader.readAsDataURL(file);
   }
   @ViewChild(AgmMap) map: AgmMap;
-  constructor(public mapsApiLoader: MapsAPILoader,public http: Http,private zone: NgZone,
-    private wrapper: GoogleMapsAPIWrapper)
+  constructor(public mapsApiLoader: MapsAPILoader,public http: Http,private zone: NgZone,private wrapper: GoogleMapsAPIWrapper)
      {
-    this.mapsApiLoader = mapsApiLoader;
-    this.zone = zone;
-    this.wrapper = wrapper;
-    this.mapsApiLoader.load().then(() => {
-    this.geocoder = new google.maps.Geocoder();
-    this.cropperSettings = new CropperSettings();
-    this.cropperSettings.croppedWidth =100;
-    this.cropperSettings.croppedHeight = 100;
-    this.cropperSettings.canvasWidth = 600;
-    this.cropperSettings.canvasHeight = 400;
-    this.cropperSettings.noFileInput = true;
-    this.data = {};
-    });
+          this.mapsApiLoader = mapsApiLoader;
+          this.zone = zone;
+          this.wrapper = wrapper;
+          this.mapsApiLoader.load().then(() => {
+          this.geocoder = new google.maps.Geocoder();
+         
+          });
+  
+          this.cropperSettings = new CropperSettings();
+          this.cropperSettings.croppedWidth =100;
+          this.cropperSettings.croppedHeight = 100;
+          this.cropperSettings.canvasWidth = 600;
+          this.cropperSettings.canvasHeight = 400;
+          this.cropperSettings.noFileInput = true;
+          this.data = {};
+  
+  
+  
+  
+  
   }  
   
   
@@ -286,6 +293,15 @@ findLocation(address) {
     this.http.get(this.url,{headers:headers}).subscribe(data =>{
 
     this.vendor = data.json();
+    this.vendor.files.path = "https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg";
+                  
+    if(!this.vendor.fileId)
+                   {
+                     alert("ghfgh");
+                   console.log(this.vendor.files );
+                  // this.vendor.files.path = "https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg";
+                  console.log( this.vendor.files.path);
+                  }
     this.facebook = data.json().facebookURL ;
 
     this.twitter = data.json().twitterURL ;
@@ -586,7 +602,7 @@ alert("photo uploded");
             var infogoogle = info.value.google;
             var fileId = this.addFile(info);
             var infodetails = info.value.businessDetails ;
-            var infobusiness =   info.value.Businesname;
+            var infobusiness =   info.value.nameOfBusiness;
             var infoinsta = info.value.instagram;
             var  perfectWeddingsite =   info.value.perfectWedding;
             

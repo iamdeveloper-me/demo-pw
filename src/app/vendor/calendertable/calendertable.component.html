@@ -176,48 +176,67 @@
 
 	<div class="card-block" style="background: #fff;">
 		<div class="modal-header">
-			<h5 class="modal-title">{{ modalData?.action }}</h5>
+				<h5 class="modal-title"><b> Calender </b> </h5>
+			<!-- <h5 class="modal-title">{{ modalData?.action }}</h5> -->
 			<button type="button" class="close" (click)="close()">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
 
 		<div class="modal-body">
-				<div class="form-group">
-						<label>Client Name</label>	
-			      <input 
-					type="text" 
-					name="event-contactname" 
-					class="effect-16" 
-					[(ngModel)]="modalData?.event.clientName" 
-					(keyup)="refresh.next()"
-					>
-					
+
+				<div class="row">
+						<div class="col-md-6 col-12">
+								<div class="form-group">
+										<label>Client Name</label>	
+								  <input 
+									type="text" 
+									name="event-contactname" 
+									class="effect-16" 
+									[(ngModel)]="modalData?.event.clientName" 
+									(keyup)="refresh.next()">
+								</div>	
+						</div>
+						<div class="col-md-6 col-12">
+								<div class="form-group">
+										<label>Event Title:</label>
+										<input type="text" 
+										 name="event-title" 
+										 class="effect-16" [(ngModel)]="modalData?.event.title"
+										  (keyup)="refresh.next()">
+									</div>
+						</div>
+						<div class="col-md-6 col-12">
+								<div class="form-group">
+										<label>Client Number</label>
+										<input
+											type="text" 
+											name="event-contactnumber" 
+											class="effect-16" 
+											[(ngModel)]="modalData?.event.contactnumber" 
+											(keyup)="refresh.next()">
+										
+										
+								</div>
+						</div>
+						<div class="col-md-6 col-12">
+								<div class="form-group">
+										<label>Event Location:</label>		
+										<input 
+										type="text
+										" name="event-location"
+											class="effect-16"
+											[(ngModel)]="modalData?.event.location" 
+											(keyup)="refresh.next()">
+										
+								</div>
+						</div>
+					</div>
+
 				
-		        </div>
-			<div class="form-group">
-				<label>Event Title:</label>
-				<input type="text" name="event-title" class="form-control" [(ngModel)]="modalData?.event.title" (keyup)="refresh.next()">
-			</div>
-			<div class="form-group">
-					<input
-						type="text" 
-						name="event-contactnumber" 
-						class="effect-16" 
-						[(ngModel)]="modalData?.event.contactnumber" 
-						(keyup)="refresh.next()">
-					<label>Client Number</label>
-					
-			</div>
-			<div class="form-group">		
-		            <input 
-					type="text
-					" name="event-location"
-						class="effect-16"
-						[(ngModel)]="modalData?.event.location" 
-						(keyup)="refresh.next()">
-					<label>Event Location:</label>
-	        </div>				
+			
+		
+							
 			<div class="row">
 				<div class="col-md-6 col-12">
 					<div class="form-group">
@@ -236,22 +255,22 @@
 				<div class="col-md-6 col-12">
 					<div class="form-group">
 						<label>Starts At:</label>
-						<mwl-demo-utils-date-time-picker name="starts-at" [(ngModel)]="modalData?.event.start" (ngModelChange)="refresh.next()" placeholder="Not set">
+						<mwl-demo-utils-date-time-picker class="padd10px" name="starts-at" [(ngModel)]="modalData?.event.start" (ngModelChange)="refresh.next()" placeholder="Not set">
 						</mwl-demo-utils-date-time-picker>
 					</div>
 				</div>
 				<div class="col-md-6 col-12">
 					<div class="form-group">
 						<label>Ends At:</label>
-						<mwl-demo-utils-date-time-picker name="ends-at" [(ngModel)]="modalData?.event.end" (ngModelChange)="refresh.next()" placeholder="Not set">
+						<mwl-demo-utils-date-time-picker class="padd10px" name="ends-at" [(ngModel)]="modalData?.event.end" (ngModelChange)="refresh.next()" placeholder="Not set">
 						</mwl-demo-utils-date-time-picker>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="modal-footer">
+		<div class="modal-footer btn_center">
 			<button type="submit" class="btn btn-outline-secondary"  (click)="job(modalData)" (click)="close()">SAVE</button>
-			<button type="button" class="btn btn-outline-secondary" (click)="close()">CANCEL</button>
+			<button type="button" class="btn btn_inherit" (click)="close()">CANCEL</button>
 		</div>
 	</div>
 	

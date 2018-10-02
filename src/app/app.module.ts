@@ -191,7 +191,7 @@ import { ErrorComponent } from './error/error.component';
 import { AdminexpensesComponent } from './admin/adminexpenses/adminexpenses.component';
 
 
-import { VendorComponent } from './dashboard/vendor/vendor.component';
+//import { VendorComponent } from './dashboard/vendor/vendor.component';
 
 
 
@@ -222,7 +222,7 @@ export function getAuthServiceConfigs() {
         InvoiceDetailComponent,
         EnquiriesComponent,
         TipslistComponent,
-        VendorComponent ,
+       // VendorComponent ,
         PromotionPriorityComponent,
         NgbdModalContent,
         StorefrontComponent,

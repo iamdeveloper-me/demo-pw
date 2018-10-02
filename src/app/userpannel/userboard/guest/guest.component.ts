@@ -9,7 +9,67 @@ export class GuestComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {  $("li").removeClass("user");
+  ngOnInit(){ 
+  $.getScript('http://code.jquery.com/jquery-1.11.1.min.js'); 
+
+$(".guestclick").click(function() {
+  $('.guestbox').show();
+  $(".guestclick").addClass("activebuttontab");
+  $(".groupclick").removeClass("activebuttontab");
+  $(".menuclick").removeClass("activebuttontab");
+  $(".inviteclick").removeClass("activebuttontab");
+  $('.groupbox').hide();
+  $('.invitebox').hide();
+  $('.menubox').hide();
+});
+$(".groupclick").click(function() {
+  $('.groupbox').show();
+  $(".guestclick").removeClass("activebuttontab");
+  $(".groupclick").addClass("activebuttontab");
+  $(".menuclick").removeClass("activebuttontab");
+  $(".inviteclick").removeClass("activebuttontab");
+  $('.guestbox').hide();
+  $('.invitebox').hide();
+  $('.menubox').hide();
+});
+$(".menuclick").click(function() {
+  $('.groupbox').hide();
+  $('.guestbox').hide();
+  $('.invitebox').hide();
+  $('.menubox').show();
+  $(".guestclick").removeClass("activebuttontab");
+  $(".groupclick").removeClass("activebuttontab");
+  $(".menuclick").addClass("activebuttontab");
+  $(".inviteclick").removeClass("activebuttontab");
+});
+$(".inviteclick").click(function() {
+  $('.groupbox').hide();
+  $('.guestbox').hide();
+  $('.invitebox').show();
+  $(".guestclick").removeClass("activebuttontab");
+  $(".groupclick").removeClass("activebuttontab");
+  $(".menuclick").removeClass("activebuttontab");
+  $(".inviteclick").addClass("activebuttontab");
+  $('.menubox').hide();
+});
+
+$(document).ready(function () {
+    $('.material-button-toggle').on("click", function () {
+        $(this).toggleClass('open');
+        $('.option').toggleClass('scale-on');
+    });
+});
+
+$(window).scroll(function(){
+      if ($(this).scrollTop() > 150) {
+         $('.tabbutton').addClass('fixedpostioneddesktop');
+      } else  {
+         $('.tabbutton').removeClass('fixedpostioneddesktop');
+      }
+  });
+
+
+  $("li").removeClass("user");
   $("#login").hide();
 
 

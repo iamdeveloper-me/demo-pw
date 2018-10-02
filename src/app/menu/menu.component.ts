@@ -30,8 +30,7 @@ export class MenuComponent implements OnInit {
      // headers.append('Content-Type', 'application/json');
       
      this.cservice.login(this.usercouple).subscribe(
-          (data)=> {
-              console.log(data.json());
+          (data)=> {  console.log(data.json());
 
           if (data.statusText == "OK" && data.json().role =="Vendors" ) {
             this.typeSuccess();
@@ -142,6 +141,12 @@ export class MenuComponent implements OnInit {
       this.http.get(this.url,{headers:headers}).subscribe(
         data =>{ this.vendor = data.json();
                  console.log(this.vendor);
+
+                 if(!this.vendor.profileImage )
+                 {
+                 console.log(this.vendor.profileImage);
+                 this.vendor.profileImage = "https://cdn4.iconfinder.com/data/icons/gray-user-management/512/rounded-512.pngg"
+                }
                                });
             if(window.location.href.indexOf("home") && vendorid)
             {   

@@ -366,13 +366,15 @@ textarea.form-control, textarea.form-control{
 
 .input-effect .effect-16{
     border: 0;
-    padding: 4px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #ccc;
     background-color: transparent;
     z-index: 2;
     position: relative;
     width: 100%;
     margin-left:0px;
+
+    
 }
 .input-effect .effect-16 ~ label {
     position: absolute;
@@ -659,16 +661,16 @@ box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.5);
 }
 
 :focus{outline: none;}
-.input-effect{position:relative; height: 33px; margin-bottom: 47px; max-width: 50%; margin:30px auto 0px auto;}
+.input-effect{position:relative; height: 33px; margin-bottom: 47px; max-width: 100% !important; margin:30px auto 0px auto;}
 
 .input-effect .effect-16{
     border: 0;
-    padding: 4px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #ccc;
     background-color: transparent;
     z-index: 2;
     position: relative;
-    width: 90%;
+    width: 100%;
 }
 .input-effect .effect-16 ~ label {
     position: absolute;
@@ -683,8 +685,8 @@ box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.5);
 }
 .input-effect .effect-16 ~ .focus-border {
     position: absolute;
-    bottom: -1px;
-    left: 33px;
+    bottom: -12px !important;
+    left: 0px;
     width: 0;
     height: 2px;
     background-color: #0277bd;
@@ -700,7 +702,7 @@ box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.5);
 }
 
 .input-effect .effect-16:focus ~ .focus-border{
-    width: 90%;
+    width: 100% !important;
     transition: 0.4s;
 }
 
@@ -736,156 +738,6 @@ box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.5);
     box-shadow: 0 8px 10px 0 rgba(126, 127, 128, 0.5) !important;
 }
 
-@media(max-width:767px){
-.social-connect{
-    padding: 0px;
-}
-.mobmargintop30px{
-    margin-top:30px!important;
-}
-.img-section iframe{
-   width:100%;
-   height:300px;
-   }
-   .edit_hide .col-11{float:right;}
-   .phonepopuphead{
-       margin-left:20px!important;
-   }
-   .edit_btn, .edit_btn1{
-       display:block;
-       position:absolute;
-       top:0px;
-       right:5px;
-       background: none!important;
-   }
-   .col-xs-5-mob{
-       width:40%;
-       float:left;
-       padding-left:15px!important;
-   }
-   .col-3, .col-9{
-       float: left;
-   }
-   .col-xs-7-mob{
-       width:60%;
-       float:left;
-   }
-      .loca_hours .col-sm-2{
-      float:left;
-      width:25%; 
-      padding-left:0px!important;
-   }
-   .loca_hours .col-sm-3{
-      float:left;
-      width:20%; 
-      padding-left:0px!important;
-   }
-   .textopenclose{
-       display:none;
-   }
-   .ui_switch{margin-right:0px;}
-   .loca_hours .col-sm-7{
-      float:left;
-      width:55%; 
-   }
-.weekboxinput div.col-xs-8{
-       width: 70%!important;
-       float: left;
-   }
-   .weekboxinput div.col-xs-4{
-       width: 30%!important;
-       float: left;
-   }
-   .mainhead{
-           font-size: 20px;
-           font-weight: 300;
-       }
-       .switbtn ui-switch{
-           margin-left: 5px;
-           right: 10px;
-           top: 10px;
-       }
-   
-       .switbtn{
-           margin-top: 4px !important;
-       }
-       .img_overlay{
-           width: 100%;
-       }
-       .phone_icon1 .glyphicon-earphone{
-           top: 40px !important;
-      
-       }
-       .phone_icon1 .glyphicon-phone {
-           top: 68px !important;
-        
-       }
-       .new_location .col-xs-8{
-           width: 70%;
-       }
-       .new_location .col-xs-4{
-           width: 30%;
-       }
-       
-.noproblum{
-    max-width: 100%;
-}
-.mobnopadd{
-    padding: 0px!important;
-}
-.editbtn{
-    display:inline-block!important;
-}
-.linkbox .editbtn{
-    right: 0px!important;
-}
-    .mob_margin_30px{
-        margin-bottom: 30px;
-    }
-    .dark_footer span{
-        margin-left: 0px !important;
-    }
-    .modal-body form input{
-        width: 100%
-    }
-    span{ 
-      margin-left: 0px !important;
-    }
-    .modal-body form input{
-        width: 85%;
-    }
-   
-    .busi_camera i{
-        left: 146px;
-    }
-    .busi_contact{
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    .mob_center{
-        text-align: center;
-    }
-    .widt_incres{
-         width: 50%;
-         margin-left: 20px;
-    }
-    .busines_img{
-       width: 100%;
-       margin-top: -50px;
-    }
-   
-    .social i.fa-2x  {
-    width:30px;
-    font-size: 30px;
-}
-.input-effect{
-    max-width:100%;
-}
-.input-effect .effect-16 ~ .focus-border {
-    bottom: -5px;
-    left: 24px;
-}
-}
 
 //modal
 .modal-footer button{
@@ -1271,16 +1123,7 @@ textarea.form-control, textarea.form-control{
 .input-effect{position:relative; height: 33px; margin-bottom: 47px;
 }
 
-.input-effect .effect-16{
-    border: 0;
-    padding: 4px 0;
-    border-bottom: 1px solid #ccc;
-    background-color: transparent;
-    z-index: 2;
-    position: relative;
-    width: 100%;
-    margin-left:0px;
-}
+
 .input-effect .effect-16 ~ label {
     position: absolute;
     left: 0;
@@ -1517,6 +1360,7 @@ box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.5);
 }
 .social-connect{
     margin-bottom:26px!important;
+    font-size: 15px;
 }
 .modal_head{
     padding-top: 20px;
@@ -1568,15 +1412,7 @@ box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.5);
 :focus{outline: none;}
 .input-effect{position:relative; height: 33px; margin-bottom: 47px; max-width: 50%; margin:30px auto 0px auto;}
 
-.input-effect .effect-16{
-    border: 0;
-    padding: 4px 0;
-    border-bottom: 1px solid #ccc;
-    background-color: transparent;
-    z-index: 2;
-    position: relative;
-    width: 90%;
-}
+
 .input-effect .effect-16 ~ label {
     position: absolute;
     left: 0;
@@ -1588,16 +1424,8 @@ box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.5);
     letter-spacing: 0.5px;
     font-size: 14px;
 }
-.input-effect .effect-16 ~ .focus-border {
-    position: absolute;
-    bottom: -1px;
-    left: 33px;
-    width: 0;
-    height: 2px;
-    background-color: #0277bd;
-    transition: 0.4s;
-    z-index: 9;
-}
+
+
 
 .input-effect .effect-16:focus ~ label{
     top: -16px;
@@ -1619,6 +1447,12 @@ box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.5);
     position: absolute;
     top: 20px;
     right: 20px;
+}
+.widt100px{
+    width: 100% !important;
+}
+.foot_div,.marTop50px {
+    margin-top: 50px;
 }
 .modal-header , .modal-footer{
     display: block !important;
@@ -1659,12 +1493,171 @@ box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.5);
     height: 149px;}
 
     .width_60{
-        width: 40%;
+        width: 100%;
     }
     .bornone{
         border: none !important;
     }
+   .saveall,.btn-raised{
+       margin-bottom: inherit;
+   }
+   .posiTop20px{
+       position: absolute;
+       top: 10px ;
+       right: 20px;
+   }
 @media(max-width:767px){
+    .social-connect{
+        padding: 0px;
+    }
+    .mobmargintop30px{
+        margin-top:30px!important;
+    }
+    .img-section iframe{
+       width:100%;
+       height:300px;
+       }
+       .edit_hide .col-11{float:right;}
+       .phonepopuphead{
+           margin-left:20px!important;
+       }
+       .edit_btn, .edit_btn1{
+           display:block;
+           position:absolute;
+           top:0px;
+           right:5px;
+           background: none!important;
+       }
+       .col-xs-5-mob{
+           width:40%;
+           float:left;
+           padding-left:15px!important;
+       }
+       .col-3, .col-9{
+           float: left;
+       }
+       .col-xs-7-mob{
+           width:60%;
+           float:left;
+       }
+          .loca_hours .col-sm-2{
+          float:left;
+          width:25%; 
+          padding-left:0px!important;
+       }
+       .loca_hours .col-sm-3{
+          float:left;
+          width:20%; 
+          padding-left:0px!important;
+       }
+       .textopenclose{
+           display:none;
+       }
+       .ui_switch{margin-right:0px;}
+       .loca_hours .col-sm-7{
+          float:left;
+          width:55%; 
+       }
+       .weekboxinput{
+           font-size: 15px;
+       }
+    .weekboxinput div.col-xs-8{
+           width: 70%!important;
+           float: left;
+       }
+       .weekboxinput div.col-xs-4{
+           width: 30%!important;
+           float: left;
+       }
+       .mainhead{
+               font-size: 20px;
+               font-weight: 300;
+           }
+           .switbtn ui-switch{
+               margin-left: 5px;
+               right: 10px;
+               top: 10px;
+           }
+       
+           .switbtn{
+               margin-top: 4px !important;
+           }
+           .img_overlay{
+               width: 100%;
+           }
+           .phone_icon1 .glyphicon-earphone{
+               top: 40px !important;
+          
+           }
+           .phone_icon1 .glyphicon-phone {
+               top: 68px !important;
+            
+           }
+           .new_location .col-xs-8{
+               width: 70%;
+           }
+           .new_location .col-xs-4{
+               width: 30%;
+           }
+           
+    .noproblum{
+        max-width: 100%;
+    }
+    .mobnopadd{
+        padding: 0px!important;
+    }
+    .editbtn{
+        display:inline-block!important;
+    }
+    .linkbox .editbtn{
+        right: 0px!important;
+    }
+        .mob_margin_30px{
+            margin-bottom: 30px;
+        }
+        .dark_footer span{
+            margin-left: 0px !important;
+        }
+        .modal-body form input{
+            width: 100%
+        }
+        span{ 
+          margin-left: 0px !important;
+        }
+        .modal-body form input{
+            width: 85%;
+        }
+       
+        .busi_camera i{
+            left: 146px;
+        }
+        .busi_contact{
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .mob_center{
+            text-align: center;
+        }
+        .widt_incres{
+             width: 50%;
+             margin-left: 20px;
+        }
+        .busines_img{
+           width: 100%;
+           margin-top: -50px;
+        }
+       
+        .social i.fa-2x  {
+        width:30px;
+        font-size: 30px;
+    }
+    .input-effect{
+        max-width:100% !important;
+    }
+    .input-effect .effect-16 ~ .focus-border {
+        bottom: -5px;
+        left: 24px;
+    }
 .social-connect{
     padding: 0px;
 }
@@ -1821,6 +1814,10 @@ box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.5);
     }
     .busines_img i.material-icons{
         z-index: 0;
+    }
+    .social i.fa-2x {
+        width: 10px;
+        font-size: 20px;
     }
 }
 

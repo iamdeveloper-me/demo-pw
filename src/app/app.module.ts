@@ -222,6 +222,7 @@ export function getAuthServiceConfigs() {
         InvoiceDetailComponent,
         EnquiriesComponent,
         TipslistComponent,
+       // VendorComponent ,
         PromotionPriorityComponent,
         NgbdModalContent,
         StorefrontComponent,

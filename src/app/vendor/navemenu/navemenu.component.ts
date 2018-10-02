@@ -33,6 +33,10 @@ export class NavemenuComponent implements OnInit {
       this.http.get(this.url,{headers:headers}).subscribe(
         data =>{ this.vendor = data.json();
                  console.log(this.vendor);
+                 if(!this.vendor.profileImage)
+                 {
+                 this.vendor.profileImage = "https://cdn4.iconfinder.com/data/icons/gray-user-management/512/rounded-512.png"
+              }
                                });
       // alert(firstName);
 

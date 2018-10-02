@@ -1,40 +1,37 @@
 <div id="wrapper" class="toggled">
-
-        <div id="sidebar-wrapper">
-           <app-vendorsidebar></app-vendorsidebar>
-           <router-outlet></router-outlet>
-        </div>
-        <div id="page-content-wrapper">
-           <app-navemenu></app-navemenu>
-            <section class="p-0 mobilefixedcontainer" id="portfolio">
-                <div class="col-sm-12 mob_margin_30px" >
-
-                        <div class="col-sm-5 col-12 pad375Zero" >
-
-                            <div class="card heightequal365 margintop0px mobmargintop30px" >
-                            <div class="custom-form" *ngFor="let data of countryArray;let i=index"  >
-                                <div class="col-sm-12 nopadd" *ngIf="data.isPrimary == true">
-                                    <div class="card martop10px">
-                                        <div class="col-sm-12">
-                                            <h4 class="mainhead" > Location (Primary) </h4>
-                                            <div class="switbtn" style="position: absolute;right:10px;top:10px;">
-                                                <ui-switch (ngModel)="data.isPrimary" id="isPrimary" name="isPrimary" class="pull-left" style="position:relative;"></ui-switch>
-                                            </div>
-
+    <div id="sidebar-wrapper">
+        <app-vendorsidebar></app-vendorsidebar>
+        <router-outlet></router-outlet>
+    </div>
+    <div id="page-content-wrapper">
+        <app-navemenu></app-navemenu>
+        <section class="p-0 mobilefixedcontainer" id="portfolio">
+            <div class="col-sm-12 mob_margin_30px" >
+                <div class="col-sm-5 col-12 pad375Zero" *ngFor="let data of countryArray;let i=index" >
+                    <div class="card heightequal365 margintop0px mobmargintop30px" >
+                        <div class="custom-form"  >
+                            <div class="col-sm-12 nopadd" *ngIf="data.isPrimary == true">
+                                <div class="card martop10px">
+                                    <div class="col-sm-12">
+                                        <h4 class="mainhead" > Location (Primary) </h4>
+                                        <div class="switbtn" style="position: absolute;right:10px;top:10px;">
+                                            <ui-switch (ngModel)="data.isPrimary" id="isPrimary" name="isPrimary" class="pull-left" style="position:relative;"></ui-switch>
                                         </div>
+
                                     </div>
-                                    <div class="card-body"  >
+                                </div>
+                                <div class="card-body"  >
                                     <div class="text-center bg-form col-sm-12">
                                         <div class="img-section">
                                                 <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
-                                    <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event)'></agm-marker>
-                                    <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
-                                </agm-map>
-                                            <div class="img_overlay" (click)="update(data)" data-target="#phone" data-toggle="modal">
-                                                <div class="col-lg-12 col-md-12 pad_left_0px" (click) = "title()" >
-                                                {{data.title}}
+                                                    <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event)'></agm-marker>
+                                                    <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
+                                                </agm-map>
+                                                <div class="img_overlay" (click)="update(data)" data-target="#phone" data-toggle="modal">
+                                                    <div class="col-lg-12 col-md-12 pad_left_0px" (click) = "title()" >
+                                                    {{data.title}}
+                                                    </div>
                                                 </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 text_left">
@@ -85,7 +82,7 @@
                                                         <div class="col-sm-4 col-xs-5-mob nopadd">Sunday </div>
                                                         <div class="col-sm-8 col-xs-7-mob nopadd">
                                                             {{data.sundayOpen}}AM to {{data.sundayClose}}PM
-                                                           
+                                                            
         
                                                         </div>
                                                         <div class="clearfix"></div>
@@ -147,151 +144,136 @@
                                                 </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-7 col-12 mobnopadd padleft0px" (click)="openModel(vendor)">
+                    <div class=" mobnopadd padleft0px ">
+                        <div class="card heightequal365 margintop0px mobmargintop30px">
+                            <div class="card-header">
+                                <div class="busines_img">
+                                    <i class="material-icons" data-target="#imagecrop" data-toggle="modal" id="description-function"> camera_alt </i> 
+                                        <img [src] = "vendor.files.path" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle">   
+                                </div>
+                                <div class="busi_contact">
+                                    <h6 >Business name or Contact Person </h6>
+                                    <div class="on_hover" data-target="#Business" data-toggle="modal" id="Instagram-function" >
+                                    <div>{{vendor.nameOfBusiness}}</div>
+                                    <span class="text-right col-lg-12 editbtn">
+                                    <i class="material-icons"  >edit</i>
+                                    </span>
+    
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="on_hoverdiv" data-target="#Description" data-toggle="modal" id="description-function" >
+                                    <h6 class="text-center">Business Description </h6>
+                                    <span class=" editbtn  editbtn11">
+                                    <i class="material-icons">edit</i>
+                                    </span>
+                                    <div class="col-lg-12 col-md-12 add_text text-center">
+                                    {{vendor.businessDetails}}               
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-7 col-12 mobnopadd padleft0px" (click)="openModel(vendor)">
-                                <div class=" mobnopadd padleft0px ">
-                                <div class="card heightequal365 margintop0px mobmargintop30px">
-                                    <div class="card-header">
-                                        <div class="busines_img">
-                                            <i class="material-icons" data-target="#imagecrop" data-toggle="modal" id="description-function"> camera_alt </i> 
-                                            <span class="result" *ngIf="data.image" data-target="#imagecrop" data-toggle="modal" id="description-function">
-                                            <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle">
-                                            </span>
-                                        </div>
-                                        <div class="busi_contact">
-                                            <h6 >Business name or Contact Person</h6>
-                                            <div class="on_hover" data-target="#Business" data-toggle="modal" id="Instagram-function" >
-                                            <div>{{vendor.nameOfBusiness}}</div>
-                                            <span class="text-right col-lg-12 editbtn">
-                                            <i class="material-icons"  >edit</i>
-                                            </span>
-            
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <div class="on_hoverdiv" data-target="#Description" data-toggle="modal" id="description-function" >
-                                            <h6 class="text-center">Business Description </h6>
-                                            <span class=" editbtn  editbtn11" s>
-                                            <i class="material-icons"   >edit</i>
-                                            </span>
-                                            <div class="col-lg-12 col-md-12 add_text text-center">
-                                            {{vendor.businessDetails}}               
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>
-                                <div class=" linkbox margintop0px heightequal365 card padright0px">
-                                <div class="card-header">
-                                    <h6 class="card-title text-center">Link Accounts & Websites</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="col-sm-12">
-                                        <div class="social-connect  col-sm-12" data-reactid="330">
-                                            <div class="social" data-reactid="332">
-                                            <i class="fa fa-facebook fa-2x" data-reactid="334"></i>
-                                            <span id="prompt-function"  data-target="#facebook" data-toggle="modal" data-reactid="333">
-                                            :  {{vendor.facebookURL}}
-                                            </span>
-                                            <div class="col-lg-12 editbtn">
-                                                <h4 class="text-right col-lg-12">
-                                                    <i class="material-icons">edit</i>
-                                                </h4>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <div class="social-connect  col-sm-12" data-reactid="330">
-                                            <div class="social" data-reactid="332">
-                                            <i class="fa fa-twitter fa-2x " data-reactid="338"></i>
-                                            <span id="Pinterest-function" data-target="#twitter" data-toggle="modal"  data-reactid="337">
-                                            :{{vendor.twitterURL}}
-                                            </span>
-                                            <div class="col-lg-12 editbtn">
-                                                <h4 class="text-right col-lg-12">
-                                                    <i class="material-icons">edit</i>
-                                                </h4>
-                                            </div>
-                                            <!--  <div class="switbtn">
-                                                <ui-switch [(ngModel)]="enable1" ></ui-switch> 
-                                                </div>   --> 
-                                            </div>
-                                        </div>
-                                        <div class="social-connect col-sm-12" data-reactid="330">
-                                            <div class="social" data-reactid="332">
-                                            <i class="fa fa-google-plus fa-2x" data-reactid="340"></i>
-                                            <span id="Google-function" data-target="#google" data-toggle="modal" data-reactid="339">
-                                            : {{vendor.googleURL}}
-                                            </span>
-                                            <div class="col-lg-12 editbtn">
-                                                <h4 class="text-right col-lg-12">
-                                                    <i class="material-icons">edit </i>
-                                                </h4>
-                                            </div>
-                                            <!--  <div class="switbtn">
-                                                <ui-switch [(ngModel)]="enable2" ></ui-switch>
-                                                </div>  -->
-                                            </div>
-                                        </div>
-                                        <div class="social-connect col-sm-12" data-reactid="330">
-                                            <div class="social" data-reactid="332">
-                                            <i class="fa fa-instagram fa-2x" data-reactid="342"></i>
-                                            <span id="Instagram-function" data-target="#instagram" data-toggle="modal" data-reactid="341">
-                                            : {{vendor.instalURL}}
-                                            </span>
-                                            <div class="col-lg-12 editbtn">
-                                                <h4 class="text-right col-lg-12">
-                                                    <i class="material-icons">edit</i>
-                                                </h4>
-                                            </div>
-                                            <!--  <div class="switbtn">
-                                                <ui-switch [(ngModel)]="enable3" ></ui-switch> 
-                                                </div> -->
-                                            </div>
-                                        </div>
-                                        <div class="social-connect  col-sm-12" data-reactid="330">
-                                            <div class="social" data-reactid="332">
-                                            <i class="fa fa-globe fa-2x" data-reactid="342"></i>
-                                            <span id="Instagram-function" data-target="#instagram2" data-toggle="modal" data-reactid="341">
-                                            :{{vendor.perfectWeddingURL}}
-                                            </span>
-                                            <div class="col-lg-12 editbtn">
-                                                <h4 class="text-right col-lg-12">
-                                                    <i class="material-icons">edit</i>
-                                                </h4>
-                                            </div>
-                                            <!-- <div class="switbtn">
-                                                <ui-switch [(ngModel)]="enable4" ></ui-switch> 
-                                                </div> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                </div>
-                        </div>
-                        </div>
                     </div>
+                    <div class=" linkbox margintop0px heightequal365 card padright0px">
+                        <div class="card-header">
+                            <h6 class="card-title text-center">Link Accounts & Websites</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="col-sm-12">
+                                <div class="social-connect  col-sm-12" data-reactid="330">
+                                    <div class="social" data-reactid="332">
+                                    <i class="fa fa-facebook fa-2x" data-reactid="334"></i>
+                                    <span id="prompt-function"  data-target="#facebook" data-toggle="modal" data-reactid="333">
+                                    :  {{vendor.facebookURL}}
+                                    </span>
+                                    <div class="col-lg-12 editbtn">
+                                        <h4 class="text-right col-lg-12">
+                                            <i class="material-icons">edit</i>
+                                        </h4>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="social-connect  col-sm-12" data-reactid="330">
+                                    <div class="social" data-reactid="332">
+                                    <i class="fa fa-twitter fa-2x " data-reactid="338"></i>
+                                    <span id="Pinterest-function" data-target="#twitter" data-toggle="modal"  data-reactid="337">
+                                    :{{vendor.twitterURL}}
+                                    </span>
+                                    <div class="col-lg-12 editbtn">
+                                        <h4 class="text-right col-lg-12">
+                                            <i class="material-icons">edit</i>
+                                        </h4>
+                                    </div>
+                                    <!--  <div class="switbtn">
+                                        <ui-switch [(ngModel)]="enable1" ></ui-switch> 
+                                        </div>   --> 
+                                    </div>
+                                </div>
+                                <div class="social-connect col-sm-12" data-reactid="330">
+                                    <div class="social" data-reactid="332">
+                                    <i class="fa fa-google-plus fa-2x" data-reactid="340"></i>
+                                    <span id="Google-function" data-target="#google" data-toggle="modal" data-reactid="339">
+                                    : {{vendor.googleURL}}
+                                    </span>
+                                    <div class="col-lg-12 editbtn">
+                                        <h4 class="text-right col-lg-12">
+                                            <i class="material-icons">edit </i>
+                                        </h4>
+                                    </div>
+                                    <!--  <div class="switbtn">
+                                        <ui-switch [(ngModel)]="enable2" ></ui-switch>
+                                        </div>  -->
+                                    </div>
+                                </div>
+                                <div class="social-connect col-sm-12" data-reactid="330">
+                                    <div class="social" data-reactid="332">
+                                    <i class="fa fa-instagram fa-2x" data-reactid="342"></i>
+                                    <span id="Instagram-function" data-target="#instagram" data-toggle="modal" data-reactid="341">
+                                    : {{vendor.instalURL}}
+                                    </span>
+                                    <div class="col-lg-12 editbtn">
+                                        <h4 class="text-right col-lg-12">
+                                            <i class="material-icons">edit</i>
+                                        </h4>
+                                    </div>
+                                    <!--  <div class="switbtn">
+                                        <ui-switch [(ngModel)]="enable3" ></ui-switch> 
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class="social-connect  col-sm-12" data-reactid="330">
+                                    <div class="social" data-reactid="332">
+                                    <i class="fa fa-globe fa-2x" data-reactid="342"></i>
+                                    <span id="Instagram-function" data-target="#instagram2" data-toggle="modal" data-reactid="341">
+                                    :{{vendor.perfectWeddingURL}}
+                                    </span>
+                                    <div class="col-lg-12 editbtn">
+                                        <h4 class="text-right col-lg-12">
+                                            <i class="material-icons">edit</i>
+                                        </h4>
+                                    </div>
+                                    <!-- <div class="switbtn">
+                                        <ui-switch [(ngModel)]="enable4" ></ui-switch> 
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-
-
-              </section>
-              <div class="clearfix"></div>
-              <app-foot></app-foot>
-        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+            <div class="clearfix"></div>
+            <app-foot></app-foot>
+    </div>
 </div>
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
  
 <form (ngSubmit)="upForm(info)" #info="ngForm"> 
     <div class="modal fade" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -345,8 +327,8 @@
                     class="endent_10px width_60" 
                     type="text"  
                     [(ngModel)]="modelfield.nameOfBusiness" 
-                    name="Businesname" 
-                    id="Businesname"
+                    name="nameOfBusiness" 
+                    id="nameOfBusiness"
                     placeholder="Vision Photography" >
                     </p>
                     <!-- <p>Business picture url :<input class="endent_10px width_60" type="text" [(ngModel)] = "imag"  placeholder="Enter image url"> </p>  -->
@@ -389,7 +371,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer text-center">
+            <div class="modal-footer text-center marTop50px">
                 <button type="submit" class="btn btn-secondary btn-raised saveall">Save</button> 
                 <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
             </div>
@@ -555,7 +537,8 @@
     </div>
    
 </form> 
-<form (ngSubmit)="addFile(infoo)" #infoo="ngForm" class="    padding-left: 84%">
+
+<form (ngSubmit)="addFile(infoo)" #infoo="ngForm" class="padding-left: 84%">
     <div class="modal fade" id="imagecrop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -577,24 +560,15 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
-                            <h4>Cropper</h4>
-                            </div>
                             <div class="card-block">
                             <div class="file-upload mb-3">
-                                <span class="text">Upload File : </span>
-                                
                                     <input #fileInput 
                                         id="custom-input" 
                                         (change)="fileChangeListener($event)"
                                         type="file"
                                         [(ngModel)]="gallery.files" 
                                         name="image" 
-                                        id="image"/>                     
-                                    
-                                    <button type="submit" class="btn btn-small btn-link" >
-                                            <i class="material-icons"> add </i>
-                                        upload event image </button>   
+                                        id="image"/>                                        
                                     <span class="focus-border"></span>
                                     <input type="hidden" [(ngModel)]="modelfield">
                                 
@@ -627,7 +601,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Address</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close posiTop20px" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
                 </div>
@@ -680,9 +654,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer text-center">
                     <button type="submit" class="btn bt_blue"    (click)='primelocation(location)' >SAVE</button> &nbsp;
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn_inherit" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -708,7 +682,7 @@
                         </select>
                     </div>
                     <div class="col-sm-10 col-9 nopadd">
-                        <input type="text" class="inputbottombor"   [(ngModel)]="updatefield.mobile" id="no" name="no">
+                        <input type="text" class="inputbottombor widt100px"   [(ngModel)]="updatefield.mobile" id="no" name="no">
                     </div>
                     <h6 class="col-xs-offset-2 phonepopuphead">Second Number</h6>
                     <div class="col-sm-2 col-3">
@@ -717,7 +691,7 @@
                         </select>
                     </div>
                     <div class="col-sm-10 col-9 nopadd">
-                        <input type="number" class="inputbottombor" minlength=10 maxlength=10 placeholder="000-000-0000" id="phone" name="phone" [(ngModel)]="updatefield.phone">
+                        <input type="number" class="inputbottombor widt100px" minlength=10 maxlength=10 placeholder="000-000-0000" id="phone" name="phone" [(ngModel)]="updatefield.phone">
                     </div>
                 </div>
             </div>
@@ -927,10 +901,10 @@
             </div>
 
             <div class="modal-content">    
-                <div class="modal-footer">
+                <div class="modal-footer text-center">
                         <button type="submit" class="btn bt_blue"  ><i class="glyphicon glyphicon-ok" > </i> Save</button>&nbsp;
 
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn_inherit" data-dismiss="modal">Close</button>
                 </div>
             </div>    
         </div>

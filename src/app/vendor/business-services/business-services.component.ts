@@ -20,9 +20,9 @@ export class BusinessServicesComponent implements OnInit {
   optionfive:boolean = false;
   optionsix:boolean = false;
   optionseven:boolean = false;
-  private urlget: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/services'
-  private serveiceget: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories/categorieswithservices'
-  
+   private serveiceget: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories/categorieswithservices'
+   private serveicepost: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savebusinessservices'
+   private userservesicege:string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessservices'
   
   data: any;
   categoryId;
@@ -40,6 +40,8 @@ export class BusinessServicesComponent implements OnInit {
 
   readioSelected:any;
   readioSelected_serv:boolean;
+  service_type:boolean;
+  service_category:boolean;
   RoleServiceService:any
   showcontent:boolean=false;
   checkboxarry =[] ;
@@ -49,6 +51,7 @@ export class BusinessServicesComponent implements OnInit {
   customFieldOptionList=[];
   price = []
   strating_price:any = [];
+  final_array:any = [];
   name;
   b= []
   c= []
@@ -99,24 +102,22 @@ export class BusinessServicesComponent implements OnInit {
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
-    this.http.get(this.urlget,{headers:headers}).subscribe(data =>{ 
-    this.Services = data.json() as string[];
 
-  });
 
 
   this.http.get(this.serveiceget,{headers:headers}).subscribe(data =>{
     
     this.categoryserveice = data.json() as string[]
 
-
-   // console.log( this.categoryserveice.find(categoryId == categoryid ));
+    console.log( this.categoryserveice);
     for(var i = 0; i < this.categoryserveice.length; i++){
       this.min = this.categoryserveice[i]; 
       if(this.min.categoryId == categoryid )
-      {alert("dfdf");
+      { //alert("dfdf");
       this.first_category = this.min;
-      console.log( this.first_category);
+      this.service_data = this.categoryserveice[i];
+      this.services_all = this.service_data['services']
+       this.costserviceTrue = true;
       }
     }
     // debugger
@@ -126,7 +127,7 @@ export class BusinessServicesComponent implements OnInit {
 
   });
 
-  
+  this.http.get(this.userservesicege,{headers:headers}).subscribe(data =>{console.log(data.json())});
 
   $.getScript('./assets/js/vertical-timeline.js');
   // $.getScript('./assets/js/profile.js'); 
@@ -152,17 +153,23 @@ export class BusinessServicesComponent implements OnInit {
 
     })
 
+
+   
+
   }
   onSelectionChange(entry){
     this.selectedEntry = entry;
     console.log(this.selectedEntry)
   }
   showContent(){
-    this.showcontent=this.readioSelected;
-    //this.cardtitle = this.categoryserveice[this.readioSelected].categoryName
+    this.showcontent =this.readioSelected;
     this.service_data = this.categoryserveice[this.readioSelected];
     this.services_all = this.service_data['services']
+    console.log(    this.service_data);
     this.costserviceTrue = true;
+
+  
+ 
   }
   
   serv_all(data){
@@ -208,37 +215,49 @@ export class BusinessServicesComponent implements OnInit {
 
   checkbox(data){
     
-if(this.customFieldOptionList.length > 0  ){
-    for (let i in this.customFieldOptionList)
-    {
-      alert("qqqqf"+i);
-      if(this.customFieldOptionList[i].customFieldId == data.customFieldId)
-        {
-        alert("dff"+this.customFieldOptionList[i].customFieldId+"="+data.customFieldId);
-        this.customFieldOptionList[i].splice(i, 1);
-        const index = this.customFieldOptionList.indexOf(i);
-        this.customFieldOptionList.splice(index, 1);
-        console.log(this.customFieldOptionList)
-        }
-      }
+    // if(this.customFieldOptionList.length > 0  ){
+    // for (let i in this.customFieldOptionList)
+    // {
+    // //  alert("qqqqf"+i);
+    //   if(this.customFieldOptionList[i].customFieldId == data.customFieldId)
+    //     {
+    //   //  alert("dff"+this.customFieldOptionList[i].customFieldId+"="+data.customFieldId);
+    //     this.customFieldOptionList[i].splice(i, 1);
+    //     const index = this.customFieldOptionList.indexOf(i);
+    //     this.customFieldOptionList.splice(index, 1);
+    //     console.log(this.customFieldOptionList)
+    //     }
+    //   }
       
-    }
-    this.customFieldOptionList.push(data);
- 
+    // }
+    // this.customFieldOptionList.push(data);
 
-  console.log(data);
-    
-  //this.customFieldOptionList.push(data);
-   console.log(this.customFieldOptionList)
-    // this.listOfLanguagues.splice(index, 1);
-   
-    // this.strating_price = this.customFields[0]
-    // this.a_lable = this.strating_price['name'];
-    // this.p = this.strating_price['customFieldOptionList']
 
   }
 
-  serveicedata(service){}
+  serveicedata(service){
+    console.log(service.value);
+    console.log(service.value.serviceId  );
+   
+   
+     this.final_array.push(service.value);
+     
+  
+    console.log( this.final_array);
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+
+    
+
+  this.http.post(this.serveicepost,{ ServicesId: service.value.serviceId,ServiceFields: this.final_array},{headers:headers}).subscribe(
+    data =>{
+   
+    console.log( data.json())
+  },error => {console.log(error)});
+  }
   // option_one(){
   //   this.optionone = !this.optionone;
   // }

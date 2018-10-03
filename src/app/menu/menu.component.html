@@ -160,11 +160,10 @@
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic3" class="userhomemenu">
                    <div class="vendorpicsec">
                       <div class="imgsection">
-                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png"/>
+                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png" class="userimgtop"  />
                       </div>
                       <div class="detailsection">
-                      <div><strong>User Name</strong></div>
-                      <div>User@gmail.com</div>
+                      Hi User!
                       </div>
                    </div>
                   <a class="dropdown-item hidden-sm hidden-md hidden-lg"  routerLink="/User/Timeline">
@@ -273,8 +272,7 @@
                       <img [src] = "vendor.profileImage" class="userimgtop" >
                     </div>
                     <div class="detailsection">
-                      <div><strong>Vendor Name</strong></div>
-                      <div>{{vendor.firstName}}</div>
+                    Hi {{vendor.firstName}}!
                     </div>
                   </div>
                   <a class="dropdown-item py-1" routerLink="../vendor/dashboard">

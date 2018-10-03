@@ -331,7 +331,22 @@ findLocation(address) {
 
     $("#Instagram-function").click(function() {
     });
-  
+    
+
+    $(".bussinesstab").click(function(){
+      $(".bussinesstabbox").show();
+      $(".locationtabbox").hide();  
+      $(".bussinesstab").removeClass("selected"); 
+      $(".locationtab").addClass("selected"); 
+    });
+    
+    $(".locationtab").click(function(){
+      $(".bussinesstabbox").hide();
+      $(".locationtabbox").show();  
+      $(".bussinesstab").addClass("selected"); 
+      $(".locationtab").removeClass("selected"); 
+    });
+
   
     $('.photogallry').hide();
     $("div").removeClass( "modal-backdrop"); 

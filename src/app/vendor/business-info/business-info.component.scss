@@ -19,7 +19,10 @@
 .mar_botom{
     margin-bottom: 10px;
 }
-
+.registration-date-time select{
+    border:1px solid #e5e5e5;
+    padding:2px;
+}
 .switbtn{    
         margin-top: -10px !important;    
         position: relative;    
@@ -1506,9 +1509,50 @@ box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.5);
        top: 10px ;
        right: 20px;
    }
+.textopenclose{
+   padding-left:5px!important;
+   display:inline-block!important;
+}
+
+.tabbingdesign{
+    padding: 0px;
+    margin: 0px auto;
+    width: 300px;
+}
+.tabbingdesign li{
+    list-style: none;
+    display: inline-block;
+    float: left;
+    margin: 0px 0px 10px 0px;
+    padding: 3px 5px;
+    cursor: pointer;
+    width: 50%;
+    text-align: center;
+    background: #e5e5e5;
+    border-radius: 0px 30px 30px 0px;
+    margin: 0px;
+}
+.tabbingdesign li:first-child{
+border-radius:30px 0px 0px 30px;
+margin-right:0px;
+}
+.tabbingdesign li:last-child{
+border-radius:0px 30px 30px 0px;
+margin-left:0px;
+}
+.tabbingdesign li.selected{
+  background-color: #36cbf0 !important;
+    color: #fff;
+}
 @media(max-width:767px){
+.tabbingdesign{
+    padding-top:20px;
+}
     .social-connect{
         padding: 0px;
+    }
+    .locationtabbox{
+    display:none;
     }
     .mobmargintop30px{
         margin-top:30px!important;
@@ -1709,6 +1753,7 @@ box-shadow: 0 8px 10px 0 rgba(33,150,243, 0.5);
       float:left;
       width:55%; 
    }
+
 .weekboxinput div.col-xs-8{
        width: 70%!important;
        float: left;

@@ -189,6 +189,7 @@ import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
 import { UseraccountComponent } from './userpannel/userboard/useraccount/useraccount.component';
 import { ErrorComponent } from './error/error.component';
 import { AdminexpensesComponent } from './admin/adminexpenses/adminexpenses.component';
+import { SupplierbylocationComponent } from './supplierbylocation/supplierbylocation.component';
 
 
 //import { VendorComponent } from './dashboard/vendor/vendor.component';
@@ -349,6 +350,7 @@ export function getAuthServiceConfigs() {
         AdminuseraccountComponent,
         ErrorComponent,
         AdminexpensesComponent,
+        SupplierbylocationComponent,
        
         
         

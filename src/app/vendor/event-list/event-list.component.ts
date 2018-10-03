@@ -61,6 +61,10 @@ export class EventListComponent implements OnInit {
         //     console.log(data.json());})
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
+
+     $.getScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js');
+
+
     $.getScript('./assets/js/vendorsidebar.js');
 
     $("#filter2").show();

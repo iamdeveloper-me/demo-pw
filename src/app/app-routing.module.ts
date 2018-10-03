@@ -33,7 +33,7 @@ import { UserboardComponent } from './userpannel/userboard/userboard.component';
 import { InspirationsComponent } from './userpannel/userboard/inspirations/inspirations.component';
 import { UserReviewsComponent } from './userpannel/userboard/user-reviews/user-reviews.component';
 
-
+import { SupplierbylocationComponent } from './supplierbylocation/supplierbylocation.component';
 
 
 
@@ -157,6 +157,8 @@ const appRoutes: Routes = [
   { path: 'home/Careers', component:  CareersComponent  },
   { path: 'home/Advertise', component:  AdvertiseComponent },
   { path: 'home/cuplefoot', component:  FootCupleComponent },
+
+  { path: 'home/supplierbylocation', component:  SupplierbylocationComponent },
  
  
 

@@ -230,8 +230,8 @@ text-align:center;
 }
 .category-body .regular, .city-body .regular{
     text-align: left;
-    padding: 6px 20px;
-    font-size: 16px;
+    padding: 6px 10px;
+    font-size: 14px;
     color: #333;
     white-space: nowrap;
     overflow: hidden;
@@ -280,7 +280,7 @@ padding:3px 0px 0px 0px;
 }
 .eventbtnholder{
   position:absolute;
-  right:5px;
+  right:20px;
   top:-50px;
 }
 .eventlisting .cardshadow{
@@ -327,6 +327,9 @@ padding:3px 0px 0px 0px;
 }
 
 @media(max-width:767px){
+.photobox{
+  margin-top:15px;
+}
 .inspirationhead{
 margin-top:60px;
 }
@@ -347,12 +350,10 @@ cursor: pointer;
 background: #e72e77;
 display: block;
 }
-.hovereffect{
-height: 8% !important;
-}
+
 .thumb{
 margin-bottom: 0px !important;
-padding-left: 30px !important;
+margin-top: 0px !important;
 }
 .insp_left{
 margin-left: 0px;
@@ -361,5 +362,23 @@ margin-left: 0px;
 @media(max-width:375px){
   .thumb {
     padding-left: 15px !important;
+  }
+.photobox{
+  padding:0px;
+}
+.category-body .regular .badge{
+  float:right!important;
+  border-radius:10px;
+}
+.col-6:nth-child(odd) {
+    padding-left:0px;
+    padding-right:5px;
+    margin-bottom:10px!important;
+}
+
+.col-6:nth-child(even) {
+    padding-right:0px;
+    padding-left:5px;
+    margin-bottom:10px!important;
 }
 }

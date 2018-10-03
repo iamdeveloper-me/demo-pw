@@ -39,7 +39,20 @@ export class LocationComponent implements OnInit {
   Phone;
   Address;
  data;
+ info: any = { mobile: ''};
  m;
+ enable = true;
+ modelfield : any = { mobile: ''};
+ address : any = {};
+ obj = [];
+
+ private urlget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mylocations'
+ private urlpost: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savelocation'
+
+ // location: any = {};
+
+ countryArray:string[];
+
   circleRadius:number = 5000;
   milesToRadius(value) {
     this.circleRadius = value / 0.00062137;
@@ -169,18 +182,7 @@ export class LocationComponent implements OnInit {
       this.geocoder = new google.maps.Geocoder();
       });
      }
-     enable = true;
-  modelfield : any = {};
-  address : any = {};
-  obj = [];
-
-  private urlget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mylocations'
-  private urlpost: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savelocation'
-
-  // location: any = {};
-
-  countryArray:string[];
-
+    
   ngOnInit(): void {
     this.location.marker.draggable = true;
     let headers = new Headers();

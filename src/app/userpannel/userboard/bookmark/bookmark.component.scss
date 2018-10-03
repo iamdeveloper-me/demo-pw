@@ -268,17 +268,19 @@ border-radius:4px;
 	width:33.33%;
 	float:left;
 }
+@media(max-width:1024px){
+   .timeline li{
+	   font-size: 12px;
+   }
+}
 @media(max-width:768px) {
 .filterbtn{
 	display:inherit;
 	float:right;
 }
 
-.addtaskbtn{
-	float:left;
-}
 .mobmartop80px{
-	margin-top:80px;
+	margin-top:10px;
 }
 .addtaskbtn.filterbtn i{
 	margin-right: 0px!important;
@@ -297,4 +299,11 @@ border-radius:4px;
 max-width: 90%;
 margin: 20% auto;
 }
+ .mobmartop80px .disnone{
+	display: none !important;
+}
+.timeline {
+    padding-left: 0px;
+}
+
 }

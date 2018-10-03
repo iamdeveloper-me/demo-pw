@@ -62,6 +62,7 @@ export class DashboardComponent implements OnInit {
                    localStorage.setItem('countryid',data.json().countryId);
                    localStorage.setItem('vendorid',data.json().vendorId);
                    localStorage.setItem('basic-plan',data.json().pricingPlan.pricingPlanId);
+                   localStorage.setItem('categoryid',data.json().vendorCategories[0].categoryId);
                    if(!this.vendor.profileImage )
                    {
                    console.log(this.vendor.profileImage);

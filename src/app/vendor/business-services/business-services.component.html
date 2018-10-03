@@ -28,7 +28,11 @@
 												<div class="row ">
 													<div class="col-md-3" *ngFor="let data of services_all;let a= index">
 														<label class="container1">{{data.serviceName}}
-																<input name="service"  type="radio"  [(ngModel)]="readioSelected_serv" value= "{{a}}" name="customRadioA" (change)="selection(data)">
+																<input name="serviceId"  
+																type="radio"  
+																[(ngModel)]="readioSelected_serv" 
+																[value]= "data.servicesId" 
+																(change)="selection(data)">
 															<span class="checkmark"></span>
 														</label>
 													</div>
@@ -53,32 +57,54 @@
 
 									<div class="container">
 											<div class="row">
-												<div class="col-md-2" *ngFor="let data of customFields;let i=index" >
-													<label >
-															<input name="{{data.customFieldId}}"  type="checkbox"   value= "{{data.customFieldId}}"  (change)="checkbox(data)" id="{{data.customFieldId}}" >
+												<div class="col-md-3" *ngFor="let data of customFields;let i=index" >
+														<label class="labelclick" for="{{data.name}}" onclick="showDropDown()" >
+															<input 
+															name="{{data.name}}"
+															ngModel  
+															type="checkbox" 
+															(change)="checkbox(data)" 
+															id="{{data.name}}"
+														
+															 >
 
+														
+																	{{data.name}}
+																	{{data.customFieldId}}
 
+																	<div class="clearfix"></div>
+
+																	<ul class=" ulbox_text" >
+																			<li  *ngFor="let l of data.customFieldOptionList;let i=index">
+			
+																			<label>
+																				<input 
+																				type="radio" 
+																				ngModel
+																				name="{{l.customFieldId}}"
+																				[value]= "l.displayText"
+																				id="{{l.customFieldId}}">
+																				
+																				{{l.displayText}}
+																			</label>
+																			</li>
+																		</ul>
+																</label> 
 															<!-- <input type="checkbox" value="{{timeslot.id}}" name="{{timeslot.id}}"  [checked]="(facility.timeslotids && (-1 !== facility.timeslotids.indexOf(timeslot.id)) ? 'checked' : '')" (change) ="updateSelectedTimeslots($event)" /> -->
-															{{data.name}}
+														
 															
-													</label> 
+
+														
+																
+															
+
+									
+
+													
 												</div>
 												
 											</div>
-											<div class="row">
-													<div class="col-md-2 " >
-														<div *ngFor="let px of customFieldOptionList" class="ulbox_text">
-															<ul *ngFor="let l of px.customFieldOptionList
-															" >
-																<li >
-																	
-																	<input type="radio" name="price">{{l.displayText}}
-																		
-																</li>
-															</ul>
-														</div>	
-														</div>
-											</div>
+											
 										</div>
 									
 									<hr class="hr-light">
@@ -103,6 +129,9 @@
 										</div>
 									
 								</div>
+								<div class="card-content selectboxservice"> 
+								</div>	
+								<button type="submit">submit</button>	
 							</form>
 						</div>
 					</div>

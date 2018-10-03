@@ -185,7 +185,7 @@ if(window.location.pathname == '/vendor/dashboard' ) {
     $("#dashboard").removeClass("colour");
 } else if(window.location.pathname == '/vendor/gallery') {
     $("#photo_album").addClass("colour");
-    $("#location_on").removeClass("colour");
+    $("#location_on").removeClass("colour");hhhh
     $("#Services").removeClass("colour");
     $("#message").removeClass("colour");
     $("#play_circle_outline").removeClass("colour");
@@ -355,3 +355,25 @@ function readImage() {
   $(function () {
       $('[data-toggle="tooltip"]').tooltip()
   })
+
+
+
+  $(document).on('click' ,".labelclick", function() {
+    //alert("dfdf");
+    // $('.ulbox_text').show();
+    $(this).find("ul").addClass('showdiv');
+    $(this).removeClass('labelclick');
+    $(this).addClass('showtik');
+  });
+
+  $(document).on('click' ,".showtik", function() {
+    //alert("dfdf");
+    // $('.ulbox_text').show();
+    $(this).find("ul").removeClass('showdiv');
+    $(this).addClass('labelclick');
+    $(this).removeClass('showtik');
+  });
+
+  // function showDropDown() {
+  //   jQuery(this).parents("li").find("ul").toggleClass('showdiv');
+  // }

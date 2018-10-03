@@ -89,7 +89,8 @@
            <div class="card overviewbox">
               <div class="card-body nopadd" style="overflow: hidden;">
                  <div class="col-sm-5 nopadd maxheight335px">
-                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" class="infoimg" alt="Profile picture"> 
+                    <img [src] = "vendor.profileImage" class="infoimg" alt="Profile picture" >
+                  
                     <div class="viewstore">
                        <a href="">View Storefront</a>
                     </div>
@@ -97,7 +98,9 @@
                  <div class="col-sm-7 nopadd maxheight335px mobileheightauto ">
                     <div class="martop15px"></div>
                     <div class="col-sm-2 col-3 mobpadd10 edithovering">
-                       <img src="{{ angularLogo }}" class="oviewviewimgcircle" alt="Profile picture"> 
+                      
+                       <img [src] = "vendor.profileImage" class="oviewviewimgcircle" alt="Profile picture" >
+                  
                        <button class="photoedit" data-target="#camera" data-toggle="modal" type="button"><i class="material-icons">camera</i></button>
                     </div>
                     <div class="col-sm-10 col-9 blacktext nopadd pull-left">
@@ -112,7 +115,7 @@
                              <p>
                                 <a routerLink="../location">
 
-                                                  {{vendor.city}}<br/>2 More Branches, {{vendor.address}}
+                                  {{vendor.city}}<br/>2 More Branches, {{vendor.address}}
 
                                 </a>
                              </p>

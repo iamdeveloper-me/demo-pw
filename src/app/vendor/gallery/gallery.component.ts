@@ -22,6 +22,7 @@ export class GalleryComponent implements OnInit {
   iterations = [1,2];
   data:any;
   
+  
   private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader'
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/';
@@ -45,6 +46,10 @@ export class GalleryComponent implements OnInit {
   }
     constructor(public http: Http,private imageservice: ImageuploadService,public HttpClient: HttpClient,public toastr: ToastrService) { }
     ngOnInit() {
+
+
+    
+
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
      
@@ -127,10 +132,10 @@ export class GalleryComponent implements OnInit {
 
           const album = {
             albumsId: 0,
-            albumName: albumtype,
+            albumName: Album.value.albumName,
             albumType: 0,
-            tags: "string",
-            colorTags: "string"
+            tags: Album.value.tags,
+            colorTags: Album.value.colorTags
           }
           this.http.post(this.url+'api/Albums/createupdatealbum',album,{headers:headers})
             .subscribe(data =>{console.log(data.json())},(error)=>{console.log(error._body);
@@ -183,7 +188,21 @@ export class GalleryComponent implements OnInit {
        
         this.portfolio = res.json();
         console.log(this.portfolio);
+
+        if(!this.portfolio || this.portfolio.length == 0){
+          console.log("portfolio is  empty ");
+          
+          $('.portfolio2').hide();
+          }
+        else
+        {
+          console.log("portfolio is not empty ");
+          $('.portfolio').hide();
+          }
+
+       
        })
+       
         }
 
         showalbum(){ 
@@ -198,7 +217,17 @@ export class GalleryComponent implements OnInit {
         
         this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
         this.eventArray = data.json();
-    //    console.log(this.eventArray);  
+        console.log(this.eventArray);  
+        if(!this.eventArray || this.eventArray.length == 0){
+          console.log("Array is  empty ");
+          $('.album2').hide();
+          
+          }
+        else
+        {
+          console.log("Array is not empty ")
+          $('.album').hide();
+          }
        })
         }
   }

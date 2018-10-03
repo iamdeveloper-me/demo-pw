@@ -129,7 +129,7 @@ import { AdminsidebarComponent } from './admin/adminsidebar/adminsidebar.compone
 
 
 import { UseraccountComponent } from './userpannel/userboard/useraccount/useraccount.component';
-import { VendorComponent } from './dashboard/vendor/vendor.component';
+//import { VendorComponent } from './dashboard/vendor/vendor.component';
 
 
 
@@ -142,7 +142,7 @@ const appRoutes: Routes = [
   { path: 'home/event_list', component: EventlistComponent },
   { path: 'home/detailprofile', component:  DetailpageComponent  },
   { path: 'home/gallery', component:  GalleryComponent  },
-  { path: 'home/vendor', component:  VendorComponent  },
+  //{ path: 'home/vendor', component:  VendorComponent  },
   { path: 'home/photo', component: PhotoComponent },
   { path: 'home/tips', component: TipsComponent },
   { path: 'home/contact', component: ContactUsComponent },

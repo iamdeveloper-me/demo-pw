@@ -1,8 +1,6 @@
 
 .logincontainer{padding: 0px!important;max-width: 340px!important;background: #ffffff;margin-left: auto;margin-right: auto;border-radius: 5px;}
 .userimgtop{
-  width:40px;
-  height:40px;
   border-radius:50%;
 }
 .notifiybtn{
@@ -15,8 +13,9 @@ background: transparent;
     padding: 0px;
 }
 .notification-dropdown{
-  top:50px!important;
-  min-width:320px!important;
+   top:40px!important;
+   min-width:350px!important;
+   width:100%!important;
 }
 .forgotlock{
   margin:30px auto auto;
@@ -357,30 +356,40 @@ line-height:40px!important;
   width:200px;
   top:0px!important;
   left:-35px!important;
+  padding:0px;
+}
+.userhomemenu .dropdown-divider{
+  margin:0px;
 }
 .userhomemenu .dropdown-item span:first-child{
   float:left;
   margin-right:10px;
 }
 .vendorpicsec{
-  padding: 5px;
-  background: #e5e5e5;
+  padding:10px 5px;
+  background: #fff;
   overflow: hidden;
+  border-bottom:1px solid #e5e5e5;
 }
+.userhomemenu{
+  padding-top:0px;
+} 
 .vendorpicsec .imgsection{
-float: left;
-max-width: 50px;
-margin-right: 5px;
+text-align:center;
+margin-bottom:5px;
 }
 .vendorpicsec .imgsection img{
-  max-width: 50px;
+max-width: inherit!important;
+  width: 80px!important;
+  height: 80px!important;
+  object-fit: cover;
 }
 .vendorpicsec .detailsection {
-  width:calc(100% - 60px)!important;
-  float:left;
-  font-size: 13px;
-  line-height: normal;
+  font-size: 16px;
   padding-top: 5px;
+  text-align:center;
+  color:#d8005a;
+  text-transform:capitalize;
 }
 
 
@@ -530,7 +539,7 @@ a.mobileslidewednav{
   .mobileshowwebnav {
     min-width: inherit;
     top:-53px;
-    left:-8px;
+    left:266px;
     width: 282px;
     display: block;
     overflow: scroll;
@@ -1044,6 +1053,13 @@ button.navbar-toggler.tik.hidden-md.hidden-lg {
 button.navbar-toggler.hidden-md.hidden-lg.tik {
     top: 20px !important;
 }
+.notification-dropdown{
+   top:40px!important;
+   min-width:350px!important;
+   width:100%!important;
+   left:-285px!important;
+}
+
 
 }
 
@@ -1056,8 +1072,11 @@ button.navbar-toggler.hidden-md.hidden-lg.tik {
  }
  .userhomemenu a{
   display: block;
-  padding:5px 10px;
+  padding:10px;
   color:#333;
+ }
+  .userhomemenu a span{
+  font-size:16px;
  }
  .userhomemenu img{
   max-width: 25px;

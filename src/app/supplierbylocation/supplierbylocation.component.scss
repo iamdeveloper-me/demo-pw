@@ -9,27 +9,101 @@
 .citybox{
 	margin-bottom: 20px;
 }
-.citybox img{
+.citybox1 img{
 	width:100%;
-	height: 100%;
+	height:100%;
 	object-fit: cover;
 }
-.citybox h1{
+.citybox img{
+	width:100%;
+	height: 200px;
+	object-fit: cover;
+}
+.citybox h2,.citybox1 h2{
 	position:absolute;
 	font-weight: bold;
 	color:#ffffff;
 	text-transform: uppercase;
 	top:40%;
-	width: 100%;
+	left: 0;
+	right: 0;
 	text-align: center;
 }
 .caroosel_headin{
-    margin-bottom: 30px;
+    margin: 30px;
 }
-.caroosel_headin h3 {
-    font-size: 1.4rem;
-    font-weight: 500;
-}
+
 .owl-carousel{
 	display:block;
 }
+.caroosel_headin h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.cityboxcontant{
+	margin-top: 30px;
+}
+.overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition: .5s ease;
+	background-color: rgb(162, 164, 165);
+  }
+  
+  .citybox1 img:hover .overlay {
+	opacity: 0.5;
+  }
+  
+  .text {
+	color: white;
+	font-size: 20px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	text-align: center;
+  }
+  @media screen and (max-width: 1024px) and (min-width: 768px){
+	.containerbox h2{
+		font-size: 20px;
+	}
+  }
+
+  @media screen and (max-width: 812px) and (min-width: 375px){
+	.citybox1 h2,.citybox h2{
+		font-size: 18px;
+	}
+	.caroosel_headin h3 {
+		font-size: 24px;
+		font-weight: 500;
+	}
+	
+	.container{
+		margin: inherit !important;
+		max-width: 100%;
+	}
+	.citybox {
+		max-width: 100%;
+	}
+	.caroosel_headin{
+		margin-top: 90px
+	}
+	.citybox1 img{
+		height: 200px;;
+	}
+	.cityboxcontant {
+		margin-top: 20px;
+	}
+	.mob375{
+		margin-bottom: 0px;
+	}
+  }
+

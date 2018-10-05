@@ -164,7 +164,7 @@
                 <span class="focus-border"></span>
             </div> -->
             <div class="input-effect form-group md-form mt-3 ">
-                <select name="country"   class="effect-16 validate"   [(ngModel)] = "user.businessInfo.countryName" (change)="country($event)">
+                <select name="country"   class="effect-16 validate"   [(ngModel)] = "country_id " name="country_id" (change)="country($event)">
                         <option   *ngFor="let country of countryArray ;let c =index" 
                             type="text"
                             id="{{country.countryName}}"
@@ -196,7 +196,7 @@
             </div>
             <!-- {{district |json}} -->
             <div class="input-effect form-group md-form mt-3">
-                <select name="district"   class="effect-16 validate"  (change)="districtA($event)"  > 
+                 <select name="district"   class="effect-16 validate"  [(ngModel)] = "city_id"  name="city_id"(change)="districtA($event)"  > 
                         <!-- (change)="country($event)" -->
                     <option   *ngFor="let dist of district ;let d =index" 
                         type="text"
@@ -212,12 +212,12 @@
                     
                     </option>
                    
-            </select>
+                 </select>
                 <label>State/City</label>
                 <span class="focus-border"></span>
             </div>
             <div class="input-effect form-group md-form mt-3">
-                    <select name="district"   class="effect-16 validate"    > 
+                    <select    class="effect-16 validate" [(ngModel)] = "sub_id"  name="sub_id" (change)="subr($event)" > 
                             <!-- (change)="country($event)" -->
                         <option   *ngFor="let sub of suburb ;let s =index" 
                             type="text"
@@ -225,7 +225,7 @@
                             checked
                             name = "sub"  
                             placeholder="Suburb" 
-                            [value]="d"
+                            [value]="s"
                             required
                             
                             >

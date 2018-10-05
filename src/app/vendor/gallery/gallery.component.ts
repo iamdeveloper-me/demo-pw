@@ -21,8 +21,8 @@ export class GalleryComponent implements OnInit {
   portfolio:any = [];
   iterations = [1,2];
   data:any;
-  
-  
+  portArray:any = [];
+  albumArray:any = [];
   private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader'
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/';
@@ -187,7 +187,8 @@ export class GalleryComponent implements OnInit {
        // console.log(data.json());
        
         this.portfolio = res.json();
-        console.log(this.portfolio);
+        this.portArray = res.json();
+        console.log(this.portArray);
 
         if(!this.portfolio || this.portfolio.length == 0){
           console.log("portfolio is  empty ");
@@ -217,6 +218,7 @@ export class GalleryComponent implements OnInit {
         
         this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
         this.eventArray = data.json();
+        this.albumArray = data.json();
         console.log(this.eventArray);  
         if(!this.eventArray || this.eventArray.length == 0){
           console.log("Array is  empty ");

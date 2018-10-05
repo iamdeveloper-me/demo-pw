@@ -24,17 +24,24 @@
                 <div class="container photos_gallery">
                     <div class="row">
                         <div class='list-group gallery row firt_row'>
-                            <div class="new_albums"> <button>  + New Albums  </button>  
+                            <div class="new_albums"> <button id="Google-function"  data-target="#createalbum" data-toggle="modal" data-reactid="339">  + New Albums  </button>  
                                 <a class="sett_icon pull-right" routerLink="../settingalbum">
                                     <i class="material-icons ">settings</i>
                                   </a></div>
                                 <div class='col-sm-3 col-xs-6  zoom_effect' *ngFor="let  data of eventArray;let i=index">
-                                    <a routerLink="../albumviewphoto" class="thumbnail " rel="ligthbox">
+                                    <a routerLink="../albumviewphoto/{{data.albumsId }} " class="thumbnail " rel="ligthbox">
                                         <button class="deletebtn">&times;</button>
-                                        <img class="img-thumbnail"
+                                        <!-- <img class="img-thumbnail"
                                         src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                                        alt="Another alt text">
-                                        <div class="over_like">
+                                        alt="Another alt text"> -->
+                                        <div *ngFor="let  image of data.albumImages">   
+                                            <img [src] = "image.path" class="img-thumbnail"  alt="Another alt text" >
+                                            <div class="text-center">
+                                                    <span> Album name :  {{image.path}} </span> 
+                                                    </div>
+                               
+                                        </div>
+                                            <div class="over_like">
                                             <div class="text-center">
                                             <span> Album name :{{data.albumName}} </span> 
                                             </div>
@@ -42,13 +49,12 @@
                                         <div class="text-center">
                                             <strong>Album Id : {{data.albumsId }} </strong><br/>
                                             <span> Colour Tag :{{data.colorTags}} </span> <br/>
-                                            <span> tags:{{data.tags }} </span> <br/>
                                             <span> Created Date :{{data.dateAddedOn}} </span> 
                                         </div>
                                     </a>
                                     <div class="over_like">
                                         <div class="text-center">
-                                            <strong>John Weds Joie</strong><br/>
+                                            <strong>{{data.albumName}}</strong><br/>
                                             <span> 25 Photos </span> 
                                         </div>
                                     </div>
@@ -61,3 +67,31 @@
     </div>
   </div>	 
 </div> 
+<form (ngSubmit)="createAlbum(Album)" #Album="ngForm"> 
+        <div class="modal fade" id="createalbum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                  <h4 class="modal-title">Create  Album </h4>
+                      <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                
+              </div>
+              <div class="modal-body">
+                  <div class="col-sm-12  text-center">
+                    <div class="modal-body" style="background-color: white">
+                      Album name :
+                      <input type="text" [(ngModel)]="Album.albumName" name="albumName" id="albumName"/><br>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>    
+              </div>
+              <div class="foot_div text-center">
+                  <button type="submit" class="btn btn-secondary btn-raised "  ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+                  <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+              </div>
+            </div>  
+          </div>  
+  
+        </div>
+      </form>  

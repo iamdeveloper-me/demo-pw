@@ -8,16 +8,14 @@
     <div class="col-sm-12">
       <div class="container-fluid viewallalbums">
         <div class="allport_row">
-          <a routerLink= "../../gallery" class="leftarrowbacklink"><i class="material-icons"> arrow_back_ios </i>
-            <span class="mob_none"> All Albums</span>
+          <a routerLink="../../albumview" class="leftarrowbacklink"><i class="material-icons"> arrow_back_ios </i>
+            <span class="mob_none"> All Albumss</span>
           </a>
           <div class="createmyalbum">
-            <h2>SACHIN WEDS TRISHA</h2>
+            <h2>{{albumname}}</h2>
             <span>Album Type Pre-Wedding Shoot</span>
           </div>
-          <a routerLink= "../albumdetailsetting" class="rightarrowbacklink"> 
-            <i class="material-icons"> settings</i>
-          </a>
+         
         </div> 
         <div class="container-fluid photo_gallery">     
             <div class="color_optin text-center">
@@ -27,7 +25,7 @@
                 <span class="colortags greenbg"></span> 
                 <span class="colortags purplebg"></span>
                 <div class="clearfix"></div>
-                <p class="beach_outdoor"> <span>Beach Wedding</span> <span>Outdoor</span> </p>
+                <p class="beach_outdoor"> <span>{{tags}}</span> <span>Outdoor</span> </p>
       
                 <p class="add_photos">
                     <button  id="Google-function" data-target="#uploadphoto" data-toggle="modal" data-reactid="339" >Add photos</button>
@@ -36,26 +34,30 @@
                 </p>
             </div>     
             <div class="row mar_top_50px">
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb hovereffect" *ngFor="let image of totalImage">
-                    <a class="thumbnail" href="javascript:void(0)" >
-                            <button class="deletebtn" (click)="deleteImage(image)">&times;</button>
-                        <img class="img-thumbnail"
-                            src="{{image.path}}"
-                            alt="Another alt text">
-                            <div class="over_like">
-                              <div class="">
-                              <a href=""><i class="fa fa-heart"></i> </a>  <span> 25 </span> 
-                              <div class="dropdown gearicon">
-                                <span class="flo_right"> <i class="material-icons">settings</i> </span>
-                                <ul class="dropdown-menu">
-                                  <li><a href="">Set as Album Cover Image</a></li>
-                                  <li><a href="">Set as Business Cover Image</a></li>
-                                </ul>
+              <div   class="col-lg-3 col-md-4 col-xs-6 "  *ngFor="let image of myalbumimages; let i=index ">
+                <div class="thumb hovereffect" >
+                      <a class="thumbnail" >
+                              
+                          <img class="img-thumbnail"
+                              src="{{image.path}}"
+                              alt="Another alt text">
+                              <div class="over_like">
+                                <div class="">
+                                <a href=""><i class="fa fa-heart"></i> </a>  <span> 25 </span> 
+                                <div class="dropdown gearicon">
+                                  <span class="flo_right" id="Google-function" data-target="#uploadphoto" data-toggle="modal" data-reactid="339"> <i class="material-icons">settings </i> </span>
+                                  <ul class="dropdown-menu">
+                                    <li><a href="">Set as Album Cover Image</a></li>
+                                    <li><a href="">Set as Business Cover Image</a></li>
+                                  </ul>
+                                </div>
+                                </div>
                               </div>
-                              </div>
-                            </div>
-                    </a>
+                      </a>
+                      
                 </div>
+                <button class="btn btn-secondary" (click)="deleteImage(image,i)">Delete</button>
+              </div>  
             </div>
             <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">

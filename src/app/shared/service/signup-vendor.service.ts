@@ -23,6 +23,14 @@ export class SignupVendorService {
     // var phone = user.contactInfo.phone;
     var website = user.contactInfo.website;
     var city = user.businessInfo.city;
+
+
+    var countryId = user.businessInfo.countryId;
+    var districtId = user.businessInfo.districtId;
+    var suburbId = user.businessInfo.suburbId;
+
+
+
     var postalcode = user.businessInfo.postalCode;
     var address =user.businessInfo.address ;
     var nameOfBusiness = user.businessInfo.nameOfBusiness;
@@ -35,7 +43,7 @@ export class SignupVendorService {
       { logInInfo: {  firstName: firstname,lastName:lastname, password:upassword,confirmPassword: cpassword},
 
         contactInfo: { contactPerson: contactPerson, email: email, phone: "9826812185", website: website},
-        businessInfo: {countryId:1, city: city, postalCode: postalcode,address: address, nameOfBusiness: nameOfBusiness, 
+        businessInfo: {countryId:countryId,districtId:districtId ,suburbId:suburbId,city: city, postalCode: postalcode,address: address, nameOfBusiness: nameOfBusiness, 
                        pricingPlanId:planId['pricingPlanId'] ,payFrequency:planId['payFrequency'] },
         vendorCategories: [ { categoryId: categoryId }]
         } ,{headers: header});

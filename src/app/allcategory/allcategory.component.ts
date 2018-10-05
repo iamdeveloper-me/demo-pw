@@ -10,9 +10,25 @@ export class AllcategoryComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+ 	
+ 	$.getScript('./assets/register/js/jquery-2.2.4.min.js');
  	$.getScript('./assets/js/stopExecutionOnTimeout.js');
 
 
+// Parallaxing + add class active on scroll
+$(document).scroll(function () {
+  
+  // parallaxing
+  var $movebg = $(window).scrollTop() * -.2;
+  $('.zoom_in').css('background-positionY', ($movebg) + 'px');
+
+  // add class active to nav a on scroll
+
+  
+  // changing padding of nav a on scroll
+   
+  
+});
  	
 	$(window).scroll( function(){
 		

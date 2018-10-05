@@ -571,6 +571,16 @@ display: none!important;
     bottom: 12px!important;
     top:inherit!important;
 }
+
+.blackoverlaymainhometik{
+    background: rgba(0,0,0, 0.5)!important;
+    position: fixed!important;
+    width:100%!important;
+    height:100vh!important;
+    top:0px!important;
+    z-index:99999!important; 
+  }
+
 @media(min-width:768px) {
 .footer_bg{
   display:none!important;
@@ -753,14 +763,14 @@ background:#ff0000;
     top:0px;
     z-index: 999;
   }
-  
-    .blackoverlaymain, .blackoverlaymainuser{
-    background: rgb(0,0,0, 0.5);
+  .blackoverlayhome{
+    background: rgb(0,0,0, 0.5)!;
     position: fixed;
     width:100%;
     height:100vh;
     top:0px;
     z-index:999;
+    display: block;
   }
  .blackoverlaymainuser{
     background: rgb(0,0,0, 0.5);

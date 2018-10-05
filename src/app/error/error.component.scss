@@ -23,3 +23,58 @@ padding:100px 0px;
     border-color: #ff214f;
     color:#fff!important;
 }
+
+.leftanimation{
+    -webkit-animation-name: lefttik; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+    animation-name: lefttik;
+    animation-duration: 1s;
+}
+.rightanimation{
+    -webkit-animation-name: righttik; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+    animation-name: righttik;
+    animation-duration: 1s;
+}
+
+
+@media(max-width:767px){
+.errorbox{
+    max-width:90%;
+}
+.error {
+    padding-top: 0px;
+}
+.errorimg{
+    max-height:200px;
+}
+.error h1 {
+    font-size: 50px;
+    line-height: 1 !important;
+    font-weight: bold;
+}
+}
+
+
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes lefttik {
+    0%   {left:-100%;}
+    100%   {left:0;}
+}
+/* Standard syntax */
+@keyframes lefttik {
+    0%   { left:-100%;}
+    100%   {left:0;}
+}    
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes righttik {
+    0%   {right:-100%;}
+    100%   {right:0;}
+}
+/* Standard syntax */
+@keyframes righttik {
+    0%   { right:-100%;}
+    100%   {right:0;}
+  }  

@@ -32,23 +32,70 @@ interface Location {
 })
 
 export class LocationComponent implements OnInit {
-  Country;
-  mobile;
+  country_id:any;
+ 
+  public c_id:any;
+public country_name:any;
+
+public d_id:any;
+public district_name:any;
+
+public s_id:any;
+public subr_name:any;
+
+  city_id:any;
+  sub_id:any;
+    mobile;
   postalCode;
   city;
   Phone;
   Address;
  data;
- info: any = { mobile: ''};
+ dist_id;
  m;
  enable = true;
- modelfield : any = { mobile: ''};
+
+ modelfield:any = {
+  vendorLocationId: 0,
+  title: '',
+  countryId: '',
+  vendorId: '',
+  country: {countryId: '', countryName: ''},
+  city:  '',
+  postalCode:  '',
+  address:  '',
+  phone: '',
+  mobile:      '' ,
+  sundayOpen:     '',
+  sundayClose:    '',
+  mondayOpen:     '',
+  mondayClose:    '',
+  tuesdayOpen:    '',
+  tuesdayClose:   '',
+  wednesdayOpen:  '',
+  wednesdayClose: '',
+  thursdayOpen:   '',
+  thursdayClose:  '',
+  fridayOpen:     '',
+  fridayClose:    '',
+  saturdayOpen:   '',
+  saturdayClose:  '',
+  isFridayOpen:   true,
+  isMondayOpen:   true,
+  isPrimary:      true,
+  isSaturdayOpen: true,
+  isSundayOpen:   true,
+  isThursdayOpen: true,
+  isTuesdayOpen:  true,
+  isWednesdayOpen:true,
+
+};
  address : any = {};
  obj = [];
 
  private urlget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mylocations'
  private urlpost: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savelocation'
-
+ public arra = new Array();public district = new Array();public suburb = new Array();
  // location: any = {};
 
  countryArray:string[];
@@ -184,6 +231,14 @@ export class LocationComponent implements OnInit {
      }
     
   ngOnInit(): void {
+
+
+    let country = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries");
+    country.subscribe(data => { 
+      this.countryArray = data.json();  
+      console.log(this.countryArray);
+      this.arra = this.countryArray
+    })
     this.location.marker.draggable = true;
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
@@ -357,37 +412,49 @@ var postalCode = e.value.postalCode ;
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         var countryId = localStorage.getItem('countryid');
+        var vendorID = localStorage.getItem('vendorid');
         console.log( countryId);
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
 
-
-        this.http.post(this.urlpost,{
+        const data = {
           vendorLocationId: 0,
-          title: 'info',
-          countryId: countryId,
-          vendorId: 66,
-          country: {countryId: countryId, countryName: country},
-          city:  city,
+          title: 'your location name ',
+          countryId: this.c_id,
+          vendorId: vendorID,
+          country: {countryId: this.c_id, 
+                    countryName: this.country_name ,
+                    districts: [{
+                        districtId: this.d_id,
+                        countryId: this.c_id,
+                        name: this.district_name,
+                        suburb: [{
+                          suburbId: this.s_id,
+                          districtId: this.d_id,
+                          name: this.subr_name
+            }]
+
+          }]},
+          City:  this.district_name,
           postalCode:  postalCode,
           address:  address,
           phone: Phone,
-          mobile:      'info' ,
-          sundayOpen:     'info',
-          sundayClose:    'info',
-          mondayOpen:     'info',
-          mondayClose:    'info',
-          tuesdayOpen:    'info',
-          tuesdayClose:   'info',
-          wednesdayOpen:  'info',
-          wednesdayClose: 'info',
-          thursdayOpen:   'info',
-          thursdayClose:  'info',
-          fridayOpen:     'info',
-          fridayClose:    'info',
-          saturdayOpen:   'info',
-          saturdayClose:  'info',
+          mobile:      '' ,
+          sundayOpen:     '',
+          sundayClose:    '',
+          mondayOpen:     '',
+          mondayClose:    '',
+          tuesdayOpen:    '',
+          tuesdayClose:   '',
+          wednesdayOpen:  '',
+          wednesdayClose: '',
+          thursdayOpen:   '',
+          thursdayClose:  '',
+          fridayOpen:     '',
+          fridayClose:    '',
+          saturdayOpen:   '',
+          saturdayClose:  '',
           isFridayOpen:   true,
           isMondayOpen:   true,
           isPrimary:      true,
@@ -398,7 +465,10 @@ var postalCode = e.value.postalCode ;
           isWednesdayOpen:true,
          
     
-        },{headers:headers}).subscribe( (data)=> { console.log(data)}
+        }
+        console.log(data)
+        debugger
+        this.http.post(this.urlpost,data,{headers:headers}).subscribe( (data)=> { console.log(data)}
     ,      (responce)=>{ console.log(responce); });
 
 
@@ -500,4 +570,28 @@ abc(event){
     }
   
 closeResult: string;
+
+
+
+// 
+country(event): void {  
+  const newVal = event.target.value;
+  console.log(newVal)
+  this.c_id = this.arra[newVal].countryId
+  this.country_name =this.arra[newVal].countryName
+  this.district = this.arra[newVal].districts
+  console.log(this.district)
+}
+districtA(event): void {  
+  const newVal = event.target.value;
+  this.d_id = this.district[newVal].districtId
+  this.district_name =this.district[newVal].name
+  this.suburb = this.district[newVal].suburb
+}
+subr(event): void {  
+  const newVal = event.target.value;
+  this.s_id = this.suburb[newVal].suburbId
+  this.subr_name =this.suburb[newVal].name
+  console.log(newVal)
+}
 }

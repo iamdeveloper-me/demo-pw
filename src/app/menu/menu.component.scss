@@ -1,4 +1,3 @@
-
 .logincontainer{padding: 0px!important;max-width: 340px!important;background: #ffffff;margin-left: auto;margin-right: auto;border-radius: 5px;}
 .userimgtop{
   border-radius:50%;
@@ -13,9 +12,22 @@ background: transparent;
     padding: 0px;
 }
 .notification-dropdown{
-   top:40px!important;
+   top:47px!important;
    min-width:350px!important;
    width:100%!important;
+}
+
+.notifyimgbox{
+  width:50px;
+  height:50px;
+  float:left;
+  margin-right:10px;
+}
+.notifyimgbox img {
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
 }
 .forgotlock{
   margin:30px auto auto;
@@ -404,7 +416,9 @@ and (max-device-width : 1100px) {
 .navbar-nav.right_listing > li{
   width: inherit!important;
 }
-
+.userhomemenu {
+    left: -110px !important;
+}
 }
 
 
@@ -1003,10 +1017,6 @@ a.blue-text{
      margin-right: 0px!important;
    
   }
-
-
-
-
 .sidebar-nav>.sidebar-brand {
     height: 65px;
     font-size: 18px;
@@ -1018,9 +1028,13 @@ a.blue-text{
   .sidebar-nav>.sidebar-brand a {
     color: #999999;
   }
-a.dropdown-item img {
-    width: 27px !important;
+  .usernavmenu img {
     margin-right: 10px;
+    width:20px;
+}
+.py-3{
+  padding-bottom: 1rem !important;
+  padding-top: 1rem !important;
 }
 @media only screen and (max-width: 960px) {
     button.navbar-toggler.hidden-md.hidden-lg.tik {
@@ -1030,7 +1044,7 @@ a.dropdown-item img {
 }
 @media only screen 
 and (min-device-width : 768px) 
-and (max-device-width : 800px) {
+and (max-device-width : 812px) {
 .mobileshowwebnav {
     top:-41px!important;
     left:-283px!important;
@@ -1040,12 +1054,13 @@ and (max-device-width : 800px) {
     font-size:15px !important;
 }
 button.navbar-toggler.hidden-md.hidden-lg.tik {
-    top: 20px !important;
+  left: 11px !important;
 }
 button.navbar-toggler.hidden-md.hidden-lg.tik {
-    left: 11px !important;
+    top: 20px !important;
 }
 }
+
 @media only screen and (max-width: 767px) {
 button.navbar-toggler.tik.hidden-md.hidden-lg {
     left: 11px !important;
@@ -1059,13 +1074,6 @@ button.navbar-toggler.hidden-md.hidden-lg.tik {
    width:100%!important;
    left:-285px!important;
 }
-
-
-}
-
-/*pankaj work*/
-
-@media (max-width:767px){
  .imgsection img{
   max-width: 32px;
   margin-top: 5px;

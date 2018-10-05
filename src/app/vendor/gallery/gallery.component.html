@@ -7,107 +7,112 @@
     <div class="container-fluid nopadd">                    
       <app-navemenu></app-navemenu>
       <div class="container-fluid mobilefixedcontainer">  
+      
           <div  class="photo_gallery">   
-            <div class="row firt_row ">   
-                <div class="col-sm-12 mar_bot_30px card martop0px portfolio" >    
-                    <div class="text-center headin_gally">
-                      <h5>MY PORTFOLIO </h5> 
-                      <P> Collection of the best photo and work to highlight your profile</P>               
-                    </div>
-                    <div class="mainalbumbtn">
-                          <p class="oops">
-                            <i class="material-icons" style="font-size:80px;">camera_alt</i>
-                            <br/>
-                              <span>Oops!</span> You have 0 image in your portfolio
-                          </p>
-                        
-                            <p class="upload_bt text-center" >   
-                                <button  id="Google-function"  data-target="#uploadphoto" data-toggle="modal" data-reactid="339" >
-                                  Add photos
-                                </button> 
+              <div class="row firt_row ">   
+                  <div class="col-sm-12 mar_bot_30px card martop0px portfolio" >    
+                      <div class="text-center headin_gally">
+                        <h5>MY PORTFOLIO </h5> 
+                        <P> Collection of the best photo and work to highlight your profile</P>               
+                      </div>
+                      <div class="mainalbumbtn">
+                            <p class="oops">
+                              <i class="material-icons" style="font-size:80px;">camera_alt</i>
+                              <br/>
+                                <span>Oops!</span> You have 0 image in your portfolio
                             </p>
-                      
+                          
+                              <p class="upload_bt text-center" >   
+                                  <button  id="Google-function"  data-target="#uploadphoto" data-toggle="modal" data-reactid="339" >
+                                    Add photos
+                                  </button> 
+                              </p>
                         
-                          <p class="upload_bt text-center"> 
-                            <p class="text-center uplod_para">
-                              <a> 
-                                Want to grow your Portfolio collection? Get UNLIMITED photos with a Premium Account. Upgrade
-                              </a> 
-                            </p>
-                    </div>
-                </div>
-                <div class="col-sm-12 card album" >
-                  <div class="" >
-                    <div class="text-center headin_gally">
-                      <h5 >MY ALBUM </h5>
-                    
-                      <P>Create, label and group your work with albums </P>
-                    </div>  
-                    <div class="mainalbumbtn">
-                        <p class="oops">
-                          <i class="material-icons" style="font-size:100px;">photo_library</i>
-                          <br/>
-                            <span>Oops!</span> You have no Photo Albums 
-                        </p>
-                          <p class="upload_bt text-center" >
-                            <!-- <button (click)="createAlbum()">Create</button> -->
-                            <button  id="Google-function"  data-target="#createalbum" data-toggle="modal" data-reactid="339" >Create</button>  </p>
-                          <p class="text-center uplod_para"> <a href="">Get organised with UNLIMITED albums. Upgrade to Premium Account </a>  </p>
-                    </div>
-                    <div class="overlay">
-                    
-                    </div>
+                          
+                            <p class="upload_bt text-center"> 
+                              <p class="text-center uplod_para">
+                                <a> 
+                                  Want to grow your Portfolio collection? Get UNLIMITED photos with a Premium Account. Upgrade
+                                </a> 
+                              </p>
+                      </div>
                   </div>
-                </div>     
-            </div>
-          </div>      
-          <div class="container-fluid nopadd album2">
-            <div class="card">
-              <div  class="headin_gally col-sm-12 bordernone">
-                  <h5 ><i class="material-icons">camera_alt</i> MY PORTFOLIO </h5>
-                  <p >Collection of the best photo and work to highlight your profile</p>
-              </div>
-              <!-- *ngFor='let in of users' -->
-              <div class="port_row"> 
-                <div class="col-lg-3 col-md-4 col-6 thumb"  >
-                    <img class="img-thumbnail img-responsive"  src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Another alt text">                                   
-                </div>
-                <!-- routerLink="../portfolioview " -->
-                <div class="clearfix"></div>
-                <div class="text-center viev_all"> 
-                  <a  class="btn" routerLink="../portfoli" >pView All</a> 
-                </div>
-              </div>
-            </div>
-          </div> 
-          <div class="container-fluid nopadd albumlist portfolio2"  >
-            <div class="card">
-              <div  class="text-center headin_gally col-sm-12 bordernone">
-                <h5 ><i class="material-icons">photo_library</i> MY ALBUM  </h5>
-                <p >Create, label and group your work with albums </p>
-              </div>
-              <div class="row">
-                <div class="col-md-3 image-div" >
-                    <img class="img-thumbnail"
-                      src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                      alt="Another alt text">
-                    <div class="over_like">
-                      <div class="text-center">
-                        <span> Album name : </span> 
+                  <div class="col-sm-12 card album" >
+                    <div class="" >
+                      <div class="text-center headin_gally">
+                        <h5 >MY ALBUM </h5>
+                      
+                        <P>Create, label and group your work with albums </P>
+                      </div>  
+                      <div class="mainalbumbtn">
+                          <p class="oops">
+                            <i class="material-icons" style="font-size:100px;">photo_library</i>
+                            <br/>
+                              <span>Oops!</span> You have no Photo Albums 
+                          </p>
+                            <p class="upload_bt text-center" >
+                              <!-- <button (click)="createAlbum()">Create</button> -->
+                              <button  id="Google-function"  data-target="#createalbum" data-toggle="modal" data-reactid="339" >Create</button>  </p>
+                            <p class="text-center uplod_para"> <a href="">Get organised with UNLIMITED albums. Upgrade to Premium Account </a>  </p>
+                      </div>
+                      <div class="overlay">
+                      
                       </div>
                     </div>
-                    <div class="text-center">
-                        <strong>Album Id :  </strong><br/>
-                        <span> Colour Tag : </span> <br/>
-                        <span> tags: </span> <br/>
-                        <span> Created Date : </span> 
-                    </div>
-                </div>   
+                  </div>     
               </div>
-              <!-- routerLink="../albumview" -->
-              <div class="text-center viev_all"> <a class="btn" routerLink="../albumview">View All</a> </div>
-            </div> 
+          </div>
+          <div class="container-fluid nopadd album2">
+              <div class="card">
+                <div  class=" text-center headin_gally col-sm-12 bordernone">
+                    <h5 ><i class="material-icons">camera_alt</i> MY PORTFOLIO </h5>
+                    <p >Collection of the best photo and work to highlight your profile</p>
+                </div>
+                <!-- *ngFor='let in of portArray' -->
+                <div class="port_row"> 
+                  <div class="col-lg-3 col-md-4 col-6 thumb" *ngFor='let in of portArray | slice:0:4' >
+                
+                      <img class="img-thumbnail img-responsive" [src] = "in.files.path"  >   
+                  
+                  </div>
+                  <!-- routerLink="../portfolioview " -->
+                  <div class="clearfix"></div>
+                  <div class="text-center viev_all"> 
+                    <a  class="btn" routerLink="../portfoli" >View All</a> 
+                  </div>
+                </div>
+              </div>
           </div> 
+          <div class="container-fluid nopadd albumlist portfolio2"  >
+              <div class="card">
+                <div  class="text-center headin_gally col-sm-12 bordernone">
+                  <h5 ><i class="material-icons">photo_library</i> MY ALBUM  </h5>
+                  <p >Create, label and group your work with albums </p>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 image-div" *ngFor='let album of albumArray | slice:0:4'>
+                    <div  >
+                      <img class="img-thumbnail"
+                        src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                        alt="Another alt text">
+                      <div class="over_like">
+                        <div class="text-center">
+                          <span><strong>Album name :{{album.albumName}}</strong></span> 
+                        </div>
+                      </div>
+                      <div class="text-center">
+                          <span> Colour Tag : {{album.colorTags }}</span> <br/>
+                          <span> tags: {{album.tags}} </span> <br/>
+                          <span> Created Date : {{album.dateAddedOn }} </span> 
+                      </div>
+                    </div>
+                  </div>   
+                </div>
+                <!-- routerLink="../albumview" -->
+                <div class="text-center viev_all"> <a class="btn" routerLink="../albumview">View All</a> </div>
+              </div> 
+          </div> 
+
           <app-foot></app-foot>
       </div>
     </div>

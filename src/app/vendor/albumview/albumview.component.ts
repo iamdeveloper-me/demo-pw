@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
-
+import { ToastrService } from 'ngx-toastr';
+ 
 export class NgbdgalleryModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) { }
@@ -16,10 +17,11 @@ export class NgbdgalleryModalContent {
   styleUrls: ['./albumview.component.scss']
 })
 export class AlbumviewComponent implements OnInit {
-
+    private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/';
+ 
     private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
-    eventArray:any = {};
-
+    eventArray:any = [];
+    image;
   ngOnInit() {
 
     let headers = new Headers();
@@ -33,7 +35,26 @@ export class AlbumviewComponent implements OnInit {
         this.eventArray = data.json()
     
         console.log(this.eventArray);
-        
+        // for (var item of  this.eventArray ) {
+           
+          
+      
+        //         // if(item.albumImages.length == 0)
+        //         // {  this.image = 'https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
+        //         //     alert("empty array"); 
+        //         // }else{  
+        //         //     alert("not empty array");
+        //         //     for (var i of item.albumImages ){
+        //         //         for (var j in item.albumImages ){
+                        
+        //         //         this.image = item.albumImages[j].path;
+        //         //         console.log( this.image); 
+        //         //             }
+        //         //             console.log(i); 
+        //         //         }
+        //         //       }
+            
+        // }
        })
 
      
@@ -51,7 +72,7 @@ export class AlbumviewComponent implements OnInit {
 
   closeResult: string;
 
-  constructor(private modalService: NgbModal,public http: Http) { }
+  constructor(private modalService: NgbModal,public http: Http,public toastr: ToastrService) { }
 
   // Open default modal
   open(content) {
@@ -96,5 +117,41 @@ fileOverBase(e: any): void {
 fileOverAnother(e: any): void {
   this.hasAnotherDropZoneOver = e;
 }
+createAlbum(Album){
+    console.log(Album);
+  
+    let headers = new  Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append("content-type",'application/json ');
+    headers.append("Authorization",'Bearer '+authToken);
 
+    const album = {
+      albumsId: 0,
+      albumName: Album.value.albumName,
+      albumType: 0,
+      tags: "Add tags ",
+      colorTags: "Add your colour tag"
+    }
+    this.http.post(this.url+'api/Albums/createupdatealbum',album,{headers:headers})
+      .subscribe(data =>{console.log(data.json()); 
+        console.log(this.eventArray); 
+        
+         this.eventArray.unshift({  albumsId: data.json().id,
+                                    albumName:  Album.value.albumName,
+                                    albumType:0,
+                                    colorTags:"string",
+                                    dateAddedOn:"2018-09-25T10:50:14.6795084",
+                                    tags:"string",
+                                    updatedOn:"2018-10-02T11:09:56.5713857",
+                                  });
+        
+        
+        
+        },(error)=>{console.log(error._body);
+      this.typeWarning(error._body);
+  });
+  }
+  typeWarning(a) {
+    this.toastr.warning(a);
+  }
 }

@@ -19,12 +19,13 @@
                     <div class="roundedicon">
                         <img src="https://s3.us-east-2.amazonaws.com/prefect-image/child.png" class="img-responsive"> 
                       </div>
-                      <h1>Audience Discounts</h1>
+                      <h1>Audience Discounts </h1>
                   </div>
                   <div class="col-md-9">
                     <h6>Perfect wedding exclusive discounts</h6>
                       <p>Attract potential audience with a discounted offer</p>
-                      <h4>No Discounts Applied</h4>
+                      <h4>{{Supplierdiscount.title}}</h4>
+                    
                       <div class="button11">
                        <button  data-toggle="modal" data-target="#selectdiscount" class="select-btn">Select Discount
                       </button>
@@ -74,31 +75,31 @@
                 <div class="table-responsive">
                 <table class="table table-striped ">
 
-                    <tr>
+                    <tr *ngFor="let data of recentmydeal;let a= index" >
                         <td>
                           <div class="content-div">
-                          <strong>Deal Title</strong> &nbsp;<span class="green-btn">Active</span><br/>
+                          <strong>{{data.title}}</strong> &nbsp;<span class="green-btn">{{data.status}}</span><br/>
                           This is the selection to show the deal description
                           <p><strong>Terms & Conditions:</strong><br/>
-                            Limit of one package coupleif they found us on perfect wedding.mu
+                          {{data.conditions}}
                           </p>
                         </div>
                         </td>
                         <td>
                           <div class="dateholder">
                             <strong>Start Date</strong>
-                            20 Dec 2018
+                           {{data.startDateString }}
                           </div>
                           <div class="dateholder">
                             <strong>End  Date</strong>
-                            20 Dec 2018
+                            {{data.endDateString}}
                           </div>
                         </td>
-                        <td class="text-center">
+                        <td class="text-center" >
                           
                           <div class="clearfix"></div>
-                          <button class="btn btn-info" data-toggle="modal" data-target="#editdeal">
-                            <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+                          <button class="btn btn-info" data-toggle="modal" data-target="#editdeal" (click) = "openupdatedeal(data)" >
+                            <i class="fa fa-pencil" aria-hidden="true"></i> Edit {{data.dealId}}
                           </button>
                           <div class="clearfix"></div>
                           <button class="btn btn-danger">
@@ -106,77 +107,8 @@
                           </button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                          <div class="content-div">
-                          <strong>Deal Title</strong>&nbsp;<span class="pink-btn">Expired</span><br/>
-                          This is the selection to show the deal description
-                          <p><strong>Terms & Conditions:</strong><br/>
-                            Limit of one package coupleif they found us on perfect wedding.mu
-                          </p>
-                        </div>
-                        </td>
-                        <td>
-                          <div class="dateholder">
-                            <strong>Start Date</strong>
-                            20 Dec 2018
-                          </div>
-                          <div class="dateholder">
-                            <strong>End  Date</strong>
-                            20 Dec 2018
-                          </div>
-                        </td>
-                       
-                        <td class="text-center">
-                          <!--  <button class="btn btn-warning" >
-                            <i class="fa fa-eye" aria-hidden="true"></i> View
-                          </button> -->
-                          <div class="clearfix"></div>
-                          <button class="btn btn-info" data-toggle="modal" data-target="#editdeal">
-                            <i class="fa fa-pencil" aria-hidden="true"></i> Edit
-                          </button>
-                          <div class="clearfix"></div>
-                          <button class="btn btn-danger">
-                            <i class="fa fa-trash" aria-hidden="true"></i> Remove
-                          </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                          <div class="content-div">
-                          <strong>Deal Title</strong>&nbsp;<span class="green-btn">Active</span><br/>
-                          This is the selection to show the deal description
-                          <p><strong>Terms & Conditions:</strong><br/>
-                            Limit of one package coupleif they found us on perfect wedding.mu
-                          </p>
-                        </div>
-                        </td>
-                        <td>
-                          <div class="dateholder">
-                            <strong>Start Date</strong>
-                            20 Dec 2018
-                          </div>
-                          <div class="dateholder">
-                            <strong>End  Date</strong>
-                            20 Dec 2018
-                          </div>
-                        </td>
-                        
-                        <td class="text-center">
-                          <!-- <button class="btn btn-warning">
-                            <i class="fa fa-eye" aria-hidden="true"></i> View
-                          </button> -->
-                          <div class="clearfix"></div>
-                          <button class="btn btn-info" data-toggle="modal" data-target="#editdeal">
-                            <i class="fa fa-pencil" aria-hidden="true"></i> Edit
-                          </button>
-                          <div class="clearfix"></div>
-                          <button class="btn btn-danger">
-                            <i class="fa fa-trash" aria-hidden="true"></i> Remove
-                          </button>
-
-                        </td>
-                    </tr>
+                   
+                   
                 </table>
                
              
@@ -192,205 +124,305 @@
 </div>
 </div>
 </div>
-
-<div class="modal fade" id="selectdiscount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="card-title">Select Discount</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">   
-                <div class="card">         
-                    <div class="card-body">
-                        <div class="col-md-12">
-                          <div class="funkyradio">
-                              <div class="funkyradio-success">
-                              <input type="radio" name="radio" id="radio1" />
-                              <label for="radio1">Exclusive  5% Off</label>
-                              </div>
-                              <div class="funkyradio-success">
-                              <input type="radio" name="radio" id="radio2" />
-                              <label for="radio2">Exclusive  10% Off</label>
-                              </div>
-                              <div class="funkyradio-success">
-                              <input type="radio" name="radio" id="radio3" />
-                              <label for="radio3">Exclusive  15% Off</label>
-                              </div>
-                              <div class="funkyradio-success">
-                              <input type="radio" name="radio" id="radio4" />
-                              <label for="radio4">Exclusive  20% Off</label>
-                              </div>
-                              <div class="funkyradio-success">
-                              <input type="radio" name="radio" id="radio5" />
-                              <label for="radio5">Engagement Offer</label>
-                              </div>
-                              <div class="funkyradio-success">
-                              <input type="radio" name="radio" id="radio6" />
-                              <label for="radio6">Pre-Wedding Offer</label>
-                              </div>
-                          </div>
-                        </div>
-                    </div> 
+<form (ngSubmit)="updatedis(service)" #service="ngForm" >
+    <div class="modal fade" id="selectdiscount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="card-title">Select Discount</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary save-btn" data-dismiss="modal"><i _ngcontent-c0="" aria-hidden="true" class="fa fa-check"></i>  Save</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div> 
-<div class="modal fade" id="createdeal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                    <h4 class="card-title">Deal Details</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">   
-                <div class="card">         
-                    <div class="card-body">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <div class="input-effect form-group md-form ">
-                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                    <label>Deal Title</label>
-                                    <span class="focus-border"></span>
+
+                <div class="modal-body">   
+                    <div class="card">         
+                        <div class="card-body">
+                            <div class="col-md-12">
+                            <div class="funkyradio" *ngFor = 'let dis of discount '>
+                                <div class="funkyradio-success">
+                                <input 
+                                type="radio" 
+                                name="select" 
+                                [value]= "dis"
+                                id="{{dis.discountId}}"  
+                                ngModel/>
+                                <label for="{{dis.discountId}}">{{dis.title}}</label>
+
                                 </div>
                             </div>
-                        </div>  
-                        <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="input-effect form-group md-form ">
-                                        <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                        <label>Discription</label>
-                                        <span class="focus-border"></span>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary" >Save</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+<form>   
+
+
+    <div class="modal fade" id="createdeal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <form (ngSubmit)="createdeals(createdeal)" #createdeal="ngForm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                            <h4 class="card-title">Deal Details</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">   
+                        <div class="card">         
+                            <div class="card-body">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-effect form-group md-form ">
+                                            <input class="effect-16 validate" 
+                                                type="text"
+                                                placeholder=""
+                                                name= "title"
+                                                [(ngModel)] ="createdeal.title"
+                                                id = "deal_title"
+                                                required="required">
+                                            <label>Deal Title</label>
+                                            <span class="focus-border"></span>
+                                        </div>
                                     </div>
-                                </div>
-                        </div>
-                        <div class="col-md-12 row">
-                            <div class="col-md-6 radio-btn">
-                                <label><input type="radio" name="optradio" checked>Choose date</label>
-                             </div>
-                             <div class="col-md-6 radio-btn">
-                                <label><input type="radio" name="optradio" checked>Never Expire</label>
-                             </div> 
-                        </div>  
-                        <div class="col-md-12 row">
-                            <div class="col-md-6">
-                            <div class="form-group">
-                                <div class="input-effect form-group md-form ">
-                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                    <label>Start Date</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                        </div> 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <div class="input-effect form-group md-form ">
-                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                    <label>End Date</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                        </div> 
-                        </div>                                      
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <div class="input-effect form-group md-form ">
-                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                    <label>Terms & Condition of your deal</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                        </div>  
-                    </div> 
+                                </div>  
+                                <!-- <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="input-effect form-group md-form ">
+                                                <input class="effect-16 validate" 
+                                                type="text" 
+                                                placeholder="" 
+                                                required="required"
+                                                name= "Discription"
+                                                [(ngModel)] ="newdeal.title">
+                                                <label>Discription</label>
+                                                <span class="focus-border"></span>
+                                            </div>
+                                        </div>
+                                </div> -->
+                                <div class="col-md-12 row">
+                                    <div class="col-md-6 radio-btn">
+                                        
+                                       <label>
+                                             
+                                            <input 
+                                            type="radio" 
+                                            name="neverExpire" 
+                                            [(ngModel)] ="createdeal.neverExpire"  
+                                            [value]="false" 
+                                            >Choose date</label>
 
-                </div>
-            </div>
-            <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary save-btn" data-dismiss="modal"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div> 
-
-<div class="modal fade" id="editdeal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                    <h4 class="card-title">Edit Deal Details</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">   
-                <div class="card">         
-                    <div class="card-body">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <div class="input-effect form-group md-form ">
-                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                    <label>Deal Title</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="input-effect form-group md-form ">
-                                        <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                        <label>Discription</label>
-                                        <span class="focus-border"></span>
+                                            <!-- <input 
+                                            type="radio" 
+                                            [(ngModel)] ="readioSelected_serv"  
+                                            name="neverExpire" 
+                                            [value]= "readioSelected_serv" 
+                                            >     -->
+                                        </div>
+                                        <div class="col-md-6 radio-btn">
+                                        <label>
+                                            <input 
+                                            type="radio" 
+                                            name="neverExpire" 
+                                            [(ngModel)] ="createdeal.neverExpire" 
+                                            [value]="true" 
+                                            >
+                                            Never Expire
+                                        </label>
+                                        </div> 
+                                </div>  
+                                <div class="col-md-12 row">
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-effect form-group md-form ">
+                                            <input 
+                                            class="effect-16 validate" 
+                                            type="text" 
+                                            placeholder="" 
+                                            required="required"
+                                            name= "startdate"
+                                            [(ngModel)] ="createdeal.startDate"  >
+                                            <label>Start Date</label>
+                                            <span class="focus-border"></span>
+                                        </div>
                                     </div>
-                                </div>
-                        </div>
-                        <div class="col-md-12 row">
-                            <div class="col-md-6 radio-btn">
-                                <label><input type="radio" name="optradio" checked>Choose date</label>
-                             </div>
-                             <div class="col-md-6 radio-btn">
-                                <label><input type="radio" name="optradio" checked>Never Expire</label>
-                             </div> 
-                        </div>  
-                        <div class="col-md-12 row">
-                            <div class="col-md-6">
-                            <div class="form-group">
-                                <div class="input-effect form-group md-form ">
-                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                    <label>Start Date</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                        </div> 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <div class="input-effect form-group md-form ">
-                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                    <label>End Date</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                        </div> 
-                        </div>                                      
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <div class="input-effect form-group md-form ">
-                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                    <label>Terms & Condition of your deal</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                        </div>  
-                    </div> 
+                                </div> 
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-effect form-group md-form ">
+                                            <input 
+                                            class="effect-16 validate" 
+                                            type="text" 
+                                            placeholder="" 
+                                            required="required"
+                                            name= "EndDate"
+                                            [(ngModel)] ="createdeal.endDate" >
+                                            <label>End Date</label>
+                                            <span class="focus-border"></span>
+                                        </div>
+                                    </div>
+                                </div> 
+                                </div>                                      
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-effect form-group md-form ">
+                                            <input 
+                                            class="effect-16 validate" 
+                                            type="text" 
+                                            placeholder="" 
+                                            name= "Condition"
+                                            [(ngModel)] ="createdeal.conditions"
+                                            required="required">
+                                            <label>Terms & Condition of your deal</label>
+                                            <span class="focus-border"></span>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div> 
 
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                            <button type="submit" class="btn btn-secondary save-btn"  ><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary save-btn" data-dismiss="modal"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </form>       
+        </div>
+    </div> 
+
+
+
+
+    <div class="modal fade" id="editdeal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+             
+                    <div class="modal-header">
+                            <h4 class="card-title">Edit Deal Details {{updatemydeal.dealId}}</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+
+                <form (ngSubmit)="updatedeal(info)" #info="ngForm">
+               
+                    <div class="modal-body">   
+                        <div class="card">         
+                            <div class="card-body">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-effect form-group md-form ">
+                                            <input 
+                                            class="effect-16 validate" 
+                                            type="text" 
+                                            placeholder="" 
+                                            name= "update_title"
+                                            id = "update_title"
+                                            [(ngModel)] ="updatemydeal.title"
+                                        
+                                            required="required">
+                                         
+                                            
+                                            <label>Deal Title</label>
+                                            <span class="focus-border"></span>
+                                        </div>
+                                    </div>
+                                </div>  
+                                <!-- <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="input-effect form-group md-form ">
+                                                <input class="effect-16 validate" type="text" placeholder="" required="required">
+                                                <label>Discription</label>
+                                                <span class="focus-border"></span>
+                                            </div>
+                                        </div>
+                                </div> -->
+                                <input 
+                                class="effect-16 validate" 
+                                type="hidden" 
+                                placeholder="" 
+                                name= "dealId"
+                                id = "dealId"
+                                [(ngModel)] ="updatemydeal.dealId"
+                            
+                                required="required">
+                                <div class="col-md-12 row">
+                                    <div class="col-md-6 radio-btn">
+                                        <label><input 
+                                            type="radio" 
+                                            name="optradio" 
+                                          
+                                            checked>Choose date</label>
+                                        </div>
+                                        <div class="col-md-6 radio-btn">
+                                        <label><input 
+                                            type="radio"
+                                                name="optradio" 
+                                                checked>Never Expire</label>
+                                        </div> 
+                                </div>  
+                                <div class="col-md-12 row">
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-effect form-group md-form ">
+                                            <input 
+                                            class="effect-16 validate" 
+                                            type="text" 
+                                            placeholder="" 
+                                            name= "Start_date"
+                                            id = "Start_date"
+                                            [(ngModel)] ="updatemydeal.startDate"
+                                            required="required">
+                                            <label>Start Date</label>
+                                            <span class="focus-border"></span>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-effect form-group md-form ">
+                                            <input
+                                                class="effect-16 validate" 
+                                                type="text" 
+                                                placeholder="" 
+                                                [(ngModel)] ="updatemydeal.endDate"
+                                                name= "End_date"
+                                                id = "End_date"
+                                                required="required">
+                                            <label>End Date</label>
+                                            <span class="focus-border"></span>
+                                        </div>
+                                    </div>
+                                </div> 
+                                </div>                                      
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-effect form-group md-form ">
+                                            <input 
+                                            class="effect-16 validate" 
+                                            type="text" 
+                                            placeholder="" 
+                                            [(ngModel)] ="updatemydeal.conditions"
+                                            name= "Condition"
+                                            id = "Condition"
+                                            required="required">
+                                            <label>Terms & Condition of your deal</label>
+                                            <span class="focus-border"></span>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div> 
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary save-btn"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
-</div> 
+    </div> 
+  

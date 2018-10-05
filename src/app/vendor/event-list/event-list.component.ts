@@ -31,7 +31,12 @@ export class EventListComponent implements OnInit {
     imageToShow: any;
     imageService: any;
     isImageLoading: any;
+    public sub_id:any;    public dist_id:any;    public country_id:any;
 
+
+    public arra = new Array();public district = new Array();public suburb = new Array();
+
+    countryArray:string[];
     private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader';
     private eventposturl: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/createupdateevent'
    
@@ -51,6 +56,11 @@ export class EventListComponent implements OnInit {
         console.log( data.json());
        //szzzzzzzzzzzzzzzzzz debugger
        
+    })
+    this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries").subscribe(data => { 
+      this.countryArray = data.json();  
+      console.log(this.countryArray);
+      this.arra = this.countryArray
     })
 
         // this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/eventdetails?Id' +'='+37 ,{headers:headers}).subscribe(data =>{
@@ -343,7 +353,26 @@ if(  typeof(list.value.filesId) == "undefined")
     },error =>{ console.log(error)});
   }
 
-
+  country(event): void {  
+    const newVal = event.target.value;
+    console.log(newVal)
+    // this.c_id = this.arra[newVal].countryId
+    // this.country_name =this.arra[newVal].countryName
+    this.district = this.arra[newVal].districts
+    console.log(this.district)
+  }
+  districtA(event): void {  
+    const newVal = event.target.value;
+    // this.d_id = this.district[newVal].districtId
+    // this.district_name =this.district[newVal].name
+    this.suburb = this.district[newVal].suburb
+  }
+  subr(event): void {  
+    const newVal = event.target.value;
+    // this.s_id = this.suburb[newVal].suburbId
+    // this.subr_name =this.suburb[newVal].name
+    console.log(newVal)
+  }
 
 }
   

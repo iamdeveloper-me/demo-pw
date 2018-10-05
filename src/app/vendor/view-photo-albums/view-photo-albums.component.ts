@@ -17,9 +17,14 @@ export class ViewPhotoAlbumsComponent implements OnInit {
 
   fileToUpload:any;
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
-  totalImage=[]
+  totalImage=[];
+  myalbumimages=[];
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ImageUploader/FileUploader'
- 
+  
+  albumid:any;
+  albumname:any;
+  tags:any;
+  colourtags:any;
   uploader: FileUploader = new FileUploader({
     url: URL,
     isHTML5: true
@@ -43,9 +48,10 @@ export class ViewPhotoAlbumsComponent implements OnInit {
       $( this ).toggleClass( "open" );
   });
 
-  this.route.params.subscribe( params => 
-    console.log(params) 
-  );
+  this.route.params.subscribe( params => {
+    console.log(params) ;
+        this.albumid = params;
+  });
 
 
   let headers = new Headers();
@@ -58,7 +64,26 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   //Album Get
   this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
   .subscribe(data =>{
-   this.totalImage =  data.json()[0].albumImages; 
+   this.totalImage =  data.json();
+   console.log(data.json()); 
+   console.log(this.albumid.id); 
+
+   console.log(data.json()); 
+   for (var item of  this.totalImage ) {
+   
+   if(this.albumid.id == item.albumsId)
+    {
+    //    alert("dsf"); 
+     console.log(item);
+    // console.log(item.tags);
+    this.albumname = item.albumName;
+    this.tags = item.tags;
+    this.colourtags = item.colorTags;
+    this.myalbumimages =  item.albumImages;
+     }
+}
+  
+   
   });
 
   let modalId = $('#image-gallery');
@@ -163,7 +188,11 @@ $(document)
 
 
   //service
-  deleteImage(image){
+  deleteImage(image,index){
+    console.log(image);
+    console.log(index);
+    console.log(image.albumImageId);
+    this.myalbumimages.splice(index,1);
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -171,8 +200,8 @@ $(document)
     headers.append("Authorization",'Bearer '+authToken);
   
   
-    //Album Get
-    this.http.post(this.url+'api/Albums/removeimage',{AlbumImageId:image.albumImageId},{headers:headers})
+    //Album Getremoveevent?id'+'='+id  ?AlbumImageId'+'='+image.albumImageId
+    this.http.get(this.url+'api/Albums/removeimage?AlbumImageId'+'='+image.albumImageId,{headers:headers})
     .subscribe(data =>{
       console.log(data.json())
         }); 
@@ -185,7 +214,7 @@ $(document)
     for(let file of this.uploader.queue){
     formData.append(file['some'].name,file['some'])
     }
-    formData.append('AlbumId', '4')
+    formData.append('AlbumId', this.albumid.id)
     
     // Headers
     let headers = new  Headers();
@@ -193,7 +222,37 @@ $(document)
     headers.append("Authorization",'Bearer '+authToken);
     
     //Post Album 2 photos
+    console.log(formData);
     this.http.post(this.uploadimage,formData,{headers:headers})
-      .subscribe(data =>{console.log(data);},(error)=>{console.log(error)});
+      .subscribe(data =>{console.log(data.json());
+        this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
+        .subscribe(data =>{
+         this.totalImage =  data.json();
+         console.log(data.json()); 
+         console.log(this.albumid.id); 
+      
+         console.log(data.json()); 
+         for (var item of  this.totalImage ) {
+         
+         if(this.albumid.id == item.albumsId)
+          {
+          //    alert("dsf"); 
+          // console.log(item);
+          // console.log(item.albumImages);
+          this.myalbumimages =  item.albumImages;
+           }
+      }
+        
+         
+        });
+        
+
+        // this.myalbumimages.unshift({dealId: data.json().id ,
+        //   albumImageId: 3,
+        //   albumsId:4,
+        //   originalFileName: "50309108-81f1-4c45-9d70-9215e752d28cScreenshot from 2018-08-22 18-00-49.png",
+        //   path:    "https://s3.us-east-2.amazonaws.com/prefect-image/50309108-81f1-4c45-9d70-9215e752d28cScreenshot from 2018-08-22 18-00-49.png",
+        //   serverFileName:""});
+      },(error)=>{console.log(error)});
   }
 }

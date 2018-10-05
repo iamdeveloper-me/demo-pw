@@ -51,7 +51,7 @@ public subr_name:any;
   Phone;
   Address;
  data;
- 
+ dist_id;
  m;
  enable = true;
 

@@ -12,6 +12,8 @@ import 'rxjs/Rx';
 export class RegisterComponent  {
   categoryArray:string[];
   planArray:string[];
+  country_id:any;
+  city_id:any;
 
   countryArray:string[];
   public arra = new Array();public district = new Array();public suburb = new Array();
@@ -65,7 +67,19 @@ export class RegisterComponent  {
  loadScript(){this.ngOnInit;}
 
     onSubmit() {   
-   
+   console.log(this.country_id)
+   this.arra.forEach((element,pos) => {
+     if(pos == this.country_id){
+       this.user.businessInfo.countryId = element.countryId;
+       this.user.businessInfo.countryName = element.countryName;
+     }
+    this.district.forEach((dist ,d_pos) => {
+      if(d_pos == this.city_id){
+        this.user.businessInfo.city = dist.name;
+      } 
+    }); 
+   });
+ 
       this.cservice.signup(this.user).subscribe(( data )  =>  
       { console.log(data.json())
         this.cservice.typeSuccess();

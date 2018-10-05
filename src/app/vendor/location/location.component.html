@@ -19,7 +19,7 @@
                                     <div class="switbtn">
                                         <ui-switch (ngModel)="data.isPrimary" ></ui-switch>
                                     </div>
-      
+                                    
                                 </div>
                                 <div class="card-body">
                                     <div class="text-center bg-form col-sm-12">
@@ -446,7 +446,7 @@
                     <div class="card martop10px">
                         <div class="text-center bg-form col-sm-12 addlocationbox">
                             <i class="material-icons font80px">  add_location </i>
-                            <div>Have more business branches?</div>
+                            <div>Have more business branches? {{district | json}}</div>
                             <button data-target="#location" (click)="openModel(data)" data-toggle="modal" type="button" class="martopbot15px borderbtnonly"> Add New Location </button>
                             <div>Premium members only.
                                 <a routerLink="../membership" class="bluelink">Upgrade</a>
@@ -505,7 +505,22 @@
                               </div>
                               <div class="form-group">
                                 <div class="input-effect form-group md-form">
-                                  <input class="effect-16 validate"  [(ngModel)]="Country" id="Country" name="Country">
+                                  <select    class="effect-16 validate"  id="Country" [(ngModel)]="country_id"  name="country_id" (change)="country($event)">
+                                        <option   *ngFor="let country of arra ;let c =index" 
+                                            type="text"
+                                            id="{{country.countryName}}"
+                                            checked
+                                            name = "countryName"  
+                                            placeholder="Country" 
+                                            [value]="c"
+                                            required
+                                            
+                                            >
+                                            {{country.countryName }}
+                                        
+                                        </option>
+                                       
+                                </select>
                                   <label>Country</label>
                                   <span class="focus-border"></span>
                                 </div>
@@ -527,12 +542,54 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                <div class="input-effect form-group md-form">
-                                  <input class="effect-16 validate" [(ngModel)]="city" id="city" name="city">
-                                  <label>City</label>
-                                  <span class="focus-border"></span>
+                                <div class="input-effect form-group md-form">      
+                                <label>City</label>
+                                    <select name="district"   class="effect-16 validate"  [(ngModel)]="dist_id"  name="dist_id" (change)="districtA($event)"  > 
+                                        <option   *ngFor="let dist of district ;let d =index" 
+                                            type="text"
+                                            id="{{dist.name}}"
+                                            checked
+                                            name = "dist"  
+                                            placeholder="Country" 
+                                            [value]="d"
+                                            required
+                                            
+                                            >
+                                            {{dist.name }}
+                                        
+                                        </option>
+                                       
+                                     </select>
+                                <span class="focus-border"></span>
                                 </div>
                               </div>
+                              <div class="form-group">
+                                    <div class="input-effect form-group md-form">      
+                                    <label>Subr</label>
+                                    <select    class="effect-16 validate" [(ngModel)] = "sub_id"  name="sub_id" (change)="subr($event)" > 
+                                            <!-- (change)="country($event)" -->
+                                        <option   *ngFor="let sub of suburb ;let s =index" 
+                                            type="text"
+                                            id="{{sub.name}}"
+                                            checked
+                                            name = "sub"  
+                                            placeholder="Suburb" 
+                                            [value]="s"
+                                            required
+                                            
+                                            >
+                                            {{sub.name }}
+                                        
+                                        </option>
+                                       
+                                </select>
+                                    <span class="focus-border"></span>
+                                    </div>
+                                  </div>
+
+                             
+
+
                               <div class="form-group">
                                 <div class="input-effect form-group md-form">
                                   <input class="effect-16 validate"  [(ngModel)]="Phone" id="Phone" name="Phone">

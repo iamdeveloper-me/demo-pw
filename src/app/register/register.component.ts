@@ -14,6 +14,7 @@ export class RegisterComponent  {
   planArray:string[];
 
   countryArray:string[];
+  public arra = new Array();public district = new Array();public suburb = new Array();
   user = 
   {logInInfo: { firstName: "", lastName: "", password: "", confirmPassword: "" },
   contactInfo: { contactPerson: "", email: "", phone: "", website: ""},
@@ -35,6 +36,7 @@ export class RegisterComponent  {
             country.subscribe(data => { 
               this.countryArray = data as string[];  
               console.log(this.countryArray);
+              this.arra = this.countryArray
             });
             let obj = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/pricingplans");
             obj.subscribe(data => {
@@ -100,6 +102,15 @@ annualPrice(users){
  typeSuccess() {
         // this.cservice.typeSuccess();
 
+    }
+
+    country(event): void {  
+      const newVal = event.target.value;
+      this.district = this.arra[newVal].districts
+    }
+    districtA(event): void {  
+      const newVal = event.target.value;
+      this.suburb = this.district[newVal].suburb
     }
 
 }

@@ -14,13 +14,14 @@ export class RegisterComponent  {
   planArray:string[];
   country_id:any;
   city_id:any;
-
+  sub_id:any;
   countryArray:string[];
   public arra = new Array();public district = new Array();public suburb = new Array();
   user = 
   {logInInfo: { firstName: "", lastName: "", password: "", confirmPassword: "" },
   contactInfo: { contactPerson: "", email: "", phone: "", website: ""},
-   businessInfo: { countryId: "", city: "", postalCode: "", address: "", countryName: "" ,nameOfBusiness: "",pricingPlanId: "" ,payFrequency:""}, 
+   businessInfo: { countryId: 0, districtId: 0,suburbId: 0 ,city: "" ,postalCode: "", address: "" ,nameOfBusiness: "",pricingPlanId: "" ,payFrequency:""}, 
+   
    vendorCategories: [ { categoryId: "" } ] }
 
   ngOnInit() {
@@ -70,16 +71,24 @@ export class RegisterComponent  {
    console.log(this.country_id)
    this.arra.forEach((element,pos) => {
      if(pos == this.country_id){
-       this.user.businessInfo.countryId = element.countryId;
-       this.user.businessInfo.countryName = element.countryName;
+       this.user.businessInfo.countryId = Number(element.countryId);
+      //  this.user.businessInfo.countryName = element.countryName;
      }
     this.district.forEach((dist ,d_pos) => {
       if(d_pos == this.city_id){
+        this.user.businessInfo.districtId = Number(dist.districtId);
         this.user.businessInfo.city = dist.name;
       } 
     }); 
+    console.log(this.sub_id)
+
+    this.suburb.forEach((subr ,s_pos) => {
+      if(s_pos == this.sub_id){
+        this.user.businessInfo.suburbId = Number(subr.suburbId);
+      } 
+    }); 
    });
- 
+ console.log(this.user)
       this.cservice.signup(this.user).subscribe(( data )  =>  
       { console.log(data.json())
         this.cservice.typeSuccess();
@@ -125,6 +134,10 @@ annualPrice(users){
     districtA(event): void {  
       const newVal = event.target.value;
       this.suburb = this.district[newVal].suburb
+    }
+    subr(event): void {  
+      const newVal = event.target.value;
+      console.log(newVal)
     }
 
 }

@@ -416,3 +416,12 @@ $(".closepopup").click(function() {
     $('.blackoverlaymain ').hide();
     $('.closepopup').hide();
 });
+
+$(".blackoverlaymain").click(function() {
+    $('.detailpagecarousel').removeClass('corsellclick');
+    $('.imgbannerbox').removeClass('corsellclick');
+    $('.imgbannerboxcontainer').removeClass('positioninherit');
+    $('.blackoverlaymain').removeClass('blackoverlaymainhometik');
+    $('.blackoverlaymain ').hide();
+    $('.closepopup').hide();
+});

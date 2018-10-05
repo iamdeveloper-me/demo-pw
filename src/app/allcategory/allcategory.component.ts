@@ -16,19 +16,11 @@ export class AllcategoryComponent implements OnInit {
 
 
 // Parallaxing + add class active on scroll
-$(document).scroll(function () {
-  
-  // parallaxing
-  var $movebg = $(window).scrollTop() * -.2;
-  $('.zoom_in').css('background-positionY', ($movebg) + 'px');
-
-  // add class active to nav a on scroll
-
-  
-  // changing padding of nav a on scroll
-   
-  
-});
+// $(document).scroll(function () {
+//   // parallaxing
+//   var $movebg = $(window).scrollTop() * -.2;
+//   $('.zoom_in').css('background-positionY', ($movebg) + 'px');
+// });
  	
 	$(window).scroll( function(){
 		

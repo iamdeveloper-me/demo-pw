@@ -67,7 +67,7 @@ export class BusinessInfoComponent implements OnInit {
   modelfield: any = {};
   primarylocation:any = {};
   countryArray:string[];
-
+ image:any;
   data: any;
 
   cropperSettings: CropperSettings;
@@ -293,15 +293,15 @@ findLocation(address) {
     this.http.get(this.url,{headers:headers}).subscribe(data =>{
 
     this.vendor = data.json();
-    this.vendor.files.path = "https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg";
+    this.image = this.vendor.files.path ;
                   
     if(!this.vendor.fileId)
                    {
                      alert("ghfgh");
-                   console.log(this.vendor.files );
-                  // this.vendor.files.path = "https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg";
-                  console.log( this.vendor.files.path);
-                  }
+                     console.log(this.vendor.files );
+                     this.image = "https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg";
+                     console.log( this.image);
+                    }
     this.facebook = data.json().facebookURL ;
 
     this.twitter = data.json().twitterURL ;
@@ -468,25 +468,25 @@ $(document).on('click', ".saveall", function() {
     console.log(this.updatefield);
     }
   updatefrom(info){
-    console.log(info);
+        console.log(info);
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
-        headers.append('Accept', 'application/json')
+        headers.append('Accept', 'application/json');
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
 
 
         this.http.post(this.urlpost,{
           vendorLocationId: info.vendorLocationId,
-          title: info.title,
-          countryId: info.countryId,
-          vendorId: info.vendorId,
-          country: {countryId: info.countryId,countryName: info.countryName},
-          city:  info.city,
-          postalCode:  info.postalCode,
-          address:  info.address,
-          phone:  info.phone,
-          mobile:   info.mobile ,
+          title:          info.title,
+          countryId:      info.countryId,
+          vendorId:       info.vendorId,
+          country:        {countryId: info.countryId,countryName: info.countryName},
+          city:           info.city,
+          postalCode:     info.postalCode,
+          address:        info.address,
+          phone:          info.phone,
+          mobile:         info.mobile ,
           sundayOpen:     info.sundayOpen,
           sundayClose:    info.sundayClose,
           mondayOpen:     info.mondayOpen,
@@ -518,7 +518,7 @@ $(document).on('click', ".saveall", function() {
             alert("saved");
             $('.modal').hide();
           }
-    }
+    },data => { console.log(data.json());}
 );
   }
 
@@ -548,24 +548,21 @@ $(document).on('click', ".saveall", function() {
 
         this.http.post(this.uploadimage,formData,{headers:headers}).subscribe( (data)=>{console.log(data.json().filesId);
         
-          this.http.get(this.url,{headers:headers}).subscribe(res =>{console.log(res.json().nameOfBusiness);
+          this.http.get(this.url,{headers:headers}).subscribe(data =>{console.log(data.json());
           
             let updatebusinessinfo = this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatebusinessinfo",
            {   
-              nameOfBusiness: res.json().nameOfBusiness,
-              businessDetails: res.json().businessDetails,
-               contactPerson: 'scsc',
-        //     // pictureUrl: infopicture,
-               fileId:    data.json().filesId,
-             facebookURL: res.json().facebookURL,
-             twitterURL: res.json().twitterURL,
-             googleURL:  res.json().googleURL,
-            instalURL: res.json().instalURL ,
-          perfectWeddingURL: res.json().perfectWeddingURL,
-
-         
-          },
-        {headers:headers})
+              nameOfBusiness: data.json().nameOfBusiness,
+              businessDetails: data.json().businessDetails,
+              contactPerson: 'scsc',
+              // pictureUrl: infopicture,
+              fileId:    data.json().filesId,
+              facebookURL: data.json().facebookURL,
+              twitterURL: data.json().twitterURL,
+              googleURL:  data.json().googleURL,
+              instalURL: data.json().instalURL ,
+              perfectWeddingURL: data.json().perfectWeddingURL,
+            },{headers:headers})
 
 updatebusinessinfo.subscribe((responce)=>{ console.log(responce.status);
 if(responce.status == 200)

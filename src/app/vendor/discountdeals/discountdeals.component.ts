@@ -1,14 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
-import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Http,Headers } from '@angular/http';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-discountdeals',
   templateUrl: './discountdeals.component.html',
   styleUrls: ['./discountdeals.component.scss']
 })
 export class DiscountdealsComponent implements OnInit {
+  private discountGet: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/discounts'
+  discount:any = [];
+  
+  private updatediscountPost: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatediscount'
+  updiscount:any = [];
 
-  constructor() { }
+  private SupplierdiscountGet: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/discount'
+  Supplierdiscount:any = [];
+
+  private deal: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/createupdatedeals'
+  title;
+  createdeal:{
+    dealId: 0,
+    title: "",
+    conditions: "",
+    startDate: "",
+    endDate: "",
+    neverExpire: true
+  };
+  updatemydeal:any = {
+    title: "",
+    conditions: "",
+    startDate: "",
+    endDate: "",
+    neverExpire: true
+  };
+  private mydeal: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mydeals'
+  recentmydeal:any = [];
+  readioSelected_serv:boolean;
+  constructor(public http: Http,public toastr: ToastrService) { }
 
   ngOnInit() {
   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
@@ -57,8 +85,133 @@ export class DiscountdealsComponent implements OnInit {
         $(".homebannerbox").show();
      });
 
+     let headers = new Headers();
+     var authToken = localStorage.getItem('userToken');
+    
+     headers.append('Accept', 'application/json')
+     headers.append('Content-Type', 'application/json');
+     headers.append("Authorization",'Bearer '+authToken);
+     this.http.get(this.discountGet,{headers:headers}).subscribe(data =>{  
+       console.log(data.json());
+      this.discount = data.json();
+     })
+     this.http.get(this.SupplierdiscountGet,{headers:headers}).subscribe(data =>{  
+      console.log(data.json());
+     this.Supplierdiscount = data.json();
+     if(this.Supplierdiscount.length == 0 ){
+       alert("dcds");
+      this.Supplierdiscount.title = "No Discounts Applied" ;
+     }
+    })
+    this.http.get(this.mydeal,{headers:headers}).subscribe(data =>{  
+     
+     this.recentmydeal = data.json();
+     console.log( this.recentmydeal);
+    })
+       
   }
 
 open(c){console.log(c);}
+updatedis(service){
+ // console.log(service.value.select);
+  
 
+  let headers = new Headers();
+  var authToken = localStorage.getItem('userToken');
+  var id = service.value.select.discountId;
+
+  headers.append('Accept', 'application/json')
+  headers.append('Content-Type', 'application/json');
+  headers.append("Authorization",'Bearer '+authToken);
+this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatediscount?DiscountId'+'='+id, {Title: service.value.select.title ,Discount: service.value.select.discount
+},{headers:headers}).subscribe(
+    data =>{  
+    console.log(data.json());
+   this.toastr.success("Discount updated successfully.");
+   this.updiscount = data.json();
+  },error => {console.log(error)})
+ 
+
+
+} 
+
+
+createdeals(createdeal){
+  console.log(createdeal.value);
+  let headers = new Headers();
+  var authToken = localStorage.getItem('userToken');
+ 
+  headers.append('Accept', 'application/json')
+  headers.append('Content-Type', 'application/json');
+  headers.append("Authorization",'Bearer '+authToken);
+  console.log(createdeal.value.EndDate);
+  console.log(createdeal.value.startdate);
+  this.http.post(this.deal,{
+    dealId: 0,
+    title: createdeal.value.title,
+    conditions: createdeal.value.Condition ,
+    startDate: createdeal.value.startdate ,
+    endDate: createdeal.value.EndDate ,
+    neverExpire: createdeal.value.neverExpire
+
+  },{headers:headers}).subscribe(
+    data =>{  
+      
+      console.log(data.json());   
+      
+      this.recentmydeal.unshift({dealId: data.json().id ,
+        conditions:  createdeal.value.Condition ,
+        endDate:  createdeal.value.EndDate,
+        endDateString: createdeal.value.EndDate,
+        neverExpire : createdeal.value.neverExpire,
+        startDate : createdeal.value.EndDate,
+        startDateString :  createdeal.value.EndDate,
+        status:"Active",
+        title  :  createdeal.value.title });
+      this.toastr.success(" New Deal is created");
+      console.log( this.recentmydeal); 
+    },error => {console.log(error);  this.toastr.warning(error);})
+ 
 }
+
+openupdatedeal(data){console.log(data);
+
+  this.updatemydeal = data ;
+}
+  updatedeal(info){alert("sdfvsv");
+  console.log(info);
+  let headers = new Headers();
+  var authToken = localStorage.getItem('userToken');
+
+  headers.append('Accept', 'application/json')
+  headers.append('Content-Type', 'application/json');
+  headers.append("Authorization",'Bearer '+authToken);
+
+  this.http.post(this.deal,{
+    dealId: info.value.dealId,
+    title: info.value.update_title ,
+    conditions: info.value.Condition,
+    startDate: info.value.Start_date,
+    endDate: info.value.End_date,
+    neverExpire: true
+  },{headers:headers}).subscribe(
+    data =>{  
+    console.log(data.json());
+    this.toastr.success(" Your deal is  updated successfully.");
+
+
+  },error => {console.log(error.json().invalid_start_date );
+     this.toastr.warning(error.json().invalid_start_date);})
+
+
+
+  }
+}
+
+
+
+// 1. /api/LookupMaster/discounts get done 
+// 2. /api/Supplier/discount  grt  done
+// 3. /api/Supplier/updatediscount   post  done
+// 4. /api/Supplier/mydeals  get 
+// 5. /api/Supplier/createupdatedeals post  done

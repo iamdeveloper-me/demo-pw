@@ -39,10 +39,45 @@ export class LocationComponent implements OnInit {
   Phone;
   Address;
  data;
- info: any = { mobile: ''};
+ 
  m;
  enable = true;
- modelfield : any = { mobile: ''};
+
+ modelfield:any = {
+  vendorLocationId: 0,
+  title: '',
+  countryId: '',
+  vendorId: '',
+  country: {countryId: '', countryName: ''},
+  city:  '',
+  postalCode:  '',
+  address:  '',
+  phone: '',
+  mobile:      '' ,
+  sundayOpen:     '',
+  sundayClose:    '',
+  mondayOpen:     '',
+  mondayClose:    '',
+  tuesdayOpen:    '',
+  tuesdayClose:   '',
+  wednesdayOpen:  '',
+  wednesdayClose: '',
+  thursdayOpen:   '',
+  thursdayClose:  '',
+  fridayOpen:     '',
+  fridayClose:    '',
+  saturdayOpen:   '',
+  saturdayClose:  '',
+  isFridayOpen:   true,
+  isMondayOpen:   true,
+  isPrimary:      true,
+  isSaturdayOpen: true,
+  isSundayOpen:   true,
+  isThursdayOpen: true,
+  isTuesdayOpen:  true,
+  isWednesdayOpen:true,
+
+};
  address : any = {};
  obj = [];
 
@@ -357,6 +392,7 @@ var postalCode = e.value.postalCode ;
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         var countryId = localStorage.getItem('countryid');
+        var vendorID = localStorage.getItem('vendorid');
         console.log( countryId);
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
@@ -365,29 +401,29 @@ var postalCode = e.value.postalCode ;
 
         this.http.post(this.urlpost,{
           vendorLocationId: 0,
-          title: 'info',
+          title: 'your location name ',
           countryId: countryId,
-          vendorId: 66,
+          vendorId: vendorID,
           country: {countryId: countryId, countryName: country},
           city:  city,
           postalCode:  postalCode,
           address:  address,
           phone: Phone,
-          mobile:      'info' ,
-          sundayOpen:     'info',
-          sundayClose:    'info',
-          mondayOpen:     'info',
-          mondayClose:    'info',
-          tuesdayOpen:    'info',
-          tuesdayClose:   'info',
-          wednesdayOpen:  'info',
-          wednesdayClose: 'info',
-          thursdayOpen:   'info',
-          thursdayClose:  'info',
-          fridayOpen:     'info',
-          fridayClose:    'info',
-          saturdayOpen:   'info',
-          saturdayClose:  'info',
+          mobile:      '' ,
+          sundayOpen:     '',
+          sundayClose:    '',
+          mondayOpen:     '',
+          mondayClose:    '',
+          tuesdayOpen:    '',
+          tuesdayClose:   '',
+          wednesdayOpen:  '',
+          wednesdayClose: '',
+          thursdayOpen:   '',
+          thursdayClose:  '',
+          fridayOpen:     '',
+          fridayClose:    '',
+          saturdayOpen:   '',
+          saturdayClose:  '',
           isFridayOpen:   true,
           isMondayOpen:   true,
           isPrimary:      true,

@@ -257,10 +257,10 @@ findLocation(address) {
           });
   
           this.cropperSettings = new CropperSettings();
-          this.cropperSettings.croppedWidth =100;
-          this.cropperSettings.croppedHeight = 100;
-          this.cropperSettings.canvasWidth = 600;
-          this.cropperSettings.canvasHeight = 400;
+          this.cropperSettings.croppedWidth =50;
+          this.cropperSettings.croppedHeight = 50;
+          this.cropperSettings.canvasWidth = 400;
+          this.cropperSettings.canvasHeight = 200;
           this.cropperSettings.noFileInput = true;
           this.data = {};
   

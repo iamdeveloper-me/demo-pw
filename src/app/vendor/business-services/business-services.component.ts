@@ -31,7 +31,7 @@ export class BusinessServicesComponent implements OnInit {
   min:any = {};
   Services = [];
   first_category:any = {};
-  categoryserveice = [];
+  categoryserveice = [ ];
   User_services = [];
   services_all =[]
   Price = '12$';
@@ -46,7 +46,7 @@ export class BusinessServicesComponent implements OnInit {
   RoleServiceService:any
   showcontent:boolean=false;
   checkboxarry =[] ;
-  service_data:any;
+  service_data = { categoryName: ''};
   field_length=[]
   customFields=[];
   customFieldOptionList=[];

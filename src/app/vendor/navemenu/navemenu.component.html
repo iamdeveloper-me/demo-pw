@@ -86,6 +86,7 @@
                                             </div>
                                     </li>
                                     <li class="nav-item" ngbDropdown placement="bottom-right">
+                                        
                                             <a class="nav-link position-relative" id="dropdownBasic3" ngbDropdownToggle>
                                               <i class="material-icons">account_circle</i>
                                         
@@ -174,7 +175,15 @@
                                                 <p class="d-none">User Settings {{vendor.profileImage}}</p>
                                             </a>
                                             <div class="blackoverlaymainuser">
-                                            <div ngbDropdownMenu aria-labelledby="dropdownBasic3">                           
+                                            <div ngbDropdownMenu aria-labelledby="dropdownBasic3">       <div class="vendorpicsec">
+                                            <div class="imgsection">
+                                              <!-- <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png"/> -->
+                                              <img [src] = "vendor.profileImage" class="userimgtop" >
+                                            </div>
+                                            <div class="detailsection">
+                                            Hi {{vendor.firstName}}!
+                                            </div>
+                                        </div>                    
                                                 <a class="dropdown-item py-1" routerLink="../dashboard">
                                                     <i class="ft-edit mr-2"></i>
                                                     <span>Business Dashboard</span>

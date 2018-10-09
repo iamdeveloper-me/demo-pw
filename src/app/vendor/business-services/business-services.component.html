@@ -19,7 +19,7 @@
 							   
 							</div>
 						</div>
-						<div class="card-body"  *ngFor="let mydata of User_services;">
+						
 						
 								<form (ngSubmit)="serveicedata(service)" #service="ngForm" >
 									<div class="card-content selectboxservice text-center"> 
@@ -36,10 +36,8 @@
 																	(change)="selection(data)">
 																<span class="checkmark"></span>
 															</label>
-															{{cat.servicesId}} ======== {{mydata.servicesId}}
-															<div *ngIf="data.servicesId == mydata.servicesId" >
-																	{{cat.serviceName}}
-															</div>
+															
+															
 
 														</div>
 													</div>
@@ -148,7 +146,7 @@
 										</div>
 								</form>
 							
-						</div>
+						
 					</div>
 				</div>
 			</section>

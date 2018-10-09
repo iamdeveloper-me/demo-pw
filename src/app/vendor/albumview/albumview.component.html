@@ -34,28 +34,26 @@
                                         <!-- <img class="img-thumbnail"
                                         src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
                                         alt="Another alt text"> -->
-                                        <div *ngFor="let  image of data.albumImages">   
-                                            <img [src] = "image.path" class="img-thumbnail"  alt="Another alt text" >
-                                            <div class="text-center">
-                                                    <span> Album name :  {{image.path}} </span> 
-                                                    </div>
-                               
+                                        <div *ngFor="let  image of data.albumImages | slice:0:1 ; let i=index ">   
+                                               
+                                           <div class="imgcontainer" >
+                                            <img class="img-thumbnail"  alt="Another alt text"  src="{{image.path }}" />
+                                           </div> 
+                                          
                                         </div>
-                                            <div class="over_like">
-                                            <div class="text-center">
-                                            <span> Album name :{{data.albumName}} </span> 
-                                            </div>
+
+                                        <div *ngIf="data.albumImages?.length ==  0"  class="imgcontainer">
+                                                <img class="img-thumbnail"  alt="Another alt text"  src="../../../assets/img/no-image.png" />
                                         </div>
-                                        <div class="text-center">
-                                            <strong>Album Id : {{data.albumsId }} </strong><br/>
-                                            <span> Colour Tag :{{data.colorTags}} </span> <br/>
-                                            <span> Created Date :{{data.dateAddedOn}} </span> 
-                                        </div>
+                                           
+                                        
                                     </a>
                                     <div class="over_like">
                                         <div class="text-center">
                                             <strong>{{data.albumName}}</strong><br/>
-                                            <span> 25 Photos </span> 
+                                            
+                                               <span> {{data.albumImages.length}} Photos </span>
+                                               
                                         </div>
                                     </div>
                                 </div> <!-- col-6 / end -->    

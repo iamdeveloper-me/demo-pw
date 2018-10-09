@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http,Headers } from '@angular/http';
+
+
 @Component({
   selector: 'app-albumsetting',
   templateUrl: './albumsetting.component.html',
@@ -12,9 +14,27 @@ export class AlbumsettingComponent implements OnInit {
     eventArray:any = {};
     eventArray1:any = {};
     albumArray:any = {};
+    Green = 'green';
+    red = 'red';
+    orange = 'orange';
+    teal = 'teal';
+    blue = 'blue';
+    brown = 'brown';
+    black = 'black';
+    grey = 'grey';
+    white = 'white';
+    pink = 'pink';
+    Yellow = 'Yellow';
+    purple = 'purple';
+    yellow;
+    green;
+    colour:any ; 
   constructor(public http: Http) { }
 
   ngOnInit() {
+
+    $.getScript('./assets/js/customizer.js');
+    $.getScript('./assets/js/jscolor.js');
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
    
@@ -40,7 +60,8 @@ export class AlbumsettingComponent implements OnInit {
      
  }
  editform(a){
-    console.log(a.value.id);
+    
+    console.log(a.value);
     let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
               headers.append('Accept', 'application/json')
@@ -49,10 +70,10 @@ export class AlbumsettingComponent implements OnInit {
               
             const  editdata = {
               albumsId: a.value.id,
-              albumName: 'string',
+              albumName: a.value.albumName,
               albumType: 0,
-              tags: 'string',
-              colorTags: 'string'
+              tags: a.value.tags,
+              colorTags: a.value.colorTags
             }
               console.log(editdata)
     this.http.post(this.posturl,editdata,{headers:headers}).subscribe(a =>{
@@ -82,4 +103,61 @@ export class AlbumsettingComponent implements OnInit {
    console.log(data.json());
  
   },error =>{ console.log(error)});
-  }}
+  }
+
+pinkTag(){
+console.log("pink");
+this.colour = "pink";
+}
+redTag(){
+  console.log("red");
+  this.colour = "red";
+  }
+
+  whiteTag(){
+    console.log("white");
+    this.colour = "white";
+    }
+
+  greyTag(){
+    console.log("grey");
+    this.colour = "grey";
+    }
+
+  blackTag(){
+    console.log("black");
+    this.colour = "black";
+    }
+  brownTag(){
+    console.log("brown");
+    this.colour = "brown";
+    }
+  purpleTag(){
+    console.log("purple");
+    this.colour = "purple";
+    }
+  blueTag(){
+    console.log("blue");
+    this.colour = "blue";
+    }
+
+  tealTag(){
+    console.log("red");
+    this.colour = "red";
+    }
+
+  greenTag(){
+    console.log("green");
+    this.colour = "green";
+    }
+
+  yellowTag(){
+    console.log("yellow");
+    this.colour = "yellow";
+    }
+
+  orangeTag(){
+    console.log("orange");
+    this.colour = "orange";
+    }
+}

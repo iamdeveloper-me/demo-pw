@@ -393,10 +393,61 @@ $(".homemenu").click(function(){
         $(".blackoverlaymain").removeClass( "blockmobile"); 
     });
 
- 
+        $(".sendfeedback").hide();
+        $(".telluslike").hide();
+        $(".tellusunlike").hide();
+        $(".tellusidea").hide();
 
+$(".sendfeedbackbtn").click(function(){ 
+        $(".feedbackrate").hide();
+        $(".telluslike").hide();
+        $(".tellusunlike").hide();
+        $(".tellusidea").hide();
+        $(".sendfeedback").show();
+    });
 
+$(".likebtn").click(function(){ 
+  alert("hi")
+        $(".feedbackrate").hide();
+        $(".tellusunlike").hide();
+        $(".tellusidea").hide();
+        $(".sendfeedback").hide();
+        $(".telluslike").show();
+    });
+
+$(".unlikebtn").click(function(){ 
+        $(".feedbackrate").hide();
+        $(".telluslike").hide();
+        $(".tellusunlike").show();
+        $(".tellusidea").hide();
+        $(".sendfeedback").hide();
+    });
+
+$(".ideabtn").click(function(){ 
+        $(".feedbackrate").hide();
+        $(".telluslike").hide();
+        $(".tellusunlike").hide();
+        $(".tellusidea").show();
+        $(".sendfeedback").hide();
+    });
+
+$(".backbtn1").click(function(){ 
+        $(".feedbackrate").show();
+        $(".telluslike").hide();
+        $(".tellusunlike").hide();
+        $(".tellusidea").hide();
+        $(".sendfeedback").hide();
+    });
+
+$(".backbtn2").click(function(){ 
+        $(".feedbackrate").hide();
+        $(".telluslike").hide();
+        $(".tellusunlike").hide();
+        $(".tellusidea").hide();
+        $(".sendfeedback").show();
+    });
   
+
     }
 
     

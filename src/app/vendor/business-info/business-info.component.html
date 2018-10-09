@@ -12,8 +12,8 @@
                 <li class="card-title locationtab">Location & Contact</li>
             </ul>
 <div class="clearfix"></div>
-            <div class="col-sm-5 col-12 pad375Zero bussinesstabbox" *ngFor="let data of countryArray;let i=index" >
-                    <div class="card heightequal365 margintop0px mobmargintop30px" >
+            <div class="col-sm-5 col-12 pad375Zero locationtabbox" *ngFor="let data of countryArray;let i=index" >
+                   <div class="card heightequal365 margintop0px mobmargintop30px" >
                         <div class="custom-form"  >
                             <div class="col-sm-12 nopadd" *ngIf="data.isPrimary == true">
                                 <div class="card martop10px">
@@ -154,7 +154,7 @@
                         </div>
                     </div>
             </div>
-            <div class="col-sm-7 col-12 mobnopadd padleft0px locationtabbox" (click)="openModel(vendor)">
+            <div class="col-sm-7 col-12 mobnopadd padleft0px bussinesstabbox" (click)="openModel(vendor)">
                     <div class=" mobnopadd padleft0px ">
                         <div class="card heightequal365 margintop0px mobmargintop30px">
                             <div class="card-header">
@@ -549,46 +549,37 @@
     <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal_head text-center">
-            <h4 class="modal-title"><strong> update icon  </strong>  </h4>
-            <p>Do you have a Trading Page for your business?</p>
+            <h4 class="modal-title marbot0px"><strong> Business Profile Image  </strong>  </h4>
+            <p class="marbot0px">Please update Profile Image for your business</p>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <div class="clearfix"></div>
         </div>
         <div class="modal-body">
             <div class="col-sm-12  text-center">
-                <div class="switbtn">
-                <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                <span class="have_one">Yes, I have one! </span>
-                </div>
+               
                 <div class="clearfix"></div>
 
                 <section id="tours">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-block">
-                            <div class="file-upload mb-3">
-                                    <input #fileInput 
-                                        id="custom-input" 
-                                        (change)="fileChangeListener($event)"
-                                        type="file"
-                                        [(ngModel)]="gallery.files" 
-                                        name="image" 
-                                        id="image"/>                                        
-                                    <span class="focus-border"></span>
-                                    <input type="hidden" [(ngModel)]="modelfield">
-                                
-                                
-                            </div>
-                            <img-cropper #cropper [image]="data" [settings]="cropperSettings" class="float-left mr-4"></img-cropper>
-                            <br>
+            
+                    <div class="col-12 text-center">
+                           
+                                <div class="file-upload form-control uploadimgfile">
+                                        <input #fileInput 
+                                            id="custom-input" 
+                                            (change)="fileChangeListener($event)"
+                                            type="file"
+                                            [(ngModel)]="gallery.files" 
+                                            name="image" 
+                                            id="image"/>                                        
+                                        <span class="focus-border"></span>
+                                        <input type="hidden" [(ngModel)]="modelfield">
+                                </div>
+                                <img-cropper #cropper [image]="data" [settings]="cropperSettings" class="imgcrop"></img-cropper>
+                           
                             <!-- <span class="result" *ngIf="data.image">
                             <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle"> 
                             </span>-->
                             </div>
-                        </div>
-                    </div>
-                </div>
                 <!-- Cropper Ends -->
                 </section>
             </div>

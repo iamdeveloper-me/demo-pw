@@ -66,7 +66,7 @@ export class DashboardComponent implements OnInit {
                    if(!this.vendor.profileImage )
                    {
                    console.log(this.vendor.profileImage);
-                   this.vendor.profileImage = "https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg"
+                   this.vendor.profileImage = "https://api.asm.skype.com/v1/objects/0-sa-d7-42ce40a5cedd583b57e96843e17d67e2/views/imgpsh_fullsize"
                   }
                  });
 

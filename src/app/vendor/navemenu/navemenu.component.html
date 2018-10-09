@@ -10,11 +10,24 @@
                     </button>
                     <div class="blackoverlaymobile"></div>
                     <!-- <p class="navbar-brandm navdrandm" id="Dashboard"> -->
-                          <h4 class="navdrandm navbar-brandm "> {{data}}   </h4> 
+                          <h4 class="navdrandm navbar-brandm "> {{data}}  
+
+
+
+
+                               </h4> 
+
+
+
+
+
+
                 <button type="button" class="navbar-toggle d-lg-none float-left hidden-xs" data-toggle="collapse">
                     <span class="sr-only">Toggle navigation</span>
                 </button>
                 
+
+
 
                         <div id="navbarSupportedContent" class="headerrightbar">
                      
@@ -86,6 +99,7 @@
                                             </div>
                                     </li>
                                     <li class="nav-item" ngbDropdown placement="bottom-right">
+                                        
                                             <a class="nav-link position-relative" id="dropdownBasic3" ngbDropdownToggle>
                                               <i class="material-icons">account_circle</i>
                                         
@@ -174,7 +188,15 @@
                                                 <p class="d-none">User Settings {{vendor.profileImage}}</p>
                                             </a>
                                             <div class="blackoverlaymainuser">
-                                            <div ngbDropdownMenu aria-labelledby="dropdownBasic3">                           
+                                            <div ngbDropdownMenu aria-labelledby="dropdownBasic3">       <div class="vendorpicsec">
+                                            <div class="imgsection">
+                                              <!-- <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png"/> -->
+                                              <img [src] = "vendor.profileImage" class="userimgtop" >
+                                            </div>
+                                            <div class="detailsection">
+                                            Hi {{vendor.firstName}}!
+                                            </div>
+                                        </div>                    
                                                 <a class="dropdown-item py-1" routerLink="../dashboard">
                                                     <i class="ft-edit mr-2"></i>
                                                     <span>Business Dashboard</span>
@@ -207,7 +229,7 @@
                         </div>
                     
             </div>
-            
+
         </div>
     </nav>
 <!-- Navbar (Header) Ends -->

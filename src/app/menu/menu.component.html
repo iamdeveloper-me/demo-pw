@@ -220,6 +220,11 @@
                        <img src="../../assets/img/mail.png">
                        <span>Inbox</span>
                  </a>
+
+                  <a class="dropdown-item" data-toggle="modal" data-target="#basicModal">Feedback</a>
+
+
+
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" (click)="logout()">
                   <i class="ft-power mr-2"></i>
@@ -585,4 +590,185 @@
   </div>
 </div>
 <!-- Login box -->
+
+
+
+
+
+<!--basic-modal-->
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <!-- feedback -->
+    <div class="modal-content feedbackrate">
+          <div class="modal-header chartmainhead">
+            <h4>We hope you like using PerfectWedding.mu</h4>
+          </div>
+          <div class="modal-body text-center">
+            <p class="chartpara">Please remember to rate it. And send us feedback - we want to hear from you</p>
+            <div class="clearfix"></div>
+            <img src="../../assets/img/popup-image1.jpg">
+                <div class="clearfix"></div>
+            <ul class="starhead">
+                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+            </ul>
+
+              <div class="clearfix"></div>
+              <div class="feedbackfooter">
+                <button type="button" class="btn btn-success">Rate</button>
+                 &nbsp;&nbsp;<button type="button" class="btn btn-warning sendfeedbackbtn">Send Feedback</button>
+              </div>
+
+          </div>
+          <div class="modal-footer feedbackfooter">
+            <button type="button" class="btn btn-secoundary" data-dismiss="modal">Remind Me Later</button>
+          </div>
+    </div>
+    <!-- Send Feedback -->
+    <div class="modal-content sendfeedback">
+          <div class="modal-header chartmainhead">
+            <h4><i class="material-icons backbtn1">arrow_back</i> Send Feedback</h4>
+          </div>
+          <div class="modal-body">
+            <p class="chartpara">Thanks for helping us improve your experience</p>
+            <div class="clearfix"></div>
+
+              <div class="feedbackbtncontainer">
+                <button type="button" class="btn btn100per likebtn">
+                  <img src="../../../assets/img/smile_icon.png"/>
+                  <span>I Like Something</span>
+                  <i class="material-icons">arrow_forward_ios</i>
+                </button>
+
+                 <button type="button" class="btn btn100per unlikebtn">
+                  <img src="../../../assets/img/sad.png"/>
+                  <span>I don't Like Something</span>
+                  <i class="material-icons">arrow_forward_ios</i>
+                 </button>
+
+
+                 <button type="button" class="btn btn100per ideabtn">
+                  <img src="../../../assets/img/bulb.png"/>
+                  <span>I have an idea</span>
+                  <i class="material-icons">arrow_forward_ios</i>
+                 </button>
+
+
+              </div>
+
+          </div>
+    </div>
+    <!-- Tell Us More like -->
+    <div class="modal-content telluslike">
+          <div class="modal-header chartmainhead">
+            <h4><i class="material-icons backbtn2">arrow_back</i> Tell us More</h4>
+          </div>
+          <div class="modal-body">
+          <div class="form-group">
+          <textarea class="form-control" placeholder="What did you like?"></textarea>
+          </div>
+          <div class="form-group text-left">
+          <input type="checkbox" name=""> Include screenshot
+          </div>
+          <div class="form-group text-left">
+            <input id="logo-id" name="logo" type="file" class="form-control">
+          </div>
+          <div class="clearfix"></div>
+          <div class="modal-footer feedbackfooter">
+            <button type="button" class="btn btn-secoundary" data-dismiss="modal">Submit</button>
+          </div>
+
+
+          
+
+          </div>
+    </div>
+    <!-- Tell Us More unlike -->
+    <div class="modal-content tellusunlike">
+          <div class="modal-header chartmainhead">
+            <h4><i class="material-icons backbtn2">arrow_back</i> Tell us More</h4>
+          </div>
+          <div class="modal-body">
+          <div class="form-group">
+          <textarea class="form-control"  placeholder="How can we improve?"></textarea>
+          </div>
+          <div class="form-group text-left">
+          <input type="checkbox" name=""> Include screenshot
+          </div>
+             <div class="fileUpload btn fake-shadow">
+                <span>Add Image</span>
+                <input id="logo-id" name="logo" type="file" class="attachment_upload  form-control">
+              </div>
+          <div class="clearfix"></div>
+          <div class="modal-footer feedbackfooter">
+            <button type="button" class="btn btn-secoundary" data-dismiss="modal">Submit</button>
+          </div>
+
+
+          
+
+          </div>
+    </div>
+    <!-- Tell Us More idea -->
+    <div class="modal-content tellusidea">
+          <div class="modal-header chartmainhead">
+            <h4><i class="material-icons backbtn2">arrow_back</i> Tell us More</h4>
+          </div>
+          <div class="modal-body">
+          <div class="form-group">
+          <textarea class="form-control" placeholder="Share your Ideas"></textarea>
+          </div>
+          <div class="form-group text-left" >
+          <input type="checkbox" name=""> Include screenshot
+          </div>
+          <div class="fileUpload btn fake-shadow">
+               <span>Add Image</span>
+                <input id="logo-id" name="logo" type="file" class="attachment_upload  form-control">
+              </div>
+          <div class="clearfix"></div>
+          <div class="modal-footer feedbackfooter">
+            <button type="button" class="btn btn-secoundary" data-dismiss="modal">Submit</button>
+          </div>
+
+
+          
+
+          </div>
+    </div>
+  </div>
+</div>
+<!--basic-modal-end-->
+
+<!--large-modal-->
+<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel"></h4>
+       
+      </div>
+      <div class="modal-body">
+        <img src="../../assets/img/popup-image2.jpg">
+        <h3>How was your<br>experience with us?</h3>
+        <ul>
+            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Not Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--large-modal-end-->
+
+
+
 <router-outlet></router-outlet>

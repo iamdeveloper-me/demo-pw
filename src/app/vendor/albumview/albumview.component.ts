@@ -21,7 +21,8 @@ export class AlbumviewComponent implements OnInit {
  
     private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
     eventArray:any = [];
-    image;
+    image={ path:""};
+    defaultImage: string = "https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
   ngOnInit() {
 
     let headers = new Headers();
@@ -36,23 +37,14 @@ export class AlbumviewComponent implements OnInit {
     
         console.log(this.eventArray);
         // for (var item of  this.eventArray ) {
-           
-          
-      
-        //         // if(item.albumImages.length == 0)
-        //         // {  this.image = 'https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
-        //         //     alert("empty array"); 
-        //         // }else{  
-        //         //     alert("not empty array");
-        //         //     for (var i of item.albumImages ){
-        //         //         for (var j in item.albumImages ){
-                        
-        //         //         this.image = item.albumImages[j].path;
-        //         //         console.log( this.image); 
-        //         //             }
-        //         //             console.log(i); 
-        //         //         }
-        //         //       }
+        //         if(item.albumImages.length == 0)
+        //         {  
+        //             this.image.path = 'https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
+        //             alert("empty array"); 
+        //         }else{  
+        //             alert("not empty array");
+                   
+        //               }
             
         // }
        })

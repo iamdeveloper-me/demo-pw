@@ -32,6 +32,7 @@ export class BusinessServicesComponent implements OnInit {
   Services = [];
   first_category:any = {};
   categoryserveice = [];
+  User_services = [];
   services_all =[]
   Price = '12$';
   photo_ved = '344$'; photo_off = '45$'; travel = '233$'; payment='24$'; 
@@ -79,6 +80,8 @@ export class BusinessServicesComponent implements OnInit {
   e_lable:string
   f_lable:string
   g_lable:string
+
+  jsonadata:any;
   constructor(public http: Http)
   {
 
@@ -127,7 +130,13 @@ export class BusinessServicesComponent implements OnInit {
 
   });
 
-  this.http.get(this.userservesicege,{headers:headers}).subscribe(data =>{console.log(data.json())});
+  this.http.get(this.userservesicege,{headers:headers}).subscribe(data =>{console.log(data.json())
+        
+   this.User_services = data.json();
+    
+
+
+  });
 
   $.getScript('./assets/js/vertical-timeline.js');
   // $.getScript('./assets/js/profile.js'); 
@@ -165,7 +174,7 @@ export class BusinessServicesComponent implements OnInit {
     this.showcontent =this.readioSelected;
     this.service_data = this.categoryserveice[this.readioSelected];
     this.services_all = this.service_data['services']
-    console.log(    this.service_data);
+    console.log(this.service_data);
     this.costserviceTrue = true;
 
   
@@ -213,8 +222,12 @@ export class BusinessServicesComponent implements OnInit {
     // this.v = this.g['customFieldOptionList']
   }
 
-  checkbox(data){
-    
+  checkbox(l){
+    console.log(l.displayText) 
+    console.log(l.customFieldId) 
+
+    this.final_array.push({customFieldId: l.customFieldId , userValue: l.displayText});
+   
     // if(this.customFieldOptionList.length > 0  ){
     // for (let i in this.customFieldOptionList)
     // {
@@ -238,11 +251,6 @@ export class BusinessServicesComponent implements OnInit {
   serveicedata(service){
     console.log(service.value);
     console.log(service.value.serviceId  );
-   
-   
-     this.final_array.push(service.value);
-     
-  
     console.log( this.final_array);
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
@@ -250,9 +258,16 @@ export class BusinessServicesComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
 
-    
+    // {  servicesId: 1,  
+    //   serviceFields: [ { customFieldId: 28,  
+    //                      userValue: "1000" },   
+    //                     { customFieldId: 29,      
+    //                       userValue: "pickup"    
+    //                     }  ]
+    //                   }
 
-  this.http.post(this.serveicepost,{ ServicesId: service.value.serviceId,ServiceFields: this.final_array},{headers:headers}).subscribe(
+  this.http.post(this.serveicepost,{ ServicesId: service.value.serviceId,
+                                    ServiceFields: this.final_array},{headers:headers}).subscribe(
     data =>{
    
     console.log( data.json())
@@ -312,7 +327,7 @@ export class BusinessServicesComponent implements OnInit {
     this.g = []
     
   }
-
+  showDropDown(){}
 
 }
 

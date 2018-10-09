@@ -9,11 +9,11 @@
            <div class="container-fluid mobilefixedcontainer">
               <div class="col-md-12 card">
                 <div class="col-sm-12 subheadtikwrapper">
-      <a routerLink= "../albumview" class="pull-left iconfloatleft">
-      <i class="material-icons"> arrow_back_ios </i> <span>Portfolio</span>
-      </a>  
+                  <a routerLink= "../albumview" class="pull-left iconfloatleft">
+                  <i class="material-icons"> arrow_back_ios </i> <span>Portfolio</span>
+                  </a>  
   
-  <div class="subheadtik">Portfolio Photo Settings</div>
+                <div class="subheadtik">Portfolio Photo Settings</div>
                 </div> 
                 <table width="100%" class="tablelisttags" cell-spacing="5" cell-padding="5">
                   <tr>
@@ -25,7 +25,18 @@
                   <tr *ngFor="let  data of eventArray;let i=index">
                       <td class="imgboxlist">
                         ALBUM Name :  {{data.albumName}}
-                        <img  src="https://s3.us-east-2.amazonaws.com/prefect-image/detail_slide.jpg">
+                        <div *ngFor="let  image of data.albumImages | slice:0:1 ; let i=index ">   
+                                               
+                            <div >
+                             <img class="img-thumbnail"  alt="Another alt text"  src="{{image.path }}" />
+                            </div> 
+                           
+                         </div>
+
+                         <div *ngIf="data.albumImages?.length ==  0" >
+                                 <img class="img-thumbnail"  alt="Another alt text"  src="https://cdn.onlinewebfonts.com/svg/img_96092.png" />
+                         </div>
+                      
                       </td>
                       <td> 
                         <div class="textboxlist">
@@ -72,24 +83,57 @@
                   </div>
                       <div class="modal-body" style="background-color: white">
                       
-                        <div class="row">
+                        <div class="row" >
                           <div class="col-md-12 padtop20px">
                             <div class="form-group">
                                 <div class="input-effect form-group md-form ">
-                                  <input class="effect-16 validate" type="text"   [(ngModel)] = "albumArray.tags"  name="tags"  id="tags"  required="required">
 
-                                  <!-- [(ngModel)] = "user.businessInfo.address"  -->
-                                  
+                                  <input class="effect-16 validate" 
+                                  type="text"  
+                                  [(ngModel)] = "albumArray.tags"  
+                                  name="tags"  
+                                  id="tags"  
+                                  required="required"> 
+
                                   <label>Tags</label>
                                   <span class="focus-border"></span>
                                 </div>
-                                <input type="hidden" name="id"   [(ngModel)] = "albumArray.albumsId"      />
                                 <div>
                                   <span class="tagstik"> 
                                       {{albumArray.tags}} 
                                     <i class="material-icons">clears</i>
                                   </span>      
                                 </div>
+                                <div class="input-effect form-group md-form ">
+
+                                  <input class="effect-16 validate" 
+                                  type="text"   
+                                  [(ngModel)] = "albumArray.albumName"  
+                                  name="albumName"  
+                                  id="albumName"  
+                                  required="required">
+
+                                  <label>Album Name </label>
+                                  <span class="focus-border"></span>
+                                </div>
+                                <div class="input-effect form-group md-form ">
+
+                                  <input class="effect-16 validate" 
+                                  type="text"   
+                                  [(ngModel)] = "albumArray.colorTags"  
+                                  name="colorTags"  
+                                  id="colorTags"  
+                                  required="required">
+
+                                  <label>Colour Tag </label>
+                                  <span class="focus-border"></span>
+                                </div>
+                              
+                                <input 
+                                type="hidden" 
+                                name="id"   
+                                [(ngModel)] = "albumArray.albumsId" />
+                               
                             </div>
                           </div>
                         </div>
@@ -97,81 +141,93 @@
                           <div class="col-md-12">
                             <div class="form-group">
                                   <label>Color Tags</label>
+                               
                                   <div class="cityscroll22">
                                     <div class="funkyradio">
+                                      
                                       <div class="funkyradio-info">
-                                        <input type="checkbox" name="pink"   [(ngModel)] = "albumArray.colorTags"      />
+
+                                        <input 
+                                        type="checkbox" 
+                                        name="pink" 
+                                        id="pink"   
+                                        ngModel = "pink"    />
+
                                         <label for="pink" class="pinkinput"> 
                                             Pink
                                         </label>
                                       </div>
                                       <div class="funkyradio-info">
-                                        <input type="checkbox" name="red"   [(ngModel)] = "albumArray.colorTags"    />
+                                        <input type="checkbox" name="red"  id="red" ngModel = "pink"   />
                                         <label for="red" class="redinput"> 
                                             Red
                                         </label>
                                       </div>
                                       <div class="funkyradio-info">
-                                        <input type="checkbox" name="orange"   [(ngModel)] = "albumArray.colorTags"   />
+                                        <input type="checkbox" name="orange"  id="orange" ngModel= "orange" />
                                         <label for="orange" class="orangeinput"> 
                                             Orange
                                         </label>
                                       </div>
                                       <div class="funkyradio-info">
-                                        <input type="checkbox" name="yellow"   [(ngModel)] = "albumArray.colorTags"  />
+                                        <input type="checkbox" name="yellow"  id="yellow" ngModel = "yellow" />
                                         <label for="yellow" class="yellowinput"> 
                                             Yellow
                                         </label>
                                       </div>
                                       <div class="funkyradio-info">
-                                        <input type="checkbox" name="green"   [(ngModel)] = "albumArray.colorTags"     />
+                                        <input type="checkbox" name="green" ngModel = "green"  />
                                         <label for="green" class="greeninput">
                                             Green
                                         </label>
                                       </div>
                                       <div class="funkyradio-info">
-                                        <input type="checkbox" name="teal"  [(ngModel)] = "albumArray.colorTags"  />
+                                        <input type="checkbox" name="teal"  id="teal" ngModel= "teal" />
                                         <label for="teal" class="tealinput"> 
                                             Blue
                                         </label>
                                       </div>
                                         <div class="funkyradio-info">
-                                        <input type="checkbox" name="blue"   [(ngModel)] = "albumArray.colorTags"  />
+                                        <input type="checkbox" name="blue"  id="blue"  ngModel= "blue"  />
                                         <label for="blue"  class="blueinput"> 
                                             Blue
                                         </label>
                                       </div>
                                         <div class="funkyradio-info">
-                                        <input type="checkbox" name="purple" id="purple"   [(ngModel)] = "albumArray.colorTags"   name="tags"   />
+                                        <input type="checkbox" name="purple" id="purple"   ngModel= "purple" />
                                         <label for="purple" class="purpleinput"> 
                                             Purple
                                         </label>
                                       </div>
                                         <div class="funkyradio-info">
-                                        <input type="checkbox" name="brown"  [(ngModel)] = "albumArray.colorTags"    name="tags"   />
+                                        <input type="checkbox" name="brown"  id="brown"   ngModel= "brown" />
                                         <label for="brown" class="browninput" > 
                                             Brown
                                         </label>
                                       </div>
                                       <div class="funkyradio-info">
-                                        <input type="checkbox" name="black"    [(ngModel)] = "albumArray.colorTags"    name="tags"  />
+                                        <input type="checkbox" name="black" id="black"  ngModel= "black"  />
                                         <label for="black" class="blackinput">
                                             Black
                                         </label>
                                       </div>
                                       <div class="funkyradio-info">
-                                        <input type="checkbox" name="grey"  [(ngModel)] = "albumArray.colorTags"  name="tags" />
+                                        <input type="checkbox" name="grey" id="grey"  ngModel= "grey"  />
                                         <label for="grey" class="greyinput"> 
                                             Grey
                                         </label>
                                       </div>
                                       <div class="funkyradio-info">
-                                        <input type="checkbox" name="white"   [(ngModel)] = "albumArray.colorTags"    name="tags"  />
+                                        <input type="checkbox" name="white"  id="white"   ngModel= "white"  />
                                         <label for="white" class="whiteinput">
                                             White
                                         </label>
                                       </div>
+                             
+                                      
                                     </div>
+
+                                    
                                   </div>
                             </div>
                           </div>

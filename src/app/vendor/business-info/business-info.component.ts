@@ -336,15 +336,15 @@ findLocation(address) {
     $(".bussinesstab").click(function(){
       $(".bussinesstabbox").show();
       $(".locationtabbox").hide();  
-      $(".bussinesstab").removeClass("selected"); 
-      $(".locationtab").addClass("selected"); 
+      $(".bussinesstab").addClass("selected"); 
+      $(".locationtab").removeClass("selected"); 
     });
     
     $(".locationtab").click(function(){
       $(".bussinesstabbox").hide();
       $(".locationtabbox").show();  
-      $(".bussinesstab").addClass("selected"); 
-      $(".locationtab").removeClass("selected"); 
+      $(".bussinesstab").removeClass("selected"); 
+      $(".locationtab").addClass("selected"); 
     });
 
   

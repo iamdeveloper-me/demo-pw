@@ -36,25 +36,17 @@
                                         alt="Another alt text"> -->
                                         <div *ngFor="let  image of data.albumImages | slice:0:1 ; let i=index ">   
                                                
-                                           <div >
+                                           <div class="imgcontainer" >
                                             <img class="img-thumbnail"  alt="Another alt text"  src="{{image.path }}" />
                                            </div> 
                                           
                                         </div>
 
-                                        <div *ngIf="data.albumImages?.length ==  0" >
-                                                <img class="img-thumbnail"  alt="Another alt text"  src="https://cdn.onlinewebfonts.com/svg/img_96092.png" />
+                                        <div *ngIf="data.albumImages?.length ==  0"  class="imgcontainer">
+                                                <img class="img-thumbnail"  alt="Another alt text"  src="../../../assets/img/no-image.png" />
                                         </div>
-                                            <div class="over_like">
-                                            <div class="text-center">
-                                               <span> Album name :{{data.albumName}} </span> 
-                                            </div>
-                                          
-                                        </div>
-                                        <div class="text-center">
-                                            <span> Colour Tag :{{data.colorTags}} </span> <br/>
-                                            <span> Created Date :{{data.dateAddedOn}} </span> 
-                                        </div>
+                                           
+                                        
                                     </a>
                                     <div class="over_like">
                                         <div class="text-center">

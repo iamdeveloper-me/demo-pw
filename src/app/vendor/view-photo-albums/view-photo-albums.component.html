@@ -9,7 +9,7 @@
       <div class="container-fluid viewallalbums">
         <div class="allport_row">
           <a routerLink="../../albumview" class="leftarrowbacklink"><i class="material-icons"> arrow_back_ios </i>
-            <span class="mob_none"> All Albumss</span>
+            <span class="mob_none"> All Albums  </span>
           </a>
           <div class="createmyalbum">
             <h2>{{albumname}}</h2>
@@ -28,35 +28,58 @@
                 <p class="beach_outdoor"> <span>{{tags}}</span> <span>Outdoor</span> </p>
       
                 <p class="add_photos">
-                    <button  id="Google-function" data-target="#uploadphoto" data-toggle="modal" data-reactid="339" >Add photos</button>
+                    <button  id="Google-function" class="btn" data-target="#uploadphoto" data-toggle="modal" data-reactid="339" >Add photos</button>
                   <!-- <span >Add photos</span>  -->
                 
                 </p>
             </div>     
             <div class="row mar_top_50px">
               <div   class="col-lg-3 col-md-4 col-xs-6 "  *ngFor="let image of myalbumimages; let i=index ">
-                <div class="thumb hovereffect" >
-                      <a class="thumbnail" >
-                              
-                          <img class="img-thumbnail"
-                              src="{{image.path}}"
+                <div class="thumb hovereffect">
+                    <button class="deletebtn" (click)="deleteImage(image,i)">&times;</button>
+                    
+                    <a class="thumbnail" >
+                              <div class="image-div">
+                                 
+                        
+                                  <img class="img-thumbnail" src="{{image.path}}"
                               alt="Another alt text">
+                           
+                            </div>
+                          </a>
                               <div class="over_like">
-                                <div class="">
-                                <a href=""><i class="fa fa-heart"></i> </a>  <span> 25 </span> 
-                                <div class="dropdown gearicon">
-                                  <span class="flo_right" id="Google-function" data-target="#image-gallery" data-toggle="modal" data-reactid="339"> <i class="material-icons">settings </i> </span>
-                                  <ul class="dropdown-menu">
-                                    <li><a href="">Set as Album Cover Image</a></li>
-                                    <li><a href="">Set as Business Cover Image</a></li>
-                                  </ul>
-                                </div>
-                                </div>
+                               <table width="100%">
+                                 <tr>
+                                 <td>
+                                  <span> <i class="fa fa-heart"></i>&nbsp;&nbsp;25</span> 
+                                 </td>
+                                 <td>
+                                    <div class="dropdown gearicon">
+
+                                        <a aria-haspopup="true" 
+                                        class="" 
+                                        id="dropdownBasic3" ngbdropdowntoggle="" 
+                                        aria-expanded="true">
+
+                                        <i class="material-icons">settings </i>
+
+                                        </a>
+                                      
+                                        <div aria-labelledby="dropdownBasic3" ngbdropdownmenu="" class="dropdown-menu" x-placement="bottom-right" class="dropdown-menu">
+                                          <li><a href="">Set as Album Cover Image</a></li>
+                                          <li><a href="">Set as Business Cover Image</a></li>
+                                        </div>
+                                      </div>
+                                 </td>
+                                </tr>
+                               </table>
+                                
+                               
                               </div>
-                      </a>
+                     
                       
                 </div>
-                <button class="btn btn-secondary" (click)="deleteImage(image,i)">Delete</button>
+                
               </div>  
             </div>
              

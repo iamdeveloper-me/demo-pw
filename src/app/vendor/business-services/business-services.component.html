@@ -19,7 +19,7 @@
 							   
 							</div>
 						</div>
-						<div class="card-body"  *ngFor="let mydata of User_services;">
+			
 						
 								<form (ngSubmit)="serveicedata(service)" #service="ngForm" >
 									<div class="card-content selectboxservice text-center"> 
@@ -36,10 +36,8 @@
 																	(change)="selection(data)">
 																<span class="checkmark"></span>
 															</label>
-															{{cat.servicesId}} ======== {{mydata.servicesId}}
-															<div *ngIf="data.servicesId == mydata.servicesId" >
-																	{{cat.serviceName}}
-															</div>
+															
+															
 
 														</div>
 													</div>
@@ -131,24 +129,40 @@
 									<div class="card-content selectboxservice"> 
 									</div>	
 									<button type="submit">submit</button>	
-									<div class="card-content selectboxservice">
-											<h5 class="text-center">Your choosed service</h5>
-											<div class="container">
-													<div class="row">
-														<div class="col-md-3" *ngFor="let services of User_services;let i=index" >
-																
-																{{services}}
-																
-														</div>
-														
-													</div>
-													
-											</div>								
-											<hr class="hr-light">
-										</div>
+									
 								</form>
-							
-						</div>
+								<div class="card-content selectboxservice">
+									<h5 class="text-center">Your choosed service</h5>
+									<div class="container">
+											<div class="row" >
+												<div class="col-md-3" *ngFor="let services of User_services;let i=index" >
+														
+														{{services | json}}
+														
+												
+													<!-- <div  *ngFor="let ser of categoryserveice;let i=index" >
+													
+														<div *ngFor="let serid of ser.services;let i=index" >
+																{{serid.serviceName}} {{serid.servicesId}}
+																
+															<div  	*ngFor="let customfild of serid.customFields;let i=index">
+																    {{customfild.name}}
+																	<div  *ngFor="let list of customfild.customFieldOptionList;let i=index">
+																
+																	         <div *ngIf="list.customFieldId == services.customFieldId" >
+																					{{list | json}}
+																			 </div>
+																	</div>	
+															</div>		
+
+														</div>
+													</div> -->
+											    </div>
+											</div>
+											
+									</div>								
+									<hr class="hr-light">
+								</div>
 					</div>
 				</div>
 			</section>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http,Headers } from '@angular/http';
+
+
 @Component({
   selector: 'app-albumsetting',
   templateUrl: './albumsetting.component.html',
@@ -12,11 +14,25 @@ export class AlbumsettingComponent implements OnInit {
     eventArray:any = {};
     eventArray1:any = {};
     albumArray:any = {};
+    Green = 'green';
+    red = 'red';
+    orange = 'orange';
+    teal = 'teal';
+    blue = 'blue';
+    brown = 'brown';
+    black = 'black';
+    grey = 'grey';
+    white = 'white';
+    pink = 'pink';
+    Yellow = 'Yellow';
+    purple = 'purple';
+    colour:any ; 
   constructor(public http: Http) { }
 
   ngOnInit() {
 
     $.getScript('./assets/js/customizer.js');
+    $.getScript('./assets/js/jscolor.js');
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
    
@@ -85,4 +101,61 @@ export class AlbumsettingComponent implements OnInit {
    console.log(data.json());
  
   },error =>{ console.log(error)});
-  }}
+  }
+
+pinkTag(){
+console.log("pink");
+this.colour = "pink";
+}
+redTag(){
+  console.log("red");
+  this.colour = "red";
+  }
+
+  whiteTag(white){
+    console.log("white");
+    this.colour = "white";
+    }
+
+  greyTag(grey){
+    console.log("grey");
+    this.colour = "grey";
+    }
+
+  blackTag(black){
+    console.log("black");
+    this.colour = "black";
+    }
+  brownTag(brown){
+    console.log("brown");
+    this.colour = "brown";
+    }
+  purpleTag(purple){
+    console.log("purple");
+    this.colour = "purple";
+    }
+  blueTag(blue){
+    console.log("blue");
+    this.colour = "blue";
+    }
+
+  tealTag(teal){
+    console.log("red");
+    this.colour = "red";
+    }
+
+  greenTag(green){
+    console.log("green");
+    this.colour = "green";
+    }
+
+  yellowTag(yellow){
+    console.log("yellow");
+    this.colour = "yellow";
+    }
+
+  orangeTag(orange){
+    console.log("orange");
+    this.colour = "orange";
+    }
+}

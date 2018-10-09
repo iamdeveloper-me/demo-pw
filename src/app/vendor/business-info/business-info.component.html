@@ -12,8 +12,8 @@
                 <li class="card-title locationtab">Location & Contact</li>
             </ul>
 <div class="clearfix"></div>
-            <div class="col-sm-5 col-12 pad375Zero bussinesstabbox" *ngFor="let data of countryArray;let i=index" >
-                    <div class="card heightequal365 margintop0px mobmargintop30px" >
+            <div class="col-sm-5 col-12 pad375Zero locationtabbox" *ngFor="let data of countryArray;let i=index" >
+                   <div class="card heightequal365 margintop0px mobmargintop30px" >
                         <div class="custom-form"  >
                             <div class="col-sm-12 nopadd" *ngIf="data.isPrimary == true">
                                 <div class="card martop10px">
@@ -154,7 +154,7 @@
                         </div>
                     </div>
             </div>
-            <div class="col-sm-7 col-12 mobnopadd padleft0px locationtabbox" (click)="openModel(vendor)">
+            <div class="col-sm-7 col-12 mobnopadd padleft0px bussinesstabbox" (click)="openModel(vendor)">
                     <div class=" mobnopadd padleft0px ">
                         <div class="card heightequal365 margintop0px mobmargintop30px">
                             <div class="card-header">

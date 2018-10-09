@@ -178,9 +178,6 @@ $(".mobileabout").click(function() {
     $('.gallerybox').removeClass('activebuttontab');
 });
 
-
-
-
 $(".overviewbox").click(function() {
     $('html,body').animate({scrollTop: $(".weddingvenue").offset().top-150},'slow');
     $('.overviewbox').addClass('activebuttontab');
@@ -391,7 +388,6 @@ window.onload = function(){
             reader.readAsDataURL(input.files[0]);
         }
     }
-    
     var imageInput = document.querySelector('#logo-id');
     imageInput.onchange=changeEventHandler;
     

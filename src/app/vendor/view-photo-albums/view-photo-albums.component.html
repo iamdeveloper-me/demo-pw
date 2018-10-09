@@ -45,7 +45,7 @@
                                 <div class="">
                                 <a href=""><i class="fa fa-heart"></i> </a>  <span> 25 </span> 
                                 <div class="dropdown gearicon">
-                                  <span class="flo_right" id="Google-function" data-target="#uploadphoto" data-toggle="modal" data-reactid="339"> <i class="material-icons">settings </i> </span>
+                                  <span class="flo_right" id="Google-function" data-target="#image-gallery" data-toggle="modal" data-reactid="339"> <i class="material-icons">settings </i> </span>
                                   <ul class="dropdown-menu">
                                     <li><a href="">Set as Album Cover Image</a></li>
                                     <li><a href="">Set as Business Cover Image</a></li>
@@ -59,31 +59,7 @@
                 <button class="btn btn-secondary" (click)="deleteImage(image,i)">Delete</button>
               </div>  
             </div>
-            <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                          
-                            <div class="modal-body">
-                                    <button type="button" class="close closebtn" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
-                                    </button>
-                                <img id="image-gallery-image" class="img-responsive col-md-12 imgpopup" src="">
-
-                                <div class="nextpre">
-                                        <button type="button" class="btn btn-secondary float-left" id="show-previous-image"><i class="material-icons mar_lef8px">
-                                                arrow_back_ios
-                                                </i>
-                                        </button>
-                
-                                        <button type="button" id="show-next-image" class="btn btn-secondary float-right"><i class="material-icons">
-                                                arrow_forward_ios
-                                                </i>
-                                        </button>
-                                </div>
-                            </div>
-                          
-                        </div>
-                    </div>
-            </div>       
+             
         </div>    	     
       </div>	
     </div> 
@@ -213,3 +189,29 @@
         </div>  
       </div>  
     </div>
+
+    <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            
+              <div class="modal-body">
+                      <button type="button" class="close closebtn" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                      </button>
+                  <img id="image-gallery-image" class="img-responsive col-md-12 imgpopup" src="">
+
+                  <div class="nextpre">
+                          <button type="button" class="btn btn-secondary float-left" id="show-previous-image"><i class="material-icons mar_lef8px">
+                                  arrow_back_ios
+                                  </i>
+                          </button>
+  
+                          <button type="button" id="show-next-image" class="btn btn-secondary float-right"><i class="material-icons">
+                                  arrow_forward_ios
+                                  </i>
+                          </button>
+                  </div>
+              </div>
+            
+          </div>
+      </div>
+    </div>   

@@ -15,6 +15,8 @@ export class AlbumsettingComponent implements OnInit {
   constructor(public http: Http) { }
 
   ngOnInit() {
+
+    $.getScript('./assets/js/customizer.js');
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
    
@@ -40,7 +42,8 @@ export class AlbumsettingComponent implements OnInit {
      
  }
  editform(a){
-    console.log(a.value.id);
+    
+    console.log(a.value);
     let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
               headers.append('Accept', 'application/json')
@@ -49,10 +52,10 @@ export class AlbumsettingComponent implements OnInit {
               
             const  editdata = {
               albumsId: a.value.id,
-              albumName: 'string',
+              albumName: a.value.albumName,
               albumType: 0,
-              tags: 'string',
-              colorTags: 'string'
+              tags: a.value.tags,
+              colorTags: a.value.colorTags
             }
               console.log(editdata)
     this.http.post(this.posturl,editdata,{headers:headers}).subscribe(a =>{

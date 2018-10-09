@@ -40,7 +40,40 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   fileOverAnother(e: any): void {
     this.hasAnotherDropZoneOver = e;
   }
-  constructor(private http: Http ,  private route: ActivatedRoute) { }
+  constructor(private http: Http ,  private route: ActivatedRoute) { 
+    
+  let headers = new Headers();
+  var authToken = localStorage.getItem('userToken');
+  headers.append('Accept', 'application/json')
+  headers.append('Content-Type', 'application/json');
+  headers.append("Authorization",'Bearer '+authToken);
+
+
+  //Album Get
+  this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
+  .subscribe(data =>{
+   this.totalImage =  data.json();
+   console.log(data.json()); 
+   console.log(this.albumid.id); 
+
+   console.log(data.json()); 
+   for (var item of  this.totalImage ) {
+   
+   if(this.albumid.id == item.albumsId)
+    {
+    //    alert("dsf"); 
+     console.log(item);
+    // console.log(item.tags);
+    this.albumname = item.albumName;
+    this.tags = item.tags;
+    this.colourtags = item.colorTags;
+    this.myalbumimages =  item.albumImages;
+     }
+}
+  
+   
+  });
+  }
 
   ngOnInit() {
     $(".gearicon").click(function(){

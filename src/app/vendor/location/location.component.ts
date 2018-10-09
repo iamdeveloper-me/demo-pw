@@ -55,7 +55,7 @@ public subr_name:any;
  m;
  enable = true;
 
- modelfield:any = {
+ modelfield = {
   vendorLocationId: 0,
   title: '',
   countryId: '',
@@ -467,7 +467,7 @@ var postalCode = e.value.postalCode ;
     
         }
         console.log(data)
-        debugger
+       // debugger
         this.http.post(this.urlpost,data,{headers:headers}).subscribe( (data)=> { console.log(data)}
     ,      (responce)=>{ console.log(responce); });
 

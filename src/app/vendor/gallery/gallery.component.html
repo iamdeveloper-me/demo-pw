@@ -7,7 +7,7 @@
     <div class="container-fluid nopadd">                    
       <app-navemenu></app-navemenu>
       <div class="container-fluid mobilefixedcontainer">  
-      
+
           <div  class="photo_gallery">   
               <div class="row firt_row ">   
                   <div class="col-sm-12 mar_bot_30px card martop0px portfolio" >    
@@ -78,7 +78,7 @@
                   <!-- routerLink="../portfolioview " -->
                   <div class="clearfix"></div>
                   <div class="text-center viev_all"> 
-                    <a  class="btn" routerLink="../portfoli" >View All</a> 
+                    <a  class="btn" routerLink="../portfolioview" >View All</a> 
                   </div>
                 </div>
               </div>
@@ -89,33 +89,45 @@
                   <h5 ><i class="material-icons">photo_library</i> MY ALBUM  </h5>
                   <p >Create, label and group your work with albums </p>
                 </div>
-                <div class="row">
-                  <div class="col-md-3 image-div" *ngFor='let album of albumArray | slice:0:4'>
-                    <div  >
-                      <img class="img-thumbnail"
+                <div class="">
+                  <div class="col-md-3 " *ngFor='let album of albumArray | slice:0:4'>
+                    <div class="image-div">
+                      <img class="img-thumbnail imgfull"
                         src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
                         alt="Another alt text">
+
+                        <img class="img-thumbnail imghalf"
+                        src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                        alt="Another alt text">
+
+                        <img class="img-thumbnail imghalf"
+                        src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                        alt="Another alt text">
+                      </div>
                       <div class="over_like">
                         <div class="text-center">
-                          <span><strong>Album name :{{album.albumName}}</strong></span> 
+                          <span><strong>{{album.albumName}}</strong></span> 
                         </div>
                       </div>
-                      <div class="text-center">
+                      <!-- <div class="text-center">
                           <span> Colour Tag : {{album.colorTags }}</span> <br/>
                           <span> tags: {{album.tags}} </span> <br/>
                           <span> Created Date : {{album.dateAddedOn }} </span> 
-                      </div>
-                    </div>
+                      </div> -->
+                  
                   </div>   
                 </div>
+                <div class="clearfix"></div>
                 <!-- routerLink="../albumview" -->
                 <div class="text-center viev_all"> <a class="btn" routerLink="../albumview">View All</a> </div>
               </div> 
           </div> 
 
-          <app-foot></app-foot>
+         
       </div>
+      <app-foot></app-foot>
     </div>
+    
   </div>
 </div>
 

@@ -46,7 +46,9 @@ export class BusinessServicesComponent implements OnInit {
   RoleServiceService:any
   showcontent:boolean=false;
   checkboxarry =[] ;
-  service_data = { categoryName: ''};
+
+  service_data:any = {categoryName:""};
+
   field_length=[]
   customFields=[];
   customFieldOptionList=[];

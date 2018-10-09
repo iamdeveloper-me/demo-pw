@@ -18,6 +18,9 @@
     transition: .5s ease;
     background-color: rgb(87, 88, 88);
   }
+  .imghalf{
+
+  }
 .navbar{
     width: 100%;
     background: rgba(0, 46, 119, 0.99) !important;
@@ -463,6 +466,39 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active{
 .ui-sortable-helper {
     width: 90px !important;
     height: 90px !important;
+}
+.col-md-3 .image-div{
+    width:100%;
+    height:175px;
+}
+
+.img-thumbnail{
+    border-radius: 0px;
+    background: none;
+    padding: 0.5px;
+    border:0px solid #fff;
+}
+.col-md-3 .image-div img.singleimg{
+    object-fit: cover;
+    width: 100%;
+    height:175px;
+}
+
+.col-md-3 .image-div img.imgfull{
+    object-fit: cover;
+    width: 229px;
+    height:100px;
+}
+.col-md-3 .image-div img.imghalf{
+    object-fit: cover;
+    width: 50%;
+    float: left;
+}
+.col-md-3 .image-div img.imghalffull{
+    object-fit: cover;
+    width: 50%;
+    height: 175px;
+    float: left;
 }
 @media (max-width: 1024px) {
 #wrapper.toggled #sidebar-wrapper {

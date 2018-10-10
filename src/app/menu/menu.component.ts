@@ -407,7 +407,7 @@ $(".sendfeedbackbtn").click(function(){
     });
 
 $(".likebtn").click(function(){ 
-  alert("hi")
+  //alert("hi")
         $(".feedbackrate").hide();
         $(".tellusunlike").hide();
         $(".tellusidea").hide();

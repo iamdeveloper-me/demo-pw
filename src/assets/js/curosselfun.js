@@ -153,6 +153,14 @@ $(".tradinghours .showless").click(function() {
 });
 
 // tab desktop
+$(".dealbox").click(function() {
+    $('html,body').animate({scrollTop: $("#deals").offset().top-150},'slow');
+    $('.reviewbox').removeClass('activebuttontab');
+    $('.aboutbox').removeClass('activebuttontab');
+    $('.overviewbox').removeClass('activebuttontab');
+    $('.gallerybox').removeClass('activebuttontab');
+    $('.dealbox').addClass('activebuttontab');
+});
 
 $(".reviewbox").click(function() {
     $('html,body').animate({scrollTop: $("#review").offset().top-150},'slow');
@@ -160,14 +168,15 @@ $(".reviewbox").click(function() {
     $('.aboutbox').removeClass('activebuttontab');
     $('.overviewbox').removeClass('activebuttontab');
     $('.gallerybox').removeClass('activebuttontab');
+    $('.dealbox').removeClass('activebuttontab');
 });
 $(".aboutbox").click(function() {
     $('html,body').animate({scrollTop: $("#about").offset().top-150},'slow');
     $('.aboutbox').addClass('activebuttontab');
-
     $('.reviewbox').removeClass('activebuttontab');
     $('.overviewbox').removeClass('activebuttontab');
     $('.gallerybox').removeClass('activebuttontab');
+    $('.dealbox').removeClass('activebuttontab');
 });
 
 $(".mobileabout").click(function() {
@@ -176,6 +185,7 @@ $(".mobileabout").click(function() {
     $('.reviewbox').removeClass('activebuttontab');
     $('.overviewbox').removeClass('activebuttontab');
     $('.gallerybox').removeClass('activebuttontab');
+    $('.dealbox').removeClass('activebuttontab');
 });
 
 $(".overviewbox").click(function() {
@@ -184,15 +194,16 @@ $(".overviewbox").click(function() {
     $('.reviewbox').removeClass('activebuttontab');
     $('.aboutbox').removeClass('activebuttontab');
     $('.gallerybox').removeClass('activebuttontab');
+    $('.dealbox').removeClass('activebuttontab');
 });
 
 $(".gallerybox").click(function() {
     $('html,body').animate({scrollTop: $(".gallery").offset().top-150},'slow');
     $('.gallerybox').addClass('activebuttontab');
-
     $('.reviewbox').removeClass('activebuttontab');
     $('.aboutbox').removeClass('activebuttontab');
     $('.overviewbox').removeClass('activebuttontab');
+    $('.dealbox').removeClass('activebuttontab');
 });
 
 // tab Mobile
@@ -270,9 +281,10 @@ $(window).scroll(function() {
     var scroll = $(window).scrollTop();
     if(scroll >= 450)  {
         $(".overviewbox").addClass("activebuttontab");
-         $(".aboutbox").removeClass("activebuttontab");
-          $(".gallerybox").removeClass("activebuttontab");
-           $(".reviewbox").removeClass("activebuttontab");
+        $(".aboutbox").removeClass("activebuttontab");
+        $(".gallerybox").removeClass("activebuttontab");
+        $(".reviewbox").removeClass("activebuttontab");
+        $(".dealbox").removeClass("activebuttontab");  
     } 
 });
 $(window).scroll(function() {    
@@ -280,28 +292,41 @@ $(window).scroll(function() {
     if(scroll >= 1160) {
         $(".aboutbox").removeClass("activebuttontab");
         $(".overviewbox").removeClass("activebuttontab");
-         $(".gallerybox").addClass("activebuttontab");
-          $(".reviewbox").removeClass("activebuttontab");
+        $(".gallerybox").addClass("activebuttontab");
+        $(".reviewbox").removeClass("activebuttontab");
+        $(".dealbox").removeClass("activebuttontab");  
     } 
 });
 $(window).scroll(function() {    
     var scroll = $(window).scrollTop();
     if(scroll >= 1560) {
       $(".gallerybox").removeClass("activebuttontab");
-        $(".aboutbox").addClass("activebuttontab");
-        $(".overviewbox").removeClass("activebuttontab");
-        $(".reviewbox").removeClass("activebuttontab");
+      $(".aboutbox").addClass("activebuttontab");
+      $(".overviewbox").removeClass("activebuttontab");
+      $(".reviewbox").removeClass("activebuttontab");
+      $(".dealbox").removeClass("activebuttontab");  
     } 
 }); 
 $(window).scroll(function() {    
     var scroll = $(window).scrollTop();
     if(scroll >= 1820) {
-       $(".reviewbox").addClass("activebuttontab");
-       $(".gallerybox").removeClass("activebuttontab");
-        $(".aboutbox").removeClass("activebuttontab");
-        $(".overviewbox").removeClass("activebuttontab");
+      $(".reviewbox").addClass("activebuttontab");
+      $(".gallerybox").removeClass("activebuttontab");
+      $(".aboutbox").removeClass("activebuttontab");
+      $(".overviewbox").removeClass("activebuttontab");
+      $(".dealbox").removeClass("activebuttontab");  
     } 
 });   
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+    if(scroll >= 2000) {
+      $(".reviewbox").removeClass("activebuttontab");
+      $(".gallerybox").removeClass("activebuttontab");
+      $(".aboutbox").removeClass("activebuttontab");
+      $(".overviewbox").removeClass("activebuttontab");
+      $(".dealbox").addClass("activebuttontab");  
+    } 
+});  
 
 
 
@@ -375,8 +400,6 @@ $(".wedding-icon4").click(function() {
     $('.wedding-icon2').removeClass('btnactive');
     $('.wedding-icon3').removeClass('btnactive');
 });
-
-
 window.onload = function(){
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -395,7 +418,6 @@ window.onload = function(){
         readURL(this);
     }
 };
-
 $(".detailpagecarousel").click(function() {
     $('.detailpagecarousel').addClass('corsellclick');
     $('.imgbannerbox').addClass('corsellclick');
@@ -412,7 +434,6 @@ $(".closepopup").click(function() {
     $('.blackoverlaymain ').hide();
     $('.closepopup').hide();
 });
-
 $(".blackoverlaymain").click(function() {
     $('.detailpagecarousel').removeClass('corsellclick');
     $('.imgbannerbox').removeClass('corsellclick');

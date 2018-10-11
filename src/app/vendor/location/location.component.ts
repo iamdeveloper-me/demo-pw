@@ -34,62 +34,28 @@ interface Location {
 export class LocationComponent implements OnInit {
   country_id:any;
  
-  public c_id:any;
+public c_id:any;
 public country_name:any;
-
 public d_id:any;
 public district_name:any;
-
 public s_id:any;
 public subr_name:any;
+primery = true;
 
   city_id:any;
   sub_id:any;
-    mobile;
+  mobile;
   postalCode;
   city;
   Phone;
   Address;
- data;
- dist_id;
- m;
+  data;
+  dist_id;
+   m;
  enable = true;
 
- modelfield = {
-  vendorLocationId: 0,
-  title: '',
-  countryId: '',
-  vendorId: '',
-  country: {countryId: '', countryName: ''},
-  city:  '',
-  postalCode:  '',
-  address:  '',
-  phone: '',
-  mobile:      '' ,
-  sundayOpen:     '',
-  sundayClose:    '',
-  mondayOpen:     '',
-  mondayClose:    '',
-  tuesdayOpen:    '',
-  tuesdayClose:   '',
-  wednesdayOpen:  '',
-  wednesdayClose: '',
-  thursdayOpen:   '',
-  thursdayClose:  '',
-  fridayOpen:     '',
-  fridayClose:    '',
-  saturdayOpen:   '',
-  saturdayClose:  '',
-  isFridayOpen:   true,
-  isMondayOpen:   true,
-  isPrimary:      true,
-  isSaturdayOpen: true,
-  isSundayOpen:   true,
-  isThursdayOpen: true,
-  isTuesdayOpen:  true,
-  isWednesdayOpen:true,
+ modelfield:any = {mobile:""};
 
-};
  address : any = {};
  obj = [];
 
@@ -236,7 +202,7 @@ public subr_name:any;
     let country = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries");
     country.subscribe(data => { 
       this.countryArray = data.json();  
-      console.log(this.countryArray);
+     // console.log(this.countryArray);
       this.arra = this.countryArray
     })
     this.location.marker.draggable = true;
@@ -292,12 +258,14 @@ $(document).on('click', ".saveall", function() {
         testAnim(anim);
   })
   }
-  openModel(b)
-  {
-    this.modelfield  = b;
-   // this.address  = c;
-  }
-  upForm(info)
+    openModel(b)
+      {  
+        
+        this.modelfield  = b;
+        console.log(this.modelfield);
+         // this.address  = c;
+      }
+    upForm(info)
   {
 
     console.log( this.modelfield );
@@ -400,15 +368,16 @@ $(document).on('click', ".saveall", function() {
     ,      (responce)=>{ console.log(responce); });
        }
    
-cerate(e){
-console.log(e);
+    cerate(e){
+            console.log(e);
 
-var address = e.value.Address ;
-var country = e.value.Country ;
-var Phone = e.value.Phone ;
-var city = e.value.city ;
-var postalCode = e.value.postalCode ;
-
+            var address = e.value.Address ;
+            var country = e.value.Country ;
+            var Phone = e.value.Phone ;
+            var city = e.value.city ;
+            var postalCode = e.value.postalCode ;
+            var prime = e.value.prime;
+            console.log(prime);
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         var countryId = localStorage.getItem('countryid');
@@ -457,7 +426,7 @@ var postalCode = e.value.postalCode ;
           saturdayClose:  '',
           isFridayOpen:   true,
           isMondayOpen:   true,
-          isPrimary:      true,
+          isPrimary:      prime,
           isSaturdayOpen: true,
           isSundayOpen:   true,
           isThursdayOpen: true,
@@ -472,10 +441,8 @@ var postalCode = e.value.postalCode ;
     ,      (responce)=>{ console.log(responce); });
 
 
-}
-
-
-   locationForm(info)
+      }
+    locationForm(info)
    {
  
      console.log(this.modelfield );
@@ -564,10 +531,10 @@ var postalCode = e.value.postalCode ;
        isWednesdayOpen:infoisWednesdayOpen,
      },{headers:headers}).subscribe( (data)=> { console.log(data)}
  ,      (responce)=>{ console.log(responce); });
-    }
-abc(event){
+      }
+    abc(event){
       console.log(event)
-    }
+      }
   
 closeResult: string;
 

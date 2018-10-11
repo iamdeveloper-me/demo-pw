@@ -32,6 +32,7 @@ export class DashboardComponent implements OnInit {
   // Context and manual triggers section
   @ViewChild('x') public tooltip: NgbTooltip;
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
+ 
   vendor: any = {};
 
   public changeGreeting(greeting: any): void {
@@ -70,6 +71,7 @@ export class DashboardComponent implements OnInit {
                   }
                  });
 
+             
           $.getScript('./assets/js/prism.min.js');
           $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
           $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');

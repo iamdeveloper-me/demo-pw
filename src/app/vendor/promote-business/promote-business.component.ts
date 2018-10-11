@@ -1,7 +1,7 @@
 import {Input, Component, OnInit } from '@angular/core';
 import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { Http,Headers } from '@angular/http';
 @Component({
   selector: 'ngbd-modal-content',
   template: `
@@ -31,7 +31,8 @@ export class NgbdpromotbusinessModalContent {
   styleUrls: ['./promote-business.component.scss']
 })
 export class PromoteBusinessComponent implements OnInit {
-
+  private allpromo: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PromoteBusiness/allPromotion';
+  promotion = [];
 //accordian
  acc: any;
   // Prevent panel toggle code
@@ -49,8 +50,17 @@ export class PromoteBusinessComponent implements OnInit {
    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+  
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
 
-
+    this.http.get(this.allpromo,{headers:headers}).subscribe(data =>{ data.json();
+      console.log(data.json());
+      this.promotion = data.json();
+    },error => { console.log(error)});
 
     $(".close").click(function(){
         $(".alert").hide();
@@ -97,7 +107,7 @@ export class PromoteBusinessComponent implements OnInit {
 
   closeResult: string;
 
-constructor(private modalService: NgbModal) { }
+constructor(private modalService: NgbModal ,public http: Http) { }
 
 // Open default modal
 open(content) {

@@ -67,45 +67,44 @@ export class BusinessInfoComponent implements OnInit {
   modelfield: any = {};
   primarylocation:any = {};
   countryArray:string[];
- image:any;
+  imagee:any;
   data: any;
 
   cropperSettings: CropperSettings;
   updatefield =    { 
+                      title: "",
+                      countryId: "",
+                      vendorId: "",
+                      country: {countryId:"",countryName: ""},
+                      city: "",
+                      postalCode: "",
+                      address: "",
+                      phone:  "",
+                      mobile:   "" ,
+                      sundayOpen:    "",
+                      sundayClose:   "",
+                      mondayOpen:     "",
+                      mondayClose:    "",
+                      tuesdayOpen:   "",
+                      tuesdayClose:  "",
+                      wednesdayOpen: "",
+                      wednesdayClose:"",
+                      thursdayOpen:   "",
+                      thursdayClose: "",
+                      fridayOpen:    "",
+                      fridayClose:   "",
+                      saturdayOpen:   "",
+                      saturdayClose: "",
+                      isFridayOpen:   "",
+                      isMondayOpen: "",
+                      isPrimary:      "",
+                      isSaturdayOpen: "",
+                      isSundayOpen:   "",
+                      isThursdayOpen:"",
+                      isTuesdayOpen:  "",
+                      isWednesdayOpen:"",
 
-title: "",
-countryId: "",
-vendorId: "",
-country: {countryId:"",countryName: ""},
-city: "",
-postalCode: "",
-address: "",
-phone:  "",
-mobile:   "" ,
-sundayOpen:    "",
-sundayClose:   "",
-mondayOpen:     "",
-mondayClose:    "",
-tuesdayOpen:   "",
-tuesdayClose:  "",
-wednesdayOpen: "",
-wednesdayClose:"",
-thursdayOpen:   "",
-thursdayClose: "",
-fridayOpen:    "",
-fridayClose:   "",
-saturdayOpen:   "",
-saturdayClose: "",
-isFridayOpen:   "",
-isMondayOpen: "",
-isPrimary:      "",
-isSaturdayOpen: "",
-isSundayOpen:   "",
-isThursdayOpen:"",
-isTuesdayOpen:  "",
-isWednesdayOpen:"",
-
-}
+                      }
 m;
 circleRadius:number = 5000;
 milesToRadius(value) {
@@ -236,11 +235,9 @@ findLocation(address) {
     var that = this;
     
     myReader.onloadend = function (loadEvent: any) {
-      image.src = loadEvent.target.result;
-      that.cropper.setImage(image);
-         console.log(image.src);
-
-       
+         image.src = loadEvent.target.result;
+         that.cropper.setImage(image);
+         console.log(image.src);    
     };
 
     myReader.readAsDataURL(file);
@@ -291,16 +288,16 @@ findLocation(address) {
     })
   
     this.http.get(this.url,{headers:headers}).subscribe(data =>{
-
+    console.log(data.json());
     this.vendor = data.json();
-    this.image = this.vendor.files.path ;
-                  
+    this.imagee = this.vendor.files.path ;
+     console.log(this.imagee);             
     if(!this.vendor.fileId)
                    {
                      alert("ghfgh");
                      console.log(this.vendor.files );
-                     this.image = "https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg";
-                     console.log( this.image);
+                     this.imagee = "https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg";
+                     console.log( this.imagee);
                     }
     this.facebook = data.json().facebookURL ;
 
@@ -427,7 +424,7 @@ findLocation(address) {
                       
     this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
     this.countryArray = data.json() as string[]
-   //  console.log( data.json() as string[] );
+    //  console.log( data.json() as string[] );
     // console.log( data.countryId );
     })
 
@@ -459,10 +456,6 @@ $(document).on('click', ".saveall", function() {
     
   }
 
-
-
-
-  
   phone(){
     $(".mobileid").show(); 
        $(".Trading").hide(); 
@@ -561,17 +554,21 @@ $(document).on('click', ".saveall", function() {
         }
        
 
-        this.http.post(this.uploadimage,formData,{headers:headers}).subscribe( (data)=>{console.log(data.json().filesId);
+        this.http.post(this.uploadimage,formData,{headers:headers}).subscribe( (res)=>{
+          
+       //   console.log(res.json().filesId);
         
           this.http.get(this.url,{headers:headers}).subscribe(data =>{console.log(data.json());
-          
+            console.log(res.json().filesId);
+            this.imagee = data.json().files.path ;
+            console.log(this.imagee);
             let updatebusinessinfo = this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatebusinessinfo",
            {   
               nameOfBusiness: data.json().nameOfBusiness,
               businessDetails: data.json().businessDetails,
               contactPerson: 'scsc',
               // pictureUrl: infopicture,
-              fileId:    data.json().filesId,
+              fileId:    res.json().filesId,
               facebookURL: data.json().facebookURL,
               twitterURL: data.json().twitterURL,
               googleURL:  data.json().googleURL,
@@ -579,21 +576,11 @@ $(document).on('click', ".saveall", function() {
               perfectWeddingURL: data.json().perfectWeddingURL,
             },{headers:headers})
 
-updatebusinessinfo.subscribe((responce)=>{ console.log(responce.status);
-if(responce.status == 200)
-{
-
-alert("photo uploded");
-
-
-}
-});
-   
-          
+              updatebusinessinfo.subscribe((responce)=>{ console.log(responce.status);
+              if(responce.status == 200)
+              { alert("photo uploded");}
+               });
           });
-             
-        
-        
         });
       }
     }
@@ -618,9 +605,13 @@ alert("photo uploded");
             var infoinsta = info.value.instagram;
             var  perfectWeddingsite =   info.value.perfectWedding;
             
-
-          
-              
+            this.vendor.nameOfBusiness = info.value.nameOfBusiness; 
+            this.vendor.businessDetails  = info.value.businessDetails ;
+            this.vendor.facebookURL = info.value.facebook;
+            this.vendor.twitterURL = info.value.twitter;
+            this.vendor.googleURL = info.value.google;
+            this.vendor.instalURL  = info.value.instagram;
+            this.vendor.perfectWeddingURL =  info.value.perfectWedding;
               let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
               headers.append('Accept', 'application/json')

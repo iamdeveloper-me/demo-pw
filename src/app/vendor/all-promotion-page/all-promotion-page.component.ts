@@ -1,6 +1,6 @@
 import { Input, Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { Http,Headers } from '@angular/http';
 @Component({
   selector: 'ngbd-modal-content',
   template: `
@@ -31,7 +31,22 @@ export class NgbdModalContent {
   styleUrls: ['./all-promotion-page.component.scss']
 })
 export class AllPromotionPageComponent implements OnInit {
+
+    private allpromo: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PromoteBusiness/allPromotion';
+    promotion = [];
+    promodetail = {};
   ngOnInit() {
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+  
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+
+    this.http.get(this.allpromo,{headers:headers}).subscribe(data =>{ data.json();
+      console.log(data.json());
+      this.promotion = data.json();
+    },error => { console.log(error)});
 
         function myFunction() {
           var popup = document.getElementById("myPopup");
@@ -42,10 +57,12 @@ export class AllPromotionPageComponent implements OnInit {
 
 closeResult: string;
 
-constructor(private modalService: NgbModal) { }
+constructor(private modalService: NgbModal,public http: Http) { }
 
 // Open default modal
-open(content) {
+open(content,data) {
+    console.log(data);
+    this.promodetail = data; 
     this.modalService.open(content).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
     }, (reason) => {

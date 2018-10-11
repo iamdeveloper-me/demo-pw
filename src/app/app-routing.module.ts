@@ -126,6 +126,8 @@ import { VendorstatsComponent } from './admin/vendorstats/vendorstats.component'
 
 import { AdminuseraccountComponent } from './admin/adminuseraccount/adminuseraccount.component';
 import { AdminsidebarComponent } from './admin/adminsidebar/adminsidebar.component';
+import { PhotogallaryComponent } from './photogallary/photogallary.component';
+import { VediogallaryComponent } from './vediogallary/vediogallary.component';
 
 
 import { UseraccountComponent } from './userpannel/userboard/useraccount/useraccount.component';
@@ -157,6 +159,8 @@ const appRoutes: Routes = [
   { path: 'home/Careers', component:  CareersComponent  },
   { path: 'home/Advertise', component:  AdvertiseComponent },
   { path: 'home/cuplefoot', component:  FootCupleComponent },
+  { path: 'home/Photogallary', component:  PhotogallaryComponent },
+  { path: 'home/Vediogallary', component:  VediogallaryComponent },
 
   { path: 'home/supplierbylocation', component:  SupplierbylocationComponent },
  

@@ -18,14 +18,8 @@ export class DiscountdealsComponent implements OnInit {
 
   private deal: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/createupdatedeals'
   title;
-  createdeal:{
-    dealId: 0,
-    title: "",
-    conditions: "",
-    startDate: "",
-    endDate: "",
-    neverExpire: true
-  };
+  disTitle;
+  createdeal:{dealId: 0,  title: "",  conditions: "",  startDate: "", endDate: "", neverExpire: true};
   updatemydeal:any = {
     title: "",
     conditions: "",
@@ -93,7 +87,7 @@ export class DiscountdealsComponent implements OnInit {
      headers.append("Authorization",'Bearer '+authToken);
      this.http.get(this.discountGet,{headers:headers}).subscribe(data =>{  
        console.log(data.json());
-      this.discount = data.json();
+       this.discount = data.json();
      })
      this.http.get(this.SupplierdiscountGet,{headers:headers}).subscribe(data =>{  
       console.log(data.json());
@@ -112,9 +106,11 @@ export class DiscountdealsComponent implements OnInit {
   }
 
 open(c){console.log(c);}
+
 updatedis(service){
- // console.log(service.value.select);
-  
+  console.log(service.value.select);
+  console.log(service.value.select.title);
+ this.disTitle = service.value.select.title;
 
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
@@ -174,7 +170,9 @@ createdeals(createdeal){
  
 }
 
-openupdatedeal(data){console.log(data);
+openupdatedeal(data){
+  
+  console.log(data);
 
   this.updatemydeal = data ;
 }

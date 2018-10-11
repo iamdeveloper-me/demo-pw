@@ -190,6 +190,8 @@ import { UseraccountComponent } from './userpannel/userboard/useraccount/useracc
 import { ErrorComponent } from './error/error.component';
 import { AdminexpensesComponent } from './admin/adminexpenses/adminexpenses.component';
 import { SupplierbylocationComponent } from './supplierbylocation/supplierbylocation.component';
+import { PhotogallaryComponent } from './photogallary/photogallary.component';
+import { VediogallaryComponent } from './vediogallary/vediogallary.component';
 
 
 //import { VendorComponent } from './dashboard/vendor/vendor.component';
@@ -351,6 +353,8 @@ export function getAuthServiceConfigs() {
         ErrorComponent,
         AdminexpensesComponent,
         SupplierbylocationComponent,
+        PhotogallaryComponent,
+        VediogallaryComponent,
        
         
         

@@ -163,7 +163,7 @@
                             <div class="text-center bg-form col-sm-12 addlocationbox">
                                 <i class="material-icons font80px">  add_location </i>
                                 <div>Have more business branches?</div>
-                                <button data-target="#location" (click)="openModel(data)" data-toggle="modal" type="button" class="martopbot15px borderbtnonly"> Add New Location </button>
+                                <button data-target="#location"  data-toggle="modal" type="button" class="martopbot15px borderbtnonly"> Add New Location </button>
                                 <div>Premium members only.
                                     <a routerLink="../membership" class="bluelink">Upgrade</a>
                                 </div>
@@ -202,8 +202,8 @@
                             </div>
                             <div class="col-sm-10 col-9 nopadd">
                                 <input 
-                                type="number" 
-                                class="inputbottombor" 
+                                 type="number" 
+                                 class="inputbottombor" 
                                  minlength=10 
                                  maxlength=10 
                                  placeholder="000-000-000"
@@ -481,9 +481,6 @@
             </div>
         </form>
       
-      
-      
-      
           <form (ngSubmit)="cerate(add)" #add="ngForm">
               <div class="modal fade" id="location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
@@ -585,11 +582,7 @@
                                 </select>
                                     <span class="focus-border"></span>
                                     </div>
-                                  </div>
-
-                             
-
-
+                              </div>
                               <div class="form-group">
                                 <div class="input-effect form-group md-form">
                                   <input class="effect-16 validate"  [(ngModel)]="Phone" id="Phone" name="Phone">
@@ -597,6 +590,24 @@
                                   <span class="focus-border"></span>
                                 </div>
                               </div>
+                              <div class="form-group">
+                                    <div class="input-effect form-group md-form">
+                                         
+                                        <input 
+                                        type="radio" 
+                                        name="prime" 
+                                        [value]= "true"
+                                        id="prime12"  
+                                        ngModel/>
+                                        <label for="prime12"> Do you want location as Prime ?  </label>
+                                             
+                                       
+                           
+                                     
+                                   
+                                    </div>
+                                  </div>
+
                           </div>
                           <div class="modal-footer">
                               <button type="submit" class="btn bt_blue saveall" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;

@@ -327,18 +327,13 @@ $(window).scroll(function() {
       $(".dealbox").addClass("activebuttontab");  
     } 
 });  
-
-
-
 $(window).scroll(function(){
       if ($(this).scrollTop() > 270) {
           $('.icon-div').addClass('fixedpostioneddesktop');
       } else  {
          $('.icon-div').removeClass('fixedpostioneddesktop');
       }
-  });
-
-
+});
 $(window).scroll(function() {    
     var scroll = $(window).scrollTop();
     if(scroll >= 300) {

@@ -22,7 +22,9 @@ export class DetailpageComponent implements OnInit {
     
           
 
-       
+    $("#Vediogallarypopup").on('hidden.bs.modal', function (e) {
+      $("#Vediogallarypopup iframe").attr("src", $("#Vediogallarypopup iframe").attr("src"));
+    });
 
 
 }

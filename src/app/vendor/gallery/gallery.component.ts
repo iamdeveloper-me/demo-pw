@@ -47,9 +47,6 @@ export class GalleryComponent implements OnInit {
     constructor(public http: Http,private imageservice: ImageuploadService,public HttpClient: HttpClient,public toastr: ToastrService) { }
     ngOnInit() {
 
-
-    
-
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
      
@@ -94,7 +91,7 @@ export class GalleryComponent implements OnInit {
     }
 
 
-    @ViewChild("fileInput") fileInput;
+        @ViewChild("fileInput") fileInput;
 
        addFile(info): void {
         console.log(info);
@@ -134,8 +131,8 @@ export class GalleryComponent implements OnInit {
             albumsId: 0,
             albumName: Album.value.albumName,
             albumType: 0,
-            tags: Album.value.tags,
-            colorTags: Album.value.colorTags
+            tags: "add tags",
+            colorTags: "add colour tags"
           }
           this.http.post(this.url+'api/Albums/createupdatealbum',album,{headers:headers})
             .subscribe(data =>{console.log(data.json())},(error)=>{console.log(error._body);
@@ -174,62 +171,70 @@ export class GalleryComponent implements OnInit {
         }
 
         showport(){
-        alert("dfsdsf");
-        let headers = new Headers();
-        var authToken = localStorage.getItem('userToken');
-       
-        headers.append('Accept', 'application/json')
-        headers.append('Content-Type', 'application/json');
-        headers.append("Authorization",'Bearer '+authToken);
-      //poryfolio get
+                    alert("dfsdsf");
+                    let headers = new Headers();
+                    var authToken = localStorage.getItem('userToken');
+                    
+                    headers.append('Accept', 'application/json')
+                    headers.append('Content-Type', 'application/json');
+                    headers.append("Authorization",'Bearer '+authToken);
+                  //poryfolio get
 
-        this.http.get(this.getportfolio,{headers:headers}).subscribe(res =>{  
-       // console.log(data.json());
-       
-        this.portfolio = res.json();
-        this.portArray = res.json();
-        console.log(this.portArray);
+                    this.http.get(this.getportfolio,{headers:headers}).subscribe(res =>{  
+                    // console.log(data.json());
+                    
+                    this.portfolio = res.json();
+                    this.portArray = res.json();
+                    console.log(this.portArray);
 
-        if(!this.portfolio || this.portfolio.length == 0){
-          console.log("portfolio is  empty ");
-          
-          $('.portfolio2').hide();
-          }
-        else
-        {
-          console.log("portfolio is not empty ");
-          $('.portfolio').hide();
-          }
+                    if(!this.portfolio || this.portfolio.length == 0){
+                      console.log("portfolio is  empty ");
+                      
+                      $('.portfolio2').hide();
+                      }
+                    else
+                    {
+                      console.log("portfolio is not empty ");
+                      $('.portfolio').hide();
+                      }
 
+                    
+                    })
        
-       })
-       
-        }
+                   }
 
         showalbum(){ 
-        
-        let headers = new Headers();
-        var authToken = localStorage.getItem('userToken');
-       
-        headers.append('Accept', 'application/json')
-        headers.append('Content-Type', 'application/json');
-        headers.append("Authorization",'Bearer '+authToken);
-        
-        
-        this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
-        this.eventArray = data.json();
-        this.albumArray = data.json();
-        console.log(this.eventArray);  
-        if(!this.eventArray || this.eventArray.length == 0){
-          console.log("Array is  empty ");
-          $('.album2').hide();
-          
-          }
-        else
-        {
-          console.log("Array is not empty ")
-          $('.album').hide();
-          }
-       })
-        }
+                      
+                      let headers = new Headers();
+                      var authToken = localStorage.getItem('userToken');
+                    
+                      headers.append('Accept', 'application/json')
+                      headers.append('Content-Type', 'application/json');
+                      headers.append("Authorization",'Bearer '+authToken);
+                      
+                      
+                      this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
+                      this.eventArray = data.json();
+                      this.albumArray = data.json() ;
+                     
+                      console.log(this.eventArray);  
+                      if(!this.eventArray || this.eventArray.length == 0){
+                        console.log("Array is  empty ");
+                        $('.album2').hide();
+                        
+                        }
+                      else
+                      {
+                        console.log("Array is not empty ")
+                        $('.album').hide();
+                        }
+              
+              
+
+                      
+                        console.log( this.eventArray );
+                 
+  
+                    })
+                 }
   }

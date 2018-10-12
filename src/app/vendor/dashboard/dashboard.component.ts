@@ -28,11 +28,26 @@ export class DashboardComponent implements OnInit {
   x: any;
   greeting = {};
   name = 'World';
+  total;
+  buinessPhone;
+  businessProfilePic;
+  businessService;
+  coverImage;
+  description;
+  mapSettings;
+  photos;
+
+
+
+tradingName
+
   baseUrl = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
   // Context and manual triggers section
   @ViewChild('x') public tooltip: NgbTooltip;
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
+  private dashboard: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Dashboard/Home'
  
+
   vendor: any = {};
 
   public changeGreeting(greeting: any): void {
@@ -58,7 +73,7 @@ export class DashboardComponent implements OnInit {
         this.http.get(this.url,{headers:headers}).subscribe(
           data =>{ this.vendor = data.json();
                    console.log(this.vendor);
-                   console.log(data.json().pricingPlan.title);
+                   console.log(data.json().vendorId);
                    localStorage.setItem('firstName',data.json().firstName);
                    localStorage.setItem('countryid',data.json().countryId);
                    localStorage.setItem('vendorid',data.json().vendorId);
@@ -71,7 +86,29 @@ export class DashboardComponent implements OnInit {
                   }
                  });
 
-             
+                 this.http.get(this.dashboard,{headers:headers}).subscribe(
+                    data =>{  console.log(data.json().profileCompletion);
+                                  console.log(data.json().profileCompletion.total);
+                    
+                          this.total = data.json().profileCompletion.total;
+                          this.buinessPhone = data.json().profileCompletion.buinessPhone;
+
+                          this.businessProfilePic = data.json().profileCompletion.businessProfilePic;
+
+                          this.businessService = data.json().profileCompletion.businessService;
+ 
+                          this.coverImage = data.json().profileCompletion.coverImage;
+
+                          this.description = data.json().profileCompletion.description;
+
+                          this.mapSettings = data.json().profileCompletion.mapSettings;
+
+                          this.photos = data.json().profileCompletion.photos;
+
+                          this.tradingName = data.json().profileCompletion.tradingName;
+
+                    
+                    } , error=>{console.log(error)});
           $.getScript('./assets/js/prism.min.js');
           $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
           $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');

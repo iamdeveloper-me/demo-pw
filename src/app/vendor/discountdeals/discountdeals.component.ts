@@ -92,6 +92,7 @@ export class DiscountdealsComponent implements OnInit {
      this.http.get(this.SupplierdiscountGet,{headers:headers}).subscribe(data =>{  
       console.log(data.json());
      this.Supplierdiscount = data.json();
+     this.disTitle =   this.Supplierdiscount.title ;
      if(this.Supplierdiscount.length == 0 ){
        alert("dcds");
       this.Supplierdiscount.title = "No Discounts Applied" ;

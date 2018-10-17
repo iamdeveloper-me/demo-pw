@@ -6,164 +6,147 @@
 	<div class="container-fluid nopadd"> 
 		<app-navemenu></app-navemenu>
 		<router-outlet></router-outlet> 
-        <div class="container-fluid mobilefixedcontainer" > 
+        <div class="container-fluid mobilefixedcontainer " > 
 			<section id="user-profile">
 				<div class="col-12 nopadd">
-					<div class="card margintop0px">	
-						<div  class="card-header text-center">					
-							
-							<div  data-toggle="modal" data-target="#service_title">
-							   <div class="subheadtik card-title">{{first_category.categoryName}} , {{service_data.categoryName}}add More ....
-									<span class="glyphicon glyphicon-pencil" (click)="arrayEmpty()"></span>
-							   </div>
-							   
-							</div>
+
+					<div  class="card-header text-center">					
+						<div  data-toggle="modal" data-target="#service_title">
+							<div class="subheadtik card-title">{{first_category.categoryName}} add More  
+								<span class="glyphicon glyphicon-pencil" (click)="arrayEmpty()"></span>
+							</div>	
 						</div>
-						
-								<form (ngSubmit)="serveicedata(service)" #service="ngForm" >
-									<div class="card-content selectboxservice text-center"> 
+					</div>
+					<div class="card margintop0px serveicedata">	
+						<form (ngSubmit)="serveicedata(service)" #service="ngForm" >
+							<div class="card-content selectboxservice text-center"> 
 
-											<h5 class="text-center">Which service do you provide</h5>
-											<div class="container">
-													<div class="row ">
-														<div class="col-md-3" *ngFor="let data of services_all;let a= index">
-															<label class="container1">{{data.serviceName}}
-																	<input name="serviceId"  
-																	type="radio"  
-																	[(ngModel)]="readioSelected_serv" 
-																	[value]= "data.servicesId" 
-																	(change)="selection(data)">
-																<span class="checkmark"></span>
-															</label>
-															
-															
-
-														</div>
-													</div>
-
-
-												</div>
-											<!-- <div >
-												<div class="col-sm-3 col-xs-6" *ngFor="let data of services_all;let a= index">
-													<div>
-														<input name="service"  type="radio"  [(ngModel)]="readioSelected_serv" value= "{{a}}" name="customRadioA" (change)="selection(data)">
-														<label for="checkbox1">{{data.serviceName}}</label>
-													</div>
-												</div>
-												
-											</div> -->
-											<hr class="hr-light">
-									</div>
-									<br>
-									<div class="card-content selectboxservice">
-										<h5 class="text-center">Speciality, Costs of Services $ Experience</h5>
-										<div class="container">
-												<div class="row">
-													<div class="col-md-3" *ngFor="let data of customFields;let i=index" >
-															<label class="labelclick" for="{{data.name}}" onclick="showDropDown()" >
-																<input 
-																name="{{data.name}}"
-																ngModel  
-																type="checkbox" 
-													
-																id="{{data.name}}"
-															
-																	>
-					
-															
-																		{{data.name}}
-																		{{data.customFieldId}}
-
-																		<div class="clearfix"></div>
-
-																		<ul class=" ulbox_text" >
-																				<li  *ngFor="let l of data.customFieldOptionList;let i=index">
-				
-																				<label >
-																					<input 
-																					type="radio" 
-																					ngModel
-																					name="userValue_{{l.customFieldId}}"
-																					[value]= "l.displayText"
-																					id="{{l.customFieldId}}"
-																					(click)="checkbox(l)"
-																					>
-																					<input 
-																					name="customFieldId"
-																					[(ngModel)]="l.customFieldId"  
-																					type="hidden" 
-																						>
-																					{{l.displayText}}
-																				</label>
-																				</li>
-																			</ul>
-															</label> 
-																<!-- <input type="checkbox" value="{{timeslot.id}}" name="{{timeslot.id}}"  [checked]="(facility.timeslotids && (-1 !== facility.timeslotids.indexOf(timeslot.id)) ? 'checked' : '')" (change) ="updateSelectedTimeslots($event)" /> -->
-													</div>
-													
-												</div>
-												
-										</div>								
-										<hr class="hr-light">
-									</div>
-									<div class="card-content selectboxservice"> 
-										<h5 class="text-center">Do you offer packages</h5>
-										<hr class="hr-light">
-										<div class="container">
-												<div class="row">
-														<!-- <div class="col-md-4">
-																<label class="container2">One
-																		<input type="checkbox" checked="checked">
-																		<span class="checkmark2"></span>
-																		</label>
-														</div> -->
-														
-												
-												</div>
-
-
-											</div>
-										
-									</div>
-									<div class="card-content selectboxservice"> 
-									</div>	
-									<button type="submit">submit</button>	
-									
-								</form>
-								<div class="card-content selectboxservice">
-									<h5 class="text-center">Your choosed service</h5>
+									<h5 class="text-center">Which service do you provide</h5>
 									<div class="container">
-											<div class="row" >
-												<div class="col-md-3" *ngFor="let services of User_services;let i=index" >
-														
-														{{services | json}}
-														
-												
-													<!-- <div  *ngFor="let ser of categoryserveice;let i=index" >
+											<div class="row ">
+												<div class="col-md-3" *ngFor="let data of services_all;let a= index">
+													<label class="container1">{{data.serviceName}}
+															<input name="serviceId"  
+															type="radio"  
+															[(ngModel)]="readioSelected_serv" 
+															[value]= "data.servicesId" 
+															(change)="selection(data)">
+														<span class="checkmark"></span>
+													</label>
 													
-														<div *ngFor="let serid of ser.services;let i=index" >
-																{{serid.serviceName}} {{serid.servicesId}}
-																
-															<div  	*ngFor="let customfild of serid.customFields;let i=index">
-																    {{customfild.name}}
-																	<div  *ngFor="let list of customfild.customFieldOptionList;let i=index">
-																
-																	         <div *ngIf="list.customFieldId == services.customFieldId" >
-																					{{list | json}}
-																			 </div>
-																	</div>	
-															</div>		
+													
 
-														</div>
+												</div>
+											</div>
 
-													</div> -->
-											    </div>
+
+										</div>
+									<!-- <div >
+										<div class="col-sm-3 col-xs-6" *ngFor="let data of services_all;let a= index">
+											<div>
+												<input name="service"  type="radio"  [(ngModel)]="readioSelected_serv" value= "{{a}}" name="customRadioA" (change)="selection(data)">
+												<label for="checkbox1">{{data.serviceName}}</label>
+											</div>
+										</div>
+										
+									</div> -->
+									<hr class="hr-light">
+							</div>
+							<br>
+							<div class="card-content selectboxservice">
+								<h5 class="text-center">Speciality, Costs of Services $ Experience</h5>
+								<div class="container">
+										<div class="row">
+											<div class="col-md-3" *ngFor="let data of customFields;let i=index" >
+													<label class="labelclick" for="{{data.name}}" onclick="showDropDown()" >
+														<input 
+														name="{{data.name}}"
+														ngModel  
+														type="checkbox" 
+											
+														id="{{data.name}}"
+													
+															>
+			
+													
+																{{data.name}}
+																{{data.customFieldId}}
+
+																<div class="clearfix"></div>
+
+																<ul class=" ulbox_text" >
+																		<li  *ngFor="let l of data.customFieldOptionList;let i=index">
+		
+																		<label >
+																			<input 
+																			type="radio" 
+																			ngModel
+																			name="userValue_{{l.customFieldId}}"
+																			[value]= "l.displayText"
+																			id="{{l.customFieldId}}"
+																			(click)="checkbox(l)"
+																			>
+																			<input 
+																			name="customFieldId"
+																			[(ngModel)]="l.customFieldId"  
+																			type="hidden" 
+																				>
+																			{{l.displayText}}
+																		</label>
+																		</li>
+																	</ul>
+													</label> 
+														<!-- <input type="checkbox" value="{{timeslot.id}}" name="{{timeslot.id}}"  [checked]="(facility.timeslotids && (-1 !== facility.timeslotids.indexOf(timeslot.id)) ? 'checked' : '')" (change) ="updateSelectedTimeslots($event)" /> -->
 											</div>
 											
-									</div>								
-									<hr class="hr-light">
-								</div>
+										</div>
+										
+								</div>								
+								<hr class="hr-light">
+							</div>
+							<div class="card-content selectboxservice"> 
+								<h5 class="text-center">Do you offer packages</h5>
+								<hr class="hr-light">
+								<div class="container">
+										<div class="row">
+												<!-- <div class="col-md-4">
+														<label class="container2">One
+																<input type="checkbox" checked="checked">
+																<span class="checkmark2"></span>
+																</label>
+												</div> -->
+												
+										
+										</div>
 
+
+									</div>
+								
+							</div>
+							<div class="card-content selectboxservice"> 
+							</div>	
+							<button type="submit" >submit</button>	
+							
+						</form>
+					</div>
+					<div class="card-content margintop0px  service" >
+						<h5 class="text-center">Your choosed service</h5>
+						<div class="container">
+								<div class="row" >
+									<div class="col-md-6" *ngFor="let services of User_services;let i=index" >
+											
+											<!-- {{services | json}} -->
+									<h2> Services no  {{i}}  </h2>		
+									  <strong> Your Services  :</strong> {{services.serviceName}}   <br>
+									  <strong> Your category  :</strong> {{services.categoryName}}  <br>
+                                      <strong> Your Ranges    :</strong> {{services.displayText}}   <br>
+									   
+
+									</div>
+								</div>
+								
+						</div>								
+						<hr class="hr-light">
 					</div>
 				</div>
 			</section>

@@ -36,11 +36,10 @@ export class DashboardComponent implements OnInit {
   description;
   mapSettings;
   photos;
-
-
-
-tradingName
-
+  pricingPlanId;
+  tradingName;
+  test = 12.5;
+  test1 = 0;
   baseUrl = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
   // Context and manual triggers section
   @ViewChild('x') public tooltip: NgbTooltip;
@@ -73,12 +72,14 @@ tradingName
         this.http.get(this.url,{headers:headers}).subscribe(
           data =>{ this.vendor = data.json();
                    console.log(this.vendor);
-                   console.log(data.json().vendorId);
+                   console.log(data.json().vendorCategories[0].categoryId);
+                   localStorage.setItem('categoryid',data.json().vendorCategories[0].categoryId);
                    localStorage.setItem('firstName',data.json().firstName);
                    localStorage.setItem('countryid',data.json().countryId);
                    localStorage.setItem('vendorid',data.json().vendorId);
                    localStorage.setItem('basic-plan',data.json().pricingPlan.pricingPlanId);
-                   localStorage.setItem('categoryid',data.json().vendorCategories[0].categoryId);
+                 
+                   
                    if(!this.vendor.profileImage )
                    {
                    console.log(this.vendor.profileImage);
@@ -88,36 +89,37 @@ tradingName
 
                  this.http.get(this.dashboard,{headers:headers}).subscribe(
                     data =>{  console.log(data.json().profileCompletion);
-                                  console.log(data.json().profileCompletion.total);
+                              console.log(data.json().profileCompletion.total);
                     
                           this.total = data.json().profileCompletion.total;
+
+                          if(this.total == '100')
+                          {alert("profile completed");
+                          
+                          $(".profile").hide();
+                         
+                        } 
                           this.buinessPhone = data.json().profileCompletion.buinessPhone;
-
                           this.businessProfilePic = data.json().profileCompletion.businessProfilePic;
-
                           this.businessService = data.json().profileCompletion.businessService;
- 
                           this.coverImage = data.json().profileCompletion.coverImage;
-
                           this.description = data.json().profileCompletion.description;
-
                           this.mapSettings = data.json().profileCompletion.mapSettings;
-
                           this.photos = data.json().profileCompletion.photos;
-
                           this.tradingName = data.json().profileCompletion.tradingName;
-
-                    
                     } , error=>{console.log(error)});
-          $.getScript('./assets/js/prism.min.js');
-          $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
-          $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
 
-          $.getScript('https://www.jssor.com/script/jssor.slider-27.4.0.min.js');
 
-          $.getScript('./assets/js/owljsor.js');
-          $.getScript('./assets/js/vendorsidebar.js');
-        
+         
+                  $.getScript('./assets/js/prism.min.js');
+                  $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
+                  $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
+
+                  $.getScript('https://www.jssor.com/script/jssor.slider-27.4.0.min.js');
+
+                  $.getScript('./assets/js/owljsor.js');
+                  $.getScript('./assets/js/vendorsidebar.js');
+                
           // 
           function testAnim(x) {
             $('.modal .modal-dialog').addClass('animated');
@@ -212,7 +214,14 @@ tradingName
                   }
               });
           }
-    }
+    
+    
+    
+    
+       
+       
+       
+        }
 
    
 }

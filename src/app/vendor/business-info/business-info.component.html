@@ -545,47 +545,56 @@
         </div>
     </form> 
 
-<form (ngSubmit)="addFile(infoo)" #infoo="ngForm" class="padding-left: 84%">
-    <div class="modal fade" id="imagecrop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal_head text-center">
-            <h4 class="modal-title marbot0px"><strong>Business Profile Image</strong></h4>
-            <p class="marbot0px">Please update Profile Image for your business</p>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <div class="clearfix"></div>
-        </div>
-        <div class="modal-body">
-            <div class="col-sm-12  text-center">
-                <div class="clearfix"></div>
-                <section id="tours">
-                    <div class="col-12 text-center">
-                                <div class="file-upload form-control uploadimgfile">
-                                        <input #fileInput 
-                                            id="custom-input" 
-                                            (change)="fileChangeListener($event)"
-                                            type="file"
-                                            [(ngModel)]="gallery.files" 
-                                            name="image" 
-                                            id="image"/>                                        
-                                        <span class="focus-border"></span>
-                                        <input type="hidden" [(ngModel)]="modelfield">
-                                </div>
-                                <img-cropper #cropper [image]="data" [settings]="cropperSettings" class="imgcrop"></img-cropper>
+    <form (ngSubmit)="addFile(infoo)" #infoo="ngForm" class="padding-left: 84%">
+        <div class="modal fade" id="imagecrop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal_head text-center">
+                        <h4 class="modal-title marbot0px"><strong> Business Profile Image  </strong>  </h4>
+                        <p class="marbot0px">Please update Profile Image for your business</p>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-sm-12  text-center">
                         
-                            <!-- <span class="result" *ngIf="data.image">
-                            <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle"> 
-                            </span>-->
-                            </div>
-                <!-- Cropper Ends -->
-                </section>
+                            <div class="clearfix"></div>
 
-            </div>
-        </div>
-        </div>
+                            <section id="tours">
+
+                        
+                                <div class="col-12 text-center">
+                                    
+                                            <div class="file-upload form-control uploadimgfile">
+                                                    <input #fileInput 
+                                                        id="custom-input" 
+                                                        (change)="fileChangeListener($event)"
+                                                        type="file"
+                                                        [(ngModel)]="gallery.files" 
+                                                        name="image" 
+                                                        id="image"/>                                        
+                                                    <span class="focus-border"></span>
+                                                    <input type="hidden" [(ngModel)]="modelfield">
+                                            </div>
+                                            <img-cropper #cropper [image]="data" [settings]="cropperSettings" class="imgcrop"></img-cropper>
+                                    
+                                        <!-- <span class="result" *ngIf="data.image">
+                                        <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle"> 
+                                        </span>-->
+                                        </div>
+                            <!-- Cropper Ends -->
+                            </section>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn bt_blue"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>    
         </div>    
-    </div>    
-</form> 
+    </form> 
     
     <div class="modal fade" id="googlemap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">

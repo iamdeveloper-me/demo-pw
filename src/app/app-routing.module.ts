@@ -129,7 +129,7 @@ import { AdminsidebarComponent } from './admin/adminsidebar/adminsidebar.compone
 import { PhotogallaryComponent } from './photogallary/photogallary.component';
 import { VediogallaryComponent } from './vediogallary/vediogallary.component';
 
-
+import { PhotogallerydetailComponent } from './photogallerydetail/photogallerydetail.component';
 import { UseraccountComponent } from './userpannel/userboard/useraccount/useraccount.component';
 //import { VendorComponent } from './dashboard/vendor/vendor.component';
 
@@ -164,7 +164,8 @@ const appRoutes: Routes = [
 
   { path: 'home/supplierbylocation', component:  SupplierbylocationComponent },
  
- 
+   { path: 'home/Photogallerydetail', component:  PhotogallerydetailComponent },
+
 
     { path: 'vendor/creatpromo', component:  CreatePromotionComponent  },
     { path: 'vendor/dashboard', component:  DashboardComponent  },

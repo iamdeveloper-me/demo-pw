@@ -212,16 +212,39 @@ float: left;
 height: 34px!important;
 }
 .btnbluecode{
-  border-radius: 0;
-  box-shadow: 0 0 0;
-  padding: 0 10px;
-  height: 33px;
-  background: #36cbf0;
-  color: #fff!important;
-  outline: 0;
+ cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    font-size: 1rem!important;
+    border-radius: 25px!important;
+    padding: 0.65rem 1.9rem!important;
+    transition: .2s ease all;
+    color: white!important;
+    border: none!important;
+    box-shadow: -1px 10px 20px #9BC6FD;
+    background: #52A0FD!important;
+    background: -moz-linear-gradient(left,  #52A0FD 0%, #00C9FB 80%, #00C9FB 100%);
+    background: -webkit-linear-gradient(left,  #52A0FD 0%, #00C9FB 80%, #00C9FB 100%);
+    background: linear-gradient(to right,  #52A0FD 0%, #00C9FB 80%, #00C9FB 100%);
 }
+.btnbluecode:hover{transform: scale(1.03);}
 .btnradius20px{
 border-radius:20px!important;
+}
+.codecontainer .btnbluecode{
+  border-radius:0px!important;
+  padding: 0!important;
+}
+.codecontainer .btnbluecode:hover , .codecontainer .btnbluecode:active {
+  border-radius:0px!important;
+  padding: 0!important;
+  color: white!important;
+    border: none!important;
+    box-shadow: -1px 10px 20px #9BC6FD;
+    background: #52A0FD!important;
+     transform: translateY(3px) scale(.97);
 }
 .boxcolumn table{
 margin-bottom:0px;
@@ -259,7 +282,7 @@ margin-bottom:15px!important;
   padding:10px 15px 0px 15px;
   height:100%;
   margin-bottom:0px;
-}
+}/*
 .tableless100 table tr th{
 display:none;
 }
@@ -277,7 +300,7 @@ float:left;
 display:block!important;
 width:20%!important;
 float:left;
-}
+}*/
 .boxcolumn table{
 margin-bottom:10px;
 }
@@ -314,12 +337,9 @@ float: left;
 display: inline-block;
 margin: 15px 0px 0px 10px;
 }
-
-
 .vouchercodeinput {
 max-width:150px;
 }
-
 .codecontainermobile{
 float:right;
 width:230px;

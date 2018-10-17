@@ -192,6 +192,7 @@ import { AdminexpensesComponent } from './admin/adminexpenses/adminexpenses.comp
 import { SupplierbylocationComponent } from './supplierbylocation/supplierbylocation.component';
 import { PhotogallaryComponent } from './photogallary/photogallary.component';
 import { VediogallaryComponent } from './vediogallary/vediogallary.component';
+import { PhotogallerydetailComponent } from './photogallerydetail/photogallerydetail.component';
 
 
 //import { VendorComponent } from './dashboard/vendor/vendor.component';
@@ -355,6 +356,7 @@ export function getAuthServiceConfigs() {
         SupplierbylocationComponent,
         PhotogallaryComponent,
         VediogallaryComponent,
+        PhotogallerydetailComponent,
        
         
         

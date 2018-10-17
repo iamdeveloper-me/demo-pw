@@ -21,15 +21,15 @@
     <button class="closepopup"><i class="material-icons">clear</i></button>
         <div id="detailpagecarousel" class="owl-carousel detailpagecarousel owl-loaded owl-drag">
           <div class="item"> 
-             <a>
-            <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> 
-            </a>
-            <div class="namecontainer">Album Name</div>
-            <div class="numcontainer">15/20</div>
-            <div class="linkcontainer">
-              <button><i class="material-icons">favorite_border</i></button>
-              <button><i class="material-icons">share</i></button>
-            </div>
+              <a>
+                <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> 
+              </a>
+              <div class="namecontainer">Album Name</div>
+              <div class="numcontainer">15/20</div>
+              <div class="linkcontainer">
+                <button><i class="material-icons">favorite_border</i></button>
+                <button><i class="material-icons">share</i></button>
+              </div>
           </div>
           <div class="item"> 
             <a>
@@ -332,16 +332,13 @@
        <div class="vp_services_txt_seeMore marriager_text "> <a href="#"> See More </a></div>
       </div>
     </div>
-    
-
-
     <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection gallery">
         <div class="large_subtext"> 
         Portfolio & Albums 
         <span>(112 Photos)</span> 
         <div class="clearfix"></div>
           <div class="container row martop15px">
-            <div class="col-6 col-sm-3">
+            <div class="col-6 col-sm-3" data-target="#albumgallarypopup" data-toggle="modal">
               <div class="thumbnail text-center">
                <img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
                <div>
@@ -351,7 +348,7 @@
                </div>
              </div>
             </div>
-            <div class="col-6 col-sm-3">
+            <div class="col-6 col-sm-3" data-target="#albumgallarypopup" data-toggle="modal">
               <div class="thumbnail text-center">
                <img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
                <div>
@@ -361,7 +358,7 @@
                </div>
              </div>
             </div>
-            <div class="col-6 col-sm-3">
+            <div class="col-6 col-sm-3" data-target="#albumgallarypopup" data-toggle="modal">
               <div class="thumbnail text-center">
                <img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
                <div>
@@ -371,7 +368,7 @@
                </div>
              </div>
             </div>
-            <div class="col-6 col-sm-3">
+            <div class="col-6 col-sm-3" data-target="#albumgallarypopup" data-toggle="modal">
               <div class="thumbnail text-center">
                <img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
                <div>
@@ -1142,6 +1139,49 @@
       </div>
 
 
+
+
+
+<div class="modal fade" id="albumgallarypopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                      <h4 class="modal-title">My Portfolio</h4>
+                       <button type="button" class="btn btn-warning btnradius50per whitetext" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="col-sm-12">                    
+                    <div id="albumcarousel" class="owl-carousel owl-loaded owl-drag">
+                              <div class="item"> 
+                                  <a>
+                                    <img class="owl-lazy" data-src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt=""></a>
+                                  <div class="linkcontainer">
+                                    <button><i class="material-icons">bookmark_border</i></button>
+                                    <button><i class="material-icons">share</i></button>
+                                  </div>
+                              </div>
+                               <div class="item"> 
+                                  <a>
+                                    <img class="owl-lazy" data-src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt=""></a>
+                                  <div class="linkcontainer">
+                                    <button><i class="material-icons">bookmark_border</i></button>
+                                    <button><i class="material-icons">share</i></button>
+                                  </div>
+                              </div>
+                                <div class="item"> 
+                                  <a>
+                                    <img class="owl-lazy" data-src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt=""></a>
+                                  <div class="linkcontainer">
+                                    <button><i class="material-icons">bookmark_border</i></button>
+                                    <button><i class="material-icons">share</i></button>
+                                  </div>
+                              </div>
+                    </div>        
+                    <div class="clearfix"></div>
+                    
+                  </div>
+              </div>
+  </div>
+</div>
 
 <app-foot></app-foot>
 </div>

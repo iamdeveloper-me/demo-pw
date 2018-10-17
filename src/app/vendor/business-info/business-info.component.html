@@ -307,8 +307,8 @@
                         </div>
                     </div>
                     <div class="modal-footer text-center">
-                        <button type="submit" class="btn btn-secondary btn-raised descsave saveall"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-                        <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-secondary btn-raised descsave newbtn">Save</button>&nbsp;
+                        <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -343,8 +343,8 @@
                         </div>
                     </div>
                     <div class="modal-footer text-center">
-                        <button type="submit" class="btn btn-secondary btn-raised namesave saveall">Save</button> 
-                        <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn namesave newbtn">Save</button> 
+                        <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -380,8 +380,8 @@
                         </div>
                     </div>
                     <div class="modal-footer text-center marTop50px">
-                        <button type="submit" class="btn btn-secondary btn-raised saveall">Save</button> 
-                        <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-secondary newbtn">Save</button> 
+                        <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -414,9 +414,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="foot_div text-center">
-                        <button type="submit" class="btn btn-secondary btn-raised saveall" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-                        <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+                    <div class="modal-footer text-center marTop50px">
+                        <button type="submit" class="btn newbtn">Save</button>&nbsp;
+                        <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">CANCEL</button>
                     </div>
                 </div>
             </div>
@@ -451,9 +451,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="foot_div text-center">
-                        <button type="submit" class="btn bt_blue saveall" >SAVE</button> &nbsp;
-                        <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+                    <div class="modal-footer text-center marTop50px">
+                        <button type="submit" class="btn newbtn">SAVE</button> &nbsp;
+                        <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">CANCEL</button>
                     </div>
                 </div>
             </div>
@@ -487,9 +487,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="foot_div text-center">
-                    <button type="submit" class="btn bt_blue saveall" >SAVE</button> &nbsp;
-                    <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+               <div class="modal-footer text-center marTop50px">
+                    <button type="submit" class="btn newbtn" >SAVE</button> &nbsp;
+                    <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">CANCEL</button>
                 </div>
             </div>
             </div>
@@ -524,9 +524,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="foot_div text-center">
-                    <button type="submit" class="btn btn-secondary btn-raised saveall" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-                    <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+                <div class="modal-footer text-center marTop50px">
+                    <button type="submit" class="btn newbtn" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+                    <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">CANCEL</button>
                 </div>
                 <div class="col-sm-12 mob_margin_30px">
                     <div class="card col-sm-12 notebox text-center">
@@ -550,20 +550,16 @@
         <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal_head text-center">
-            <h4 class="modal-title marbot0px"><strong> Business Profile Image  </strong>  </h4>
+            <h4 class="modal-title marbot0px"><strong>Business Profile Image</strong></h4>
             <p class="marbot0px">Please update Profile Image for your business</p>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <div class="clearfix"></div>
         </div>
         <div class="modal-body">
             <div class="col-sm-12  text-center">
-            
                 <div class="clearfix"></div>
-
                 <section id="tours">
-            
                     <div class="col-12 text-center">
-                        
                                 <div class="file-upload form-control uploadimgfile">
                                         <input #fileInput 
                                             id="custom-input" 
@@ -650,8 +646,8 @@
                     </div>
                 </div>
                 <div class="modal-footer text-center">
-                    <button type="submit" class="btn bt_blue"    (click)='primelocation(location)' >SAVE</button> &nbsp;
-                    <button type="button" class="btn btn_inherit" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn newbtn" (click)='primelocation(location)' >SAVE</button> &nbsp;
+                    <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -1358,9 +1354,9 @@
                 </div>
                 <div class="modal-content">    
                     <div class="modal-footer text-center">
-                            <button type="submit" class="btn bt_blue"  ><i class="glyphicon glyphicon-ok" > </i> Save</button>&nbsp;
+                            <button type="submit" class="btn newbtn"><i class="glyphicon glyphicon-ok" > </i> Save</button>&nbsp;
     
-                            <button type="button" class="btn btn_inherit" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Close</button>
                     </div>
                 </div>    
             </div>

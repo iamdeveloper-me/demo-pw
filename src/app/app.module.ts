@@ -188,11 +188,16 @@ import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
 
 import { UseraccountComponent } from './userpannel/userboard/useraccount/useraccount.component';
 import { ErrorComponent } from './error/error.component';
+
 import { AdminexpensesComponent } from './admin/adminexpenses/adminexpenses.component';
 import { SupplierbylocationComponent } from './supplierbylocation/supplierbylocation.component';
 import { PhotogallaryComponent } from './photogallary/photogallary.component';
 import { VediogallaryComponent } from './vediogallary/vediogallary.component';
+import { SuccessComponent } from './vendor/success/success.component';
+import { FailureComponent } from './vendor/failure/failure.component';
 
+
+import { PhotogallerydetailComponent } from './photogallerydetail/photogallerydetail.component';
 
 //import { VendorComponent } from './dashboard/vendor/vendor.component';
 
@@ -355,6 +360,11 @@ export function getAuthServiceConfigs() {
         SupplierbylocationComponent,
         PhotogallaryComponent,
         VediogallaryComponent,
+        PhotogallerydetailComponent,
+
+        SuccessComponent,
+        FailureComponent,
+
        
         
         

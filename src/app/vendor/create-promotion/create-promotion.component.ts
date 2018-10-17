@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-promotion',
   templateUrl: './create-promotion.component.html',
@@ -8,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CreatePromotionComponent implements OnInit {
 
-  constructor(public http: Http,public toastr: ToastrService) { }
+  constructor(public http: Http,public toastr: ToastrService,private router: Router) { }
   private createpromo: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PromoteBusiness/saveadlog';
   code = {voucherCode: ""}
   private allpromo: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PromoteBusiness/allPromotion';
@@ -83,6 +84,10 @@ export class CreatePromotionComponent implements OnInit {
               console.log(promoData)
     this.http.post(this.createpromo,promoData,{headers:headers}).subscribe(data =>{
     console.log(data.json());
+
+     
+    this.router.navigate([]).then(result => {  window.open(data.json().url, '_blank'); });
+    
     this.toastr.success( data.json().message);
 
     })

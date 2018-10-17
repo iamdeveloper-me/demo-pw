@@ -54,33 +54,35 @@
           <div class="col-sm-8 col-12 boxcolumn paddbottomfixed">
             <div class="card tableless100">
                 <h1>Pick the period you want to promote your business</h1>
-              <table _ngcontent-c5="" class="table table-striped">
-                    <thead _ngcontent-c5="">
-                      <tr _ngcontent-c5="">
-                         <th _ngcontent-c5="">#weekNo</th>
-                        <th _ngcontent-c5="" align="center">Month</th>
-                        <!-- <th _ngcontent-c5="">Year</th> -->
-                        <th _ngcontent-c5="">Period</th>
-                        <th _ngcontent-c5="" align="center">Availability</th>
-                        <th _ngcontent-c5="">cost</th>
-                        <th _ngcontent-c5="" class="text-center">Select</th>
-                      </tr>
-                    </thead>
-                    <tbody _ngcontent-c5="">
-                      <tr _ngcontent-c5="" *ngFor="let list of data.adAvailableSlots;let i=index ">
-                         <th class="serialcolum" scope="row">{{list.weekNo}}</th> 
-                        <td class="monthcolumn">{{list.month}}</td>
-                        <!-- <td>{{list.year }}</td> -->
-                        <td>{{list.week }}</td>
-                        <td align="center">{{list.availability }}</td>
-                        <td>{{list.cost }}</td>
-                        <td align="center">
-                          <button class="btn btnbluecode btnradius20px" type="submit" (click)= "package(list)" >Add to Cart </button>
-                        </td>
-                      </tr>
-                  
-                    </tbody>
-              </table>
+                <div class="table-responsive">
+                  <table _ngcontent-c5="" class="table table-striped">
+                        <thead _ngcontent-c5="">
+                          <tr _ngcontent-c5="">
+                             <th _ngcontent-c5="">#weekNo</th>
+                            <th _ngcontent-c5="" align="center">Month</th>
+                            <!-- <th _ngcontent-c5="">Year</th> -->
+                            <th _ngcontent-c5="">Period</th>
+                            <th _ngcontent-c5="" align="center">Availability</th>
+                            <th _ngcontent-c5="">cost</th>
+                            <th _ngcontent-c5="" class="text-center">Select</th>
+                          </tr>
+                        </thead>
+                        <tbody _ngcontent-c5="">
+                          <tr _ngcontent-c5="" *ngFor="let list of data.adAvailableSlots;let i=index ">
+                             <th class="serialcolum" scope="row">{{list.weekNo}}</th> 
+                            <td class="monthcolumn">{{list.month}}</td>
+                            <!-- <td>{{list.year }}</td> -->
+                            <td>{{list.week }}</td>
+                            <td align="center">{{list.availability }}</td>
+                            <td>{{list.cost }}</td>
+                            <td align="center">
+                              <button class="btn btnbluecode btnradius20px" type="submit" (click)= "package(list)" >Add to Cart </button>
+                            </td>
+                          </tr>
+                      
+                        </tbody>
+                  </table>
+              </div>
             </div>
           </div>
           <div class="col-sm-4 col-12 boxcolumn mobilefixedcart">

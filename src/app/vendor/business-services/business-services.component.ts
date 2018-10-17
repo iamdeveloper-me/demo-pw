@@ -47,7 +47,7 @@ export class BusinessServicesComponent implements OnInit {
   showcontent:boolean=false;
   checkboxarry =[] ;
 
-  service_data:any = {categoryName:""};
+  service_data:any = {categoryName:"category"};
 
   field_length=[]
   customFields=[];
@@ -90,97 +90,69 @@ export class BusinessServicesComponent implements OnInit {
     this.data = {};
   
   }  
- 
+
+  ngOnInit() {  
+            
+              $(".serveicedata").hide();
+              $(".service").show();
+              $.getScript('./assets/js/vertical-timeline.js');
+              $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
+              $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
+              $.getScript('./assets/js/vendorsidebar.js');
+
+              $(document).on('click', ".saveall", function() {
+                  $(this).parents('.modal').css("display", "none");
+                  $(this).parents('.modal').removeClass("show");
+                  $('.modal-backdrop').hide();
+                  $('.modal-backdrop').removeClass("fade");
+                  $('.modal-backdrop').removeClass("show");
+                  $('body').removeClass("modal-open");
+                })
+
+          let headers = new Headers();
+          var authToken = localStorage.getItem('userToken');
+          var categoryid = localStorage.getItem('categoryid');
+          console.log(categoryid);
+          headers.append('Accept', 'application/json')
+          headers.append('Content-Type', 'application/json');
+          headers.append("Authorization",'Bearer '+authToken);
+
+
+          this.http.get(this.userservesicege,{headers:headers}).subscribe(data =>{console.log(data.json())
+            this.User_services = data.json();
+          });
+
+          this.http.get(this.serveiceget,{headers:headers}).subscribe(data =>{
+            this.categoryserveice = data.json() as string[]
+            console.log( this.categoryserveice);
+            for(var i = 0; i < this.categoryserveice.length; i++){
+              this.min = this.categoryserveice[i]; 
+              if(this.min.categoryId == categoryid )
+              { //alert("dfdf");
+              this.first_category = this.min;
+              this.service_data = this.categoryserveice[i];
+              this.services_all = this.service_data['services']
+              this.costserviceTrue = true;
+              }
+            }
+          });
 
 
 
-
-  ngOnInit() {
-
-    
-    $('.field').hide();
-
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    var categoryid = localStorage.getItem('categoryid');
-    console.log(categoryid);
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization",'Bearer '+authToken);
-
-
-
-  this.http.get(this.serveiceget,{headers:headers}).subscribe(data =>{
-    
-    this.categoryserveice = data.json() as string[]
-
-    console.log( this.categoryserveice);
-    for(var i = 0; i < this.categoryserveice.length; i++){
-      this.min = this.categoryserveice[i]; 
-      if(this.min.categoryId == categoryid )
-      { //alert("dfdf");
-      this.first_category = this.min;
-      this.service_data = this.categoryserveice[i];
-      this.services_all = this.service_data['services']
-       this.costserviceTrue = true;
-      }
-    }
-    // debugger
-   // console.log(this.categoryserveice.find(e => e.foo === categoryid))
-
-    
-
-  });
-
-  this.http.get(this.userservesicege,{headers:headers}).subscribe(data =>{console.log(data.json())
-        
-   this.User_services = data.json();
-    
-
-
-  });
-
-  $.getScript('./assets/js/vertical-timeline.js');
-  // $.getScript('./assets/js/profile.js'); 
-  $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
-  $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
-  $.getScript('./assets/js/vendorsidebar.js');
-
-
-
-   $(document).on('click', ".saveall", function() {
-      //alert("hi")
-      // $(this).parents('.modal').modal('toggle');
-      // $(this).parents('.modal').removeClass('show');
-      // $(this).parents('.modal').modal('hide');
-      $(this).parents('.modal').css("display", "none");
-      $(this).parents('.modal').removeClass("show");
-      $('.modal-backdrop').hide();
-      $('.modal-backdrop').removeClass("fade");
-      $('.modal-backdrop').removeClass("show");
-      $('body').removeClass("modal-open");
-
-
-
-    })
-
-
-   
-
+       
   }
   onSelectionChange(entry){
     this.selectedEntry = entry;
     console.log(this.selectedEntry)
   }
   showContent(){
+    $(".service").hide();
+    $(".serveicedata").show();
     this.showcontent =this.readioSelected;
     this.service_data = this.categoryserveice[this.readioSelected];
     this.services_all = this.service_data['services']
     console.log(this.service_data);
     this.costserviceTrue = true;
-
-  
- 
   }
   
   serv_all(data){
@@ -225,27 +197,10 @@ export class BusinessServicesComponent implements OnInit {
   }
 
   checkbox(l){
-    console.log(l.displayText) 
+    console.log(l.key) 
     console.log(l.customFieldId) 
 
-    this.final_array.push({customFieldId: l.customFieldId , userValue: l.displayText});
-   
-    // if(this.customFieldOptionList.length > 0  ){
-    // for (let i in this.customFieldOptionList)
-    // {
-    // //  alert("qqqqf"+i);
-    //   if(this.customFieldOptionList[i].customFieldId == data.customFieldId)
-    //     {
-    //   //  alert("dff"+this.customFieldOptionList[i].customFieldId+"="+data.customFieldId);
-    //     this.customFieldOptionList[i].splice(i, 1);
-    //     const index = this.customFieldOptionList.indexOf(i);
-    //     this.customFieldOptionList.splice(index, 1);
-    //     console.log(this.customFieldOptionList)
-    //     }
-    //   }
-      
-    // }
-    // this.customFieldOptionList.push(data);
+    this.final_array.push({customFieldId: l.customFieldId , userValue: l.key});
 
 
   }
@@ -254,49 +209,30 @@ export class BusinessServicesComponent implements OnInit {
     console.log(service.value);
     console.log(service.value.serviceId  );
     console.log( this.final_array);
+   
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
 
-    // {  servicesId: 1,  
-    //   serviceFields: [ { customFieldId: 28,  
-    //                      userValue: "1000" },   
-    //                     { customFieldId: 29,      
-    //                       userValue: "pickup"    
-    //                     }  ]
-    //                   }
+     this.http.post(this.serveicepost,{ 
+                                        ServicesId: service.value.serviceId,
+                                        ServiceFields: this.final_array
+                                   },
+            {headers:headers}).subscribe(data =>{console.log( data.json()) 
+              this.ngOnInit();
+              $(".service").show();
+              $(".serveicedata").hide();
+            
+            
+            },error => {console.log(error)});
+           
+          }
 
-  this.http.post(this.serveicepost,{ ServicesId: service.value.serviceId,
-                                    ServiceFields: this.final_array},{headers:headers}).subscribe(
-    data =>{
-   
-    console.log( data.json())
-  },error => {console.log(error)});
-  }
-  // option_one(){
-  //   this.optionone = !this.optionone;
-  // }
-  // option_two(){
-  //   this.optiontwo = !this.optiontwo;
-  // }
-  // option_three(){
-  //   this.optionthree = !this.optionthree;
-  // }
-  // option_four(){
-  //   this.optionfour = !this.optionfour;
-  // }
-  // option_five(){
-  //   this.optionfive = !this.optionfive;
-  // }
-  // option_six(){
-  //   this.optionsix = !this.optionsix;
-  // }
-  // option_seven(){
-  //   this.optionseven = !this.optionseven;
-  // }
   arrayEmpty(){
+
+  
     this.services_all = []
     this.costserviceTrue = false
 
@@ -329,6 +265,8 @@ export class BusinessServicesComponent implements OnInit {
     this.g = []
     
   }
+
+
   showDropDown(){}
 
 }

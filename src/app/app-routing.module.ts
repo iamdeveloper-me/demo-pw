@@ -128,8 +128,10 @@ import { AdminuseraccountComponent } from './admin/adminuseraccount/adminuseracc
 import { AdminsidebarComponent } from './admin/adminsidebar/adminsidebar.component';
 import { PhotogallaryComponent } from './photogallary/photogallary.component';
 import { VediogallaryComponent } from './vediogallary/vediogallary.component';
+import { SuccessComponent } from './vendor/success/success.component';
+import { FailureComponent } from './vendor/failure/failure.component';
 
-
+import { PhotogallerydetailComponent } from './photogallerydetail/photogallerydetail.component';
 import { UseraccountComponent } from './userpannel/userboard/useraccount/useraccount.component';
 //import { VendorComponent } from './dashboard/vendor/vendor.component';
 
@@ -164,7 +166,8 @@ const appRoutes: Routes = [
 
   { path: 'home/supplierbylocation', component:  SupplierbylocationComponent },
  
- 
+   { path: 'home/Photogallerydetail', component:  PhotogallerydetailComponent },
+
 
     { path: 'vendor/creatpromo', component:  CreatePromotionComponent  },
     { path: 'vendor/dashboard', component:  DashboardComponent  },
@@ -209,6 +212,9 @@ const appRoutes: Routes = [
     { path: 'vendor/audience', component:  PromotionAudienceComponent},
     { path: 'vendor/deals', component:  PromotionDealsComponent},
     { path: 'vendor/homepage', component:  PromotionHomepageComponent},
+
+    { path: 'vendor/Success', component:  SuccessComponent},
+    { path: 'vendor/Failure', component:  FailureComponent},
 
   
 

@@ -128,6 +128,8 @@ import { AdminuseraccountComponent } from './admin/adminuseraccount/adminuseracc
 import { AdminsidebarComponent } from './admin/adminsidebar/adminsidebar.component';
 import { PhotogallaryComponent } from './photogallary/photogallary.component';
 import { VediogallaryComponent } from './vediogallary/vediogallary.component';
+import { SuccessComponent } from './vendor/success/success.component';
+import { FailureComponent } from './vendor/failure/failure.component';
 
 
 import { UseraccountComponent } from './userpannel/userboard/useraccount/useraccount.component';
@@ -209,6 +211,9 @@ const appRoutes: Routes = [
     { path: 'vendor/audience', component:  PromotionAudienceComponent},
     { path: 'vendor/deals', component:  PromotionDealsComponent},
     { path: 'vendor/homepage', component:  PromotionHomepageComponent},
+
+    { path: 'vendor/Success', component:  SuccessComponent},
+    { path: 'vendor/Failure', component:  FailureComponent},
 
   
 

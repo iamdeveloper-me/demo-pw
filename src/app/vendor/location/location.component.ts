@@ -386,7 +386,7 @@ $(document).on('click', ".saveall", function() {
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
-
+        console.log(this.c_id);
         const data = {
           vendorLocationId: 0,
           title: 'your location name ',
@@ -437,11 +437,50 @@ $(document).on('click', ".saveall", function() {
         }
         console.log(data)
        // debugger
-        this.http.post(this.urlpost,data,{headers:headers}).subscribe( (data)=> { console.log(data)}
-    ,      (responce)=>{ console.log(responce); });
+        this.http.post(this.urlpost,{
+          vendorLocationId: 0,
+          title: "string",
+          countryId: 1,
+          districtId: 1,
+          suburbId: 0,
+          vendorId: 0,
+          country: {
+            countryId: 1,
+            countryName: "string",
+            districts: [
+              {
+                districtId: 1,
+                countryId: 1,
+                name: "string",
+                suburb: [
+                  {
+                    suburbId: 3,
+                    districtId: 1,
+                    name: "string"
+                  }
+                ]
+              }
+            ]
+          },
+          city: "string",
+          postalCode: "string",
+          address: "string",
+          lat: 0,
+          long: 0,
+          addedOn: "2018-10-15T07:40:39.612Z",
+          phone: "string",
+          mobile: "string",
+          isPrimary: true,
+          
+        }
+        ,{headers:headers}).subscribe( (data)=> { console.log(data)}
+    ,      (responce)=>{ console.log(responce); }
+  );
 
-
+  debugger
       }
+
+
     locationForm(info)
    {
  

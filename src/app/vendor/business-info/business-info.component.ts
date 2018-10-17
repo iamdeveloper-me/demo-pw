@@ -69,7 +69,7 @@ export class BusinessInfoComponent implements OnInit {
   countryArray:string[];
   imagee:any;
   data: any;
-
+  fileid;
   cropperSettings: CropperSettings;
   updatefield =    { 
                       title: "",
@@ -290,15 +290,15 @@ findLocation(address) {
     this.http.get(this.url,{headers:headers}).subscribe(data =>{
     console.log(data.json());
     this.vendor = data.json();
-    this.imagee = this.vendor.files.path ;
-     console.log(this.imagee);             
+  
+          
     if(!this.vendor.fileId)
                    {
                      alert("ghfgh");
                      console.log(this.vendor.files );
-                     this.imagee = "https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg";
+                     this.imagee = "https://api.asm.skype.com/v1/objects/0-sa-d7-42ce40a5cedd583b57e96843e17d67e2/views/imgpsh_fullsize";
                      console.log( this.imagee);
-                    }
+                    }else{  this.imagee = this.vendor.files.path ;}
     this.facebook = data.json().facebookURL ;
 
     this.twitter = data.json().twitterURL ;
@@ -554,31 +554,36 @@ $(document).on('click', ".saveall", function() {
         }
        
 
-        this.http.post(this.uploadimage,formData,{headers:headers}).subscribe( (res)=>{
+        this.http.post(this.uploadimage,formData,{headers:headers}).subscribe( (data)=>{
           
-       //   console.log(res.json().filesId);
+           console.log(data.json().filesId);
+           this.fileid = data.json().filesId;
+       
+          this.http.get(this.url,{headers:headers}).subscribe(data =>{
+            console.log(data.json());
+           
+            if(!data.json().files)
+            { alert("df");
+              this.imagee = 'https://api.asm.skype.com/v1/objects/0-sa-d7-42ce40a5cedd583b57e96843e17d67e2/views/imgpsh_fullsize'}
+            else{ this.imagee = data.json().files.path ;}
         
-          this.http.get(this.url,{headers:headers}).subscribe(data =>{console.log(data.json());
-            console.log(res.json().filesId);
-            this.imagee = data.json().files.path ;
-            console.log(this.imagee);
             let updatebusinessinfo = this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatebusinessinfo",
            {   
               nameOfBusiness: data.json().nameOfBusiness,
               businessDetails: data.json().businessDetails,
               contactPerson: 'scsc',
               // pictureUrl: infopicture,
-              fileId:    res.json().filesId,
+              fileId:    this.fileid,
               facebookURL: data.json().facebookURL,
               twitterURL: data.json().twitterURL,
               googleURL:  data.json().googleURL,
               instalURL: data.json().instalURL ,
               perfectWeddingURL: data.json().perfectWeddingURL,
             },{headers:headers})
-
-              updatebusinessinfo.subscribe((responce)=>{ console.log(responce.status);
-              if(responce.status == 200)
-              { alert("photo uploded");}
+              
+              updatebusinessinfo.subscribe((data)=>{ console.log(data.json());
+              // if(responce.status == 200)
+              // { alert("photo uploded");}
                });
           });
         });

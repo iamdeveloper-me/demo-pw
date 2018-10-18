@@ -35,8 +35,9 @@
 										<div class="container marbot20px">
 											<div class="row">
 												<div class="col-md-12 text-center marbot20px" >
-													<label class="container1" >{{servicedata.serviceName}}
-
+													<label class="container1"  >{{servicedata.serviceName}}
+															<!-- {{selectedservices}} -->
+															{{servicedata.servicesId}}
 															<input name="serviceId"  
 															type="radio"  
 															[(ngModel)]="readioSelected_serv" 
@@ -44,6 +45,18 @@
 															(change)="selection(data)">
 														<span class="checkmark"></span>
 													</label>
+													
+													<label class="container1" *ngIf="selectedservices == servicedata.servicesId"  >
+															{{selectedservices}}
+															{{servicedata.servicesId}}
+															{{servicedata.serviceName}}
+														<input name="serviceId"  
+														type="radio"  
+														[(ngModel)]="readioSelected_serv" 
+														[value]= "data.servicesId" 
+														(change)="selection(data)">
+													  <span class="checkmark"></span>
+											   	    </label>
 													<div class="clearfix"></div>
 
 													 <span data-toggle="modal" data-target="#service_provide" class="newbtn martop15px">select</span>
@@ -242,23 +255,34 @@
 		<div class="modal-content">
 			  <button type="button " class="close digi_btn" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
 				<h4  class="card-title text-center">Please Select Service Provide</h4>
-				<div class="card-content selectboxservice"> 
-    				<div class="col-md-12" *ngFor="let data of services_all ; let a= index">
-													<label class="container1">{{data.serviceName}}
-															<input name="serviceId"  
-															type="radio"  
-															[(ngModel)]="readioSelected_serv" 
-															[value]= "data.servicesId" 
-															(change)="selection(data)">
-														<span class="checkmark"></span>
-													</label>
-					</div>
-				</div>
-				<div class="modal-footer text-center">
-							<button type="button" class="btn newbtn"  >Save </button>
-							<button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
+			    	<form (ngSubmit)="selection(data)" #data="ngForm" >
+						<div class="card-content selectboxservice"> 
+							<div class="col-md-12" *ngFor="let data of services_all ; let a = index">
+								<label class="container1">{{data.serviceName}}
+										<input name="serviceName"  
+										type="radio"  
+										[(ngModel)]="data.serviceName" 
+										[value]= "data.serviceName" 
+
+										>
+										<input name="serviceId"  
+										type="hidden"  
+										[(ngModel)]="data.servicesId"
+										>
+									
+									<span class="checkmark"></span>
+								</label>
+
+								<!-- (change)="selection(data)" -->
 							
-					</div>
+							</div>
+						</div>
+						<div class="modal-footer text-center">
+									<button type="submit" class="btn newbtn" >Save </button>
+									<button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
+									
+						</div>
+		           </form>
 		</div>
 
 					

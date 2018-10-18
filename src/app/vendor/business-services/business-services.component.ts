@@ -161,9 +161,10 @@ export class BusinessServicesComponent implements OnInit {
   selection(data){
     $('.field').show();
     console.log(data);
-    this.selectedservices = data;
+   // this.selectedservices = data.servicesId;
+   // console.log( this.selectedservices);
     this.customFields = data['customFields']
-    console.log(this.customFields)
+   // console.log(this.customFields)
     this.strating_price = this.customFields[0]
     this.a_lable = this.strating_price['name'];
     this.p = this.strating_price['customFieldOptionList']

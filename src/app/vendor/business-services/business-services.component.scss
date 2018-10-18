@@ -17,6 +17,19 @@ input:checked + label { color: green; }
     top: 0px;
     cursor: pointer;
 }
+.marbot20px{
+  margin-bottom:20px!important;
+}
+.martop40px{
+  margin-top:40px!important;
+}
+.martop15px{
+    margin-top:15px!important;
+    display:inline-block;
+}
+.changepadd{
+  padding:0.4rem 1.0rem!important;
+}
 .subheadtik{
     width: auto;
     margin: 0px auto;
@@ -115,7 +128,7 @@ position: absolute;
 .selectboxservice h5{
     font-weight:bold;
     font-size:16px;
-    margin-bottom:10px;
+    margin-bottom:15px;
    
 }
 .selectboxservice h3{
@@ -123,7 +136,8 @@ position: absolute;
 }
 .selectboxservice{
     cursor: pointer;
-    margin-top: 50px;
+    margin-top: 30px;
+    padding-bottom: 0px;
 }
 .inputareacenter{
   width:30%;
@@ -135,6 +149,8 @@ position: absolute;
     font-weight:normal;
 }
 .selectboxservice label input[type='radio']{
+margin-right:10px;}
+.selectboxservice label input[type='checkbox']{
 margin-right:10px;}
 .funkyradio{
     overflow:hidden;
@@ -450,9 +466,7 @@ margin-top: 10px!important;
   .container1 input:checked ~ .checkmark {
       background-color: #2196F3;
   }
-  .ulbox_text{
-      display: none;
-  }
+
   /* Create the indicator (the dot/circle - hidden when not checked) */
   .checkmark:after {
       content: "";
@@ -484,7 +498,18 @@ margin-top: 10px!important;
   .ulbox_text li{
       list-style: none;
   }
-
+.servicecontainer{
+    width: auto!important;
+    margin: 0px auto!important;
+    max-width: 40%!important;
+    border: 1px solid #2196f3!important;
+    border-radius: 20px!important;
+    padding: 5px!important;
+    background: #fff!important;
+    box-shadow: 0px 0px 10px #2196f3!important;
+    height:30px;
+    line-height:30px;
+}
 
 @media(max-width:1024px){
   .subheadtik{
@@ -562,6 +587,10 @@ margin-top: 10px!important;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    text-align:center;
+    max-width:300px;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 // / Hide the browser's default radio button /
@@ -603,4 +632,420 @@ margin-top: 10px!important;
 .container1 input:checked ~ .checkmark:after {
     display: block;
 }
+  /* The containerselectbox */
+  .containerselectbox {
+      display: block;
+      position: relative;
+      margin-bottom: 12px;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    text-align:center;
+    max-width:300px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  
+.labelclick {
+  margin-bottom:30px;
+}
+// / Hide the browser's default radio button /
+.containerselectbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.radioadjustbox{
+border: 1px solid #e5e5e5 !important;
+    height: 33px;
+    line-height: 30px;
+}
+.paddmarbot0px{
+  padding-bottom:0px!important;
+  margin-bottom:0px!important;
+}
+.popupadjust{
+ margin-top: 10px!important;
+    padding-top: 25px!important;
+}
+.radioadjust{
+  top:3px!important;
+  left:10px!important;
+}
+// / Create a custom radio button /
+.containerselectbox .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 0;
+}
 
+// / On mouse-over, add a grey background color /
+.containerselectbox:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+// / When the radio button is checked, add a blue background /
+.containerselectbox input:checked ~ .checkmark {
+    background-color: #2196F3;
+    content: '\2714';
+  text-indent: .9em;
+ color: #ffffff;
+}
+.containerselectbox .material-icons{
+  display:none;
+}
+.containerselectbox input:checked ~ .checkmark .material-icons{
+    display: block;
+    position: absolute;
+    left: -10px
+}
+
+// / Create the indicator (the dot/circle - hidden when not checked) /
+.containerselectbox .containerselectbox .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+// / Show the indicator (dot/circle) when checked /
+.containerselectbox input:checked ~ .containerselectbox .checkmark:after {
+    display: block;
+}
+
+
+//////////tab
+// variables
+
+$header-color: #00205d;
+$link-color: #006a9a;
+
+$font-color-dark: #000000;
+$font-color-normal: #515151;
+$font-color-quote: #cccccc;
+$font-color-cite: #999999;
+
+$background-color-normal: #eeeeee;
+$border-color-normal: #e0e0e0;
+
+$background-color-light: lighten($background-color-normal, 20%);
+$background-color-dark: darken($background-color-normal, 20%);
+
+$border-color-dark: #bbbbbb; 
+$border-color-light: #e5e5e5;
+
+// markup
+
+body {
+  padding: 20px;
+}
+
+// pager
+
+nav.pager {   
+
+    display: inline;
+    float: left;
+
+    width: 100%;
+    margin-top: rem(12px);
+    margin-bottom: rem(24px);
+
+    ul {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: inline;
+            margin: 0 rem(4px) 0 0;
+
+            a {
+                padding: rem(4px);
+                font-size: rem(10px);
+                font-weight: bold;
+                border: 1px solid $border-color-normal;
+                background: $background-color-normal;
+                border-radius: 4px;
+                text-decoration: none;
+
+                &:hover,
+                &:focus {
+                    border-color: $border-color-light;
+                    background: $background-color-light;
+                }
+
+                &.active,
+                &:active {
+                    border-color: $border-color-light;
+                    background: $background-color-light;
+                }  
+
+                &.active {
+                     color: $header-color;
+                }
+
+
+            }
+
+        }
+
+    }
+
+}
+
+
+// _tabs
+
+ul.tabs {
+
+    display: inline;
+    float: left;
+    width: 100%;
+    height: 32px;
+    margin: rem(32px) 0 0;
+    padding: 0;
+    list-style: none;
+    border-left: 1px solid $border-color-normal;
+
+    li {
+        display: inline;
+        float: left;
+        height: 31px; // 32 - 1
+        padding: 0;
+        margin: 0 1px;
+        margin-bottom: -1px;
+        font-weight: bold;
+        font-size: rem(10px);
+        line-height: 31px;
+        border: 1px solid $border-color-normal;
+        border-left: 0;
+        overflow: hidden;
+        position: relative;
+        background-color: $background-color-normal;  
+        background: linear-gradient(to bottom, $background-color-normal 85%, $background-color-dark 100%);
+        
+        a {
+            text-decoration: none;
+            display: block;
+            padding: 0 12px;
+            outline: none;   
+        }
+        
+    }
+}
+
+html ul.tabs li.active,
+html ul.tabs li.active a,
+html ul.tabs li.active a:hover { 
+    color: $header-color;
+    background: none;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ffffff;
+}
+
+
+// tab_content
+
+.tabs_container {
+    display: inline;
+    float: left;
+    width: 100%;
+    border: 1px solid $border-color-normal;
+    border-top: 0;
+    overflow: hidden;
+    clear: both;
+    margin-bottom: rem(21px);
+}
+
+.tab_heading {
+    display: none;
+}
+
+.tab_content {
+    padding: 0;
+    margin: 0;
+    font-size: rem(10px);
+    margin-top: rem(12px);
+}
+
+
+@media (max-width: 45em) {
+    ul.tabs {
+        display: none;
+    }
+
+
+    .tabs_container {
+
+        .active {
+            background-color: #ffffff;
+            color: $header-color;
+
+            a {
+                color: $header-color;
+
+                .tri {
+                    transform: rotate(-90deg);
+                    border-right-color: $header-color;
+                }
+            }
+
+        }
+
+    }
+
+    .tab_heading {
+        display: block;
+        margin: 0;
+        padding: rem(6px) rem(6px);
+        margin-bottom: rem(6px);
+        cursor: pointer;
+        -webkit-touch-callout: none;
+        user-select: none;
+
+        border-top: 1px solid $border-color-normal;
+        background-color: $background-color-normal;  
+
+
+
+        a {
+            text-decoration: none;  
+        }
+
+    }
+
+}
+
+// pager (css)
+
+nav.tab-pager {
+  display: inline;
+  float: left;
+  width: 100%;
+  margin-top: 12px;
+  margin-top: 0.75rem;
+  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
+}
+nav.tab-pager ul {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+nav.tab-pager ul li {
+  display: inline;
+  margin: 0 4px 0 0;
+  margin: 0 0.25rem 0 0;
+}
+nav.tab-pager ul li.active a, nav.tab-pager ul li:active a {
+  border-color: #cccccc;
+  background: #006dd5;
+}
+nav.tab-pager ul li.active a {
+  color: #FFFFFF;
+}
+nav.tab-pager ul li a {
+  padding: 4px;
+  padding: 0.25rem;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-size: 0.75rem;
+  border: 1px solid #cccccc;
+  background: #565656;
+  border-radius: 6px;
+  border-radius: 0.375rem;
+  text-decoration: none;
+}
+nav.tab-pager ul li a:hover {
+  border-color: #cccccc;
+  background: #00426e;
+}
+nav.tab-pager ul li a.active, nav.tab-pager ul li a:active {
+  border-color: #cccccc;
+  background: #006dd5;
+}
+nav.tab-pager ul li a.active {
+  color: #FFFFFF;
+}
+nav.tab-pager ul li span {
+  display: inline;
+}
+@media (max-width: 57em) {
+  nav.tab-pager ul li span {
+    display: none;
+  }
+}
+nav.tab-pager ul li.tab-pager--left a {
+  color: #006dd5;
+  border: none;
+  background: none;
+}
+nav.tab-pager ul li.tab-pager--left a:focus, nav.tab-pager ul li.tab-pager--left a:hover {
+  text-decoration: underline;
+}
+nav.tab-pager ul li.tab-pager--left a:before {
+  content: "<<";
+  width: 24px;
+  width: 1.5rem;
+  margin-right: 4px;
+  margin-right: 0.25rem;
+  top: 0;
+  color: #434343;
+  text-decoration: none;
+}
+@media (max-width: 30em) {
+  nav.tab-pager ul li.tab-pager--left a:before {
+    display: none;
+  }
+}
+nav.tab-pager ul li.tab-pager--left a:hover:before {
+  color: #006dd5;
+  text-decoration: none;
+}
+nav.tab-pager ul li.tab-pager--left {
+  margin-right: 6px;
+  margin-right: 0.375rem;
+}
+nav.tab-pager ul li.tab-pager--right a {
+  color: #006dd5;
+  border: none;
+  background: none;
+}
+nav.tab-pager ul li.tab-pager--right a:hover {
+  text-decoration: underline;
+}
+nav.tab-pager ul li.tab-pager--right a:after {
+  content: ">>";
+  width: 24px;
+  width: 1.5rem;
+  margin-left: 4px;
+  margin-left: 0.25rem;
+  color: #434343;
+  text-decoration: none;
+}
+.activedisplay{
+    display: block;
+}
+.activehide{
+    display: none;
+}
+@media (max-width: 30em) {
+  nav.tab-pager ul li.tab-pager--right a:after {
+    display: none;
+  }
+}
+nav.tab-pager ul li.tab-pager--right a:hover:after {
+  color: #006dd5;
+  text-decoration: none;
+}
+
+
+//
+// EOF
+//

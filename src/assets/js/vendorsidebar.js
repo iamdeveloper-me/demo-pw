@@ -39,6 +39,43 @@ $(document).ready(function () {
       }
     });
 
+
+    $("#businessservices").owlCarousel({
+      autoplay: true,
+      lazyLoad: true,
+      loop: true,
+      margin: 20,
+       /*
+      animateOut: 'fadeOut',
+      animateIn: 'fadeIn',
+      */
+      responsiveClass: true,
+      autoHeight: true,
+      //autoplayTimeout: 7000,
+      smartSpeed: 800,
+      nav: true,
+      responsive: {
+        0: {
+          items: 1
+        },
+    
+        600: {
+          items: 1
+        },
+    
+        1024: {
+          items: 1
+        },
+    
+        1366: {
+          items: 1
+        }
+      }
+    });
+
+
+
+
     $("#membership").owlCarousel({
 
         autoplay: true,
@@ -358,10 +395,10 @@ function readImage() {
 
 
 
-  $(document).on('click' ,".labelclick", function() {
+  $(document).on('click' ,".newbtn", function() {
     //alert("dfdf");
     // $('.ulbox_text').show();
-    $(this).find("ul").addClass('showdiv');
+    $(this).parent().find("ul").addClass('showdiv');
     $(this).removeClass('labelclick');
     $(this).addClass('showtik');
   });
@@ -369,10 +406,22 @@ function readImage() {
   $(document).on('click' ,".showtik", function() {
     //alert("dfdf");
     // $('.ulbox_text').show();
-    $(this).find("ul").removeClass('showdiv');
+    $(this).parent().find("ul").removeClass('showdiv');
     $(this).addClass('labelclick');
     $(this).removeClass('showtik');
   });
+
+
+
+
+
+
+
+
+
+
+
+
 
   // function showDropDown() {
   //   jQuery(this).parents("li").find("ul").toggleClass('showdiv');

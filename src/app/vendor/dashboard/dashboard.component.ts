@@ -44,9 +44,9 @@ export class DashboardComponent implements OnInit {
   // Context and manual triggers section
   @ViewChild('x') public tooltip: NgbTooltip;
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
-  private dashboard: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Dashboard/Home'
+  private dashboard: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorDashboard/EnquiriesAndLeads'
  
-
+  private VendorDashboard:string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorDashboard/Home";
   vendor: any = {};
 
   public changeGreeting(greeting: any): void {
@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit {
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
-     
+        this.http.get(this.dashboard,{headers:headers}).subscribe((data)=> {console.log(data.json())});
         if(!authToken) 
        {  this.router.navigate(['../home']);
         }
@@ -87,7 +87,7 @@ export class DashboardComponent implements OnInit {
                   }
                  });
 
-                 this.http.get(this.dashboard,{headers:headers}).subscribe(
+                 this.http.get(this.VendorDashboard,{headers:headers}).subscribe(
                     data =>{  console.log(data.json().profileCompletion);
                               console.log(data.json().profileCompletion.total);
                     

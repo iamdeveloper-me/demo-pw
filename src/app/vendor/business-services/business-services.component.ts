@@ -46,9 +46,9 @@ export class BusinessServicesComponent implements OnInit {
   RoleServiceService:any
   showcontent:boolean=false;
   checkboxarry =[] ;
-
+  innerprice = [];
   service_data:any = {categoryName:"category"};
-
+  innerpriceTitle:any ;
   field_length=[]
   customFields=[];
   customFieldOptionList=[];
@@ -265,8 +265,14 @@ export class BusinessServicesComponent implements OnInit {
     
   }
 
-
+customopt(data){
+console.log(data);
+this.innerpriceTitle = data.name;
+this.innerprice =  data.customFieldOptionList;
+console.log(this.innerprice);
+}
   showDropDown(){}
+}
 
 }
 

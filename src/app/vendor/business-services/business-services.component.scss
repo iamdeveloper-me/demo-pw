@@ -466,9 +466,7 @@ margin-top: 10px!important;
   .container1 input:checked ~ .checkmark {
       background-color: #2196F3;
   }
-  .ulbox_text{
-      display: none;
-  }
+
   /* Create the indicator (the dot/circle - hidden when not checked) */
   .checkmark:after {
       content: "";
@@ -634,4 +632,90 @@ margin-top: 10px!important;
 .container1 input:checked ~ .checkmark:after {
     display: block;
 }
+  /* The containerselectbox */
+  .containerselectbox {
+      display: block;
+      position: relative;
+      margin-bottom: 12px;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    text-align:center;
+    max-width:300px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  
+.labelclick {
+  margin-bottom:30px;
+}
+// / Hide the browser's default radio button /
+.containerselectbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.radioadjustbox{
+border: 1px solid #e5e5e5 !important;
+    height: 33px;
+    line-height: 30px;
+}
+.paddmarbot0px{
+  padding-bottom:0px!important;
+  margin-bottom:0px!important;
+}
+.popupadjust{
+ margin-top: 10px!important;
+    padding-top: 25px!important;
+}
+.radioadjust{
+  top:3px!important;
+  left:10px!important;
+}
+// / Create a custom radio button /
+.containerselectbox .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 0;
+}
+
+// / On mouse-over, add a grey background color /
+.containerselectbox:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+// / When the radio button is checked, add a blue background /
+.containerselectbox input:checked ~ .checkmark {
+    background-color: #2196F3;
+    content: '\2714';
+  text-indent: .9em;
+ color: #ffffff;
+}
+.containerselectbox .material-icons{
+  display:none;
+}
+.containerselectbox input:checked ~ .checkmark .material-icons{
+    display: block;
+    position: absolute;
+    left: -10px
+}
+
+// / Create the indicator (the dot/circle - hidden when not checked) /
+.containerselectbox .containerselectbox .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+// / Show the indicator (dot/circle) when checked /
+.containerselectbox input:checked ~ .containerselectbox .checkmark:after {
+    display: block;
+}
+
 

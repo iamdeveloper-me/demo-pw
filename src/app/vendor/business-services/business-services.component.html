@@ -70,26 +70,23 @@
 							<div class="row">
 								<div class="col-md-3" *ngFor="let data of servicedata.customFields;let i=index" >
 									<div class="labelclick">
-										<label  for="{{data.name}}" class="container1"  >
+										<label  for="{{data.name}}" class="containerselectbox"  >
 										<input name="{{data.name}}" ngModel type="checkbox" id="{{data.name}}">
-										<span class="checkmark"></span>
+										<span class="checkmark">
+											<i class="material-icons">
+												check
+											</i>
+										</span>
 										{{data.name}}
 										{{data.customFieldId}}
 										</label>
                                         <div class="clearfix"></div>
                                         <span class="blue">Selected Option</span>
                                         <div class="clearfix"></div>
-                                        <span class="newbtn martop15px changepadd"  onclick="showDropDown()" >select</span>
+                                        <span class="newbtn martop15px changepadd"
+                                         data-toggle="modal" data-target="#service_cost" (click) = "customopt(data)">select	{{data.customFieldId}}</span>
 										<div class="clearfix"></div>
-										<ul class=" ulbox_text" >
-											<li  *ngFor="let l of data.customFieldOptionList;let i=index">
-												<label>
-												<input type="radio" ngModel name="userValue_{{l.customFieldId}}" [value]= "l.displayText" id="{{l.customFieldId}}" (click)="checkbox(l)">
-												<input name="customFieldId" [(ngModel)]="l.customFieldId"  type="hidden">
-												{{l.displayText}}
-												</label>
-											</li>
-										</ul>		 
+										
 									</div>
 								</div>	
 								<!-- <div class="col-md-3" *ngFor="let data of customFields;let i=index" >
@@ -154,7 +151,7 @@
 									<div class="card-content selectboxservice"> 
 									</div>
 						    </div>				
-							<div class="text-center"><button type="submit" class="newbtn" >submit</button>	</div>	
+							<!-- <div class="text-center"><button type="submit" class="newbtn" >submit</button>	</div>	 -->
 						</form>
 					</div>
 					<div class="card-content margintop0px  service" >
@@ -183,20 +180,6 @@
      <router-outlet></router-outlet>
 	</div>		
 </div>
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
 	<!-- My Work -->
 
 	<div class="modal fade" id="service_title" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -204,7 +187,7 @@
 				
 		  <div class="modal-content">
 			  <button type="button " class="close digi_btn" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-				<h4  class="card-title text-center">Service Name</h4>
+				<h4  class="card-title text-center paddmarbot0px popupadjust">Service Name</h4>
 				<div class="card-content selectboxservice"> 
 						<div class="" *ngFor="let category of categoryserveice;let i = index;" > 
 							<div class="col-sm-3" >
@@ -241,16 +224,16 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			  <button type="button " class="close digi_btn" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-				<h4  class="card-title text-center">Please Select Service Provide</h4>
+				<h4  class="card-title text-center paddmarbot0px popupadjust">Please Select Service Provide</h4>
 				<div class="card-content selectboxservice"> 
     				<div class="col-md-12" *ngFor="let data of services_all ; let a= index">
-													<label class="container1">{{data.serviceName}}
+													<label class="container1 radioadjustbox">{{data.serviceName}}
 															<input name="serviceId"  
 															type="radio"  
 															[(ngModel)]="readioSelected_serv" 
 															[value]= "data.servicesId" 
 															(change)="selection(data)">
-														<span class="checkmark"></span>
+														<span class="checkmark radioadjust"></span>
 													</label>
 					</div>
 				</div>
@@ -262,5 +245,31 @@
 		</div>
 
 					
+	</div>
+</div>
+
+
+
+
+<div class="modal fade" id="service_cost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			  <button type="button " class="close digi_btn" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+				<h4  class="card-title text-center paddmarbot0px popupadjust">{{innerpriceTitle}}</h4>
+				    <div >
+						<div  >
+							<ul class=" ulbox_text" >
+								<li  *ngFor="let l of innerprice;let i=index">
+									<label class="container1 radioadjustbox">
+									<input type="radio" ngModel name="userValue_{{l.customFieldId}}" [value]= "l.displayText" id="{{l.customFieldId}}" (click)="checkbox(l)">
+									<input name="customFieldId" [(ngModel)]="l.customFieldId"  type="hidden">
+									<span class="checkmark radioadjust"></span>
+									{{l.displayText}}
+									</label>
+								</li>
+							</ul>		 
+						</div>
+				    </div>		
+		</div>
 	</div>
 </div>

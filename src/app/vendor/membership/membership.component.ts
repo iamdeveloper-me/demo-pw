@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
-import { Router } from '@angular/router';
+import { Router ,ActivatedRoute} from '@angular/router';
+
 @Component({
   selector: 'app-membership',
   templateUrl: './membership.component.html',
@@ -75,6 +76,7 @@ export class MembershipComponent implements OnInit {
     config.interval = 10000;
     config.wrap = false;
     config.keyboard = false;
+    
   }
 
   Voucher(vo){

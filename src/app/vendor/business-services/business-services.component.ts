@@ -26,7 +26,7 @@ export class BusinessServicesComponent implements OnInit {
   
   data: any;
   categoryId;
- selectedservices = [];
+ selectedservices:any = {};
   selectedEntry;
   min:any = {};
   Services = [];
@@ -93,11 +93,44 @@ export class BusinessServicesComponent implements OnInit {
 
   ngOnInit() {  
             
-           
+
+
+
+
+    $.getScript('./assets/js/tab.js');
+
+
+
+
+          
               $.getScript('./assets/js/vertical-timeline.js');
               $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
               $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
               $.getScript('./assets/js/vendorsidebar.js');
+            
+              $(document).on('click', '.nextbtn', function(){
+                var active = $(this).siblings('.servicecontainer').find('.activedisplay');
+                if (active.next('div').hasClass('activehide')) {
+                  active.find('input').prop("checked", false);
+                  active.removeClass('activedisplay');
+                  active.addClass('activehide');
+                 // active.next('div').find('input').prop("checked", true);
+                  active.next('div').removeClass('activehide');
+                  active.next('div').addClass('activedisplay');
+                }
+              });
+
+              $(document).on('click', '.prebtn', function(){
+                var active = $(this).siblings('.servicecontainer').find('.activedisplay');
+                if (active.prev('div').hasClass('activehide')) {
+                  active.find('input').prop("checked", false);
+                  active.removeClass('activedisplay');
+                  active.addClass('activehide');
+              //    active.prev('div').find('input').prop("checked", true);
+                  active.prev('div').removeClass('activehide');
+                  active.prev('div').addClass('activedisplay');
+                  }
+              });
 
               $(document).on('click', ".saveall", function() {
                   $(this).parents('.modal').css("display", "none");
@@ -137,7 +170,6 @@ export class BusinessServicesComponent implements OnInit {
           });
 
 
-
        
   }
   onSelectionChange(entry){
@@ -162,41 +194,17 @@ export class BusinessServicesComponent implements OnInit {
     $('.field').show();
     console.log(data);
     this.selectedservices = data;
+   // console.log( this.selectedservices);
     this.customFields = data['customFields']
-    console.log(this.customFields)
+   // console.log(this.customFields)
     this.strating_price = this.customFields[0]
     this.a_lable = this.strating_price['name'];
     this.p = this.strating_price['customFieldOptionList']
-
-
-    // this.b = this.customFields[1]
-    // this.b_lable = this.b['name'];
-    // this.q = this.b['customFieldOptionList']
-
-
-    // this.c = this.customFields[2]
-    // this.c_lable = this.c['name'];
-    // this.r = this.c['customFieldOptionList']
-
-    // this.d = this.customFields[3]
-    // this.d_lable = this.d['name'];
-    // this.s = this.d['customFieldOptionList']
-
-    
-    // this.e = this.customFields[4]
-    // this.e_lable = this.e['name'];
-    // this.t = this.e['customFieldOptionList']
-
-    // this.f = this.customFields[5]
-    // this.f_lable = this.f['name'];
-    // this.u = this.f['customFieldOptionList']
-
-
-    // this.g = this.customFields[6]
-    // this.g_lable = this.g['name'];
-    // this.v = this.g['customFieldOptionList']
   }
+modal(){
+  console.log( this.selectedservices.servicesId);
 
+}
   checkbox(l){
     console.log(l.key) 
     console.log(l.customFieldId) 
@@ -274,5 +282,5 @@ console.log(this.innerprice);
   showDropDown(){}
 }
 
-}
+
 

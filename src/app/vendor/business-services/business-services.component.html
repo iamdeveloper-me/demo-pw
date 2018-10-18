@@ -6,250 +6,260 @@
 	<div class="container-fluid nopadd"> 
 		<app-navemenu></app-navemenu>
 		<router-outlet></router-outlet> 
-        <div class="container-fluid mobilefixedcontainer " > 
-			<section id="user-profile">
-				<div class="col-12 nopadd">
-					<div  class="card-header text-center">					
-						<div  data-toggle="modal" data-target="#service_title">
-							<div class="subheadtik card-title" >{{first_category.categoryName}}  
-								<span class="glyphicon glyphicon-pencil" (click)="arrayEmpty()"></span>
-							</div>	
+			<div class="container-fluid mobilefixedcontainer " > 
+				<section id="user-profile">
+					<div class="col-12 nopadd">
+						<div  class="card-header text-center">					
+							<div  data-toggle="modal" data-target="#service_title">
+								<div class="subheadtik card-title" >{{first_category.categoryName}}  
+									<span class="glyphicon glyphicon-pencil" (click)="arrayEmpty()"></span>
+								</div>	
+							</div>
+						<!-- 	*ngIf="isActive == true" -->
+							<!-- <div class="servicecontainer">
+								<div id="businessservices" class="owl-carousel owl-loaded owl-drag">
+								<div class="item"> 
+									<div class="servicename">Cakes</div>
+								</div>
+								<div class="item"> 
+									<div class="servicename">Album Name</div>
+								</div>							
+								</div>
+							</div> -->
+							<button class="prebtn">Prev</button>
+							<div class="servicecontainer"  >
+								<div class="activedisplay"><input type="radio" checked/> Cakes</div>
+								<div class="activehide"  *ngFor="let category of categoryserveice;let i = index;">
+								
+									<input name="Service" type="radio" [(ngModel)]="readioSelected" value= "{{i}}" (change)= "showContent()" >
+									<span>{{category.categoryName}}</span>
+								
+								</div>
+								<!-- <div class="activehide"><input type="radio"/> Decorators & Wedding Stylist</div> -->
+							</div>
+							<button class="nextbtn" type="submit" >Next</button>
 						</div>
-					<!-- 	*ngIf="isActive == true" -->
-						<!-- <div class="servicecontainer">
-							<div id="businessservices" class="owl-carousel owl-loaded owl-drag">
-					          <div class="item"> 
-					              <div class="servicename">Cakes</div>
-					          </div>
-					          <div class="item"> 
-					            <div class="servicename">Album Name</div>
-					          </div>							
-					      	</div>
-				  		</div> -->
-				  	</div>
-					<div class="card margintop0px serveicedata">	
-						<form (ngSubmit)="serveicedata(service)" #service="ngForm" >
-							<div *ngFor="let servicedata of services_all | slice:0:1;let a= index" >
-									<div class="card-content selectboxservice text-center"> 
-										<h5 class="text-center">Which service do you provide</h5>
-										<div class="container marbot20px">
-											<div class="row">
-												<div class="col-md-12 text-center marbot20px" >
-													<label class="container1" >{{servicedata.serviceName}}
+						<div class="clearfix"></div>
+						<div class="card margintop0px serveicedata">	
+							<form (ngSubmit)="serveicedata(service)" #service="ngForm" >
+								<div *ngFor="let servicedata of services_all | slice:0:1;let a= index" >
+										<div class="card-content selectboxservice text-center"> 
+											<h5 class="text-center">Which service do you provide</h5>
+											<div class="container marbot20px">
+												<div class="row">
+													<div class="col-md-12 text-center marbot20px"  >
+														<label class="container1"  >
+															{{servicedata.serviceName}}
+															
+																<!-- {{servicedata.servicesId}} -->
+																<input name="serviceId"  
+																type="radio"  
+																[(ngModel)]="readioSelected_serv" 
+																[value]= "data.servicesId" 
+																(change)="selection(data)">
+															<span class="checkmark"></span>
+														</label>
+														
+														<label class="container1" *ngIf="selectedservices == servicedata.servicesId"  >
 
+															====	{{servicedata.serviceName}}
 															<input name="serviceId"  
 															type="radio"  
 															[(ngModel)]="readioSelected_serv" 
 															[value]= "data.servicesId" 
 															(change)="selection(data)">
 														<span class="checkmark"></span>
-													</label>
-													<div class="clearfix"></div>
+														</label>
+														<div class="clearfix"></div>
 
-													 <span data-toggle="modal" data-target="#service_provide" class="newbtn martop15px">select</span>
-												</div>
-						        				
-											</div>
-							            </div>
-											<!-- <div >
-												<div class="col-sm-3 col-xs-6" *ngFor="let data of services_all;let a= index">
-													<div>
-														<input name="service"  type="radio"  [(ngModel)]="readioSelected_serv" value= "{{a}}" name="customRadioA" (change)="selection(data)">
-														<label for="checkbox1">{{data.serviceName}}</label>
+														<span data-toggle="modal" data-target="#service_provide" class="newbtn martop15px" (click) = "selection(servicedata)" >select</span>
 													</div>
+													
 												</div>
-												
-											</div> -->
-											<hr class="hr-light">
-									</div>
-					<div class="card-content selectboxservice">
-						<h5 class="text-center">
-							Speciality, Costs of Services $ Experience
-						</h5>
-						<div class="container">
-							<div class="row">
-								<div class="col-md-3" *ngFor="let data of servicedata.customFields;let i=index" >
-									<div class="labelclick">
-										<label  for="{{data.name}}" class="containerselectbox"  >
-										<input name="{{data.name}}" ngModel type="checkbox" id="{{data.name}}">
-										<span class="checkmark">
-											<i class="material-icons">
-												check
-											</i>
-										</span>
-										{{data.name}}
-										{{data.customFieldId}}
-										</label>
-                                        <div class="clearfix"></div>
-                                        <span class="blue">Selected Option</span>
-                                        <div class="clearfix"></div>
-                                        <span class="newbtn martop15px changepadd"
-                                         data-toggle="modal" data-target="#service_cost" (click) = "customopt(data)">select	{{data.customFieldId}}</span>
-										<div class="clearfix"></div>
-										
-									</div>
-								</div>	
-								<!-- <div class="col-md-3" *ngFor="let data of customFields;let i=index" >
-														<label class="labelclick" for="{{data.name}}" onclick="showDropDown()" >
-															<input 
-															name="{{data.name}}"
-															ngModel  
-															type="checkbox" 
-															id="{{data.name}}"
-															>
-																	{{data.name}}
-																	{{data.customFieldId}}
-
-																	<div class="clearfix"></div>
-
-																	<ul class=" ulbox_text" >
-																			<li  *ngFor="let l of data.customFieldOptionList;let i=index">
-			
-																			<label >
-																				<input 
-																				type="radio" 
-																				ngModel
-																				name="userValue_{{l.customFieldId}}"
-																				[value]= "l.displayText"
-																				id="{{l.customFieldId}}"
-																				(click)="checkbox(l)"
-																				>
-																				<input 
-																				name="customFieldId"
-																				[(ngModel)]="l.customFieldId"  
-																				type="hidden" 
-																					>
-																				{{l.displayText}}
-																			</label>
-																			</li>
-																		</ul>
-														</label> 
-														
-												</div>	 -->
-							</div>	
-						</div>								
-						<hr class="hr-light martop40px">
-					</div>
-									<div class="card-content selectboxservice"> 
-										<h5 class="text-center">Do you offer packages</h5>
-										<hr class="hr-light">
-										<div class="container">
-												<div class="row">
-														<!-- <div class="col-md-4">
-																<label class="container2">One
-																		<input type="checkbox" checked="checked">
-																		<span class="checkmark2"></span>
-																		</label>
-														</div> -->
-														
-												
-												</div>
-
-
-											</div>		
-									</div>
-									<div class="card-content selectboxservice"> 
-									</div>
-						    </div>				
-							<!-- <div class="text-center"><button type="submit" class="newbtn" >submit</button>	</div>	 -->
-						</form>
-					</div>
-					<div class="card-content margintop0px  service" >
-						<h5 class="text-center">Your choosed service</h5>
-						<div class="container">
-								<div class="row" >
-									<div class="col-md-6" *ngFor="let services of User_services;let i=index" >
+											</div>
+												<!-- <div >
+													<div class="col-sm-3 col-xs-6" *ngFor="let data of services_all;let a= index">
+														<div>
+															<input name="service"  type="radio"  [(ngModel)]="readioSelected_serv" value= "{{a}}" name="customRadioA" (change)="selection(data)">
+															<label for="checkbox1">{{data.serviceName}}</label>
+														</div>
+													</div>
+													
+												</div> -->
+												<hr class="hr-light">
+										</div>
+						<div class="card-content selectboxservice">
+							<h5 class="text-center">
+								Speciality, Costs of Services $ Experience
+							</h5>
+							<div class="container">
+								<div class="row">
+									<div class="col-md-3" *ngFor="let data of servicedata.customFields;let i=index" >
+										<div class="labelclick">
+											<label  for="{{data.name}}" class="containerselectbox"  >
+											<input name="{{data.name}}" ngModel type="checkbox" id="{{data.name}}">
+											<span class="checkmark">
+												<i class="material-icons">
+													check
+												</i>
+											</span>
+											{{data.name}}
+											{{data.customFieldId}}
+											</label>
+											<div class="clearfix"></div>
+											<span class="blue">Selected Option</span>
+											<div class="clearfix"></div>
+											<span class="newbtn martop15px changepadd"
+											data-toggle="modal" data-target="#service_cost" (click) = "customopt(data)">select	{{data.customFieldId}}</span>
+											<div class="clearfix"></div>
 											
-											<!-- {{services | json}} -->
-									<h2> Services no  {{i}}  </h2>		
-									  <strong> Your Services  :</strong> {{services.serviceName}}   <br>
-									  <strong> Your category  :</strong> {{services.categoryName}}  <br>
-                                      <strong> Your Ranges    :</strong> {{services.displayText}}   <br>
-									   
+										</div>
+									</div>	
+									<!-- <div class="col-md-3" *ngFor="let data of customFields;let i=index" >
+															<label class="labelclick" for="{{data.name}}" onclick="showDropDown()" >
+																<input 
+																name="{{data.name}}"
+																ngModel  
+																type="checkbox" 
+																id="{{data.name}}"
+																>
+																		{{data.name}}
+																		{{data.customFieldId}}
 
+																		<div class="clearfix"></div>
+
+																		<ul class=" ulbox_text" >
+																				<li  *ngFor="let l of data.customFieldOptionList;let i=index">
+				
+																				<label >
+																					<input 
+																					type="radio" 
+																					ngModel
+																					name="userValue_{{l.customFieldId}}"
+																					[value]= "l.displayText"
+																					id="{{l.customFieldId}}"
+																					(click)="checkbox(l)"
+																					>
+																					<input 
+																					name="customFieldId"
+																					[(ngModel)]="l.customFieldId"  
+																					type="hidden" 
+																						>
+																					{{l.displayText}}
+																				</label>
+																				</li>
+																			</ul>
+															</label> 
+															
+													</div>	 -->
+								</div>	
+							</div>								
+							<hr class="hr-light martop40px">
+						</div>
+										<!-- <div class="card-content selectboxservice"> 
+											<h5 class="text-center">Do you offer packages</h5>
+											<hr class="hr-light">
+											<div class="container">
+													<div class="row">
+															
+															
+													
+													</div>
+
+
+												</div>		
+										</div> -->
+										
+								</div>				
+								<!-- <div class="text-center"><button type="submit" class="newbtn" >submit</button>	</div>	 -->
+							</form>
+						</div>
+						<!-- <div class="card-content margintop0px  service" >
+							<h5 class="text-center">Your choosed service</h5>
+							<div class="container">
+									<div class="row" >
+										<div class="col-md-6" *ngFor="let services of User_services;let i=index" >
+												
+												
+										<h2> Services no  {{i}}  </h2>		
+										<strong> Your Services  :</strong> {{services.serviceName}}   <br>
+										<strong> Your category  :</strong> {{services.categoryName}}  <br>
+										<strong> Your Ranges    :</strong> {{services.displayText}}   <br>
+										
+
+										</div>
 									</div>
-								</div>
-								
-						</div>								
-						<hr class="hr-light">
+									
+							</div>								
+							<hr class="hr-light">
+						</div> -->
 					</div>
-				</div>
-			</section>
-		</div>
+				</section>
+			</div>
 		<app-foot></app-foot>
      <router-outlet></router-outlet>
 	</div>		
 </div>
-	<!-- My Work -->
 
-	<div class="modal fade" id="service_title" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
+
+<!-- <div class="modal fade" id="service_title" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+			
+	<div class="modal-content">
+		<button type="button " class="close digi_btn" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+			<h4  class="card-title text-center paddmarbot0px popupadjust">Service Name</h4>
+			<div class="card-content selectboxservice"> 
+					<div class="" *ngFor="let category of categoryserveice;let i = index;" > 
+						<div class="col-sm-3" >
+							<label>
+								<input name="Service" type="radio" [(ngModel)]="readioSelected" value= "{{i}}" name="customRadio">
+								<span>{{category.categoryName}}</span>
+								
+							</label> 
+
+
+						</div>	
+					</div>		
+			</div>
+
+
+				<div class="modal-footer text-center">
+						<button type="button" class="btn newbtn" (click)="showContent()" >Save </button>
+						<button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
+						
+				</div>
 				
-		  <div class="modal-content">
-			  <button type="button " class="close digi_btn" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-				<h4  class="card-title text-center paddmarbot0px popupadjust">Service Name</h4>
-				<div class="card-content selectboxservice"> 
-						<div class="" *ngFor="let category of categoryserveice;let i = index;" > 
-							<div class="col-sm-3" >
-								<label>
-									<input name="Service" type="radio" [(ngModel)]="readioSelected" value= "{{i}}" name="customRadio">
-									<span>{{category.categoryName}}</span>
-									<span class="ui_switch">
-									<!-- <ui-switch 
-									[(ngModel)] ="category.isActive"
-
-									name="isActive"
-									checked 
-									class="pull-left"> </ui-switch> -->
-									</span>
-								</label> 
-
-
-							</div>	
-							</div>		
-					</div>
-	
-
-					<div class="modal-footer text-center">
-							<button type="button" class="btn newbtn" (click)="showContent()" >Save </button>
-							<button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
-							
-					</div>
-					
-		  </div>
-		</div>
-    </div>
+	</div>
+	</div>
+</div> -->
 
 <div class="modal fade" id="service_provide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			  <button type="button " class="close digi_btn" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-				<h4  class="card-title text-center paddmarbot0px popupadjust">Please Select Service Provide</h4>
-				<div class="card-content selectboxservice"> 
-    				<div class="col-md-12" *ngFor="let data of services_all ; let a= index">
-													<label class="container1 radioadjustbox">{{data.serviceName}}
-															<input name="serviceId"  
-															type="radio"  
-															[(ngModel)]="readioSelected_serv" 
-															[value]= "data.servicesId" 
-															(change)="selection(data)">
-														<span class="checkmark radioadjust"></span>
-													</label>
-					</div>
-				</div>
-				<div class="modal-footer text-center">
-							<button type="button" class="btn newbtn"  >Save </button>
-							<button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
-							
-					</div>
-		</div>
 
-					
+				<h4  class="card-title text-center paddmarbot0px popupadjust">Please Select Service Provide</h4>
+				  
+				       <div class="card-content selectboxservice"> 
+							<div class="col-md-12" *ngFor="let data of services_all ; let a= index">
+								<label class="container1 radioadjustbox">{{data.serviceName}}
+										<input name="serviceId"  
+										type="radio"  
+										[(ngModel)]="readioSelected_serv" 
+										[value]= "data.servicesId" 
+										(change)="selection(data)">
+									<span class="checkmark radioadjust"></span>
+								</label>
+							</div>
+						</div>
+						<div class="modal-footer text-center">
+							<button type="submit" class="btn newbtn" (click) = "modal()"  >Save </button>
+							<button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
+						</div>
+				
+		</div>           
 	</div>
 </div>
-
-
-
 
 <div class="modal fade" id="service_cost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">

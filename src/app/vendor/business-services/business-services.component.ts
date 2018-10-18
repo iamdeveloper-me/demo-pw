@@ -26,7 +26,7 @@ export class BusinessServicesComponent implements OnInit {
   
   data: any;
   categoryId;
- 
+ selectedservices = [];
   selectedEntry;
   min:any = {};
   Services = [];
@@ -93,8 +93,7 @@ export class BusinessServicesComponent implements OnInit {
 
   ngOnInit() {  
             
-              $(".serveicedata").hide();
-              $(".service").show();
+           
               $.getScript('./assets/js/vertical-timeline.js');
               $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
               $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
@@ -146,10 +145,10 @@ export class BusinessServicesComponent implements OnInit {
     console.log(this.selectedEntry)
   }
   showContent(){
-    $(".service").hide();
-    $(".serveicedata").show();
+  
     this.showcontent =this.readioSelected;
     this.service_data = this.categoryserveice[this.readioSelected];
+    console.log(this.service_data );
     this.services_all = this.service_data['services']
     console.log(this.service_data);
     this.costserviceTrue = true;
@@ -161,6 +160,8 @@ export class BusinessServicesComponent implements OnInit {
   }
   selection(data){
     $('.field').show();
+    console.log(data);
+    this.selectedservices = data;
     this.customFields = data['customFields']
     console.log(this.customFields)
     this.strating_price = this.customFields[0]
@@ -222,9 +223,7 @@ export class BusinessServicesComponent implements OnInit {
                                    },
             {headers:headers}).subscribe(data =>{console.log( data.json()) 
               this.ngOnInit();
-              $(".service").show();
-              $(".serveicedata").hide();
-            
+             
             
             },error => {console.log(error)});
            

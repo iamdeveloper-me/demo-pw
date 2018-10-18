@@ -42,7 +42,7 @@
 						<div class="clearfix"></div>
 						<div class="card margintop0px serveicedata">	
 							<form (ngSubmit)="serveicedata(service)" #service="ngForm" >
-								<div *ngFor="let servicedata of services_all | slice:0:1;let a= index" >
+								<div *ngFor="let servicedata of services_all ;let a= index" >
 										<div class="card-content selectboxservice text-center"> 
 											<h5 class="text-center">Which service do you provide</h5>
 											<div class="container marbot20px">
@@ -59,20 +59,20 @@
 																(change)="selection(data)">
 															<span class="checkmark"></span>
 														</label>
-														
-														<label class="container1" *ngIf="selectedservices == servicedata.servicesId"  >
-
-															====	{{servicedata.serviceName}}
+														<label class="container1"  >
+															{{selectedservices}}
 															<input name="serviceId"  
 															type="radio"  
 															[(ngModel)]="readioSelected_serv" 
 															[value]= "data.servicesId" 
 															(change)="selection(data)">
 														<span class="checkmark"></span>
+													
 														</label>
+
 														<div class="clearfix"></div>
 
-														<span data-toggle="modal" data-target="#service_provide" class="newbtn martop15px" (click) = "selection(servicedata)" >select</span>
+														<span data-toggle="modal" data-target="#service_provide" class="newbtn martop15px" (click) = "modal(services_all)" >select</span>
 													</div>
 													
 												</div>
@@ -202,7 +202,7 @@
 </div>
 
 
-<!-- <div class="modal fade" id="service_title" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="service_title" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 			
 	<div class="modal-content">
@@ -231,7 +231,7 @@
 				
 	</div>
 	</div>
-</div> -->
+</div>
 
 <div class="modal fade" id="service_provide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
@@ -241,7 +241,7 @@
 				<h4  class="card-title text-center paddmarbot0px popupadjust">Please Select Service Provide</h4>
 				  
 				       <div class="card-content selectboxservice"> 
-							<div class="col-md-12" *ngFor="let data of services_all ; let a= index">
+							<div class="col-md-12" *ngFor="let data of servicedata_Part ; let a= index">
 								<label class="container1 radioadjustbox">{{data.serviceName}}
 										<input name="serviceId"  
 										type="radio"  
@@ -253,7 +253,7 @@
 							</div>
 						</div>
 						<div class="modal-footer text-center">
-							<button type="submit" class="btn newbtn" (click) = "modal()"  >Save </button>
+							<button type="submit" class="btn newbtn"   >Save </button>
 							<button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
 						</div>
 				

@@ -30,6 +30,7 @@ export class BusinessServicesComponent implements OnInit {
   selectedEntry;
   min:any = {};
   Services = [];
+  servicedata_Part = [];
   first_category:any = {};
   categoryserveice = [ ];
   User_services = [];
@@ -183,6 +184,7 @@ export class BusinessServicesComponent implements OnInit {
     console.log(this.service_data );
     this.services_all = this.service_data['services']
     console.log(this.service_data);
+  
     this.costserviceTrue = true;
   }
   
@@ -193,17 +195,19 @@ export class BusinessServicesComponent implements OnInit {
   selection(data){
     $('.field').show();
     console.log(data);
-    this.selectedservices = data;
-   // console.log( this.selectedservices);
+    this.selectedservices = data.serviceName;
+   console.log( this.selectedservices);
     this.customFields = data['customFields']
    // console.log(this.customFields)
     this.strating_price = this.customFields[0]
     this.a_lable = this.strating_price['name'];
     this.p = this.strating_price['customFieldOptionList']
   }
-modal(){
-  console.log( this.selectedservices.servicesId);
-
+modal(servicedata){
+ 
+                this.servicedata_Part = servicedata;
+  
+   
 }
   checkbox(l){
     console.log(l.key) 

@@ -217,12 +217,12 @@
 						<div class="col-md-6 col-12">
 								<div class="form-group">
 										<label>Client Name</label>	
-								  <input 
+								  <!-- <input 
 									type="text" 
 									name="event-contactname" 
 									class="effect-16" 
 									[(ngModel)]="modalData?.event.clientName" 
-									(keyup)="refresh.next()">
+									(keyup)="refresh.next()"> -->
 								</div>	
 						</div>
 						<div class="col-md-6 col-12">
@@ -237,12 +237,12 @@
 						<div class="col-md-6 col-12">
 								<div class="form-group">
 										<label>Client Number</label>
-										<input
+										<!-- <input
 											type="text" 
 											name="event-contactnumber" 
 											class="effect-16" 
 											[(ngModel)]="modalData?.event.contactnumber" 
-											(keyup)="refresh.next()">
+											(keyup)="refresh.next()"> -->
 										
 										
 								</div>
@@ -250,12 +250,12 @@
 						<div class="col-md-6 col-12">
 								<div class="form-group">
 										<label>Event Location:</label>		
-										<input 
+										<!-- <input 
 										type="text
 										" name="event-location"
 											class="effect-16"
 											[(ngModel)]="modalData?.event.location" 
-											(keyup)="refresh.next()">
+											(keyup)="refresh.next()"> -->
 										
 								</div>
 						</div>
@@ -297,7 +297,7 @@
 			</div>
 		</div>
 		<div class="modal-footer btn_center">
-			<button type="submit" class="btn newbtn"  (click)="job(modalData)" (click)="close()">SAVE</button>
+			<button type="submit" class="btn newbtn"  (click)="job(modalData)" >SAVE</button>
 			<input type="button" value="Cancel" class="button" id="cancel-button">
 		</div>
             <!-- <input type="button" value="Cancel" class="button" id="cancel-button">

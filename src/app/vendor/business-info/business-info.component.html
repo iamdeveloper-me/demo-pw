@@ -576,11 +576,15 @@
                                                     <span class="focus-border"></span>
                                                     <input type="hidden" [(ngModel)]="modelfield">
                                             </div>
-                                            <img-cropper #cropper [image]="data" [settings]="cropperSettings" class="imgcrop"></img-cropper>
+                                            <img-cropper #cropper [image]="imagee" [settings]="cropperSettings" class="imgcrop"></img-cropper>
                                     
                                         <!-- <span class="result" *ngIf="data.image">
                                         <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle"> 
                                         </span>-->
+                                        </div>
+                                        <div class="busines_img">
+                                          <i class="material-icons" data-target="#imagecrop" data-toggle="modal" id="description-function"> camera_alt </i>
+                                            <img [src] = "imagee">
                                         </div>
                             <!-- Cropper Ends -->
                             </section>

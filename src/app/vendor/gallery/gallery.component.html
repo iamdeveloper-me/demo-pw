@@ -92,52 +92,71 @@
                 <div class="">
                   <div class="col-md-3 " *ngFor='let album of albumArray | slice:0:4'>
                     <div class="image-div" >
-                      
+                 <!--  
                       <div *ngFor='let ar of  album.albumImages | slice:0:1'>
-                            <img class="img-thumbnail imgfull"
+                            <img class="img-thumbnail  imghalffull"
                             [src] = "ar.path"
                             alt="Another alt text">
-                            <div *ngIf="ar.path?.length ==  0"  class="imgcontainer">
-                                <img class="img-thumbnail imgfull" 
+                            <div *ngIf="ar.path?.length ==  0"  class="imgcontainer ">
+                                <img class="img-thumbnail "
                                 alt="Another alt text"  
                                 src="../../../assets/img/no-image.png" />
-                            </div> 
-                      </div> 
+                            </div>  
+                      </div>
                       <div *ngFor='let ar of  album.albumImages | slice:1:2'>
-                     
-                         <img class="img-thumbnail imghalf"
+                         <img class="img-thumbnail imghalffull"
+                            [src] = "ar.path"
+                            alt="Another alt text"> 
+                      </div>
+
+                      <div *ngFor='let ar of  album.albumImages | slice:2:3'>
+                         <img class="img-thumbnail imgfull"
                             [src] = "ar.path"
                             alt="Another alt text">                           
                       </div> 
-                      <div *ngFor='let ar of  album.albumImages | slice:2:3'>
-                          <img class="img-thumbnail imghalf"
+ -->
+
+
+                      <div *ngFor='let ar of  album.albumImages '>
+                  <!--         <img class="img-thumbnail imghalffull"
                              [src] = "ar.path"
-                             alt="Another alt text"> 
-                             <div *ngIf="ar.path?.length ==  0"  class="imgcontainer">
-                                <img class="img-thumbnail imghalf"  alt="Another alt text"  src="../../../assets/img/no-image.png" />
-                         
-                              </div> 
-                      </div> 
-                      <div *ngIf="album.albumImages?.length ==  0"  class="imgcontainer">
-                          <img class="img-thumbnail imgfull"  alt="Another alt text"  src="../../../assets/img/no-image.png" />
-                          <img class="img-thumbnail imghalf"  alt="Another alt text"  src="../../../assets/img/no-image.png" />
-                          <img class="img-thumbnail imghalf"  alt="Another alt text"  src="../../../assets/img/no-image.png" />
+                             alt="Another alt text">  -->
+
+                              <div *ngIf="album.albumImages?.length ==  2"  class="imgcontainer imghalffull">
+                                <img class="img-thumbnail  imghalffull" 
+                                alt="Another alt text"
+                                [src] = "ar.path" />
+                            </div>
+                      </div>
+                            <div *ngFor='let ar of  album.albumImages '>
+                  <!--         <img class="img-thumbnail imghalffull"
+                             [src] = "ar.path"
+                             alt="Another alt text">  -->
+
+                              <div *ngIf="album.albumImages?.length >=  3"  class="imgcontainer imghalffull">
+                                <img class="img-thumbnail  imghalffull " 
+                                alt="Another alt text"
+                                [src] = "ar.path" />
+                            </div>
                       </div>
 
-                      
+                      <div *ngIf="album.albumImages?.length ==  0"  class="imgcontainer">
+                          <img class="img-thumbnail "  alt="Another alt text"  src="../../../assets/img/no-image.png" />
+                          <!-- <img class="img-thumbnail imghalf"  alt="Another alt text"  src="../../../assets/img/no-image.png" />
+                          <img class="img-thumbnail imghalf"  alt="Another alt text"  src="../../../assets/img/no-image.png" /> -->
+                      </div>
                     </div>
                      
                       <div class="over_like">
                         <div class="text-center">
-                          <span><strong>{{album.albumName}}</strong></span> 
+                          <span><strong>{{album.albumName}}</strong></span>
                         </div>
                       </div>
                       <!-- <div class="text-center">
                           <span> Colour Tag : {{album.colorTags }}</span> <br/>
                           <span> tags: {{album.tags}} </span> <br/>
                           <span> Created Date : {{album.dateAddedOn }} </span> 
-                      </div> -->
-                  
+                      </div> -->     
                   </div>   
                 </div>
                 <div class="clearfix"></div>

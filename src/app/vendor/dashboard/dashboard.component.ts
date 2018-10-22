@@ -47,7 +47,8 @@ export class DashboardComponent implements OnInit {
   private dashboard: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorDashboard/EnquiriesAndLeads'
  
   private VendorDashboard:string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorDashboard/Home";
-  vendor: any = {};
+  vendor: any = {suburb:
+    {suburbId: '', districtId: '', name: ""}};
 
   public changeGreeting(greeting: any): void {
     const isOpen = this.tooltip.isOpen();

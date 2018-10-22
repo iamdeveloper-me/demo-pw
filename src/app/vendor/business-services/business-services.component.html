@@ -127,39 +127,42 @@
 												<h5 class="text-center">
 													   Speciality, Costs of Services $ Experience
 											   </h5>
-											<div class="container"  *ngFor="let customFields of Selected_serveice.customFields
-												 ;let i = index;">
-												 
-												<div class="row">
-												  <div class="col-md-3"   >
-													 <div class="labelclick">
-														<label   class=""  >
-														
-															<input type="checkbox" (change)="changeEvent($event)" />
-														</label>
-														{{customFields.name}}
-													{{customFields.fieldType}}
-													
-													<div class="clearfix"></div>
-														<span class="blue">Selected Option</span>
-														<div class="clearfix"></div>
-														<div *ngIf="customFields.fieldType == radio" >
-															<button    type="button"    class="newbtn martop15px changepadd"
-															data-toggle="modal" data-target="#service_cost" (click) = "customFieldsdata(customFields)"     [disabled]="toggleBool">select</button>
-														</div>	
-														<div *ngIf="customFields.fieldType == checkbox" >
-															<button    type="button"    class="newbtn martop15px changepadd"
-															data-toggle="modal" data-target="#service_cost_checkbox" (click) = "customFieldsdata(customFields)"     [disabled]="toggleBool">select</button>
-														</div>	
-														<div *ngIf="customFields.fieldType == textbox" >
-																<button    type="button"    class="newbtn martop15px changepadd"
-																data-toggle="modal" data-target="#service_cost_textbox" (click) = "customFieldsdata(customFields)"     [disabled]="toggleBool">select</button>
-															</div>	
-														<div class="clearfix"></div>
-													 </div>
-												  </div>
-									            </div>
-											</div>
+											    <div class="container">
+													<div class="row">
+														<div class=""  *ngFor="let customFields of Selected_serveice.customFields
+															;let i = index;">
+															
+																	<div class="col"   >
+																		<div class="labelclick">
+																			<label   class=""  >
+																			
+																				<input type="checkbox" (change)="changeEvent($event)" />
+																			</label>
+																			{{customFields.name}}
+																		{{customFields.fieldType}}
+																		
+																		<div class="clearfix"></div>
+																			<span class="blue">Selected Option</span>
+																			<div class="clearfix"></div>
+																			<div *ngIf="customFields.fieldType == radio" >
+																				<button    type="button"    class="newbtn martop15px changepadd"
+																				data-toggle="modal" data-target="#service_cost" (click) = "customFieldsdata(customFields)"     [disabled]="toggleBool">select</button>
+																			</div>	
+																			<div *ngIf="customFields.fieldType == checkbox" >
+																				<button    type="button"    class="newbtn martop15px changepadd"
+																				data-toggle="modal" data-target="#service_cost_checkbox" (click) = "customFieldsdata(customFields)"     [disabled]="toggleBool">select</button>
+																			</div>	
+																			<div *ngIf="customFields.fieldType == textbox" >
+																					<button    type="button"    class="newbtn martop15px changepadd"
+																					data-toggle="modal" data-target="#service_cost_textbox" (click) = "customFieldsdata(customFields)"     [disabled]="toggleBool">select</button>
+																				</div>	
+																			<div class="clearfix"></div>
+																		</div>
+																	</div>
+
+														</div>
+												    </div>		
+												</div>	
 											<hr class="hr-light martop40px">
 										</div>
 								</div>	

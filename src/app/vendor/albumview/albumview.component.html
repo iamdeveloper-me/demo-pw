@@ -34,17 +34,16 @@
                                         <!-- <img class="img-thumbnail"
                                         src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
                                         alt="Another alt text"> -->
+
                                         <div *ngFor="let  image of data.albumImages | slice:0:1 ; let i=index ">   
-                                               
                                            <div class="imgcontainer" >
                                             <img class="img-thumbnail"  alt="Another alt text"  src="{{image.path }}" />
                                            </div> 
-                                          
                                         </div>
-                                        <div class="imgcontainer" >
-                                            <div *ngIf="data.albumImages?.length ==  0" >
-                                           
-                                                <img class="img-thumbnail"  alt="Another alt text"  src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />                  
+
+                                        <div *ngIf="data.albumImages?.length ==  0" >
+                                        <div class="imgcontainer">
+                                                <img class="img-thumbnail"  alt="Another alt text"  src="../assets/img/noImg.png" />           
                                             </div>
                                         </div>   
                                         
@@ -79,15 +78,15 @@
               <div class="modal-body">
                   <div class="col-sm-12  text-center">
                     <div class="modal-body" style="background-color: white">
-                      Album name :
-                      <input type="text" [(ngModel)]="Album.albumName" name="albumName" id="albumName"/><br>
+                      <strong>Album Name</strong><br/>
+                      <input type="text" [(ngModel)]="Album.albumName" name="albumName" id="albumName" class="borbotonly" /><br>
                       <div class="clearfix"></div>
                     </div>
                   </div>    
               </div>
-              <div class="foot_div text-center">
-                  <button type="submit" class="btn btn-secondary btn-raised "  ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-                  <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+              <div class="modal-footer text-center">
+                  <button type="submit" class="btn newbtn">Save</button>&nbsp;
+                  <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">CANCEL</button>
               </div>
             </div>  
           </div>  

@@ -301,7 +301,7 @@ margin-top:15px;
     float:right;
 }
 .over_like{
-    padding: 10px;
+    padding:5px 10px;
 }
 .gearicon button{
     background:transparent!important;
@@ -339,11 +339,12 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active{
  }
  .viev_all{
     margin-bottom: 30px;
+    margin-top: 30px;
  }
  .viev_all button{
     padding: 5px 43px;
     background: transparent;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
     border: 1px solid #cccccc;
  }
  .zoom_effect {
@@ -469,7 +470,7 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active{
 }
 .col-md-3 .image-div{
     width:100%;
-    height:175px;
+    height:160px;
 }
 
 .img-thumbnail{
@@ -477,27 +478,49 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active{
     background: none;
     padding: 0.5px;
     border:0px solid #fff;
+
+
+    object-fit: cover;
+    height: 160px;
+
+  /*  width: 100%;
+    height: 175px*/
+
+
+    width: 100%;
+    height: 175px
+
 }
 .col-md-3 .image-div img.singleimg{
     object-fit: cover;
     width: 100%;
-    height:175px;
+    height:160px;
 }
 
 .col-md-3 .image-div img.imgfull{
     object-fit: cover;
-    width: 229px;
+    width: 100%;
     height:100px;
 }
 .col-md-3 .image-div img.imghalf{
     object-fit: cover;
     width: 50%;
     float: left;
+
+
+    height: 60px;
+    /*height: auto;*/
+
+}
+.twothird img:first-child{
+    object-fit: cover;
+    width: 100%!important;
+    height:100px!important;
 }
 .col-md-3 .image-div img.imghalffull{
     object-fit: cover;
     width: 50%;
-    height: 175px;
+    height: 160px;
     float: left;
 }
 @media (max-width: 1024px) {

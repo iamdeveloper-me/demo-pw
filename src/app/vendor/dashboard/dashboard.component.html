@@ -8,7 +8,7 @@
   <div class="container-fluid Analytics mobilefixedcontainer">
      <div class="row profile">
         <div class="container-fluid Profile_com">
-           <div  matchHeight ="card ">
+           <div>
 
               <div class="col-md-12 card mobWight">  
                  <div class="card-header border_bottom_none card-header-warning card-header-icon">
@@ -165,7 +165,7 @@
               <div class="card-body nopadd" style="overflow: hidden;">
                  <div class="col-sm-5 nopadd maxheight335px">
                    <div class="infoimgbox">
-                    <img [src] = "vendor.profileImage" class="" alt="Profile picture" >
+                    <img src="../../../assets/img/no-image.png" class="" alt="Profile picture" >
                   </div>
                     <div class="viewstore">
                        <a href="">View Storefront</a>
@@ -191,7 +191,9 @@
                              <p>
                                 <a routerLink="../location">
 
-                                  {{vendor.city}}<br/>2 More Branches, {{vendor.address}}
+                                 
+                                  {{vendor.city}} ,
+                                  {{vendor.suburb.name}}, {{vendor.address}}, <br/>2 More Branches
 
                                 </a>
                              </p>
@@ -278,7 +280,9 @@
                        <div class="col-8 pull-left desktopnone blacktext padbot5px text-left">
                           Membership Type : Free
                        </div>
-                       <div class="col-4 pull-left text-right desktopnone padbot5px"><a routerLink="../membership" class="bluelink">Upgrade</a></div>
+                       <div class="col-4 pull-left text-right desktopnone padbot5px">
+                         <a routerLink="../membership" class="bluelink">Upgrade</a>
+                        </div>
                     </div>
                  </div>
               </div>

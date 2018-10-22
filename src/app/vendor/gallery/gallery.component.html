@@ -126,22 +126,33 @@
                                 <img class="img-thumbnail  imghalffull" 
                                 alt="Another alt text"
                                 [src] = "ar.path" />
-                            </div>
+                              </div>
                       </div>
-                            <div *ngFor='let ar of  album.albumImages '>
+
+                      <div *ngFor='let ar of  album.albumImages '>
                   <!--         <img class="img-thumbnail imghalffull"
                              [src] = "ar.path"
                              alt="Another alt text">  -->
 
-                              <div *ngIf="album.albumImages?.length >=  3"  class="imgcontainer imghalffull">
-                                <img class="img-thumbnail  imghalffull " 
+                              <div *ngIf="album.albumImages?.length ==  1"  class="imgcontainer imgfull">
+                                <img class="img-thumbnail" 
                                 alt="Another alt text"
                                 [src] = "ar.path" />
                             </div>
                       </div>
+                      <div *ngFor='let ar of  album.albumImages '>
+                  <!--         <img class="img-thumbnail imghalffull"
+                             [src] = "ar.path"
+                             alt="Another alt text">  -->
+                              <div *ngIf="album.albumImages?.length >=  3"  class="imgcontainer imghalffull">
+                                <img class="img-thumbnail  imghalf " 
+                                alt="Another alt text"
+                                [src] = "ar.path" />
+                              </div>
+                      </div>
 
                       <div *ngIf="album.albumImages?.length ==  0"  class="imgcontainer">
-                          <img class="img-thumbnail "  alt="Another alt text"  src="../../../assets/img/no-image.png" />
+                          <img class="img-thumbnail "  alt="Another alt text"  src="../../../assets/img/noImg.png" />
                           <!-- <img class="img-thumbnail imghalf"  alt="Another alt text"  src="../../../assets/img/no-image.png" />
                           <img class="img-thumbnail imghalf"  alt="Another alt text"  src="../../../assets/img/no-image.png" /> -->
                       </div>

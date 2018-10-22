@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-promotion-priority',
   templateUrl: './promotion-priority.component.html',
@@ -18,7 +19,7 @@ export class PromotionPriorityComponent implements OnInit {
   sum = 0 ;
   sub = 0;
 
-  constructor(public http: Http,public toastr: ToastrService) { }
+  constructor(public http: Http,public toastr: ToastrService,private router: Router) { }
   ngOnInit() {
 
     $('.togglebtnmenu').on('click', function(){
@@ -74,6 +75,8 @@ export class PromotionPriorityComponent implements OnInit {
                 console.log(promoData)
       this.http.post(this.createpromo,promoData,{headers:headers}).subscribe(data =>{
       console.log(data.json());
+      this.router.navigate([]).then(result => {  window.open(data.json().url, '_blank'); });
+   
       this.toastr.success( data.json().message);
   
       })

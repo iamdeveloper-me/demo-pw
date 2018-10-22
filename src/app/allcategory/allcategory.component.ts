@@ -13,11 +13,11 @@ export class AllcategoryComponent implements OnInit {
  	$.getScript('./assets/register/js/jquery-2.2.4.min.js');
  	$.getScript('./assets/js/stopExecutionOnTimeout.js');
 	// Parallaxing + add class active on scroll
-	$(document).scroll(function () {
-	  // parallaxing
-	  var $movebg = $(window).scrollTop() ;
-	  $('.zoom_in').css('background-positionY', ($movebg) + 'px');
-	});
+	// $(document).scroll(function () {
+	//   // parallaxing
+	//   var $movebg = $(window).scrollTop() ;
+	//   $('.zoom_in').css('background-positionY', ($movebg) + '-1 px');
+	// });
 	$(window).scroll( function(){
 		
 		var bottom_of_window = $(window).scrollTop() + $(window).height();

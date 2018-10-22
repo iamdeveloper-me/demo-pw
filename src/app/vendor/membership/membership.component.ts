@@ -27,10 +27,8 @@ export class MembershipComponent implements OnInit {
     $.getScript('./assets/js/prism.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
-    $.getScript('./assets/js/vendorsidebar.js');
-    
+    $.getScript('./assets/js/vendorsidebar.js');  
     $.getScript('./assets/js/membershipslider.js'); 
-
 
     $(".Suppliertab").click(function(){
     $("#filter").show();

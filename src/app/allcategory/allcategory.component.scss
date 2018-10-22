@@ -187,12 +187,13 @@ background-image:url(" ../../assets/img/wedding-card.png");
  .all_category{
    padding-top: 62px;
 }
+
  .box_img img{
   border-radius: 0px;
   min-height: inherit;
   max-height:inherit;
-  width: 100%;
-  margin-top: -50px;
+  width: 100%;/*
+  margin-top: -50px;*/
   position:relative;
 }
 .cakes_hover img {
@@ -201,18 +202,31 @@ background-image:url(" ../../assets/img/wedding-card.png");
 .box_img a {
   border-radius: 0px;
  background-attachment: fixed;
+ height: 132px!important;
 }
+.tranparentlayer{
+    background: rgba(0, 0, 0, .5);
+    width: 95%;
+    margin: 0px auto;
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    top: 84px;
+    padding: 5px 0px;
+}
+.tranparentlayer p{margin-bottom: 0px!important;}
 .cakes_hover h5 {
     margin-top: 0px;
-    padding:3.3em 0px;
-    font-size: 20px;
-    font-weight: bold;
+    padding:0px;
+    font-size:16px;
+    font-weight: normal;
     letter-spacing: 1px;
 }
-.cakes_hover p{
+/*.cakes_hover p{
   display: none;
 }
- .mob_dis_none{
+*/ 
+.mob_dis_none{
    display: none;
  }
  .mob_padd0{
@@ -220,10 +234,11 @@ background-image:url(" ../../assets/img/wedding-card.png");
  }
  .box_img{
    margin-bottom: 0px;
-   padding: 0;
+   padding: 5px;
    border-bottom: 2px solid #fff;
    overflow: hidden;
    border-radius:0px;
+   float: left;
  }
  .cakes_hover{
    left: 0;

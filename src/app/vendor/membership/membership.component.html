@@ -65,45 +65,43 @@
 			</div>
 			<section id="filter" style="display: block;">
 				<div class="row">
-					<div class="col-sm-4" *ngFor="let plan of pricing">
+					<div class="col-sm-12">
 						<div class="card martop0px">
 							<div id="membershipcarousel" class="owl-carousel">
-								<div class="panel card item">
-										<div class="panel-heading arrow_box text-center">
-											<span class="mostpopulartext">Free</span>
-											<h3>{{ plan.title}}</h3>
-											<div class="pricesec">
-												<table align="center">
-													<tr>
-														<td>MUR</td>
-														<td class="pricebig">8</td>
-														<td class="text-left lineheight16px">00<br/>/Month</td>
-													</tr>
-												</table>
-											</div>
-											<div class="basiccard">Billed Annually</div>
-										</div>
+								<div class="panel card item"  *ngFor="let plan of pricing">
+									<div class="panel-heading arrow_box text-center">
+												<span class="mostpopulartext">Free</span>
+												<h3>{{ plan.title}}</h3>
+												<div class="pricesec">
+													<table align="center">
+														<tr>
+															<td>MUR</td>
+															<td class="pricebig">8</td>
+															<td class="text-left lineheight16px">00<br/>/Month</td>
+														</tr>
+													</table>
+												</div>
+												<div class="basiccard">Billed Annually</div>
+									</div>
 									<ul class="list-group list-group-flush text-center">
-										<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
-										<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
-										<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
-										<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
-										<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
-										<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
-										<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
-										<li class="list-group-item"><i class="material-icons redtext">cancel</i> Pinned reviews</li>
-										<li class="list-group-item"><i class="material-icons bluetext">report</i> Limited Photos</li>
-										<li class="list-group-item"><i class="material-icons redtext">cancel</i> No Album</li>
-										<li class="list-group-item"><i class="material-icons redtext">cancel</i> No Performance analytics</li>
-										<li class="list-group-item"><i class="material-icons bluetext">report</i> 1 location</li>
-										<li class="list-group-item"><i class="material-icons bluetext">report</i> Low Priority in Search Results</li>
-										</ul>
-										<div class="panel-footer text-center">
-											
-			
-											<a class="btn btnchoosetik"   type="submit" (click) = "monthlyPrice(plan)" >CURRENT PLAN
-											</a>
-										</div>
+												<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
+												<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
+												<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
+												<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
+												<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
+												<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
+												<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
+												<li class="list-group-item"><i class="material-icons redtext">cancel</i> Pinned reviews</li>
+												<li class="list-group-item"><i class="material-icons bluetext">report</i> Limited Photos</li>
+												<li class="list-group-item"><i class="material-icons redtext">cancel</i> No Album</li>
+												<li class="list-group-item"><i class="material-icons redtext">cancel</i> No Performance analytics</li>
+												<li class="list-group-item"><i class="material-icons bluetext">report</i> 1 location</li>
+												<li class="list-group-item"><i class="material-icons bluetext">report</i> Low Priority in Search Results</li>
+									</ul>
+									<div class="panel-footer text-center">
+										<a class="btn btnchoosetik"   type="submit" (click) = "monthlyPrice(plan)" >CURRENT PLAN
+										</a>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -113,10 +111,10 @@
 			<section id="action" style="display: none;">
 
 				<div class="row" >
-					<div class="col-sm-4" *ngFor="let plan of pricing" >
+					<div class="col-sm-12">
 						<div class="card martop0px">
 							<div id="membershipcarouselann" class="owl-carousel">
-								<div class="panel card item">
+								<div class="panel card item" *ngFor="let plan of pricing">
 									<div class="panel-heading arrow_box text-center">
 										<span class="mostpopulartext">Free</span>
 										<h3>{{ plan.title}}</h3>
@@ -152,7 +150,6 @@
 										</a>
 									</div>
 								</div>
-								
 							</div>
 						</div>
 					</div>

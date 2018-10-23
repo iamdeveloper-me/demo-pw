@@ -270,7 +270,7 @@ findLocation(address) {
   
   ngOnInit() {
 
-    
+
 
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
@@ -600,7 +600,7 @@ $(document).on('click', ".saveall", function() {
   var data = this.addFile(info);
   console.log(info);
           //this.addFile(info);
-
+   $.getScript('./assets/js/vendorsidebar.js');
             var infofacebook = info.value.facebook;
             var infotwitter = info.value.twitter;
             var infogoogle = info.value.google;
@@ -644,7 +644,7 @@ $(document).on('click', ".saveall", function() {
               {
                
                 alert("saved");
-                
+              
                 
               }
         });

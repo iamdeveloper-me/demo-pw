@@ -7,157 +7,14 @@
             <app-navemenu></app-navemenu>
             <section class="p-0 mobilefixedcontainer" id="portfolio">
                 <div class="col-sm-12 mob_margin_30px">
-                    <ul class="tabbingdesign hidden-sm hidden-md hidden-lg">
+                    <!-- <ul class="tabbingdesign hidden-sm hidden-md hidden-lg">
                         <li class="card-title bussinesstab selected">Business Profile</li>
                         <li class="card-title locationtab">Location & Contact</li>
-                    </ul>
+                    </ul> -->
                     <div class="clearfix"></div>
                     <div>
-                        <div class="col-sm-5 col-12 pad375Zero locationtabbox"  >
-                            <div class=" heightequal365 margintop0px mobmargintop30px" *ngFor="let data of countryArray;let i=index" >
-                                <div class="custom-form"  >
-                                    <div class="col-sm-12 nopadd" *ngIf="data.isPrimary == true">
-                                        <div class="card martop10px">
-                                            <div class="col-sm-12">
-                                                <h4 class="mainhead" > Location (Primary) </h4>
-                                                <div class="switbtn" style="position: absolute;right:10px;top:10px;">
-                                                    <ui-switch (ngModel)="data.isPrimary" id="isPrimary" name="isPrimary" class="pull-left" style="position:relative;"></ui-switch>
-                                                </div>
-    
-                                            </div>
-                                        </div>
-                                        <div class="card-body"  >
-                                            <div class="text-center bg-form col-sm-12">
-                                                <div class="img-section">
-                                                        <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
-                                                            <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event)'></agm-marker>
-                                                            <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
-                                                        </agm-map>
-                                                        <div class="img_overlay" (click)="update(data)" data-target="#phone" data-toggle="modal">
-                                                            <div class="col-lg-12 col-md-12 pad_left_0px" (click) = "title()" >
-                                                            {{data.title}}
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 text_left">
-                                                <div class=" nopadd weekboxinput">
-                                                    <div class="col-sm-12  edit_hide" id="address-function" (click)="update(data)" data-target="#googlemap"  data-toggle="modal">
-                                                        <span class="acce_time1 col-sm-1 col-1">
-                                                        <i  class="material-icons">location_on</i>
-                                                        </span>
-                                                        <div class="col-sm-10 col-11">
-                                                        <div>Address Line 1: {{location.address_level_1}} / {{data.address}}  </div>
-                                                        <div>Address Line 2:  {{location.address_level_2}}</div>
-                                                        <div>State / Province / Region: {{location.address_state}} / {{data.city}}</div>
-                                                        <div>Country:  {{location.address_country}} / {{data.country}}</div>
-                                                        <div>Postal / Zip code: {{location.address_zip}} / {{data.postalCode}}</div>
-                                                        <i class="material-icons edit_btn"> edit</i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 text_left phone_icon1" (click) = "phone()"  >
-                                                <div class=" nopadd weekboxinput">
-                                                    <div class="col-lg-12 col-md-12 edit_hide" (click)="update(data)" data-target="#phone" data-toggle="modal">
-                                                        <span class="acce_time1 col-1">
-                                                        <i  class="material-icons">local_phone</i>
-                                                        </span>
-                                                        <div class="col-sm-10 col-11 mar_bottom_10px"> 
-                                                                Mobile :  {{data.mobile}}<i _ class="material-icons edit_btn1">edit</i>
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                        <span class="acce_time1 col-1">
-                                                        <i  class="material-icons">phone_iphone</i>
-                                                        </span>
-                                                        <div class="col-sm-10 col-11">
-                                                        Phone :  {{data.phone}}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 text_left" (click) = "trading()">
-                                                <div class="edit_hide paddtop15px bornone">
-                                                        <!-- <span class="acce_time1 col-1">
-                                                                <i  class="material-icons">access_time</i>
-                                                                </span> -->
-                                                    <div class="col-lg-12 col-md-12 edit_hide" (click)="update(data)" data-target="#phone" data-toggle="modal">
-                                                            <i _ class="material-icons edit_btn1">edit</i>
-                                                            <div class="col-sm-12 nopadd weekboxinput3">
-                                                                <div class="col-sm-4 col-xs-5-mob nopadd">Sunday </div>
-                                                                <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                                    {{data.sundayOpen}}AM to {{data.sundayClose}}PM
-                                                                    
-                
-                                                                </div>
-                                                                <div class="clearfix"></div>
-                                                                <div class="col-sm-12 nopadd">
-                                                                    <div class="col-sm-4 col-xs-5-mob nopadd">
-                                                                        Monday
-                                                                    </div>
-                                                                    <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                                        {{data.mondayOpen}}AM to {{data.mondayClose}}PM
-                                                                    </div>
-                                                                </div>
-                                                                <div class="clearfix"></div>
-                                                                <div class="col-sm-12 nopadd">
-                                                                    <div class="col-sm-4 col-xs-5-mob nopadd">
-                                                                        Tuesday
-                                                                    </div>
-                                                                    <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                                        {{data.tuesdayOpen}}AM to {{data.tuesdayClose}}PM
-                                                                    </div>
-                                                                </div>
-                                                                <div class="clearfix"></div>
-                                                                <div class="col-sm-12 nopadd">
-                                                                    <div class="col-sm-4 col-xs-5-mob nopadd">
-                                                                        Webnesday
-                                                                    </div>
-                                                                    <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                                        {{data.wednesdayOpen}}AM to {{data.wednesdayClose}}PM
-                                                                    </div>
-                                                                </div>
-                                                                <div class="clearfix"></div>
-                                                                <div class="col-sm-12 nopadd">
-                                                                    <div class="col-sm-4 col-xs-5-mob nopadd">
-                                                                        Thursday
-                                                                    </div>
-                                                                    <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                                        {{data.thursdayOpen}}AM to {{data.thursdayClose}}PM
-                                                                    </div>
-                                                                </div>
-                                                                <div class="clearfix"></div>
-                                                                <div class="col-sm-12 nopadd">
-                                                                    <div class="col-sm-4 col-xs-5-mob nopadd">
-                                                                        Friday
-                                                                    </div>
-                                                                    <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                                        {{data.fridayOpen}}AM to {{data.fridayClose}}PM
-                                                                    </div>
-                                                                </div>
-                                                                <div class="clearfix"></div>
-                                                                <div class="col-sm-12 nopadd">
-                                                                    <div class="col-sm-4 col-xs-5-mob nopadd">
-                                                                        Saturday
-                                                                    </div>
-                                                                    <div class="col-sm-8 col-xs-7-mob nopadd">
-                                                                        {{data.saturdayOpen}}AM to {{data.saturdayClose}}PM
-                                                                    </div>
-                                                                </div>
-                                                                <div class="clearfix"></div>
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>    
-                    <div class="col-sm-7 col-12 mobnopadd padleft0px bussinesstabbox" (click)="openModel(vendor)">
-                            <div class=" mobnopadd padleft0px ">
+                        <div class="col-sm-5 col-12 pad375Zero">
+                            <div class="heightequal365 mobnopadd padleft0px ">
                                 <div class="card heightequal365 margintop0px mobmargintop30px">
                                     <div class="card-header">
                                         <div class="busines_img">
@@ -189,6 +46,10 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>    
+                    <div class="col-sm-7 col-12 mobnopadd padleft0px" (click)="openModel(vendor)">
+                            
                             <div class=" linkbox margintop0px heightequal365 card padright0px">
                                 <div class="card-header">
                                     <h6 class="card-title text-center">Link Accounts & Websites</h6>
@@ -289,7 +150,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h4 class="modal-title">Edit Business Description {{modelfield}}</h4>
+                        <h4 class="modal-title">Edit Business Description</h4>
                         <button  type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
@@ -308,7 +169,7 @@
                         </div>
                     </div>
                     <div class="modal-footer text-center">
-                        <button type="submit" class="btn newbtn">Save</button>&nbsp;
+                        <button type="submit" id= "myidea" class="btn btn-secondary btn-raised descsave newbtn" >Save</button>
                         <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
@@ -318,7 +179,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h4 class="modal-title">Edit Business Name or Contact {{modelfield}}</h4>
+                        <h4 class="modal-title">Edit Business Name or Contact </h4>
                         <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
@@ -362,9 +223,8 @@
                     <div class="modal-body">
                         <div class="col-sm-12  text-center">
                             <div class="switbtn">
-                                <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                                <ui-switch [(ngModel)]="Facebook" ></ui-switch> 
                                 <span class="have_one">Yes, I have one! </span>
-                                <span class="have_one">No, I don't! </span>
                             </div>
                             <div class="clearfix"></div>
                             <div class="input_facebook input-effect form-group">
@@ -381,7 +241,7 @@
                         </div>
                     </div>
                     <div class="modal-footer text-center marTop50px">
-                        <button type="submit" class="btn btn-secondary newbtn">Save</button> 
+                        <button type="submit" class="btn btn-secondary newbtn"  (click)="activeModal.dismiss('Cross click')">Save</button> 
                         <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
@@ -436,7 +296,7 @@
                             <div class="switbtn">
                             <ui-switch [(ngModel)]="enable" ></ui-switch> 
                             <span class="have_one">Yes, I have one! </span>
-                            <span class="have_one">No, I Don't! </span>
+                            <!-- <span class="have_one">No, I Don't! </span> -->
                             </div>
                             <div class="clearfix"></div>
                             <div class="input_facebook input-effect form-group">
@@ -577,14 +437,14 @@
                                                     <span class="focus-border"></span>
                                                     <input type="hidden" [(ngModel)]="modelfield">
                                             </div>
-                                            <img-cropper #cropper [image]="imagee" [settings]="cropperSettings" class="imgcrop"></img-cropper>
+                                            <img-cropper #cropper [image]="imagee"  [settings]="cropperSettings" class="imgcrop"></img-cropper>
                                     
                                         <!-- <span class="result" *ngIf="data.image">
                                         <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle"> 
                                         </span>-->
                                         </div>
                                         <div class="busines_img">
-                                          <i class="material-icons" data-target="#imagecrop" data-toggle="modal" id="description-function"> camera_alt </i>
+                                          <i class="material-icons" > camera_alt </i>
                                             <img [src] = "imagee">
                                         </div>
                             <!-- Cropper Ends -->

@@ -232,9 +232,7 @@ background: transparent;
         
        color: #e72e77;
       }
- .navbtntik{
-      display:none;
-     }
+
   
 .mobileshow{
   display:none;
@@ -1060,9 +1058,10 @@ and (max-device-width : 1100px) {
         height: 100%; 
         width: 280px;
         display: block;
+        box-shadow:0px 0px 80px;
       }
         .navbar-collapse {
-          transition: .5s;
+          transition: .2s;
           left: -280px;
       }
   .in{
@@ -1218,9 +1217,11 @@ and (max-device-width : 1100px) {
     font-size:15px !important;
   }
   button.navbar-toggler.tik.hidden-md.hidden-lg, button.navbar-toggler.hidden-md.hidden-lg  {
-    left: 11px !important;
+    left: 11px;
     top: 6px !important;
+    transition: .2s;
   }
+
 }
 
 
@@ -1241,8 +1242,9 @@ and (max-device-width : 812px) {
         z-index: 99999!important;
     }
     button.navbar-toggler.tik.hidden-md.hidden-lg, button.navbar-toggler.hidden-md.hidden-lg  {
-        left: 11px !important;
+        left: 11px;
         top: 20px !important;
+        transition: .2s;
     }
     .notification-dropdown{
        top:40px!important;

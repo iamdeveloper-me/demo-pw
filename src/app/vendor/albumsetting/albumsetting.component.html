@@ -10,11 +10,10 @@
               <div class="col-md-12 card">
                 <div class="col-sm-12 subheadtikwrapper">
                   <a routerLink= "../albumview" class="pull-left iconfloatleft">
-                  <i class="material-icons"> arrow_back_ios </i> <span>Portfolio</span>
-                  </a>  
-  
-                <div class="subheadtik">Portfolio Photo Settings</div>
-                </div> 
+                  <i class="material-icons"> arrow_back_ios </i> <span>Album</span>
+                  </a> 
+                <div class="subheadtik">Album Name Settings</div>
+              </div> 
                 <table width="100%" class="tablelisttags" cell-spacing="5" cell-padding="5">
                   <tr>
                     <th></th>
@@ -22,50 +21,51 @@
                     <th>Color</th>
                     <th></th>
                   </tr>
-                  <tr *ngFor="let  data of eventArray;let i=index">
+                  <tr >
+                     <tr >
                       <td class="imgboxlist">
-                      {{data.albumName}}
-                        <div *ngFor="let  image of data.albumImages | slice:0:1 ; let i=index ">   
+                      <!-- {{data.albumName}} -->
+                        <div >   
                                                
                             <div >
-                             <img class="img-thumbnail"  alt="Another alt text"  src="{{image.path }}" />
+                             <img class="img-thumbnail"  alt="Another alt text"  src="https://s3.us-east-2.amazonaws.com/prefect-image/3c6e5863-30e7-4af3-9bfd-efaafb7857c34-Nature-Wallpapers-2014-1_ukaavUI.jpg" />
                             </div> 
                            
                          </div>
 
-                         <div *ngIf="data.albumImages?.length ==  0" >
+                    <!--      <div *ngIf="data.albumImages?.length ==  0" >
                                  <img class="img-thumbnail"  alt="Another alt text"  src="https://cdn.onlinewebfonts.com/svg/img_96092.png" />
-                         </div>
+                         </div> -->
                       
                       </td>
                       <td> 
                         <div class="textboxlist">
                           <span class="tagstik">
-                            {{data.tags}}     
+                         dxfdgdg    
                             <i class="material-icons">clears</i>
                           </span>
                                           </div>
                       </td>
                       <td>
                         <div class="colorboxlist" >
-                          <span class="colortags bluebg" *ngIf="data.colorTags == blue "></span>
-                          <span class="colortags redbg" *ngIf="data.colorTags == red"></span>
-                          <span class="colortags pinkbg" *ngIf="data.colorTags == pink"></span>
-                          <span class="colortags yellowbg" *ngIf="data.colorTags == Yellow"></span>
-                          <span class="colortags greenbg" *ngIf="data.colorTags == Green"></span>
-                          <span class="colortags purplebg"*ngIf="data.colorTags == purple"></span>
-                          <span class="colortags bluebg" *ngIf="data.colorTags == orange "></span>
-                          <span class="colortags redbg" *ngIf="data.colorTags == teal"></span>
-                          <span class="colortags pinkbg" *ngIf="data.colorTags == blue"></span>
-                          <span class="colortags yellowbg" *ngIf="data.colorTags == brown"></span>
-                          <span class="colortags greenbg" *ngIf="data.colorTags == black"></span>
-                          <span class="colortags purplebg"*ngIf="data.colorTags == grey"></span>
-                          <span class="colortags purplebg"*ngIf="data.colorTags == white"></span>
+                          <span class="colortags bluebg"></span>
+                          <span class="colortags redbg"></span>
+                          <span class="colortags pinkbg"></span>
+                          <span class="colortags yellowbg"></span>
+                          <span class="colortags greenbg"></span>
+                          <span class="colortags purplebg"></span>
+                          <span class="colortags bluebg"></span>
+                          <span class="colortags redbg"></span>
+                          <span class="colortags pinkbg"></span>
+                          <span class="colortags yellowbg"></span>
+                          <span class="colortags greenbg"></span>
+                          <span class="colortags purplebg"></span>
+                          <span class="colortags purplebg"></span>
                         </div>
                       </td>
                       <td class="text-center">
-                        <button class="btn btn-success editbtn"  id="prompt-function"  data-target="#Description" data-toggle="modal" data-reactid="333" (click)="edit(data)">Edit {{data.albumsId}}</button><br/>
-                        <button class="btn btn-warining deletebtn" (click)= "deletevent(data,i)"> Delete {{data.albumsId}}</button>
+                        <button class="btn btn-success editbtn"  id="prompt-function"  data-target="#Description" data-toggle="modal" data-reactid="333">Edit </button><br/>
+                        <button class="btn btn-warining deletebtn" > Delete </button>
                      
                       </td>
                   </tr>
@@ -73,19 +73,22 @@
               </div>
            </div>
         </div>
-  </div>
-  </div>
+    </div>
+</div>
   <app-foot></app-foot>
   
+ 
+
+
   
   <router-outlet></router-outlet> 
 
     <div class="modal fade" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-            <form (ngSubmit)="editform(a)" #a="ngForm">
+            <form>
               <div class="modal-content">
                   <div class="modal-header text-center">
-                      <h4 class="modal-title">Photo Settings {{albumArray.albumsId}} </h4>
+                      <h4 class="modal-title">Photo Settings  </h4>
                      
                       <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   </div>
@@ -98,7 +101,7 @@
 
                                   <input class="effect-16 validate" 
                                   type="text"  
-                                  [(ngModel)] = "albumArray.tags"  
+                                  
                                   name="tags"  
                                   id="tags"  
                                   required="required"> 
@@ -108,31 +111,16 @@
                                 </div>
                                 <div>
                                   <span class="tagstik"> 
-                                      {{albumArray.tags}} 
+                                     ytuytu
                                     <i class="material-icons">clears</i>
                                   </span>      
                                 </div>
-                                <div class="input-effect form-group md-form ">
-
-                                  <input class="effect-16 validate" 
-                                  type="text"   
-                                  [(ngModel)] = "albumArray.albumName"  
-                                  name="albumName"  
-                                  id="albumName"  
-                                  required="required">
-
-                                  <label>Album Name </label>
-                                  <span class="focus-border"></span>
-                                </div>
+                              
                                 <div class="input-effect form-group md-form ">
                               
                                   <input class="effect-16 validate" 
                                   type="text"   
-                                  [(ngModel)] = "colour"  
-                                  name="colorTags"  
-                                  id="colorTags"  
-                                  required="required"
-                                  [value] = "colour"
+                                 
                                   >
 
                                   <label>Colour Tag </label>
@@ -142,7 +130,7 @@
                                 <input 
                                 type="hidden" 
                                 name="id"   
-                                [(ngModel)] = "albumArray.albumsId" />
+                               />
                                
                             </div>
                           </div>
@@ -161,7 +149,7 @@
                                         type="checkbox" 
                                        
                                         id="pink"   
-                                        [(ngModel)] = "pink"  (click)="pinkTag()"  />
+                                         />
 
                                         <label for="pink" class="pinkinput"> 
                                             Pink
@@ -172,68 +160,67 @@
                                         type="checkbox" 
                                       
                                          id="red" 
-                                         [(ngModel)] = "red"  
-                                         (click)="redTag()"  />
+                                       />
                                         <label for="red" class="redinput"> 
                                             Red
                                         </label>
                                       </div>
                                       <div class="funkyradio-info">
-                                        <input type="checkbox" id="orange" [(ngModel)] = "orange"   (click)="orangeTag()" />
+                                        <input type="checkbox" id="orange"  />
                                         <label for="orange" class="orangeinput"> 
                                             Orange
                                         </label>
                                       </div>
                                       <div class="funkyradio-info">
-                                        <input type="checkbox"  id="yellow" [(ngModel)] = "yellow"  (click)="yellowTag()"  />
+                                        <input type="checkbox"  id="yellow"  />
                                         <label for="yellow" class="yellowinput"> 
                                             Yellow
                                         </label>
                                       </div>
                                       <div class="funkyradio-info">
-                                        <input type="checkbox" id="green" [(ngModel)] = "green"  (click)="greenTag()"   />
+                                        <input type="checkbox"  />
                                         <label for="green" class="greeninput">
                                             Green
                                         </label>
                                       </div>
                                       <div class="funkyradio-info">
-                                        <input type="checkbox"   id="teal" [(ngModel)] = "teal"  (click)="tealTag()"  />
+                                        <input type="checkbox"   id="teal" />
                                         <label for="teal" class="tealinput"> 
                                             Blue
                                         </label>
                                       </div>
                                         <div class="funkyradio-info">
-                                        <input type="checkbox"   id="blue"  [(ngModel)] = "blue"   (click)="blueTag()" />
+                                        <input type="checkbox"   id="blue" />
                                         <label for="blue"  class="blueinput"> 
                                             Blue
                                         </label>
                                       </div>
                                         <div class="funkyradio-info">
-                                        <input type="checkbox"  id="purple"   [(ngModel)] = "purple"  (click)="purpleTag()" />
+                                        <input type="checkbox"  id="purple"   />
                                         <label for="purple" class="purpleinput"> 
                                             Purple
                                         </label>
                                       </div>
                                         <div class="funkyradio-info">
-                                        <input type="checkbox"   id="brown"  [(ngModel)] = "brown"  (click)="brownTag()" />
+                                        <input type="checkbox"   id="brown" />
                                         <label for="brown" class="browninput" > 
                                             Brown
                                         </label>
                                       </div>
                                       <div class="funkyradio-info">
-                                        <input type="checkbox"  id="black"  [(ngModel)] = "black"   (click)="blackTag()"  />
+                                        <input type="checkbox"  id="black"  />
                                         <label for="black" class="blackinput">
                                             Black
                                         </label>
                                       </div>
                                       <div class="funkyradio-info">
-                                        <input type="checkbox"  id="grey"  [(ngModel)] = "grey"  (click)="greyTag()"  />
+                                        <input type="checkbox"  id="grey"  />
                                         <label for="grey" class="greyinput"> 
                                             Grey
                                         </label>
                                       </div>
                                       <div class="funkyradio-info">
-                                        <input type="checkbox"   id="white"  [(ngModel)] = "white"   (click)="whiteTag()"  />
+                                        <input type="checkbox"   id="white"   />
                                         <label for="white" class="whiteinput">
                                             White
                                         </label>

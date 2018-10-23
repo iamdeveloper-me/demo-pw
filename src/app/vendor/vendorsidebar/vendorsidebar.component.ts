@@ -14,7 +14,7 @@ export class VendorsidebarComponent implements OnInit {
     $.getScript('./assets/js/vendorsidebar.js');
 
  $(".blackoverlaymain").click(function(){
-       alert("hi");
+       //alert("hi");
     });
 
 

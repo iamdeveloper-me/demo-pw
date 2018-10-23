@@ -64,6 +64,8 @@ export class BusinessInfoComponent implements OnInit {
     perfectWeddingURL: '',
     files:{path:''}
   };
+
+  Facebook =  true;
   modelfield: any = {};
   primarylocation:any = {};
   countryArray:string[];
@@ -598,10 +600,11 @@ save(){
 
   upForm(info){
 
-  var data = this.addFile(info);
-  console.log(info);
+          var data = this.addFile(info);
+           console.log(info);
           //this.addFile(info);
-
+         
+            console.log( this.Facebook);
             var infofacebook = info.value.facebook;
             var infotwitter = info.value.twitter;
             var infogoogle = info.value.google;
@@ -644,7 +647,7 @@ save(){
               if(responce.status == 200)
               {
                
-                alert("saved");
+                console.log("saved");
                 
                 
               }
@@ -708,7 +711,8 @@ save(){
       ,      (responce)=>{ console.log(responce); });
     
       }
-enable =  true;
+      
+  
 enable1 =  true;
 enable2 =  true;
 enable3 =  true;

@@ -594,7 +594,7 @@ save(){
     }
     openModel(b){
       this.modelfield = b; 
-       // console.log(this.modelfield);
+      console.log(this.modelfield);
     }
 
 

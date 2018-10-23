@@ -4,6 +4,7 @@ import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
 import { Router } from '@angular/router';
 
+
 // Add the RxJS Observable operators we need in this app.
 
 
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
   providers: [NgbCarouselConfig]
 })
 export class DashboardComponent implements OnInit {
-   
+  jobArray:string[];
     PhoneEdit = '5555555' ;
     angularLogo = 'https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg';
     
@@ -47,6 +48,7 @@ export class DashboardComponent implements OnInit {
   private dashboard: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorDashboard/EnquiriesAndLeads'
  
   private VendorDashboard:string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorDashboard/Home";
+  private geturl: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/myjobs';
   vendor: any = {suburb:
     {suburbId: '', districtId: '', name: ""}};
 
@@ -60,7 +62,7 @@ export class DashboardComponent implements OnInit {
   }
  // supArray:string[];  
       ngOnInit()  {
-      
+        this.getEvents();
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         headers.append('Accept', 'application/json')
@@ -216,7 +218,7 @@ export class DashboardComponent implements OnInit {
               });
           }
     
-    
+          
     
     
        
@@ -224,6 +226,19 @@ export class DashboardComponent implements OnInit {
        
         }
 
-   
+        getEvents(){
+    
+          let headers = new Headers();
+          var authToken = localStorage.getItem('userToken');
+          headers.append('Accept', 'application/json')
+          headers.append('Content-Type', 'application/json');
+          headers.append("Authorization",'Bearer '+authToken);
+          this.http.get(this.geturl,{headers:headers}).subscribe(data =>{
+          this.jobArray = data.json() as string[]; 
+          console.log(this.jobArray);
+      
+         });
+         
+        }
 }
 

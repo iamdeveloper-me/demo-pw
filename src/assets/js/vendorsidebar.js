@@ -3,8 +3,20 @@ $("#menu-toggle").click(function(e) {
     $("#wrapper").toggleClass("toggled");
 });
 
+
+
+$("#myidea").click(function(e) {
+    alert("dfv");
+  $('#Description').modal('hide')
+
+});
+
+
 $(document).ready(function () {
-   
+
+
+  $('#Description').modal('hide')
+
     $("#carousel").owlCarousel({
 
       autoplay: true,

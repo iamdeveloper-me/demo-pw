@@ -49,8 +49,10 @@ const colors: any = {
 export class CalendertableComponent implements OnInit {
    jobArray:string[];
    
-
+  
    event = {  vendorJobsId: 0,
+              contactnumber: "",
+              location: "",
               clientName: "",
               numberOfPeople: 0,
               clientPhoneNumber: "",

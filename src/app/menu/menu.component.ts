@@ -287,8 +287,8 @@ export class MenuComponent implements OnInit {
 
         $(".navbtntik").show(); 
         $(".navbar-toggler").removeClass("tik");
-        $(".slidemenu").removeClass("outslide");
-        $(".slidemenu").addClass("inslide"); 
+        //$(".slidemenu").removeClass("outslide");
+        //$(".slidemenu").addClass("inslide"); 
         $(".blackoverlaymain").addClass( "blockmobile"); 
         $(".fixedtik").addClass( "positionfixed"); 
         $(".dark_footer").hide(); 
@@ -302,14 +302,14 @@ export class MenuComponent implements OnInit {
         $(".navbar-toggler").removeClass("cross")
         $(".navbar-toggler").addClass("tik");
 
-        $(".slidemenu").addClass("rtslide111");  
-        setTimeout(function() { $(".slidemenu").removeClass("rtslide111") }, 1000);
-        $(".slidemenu").removeClass("inslide"); 
-        $(".blackoverlaymain").removeClass( "blockmobile"); 
+       // $(".slidemenu").addClass("rtslide111");  
+        //setTimeout(function() { $(".slidemenu").removeClass("rtslide111") }, 1000);
+        //$(".slidemenu").removeClass("inslide"); 
+        //$(".blackoverlaymain").removeClass( "blockmobile"); 
         setTimeout(function() { $(".fixedtik").removeClass("positionfixed") }, 1000);
         $(".dark_footer").show();
     });
- 
+
        $(".blackoverlaymain").click(function(){
        //alert("ramjane");
         $(".navbar-toggler").show(); 
@@ -328,6 +328,7 @@ export class MenuComponent implements OnInit {
         $(".tikrightclose").hide();
         $(".dark_footer").show();
     });
+
 
 $(".homemenu").click(function(){
        //alert("ramjane");
@@ -352,12 +353,17 @@ $(".homemenu").click(function(){
 
 
      $(".mobileslidewednav").click(function(){
+       setTimeout(function() { $(".cross").hide() }, 300);
+       $(".navbtntik ").hide(); 
        // alert("hi");
        //$("mobileshowwebnav").addClass("lefttik");
          //$("mobileshowwebnav").css('left', '-20px!important');
 
     });
      $(".backsilde").click(function(){
+       setTimeout(function() { $(".cross").show() }, 800);
+       //$(".cross").show(); 
+       $(".navbtntik ").show(); 
        // alert("bye");
       //$("mobileshowwebnav").css('left', '-20px!important');
     });

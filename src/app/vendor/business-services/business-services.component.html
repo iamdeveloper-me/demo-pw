@@ -10,15 +10,17 @@
 				<section id="user-profile">
 					<div class="col-12 nopadd">
 						<div  class="card-header text-center">	
-							<button type="button" *ngIf="!show"  (click)="addnew_services()">change your services</button>		
-							<button type="button" *ngIf="!allservices"    (click)="back_services()">back to  your services</button>						
+							<button type="button" class="addmorebtn newbtn" *ngIf="!show"  (click)="addnew_services()">Add More Services</button>		
+							<button type="button" *ngIf="!allservices"  class="addmorebtn newbtn"   (click)="back_services()">back to  your services</button>						
 							<div  *ngIf="!show" >
 								<div class="subheadtik card-title" >
 									{{first_category.categoryName}}  	
 								</div>	
 							</div>
-							<div *ngIf="!allservices">
-								<button class="prebtn">Prev</button>
+							<div class="sliderholder" *ngIf="!allservices">
+								<button class="prebtn">
+										<i class="material-icons">arrow_back_ios</i>
+								</button>
 								<div class="servicecontainer"  >
 									<div class="activedisplay"><input type="radio" checked/> Cakes</div>
 									<div class="activehide"  *ngFor="let category of categoryserveice ;let i = index;">
@@ -30,7 +32,9 @@
 									
 									</div>
 								</div>
-								<button class="nextbtn" type="submit" >Next</button>
+								<button class="nextbtn" type="submit" >
+										<i class="material-icons">arrow_forward_ios</i>
+								</button>
                             </div>
 						</div>
 						<div class="card margintop0px serveicedata" *ngIf="!show"  >
@@ -247,8 +251,6 @@
 	   </div>
 	</div>
  </div>
-
-
 
  <div class="modal fade" id="service_cost_textbox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">

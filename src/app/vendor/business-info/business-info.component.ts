@@ -64,6 +64,8 @@ export class BusinessInfoComponent implements OnInit {
     perfectWeddingURL: '',
     files:{path:''}
   };
+
+  Facebook =  true;
   modelfield: any = {};
   primarylocation:any = {};
   countryArray:string[];
@@ -269,7 +271,7 @@ findLocation(address) {
   
   ngOnInit() {
 
-    
+
 
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
@@ -592,14 +594,14 @@ save(){
     }
     openModel(b){
       this.modelfield = b; 
-       // console.log(this.modelfield);
+      console.log(this.modelfield);
     }
 
 
   upForm(info){
 
-  var data = this.addFile(info);
-  console.log(info);
+          var data = this.addFile(info);
+           console.log(info);
           //this.addFile(info);
 
             var infofacebook = info.value.facebook;
@@ -644,9 +646,9 @@ save(){
               if(responce.status == 200)
               {
                
-                alert("saved");
+                console.log("saved");
                 
-                
+
               }
         });
             
@@ -708,7 +710,8 @@ save(){
       ,      (responce)=>{ console.log(responce); });
     
       }
-enable =  true;
+      
+  
 enable1 =  true;
 enable2 =  true;
 enable3 =  true;

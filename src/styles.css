@@ -511,6 +511,7 @@ visibility: inherit!important;
   }
 .blackoverlaymain{
     display: none;
+    left:280px!important;
   }
 
 
@@ -645,8 +646,8 @@ and (max-device-width : 812px) {
   top:0px;
   z-index: 999;
 }
-  .blackoverlaymain, .blackoverlaymainuser{
-  background: rgb(0,0,0, 0.5);
+  .blackoverlaymain{
+  background:transparent;
   position: fixed;
   width:100%;
   height:100vh;
@@ -654,23 +655,27 @@ and (max-device-width : 812px) {
   z-index:999;
 }
 .blackoverlaymainuser{
-  background: rgb(0,0,0, 0.5);
-  position: fixed;
+background:transparent!important;  
+position: fixed;
   width:100%;
   height:100vh;
   top:0px;
   right:-100%;
-  transition: right .8s;
+  transition: right .2s;
   z-index:999;
 }
 .blackoverlaymainuser button.cross{
 height: 40px!important;
-width: 35px!important;
-right: 60%!important;
+width: 40px!important;
+right: 52%!important;
 position: absolute!important;
 background: none!important;
 border: 0px solid #fff!important;
 top: 13px!important;
+z-index: 999999!important;
+background: #fff!important;
+/* border-radius: 50%; */
+padding-left: 11px!important;
 }
 .blockmobile{
   display: block!important;
@@ -688,7 +693,7 @@ top: 13px!important;
     z-index:999999!important; 
   }
   .blackoverlaymain{
-    background: rgba(0,0,0, 0.5)!important;
+    background: transparent!important;
     position: fixed!important;
     width:100%!important;
     height:100%!important;
@@ -698,6 +703,10 @@ top: 13px!important;
 
 
 @media(min-width:768px) {
+.cross{
+  position: absolute;
+  left:300px!important;
+}
 .footer_bg{
   display:none!important;
 }
@@ -889,24 +898,28 @@ background:#ff0000;
     display: block;
   }
  .blackoverlaymainuser{
-    background: rgb(0,0,0, 0.5);
+    background: transparent;
     position: fixed;
     width:100%;
     height:100vh;
     top:0px;
     right:-100%;
-    transition: right .8s;
+    transition: right .3s;
     z-index:999;
   }
 
 .blackoverlaymainuser button.cross{
-  height: 40px!important;
-  width: 35px!important;
-  right: 60%!important;
-  position: absolute!important;
-  background: none!important;
-  border: 0px solid #fff!important;
-  top: 13px!important;
+ height: 40px!important;
+width: 40px!important;
+right: 52%!important;
+position: absolute!important;
+background: none!important;
+border: 0px solid #fff!important;
+top: 13px!important;
+z-index: 999999!important;
+background: #fff!important;
+/* border-radius: 50%; */
+padding-left: 11px!important;
 }
 
 
@@ -929,7 +942,7 @@ background:#ff0000;
    {
     transform: rotate(45deg);
     transform-origin: 10% 10%;
-    background: #fff!important;
+    background: #000!important;
     }
     .cross  .line2 {
       opacity: 0;
@@ -937,7 +950,7 @@ background:#ff0000;
     .cross .line3 {  
     transform: rotate(-45deg);
     transform-origin: 10% 90%;
-    background: #fff!important;
+    background: #000!important;
     }
   }
 

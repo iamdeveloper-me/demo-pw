@@ -27,10 +27,10 @@
                     <div class="progresstext col-sm-1 col-2 bluetext text-center"><strong>{{total}} %</strong></div>
                     <div class="clearfix"></div>
                     <div class="profileleftbox prof_padbot">
-                       <div class="col-md-2"></div>
-                       <div class="col-sm-5  displya_name">
-                          <ul>
-                             <li > 
+                      
+                        <div class="col-sm-3  displya_name">
+                            <ul>
+                              <li > 
                                 <a routerLink="../business" *ngIf="buinessPhone == test">
                                 
                                   <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
@@ -39,7 +39,7 @@
                                    <button class="editbtn">Select to Edit</button>
                                 </a>
                                 <a routerLink="../business" *ngIf="buinessPhone == test1">
-                                  <i class="material-icons" ngbTooltip="Description">error_outline</i> 
+                                  <i class="material-icons graytext" ngbTooltip="Description">error_outline</i> 
 
                                   <strong class="blacktext" >Buiness Phone </strong>
                                   <span  class="editbtn">Edit</span> 
@@ -53,104 +53,113 @@
                                     <button class="editbtn">Select to Edit</button>
                                   </a>
                                 <a routerLink="../business"  *ngIf="businessProfilePic == test1" >
-                                    <i class="material-icons" ngbTooltip="Description">error_outline</i> 
+                                    <i class="material-icons graytext" ngbTooltip="Description">error_outline</i> 
                                     <strong class="blacktext">Business Profile Picture </strong>  
                                     <span  class="editbtn">Edit</span> 
                                 </a>
                              </li>
-                              <li>
+                            </ul>
+                          </div>
+                          <div class="col-sm-3  displya_name">
+                              <ul>
+                                  <li>
+                                    <a routerLink="../business" *ngIf="businessService == test" class="done">
+                                      <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
+    
+                                      <strong class="blacktext" >Service</strong>
+                                      <button class="editbtn">Select to Edit</button>
+                                    </a>
+                                  <a routerLink="../business"  *ngIf="businessService == test1" >
+                                      <i class="material-icons graytext" ngbTooltip="Description">error_outline</i> 
+                                      <strong class="blacktext">Service</strong>  
+                                      <span  class="editbtn">Edit</span> 
+                                  </a>
+                                 </li>
+                                 <li>
+                              
+                                    <a routerLink="../location" *ngIf="mapSettings == test" class="done">
+                                      <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
+    
+                                      <strong class="blacktext" >location (map)</strong>
+                                      <button class="editbtn">Select to Edit</button>
+                                    </a>
+                                  <a routerLink="../location"  *ngIf="mapSettings == test1" >
+                                      <i class="material-icons graytext" ngbTooltip="Description">error_outline</i> 
+                                      <strong class="blacktext">location (map)</strong>  
+                                      <span  class="editbtn">Edit</span> 
+                                  </a>
+                                 </li>
+                              </ul>
+                            </div>
+                            <div class="col-sm-3  displya_name">
+                                <ul>
+                                    <li> 
+                           
+                                       <a routerLink="../business" *ngIf="description == test" class="done">
+                                         <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
+       
+                                         <strong class="blacktext" >Description</strong>
+                                         <button class="editbtn">Select to Edit</button>
+                                       </a>
+                                     <a routerLink="../business-services"  *ngIf="description == test1" >
+                                         <i class="material-icons graytext" ngbTooltip="Description">error_outline</i> 
+                                         <strong class="blacktext">Description</strong>  
+                                         <span  class="editbtn">Edit</span> 
+                                     </a>
+                                    </li>
+                                    <li> 
+                               
+                                       <a routerLink="../gallery" *ngIf="photos == test" class="done">
+                                         <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
+       
+                                         <strong class="blacktext" >Photos</strong>
+                                         <button class="editbtn">Select to Edit</button>
+                                       </a>
+                                     <a routerLink="../gallery"  *ngIf="photos == test1" >
+                                         <i class="material-icons" ngbTooltip="Description">error_outline</i> 
+                                         <strong class="blacktext">Photos</strong>  
+                                         <span  class="editbtn">Edit</span> 
+                                     </a>
+                                    </li>
+                                   </ul>
+                              </div>
+                              <div class="col-sm-3  displya_name">
+                                <ul>
+                                    <li > 
+                               
+                                        <a routerLink="../portfolioview" *ngIf="coverImage == test" class="done">
+                                          <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
+        
+                                          <strong class="blacktext" >Business Cover</strong>
+                                          <button class="editbtn">Select to Edit</button>
+                                        </a>
+                                      <a routerLink="../portfolioview" *ngIf="coverImage == test1" >
+                                          <i class="material-icons graytext" ngbTooltip="Description">error_outline</i> 
+                                          <strong class="blacktext">Business Cover</strong>  
+                                          <span  class="editbtn">Edit</span> 
+                                      </a>
+                                     </li>
+                                     <li > 
                              
+                                        <a routerLink="../portfolioview" *ngIf="tradingName == test" class="done">
+                                          <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
+        
+                                          <strong class="blacktext" >Trading Name</strong>
+                                          <button class="editbtn">Select to Edit</button>
+                                        </a>
+                                      <a routerLink="../portfolioview"  *ngIf="tradingName == test1" >
+                                          <i class="material-icons graytext" ngbTooltip="Description">error_outline</i> 
+                                          <strong class="blacktext">Trading Name</strong>  
+                                          <span  class="editbtn">Edit</span> 
+                                      </a>
+                                     </li>
+                                  </ul>
+                                </div>
 
 
-                                <a routerLink="../business" *ngIf="businessService == test" class="done">
-                                  <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
-
-                                  <strong class="blacktext" >Service</strong>
-                                  <button class="editbtn">Select to Edit</button>
-                                </a>
-                              <a routerLink="../business"  *ngIf="businessService == test1" >
-                                  <i class="material-icons" ngbTooltip="Description">error_outline</i> 
-                                  <strong class="blacktext">Service</strong>  
-                                  <span  class="editbtn">Edit</span> 
-                              </a>
-                             </li>
-
-                             <li>
-                          
-                                <a routerLink="../location" *ngIf="mapSettings == test" class="done">
-                                  <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
-
-                                  <strong class="blacktext" >location (map)</strong>
-                                  <button class="editbtn">Select to Edit</button>
-                                </a>
-                              <a routerLink="../location"  *ngIf="mapSettings == test1" >
-                                  <i class="material-icons" ngbTooltip="Description">error_outline</i> 
-                                  <strong class="blacktext">location (map)</strong>  
-                                  <span  class="editbtn">Edit</span> 
-                              </a>
-                             </li>
-
-                          </ul>
-                       </div>
+                      
                        <div class="col-sm-5 displya_name">
-                          <ul>
-                             <li> 
-                    
-                                <a routerLink="../business-services" *ngIf="description == test" class="done">
-                                  <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
-
-                                  <strong class="blacktext" >Description</strong>
-                                  <button class="editbtn">Select to Edit</button>
-                                </a>
-                              <a routerLink="../business-services"  *ngIf="description == test1" >
-                                  <i class="material-icons" ngbTooltip="Description">error_outline</i> 
-                                  <strong class="blacktext">Description</strong>  
-                                  <span  class="editbtn">Edit</span> 
-                              </a>
-                             </li>
-                             <li> 
-                        
-                                <a routerLink="../gallery" *ngIf="photos == test" class="done">
-                                  <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
-
-                                  <strong class="blacktext" >Photos</strong>
-                                  <button class="editbtn">Select to Edit</button>
-                                </a>
-                              <a routerLink="../gallery"  *ngIf="photos == test1" >
-                                  <i class="material-icons" ngbTooltip="Description">error_outline</i> 
-                                  <strong class="blacktext">Photos</strong>  
-                                  <span  class="editbtn">Edit</span> 
-                              </a>
-                             </li>
-                              <li > 
-                        
-                                <a routerLink="../portfolioview" *ngIf="coverImage == test" class="done">
-                                  <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
-
-                                  <strong class="blacktext" >Business Cover</strong>
-                                  <button class="editbtn">Select to Edit</button>
-                                </a>
-                              <a routerLink="../portfolioview" *ngIf="coverImage == test1" >
-                                  <i class="material-icons" ngbTooltip="Description">error_outline</i> 
-                                  <strong class="blacktext">Business Cover</strong>  
-                                  <span  class="editbtn">Edit</span> 
-                              </a>
-                             </li>
-                             <li > 
-                     
-                                <a routerLink="../portfolioview" *ngIf="tradingName == test" class="done">
-                                  <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
-
-                                  <strong class="blacktext" >Trading Name</strong>
-                                  <button class="editbtn">Select to Edit</button>
-                                </a>
-                              <a routerLink="../portfolioview"  *ngIf="tradingName == test1" >
-                                  <i class="material-icons" ngbTooltip="Description">error_outline</i> 
-                                  <strong class="blacktext">Trading Name</strong>  
-                                  <span  class="editbtn">Edit</span> 
-                              </a>
-                             </li>
-                          </ul>
+                       
                        </div>
 
                     </div>
@@ -168,7 +177,7 @@
                     <img src="../../../assets/img/no-image.png" class="" alt="Profile picture" >
                   </div>
                     <div class="viewstore">
-                       <a href="">View Storefront</a>
+                       <a routerLink="../../home/detailprofile">View Storefront</a>
                     </div>
                  </div>
                  <div class="col-sm-7 nopadd maxheight335px mobileheightauto ">
@@ -371,88 +380,38 @@
                   <div class="card-icon  white_bg margRight0">
                     <i class="material-icons">event_available</i>
                   </div>
-                  <p class="card-category upcominghead">Upcoming Weddings</p>
+                  <p class="card-category upcominghead">Upcoming Weddings </p>
               </div>
                 <div class="col-sm-12">
-                  <div class="upcominglisthomepage">
-                      <div class="col-sm-8 col-8">
-                      <i class="material-icons">date_range</i> 
-                      26 September 2018<br/>
-                        <ul>
-                          <li>Guests: 1500  </li>
-                          <li>Name: Dakota Rice </li>
-                        </ul>
-                      </div>
-                      <div class="col-sm-4 col-4 upcomingright">
-                      <div>
-                        <i class="material-icons ">location_on</i>
-                      Indore 
-                      </div>
-                      0731-245687
-                      <br/>
-                      <button class="callbutton">Call</button>
-                      </div>
-                  </div>
-                  <div class="upcominglisthomepage">
-                  <div class="col-sm-8 col-8">
-                      <i class="material-icons">date_range</i> 
-                      26 September 2018<br/>
-                        <ul>
-                          <li>Guests: 1500  </li>
-                          <li>Name: Dakota Rice </li>
-                        </ul>
-                  </div>
-                  <div class="col-sm-4 col-4 upcomingright">
-                    <div>
-                      <i class="material-icons ">location_on</i>
-                      Indore 
-                    </div>
-                      0731-245687
-                      <br/>
-                      <button class="callbutton">Call</button>
-                  </div>
-                  </div>
-                  <div class="col-sm-12 text-center">
-                  <button class="viewallbutton">View All</button>
-                </div>
-                </div>
-              
+                  
+               
+                  <div class="upcominglisthomepage" *ngFor="let job of jobArray | slice:0:3 ">
+                     <div class="col-sm-8 col-8">
+                       <i class="material-icons">date_range</i>  {{job.jobDate |  date:'medium' }}<br/>
+                       <ul>
+                         <li>Guests: {{job.numberOfPeople}}</li>
+                         <li>Name: {{job.clientName}}</li>
+                       
+                       </ul>
+                     </div>
+                     <div class="col-sm-4 col-4 upcomingright">
+                       <div>
+                         <i class="material-icons ">location_on
+                         </i>{{job.jobLocation}}
+                       </div>
+                       {{job.clientPhoneNumber}}																<br/>
+                       <button class="callbutton">Call</button>
+                     </div>
+                   </div>
+
+                   <div class="col-sm-12 text-center"><a  class="viewallbutton" routerLink="../calender"> View All</a></div>
+              </div>
+               
+      
+                  
+            
                 
               
-              
-                <!-- <div class="acordian_panel active">
-                  <button class="accordion active"><i class="material-icons">date_range</i> 26 September 2018  <span class="flo_rigt"> <i class="material-icons ">location_on</i>Delhi
-                  <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> 
-                  <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>
-                  </span>  </button>
-                  <div class="panel" style="display: block">
-                    <ul>
-                        <li>Guests: 1500  </li>
-                        <li>Name: Dakota Rice </li>
-                        <li>Phone: 0731-245687</li>
-                    </ul>
-                  </div>
-                  <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018 <span class="flo_rigt"> <i class="material-icons ">location_on</i> Niger
-                  <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>
-                  </span> </button>
-                  <div class="panel">
-                    <ul>
-                        <li>Guests: 1500  </li>
-                        <li>Name: Dakota Rice </li>
-                        <li>Phone: 0731-245687</li>
-                    </ul>
-                  </div>
-                  <button class="accordion"><i class="material-icons">date_range</i> 26 September 2018 <span class="flo_rigt"> <i class="material-icons ">location_on</i> Niger
-                  <i class="material-icons downarrow pull-right">keyboard_arrow_down</i> <i class="material-icons uparrow pull-right">keyboard_arrow_up</i>
-                  </span> </button>
-                  <div class="panel">
-                    <ul>
-                        <li>Guests: 1500  </li>
-                        <li>Name: Dakota Rice </li>
-                        <li>Phone: 0731-245687</li>
-                    </ul>
-                  </div>
-              </div> -->
 
 
     

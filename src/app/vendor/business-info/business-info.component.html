@@ -170,7 +170,9 @@
                     </div>
                     <div class="modal-footer text-center">
 
+
                         <button type="submit" id= "myidea" class="btn btn-secondary btn-raised descsave newbtn" >Save</button>
+
 
                         <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
                     </div>
@@ -225,8 +227,13 @@
                     <div class="modal-body">
                         <div class="col-sm-12  text-center">
                             <div class="switbtn">
-                                <ui-switch [(ngModel)]="Facebook" ></ui-switch> 
-                                <span class="have_one">Yes, I have one! </span>
+
+
+                                <ui-switch [(ngModel)]= "modelfield.fbAvailable" ></ui-switch> 
+                                <span class="have_one" *ngIf="modelfield.fbAvailable == true" >Yes, I have one! </span>
+                                <span class="have_one">No, I don't! </span>
+
+
                             </div>
                             <div class="clearfix"></div>
                             <div class="input_facebook input-effect form-group">
@@ -243,7 +250,11 @@
                         </div>
                     </div>
                     <div class="modal-footer text-center marTop50px">
-                        <button type="submit" class="btn btn-secondary newbtn"  (click)="activeModal.dismiss('Cross click')">Save</button> 
+
+
+                        <button type="submit" class="btn btn-secondary newbtn" >Save</button> 
+
+
                         <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
@@ -260,7 +271,7 @@
                     <div class="modal-body">
                         <div class="col-sm-12  text-center">
                             <div class="switbtn">
-                            <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                            <ui-switch [(ngModel)]="modelfield.twitterAvailable" ></ui-switch> 
                             <span class="have_one">Yes, I have one! </span>
                             </div>
                             <div class="clearfix"></div>
@@ -296,7 +307,7 @@
                     <div class="modal-body">
                         <div class="col-sm-12  text-center">
                             <div class="switbtn">
-                            <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                            <ui-switch [(ngModel)]="modelfield.googleAvailable" ></ui-switch> 
                             <span class="have_one">Yes, I have one! </span>
                             <!-- <span class="have_one">No, I Don't! </span> -->
                             </div>
@@ -333,7 +344,7 @@
                 <div class="modal-body">
                     <div class="col-sm-12  text-center">
                         <div class="switbtn">
-                        <ui-switch [(ngModel)] ="enable" ></ui-switch> 
+                        <ui-switch [(ngModel)] ="modelfield.instaAvailable" ></ui-switch> 
                         <span class="have_one">Yes, I have one! </span>
                         </div>
                         <div class="clearfix"></div>
@@ -369,7 +380,7 @@
                 <div class="modal-body">
                     <div class="col-sm-12  text-center">
                         <div class="switbtn">
-                        <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                        <ui-switch [(ngModel)]="modelfield.perfectWeddingAvailable" ></ui-switch> 
                         <span class="have_one">Yes, I have one! </span>
                         </div>
                         <div class="clearfix"></div>
@@ -444,11 +455,17 @@
                                         <!-- <span class="result" *ngIf="data.image">
                                         <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle"> 
                                         </span>-->
+
+                                        <div class="busines_img busines_imgpopup">
+                                                  <img [src] = "imagee">
+                                              </div>
                                         </div>
+
                                         <div class="busines_img">
                                           <i class="material-icons" > camera_alt </i>
                                             <img [src] = "imagee">
                                         </div>
+
                             <!-- Cropper Ends -->
                             </section>
 

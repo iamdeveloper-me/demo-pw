@@ -363,8 +363,8 @@
                     <div class="modal-body">
                         <div class="col-sm-12  text-center">
                             <div class="switbtn">
-                                <ui-switch [(ngModel)]="enable" ></ui-switch> 
-                                <span class="have_one">Yes, I have one! </span>
+                                <ui-switch [(ngModel)]= "modelfield.fbAvailable" ></ui-switch> 
+                                <span class="have_one" *ngIf="modelfield.fbAvailable == true" >Yes, I have one! </span>
                                 <span class="have_one">No, I don't! </span>
                             </div>
                             <div class="clearfix"></div>
@@ -382,7 +382,7 @@
                         </div>
                     </div>
                     <div class="modal-footer text-center marTop50px">
-                        <button type="submit" class="btn btn-secondary newbtn">Save</button> 
+                        <button type="submit" class="btn btn-secondary newbtn" >Save</button> 
                         <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
@@ -399,7 +399,7 @@
                     <div class="modal-body">
                         <div class="col-sm-12  text-center">
                             <div class="switbtn">
-                            <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                            <ui-switch [(ngModel)]="modelfield.twitterAvailable" ></ui-switch> 
                             <span class="have_one">Yes, I have one! </span>
                             </div>
                             <div class="clearfix"></div>
@@ -435,7 +435,7 @@
                     <div class="modal-body">
                         <div class="col-sm-12  text-center">
                             <div class="switbtn">
-                            <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                            <ui-switch [(ngModel)]="modelfield.googleAvailable" ></ui-switch> 
                             <span class="have_one">Yes, I have one! </span>
                             <span class="have_one">No, I Don't! </span>
                             </div>
@@ -472,7 +472,7 @@
                 <div class="modal-body">
                     <div class="col-sm-12  text-center">
                         <div class="switbtn">
-                        <ui-switch [(ngModel)] ="enable" ></ui-switch> 
+                        <ui-switch [(ngModel)] ="modelfield.instaAvailable" ></ui-switch> 
                         <span class="have_one">Yes, I have one! </span>
                         </div>
                         <div class="clearfix"></div>
@@ -508,7 +508,7 @@
                 <div class="modal-body">
                     <div class="col-sm-12  text-center">
                         <div class="switbtn">
-                        <ui-switch [(ngModel)]="enable" ></ui-switch> 
+                        <ui-switch [(ngModel)]="modelfield.perfectWeddingAvailable" ></ui-switch> 
                         <span class="have_one">Yes, I have one! </span>
                         </div>
                         <div class="clearfix"></div>

@@ -79,7 +79,7 @@ export class MembershipComponent implements OnInit {
 
   Voucher(vo){
     console.log(vo.value.Voucher);
-    this.palnvoucher = vo;
+    this.palnvoucher = vo.value.Voucher;
   }
   monthlyPrice(plan){
     console.log(plan)
@@ -89,7 +89,7 @@ export class MembershipComponent implements OnInit {
   }
   annualPrice(plan){ 
     var planid = plan.pricingPlanId;
-    var  payFrequency = '2';
+    var  payFrequency = '0';
     this.updatemembership(planid,payFrequency);
    }
    updatemembership(planid,payFrequency){
@@ -101,12 +101,16 @@ export class MembershipComponent implements OnInit {
     headers.append('Accept', 'applicatissson/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
+   
+    var palnvoucher = this.palnvoucher;
+
+
     this.http.post(this.updatemember,
      
       {
         pricingPlanId: planid,
         payFrequency: payFrequency,
-        voucherCode: this.palnvoucher
+        voucherCode: palnvoucher
       }
     ,{headers:headers}).subscribe( (data)=> { console.log(data.json())
     

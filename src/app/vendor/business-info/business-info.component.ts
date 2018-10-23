@@ -224,7 +224,6 @@ findLocation(address) {
   })
 }
 
-
   @ViewChild('cropper', undefined)
   cropper: ImageCropperComponent;
 
@@ -455,7 +454,9 @@ $(document).on('click', ".saveall", function() {
 
     
   }
-
+save(){
+ 
+}
   phone(){
     $(".mobileid").show(); 
        $(".Trading").hide(); 

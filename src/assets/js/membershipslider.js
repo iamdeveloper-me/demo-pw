@@ -20,7 +20,7 @@ $(document).ready(function () {
           items: 1,
         },
         768: {
-          items: 3,
+          items: 1,
         },
     
         1024: {

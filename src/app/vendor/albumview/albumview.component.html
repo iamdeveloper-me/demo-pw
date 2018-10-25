@@ -25,6 +25,7 @@
                     <div class="row">
                         <div class='list-group gallery row firt_row'>
                             <div class="new_albums"> <button id="Google-function"  data-target="#createalbum" data-toggle="modal" data-reactid="339">  + New Albums  </button>  
+
                                </div>
                                 <div class='col-sm-3 col-xs-6  zoom_effect' *ngFor="let  data of eventArray;let i=index">
                                     <a routerLink="../albumviewphoto/{{data.albumsId }} " class="thumbnail " rel="ligthbox">
@@ -39,22 +40,57 @@
                                            </div> 
                                         </div>
 
-                                        <div *ngIf="data.albumImages?.length ==  0" >
-                                        <div class="imgcontainer">
-                                                <img class="img-thumbnail"  alt="Another alt text"  src="../assets/img/noImg.png" />           
-                                            </div>
-                                        </div>   
+
+                                <div class="col-md-3  col-xs-6  zoom_effect" *ngFor='let album of eventArray '>
+                                    <a routerLink="../albumviewphoto/{{album.albumsId }} " class="thumbnail " rel="ligthbox">
+                                        <button class="deletebtn">&times;</button>
                                         
-                                    </a>
-                                    <div class="over_like">
-                                        <div class="text-center">
-                                            <strong>{{data.albumName}}</strong><br/>
-                                            
-                                               <span> {{data.albumImages.length}} Photos </span>
-                                               
+                                        <div class="image-div" >
+                                            <div *ngFor='let ar of  album.albumImages '>
+                                    
+                                                    <div *ngIf="album.albumImages?.length ==  2"  class=" imghalffull">
+                                                    <img class="img-thumbnail  imghalffull" 
+                                                    alt="Another alt text"
+                                                    [src] = "ar.path" />
+                                                    </div>
+                                            </div>
+                    
+                                            <div *ngFor='let ar of  album.albumImages '>
+                                    
+                    
+                                                    <div *ngIf="album.albumImages?.length ==  1"  class=" imgfull">
+                                                    <img class="img-thumbnail" 
+                                                    alt="Another alt text"
+                                                    [src] = "ar.path" />
+                                                </div>
+                                            </div>
+                                            <div *ngFor='let ar of  album.albumImages  | slice:0:3 ;let i=index'>
+                                    
+                                                    <div *ngIf="album.albumImages?.length >=  3"  class=" imghalffull">
+                                                    <img *ngIf="i==0"class="img-thumbnail  imgfull " 
+                                                    alt="Another alt text"
+                                                    [src] = "ar.path" />
+                                                    <img *ngIf="i>0" class="img-thumbnail  imghalf  " 
+                                                    alt="Another alt text"
+                                                    [src] = "ar.path" />
+                                                    </div>
+                                            </div>
+                    
+                                            <div *ngIf="album.albumImages?.length ==  0"  class="imgcontainer">
+                                                <img class="img-thumbnail "  alt="Another alt text"  src="../../../assets/img/noImg.png" />
+                                                <!-- <img class="img-thumbnail imghalf"  alt="Another alt text"  src="../../../assets/img/no-image.png" />
+                                                <img class="img-thumbnail imghalf"  alt="Another alt text"  src="../../../assets/img/no-image.png" /> -->
+                                            </div>
                                         </div>
-                                    </div>
-                                </div> <!-- col-6 / end -->    
+                                    </a>   
+                                        <div class="over_like">
+                                        <div class="text-center">
+                                            <span><strong>{{album.albumName}}</strong></span>
+                                        </div>
+                                        </div>
+                                                
+                                </div> 
+                              
                         </div> <!-- list-group / end -->
                     </div> <!-- row / end -->
                 </div> <!-- container / end -->

@@ -37,6 +37,7 @@ interface Location {
 export class BusinessInfoComponent implements OnInit {
 
   facebook;
+  enable = false;
   Description;
   twitter;
   instagram;
@@ -534,7 +535,6 @@ save(){
   }
 
 
-
   //businessinformation 
 
   gallery = { files: ''}
@@ -627,11 +627,40 @@ save(){
               headers.append('Content-Type', 'application/json');
               headers.append("Authorization",'Bearer '+authToken);
 
+
+
+              // {
+              //   "nameOfBusiness": "string",
+              //   "businessDetails": "string",
+              //   "contactPerson": "string",
+              //   "pictureUrl": "string",
+              //   "fbAvailable": true,
+              //   "facebookURL": "string",
+              //   "twitterAvailable": true,
+              //   "twitterURL": "string",
+              //   "googleAvailable": true,
+              //   "googleURL": "string",
+              //   "instaAvailable": true,
+              //   "instalURL": "string",
+              //   "perfectWeddingAvailable": true,
+              //   "perfectWeddingURL": "string",
+              //   "fileId": 0,
+              //   "files": {
+              //     "filesId": 0,
+              //     "originalFileName": "string",
+              //     "serverFileName": "string",
+              //     "path": "string",
+              //     "userId": "string",
+              //     "uploadedOn": "2018-10-24T07:10:00.495Z"
+              //   }
+              // }
               let updatebusinessinfo = this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatebusinessinfo",
                            {   
                               nameOfBusiness: infobusiness,
                               businessDetails: infodetails,
                               contactPerson: 'scsc',
+                              fbAvailable: false,
+                          
                              // pictureUrl: infopicture,
                              fileId:fileId,
                               facebookURL: infofacebook,
@@ -642,7 +671,7 @@ save(){
 
                           
                           },{headers:headers});  
- 
+    debugger
             updatebusinessinfo.subscribe((responce)=>{ console.log(responce.status);
               if(responce.status == 200)
               {
@@ -711,12 +740,14 @@ save(){
       ,      (responce)=>{ console.log(responce); });
     
       }
+
       
   
 enable1 =  true;
 enable2 =  true;
 enable3 =  true;
 enable4 =  true;
+
 
   
 }

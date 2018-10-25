@@ -135,7 +135,7 @@ import { PhotogallerydetailComponent } from './photogallerydetail/photogalleryde
 import { UseraccountComponent } from './userpannel/userboard/useraccount/useraccount.component';
 //import { VendorComponent } from './dashboard/vendor/vendor.component';
 
-
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const appRoutes: Routes = [
 
@@ -167,7 +167,7 @@ const appRoutes: Routes = [
   { path: 'home/supplierbylocation', component:  SupplierbylocationComponent },
  
    { path: 'home/Photogallerydetail', component:  PhotogallerydetailComponent },
-
+{ path: 'home/ResetPassword', component:  ResetPasswordComponent },
 
     { path: 'vendor/creatpromo', component:  CreatePromotionComponent  },
     { path: 'vendor/dashboard', component:  DashboardComponent  },

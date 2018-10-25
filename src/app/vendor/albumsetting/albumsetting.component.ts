@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AlbumsettingComponent implements OnInit {
 
+description_dailog = false;
+
   constructor(private http: Http ,  private route: ActivatedRoute) { 
     
 
@@ -18,8 +20,21 @@ export class AlbumsettingComponent implements OnInit {
     
   }
  
+editSetting(){
+       
+  this.description_dailog = false;
+
+}
+
+
   //Album Get
- 
+
+closeModel(){
+       
+  this.description_dailog = false;
+
+}
+
 }
 
 

@@ -257,7 +257,7 @@ findLocation(address) {
           this.cropperSettings = new CropperSettings();
           this.cropperSettings.croppedWidth =50;
           this.cropperSettings.croppedHeight = 50;
-          this.cropperSettings.canvasWidth = 400;
+          this.cropperSettings.canvasWidth = 300;
           this.cropperSettings.canvasHeight = 200;
           this.cropperSettings.noFileInput = true;
           this.data = {};

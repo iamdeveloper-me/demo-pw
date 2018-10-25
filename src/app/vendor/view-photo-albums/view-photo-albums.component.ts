@@ -14,13 +14,20 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
 
 export class ViewPhotoAlbumsComponent implements OnInit {
-
+ Set_as_background:any = [];
   fileToUpload:any;
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
   totalImage=[];
   myalbumimages=[];
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ImageUploader/FileUploader'
-  
+   private Setasbackground: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/Setasbackground"
+    private BackgroundImage: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/BackgroundImage"
+
+
+  uploadphoto_dailog = false;
+
+
+
   albumid:any;
   albumname:any;
   tags:any;
@@ -76,6 +83,16 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   }
 
   ngOnInit() {
+
+let headers = new Headers();
+  var authToken = localStorage.getItem('userToken');
+  headers.append('Accept', 'application/json')
+  headers.append('Content-Type', 'application/json');
+  headers.append("Authorization",'Bearer '+authToken);
+
+
+     this.http.get(this.BackgroundImage,{headers:headers})
+  .subscribe(data => {console.log(data.json())},error=>{console.log(error)});
     $(".gearicon").click(function(){
     //  alert();
       $( this ).toggleClass( "open" );
@@ -243,6 +260,8 @@ $(document)
 
 
   uploadAll(){
+
+   this.uploadphoto_dailog = false;
     const formData = new FormData();
     for(let file of this.uploader.queue){
     formData.append(file['some'].name,file['some'])
@@ -288,4 +307,23 @@ $(document)
         //   serverFileName:""});
       },(error)=>{console.log(error)});
   }
+
+setbackground(setId){
+ let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+  
+this.http.get(this.Setasbackground,{headers:headers},{AlbumImageId: setId}).subscribe(data =>{
+        this.Set_as_background = data.json() as string[];
+        console.log( this.Set_as_background );
+    },error=>{console.log(error)})
+  console.log(setId)}
+
+
+
+        closeModel(){
+              this.uploadphoto_dailog = false;
+              }
 }

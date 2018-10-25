@@ -191,7 +191,7 @@
                 </select>
         
              
-                <label>Country </label>
+                <label>Country</label>
                 <span class="focus-border"></span>
             </div>
             <!-- {{district |json}} -->
@@ -203,7 +203,7 @@
                         id="{{dist.name}}"
                         checked
                         name = "dist"  
-                        placeholder="Country" 
+                        placeholder="District" 
                         [value]="d"
                         required
                         
@@ -213,7 +213,7 @@
                     </option>
                    
                  </select>
-                <label>State/City</label>
+                <label>District</label>
                 <span class="focus-border"></span>
             </div>
             <div class="input-effect form-group md-form mt-3">
@@ -234,18 +234,18 @@
                         </option>
                        
                 </select>
-                    <label>State/City</label>
+                    <label>Suburb</label>
                     <span class="focus-border"></span>
                 </div>
             <div class="input-effect form-group md-form mt-3">
                     <input class="effect-16 validate" 
                     type="text" 
-                    placeholder="postal code"
+                    placeholder="Postal Code"
                     id="postalCode" 
                     [(ngModel)] = "user.businessInfo.postalCode" 
                     name = "postalCode" 
                     required>
-                    <label>postal code </label>
+                    <label>Postal Code</label>
                     <span class="focus-border"></span>
                 </div>
             <div class="input-effect form-group md-form mt-3">
@@ -254,9 +254,9 @@
                 id="address" 
                 [(ngModel)] = "user.businessInfo.address" 
                 name = "address"
-                placeholder="Address" 
+                placeholder="Street Address" 
                 required>
-                <label>Address</label>
+                <label>Street Address</label>
                 <span class="focus-border"></span>
             </div>
             <!-- <div class="input-effect form-group md-form mt-3">

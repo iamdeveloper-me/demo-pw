@@ -7,7 +7,8 @@
             <app-navemenu></app-navemenu>
             <section class="p-0 mobilefixedcontainer" id="portfolio">
                 <div class="col-sm-12 mob_margin_30px">
-            
+
+
                     <div class="clearfix"></div>
                     <div>
                         <div class="col-sm-5 col-12 pad375Zero">
@@ -20,6 +21,7 @@
                                         </div>
                                         
                                         <div class="busi_contact">
+
                                             <div class="on_hover" (click)="BusinessDailog = true" id="Instagram-function" >
 
                                                     <h6 >Business name or Contact Person </h6>
@@ -27,6 +29,7 @@
                                                 <span class="text-right col-lg-12 editbtn">
                                                 <i class="material-icons"  >edit</i>
                                                 </span>
+
     
                                             </div>
                                         </div>
@@ -221,13 +224,17 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal_head text-center">
-                        <h4 class="modal-title"><strong> Link your Facebook Page </strong>  </h4>
+                        <h4 class="modal-title"><strong> Link your Facebook Page
+                                
+                            </strong>  </h4>
                         <p>Do you have a Facebook Page for your business?</p>
                         <button type="button" class="close" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <div class="clearfix"></div>
                     </div>
+                    
                     <div class="modal-body">
                         <div class="col-sm-12  text-center">
+
                             <div class="switbtn">   
                                 <ui-switch (change)="modelfield.fbAvailable  = !modelfield.fbAvailable " >
                                 </ui-switch> 
@@ -238,7 +245,9 @@
                                 <span class="have_one" *ngIf="modelfield.fbAvailable  == true" >   Yes, I have one! 
                                     <input class="effect-16 " type="hidden"  name="FacebookSwitch" [ngModel] = "true"  >
                                 </span>
+
                             </div>
+
                             <div class="clearfix"></div>
                             <div class="input_facebook input-effect form-group">
                                 <i class="fa fa-facebook fa-2x" data-reactid="334" ></i> 
@@ -256,8 +265,10 @@
                         </div>
                     </div>
                     <div class="modal-footer text-center marTop50px">
+
                         <button type="submit" class="btn btn-secondary newbtn"    [disabled] = "!modelfield.fbAvailable">Save</button> 
                         <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()" >Cancel</button>
+
                     </div>
                 </div>
             </div>

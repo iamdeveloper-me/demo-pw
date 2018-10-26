@@ -84,20 +84,6 @@ export class ViewPhotoAlbumsComponent implements OnInit {
 
   ngOnInit() {
 
-let headers = new Headers();
-  var authToken = localStorage.getItem('userToken');
-  headers.append('Accept', 'application/json')
-  headers.append('Content-Type', 'application/json');
-  headers.append("Authorization",'Bearer '+authToken);
-
-
-     this.http.get(this.BackgroundImage,{headers:headers})
-  .subscribe(data => {console.log(data.json())},error=>{console.log(error)});
-    $(".gearicon").click(function(){
-    //  alert();
-      $( this ).toggleClass( "open" );
-  });
-
   this.route.params.subscribe( params => {
     console.log(params) ;
         this.albumid = params;
@@ -135,7 +121,12 @@ let headers = new Headers();
   
    
   });
-
+  this.http.get(this.BackgroundImage,{headers:headers})
+  .subscribe(data => {console.log(data.json())},error=>{console.log(error)});
+    $(".gearicon").click(function(){
+    //  alert();
+      $( this ).toggleClass( "open" );
+  });
   let modalId = $('#image-gallery');
 
 $(document)
@@ -315,7 +306,7 @@ setbackground(setId){
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
   
-this.http.get(this.Setasbackground,{headers:headers},{AlbumImageId: setId}).subscribe(data =>{
+this.http.get(this.Setasbackground,{headers:headers}).subscribe(data =>{
         this.Set_as_background = data.json() as string[];
         console.log( this.Set_as_background );
     },error=>{console.log(error)})

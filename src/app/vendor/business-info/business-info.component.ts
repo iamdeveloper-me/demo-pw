@@ -24,6 +24,7 @@ export class BusinessInfoComponent implements OnInit {
   imagecropDailog = false;
   BusinessDailog = false;
   facebook;
+  enable = false;
   Description;
   twitter;
   instagram;
@@ -290,7 +291,6 @@ save(){
  
 
 
-
   //businessinformation 
 
   gallery = { files: ''}
@@ -381,18 +381,19 @@ save(){
               headers.append('Accept', 'application/json')
               headers.append('Content-Type', 'application/json');
               headers.append("Authorization",'Bearer '+authToken);
-  
+
               let updatebusinessinfo = this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatebusinessinfo",
                            {   
                               nameOfBusiness:  infobusiness,
                               businessDetails: infodetails,
-                              contactPerson:   'scsc',
+
                               fbAvailable:     info.value.FacebookSwitch,
                               twitterAvailable: info.value.twitterSwitch,
                               googleAvailable: info.value.googleSwitch ,
                               instaAvailable: info.value.instagramSwitch,
                               perfectWeddingAvailable: info.value.instagram2Switch,
                               fileId:fileId,
+                              contactPerson: 'scsc',
                               facebookURL: infofacebook,
                               twitterURL: infotwitter,
                               googleURL:  infogoogle,
@@ -427,6 +428,7 @@ save(){
     }
          closeResult: string;
     
+
       closeModel(){
        
         this.facebookDailog = false;
@@ -436,6 +438,7 @@ save(){
         this.instagram2Dailog  = false;
         this.DescriptionDailog = false;
         this.BusinessDailog = false;
+
       
       } 
   

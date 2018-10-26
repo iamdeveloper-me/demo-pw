@@ -157,7 +157,7 @@ setbackground(setId){
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
   
-this.http.get(this.Setasbackground,{headers:headers},{PortfolioId: setId}).subscribe(data =>{
+this.http.get(this.Setasbackground,{headers:headers}).subscribe(data =>{
         this.Set_as_background = data.json() as string[];
         console.log( this.Set_as_background );
     },error=>{console.log(error)})

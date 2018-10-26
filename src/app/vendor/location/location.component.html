@@ -17,6 +17,7 @@
                                    
                                     <div class="switbtn">
                                         <ui-switch (ngModel)="data.isPrimary" ></ui-switch>
+                                        <span class="font10px">Vacation Mode</span>
                                     </div>
                                     
                                 </div>
@@ -28,9 +29,9 @@
                                                         <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
                                                 </agm-map>
                                             <div class="img_overlay " data-target="#googlemap" (click)="openModel(data)" data-toggle="modal">
-                                                <div class="col-lg-12 col-md-12 pad_left_0px">
-                                                    <input type="text" class="form-control form-input" placeholder="Company Name" disabled id="companyname" [(ngModel)]="data.title" id="title" name="title">
-      
+                                                <div class="col-lg-12 col-md-12 pad_left_0px whitetext">
+                                                   <!--  <input type="text" class="form-control form-input" placeholder="Company Name" disabled id="companyname" [(ngModel)]="data.title" id="title" name="title"> -->
+                                                        Edit Map
                                                     <button type="button" class="btn edit_btn1" >
                                                         <i class="material-icons">edit</i>
                                                     </button>
@@ -46,13 +47,13 @@
                                                 <span class="acce_time1 col-sm-1 col-1">
                                         <i  class="material-icons">location_on</i>
                                         </span>
-                                                <div class="col-sm-10 col-11">
-                                                    
-                                                    <div>Address Line 1: {{location.address_level_1}} / {{data.address}}  </div>
-                                                    <div>Address Line 2:  {{location.address_level_2}}</div>
-                                                    <div>State / Province / Region: {{location.address_state}} / {{data.city}}</div>
-                                                    <div>Country:  {{location.address_country}} / {{data.country}}</div>
-                                                    <div>Postal / Zip code: {{location.address_zip}} / {{data.postalCode}}</div>
+                                                <div class="col-sm-10 col-11 minheight130px">
+                                                  
+                                                   <div>{{location.address_level_1}} / {{data.address}}  </div>
+                                                    <div>location.address_level_2}}</div>
+                                                    <div>{{location.address_state}} / {{data.city}}</div>
+                                                    <div>{{location.address_country}} / {{data.country}}</div>
+                                                    <div>{{location.address_zip}} / {{data.postalCode}}</div> 
                                                     <i class="material-icons edit_btn"> edit</i>
                                                 </div>
                                             </div>
@@ -440,18 +441,7 @@
                         </div>
                     </div>
   
-                    <div class="col-sm-4">
-                    <div class="card martop10px">
-                        <div class="text-center bg-form col-sm-12 addlocationbox">
-                            <i class="material-icons font80px">  add_location </i>
-                            <div>Have more business branches? {{district | json}}</div>
-                            <button data-target="#location" (click)="openModel(data)" data-toggle="modal" type="button" class="martopbot15px borderbtnonly"> Add New Location </button>
-                            <div>Premium members only.
-                                <a routerLink="../membership" class="bluelink">Upgrade</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                   
                 </div>
             </div>    
       
@@ -459,12 +449,12 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Map Location & Business Title</h4>
+                                    <h4 class="modal-title">Edit Map Location</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                             </button>
                                 </div>
-                                <div class="modal-body county_addres">
+                                <div class="modal-body">
                                     <div class="card-content selectboxservice">
                                             <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
                                                     <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event)'></agm-marker>
@@ -472,27 +462,29 @@
                                                 </agm-map>
                                     </div>
                                     <div class="container-fluid martop30px">
-                                        <div class="form-group col-sm-8 nopadd">
+                                        <div class="form-group midcenter">
                                             <div class="input-effect md-form">
                                                 <input type="text" placeholder="Address" class="effect-16 validate" [(ngModel)]="modelfield.address" id="address" name="address">
-                                                <label for="comment">Address</label>
+                                                <label for="comment">Enter Your Address</label>
                                                 <span class="focus-border"></span>
                                             </div>
                                         </div>
-                                        <div class="form-group col-sm-4">
-                                            <button class="btn newbtn">
-                                                    <i class="material-icons">my_location</i> 
+                                        <div class="clearfix"></div>
+                                          <div class="text-center">  
+                                            <p><strong>OR</strong></p>
+                                            <button class="btn newbtn marbot20px">
+                                                    <i class="material-icons pull-left">my_location</i> 
                                                     Use My Location
                                             </button>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                    <div class="form-group">
+                                          </div>
+                                           
+                                 <!--    <div class="form-group">
                                             <div class="input-effect md-form">
                                                 <input type="text" placeholder="Business Title" class="effect-16 validate" [(ngModel)]="modelfield.title" id="title1" name="title1">
                                                 <label for="comment">Business title</label>
                                                 <span class="focus-border"></span>
                                             </div>
-                                    </div>
+                                    </div> -->
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -515,7 +507,7 @@
                               </button>
                           </div>
                           <div class="modal-body">
-                              <div class="form-group col-sm-12">
+                              <div class="form-group">
                                     <div class="input-effect form-group md-form">
                                       <select    class="effect-16 validate"  id="Country" [(ngModel)]="country_id"  name="country_id" (change)="country($event)">
                                             <option   *ngFor="let country of arra ;let c =index" 
@@ -536,21 +528,7 @@
                                       <span class="focus-border"></span>
                                     </div>
                               </div>
-                              <div class="form-group col-sm-6">
-                                    <div class="input-effect form-group md-form">
-                                      <input class="effect-16 validate"  [(ngModel)]="Address" id="Address" name="Address">
-                                      <label>Address</label>
-                                      <span class="focus-border"></span>
-                                    </div>
-                              </div>
-                              <div class="form-group col-sm-6">
-                                    <div class="input-effect form-group md-form">
-                                      <input class="effect-16 validate" [(ngModel)]="postalCode" id="postalCode" name="postalCode">
-                                      <label>Postal Code</label>
-                                      <span class="focus-border"></span>
-                                    </div>
-                              </div>
-                              <div class="form-group col-sm-6">
+                                <div class="form-group">
                                     <div class="input-effect form-group md-form">      
                                    
                                         <select name="district"   class="effect-16 validate"  [(ngModel)]="dist_id"  name="dist_id" (change)="districtA($event)"  > 
@@ -559,7 +537,7 @@
                                                 id="{{dist.name}}"
                                                 checked
                                                 name = "dist"  
-                                                placeholder="Country" 
+                                                placeholder="District" 
                                                 [value]="d"
                                                 required
                                                 
@@ -567,11 +545,11 @@
                                                 {{dist.name }}
                                             </option>
                                         </select>
-                                        <label>City</label>
+                                        <label>District</label>
                                     <span class="focus-border"></span>
                                     </div>
                               </div>
-                              <div class="form-group col-sm-6">
+                                <div class="form-group">
                                     <div class="input-effect form-group md-form"> 
                                         <select    class="effect-16 validate" [(ngModel)] = "sub_id"  name="sub_id" (change)="subr($event)" > 
                                                 <!-- (change)="country($event)" -->
@@ -587,26 +565,29 @@
                                                 {{sub.name }}
                                             </option>
                                         </select>
-                                        <label>Subr</label>
+                                        <label>Suburb</label>
                                         <span class="focus-border"></span>
                                     </div>
                               </div>
-                              <div class="form-group col-sm-12">
+                              <div class="form-group">
                                     <div class="input-effect form-group md-form">
-                                      <input class="effect-16 validate"  [(ngModel)]="Phone" id="Phone" name="Phone">
-                                      <label>Phone</label>
+                                      <input class="effect-16 validate"  [(ngModel)]="Address" id="Address" name="Address" placeholder="Street Address">
+                                      <label>Street Address</label>
                                       <span class="focus-border"></span>
                                     </div>
                               </div>
-                              <div class="form-group col-sm-12">
-                                    <div class="input-effect form-group md-form">    
-                                        <input 
-                                        type="radio" 
-                                        name="prime" 
-                                        [value]= "true"
-                                        id="prime12"  
-                                        ngModel/>
-                                        <label for="prime12"> Do you want location as Prime ?  </label>
+                              <div class="form-group">
+                                    <div class="input-effect form-group md-form">
+                                      <input class="effect-16 validate" [(ngModel)]="postalCode" id="postalCode" name="postalCode" placeholder="Postal Code">
+                                      <label>Postal Code</label>
+                                      <span class="focus-border"></span>
+                                    </div>
+                              </div>
+                              <div class="form-group">
+                                    <div class="input-effect form-group md-form">
+                                      <input class="effect-16 validate"  [(ngModel)]="Phone" id="Phone" name="Phone" placeholder="Phone Number">
+                                      <label>Phone</label>
+                                      <span class="focus-border"></span>
                                     </div>
                               </div>
                           </div>
@@ -703,49 +684,51 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+
                         <div class="modal-body county_addres">    
                             <div class="container-fluid martop30px">
-                                    <div class="form-group">
-                                      <div class="input-effect md-form">
-                                          <input class="effect-16 validate" placeholder="Address Line 1" type='text'   [(ngModel)]='location.address_level_1'>
-                                          <label>Address Line 1</label>
-                                          <span class="focus-border"></span>
-                                      </div>
+
+                                <div class="form-group">
+                                    <div class="input-effect md-form">
+                                        <input class="effect-16 validate" placeholder="Street Address" type='text'   [(ngModel)]='location.address_level_1'>
+                                        <label>Street Address</label>
+                                        <span class="focus-border"></span>
                                     </div>
-                                    <div class="form-group">
-                                      <div class="input-effect md-form">
-                                          <input class="effect-16 validate" type='text' placeholder="Address Line 2"   [(ngModel)]='location.address_level_2'>
-                                          <label>Address Line 2</label>
-                                          <span class="focus-border"></span>
-                                      </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-effect md-form">
+                                        <input class="effect-16 validate" type='text' placeholder="Suburb"   [(ngModel)]='location.address_level_2'>
+                                        <label>Suburb</label>
+                                        <span class="focus-border"></span>
                                     </div>
-                                    <div class="form-group">
-                                      <div class="input-effect md-form">
-                                          <input class="effect-16 validate" type='text' placeholder="State / Province / Region"    [(ngModel)]='location.address_state'>
-                                          <label>State / Province / Region</label>
-                                          <span class="focus-border"></span>
-                                      </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-effect md-form">
+                                        <input class="effect-16 validate" type='text' placeholder="District"    [(ngModel)]='location.address_state'>
+                                        <label>District</label>
+                                        <span class="focus-border"></span>
                                     </div>
-                                    <div class="form-group">
-                                      <div class="input-effect md-form">
-                                          <input class="effect-16 validate" type='text' placeholder="Country"   [(ngModel)]='location.address_country'>
-                                          <label>Country</label>
-                                          <span class="focus-border"></span>
-                                      </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-effect md-form">
+                                        <input class="effect-16 validate" type='text' placeholder="Country"   [(ngModel)]='location.address_country'>
+                                        <label>Country</label>
+                                        <span class="focus-border"></span>
                                     </div>
-                                    <div class="form-group">
-                                      <div class="input-effect md-form">
-                                          <input class="effect-16 validate" type='text' placeholder="Postal / Zip code"    [(ngModel)]='location.address_zip'>
-                                          <label>Postal / Zip code</label>
-                                          <span class="focus-border"></span>
-                                      </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-effect md-form">
+                                        <input class="effect-16 validate" type='text' placeholder="Postal / Zip code"    [(ngModel)]='location.address_zip'>
+                                        <label>Postal Code</label>
+                                        <span class="focus-border"></span>
                                     </div>
+                                </div>
                                   
                             </div> 
                             <div class="modal-footer">
-                            <button type="submit" class="btn newbtn" (click)='locationForm(location)' >SAVE</button> &nbsp;
-                            <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
-                           </div>
+                                <button type="submit" class="btn newbtn" (click)='locationForm(location)' >SAVE</button> &nbsp;
+                                <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
+                            </div>
                         </div>
                 </div>
             </div>

@@ -30,6 +30,8 @@ export class GalleryComponent implements OnInit {
   private addportfolio: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/addportfolio'
   private getportfolio: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myportfolio'
 
+  uploadphoto_dailog = false;
+  createalbum_dailog = false;
   
   uploader: FileUploader = new FileUploader({
     url: URL,
@@ -74,16 +76,7 @@ export class GalleryComponent implements OnInit {
     this.showport();
 
     this.showalbum();
-    
-    $(document).on('click', ".saveall", function() {
-      
-      $(this).parents('.modal').css("display", "none");
-      $(this).parents('.modal').removeClass("show");
-      $('.modal-backdrop').hide();
-      $('.modal-backdrop').removeClass("fade");
-      $('.modal-backdrop').removeClass("show");
-      $('body').removeClass("modal-open");
-    });
+
 
   // $.getScript('http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js');
   // $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
@@ -126,6 +119,9 @@ export class GalleryComponent implements OnInit {
 
         //Album create your token
         createAlbum(Album){
+          
+          this.createalbum_dailog = false;
+
           console.log(Album);
           var  albumtype = Album.value.albumName;
           let headers = new  Headers();
@@ -147,6 +143,9 @@ export class GalleryComponent implements OnInit {
         }
 
         uploadAll(){
+
+         this.uploadphoto_dailog = false;
+
           const formData = new FormData();
           for(let file of this.uploader.queue){
           formData.append(file['some'].name,file['some'])
@@ -244,4 +243,14 @@ export class GalleryComponent implements OnInit {
   
                     })
                  }
+
+
+  closeModel(){
+       
+  this.uploadphoto_dailog = false;
+  this.createalbum_dailog = false;
+
+
+}
+
   }

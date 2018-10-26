@@ -20,13 +20,13 @@
                                         </div>
                                         
                                         <div class="busi_contact">
-                                            
                                             <div class="on_hover" (click)="BusinessDailog = true" id="Instagram-function" >
-                                                <h6 >Business name or Contact Person </h6>
-                                            <div> {{vendor.nameOfBusiness}}</div>
-                                            <span class="text-right col-lg-12 editbtn">
-                                            <i class="material-icons"  >edit</i>
-                                            </span>
+
+                                                    <h6 >Business name or Contact Person </h6>
+                                                <div> {{vendor.nameOfBusiness}}</div>
+                                                <span class="text-right col-lg-12 editbtn">
+                                                <i class="material-icons"  >edit</i>
+                                                </span>
     
                                             </div>
                                         </div>
@@ -268,6 +268,7 @@
                     <div class="modal-header text-center">
                         <h4 class="modal-title">Edit twitter</h4>
                         <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
                         <div class="clearfix"></div>
                     </div>
                     <div class="modal-body">
@@ -471,15 +472,12 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="modal-body">
-                        <div class="col-sm-12  text-center">
+                        <div class="col-sm-12  text-center mobnopadd">
                         
                             <div class="clearfix"></div>
 
                             <section id="tours">
-
-                        
-                                <div class="col-12 text-center">
-                                    
+                                <div class="col-12 text-center mobnopadd">
                                             <div class="file-upload form-control uploadimgfile">
                                                     <input #fileInput 
                                                         id="custom-input" 
@@ -501,8 +499,6 @@
                                                   <img [src] = "imagee">
                                               </div>
                                         </div>
-
-                                        
                             <!-- Cropper Ends -->
                             </section>
 

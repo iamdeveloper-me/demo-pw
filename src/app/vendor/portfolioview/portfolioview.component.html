@@ -22,7 +22,7 @@
             <section class="p-0 container" id="portfolio">
               <div class="">
                 <div class="drop_zone text-center">
-                    <a  id="Google-function"  data-target="#uploadphoto" data-toggle="modal" data-reactid="339"  > <i class="material-icons">camera_alt</i> </a>  
+                    <a  id="Google-function" (click)="uploadphoto_dailog = true" data-reactid="339"  > <i class="material-icons">camera_alt</i> </a>  
                     <p>Click to add or drop image here</p>
                     <!-- (click)="open(content)" -->
                 </div>
@@ -39,19 +39,27 @@
                
                                 <div class="over_like">
                                         <div class="">
-                                        <a href=""><i class="fa fa-heart"></i> </a>  <span> 25 </span> 
-                                        <div class="dropdown gearicon">
+                                        <a href=""><i class="fa fa-heart"></i> </a>  <span> {{data.portfolioId}}====25 </span> 
+                                     <!--     (click) = "setbackground(data.portfolioId)" -->
+                                        <div class="dropdown gearicon"  ngbDropdown>
                                               
-                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                                <button class="btn btn-primary" type="button" id="dropdownBasic2"  ngbDropdownToggle>
                                                     <i class="material-icons">
                                                         settings
                                                         </i>
                                                 </button>
-                                                <ul class="dropdown-menu">
-                                                  <li><a href="#">Set as Business Cover Image</a></li>
-                                                
+                                                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                                                  <li><a (click) = "setbackground(data.portfolioId)"> Set as Business Cover Image</a></li>
                                                 </ul>
                                               </div>
+
+                                               
+
+
+
+
+
+
                                         
                                         </div>
                                     </div>
@@ -67,92 +75,14 @@
       </div>
     </div>	 
 </div> 
-  <ng-template #content let-c="close" let-d="dismiss">
-      <form (ngSubmit)="event(list)" #list="ngForm" >
-          <div class="card-block">
-                          <div class="modal-header" style="background-color: white">
-                            <h4 class="modal-title">Add Gallery</h4>
-                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body" style="background-color: white">
-                            
-                              <div class="row">
-                                <div class="col-md-12">
-                                  <div class="form-group">
-                                      <div class="input-effect form-group md-form ">
-                                          <input class="effect-16 validate" type="text" placeholder="" required="required" id="filesId" 
-                                          name="filesId" [(ngModel)]="list.filesId"  >
-                                          <label>Gallery Name{{list.filesId}}</label>
-                                          <span class="focus-border"></span>
-                                      </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-md-12">
-                                  <div class="form-group">
-                                      <div class="input-effect form-group md-form ">
-                                        <select class="effect-16 validate">
-                                           <option>Select Photo Type</option>
-                                          <option>Pre-Wedding Shoot</option>
-                                           <option>Real Wedding Shoot</option>
-                                        </select>
-                                          
-                                      </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-md-12">
-                                  <div class="form-group">
-                                      <div class="input-effect form-group md-form ">
-                                        <input class="effect-16 validate" type="email" placeholder="" required="required">
-                                        <label>Tags</label>
-                                        <span class="focus-border"></span>
-                                      </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-md-12">
-                                  <div class="form-group">
-                                    <div class="form-group">
-                                      <div class="input-effect form-group md-form ">
-                                          <input class="effect-16 validate"  required="required">
-                                          <label>Color Tags</label>
-                                          <span class="focus-border"></span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-md-12">
-                                  <div class="form-group">
-                                    <div class="form-group">
-                                      <div class="input-effect form-group md-form "> 
-                                         <input type="file" class="effect-16 validate" required="required" name="img" multiple>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <button type="submit" class="btn btn-comman pull-right">Update Profile</button>
-                              <div class="clearfix"></div>
-                         
-                          </div>
-          </div>
-          </form>
-  </ng-template>
+ 
 
-  <div class="modal fade" id="uploadphoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade" [ngClass] = "{'show' : uploadphoto_dailog}" id="uploadphoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
           <div class="modal-header text-center">
               <h4 class="modal-title">Add Image</h4>
-              <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>       
+              <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>       
             <div class="clearfix"></div>
           </div>
           <div class="modal-body">
@@ -165,39 +95,45 @@
                           <div class="card martop0px">
                             <div class="card-block">
                               <div class="row">
-                                <div class="col-md-12 col-lg-12">
+                                <div class="col-md-12 col-lg-12 my-drop-zone">
                                   <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader"
-                                    class="py-5 mb-3 text-center font-medium-5 text-uppercase grey my-drop-zone">
+                                    class="mb-3 text-center font-medium-5 text-uppercase grey ">
                                     Drop Image Here..!
                                   </div>
+                                    <div class="btnholdertik">
+                                   <input type="file" class="form-control uploadbtnhidden" ng2FileSelect [uploader]="uploader" multiple >
+                                    <button class="newbtn Choosefilebtn">Choose File</button>
+                                    </div>
                                 </div>
                           
                               </div>
                               <div class="row">
-                                <div class="col-md-12">
-                                  <h4>Select Multiple files</h4>
+                               <!--  <div class="col-md-12">
+                                
                                   <label class="custom-file mb-3">
-                                    <input type="file" class="form-control" ng2FileSelect [uploader]="uploader" multiple >
+                                   
                                     <span class="custom-file-control"></span>
                                   </label>
                         
-                                </div>
+                                </div> -->
                         
                                 <div class="col-md-12">
                                 <!--   <h4>Upload queue</h4>
                                   <p>Upload queue: {{ uploader?.queue?.length }}</p> -->
-                        
+                                    <br/>
                                   <table class="table">
                                     <tbody>
                                       <tr *ngFor="let item of uploader.queue">
                                         <td><strong>{{ item?.file?.name }}</strong></td>
-                                     <!--    <td *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
-                                        <td *ngIf="uploader.isHTML5">
+                                        
+                                        <!--   <td *ngIf="uploader.isHTML5">
                                           <div class="progress" style="margin-bottom: 0;">
                                             <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
                                           </div>
                                         </td>
-                                        <td class="text-center">
+                                      
+                                        <td *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                                       <td class="text-center">
                                           <span *ngIf="item.isSuccess"><i class="fa fa-ok"></i></span>
                                           <span *ngIf="item.isCancel"><i class="fa fa-ban"></i></span>
                                           <span *ngIf="item.isError"><i class="fa fa-remove"></i></span>
@@ -210,7 +146,7 @@
                                           <span class="fa fa-ban"></span> Cancel
                                         </button> -->
                                           <button type="button" class="btn btn-raised btn-danger btn-sm" (click)="item.remove()" style="margin-bottom: 0px;">
-                                          <span class="fa fa-trash"></span> Remove
+                                           &times;
                                         </button>
                                         </td>
                                       </tr>
@@ -221,9 +157,9 @@
                                     <!-- <p>Queue progress:
                                       <ngb-progressbar type="primary" [value]="uploader.progress"></ngb-progressbar>
                                     </p> -->
-                                    <button type="button" class="btn btn-raised btn-success" (click)="uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                                   <!--  <button type="button" class="btn btn-raised btn-success">
                                       <span class="fa fa-upload"></span> Upload all
-                                    </button>
+                                    </button> -->
                                     <!-- <button type="button" class="btn btn-raised btn-warning" (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
                                       <span class="fa fa-ban"></span> Cancel all
                                     </button>
@@ -246,8 +182,8 @@
               </div>    
           </div>
           <div class="modal-footer text-center">
-              <button type="submit" class="btn newbtn" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp; 
-              <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">CANCEL</button>
+              <button type="submit" class="btn newbtn" (click)="uploadAll()" [disabled]="!uploader.getNotUploadedItems().length" >Save</button>&nbsp; 
+              <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
           </div>
       </div>  
     </div>  

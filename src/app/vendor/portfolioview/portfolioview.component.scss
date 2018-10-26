@@ -1,6 +1,7 @@
 .my-drop-zone { 
     border: dotted 3px lightgray; 
     background-color: #f5f7fa !important;
+    padding:25px!important;
 }
 .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
 .another-file-over-class { border: dotted 3px green; }
@@ -15,6 +16,26 @@
     object-fit: cover;
     height: 160px;
     width: 100%;
+}
+.btnholdertik{
+      width:150px;
+      height: 44px;
+      margin:0px auto;
+      position: relative;
+}
+.uploadbtnhidden{
+    width:150px;
+    opacity: 0;
+    height: 44px;
+    margin: 0px auto;
+    position: absolute;
+    z-index: 999;
+    top:0px;
+    left:0px;
+}
+.Choosefilebtn{
+    width: 150px;
+    margin: 0px auto;
 }
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
     padding: 4px 8px!important;

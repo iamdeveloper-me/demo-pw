@@ -7,9 +7,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Albumsetting2Component implements OnInit {
 
+
+description_dailog = false;
+
+
   constructor() { }
 
   ngOnInit() {
   }
+
+
+ editSettting(){
+      this.description_dailog = false;
+
+
+
+// if(data.status == 200)
+//       {
+//         this.photo_ved_dailog = false;
+//         this.phone_dailog = false;
+//         console.log("saved");
+//       }
+
+
+      }
+
+closeModel(){
+       
+  this.description_dailog = false;
+
+}
+
 
 }

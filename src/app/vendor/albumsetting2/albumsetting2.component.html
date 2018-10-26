@@ -49,7 +49,7 @@
                                     </div>
                                   </td>
                                   <td class="text-center">
-                                      <button class="btn btn-success editbtn"  id="prompt-function"  data-target="#Description" data-toggle="modal" data-reactid="333">Edit</button><br/>
+                                      <button class="btn btn-success editbtn"  id="prompt-function"   (click)="description_dailog = true" data-reactid="333">Edit</button><br/>
                                      <button class="btn btn-warining deletebtn">Delete</button>
                                   </td>
                               </tr>
@@ -160,13 +160,13 @@
   
   
    
-   <div class="modal fade" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+   <div class="modal fade" [ngClass] = "{'show' : description_dailog}" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             
                     <div class="modal-content">
                         <div class="modal-header text-center">
                             <h4 class="modal-title">Photo Settings</h4>
-                            <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                            <div class="modal-body" style="background-color: white">
                             <form>
@@ -286,8 +286,8 @@
                           </div>
                         <div class="modal-footer text-center">
                             
-                            <button type="Update" class="btn btn-secondary btn-raised"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-                            <button type="button" class="btn btn_inherit" data-dismiss="modal">Cancel</button>
+                            <button type="Update"  class="btn newbtn" (click)="editSettting()">Save</button>&nbsp;
+                            <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Cancel</button>
                         </div>
 
                     </div>

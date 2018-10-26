@@ -198,6 +198,7 @@ import { FailureComponent } from './vendor/failure/failure.component';
 
 
 import { PhotogallerydetailComponent } from './photogallerydetail/photogallerydetail.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 //import { VendorComponent } from './dashboard/vendor/vendor.component';
 
@@ -364,6 +365,7 @@ export function getAuthServiceConfigs() {
 
         SuccessComponent,
         FailureComponent,
+        ResetPasswordComponent,
 
        
         

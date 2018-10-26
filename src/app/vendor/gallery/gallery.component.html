@@ -140,7 +140,7 @@
                                 [src] = "ar.path" />
                             </div>
                       </div>
-                      <div *ngFor='let ar of  album.albumImages ;let i=index'>
+                      <div *ngFor='let ar of  album.albumImages  | slice:0:3 ;let i=index'>
                   <!--         <img class="img-thumbnail imghalffull"
                              [src] = "ar.path"
                              alt="Another alt text">  -->
@@ -148,7 +148,7 @@
                                 <img *ngIf="i==0"class="img-thumbnail  imgfull " 
                                 alt="Another alt text"
                                 [src] = "ar.path" />
-                                <img *ngIf="i>0" class="img-thumbnail  imghalf " 
+                                <img *ngIf="i>0" class="img-thumbnail  imghalf  " 
                                 alt="Another alt text"
                                 [src] = "ar.path" />
                               </div>

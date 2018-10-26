@@ -3,30 +3,10 @@ import { NgForm } from '@angular/forms';
 import { CropperSettings, ImageCropperComponent } from 'ng2-img-cropper';
 import { Component, OnInit ,Input , ViewChild, NgZone,} from '@angular/core';
 import { Http,Headers } from '@angular/http';
-import { MapsAPILoader, AgmMap } from '@agm/core';
-import { GoogleMapsAPIWrapper } from '@agm/core/services';
 
-declare var google: any;
+
  
-interface Marker {
-  lat: number;
-  lng: number;
-  label?: string;
-  draggable: boolean;
-}
- 
-interface Location {
-  lat: number;
-  lng: number;
-  viewport?: Object;
-  zoom: number;
-  address_level_1?:string;
-  address_level_2?: string;
-  address_country?: string;
-  address_zip?: string;
-  address_state?: string;
-  marker?: Marker;
-}
+
 
 @Component({
   selector: 'app-business-info',
@@ -35,7 +15,14 @@ interface Location {
 })
 
 export class BusinessInfoComponent implements OnInit {
-
+  facebookDailog = false;
+  twitterDailog = false;
+  instagramDailog  = false;
+  googleDailog  = false;
+  instagram2Dailog  = false;
+  DescriptionDailog = false;
+  imagecropDailog = false;
+  BusinessDailog = false;
   facebook;
   Description;
   twitter;
@@ -44,13 +31,8 @@ export class BusinessInfoComponent implements OnInit {
   Businesname;
   perfectWedding;
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader';
-
-  private urllocationpost: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savelocation'
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessinfo'
 
-  private urlpost: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savelocation'
-
-  private urlget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mylocations'
 
  
   vendor: any = { nameOfBusiness: '',
@@ -65,7 +47,8 @@ export class BusinessInfoComponent implements OnInit {
     files:{path:''}
   };
 
-  Facebook =  true;
+  FacebookSwitch =  false;
+  examp = true;
   modelfield: any = {};
   primarylocation:any = {};
   countryArray:string[];
@@ -108,123 +91,10 @@ export class BusinessInfoComponent implements OnInit {
 
                       }
 m;
-circleRadius:number = 5000;
-milesToRadius(value) {
-  this.circleRadius = value / 0.00062137;
-}
 
-circleRadiusInMiles() {
- return this.circleRadius * 0.00062137;
-}
-
-markerDragEnd(m: any,event) {
-  this.location.marker.lat = m.coords.lat;
-  this.location.marker.lng = m.coords.lng;
-  this.findAddressByCoordinates();
- }
- findAddressByCoordinates() {
-  this.geocoder.geocode({
-    'location': {
-      lat: this.location.marker.lat,
-      lng: this.location.marker.lng
-    }
-  }, (results, status) => {
-    this.decomposeAddressComponents(results);
-  })
-}
-
-decomposeAddressComponents(addressArray) {
-  if (addressArray.length == 0) return false;
-  let address = addressArray[0].address_components;
-
-  for(let element of address) {
-    if (element.length == 0 && !element['types']) continue
-
-    if (element['types'].indexOf('street_number') > -1) {
-      this.location.address_level_1 = element['long_name'];
-      continue;
-    }
-    if (element['types'].indexOf('route') > -1) {
-      this.location.address_level_1 += ', ' + element['long_name'];
-      continue;
-    }
-    if (element['types'].indexOf('locality') > -1) {
-      this.location.address_level_2 = element['long_name'];
-      continue;
-    }
-    if (element['types'].indexOf('administrative_area_level_1') > -1) {
-      this.location.address_state = element['long_name'];
-      continue;
-    }
-    if (element['types'].indexOf('country') > -1) {
-      this.location.address_country = element['long_name'];
-      continue;
-    }
-    if (element['types'].indexOf('postal_code') > -1) {
-      this.location.address_zip = element['long_name'];
-      continue;
-    }
-  }
-}
 
 geocoder:any;
-public location:Location = {
-  lat: 51.678418,
-  lng: 7.809007,
-  marker: {
-    lat: 51.678418,
-    lng: 7.809007,
-    draggable: true
-  },
-  zoom: 5
-};
-updateOnMap() {
-  let full_address:string = this.location.address_level_1 || ""
-  if (this.location.address_level_2) full_address = full_address + " " + this.location.address_level_2
-  if (this.location.address_state) full_address = full_address + " " + this.location.address_state
-  if (this.location.address_country) full_address = full_address + " " + this.location.address_country
 
-  this.findLocation(full_address) ;
-}
-findLocation(address) {
-  console.log(address);
-  if (!this.geocoder) this.geocoder = new google.maps.Geocoder()
-  this.geocoder.geocode({
-    'address': address
-  }, (results, status) => {
-    console.log(results);
-    if (status == google.maps.GeocoderStatus.OK) {
-      for (var i = 0; i < results[0].address_components.length; i++) {
-        let types = results[0].address_components[i].types
-
-        if (types.indexOf('locality') != -1) {
-          this.location.address_level_2 = results[0].address_components[i].long_name
-        }
-        if (types.indexOf('country') != -1) {
-          this.location.address_country = results[0].address_components[i].long_name
-        }
-        if (types.indexOf('postal_code') != -1) {
-          this.location.address_zip = results[0].address_components[i].long_name
-        }
-        if (types.indexOf('administrative_area_level_1') != -1) {
-          this.location.address_state = results[0].address_components[i].long_name
-        }
-      }
-      if (results[0].geometry.location) {
-        this.location.lat = results[0].geometry.location.lat();
-        this.location.lng = results[0].geometry.location.lng();
-        this.location.marker.lat = results[0].geometry.location.lat();
-        this.location.marker.lng = results[0].geometry.location.lng();
-        this.location.marker.draggable = true;
-        this.location.viewport = results[0].geometry.viewport;
-      }
-      
-      this.map.triggerResize()
-    } else {
-      alert("Sorry, this search produced no results.");
-    }
-  })
-}
 
   @ViewChild('cropper', undefined)
   cropper: ImageCropperComponent;
@@ -243,16 +113,10 @@ findLocation(address) {
 
     myReader.readAsDataURL(file);
   }
-  @ViewChild(AgmMap) map: AgmMap;
-  constructor(public mapsApiLoader: MapsAPILoader,public http: Http,private zone: NgZone,private wrapper: GoogleMapsAPIWrapper)
+
+  constructor(public http: Http)
      {
-          this.mapsApiLoader = mapsApiLoader;
-          this.zone = zone;
-          this.wrapper = wrapper;
-          this.mapsApiLoader.load().then(() => {
-          this.geocoder = new google.maps.Geocoder();
-         
-          });
+          
   
           this.cropperSettings = new CropperSettings();
           this.cropperSettings.croppedWidth =50;
@@ -281,12 +145,6 @@ findLocation(address) {
 
 
 
-    this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
-      this.countryArray = data.json() as string[];
-     // this.primarylocation = this.countryArray[0];
-      console.log(  data.json());
-      // this.vendorlocatonid = data.json()[0].vendorLocationId;
-    })
   
     this.http.get(this.url,{headers:headers}).subscribe(data =>{
     console.log(data.json());
@@ -309,17 +167,7 @@ findLocation(address) {
     this.Description = data.json().businessDetails ;  
     this.perfectWedding = data.json().perfectWeddingURL  ;
     console.log(data.json());
-    // console.log(this.facebook);
-    // console.log(this.instagram);
-    // console.log(this.google);
-    // console.log(this.twitter);
 
-    //         if (this.facebook=="" || this.twitter=="" || this.instagram=="" || this.google=="" ) {
-    //           console.log('false');
-    //         } 
-    //         else {
-    //           console.log('true');
-    //         }
     })
 
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
@@ -420,21 +268,11 @@ findLocation(address) {
         testAnim(anim);
    })
 
-  this.location.marker.draggable = true;
  
-                      
-    this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
-    this.countryArray = data.json() as string[]
-    //  console.log( data.json() as string[] );
-    // console.log( data.countryId );
-    })
 
 
 $(document).on('click', ".saveall", function() {
-      //alert("hi")
-      // $(this).parents('.modal').modal('toggle');
-      // $(this).parents('.modal').removeClass('show');
-      // $(this).parents('.modal').modal('hide');
+     
       $(this).parents('.modal').css("display", "none");
       $(this).parents('.modal').removeClass("show");
       $('.modal-backdrop').hide();
@@ -443,95 +281,13 @@ $(document).on('click', ".saveall", function() {
       $('body').removeClass("modal-open");
    });
 
- //    $(".namesave").click(function() {
- //      alert("hi")
- //      $('#Business').hide();
- //      $('#Business').removeClass("show");
- //   });
- // $(".save").click(function() {
- //      alert("hi")
- //      $('#Description').hide();
- //      $('#Description').removeClass("show");
- //   });
 
     
   }
 save(){
  
 }
-  phone(){
-    $(".mobileid").show(); 
-       $(".Trading").hide(); 
-       $(".title").hide();
-   }
-   title(){
-    $(".mobileid").hide(); 
-    $(".Trading").hide(); 
-    $(".title").show();
-   }
-   trading(){
-    $(".Trading").show(); 
-    $(".mobileid").hide(); 
-    $(".title").hide();
-   }
-  update(c){
-    this.updatefield = c; 
-    console.log(this.updatefield);
-    }
-  updatefrom(info){
-        console.log(info);
-        let headers = new Headers();
-        var authToken = localStorage.getItem('userToken');
-        headers.append('Accept', 'application/json');
-        headers.append('Content-Type', 'application/json');
-        headers.append("Authorization",'Bearer '+authToken);
-
-
-        this.http.post(this.urlpost,{
-          vendorLocationId: info.vendorLocationId,
-          title:          info.title,
-          countryId:      info.countryId,
-          vendorId:       info.vendorId,
-          country:        {countryId: info.countryId,countryName: info.countryName},
-          city:           info.city,
-          postalCode:     info.postalCode,
-          address:        info.address,
-          phone:          info.phone,
-          mobile:         info.mobile ,
-          sundayOpen:     info.sundayOpen,
-          sundayClose:    info.sundayClose,
-          mondayOpen:     info.mondayOpen,
-          mondayClose:    info.mondayClose,
-          tuesdayOpen:    info.tuesdayOpen,
-          tuesdayClose:   info.tuesdayClose,
-          wednesdayOpen:  info.wednesdayOpen,
-          wednesdayClose: info.wednesdayClose,
-          thursdayOpen:   info.thursdayOpen,
-          thursdayClose:  info.thursdayClose,
-          fridayOpen:     info.fridayOpen,
-          fridayClose:    info.fridayClose,
-          saturdayOpen:   info.saturdayOpen,
-          saturdayClose:  info.saturdayClose,
-          isFridayOpen:   info.isFridayOpen,
-          isMondayOpen:   info.isMondayOpen,
-          isPrimary:      info.isPrimary,
-          isSaturdayOpen: info.isSaturdayOpen,
-          isSundayOpen:   info.isSundayOpen,
-          isThursdayOpen: info.isThursdayOpen,
-          isTuesdayOpen:  info.isTuesdayOpen,
-          isWednesdayOpen:info.isWednesdayOpen,
-         
-    
-        },{headers:headers}).subscribe(  (responce)=>{ console.log(responce.status);
-          if(responce.status == 200)
-          {
-           
-            alert("saved");
-            $('.modal').hide();
-          }
-    },data => { console.log(data.json());}
-);
-  }
+ 
 
 
 
@@ -585,8 +341,7 @@ save(){
             },{headers:headers})
               
               updatebusinessinfo.subscribe((data)=>{ console.log(data.json());
-              // if(responce.status == 200)
-              // { alert("photo uploded");}
+                this.imagecropDailog = false;
                });
           });
         });
@@ -603,7 +358,8 @@ save(){
           var data = this.addFile(info);
            console.log(info);
           //this.addFile(info);
-
+        
+         
             var infofacebook = info.value.facebook;
             var infotwitter = info.value.twitter;
             var infogoogle = info.value.google;
@@ -625,14 +381,18 @@ save(){
               headers.append('Accept', 'application/json')
               headers.append('Content-Type', 'application/json');
               headers.append("Authorization",'Bearer '+authToken);
-
+  
               let updatebusinessinfo = this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatebusinessinfo",
                            {   
-                              nameOfBusiness: infobusiness,
+                              nameOfBusiness:  infobusiness,
                               businessDetails: infodetails,
-                              contactPerson: 'scsc',
-                             // pictureUrl: infopicture,
-                             fileId:fileId,
+                              contactPerson:   'scsc',
+                              fbAvailable:     info.value.FacebookSwitch,
+                              twitterAvailable: info.value.twitterSwitch,
+                              googleAvailable: info.value.googleSwitch ,
+                              instaAvailable: info.value.instagramSwitch,
+                              perfectWeddingAvailable: info.value.instagram2Switch,
+                              fileId:fileId,
                               facebookURL: infofacebook,
                               twitterURL: infotwitter,
                               googleURL:  infogoogle,
@@ -645,7 +405,14 @@ save(){
             updatebusinessinfo.subscribe((responce)=>{ console.log(responce.status);
               if(responce.status == 200)
               {
-               
+                this.facebookDailog = false;
+                this.twitterDailog = false;
+                this.instagramDailog = false;
+                this.googleDailog = false;
+                this.instagram2Dailog  = false;
+                this.DescriptionDailog = false;
+                this.BusinessDailog = false;
+                this.imagecropDailog = false;
                 console.log("saved");
                 
 
@@ -659,63 +426,22 @@ save(){
       console.log(event)
     }
          closeResult: string;
-     primelocation(location){  
-          console.log(this.updatefield);
-          console.log(location);
-
-          this.primarylocation = this.updatefield;
-          let headers = new Headers();
-          var authToken = localStorage.getItem('userToken');
-          headers.append('Accept', 'application/json')
-          headers.append('Content-Type', 'application/json');
-          headers.append("Authorization",'Bearer '+authToken);
-
-
-          this.http.post(this.urlpost,{
-            vendorLocationId: this.primarylocation.vendorLocationId ,
-            title: this.primarylocation.title,
-            countryId: this.primarylocation.countryId,
-            vendorId: this.primarylocation.vendorId,
-            lat: location.lat,
-            long: location.lng,
-            country: {countryId: this.primarylocation.countryId,countryName: location.address_country},
-            city:  location.address_level_1 ,
-            postalCode: location.address_zip,
-            address: location.address_state ,
-            phone: this.primarylocation.phone,
-            mobile:   this.primarylocation.mobile ,
-            sundayOpen:    this.primarylocation.sundayOpen,
-            sundayClose:    this.primarylocation.sundayClose,
-            mondayOpen:     this.primarylocation.mondayOpen,
-            mondayClose:    this.primarylocation.mondayClose,
-            tuesdayOpen:    this.primarylocation.tuesdayOpen,
-            tuesdayClose:   this.primarylocation.tuesdayClose,
-            wednesdayOpen:  this.primarylocation.wednesdayOpen,
-            wednesdayClose: this.primarylocation.wednesdayClose,
-            thursdayOpen:   this.primarylocation.thursdayOpen,
-            thursdayClose:  this.primarylocation.thursdayClose,
-            fridayOpen:    this.primarylocation.fridayOpen,
-            fridayClose:    this.primarylocation.fridayClose,
-            saturdayOpen:   this.primarylocation.saturdayOpen,
-            saturdayClose:  this.primarylocation.saturdayClose,
-            isFridayOpen:   this.primarylocation.isFridayOpen,
-            isMondayOpen:  this.primarylocation.isMondayOpen,
-            isPrimary:     this.primarylocation.isPrimary,
-            isSaturdayOpen: this.primarylocation.isSaturdayOpen,
-            isSundayOpen:  this.primarylocation.isSundayOpen,
-            isThursdayOpen: this.primarylocation.isThursdayOpen,
-            isTuesdayOpen:  this.primarylocation.isTuesdayOpen,
-            isWednesdayOpen:this.primarylocation.isWednesdayOpen,
-          },{headers:headers}).subscribe( (data)=> { console.log(data)}
-      ,      (responce)=>{ console.log(responce); });
     
-      }
+      closeModel(){
+       
+        this.facebookDailog = false;
+        this.twitterDailog = false;
+        this.instagramDailog =false;
+        this.googleDailog = false;
+        this.instagram2Dailog  = false;
+        this.DescriptionDailog = false;
+        this.BusinessDailog = false;
       
+      } 
   
 enable1 =  true;
 enable2 =  true;
 enable3 =  true;
 enable4 =  true;
 
-  
 }

@@ -1,4 +1,3 @@
-
 <div id="wrapper" class="toggled">
         <div id="sidebar-wrapper">
             <app-vendorsidebar></app-vendorsidebar>
@@ -42,7 +41,7 @@
                                     </div>
                                     <div class="col-sm-12 text_left">
                                         <div class=" nopadd weekboxinput">
-                                            <div class="col-sm-12  edit_hide" id="address-function" data-target="#photo_ved" (click)="openModel(data)" data-toggle="modal">
+                                            <div class="col-sm-12  edit_hide" id="address-function"   (click)="openModel(data); photo_ved_dailog = true" >
                                                     <!-- id="address-function" data-target="#googlemap" (click)="openModel(data)" data-toggle="modal" -->
                                                 <span class="acce_time1 col-sm-1 col-1">
                                         <i  class="material-icons">location_on</i>
@@ -62,7 +61,7 @@
                                     </div>
                                     <div class="col-lg-12 text_left phone_icon1">
                                         <div class=" nopadd weekboxinput">
-                                            <div class="col-lg-12 col-md-12 edit_hide" (click)="openModel(data)" data-target="#phone" data-toggle="modal">
+                                            <div class="col-lg-12 col-md-12 edit_hide"  (click)="openModel(data); phone_dailog = true">
                                                 <span class="acce_time1 col-1">
                                             <i  class="material-icons">local_phone</i>
                                             </span>
@@ -185,12 +184,12 @@
 
         <form (ngSubmit)="upForm(info)" #info="ngForm">
          
-            <div class="modal fade" id="phone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="phone" tabindex="-1" [ngClass] = "{'show' : phone_dailog}" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">Phone Number  </h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Phone Number</h4>
+                            <button type="button" class="close"  (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body">
                             <h6 class="col-xs-offset-2 phonepopuphead">Primary Number</h6>
@@ -235,7 +234,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn newbtn">Save</button>&nbsp;
-                            <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn newbtn newcancelbtn"  (click)="closeModel()">Close</button>
                         </div>
                     </div>
                 </div>
@@ -695,18 +694,17 @@
         </div> -->
 
 
-        <div class="modal fade" id="photo_ved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
+        <div class="modal fade"  [ngClass] = "{'show' : photo_ved_dailog}"  id="photo_ved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">Address</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
+                            <button type="button" class="close" (click)="closeModel()" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="modal-body county_addres">
-                            <div>     
-                                <div class="container-fluid martop30px">
+                        <div class="modal-body county_addres">    
+                            <div class="container-fluid martop30px">
                                     <div class="form-group">
                                       <div class="input-effect md-form">
                                           <input class="effect-16 validate" placeholder="Address Line 1" type='text'   [(ngModel)]='location.address_level_1'>
@@ -743,13 +741,12 @@
                                       </div>
                                     </div>
                                   
-                                </div> 
-                        </div>
-                        <div class="modal-footer">
+                            </div> 
+                            <div class="modal-footer">
                             <button type="submit" class="btn newbtn" (click)='locationForm(location)' >SAVE</button> &nbsp;
-                            <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
+                           </div>
                         </div>
-                    </div>
                 </div>
-        </div>
+            </div>
         </div>

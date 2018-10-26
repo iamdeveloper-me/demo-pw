@@ -9,7 +9,7 @@
         <div class="col-sm-12 card">  
         <div class="createmyalbum">
             <div class=" text-center">
-                <h2>MY EVENTS {{eventArray}}</h2>       
+                <h2>MY EVENTS </h2>       
                 <span>Increase your brand awareness through event hosting. It's free! </span>
             </div>  
 
@@ -29,7 +29,7 @@
                                     <button class="btn btn-small btn-link" (click)="open(adduser)"> 
                                     
                                     
-                                        <i class="material-icons"> add </i> <span> <strong> Create New Event {{fileIdfield.filesId}}</strong> </span></button>
+                                        <i class="material-icons"> add </i> <span> <strong> Create New Event </strong> </span></button>
                                     
                                 
                                     
@@ -129,7 +129,7 @@
                                                                 </div>
                                                             </td>
                                                             <td class="text-center">
-                                                                <button class="btn btn-success whitetext btn-rounded"(click)= "editevent(data)"  data-target="#Description" data-toggle="modal" id="description-function">Edit{{data.eventId}}</button>
+                                                                <button class="btn btn-success whitetext btn-rounded" (click)= "editevent(data) && description_dailog = true" id="description-function">Edit{{data.eventId}}</button>
                                                                 
                                                                  <button class="btn btn-warning whitetext btn-rounded" (click)= "deletevent(data,i)">Delete {{data.eventId}} </button>
                                                             </td>
@@ -234,7 +234,7 @@
 <ng-template #adduser let-c="close" let-d="dismiss">
  <form (ngSubmit)="event(list)" #list="ngForm" > 
         <div class="modal-header text-center">
-            <h4 class="modal-title"><b>Create Event  {{fileIdfield.filesId}}</b></h4>
+            <h4 class="modal-title"><b>Create Event sdseedfde {{fileIdfield.filesId}}</b></h4>
             <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -483,7 +483,7 @@
 </ng-template>
 
 <form (ngSubmit)="editsave(data)" #data="ngForm" >
-    <div class="modal fade" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="Description" [ngClass] = "{'show' : description_dailog}"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header text-center">
@@ -493,7 +493,7 @@
                  
                             <div class="modal-header text-center">
                                 <h4 class="modal-title"><b>edit Event  {{modelfield }} </b></h4>
-                                <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -672,7 +672,7 @@
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn newbtn" >Save</button>   
                                                
-                                                <button type="button" class="btn  newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn  newbtn newcancelbtn" (click)="closeModel()">Cancel</button>
                                             </div>
                         
             </div>     

@@ -32,7 +32,7 @@ export class EventListComponent implements OnInit {
     imageService: any;
     isImageLoading: any;
     public sub_id:any;    public dist_id:any;    public country_id:any;
-
+    description_dailog = false;  
 
     public arra = new Array();public district = new Array();public suburb = new Array();
 
@@ -183,61 +183,49 @@ path = "https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg";
    }
     }
   event(list){
-    console.log(list);
-    console.log(list.value.filesId);
-console.log(list.capacity);
-// console.log(list.eventDate);
-// console.log(list.startTime );
-// console.log(list.endTime );
-
-
-if(  typeof(list.value.filesId) == "undefined") 
-{ alert("plz upload event image ");
-  list.value.filesId = 1 
- console.log(list.value.filesId);}else
-{
-
-                        let headers = new Headers();
-                        var authToken = localStorage.getItem('userToken');
-                        headers.append('Accept', 'application/json')
-                        headers.append('Content-Type', 'application/json');
-                        headers.append("Authorization",'Bearer '+authToken);
-                      var data_obj= {
-                
-                          eventId: 0,
-                          eventTitle: list.value.Title,
-                          filesId: list.value.filesId,
-                          venueName: list.value.venueName,
-                          location: list.value.Location,
-                          lat: 0,
-                          long: 0,
-                          capacity: list.capacity,
-                          entry: list.value.entry,
-                          entryFee: list.value.entryFee,
-                          eventDescription: list.value.eventDescription,
-                          eventsDates: [
-                            {
-                              eventsMoreDatesId: 0,
-                              eventId: 0,
-                              eventDate: list.eventDate ,
-                              startTime: list.startTime,
-                              endTime:  list.endTime ,
-                            }
-                          ]
-                        }
-
-
-                        // startTime: list.eventDate+"T"+list.startTime+":00" ,
-                        // endTime:  list.endTime+"T"+list.endTime+":00" ,
-              this.http.post(this.eventposturl,data_obj,{headers:headers}).subscribe(data =>{
-              console.log(data.json());
-              console.log(this.eventArray)
-              this.eventArray.push(data_obj)
-              console.log(this.eventArray)
-
-             //  debugger
-            })
-          }
+             console.log(list);
+            if(  typeof(list.value.filesId) == "undefined") 
+              { 
+                alert("plz upload event image ");
+                this.description_dailog = false;  
+                list.value.filesId = 1 
+                 console.log(list.value.filesId);
+                } else
+                {     
+                  this.description_dailog = false;  
+                  let headers = new Headers();
+                  var authToken = localStorage.getItem('userToken');
+                  headers.append('Accept', 'application/json')
+                  headers.append('Content-Type', 'application/json');
+                  headers.append("Authorization",'Bearer '+authToken);
+                  var data_obj= {
+          
+                    eventId: 0,
+                    eventTitle: list.value.Title,
+                    filesId: list.value.filesId,
+                    venueName: list.value.venueName,
+                    location: list.value.Location,
+                    lat: 0,
+                    long: 0,
+                    capacity: list.capacity,
+                    entry: list.value.entry,
+                    entryFee: list.value.entryFee,
+                    eventDescription: list.value.eventDescription,
+                    eventsDates: [
+                      {
+                        eventsMoreDatesId: 0,
+                        eventId: 0,
+                        eventDate: list.eventDate ,
+                        startTime: list.startTime,
+                        endTime:  list.endTime ,
+                      }
+                    ]
+                  }
+                  this.http.post(this.eventposturl,data_obj,{headers:headers}).subscribe(data =>{
+                  this.eventArray.push(data_obj)
+                  console.log(this.eventArray)
+                    })
+                }
   }
 
   
@@ -288,48 +276,39 @@ if(  typeof(list.value.filesId) == "undefined")
 
   editsave(data :any ){
     console.log(data);
+      this.description_dailog = false;  
+      let headers = new Headers();
+      var authToken = localStorage.getItem('userToken');
+      headers.append('Accept', 'application/json')
+      headers.append('Content-Type', 'application/json');
+      headers.append("Authorization",'Bearer '+authToken);
+    const  editData = {
 
-
-    let headers = new Headers();
-              var authToken = localStorage.getItem('userToken');
-              headers.append('Accept', 'application/json')
-              headers.append('Content-Type', 'application/json');
-              headers.append("Authorization",'Bearer '+authToken);
-              
-
-
-            const  editData = {
-       
-                eventId: data.value.id,
-                eventTitle: data.value.Title,
-                filesId: 1,
-                venueName: data.value.venueName,
-                 location: data.value.Location,
-                 lat: 0,
-                long: 0,
-                capacity: data.value.Capacity,
-                entry: data.value.entry,
-                entryFee: 0,
-                eventDescription: data.value.eventDescription,
-                eventsDates: [
-                  {
-                     eventsMoreDatesId: 0,
-                     eventId: 0,
-                     eventDate: this.eventdate ,
-                     startTime:  this.startime,
-                     endTime:  this.endtime,
-                  }
-                ]
-              }
-              console.log(editData)
+        eventId: data.value.id,
+        eventTitle: data.value.Title,
+        filesId: 1,
+        venueName: data.value.venueName,
+        location: data.value.Location,
+        lat: 0,
+        long: 0,
+        capacity: data.value.Capacity,
+        entry: data.value.entry,
+        entryFee: 0,
+        eventDescription: data.value.eventDescription,
+        eventsDates: [
+          {
+            eventsMoreDatesId: 0,
+            eventId: 0,
+            eventDate: this.eventdate ,
+            startTime:  this.startime,
+            endTime:  this.endtime,
+          }
+        ]
+      }
+      console.log(editData)
     this.http.post(this.eventposturl,editData,{headers:headers}).subscribe(data =>{
     console.log(data.json());
-
     })
-
-
-  
-
 }
 
   
@@ -373,6 +352,11 @@ if(  typeof(list.value.filesId) == "undefined")
     // this.subr_name =this.suburb[newVal].name
     console.log(newVal)
   }
+
+  closeModel(){         
+    this.description_dailog = false;  
+  }
+
 
 }
   

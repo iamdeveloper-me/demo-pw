@@ -51,7 +51,7 @@
                           <h6>Deals & Offers</h6>
                           <p>create personallsed & unique offers</p>
                           <div class="button11">
-                          <button  data-toggle="modal" data-target="#createdeal" class="select-btn">Create Deal
+                          <button (click)="createdeal_dailog = true" class="select-btn">Create Deal
                           </button>
                         </div>
                         </div>   
@@ -98,7 +98,7 @@
                               <td class="text-center" >
                                 
                                 <div class="clearfix"></div>
-                                <button class="btn btn-info" data-toggle="modal" data-target="#editdeal" (click) = "openupdatedeal(data)" >
+                                <button class="btn btn-info" (click) = "openupdatedeal(data); editdeal_dailog = true" >
                                   <i class="fa fa-pencil" aria-hidden="true"></i> Edit {{data.dealId}}
                                 </button>
                                 <div class="clearfix"></div>
@@ -163,14 +163,13 @@
           </div> 
       <form>   
       
-      
-          <div class="modal fade" id="createdeal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="createdeal" [ngClass] = "{'show' : createdeal_dailog}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                   <form (ngSubmit)="createdeals(createdeal)" #createdeal="ngForm">
                       <div class="modal-content">
                           <div class="modal-header">
                                   <h4 class="card-title">Deal Details</h4>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <button type="button" class="close" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                           </div>
                           <div class="modal-body">   
                               <div class="card">         
@@ -287,18 +286,15 @@
                               </div>
                           </div>
                           <div class="modal-footer">
-                                  <button type="submit" class="btn btn-secondary save-btn"  ><i class="fa fa-check" aria-hidden="true"></i>Save</button>
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn newbtn">Save</button>
+                            <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
                           </div>
                       </div>
                   </form>       
               </div>
-          </div> 
-      
-      
-      
-      
-          <div class="modal fade" id="editdeal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    </div> 
+
+    <div class="modal fade" id="editdeal" [ngClass] = "{'show' : editdeal_dailog}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                   <div class="modal-content">
                    
@@ -419,11 +415,12 @@
                               </div>
                           </div>
                           <div class="modal-footer">
-                              <button type="submit" class="btn btn-secondary save-btn"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn newbtn">Save</button>
+                                <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
+                             
                           </div>
                       </form>
                   </div>
               </div>
-          </div> 
+    </div> 
         

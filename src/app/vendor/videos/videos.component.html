@@ -61,7 +61,7 @@
       <div class="container-fluid addvideo1 ">
         <div class="my_video_bg11 ">
       <section class="p-0 container" id="portfolio">
-           <div class="text-center"><button class="add_videobt" data-target="#Addvediodetail" data-toggle="modal">Add Video</button> </div>
+           <div class="text-center"><button class="add_videobt" (click)=" Addvediodetail_dailog = true">Add Video</button> </div>
                <div class="photos_gallery">
                       <div class="row firt_row"> 
                         <div class="col-md-3 zoom_effect">
@@ -202,12 +202,12 @@
               
 
 
-  <div class="modal fade" id="Addvediodetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade" [ngClass] = "{'show' : Addvediodetail_dailog}" id="Addvediodetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                    <div class="modal-header">
                     <h4 class="modal-title">Add Vedio</h4>
-                    <button type="button" class="close posiTop20px" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close posiTop20px"  (click)="closeModel()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -229,8 +229,9 @@
                             </div>
                    </div>
                    <div class="modal-footer text-center">
-                    <button type="submit" class="btn newbtn" (click)='primelocation(location)' >SAVE</button> &nbsp;
-                    <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn newbtn" (click)="addeditvedio()">SAVE</button> &nbsp;
+                    <button type="button" class="btn newbtn newcancelbtn" 
+                    (click)="closeModel()"> Close</button>
                 </div>
 
               </div>

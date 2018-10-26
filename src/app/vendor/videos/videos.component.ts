@@ -14,6 +14,9 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
     encapsulation: ViewEncapsulation.None,
 })
 export class VideosComponent implements OnInit {
+    
+    Addvediodetail_dailog = false;
+    
     constructor( ) { }
     uploader: FileUploader = new FileUploader({
         url: URL,
@@ -42,8 +45,16 @@ export class VideosComponent implements OnInit {
 
   closeResult: string;
 
-  
- 
+  closeModel(){
 
+this.Addvediodetail_dailog = false;
+
+}
+ 
+addeditvedio(){
+
+this.Addvediodetail_dailog = false;
+
+}
 
 }

@@ -7,9 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VediosettingComponent implements OnInit {
 
+
+  Editvediodetail_dailog = false;
+		
   constructor() { }
 
   ngOnInit() {
   }
+
+
+
+  closeModel(){
+
+this.Editvediodetail_dailog = false;
+
+}
+ 
+editvedio(){
+
+this.Editvediodetail_dailog = false;
+
+}
 
 }

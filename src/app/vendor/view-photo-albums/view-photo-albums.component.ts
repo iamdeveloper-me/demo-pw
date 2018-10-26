@@ -84,6 +84,12 @@ export class ViewPhotoAlbumsComponent implements OnInit {
 
   ngOnInit() {
 
+   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
+   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
+   $.getScript('./assets/js/vendorsidebar.js');
+   $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
+
+
 let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
   headers.append('Accept', 'application/json')

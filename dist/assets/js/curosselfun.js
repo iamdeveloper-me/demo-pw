@@ -450,27 +450,3 @@ window.onload = function(){
         readURL(this);
     }
 };
-$(".detailpagecarousel").click(function() {
-    $('.detailpagecarousel').addClass('corsellclick');
-    $('.imgbannerbox').addClass('corsellclick');
-    $('.imgbannerboxcontainer').addClass('positioninherit');
-    $('.blackoverlaymain').addClass('blackoverlaymainhometik');
-    $('.blackoverlaymain ').show();
-    $('.closepopup ').show();
-});
-$(".closepopup").click(function() {
-    $('.detailpagecarousel').removeClass('corsellclick');
-    $('.imgbannerbox').removeClass('corsellclick');
-    $('.imgbannerboxcontainer').removeClass('positioninherit');
-    $('.blackoverlaymain').removeClass('blackoverlaymainhometik');
-    $('.blackoverlaymain ').hide();
-    $('.closepopup').hide();
-});
-$(".blackoverlaymain").click(function() {
-    $('.detailpagecarousel').removeClass('corsellclick');
-    $('.imgbannerbox').removeClass('corsellclick');
-    $('.imgbannerboxcontainer').removeClass('positioninherit');
-    $('.blackoverlaymain').removeClass('blackoverlaymainhometik');
-    $('.blackoverlaymain ').hide();
-    $('.closepopup').hide();
-});

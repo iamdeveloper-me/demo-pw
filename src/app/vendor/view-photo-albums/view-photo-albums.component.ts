@@ -8,20 +8,21 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 @Component({
   selector: 'app-view-photo-albums',
   templateUrl: './view-photo-albums.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  //changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./view-photo-albums.component.scss']
 })
 
 
 export class ViewPhotoAlbumsComponent implements OnInit {
- Set_as_background:any = [];
+  Set_as_background:any = [];
   fileToUpload:any;
-  private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
+  
   totalImage=[];
   myalbumimages=[];
+  private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ImageUploader/FileUploader'
-   private Setasbackground: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/Setasbackground"
-    private BackgroundImage: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/BackgroundImage"
+  private Setasbackground: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/Setasbackground"
+  private BackgroundImage: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/BackgroundImage"
 
 
   uploadphoto_dailog = false;

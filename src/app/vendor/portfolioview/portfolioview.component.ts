@@ -14,7 +14,7 @@ export class NgbdgalleryModalContent {
 @Component({
   selector: 'app-portfolioview',
   templateUrl: './portfolioview.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  //changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./portfolioview.component.scss'],
   
 })

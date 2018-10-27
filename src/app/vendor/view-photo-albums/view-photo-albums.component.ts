@@ -85,6 +85,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
 
   ngOnInit() {
 
+
   this.route.params.subscribe( params => {
     console.log(params) ;
         this.albumid = params;

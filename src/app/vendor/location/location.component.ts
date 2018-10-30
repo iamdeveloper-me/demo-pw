@@ -2,7 +2,8 @@ import { Component, OnInit ,Input , ViewChild, NgZone,} from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import { MapsAPILoader, AgmMap } from '@agm/core';
 import { GoogleMapsAPIWrapper } from '@agm/core/services';
-
+import { ToastrService } from 'ngx-toastr';
+import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
 declare var google: any;
  
 interface Marker {
@@ -32,6 +33,17 @@ interface Location {
 })
 
 export class LocationComponent implements OnInit {
+  @ViewChild('f') floatingLabelForm: NgForm;
+  @ViewChild('vform') validationForm: FormGroup;
+  regularForm: FormGroup;
+
+  columns = [{
+    phoneType: 'mobile',
+    phoneNumber: '',
+    
+   }];
+   col = [];
+   first = true;
   country_id:any;
   public c_id:any;
   public country_name:any;
@@ -56,14 +68,67 @@ export class LocationComponent implements OnInit {
   m;
   enable = true;
   modelfield:any = {mobile:""};
-  address_modelfield:any = {mobile:""};
+  address_modelfield:any = 
+  { vendorLocationId: 9, 
+    title: "string", 
+    countryId: 1, 
+    districtId: 0, 
+    suburbId: 0, 
+    vendorId: 23,
+     country: { countryId: 1, 
+                countryName: "MAURITIUS", 
+                districts: [ {
+                          districtId: 2, 
+                          countryId: 1, 
+                          name: "Grand Port", 
+                          suburb: [ { 
+                            suburbId: 70, 
+                            districtId: 2, 
+                            name: "Camp Jardin" 
+                          } ] } ] }, 
+    city: "Brffrvgrfg", 
+    postalCode: "16356ghhhhhhhhhhhhhhhhhhhhhh", 
+    address: "Royal road ", 
+    lat: 9, 
+    long: 9, 
+    addedOn: "2018-10-22T14:25:15.0403994", 
+    phone: "9876543210", 
+    mobile: "9232323123", 
+    isPrimary: false, 
+    isActive: false, 
+    sundayOpen: null, 
+    sundayClose: null, 
+    isSundayOpen: false, 
+    mondayOpen: null, 
+    mondayClose: null, 
+    isMondayOpen: false,
+    tuesdayOpen: null, 
+    tuesdayClose: null, 
+    isTuesdayOpen: true, 
+    wednesdayOpen: "03:24", 
+    wednesdayClose: "12:23", 
+    isWednesdayOpen: true, 
+    thursdayOpen: null, 
+    thursdayClose: null, 
+    isThursdayOpen: false, 
+    fridayOpen: null, 
+    fridayClose: null, 
+    isFridayOpen: false, 
+    saturdayOpen: "21:23",
+    saturdayClose: "23:23", 
+    isSaturdayOpen: true, 
+    locationPhones: [] };
   address : any = {};
   obj = [];
  private urlget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mylocations'
+ private post_phone_number: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/addupdatephones'
+
+ private remove_phone_number: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/deletelocationphone'
+
  private urlpost: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savelocation'
  public arra = new Array();public district = new Array();public suburb = new Array();
  // location: any = {};
-
+ 
  countryArray:string[];
  location_Array:string[];
   circleRadius:number = 5000;
@@ -185,7 +250,7 @@ export class LocationComponent implements OnInit {
   }
 
   @ViewChild(AgmMap) map: AgmMap;
-  constructor(public mapsApiLoader: MapsAPILoader,public http: Http,private zone: NgZone,private wrapper: GoogleMapsAPIWrapper)
+  constructor(public toastr: ToastrService,public mapsApiLoader: MapsAPILoader,public http: Http,private zone: NgZone,private wrapper: GoogleMapsAPIWrapper)
   {
       this.mapsApiLoader = mapsApiLoader;
       this.zone = zone;
@@ -197,7 +262,13 @@ export class LocationComponent implements OnInit {
     
   ngOnInit(): void {
 
-
+        
+    this.regularForm = new FormGroup({
+      'inputEmail': new FormControl(null, [Validators.required, Validators.email]),
+      'password': new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(24)]),
+      'textArea': new FormControl(null, [Validators.required]),
+      'radioOption': new FormControl('Option one is this')
+  }, {updateOn: 'blur'});
           this.location.marker.draggable = true;
           let headers = new Headers();
           var authToken = localStorage.getItem('userToken');
@@ -243,6 +314,20 @@ export class LocationComponent implements OnInit {
               testAnim(anim);
         })
   }
+
+  typeError() {
+    this.toastr.error('Only Numbers');
+}
+
+  keyPress(event: any) {
+    const pattern = /[0-9]/;
+
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+        this.typeError();
+    }
+  }
     openModel(b)
       { 
       
@@ -260,62 +345,87 @@ export class LocationComponent implements OnInit {
         console.log(this.modelfield);
         this.week_dailog =true;
        }
+
+    add_more_Phone(){
+      
+    }   
     update_location_week_googlemap(e)
   {
-    this.phone_dailog = false;
-   // console.log( this.modelfield );
-   console.log(e);
+    console.log(this.columns)
+      this.phone_dailog = false;
+     // console.log( this.modelfield );
+     console.log(e);
    
-    this.week_dailog = false ;
+        this.week_dailog = false ;
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
       
+        this.columns.forEach((el)=>{
+          this.col.push(el.phoneNumber);
+        })
+
+            this.http.post(this.urlpost,{
+              vendorLocationId: e.value.vendorLocationId,
+              title: e.value.title,
+              countryId: e.value.country.countryId  ,
+              vendorId: e.value.vendorId,
+              country: e.value.country,
+              postalCode: e.value.postalCode          ,
+              address: e.value.address,
+              lat: e.value.lat,
+              long: e.value.long,
+              phone: e.value.phone ,
+              mobile: e.value.mobile,
+              isActive: e.value.isActive,
+              sundayOpen: e.value.sundayOpen,
+              sundayClose: e.value.sundayClose,
+              isSundayOpen: e.value.isSundayOpen,
+              mondayOpen: e.value.mondayOpen,
+              mondayClose: e.value.mondayClose,
+              isMondayOpen: e.value.isMondayOpen,
+              tuesdayOpen: e.value.tuesdayOpen,
+              tuesdayClose: e.value.tuesdayClose,
+              isTuesdayOpen: e.value.isTuesdayOpen,
+              wednesdayOpen: e.value.wednesdayOpen,
+              wednesdayClose: e.value.wednesdayClose,
+              isWednesdayOpen: e.value.isWednesdayOpen,
+              thursdayOpen: e.value.thursdayOpen,
+              thursdayClose: e.value.thursdayClose,
+              isThursdayOpen: e.value.isThursdayOpen,
+              fridayOpen: e.value.fridayOpen,
+              fridayClose: e.value.fridayClose,
+              isFridayOpen: e.value.isFridayOpen,
+              saturdayOpen: e.value.saturdayOpen,
+              saturdayClose: e.value.saturdayClose,
+              isSaturdayOpen: e.value.isSaturdayOpen,
+              
+              locationPhones: this.col
+            },{headers:headers}).subscribe( (data)=> { console.log(data)
+              this.toastr.success(data.statusText);
+            }
+        ,      (error)=>{ console.log(error);
+        });
 
 
-        this.http.post(this.urlpost,{
+        this.http.post(this.post_phone_number,{
+          locationPhoneId: 0,
           vendorLocationId: e.value.vendorLocationId,
-          title: e.value.title,
-          countryId: e.value.country.countryId  ,
-          vendorId: e.value.vendorId,
-          country: e.value.country,
-          city: e.value.city,
-          postalCode: e.value.postalCode          ,
-          address: e.value.address,
-          lat: e.value.lat,
-          long: e.value.long,
-          phone: e.value.phone ,
-          mobile: e.value.mobile,
-          isActive: e.value.isActive,
-          sundayOpen: e.value.sundayOpen,
-          sundayClose: e.value.sundayClose,
-          isSundayOpen: e.value.isSundayOpen,
-          mondayOpen: e.value.mondayOpen,
-          mondayClose: e.value.mondayClose,
-          isMondayOpen: e.value.isMondayOpen,
-          tuesdayOpen: e.value.tuesdayOpen,
-          tuesdayClose: e.value.tuesdayClose,
-          isTuesdayOpen: e.value.isTuesdayOpen,
-          wednesdayOpen: e.value.wednesdayOpen,
-          wednesdayClose: e.value.wednesdayClose,
-          isWednesdayOpen: e.value.isWednesdayOpen,
-          thursdayOpen: e.value.thursdayOpen,
-          thursdayClose: e.value.thursdayClose,
-          isThursdayOpen: e.value.isThursdayOpen,
-          fridayOpen: e.value.fridayOpen,
-          fridayClose: e.value.fridayClose,
-          isFridayOpen: e.value.isFridayOpen,
-          saturdayOpen: e.value.saturdayOpen,
-          saturdayClose: e.value.saturdayClose,
-          isSaturdayOpen: e.value.isSaturdayOpen
+          phoneType: this.columns[0].phoneType,
+          phoneNumber: this.columns[0].phoneNumber
+          // new_key: this.columns
         },{headers:headers}).subscribe( (data)=> { console.log(data)
+          this.toastr.success(data.statusText);
         }
     ,      (error)=>{ console.log(error);
-     });
-       }
-       isActive(b,e){ 
+    });
+      }
+
+
+  
+    isActive(b,e){ 
              console.log(b);
              console.log(e);
              let headers = new Headers();
@@ -346,7 +456,7 @@ export class LocationComponent implements OnInit {
       
         this.http.post(this.urlpost,{
           vendorLocationId: 0,
-          title: "string",
+          title: "EDIT MAP.",
           countryId: e.value.country_id  ,
           districtId: e.value.dist_id  ,
           suburbId: e.value.sub_id ,
@@ -369,126 +479,118 @@ export class LocationComponent implements OnInit {
               }
             ]
           },
-          city: "string",
+          city: " ",
           postalCode: e.value.postalCode          ,
           address: e.value.Address,
           lat: 0,
           long: 0,
-          addedOn: "2018-10-26T07:08:26.542Z",
+          addedOn: " ",
           phone: e.value.phone ,
-          mobile: "string",
+          mobile: " -",
           isActive: true,
-          sundayOpen: "string",
-          sundayClose: "string",
+          sundayOpen: " -",
+          sundayClose: " -",
           isSundayOpen: true,
-          mondayOpen: "string",
-          mondayClose: "string",
+          mondayOpen: " -",
+          mondayClose: " -",
           isMondayOpen: true,
-          tuesdayOpen: "string",
-          tuesdayClose: "string",
+          tuesdayOpen: " -",
+          tuesdayClose: " -",
           isTuesdayOpen: true,
-          wednesdayOpen: "string",
-          wednesdayClose: "string",
+          wednesdayOpen: " -",
+          wednesdayClose: " -",
           isWednesdayOpen: true,
-          thursdayOpen: "string",
-          thursdayClose: "string",
+          thursdayOpen: " -",
+          thursdayClose: " -",
           isThursdayOpen: true,
-          fridayOpen: "string",
-          fridayClose: "string",
+          fridayOpen: " -",
+          fridayClose: " -",
           isFridayOpen: true,
-          saturdayOpen: "string",
-          saturdayClose: "string",
-          isSaturdayOpen: true
+          saturdayOpen: " -",
+          saturdayClose: " -",
+          isSaturdayOpen: true,
+         
         }
-        ,{headers:headers}).subscribe( (data)=> {console.log(data)
-        },(err)=>{ console.log(err); } );
+        ,{headers:headers}).subscribe( 
+          (data)=> {console.log(data.json())
+          this.toastr.success(data.json());
+        },(err)=>{ console.log(err); 
+          this.toastr.error(err._body );
+         } );
 
    }
-   Update_Address(e)
-   {
 
+
+
+      Update_Address(e)
+   {
+        this.regularForm.reset();
           //console.log(this.modelfield );
-          console.log(e);
+          console.log(e.value);
+       const datapanel =  {
+        vendorLocationId: e.value.vendorLocationId,
+        countryId: e.value.country_id ,
+        districtId: e.value.dist_id,
+        suburbId:  e.value.sub_id ,
+        vendorId: e.value.vendorid ,
+        postalCode: e.value.Postal_code          ,
+        address: e.value.Address,
+        lat: e.value.lat,
+        long: e.value.long,
+        isActive: e.value.isActive,
+        phone: e.value.phone ,
+        mobile: e.value.mobile,
+        sundayOpen: e.value.sundayOpen,
+        sundayClose: e.value.sundayClose,
+        isSundayOpen: e.value.isSundayOpen,
+        mondayOpen: e.value.mondayOpen,
+        mondayClose: e.value.mondayClose,
+        isMondayOpen: e.value.isMondayOpen,
+        tuesdayOpen: e.value.tuesdayOpen,
+        tuesdayClose: e.value.tuesdayClose,
+        isTuesdayOpen: e.value.isTuesdayOpen,
+        wednesdayOpen: e.value.wednesdayOpen,
+        wednesdayClose: e.value.wednesdayClose,
+        isWednesdayOpen: e.value.isWednesdayOpen,
+        thursdayOpen: e.value.thursdayOpen,
+        thursdayClose: e.value.thursdayClose,
+        isThursdayOpen: e.value.isThursdayOpen,
+        fridayOpen: e.value.fridayOpen,
+        fridayClose: e.value.fridayClose,
+        isFridayOpen: e.value.isFridayOpen,
+        saturdayOpen: e.value.saturdayOpen,
+        saturdayClose: e.value.saturdayClose,
+        isSaturdayOpen: e.value.isSaturdayOpen
       
+      }
+      console.log(datapanel);
           let headers = new Headers();
           var authToken = localStorage.getItem('userToken');
           headers.append('Accept', 'application/json')
           headers.append('Content-Type', 'application/json');
           headers.append("Authorization",'Bearer '+authToken);
           var vendorID = localStorage.getItem('vendorid');
-                  this.http.post(this.urlpost,{
-                    vendorLocationId: e.value.vendorLocationId,
-                    title: e.value.title,
-                    countryId: e.value.Country.countryId  ,
-                    districtId: e.value.Country.districts[0].districtId  ,
-                    suburbId:  e.value.Country.districts[0].suburb[0].suburbId  ,
-                    vendorId: vendorID,
-                    country: {
-                      countryId:  e.value.Country.countryId ,
-                      countryName:  e.value.Country.countryName ,
-                      districts: [
-                        {
-                          districtId: e.value.Country.districts[0].districtId ,
-                          countryId:  e.value.Country.countryId ,
-                          name: e.value.Country.districts[0].name,
-                          suburb: [
-                            {
-                              suburbId: e.value.Country.districts[0].suburb[0].suburbId ,
-                              districtId: e.value.Country.districts[0].districtId ,
-                              name: e.value.Country.districts[0].suburb[0].name
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    city: e.value.city,
-                    postalCode: e.value.Postal_code          ,
-                    address: e.value.Address,
-                    lat: e.value.lat,
-                    long: e.value.long,
-                    isActive: e.value.isActive,
-                    phone: e.value.phone ,
-                    mobile: e.value.mobile,
-                    sundayOpen: e.value.sundayOpen,
-                    sundayClose: e.value.sundayClose,
-                    isSundayOpen: e.value.isSundayOpen,
-                    mondayOpen: e.value.mondayOpen,
-                    mondayClose: e.value.mondayClose,
-                    isMondayOpen: e.value.isMondayOpen,
-                    tuesdayOpen: e.value.tuesdayOpen,
-                    tuesdayClose: e.value.tuesdayClose,
-                    isTuesdayOpen: e.value.isTuesdayOpen,
-                    wednesdayOpen: e.value.wednesdayOpen,
-                    wednesdayClose: e.value.wednesdayClose,
-                    isWednesdayOpen: e.value.isWednesdayOpen,
-                    thursdayOpen: e.value.thursdayOpen,
-                    thursdayClose: e.value.thursdayClose,
-                    isThursdayOpen: e.value.isThursdayOpen,
-                    fridayOpen: e.value.fridayOpen,
-                    fridayClose: e.value.fridayClose,
-                    isFridayOpen: e.value.isFridayOpen,
-                    saturdayOpen: e.value.saturdayOpen,
-                    saturdayClose: e.value.saturdayClose,
-                    isSaturdayOpen: e.value.isSaturdayOpen
-                  
-                  },{headers:headers}).subscribe( (data)=> { console.log(data)
-                  if(data.status == 200)
-                  {
-                    this.photo_ved_dailog = false;
-                    this.phone_dailog = false;
-                    //console.log("saved");
-                  }}
-            ,      (responce)=>{ console.log(responce);
-
-              if(responce.status == 200)
-              {
-                this.photo_ved_dailog = false;
-                this.phone_dailog = false;
+                  this.http.post(this.urlpost,datapanel,{headers:headers}).subscribe(    (responce)=>{ console.log(responce);
+                                this.toastr.success(responce.statusText);
+                               if(responce.status == 200)
+                                {
+                                  
+                                  this.photo_ved_dailog = false;
+                                  this.phone_dailog = false;
+                                }   
+      
+              
                 ///console.log("saved");
-              }
-            });
+           
+            },(error)=> { console.log(error) ;
+              this.toastr.error(error.statusText );
+              this.toastr.error(error.json().text() );
+                       });
 
       }
+
+
+
     abc(event){
     //  console.log(event)
       }
@@ -500,19 +602,20 @@ export class LocationComponent implements OnInit {
       this.c_id = this.arra[newVal].countryId
       this.country_name =this.arra[newVal].countryName
       this.district = this.arra[newVal].districts
-     // console.log(this.district)
+     console.log(  this.country_name)
     }
     districtA(event): void {  
       const newVal = event.target.value;
       this.d_id = this.district[newVal].districtId
       this.district_name =this.district[newVal].name
       this.suburb = this.district[newVal].suburb
+      console.log(  this.district_name)
     }
     subr(event): void {  
       const newVal = event.target.value;
       this.s_id = this.suburb[newVal].suburbId
       this.subr_name =this.suburb[newVal].name
-     // console.log(newVal)
+      console.log(this.subr_name )
     }
     closeModel(){ 
       this.photo_ved_dailog = false;
@@ -520,4 +623,41 @@ export class LocationComponent implements OnInit {
       this.create_location_dailog = false;
       this.week_dailog = false ;
     } 
+    addNewColumn() {
+      var newItemNo = this.columns.length + 1;
+    
+    
+      //  alert(newItemNo);
+      this.columns.push({
+        phoneType: 'mobile',
+        phoneNumber: '',
+       
+     });
+    
+    
+     }
+     removeColumn(index) {
+      if (this.columns.length >= 2) {
+       this.columns.splice(index, 1);
+      }
+      alert();
+      let headers = new Headers();
+      var authToken = localStorage.getItem('userToken');
+      headers.append('Accept', 'application/json')
+      headers.append('Content-Type', 'application/json');
+      headers.append("Authorization",'Bearer '+authToken);
+      this.http.post(this.remove_phone_number,{
+        locationPhoneId: 2,
+        vendorLocationId: 27,
+        phoneType: "mobile",
+        phoneNumber: "12321124444443"
+      },{headers:headers}).subscribe( (data)=> { console.log(data)
+        this.toastr.success(data.statusText);
+      }
+  ,      (error)=>{ console.log(error);
+  });
+    
+    
+     }
+    
 }

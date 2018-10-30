@@ -290,7 +290,7 @@ export class EventListComponent implements OnInit {
                       //     
                       //   })
                       // }
-    }
+   }) }
 
 
   /////////////////////////////////popupmode

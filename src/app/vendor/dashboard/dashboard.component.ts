@@ -62,12 +62,17 @@ export class DashboardComponent implements OnInit {
   }
  // supArray:string[];  
       ngOnInit()  {
-        this.getEvents();
+     
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
+        this.http.post(this.geturl,{ filter: 2 },{headers:headers}).subscribe(data =>{
+          this.jobArray = data.json() as string[]; 
+          console.log(this.jobArray);
+      
+         });
         this.http.get(this.dashboard,{headers:headers}).subscribe((data)=> {console.log(data.json())});
         if(!authToken) 
        {  this.router.navigate(['../home']);
@@ -233,11 +238,7 @@ export class DashboardComponent implements OnInit {
           headers.append('Accept', 'application/json')
           headers.append('Content-Type', 'application/json');
           headers.append("Authorization",'Bearer '+authToken);
-          this.http.get(this.geturl,{headers:headers}).subscribe(data =>{
-          this.jobArray = data.json() as string[]; 
-          console.log(this.jobArray);
-      
-         });
+        
          
         }
 }

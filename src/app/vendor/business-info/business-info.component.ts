@@ -357,6 +357,7 @@ save(){
 
           var data = this.addFile(info);
            console.log(info);
+           console.log(info.value);
           //this.addFile(info);
         
          
@@ -393,7 +394,7 @@ save(){
                               instaAvailable: info.value.instagramSwitch,
                               perfectWeddingAvailable: info.value.instagram2Switch,
                               fileId:fileId,
-                              contactPerson: 'scsc',
+                        
                               facebookURL: infofacebook,
                               twitterURL: infotwitter,
                               googleURL:  infogoogle,
@@ -423,10 +424,9 @@ save(){
      }
   
   abc(event){
-
       console.log(event)
     }
-         closeResult: string;
+    closeResult: string;
     
 
       closeModel(){

@@ -1,7 +1,7 @@
 import { Http ,Headers } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit  ,ChangeDetectionStrategy } from '@angular/core';
-
+import { ToastrService } from 'ngx-toastr';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
@@ -48,7 +48,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   fileOverAnother(e: any): void {
     this.hasAnotherDropZoneOver = e;
   }
-  constructor(private http: Http ,  private route: ActivatedRoute) { 
+  constructor(private http: Http ,  private route: ActivatedRoute,public toastr: ToastrService) { 
     
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
@@ -232,22 +232,30 @@ $(document)
 
   //service
   deleteImage(image,index){
-    console.log(image);
-    console.log(index);
-    console.log(image.albumImageId);
-    this.myalbumimages.splice(index,1);
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization",'Bearer '+authToken);
-  
-  
-    //Album Getremoveevent?id'+'='+id  ?AlbumImageId'+'='+image.albumImageId
-    this.http.get(this.url+'api/Albums/removeimage?AlbumImageId'+'='+image.albumImageId,{headers:headers})
-    .subscribe(data =>{
-      console.log(data.json())
-        }); 
+
+
+    let con = confirm('Are you sure you want to delete this?')
+    if (con) {
+      console.log(image);
+      console.log(index);
+      console.log(image.albumImageId);
+      this.myalbumimages.splice(index,1);
+      let headers = new Headers();
+      var authToken = localStorage.getItem('userToken');
+      headers.append('Accept', 'application/json')
+      headers.append('Content-Type', 'application/json');
+      headers.append("Authorization",'Bearer '+authToken);
+    
+    
+      //Album Getremoveevent?id'+'='+id  ?AlbumImageId'+'='+image.albumImageId
+      this.http.get(this.url+'api/Albums/removeimage?AlbumImageId'+'='+image.albumImageId,{headers:headers})
+      .subscribe(data =>{
+        console.log(data.json());
+        this.toastr.success(data.json().message);
+          }); 
+
+    }
+
   }
 
 

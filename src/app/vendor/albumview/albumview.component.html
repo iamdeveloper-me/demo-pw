@@ -34,9 +34,10 @@
                             </a>  
                         </div> -->
                         <!-- <div class="col-md-3  col-xs-6  zoom_effect"> -->
-                        <div class="col-md-3  col-xs-6 marbot15px" *ngFor='let album of eventArray '>
+                        <div class="col-md-3  col-xs-6 marbot15px" *ngFor='let album of eventArray;let i=index '>
+                                <button class="deletebtn" (click)= "albumdelete(album,i)">&times;</button>
                             <a routerLink="../albumviewphoto/{{album.albumsId }} " class="" rel="ligthbox">
-                                <button class="deletebtn">&times;</button>
+                            
                                 <div class="image-div" >
                                     <div *ngFor='let ar of  album.albumImages '>
                             

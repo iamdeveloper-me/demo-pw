@@ -159,4 +159,32 @@ closeModel(){
 
 }
 
+  //service
+  albumdelete(image,index){
+
+
+    let con = confirm('Are you sure you want to delete this?')
+    if (con) {
+      console.log(image);
+      console.log(index);
+      console.log(image.albumsId);
+      this.eventArray.splice(index,1);
+      let headers = new Headers();
+      var authToken = localStorage.getItem('userToken');
+      headers.append('Accept', 'application/json')
+      headers.append('Content-Type', 'application/json');
+      headers.append("Authorization",'Bearer '+authToken);
+    
+    
+      // Album Getremoveevent?id'+'='+id  ?AlbumImageId'+'='+image.albumImageId
+      this.http.post(this.url+'/api/Albums/deletealbum',{albumsId:image.albumsId},{headers:headers})
+      .subscribe(data =>{
+        console.log(data.json());
+        this.toastr.success(data.json().message);
+          }); 
+
+    }
+
+  }
+
 }

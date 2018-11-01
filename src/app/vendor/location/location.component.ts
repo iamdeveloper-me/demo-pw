@@ -4,6 +4,8 @@ import { MapsAPILoader, AgmMap } from '@agm/core';
 import { GoogleMapsAPIWrapper } from '@agm/core/services';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
+import swal from 'sweetalert2';
+
 declare var google: any;
  
 interface Marker {
@@ -37,12 +39,20 @@ export class LocationComponent implements OnInit {
   @ViewChild('vform') validationForm: FormGroup;
   regularForm: FormGroup;
 
+  ao:string;
+  bo:string;
+  co:string;
+
+  phone = []
+  typePhone= []
   columns = [{
     phoneType: 'mobile',
     phoneNumber: '',
     
    }];
    col = [];
+   current_lat;
+   current_lng;
    first = true;
   country_id:any;
   public c_id:any;
@@ -69,31 +79,28 @@ export class LocationComponent implements OnInit {
   enable = true;
   modelfield:any = {mobile:""};
   address_modelfield:any = 
-  { vendorLocationId: 9, 
-    title: "string", 
-    countryId: 1, 
-    districtId: 0, 
-    suburbId: 0, 
-    vendorId: 23,
-     country: { countryId: 1, 
-                countryName: "MAURITIUS", 
-                districts: [ {
-                          districtId: 2, 
-                          countryId: 1, 
-                          name: "Grand Port", 
-                          suburb: [ { 
-                            suburbId: 70, 
-                            districtId: 2, 
-                            name: "Camp Jardin" 
-                          } ] } ] }, 
-    city: "Brffrvgrfg", 
-    postalCode: "16356ghhhhhhhhhhhhhhhhhhhhhh", 
-    address: "Royal road ", 
-    lat: 9, 
-    long: 9, 
-    addedOn: "2018-10-22T14:25:15.0403994", 
-    phone: "9876543210", 
-    mobile: "9232323123", 
+  { vendorLocationId: "", 
+    title: "", 
+    countryId: "", 
+    districtId: "", 
+    suburbId: "", 
+    vendorId: "",
+     country: { countryId: "", 
+                countryName: "", 
+              }, 
+    districts:{districtId: "",
+               name:""},
+      suburb:{ name :  "",
+              suburbId: ""},
+
+    city: "", 
+    postalCode: "", 
+    address: "  ", 
+    lat: "", 
+    long: "", 
+    addedOn: "", 
+    phone: "", 
+    mobile: "", 
     isPrimary: false, 
     isActive: false, 
     sundayOpen: null, 
@@ -105,8 +112,8 @@ export class LocationComponent implements OnInit {
     tuesdayOpen: null, 
     tuesdayClose: null, 
     isTuesdayOpen: true, 
-    wednesdayOpen: "03:24", 
-    wednesdayClose: "12:23", 
+    wednesdayOpen: "", 
+    wednesdayClose: "", 
     isWednesdayOpen: true, 
     thursdayOpen: null, 
     thursdayClose: null, 
@@ -114,11 +121,11 @@ export class LocationComponent implements OnInit {
     fridayOpen: null, 
     fridayClose: null, 
     isFridayOpen: false, 
-    saturdayOpen: "21:23",
-    saturdayClose: "23:23", 
+    saturdayOpen: "",
+    saturdayClose: "", 
     isSaturdayOpen: true, 
     locationPhones: [] };
-  address : any = {};
+  address : any = '';
   obj = [];
  private urlget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mylocations'
  private post_phone_number: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/addupdatephones'
@@ -129,8 +136,8 @@ export class LocationComponent implements OnInit {
  public arra = new Array();public district = new Array();public suburb = new Array();
  // location: any = {};
  
- countryArray:string[];
- location_Array:string[];
+  countryArray:string[];
+  location_Array:string[];
   circleRadius:number = 5000;
   milesToRadius(value) {
     this.circleRadius = value / 0.00062137;
@@ -141,6 +148,7 @@ export class LocationComponent implements OnInit {
  }
   
   markerDragEnd(m: any) {
+    console.log(m);
     this.location.marker.lat = m.coords.lat;
     this.location.marker.lng = m.coords.lng;
     this.findAddressByCoordinates();
@@ -211,7 +219,7 @@ export class LocationComponent implements OnInit {
   }
   findLocation(address) {
     console.log(address);
-    if (!this.geocoder) this.geocoder = new google.maps.Geocoder()
+    if (!this.geocoder) this.geocoder = new google.maps.autocomplete.Geocoder()
     this.geocoder.geocode({
       'address': address
     }, (results, status) => {
@@ -234,12 +242,14 @@ export class LocationComponent implements OnInit {
           }
         }
         if (results[0].geometry.location) {
+          alert("rfr");
           this.location.lat = results[0].geometry.location.lat();
           this.location.lng = results[0].geometry.location.lng();
           this.location.marker.lat = results[0].geometry.location.lat();
           this.location.marker.lng = results[0].geometry.location.lng();
           this.location.marker.draggable = true;
           this.location.viewport = results[0].geometry.viewport;
+          console.log( this.location.viewport );
         }
         
         this.map.triggerResize()
@@ -247,6 +257,33 @@ export class LocationComponent implements OnInit {
         alert("Sorry, this search produced no results.");
       }
     })
+
+
+
+  }
+
+  Find_current_location(){
+    alert("dsfcds");
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+       (position) => {
+         console.log(position);
+         this.location.lat =  position.coords.longitude;
+         this.location.lng =  position.coords.latitude;
+         this.location.marker.lat =  position.coords.longitude;
+         this.location.marker.lng =  position.coords.latitude;
+         this.location.marker.draggable = true;
+         console.log(  this.location.lat);
+         console.log( this.location.lng);
+        
+       }, (error) => {
+        
+         console.log('Geolocation error: '+ error);
+       });
+     } else {
+       console.log('Geolocation not supported in this browser');
+      
+     }
   }
 
   @ViewChild(AgmMap) map: AgmMap;
@@ -277,21 +314,25 @@ export class LocationComponent implements OnInit {
           headers.append("Authorization",'Bearer '+authToken);
                             
           this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
-          this.location_Array = data.json() as string[]
-          console.log( data.json() as string[] );
+          this.location_Array = data.json() ;
+      
+          console.log(  this.location_Array  );
           })
 
    
           let country = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries");
           country.subscribe(data => { 
-            this.countryArray = data.json();  
+            this.countryArray = data.json();
+            console.log( this.countryArray);  
             this.arra = this.countryArray
           })
-
           $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
           $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
+          // $.getScript('http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places');
           $.getScript('./assets/js/vendorsidebar.js');
           $.getScript('./assets/js/vertical-timeline.js');
+       
+         
           function testAnim(x) {
             $('.modal .modal-dialog').addClass('animated');
             $('.modal .modal-dialog').addClass('bounceIn');
@@ -315,22 +356,21 @@ export class LocationComponent implements OnInit {
         })
   }
 
-  typeError() {
-    this.toastr.error('Only Numbers');
-}
+         typeError() {
+                this.toastr.error('Only Numbers');
+           }
 
-  keyPress(event: any) {
-    const pattern = /[0-9]/;
+      keyPress(event: any) {
+        const pattern = /[0-9]/;
 
-    let inputChar = String.fromCharCode(event.charCode);
-    if (event.keyCode != 8 && !pattern.test(inputChar)) {
-      event.preventDefault();
-        this.typeError();
-    }
-  }
-    openModel(b)
+        let inputChar = String.fromCharCode(event.charCode);
+        if (event.keyCode != 8 && !pattern.test(inputChar)) {
+          event.preventDefault();
+            this.typeError();
+        }
+      }
+       openModel(b)
       { 
-      
         this.address_modelfield  = b;
         console.log(this.address_modelfield);
        }
@@ -346,13 +386,10 @@ export class LocationComponent implements OnInit {
         this.week_dailog =true;
        }
 
-    add_more_Phone(){
-      
-    }   
-    update_location_week_googlemap(e)
+       update__googlemap(e)
   {
-    console.log(this.columns)
-      this.phone_dailog = false;
+    console.log(e)
+    
      // console.log( this.modelfield );
      console.log(e);
    
@@ -362,19 +399,94 @@ export class LocationComponent implements OnInit {
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
-      
-        this.columns.forEach((el)=>{
-          this.col.push(el.phoneNumber);
-        })
-
+   
             this.http.post(this.urlpost,{
               vendorLocationId: e.value.vendorLocationId,
-              title: e.value.title,
               countryId: e.value.country.countryId  ,
               vendorId: e.value.vendorId,
               country: e.value.country,
-              postalCode: e.value.postalCode          ,
+              postalCode: e.value.postalCode  ,
+              districtId: e.value.districtId,
+              districts: {  districtId: e.value.districtId,
+                            name:  e.value.districts.name },
+                suburb : {
+                                name : e.value.suburb.name,
+                                suburbId:   e.value.suburb.suburbId
+                  
+                       
+              }  ,
+              suburbId:  e.value.suburbId ,        
               address: e.value.address,
+              mapAddress: e.value.mapAddress,
+              lat: e.value.lat,
+              long: e.value.long,
+              phone: e.value.phone ,
+              mobile: e.value.mobile,
+              isActive: e.value.isActive,
+              sundayOpen: e.value.ksundayOpen,
+              sundayClose: e.value.sundayClose,
+              isSundayOpen: e.value.isSundayOpen,
+              mondayOpen: e.value.kmondayOpen,
+              mondayClose: e.value.qmondayClose,
+              isMondayOpen: e.value.isMondayOpen,
+              tuesdayOpen: e.value.ktuesdayOpen,
+              tuesdayClose: e.value.qtuesdayClose,
+              isTuesdayOpen: e.value.isTuesdayOpen,
+              wednesdayOpen: e.value.kwednesdayOpen,
+              wednesdayClose: e.value.qwednesdayClose,
+              isWednesdayOpen: e.value.isWednesdayOpen,
+              thursdayOpen: e.value.kthursdayOpen,
+              thursdayClose: e.value.qthursdayClose,
+              isThursdayOpen: e.value.isThursdayOpen,
+              fridayOpen: e.value.kfridayOpen,
+              fridayClose: e.value.qfridayClose,
+              isFridayOpen: e.value.isFridayOpen,
+              saturdayOpen: e.value.ksaturdayOpen,
+              saturdayClose: e.value.qsaturdayClose,
+              isSaturdayOpen: e.value.isSaturdayOpen,
+              
+              locationPhones: this.col
+            },{headers:headers}).subscribe( (data)=> { console.log(data)
+              this.toastr.success(data.statusText);},(error)=>{ console.log(error); 
+                this.toastr.success(error.statusText);});
+
+
+
+                    
+                   
+      
+      
+      }
+
+      update__week(e){
+        console.log(e);
+        console.log(e);
+   
+        this.week_dailog = false ;
+        let headers = new Headers();
+        var authToken = localStorage.getItem('userToken');
+        headers.append('Accept', 'application/json')
+        headers.append('Content-Type', 'application/json');
+        headers.append("Authorization",'Bearer '+authToken);
+   
+            this.http.post(this.urlpost,{
+              vendorLocationId: e.value.vendorLocationId,
+              countryId: e.value.country.countryId  ,
+              vendorId: e.value.vendorId,
+              country: e.value.country,
+              postalCode: e.value.postalCode  ,
+              districtId: e.value.districtId,
+              districts: {  districtId: e.value.districtId,
+                            name:  e.value.districts.name },
+                suburb : {
+                                name : e.value.suburb.name,
+                                suburbId:   e.value.suburb.suburbId
+                  
+                       
+              }  ,
+              suburbId:  e.value.suburbId ,        
+              address: e.value.address,
+              mapAddress: e.value.mapAddress,
               lat: e.value.lat,
               long: e.value.long,
               phone: e.value.phone ,
@@ -404,40 +516,113 @@ export class LocationComponent implements OnInit {
               
               locationPhones: this.col
             },{headers:headers}).subscribe( (data)=> { console.log(data)
-              this.toastr.success(data.statusText);
-            }
-        ,      (error)=>{ console.log(error);
-        });
+              this.toastr.success(data.statusText);},(error)=>{ console.log(error); 
+                this.toastr.success(error.statusText);});
 
 
-        this.http.post(this.post_phone_number,{
-          locationPhoneId: 0,
-          vendorLocationId: e.value.vendorLocationId,
-          phoneType: this.columns[0].phoneType,
-          phoneNumber: this.columns[0].phoneNumber
-          // new_key: this.columns
-        },{headers:headers}).subscribe( (data)=> { console.log(data)
-          this.toastr.success(data.statusText);
-        }
-    ,      (error)=>{ console.log(error);
-    });
+
+                    
       }
+      update_phone(e){
+        console.log(e)
+        this.phone_dailog = false;
+        let headers = new Headers();
+        var authToken = localStorage.getItem('userToken');
+        headers.append('Accept', 'application/json')
+        headers.append('Content-Type', 'application/json');
+        headers.append("Authorization",'Bearer '+authToken);
+        this.http.post(this.urlpost,{
+          vendorLocationId: e.value.vendorLocationId,
+          countryId: e.value.country.countryId  ,
+          vendorId: e.value.vendorId,
+          country: e.value.country,
+          postalCode: e.value.postalCode          ,
+          address: e.value.address,
+          districtId: e.value.districtId,
+          districts: {  districtId: e.value.districts.districtId,
+                        name:  e.value.districts.name },
+            suburb : {
+                            name : e.value.suburb.name,
+                            suburbId:   e.value.suburb.suburbId
+              
+                   
+          }  ,
+          suburbId:  e.value.suburbId ,  
+          mapAddress: e.value.mapAddress,
+          lat: e.value.lat,
+          long: e.value.long,
+          phone: e.value.phone ,
+          mobile: e.value.mobile,
+          isActive: e.value.isActive,
+          sundayOpen: e.value.sundayOpen,
+          sundayClose: e.value.sundayClose,
+          isSundayOpen: e.value.isSundayOpen,
+          mondayOpen: e.value.mondayOpen,
+          mondayClose: e.value.mondayClose,
+          isMondayOpen: e.value.isMondayOpen,
+          tuesdayOpen: e.value.tuesdayOpen,
+          tuesdayClose: e.value.tuesdayClose,
+          isTuesdayOpen: e.value.isTuesdayOpen,
+          wednesdayOpen: e.value.wednesdayOpen,
+          wednesdayClose: e.value.wednesdayClose,
+          isWednesdayOpen: e.value.isWednesdayOpen,
+          thursdayOpen: e.value.thursdayOpen,
+          thursdayClose: e.value.thursdayClose,
+          isThursdayOpen: e.value.isThursdayOpen,
+          fridayOpen: e.value.fridayOpen,
+          fridayClose: e.value.fridayClose,
+          isFridayOpen: e.value.isFridayOpen,
+          saturdayOpen: e.value.saturdayOpen,
+          saturdayClose: e.value.saturdayClose,
+          isSaturdayOpen: e.value.isSaturdayOpen,
+          
+          locationPhones: this.col
+        },{headers:headers}).subscribe( (data)=> { console.log(data)
+          this.toastr.success(data.statusText);},(error)=>{ console.log(error); });
 
-
-  
+      
+          console.log(this.columns.length);
+          if(this.columns.length > 0){  console.log(this.columns);
+                                this.columns.forEach((el)=>{
+                                
+                                  const phone_data =  {
+                                    locationPhoneId: 0,
+                                    vendorLocationId: e.value.vendorLocationId,
+                                    phoneType: el.phoneType,
+                                    phoneNumber: el.phoneNumber,
+                                    isPrimary: true
+                                  }
+                                
+                                
+                                  this.phone.push(phone_data)
+                                  console.log(this.phone)
+                                  this.http.post(this.post_phone_number, this.phone,{headers:headers}).subscribe( (data)=> { console.log(data)
+                                    this.toastr.success(data.statusText);
+                                    this.phone_dailog = false;
+                                  },(error)=>{ console.log(error);
+                                    this.toastr.error(error._body);});
+                                })
+            
+            }
+      }
     isActive(b,e){ 
              console.log(b);
+           
              console.log(e);
              let headers = new Headers();
              var authToken = localStorage.getItem('userToken');
              headers.append('Accept', 'application/json')
              headers.append('Content-Type', 'application/json');
              headers.append("Authorization",'Bearer '+authToken);
-             var vendorID = localStorage.getItem('vendorid');
+       
           
 
             
-                     this.http.post(this.urlpost,e,{headers:headers}).subscribe( (data)=> { console.log(data)}
+                     this.http.post(this.urlpost,e,{headers:headers}).subscribe( (data)=> { console.log(data);
+                      if(b == false)
+                      { this.toastr.info('Your location NOT Active');
+                      
+                      }else{this.toastr.success("Your location is Active")}}
                ,(error)=>{ console.log(error);   });
       }
     cerate(e){
@@ -524,20 +709,41 @@ export class LocationComponent implements OnInit {
 
       Update_Address(e)
    {
+
+
         this.regularForm.reset();
           //console.log(this.modelfield );
-          console.log(e.value);
+          console.log(e.value.country_id,e.value.dist_id,e.value.sub_id);
+          
+          console.log(this.arra)
+          this.arra.forEach((ele,pos)=>{
+            if(pos  == e.value.country_id){
+              this.ao = ele.countryId;
+              ele['districts'].forEach((elem,pp) => {
+                  if(pp == e.value.dist_id){
+                    this.bo = elem.districtId;
+                    elem['suburb'].forEach((eleme,oo) => {
+                      if(oo == e.value.sub_id){
+                       this.co = eleme.suburbId;
+                      }
+                    });
+                  }
+              });
+            }
+          })
+          console.log('main'+this.ao,this.bo,this.co)
        const datapanel =  {
         vendorLocationId: e.value.vendorLocationId,
-        countryId: e.value.country_id ,
-        districtId: e.value.dist_id,
-        suburbId:  e.value.sub_id ,
+        countryId: this.ao ,
+        districtId: this.bo,
+        suburbId:  this.co ,
         vendorId: e.value.vendorid ,
         postalCode: e.value.Postal_code          ,
         address: e.value.Address,
         lat: e.value.lat,
         long: e.value.long,
         isActive: e.value.isActive,
+        mapAddress: e.value.mapAddress,
         phone: e.value.phone ,
         mobile: e.value.mobile,
         sundayOpen: e.value.sundayOpen,
@@ -569,24 +775,27 @@ export class LocationComponent implements OnInit {
           headers.append('Accept', 'application/json')
           headers.append('Content-Type', 'application/json');
           headers.append("Authorization",'Bearer '+authToken);
-          var vendorID = localStorage.getItem('vendorid');
+          // var vendorID = localStorage.getItem('vendorid');
                   this.http.post(this.urlpost,datapanel,{headers:headers}).subscribe(    (responce)=>{ console.log(responce);
                                 this.toastr.success(responce.statusText);
                                if(responce.status == 200)
                                 {
                                   
                                   this.photo_ved_dailog = false;
-                                  this.phone_dailog = false;
+                                 
                                 }   
       
               
                 ///console.log("saved");
            
             },(error)=> { console.log(error) ;
-              this.toastr.error(error.statusText );
+              this.toastr.error(error._body );
               this.toastr.error(error.json().text() );
                        });
 
+              
+
+                     
       }
 
 
@@ -637,25 +846,29 @@ export class LocationComponent implements OnInit {
     
      }
      removeColumn(index) {
-      if (this.columns.length >= 2) {
+       
+      this.phone_dailog = false;
+      let con = confirm('Are you sure you want to delete this?')
+      if (con) {
+              if (this.columns.length >= 2) {
        this.columns.splice(index, 1);
       }
-      alert();
+      console.log(index);
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
       headers.append('Accept', 'application/json')
       headers.append('Content-Type', 'application/json');
       headers.append("Authorization",'Bearer '+authToken);
-      this.http.post(this.remove_phone_number,{
-        locationPhoneId: 2,
-        vendorLocationId: 27,
-        phoneType: "mobile",
-        phoneNumber: "12321124444443"
-      },{headers:headers}).subscribe( (data)=> { console.log(data)
+      this.http.post(this.remove_phone_number,index,{headers:headers}).subscribe( (data)=> { console.log(data)
         this.toastr.success(data.statusText);
+        this.phone_dailog = false;
       }
   ,      (error)=>{ console.log(error);
+              this.toastr.error(error._body);
   });
+
+      }
+
     
     
      }

@@ -30,32 +30,32 @@
               <div class="container photos_gallery">
                 <div class="row">
                   <div class='list-group gallery row firt_row' >
-                    <div class="col-lg-3 col-md-4 col-xs-6 thumb hovereffect" *ngFor="let data of PortgetArray">
-                  
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb hovereffect" *ngFor="let data of PortgetArray;let i=index">
+                        <button class="deletebtn"  (click)="delete_portfolio(data,i)">&times;</button>
                         <a data-fancybox="gallery" class="thumbnail" href="{{data.files.path}}" >
-                            <button class="deletebtn">&times;</button>
+                            
             
                             <img class="img-thumbnail img-responsive"  src="{{data.files.path}} " alt="Another alt text"> 
                
-                                <div class="over_like">
-                                        <div class="">
-                                        <a href=""><i class="fa fa-heart"></i> </a>  <span> {{data.portfolioId}}====25 </span> 
-                                     <!--     (click) = "setbackground(data.portfolioId)" -->
-                                        <div class="dropdown gearicon"  ngbDropdown>
-                                              
-                                                <button class="btn btn-primary" type="button" id="dropdownBasic2"  ngbDropdownToggle>
-                                                    <i class="material-icons">
-                                                        settings
-                                                        </i>
-                                                </button>
-                                                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="dropdownBasic2">
-                                                  <li><a (click) = "setbackground(data.portfolioId)"> Set as Business Cover Image</a></li>
-                                                </ul>
-                                              </div>
-                                        </div>
-                                    </div>
+                             
                         </a>
-                        
+                        <div class="over_like">
+                            <div class="">
+                            <a href=""><i class="fa fa-heart"></i> </a>  <span> {{data.portfolioId}}====25 </span> 
+                         <!--     (click) = "setbackground(data.portfolioId)" -->
+                            <div class="dropdown gearicon"  ngbDropdown>
+                                  
+                                    <button class="btn btn-primary" type="button" id="dropdownBasic2"  ngbDropdownToggle>
+                                        <i class="material-icons">
+                                            settings
+                                            </i>
+                                    </button>
+                                    <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                                      <li><a (click) = "setbackground(data.portfolioId)"> Set as Business Cover Image</a></li>
+                                    </ul>
+                                  </div>
+                            </div>
+                        </div>
                     </div> <!-- col-6 / end -->
                   </div> <!-- list-group / end -->
                 </div> <!-- row / end -->

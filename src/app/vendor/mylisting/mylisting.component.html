@@ -12,7 +12,7 @@
         </div>
         <section class="Reviews_page container-fluid mobilefixedcontainer">
             <div class="man_info">
-              <select class="sortselect">
+              <select class="sortselect" >
                 <option>Sort</option>
                 <option>Highest Rating</option>
                 <option>Lowest Rating</option>
@@ -20,31 +20,63 @@
                 <option>Earliest</option>
                 <option>Not Replied</option>
                 <option>Replied</option>
-                <option>Pinned</option>
+                <option  >Pinnedfgfg</option>
               </select>
             <div class="clearfix"></div>
-              <div class="man_img" *ngFor="let category of countryArray">
-                <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> 
-                <span class="revie_name"> <strong>Peeter Parker {{category.sendByFullName}}</strong> 
-                  {{category.sendByEmail}}
-                    <span class="weeks_ago"> {{category.dateAddedOnString}}</span>
-                </span>
-                <span class="reviewbadge badge badge-secondary">New</span> 
-                <button class="pin_tack"><i class="fa fa-thumb-tack" aria-hidden="true"></i></button>
-                <div class="clearfix"></div>
-                <div class="rating_star">
-                    <rating [(ngModel)]="category.rating"></rating>
-                </div>{{category.rating}}
-                <div class="textemail">
-                  <p> {{category.comments}}</p>
-                </div>
-                <div class="clearfix"></div>
-                <div class="btn_button text-center">
-                  <button class="btn btn-lg btn-success">Reply </button>
-                </div>
-              </div>
 
-            </div>
+
+            <!-- <ul class="pagination pagination-sm no-margin pull-right" ngHide="( isSearching ||countryArray.totalPages < 1)">
+                <li><a ngHide="countryArray.page == 0" (click)="search(0)"></a></li>
+                <li><a ngHide="countryArray.page == 0" (click)="search(countryArray.page-1)"></a></li>
+                <li *ngFor="let category of countryArray.items" ngClass="{active: n == countryArray.page}">
+                    <a (click)="search(n)" *ngIf="n != countryArray.page">{{n+1}}</a>
+                    <span *ngIf="n == countryArray.page">{{n+1}}</span>
+                    <div class="man_img" >
+                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> 
+                        <span class="revie_name"> <strong> {{category.sendByFirstName}} {{category.sendByLastName}}</strong> 
+                         
+                            <span class="weeks_ago"> {{category.dateAddedOnString}}</span>
+                            <span class="weeks_ago">  {{category.sendByEmail}}</span>
+                        </span>
+                        <span class="reviewbadge badge badge-secondary"> {{category.reviewStatusString}}New</span> 
+                        <button class="pin_tack">
+                         <div *ngIf = "category.isPinned == true">  
+                          <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                         </div>
+                         <div *ngIf = "category.isPinned == false">  
+                            <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                            not pinned
+                           </div>
+                        </button>
+                        <div class="clearfix"></div>
+                        <div class="rating_star">
+                            <rating [(ngModel)]="category.rating"></rating>
+                        </div>{{category.rating}}
+                        <div class="textemail">
+                          <p> {{category.comments}}</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="btn_button text-center">
+                          <button class="btn btn-lg btn-success">Reply </button>
+                        </div>
+                      </div>
+                </li>
+                <li><a ngHide="countryArray.page == countryArray.totalPages - 1" (click)="search(countryArray.page+1)"></a></li>
+                <li><a ngHide="countryArray.page == countryArray.totalPages - 1" (click)="search(countryArray.totalPages - 1)"></a></li>
+            </ul> -->
+          
+            <!-- <ul class="pagination pagination-sm no-margin pull-right" ngHide="(countryArray.isSearching || countryArray.totalPages
+            < 2)">
+                <li><a ngHide="countryArray.page == 0" (click)="search(0)"><<</a></li>
+                <li><a ngHide="countryArray.page == 0" (click)="search(countryArray.page-1)"><</a></li>
+                <li *ngFor="n in range()" ng-class="{active: n == countryArray.page}">
+                    <a (click)="search(n)" *ngIf="n != countryArray.page">{{n+1}}</a>
+                    <span *ngIf="n == countryArray.page">{{n+1}}</span>
+                </li>
+                <li><a ngHide="countryArray.page == countryArray.totalPages  - 1" (click)="search(countryArray.page+1)">></a></li>
+                <li><a ngHide="countryArray.page == countryArray.totalPages - 1" (click)="search(countryArray.totalPages - 1)">>></a></li>
+            </ul>-->
+            </div> 
 
           
         </section>    

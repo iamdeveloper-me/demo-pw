@@ -7,11 +7,13 @@
         <section id="user-profile" class="">
             <div class="clearfix"></div>
             <div class="col-sm-12 nopadd mobilefixedcontainer">
+           
+                
                 <div class="custom-form">
                     <div class="col-sm-4 " *ngFor="let data of location_Array;let i=index"  >
                         <div class="card martop10px" >
                             <div class="col-sm-12">
-                                <h4 class="mainhead" *ngIf="data.isPrimary == false"  > secondary </h4>
+                                <h4 class="mainhead" *ngIf="data.isPrimary == false"  > Secondary </h4>
                                 <h4 class="mainhead" *ngIf="data.isPrimary == true"  > Primary  </h4>
                             
                                 <div class="switbtn">
@@ -26,7 +28,7 @@
                                 
                             </div>
                             <div class="card-body">
-                                <div class="text-center bg-form col-sm-12">
+                                <div class="text-center bg-form col-sm-12" (click)="openModel(data)"> 
                                     <div class="img-section">
                                             <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
                                                     <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd(m)'></agm-marker>
@@ -35,7 +37,7 @@
                                         <div class="img_overlay " data-target="#googlemap" (click)="openModel(data)" data-toggle="modal">
                                             <div class="col-lg-12 col-md-12 pad_left_0px whitetext">
                                             <!--  <input type="text" class="form-control form-input" placeholder="Company Name" disabled id="companyname" [(ngModel)]="data.title" id="title" name="title"> -->
-                                                   {{data.title}}
+                                                
                                                    <span> Edit Map </span>
                                                 <button type="button" class="btn edit_btn1" >
                                                     <i class="material-icons">edit</i>
@@ -53,25 +55,11 @@
                                     <i  class="material-icons">location_on</i>
                                     </span>
                                             <div class="col-sm-10 col-11 minheight130px" >
-                                            
-                                                 : {{data.address}}  <br>
-                                                 : {{data.city}}<br>
-                                                 : {{data.country.countryName }} <br>
-                                              
-                                                 <div *ngFor="let dataa of data.country.districts;let i=index" >
-                                                        : {{dataa.name}}  <br> 
-                                                        <div *ngFor="let suburb of dataa.suburb;let i=index" >
-                                                             : {{suburb.name}}   <br>
-                                                        </div>
-                                                      
-
-                                                 </div>
-                                                
-
-                                                <!-- {location.address_level_1}} / {{location.address_state}} /{{location.address_country}} / {{location.address_zip}} /
-                                                <div>location.address_level_2}}</div> -->
-                                                <!-- <div>{{data.country.countryName.districts[0].name }}</div> 
-                                                <div>{{data.country.countryName.districts[0].suburb[0].name }}</div>  -->
+                                             
+                                           <!-- : {{data.mapAddress}}  <br>
+                                                    : {{data.country.countryName }} <br>
+                                                    : {{data.districts.name}} <br> 
+                                                    : {{data.suburb.name}}    -->
                                                 <i class="material-icons edit_btn"> edit</i>
                                             </div>
                                         </div>
@@ -96,6 +84,10 @@
                                             <div class="col-sm-10 col-11 minheight30px">
                                             Phone : {{data.phone}}
                                             </div>
+                                            <div class="col-sm-10 col-11 minheight30px"  *ngFor="let new_phone of data.locationPhones;let i=index">
+                                              {{new_phone.phoneType  }} : {{new_phone.phoneNumber}}
+                                            </div>
+                                           
                                         </div>
                                     </div>
                                 </div>
@@ -224,112 +216,108 @@
 </div>
 <router-outlet></router-outlet>
 
-<form (ngSubmit)="update_location_week_googlemap(info)" #info="ngForm">        
-    <div class="modal fade" id="phone" tabindex="-1" [ngClass] = "{'show' : phone_dailog}" role="dialog" aria-labelledby="myModalLabel">
+<form (ngSubmit)="update__googlemap(info)" #info="ngForm">   
+  
+    <div class="modal fade" id="googlemap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Phone Number </h4>
-                    <button type="button" class="close"  (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Edit Map Location {{address_modelfield}}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
-                    <h6 class="col-xs-offset-2 phonepopuphead">Primary Number</h6>
-                    <div class="col-sm-2 col-3">
-                            <label>Phone</label>
+                    <div class="card-content selectboxservice">
+                        <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
+                            <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event)'></agm-marker>
+                            <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
+                        </agm-map>
                     </div>
-                    <div class="col-sm-10 col-9 nopadd">
-                        <input 
-                         type="phone" 
-                         class="inputbottombor" 
-                         placeholder="000-000-000"
-                         (keypress)="keyPress($event)"
-                         minlength=10 
-                         maxlength=10 
-                         ng-pattern="/^[0-9]{1,7}$/"
-                         [(ngModel)]="modelfield.phone" 
-                         id="phone" 
-                         name="phone">
-                    </div>
-               
-                    <div class="clearfix"></div>
-                    <h6 class="col-xs-offset-2 phonepopuphead">Second Number</h6>
-                    <div class="col-sm-2 col-3">
-                            <label>Mobile</label>
-                    </div>
-                    <div class="col-sm-10 col-9 nopadd">               
-                        <input 
-                        type="phone" 
-                        class="inputbottombor" 
-                        placeholder="000-000-0000" 
-                        (keypress)="keyPress($event)"
-                        minlength=10 
-                        maxlength=10 
-                        ng-pattern="/^[0-9]{1,7}$/"
-                        [(ngModel)]="modelfield.mobile"
-                        id="mobile" 
-                        name="mobile">
-                    </div>
-                    <div class="clearfix"></div>
-                    <input type="hidden" [(ngModel)]="modelfield.vendorLocationId" id="vendorLocationId" name="vendorLocationId">
-                    <input type="hidden"  [(ngModel)]="modelfield.country" id="country" name="country">
-                    <input type="hidden"  [(ngModel)]="modelfield.vendorId" id="vendorId" name="vendorId">
-                    <input type="hidden"  [(ngModel)]="modelfield.title" id="title" name="title">
-                    <input type="hidden"  [(ngModel)]="modelfield.city" id="city" name="city">
-                    <input type="hidden"  [(ngModel)]="modelfield.lat" id="lat" name="lat">
-                    <input type="hidden"  [(ngModel)]="modelfield.long" id="long" name="long">
-                    <input type="hidden"  [(ngModel)]="modelfield.postalCode" id="postalCode" name="postalCode">
-                    <div class="clearfix"></div>
-                    <h6 class="col-xs-offset-2 phonepopuphead">More Number</h6>
-                    <div class="col-sm-2 col-3">
-                       <label>Number</label>
-                    </div>
-                    <div class="col-sm-10 col-9 nopadd">  
-                            <div class=" fristfieldremovebtnnone nopadd">
-                                    <fieldset  *ngFor="let column of columns; let i = index">
-                                      <div style="position: relative;overflow: hidden;">
-                                    
-                    
-                                      <div class="pull-left nopadd" >
-                                        <label for="urlName"></label>
-                                        <input  
-                                         type="text"  
-                                          id="urlName" class="inputbottombor"
-                                          required 
-                                           [(ngModel)]="column.phoneNumber"  #urlName="ngModel">
-                                        <!-- <div *ngIf="urlName.errors && (urlName.dirty || urlName.touched)" class="alert-danger">
-                                          <div [hidden]="!urlName.errors.required">
-                                            URL Name is required!
-                                          </div>
-                                          
-                                        </div> -->
-                            </div>
-                                  
-                                  
-                                      
-                          
-                          <button type="button" class="remove btn btn-danger btn-raised"  (click)="removeColumn(i)">x</button>
-                        </div>
-                                     </fieldset>
-                                    
-                                   </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <br/>
-                        <a class="addfields btn btn-info btn-raised" (click)="addNewColumn()">Add More Number</a>
-                       
+                    <div class="container-fluid martop30px">
+                        <div class="form-group midcenter">
+                            <div class="input-effect md-form">
+                              
+                                <input type="hidden" name="lat" class="effect-16 validate" [(ngModel)]="location.lat" >
+                                <input type="hidden" name="long" class="effect-16 validate" [(ngModel)]="location.lng" >
+                                <input type="hidden"  name = "vendorLocationId" [(ngModel)]='address_modelfield.vendorLocationId' />
+                                <input type="hidden"  name = "mobile" [(ngModel)]='address_modelfield.mobile' />
+                                <input type="hidden"  name = "phone" [(ngModel)]='address_modelfield.phone' />
+                                <input type="hidden"  name = "isActive" [(ngModel)]='address_modelfield.isActive' />
+                                <input type="hidden" [(ngModel)]="address_modelfield.vendorLocationId" id="vendorLocationId" name="vendorLocationId">
+                                <input type="hidden"  [(ngModel)]="address_modelfield.country" id="country" name="country">
+                                <input type="hidden"  [(ngModel)]="address_modelfield.vendorId" id="vendorId" name="vendorId">
+                                <input type="hidden"  [(ngModel)]="address_modelfield.postalCode" id="postalCode" name="postalCode">
 
+                                <input type="hidden"  name = "districts" [(ngModel)]='address_modelfield.districts' />
+                                <input type="hidden"  name = "suburb" [(ngModel)]='address_modelfield.suburb' />
+        
+                                <input type="hidden"  name = "districtId" [(ngModel)]='address_modelfield.districtId' />
+                                <input type="hidden"  name = "suburbId" [(ngModel)]='address_modelfield.suburbId' />
+                                <input type="hidden"  name = "address" [(ngModel)]='address_modelfield.address' />
+          
+
+                                <input type="hidden"  name = "kmondayOpen" [(ngModel)]='address_modelfield.mondayOpen' />
+                                <input type="hidden"  name = "ktuesdayOpen" [(ngModel)]='address_modelfield.tuesdayOpen' />
+                                <input type="hidden"  name = "kwednesdayOpen" [(ngModel)]='address_modelfield.wednesdayOpen ' />                    
+                                <input type="hidden"  name = "kthursdayOpen" [(ngModel)]='address_modelfield.thursdayOpen' />
+                                <input type="hidden"  name = "kfridayOpen" [(ngModel)]='address_modelfield.fridayOpen' />
+                                <input type="hidden"  name = "ksaturdayOpen" [(ngModel)]='address_modelfield.saturdayOpen' />
+                                <input type="hidden"  name = "ksaturdayOpen" [(ngModel)]='address_modelfield.saturdayOpen' />
+        
+                                <input type="hidden"  name = "qmondayClose" [(ngModel)]='address_modelfield.mondayClose' />
+                                <input type="hidden"  name = "qtuesdayClose" [(ngModel)]='address_modelfield.tuesdayClose' />
+                                <input type="hidden"  name = "qwednesdayClose" [(ngModel)]='address_modelfield.wednesdayClose' />
+                                <input type="hidden"  name = "qthursdayClose" [(ngModel)]='address_modelfield.thursdayClose' />
+                                <input type="hidden"  name = "qfridayClose" [(ngModel)]='address_modelfield.fridayClose' />
+                                <input type="hidden"  name = "qsaturdayClose" [(ngModel)]='address_modelfield.saturdayClose' />
+                                <input type="hidden"  name = "qsundayClose" [(ngModel)]='address_modelfield.sundayClose' />
+        
+        
+        
+                                <input type="hidden"  name = "isMondayOpen" [(ngModel)]='address_modelfield.isMondayOpen' />
+                                <input type="hidden"  name = "isTuesdayOpen" [(ngModel)]='address_modelfield.isTuesdayOpen' />
+                                <input type="hidden"  name = "isWednesdayOpen" [(ngModel)]='address_modelfield.isWednesdayOpen' />
+                                <input type="hidden"  name = "isThursdayOpen" [(ngModel)]='address_modelfield.isThursdayOpen' />
+                                <input type="hidden"  name = "isFridayOpen" [(ngModel)]='address_modelfield.isFridayOpen' />
+                                <input type="hidden"  name = "isSaturdayOpen" [(ngModel)]='address_modelfield.isSaturdayOpen' />
+                                <input type="hidden"  name = "isSundayOpen" [(ngModel)]='address_modelfield.isSundayOpen' />
+                                <input type="hidden"  name = "isPrimary" [(ngModel)]='address_modelfield.isPrimary' />
+                                
+                              
+                                <!-- <input type="text" placeholder="Address" [(ngModel)]="location.address_level_1" id="address"> -->
+
+                                <input type = "text" 
+                                
+                                [(ngModel)] = "address_modelfield.mapAddress"   
+                                name="mapAddress" 
+                                (change) = "findLocation(address_modelfield.mapAddress)"
+                                 class="effect-16 validate" placeholder="Search for Location" autocorrect="off" autocapitalize="off" spellcheck="off"  #search> 
+                                <button type = "submit" >submit</button>
+                                <label for="comment">Enter Your Address</label>
+                                <span class="focus-border"></span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="text-center">  
+                            <p><strong>OR</strong></p>
+                            <button class="btn newbtn marbot20px" (click)="Find_current_location()">
+                                    <i class="material-icons pull-left">my_location</i> 
+                                    Use My Location
+                            </button>
+                        </div>
                     </div>
-                   
-                          
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn newbtn">Save</button>&nbsp;
-                    <button type="button" class="btn newbtn newcancelbtn"  (click)="closeModel()">Close</button>
+                    <button type="submit" class="btn newbtn newcancelbtn">Save</button>&nbsp;
+                    <button type="button" class="btn newbtn" data-dismiss="modal"  (click)= "findLocation(location)">Close</button> 
                 </div>
             </div>
         </div>
     </div>
+</form>
 
+<form (ngSubmit)="update__week(i)" #i="ngForm">
     <div class="modal fade" id="week" [ngClass] = "{'show' : week_dailog }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -362,8 +350,9 @@
                                 <input 
                                     type="time" 
                                     class="inputbottombor form-control"   
-                                    [disabled] = "!modelfield.isSundayOpen " 
                                     [(ngModel)]="modelfield.sundayOpen" 
+                                    [disabled] = "!modelfield.isSundayOpen " 
+                                
                                     id="sundayOpen" 
                                     name="sundayOpen">
                             </div>
@@ -541,6 +530,23 @@
                             </div>
                             <div class="input-group registration-date-time col-sm-6">
                                 <input class="form-control" type="time"  [disabled] = "!modelfield.isSaturdayOpen" [(ngModel)]="modelfield.saturdayClose" id="saturdayClose" name="saturdayClose">
+                           
+                                <input type="hidden" [(ngModel)]="modelfield.vendorLocationId" id="vendorLocationId" name="vendorLocationId">
+                                <input type="hidden"  [(ngModel)]="modelfield.country" id="country" name="country">
+                                <input type="hidden"  [(ngModel)]="modelfield.vendorId" id="vendorId" name="vendorId">
+                                <input type="hidden"  [(ngModel)]="modelfield.districts" id="districts" name="districts">
+                                <input type="hidden"  [(ngModel)]="modelfield.suburb" id="suburb" name="suburb">
+                              
+                                <input type="hidden"  [(ngModel)]="modelfield.lat" id="lat" name="lat">
+                                <input type="hidden"  [(ngModel)]="modelfield.long" id="long" name="long">
+                                <input type="hidden"  [(ngModel)]="modelfield.postalCode" id="postalCode" name="postalCode">
+                                <input type="hidden"  [(ngModel)]="modelfield.mapAddress" id="mapAddress" name="mapAddress">
+                                     
+                                <input type="hidden"  [(ngModel)]="modelfield.phone" id="phone" name="phone">
+                                <input type="hidden"  [(ngModel)]="modelfield.mobile" id="mobile" name="mobile">
+                                <input type="hidden"  name = "districtId" [(ngModel)]='modelfield.districtId' />
+                                <input type="hidden"  name = "suburbId" [(ngModel)]='modelfield.suburbId' />
+                                <input type="hidden"  name = "address" [(ngModel)]='modelfield.address' />
                             </div>
                         </div>
 
@@ -557,55 +563,6 @@
         </div>
     </div>    
 
-    <div class="modal fade" id="googlemap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Edit Map Location</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="card-content selectboxservice">
-                                    <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
-                                            <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event)'></agm-marker>
-                                            <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
-                                        </agm-map>
-                            </div>
-                            <div class="container-fluid martop30px">
-                                <div class="form-group midcenter">
-                                    <div class="input-effect md-form">
-                                        <input type="text" placeholder="Address" class="effect-16 validate" [(ngModel)]="modelfield.address" id="address" name="address">
-                                        <label for="comment">Enter Your Address</label>
-                                        <span class="focus-border"></span>
-                                    </div>
-                                </div>
-                                <div class="clearfix"></div>
-                                  <div class="text-center">  
-                                    <p><strong>OR</strong></p>
-                                    <button class="btn newbtn marbot20px">
-                                            <i class="material-icons pull-left">my_location</i> 
-                                            Use My Location
-                                    </button>
-                                  </div>
-                                   
-                         <!--    <div class="form-group">
-                                    <div class="input-effect md-form">
-                                        <input type="text" placeholder="Business Title" class="effect-16 validate" [(ngModel)]="modelfield.title" id="title1" name="title1">
-                                        <label for="comment">Business title</label>
-                                        <span class="focus-border"></span>
-                                    </div>
-                            </div> -->
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn newbtn newcancelbtn">Save</button>&nbsp;
-                            <button type="button" class="btn newbtn" data-dismiss="modal">Close</button> 
-                        </div>
-            </div>
-        </div>
-    </div>
 </form>
 
 <form (ngSubmit)="cerate(add)" #add="ngForm">
@@ -717,198 +674,298 @@
     <div class="modal fade"  [ngClass] = "{'show' : photo_ved_dailog}"  id="photo_ved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                  
-                      
-                           
-                  
                     <div class="modal-header">
                         <h4 class="modal-title">Address </h4>
                         <button type="button" class="close" (click)="closeModel()" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-
                     <div class="modal-body county_addres">    
                         <div class="container-fluid martop30px">
-
-                            <div class="form-group">
-                                <div class="input-effect md-form">
-                                    <!-- <input class="effect-16 validate" placeholder="Street Address" type='text'   [(ngModel)]='location.address_level_1'> -->
-                                                                       <input type="hidden"  name = "vendorLocationId" [(ngModel)]='address_modelfield.vendorLocationId' />
-                                    <input type="hidden"  name = "mobile" [(ngModel)]='address_modelfield.mobile' />
-                                    <input type="hidden"  name = "phone" [(ngModel)]='address_modelfield.phone' />
-                                    <input type="hidden"  name = "isActive" [(ngModel)]='address_modelfield.isActive' />
-                                    <input type="hidden"  name = "lat" [(ngModel)]='address_modelfield.lat' />
-                                    <input type="hidden"  name = "long" [(ngModel)]='address_modelfield.long' />
-                                    <input type="hidden"  name = "vendorid" [(ngModel)]='address_modelfield.vendorId ' />
-
-                                    <input type="hidden"  name = "mondayOpen" [(ngModel)]='address_modelfield.mondayOpen' />
-                                    <input type="hidden"  name = "tuesdayOpen" [(ngModel)]='address_modelfield.tuesdayOpen' />
-                                    <input type="hidden"  name = "wednesdayOpen" [(ngModel)]='address_modelfield.wednesdayOpen ' />                    
-                                    <input type="hidden"  name = "thursdayOpen" [(ngModel)]='address_modelfield.thursdayOpen' />
-                                    <input type="hidden"  name = "fridayOpen" [(ngModel)]='address_modelfield.fridayOpen' />
-                                    <input type="hidden"  name = "saturdayOpen" [(ngModel)]='address_modelfield.saturdayOpen' />
-                                    <input type="hidden"  name = "saturdayOpen" [(ngModel)]='address_modelfield.saturdayOpen' />
-
-                                    <input type="hidden"  name = "mondayClose" [(ngModel)]='address_modelfield.mondayClose' />
-                                    <input type="hidden"  name = "tuesdayClose" [(ngModel)]='address_modelfield.tuesdayClose' />
-                                    <input type="hidden"  name = "wednesdayClose" [(ngModel)]='address_modelfield.wednesdayClose' />
-                                    <input type="hidden"  name = "thursdayClose" [(ngModel)]='address_modelfield.thursdayClose' />
-                                    <input type="hidden"  name = "fridayClose" [(ngModel)]='address_modelfield.fridayClose' />
-                                    <input type="hidden"  name = "saturdayClose" [(ngModel)]='address_modelfield.saturdayClose' />
-                                    <input type="hidden"  name = "sundayClose" [(ngModel)]='address_modelfield.sundayClose' />
-
-
-
-                                    <input type="hidden"  name = "isMondayOpen" [(ngModel)]='address_modelfield.isMondayOpen' />
-                                    <input type="hidden"  name = "isTuesdayOpen" [(ngModel)]='address_modelfield.isTuesdayOpen' />
-                                    <input type="hidden"  name = "isWednesdayOpen" [(ngModel)]='address_modelfield.isWednesdayOpen' />
-                                    <input type="hidden"  name = "isThursdayOpen" [(ngModel)]='address_modelfield.isThursdayOpen' />
-                                    <input type="hidden"  name = "isFridayOpen" [(ngModel)]='address_modelfield.isFridayOpen' />
-                                    <input type="hidden"  name = "isSaturdayOpen" [(ngModel)]='address_modelfield.isSaturdayOpen' />
-                                    <input type="hidden"  name = "isSundayOpen" [(ngModel)]='address_modelfield.isSundayOpen' />
-                                    <input type="hidden"  name = "isPrimary" [(ngModel)]='address_modelfield.isPrimary' />
-
-                                        <!-- <div class="form-group">
-                                            <label for="textArea">Textarea</label>
-                
-                                            <textarea class="form-control" 
-                                            rows="3" 
-                                            id="textArea" 
-                                            formControlName="textArea" 
-                                            required></textarea>
-                                            <small class="form-text text-muted danger" *ngIf="!regularForm.get('textArea').valid && (regularForm.get('textArea').dirty || regularForm.get('textArea').touched)">This field is required!</small>
-                                        </div> -->
-
-                                    <input 
-                                        class="effect-16 validate" 
-                                        name = "Address"  
-                                        placeholder="Street Address"
-                                        type='text'  
-                                        required  
-                                        [(ngModel)]='address_modelfield.address'
-                                    >
-                                   
-                                    <label>Street Address</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
                         
 
-
-
-                            <!-- <div class="form-group">
-                                    <div class="input-effect md-form" *ngFor="let data of address_modelfield.country.districts.Suburb">
-                                        <input class="effect-16 validate" type='text'  name = "Suburb" placeholder="Suburb"  
-                                         [(ngModel)]='data.name'>
+                            <div class="form-group">
+                                    <div class="input-effect form-group md-form">
+                                    <select    class="effect-16 validate"  id="Country" [(ngModel)]="country_id"  name="country_id" (change)="country($event)">
+                                            <option   *ngFor="let country of arra ;let c =index" 
+                                                type="text"
+                                                id="{{country.countryName}}"
+                                                checked
+                                                name = "countryName"  
+                                                placeholder="Country" 
+                                                [value]="c"
+                                                required
+                                                >
+                                                {{country.countryName }}
+                                        
+                                            </option>
+                                        </select>
+                                    <label>Country</label>
+                                    <span class="focus-border"></span>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                    <div class="input-effect form-group md-form" >      
+                                
+                                        <select name="district"   class="effect-16 validate"  [(ngModel)]="dist_id"  name="dist_id" (change)="districtA($event)"  > 
+                                            <option   *ngFor="let dist of district ;let d =index" 
+                                                type="text"
+                                                id="{{dist.name}}"
+                                                checked
+                                                name = "dist"  
+                                                placeholder="District" 
+                                                [value]="d"
+                                                required
+                                                
+                                                >
+                                                {{dist.name }}
+                                            
+                                            </option>
+                                        </select>
+                                        <label>District</label>
+                                    <span class="focus-border"></span>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                    <div class="input-effect form-group md-form"> 
+                                        <select    class="effect-16 validate" [(ngModel)] = "sub_id"  name="sub_id" (change)="subr($event)" > 
+                                                <!-- (change)="country($event)" -->
+                                            <option   *ngFor="let sub of suburb ;let s =index" 
+                                                type="text"
+                                                id="{{sub.name}}"
+                                                checked
+                                                name = "sub"  
+                                                placeholder="Suburb" 
+                                                [value]="s"
+                                                required
+                                                >
+                                                {{sub.name }}
+                                            </option>
+                                        </select>
                                         <label>Suburb</label>
                                         <span class="focus-border"></span>
                                     </div>
                             </div>
-                            <div class="form-group">
-                                <div class="input-effect md-form" *ngFor="let data of address_modelfield.country.districts">
-                                    <input class="effect-16 validate"
-                                     type='text'
-                                      name = "District"  
-                                      placeholder="District"   
-                                       [(ngModel)]='data.name'>
-                                    <label>District</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-effect md-form">
-                                    <input class="effect-16 validate" 
-                                    type='text' 
-                                    name = "Country"  
-                                    placeholder="Country"   
-                                    [(ngModel)]='address_modelfield.country.countryName'>
-                                    <label>Country</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div> -->
 
                             <div class="form-group">
-                                <div class="input-effect form-group md-form">
-                                <select    class="effect-16 validate"  id="Country" [(ngModel)]="country_id"  name="country_id" (change)="country($event)">
-                                        <option   *ngFor="let country of arra ;let c =index" 
-                                            type="text"
-                                            id="{{country.countryName}}"
-                                            checked
-                                            name = "countryName"  
-                                            placeholder="Country" 
-                                            [value]="c"
-                                            required
-                                            >
-                                            {{country.countryName }}
-                                      
-                                        </option>
-                                    </select>
-                                <label>Country</label>
-                                <span class="focus-border"></span>
-                                </div>
-                        </div>
-                        <div class="form-group">
-                                <div class="input-effect form-group md-form" >      
-                            
-                                    <select name="district"   class="effect-16 validate"  [(ngModel)]="dist_id"  name="dist_id" (change)="districtA($event)"  > 
-                                        <option   *ngFor="let dist of district ;let d =index" 
-                                            type="text"
-                                            id="{{dist.name}}"
-                                            checked
-                                            name = "dist"  
-                                            placeholder="District" 
-                                            [value]="d"
-                                            required
+                                <div class="input-effect md-form">
+                                        <!-- <input class="effect-16 validate" placeholder="Street Address" type='text'   [(ngModel)]='location.address_level_1'> -->
+                                        <input type="hidden"  name = "vendorLocationId" [(ngModel)]='address_modelfield.vendorLocationId' />
+                                        <input type="hidden"  name = "mobile" [(ngModel)]='address_modelfield.mobile' />
+                                        <input type="hidden"  name = "phone" [(ngModel)]='address_modelfield.phone' />
+                                        <input type="hidden"  name = "isActive" [(ngModel)]='address_modelfield.isActive' />
+                                        <input type="hidden"  name = "lat" [(ngModel)]='address_modelfield.lat' />
+                                        <input type="hidden"  name = "long" [(ngModel)]='address_modelfield.long' />
+                                        <input type="hidden"  name = "vendorid" [(ngModel)]='address_modelfield.vendorId ' />
+    
+                                        <input type="hidden"  name = "mondayOpen" [(ngModel)]='address_modelfield.mondayOpen' />
+                                        <input type="hidden"  name = "tuesdayOpen" [(ngModel)]='address_modelfield.tuesdayOpen' />
+                                        <input type="hidden"  name = "wednesdayOpen" [(ngModel)]='address_modelfield.wednesdayOpen ' />                    
+                                        <input type="hidden"  name = "thursdayOpen" [(ngModel)]='address_modelfield.thursdayOpen' />
+                                        <input type="hidden"  name = "fridayOpen" [(ngModel)]='address_modelfield.fridayOpen' />
+                                        <input type="hidden"  name = "saturdayOpen" [(ngModel)]='address_modelfield.saturdayOpen' />
+                                        <input type="hidden"  name = "saturdayOpen" [(ngModel)]='address_modelfield.saturdayOpen' />
+    
+                                        <input type="hidden"  name = "mondayClose" [(ngModel)]='address_modelfield.mondayClose' />
+                                        <input type="hidden"  name = "tuesdayClose" [(ngModel)]='address_modelfield.tuesdayClose' />
+                                        <input type="hidden"  name = "wednesdayClose" [(ngModel)]='address_modelfield.wednesdayClose' />
+                                        <input type="hidden"  name = "thursdayClose" [(ngModel)]='address_modelfield.thursdayClose' />
+                                        <input type="hidden"  name = "fridayClose" [(ngModel)]='address_modelfield.fridayClose' />
+                                        <input type="hidden"  name = "saturdayClose" [(ngModel)]='address_modelfield.saturdayClose' />
+                                        <input type="hidden"  name = "sundayClose" [(ngModel)]='address_modelfield.sundayClose' />
+    
+    
+    
+                                        <input type="hidden"  name = "isMondayOpen" [(ngModel)]='address_modelfield.isMondayOpen' />
+                                        <input type="hidden"  name = "isTuesdayOpen" [(ngModel)]='address_modelfield.isTuesdayOpen' />
+                                        <input type="hidden"  name = "isWednesdayOpen" [(ngModel)]='address_modelfield.isWednesdayOpen' />
+                                        <input type="hidden"  name = "isThursdayOpen" [(ngModel)]='address_modelfield.isThursdayOpen' />
+                                        <input type="hidden"  name = "isFridayOpen" [(ngModel)]='address_modelfield.isFridayOpen' />
+                                        <input type="hidden"  name = "isSaturdayOpen" [(ngModel)]='address_modelfield.isSaturdayOpen' />
+                                        <input type="hidden"  name = "isSundayOpen" [(ngModel)]='address_modelfield.isSundayOpen' />
+                                        <input type="hidden"  name = "isPrimary" [(ngModel)]='address_modelfield.isPrimary' />
+                                        <input type="hidden"  name = "mapAddress" [(ngModel)]='address_modelfield.mapAddress' />
+                                    
                                             
-                                            >
-                                            {{dist.name }}
-                                          
-                                        </option>
-                                    </select>
-                                    <label>District</label>
-                                <span class="focus-border"></span>
+                                        <input 
+                                            class="effect-16 validate" 
+                                            name = "Address"  
+                                            placeholder="Street Address"
+                                            type='text'  
+                                            required  
+                                            [(ngModel)]='address_modelfield.address'
+                                        >
+                                       
+                                        <label>Street Address</label>
+                                        <span class="focus-border"></span>
                                 </div>
-                        </div>
-                        <div class="form-group">
-                                <div class="input-effect form-group md-form"> 
-                                    <select    class="effect-16 validate" [(ngModel)] = "sub_id"  name="sub_id" (change)="subr($event)" > 
-                                            <!-- (change)="country($event)" -->
-                                        <option   *ngFor="let sub of suburb ;let s =index" 
-                                            type="text"
-                                            id="{{sub.name}}"
-                                            checked
-                                            name = "sub"  
-                                            placeholder="Suburb" 
-                                            [value]="s"
-                                            required
-                                            >
-                                            {{sub.name }}
-                                        </option>
-                                    </select>
-                                    <label>Suburb</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                        </div>
+                            </div>
 
 
 
                             <div class="form-group">
-                                <div class="input-effect md-form">
-                                    <input class="effect-16 validate" type='text' name = "Postal_code" placeholder="Postal / Zip code"    [(ngModel)]='address_modelfield.postalCode '>
-                                    <label>Postal Code</label>
-                                    <span class="focus-border"></span>
-                                </div>
+                                    <div class="input-effect md-form">
+                                        <input class="effect-16 validate" type='text' name = "Postal_code" placeholder="Postal / Zip code"    [(ngModel)]='address_modelfield.postalCode '>
+                                        <label>Postal Code</label>
+                                        <span class="focus-border"></span>
+                                    </div>
+                            </div>    
+                            </div> 
+                            <div class="modal-footer">
+                                <button type="submit" class="btn newbtn"  >SAVE</button> &nbsp;
+                                <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
                             </div>
-                                
-                        </div> 
-                        <div class="modal-footer">
-                            <button type="submit" class="btn newbtn"  >SAVE</button> &nbsp;
-                            <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
-                        </div>
                     </div>
                    
             </div>
         </div>
     </div>
 </form>  
+
+
+<form (ngSubmit)="update_phone(e)" #e="ngForm">        
+        <div class="modal fade" id="phone" tabindex="-1" [ngClass] = "{'show' : phone_dailog}" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Phone Number </h4>
+                        <button type="button" class="close"  (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <h6 class="col-xs-offset-2 phonepopuphead">Primary Number</h6>
+                        <div class="col-sm-2 col-3">
+                                <label>Phone</label>
+                        </div>
+                        <div class="col-sm-10 col-9 nopadd">
+                            <input 
+                             type="phone" 
+                             class="inputbottombor" 
+                             placeholder="000-000-000"
+                             (keypress)="keyPress($event)"
+                             minlength=10 
+                             maxlength=10 
+                             ng-pattern="/^[0-9]{1,7}$/"
+                             [(ngModel)]="modelfield.phone" 
+                             id="phone" 
+                             name="phone">
+                        </div>
+                   
+                        <div class="clearfix"></div>
+                        <h6 class="col-xs-offset-2 phonepopuphead">Second Number</h6>
+                        <div class="col-sm-2 col-3">
+                                <label>Mobile</label>
+                        </div>
+                        <div class="col-sm-10 col-9 nopadd">               
+                            <input 
+                            type="phone" 
+                            class="inputbottombor" 
+                            placeholder="000-000-0000" 
+                            (keypress)="keyPress($event)"
+                            minlength=10 
+                            maxlength=10 
+                            ng-pattern="/^[0-9]{1,7}$/"
+                            [(ngModel)]="modelfield.mobile"
+                            id="mobile" 
+                            name="mobile">
+                        </div>
+                        <div class="col-sm-10 col-9 nopadd" *ngFor="let data of modelfield.locationPhones;let i=index" >               
+                              
+                                <div class="col-sm-2 col-3">
+                                    <label> {{data.phoneType}} </label>
+                                </div>
+                               
+                               <input 
+                                type="phone" 
+                                class="inputbottombor" 
+                                placeholder="000-000-0000" 
+                                (keypress)="keyPress($event)"
+                                minlength=10 
+                                maxlength=10 
+                                ng-pattern="/^[0-9]{1,7}$/"
+                                [(ngModel)]="data.phoneNumber"
+                                id="new" 
+                                name="new">
+                                <button type="button" class="remove btn btn-danger btn-raised"  (click)="removeColumn(data)">x</button>
+     
+                            </div>
+                        <div class="clearfix"></div>
+                        <input type="hidden" [(ngModel)]="modelfield.vendorLocationId" id="vendorLocationId" name="vendorLocationId">
+                        <input type="hidden"  [(ngModel)]="modelfield.country" id="country" name="country">
+                        <input type="hidden"  [(ngModel)]="modelfield.vendorId" id="vendorId" name="vendorId">
+                        <input type="hidden"  [(ngModel)]="modelfield.districts" id="districts" name="districts">
+                        <input type="hidden"  [(ngModel)]="modelfield.suburb" id="suburb" name="suburb">
+                      
+                        <input type="hidden"  [(ngModel)]="modelfield.lat" id="lat" name="lat">
+                        <input type="hidden"  [(ngModel)]="modelfield.long" id="long" name="long">
+                        <input type="hidden"  [(ngModel)]="modelfield.postalCode" id="postalCode" name="postalCode">
+                        <input type="hidden"  name = "mondayOpen" [(ngModel)]='modelfield.mondayOpen' />
+                        <input type="hidden"  name = "tuesdayOpen" [(ngModel)]='modelfield.tuesdayOpen' />
+                        <input type="hidden"  name = "wednesdayOpen" [(ngModel)]='modelfield.wednesdayOpen ' />                    
+                        <input type="hidden"  name = "thursdayOpen" [(ngModel)]='modelfield.thursdayOpen' />
+                        <input type="hidden"  name = "fridayOpen" [(ngModel)]='modelfield.fridayOpen' />
+                        <input type="hidden"  name = "saturdayOpen" [(ngModel)]='modelfield.saturdayOpen' />
+                        <input type="hidden"  name = "saturdayOpen" [(ngModel)]='modelfield.saturdayOpen' />
+
+                        <input type="hidden"  name = "mondayClose" [(ngModel)]='modelfield.mondayClose' />
+                        <input type="hidden"  name = "tuesdayClose" [(ngModel)]='modelfield.tuesdayClose' />
+                        <input type="hidden"  name = "wednesdayClose" [(ngModel)]='modelfield.wednesdayClose' />
+                        <input type="hidden"  name = "thursdayClose" [(ngModel)]='modelfield.thursdayClose' />
+                        <input type="hidden"  name = "fridayClose" [(ngModel)]='modelfield.fridayClose' />
+                        <input type="hidden"  name = "saturdayClose" [(ngModel)]='modelfield.saturdayClose' />
+                        <input type="hidden"  name = "sundayClose" [(ngModel)]='modelfield.sundayClose' />
+
+
+
+                        <input type="hidden"  name = "isMondayOpen" [(ngModel)]='modelfield.isMondayOpen' />
+                        <input type="hidden"  name = "isTuesdayOpen" [(ngModel)]='modelfield.isTuesdayOpen' />
+                        <input type="hidden"  name = "isWednesdayOpen" [(ngModel)]='modelfield.isWednesdayOpen' />
+                        <input type="hidden"  name = "isThursdayOpen" [(ngModel)]='modelfield.isThursdayOpen' />
+                        <input type="hidden"  name = "isFridayOpen" [(ngModel)]='modelfield.isFridayOpen' />
+                        <input type="hidden"  name = "isSaturdayOpen" [(ngModel)]='modelfield.isSaturdayOpen' />
+                        <input type="hidden"  name = "isSundayOpen" [(ngModel)]='modelfield.isSundayOpen' />
+                        <input type="hidden"  name = "isPrimary" [(ngModel)]='modelfield.isPrimary' />
+                        <input type="hidden"  name = "districtId" [(ngModel)]='modelfield.districtId' />
+                        <input type="hidden"  name = "suburbId" [(ngModel)]='modelfield.suburbId' />
+                        <input type="hidden"  name = "address" [(ngModel)]='modelfield.address' />
+                        
+                        <div class="clearfix"></div>
+                        <h6 class="col-xs-offset-2 phonepopuphead">More Number</h6>
+                        <div class="col-sm-2 col-3">
+                           <label>Number</label>
+                        </div>
+                        <div class="col-sm-10 col-9 nopadd">  
+                            <div class=" fristfieldremovebtnnone nopadd">
+                                <fieldset  *ngFor="let column of columns; let i = index">
+                                    <div style="position: relative;overflow: hidden;">
+                                        <div class="pull-left nopadd" >
+                                            <label for="urlName"></label>
+                                                <input  
+                                                type="text"  
+                                                id="urlName" class="inputbottombor"
+                                                required 
+                                                [(ngModel)]="column.phoneNumber" name="phoneNumber" #urlName="ngModel">
+                                            <!-- <div *ngIf="urlName.errors && (urlName.dirty || urlName.touched)" class="alert-danger">
+                                                <div [hidden]="!urlName.errors.required">
+                                                URL Name is required!
+                                                </div>
+                                                
+                                            </div> -->
+                                        </div>
+                                        <button type="button" class="remove btn btn-danger btn-raised"  (click)="removeColumn(i)">x</button>
+                                    </div>
+                                </fieldset>         
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <br/>
+                            <a class="addfields btn btn-info btn-raised" (click)="addNewColumn()">Add More Number</a>
+                        </div>     
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn newbtn">Save</button>&nbsp;
+                        <button type="button" class="btn newbtn newcancelbtn"  (click)="closeModel()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>   

@@ -83,7 +83,7 @@ public range() {
         ret.push(i);
     }
     return ret;
-    console.log(ret);
+   
 }
 
 public search(page) {

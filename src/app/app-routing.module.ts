@@ -174,7 +174,7 @@ const appRoutes: Routes = [
     { path: 'vendor/albumview', component:  AlbumviewComponent  },
     { path: 'vendor/albumviewphoto/:id', component:  ViewPhotoAlbumsComponent  },
     { path: 'vendor/portfolioview', component:  PortfolioviewComponent  },
-    { path: 'vendor/settingalbum', component:  AlbumsettingComponent  },
+    { path: 'vendor/settingalbum/:id', component:  AlbumsettingComponent  },
     { path: 'vendor/eventlist', component:  EventListComponent  },
     { path: 'vendor/invoice', component:  InvoiceDetailComponent  },
     { path: 'vendor/business', component:  BusinessInfoComponent  },

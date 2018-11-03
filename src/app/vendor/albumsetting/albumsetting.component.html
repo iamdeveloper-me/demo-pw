@@ -14,6 +14,7 @@
                   </a> 
                 <div class="subheadtik">Album Name Settings</div>
               </div> 
+
                 <table width="100%" class="tablelisttags" cell-spacing="5" cell-padding="5">
                   <tr>
                     <th></th>
@@ -21,30 +22,20 @@
                     <th>Color</th>
                     <th></th>
                   </tr>
-                  <tr >
-                     <tr >
-                      <td class="imgboxlist">
-                      <!-- {{data.albumName}} -->
-                        <div >   
-                                               
-                            <div >
-                             <img class="img-thumbnail"  alt="Another alt text"  src="https://s3.us-east-2.amazonaws.com/prefect-image/3c6e5863-30e7-4af3-9bfd-efaafb7857c34-Nature-Wallpapers-2014-1_ukaavUI.jpg" />
-                            </div> 
-                           
-                         </div>
-
-                    <!--      <div *ngIf="data.albumImages?.length ==  0" >
-                                 <img class="img-thumbnail"  alt="Another alt text"  src="https://cdn.onlinewebfonts.com/svg/img_96092.png" />
-                         </div> -->
-                      
+         
+                     <tr *ngFor="let image of myalbumimages; let i=index " >
+                      <td class="imgboxlist">               
+                        <div >
+                        <img class="img-thumbnail" src="{{image.path}}"> 
+                      </div> 
                       </td>
                       <td> 
                         <div class="textboxlist">
                           <span class="tagstik">
-                         dxfdgdg    
+                            dxfdgdg    
                             <i class="material-icons">clears</i>
                           </span>
-                                          </div>
+                        </div>
                       </td>
                       <td>
                         <div class="colorboxlist" >
@@ -66,10 +57,10 @@
                       <td class="text-center">
                         <button class="btn btn-success editbtn"  id="prompt-function"
                         (click)="description_dailog = true" data-reactid="333">Edit </button><br/>
-                        <button class="btn btn-warining deletebtn" > Delete </button>
+                        <button class="btn btn-warining deletebtn" (click)="deleteImage(image,i)" > Delete </button>
                      
                       </td>
-                  </tr>
+                     </tr>
                 </table>   
               </div>
            </div>

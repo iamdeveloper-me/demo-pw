@@ -19,12 +19,13 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   
   totalImage=[];
   myalbumimages=[];
+  private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
+  eventArray:any = [];
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ImageUploader/FileUploader'
   private Setasbackground: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/Setasbackground"
   private BackgroundImage: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/BackgroundImage"
-
-
+  
   uploadphoto_dailog = false;
 
 
@@ -98,7 +99,24 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   headers.append('Content-Type', 'application/json');
   headers.append("Authorization",'Bearer '+authToken);
 
+ 
 
+    this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
+        this.eventArray = data.json()
+    
+        console.log(this.eventArray);
+        // for (var item of  this.eventArray ) {
+        //         if(item.albumImages.length == 0)
+        //         {  
+        //             this.image.path = 'https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
+        //             alert("empty array"); 
+        //         }else{  
+        //             alert("not empty array");
+                   
+        //               }
+            
+        // }
+       })
   //Album Get
   this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
   .subscribe(data =>{

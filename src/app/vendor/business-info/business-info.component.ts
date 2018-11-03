@@ -273,7 +273,7 @@ export class BusinessInfoComponent implements OnInit {
     }
 
 
-    closeModel(a){  
+    closeModel(){  
                   // this.myForm.reset('nameOfBusiness');
                  
                     this.facebookDailog = false;

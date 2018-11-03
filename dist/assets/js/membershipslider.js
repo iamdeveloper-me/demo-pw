@@ -12,15 +12,15 @@ $(document).ready(function () {
       responsiveClass: true,
       responsive: {
         0: {
-          items: 1,
-          Padding: 40,
+          items: 3,
+          Padding: 40
         },
     
         600: {
-          items: 1,
+          items: 3,
         },
         768: {
-          items: 1,
+          items: 3,
         },
     
         1024: {

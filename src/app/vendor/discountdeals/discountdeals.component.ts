@@ -7,6 +7,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./discountdeals.component.scss']
 })
 export class DiscountdealsComponent implements OnInit {
+
+  editdeal_dailog = false;  
+  createdeal_dailog = false;
+
+
   private discountGet: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/discounts'
   discount:any = [];
   
@@ -154,6 +159,15 @@ createdeals(createdeal){
   },{headers:headers}).subscribe(
     data =>{  
       
+      if(data.status == 200)      {        
+        this.createdeal_dailog = false;       
+        console.log("saved");      
+    }
+
+
+
+
+
       console.log(data.json());   
       
       this.recentmydeal.unshift({dealId: data.json().id ,
@@ -205,10 +219,20 @@ openupdatedeal(data){
 
 
   }
+
+
+  closeModel(){         
+    this.editdeal_dailog = false;  
+    this.createdeal_dailog = false;
+  }
+
+
+
+  
 }
 
 
-
+ 
 // 1. /api/LookupMaster/discounts get done 
 // 2. /api/Supplier/discount  grt  done
 // 3. /api/Supplier/updatediscount   post  done

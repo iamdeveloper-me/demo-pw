@@ -15,11 +15,16 @@
             <h2>{{albumname}}</h2>
             <span>Album Type Pre-Wedding Shoot</span>
           </div>
-
-         <a class="sett_icon pull-right" routerLink="../../settingalbum">
+          <div >
+              <a  class="sett_icon pull-right" routerLink="../../settingalbum/{{albumid.id}} "  rel="ligthbox">
+                <i class="material-icons ">settings</i>
+                
+              </a>      
+          </div>	
+         <!-- <a class="sett_icon pull-right" routerLink="../../settingalbum">
 
             <i class="material-icons ">settings</i>
-          </a>
+          </a> -->
         </div> 
         <div class="container-fluid photo_gallery">     
             <div class="color_optin text-center">
@@ -32,17 +37,17 @@
                 <p class="beach_outdoor"> <span>{{tags}}</span> <span>Outdoor</span> </p>
       
                 <p class="add_photos">
-                    <button  id="Google-function" class="btn newbtn" data-target="#uploadphoto" data-toggle="modal" data-reactid="339" >Add photos</button>
+                    <button  id="Google-function" class="btn newbtn" (click)="uploadphoto_dailog = true" data-reactid="339" >Add photos</button>
                   <!-- <span >Add photos</span>  -->
                 
                 </p>
             </div>     
             <div class="row mar_top_50px">
               <div   class="col-lg-3 col-md-4 col-xs-6 "  *ngFor="let image of myalbumimages; let i=index ">
-                <div class="thumb hovereffect">
+                <div class="thumb hovereffect"  data-target="#image-gallery" data-toggle="modal"  >
                     <button class="deletebtn" (click)="deleteImage(image,i)">&times;</button>
                     
-                    <a class="thumbnail" >
+                    <a class="thumbnail" data-fancybox="gallery" href="{{image.path}}"  >
                               <div class="image-div">
                                  
                         
@@ -58,22 +63,18 @@
                                   <span> <i class="fa fa-heart"></i>&nbsp;&nbsp;25</span> 
                                  </td>
                                  <td>
-                                    <div class="dropdown gearicon">
-
-                                        <a aria-haspopup="true" 
-                                        class="" 
-                                        id="dropdownBasic3" ngbdropdowntoggle="" 
-                                        aria-expanded="true">
-
-                                        <i class="material-icons">settings </i>
-
-                                        </a>
-                                      
-                                        <div aria-labelledby="dropdownBasic3" ngbdropdownmenu="" class="dropdown-menu" x-placement="bottom-right" class="dropdown-menu">
-                                          <li><a href="">Set as Album Cover Image</a></li>
-                                          <li><a href="">Set as Business Cover Image</a></li>
-                                        </div>
-                                      </div>
+                                          <div class="dropdown gearicon"  ngbDropdown>
+                                              
+                                                <button class="btn btn-primary" type="button" id="dropdownBasic2"  ngbDropdownToggle>
+                                                    <i class="material-icons">
+                                                        settings
+                                                        </i>
+                                                </button>
+                                                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                                                  <li><a (click) = "setbackground(image.albumImageId)"> Set as  Album Cover Image</a></li>
+                                                   <li><a > Set as Business Cover Image</a></li>
+                                                </ul>
+                                              </div>
                                  </td>
                                 </tr>
                                </table>
@@ -92,12 +93,12 @@
     </div> 
   </div> 
 
-  <div class="modal fade" id="uploadphoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade" id="uploadphoto" [ngClass] = "{'show' : uploadphoto_dailog}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h4 class="modal-title">Add Portfolio</h4>
-                <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Add Image</h4>
+                <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
            
                <div class="clearfix"></div>
             </div>
@@ -108,41 +109,27 @@
                     <div class="row">
                       <div class="col-md-12">
                         <section id="file-upload">
-                          <div class="row">
-                            <div class="col-sm-12">
-                              <div class="content-header">Angular2 File Upload</div>
-                            </div>
-                          </div>
-                          <div class="card">
-                            <div class="card-header">
-                            </div>
+                          
+                          <div class="card martop0px">
                             <div class="card-block">
                               <div class="row">
-                                <div class="col-md-12 col-lg-12">
+                                <div class="col-md-12 col-lg-12 my-drop-zone">
                                   <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader"
-                                    class="py-5 mb-3 text-center font-medium-5 text-uppercase grey my-drop-zone">
-                                    Base dropzone
-                                  </div>
+                                    class="mb-3 text-center font-medium-5 text-uppercase grey ">
+                                     Drop Image Here..!
+                                    </div>
+
+                                    <div class="btnholdertik">
+                                      <input type="file" class="uploadbtnhidden" ng2FileSelect [uploader]="uploader" multiple >
+                                      <button class="newbtn Choosefilebtn">Choose File</button>
+                                    </div>
                                 </div>
-                           
                               </div>
                               <div class="row">
-                                <div class="col-md-3">
-                                  <h4>Select files</h4>
-                                  <div>Multiple</div>
-                                  <label class="custom-file mb-3">
-                                    <input type="file" ng2FileSelect [uploader]="uploader" multiple >
-                                    <span class="custom-file-control"></span>
-                                  </label>
-                        
-                                </div>
-                        
-                                <div class="col-md-9">
-                                  <h4>Upload queue</h4>
-                                  <p>Queue length: {{ uploader?.queue?.length }}</p>
-                        
+                                <div class="col-md-12"><br/>
+                                 <!--  <p>Queue length: {{ uploader?.queue?.length }}</p> -->
                                   <table class="table">
-                                    <thead>
+                                   <!--  <thead>
                                       <tr>
                                         <th width="50%">Name</th>
                                         <th>Size</th>
@@ -150,11 +137,11 @@
                                         <th>Status</th>
                                         <th>Actions</th>
                                       </tr>
-                                    </thead>
+                                    </thead> -->
                                     <tbody>
                                       <tr *ngFor="let item of uploader.queue">
                                         <td><strong>{{ item?.file?.name }}</strong></td>
-                                        <td *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                                      <!--   <td *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
                                         <td *ngIf="uploader.isHTML5">
                                           <div class="progress" style="margin-bottom: 0;">
                                             <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
@@ -164,16 +151,16 @@
                                           <span *ngIf="item.isSuccess"><i class="fa fa-ok"></i></span>
                                           <span *ngIf="item.isCancel"><i class="fa fa-ban"></i></span>
                                           <span *ngIf="item.isError"><i class="fa fa-remove"></i></span>
-                                        </td>
+                                        </td> -->
                                         <td nowrap>
-                                          <button type="button" class="btn btn-raised btn-success btn-sm" (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                                         <!--  <button type="button" class="btn btn-raised btn-success btn-sm" (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
                                           <span class="fa fa-upload"></span> Upload
                                         </button>
                                           <button type="button" class="btn btn-raised btn-warning btn-sm" (click)="item.cancel()" [disabled]="!item.isUploading">
                                           <span class="fa fa-ban"></span> Cancel
-                                        </button>
+                                        </button> -->
                                           <button type="button" class="btn btn-raised btn-danger btn-sm" (click)="item.remove()">
-                                          <span class="fa fa-trash"></span> Remove
+                                          &times;
                                         </button>
                                         </td>
                                       </tr>
@@ -181,18 +168,18 @@
                                   </table>
                         
                                   <div>
-                                    <p>Queue progress:
+                                   <!--  <p>Queue progress:
                                       <ngb-progressbar type="primary" [value]="uploader.progress"></ngb-progressbar>
-                                    </p>
-                                    <button type="button" class="btn btn-raised btn-success" (click)="uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                                    </p> -->
+                                   <!--  <button type="button" class="btn btn-raised btn-success" >
                                       <span class="fa fa-upload"></span> Upload all
-                                    </button>
-                                    <button type="button" class="btn btn-raised btn-warning" (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                                    </button> -->
+                                   <!--  <button type="button" class="btn btn-raised btn-warning" (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
                                       <span class="fa fa-ban"></span> Cancel all
                                     </button>
                                     <button type="button" class="btn btn-raised btn-danger" (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
                                       <span class="fa fa-trash"></span> Remove all
-                                    </button>
+                                    </button> -->
                                   </div>
                                 </div>
                               </div>
@@ -208,16 +195,16 @@
                   </div>
                 </div>    
             </div>
-            <div class="foot_div text-center">
-                    <button type="submit" class="btn btn-secondary btn-raised" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+           <div class="modal-footer text-center">
+                    <button type="submit" class="btn newbtn" (click)="uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Save</button>&nbsp;
             
-                <button type="button" class="btn bt_blue1" data-dismiss="modal">CANCEL</button>
+                <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
             </div>
         </div>  
       </div>  
     </div>
 
-    <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <!--  <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
             
@@ -241,4 +228,4 @@
             
           </div>
       </div>
-    </div>   
+    </div>    -->

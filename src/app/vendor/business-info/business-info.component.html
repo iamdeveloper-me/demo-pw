@@ -1,4 +1,4 @@
-<div id="wrapper" class="toggled">
+   <div id="wrapper" class="toggled">
         <div id="sidebar-wrapper">
             <app-vendorsidebar></app-vendorsidebar>
             <router-outlet></router-outlet>
@@ -7,34 +7,32 @@
             <app-navemenu></app-navemenu>
             <section class="p-0 mobilefixedcontainer" id="portfolio">
                 <div class="col-sm-12 mob_margin_30px">
-                    <!-- <ul class="tabbingdesign hidden-sm hidden-md hidden-lg">
-                        <li class="card-title bussinesstab selected">Business Profile</li>
-                        <li class="card-title locationtab">Location & Contact</li>
-                    </ul> -->
                     <div class="clearfix"></div>
                     <div>
                         <div class="col-sm-5 col-12 pad375Zero">
                             <div class="heightequal365 mobnopadd padleft0px ">
-                                <div class="card heightequal365 margintop0px mobmargintop30px">
+                                <div class="card heightequal365 margintop0px mobmargintop30px" (click)="openModel(vendor)">
                                     <div class="card-header">
                                         <div class="busines_img">
-                                            <i class="material-icons" data-target="#imagecrop" data-toggle="modal" id="description-function"> camera_alt </i> 
+                                            <i class="material-icons" (click)="imagecropDailog = true" id="description-function"> camera_alt </i> 
                                                 <img [src] = "imagee"  >   
                                         </div>
                                         
                                         <div class="busi_contact">
-                                            
-                                            <div class="on_hover" data-target="#Business" data-toggle="modal" id="Instagram-function" >
-                                                <h6 >Business name or Contact Person </h6>
-                                            <div> {{vendor.nameOfBusiness}}</div>
-                                            <span class="text-right col-lg-12 editbtn">
-                                            <i class="material-icons"  >edit</i>
-                                            </span>
+
+                                            <div class="on_hover" (click)="BusinessDailog = true" id="Instagram-function" >
+
+                                                    <h6 >Business name or Contact Person </h6>
+                                                <div> {{vendor.nameOfBusiness}}</div>
+                                                <span class="text-right col-lg-12 editbtn">
+                                                <i class="material-icons"  >edit</i>
+                                                </span>
+
     
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
-                                        <div class="on_hoverdiv" data-target="#Description" data-toggle="modal" id="description-function" >
+                                        <div class="on_hoverdiv" (click)="DescriptionDailog = true"   id="description-function" >
                                             <h6 class="text-center">Business Description </h6>
                                             <span class=" editbtn  editbtn11">
                                             <i class="material-icons">edit</i>
@@ -59,9 +57,12 @@
                                         <div class="social-connect  col-sm-12" data-reactid="330">
                                             <div class="social" data-reactid="332">
                                             <i class="fa fa-facebook fa-2x" data-reactid="334"></i>
-                                            <span id="prompt-function"  data-target="#facebook" data-toggle="modal" data-reactid="333">
-                                            :  {{vendor.facebookURL}}
-                                            </span>
+                                            <span id="prompt-function"  (click)="facebookDailog = true" data-reactid="333">
+                                                  {{vendor.facebookURL}}
+                                               
+                                              <span  *ngIf="vendor.facebookURL == '' ">NO I Dont have</span>  
+                                                </span>
+                                                
                                             <div class="col-lg-12 editbtn">
                                                 <h4 class="text-right col-lg-12">
                                                     <i class="material-icons">edit</i>
@@ -72,9 +73,11 @@
                                         <div class="social-connect  col-sm-12" data-reactid="330">
                                             <div class="social" data-reactid="332">
                                             <i class="fa fa-twitter fa-2x " data-reactid="338"></i>
-                                            <span id="Pinterest-function" data-target="#twitter" data-toggle="modal"  data-reactid="337">
-                                            :{{vendor.twitterURL}}
-                                            </span>
+                                            <span id="Pinterest-function" (click)="twitterDailog = true"  data-reactid="337">
+                                            {{vendor.twitterURL}}
+                                            <span  *ngIf="vendor.twitterURL == '' ">NO I Dont have</span>  
+                                        
+                                             </span>
                                             <div class="col-lg-12 editbtn">
                                                 <h4 class="text-right col-lg-12">
                                                     <i class="material-icons">edit</i>
@@ -88,8 +91,10 @@
                                         <div class="social-connect col-sm-12" data-reactid="330">
                                             <div class="social" data-reactid="332">
                                             <i class="fa fa-google-plus fa-2x" data-reactid="340"></i>
-                                            <span id="Google-function" data-target="#google" data-toggle="modal" data-reactid="339">
-                                            : {{vendor.googleURL}}
+                                            <span id="Google-function" (click)="googleDailog = true"  data-reactid="339">
+                                             {{vendor.googleURL}}
+                                            <span  *ngIf="vendor.googleURL == '' ">NO I Dont have</span>  
+                                          
                                             </span>
                                             <div class="col-lg-12 editbtn">
                                                 <h4 class="text-right col-lg-12">
@@ -104,9 +109,10 @@
                                         <div class="social-connect col-sm-12" data-reactid="330">
                                             <div class="social" data-reactid="332">
                                             <i class="fa fa-instagram fa-2x" data-reactid="342"></i>
-                                            <span id="Instagram-function" data-target="#instagram" data-toggle="modal" data-reactid="341">
-                                            : {{vendor.instalURL}}
-                                            </span>
+                                            <span id="Instagram-function"  (click)="instagramDailog = true"  data-reactid="341">
+                                             {{vendor.instalURL}}
+                                            <span  *ngIf="vendor.instalURL == '' ">NO I Dont have</span>  
+                                           </span>
                                             <div class="col-lg-12 editbtn">
                                                 <h4 class="text-right col-lg-12">
                                                     <i class="material-icons">edit</i>
@@ -120,9 +126,11 @@
                                         <div class="social-connect  col-sm-12" data-reactid="330">
                                             <div class="social" data-reactid="332">
                                             <i class="fa fa-globe fa-2x" data-reactid="342"></i>
-                                            <span id="Instagram-function" data-target="#instagram2" data-toggle="modal" data-reactid="341">
-                                            :{{vendor.perfectWeddingURL}}
+                                            <span id="Instagram-function" (click)="instagram2Dailog = true"  data-reactid="341">
+                                            {{vendor.perfectWeddingURL}}
+                                            <span  *ngIf="vendor.perfectWeddingURL == '' ">NO I Dont have</span>  
                                             </span>
+                                          
                                             <div class="col-lg-12 editbtn">
                                                 <h4 class="text-right col-lg-12">
                                                     <i class="material-icons">edit</i>
@@ -145,262 +153,395 @@
         </div>
     </div>
      
-    <form (ngSubmit)="upForm(info)" #info="ngForm"> 
-        <div class="modal fade" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <form (ngSubmit)="upForm(e,modelfield)" #e="ngForm"> 
+        <input type="hidden" name= "fileId" [ngModel] = "modelfield.fileId">
+        <input type="hidden" name= "files" [ngModel] = "modelfield.files">
+        <div class="modal fade" [ngClass] = "{'show' : DescriptionDailog}" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header text-center">
                         <h4 class="modal-title">Edit Business Description</h4>
-                        <button  type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button  type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
-                        <div class="col-sm-12  text-center">
-                            <!-- <i class="material-icons"> add_location </i> -->
+                        <div class="col-sm-12  text-center"> 
                             <div class="col-sm-12  text-center">      
-                            <textarea  class="textareaclass" type="text" 
+                            <textarea  
+                            class="textareaclass" 
+                            type="text" 
                             id="businessDetails" 
                             placeholder="Enter Description"
-                            [ngModel] = "modelfield.businessDetails" 
-                            (ngModelChange)="Description = $event" 
+                            [ngModel] = "modelfield.businessDetails"                        
                             name="businessDetails"
                             ></textarea> 
-                            </div>
-                            <!-- <p>Business picture url :<input class="endent_10px width_60" type="text" [(ngModel)] = "imag"  placeholder="Enter image url"> </p>  -->
+                            </div>    
                         </div>
                     </div>
                     <div class="modal-footer text-center">
-
-
-                        <button type="submit" id= "myidea" class="btn btn-secondary btn-raised descsave newbtn" >Save</button>
-
-
-                        <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
+                        <button type="submit"  class="btn btn-secondary btn-raised descsave newbtn" >Save</button>
+                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Cancel</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="Business" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    
+   
+        <div class="modal fade" [ngClass] = "{'show' : BusinessDailog}" id="Business" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header text-center">
                         <h4 class="modal-title">Edit Business Name or Contact </h4>
-                        <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
                         <div class="col-sm-12  text-center">
-                            <!-- <i class="material-icons"> add_location </i> -->
                             <p class="input_para">
-                            <!-- <input class="endent_10px width_60" 
-                                type="text" 
-                                [(ngModel)] = "modelfield.nameOfBusiness" 
-                                name="Businesname"
-                                [ngModelOptions]="{standalone: true}"
-                                id="Businesname" 
-                                placeholder="Vision Photography">  -->
-                            <input
+                            <!-- <input
                             class="endent_10px width_60" 
                             type="text"  
                             [ngModel]="modelfield.nameOfBusiness" 
                             name="nameOfBusiness" 
                             id="nameOfBusiness"
-                            placeholder="Vision Photography" >
+                            required
+                            placeholder="Vision Photography" > -->
+                            <input 
+                            type="text" 
+                            class=" effect-16 validate endent_10px width_60" 
+                            [ngModel]="modelfield.nameOfBusiness" 
+                            id="nameOfBusiness"
+                            name="nameOfBusiness" 
+                            #required="ngModel" 
+                            required 
+                            placeholder="Bussiness name" />
+                            <small class="form-text text-muted danger" *ngIf="required.errors?.required"> Bussiness name field required </small>
+
                             </p>
-                            <!-- <p>Business picture url :<input class="endent_10px width_60" type="text" [(ngModel)] = "imag"  placeholder="Enter image url"> </p>  -->
+                        
+                          
+                        
                         </div>
                     </div>
                     <div class="modal-footer text-center">
                         <button type="submit" class="btn namesave newbtn">Save</button> 
-                        <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Cancel</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="facebook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    
+        <div class="modal fade" [ngClass] = "{'show' : facebookDailog}" id="facebook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal_head text-center">
-                        <h4 class="modal-title"><strong> Link your Facebook Page </strong>  </h4>
+                        <h4 class="modal-title"><strong> Link your Facebook Page
+                                
+                            </strong>  </h4>
                         <p>Do you have a Facebook Page for your business?</p>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <div class="clearfix"></div>
                     </div>
+                    
                     <div class="modal-body">
                         <div class="col-sm-12  text-center">
-                            <div class="switbtn">
 
-
-                                <ui-switch [(ngModel)]= "modelfield.fbAvailable" ></ui-switch> 
-                                <span class="have_one" *ngIf="modelfield.fbAvailable == true" >Yes, I have one! </span>
-                                <span class="have_one">No, I don't! </span>
-
+                            <div class="switbtn">   
+                                    <ui-switch 
+                                    [(ngModel)]="modelfield.fbAvailable"
+                                    id="fbAvailable" 
+                                    name = "switchfb"
+                                    (click) = "Activ_in(modelfield)"
+                                    (change)="modelfield.fbAvailable  = !modelfield.fbAvailable "
+                                    class="pull-left"
+                                    ></ui-switch>
+                               
+                                <span class="have_one" *ngIf="modelfield.fbAvailable  ==  false" > No, I don't! 
+                                    <input class="effect-16 " type="hidden"  name="fbAvailable" [ngModel] = "false"  >
+                                </span>
+                               
+                                <span class="have_one" *ngIf="modelfield.fbAvailable  == true" >   Yes, I have one! 
+                                    <input class="effect-16 " type="hidden"  name="fbAvailable" [ngModel] = "true"  >
+                                </span>
 
                             </div>
+
                             <div class="clearfix"></div>
                             <div class="input_facebook input-effect form-group">
                                 <i class="fa fa-facebook fa-2x" data-reactid="334" ></i> 
-                                <input class="effect-16 validate endent_10px width_60" 
-                                type="text" 
-                                name="facebook"
-                                placeholder="Enter the Link here" 
-                                (ngModelChange)="facebook = $event"
-                                [ngModel] = "modelfield.facebookURL" 
-                                id="facebook">
-                                <!-- <label>Enter the Link here</label> -->
+                                    <div >
+                                        <input class="effect-16 validate endent_10px width_60" 
+                                        type="text" 
+                                        name="facebookURL"
+                                        placeholder="Enter the Link here" 
+                                        [ngModel] = "modelfield.facebookURL" 
+                                       
+                                        id="facebook">
+                                    </div>
+                                    <!-- <div *ngIf="modelfield.fbAvailable  ==  false">
+                                        <input class="effect-16 validate endent_10px width_60" 
+                                        type="text" disabled="disabled"
+                                        name="facebookURL"
+                                        placeholder="Enter the Link here" 
+                                       >
+                                    </div> -->
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer text-center marTop50px">
 
+                        <button type="submit" class="btn btn-secondary newbtn"    >Save</button> 
+                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()" >Cancel</button>
 
-                        <button type="submit" class="btn btn-secondary newbtn" >Save</button> 
-
-
-                        <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="twitter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+   
+    
+        <div class="modal fade" [ngClass] = "{'show' : twitterDailog}" id="twitter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h4 class="modal-title">Edit Business Name or Contact </h4>
-                        <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Edit twitter</h4>
+                        <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
                         <div class="clearfix"></div>
                     </div>
                     <div class="modal-body">
                         <div class="col-sm-12  text-center">
                             <div class="switbtn">
-                            <ui-switch [(ngModel)]="modelfield.twitterAvailable" ></ui-switch> 
-                            <span class="have_one">Yes, I have one! </span>
+                                <div class="switbtn">   
+                                        <ui-switch 
+                                        [(ngModel)]="modelfield.twitterAvailable"
+                                        id="twitterAvailable" 
+                                        name = "switchtwitter"
+                                        (click) = "Activ_in(modelfield)"
+                                        (change)="modelfield.twitterAvailable  = !modelfield.twitterAvailable "
+                                        class="pull-left"
+                                        ></ui-switch>
+                                        <span class="have_one" *ngIf="modelfield.twitterAvailable  ==  false" > No, I don't! 
+                                            <input class="effect-16 " type="hidden"  name="twitterAvailable" [ngModel] = "false"  >
+                                        </span>
+                                        <!-- =={{modelfield.fbAvailable }} -->
+                                        <span class="have_one" *ngIf="modelfield.twitterAvailable  == true" >   Yes, I have one! 
+                                            <input class="effect-16 " type="hidden"  name="twitterAvailable" [ngModel] = "true"  >
+                                        </span>
+                                </div>
                             </div>
                             <div class="clearfix"></div>
                             <div class="input_facebook input-effect form-group">
-                            <i class="fa fa-twitter fa-2x" data-reactid="334" ></i> 
-                            <input class="effect-16 validate endent_10px width_60" 
-                            type="text" 
-                            placeholder="Enter the Link here" 
-                            (ngModelChange)="twitter = $event"
-                            [ngModel] = "modelfield.twitterURL" 
-                            id="twitter" 
-                            name="twitter">
-                            <!-- <label>Enter the Link here</label> -->
+                                <i class="fa fa-twitter fa-2x" data-reactid="334" ></i> 
+                                    <div >  
+                                        <input class="effect-16 validate endent_10px width_60" 
+                                        type="text" 
+                                        placeholder="Enter the Link here" 
+                                        [ngModel] = "modelfield.twitterURL" 
+                                        id="twitter" 
+                                    
+                                        name="twitterURL">
+                                    </div>    
+                                <!-- <div *ngIf="modelfield.twitterAvailable  ==  false">
+                                        <input class="effect-16 validate endent_10px width_60" 
+                                        type="text" disabled="disabled"
+                                        name="facebookURL"
+                                        placeholder="Enter the Link here" 
+                                       >
+                                    </div> -->
+                              
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer text-center marTop50px">
-                        <button type="submit" class="btn newbtn">Save</button>&nbsp;
-                        <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">CANCEL</button>
+                        <button type="submit" class="btn newbtn" >Save</button>&nbsp;
+                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="google" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  
+   
+        <div class="modal fade"  [ngClass] = "{'show' : googleDailog}" id="google" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal_head text-center">
                         <h4 class="modal-title"><strong> Link your Google Page </strong>  </h4>
                         <p>Do you have a Google Page for your business?</p>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <div class="clearfix"></div>
                     </div>
                     <div class="modal-body">
                         <div class="col-sm-12  text-center">
-                            <div class="switbtn">
-                            <ui-switch [(ngModel)]="modelfield.googleAvailable" ></ui-switch> 
-                            <span class="have_one">Yes, I have one! </span>
-                            <!-- <span class="have_one">No, I Don't! </span> -->
-                            </div>
+                                <div class="switbtn">
+                                        <div class="switbtn">   
+                                            
+                                                <ui-switch 
+                                                [(ngModel)]="modelfield.googleAvailable"
+                                                id="googleAvailable" 
+                                                name = "switchgoogle"
+                                                (click) = "Activ_in(modelfield)"
+                                                (change)="modelfield.googleAvailable  = !modelfield.googleAvailable " 
+                                                class="pull-left"
+                                                ></ui-switch>
+                                                <span class="have_one" *ngIf="modelfield.googleAvailable  ==  false" > No, I don't! 
+                                                    <input class="effect-16 " type="hidden"  name="googleAvailable" [ngModel] = "false"  >
+                                                </span>
+                                                <!-- =={{modelfield.fbAvailable }} -->
+                                                <span class="have_one" *ngIf="modelfield.googleAvailable  == true" >   Yes, I have one! 
+                                                    <input class="effect-16 " type="hidden"  name="googleAvailable" [ngModel] = "true"  >
+                                                </span>
+                                        </div>
+                                    </div>
                             <div class="clearfix"></div>
                             <div class="input_facebook input-effect form-group">
                             <i class="fa fa-google-plus fa-2x" data-reactid="334" style="font-size:1.6em" ></i> 
-                            <input class="effect-16 validate endent_10px width_60" 
-                            type="text" 
-                            placeholder="Enter the Link here" 
-                            [ngModel] = "modelfield.googleURL" 
-                            (ngModelChange)="google = $event"
-                            id="google" 
-                            name="google">
-                            <!-- <label>Enter the Link here</label> -->
+                            <div  >
+                                <input class="effect-16 validate endent_10px width_60" 
+                                type="text" 
+                                placeholder="Enter the Link here" 
+                                [ngModel] = "modelfield.googleURL" 
+                            
+                                id="google" 
+                                name="googleURL">
+                            </div>    
+                            <!-- <div *ngIf="modelfield.googleAvailable  ==  false">
+                                <input class="effect-16 validate endent_10px width_60" 
+                                type="text" disabled="disabled"
+                                name="facebookURL"
+                                placeholder="Enter the Link here" 
+                               >
+                            </div> -->
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer text-center marTop50px">
-                        <button type="submit" class="btn newbtn">SAVE</button> &nbsp;
-                        <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">CANCEL</button>
+                        <button type="submit" class="btn newbtn"  >SAVE</button> &nbsp;
+                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="instagram" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    
+    
+        <div class="modal fade" [ngClass] = "{'show' : instagramDailog}" id="instagram" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal_head text-center">
                     <h4 class="modal-title"><strong> Link your Instagram Page </strong>  </h4>
                     <p>Do you have a Instagram Page for your business?</p>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <div class="clearfix"></div>
                 </div>
                 <div class="modal-body">
                     <div class="col-sm-12  text-center">
-                        <div class="switbtn">
-                        <ui-switch [(ngModel)] ="modelfield.instaAvailable" ></ui-switch> 
-                        <span class="have_one">Yes, I have one! </span>
-                        </div>
+                            <div class="switbtn">
+                                    <div class="switbtn">   
+                                           
+                                            <ui-switch 
+                                            [(ngModel)]="modelfield.instaAvailable"
+                                            id="instaAvailable" 
+                                            name = "switchinsta"
+                                            (click) = "Activ_in(modelfield)"
+                                            (change)="modelfield.instaAvailable  = !modelfield.instaAvailable "
+                                            class="pull-left"
+                                            ></ui-switch>
+                                            <span class="have_one" *ngIf="modelfield.instaAvailable  ==  false" > No, I don't! 
+                                                <input class="effect-16 " type="hidden"  name="instaAvailable" [ngModel] = "false"  >
+                                            </span>
+                                            <!-- =={{modelfield.fbAvailable }} -->
+                                            <span class="have_one" *ngIf="modelfield.instaAvailable  == true" >   Yes, I have one! 
+                                                <input class="effect-16 " type="hidden"  name="instaAvailable" [ngModel] = "true"  >
+                                            </span>
+                                    </div>
+                                </div>
                         <div class="clearfix"></div>
                         <div class="input_facebook input-effect form-group">
                         <i class="fa fa-instagram fa-2x" data-reactid="334" ></i> 
-                        <input class="effect-16 validate endent_10px width_60" 
-                        type="text" 
-                        placeholder="Enter the Link here" 
-                        (ngModelChange)="instagram = $event"
-                        [ngModel] = "modelfield.instalURL" 
-                        id="instagram" 
-                        name="instagram">
-                        <!-- <label>Enter the Link here</label> -->
+
+                           <div >
+                                <input class="effect-16 validate endent_10px width_60" 
+                                type="text" 
+                                placeholder="Enter the Link here" 
+                                [ngModel] = "modelfield.instalURL" 
+                                id="instagram" 
+                                name="instalURL">
+                            </div>
+
+                                <!-- <div *ngIf="modelfield.instaAvailable  ==  false">
+                                    <input class="effect-16 validate endent_10px width_60" 
+                                    type="text" disabled="disabled"
+                                    name="facebookURL"
+                                    placeholder="Enter the Link here" 
+                                   >
+                                </div> -->
                         </div>
                     </div>
                 </div>
                <div class="modal-footer text-center marTop50px">
-                    <button type="submit" class="btn newbtn" >SAVE</button> &nbsp;
-                    <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">CANCEL</button>
+                    <button type="submit" class="btn newbtn"  >SAVE</button> &nbsp;
+                    <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
                 </div>
             </div>
             </div>
         </div>
-        <div class="modal fade" id="instagram2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+   
+   
+        <div class="modal fade" [ngClass] = "{'show' : instagram2Dailog}" id="instagram2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal_head text-center">
                     <h4 class="modal-title"><strong> Link your Website </strong>  </h4>
                     <p>Do you have a Trading Page for your business?</p>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button"  class="close"  (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <div class="clearfix"></div>
                 </div>
                 <div class="modal-body">
                     <div class="col-sm-12  text-center">
-                        <div class="switbtn">
-                        <ui-switch [(ngModel)]="modelfield.perfectWeddingAvailable" ></ui-switch> 
-                        <span class="have_one">Yes, I have one! </span>
-                        </div>
+                        
+                            <div class="switbtn">   
+                                        
+                                            <ui-switch 
+                                            [(ngModel)]="modelfield.perfectWeddingAvailable"
+                                            id="perfectWeddingAvailable" 
+                                            name = "perfectWedding"
+                                            (click) = "Activ_in(modelfield)"
+                                            (change)="modelfield.perfectWeddingAvailable  = !modelfield.perfectWeddingAvailable "
+                                            class="pull-left"
+                                            ></ui-switch>
+                                            <span class="have_one" *ngIf="modelfield.perfectWeddingAvailable  ==  false" > No, I don't! 
+                                                <input class="effect-16 " type="hidden"  name="perfectWeddingAvailable" [ngModel] = "false"  >
+                                            </span>
+                                            <!-- =={{modelfield.fbAvailable }} -->
+                                            <span class="have_one" *ngIf="modelfield.perfectWeddingAvailable  == true" >   Yes, I have one! 
+                                                <input class="effect-16 " type="hidden"  name="perfectWeddingAvailable" [ngModel] = "true"  >
+                                            </span>
+                            </div>
+                               
                         <div class="clearfix"></div>
                         <div class="input_facebook input-effect form-group">
                         <i class="fa fa-globe fa-2x" data-reactid="334" ></i> 
-                        <input class="effect-16 validate endent_10px width_60" 
-                        type="text" 
-                        placeholder="Enter the Link here" 
-                        (ngModelChange)="instagram = $event"
-                        [ngModel] = "modelfield.perfectWeddingURL" 
-                        id="perfectWedding" 
-                        name="perfectWedding"
-                        >
-                        <!-- <label>Enter the Link here</label> -->
+                            <div >
+                                <input class="effect-16 validate endent_10px width_60" 
+                                type="text" 
+                                placeholder="Enter the Link here" 
+                                [ngModel] = "modelfield.perfectWeddingURL" 
+                                id="perfectWedding" 
+                                name="perfectWeddingURL"
+                               
+                                >
+                            </div>
+                                <!-- <div *ngIf="modelfield.perfectWeddingAvailable  ==  false">
+                                    <input class="effect-16 validate endent_10px width_60" 
+                                    type="text" disabled="disabled"
+                                    name="facebookURL"
+                                    placeholder="Enter the Link here" 
+                                   >
+                                </div> -->
+                      
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer text-center marTop50px">
-                    <button type="submit" class="btn newbtn" ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-                    <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">CANCEL</button>
+                    <button type="submit" class="btn newbtn"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+                    <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
                 </div>
                 <div class="col-sm-12 mob_margin_30px">
                     <div class="card col-sm-12 notebox text-center">
@@ -419,840 +560,62 @@
         </div>
     </form> 
 
-    <form (ngSubmit)="addFile(infoo)" #infoo="ngForm" class="padding-left: 84%">
-        <div class="modal fade" id="imagecrop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <form (ngSubmit)="addFile(infoo,vendor)" #infoo="ngForm" class="padding-left: 84%">
+        <div class="modal fade" [ngClass] = "{'show' : imagecropDailog}" id="imagecrop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
+                <div class="modal-content mobminheight">
                     <div class="modal_head text-center">
                         <h4 class="modal-title marbot0px"><strong> Business Profile Image  </strong>  </h4>
                         <p class="marbot0px">Please update Profile Image for your business</p>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <div class="clearfix"></div>
                     </div>
                     <div class="modal-body">
-                        <div class="col-sm-12  text-center">
+                        <div class="col-sm-12  text-center mobnopadd">
                         
                             <div class="clearfix"></div>
 
                             <section id="tours">
-
-                        
-                                <div class="col-12 text-center">
-                                    
+                                <div class="col-12 text-center mobnopadd">
                                             <div class="file-upload form-control uploadimgfile">
-                                                    <input #fileInput 
-                                                        id="custom-input" 
-                                                        (change)="fileChangeListener($event)"
-                                                        type="file"
-                                                        [(ngModel)]="gallery.files" 
-                                                        name="image" 
-                                                        id="image"/>                                        
-                                                    <span class="focus-border"></span>
-                                                    <input type="hidden" [(ngModel)]="modelfield">
+                                                    
+                                                        <div class="card-block">
+                                                            <div class="file-upload mb-3">                                                            
+                                                              <input #fileInput style="width:100%"
+                                                                    (change)="fileChangeListener($event)"
+                                                                    type="file"
+                                                                    [(ngModel)]="gallery.files" 
+                                                                    name="image" 
+                                                                    id="image"/>
+                                                            </div>
+
+                                                            <div  *ngIf="gallery.files">
+                                                                <img-cropper #cropper [image]="data" [settings]="cropperSettings" class="float-left mr-4"></img-cropper>
+                                                                <br>
+                                                                <span class="result" *ngIf="data.image">
+                                                                <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle">
+                                                                </span>
+                                                            </div>
+                                                          </div> 
+                                                            <!-- <div >
+                                                                <img [src]="imagee" >
+                                                            </div> -->
+                                                           
                                             </div>
-                                            <img-cropper #cropper [image]="imagee"  [settings]="cropperSettings" class="imgcrop"></img-cropper>
-                                    
-                                        <!-- <span class="result" *ngIf="data.image">
-                                        <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle"> 
-                                        </span>-->
-
-                                        <div class="busines_img busines_imgpopup">
-                                                  <img [src] = "imagee">
-                                              </div>
-                                        </div>
-
-                                        <div class="busines_img">
-                                          <i class="material-icons" > camera_alt </i>
-                                            <img [src] = "imagee">
-                                        </div>
-
-                            <!-- Cropper Ends -->
+                                            </div>
                             </section>
+
 
                         </div>
                     </div>
                     <div class="modal-footer text-center">
                         <button type="submit" class="btn newbtn">Save</button>&nbsp;
-                        <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
                     </div>
                 </div>
             </div>    
         </div>    
     </form> 
     
-    <div class="modal fade" id="googlemap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Address</h4>
-                    <button type="button" class="close posiTop20px" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-    
-                <div class="modal-body county_addres">
-                    <div>
-                        <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
-                            <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd($event , m)'></agm-marker>
-                            <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
-                        </agm-map>
-                        <div class="container-fluid martop30px">
-                            <div class="form-group">
-                                <div class="input-effect md-form">
-                                    <input class="effect-16 validate" type='text'   [(ngModel)]='location.address_level_1' placeholder=''>
-                                    <label>Address Line 1</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-effect md-form">
-                                    <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_level_2' placeholder=''>
-                                    <label>Address Line 2</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-effect md-form">
-                                    <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_state' placeholder=''>
-                                    <label>State / Province / Region</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-effect md-form">
-                                    <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_country' placeholder=''>
-                                    <label>Country</label>
-                                    <span class="focus-border"></span>
-                                </div>
-    
-                            </div>
-                            <div class="form-group">
-                                <div class="input-effect md-form">
-                                    <input class="effect-16 validate" type='text'    [(ngModel)]='location.address_zip' placeholder=''>
-                                    <label>Postal / Zip code</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                            <!-- <button type="button" onclick="alert('location')">Use my location</button> -->
-                            <!-- <button (click)='updateOnMap()' type="submit" class="btn btn-primary whitetext">Search</button> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer text-center">
-                    <button type="submit" class="btn newbtn" (click)='primelocation(location)' >SAVE</button> &nbsp;
-                    <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="modal fade phone" id="phone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <form (ngSubmit)="updatefrom(updatefield)" #infoo="ngForm">
-            <div class="modal-dialog" role="document">           
-                <div class="modal-content mobileid" >
-                      
-                    <div class="modal-header">  
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>                  
-                        <h4 class="modal-title">Phone Number</h4>
-                    </div>
-                    <div class="modal-body">
-                        <h6 class="col-xs-offset-2 phonepopuphead">Primary Number</h6>
-                        <div class="col-sm-2 col-3">
-                            <select>
-                            <option>Phone</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-10 col-9 nopadd">
-                            <input type="text" class="inputbottombor widt100px"   [(ngModel)]="updatefield.mobile" id="no" name="no">
-                        </div>
-                        <h6 class="col-xs-offset-2 phonepopuphead">Second Number</h6>
-                        <div class="col-sm-2 col-3">
-                            <select>
-                            <option>Mobile</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-10 col-9 nopadd">
-                            <input type="number" class="inputbottombor widt100px" minlength=10 maxlength=10 placeholder="000-000-0000" id="phone" name="phone" [(ngModel)]="updatefield.phone">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-content Trading" >
-                    <div class="modal-header">
-                        <h4 class="modal-title">Trading Hours
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                            </button>
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-sm-12 loca_hours sund_top">
-                            <div class="col-sm-2">
-                                Sunday
-                            </div>
-                            <div class="col-sm-3">
-                                <span class="ui_switch">
-                                <ui-switch 
-                                [(ngModel)] ="updatefield.isSundayOpen"
-                                id="isSundayOpen" 
-                                name="isSundayOpen"
-                                checked 
-                                class="pull-left"> </ui-switch>
-                                </span>
-                                <span class="textopenclose">Open</span>
-                            </div>
-                            <div class="col-sm-7">
-                                <div class="registration-date row">
-                                    <div class="input-group registration-date-time col-sm-6">
-                                        <select>
-                                            <option>00</option>
-                                            <option>01</option>
-                                            <option>02</option>
-                                            <option>03</option>
-                                            <option>04</option>
-                                            <option>05</option>
-                                            <option>06</option>
-                                            <option>07</option>
-                                            <option>08</option>
-                                            <option>09</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                        </select>
-                                        <select>
-                                            <option>00</option>
-                                            <option>05</option>
-                                            <option>10</option>
-                                            <option>15</option>
-                                            <option>20</option>
-                                            <option>25</option>
-                                            <option>30</option>
-                                            <option>35</option>
-                                            <option>40</option>
-                                            <option>45</option>
-                                            <option>50</option>
-                                            <option>55</option>
-                                        </select>
-                                        <select>
-                                            <option>AM</option>
-                                            <option>PM</option>
-                                        </select>
-                                        <!-- <input class="form-control" type="time" class="inputbottombor" [(ngModel)]="updatefield.sundayOpen" id="sundayOpen" name="sundayOpen"> -->
-                                    </div>
-                                    <div class="input-group registration-date-time col-sm-6">
-                                        <select>
-                                            <option>00</option>
-                                            <option>01</option>
-                                            <option>02</option>
-                                            <option>03</option>
-                                            <option>04</option>
-                                            <option>05</option>
-                                            <option>06</option>
-                                            <option>07</option>
-                                            <option>08</option>
-                                            <option>09</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                        </select>
-                                        <select>
-                                            <option>00</option>
-                                            <option>05</option>
-                                            <option>10</option>
-                                            <option>15</option>
-                                            <option>20</option>
-                                            <option>25</option>
-                                            <option>30</option>
-                                            <option>35</option>
-                                            <option>40</option>
-                                            <option>45</option>
-                                            <option>50</option>
-                                            <option>55</option>
-                                        </select>
-                                        <select>
-                                            <option>AM</option>
-                                            <option>PM</option>
-                                        </select>
-                                        <!-- <input class="form-control" type="time" [(ngModel)]="updatefield.sundayClose" id="sundayClose" name="sundayClose"> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 loca_hours">
-                            <div class="col-sm-2">
-                                Monday
-                            </div>
-                            <div class="col-sm-3">
-                                <span class="ui_switch">
-                                <ui-switch 
-                                [(ngModel)] ="updatefield.isMondayOpen"
-                                id="isMondayOpen" 
-                                name="isMondayOpen"
-                                checked 
-                                class="pull-left"> </ui-switch>
-                                </span>
-                                <span class="textopenclose">Open</span>
-                            </div>
-                            <div class="col-sm-7">
-                                <div class="registration-date row">
-                                <div class="input-group registration-date-time col-sm-6">
-                                     <select>
-                                            <option>00</option>
-                                            <option>01</option>
-                                            <option>02</option>
-                                            <option>03</option>
-                                            <option>04</option>
-                                            <option>05</option>
-                                            <option>06</option>
-                                            <option>07</option>
-                                            <option>08</option>
-                                            <option>09</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                        </select>
-                                        <select>
-                                            <option>00</option>
-                                            <option>05</option>
-                                            <option>10</option>
-                                            <option>15</option>
-                                            <option>20</option>
-                                            <option>25</option>
-                                            <option>30</option>
-                                            <option>35</option>
-                                            <option>40</option>
-                                            <option>45</option>
-                                            <option>50</option>
-                                            <option>55</option>
-                                        </select>
-                                        <select>
-                                            <option>AM</option>
-                                            <option>PM</option>
-                                        </select>
-                                  <!--   <input class="form-control" type="time" [(ngModel)]="updatefield.mondayOpen" id="mondayOpen" name="mondayOpen"> -->
-                                </div>
-                                <div class="input-group registration-date-time col-sm-6">
-                                   <select>
-                                            <option>00</option>
-                                            <option>01</option>
-                                            <option>02</option>
-                                            <option>03</option>
-                                            <option>04</option>
-                                            <option>05</option>
-                                            <option>06</option>
-                                            <option>07</option>
-                                            <option>08</option>
-                                            <option>09</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                        </select>
-                                        <select>
-                                            <option>00</option>
-                                            <option>05</option>
-                                            <option>10</option>
-                                            <option>15</option>
-                                            <option>20</option>
-                                            <option>25</option>
-                                            <option>30</option>
-                                            <option>35</option>
-                                            <option>40</option>
-                                            <option>45</option>
-                                            <option>50</option>
-                                            <option>55</option>
-                                        </select>
-                                        <select>
-                                            <option>AM</option>
-                                            <option>PM</option>
-                                        </select>
-                                   <!--  <input class="form-control" type="time" [(ngModel)]="updatefield.mondayClose" id="mondayClose" name="mondayClose"> -->
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 loca_hours">
-                            <div class="col-sm-2">
-                                Tuesday
-                            </div>
-                            <div class="col-sm-3">
-                                <span class="ui_switch">
-                                <ui-switch 
-                                [(ngModel)]="updatefield.isTuesdayOpen"
-                                id="isTuesdayOpen" 
-                                name="isTuesdayOpen" 
-                                checked 
-                                class="pull-left">
-                                </ui-switch></span>
-                                <span class="textopenclose">Open</span>
-                            </div>
-                            <div class="col-sm-7">
-                                <div class="registration-date row">
-                                <div class="input-group registration-date-time col-sm-6">
-                                    <select>
-                                            <option>00</option>
-                                            <option>01</option>
-                                            <option>02</option>
-                                            <option>03</option>
-                                            <option>04</option>
-                                            <option>05</option>
-                                            <option>06</option>
-                                            <option>07</option>
-                                            <option>08</option>
-                                            <option>09</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                        </select>
-                                        <select>
-                                            <option>00</option>
-                                            <option>05</option>
-                                            <option>10</option>
-                                            <option>15</option>
-                                            <option>20</option>
-                                            <option>25</option>
-                                            <option>30</option>
-                                            <option>35</option>
-                                            <option>40</option>
-                                            <option>45</option>
-                                            <option>50</option>
-                                            <option>55</option>
-                                        </select>
-                                        <select>
-                                            <option>AM</option>
-                                            <option>PM</option>
-                                        </select>
-                                   <!--  <input class="form-control" type="time" [(ngModel)]="updatefield.tuesdayOpen" id="tuesdayOpen" name="tuesdayOpen"> -->
-                                </div>
-                                <div class="input-group registration-date-time col-sm-6">
-                                     <select>
-                                            <option>00</option>
-                                            <option>01</option>
-                                            <option>02</option>
-                                            <option>03</option>
-                                            <option>04</option>
-                                            <option>05</option>
-                                            <option>06</option>
-                                            <option>07</option>
-                                            <option>08</option>
-                                            <option>09</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                        </select>
-                                        <select>
-                                            <option>00</option>
-                                            <option>05</option>
-                                            <option>10</option>
-                                            <option>15</option>
-                                            <option>20</option>
-                                            <option>25</option>
-                                            <option>30</option>
-                                            <option>35</option>
-                                            <option>40</option>
-                                            <option>45</option>
-                                            <option>50</option>
-                                            <option>55</option>
-                                        </select>
-                                        <select>
-                                            <option>AM</option>
-                                            <option>PM</option>
-                                        </select>
-                                    <!-- <input class="form-control" type="time" [(ngModel)]="updatefield.tuesdayClose" id="tuesdayClose" name="tuesdayClose"> -->
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 loca_hours">
-                            <div class="col-sm-2">
-                                Wednesday
-                            </div>
-                            <div class="col-sm-3">
-                                <span class="ui_switch">
-                                <ui-switch 
-                                [(ngModel)]="updatefield.isWednesdayOpen"
-                                id="isWednesdayOpen" 
-                                name="isWednesdayOpen" 
-                                checked class="pull-left"
-                                ></ui-switch> </span>
-                                <span class="textopenclose">Open</span>
-                            </div>
-                            <div class="col-sm-7">
-                                <div class="registration-date row">
-                                <div class="input-group registration-date-time col-sm-6">
-                                     <select>
-                                            <option>00</option>
-                                            <option>01</option>
-                                            <option>02</option>
-                                            <option>03</option>
-                                            <option>04</option>
-                                            <option>05</option>
-                                            <option>06</option>
-                                            <option>07</option>
-                                            <option>08</option>
-                                            <option>09</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                        </select>
-                                        <select>
-                                            <option>00</option>
-                                            <option>05</option>
-                                            <option>10</option>
-                                            <option>15</option>
-                                            <option>20</option>
-                                            <option>25</option>
-                                            <option>30</option>
-                                            <option>35</option>
-                                            <option>40</option>
-                                            <option>45</option>
-                                            <option>50</option>
-                                            <option>55</option>
-                                        </select>
-                                        <select>
-                                            <option>AM</option>
-                                            <option>PM</option>
-                                        </select>
-                                    <!-- <input class="form-control" type="time" [(ngModel)]="updatefield.wednesdayOpen" id="wednesdayOpen" name="wednesdayOpen"> -->
-                                </div>
-                                <div class="input-group registration-date-time col-sm-6">
-                                     <select>
-                                            <option>00</option>
-                                            <option>01</option>
-                                            <option>02</option>
-                                            <option>03</option>
-                                            <option>04</option>
-                                            <option>05</option>
-                                            <option>06</option>
-                                            <option>07</option>
-                                            <option>08</option>
-                                            <option>09</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                        </select>
-                                        <select>
-                                            <option>00</option>
-                                            <option>05</option>
-                                            <option>10</option>
-                                            <option>15</option>
-                                            <option>20</option>
-                                            <option>25</option>
-                                            <option>30</option>
-                                            <option>35</option>
-                                            <option>40</option>
-                                            <option>45</option>
-                                            <option>50</option>
-                                            <option>55</option>
-                                        </select>
-                                        <select>
-                                            <option>AM</option>
-                                            <option>PM</option>
-                                        </select>
-                                    <!-- <input class="form-control" type="time" [(ngModel)]="updatefield.wednesdayClose" id="wednesdayClose" name="wednesdayClose"> -->
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 loca_hours">
-                            <div class="col-sm-2">
-                                Thursday
-                            </div>
-                            <div class="col-sm-3">
-                                <span class="ui_switch">
-                                <ui-switch 
-                                [(ngModel)]="updatefield.isThursdayOpen"
-                                id="isThursdayOpen" 
-                                name="isThursdayOpen" 
-                                checked class="pull-left"
-                                ></ui-switch> </span> <span class="textopenclose">Open</span>
-                            </div>
-                            <div class="col-sm-7">
-                                <div class="registration-date row">
-                                <div class="input-group registration-date-time col-sm-6">
-                                     <select>
-                                            <option>00</option>
-                                            <option>01</option>
-                                            <option>02</option>
-                                            <option>03</option>
-                                            <option>04</option>
-                                            <option>05</option>
-                                            <option>06</option>
-                                            <option>07</option>
-                                            <option>08</option>
-                                            <option>09</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                        </select>
-                                        <select>
-                                            <option>00</option>
-                                            <option>05</option>
-                                            <option>10</option>
-                                            <option>15</option>
-                                            <option>20</option>
-                                            <option>25</option>
-                                            <option>30</option>
-                                            <option>35</option>
-                                            <option>40</option>
-                                            <option>45</option>
-                                            <option>50</option>
-                                            <option>55</option>
-                                        </select>
-                                        <select>
-                                            <option>AM</option>
-                                            <option>PM</option>
-                                        </select>
-                                    <!-- <input class="form-control" type="time" [(ngModel)]="updatefield.thursdayOpen" id="thursdayOpen" name="thursdayOpen"> -->
-                                </div>
-                                <div class="input-group registration-date-time col-sm-6">
-                                     <select>
-                                            <option>00</option>
-                                            <option>01</option>
-                                            <option>02</option>
-                                            <option>03</option>
-                                            <option>04</option>
-                                            <option>05</option>
-                                            <option>06</option>
-                                            <option>07</option>
-                                            <option>08</option>
-                                            <option>09</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                        </select>
-                                        <select>
-                                            <option>00</option>
-                                            <option>05</option>
-                                            <option>10</option>
-                                            <option>15</option>
-                                            <option>20</option>
-                                            <option>25</option>
-                                            <option>30</option>
-                                            <option>35</option>
-                                            <option>40</option>
-                                            <option>45</option>
-                                            <option>50</option>
-                                            <option>55</option>
-                                        </select>
-                                        <select>
-                                            <option>AM</option>
-                                            <option>PM</option>
-                                        </select>
-                                    <!-- <input class="form-control" type="time" [(ngModel)]="updatefield.thursdayClose" id="thursdayClose" name="thursdayClose"> -->
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 loca_hours">
-                            <div class="col-sm-2">
-                                Friday
-                            </div>
-                            <div class="col-sm-3">
-                                <span class="ui_switch">
-                                <ui-switch 
-                                [(ngModel)]="updatefield.isFridayOpen"
-                                id="isFridayOpen" 
-                                name="isFridayOpen" 
-                                checked class="pull-left"
-                                ></ui-switch> </span> <span class="textopenclose">Open</span>
-                            </div>
-                            <div class="col-sm-7">
-                                 <div class="registration-date row">
-                                <div class="input-group registration-date-time col-sm-6">
-                                    <select>
-                                            <option>00</option>
-                                            <option>01</option>
-                                            <option>02</option>
-                                            <option>03</option>
-                                            <option>04</option>
-                                            <option>05</option>
-                                            <option>06</option>
-                                            <option>07</option>
-                                            <option>08</option>
-                                            <option>09</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                        </select>
-                                        <select>
-                                            <option>00</option>
-                                            <option>05</option>
-                                            <option>10</option>
-                                            <option>15</option>
-                                            <option>20</option>
-                                            <option>25</option>
-                                            <option>30</option>
-                                            <option>35</option>
-                                            <option>40</option>
-                                            <option>45</option>
-                                            <option>50</option>
-                                            <option>55</option>
-                                        </select>
-                                        <select>
-                                            <option>AM</option>
-                                            <option>PM</option>
-                                        </select>
-                                   <!--  <input class="form-control" type="time" [(ngModel)]="updatefield.fridayOpen" id="fridayOpen" name="fridayOpen"> -->
-                                </div>
-                                <div class="input-group registration-date-time col-sm-6">
-                                     <select>
-                                            <option>00</option>
-                                            <option>01</option>
-                                            <option>02</option>
-                                            <option>03</option>
-                                            <option>04</option>
-                                            <option>05</option>
-                                            <option>06</option>
-                                            <option>07</option>
-                                            <option>08</option>
-                                            <option>09</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                        </select>
-                                        <select>
-                                            <option>00</option>
-                                            <option>05</option>
-                                            <option>10</option>
-                                            <option>15</option>
-                                            <option>20</option>
-                                            <option>25</option>
-                                            <option>30</option>
-                                            <option>35</option>
-                                            <option>40</option>
-                                            <option>45</option>
-                                            <option>50</option>
-                                            <option>55</option>
-                                        </select>
-                                        <select>
-                                            <option>AM</option>
-                                            <option>PM</option>
-                                        </select>
-                                    <!-- <input class="form-control" type="time" [(ngModel)]="updatefield.fridayClose" id="fridayClose" name="fridayClose"> -->
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 loca_hours">
-                            <div class="col-sm-2">
-                                Saturday
-                            </div>
-                            <div class="col-sm-3">
-                                <span class="ui_switch">
-                                <ui-switch 
-                                [(ngModel)]="updatefield.isSaturdayOpen"
-                                id="isSaturdayOpen" 
-                                name="isSaturdayOpen" 
-                                checked class="pull-left"
-                                ></ui-switch> </span> <span class="textopenclose">Open</span>
-                            </div>
-                            <div class="col-sm-7">
-                                <div class="registration-date row">
-                                <div class="input-group registration-date-time col-sm-6">
-                                    <select>
-                                            <option>00</option>
-                                            <option>01</option>
-                                            <option>02</option>
-                                            <option>03</option>
-                                            <option>04</option>
-                                            <option>05</option>
-                                            <option>06</option>
-                                            <option>07</option>
-                                            <option>08</option>
-                                            <option>09</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                        </select>
-                                        <select>
-                                            <option>00</option>
-                                            <option>05</option>
-                                            <option>10</option>
-                                            <option>15</option>
-                                            <option>20</option>
-                                            <option>25</option>
-                                            <option>30</option>
-                                            <option>35</option>
-                                            <option>40</option>
-                                            <option>45</option>
-                                            <option>50</option>
-                                            <option>55</option>
-                                        </select>
-                                        <select>
-                                            <option>AM</option>
-                                            <option>PM</option>
-                                        </select>
-                                   <!--  <input class="form-control" type="time" [(ngModel)]="updatefield.saturdayOpen" id="saturdayOpen" name="saturdayOpen"> -->
-                                </div>
-                                <div class="input-group registration-date-time col-sm-6">
-                                     <select>
-                                            <option>00</option>
-                                            <option>01</option>
-                                            <option>02</option>
-                                            <option>03</option>
-                                            <option>04</option>
-                                            <option>05</option>
-                                            <option>06</option>
-                                            <option>07</option>
-                                            <option>08</option>
-                                            <option>09</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                        </select>
-                                        <select>
-                                            <option>00</option>
-                                            <option>05</option>
-                                            <option>10</option>
-                                            <option>15</option>
-                                            <option>20</option>
-                                            <option>25</option>
-                                            <option>30</option>
-                                            <option>35</option>
-                                            <option>40</option>
-                                            <option>45</option>
-                                            <option>50</option>
-                                            <option>55</option>
-                                        </select>
-                                        <select>
-                                            <option>AM</option>
-                                            <option>PM</option>
-                                        </select>
-                                    <!-- <input class="form-control" type="time" [(ngModel)]="updatefield.saturdayClose" id="saturdayClose" name="saturdayClose"> -->
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>    
-                <div class="modal-content title" >
-                    <div class="modal-header">
-                            <h4 class="modal-title">Title</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                    </div>
-                    <div class="col-sm-12">
-                            Title:
-                        <input type="text" class="inputbottombor" [(ngModel)]="updatefield.title" id="title" name="title">
-                        <input class="form-control" type="hidden" class="inputbottombor" [(ngModel)]="updatefield.city" id="city" name="city">
-    
-                    </div>
-                    <div class="modal-footer">
-    
-                        <button type="submit" class="btn bt_blue"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-                <div class="modal-content">    
-                    <div class="modal-footer text-center">
-                            <button type="submit" class="btn newbtn"><i class="glyphicon glyphicon-ok" > </i> Save</button>&nbsp;
-    
-                            <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">Close</button>
-                    </div>
-                </div>    
-            </div>
-        </form>
-    </div> 
+
     

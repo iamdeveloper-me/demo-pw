@@ -3,7 +3,7 @@ import { ViewEncapsulation, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
-
+import { ToastrService } from 'ngx-toastr';
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 export class NgbdgalleryModalContent {
   @Input() name;
@@ -14,7 +14,7 @@ export class NgbdgalleryModalContent {
 @Component({
   selector: 'app-portfolioview',
   templateUrl: './portfolioview.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  //changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./portfolioview.component.scss'],
   
 })
@@ -22,13 +22,18 @@ export class PortfolioviewComponent implements OnInit {
     fileToUpload:any;
     PortgetArray:any= {};
     PortpostArray:any= {};
+    Set_as_background:any = [];
+    uploadphoto_dailog = false;
+
     // Portpost1Array:any= {};
     private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader'
     private addportfolio: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/addportfolio'
-
     private mygeturl: string  = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myportfolio"
-
-  ngOnInit() {
+    private Setasbackground: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/Setasbackground"
+    private BackgroundImage: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/BackgroundImage"
+    private deleteport: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/removeportfolio"
+   
+    ngOnInit() {
 
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
@@ -40,12 +45,19 @@ export class PortfolioviewComponent implements OnInit {
         this.PortgetArray = data.json() as string[];
         console.log(data.json());
     })
+       
+
+
+       this.http.get(this.BackgroundImage,{headers:headers}).subscribe(data =>{
+        console.log(data.json()  );
+    },error=>{console.log(error)})
+
 
    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
    $.getScript('./assets/js/vendorsidebar.js');
-   $.getScript('https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js');
-   $.getScript('https://code.jquery.com/jquery-1.11.1.min.js');
+   $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
+
 
   }
    //model
@@ -55,7 +67,7 @@ export class PortfolioviewComponent implements OnInit {
    gallery = { files: ''}
    @ViewChild("fileInput") fileInput;
 
-   constructor(private modalService: NgbModal, public http: Http ) { }
+   constructor(private modalService: NgbModal, public http: Http ,public toastr: ToastrService) { }
  
    // Open default modal
    open(content) {
@@ -108,6 +120,8 @@ export class PortfolioviewComponent implements OnInit {
     "filesId": 1
   }
   uploadAll(){
+      this.uploadphoto_dailog = false;
+      
     const formData = new FormData();
     for(let file of this.uploader.queue){
     formData.append(file['some'].name,file['some'])
@@ -127,9 +141,55 @@ export class PortfolioviewComponent implements OnInit {
         console.log(data.json());
       
       
-      
       },(error)=>{console.log(error)});
       
       },(error)=>{console.log(error)});
+  }
+
+
+  closeModel(){
+       
+  this.uploadphoto_dailog = false;
+}
+setbackground(setId){
+ let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+  
+this.http.get(this.Setasbackground,{headers:headers}).subscribe(data =>{
+        this.Set_as_background = data.json() as string[];
+        console.log( this.Set_as_background );
+    },error=>{console.log(error)})
+  console.log(setId)}
+
+  delete_portfolio(e,index){
+  
+
+
+
+    let con = confirm('Are you sure you want to delete this?')
+    if (con) {
+            
+        console.log(e);
+        var id = e.portfolioId;
+        console.log(id);
+        this.PortgetArray.splice(index, 1);
+        let headers = new Headers();
+        var authToken = localStorage.getItem('userToken');
+        headers.append('Accept', 'application/json')
+        headers.append('Content-Type', 'application/json');
+        headers.append("Authorization", 'Bearer ' + authToken);
+        console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/removeportfolio?portfolioId'+ '=' + id);
+        this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/removeportfolio',{portfolioId: id}, { headers: headers }).subscribe(data => {
+    
+          console.log(data.json());
+          this.toastr.success(data.json().message);
+        }, error => { console.log(error) });
+
+    }
+
+
   }
 }

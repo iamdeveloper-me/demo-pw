@@ -15,6 +15,10 @@
                     <h2>MY ALBUMS</h2>
                     <span>Create, lable and group your work with albums</span>
                 </div>
+                <div class="new_albums"> 
+                    <button id="Google-function" (click)="createalbum_dailog = true" data-reactid="339">  + New Albums  
+                    </button>  
+                </div>
             <!-- <div class="col-sm-2 col-2 text-right setting_right">
                     <a routerLink= "../albumdetailsetting"> <i class="material-icons"> settings</i></a>
             </div> -->
@@ -23,56 +27,77 @@
             <section class="p-0 container" id="portfolio">
                 <div class="container photos_gallery">
                     <div class="row">
-                        <div class='list-group gallery row firt_row'>
-                            <div class="new_albums"> <button id="Google-function"  data-target="#createalbum" data-toggle="modal" data-reactid="339">  + New Albums  </button>  
-
-                                </div>
-
-                                <div class='col-sm-3 col-xs-6  zoom_effect' *ngFor="let  data of eventArray;let i=index">
-                                    <a routerLink="../albumviewphoto/{{data.albumsId }} " class="thumbnail " rel="ligthbox">
-                                        <button class="deletebtn">&times;</button>
-                                        <!-- <img class="img-thumbnail"
-                                        src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                                        alt="Another alt text"> -->
-
-                                        <div *ngFor="let  image of data.albumImages | slice:0:1 ; let i=index ">   
-                                           <div class="imgcontainer" >
-                                            <img class="img-thumbnail"  alt="Another alt text"  src="{{image.path }}" />
-                                           </div> 
-                                        </div>
-
-                                        <div *ngIf="data.albumImages?.length ==  0" >
-                                        <div class="imgcontainer">
-                                                <img class="img-thumbnail"  alt="Another alt text"  src="../assets/img/noImg.png" />           
+                       <!--  <div class='list-group gallery row firt_row'>
+                           
+                            <a class="sett_icon pull-right" routerLink="../settingalbum">
+                                    <i class="material-icons ">settings</i>
+                            </a>  
+                        </div> -->
+                        <!-- <div class="col-md-3  col-xs-6  zoom_effect"> -->
+                        <div class="col-md-3  col-xs-6 marbot15px" *ngFor='let album of eventArray;let i=index '>
+                                <button class="deletebtn" (click)= "albumdelete(album,i)">&times;</button>
+                            <a routerLink="../albumviewphoto/{{album.albumsId }} " class="" rel="ligthbox">
+                            
+                                <div class="image-div" >
+                                    <div *ngFor='let ar of  album.albumImages '>
+                            
+                                            <div *ngIf="album.albumImages?.length ==  2"  class=" imghalffull">
+                                            <img class="img-thumbnail  imghalffull" 
+                                            alt="Another alt text"
+                                            [src] = "ar.path" />
                                             </div>
-                                        </div>   
-                                        
-                                    </a>
-                                    <div class="over_like">
-                                        <div class="text-center">
-                                            <strong>{{data.albumName}}</strong><br/>
-                                            
-                                               <span> {{data.albumImages.length}} Photos </span>
-                                               
+                                    </div>
+            
+                                    <div *ngFor='let ar of  album.albumImages '>
+                            
+            
+                                            <div *ngIf="album.albumImages?.length ==  1"  class=" imgfull">
+                                            <img class="img-thumbnail" 
+                                            alt="Another alt text"
+                                            [src] = "ar.path" />
                                         </div>
                                     </div>
-                                </div> <!-- col-6 / end -->    
-                        </div> <!-- list-group / end -->
-                    </div> <!-- row / end -->
-                </div> <!-- container / end -->
+                                    <div *ngFor='let ar of  album.albumImages  | slice:0:3 ;let i=index'>
+                            
+                                            <div *ngIf="album.albumImages?.length >=  3"  class=" imghalffull">
+                                            <img *ngIf="i==0"class="img-thumbnail  imgfull " 
+                                            alt="Another alt text"
+                                            [src] = "ar.path" />
+                                            <img *ngIf="i>0" class="img-thumbnail  imghalf  " 
+                                            alt="Another alt text"
+                                            [src] = "ar.path" />
+                                            </div>
+                                    </div>
+            
+                                    <div *ngIf="album.albumImages?.length ==  0"  class="imgcontainer">
+                                        <img class="img-thumbnail "  alt="Another alt text"  src="../../../assets/img/noImg.png" />
+                                        <!-- <img class="img-thumbnail imghalf"  alt="Another alt text"  src="../../../assets/img/no-image.png" />
+                                        <img class="img-thumbnail imghalf"  alt="Another alt text"  src="../../../assets/img/no-image.png" /> -->
+                                    </div>
+                                </div>
+                            </a>   
+                                <div class="over_like">
+                                <div class="text-center">
+                                    <span><strong>{{album.albumName}}</strong></span>
+                                </div>
+                                </div>
+                                        
+                        </div> 
+                    </div> <!-- list-group / end -->
+                </div> <!-- row / end -->
             </section> 
         </div>    	
     </div>
   </div>	 
 </div> 
 <form (ngSubmit)="createAlbum(Album)" #Album="ngForm"> 
-        <div class="modal fade" id="createalbum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" [ngClass] = "{'show' : createalbum_dailog}" id="createalbum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header text-center">
                   <h4 class="modal-title">Create  Album </h4>
-                      <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 
               </div>
               <div class="modal-body">
@@ -86,10 +111,10 @@
               </div>
               <div class="modal-footer text-center">
                   <button type="submit" class="btn newbtn">Save</button>&nbsp;
-                  <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal">CANCEL</button>
+                  <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
               </div>
             </div>  
           </div>  
   
         </div>
-      </form>  
+</form>  

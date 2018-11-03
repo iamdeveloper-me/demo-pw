@@ -1,6 +1,7 @@
 .my-drop-zone { 
     border: dotted 3px lightgray; 
-    background-color: #f5f7fa !important;
+    background-color: #f5f7fa!important;
+    padding:25px!important;
 }
 .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
 .another-file-over-class { border: dotted 3px green; }
@@ -223,18 +224,41 @@ margin-top: 10px!important;
   padding-top:35px;
 }
 
+.btnholdertik{
+      width:150px;
+      height: 44px;
+      margin:0px auto;
+      position: relative;
+}
+.martop0px{
+    margin-top:0px;
+}
+.uploadbtnhidden{
+    width:150px;
+    opacity: 0;
+    height: 44px;
+    margin: 0px auto;
+    position: absolute;
+    z-index: 999;
+    top:0px;
+    left:0px;
+}
+.Choosefilebtn{
+    width: 150px;
+    margin: 0px auto;
+}
 .thumbnail img{
     position: relative;
 }
 .over_like{
     position: relative;
     background: #fff;
-    padding: 8px;
+    padding: 5px;
     width: 97%;
     padding-bottom: 0px !important;
     border-radius: 1px;
-    z-index: 999999;
-    margin: -60px auto 0px auto;
+    z-index: 999;
+    margin: -66px auto 0px auto;
 }
 .over_like .fa-heart{
     font-size:18px;
@@ -360,10 +384,10 @@ margin-top: 10px!important;
 }
 .deletebtn{
     position: absolute;
-    right: 15px;
+    right: 20px;
     top: 5px;
     color: #ffffff !important;
-    z-index: 999999;
+    z-index: 999;
     background: none;
     font-size: 35px !important;
     border: 0px;

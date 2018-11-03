@@ -7,15 +7,16 @@ $("#menu-toggle").click(function(e) {
 
 $("#myidea").click(function(e) {
     alert("dfv");
-  $('#Description').modal('hide')
-
+    debugger
+  $('#Description').modal('hide');
+debugger
 });
 
 
 $(document).ready(function () {
 
 
-  $('#Description').modal('hide')
+  
 
     $("#carousel").owlCarousel({
 

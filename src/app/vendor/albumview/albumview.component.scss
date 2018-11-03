@@ -28,14 +28,71 @@ margin-top:5px;
 .imgcontainer{
     background: #e5e5e5;
     text-align: center;
-    height:175px;
+    height:160px;
 }
-.imgcontainer .img-thumbnail{
-    width: 100%;
-    max-height: 125px;
+.zoom_effect .over_like{
+    bottom: 2px !important;
+   }
+   .over_like{
+    padding:5px 10px;
+}
+
+.over_like .flo_right{
+    float: right;
+}
+.over_like .fa-heart{
+    color: red;
+}
+.img-thumbnail{
+    
+  //  max-height: 125px;
     object-fit: cover;
     border:0px;
     background: none!important; 
+    border-radius: 0px;
+    padding: 0.5px;
+    border:0px solid #fff;
+    object-fit: cover;
+    height: 160px;
+    width: 100%;
+}
+
+.col-md-3 .image-div img.singleimg{
+    object-fit: cover;
+    width: 100%;
+    height:160px;
+}
+
+.col-md-3 .image-div img.imgfull{
+    object-fit: cover;
+    width: 100%;
+    height:100px;
+}
+.col-md-3 .image-div img.imghalf{
+    object-fit: cover;
+    width: 50%;
+    float: left;
+
+
+    height: 60px;
+    /*height: auto;*/
+
+}
+
+.col-md-3 .image-div{
+    width:100%;
+    height:160px;
+}
+.twothird img:first-child{
+    object-fit: cover;
+    width: 100%!important;
+    height:100px!important;
+}
+.col-md-3 .image-div img.imghalffull{
+    object-fit: cover;
+    width: 50%;
+    height: 160px;
+    float: left;
 }
 .createmyalbum{
     width: auto;
@@ -222,15 +279,7 @@ margin-top: 10px!important;
 .thumbnail img{
     position: relative;
 }
-.over_like {
-    position: absolute;
-    background: #fff;
-    bottom: 24px;
-    left: 19px;
-    padding: 8px;
-    width:calc(100% - 35px);
-    padding-bottom: 0px !important;
-}
+
 .over_like .fa-heart{
     font-size:18px;
     color:red;
@@ -247,11 +296,12 @@ margin-top: 10px!important;
     border-bottom: 1px solid;
 }
 .new_albums{
-    margin-bottom: 60px;
+    float: right;
+    position: absolute;
+    right: 30px;
+    top: 45px;
 }
 .new_albums button{
-    float: right;
-    margin-right: 20px;
     background: none;
     border: 1px solid #ccc;
     padding: 5px 10px;
@@ -263,9 +313,12 @@ margin-top: 10px!important;
     color: #fff;
     box-shadow: 0px 0px 10px #2196f3;
 }
+.marbot15px{
+    margin-bottom: 15px!important;
+}
 .deletebtn{
     position: absolute;
-    right: 5px;
+    right: 20px;
     top: 5px;
     color: #ffffff !important;
     z-index: 999;

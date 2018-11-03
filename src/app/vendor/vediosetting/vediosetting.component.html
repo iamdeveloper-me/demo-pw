@@ -36,7 +36,9 @@
                                   <div class="vediolink">https://www.youtube.com/embed/tgbNymZ7vqY</div>
                                   </td>
                                   <td class="text-center">
-                                     <button class="btn btn-success editbtn">Edit</button><br/>
+                                     <button class="btn btn-success editbtn"
+                                      (click)="Editvediodetail_dailog = true"
+                                     >Edit</button><br/>
                                      <button class="btn btn-warining deletebtn">Delete</button>
                                   </td>
                               </tr>
@@ -52,7 +54,7 @@
                                   	<div class="vediolink">https://www.youtube.com/embed/tgbNymZ7vqY</div>
                                   </td>
                                   <td class="text-center">
-                                     <button class="btn btn-success editbtn">Edit</button><br/>
+                                     <button class="btn btn-success editbtn" data-target="#Editvediodetail" data-toggle="modal">Edit</button><br/>
                                      <button class="btn btn-warining deletebtn">Delete</button>
                                   </td>
                               </tr>
@@ -68,7 +70,7 @@
                                   	<div class="vediolink">https://www.youtube.com/embed/tgbNymZ7vqY</div>
                                   </td>
                                   <td class="text-center">
-                                     <button class="btn btn-success editbtn">Edit</button><br/>
+                                     <button class="btn btn-success editbtn" data-target="#Editvediodetail" data-toggle="modal">Edit</button><br/>
                                      <button class="btn btn-warining deletebtn">Delete</button>
                                   </td>
                               </tr>
@@ -84,7 +86,7 @@
                                   	<div class="vediolink">https://www.youtube.com/embed/tgbNymZ7vqY</div>
                                   </td>
                                   <td class="text-center">
-                                     <button class="btn btn-success editbtn">Edit</button><br/>
+                                     <button class="btn btn-success editbtn" data-target="#Editvediodetail" data-toggle="modal">Edit</button><br/>
                                      <button class="btn btn-warining deletebtn">Delete</button>
                                   </td>
                               </tr>
@@ -102,5 +104,45 @@
   </div>
   <app-foot></app-foot>
   
+
+
+  <div class="modal fade"  [ngClass] = "{'show' : Editvediodetail_dailog}" id="Editvediodetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                   <div class="modal-header">
+                    <h4 class="modal-title">Edit Vedio</h4>
+                    <button type="button" class="close posiTop20px"  (click)="closeModel()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                  
+                   <div class="modal-body">
+                      <div class="form-group">
+                                <div class="input-effect md-form">
+                                    <input class="effect-16 validate" type='text' placeholder=''>
+                                    <label>Vedio Title</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-effect md-form">
+                                    <input class="effect-16 validate" type='text' placeholder=''>
+                                    <label>Vedio Url</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                   </div>
+                   <div class="modal-footer text-center">
+                   <button type="submit" class="btn newbtn" (click)="editvedio()">SAVE</button> &nbsp;
+                    <button type="button" class="btn newbtn newcancelbtn" 
+                    (click)="closeModel()"> Close</button>
+                </div>
+
+              </div>
+
+
+          </div>
+      </div>
+
   
   <router-outlet></router-outlet> 

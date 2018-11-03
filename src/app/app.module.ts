@@ -198,10 +198,11 @@ import { FailureComponent } from './vendor/failure/failure.component';
 
 
 import { PhotogallerydetailComponent } from './photogallerydetail/photogallerydetail.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 //import { VendorComponent } from './dashboard/vendor/vendor.component';
 
-
+import { apiService } from './shared/service/api.service';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -364,6 +365,7 @@ export function getAuthServiceConfigs() {
 
         SuccessComponent,
         FailureComponent,
+        ResetPasswordComponent,
 
        
         
@@ -429,7 +431,8 @@ export function getAuthServiceConfigs() {
         {
             provide: AuthServiceConfig,
             useFactory: getAuthServiceConfigs
-        }
+        },
+        apiService
     ],
     bootstrap: [AppComponent],
     entryComponents: [NgbdModalContent],

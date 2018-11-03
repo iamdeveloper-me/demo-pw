@@ -1,26 +1,35 @@
 import { Http ,Headers } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit  ,ChangeDetectionStrategy } from '@angular/core';
-
+import { ToastrService } from 'ngx-toastr';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 @Component({
   selector: 'app-view-photo-albums',
   templateUrl: './view-photo-albums.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  //changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./view-photo-albums.component.scss']
 })
 
 
 export class ViewPhotoAlbumsComponent implements OnInit {
-
+  Set_as_background:any = [];
   fileToUpload:any;
-  private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
+  
   totalImage=[];
   myalbumimages=[];
+  private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
+  eventArray:any = [];
+  private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ImageUploader/FileUploader'
+  private Setasbackground: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/Setasbackground"
+  private BackgroundImage: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/BackgroundImage"
   
+  uploadphoto_dailog = false;
+
+
+
   albumid:any;
   albumname:any;
   tags:any;
@@ -40,7 +49,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   fileOverAnother(e: any): void {
     this.hasAnotherDropZoneOver = e;
   }
-  constructor(private http: Http ,  private route: ActivatedRoute) { 
+  constructor(private http: Http ,  private route: ActivatedRoute,public toastr: ToastrService) { 
     
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
@@ -76,10 +85,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   }
 
   ngOnInit() {
-    $(".gearicon").click(function(){
-    //  alert();
-      $( this ).toggleClass( "open" );
-  });
+
 
   this.route.params.subscribe( params => {
     console.log(params) ;
@@ -93,7 +99,24 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   headers.append('Content-Type', 'application/json');
   headers.append("Authorization",'Bearer '+authToken);
 
+ 
 
+    this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
+        this.eventArray = data.json()
+    
+        console.log(this.eventArray);
+        // for (var item of  this.eventArray ) {
+        //         if(item.albumImages.length == 0)
+        //         {  
+        //             this.image.path = 'https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
+        //             alert("empty array"); 
+        //         }else{  
+        //             alert("not empty array");
+                   
+        //               }
+            
+        // }
+       })
   //Album Get
   this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
   .subscribe(data =>{
@@ -118,7 +141,12 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   
    
   });
-
+  this.http.get(this.BackgroundImage,{headers:headers})
+  .subscribe(data => {console.log(data.json())},error=>{console.log(error)});
+    $(".gearicon").click(function(){
+    //  alert();
+      $( this ).toggleClass( "open" );
+  });
   let modalId = $('#image-gallery');
 
 $(document)
@@ -222,27 +250,37 @@ $(document)
 
   //service
   deleteImage(image,index){
-    console.log(image);
-    console.log(index);
-    console.log(image.albumImageId);
-    this.myalbumimages.splice(index,1);
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization",'Bearer '+authToken);
-  
-  
-    //Album Getremoveevent?id'+'='+id  ?AlbumImageId'+'='+image.albumImageId
-    this.http.get(this.url+'api/Albums/removeimage?AlbumImageId'+'='+image.albumImageId,{headers:headers})
-    .subscribe(data =>{
-      console.log(data.json())
-        }); 
+
+
+    let con = confirm('Are you sure you want to delete this?')
+    if (con) {
+      console.log(image);
+      console.log(index);
+      console.log(image.albumImageId);
+      this.myalbumimages.splice(index,1);
+      let headers = new Headers();
+      var authToken = localStorage.getItem('userToken');
+      headers.append('Accept', 'application/json')
+      headers.append('Content-Type', 'application/json');
+      headers.append("Authorization",'Bearer '+authToken);
+    
+    
+      //Album Getremoveevent?id'+'='+id  ?AlbumImageId'+'='+image.albumImageId
+      this.http.get(this.url+'api/Albums/removeimage?AlbumImageId'+'='+image.albumImageId,{headers:headers})
+      .subscribe(data =>{
+        console.log(data.json());
+        this.toastr.success(data.json().message);
+          }); 
+
+    }
+
   }
 
 
 
   uploadAll(){
+
+   this.uploadphoto_dailog = false;
     const formData = new FormData();
     for(let file of this.uploader.queue){
     formData.append(file['some'].name,file['some'])
@@ -288,4 +326,23 @@ $(document)
         //   serverFileName:""});
       },(error)=>{console.log(error)});
   }
+
+setbackground(setId){
+ let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+  
+this.http.get(this.Setasbackground,{headers:headers}).subscribe(data =>{
+        this.Set_as_background = data.json() as string[];
+        console.log( this.Set_as_background );
+    },error=>{console.log(error)})
+  console.log(setId)}
+
+
+
+        closeModel(){
+              this.uploadphoto_dailog = false;
+              }
 }

@@ -18,7 +18,9 @@ export class NgbdgalleryModalContent {
 })
 export class AlbumviewComponent implements OnInit {
     private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/';
- 
+    
+    createalbum_dailog = false;
+
     private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
     eventArray:any = [];
     image={ path:""};
@@ -110,8 +112,11 @@ fileOverAnother(e: any): void {
   this.hasAnotherDropZoneOver = e;
 }
 createAlbum(Album){
+
+    this.createalbum_dailog = false;
+
     console.log(Album);
-  
+     
     let headers = new  Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append("content-type",'application/json ');
@@ -146,4 +151,40 @@ createAlbum(Album){
   typeWarning(a) {
     this.toastr.warning(a);
   }
+
+
+closeModel(){
+       
+  this.createalbum_dailog = false;
+
+}
+
+  //service
+  albumdelete(image,index){
+
+
+    let con = confirm('Are you sure you want to delete this?')
+    if (con) {
+      console.log(image);
+      console.log(index);
+      console.log(image.albumsId);
+      this.eventArray.splice(index,1);
+      let headers = new Headers();
+      var authToken = localStorage.getItem('userToken');
+      headers.append('Accept', 'application/json')
+      headers.append('Content-Type', 'application/json');
+      headers.append("Authorization",'Bearer '+authToken);
+    
+    
+      // Album Getremoveevent?id'+'='+id  ?AlbumImageId'+'='+image.albumImageId
+      this.http.post(this.url+'/api/Albums/deletealbum',{albumsId:image.albumsId},{headers:headers})
+      .subscribe(data =>{
+        console.log(data.json());
+        this.toastr.success(data.json().message);
+          }); 
+
+    }
+
+  }
+
 }

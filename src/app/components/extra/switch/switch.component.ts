@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SwitchComponent implements OnInit {
 
-  enable = true;
+  enable = false;
   count = 0;
 
   constructor() { }

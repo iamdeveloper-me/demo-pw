@@ -1,6 +1,16 @@
+import { value } from './../../shared/data/dropdowns';
+import { FormGroup, FormBuilder, FormArray, FormControl, Form } from '@angular/forms';
 import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
 import { Http,Headers } from '@angular/http';
+export interface MainCategory {
+  categoryId: number;
+  categoryName:string;
+  imagePath: string;
+  isDeleted: boolean;
+  isFeatured:  boolean;
+  services: any;
+}
 @Component({
   selector: 'app-business-services',
   templateUrl: './business-services.component.html',
@@ -8,14 +18,31 @@ import { Http,Headers } from '@angular/http';
 
 })
 export class BusinessServicesComponent implements OnInit {
+  val:string;
+  person:boolean = true
+  service_provide_dailog = false;
+  public serviceData = []
+  form = new FormGroup({
+    servicesId: new FormControl(),
+  });
+  formPrice = new FormGroup({
+    customFieldId: new FormControl(),
+  });
+  seviceName: string;
+price:string;
 
 
+emptyArray=[]
    private serveiceget: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories/categorieswithservices'
    private serveicepost: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savebusinessservices'
    private userservesicege:string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessservices'
-  
+   
+   option=[]
+   myForm: FormGroup;
+   myForm2: FormGroup;
+serviceShow:boolean = false;
+public serviceFormArray:any;
 
-  
   first_category:any = {};
   categoryserveice = [];
   User_services = []; 
@@ -30,7 +57,7 @@ export class BusinessServicesComponent implements OnInit {
  allservices = true; 
 
  final =[];
-  constructor(public http: Http)
+  constructor(public http: Http,private fb: FormBuilder)
   {
 
   
@@ -85,13 +112,18 @@ export class BusinessServicesComponent implements OnInit {
           headers.append('Content-Type', 'application/json');
           headers.append("Authorization",'Bearer '+authToken);
 
-
-          this.http.get(this.userservesicege,{headers:headers}).subscribe(data =>{console.log(data.json())
+         //jo data post kar rhe h 
+          this.http.get(this.userservesicege,{headers:headers}).subscribe(data =>{
+            console.log(data.json())
             this.User_services = data.json();
+            debugger
           });
 
+
+          // 20 data
           this.http.get(this.serveiceget,{headers:headers}).subscribe(data =>{
             this.categoryserveice = data.json() as string[];
+            console.log(this.categoryserveice)
             this.services_all = this.categoryserveice[0].services;
 
             console.log( this.categoryserveice);
@@ -101,13 +133,86 @@ export class BusinessServicesComponent implements OnInit {
              {
                   this.first_category = this.categoryserveice[i];
                  console.log(this.first_category );
-               
               }
             }
           });
 
+          this.myForm = this.fb.group({
+            // useremail: this.fb.array([]),
+            genderControl: this.fb.array([]),
+            // priceControl: this.fb.array([]),
+          });
+          this.myForm2 = this.fb.group({
+            // useremail: this.fb.array([]),
+            priceControl: this.fb.array([]),
 
+          });
        
+  }
+  submitS(form: FormGroup){
+console.log(form.value)
+this.serviceData.push(form.value)
+console.log(this.modaldata)
+this.service_provide_dailog = false;
+
+
+this.modaldata.forEach(element => {
+  if(element.servicesId == form.value.servicesId){
+    
+    console.log(this.Selected_serveice)
+    console.log('ss1',element)
+    this.seviceName = element.serviceName;
+    element.customFields.forEach(field => {
+      field['up'] = false;
+      field['data'] = false;
+    });
+    console.log('+++++++++++++++++',element)
+    
+    this.Selected_serveice = element;
+    console.log('Length',this.emptyArray)
+    this.serviceShow = true;
+  }
+});
+// this.Selected_serveice = this.modaldata;
+  }
+  submitP(form: FormGroup){
+    console.log(form.value)
+    const o = {
+      "customFieldId": form.value.customFieldId,
+      "userValue": "string"
+    }
+    this.serviceData.push(o)
+
+
+    console.log('@@@@@@@@@@@@',this.serviceData)
+  // console.log(this.pricelistArray)
+  console.log(this.Selected_serveice.customFields)
+  this.pricelistArray.forEach((data)=>{
+    data['pick'] = false;
+  })
+  
+    this.pricelistArray.forEach((element,pos)=>{
+      if(element.key == form.value.customFieldId){
+        // console.log('ss2',element)
+        element['pick'] = true;
+      }
+    })
+    // this.pricelistArray.customFieldId
+    console.log(this.pricelistArray)
+      }
+  onChange(email: string, isChecked: boolean) {
+     this.serviceFormArray = <FormArray>this.myForm.controls.useremail;
+    //  this.genderControl = <FormArray>this.myForm.controls.useremail;
+
+    if (isChecked) {
+      this.serviceFormArray = new FormControl(email);
+      console.log(this.serviceFormArray)
+      // this.service(this.serviceFormArray.value[this.serviceFormArray.value.length-1])
+      // this.serviceShow = !this.serviceShow
+    } else {
+      let index = this.serviceFormArray.controls.findIndex(x => x.value == email)
+      this.serviceFormArray.removeAt(index);
+    }
   }
  
   toggleBool: boolean=true;
@@ -125,7 +230,7 @@ export class BusinessServicesComponent implements OnInit {
     console.log(info);
   
     this.Selected_serveice = info;
-  
+
 
   }
   back_services(){ this.show = false;
@@ -139,10 +244,10 @@ export class BusinessServicesComponent implements OnInit {
     this.allservices = false;
   }
   customFieldsdata(data){
-    console.log(data);
+    // console.log(data);
     this.pricelist = data.name;
     this.pricelistArray = data.customFieldOptionList;
-    console.log(this.pricelistArray);
+    // console.log(this.pricelistArray);
   }
   result(custom){
     this.Selected_serveice.servicesId;
@@ -161,6 +266,9 @@ export class BusinessServicesComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
 
+
+
+    // yha se selection post hoga
      this.http.post(this.serveicepost,data,
             {headers:headers}).subscribe(data =>{console.log( data.json()) 
     
@@ -193,6 +301,63 @@ export class BusinessServicesComponent implements OnInit {
 
   
     this.costserviceTrue = true;
+  }
+
+
+  serviceShowFunc(){
+    this.serviceShow = !this.serviceShow
+  }
+  serviceProvide(){
+    console.log(this.serviceFormArray)  
+  }
+
+
+  closeModel(){
+       
+    this.service_provide_dailog = false;
+  }
+
+
+
+
+  dataSaveDB(){
+    console.log('++++++++++++++++++*********************************++++++++++++++++++++++++++++')
+  //  1
+  this.serviceData.forEach((dc)=>{
+   console.log(dc)
+  })
+ const db = {
+    "servicesId": this.serviceData[0]['servicesId'],
+
+    "serviceFields": this.serviceData.splice(1)
+    
+  }
+  console.log(db)
+  this.Selected_serveice
+  // 2
+
+  // 3
+  let headers = new Headers();
+  var authToken = localStorage.getItem('userToken');
+  headers.append('Accept', 'application/json')
+  headers.append('Content-Type', 'application/json');
+  headers.append("Authorization",'Bearer '+authToken);
+
+
+
+  // yha se selection post hoga
+   this.http.post(this.serveicepost,db,
+          {headers:headers}).subscribe(data =>{console.log( data.json()) 
+  
+      
+          },error => {console.log(error)});
+}
+  
+
+  checkingService(i,eve:Event){
+    console.log(i)
+    console.log(eve)
+    console.log(this.val)
   }
 
 }

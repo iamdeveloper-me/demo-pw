@@ -11,9 +11,10 @@ export class AlbumsettingComponent implements OnInit {
   private album_image: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/updateimagesettings'
   // /api/Albums/myalbums
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
-  
+   private update_portfolio_album: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/updateimagesettings"
 description_dailog = false;
 albumid:any;
+formdata:any = {};
 myalbumimages=[];
 totalImage=[];
 albumname:any;
@@ -59,9 +60,41 @@ colourtags:any;
           this.albumid = params;
     });
   }
- 
-editSetting(){
+  openModel(e){
+    alert("dvfs");
+    this.description_dailog = true
+    console.log(e);
+    this.formdata = e;
+  }
+
+
+editSetting(f){
        
+  this.description_dailog = false;
+  console.log(f);
+               
+  let headers = new Headers();
+  var authToken = localStorage.getItem('userToken');
+  headers.append('Accept', 'application/json')
+  headers.append('Content-Type', 'application/json');
+  headers.append("Authorization",'Bearer '+authToken);
+const fire  = {       
+   AlbumImageId: f.value.AlbumImageId,
+  AlbumsId: f.value.AlbumsId,
+  Tags: f.value.tags,
+  ColorTags: f.value.colorTags,
+  SetAsBackground: true}
+  console.log(fire)
+      this.http.post(this.update_portfolio_album,{
+        albumImageId: f.value.AlbumImageId,
+        AlbumsId: f.value.AlbumsId,
+        Tags: f.value.tags,
+        ColorTags: f.value.colorTags,
+        SetAsBackground: true
+      },{headers:headers}).subscribe(data =>{
+     
+      console.log(data.json());
+  },error=> console.log(error)    )
   this.description_dailog = false;
 
 }

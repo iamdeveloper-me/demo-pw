@@ -22,7 +22,7 @@
 
                                             <div class="on_hover" (click)="BusinessDailog = true" id="Instagram-function" >
 
-                                                    <h6 >Business name or Contact Person </h6>
+                                                    <h6 >Business logo or Contact Person </h6>
                                                 <div> {{vendor.nameOfBusiness}}</div>
                                                 <span class="text-right col-lg-12 editbtn">
                                                 <i class="material-icons"  >edit</i>
@@ -60,7 +60,7 @@
                                             <span id="prompt-function"  (click)="facebookDailog = true" data-reactid="333">
                                                   {{vendor.facebookURL}}
                                                
-                                              <span  *ngIf="vendor.facebookURL == '' ">NO I Dont have</span>  
+                                            
                                                 </span>
                                                 
                                             <div class="col-lg-12 editbtn">
@@ -75,7 +75,7 @@
                                             <i class="fa fa-twitter fa-2x " data-reactid="338"></i>
                                             <span id="Pinterest-function" (click)="twitterDailog = true"  data-reactid="337">
                                             {{vendor.twitterURL}}
-                                            <span  *ngIf="vendor.twitterURL == '' ">NO I Dont have</span>  
+                                          
                                         
                                              </span>
                                             <div class="col-lg-12 editbtn">
@@ -93,7 +93,7 @@
                                             <i class="fa fa-google-plus fa-2x" data-reactid="340"></i>
                                             <span id="Google-function" (click)="googleDailog = true"  data-reactid="339">
                                              {{vendor.googleURL}}
-                                            <span  *ngIf="vendor.googleURL == '' ">NO I Dont have</span>  
+                                         
                                           
                                             </span>
                                             <div class="col-lg-12 editbtn">
@@ -111,7 +111,7 @@
                                             <i class="fa fa-instagram fa-2x" data-reactid="342"></i>
                                             <span id="Instagram-function"  (click)="instagramDailog = true"  data-reactid="341">
                                              {{vendor.instalURL}}
-                                            <span  *ngIf="vendor.instalURL == '' ">NO I Dont have</span>  
+                                        
                                            </span>
                                             <div class="col-lg-12 editbtn">
                                                 <h4 class="text-right col-lg-12">
@@ -128,7 +128,7 @@
                                             <i class="fa fa-globe fa-2x" data-reactid="342"></i>
                                             <span id="Instagram-function" (click)="instagram2Dailog = true"  data-reactid="341">
                                             {{vendor.perfectWeddingURL}}
-                                            <span  *ngIf="vendor.perfectWeddingURL == '' ">NO I Dont have</span>  
+                                         
                                             </span>
                                           
                                             <div class="col-lg-12 editbtn">
@@ -148,8 +148,6 @@
                     </div>
                 </div>
             </section>
-            <div class="clearfix"></div>
-            <app-foot></app-foot>
         </div>
     </div>
      
@@ -249,7 +247,7 @@
                                     [(ngModel)]="modelfield.fbAvailable"
                                     id="fbAvailable" 
                                     name = "switchfb"
-                                    (click) = "Activ_in(modelfield)"
+                                  
                                     (change)="modelfield.fbAvailable  = !modelfield.fbAvailable "
                                     class="pull-left"
                                     ></ui-switch>
@@ -271,7 +269,7 @@
                                         <input class="effect-16 validate endent_10px width_60" 
                                         type="text" 
                                         name="facebookURL"
-                                        placeholder="Enter the Link here" 
+                                        placeholder="Don't have any URL" 
                                         [ngModel] = "modelfield.facebookURL" 
                                        
                                         id="facebook">
@@ -314,7 +312,7 @@
                                         [(ngModel)]="modelfield.twitterAvailable"
                                         id="twitterAvailable" 
                                         name = "switchtwitter"
-                                        (click) = "Activ_in(modelfield)"
+                                     
                                         (change)="modelfield.twitterAvailable  = !modelfield.twitterAvailable "
                                         class="pull-left"
                                         ></ui-switch>
@@ -333,7 +331,7 @@
                                     <div >  
                                         <input class="effect-16 validate endent_10px width_60" 
                                         type="text" 
-                                        placeholder="Enter the Link here" 
+                                        placeholder="Don't have any URL" 
                                         [ngModel] = "modelfield.twitterURL" 
                                         id="twitter" 
                                     
@@ -377,7 +375,7 @@
                                                 [(ngModel)]="modelfield.googleAvailable"
                                                 id="googleAvailable" 
                                                 name = "switchgoogle"
-                                                (click) = "Activ_in(modelfield)"
+                                               
                                                 (change)="modelfield.googleAvailable  = !modelfield.googleAvailable " 
                                                 class="pull-left"
                                                 ></ui-switch>
@@ -396,7 +394,7 @@
                             <div  >
                                 <input class="effect-16 validate endent_10px width_60" 
                                 type="text" 
-                                placeholder="Enter the Link here" 
+                                placeholder="Don't have any URL" 
                                 [ngModel] = "modelfield.googleURL" 
                             
                                 id="google" 
@@ -439,7 +437,7 @@
                                             [(ngModel)]="modelfield.instaAvailable"
                                             id="instaAvailable" 
                                             name = "switchinsta"
-                                            (click) = "Activ_in(modelfield)"
+                                          
                                             (change)="modelfield.instaAvailable  = !modelfield.instaAvailable "
                                             class="pull-left"
                                             ></ui-switch>
@@ -459,7 +457,7 @@
                            <div >
                                 <input class="effect-16 validate endent_10px width_60" 
                                 type="text" 
-                                placeholder="Enter the Link here" 
+                                placeholder="Don't have any URL" 
                                 [ngModel] = "modelfield.instalURL" 
                                 id="instagram" 
                                 name="instalURL">
@@ -502,7 +500,7 @@
                                             [(ngModel)]="modelfield.perfectWeddingAvailable"
                                             id="perfectWeddingAvailable" 
                                             name = "perfectWedding"
-                                            (click) = "Activ_in(modelfield)"
+                                          
                                             (change)="modelfield.perfectWeddingAvailable  = !modelfield.perfectWeddingAvailable "
                                             class="pull-left"
                                             ></ui-switch>
@@ -521,7 +519,7 @@
                             <div >
                                 <input class="effect-16 validate endent_10px width_60" 
                                 type="text" 
-                                placeholder="Enter the Link here" 
+                                placeholder="Don't have any URL" 
                                 [ngModel] = "modelfield.perfectWeddingURL" 
                                 id="perfectWedding" 
                                 name="perfectWeddingURL"
@@ -571,41 +569,44 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="modal-body">
-                        <div class="col-sm-12  text-center mobnopadd">
+                        <div class="col-sm-12  text-center mobnopadd"  *ngIf= "cropperupload == true">
                         
                             <div class="clearfix"></div>
 
                             <section id="tours">
                                 <div class="col-12 text-center mobnopadd">
-                                            <div class="file-upload form-control uploadimgfile">
-                                                    
-                                                        <div class="card-block">
-                                                            <div class="file-upload mb-3">                                                            
-                                                              <input #fileInput style="width:100%"
-                                                                    (change)="fileChangeListener($event)"
-                                                                    type="file"
-                                                                    [(ngModel)]="gallery.files" 
-                                                                    name="image" 
-                                                                    id="image"/>
-                                                            </div>
+                                    <div class="file-upload form-control uploadimgfile">
+                                        <div class="card-block">
+                                            <div class="file-upload mb-3">                                                            
+                                                <input #fileInput style="width:100%"
+                                                    (change)="fileChangeListener($event)"
+                                                    type="file"
+                                                    [(ngModel)]="gallery.files" 
+                                                    name="image" 
+                                                    id="image"/>
 
-                                                            <div  *ngIf="gallery.files">
-                                                                <img-cropper #cropper [image]="data" [settings]="cropperSettings" class="float-left mr-4"></img-cropper>
-                                                                <br>
-                                                                <span class="result" *ngIf="data.image">
-                                                                <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle">
-                                                                </span>
-                                                            </div>
-                                                          </div> 
-                                                            <!-- <div >
-                                                                <img [src]="imagee" >
-                                                            </div> -->
-                                                           
+                                                  
                                             </div>
+                           
+                                            <div  *ngIf="gallery.files">
+                                                <img-cropper #cropper [image]="data" [settings]="cropperSettings" class="float-left mr-4"></img-cropper>
+                                                <br>
+                                                <span class="result" *ngIf="data.image">
+                                                <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle">
+                                                </span>
                                             </div>
+                                        </div>           
+                                    </div>
+                                </div>
                             </section>
 
 
+                        </div>
+                        <div class="progress nopadd col-sm-11 col-10" *ngIf= "progress== true" >
+                                <div class="progress-bar" role="progressbar" aria-valuenow="0"
+                                   aria-valuemin="0" aria-valuemax="100" [style.width]="total + '%'">
+                        {{total}}
+                                </div>
                         </div>
                     </div>
                     <div class="modal-footer text-center">

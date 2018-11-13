@@ -6,9 +6,7 @@
         <app-navemenu></app-navemenu>
         <section id="user-profile" class="">
             <div class="clearfix"></div>
-            <div class="col-sm-12 nopadd mobilefixedcontainer">
-           
-                
+            <div class="col-sm-12 nopadd mobilefixedcontainer">      
                 <div class="custom-form">
                     <div class="col-sm-4 " *ngFor="let data of location_Array;let i=index"  >
                         <div class="card martop10px" >
@@ -34,10 +32,8 @@
                                                     <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd(m)'></agm-marker>
                                                     <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
                                             </agm-map>
-                                        <div class="img_overlay " data-target="#googlemap" (click)="openModel(data)" data-toggle="modal">
+                                        <div class="img_overlay " (click)="OpenmapDailog()" data-target="#googlemap"  data-toggle="modal">
                                             <div class="col-lg-12 col-md-12 pad_left_0px whitetext">
-                                            <!--  <input type="text" class="form-control form-input" placeholder="Company Name" disabled id="companyname" [(ngModel)]="data.title" id="title" name="title"> -->
-                                                
                                                    <span> Edit Map </span>
                                                 <button type="button" class="btn edit_btn1" >
                                                     <i class="material-icons">edit</i>
@@ -50,16 +46,15 @@
                                 <div class="col-sm-12 text_left">
                                     <div class=" nopadd weekboxinput">
                                         <div class="col-sm-12  edit_hide" id="address-function"   (click)="openModel(data); photo_ved_dailog = true" >
-                                                <!-- id="address-function" data-target="#googlemap" (click)="openModel(data)" data-toggle="modal" -->
                                             <span class="acce_time1 col-sm-1 col-1">
                                     <i  class="material-icons">location_on</i>
                                     </span>
                                             <div class="col-sm-10 col-11 minheight130px" >
                                              
-                                           <!-- : {{data.mapAddress}}  <br>
-                                                    : {{data.country.countryName }} <br>
-                                                    : {{data.districts.name}} <br> 
-                                                    : {{data.suburb.name}}    -->
+                                                    : {{data?.mapAddress}}  <br>
+                                                    : {{data?.country?.countryName }} <br>
+                                                    : {{data?.districts?.name}} <br> 
+                                                    : {{data?.suburb?.name}}   
                                                 <i class="material-icons edit_btn"> edit</i>
                                             </div>
                                         </div>
@@ -69,23 +64,29 @@
                                 <div class="col-lg-12 text_left phone_icon1">
                                     <div class=" nopadd weekboxinput">
                                         <div class="col-lg-12 col-md-12 edit_hide"  (click)="openphone(data)">
-                                            <span class="acce_time1 col-1" >
-                                        <i  class="material-icons" >local_phone</i>
-                                        </span>
-                                            <div class="col-sm-10 col-11 minheight30px">
-                                                Mobile : {{data.mobile}}
-
-                                                <i _ class="material-icons edit_btn1">edit</i>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                            <span class="acce_time1 col-1">
-                                        <i  class="material-icons">phone_iphone</i>
-                                        </span>
-                                            <div class="col-sm-10 col-11 minheight30px">
-                                            Phone : {{data.phone}}
-                                            </div>
-                                            <div class="col-sm-10 col-11 minheight30px"  *ngFor="let new_phone of data.locationPhones;let i=index">
-                                              {{new_phone.phoneType  }} : {{new_phone.phoneNumber}}
+                    
+                                            <div class="col-sm-10 col-11 " >
+                                         
+                                                    More  Phone :
+                                                    <span class="acce_time1 col-1">
+                                                    <i  class="material-icons" >local_phone</i> 
+                                                    </span>
+                                                        <div *ngFor="let new_phone of data.locationPhones;let i=index">
+                                                            <div *ngIf = "new_phone.phoneType == 'Phone'">
+                                                                    {{data.phone}}    ,
+                                                                    {{new_phone.phoneNumber}},
+                                                            </div> 
+                                                         </div>
+                                          
+                                                    More  Mobile :
+                                                    <span class="acce_time1 col-1">
+                                                    <i  class="material-icons">phone_iphone</i>
+                                                    </span> 
+                                                    <div *ngFor="let new_phone of data.locationPhones;let i=index">
+                                                        <div *ngIf = "new_phone.phoneType == 'Mobile'">  
+                                                                {{data.mobile}},      {{new_phone.phoneNumber}},
+                                                        </div>
+                                                    </div>              
                                             </div>
                                            
                                         </div>
@@ -107,9 +108,8 @@
                                                 </div>
                                                 <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isSundayOpen == false ">
                                                        closed
-                                                       
-    
                                                 </div>
+
                                                 <div class="clearfix"></div>
                                                 <div class="col-sm-12 nopadd">
                                                     <div class="col-sm-4 col-xs-5-mob nopadd">
@@ -216,9 +216,9 @@
 </div>
 <router-outlet></router-outlet>
 
-<form (ngSubmit)="update__googlemap(info)" #info="ngForm">   
+<form (ngSubmit)="update__googlemap(info,address_modelfield)" #info="ngForm">   
   
-    <div class="modal fade" id="googlemap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" [ngClass] = "{'show' : mapDailog}" id="googlemap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -237,66 +237,15 @@
                     <div class="container-fluid martop30px">
                         <div class="form-group midcenter">
                             <div class="input-effect md-form">
-                              
-                                <input type="hidden" name="lat" class="effect-16 validate" [(ngModel)]="location.lat" >
-                                <input type="hidden" name="long" class="effect-16 validate" [(ngModel)]="location.lng" >
-                                <input type="hidden"  name = "vendorLocationId" [(ngModel)]='address_modelfield.vendorLocationId' />
-                                <input type="hidden"  name = "mobile" [(ngModel)]='address_modelfield.mobile' />
-                                <input type="hidden"  name = "phone" [(ngModel)]='address_modelfield.phone' />
-                                <input type="hidden"  name = "isActive" [(ngModel)]='address_modelfield.isActive' />
-                                <input type="hidden" [(ngModel)]="address_modelfield.vendorLocationId" id="vendorLocationId" name="vendorLocationId">
-                                <input type="hidden"  [(ngModel)]="address_modelfield.country" id="country" name="country">
-                                <input type="hidden"  [(ngModel)]="address_modelfield.vendorId" id="vendorId" name="vendorId">
-                                <input type="hidden"  [(ngModel)]="address_modelfield.postalCode" id="postalCode" name="postalCode">
-
-                                <input type="hidden"  name = "districts" [(ngModel)]='address_modelfield.districts' />
-                                <input type="hidden"  name = "suburb" [(ngModel)]='address_modelfield.suburb' />
-        
-                                <input type="hidden"  name = "districtId" [(ngModel)]='address_modelfield.districtId' />
-                                <input type="hidden"  name = "suburbId" [(ngModel)]='address_modelfield.suburbId' />
-                                <input type="hidden"  name = "address" [(ngModel)]='address_modelfield.address' />
-          
-
-                                <input type="hidden"  name = "kmondayOpen" [(ngModel)]='address_modelfield.mondayOpen' />
-                                <input type="hidden"  name = "ktuesdayOpen" [(ngModel)]='address_modelfield.tuesdayOpen' />
-                                <input type="hidden"  name = "kwednesdayOpen" [(ngModel)]='address_modelfield.wednesdayOpen ' />                    
-                                <input type="hidden"  name = "kthursdayOpen" [(ngModel)]='address_modelfield.thursdayOpen' />
-                                <input type="hidden"  name = "kfridayOpen" [(ngModel)]='address_modelfield.fridayOpen' />
-                                <input type="hidden"  name = "ksaturdayOpen" [(ngModel)]='address_modelfield.saturdayOpen' />
-                                <input type="hidden"  name = "ksaturdayOpen" [(ngModel)]='address_modelfield.saturdayOpen' />
-        
-                                <input type="hidden"  name = "qmondayClose" [(ngModel)]='address_modelfield.mondayClose' />
-                                <input type="hidden"  name = "qtuesdayClose" [(ngModel)]='address_modelfield.tuesdayClose' />
-                                <input type="hidden"  name = "qwednesdayClose" [(ngModel)]='address_modelfield.wednesdayClose' />
-                                <input type="hidden"  name = "qthursdayClose" [(ngModel)]='address_modelfield.thursdayClose' />
-                                <input type="hidden"  name = "qfridayClose" [(ngModel)]='address_modelfield.fridayClose' />
-                                <input type="hidden"  name = "qsaturdayClose" [(ngModel)]='address_modelfield.saturdayClose' />
-                                <input type="hidden"  name = "qsundayClose" [(ngModel)]='address_modelfield.sundayClose' />
-        
-        
-        
-                                <input type="hidden"  name = "isMondayOpen" [(ngModel)]='address_modelfield.isMondayOpen' />
-                                <input type="hidden"  name = "isTuesdayOpen" [(ngModel)]='address_modelfield.isTuesdayOpen' />
-                                <input type="hidden"  name = "isWednesdayOpen" [(ngModel)]='address_modelfield.isWednesdayOpen' />
-                                <input type="hidden"  name = "isThursdayOpen" [(ngModel)]='address_modelfield.isThursdayOpen' />
-                                <input type="hidden"  name = "isFridayOpen" [(ngModel)]='address_modelfield.isFridayOpen' />
-                                <input type="hidden"  name = "isSaturdayOpen" [(ngModel)]='address_modelfield.isSaturdayOpen' />
-                                <input type="hidden"  name = "isSundayOpen" [(ngModel)]='address_modelfield.isSundayOpen' />
-                                <input type="hidden"  name = "isPrimary" [(ngModel)]='address_modelfield.isPrimary' />
-                                
-                              
-                                <!-- <input type="text" placeholder="Address" [(ngModel)]="location.address_level_1" id="address"> -->
-
-                                <input type = "text" 
-                                
-                                [(ngModel)] = "address_modelfield.mapAddress"   
+                                <input  type = "text"      
+                                id= "gmapInput"
                                 name="mapAddress" 
-                                (change) = "findLocation(address_modelfield.mapAddress)"
-                                 class="effect-16 validate" placeholder="Search for Location" autocorrect="off" autocapitalize="off" spellcheck="off"  #search> 
-                                <button type = "submit" >submit</button>
+                               
+                                class="effect-16 validate" placeholder="Search for Location" > 
                                 <label for="comment">Enter Your Address</label>
                                 <span class="focus-border"></span>
                             </div>
+                            <!-- [(ngModel)] = "address_modelfield.mapAddress"    (change) = "findLocation(address_modelfield.mapAddress)" -->
                         </div>
                         <div class="clearfix"></div>
                         <div class="text-center">  
@@ -310,7 +259,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn newbtn newcancelbtn">Save</button>&nbsp;
-                    <button type="button" class="btn newbtn" data-dismiss="modal"  (click)= "findLocation(location)">Close</button> 
+                    <button type="button" class="btn newbtn" data-dismiss="modal">Close</button> 
                 </div>
             </div>
         </div>
@@ -653,7 +602,7 @@
                     </div>
                     <div class="form-group">
                             <div class="input-effect form-group md-form">
-                            <input class="effect-16 validate"  [(ngModel)]="Phone" id="Phone" name="Phone" placeholder="Phone Number">
+                            <input class="effect-16 validate"  [(ngModel)]="Phone" id="Phone" name="phone" placeholder="Phone Number">
                             <label>Phone</label>
                             <span class="focus-border"></span>
                             </div>
@@ -823,142 +772,105 @@
 </form>  
 
 
-<form (ngSubmit)="update_phone(e)" #e="ngForm">        
+<form (ngSubmit)="update_phone(e,modelfield)" #e="ngForm">        
         <div class="modal fade" id="phone" tabindex="-1" [ngClass] = "{'show' : phone_dailog}" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Phone Number </h4>
+                        <h4 class="modal-title">Phone Number</h4>
                         <button type="button" class="close"  (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
-                        <h6 class="col-xs-offset-2 phonepopuphead">Primary Number</h6>
-                        <div class="col-sm-2 col-3">
-                                <label>Phone</label>
-                        </div>
-                        <div class="col-sm-10 col-9 nopadd">
-                            <input 
-                             type="phone" 
-                             class="inputbottombor" 
-                             placeholder="000-000-000"
-                             (keypress)="keyPress($event)"
-                             minlength=10 
-                             maxlength=10 
-                             ng-pattern="/^[0-9]{1,7}$/"
-                             [(ngModel)]="modelfield.phone" 
-                             id="phone" 
-                             name="phone">
-                        </div>
-                   
                         <div class="clearfix"></div>
-                        <h6 class="col-xs-offset-2 phonepopuphead">Second Number</h6>
-                        <div class="col-sm-2 col-3">
-                                <label>Mobile</label>
-                        </div>
-                        <div class="col-sm-10 col-9 nopadd">               
-                            <input 
-                            type="phone" 
-                            class="inputbottombor" 
-                            placeholder="000-000-0000" 
-                            (keypress)="keyPress($event)"
-                            minlength=10 
-                            maxlength=10 
-                            ng-pattern="/^[0-9]{1,7}$/"
-                            [(ngModel)]="modelfield.mobile"
-                            id="mobile" 
-                            name="mobile">
-                        </div>
-                        <div class="col-sm-10 col-9 nopadd" *ngFor="let data of modelfield.locationPhones;let i=index" >               
-                              
-                                <div class="col-sm-2 col-3">
-                                    <label> {{data.phoneType}} </label>
-                                </div>
-                               
-                               <input 
-                                type="phone" 
-                                class="inputbottombor" 
-                                placeholder="000-000-0000" 
-                                (keypress)="keyPress($event)"
-                                minlength=10 
-                                maxlength=10 
-                                ng-pattern="/^[0-9]{1,7}$/"
-                                [(ngModel)]="data.phoneNumber"
-                                id="new" 
-                                name="new">
-                                <button type="button" class="remove btn btn-danger btn-raised"  (click)="removeColumn(data)">x</button>
-     
-                            </div>
-                        <div class="clearfix"></div>
-                        <input type="hidden" [(ngModel)]="modelfield.vendorLocationId" id="vendorLocationId" name="vendorLocationId">
-                        <input type="hidden"  [(ngModel)]="modelfield.country" id="country" name="country">
-                        <input type="hidden"  [(ngModel)]="modelfield.vendorId" id="vendorId" name="vendorId">
-                        <input type="hidden"  [(ngModel)]="modelfield.districts" id="districts" name="districts">
-                        <input type="hidden"  [(ngModel)]="modelfield.suburb" id="suburb" name="suburb">
-                      
-                        <input type="hidden"  [(ngModel)]="modelfield.lat" id="lat" name="lat">
-                        <input type="hidden"  [(ngModel)]="modelfield.long" id="long" name="long">
-                        <input type="hidden"  [(ngModel)]="modelfield.postalCode" id="postalCode" name="postalCode">
-                        <input type="hidden"  name = "mondayOpen" [(ngModel)]='modelfield.mondayOpen' />
-                        <input type="hidden"  name = "tuesdayOpen" [(ngModel)]='modelfield.tuesdayOpen' />
-                        <input type="hidden"  name = "wednesdayOpen" [(ngModel)]='modelfield.wednesdayOpen ' />                    
-                        <input type="hidden"  name = "thursdayOpen" [(ngModel)]='modelfield.thursdayOpen' />
-                        <input type="hidden"  name = "fridayOpen" [(ngModel)]='modelfield.fridayOpen' />
-                        <input type="hidden"  name = "saturdayOpen" [(ngModel)]='modelfield.saturdayOpen' />
-                        <input type="hidden"  name = "saturdayOpen" [(ngModel)]='modelfield.saturdayOpen' />
-
-                        <input type="hidden"  name = "mondayClose" [(ngModel)]='modelfield.mondayClose' />
-                        <input type="hidden"  name = "tuesdayClose" [(ngModel)]='modelfield.tuesdayClose' />
-                        <input type="hidden"  name = "wednesdayClose" [(ngModel)]='modelfield.wednesdayClose' />
-                        <input type="hidden"  name = "thursdayClose" [(ngModel)]='modelfield.thursdayClose' />
-                        <input type="hidden"  name = "fridayClose" [(ngModel)]='modelfield.fridayClose' />
-                        <input type="hidden"  name = "saturdayClose" [(ngModel)]='modelfield.saturdayClose' />
-                        <input type="hidden"  name = "sundayClose" [(ngModel)]='modelfield.sundayClose' />
-
-
-
-                        <input type="hidden"  name = "isMondayOpen" [(ngModel)]='modelfield.isMondayOpen' />
-                        <input type="hidden"  name = "isTuesdayOpen" [(ngModel)]='modelfield.isTuesdayOpen' />
-                        <input type="hidden"  name = "isWednesdayOpen" [(ngModel)]='modelfield.isWednesdayOpen' />
-                        <input type="hidden"  name = "isThursdayOpen" [(ngModel)]='modelfield.isThursdayOpen' />
-                        <input type="hidden"  name = "isFridayOpen" [(ngModel)]='modelfield.isFridayOpen' />
-                        <input type="hidden"  name = "isSaturdayOpen" [(ngModel)]='modelfield.isSaturdayOpen' />
-                        <input type="hidden"  name = "isSundayOpen" [(ngModel)]='modelfield.isSundayOpen' />
-                        <input type="hidden"  name = "isPrimary" [(ngModel)]='modelfield.isPrimary' />
-                        <input type="hidden"  name = "districtId" [(ngModel)]='modelfield.districtId' />
-                        <input type="hidden"  name = "suburbId" [(ngModel)]='modelfield.suburbId' />
-                        <input type="hidden"  name = "address" [(ngModel)]='modelfield.address' />
-                        
-                        <div class="clearfix"></div>
-                        <h6 class="col-xs-offset-2 phonepopuphead">More Number</h6>
-                        <div class="col-sm-2 col-3">
-                           <label>Number</label>
-                        </div>
+                        <h6 class="col-xs-offset-2 phonepopuphead"> Add More Number</h6>
                         <div class="col-sm-10 col-9 nopadd">  
                             <div class=" fristfieldremovebtnnone nopadd">
-                                <fieldset  *ngFor="let column of columns; let i = index">
-                                    <div style="position: relative;overflow: hidden;">
-                                        <div class="pull-left nopadd" >
-                                            <label for="urlName"></label>
-                                                <input  
-                                                type="text"  
-                                                id="urlName" class="inputbottombor"
-                                                required 
-                                                [(ngModel)]="column.phoneNumber" name="phoneNumber" #urlName="ngModel">
-                                            <!-- <div *ngIf="urlName.errors && (urlName.dirty || urlName.touched)" class="alert-danger">
-                                                <div [hidden]="!urlName.errors.required">
-                                                URL Name is required!
-                                                </div>
-                                                
-                                            </div> -->
-                                        </div>
-                                        <button type="button" class="remove btn btn-danger btn-raised"  (click)="removeColumn(i)">x</button>
+                                    <div *ngFor="let new_phone of modelfield.locationPhones;let i=index">
+                                          
+                                            <div class="col-sm-2 col-3">
+                                                <select name="phoneType+{{i}}" [(ngModel)] = "new_phone.phoneType" >
+                                                    <option [value]="'Phone'">Phone</option>
+                                                        <option [value]="'Mobile'">Mobile</option>
+                                                </select>
+                                            </div>
+                                          
+                                            <input  
+                                            type="text"  
+                                            id="urlName" class="inputbottombor"
+                                            required 
+                                            [(ngModel)]="new_phone.phoneNumber" 
+                                            placeholder="000-000-000"
+                                            (keypress)="keyPress($event)"
+                                            minlength=10 
+                                            maxlength=10 
+                                            ng-pattern="/^[0-9]{1,7}$/"
+                                            name="phoneNumber+{{i}}" 
+                                            #urlName="ngModel">   
+                                            <label for="urlName">Is prime or not</label>
+
+                                            <input  
+                                            type="checkbox"  
+                                            class="inputbottombor"
+                                            [(ngModel)]="new_phone.isPrimary" 
+                                            [value]="isPrimary"
+                                            checked
+                                            name="isPrimary" 
+                                            > 
+                                            <button type="button" class="remove btn btn-danger btn-raised"  (click)="removeColumn(new_phone)">x</button>
                                     </div>
-                                </fieldset>         
+                                    <fieldset  *ngFor="let column of columns; let i = index">
+                                        <div style="position: relative;overflow: hidden;">
+                                            <div class="col-sm-2 col-3">
+                                                <select name="phoneType" [(ngModel)] = "column.phoneType" >
+                                                    <option [value]="'Phone'">Phone</option>
+                                                    <option [value]="'Mobile'">Mobile</option>
+                                                </select>
+                                            </div>
+                                            <div class="pull-left nopadd" >
+                                                <label for="urlName"></label>
+                                                <input  
+                                                    type="text"  
+                                                    id="urlName" class="inputbottombor"
+                                                    required 
+                                                    [(ngModel)]="column.phoneNumber" 
+                                                    placeholder="000-000-000"
+                                                    (keypress)="keyPress($event)"
+                                                    minlength=10 
+                                                    maxlength=10 
+                                                    ng-pattern="/^[0-9]{1,7}$/"
+                                                    name="phoneNumber" 
+                                                    #urlName="ngModel">   
+                                                    <label for="urlName">Is prime or not{{modelfield.vendorLocationId}}</label>
+                                                
+                                                    <input  
+                                                    type="checkbox"  
+                                                    class="inputbottombor"
+                                                    [(ngModel)]="column.isPrimary" 
+                                                    [value]="isPrimary"
+                                                    checked
+                                                    name="isPrimary" 
+                                                    > 
+                                                    
+
+                                                    <input type = "hidden"      
+                                                    [(ngModel)] = "modelfield.vendorLocationId"   
+                                                    name="vendorLocationId" 
+                                                    class="effect-16 validate" placeholder="Search for Location" > 
+
+                                                    <input type = "hidden"      
+                                                    [(ngModel)] = "locationPhoneId"   
+                                                    name="locationPhoneId" 
+                                                    class="effect-16 validate" placeholder="Search for Location" > 
+                                                    
+                                            </div>
+                                            <button type="button" class="remove btn btn-danger btn-raised"  (click)="removeColumn(i)">x</button>
+                                        </div>
+                                    </fieldset>         
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <br/>
-                            <a class="addfields btn btn-info btn-raised" (click)="addNewColumn()">Add More Number</a>
+                            <a class="addfields btn btn-info btn-raised" (click)="addNewColumn(e)">Add More Number</a>
                         </div>     
                     </div>
                     <div class="modal-footer">

@@ -49,8 +49,7 @@ export class PortfolioviewComponent implements OnInit {
 
 
        this.http.get(this.BackgroundImage,{headers:headers}).subscribe(data =>{
-        console.log(data.json()  );
-    },error=>{console.log(error)})
+        console.log(data.json());},error=>{console.log(error)})
 
 
    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
@@ -120,18 +119,17 @@ export class PortfolioviewComponent implements OnInit {
     "filesId": 1
   }
   uploadAll(){
-      this.uploadphoto_dailog = false;
+    this.uploadphoto_dailog = false;
       
     const formData = new FormData();
     for(let file of this.uploader.queue){
     formData.append(file['some'].name,file['some'])
     }        
-    // Headers
+  
     let headers = new  Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append("Authorization",'Bearer '+authToken);
-    
-    //Post Album 2 photos
+  
     this.http.post(this.uploadimage,formData,{headers:headers})
       .subscribe(data =>{ 
         console.log(data.json().filesId);
@@ -139,7 +137,9 @@ export class PortfolioviewComponent implements OnInit {
         this.http.post(this.addportfolio,{filesId:data.json().filesId},{headers:headers})
       .subscribe(data =>{ 
         console.log(data.json());
-      
+        this.http.get(this.mygeturl,{headers:headers})
+        .subscribe(data =>{console.log(data.json()); 
+         this.PortgetArray =data.json() });
       
       },(error)=>{console.log(error)});
       
@@ -165,9 +165,6 @@ this.http.get(this.Setasbackground,{headers:headers}).subscribe(data =>{
   console.log(setId)}
 
   delete_portfolio(e,index){
-  
-
-
 
     let con = confirm('Are you sure you want to delete this?')
     if (con) {

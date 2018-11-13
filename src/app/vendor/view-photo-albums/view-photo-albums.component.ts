@@ -99,7 +99,12 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   headers.append('Content-Type', 'application/json');
   headers.append("Authorization",'Bearer '+authToken);
 
- 
+  this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/BackgroundImage",{headers:headers})
+  .subscribe(data => {console.log(data.json())},error=>{console.log(error)});
+    $(".gearicon").click(function(){
+    //  alert();
+      $( this ).toggleClass( "open" );
+  });
 
     this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
         this.eventArray = data.json()
@@ -141,12 +146,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   
    
   });
-  this.http.get(this.BackgroundImage,{headers:headers})
-  .subscribe(data => {console.log(data.json())},error=>{console.log(error)});
-    $(".gearicon").click(function(){
-    //  alert();
-      $( this ).toggleClass( "open" );
-  });
+ 
   let modalId = $('#image-gallery');
 
 $(document)

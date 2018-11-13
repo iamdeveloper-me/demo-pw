@@ -9,7 +9,7 @@
            <div class="container-fluid mobilefixedcontainer">
               <div class="col-md-12 card">
                 <div class="col-sm-12 subheadtikwrapper">
-                  <a routerLink= "../albumview" class="pull-left iconfloatleft">
+                  <a routerLink= "../../albumview" class="pull-left iconfloatleft">
                   <i class="material-icons"> arrow_back_ios </i> <span>Album</span>
                   </a> 
                 <div class="subheadtik">Album Name Settings</div>
@@ -32,7 +32,7 @@
                       <td> 
                         <div class="textboxlist">
                           <span class="tagstik">
-                            dxfdgdg    
+                            {{image.tags}}
                             <i class="material-icons">clears</i>
                           </span>
                         </div>
@@ -54,9 +54,9 @@
                           <span class="colortags purplebg"></span>
                         </div>
                       </td>
-                      <td class="text-center">
+                      <td class="text-center" >
                         <button class="btn btn-success editbtn"  id="prompt-function"
-                        (click)="description_dailog = true" data-reactid="333">Edit </button><br/>
+                        (click)="openModel(image)" data-reactid="333">Edit </button><br/>
                         <button class="btn btn-warining deletebtn" (click)="deleteImage(image,i)" > Delete </button>
                      
                       </td>
@@ -76,167 +76,182 @@
   <router-outlet></router-outlet> 
 
     <div class="modal fade" id="Description" [ngClass] = "{'show' : description_dailog}"   tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <form (ngSubmit)="editSetting(portEdit)" #portEdit="ngForm">
         <div class="modal-dialog" role="document">
-            <form>
-              <div class="modal-content">
-                  <div class="modal-header text-center">
-                      <h4 class="modal-title">Photo Settings</h4>
-                     
-                      <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  </div>
-                      <div class="modal-body" style="background-color: white">
+              
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h4 class="modal-title">Photo Settings{{formdata.albumImageId}}</h4>
                       
-                        <div class="row" >
-                          <div class="col-md-12 padtop20px">
-                            <div class="form-group">
-                                <div class="input-effect form-group md-form ">
-
-                                  <input class="effect-16 validate" 
-                                  type="text"  
-                                  
-                                  name="tags"  
-                                  id="tags"  
-                                  required="required"> 
-
-                                  <label>Tags</label>
-                                  <span class="focus-border"></span>
-                                </div>
-                                <div>
-                                  <span class="tagstik"> 
-                                     ytuytu
-                                    <i class="material-icons">clears</i>
-                                  </span>      
-                                </div>
-                              
-                                <div class="input-effect form-group md-form ">
-                              
-                                  <input class="effect-16 validate" 
-                                  type="text"   
-                                 
-                                  >
-
-                                  <label>Colour Tag </label>
-                                  <span class="focus-border"></span>
-                                </div>
-                              
-                                <input 
-                                type="hidden" 
-                                name="id"   
-                               />
-                               
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                                  <label>Color Tags</label>
-                                 
-                                  <div class="cityscroll22">
-                                    <div class="funkyradio">
-                                      
-                                      <div class="funkyradio-info">
-                                     
-                                        <input 
-                                        type="checkbox" 
-                                       
-                                        id="pink"   
-                                         />
-
-                                        <label for="pink" class="pinkinput"> 
-                                            Pink
-                                        </label>
-                                      </div>
-                                      <div class="funkyradio-info">
-                                        <input 
-                                        type="checkbox" 
-                                      
-                                         id="red" 
-                                       />
-                                        <label for="red" class="redinput"> 
-                                            Red
-                                        </label>
-                                      </div>
-                                      <div class="funkyradio-info">
-                                        <input type="checkbox" id="orange"  />
-                                        <label for="orange" class="orangeinput"> 
-                                            Orange
-                                        </label>
-                                      </div>
-                                      <div class="funkyradio-info">
-                                        <input type="checkbox"  id="yellow"  />
-                                        <label for="yellow" class="yellowinput"> 
-                                            Yellow
-                                        </label>
-                                      </div>
-                                      <div class="funkyradio-info">
-                                        <input type="checkbox"  />
-                                        <label for="green" class="greeninput">
-                                            Green
-                                        </label>
-                                      </div>
-                                      <div class="funkyradio-info">
-                                        <input type="checkbox"   id="teal" />
-                                        <label for="teal" class="tealinput"> 
-                                            Blue
-                                        </label>
-                                      </div>
-                                        <div class="funkyradio-info">
-                                        <input type="checkbox"   id="blue" />
-                                        <label for="blue"  class="blueinput"> 
-                                            Blue
-                                        </label>
-                                      </div>
-                                        <div class="funkyradio-info">
-                                        <input type="checkbox"  id="purple"   />
-                                        <label for="purple" class="purpleinput"> 
-                                            Purple
-                                        </label>
-                                      </div>
-                                        <div class="funkyradio-info">
-                                        <input type="checkbox"   id="brown" />
-                                        <label for="brown" class="browninput" > 
-                                            Brown
-                                        </label>
-                                      </div>
-                                      <div class="funkyradio-info">
-                                        <input type="checkbox"  id="black"  />
-                                        <label for="black" class="blackinput">
-                                            Black
-                                        </label>
-                                      </div>
-                                      <div class="funkyradio-info">
-                                        <input type="checkbox"  id="grey"  />
-                                        <label for="grey" class="greyinput"> 
-                                            Grey
-                                        </label>
-                                      </div>
-                                      <div class="funkyradio-info">
-                                        <input type="checkbox"   id="white"   />
-                                        <label for="white" class="whiteinput">
-                                            White
-                                        </label>
-                                      </div>
-                             
-                                      
-                                    </div>
-                                  </div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div class="clearfix"></div>
-                      
+                        <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
-                  <div class="modal-footer text-center">
-                      
-                      <button type="Update" class="btn newbtn" (click)="editSetting()">Save</button>&nbsp;
-                      <button type="button" class="btn  newbtn newcancelbtn" (click)="closeModel()">Cancel</button>
-                  </div>
+                        <div class="modal-body" style="background-color: white">
+                        
+                          <div class="row" >
+                            <div class="col-md-12 padtop20px">
+                              <div class="form-group">
+                                  <div class="input-effect form-group md-form ">
 
-              </div>
-            </form>
+                                    <input class="effect-16 validate" 
+                                    type="text"  
+                                    
+                                    name="tags"  
+                                    [(ngModel)] = "formdata.tags"
+                                    id="tags"  
+                                    required="required"> 
+
+                                    <input 
+                                    type="hidden"  
+                                    [(ngModel)] = "formdata.albumImageId"
+                                    name="AlbumImageId"  > 
+                                    <input 
+                                    type="hidden"  
+                                    [(ngModel)] = "formdata.albumsId"
+                                    name="AlbumsId"  > 
+ 
+                                    <label>Tags</label>
+                                    <span class="focus-border"></span>
+                                  </div>
+                                  <div>
+                                    <span class="tagstik"> 
+                                      ytuytu
+                                      <i class="material-icons">clears</i>
+                                    </span>      
+                                  </div>
+                                
+                                  <div class="input-effect form-group md-form ">
+                                
+                                    <input class="effect-16 validate" 
+                                    type="text"   
+                                    [(ngModel)] = "formdata.colorTags"
+                                    name="colorTags"
+                                    
+                                    >
+
+                                    <label>Colour Tag </label>
+                                    <span class="focus-border"></span>
+                                  </div>
+                                
+                                  <input 
+                                  type="hidden" 
+                                  name="id"   
+                                />
+                                
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                    <label>Color Tags</label>
+                                  
+                                    <div class="cityscroll22">
+                                      <div class="funkyradio">
+                                        
+                                        <div class="funkyradio-info">
+                                      
+                                          <input 
+                                          type="checkbox" 
+                                        
+                                          id="pink"   
+                                          />
+
+                                          <label for="pink" class="pinkinput"> 
+                                              Pink
+                                          </label>
+                                        </div>
+                                        <div class="funkyradio-info">
+                                          <input 
+                                          type="checkbox" 
+                                        
+                                          id="red" 
+                                        />
+                                          <label for="red" class="redinput"> 
+                                              Red
+                                          </label>
+                                        </div>
+                                        <div class="funkyradio-info">
+                                          <input type="checkbox" id="orange"  />
+                                          <label for="orange" class="orangeinput"> 
+                                              Orange
+                                          </label>
+                                        </div>
+                                        <div class="funkyradio-info">
+                                          <input type="checkbox"  id="yellow"  />
+                                          <label for="yellow" class="yellowinput"> 
+                                              Yellow
+                                          </label>
+                                        </div>
+                                        <div class="funkyradio-info">
+                                          <input type="checkbox"  />
+                                          <label for="green" class="greeninput">
+                                              Green
+                                          </label>
+                                        </div>
+                                        <div class="funkyradio-info">
+                                          <input type="checkbox"   id="teal" />
+                                          <label for="teal" class="tealinput"> 
+                                              Blue
+                                          </label>
+                                        </div>
+                                          <div class="funkyradio-info">
+                                          <input type="checkbox"   id="blue" />
+                                          <label for="blue"  class="blueinput"> 
+                                              Blue
+                                          </label>
+                                        </div>
+                                          <div class="funkyradio-info">
+                                          <input type="checkbox"  id="purple"   />
+                                          <label for="purple" class="purpleinput"> 
+                                              Purple
+                                          </label>
+                                        </div>
+                                          <div class="funkyradio-info">
+                                          <input type="checkbox"   id="brown" />
+                                          <label for="brown" class="browninput" > 
+                                              Brown
+                                          </label>
+                                        </div>
+                                        <div class="funkyradio-info">
+                                          <input type="checkbox"  id="black"  />
+                                          <label for="black" class="blackinput">
+                                              Black
+                                          </label>
+                                        </div>
+                                        <div class="funkyradio-info">
+                                          <input type="checkbox"  id="grey"  />
+                                          <label for="grey" class="greyinput"> 
+                                              Grey
+                                          </label>
+                                        </div>
+                                        <div class="funkyradio-info">
+                                          <input type="checkbox"   id="white"   />
+                                          <label for="white" class="whiteinput">
+                                              White
+                                          </label>
+                                        </div>
+                              
+                                        
+                                      </div>
+                                    </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div class="clearfix"></div>
+                        
+                      </div>
+                    <div class="modal-footer text-center">
+                        
+                        <button type="submit" class="btn newbtn">Save</button>&nbsp;
+                        <button type="button" class="btn  newbtn newcancelbtn" (click)="closeModel()">Cancel</button>
+                    </div>
+
+                </div>
+             
         </div>
+      </form>  
+   
     </div>
   
    

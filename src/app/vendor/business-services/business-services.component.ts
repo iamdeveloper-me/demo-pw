@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormArray, FormControl, Form } from '@angular/f
 import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
 import { Http,Headers } from '@angular/http';
+import { apiPath } from '../../shareApi/apiPath';
 export interface MainCategory {
   categoryId: number;
   categoryName:string;
@@ -18,9 +19,13 @@ export interface MainCategory {
 
 })
 export class BusinessServicesComponent implements OnInit {
+  public arr = []
+dom : boolean = true;
   val:string;
   person:boolean = true
+  serviceId:number
   service_provide_dailog = false;
+  public selectP :number;
   public serviceData = []
   form = new FormGroup({
     servicesId: new FormControl(),
@@ -30,6 +35,8 @@ export class BusinessServicesComponent implements OnInit {
   });
   seviceName: string;
 price:string;
+
+private api = apiPath.url;
 
 
 emptyArray=[]
@@ -55,7 +62,7 @@ public serviceFormArray:any;
   textbox = 4;
  show = false;
  allservices = true; 
-
+ customFieldsa=[]
  final =[];
   constructor(public http: Http,private fb: FormBuilder)
   {
@@ -113,16 +120,79 @@ public serviceFormArray:any;
           headers.append("Authorization",'Bearer '+authToken);
 
          //jo data post kar rhe h 
-          this.http.get(this.userservesicege,{headers:headers}).subscribe(data =>{
+          this.http.get(this.api+'api/Supplier/businessservices',{headers:headers}).subscribe(data =>{
             console.log(data.json())
             this.User_services = data.json();
-            debugger
+            this.seviceName = data.json()[0]['serviceName'];
+            this.serviceId = data.json()[0]['servicesId'];
+            console.log('serviceId',this.serviceId -1)
+
+            // this.Selected_serveice = this.categoryserveice[]
+            this.categoryserveice = JSON.parse(localStorage.getItem('categoryserveice'));
+
+
+            console.log(this.categoryserveice)
+            this.categoryserveice.forEach((e,p)=>{
+              if(e.categoryId == data.json()[0]['categoryId']){
+                this.Selected_serveice = e['services']
+                this.serviceShow = true;
+                
+                console.log('kkk',this.Selected_serveice)
+                e['services'].forEach(el => {
+                  if(el.servicesId == data.json()[0]['servicesId']){
+                    console.log(el.customFields)
+                    this.dom = true;
+
+                    el.customFields[0]['checked'] = true
+                    this.customFieldsa = el.customFields
+                  }
+                });
+              }
+            })
+            this.serviceShow = true;
+            // // selected customfield
+            // // index##customFieldId
+            // this.User_services[0].customFields.forEach((e,p)=>{
+            //  this.arr.push(e.customFieldId+'##'+p);
+            // })
+            // console.log('first time update get result',this.arr)
+
+            // this.Selected_serveice = this.categoryserveice[this.serviceId-1]
+            // console.log('Selected_serveice', this.Selected_serveice)
+
+
+            // this.serviceShow = true
+            // console.log(data.json()[0]['categoryId'])
+            // this.User_services.forEach((ele,pos)=>{
+            //   if(ele.categoryId == data.json()[0]['categoryId']){
+            //     this.services_all = ele
+            //     console.log('cat',this.services_all)
+            //   }
+            // })
+            // this.Selected_serveice 
+            // this.service_provide_dailog = false;
+
+            // console.log('fffff',  this.User_services[0].customFields)
+            // this.User_services['customFields'].forEach((elem,pos)=>{
+            //   if(elem.servicesId == data.json()[0]['servicesId']){
+            //     this.services_all = elem
+            //     console.log('cat',this.services_all)
+            //   }
+            // })
+            
+
+            // console.log(data.json()[0]['servicesId'])
+            // console.log(this.Selected_serveice[data.json()[0]['servicesId']])
+            // this.Selected_serveice = this.Selected_serveice[data.json()[0]['servicesId']]
+            // debugger
           });
 
 
           // 20 data
-          this.http.get(this.serveiceget,{headers:headers}).subscribe(data =>{
+          this.http.get(this.api+'api/Categories/categorieswithservices',{headers:headers}).subscribe(data =>{
             this.categoryserveice = data.json() as string[];
+            localStorage.setItem('categoryserveice', JSON.stringify(this.categoryserveice));
+
             console.log(this.categoryserveice)
             this.services_all = this.categoryserveice[0].services;
 
@@ -155,7 +225,7 @@ this.serviceData.push(form.value)
 console.log(this.modaldata)
 this.service_provide_dailog = false;
 
-
+this.dom = false;
 this.modaldata.forEach(element => {
   if(element.servicesId == form.value.servicesId){
     
@@ -177,9 +247,10 @@ this.modaldata.forEach(element => {
   }
   submitP(form: FormGroup){
     console.log(form.value)
+    debugger
     const o = {
-      "customFieldId": form.value.customFieldId,
-      "userValue": "string"
+      "customFieldId": form.value.customFieldId.split('xx')[0],
+      "userValue": form.value.customFieldId.split('xx')[1]
     }
     this.serviceData.push(o)
 
@@ -192,10 +263,13 @@ this.modaldata.forEach(element => {
   })
   
     this.pricelistArray.forEach((element,pos)=>{
-      if(element.key == form.value.customFieldId){
+      if(element.key == form.value.customFieldId.split('xx')[1]){
         // console.log('ss2',element)
         element['pick'] = true;
+        this.selectP = pos;
       }
+
+      console.log(this.selectP)
     })
     // this.pricelistArray.customFieldId
     console.log(this.pricelistArray)
@@ -269,7 +343,7 @@ this.modaldata.forEach(element => {
 
 
     // yha se selection post hoga
-     this.http.post(this.serveicepost,data,
+     this.http.post(this.api+'api/Supplier/savebusinessservices',data,
             {headers:headers}).subscribe(data =>{console.log( data.json()) 
     
         
@@ -327,7 +401,7 @@ this.modaldata.forEach(element => {
    console.log(dc)
   })
  const db = {
-    "servicesId": this.serviceData[0]['servicesId'],
+    "servicesId": this.serviceData[0]['servicesId'].split('xx')[0],
 
     "serviceFields": this.serviceData.splice(1)
     
@@ -361,6 +435,5 @@ this.modaldata.forEach(element => {
   }
 
 }
-
 
 

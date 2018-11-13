@@ -14,9 +14,33 @@
 							  <button type="button" class="addmorebtn newbtn" *ngIf="!show"  (click)="addnew_services()">Add More Services</button>		
 							  <button type="button" *ngIf="!allservices"  class="addmorebtn newbtn"   (click)="back_services()">back to  your services</button>						
 							  <div  *ngIf="!show" >
-								  <div class="subheadtik card-title" >
+								  <!-- <div class="subheadtik card-title" >
 									  {{first_category.categoryName}}  	
-								  </div>	
+								  </div>	 -->
+								  <div class="sliderholder" >
+									<button class="prebtn">
+											<i class="material-icons">arrow_back_ios</i>
+									</button>
+									<div class="servicecontainer"  >
+										<div class="activedisplay">
+											<!-- <input type="radio" checked/> Cakes -->
+										</div>
+										<div class="activehide"  *ngFor="let category of User_services ;let i = index;">
+										
+											<input 
+											name="Service" 
+											type="radio" [(ngModel)]="readioService" value= "{{i}}" (change)= "showService()" >
+											<!-- <input 
+											name="Service" 
+											type="radio" [(ngModel)]="readioService" value= "{{category.categoryId}}" (change)= "showService()" > -->
+											<span>{{category.categoryName}}</span>
+										
+										</div>
+									</div>
+									<button class="nextbtn" type="submit" >
+											<i class="material-icons">arrow_forward_ios</i>
+									</button>
+								</div>
 							  </div>
 							  <div class="sliderholder" *ngIf="!allservices">
 								  <button class="prebtn">
@@ -40,10 +64,10 @@
 						  </div>
 						  <div class="card margintop0px serveicedata" *ngIf="!show"  >
 							  <div class="card-content selectboxservice text-center"> 		
-								  <h5 class="text-center">Which service do you providef</h5>
+								  <h5 class="text-center">Which service do you provide?</h5>
 								  <div class="container">
-										  <div class="row ">
-											  {{seviceName}}
+										  <div class="row text-center">
+											<div class="displaycentertik">{{seviceName}}</div> 
 											  <!-- <div class="col-md-3" *ngFor="let category of first_category.services ">
 												  <label class="container1">
 														{{cho_Ser_name}}{{isActive}}
@@ -59,7 +83,7 @@
 											  
 											  </div> -->
 											  <!-- <span  class="newbtn " (click)= 'modal1(first_category.services) ' >select</span> -->
-											  <span  class="newbtn " (click)="modal1(first_category.services) ;service_provide_dailog = true" >select</span>
+											  <span  class="newbtn btncenter" (click)="service_provide_dailog = true" >select</span>
 											  
 										  </div>
 								  </div>
@@ -71,7 +95,7 @@
 											  Speciality, Costs of Services $ Experienced
 										   </h5>
 										 <div class="row" *ngIf="!dom; else domread">
-											<div class="col-md-3"   *ngFor="let customFields of Selected_serveice.customFields
+											<div class="col-md-3" *ngFor="let customFields of Selected_serveice.customFields
 											;let i = index;" >
 											   <div class="labelclick">
 													  <!-- <span class="checkmark containerselectbox">
@@ -98,11 +122,11 @@
 												  <div class="clearfix"></div>
 												  <div *ngIf="customFields.fieldType == 5" >
 													  <button    type="button"    class="newbtn martop15px changepadd"
-													  data-toggle="modal" data-target="#service_cost" (click) = "customFieldsdata(customFields)"     [disabled]="toggleBool">select</button>
+													  data-toggle="modal" data-target="#service_cost" (click) = "customFieldsdata(customFields) ;service_provide_dailog_2 = true"     [disabled]="toggleBool">select</button>
 												  </div>	
 												  <div *ngIf="customFields.fieldType == 6" >
 													  <button    type="button"    class="newbtn martop15px changepadd"
-													  data-toggle="modal" data-target="#service_cost_checkbox" (click) = "customFieldsdata(customFields)"     [disabled]="toggleBool">select</button>
+													  data-toggle="modal" data-target="#service_cost_checkbox" (click) = "customFieldsdata(customFields) ;service_provide_dailog_2 = true"     [disabled]="toggleBool">select</button>
 												  </div>	
 												  <div class="clearfix"></div>
 											   </div>
@@ -122,10 +146,17 @@
 													  
 													  <!-- <input type="checkbox" ([ngModel])="val" name="val"/>{{val}} -->
 													  <!-- <input type="checkbox" (change)="changeEvent($event)" [(ngModel)]="customFields.up" name="p" value="customFields.up" [checked]="checked"> -->
-													  <input class="form-check-input" (change)="changeEvent($event)" type="checkbox" name="mode" [value]="customFields.checked" [(ngModel)]="customFields.checked">
+													  <!-- <input class="form-check-input" (change)="changeEvent($event)" type="checkbox" name="mode"   > -->
   
 													  <!-- <input type="checkbox" (change)="changeEvent($event)" (change)="checkingServ()"/> -->
-  
+													  <div *ngIf="customFields.servicesId == serviceId ; else ccc">
+															<input class="form-check-input" (change)="changeEvent($event)" type="checkbox" name="mode"  [checked]="true" >
+															yes
+															</div>
+															<ng-template #ccc>
+																	<!-- <input class="form-check-input" (change)="changeEvent($event)" type="checkbox" name="mode"   > -->
+								no
+															</ng-template>
 												  {{customFields.name}}pp
   
 							  
@@ -255,7 +286,8 @@
 	</div>
   </div>	
   <div class="modal fade" id="service_provide" [ngClass] = "{'show' : service_provide_dailog}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  <div class="modal-dialog" role="document">
+		 
+	<div class="modal-dialog" role="document">
 			 <div class="modal-content">
 			  <form [formGroup]="form" (ngSubmit)="submitS(form)">
   
@@ -270,7 +302,7 @@
 							  {{cate.serviceName}}
 							</label>
 							<div *ngIf="cate.servicesId == serviceId ; else ccc">
-							<input type="radio"  formControlName="servicesId" value="{{cate.servicesId}}" checked="checked">
+							<input type="radio"  formControlName="servicesId" value="{{cate.servicesId}}" [checked]="true">
 	
 							</div>
 							<ng-template #ccc>
@@ -301,8 +333,8 @@
 			 </div>
 		  </div>
   </div>
-  <div class="modal fade" id="service_cost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog" role="document">
+  <div class="modal fade" id="service_cost" [ngClass] = "{'show' : service_provide_dailog_2}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document" *ngIf="!service_provide_dailog_2">
 		 <div class="modal-content">
 			<button type="button " class="close digi_btn" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
 			<h4  class="card-title text-center paddmarbot0px popupadjust"> {{pricelist}}</h4>

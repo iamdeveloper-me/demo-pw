@@ -24,7 +24,8 @@ dom : boolean = true;
   val:string;
   person:boolean = true
   serviceId:number
-  service_provide_dailog = false;
+  service_provide_dailog   = false;
+  service_provide_dailog_2 = false;
   public selectP :number;
   public serviceData = []
   form = new FormGroup({
@@ -40,9 +41,9 @@ private api = apiPath.url;
 
 
 emptyArray=[]
-   private serveiceget: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories/categorieswithservices'
+  //  private serveiceget: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories/categorieswithservices'
    private serveicepost: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savebusinessservices'
-   private userservesicege:string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessservices'
+  //  private userservesicege:string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessservices'
    
    option=[]
    myForm: FormGroup;
@@ -119,13 +120,21 @@ public serviceFormArray:any;
           headers.append('Content-Type', 'application/json');
           headers.append("Authorization",'Bearer '+authToken);
 
+          
+          
          //jo data post kar rhe h 
           this.http.get(this.api+'api/Supplier/businessservices',{headers:headers}).subscribe(data =>{
             console.log(data.json())
             this.User_services = data.json();
-            this.seviceName = data.json()[0]['serviceName'];
-            this.serviceId = data.json()[0]['servicesId'];
-            console.log('serviceId',this.serviceId -1)
+            // Hemant 2
+            // data.json().forEach(serviceName => {
+            //   if(serviceName.customFields !=null){
+            //     this.seviceName = serviceName['serviceName'];
+            //     this.serviceId = serviceName['servicesId'];
+            //     console.log('serviceId',this.serviceId )
+            //   }
+            // });
+            
 
             // this.Selected_serveice = this.categoryserveice[]
             this.categoryserveice = JSON.parse(localStorage.getItem('categoryserveice'));
@@ -188,6 +197,10 @@ public serviceFormArray:any;
           });
 
 
+          this.http.get(this.api+'/api/Supplier/businessservices',{headers:headers}).subscribe(data =>{
+            console.log('Data /api/Supplier/businessservices',JSON.stringify(data.json()))
+            
+          });
           // 20 data
           this.http.get(this.api+'api/Categories/categorieswithservices',{headers:headers}).subscribe(data =>{
             this.categoryserveice = data.json() as string[];
@@ -221,7 +234,11 @@ public serviceFormArray:any;
   }
   submitS(form: FormGroup){
 console.log(form.value)
+console.log('**************************')
+console.log(this.serviceData)
 this.serviceData.push(form.value)
+console.log(this.serviceData)
+console.log('**************************')
 console.log(this.modaldata)
 this.service_provide_dailog = false;
 
@@ -247,6 +264,9 @@ this.modaldata.forEach(element => {
   }
   submitP(form: FormGroup){
     console.log(form.value)
+    this.closeModel();
+    this.service_provide_dailog_2 = false;
+
     debugger
     const o = {
       "customFieldId": form.value.customFieldId.split('xx')[0],
@@ -357,6 +377,7 @@ this.modaldata.forEach(element => {
 
   showcontent:boolean=false;
   readioSelected:any;
+  readioService:any;
   service_data:any = {categoryName:"category"};
   services_all =[];
   costserviceTrue:boolean;
@@ -389,18 +410,20 @@ this.modaldata.forEach(element => {
   closeModel(){
        
     this.service_provide_dailog = false;
+    this.service_provide_dailog_2 = false;
   }
 
 
 
 
   dataSaveDB(){
-    console.log('++++++++++++++++++*********************************++++++++++++++++++++++++++++')
+    console.log('-------->>>')
   //  1
   this.serviceData.forEach((dc)=>{
    console.log(dc)
   })
  const db = {
+    "categoryId": 7,
     "servicesId": this.serviceData[0]['servicesId'].split('xx')[0],
 
     "serviceFields": this.serviceData.splice(1)
@@ -433,7 +456,26 @@ this.modaldata.forEach(element => {
     console.log(eve)
     console.log(this.val)
   }
+  showService(){
+    console.log(this.readioService)
+    const var_cat_id = this.readioService;
 
+    
+    this.seviceName = this.User_services[var_cat_id].serviceName
+    console.log(this.User_services[var_cat_id])
+    this.first_category = this.User_services[var_cat_id]
+    const CategoryId = this.first_category.categoryId
+    const ServiceId = this.first_category.servicesId
+    this.serviceId = ServiceId;
+    console.log(this.categoryserveice )
+    this.categoryserveice.forEach((ele)=>{
+      if(ele.categoryId == CategoryId){
+        this.modaldata = ele.services
+      }
+    })
+console.log(this.modaldata)
+
+  }
 }
 
 

@@ -63,7 +63,8 @@
 					<span class="greentext">Voucher Applied 50% Off</span>
 				</div>
 			</div>
-			<section id="filter" style="display: block;">
+			<!-- Sami Annually -->
+            <section id="filter" style="display: block;">
 				<div class="row">
 
 					<div class="col-sm-12">
@@ -72,39 +73,44 @@
 								<div class="panel card item"  *ngFor="let plan of pricing">
 									<div class="panel-heading arrow_box text-center">
 
-												<span class="mostpopulartext">Free</span>
+												<span class="mostpopulartext" *ngIf="plan.monthlyPrice == 0">Free</span>
 												<h3>{{ plan.title}}</h3>
 												<div class="pricesec">
 													<table align="center">
 														<tr>
 															<td>MUR</td>
-															<td class="pricebig">8</td>
+															<td class="pricebig">{{plan.monthlyPrice}}</td>
 															<td class="text-left lineheight16px">00<br/>/Month</td>
 														</tr>
 													</table>
 												</div>
-												<div class="basiccard">Billed Annually</div>
+												<div class="basiccard"> MUR {{plan.monthlyPrice * 6}}.00 <br/>Billed Semi Annually</div>
 
 									</div>
 									<ul class="list-group list-group-flush text-center">
-												<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
-												<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
-												<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
-												<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
-												<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
-												<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
-												<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
-												<li class="list-group-item"><i class="material-icons redtext">cancel</i> Pinned reviews</li>
-												<li class="list-group-item"><i class="material-icons bluetext">report</i> Limited Photos</li>
-												<li class="list-group-item"><i class="material-icons redtext">cancel</i> No Album</li>
-												<li class="list-group-item"><i class="material-icons redtext">cancel</i> No Performance analytics</li>
-												<li class="list-group-item"><i class="material-icons bluetext">report</i> 1 location</li>
-												<li class="list-group-item"><i class="material-icons bluetext">report</i> Low Priority in Search Results</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isStoreFront">check_circle</i><i *ngIf="!plan.isStoreFront" class="material-icons redtext">cancel</i> Storefront</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isLeadManagement">check_circle</i><i *ngIf="!plan.isLeadManagement" class="material-icons redtext">cancel</i> Leads Management</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isLinkedAccount">check_circle</i><i *ngIf="!plan.isLinkedAccount" class="material-icons redtext">cancel</i> Linked Accounts</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isCalendar">check_circle</i><i *ngIf="!plan.isCalendar" class="material-icons redtext">cancel</i> Wedding Calendar</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPromoteProfile">check_circle</i><i *ngIf="!plan.isPromoteProfile" class="material-icons redtext">cancel</i> Promote Profile</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPublishEvents">check_circle</i><i *ngIf="!plan.isPublishEvents" class="material-icons redtext">cancel</i> Publish Events</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isReviewManagement">check_circle</i><i *ngIf="!plan.isReviewManagement" class="material-icons redtext">cancel</i> Review Management</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.pinnedReviews">check_circle</i><i *ngIf="!plan.pinnedReviews" class="material-icons redtext">cancel</i> Pinned reviews</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedPhotos">check_circle</i><i *ngIf="!plan.unlimitedPhotos" class="material-icons redtext">cancel</i> Limited Photos</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimmited Album</li>
+												<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.performanceAnalytics}} Performance analytics</li>
+												<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.noOfLocationAllowed}} location</li>
+												<li class="list-group-item"><i class="material-icons bluetext" >report</i> Low Priority in Search Results {{plan.priorityInSearch}}</li>
 									</ul>
-									<div class="panel-footer text-center">
-										<a class="btn btnchoosetik"   type="submit" (click) = "monthlyPrice(plan)" >CURRENT PLAN
-										</a>
+									<div class="panel-footer text-center" >
+										<button class="btn btnchoosetik"   type="submit" (click) = "monthlyPrice(plan)" [disabled]="plan.pricingPlanId == pricingPlanId  && payFrequency == 0">SELECTED PLAN
+										</button>
 									</div>
+									<!-- <ng-template #other_content>
+										<a class="btn btnchoosetik"   type="submit" (click) = "monthlyPrice(plan)" > CURRENT PLAN	
+											</a>
+									</ng-template> -->
+									
 								</div>
 							</div>
 
@@ -112,6 +118,7 @@
 					</div>
 				</div>
 			</section>
+			<!-- Annually -->
 			<section id="action" style="display: none;">
 
 				<div class="row" >
@@ -120,38 +127,38 @@
 							<div id="membershipcarouselann" class="owl-carousel">
 								<div class="panel card item" *ngFor="let plan of pricing">
 									<div class="panel-heading arrow_box text-center">
-										<span class="mostpopulartext">Free</span>
+										<span class="mostpopulartext" *ngIf="plan.monthlyPrice == 0">Free</span>
 										<h3>{{ plan.title}}</h3>
 										<div class="pricesec">
 											<table align="center">
 												<tr>
 													<td>MUR</td>
-													<td class="pricebig">8</td>
+													<td class="pricebig">{{plan.monthlyPrice  *  (12 - plan.noOfMonthFeeOff) }}</td>
 													<td class="text-left lineheight16px">00<br/>/Annually</td>
 												</tr>
 											</table>
 										</div>
-										<div class="basiccard">Billed Annually</div>
+										<div class="basiccard">MUR {{plan.monthlyPrice * (12 - plan.noOfMonthFeeOff) }}.00 <br/>Billed Annually</div>
 									</div>
 									<ul class="list-group list-group-flush text-center">
-									<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
-									<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
-									<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
-									<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
-									<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
-									<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
-									<li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
-									<li class="list-group-item"><i class="material-icons redtext">cancel</i> Pinned reviews</li>
-									<li class="list-group-item"><i class="material-icons bluetext">report</i> Limited Photos</li>
-									<li class="list-group-item"><i class="material-icons redtext">cancel</i> No Album</li>
-									<li class="list-group-item"><i class="material-icons redtext">cancel</i> No Performance analytics</li>
-									<li class="list-group-item"><i class="material-icons bluetext">report</i> 1 location</li>
-									<li class="list-group-item"><i class="material-icons bluetext">report</i> Low Priority in Search Results</li>
-									</ul>
+											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isStoreFront">check_circle</i><i *ngIf="!plan.isStoreFront" class="material-icons redtext">cancel</i> Storefront</li>
+											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isLeadManagement">check_circle</i><i *ngIf="!plan.isLeadManagement" class="material-icons redtext">cancel</i> Leads Management</li>
+											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isLinkedAccount">check_circle</i><i *ngIf="!plan.isLinkedAccount" class="material-icons redtext">cancel</i> Linked Accounts</li>
+											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isCalendar">check_circle</i><i *ngIf="!plan.isCalendar" class="material-icons redtext">cancel</i> Wedding Calendar</li>
+											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPromoteProfile">check_circle</i><i *ngIf="!plan.isPromoteProfile" class="material-icons redtext">cancel</i> Promote Profile</li>
+											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPublishEvents">check_circle</i><i *ngIf="!plan.isPublishEvents" class="material-icons redtext">cancel</i> Publish Events</li>
+											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isReviewManagement">check_circle</i><i *ngIf="!plan.isReviewManagement" class="material-icons redtext">cancel</i> Review Management</li>
+											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.pinnedReviews">check_circle</i><i *ngIf="!plan.pinnedReviews" class="material-icons redtext">cancel</i> Pinned reviews</li>
+											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedPhotos">check_circle</i><i *ngIf="!plan.unlimitedPhotos" class="material-icons redtext">cancel</i> Limited Photos</li>
+											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimmited Album</li>
+											<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.performanceAnalytics}} Performance analytics</li>
+											<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.noOfLocationAllowed}} location</li>
+											<li class="list-group-item"><i class="material-icons bluetext" >report</i> Low Priority in Search Results {{plan.priorityInSearch}}</li>
+								</ul>
 									<div class="panel-footer text-center">
 
-										<a class="btn btnchoosetik"  type="submit" (click) = "annualPrice(plan)" >CURRENT PLAN
-										</a>
+										<button class="btn btnchoosetik"  type="submit" (click) = "annualPrice(plan)" [disabled]="plan.pricingPlanId == pricingPlanId  && payFrequency == 1">SELECTED PLAN
+										</button>
 									</div>
 								</div>
 							</div>
@@ -169,7 +176,6 @@
 </div>
 
 </div>
-
 
 
 

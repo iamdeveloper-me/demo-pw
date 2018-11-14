@@ -489,10 +489,9 @@ margin-top: 10px!important;
       background: white;
   }
   .ulbox_text{
-      margin-top: 20px;
-      border: 1px solid #ccc;
+    margin-top: 0px;
+      border-top: 1px solid #ccc;
       padding: 10px;
-     // display: none;
   }
   .ulbox_text.showdiv{display:block}
   .ulbox_text li{
@@ -599,8 +598,7 @@ outline: none!important;
    background: white;
 }
 .ulbox_text{
-   margin-top: 20px;
-   border: 1px solid #ccc;
+   border-top: 1px solid #ccc;
    padding: 10px;
 }
 .ulbox_text ul{
@@ -612,7 +610,7 @@ outline: none!important;
 }
 
 .container1 {
-    display: block;
+    display: inline-block;
     position: relative;
     margin-bottom: 12px;
     cursor: pointer;
@@ -620,8 +618,10 @@ outline: none!important;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    text-align:center;
+    text-align:left;
+    text-indent: 50px;
     max-width:300px;
+    min-width: 185px;
     margin-left:auto;
     margin-right:auto;
 }
@@ -691,7 +691,7 @@ outline: none!important;
     cursor: pointer;
 }
 .radioadjustbox{
-border: 1px solid #e5e5e5 !important;
+border: 0px solid #e5e5e5 !important;
     height: 33px;
     line-height: 30px;
 }
@@ -1072,6 +1072,16 @@ nav.tab-pager ul li.tab-pager--right a:after {
 }
 .activedisplay{
     display: block;
+}
+.servicecontainer button{
+  padding: 0px!important;
+    color: #000!important;
+    border: 0px!important;
+    background: transparent!important;
+}
+.titleset{
+  padding:15px 0px!important;
+  margin:0px!important;
 }
 .activehide{
     display: none;

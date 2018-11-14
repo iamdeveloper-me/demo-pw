@@ -79,6 +79,11 @@ public serviceFormArray:any;
               $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
               $.getScript('./assets/js/vendorsidebar.js');
             
+
+            setTimeout(function(){ $(".servicecontainer div:first").removeClass("activehide"); $(".servicecontainer div:first").addClass("activedisplay"); $(".servicecontainer div:first button").click(); }, 2000);
+
+              // 
+
               $(document).on('click', '.nextbtn', function(){
                 var active = $(this).siblings('.servicecontainer').find('.activedisplay');
                 if (active.next('div').hasClass('activehide')) {
@@ -88,8 +93,11 @@ public serviceFormArray:any;
                  // active.next('div').find('input').prop("checked", true);
                   active.next('div').removeClass('activehide');
                   active.next('div').addClass('activedisplay');
+                  active.next('div').find("button").click();
                 }
               });
+
+
 
               $(document).on('click', '.prebtn', function(){
                 var active = $(this).siblings('.servicecontainer').find('.activedisplay');
@@ -100,6 +108,7 @@ public serviceFormArray:any;
               //    active.prev('div').find('input').prop("checked", true);
                   active.prev('div').removeClass('activehide');
                   active.prev('div').addClass('activedisplay');
+                  active.prev('div').find("button").click();
                   }
               });
 

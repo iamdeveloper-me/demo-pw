@@ -36,7 +36,7 @@ dom : boolean = true;
   });
   seviceName: string;
 price:string;
-
+customFieldsIds:any;
 private api = apiPath.url;
 
 
@@ -241,6 +241,7 @@ console.log(this.serviceData)
 console.log('**************************')
 console.log(this.modaldata)
 this.service_provide_dailog = false;
+localStorage.setItem('id_of_selected_service', this.serviceData[0]['servicesId']);
 
 this.dom = false;
 this.modaldata.forEach(element => {
@@ -423,8 +424,9 @@ this.modaldata.forEach(element => {
    console.log(dc)
   })
  const db = {
-    "categoryId": 7,
-    "servicesId": this.serviceData[0]['servicesId'].split('xx')[0],
+    "categoryId": localStorage.getItem('id_of_selected_category')
+    ,
+    "servicesId": localStorage.getItem('id_of_selected_service'),
 
     "serviceFields": this.serviceData.splice(1)
     
@@ -456,8 +458,11 @@ this.modaldata.forEach(element => {
     console.log(eve)
     console.log(this.val)
   }
-  showService(){
+  showService(i){
+    this.readioService = i;
     console.log(this.readioService)
+    
+
     const var_cat_id = this.readioService;
 
     
@@ -466,14 +471,23 @@ this.modaldata.forEach(element => {
     this.first_category = this.User_services[var_cat_id]
     const CategoryId = this.first_category.categoryId
     const ServiceId = this.first_category.servicesId
-    this.serviceId = ServiceId;
+    if(this.first_category.customFields != null){
+      localStorage.setItem('id_of_selected_category', this.first_category.categoryId);
+      localStorage.setItem('id_of_selected_service', this.first_category.servicesId);
+      const CustomFieldsId = this.first_category.customFields[0].fieldValue
+      console.log(CustomFieldsId)
+      this.serviceId = ServiceId;
+      this.customFieldsIds = CustomFieldsId;
+    }
+    
+
     console.log(this.categoryserveice )
     this.categoryserveice.forEach((ele)=>{
       if(ele.categoryId == CategoryId){
         this.modaldata = ele.services
       }
     })
-console.log(this.modaldata)
+    console.log(this.modaldata)
 
   }
 }

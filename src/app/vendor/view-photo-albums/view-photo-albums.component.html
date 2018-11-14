@@ -67,8 +67,11 @@
                                                         </i>
                                                 </button>
                                                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="dropdownBasic2">
-                                                  <li><a (click) = "setbackground(image.albumImageId)"> Set as  Album Cover Image</a></li>
-                                                   <li><a > Set as Business Cover Image</a></li>
+                                                  <!-- <li><a > Set as  Album Cover Image</a></li>  -->
+                                                  <!-- (click) = "set_Album_background(image.albumsId )" -->
+                                                  <li><a (click) = "setas_storefront_image(image.albumImageId )"> Set as  store front image</a></li>
+                                                   <li><a (click) = "setbackground(image.albumImageId)" > Set as  Cover Image</a></li>
+                                                   <!-- <li><a (click) = "storefrontimage()" > store front image</a></li> -->
                                                 </ul>
                                               </div>
                                  </td>

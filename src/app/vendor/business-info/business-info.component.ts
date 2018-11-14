@@ -22,6 +22,7 @@ export class BusinessInfoComponent implements OnInit {
   BusinessDailog = false;
   progress = false;
   cropperupload =true;
+  nodata = '';
   Description;
   twitter;
   instagram;
@@ -130,26 +131,7 @@ export class BusinessInfoComponent implements OnInit {
     this.http.get(this.url,{headers:headers}).subscribe(data =>{
     this.vendor = data.json();
     console.log(this.vendor)
-    if(this.vendor.fbAvailable == false)
-    {
-      this.vendor.facebookURL = '';
-    }
-    if(this.vendor.twitterAvailable == false)
-    {
-      this.vendor.twitterURL = '';
-    }
-    if(this.vendor.googleAvailable == false)
-    {
-      this.vendor.googleURL = '';
-    }
-    if(this.vendor.instaAvailable == false)
-    {
-      this.vendor.instalURL = '';
-    }
-    if(this.vendor.perfectWeddingAvailable == false)
-    {
-      this.vendor.perfectWeddingURL = '';
-    }
+   
          
     if(!this.vendor.fileId)
                    {
@@ -231,18 +213,19 @@ export class BusinessInfoComponent implements OnInit {
                headers.append('Content-Type', 'application/json');
                headers.append("Authorization",'Bearer '+authToken);
                this.http.get(this.url,{headers:headers}).subscribe(data =>{            
-                 console.log(data.json());
+                
                 
                  this.imagee = data.json().files.path ;
 
 
-                 setTimeout(function(){  
-                    this.imagecropDailog = false;
-                  }, 5000);
+                 setTimeout(() => {
+                  console.log('aaaaaaaaaaa',data.json()); 
+                  this.imagecropDailog = false;
+                  }, 2000);
                 
                
                  console.log(this.imagee);
-                 if(this.total == 80 && !data.json().files.path)
+                 //if(this.total == 80 && !data.json().files.path)
                  
                 //  console.log(this.total);
                 //  {   this.imagecropDailog = false;}
@@ -275,7 +258,8 @@ export class BusinessInfoComponent implements OnInit {
     upForm(e,data){
            console.log(e.value);
            console.log(data);
-        
+
+          
           this.facebookDailog = false;
           this.twitterDailog = false;
           this.instagramDailog = false;
@@ -290,64 +274,106 @@ export class BusinessInfoComponent implements OnInit {
               headers.append('Accept', 'application/json')
               headers.append('Content-Type', 'application/json');
               headers.append("Authorization",'Bearer '+authToken);
+              if(e.value.fbAvailable == false && !e.value.facebookURL|| 
+              e.value.googleAvailable == false && !e.value.googleURL ||
+              e.value.instaAvailable == false && !e.value.instalURL ||
+              e.value.perfectWeddingAvailable == false && !e.value.perfectWeddingURL ||
+              e.value.twitterAvailable == false && !e.value.twitterURL){
+                this.toastr.error("Can not save empty field")
+                this.http.get(this.url,{headers:headers}).subscribe(data =>{
+                          
+                  console.log(this.vendor );
+                  this.modelfield.nameOfBusiness =data.json().nameOfBusiness;
+                  this.modelfield.businessDetails = data.json().businessDetails;
+                  if(data.json().fbAvailable ==  false)
+                  {
+                    this.modelfield.facebookURL = 'Dont have any URL';
+                  }else{ this.modelfield.facebookURL= data.json().facebookURL;}
+                  
+                  if(data.json().twitterAvailable ==  false)
+                  {
+                    this.modelfield.twitterURL = 'Dont have any URL';
+                  }else{  this.modelfield.twitterURL =data.json().twitterURL;}
 
-              let updatebusinessinfo = this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatebusinessinfo",
-                       e.value,{headers:headers});  
- 
-            updatebusinessinfo.subscribe((responce)=>{ 
-              console.log(responce.status);
-              this.toastr.success(responce.json().message);
-            if(responce.status == 200)
-            {
-              this.http.get(this.url,{headers:headers}).subscribe(data =>{
+                  
+                  if(data.json().googleAvailable ==  false)
+                  {
+                    this.modelfield.googleURL = 'Dont have any URL';
+                  }else{    this.modelfield.googleURL = data.json().googleURL;}
+
+                                
+                  if(data.json().instaAvailable ==  false)
+                  {
+                    this.modelfield.instalURL = 'Dont have any URL';
+                  }else{       this.modelfield.instalURL = data.json().instalURL;}
+                
               
-                console.log(this.vendor );
-                this.modelfield.nameOfBusiness =data.json().nameOfBusiness;
-                this.modelfield.facebookURL= data.json().facebookURL;
-                this.modelfield.twitterURL =data.json().twitterURL;
-                this.modelfield.googleURL = data.json().googleURL;
-                this.modelfield.instalURL = data.json().instalURL;
-                this.modelfield.perfectWeddingURL = data.json().perfectWeddingURL;
-                this.modelfield.businessDetails = data.json().businessDetails;
-                if(this.modelfield.fbAvailable == false)
-                {
-                  this.modelfield.facebookURL = '';
-                }else{ this.modelfield.facebookURL= data.json().facebookURL;}
+                  if(data.json().perfectWeddingAvailable ==  false)
+                  {
+                    this.modelfield.perfectWeddingURL = 'Dont have any URL';
+                  }else{     this.modelfield.perfectWeddingURL = data.json().perfectWeddingURL;}
 
-
-                if(this.modelfield.twitterAvailable == false)
-                {
-                  this.modelfield.twitterURL = '';
-                }else{    this.modelfield.twitterURL =data.json().twitterURL;}
-
-
-                if(this.modelfield.googleAvailable == false)
-                {
-                  this.modelfield.googleURL = '';
-                }else{   this.modelfield.googleURL = data.json().googleURL;}
-
-
-
-                if(this.modelfield.instaAvailable == false)
-                {
-                  this.modelfield.instalURL = '';
-                }else{  this.modelfield.instalURL = data.json().instalURL;}
-
-
-
-                if(this.modelfield.perfectWeddingAvailable == false)
-                {
-                  this.modelfield.perfectWeddingURL = '';
-                }else{   this.modelfield.perfectWeddingURL = data.json().perfectWeddingURL;}
-   
               
-              },error=>{console.log(error)})
+          
+                
+                
+                },error=>{console.log(error)})
+              } else{
+                      let updatebusinessinfo = this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatebusinessinfo",
+                      e.value,{headers:headers});  
+
+                        updatebusinessinfo.subscribe((responce)=>{ 
+                          console.log(responce.status);
+                          this.toastr.success(responce.json().message);
+                        if(responce.status == 200)
+                        {
+                          this.http.get(this.url,{headers:headers}).subscribe(data =>{
+                          
+                            console.log(this.vendor );
+                            console.log(data.json().perfectWeddingURL );
+                            this.modelfield.nameOfBusiness =data.json().nameOfBusiness;
+                            this.modelfield.businessDetails = data.json().businessDetails;
+                            if(data.json().fbAvailable ==  false)
+                            {
+                              this.modelfield.facebookURL = 'Dont have any URL';
+                            }else{ this.modelfield.facebookURL= data.json().facebookURL;}
+                            
+                            if(data.json().twitterAvailable ==  false)
+                            {
+                              this.modelfield.twitterURL = 'Dont have any URL';
+                            }else{  this.modelfield.twitterURL =data.json().twitterURL;}
+
+                            
+                            if(data.json().googleAvailable ==  false)
+                            {
+                              this.modelfield.googleURL = 'Dont have any URL';
+                            }else{    this.modelfield.googleURL = data.json().googleURL;}
+
                                           
+                            if(data.json().instaAvailable ==  false)
+                            {
+                              this.modelfield.instalURL = 'Dont have any URL';
+                            }else{       this.modelfield.instalURL = data.json().instalURL;}
+                          
+                        
+                            if(data.json().perfectWeddingAvailable ==  false)
+                            {
+                              this.modelfield.perfectWeddingURL = 'Dont have any URL';
+                            }else{     this.modelfield.perfectWeddingURL = data.json().perfectWeddingURL;}
+
+                        
+                    
+                          
+                          
+                          },error=>{console.log(error)})
+                                                      
+                        
+                        } 
+
+                        },(error)=>{console.log(error)
+                      this.toastr.error(error._body,error.statusText);});
+              }
             
-            } 
-    
-        },(error)=>{console.log(error)
-          this.toastr.error(error._body,error.statusText);});
         
     }
 
@@ -365,7 +391,46 @@ export class BusinessInfoComponent implements OnInit {
                     this.imagecropDailog = false;
     } 
     
+    switch_fbAvailable(e){
+      console.log(e);
+    
+      if(e  ==  false || e ==true)
+      {
+        this.modelfield.facebookURL = '';
+      }
+    }
+    switch_twitterAvailable(e){
+      if(e ==  false || e ==true)
+      {
+        this.modelfield.twitterURL = '';
+      }
+    }
+
+    switch_googleAvailable(e){
 
 
+      if(e  ==  false || e ==true)
+      {
+        this.modelfield.googleURL = '';
+        
+      }
+    }
+    switch_instaAvailable(e){
+
+      if(e ==  false || e ==true)
+      {
+        this.modelfield.instalURL = '';
+       
+      }
+
+    }
+    switch_perfectWeddingAvailable(e){
+      if(e ==  false || e ==true)
+      {
+        this.modelfield.perfectWeddingURL = '';
+       
+      }
+
+    }
 
 }

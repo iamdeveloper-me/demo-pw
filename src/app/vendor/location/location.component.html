@@ -32,7 +32,7 @@
                                                     <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd(m)'></agm-marker>
                                                     <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
                                             </agm-map>
-                                        <div class="img_overlay " (click)="OpenmapDailog()" data-target="#googlemap"  data-toggle="modal">
+                                        <div class="img_overlay " (click)="OpenmapDailog(); " >
                                             <div class="col-lg-12 col-md-12 pad_left_0px whitetext">
                                                    <span> Edit Map </span>
                                                 <button type="button" class="btn edit_btn1" >
@@ -223,7 +223,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Edit Map Location {{address_modelfield}}</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" (click)="closeModel()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -237,11 +237,17 @@
                     <div class="container-fluid martop30px">
                         <div class="form-group midcenter">
                             <div class="input-effect md-form">
-                                <input  type = "text"      
+                                <!-- <input  type = "text"      
                                 id= "gmapInput"
                                 name="mapAddress" 
                                
-                                class="effect-16 validate" placeholder="Search for Location" > 
+                                class="effect-16 validate" placeholder="Search for Location" >  -->
+
+                                <input type = "text" 
+                                [(ngModel)] = "address"   
+                                name="mapAddress" 
+                                (change) = "findLocation(address)"
+                                 class="effect-16 validate" placeholder="Search for Location" autocorrect="off" autocapitalize="off" spellcheck="off"  #search> 
                                 <label for="comment">Enter Your Address</label>
                                 <span class="focus-border"></span>
                             </div>
@@ -259,7 +265,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn newbtn newcancelbtn">Save</button>&nbsp;
-                    <button type="button" class="btn newbtn" data-dismiss="modal">Close</button> 
+                    <button type="button" class="btn newbtn" (click)="closeModel()">Close</button> 
                 </div>
             </div>
         </div>
@@ -773,111 +779,111 @@
 
 
 <form (ngSubmit)="update_phone(e,modelfield)" #e="ngForm">        
-        <div class="modal fade" id="phone" tabindex="-1" [ngClass] = "{'show' : phone_dailog}" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Phone Number</h4>
-                        <button type="button" class="close"  (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="clearfix"></div>
-                        <h6 class="col-xs-offset-2 phonepopuphead"> Add More Number</h6>
-                        <div class="col-sm-10 col-9 nopadd">  
-                            <div class=" fristfieldremovebtnnone nopadd">
-                                    <div *ngFor="let new_phone of modelfield.locationPhones;let i=index">
-                                          
-                                            <div class="col-sm-2 col-3">
-                                                <select name="phoneType+{{i}}" [(ngModel)] = "new_phone.phoneType" >
-                                                    <option [value]="'Phone'">Phone</option>
-                                                        <option [value]="'Mobile'">Mobile</option>
-                                                </select>
-                                            </div>
-                                          
-                                            <input  
+    <div class="modal fade" id="phone" tabindex="-1" [ngClass] = "{'show' : phone_dailog}" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Phone Number</h4>
+                    <button type="button" class="close"  (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="clearfix"></div>
+                    <h6 class="col-xs-offset-2 phonepopuphead"> Add More Number</h6>
+                    <div class="col-sm-10 col-9 nopadd">  
+                        <div class=" fristfieldremovebtnnone nopadd">
+                            <div *ngFor="let new_phone of modelfield.locationPhones;let i=index">
+                                
+                                    <div class="col-sm-2 col-3">
+                                        <select name="phoneType+{{i}}" [(ngModel)] = "new_phone.phoneType" >
+                                            <option [value]="'Phone'">Phone</option>
+                                                <option [value]="'Mobile'">Mobile</option>
+                                        </select>
+                                    </div>
+                                
+                                    <input  
+                                    type="text"  
+                                    id="urlName" class="inputbottombor"
+                                    required 
+                                    [(ngModel)]="new_phone.phoneNumber" 
+                                    placeholder="000-000-000"
+                                    (keypress)="keyPress($event)"
+                                    minlength=10 
+                                    maxlength=10 
+                                    ng-pattern="/^[0-9]{1,7}$/"
+                                    name="phoneNumber+{{i}}" 
+                                    #urlName="ngModel">   
+                                    <label for="urlName">Is prime or not</label>
+
+                                    <input  
+                                    type="checkbox"  
+                                    class="inputbottombor"
+                                    [(ngModel)]="new_phone.isPrimary" 
+                                    [value]="isPrimary"
+                                    checked
+                                    name="isPrimary" 
+                                    > 
+                                    <button type="button" class="remove btn btn-danger btn-raised"  (click)="removeColumn(new_phone)">x</button>
+                            </div>
+                            <fieldset  *ngFor="let column of columns; let i = index">
+                                <div style="position: relative;overflow: hidden;">
+                                    <div class="col-sm-2 col-3">
+                                        <select name="phoneType" [(ngModel)] = "column.phoneType" >
+                                            <option [value]="'Phone'">Phone</option>
+                                            <option [value]="'Mobile'">Mobile</option>
+                                        </select>
+                                    </div>
+                                    <div class="pull-left nopadd" >
+                                        <label for="urlName"></label>
+                                        <input  
                                             type="text"  
                                             id="urlName" class="inputbottombor"
                                             required 
-                                            [(ngModel)]="new_phone.phoneNumber" 
+                                            [(ngModel)]="column.phoneNumber" 
                                             placeholder="000-000-000"
                                             (keypress)="keyPress($event)"
                                             minlength=10 
                                             maxlength=10 
                                             ng-pattern="/^[0-9]{1,7}$/"
-                                            name="phoneNumber+{{i}}" 
+                                            name="phoneNumber" 
                                             #urlName="ngModel">   
-                                            <label for="urlName">Is prime or not</label>
-
+                                            <label for="urlName">Is prime or not{{modelfield.vendorLocationId}}</label>
+                                        
                                             <input  
                                             type="checkbox"  
                                             class="inputbottombor"
-                                            [(ngModel)]="new_phone.isPrimary" 
+                                            [(ngModel)]="column.isPrimary" 
                                             [value]="isPrimary"
                                             checked
                                             name="isPrimary" 
                                             > 
-                                            <button type="button" class="remove btn btn-danger btn-raised"  (click)="removeColumn(new_phone)">x</button>
+                                            
+
+                                            <input type = "hidden"      
+                                            [(ngModel)] = "modelfield.vendorLocationId"   
+                                            name="vendorLocationId" 
+                                            class="effect-16 validate" placeholder="Search for Location" > 
+
+                                            <input type = "hidden"      
+                                            [(ngModel)] = "locationPhoneId"   
+                                            name="locationPhoneId" 
+                                            class="effect-16 validate" placeholder="Search for Location" > 
+                                            
                                     </div>
-                                    <fieldset  *ngFor="let column of columns; let i = index">
-                                        <div style="position: relative;overflow: hidden;">
-                                            <div class="col-sm-2 col-3">
-                                                <select name="phoneType" [(ngModel)] = "column.phoneType" >
-                                                    <option [value]="'Phone'">Phone</option>
-                                                    <option [value]="'Mobile'">Mobile</option>
-                                                </select>
-                                            </div>
-                                            <div class="pull-left nopadd" >
-                                                <label for="urlName"></label>
-                                                <input  
-                                                    type="text"  
-                                                    id="urlName" class="inputbottombor"
-                                                    required 
-                                                    [(ngModel)]="column.phoneNumber" 
-                                                    placeholder="000-000-000"
-                                                    (keypress)="keyPress($event)"
-                                                    minlength=10 
-                                                    maxlength=10 
-                                                    ng-pattern="/^[0-9]{1,7}$/"
-                                                    name="phoneNumber" 
-                                                    #urlName="ngModel">   
-                                                    <label for="urlName">Is prime or not{{modelfield.vendorLocationId}}</label>
-                                                
-                                                    <input  
-                                                    type="checkbox"  
-                                                    class="inputbottombor"
-                                                    [(ngModel)]="column.isPrimary" 
-                                                    [value]="isPrimary"
-                                                    checked
-                                                    name="isPrimary" 
-                                                    > 
-                                                    
-
-                                                    <input type = "hidden"      
-                                                    [(ngModel)] = "modelfield.vendorLocationId"   
-                                                    name="vendorLocationId" 
-                                                    class="effect-16 validate" placeholder="Search for Location" > 
-
-                                                    <input type = "hidden"      
-                                                    [(ngModel)] = "locationPhoneId"   
-                                                    name="locationPhoneId" 
-                                                    class="effect-16 validate" placeholder="Search for Location" > 
-                                                    
-                                            </div>
-                                            <button type="button" class="remove btn btn-danger btn-raised"  (click)="removeColumn(i)">x</button>
-                                        </div>
-                                    </fieldset>         
-                            </div>
+                                    <button type="button" class="remove btn btn-danger btn-raised"  (click)="removeColumn(i)">x</button>
+                                </div>
+                            </fieldset>         
                         </div>
-                        <div class="col-sm-12">
-                            <br/>
-                            <a class="addfields btn btn-info btn-raised" (click)="addNewColumn(e)">Add More Number</a>
-                        </div>     
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn newbtn">Save</button>&nbsp;
-                        <button type="button" class="btn newbtn newcancelbtn"  (click)="closeModel()">Close</button>
-                    </div>
+                    <div class="col-sm-12">
+                        <br/>
+                        <a class="addfields btn btn-info btn-raised" (click)="addNewColumn(e)">Add More Number</a>
+                    </div>     
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn newbtn">Save</button>&nbsp;
+                    <button type="button" class="btn newbtn newcancelbtn"  (click)="closeModel()">Close</button>
                 </div>
             </div>
         </div>
-    </form>   
+    </div>
+</form>   

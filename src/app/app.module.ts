@@ -418,7 +418,8 @@ export function getAuthServiceConfigs() {
               }
         }),
         AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyBr5_picK8YJK7fFR2CPzTVMj6GG1TtRGo'
+            apiKey: 'AIzaSyBr5_picK8YJK7fFR2CPzTVMj6GG1TtRGo',
+            libraries: ["places"]
         })
     ],
 

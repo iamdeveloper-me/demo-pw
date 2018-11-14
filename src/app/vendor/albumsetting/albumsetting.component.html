@@ -12,7 +12,7 @@
                   <a routerLink= "../../albumview" class="pull-left iconfloatleft">
                   <i class="material-icons"> arrow_back_ios </i> <span>Album</span>
                   </a> 
-                <div class="subheadtik">Album Name Settings</div>
+                <div class="subheadtik">Album Name Settingssss</div>
               </div> 
 
                 <table width="100%" class="tablelisttags" cell-spacing="5" cell-padding="5">
@@ -30,12 +30,13 @@
                       </div> 
                       </td>
                       <td> 
-                        <div class="textboxlist">
-                          <span class="tagstik">
-                            {{image.tags}}
-                            <i class="material-icons">clears</i>
-                          </span>
-                        </div>
+                   
+                        <div *ngFor="let tag of album_tag;let i=index">
+                            <span class="tagstik"> 
+                                {{tag}}    
+                              <i class="material-icons">clears</i>
+                            </span>      
+                          </div>
                       </td>
                       <td>
                         <div class="colorboxlist" >
@@ -94,10 +95,10 @@
 
                                     <input class="effect-16 validate" 
                                     type="text"  
-                                    
+                                    (onSelect)="onSelect($event)" 
                                     name="tags"  
                                     [(ngModel)] = "formdata.tags"
-                                    id="tags"  
+                                  
                                     required="required"> 
 
                                     <input 
@@ -112,9 +113,10 @@
                                     <label>Tags</label>
                                     <span class="focus-border"></span>
                                   </div>
-                                  <div>
+                                  
+                                  <div *ngFor="let tag of album_tag;let i=index">
                                     <span class="tagstik"> 
-                                      ytuytu
+                                        {{tag}}    
                                       <i class="material-icons">clears</i>
                                     </span>      
                                   </div>

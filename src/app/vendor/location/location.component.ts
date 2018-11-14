@@ -37,6 +37,7 @@ interface Location {
 export class LocationComponent implements OnInit {
   @ViewChild('f') floatingLabelForm: NgForm;
   @ViewChild('vform') validationForm: FormGroup;
+  @ViewChild("search")  public searchElementRef: ElementRef;
   regularForm: FormGroup;
 
   ao:string;
@@ -69,6 +70,7 @@ export class LocationComponent implements OnInit {
   public subr_name:any;
   primery = true;
   photo_ved_dailog = false;
+  
   create_location_dailog = false;
   phone_dailog = false;
   week_dailog =false;
@@ -228,11 +230,15 @@ export class LocationComponent implements OnInit {
     this.geocoder.geocode({
       'address': address
     }, (results, status) => {
+      console.log( this.geocoder);
       console.log(results);
+      this.address = results[0].formatted_address      ;
+    
       if (status == google.maps.GeocoderStatus.OK) {
         for (var i = 0; i < results[0].address_components.length; i++) {
+         
           let types = results[0].address_components[i].types
- 
+          console.log(results[0].address_components[i].long_name);
           if (types.indexOf('locality') != -1) {
             this.location.address_level_2 = results[0].address_components[i].long_name
           }
@@ -240,21 +246,22 @@ export class LocationComponent implements OnInit {
             this.location.address_country = results[0].address_components[i].long_name
           }
           if (types.indexOf('postal_code') != -1) {
-            this.location.address_zip = results[0].address_components[i].long_name
+            this.location.address_zip = results[0].address_components[i].long_name;
+            console.log(results[0].address_components[i].long_name);
           }
           if (types.indexOf('administrative_area_level_1') != -1) {
             this.location.address_state = results[0].address_components[i].long_name
           }
         }
         if (results[0].geometry.location) {
-          alert("rfr");
+          
           this.location.lat = results[0].geometry.location.lat();
           this.location.lng = results[0].geometry.location.lng();
           this.location.marker.lat = results[0].geometry.location.lat();
           this.location.marker.lng = results[0].geometry.location.lng();
           this.location.marker.draggable = true;
           this.location.viewport = results[0].geometry.viewport;
-          console.log( this.location.viewport );
+          console.log( results[0].geometry.location);
         }
         
         this.map.triggerResize()
@@ -305,6 +312,13 @@ export class LocationComponent implements OnInit {
     }
     
   ngOnInit(): void {
+    this.mapsApiLoader.load().then(() => {
+      this.geocoder = new google.maps.Geocoder();
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["address"]
+      });
+
+      });
 
           this.location.marker.draggable = true;
           let headers = new Headers();
@@ -413,13 +427,59 @@ export class LocationComponent implements OnInit {
       {
         console.log(e.value)
         console.log(a);
+        const loc_add = {
+          mapAddress: e.value.mapAddress,
+          vendorId:a.vendorId,
+          vendorLocationId:a.vendorLocationId,
+          postalCode: a.postalCode,
+         
+          countryId: a.countryId,
+          districtId: a.districtId,
+          suburbId:  a.suburbId ,
+        
+          address: a.Address,
+          lat:  a.lat,
+          long:  a.long,
+          isActive: a.isActive,
+          locationPhones:a.locationPhones,
+          phone: a.phone ,
+          mobile:  a.mobile,
+          sundayOpen:  a.sundayOpen,
+          sundayClose:  a.sundayClose,
+          isSundayOpen: a.isSundayOpen,
+
+          mondayOpen:  a.mondayOpen,
+          mondayClose:  a.mondayClose,
+          isMondayOpen:  a.isMondayOpen,
+
+          tuesdayOpen:  a.tuesdayOpen,
+          tuesdayClose:  a.tuesdayClose,
+          isTuesdayOpen: a.isTuesdayOpen,
+
+          wednesdayOpen:  a.wednesdayOpen,
+          wednesdayClose:  a.wednesdayClose,
+          isWednesdayOpen:  a.isWednesdayOpen,
+
+          thursdayOpen:  a.thursdayOpen,
+          thursdayClose: a.thursdayClose,
+          isThursdayOpen:  a.isThursdayOpen,
+
+          fridayOpen:  a.fridayOpen,
+          fridayClose:  a.fridayClose,
+          isFridayOpen:  a.isFridayOpen,
+
+          saturdayOpen: a.saturdayOpen,
+          saturdayClose:  a.saturdayClose,
+          isSaturdayOpen:  a.isSaturdayOpen
+        }
         this.week_dailog = false ;
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
-            this.http.post(this.urlpost,a,{headers:headers}).subscribe( (data)=> { console.log(data)
+            this.http.post(this.urlpost,loc_add,{headers:headers}).subscribe( (data)=> { console.log(data);
+              this.mapDailog =false;
               this.toastr.success(data.statusText);},(error)=>{ console.log(error); 
                 this.toastr.success(error.statusText);}); 
 
@@ -712,6 +772,7 @@ export class LocationComponent implements OnInit {
       this.phone_dailog = false;
       this.create_location_dailog = false;
       this.week_dailog = false ;
+      this.mapDailog =false;
       } 
       addNewColumn(f) {
       var newItemNo = this.columns.length + 1;

@@ -23,9 +23,10 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   eventArray:any = [];
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ImageUploader/FileUploader'
-  private Setasbackground: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/Setasbackground"
+  private Setasbackground: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/setascoverimage"
   private BackgroundImage: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/BackgroundImage"
-  
+  private albumcoverimage: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/albumcoverimage"
+
   uploadphoto_dailog = false;
 
 
@@ -337,11 +338,48 @@ setbackground(setId){
 this.http.get(this.Setasbackground,{headers:headers}).subscribe(data =>{
         this.Set_as_background = data.json() as string[];
         console.log( this.Set_as_background );
+        this.toastr.success(data.json().message);
     },error=>{console.log(error)})
-  console.log(setId)}
+  console.log(setId)
+}
+
+  set_Album_background(albumId){
+    console.log(albumId)
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/albumcoverimage?AlbumId' + '=' + albumId,{headers:headers}).subscribe(data =>{
+      console.log(data.json())
+    },error=>{console.log(error)})
 
 
+  }
+  setas_storefront_image(a){
+    console.log(a)
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/setasstorefrontimage?AlbumImageId' + '=' + a,{headers:headers}).subscribe(data =>{
+      console.log(data.json())
+      this.toastr.success(data.json().message);
+    },error=>{console.log(error)})
+  }
+  storefrontimage(){
 
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/storefrontimage',{headers:headers}).subscribe(data =>{
+      console.log(data.json())
+    },error=>{console.log(error)})
+
+  }
         closeModel(){
               this.uploadphoto_dailog = false;
               }

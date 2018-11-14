@@ -17,9 +17,11 @@ albumid:any;
 formdata:any = {};
 myalbumimages=[];
 totalImage=[];
+album_tag;
 albumname:any;
 tags:any;
 colourtags:any;
+
   constructor(private http: Http ,  private route: ActivatedRoute ,public toastr: ToastrService) { 
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
@@ -34,7 +36,8 @@ colourtags:any;
      this.totalImage =  data.json();
      console.log(data.json()); 
      console.log(this.albumid.id); 
-  
+    //  this.album_tag =  this.totalImage.tags.split(',');
+    //  console.log(  this.album_tag );
      console.log(data.json()); 
      for (var item of  this.totalImage ) {
      
@@ -47,9 +50,14 @@ colourtags:any;
       this.tags = item.tags;
       this.colourtags = item.colorTags;
       this.myalbumimages =  item.albumImages;
+     
        }
-  }
-    
+      
+           }
+        for (var albumtag of  this.myalbumimages ) {
+          console.log(albumtag.tags);
+          this.album_tag =  albumtag.tags.split(',');
+        }
      
     });
   }
@@ -61,10 +69,12 @@ colourtags:any;
     });
   }
   openModel(e){
-    alert("dvfs");
+   
     this.description_dailog = true
     console.log(e);
     this.formdata = e;
+      this.album_tag =  this.formdata.tags.split(',');
+      console.log(  this.album_tag );
   }
 
 
@@ -99,7 +109,10 @@ const fire  = {
 
 }
 
-
+onSelect(tags){
+  console.log(tags);
+  console.log('tag selected: value is ' + tags);
+}
   //Album Get
 
 closeModel(){
@@ -135,7 +148,9 @@ closeModel(){
 
   }
 
-
+  addtagss(e){
+    console.log(e);
+  }
 }
 
 

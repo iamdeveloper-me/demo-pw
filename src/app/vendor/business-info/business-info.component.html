@@ -22,7 +22,7 @@
 
                                             <div class="on_hover" (click)="BusinessDailog = true" id="Instagram-function" >
 
-                                                    <h6 >Business name or Contact Person </h6>
+                                                    <h6 >Business logo or Contact Person </h6>
                                                 <div> {{vendor.nameOfBusiness}}</div>
                                                 <span class="text-right col-lg-12 editbtn">
                                                 <i class="material-icons"  >edit</i>
@@ -58,9 +58,14 @@
                                             <div class="social" data-reactid="332">
                                             <i class="fa fa-facebook fa-2x" data-reactid="334"></i>
                                             <span id="prompt-function"  (click)="facebookDailog = true" data-reactid="333">
-                                                  {{vendor.facebookURL}}
-                                               
-                                              <span  *ngIf="vendor.facebookURL == '' ">NO I Dont have</span>  
+                                                 
+                                                 <div *ngIf="vendor.fbAvailable  ==  true" >
+                                                    : {{vendor.facebookURL}}
+                                                 </div>
+                                                 <div *ngIf="vendor.fbAvailable  ==  false" >
+                                                    :Dont have any URL
+                                                 </div>
+                                            
                                                 </span>
                                                 
                                             <div class="col-lg-12 editbtn">
@@ -74,8 +79,14 @@
                                             <div class="social" data-reactid="332">
                                             <i class="fa fa-twitter fa-2x " data-reactid="338"></i>
                                             <span id="Pinterest-function" (click)="twitterDailog = true"  data-reactid="337">
-                                            {{vendor.twitterURL}}
-                                            <span  *ngIf="vendor.twitterURL == '' ">NO I Dont have</span>  
+                                           
+                                           <div *ngIf="vendor.twitterAvailable  ==  true" >
+                                            : {{vendor.twitterURL}}
+                                         </div>
+                                         <div *ngIf="vendor.twitterAvailable  ==  false" >
+                                            :Dont have any URL
+                                         </div>
+                                    
                                         
                                              </span>
                                             <div class="col-lg-12 editbtn">
@@ -83,17 +94,20 @@
                                                     <i class="material-icons">edit</i>
                                                 </h4>
                                             </div>
-                                            <!--  <div class="switbtn">
-                                                <ui-switch [(ngModel)]="enable1" ></ui-switch> 
-                                                </div>   --> 
+                                          
                                             </div>
                                         </div>
                                         <div class="social-connect col-sm-12" data-reactid="330">
                                             <div class="social" data-reactid="332">
                                             <i class="fa fa-google-plus fa-2x" data-reactid="340"></i>
                                             <span id="Google-function" (click)="googleDailog = true"  data-reactid="339">
-                                             {{vendor.googleURL}}
-                                            <span  *ngIf="vendor.googleURL == '' ">NO I Dont have</span>  
+                                         
+                                           <div *ngIf="vendor.googleAvailable  ==  true" >
+                                            :  {{vendor.googleURL}}
+                                         </div>
+                                         <div *ngIf="vendor.googleAvailable  ==  false" >
+                                            :Dont have any URL
+                                         </div>
                                           
                                             </span>
                                             <div class="col-lg-12 editbtn">
@@ -101,34 +115,42 @@
                                                     <i class="material-icons">edit </i>
                                                 </h4>
                                             </div>
-                                            <!--  <div class="switbtn">
-                                                <ui-switch [(ngModel)]="enable2" ></ui-switch>
-                                                </div>  -->
+                                        
                                             </div>
                                         </div>
                                         <div class="social-connect col-sm-12" data-reactid="330">
                                             <div class="social" data-reactid="332">
                                             <i class="fa fa-instagram fa-2x" data-reactid="342"></i>
                                             <span id="Instagram-function"  (click)="instagramDailog = true"  data-reactid="341">
-                                             {{vendor.instalURL}}
-                                            <span  *ngIf="vendor.instalURL == '' ">NO I Dont have</span>  
+                                        
+                                           <div *ngIf="vendor.instaAvailable  ==  true" >
+                                            :  {{vendor.instalURL}}
+                                         </div>
+                                         <div *ngIf="vendor.instaAvailable  ==  false" >
+                                            :Dont have any URL
+                                         </div>
+                                        
                                            </span>
                                             <div class="col-lg-12 editbtn">
                                                 <h4 class="text-right col-lg-12">
                                                     <i class="material-icons">edit</i>
                                                 </h4>
                                             </div>
-                                            <!--  <div class="switbtn">
-                                                <ui-switch [(ngModel)]="enable3" ></ui-switch> 
-                                                </div> -->
+                                         
                                             </div>
                                         </div>
                                         <div class="social-connect  col-sm-12" data-reactid="330">
                                             <div class="social" data-reactid="332">
                                             <i class="fa fa-globe fa-2x" data-reactid="342"></i>
                                             <span id="Instagram-function" (click)="instagram2Dailog = true"  data-reactid="341">
-                                            {{vendor.perfectWeddingURL}}
-                                            <span  *ngIf="vendor.perfectWeddingURL == '' ">NO I Dont have</span>  
+                                           
+                                            <div *ngIf="vendor.perfectWeddingAvailable  ==  true" >
+                                                :{{vendor.perfectWeddingURL}}
+                                             </div>
+                                             <div *ngIf="vendor.perfectWeddingAvailable  ==  false" >
+                                                :Dont have any URL
+                                             </div>
+                                         
                                             </span>
                                           
                                             <div class="col-lg-12 editbtn">
@@ -136,9 +158,7 @@
                                                     <i class="material-icons">edit</i>
                                                 </h4>
                                             </div>
-                                            <!-- <div class="switbtn">
-                                                <ui-switch [(ngModel)]="enable4" ></ui-switch> 
-                                                </div> -->
+                                           
                                             </div>
                                         </div>
                                     </div>
@@ -148,8 +168,6 @@
                     </div>
                 </div>
             </section>
-            <div class="clearfix"></div>
-            <app-foot></app-foot>
         </div>
     </div>
      
@@ -249,12 +267,13 @@
                                     [(ngModel)]="modelfield.fbAvailable"
                                     id="fbAvailable" 
                                     name = "switchfb"
-                                    (click) = "Activ_in(modelfield)"
+                                    (click) = "switch_fbAvailable(modelfield.fbAvailable)" 
                                     (change)="modelfield.fbAvailable  = !modelfield.fbAvailable "
                                     class="pull-left"
                                     ></ui-switch>
                                
-                                <span class="have_one" *ngIf="modelfield.fbAvailable  ==  false" > No, I don't! 
+                                <span class="have_one" *ngIf="modelfield.fbAvailable  ==  false" >
+                                     No, I don't! 
                                     <input class="effect-16 " type="hidden"  name="fbAvailable" [ngModel] = "false"  >
                                 </span>
                                
@@ -267,28 +286,40 @@
                             <div class="clearfix"></div>
                             <div class="input_facebook input-effect form-group">
                                 <i class="fa fa-facebook fa-2x" data-reactid="334" ></i> 
-                                    <div >
-                                        <input class="effect-16 validate endent_10px width_60" 
+                                    <div   >
+                                        <!-- <input class="effect-16 validate endent_10px width_60" 
                                         type="text" 
                                         name="facebookURL"
-                                        placeholder="Enter the Link here" 
+                                        placeholder="Don't have any URL" 
                                         [ngModel] = "modelfield.facebookURL" 
                                        
-                                        id="facebook">
+                                        id="facebook"> -->
+                                        <input 
+                                            type="text" 
+                                            class="effect-16 validate endent_10px width_60" 
+                                           
+                                            name="facebookURL" 
+                                            #facebookURL="ngModel"
+                                            placeholder="Don't have any URL"
+                                            [ngModel] = "modelfield.facebookURL" 
+                                            url
+                                            required  />
+                                     
+                                            <small class="form-text text-muted danger" *ngIf="facebookURL.errors?.required"> facebookURL name field required </small>
+                                            <small class="form-text text-muted danger" *ngIf="facebookURL.errors?.url">url error</small>
                                     </div>
-                                    <!-- <div *ngIf="modelfield.fbAvailable  ==  false">
-                                        <input class="effect-16 validate endent_10px width_60" 
-                                        type="text" disabled="disabled"
-                                        name="facebookURL"
-                                        placeholder="Enter the Link here" 
-                                       >
-                                    </div> -->
+                                  
                             </div>
+                            <!-- <div class="form-group">
+                                    <label for="url">url</label>
+                                    <input type="text" class="form-control" ngModel name="url" #url="ngModel" placeholder="url" url />
+                                    <small class="form-text text-muted danger" *ngIf="url.errors?.url">url error</small>
+                                </div> -->
                         </div>
                     </div>
-                    <div class="modal-footer text-center marTop50px">
+                    <div class="modal-footer text-center marTop50px" >
 
-                        <button type="submit" class="btn btn-secondary newbtn"    >Save</button> 
+                        <button type="submit" class="btn btn-secondary newbtn" [disabled]="facebookURL.errors?.url || facebookURL.errors?.required ||modelfield.fbAvailable == false "    >Save</button> 
                         <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()" >Cancel</button>
 
                     </div>
@@ -314,7 +345,7 @@
                                         [(ngModel)]="modelfield.twitterAvailable"
                                         id="twitterAvailable" 
                                         name = "switchtwitter"
-                                        (click) = "Activ_in(modelfield)"
+                                        (click) = "switch_twitterAvailable(modelfield.twitterAvailable)" 
                                         (change)="modelfield.twitterAvailable  = !modelfield.twitterAvailable "
                                         class="pull-left"
                                         ></ui-switch>
@@ -331,13 +362,25 @@
                             <div class="input_facebook input-effect form-group">
                                 <i class="fa fa-twitter fa-2x" data-reactid="334" ></i> 
                                     <div >  
-                                        <input class="effect-16 validate endent_10px width_60" 
+                                        <!-- <input class="effect-16 validate endent_10px width_60" 
                                         type="text" 
-                                        placeholder="Enter the Link here" 
+                                        placeholder="Don't have any URL" 
                                         [ngModel] = "modelfield.twitterURL" 
                                         id="twitter" 
                                     
-                                        name="twitterURL">
+                                        name="twitterURL"> -->
+                                        <input 
+                                        type="text" 
+                                        class="effect-16 validate endent_10px width_60"
+                                       
+                                        name="twitterURL" 
+                                        #twitterURL="ngModel"
+                                        placeholder="Don't have any URL"
+                                        [ngModel] = "modelfield.twitterURL" 
+                                        url 
+                                        required/>
+                                    <small class="form-text text-muted danger" *ngIf="twitterURL.errors?.url">url error</small>
+                                    <small class="form-text text-muted danger" *ngIf="twitterURL.errors?.required"> twitterURL name field required </small>
                                     </div>    
                                 <!-- <div *ngIf="modelfield.twitterAvailable  ==  false">
                                         <input class="effect-16 validate endent_10px width_60" 
@@ -351,7 +394,7 @@
                         </div>
                     </div>
                     <div class="modal-footer text-center marTop50px">
-                        <button type="submit" class="btn newbtn" >Save</button>&nbsp;
+                        <button type="submit" class="btn newbtn" [disabled]="twitterURL.errors?.url || twitterURL.errors?.required ||modelfield.twitterAvailable == false " >Save</button>&nbsp;
                         <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
                     </div>
                 </div>
@@ -377,7 +420,8 @@
                                                 [(ngModel)]="modelfield.googleAvailable"
                                                 id="googleAvailable" 
                                                 name = "switchgoogle"
-                                                (click) = "Activ_in(modelfield)"
+                                                (click) = "switch_googleAvailable(modelfield.googleAvailable)"
+                                              
                                                 (change)="modelfield.googleAvailable  = !modelfield.googleAvailable " 
                                                 class="pull-left"
                                                 ></ui-switch>
@@ -394,13 +438,25 @@
                             <div class="input_facebook input-effect form-group">
                             <i class="fa fa-google-plus fa-2x" data-reactid="334" style="font-size:1.6em" ></i> 
                             <div  >
-                                <input class="effect-16 validate endent_10px width_60" 
+                                <!-- <input class="effect-16 validate endent_10px width_60" 
                                 type="text" 
-                                placeholder="Enter the Link here" 
+                                placeholder="Don't have any URL" 
                                 [ngModel] = "modelfield.googleURL" 
                             
                                 id="google" 
-                                name="googleURL">
+                                name="googleURL"> -->
+                                <input 
+                                type="text" 
+                                class="effect-16 validate endent_10px width_60"
+                               
+                                name="googleURL" 
+                                #googleURL="ngModel"
+                                placeholder="Don't have any URL"
+                                [ngModel] = "modelfield.googleURL" 
+                                url
+                                required />
+                            <small class="form-text text-muted danger" *ngIf="googleURL.errors?.url">url error</small>
+                            <small class="form-text text-muted danger" *ngIf="googleURL.errors?.required"> googleURL name field required </small>
                             </div>    
                             <!-- <div *ngIf="modelfield.googleAvailable  ==  false">
                                 <input class="effect-16 validate endent_10px width_60" 
@@ -413,7 +469,7 @@
                         </div>
                     </div>
                     <div class="modal-footer text-center marTop50px">
-                        <button type="submit" class="btn newbtn"  >SAVE</button> &nbsp;
+                        <button type="submit" class="btn newbtn" [disabled]="googleURL.errors?.url || googleURL.errors?.required ||modelfield.googleAvailable == false "    >SAVE</button> &nbsp;
                         <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
                     </div>
                 </div>
@@ -439,7 +495,8 @@
                                             [(ngModel)]="modelfield.instaAvailable"
                                             id="instaAvailable" 
                                             name = "switchinsta"
-                                            (click) = "Activ_in(modelfield)"
+
+                                            (click) = "switch_instaAvailable(modelfield.instaAvailable)"
                                             (change)="modelfield.instaAvailable  = !modelfield.instaAvailable "
                                             class="pull-left"
                                             ></ui-switch>
@@ -457,12 +514,25 @@
                         <i class="fa fa-instagram fa-2x" data-reactid="334" ></i> 
 
                            <div >
-                                <input class="effect-16 validate endent_10px width_60" 
+                                <!-- <input class="effect-16 validate endent_10px width_60" 
                                 type="text" 
-                                placeholder="Enter the Link here" 
+                                placeholder="Don't have any URL" 
                                 [ngModel] = "modelfield.instalURL" 
                                 id="instagram" 
-                                name="instalURL">
+                                name="instalURL"> -->
+
+                                <input 
+                                type="text" 
+                                class="effect-16 validate endent_10px width_60"
+                               
+                                name="instalURL" 
+                                #instalURL="ngModel"
+                                placeholder="Don't have any URL"
+                                [ngModel] = "modelfield.instalURL" 
+                                url 
+                                required/>
+                            <small class="form-text text-muted danger" *ngIf="instalURL.errors?.url">url error</small>
+                            <small class="form-text text-muted danger" *ngIf="instalURL.errors?.required"> instalURL name field required </small>
                             </div>
 
                                 <!-- <div *ngIf="modelfield.instaAvailable  ==  false">
@@ -476,7 +546,7 @@
                     </div>
                 </div>
                <div class="modal-footer text-center marTop50px">
-                    <button type="submit" class="btn newbtn"  >SAVE</button> &nbsp;
+                    <button type="submit" class="btn newbtn"  [disabled]="instalURL.errors?.url || instalURL.errors?.required ||modelfield.instaAvailable == false "  >SAVE</button> &nbsp;
                     <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
                 </div>
             </div>
@@ -502,7 +572,8 @@
                                             [(ngModel)]="modelfield.perfectWeddingAvailable"
                                             id="perfectWeddingAvailable" 
                                             name = "perfectWedding"
-                                            (click) = "Activ_in(modelfield)"
+                                           
+                                            (click) = "switch_perfectWeddingAvailable(modelfield.perfectWeddingAvailable)"
                                             (change)="modelfield.perfectWeddingAvailable  = !modelfield.perfectWeddingAvailable "
                                             class="pull-left"
                                             ></ui-switch>
@@ -519,15 +590,27 @@
                         <div class="input_facebook input-effect form-group">
                         <i class="fa fa-globe fa-2x" data-reactid="334" ></i> 
                             <div >
-                                <input class="effect-16 validate endent_10px width_60" 
+                                <!-- <input class="effect-16 validate endent_10px width_60" 
                                 type="text" 
-                                placeholder="Enter the Link here" 
+                                placeholder="Don't have any URL" 
                                 [ngModel] = "modelfield.perfectWeddingURL" 
                                 id="perfectWedding" 
                                 name="perfectWeddingURL"
                                
-                                >
-                            </div>
+                                > -->
+                                <input 
+                                type="text" 
+                                class="effect-16 validate endent_10px width_60"
+                               
+                                name="perfectWeddingURL" 
+                                #perfectWeddingURL="ngModel"
+                                placeholder="Don't have any URL"
+                                [ngModel] = "modelfield.perfectWeddingURL" 
+                                url
+                                required />
+                            <small class="form-text text-muted danger" *ngIf="perfectWeddingURL.errors?.url">url error</small>
+                            <small class="form-text text-muted danger" *ngIf="perfectWeddingURL.errors?.required"> perfectWeddingURL name field required </small>   
+                        </div>
                                 <!-- <div *ngIf="modelfield.perfectWeddingAvailable  ==  false">
                                     <input class="effect-16 validate endent_10px width_60" 
                                     type="text" disabled="disabled"
@@ -540,7 +623,7 @@
                     </div>
                 </div>
                 <div class="modal-footer text-center marTop50px">
-                    <button type="submit" class="btn newbtn"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+                    <button type="submit" class="btn newbtn"   [disabled]="perfectWeddingURL.errors?.url || perfectWeddingURL.errors?.required  ||modelfield.perfectWeddingAvailable == false"   ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
                     <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
                 </div>
                 <div class="col-sm-12 mob_margin_30px">
@@ -571,41 +654,44 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="modal-body">
-                        <div class="col-sm-12  text-center mobnopadd">
+                        <div class="col-sm-12  text-center mobnopadd"  *ngIf= "cropperupload == true">
                         
                             <div class="clearfix"></div>
 
                             <section id="tours">
                                 <div class="col-12 text-center mobnopadd">
-                                            <div class="file-upload form-control uploadimgfile">
-                                                    
-                                                        <div class="card-block">
-                                                            <div class="file-upload mb-3">                                                            
-                                                              <input #fileInput style="width:100%"
-                                                                    (change)="fileChangeListener($event)"
-                                                                    type="file"
-                                                                    [(ngModel)]="gallery.files" 
-                                                                    name="image" 
-                                                                    id="image"/>
-                                                            </div>
+                                    <div class="file-upload form-control uploadimgfile">
+                                        <div class="card-block">
+                                            <div class="file-upload mb-3">                                                            
+                                                <input #fileInput style="width:100%"
+                                                    (change)="fileChangeListener($event)"
+                                                    type="file"
+                                                    [(ngModel)]="gallery.files" 
+                                                    name="image" 
+                                                    id="image"/>
 
-                                                            <div  *ngIf="gallery.files">
-                                                                <img-cropper #cropper [image]="data" [settings]="cropperSettings" class="float-left mr-4"></img-cropper>
-                                                                <br>
-                                                                <span class="result" *ngIf="data.image">
-                                                                <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle">
-                                                                </span>
-                                                            </div>
-                                                          </div> 
-                                                            <!-- <div >
-                                                                <img [src]="imagee" >
-                                                            </div> -->
-                                                           
+                                                  
                                             </div>
+                           
+                                            <div  *ngIf="gallery.files">
+                                                <img-cropper #cropper [image]="data" [settings]="cropperSettings" class="float-left mr-4"></img-cropper>
+                                                <br>
+                                                <span class="result" *ngIf="data.image">
+                                                <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="rounded-circle">
+                                                </span>
                                             </div>
+                                        </div>           
+                                    </div>
+                                </div>
                             </section>
 
 
+                        </div>
+                        <div class="progress nopadd col-sm-11 col-10" *ngIf= "progress== true" >
+                                <div class="progress-bar" role="progressbar" aria-valuenow="0"
+                                   aria-valuemin="0" aria-valuemax="100" [style.width]="total + '%'">
+                        {{total}}
+                                </div>
                         </div>
                     </div>
                     <div class="modal-footer text-center">

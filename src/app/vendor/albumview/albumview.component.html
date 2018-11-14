@@ -9,7 +9,7 @@
 	    <div class="photo_gallery">
             <div class="allport_row">
                 <a routerLink= "../gallery" class="leftarrowbacklink"><i class="material-icons"> arrow_back_ios </i> 
-                    <span class="mob_none"> Protfolio & Albums</span>  
+                    <span class="mob_none"> Albums</span>  
                 </a>  
                 <div class="createmyalbum">
                     <h2>MY ALBUMS</h2>
@@ -19,24 +19,14 @@
                     <button id="Google-function" (click)="createalbum_dailog = true" data-reactid="339">  + New Albums  
                     </button>  
                 </div>
-            <!-- <div class="col-sm-2 col-2 text-right setting_right">
-                    <a routerLink= "../albumdetailsetting"> <i class="material-icons"> settings</i></a>
-            </div> -->
             </div>        
             <div class="clearfix"> </div>
             <section class="p-0 container" id="portfolio">
                 <div class="container photos_gallery">
                     <div class="row">
-                       <!--  <div class='list-group gallery row firt_row'>
-                           
-                            <a class="sett_icon pull-right" routerLink="../settingalbum">
-                                    <i class="material-icons ">settings</i>
-                            </a>  
-                        </div> -->
-                        <!-- <div class="col-md-3  col-xs-6  zoom_effect"> -->
                         <div class="col-md-3  col-xs-6 marbot15px" *ngFor='let album of eventArray;let i=index '>
                                 <button class="deletebtn" (click)= "albumdelete(album,i)">&times;</button>
-                            <a routerLink="../albumviewphoto/{{album.albumsId }} " class="" rel="ligthbox">
+                            <a routerLink="../albumviewphoto/{{album.albumsId}} " class="" rel="ligthbox">
                             
                                 <div class="image-div" >
                                     <div *ngFor='let ar of  album.albumImages '>

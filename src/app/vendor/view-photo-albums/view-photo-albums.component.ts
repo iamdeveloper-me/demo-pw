@@ -16,16 +16,17 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 export class ViewPhotoAlbumsComponent implements OnInit {
   Set_as_background:any = [];
   fileToUpload:any;
-  
+  albumImagesModify =[];
   totalImage=[];
   myalbumimages=[];
   private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
   eventArray:any = [];
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ImageUploader/FileUploader'
-  private Setasbackground: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/Setasbackground"
+  private Setasbackground: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/setascoverimage"
   private BackgroundImage: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/BackgroundImage"
-  
+  private albumcoverimage: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/albumcoverimage"
+
   uploadphoto_dailog = false;
 
 
@@ -99,7 +100,12 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   headers.append('Content-Type', 'application/json');
   headers.append("Authorization",'Bearer '+authToken);
 
- 
+  this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/BackgroundImage",{headers:headers})
+  .subscribe(data => {console.log(data.json())},error=>{console.log(error)});
+    $(".gearicon").click(function(){
+    //  alert();
+      $( this ).toggleClass( "open" );
+  });
 
     this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
         this.eventArray = data.json()
@@ -136,17 +142,22 @@ export class ViewPhotoAlbumsComponent implements OnInit {
     this.tags = item.tags;
     this.colourtags = item.colorTags;
     this.myalbumimages =  item.albumImages;
+
+    for (var albumtag of  this.myalbumimages ) {
+      if(albumtag.tags != null && albumtag.colorTags != null){
+        albumtag['tags'] = albumtag['tags'].split(',');
+        albumtag['colorTags'] = albumtag['colorTags'].split(',');
+      }
+      
+      this.albumImagesModify.push(albumtag);
+      console.log(this.albumImagesModify)
+    }
      }
 }
   
    
   });
-  this.http.get(this.BackgroundImage,{headers:headers})
-  .subscribe(data => {console.log(data.json())},error=>{console.log(error)});
-    $(".gearicon").click(function(){
-    //  alert();
-      $( this ).toggleClass( "open" );
-  });
+ 
   let modalId = $('#image-gallery');
 
 $(document)
@@ -337,11 +348,48 @@ setbackground(setId){
 this.http.get(this.Setasbackground,{headers:headers}).subscribe(data =>{
         this.Set_as_background = data.json() as string[];
         console.log( this.Set_as_background );
+        this.toastr.success(data.json().message);
     },error=>{console.log(error)})
-  console.log(setId)}
+  console.log(setId)
+}
+
+  set_Album_background(albumId){
+    console.log(albumId)
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/albumcoverimage?AlbumId' + '=' + albumId,{headers:headers}).subscribe(data =>{
+      console.log(data.json())
+    },error=>{console.log(error)})
 
 
+  }
+  setas_storefront_image(a){
+    console.log(a)
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/setasstorefrontimage?AlbumImageId' + '=' + a,{headers:headers}).subscribe(data =>{
+      console.log(data.json())
+      this.toastr.success(data.json().message);
+    },error=>{console.log(error)})
+  }
+  storefrontimage(){
 
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/storefrontimage',{headers:headers}).subscribe(data =>{
+      console.log(data.json())
+    },error=>{console.log(error)})
+
+  }
         closeModel(){
               this.uploadphoto_dailog = false;
               }

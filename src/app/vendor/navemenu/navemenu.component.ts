@@ -95,7 +95,7 @@ export class NavemenuComponent implements OnInit {
       } else if(window.location.href.indexOf('/vendor/albumviewphoto')>-1) {
        this.data = 'My Albums ';
       } else if(window.location.href.indexOf('/vendor/albumdetailsetting')>-1) {
-        this.data = ' Album Setting';
+        this.data = 'PORTFOLIO PHOTO SETTINGS';
       } else if(window.location.href.indexOf('/vendor/vediosetting')>-1) {  
         this.data = 'Vedio Setting';
       } else if(window.location.href.indexOf('/vendor/eventlist')>-1) {

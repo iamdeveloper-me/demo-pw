@@ -21,29 +21,64 @@
                 
               </a>      
           </div>	
-         <!-- <a class="sett_icon pull-right" routerLink="../../settingalbum">
-
-            <i class="material-icons ">settings</i>
-          </a> -->
         </div> 
-        <div class="container-fluid photo_gallery">     
-            <div class="color_optin text-center">
+        <div class="container-fluid photo_gallery" >     
+            <div class="color_optin text-center" *ngFor="let image of albumImagesModify; let i=index ">
                 <div class="clearfix"></div>
-                <span class="colortags bluebg"></span> 
-                <span class="colortags redbg"></span> 
-                <span class="colortags greenbg"></span> 
-                <span class="colortags purplebg"></span>
-                <div class="clearfix"></div>
-                <p class="beach_outdoor"> <span>{{tags}}</span> <span>Outdoor</span> </p>
-      
-                <p class="add_photos">
-                    <button  id="Google-function" class="btn newbtn" (click)="uploadphoto_dailog = true" data-reactid="339" >Add photos</button>
-                  <!-- <span >Add photos</span>  -->
-                
-                </p>
-            </div>     
+                <span *ngFor="let g of image.colorTags;let i=index">
+                    <!-- {{g}} -->
+                     
+                          <span *ngIf = "g == 'pink'" class="colortags pinkbg"></span>
+                      
+                      
+                          <span *ngIf = "g == 'red'" class="colortags redbg"></span>
+                      
+                      
+                          <span  *ngIf = "g == 'blue'" class="colortags bluebg"></span>
+                     
+                      
+                          <span  *ngIf = "g == 'yellow'" class="colortags yellowbg"></span>
+                      
+                   
+                          <span *ngIf = "g == 'green'" class="colortags greenbg"></span>
+                     
+                    
+                          <span  *ngIf = "g == 'purple'" class="colortags purplebg"></span>
+                     
+                     
+                          <span  *ngIf = "g == 'white'" class="colortags whitebg"></span>
+                     
+                     
+                          <span *ngIf = "g == 'black'" class="colortags blackbg"></span>
+                     
+                      
+                          <span *ngIf = "g == 'grey'" class="colortags greybg"></span>
+                     
+                      
+                          <span *ngIf = "g == 'orange'" class="colortags orangebg"></span>
+                     
+                    
+                          <span *ngIf = "g == 'brown'" class="colortags brownbg"></span>
+                      
+                </span>
+             
+            </div>   
+            <div class="clearfix"></div>
+            
+            <!-- <p class="beach_outdoor"> <span>{{tags}}</span> <span>Outdoor</span> </p> -->
+          <div *ngFor="let image of albumImagesModify; let i=index ">
+            <div *ngFor="let ag of image.tags;let i=index">
+                <span class="tagstik"> 
+                    {{ag}}    
+                  <i class="material-icons">clears</i>
+                </span>      
+              </div>
+            </div>
+            <p class="add_photos">
+                <button  id="Google-function" class="btn newbtn" (click)="uploadphoto_dailog = true" data-reactid="339" >Add photos</button>
+            </p>  
             <div class="row mar_top_50px">
-              <div   class="col-lg-3 col-md-4 col-xs-6 "  *ngFor="let image of myalbumimages; let i=index ">
+              <div   class="col-lg-3 col-md-4 col-xs-6 "  *ngFor="let image of albumImagesModify; let i=index ">
                 <div class="thumb hovereffect"  data-target="#image-gallery" data-toggle="modal"  >
                     <button class="deletebtn" (click)="deleteImage(image,i)">&times;</button>
                     
@@ -71,8 +106,11 @@
                                                         </i>
                                                 </button>
                                                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="dropdownBasic2">
-                                                  <li><a (click) = "setbackground(image.albumImageId)"> Set as  Album Cover Image</a></li>
-                                                   <li><a > Set as Business Cover Image</a></li>
+                                                  <!-- <li><a > Set as  Album Cover Image</a></li>  -->
+                                                  <!-- (click) = "set_Album_background(image.albumsId )" -->
+                                                  <li><a (click) = "setas_storefront_image(image.albumImageId )"> Set as  store front image</a></li>
+                                                   <li><a (click) = "setbackground(image.albumImageId)" > Set as  Cover Image</a></li>
+                                                   <!-- <li><a (click) = "storefrontimage()" > store front image</a></li> -->
                                                 </ul>
                                               </div>
                                  </td>
@@ -203,29 +241,3 @@
         </div>  
       </div>  
     </div>
-
-   <!--  <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            
-              <div class="modal-body">
-                      <button type="button" class="close closebtn" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
-                      </button>
-                  <img id="image-gallery-image" class="img-responsive col-md-12 imgpopup" src="">
-
-                  <div class="nextpre">
-                          <button type="button" class="btn btn-secondary float-left" id="show-previous-image"><i class="material-icons mar_lef8px">
-                                  arrow_back_ios
-                                  </i>
-                          </button>
-  
-                          <button type="button" id="show-next-image" class="btn btn-secondary float-right"><i class="material-icons">
-                                  arrow_forward_ios
-                                  </i>
-                          </button>
-                  </div>
-              </div>
-            
-          </div>
-      </div>
-    </div>    -->

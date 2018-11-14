@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
 import { Router ,ActivatedRoute} from '@angular/router';
-
 @Component({
   selector: 'app-membership',
   templateUrl: './membership.component.html',
@@ -22,11 +21,13 @@ export class MembershipComponent implements OnInit {
   statdate;
   endDateString;
   pricingPlantitle;
+  pricingPlanId:number;
+  payFrequency:number;
   ngOnInit() {
     //  Code formatting script
-    $.getScript('./assets/js/prism.min.js');
-    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
-    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
+   // $.getScript('./assets/js/prism.min.js');
+    //$.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
+    //$.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');  
     $.getScript('./assets/js/membershipslider.js'); 
 
@@ -59,15 +60,22 @@ export class MembershipComponent implements OnInit {
            this.statdate = data.json().startDateString;
            this.endDateString   = data.json().endDateString; 
            this.pricingPlantitle   = data.json().pricingPlan.title;
+           this.pricingPlanId   = data.json().pricingPlanId;
+           this.payFrequency = data.json().pricingPlanId
            },error => {console.log(error)});
 
 
            this.http.get(this.pricingplans,{headers:headers}).subscribe(
             data =>{ console.log(data.json());
                      this.pricing = data.json();
+                     console.log('Pricing', this.pricing)
                    },error => {console.log(error)});
   }
-
+ngAfterViewChecked(): void {
+  //Called after every check of the component's view. Applies to components only.
+  //Add 'implements AfterViewChecked' to the class.
+  
+}
   
   constructor(config: NgbCarouselConfig,public http: Http,private router: Router) {
     // customize default values of carousels used by this component tree
@@ -123,4 +131,3 @@ export class MembershipComponent implements OnInit {
   
 
 }
-

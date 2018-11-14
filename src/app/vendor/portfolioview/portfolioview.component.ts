@@ -29,10 +29,11 @@ export class PortfolioviewComponent implements OnInit {
     private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader'
     private addportfolio: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/addportfolio'
     private mygeturl: string  = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myportfolio"
-    private Setasbackground: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/Setasbackground"
-    private BackgroundImage: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/BackgroundImage"
-    private deleteport: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/removeportfolio"
-   
+    private Setasbackground: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/setasstorefrontimage"
+    private BackgroundImage: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/storefrontimage"
+  
+  
+    storefrontimage
     ngOnInit() {
 
     let headers = new Headers();
@@ -40,7 +41,8 @@ export class PortfolioviewComponent implements OnInit {
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
-  
+
+
         this.http.get(this.mygeturl,{headers:headers}).subscribe(data =>{
         this.PortgetArray = data.json() as string[];
         console.log(data.json());
@@ -48,10 +50,7 @@ export class PortfolioviewComponent implements OnInit {
        
 
 
-       this.http.get(this.BackgroundImage,{headers:headers}).subscribe(data =>{
-        console.log(data.json()  );
-    },error=>{console.log(error)})
-
+   
 
    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
@@ -120,18 +119,17 @@ export class PortfolioviewComponent implements OnInit {
     "filesId": 1
   }
   uploadAll(){
-      this.uploadphoto_dailog = false;
+    this.uploadphoto_dailog = false;
       
     const formData = new FormData();
     for(let file of this.uploader.queue){
     formData.append(file['some'].name,file['some'])
     }        
-    // Headers
+  
     let headers = new  Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append("Authorization",'Bearer '+authToken);
-    
-    //Post Album 2 photos
+  
     this.http.post(this.uploadimage,formData,{headers:headers})
       .subscribe(data =>{ 
         console.log(data.json().filesId);
@@ -139,7 +137,9 @@ export class PortfolioviewComponent implements OnInit {
         this.http.post(this.addportfolio,{filesId:data.json().filesId},{headers:headers})
       .subscribe(data =>{ 
         console.log(data.json());
-      
+        this.http.get(this.mygeturl,{headers:headers})
+        .subscribe(data =>{console.log(data.json()); 
+         this.PortgetArray =data.json() });
       
       },(error)=>{console.log(error)});
       
@@ -161,13 +161,27 @@ setbackground(setId){
 this.http.get(this.Setasbackground,{headers:headers}).subscribe(data =>{
         this.Set_as_background = data.json() as string[];
         console.log( this.Set_as_background );
+        this.toastr.success(data.json().message);
     },error=>{console.log(error)})
-  console.log(setId)}
+  console.log(setId)
+}
+
+
+  store_front_Image(){
+
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+  
+    this.http.get(this.BackgroundImage,{headers:headers}).subscribe(data =>{
+        console.log(data.json());},error=>{console.log(error)})
+
+  }
+
 
   delete_portfolio(e,index){
-  
-
-
 
     let con = confirm('Are you sure you want to delete this?')
     if (con) {

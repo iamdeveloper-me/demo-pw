@@ -9,7 +9,7 @@
         <router-outlet></router-outlet> 
 
 
-        <div class="container-fluid mobilefixedcontainer">
+        <div class="container-fluid mobilefixedcontainer" *ngIf="video_total == 0; else total_not">
            <div class="card photo_gallery">
             
 
@@ -47,43 +47,39 @@
 </div>
             
         </div>
-
-<div class="container-fluid ">
-        <div class="container-fluid addvideo  text-center ">
-          <div class=" my_video_bg">
-            <h3> <strong> MY VIDEOS </strong> </h3>
-            <P>Showcase videos that demonstrate your work to reach more clients</P>
-             <a class="sett_icon pull-right" routerLink="../vediosetting">
-            <i class="material-icons ">settings</i>
-          </a>
-            </div>
-         </div>   
-      <div class="container-fluid addvideo1 ">
-        <div class="my_video_bg11 ">
-      <section class="p-0 container" id="portfolio">
-           <div class="text-center"><button class="add_videobt" (click)=" Addvediodetail_dailog = true">Add Video</button> </div>
-               <div class="photos_gallery">
-                      <div class="row firt_row"> 
-                        <div class="col-md-3 zoom_effect">
-                          <iframe  src="https://www.youtube.com/embed/tgbNymZ7vqY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                        </div>
-                        <div class="col-md-3 zoom_effect">
-                          <iframe  src="https://www.youtube.com/embed/QgaTQ5-XfMM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                        </div>
-                        <div class="col-md-3 zoom_effect">
-                          <iframe  src="https://www.youtube.com/embed/fz4MzJTeL0c" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                        </div>
-                        <div class="col-md-3 zoom_effect">
-                          <iframe  src="https://www.youtube.com/embed/Zo4PRKnqJdg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>	  
-              </div>
+        <ng-template #total_not>
+          <div class="container-fluid ">
+            <div class="container-fluid addvideo  text-center ">
+              <div class=" my_video_bg">
+                <h3> <strong> MY VIDEOS </strong> </h3>
+                <P>Showcase videos that demonstrate your work to reach more clients</P>
+                 <a class="sett_icon pull-right" routerLink="../vediosetting">
+                <i class="material-icons ">settings</i>
+              </a>
+                </div>
+             </div>   
+          <div class="container-fluid addvideo1 ">
+            <div class="my_video_bg11 ">
+          <section class="p-0 container" id="portfolio">
+               <div class="text-center">
+                 <button class="add_videobt"  (click)="Addvediodetail_dailog = true" >Add Video</button> 
+                </div>
+                   <div class="photos_gallery">
+                          <div class="row firt_row">
+                            <div class="col-md-3 marbot15px" *ngFor="let single_video of video_all_data">
+                              <iframe  [src]="single_video.link  | safe" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                          </div>
                       </div>
-                  </div>
-            </section>
-          </div>
-      
-      
-        </div>       
-         </div> 
+                </section>
+              </div>
+          
+          
+            </div>       
+    </div> 
+        </ng-template>
+
+
        
               
         <app-foot></app-foot>
@@ -138,7 +134,7 @@
                               </div>
                               
                            </div>
-  </ng-template>
+</ng-template>
 
 
 
@@ -198,7 +194,7 @@
         </div>
         
       </div>
-              </ng-template>
+  </ng-template>
               
 
 
@@ -211,29 +207,47 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                  
+                <form [formGroup]="form" (ngSubmit)="addDetails()">
                    <div class="modal-body">
                       <div class="form-group">
-                                <div class="input-effect md-form">
-                                    <input class="effect-16 validate" type='text' placeholder=''>
-                                    <label>Vedio Title</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-effect md-form">
-                                    <input class="effect-16 validate" type='text' placeholder=''>
-                                    <label>Vedio Url</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
+                        <div class="input-effect form-group md-form ">
+                          <input class="effect-16 validate" type="text" id="link" formControlName="link" >
+                          <label>Enter Vedio Url</label>
+                          <span class="focus-border"></span>
+                        </div>
+                        <div style="color:red" *ngIf="link.value && link.invalid">
+                          Please provide valid url
+                        </div>
+                        <!-- <label for="link">URL:</label>
+                        <br>
+                        <input style="width:80%" type="text" id="link" formControlName="link" />
+                        <div style="color:red" *ngIf="link.value && link.invalid">
+                          Please provide valid url
+                        </div> -->
+                      </div>
+                      <div class="form-group">
+                        <div class="input-effect form-group md-form ">
+                          <input class="effect-16 validate" type="text" id="title" formControlName="title" >
+                          <label>Enter Vedio Title</label>
+                          <span class="focus-border"></span>
+                        </div>
+                        <!-- <label for="title">Title:</label>
+                        <br>
+                        <input style="width:80%" type="text" id="title" formControlName="title" /> -->
+                        <div style="color:red" *ngIf="  title.value && title.invalid">
+                          Please provide valid tite
+                        </div>
+                      </div>
+                      <!-- <br>
+                      <button type="submit">Submit</button>
+                      <br> -->
                    </div>
                    <div class="modal-footer text-center">
-                    <button type="submit" class="btn newbtn" (click)="addeditvedio()">SAVE</button> &nbsp;
+                    <button  [disabled]="form.invalid" type="submit"  class="btn newbtn " >SAVE</button> &nbsp; 
                     <button type="button" class="btn newbtn newcancelbtn" 
                     (click)="closeModel()"> Close</button>
-                </div>
-
+                  </div>
+                </form>
               </div>
 
 

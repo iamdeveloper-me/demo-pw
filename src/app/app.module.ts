@@ -108,7 +108,7 @@ import { GalleryComponent  } from './vendor/gallery/gallery.component';
 import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
 import { BusinessInfoComponent } from "./vendor/business-info/business-info.component";
 import { LocationComponent} from "./vendor/location/location.component";
-import { VideosComponent } from './vendor/videos/videos.component';
+import { VideosComponent ,SafePipeP} from './vendor/videos/videos.component';
 import { MylistingComponent } from './vendor/mylisting/mylisting.component';
 import { NavemenuComponent } from './vendor/navemenu/navemenu.component';
 import { ChatComponent } from "./vendor/chat/chat.component";
@@ -157,7 +157,7 @@ import { GallerybarComponent } from './vendor/gallerybar/gallerybar.component';
 
 import { EventComponent } from './vendor/event/event.component';
 import { ReviewComponent } from './vendor/review/review.component';
-import { VediosettingComponent } from './vendor/vediosetting/vediosetting.component';
+import { VediosettingComponent,SafePipe } from './vendor/vediosetting/vediosetting.component';
 
 
 import { PromotionPriorityComponent } from './vendor/promotion-priority/promotion-priority.component';
@@ -227,6 +227,8 @@ export function getAuthServiceConfigs() {
 }
 @NgModule({
     declarations: [
+        SafePipeP,
+        SafePipe,
         AppComponent,
         InvoiceDetailComponent,
         EnquiriesComponent,
@@ -416,7 +418,8 @@ export function getAuthServiceConfigs() {
               }
         }),
         AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyBr5_picK8YJK7fFR2CPzTVMj6GG1TtRGo'
+            apiKey: 'AIzaSyBr5_picK8YJK7fFR2CPzTVMj6GG1TtRGo',
+            libraries: ["places"]
         })
     ],
 

@@ -11,38 +11,38 @@
                     <div class="col-md-12 card">
  <div class="col-sm-12 subheadtikwrapper">
            <a routerLink= "../Videos" class="pull-left iconfloatleft">
-            <i class="material-icons"> arrow_back_ios </i> <span>All Vedio</span>
+            <i class="material-icons"> arrow_back_ios </i> <span>All Video</span>
            </a>  
         
-        <div class="subheadtik">Vedio Settings</div>
+        <div class="subheadtik">Video Settings</div>
         </div> 
 
                             <table width="100%" class="tablelisttags" cell-spacing="5" cell-padding="5">
                               <tr>
                                 <th></th>
-                                <th>Vedio Title</th>
+                                <th>Video Title</th>
                                 <th>Link</th>
                                 <th></th>
                               </tr>
-                              <tr>
+
+                              <tr *ngFor="let single_data of video_all_data">
                                   <td class="imgboxlist">
-                                    <iframe  src="https://www.youtube.com/embed/tgbNymZ7vqY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                    <iframe  [src]="single_data.link  | safe" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                   </td>
 
                                   <td> 
-                                  	<strong>Pravin weds Shalini</strong>
+                                  	<strong>{{single_data.title}}</strong>
                                   </td>
                                   <td> 
-                                  <div class="vediolink">https://www.youtube.com/embed/tgbNymZ7vqY</div>
+                                  <div class="vediolink">{{single_data.link}}</div>
                                   </td>
                                   <td class="text-center">
                                      <button class="btn btn-success editbtn"
-                                      (click)="Editvediodetail_dailog = true"
-                                     >Edit</button><br/>
-                                     <button class="btn btn-warining deletebtn">Delete</button>
+                                      (click)="singleData(single_data)">Edit</button><br/>
+                                     <button (click)="deleteData(single_data)" class="btn btn-warining deletebtn">Delete</button>
                                   </td>
                               </tr>
-                              <tr>
+                              <!-- <tr>
                                  <td class="imgboxlist">
                                     <iframe  src="https://www.youtube.com/embed/tgbNymZ7vqY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                   </td>
@@ -89,7 +89,7 @@
                                      <button class="btn btn-success editbtn" data-target="#Editvediodetail" data-toggle="modal">Edit</button><br/>
                                      <button class="btn btn-warining deletebtn">Delete</button>
                                   </td>
-                              </tr>
+                              </tr> -->
                             </table>
                                  
                             
@@ -108,29 +108,60 @@
 
   <div class="modal fade"  [ngClass] = "{'show' : Editvediodetail_dailog}" id="Editvediodetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
+                    <form   (submit)="videosave($event)">
+
               <div class="modal-content">
                    <div class="modal-header">
-                    <h4 class="modal-title">Edit Vedio</h4>
+                    <h4 class="modal-title">Edit Video</h4>
                     <button type="button" class="close posiTop20px"  (click)="closeModel()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                   
                    <div class="modal-body">
-                      <div class="form-group">
-                                <div class="input-effect md-form">
-                                    <input class="effect-16 validate" type='text' placeholder=''>
-                                    <label>Vedio Title</label>
-                                    <span class="focus-border"></span>
+                                        <!-- <input type="hidden"
+                                        id="projectinput1"
+                                        class="effect-16 validate"
+                                        placeholder="id "
+                                        [(ngModel)]="videoForm.videosId"
+                                        name="videosId"
+                                        > -->
+                                     
+                                  <div class="form-group">
+                                  <div class="input-effect md-form">
+                                        <!-- <input type="text"
+                                        id="projectinput1"
+                                        class="effect-16 validate"
+                                        placeholder="Title "
+                                        [(ngModel)]="videoForm.title"
+                                        name="title"
+                                        > -->
+                                      <label for="projectinput1">Vedio Title</label>
+                                      <span class="focus-border"></span>
+                                      <!-- <form-error-msg controlName="title"></form-error-msg> -->
+                                  </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-effect md-form">
-                                    <input class="effect-16 validate" type='text' placeholder=''>
-                                    <label>Vedio Url</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
+                              <div class="form-group">
+                                  <div class="input-effect md-form">
+                                      <!-- <input type="text"
+                                          id="projectinput1"
+                                          class="effect-16 validate"
+                                          placeholder="Url  "
+                                          [(ngModel)]="videoForm.link"
+                                        name="link"
+
+                                        > -->
+                                          <label for="projectinput1">Vedio Url</label>
+                                      <span class="focus-border"></span>
+                                      <!-- <form-error-msg controlName="url"></form-error-msg> -->
+                                  </div>
+                              </div>
+                              <!--<div>
+                                 <button type="submit">submit</button> 
+                              </div>-->
+                     
+                     
+                       
                    </div>
                    <div class="modal-footer text-center">
                    <button type="submit" class="btn newbtn" (click)="editvedio()">SAVE</button> &nbsp;
@@ -139,7 +170,7 @@
                 </div>
 
               </div>
-
+</form>
 
           </div>
       </div>

@@ -273,6 +273,7 @@ this.modaldata.forEach(element => {
 // this.Selected_serveice = this.modaldata;
   }
   submitP(form: FormGroup){
+    this.customFieldsIds = ''
     console.log(form.value)
     this.closeModel();
     this.service_provide_dailog_2 = false;

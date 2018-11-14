@@ -101,7 +101,7 @@
 														  check
 														  </i>
 													  </span> -->
-													  ll
+													  <!-- llllll -->
 													  <!-- <input type="checkbox" ([ngModel])="val" name="val"/>{{val}} -->
 													  <input type="checkbox" (change)="changeEvent($event)" [(ngModel)]="customFields.up" name="p" value="customFields.up">
   
@@ -111,9 +111,15 @@
   
 							  
 												  <div class="clearfix"></div>
-												  <ul *ngFor="let h of customFields.customFieldOptionList">
+												  <!-- <ul *ngFor="let h of customFields.customFieldOptionList">
 													  <li *ngIf="h.pick">{{h.displayText}}</li>
-												  </ul>
+												  </ul> -->
+
+												  <div *ngFor="let h of customFields.customFieldOptionList">
+													<span class="blue" *ngIf="h.pick">{{h.displayText}}</span>
+												</div>
+
+
 												  <span class="blue" >
 													  <!-- Selected Option  -->
 													  {{customFields.displayText}}</span>
@@ -124,7 +130,7 @@
 												  </div>	
 												  <div *ngIf="customFields.fieldType == 6" >
 													  <button    type="button"    class="newbtn martop15px changepadd"
-													  data-toggle="modal" data-target="#service_cost_checkbox" (click) = "customFieldsdata(customFields) ;service_provide_dailog_2 = true"     [disabled]="toggleBool">select</button>
+													  data-toggle="modal" data-target="#service_cost_checkbox" (click) = "customFieldsdata(customFields) ;service_provide_dailog_2 = false"     [disabled]="toggleBool">select</button>
 												  </div>	
 												  <div class="clearfix"></div>
 											   </div>
@@ -149,26 +155,28 @@
 													  <!-- <input type="checkbox" (change)="changeEvent($event)" (change)="checkingServ()"/> -->
 													  <div *ngIf="customFields.servicesId == serviceId ; else ccc">
 															<input class="form-check-input" (change)="changeEvent($event)" type="checkbox" name="mode"  [checked]="true" >
-															yes
+															
 															</div>
 															<ng-template #ccc>
 																	<input class="form-check-input" (change)="changeEvent($event)" type="checkbox" name="mode"   >
-								no
+								                            
 															</ng-template>
-												  {{customFields.name}}pp
+												  {{customFields.name}}
   
 							  
 												  <div class="clearfix"></div>
-												  <ul *ngFor="let h of customFields.customFieldOptionList">
-													  <li *ngIf="h.pick">{{h.displayText}}</li>
-												  </ul>
+												  <div *ngFor="let h of customFields.customFieldOptionList">
+													  <span class="blue" *ngIf="h.pick">{{h.displayText}}</span>
+												  </div>
 												  <span class="blue" >
 													  <!-- Selected Option  -->
+													  {{customFieldsIds}}
 													  {{customFields.displayText}}</span>
 												  <div class="clearfix"></div>
 												  <div *ngIf="customFields.fieldType == 5" >
 													  <button    type="button"    class="newbtn martop15px changepadd"
 													  data-toggle="modal" data-target="#service_cost" (click) = "customFieldsdata(customFields)"     [disabled]="toggleBool">select</button>
+												  
 												  </div>	
 												  <div *ngIf="customFields.fieldType == 6" >
 													  <button    type="button"    class="newbtn martop15px changepadd"
@@ -182,7 +190,7 @@
 									  </div>
 									  <hr class="hr-light martop40px">
 									  <button (click)="dataSaveDB()">SAVE US</button>
-									  <table class="table table-bordered">
+									  <!-- <table class="table table-bordered">
 										<thead>
 										  <tr>
 											<th>Service Name</th>
@@ -194,11 +202,10 @@
 										  <tr *ngFor="let s of User_services">
 											<td>{{s.serviceName}}</td>
 											<td>displayText</td>
-											<!-- <td>{{s.customFields[0].fieldValue}}</td> -->
 										  </tr>
 										  
 										</tbody>
-									  </table>
+									  </table> -->
 								  </div>
 							  </div>	
 						  </div>	
@@ -278,30 +285,7 @@
 				  </section>
 			  </div>
 
-			  <div>
-				<ul class="nav nav-tabs" *ngFor="let category of User_services ; let a = index">
-					<!-- <li class="active">
-					   <a data-toggle="tab" href="#home">Home</a>
-					</li> -->
-					<li><a data-toggle="tab" href="#menu{{a}}">Menu {{a}}</a></li>
-					<!-- <li><a data-toggle="tab" href="#menu2">Menu 2</a></li> -->
-				  </ul>
-				  
-				  <div class="tab-content" *ngFor="let category of User_services ; let a = index">
-					<!-- <div id="home" class="tab-pane fade in active">
-					  <h3>HOME</h3>
-					  <p>Some content.</p>
-					</div> -->
-					<div id="menu{{a}}" class="tab-pane fade">
-					  <h3>Menu {{a}}</h3>
-					  <p>Some content in menu 1.</p>
-					</div>
-					<!-- <div id="menu2" class="tab-pane fade">
-					  <h3>Menu 2</h3>
-					  <p>Some content in menu 2.</p>
-					</div> -->
-				  </div>
-			  </div>
+			
 		  <app-foot></app-foot>
 	   <router-outlet></router-outlet>
 	  </div>		

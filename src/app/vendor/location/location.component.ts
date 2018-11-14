@@ -3,7 +3,7 @@ import { Http,Headers } from '@angular/http';
 import { MapsAPILoader, AgmMap } from '@agm/core';
 import { GoogleMapsAPIWrapper } from '@agm/core/services';
 import { ToastrService } from 'ngx-toastr';
-import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
+import { FormControl, FormGroup,FormArray,FormBuilder, Validators, NgForm } from '@angular/forms';
 import swal from 'sweetalert2';
 
 declare var google: any;
@@ -43,7 +43,7 @@ export class LocationComponent implements OnInit {
   ao:string;
   bo:string;
   co:string;
-
+  arra_col =[];
   phone = []
   typePhone= []
   columns = [{
@@ -136,6 +136,7 @@ export class LocationComponent implements OnInit {
     locationPhones: [] };
   address : any = '';
   obj = [];
+  mapDailog : boolean = false;
  private urlget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mylocations'
  private post_phone_number: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/addupdatephones'
  private remove_phone_number: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/deletelocationphone'
@@ -301,7 +302,12 @@ export class LocationComponent implements OnInit {
   @ViewChild(AgmMap) map: AgmMap;
   @ViewChild('gmapInput') gmapInput : ElementRef;
   
-  constructor(public toastr: ToastrService,public mapsApiLoader: MapsAPILoader,public http: Http,private zone: NgZone,private wrapper: GoogleMapsAPIWrapper)
+  constructor(public toastr: ToastrService,
+    public mapsApiLoader: MapsAPILoader,
+    public http: Http,private zone: NgZone,
+    private wrapper: GoogleMapsAPIWrapper,
+    private _fb: FormBuilder
+  )
   {
       this.mapsApiLoader = mapsApiLoader;
       this.zone = zone;
@@ -312,6 +318,11 @@ export class LocationComponent implements OnInit {
     }
     
   ngOnInit(): void {
+    this.formPhone = this._fb.group({
+      phoneArry: new FormArray([
+        
+    ])
+    });
     this.mapsApiLoader.load().then(() => {
       this.geocoder = new google.maps.Geocoder();
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
@@ -363,11 +374,45 @@ export class LocationComponent implements OnInit {
         this.address_modelfield  = b;
         console.log(this.address_modelfield);
        }
+
+       formPhone : any;
        openphone(b){
-        this.phone_dailog = true
-        this.modelfield  = b;
-        console.log(this.modelfield);
+          this.phone_dailog = true
+          this.modelfield  = Object.assign({}, b);
+          
+          let control = <FormArray>this.formPhone.controls['phoneArry'];
+       
+          // add new formgroup
+          
+          for(let i = 0; i<b.locationPhones.length;i++){
+            control.push(this._fb.group({
+                // list all your form controls here, which belongs to your form array
+                phoneType: [b.locationPhones[i].phoneType],
+                number: [b.locationPhones[i].phoneNumber],
+                isprime: [b.locationPhones[i].isPrimary],
+                vendorLocationId :[b.locationPhones[i].vendorLocationId],
+                locationPhoneId: 0
+            }));
+        }
+        
        }
+
+       addNewColumn() {
+
+        let control = <FormArray>this.formPhone.controls['phoneArry'];
+            control.push(this._fb.group({
+                // list all your form controls here, which belongs to your form array
+                phoneType: [],
+                number: [],
+                isprime: [],
+                vendorLocationId :[],
+                locationPhoneId: 0
+            }));
+            console.log('aaaaaaaaaaaaaa',control.value);
+    
+      this.arra_col = control.value;
+        }
+
        openweek(b){
          
         this.modelfield  = b;
@@ -375,51 +420,9 @@ export class LocationComponent implements OnInit {
         this.week_dailog =true;
        }
      
-       mapDailog : boolean = false;
+       
        OpenmapDailog(){
         this.mapDailog = true;
-        setTimeout(()=>{  
-                
-             
-          //let input = this.gmapInput;
-          let autocomplete = new google.maps.places.Autocomplete(
-            <HTMLInputElement>document.getElementById("gmapInput"), {
-            types: ['gmapInput']
-        });
-
-        
-
-          //var autocomplete = new google.maps.places.Autocomplete(input.nativeElement);
-
-        // Set initial restrict to the greater list of countries.
-        autocomplete.setComponentRestrictions(
-            {'country': ['us', 'pr', 'vi', 'gu', 'mp']});
-
-        // Specify only the data fields that are needed.
-        autocomplete.setFields(
-            ['address_components', 'geometry', 'icon', 'name']);
-
-
-        google.maps.event.addListener(autocomplete, 'place_changed', () => { // arrow function
-          var place = autocomplete.getPlace();
-          console.log('place',place)
-          if (!place.geometry) {
-            // User entered the name of a Place that was not suggested and
-            // pressed the Enter key, or the Place Details request failed.
-            window.alert("No details available for input: '" + place.name + "'");
-            return;
-          }
-
-          var address = '';
-          if (place.address_components) {
-            address = [
-              (place.address_components[0] && place.address_components[0].short_name || ''),
-              (place.address_components[1] && place.address_components[1].short_name || ''),
-              (place.address_components[2] && place.address_components[2].short_name || '')
-            ].join(' ');
-          }
-        });
-      }, 3000);  
         
        }
 
@@ -552,31 +555,25 @@ export class LocationComponent implements OnInit {
                     
       }
       update_phone(f,g){
-        console.log(f.value)
-        console.log(g)
-        this.phone_dailog = false;
+        debugger
+
+         
+
+      console.log( this.arra_col)
+       
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
-          console.log(this.Location_columns.length);
-
-          this.Location_columns.push(f.value);
-          
-          console.log(this.Location_columns);
-          if(this.Location_columns.length > 0){ 
+          // if(control.value.length > 0){ 
+          //   this.http.post(this.post_phone_number,control.value,{headers:headers}).subscribe( (data)=> { console.log(data)
+          //       this.toastr.success(data.statusText);
+          //       this.phone_dailog = false;
+          //     },(error)=>{ console.log(error);
+          //       this.toastr.error(error._body);});
             
-                           
-
-
-                                this.http.post(this.post_phone_number,this.Location_columns,{headers:headers}).subscribe( (data)=> { console.log(data)
-                                    this.toastr.success(data.statusText);
-                                    this.phone_dailog = false;
-                                  },(error)=>{ console.log(error);
-                                    this.toastr.error(error._body);});
-            
-            }
+          //   }
       }
       isActive(b,e){ 
              console.log(b);
@@ -774,22 +771,7 @@ export class LocationComponent implements OnInit {
       this.week_dailog = false ;
       this.mapDailog =false;
       } 
-      addNewColumn(f) {
-      var newItemNo = this.columns.length + 1;
-    
-      console.log(f.value)
-      //  alert(newItemNo);
-       this.columns.push({
-        locationPhoneId: '0',
-        vendorLocationId:'',
-        phoneType: '',
-        phoneNumber: '',
-        isPrimary:'',
-       
-     });
-    
-    
-      }
+      
 
 
       removeColumn(index) {
@@ -819,5 +801,5 @@ export class LocationComponent implements OnInit {
     
     
       }
-    
+     
 }

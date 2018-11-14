@@ -778,23 +778,23 @@
 </form>  
 
 
-<form (ngSubmit)="update_phone(e,modelfield)" #e="ngForm">        
+<form (ngSubmit)="update_phone(e.value, modelfield)" #e="ngForm">        
     <div class="modal fade" id="phone" tabindex="-1" [ngClass] = "{'show' : phone_dailog}" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Phone Number</h4>
+                    <h4 class="modal-title">Phone Number {{modelfield.vendorLocationId}}</h4>
                     <button type="button" class="close"  (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
                     <div class="clearfix"></div>
                     <h6 class="col-xs-offset-2 phonepopuphead"> Add More Number</h6>
-                    <div class="col-sm-10 col-9 nopadd">  
-                        <div class=" fristfieldremovebtnnone nopadd">
-                            <div *ngFor="let new_phone of modelfield.locationPhones;let i=index">
+                    <div [formGroup]="formPhone" class="col-sm-10 col-9 nopadd">  
+                        <div formArrayName="phoneArry"  class=" fristfieldremovebtnnone nopadd">
+                            <div *ngFor="let new_phone of formPhone.controls.phoneArry.controls let i=index" [formGroupName]="i">
                                 
                                     <div class="col-sm-2 col-3">
-                                        <select name="phoneType+{{i}}" [(ngModel)] = "new_phone.phoneType" >
+                                        <select name="phoneType" formControlName="phoneType" >
                                             <option [value]="'Phone'">Phone</option>
                                                 <option [value]="'Mobile'">Mobile</option>
                                         </select>
@@ -804,27 +804,34 @@
                                     type="text"  
                                     id="urlName" class="inputbottombor"
                                     required 
-                                    [(ngModel)]="new_phone.phoneNumber" 
+                                    formControlName="number"
                                     placeholder="000-000-000"
                                     (keypress)="keyPress($event)"
                                     minlength=10 
                                     maxlength=10 
                                     ng-pattern="/^[0-9]{1,7}$/"
                                     name="phoneNumber+{{i}}" 
-                                    #urlName="ngModel">   
+                                    >   
                                     <label for="urlName">Is prime or not</label>
-
+                               
                                     <input  
                                     type="checkbox"  
                                     class="inputbottombor"
-                                    [(ngModel)]="new_phone.isPrimary" 
-                                    [value]="isPrimary"
+                                    formControlName="isprime"
                                     checked
                                     name="isPrimary" 
                                     > 
+                                    <input type = "hidden"      
+                                    [value] =  "modelfield.vendorLocationId"
+                                    [(ngModel)] =  "modelfield.vendorLocationId"
+                                    formControlName = "vendorLocationId"   
+                                    name="vendorLocationId" 
+                                  > 
+    
+                                
                                     <button type="button" class="remove btn btn-danger btn-raised"  (click)="removeColumn(new_phone)">x</button>
                             </div>
-                            <fieldset  *ngFor="let column of columns; let i = index">
+                            <!-- <fieldset  *ngFor="let column of columns; let i = index">
                                 <div style="position: relative;overflow: hidden;">
                                     <div class="col-sm-2 col-3">
                                         <select name="phoneType" [(ngModel)] = "column.phoneType" >
@@ -857,12 +864,12 @@
                                             name="isPrimary" 
                                             > 
                                             
-
+    
                                             <input type = "hidden"      
                                             [(ngModel)] = "modelfield.vendorLocationId"   
                                             name="vendorLocationId" 
                                             class="effect-16 validate" placeholder="Search for Location" > 
-
+    
                                             <input type = "hidden"      
                                             [(ngModel)] = "locationPhoneId"   
                                             name="locationPhoneId" 
@@ -871,12 +878,12 @@
                                     </div>
                                     <button type="button" class="remove btn btn-danger btn-raised"  (click)="removeColumn(i)">x</button>
                                 </div>
-                            </fieldset>         
+                            </fieldset>          -->
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <br/>
-                        <a class="addfields btn btn-info btn-raised" (click)="addNewColumn(e)">Add More Number</a>
+                        <a class="addfields btn btn-info btn-raised" (click)="addNewColumn()">Add More Number</a>
                     </div>     
                 </div>
                 <div class="modal-footer">
@@ -885,5 +892,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 </form>   
+

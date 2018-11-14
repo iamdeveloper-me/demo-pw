@@ -16,7 +16,7 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 export class ViewPhotoAlbumsComponent implements OnInit {
   Set_as_background:any = [];
   fileToUpload:any;
-  
+  albumImagesModify =[];
   totalImage=[];
   myalbumimages=[];
   private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
@@ -142,6 +142,16 @@ export class ViewPhotoAlbumsComponent implements OnInit {
     this.tags = item.tags;
     this.colourtags = item.colorTags;
     this.myalbumimages =  item.albumImages;
+
+    for (var albumtag of  this.myalbumimages ) {
+      if(albumtag.tags != null && albumtag.colorTags != null){
+        albumtag['tags'] = albumtag['tags'].split(',');
+        albumtag['colorTags'] = albumtag['colorTags'].split(',');
+      }
+      
+      this.albumImagesModify.push(albumtag);
+      console.log(this.albumImagesModify)
+    }
      }
 }
   

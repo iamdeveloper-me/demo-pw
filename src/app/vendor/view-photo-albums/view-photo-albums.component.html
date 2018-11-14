@@ -22,24 +22,63 @@
               </a>      
           </div>	
         </div> 
-        <div class="container-fluid photo_gallery">     
-            <div class="color_optin text-center">
+        <div class="container-fluid photo_gallery" >     
+            <div class="color_optin text-center" *ngFor="let image of albumImagesModify; let i=index ">
                 <div class="clearfix"></div>
-                <span class="colortags bluebg"></span> 
-                <span class="colortags redbg"></span> 
-                <span class="colortags greenbg"></span> 
-                <span class="colortags purplebg"></span>
-                <div class="clearfix"></div>
-                <p class="beach_outdoor"> <span>{{tags}}</span> <span>Outdoor</span> </p>
-      
-                <p class="add_photos">
-                    <button  id="Google-function" class="btn newbtn" (click)="uploadphoto_dailog = true" data-reactid="339" >Add photos</button>
- 
-                
-                </p>
-            </div>     
+                <span *ngFor="let g of image.colorTags;let i=index">
+                    <!-- {{g}} -->
+                     
+                          <span *ngIf = "g == 'pink'" class="colortags pinkbg"></span>
+                      
+                      
+                          <span *ngIf = "g == 'red'" class="colortags redbg"></span>
+                      
+                      
+                          <span  *ngIf = "g == 'blue'" class="colortags bluebg"></span>
+                     
+                      
+                          <span  *ngIf = "g == 'yellow'" class="colortags yellowbg"></span>
+                      
+                   
+                          <span *ngIf = "g == 'green'" class="colortags greenbg"></span>
+                     
+                    
+                          <span  *ngIf = "g == 'purple'" class="colortags purplebg"></span>
+                     
+                     
+                          <span  *ngIf = "g == 'white'" class="colortags whitebg"></span>
+                     
+                     
+                          <span *ngIf = "g == 'black'" class="colortags blackbg"></span>
+                     
+                      
+                          <span *ngIf = "g == 'grey'" class="colortags greybg"></span>
+                     
+                      
+                          <span *ngIf = "g == 'orange'" class="colortags orangebg"></span>
+                     
+                    
+                          <span *ngIf = "g == 'brown'" class="colortags brownbg"></span>
+                      
+                </span>
+             
+            </div>   
+            <div class="clearfix"></div>
+            
+            <!-- <p class="beach_outdoor"> <span>{{tags}}</span> <span>Outdoor</span> </p> -->
+          <div *ngFor="let image of albumImagesModify; let i=index ">
+            <div *ngFor="let ag of image.tags;let i=index">
+                <span class="tagstik"> 
+                    {{ag}}    
+                  <i class="material-icons">clears</i>
+                </span>      
+              </div>
+            </div>
+            <p class="add_photos">
+                <button  id="Google-function" class="btn newbtn" (click)="uploadphoto_dailog = true" data-reactid="339" >Add photos</button>
+            </p>  
             <div class="row mar_top_50px">
-              <div   class="col-lg-3 col-md-4 col-xs-6 "  *ngFor="let image of myalbumimages; let i=index ">
+              <div   class="col-lg-3 col-md-4 col-xs-6 "  *ngFor="let image of albumImagesModify; let i=index ">
                 <div class="thumb hovereffect"  data-target="#image-gallery" data-toggle="modal"  >
                     <button class="deletebtn" (click)="deleteImage(image,i)">&times;</button>
                     

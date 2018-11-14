@@ -21,6 +21,26 @@ album_tag;
 albumname:any;
 tags:any;
 colourtags:any;
+colour = '';
+colour_pink = 'pink';
+colour_red = 'red';
+colour_orange = 'orange';
+colour_yellow = 'yellow';
+colour_green = 'green';
+colour_Blue = 'Blue';
+colour_purple = 'purple';
+colour_brown = 'brown';
+colour_black = 'black';
+colour_grey = 'grey';
+colour_white = 'white';
+colour_picker1 = [];
+tags_picker1 = [];
+taggg = '';
+t='';
+tai:any;
+choose:any ;
+a:any;
+albumImagesModify = [];
 
   constructor(private http: Http ,  private route: ActivatedRoute ,public toastr: ToastrService) { 
     let headers = new Headers();
@@ -50,14 +70,21 @@ colourtags:any;
       this.tags = item.tags;
       this.colourtags = item.colorTags;
       this.myalbumimages =  item.albumImages;
-     
+  
+      for (var albumtag of  this.myalbumimages ) {
+        if(albumtag.tags != null && albumtag.colorTags != null){
+          albumtag['tags'] = albumtag['tags'].split(',');
+          albumtag['colorTags'] = albumtag['colorTags'].split(',');
+        }
+        
+        this.albumImagesModify.push(albumtag);
+        console.log(this.albumImagesModify)
+      }
+      
        }
       
            }
-        for (var albumtag of  this.myalbumimages ) {
-          console.log(albumtag.tags);
-          this.album_tag =  albumtag.tags.split(',');
-        }
+      
      
     });
   }
@@ -77,12 +104,46 @@ colourtags:any;
       console.log(  this.album_tag );
   }
 
+  tags_bage(e){
+    console.log(e);
+   this.t = e;
+   this.tags_picker1.push(e);
+    console.log(   this.tags_picker1);
+    this.tai =  this.tags_picker1
 
+    this.taggg = '';
+  }
+  colour_picker(d){
+  console.log(d)
+  this.colour = d;
+  this.colour_picker1.push(this.colour );
+  console.log( this.colour_picker1);
+  // for (var c of  this.colour_picker1 ) {
+  //   console.log(c);
+  //   this.a =  c.split(',');
+  // }
+
+   this.a  = this.colour_picker1
+  // console.log(this.a );
+ 
+}
+remove_tag_picker(g){
+  console.log(g);
+ 
+  this.tags_picker1.splice(g, 1);
+}
+remove_colour_picker(g){
+  console.log(g);
+  this.colour_picker1.splice(g, 1);
+  
+}
 editSetting(f){
        
   this.description_dailog = false;
   console.log(f);
-               
+  console.log(this.tags_picker1.join(','));
+  console.log(this.colour_picker1.join(','));
+
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
   headers.append('Accept', 'application/json')
@@ -91,19 +152,20 @@ editSetting(f){
 const fire  = {       
    AlbumImageId: f.value.AlbumImageId,
   AlbumsId: f.value.AlbumsId,
-  Tags: f.value.tags,
-  ColorTags: f.value.colorTags,
+  Tags:this.tags_picker1.join(','),
+  ColorTags:  this.colour_picker1.join(','),
   SetAsBackground: true}
   console.log(fire)
       this.http.post(this.update_portfolio_album,{
         albumImageId: f.value.AlbumImageId,
         AlbumsId: f.value.AlbumsId,
-        Tags: f.value.tags,
-        ColorTags: f.value.colorTags,
+        Tags:this.tags_picker1.join(','),
+        ColorTags:  this.colour_picker1.join(','),
         SetAsBackground: true
       },{headers:headers}).subscribe(data =>{
      
       console.log(data.json());
+      this.toastr.success(data.json().message);
   },error=> console.log(error)    )
   this.description_dailog = false;
 
@@ -129,7 +191,7 @@ closeModel(){
       console.log(image);
       console.log(index);
       console.log(image.albumImageId);
-      this.myalbumimages.splice(index,1);
+      this.albumImagesModify.splice(index,1);
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
       headers.append('Accept', 'application/json')

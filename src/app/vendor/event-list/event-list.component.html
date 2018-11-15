@@ -32,7 +32,9 @@
                   </span>
                 </button>
               </div>
-              <form (ngSubmit)="addFile(info)" #info="ngForm" class="    padding-left: 84%">
+
+<!--(ngSubmit)="addFile(info)"-->
+              <form  #info="ngForm" class="    padding-left: 84%">
                 <input #fileInput type="file" [(ngModel)]="gallery.files" name="image" id="image" />
                 <button type="submit" class="btn btn-small btn-link">
                   <i class="material-icons"> add </i>
@@ -240,7 +242,8 @@
 </div>
 
 <ng-template #adduser let-c="close" let-d="dismiss">
-  <form (ngSubmit)="event(list)" #list="ngForm">
+  <!--(ngSubmit)="event(list)"-->
+  <form  #list="ngForm">
     <!-- for upload image -->
     <!-- <form (ngSubmit)="addFile(info)" #info="ngForm" class="    padding-left: 84%"> -->
 
@@ -264,7 +267,7 @@
     <div class="modal-body">
       <div class="form-group">
         <div class="input-effect form-group md-form ">
-          <input class="effect-16 validate" required="required" [(ngModel)]="list.eventTitle" id="Title" name="Title">
+          <input class="effect-16 validate" required="required" [(ngModel)]="eventMaster.eventTitle" id="Title" name="Title">
           <label>Title</label>
           <span class="focus-border"></span>
 
@@ -274,12 +277,12 @@
       <!-- <input  type="file" accept="image/*" class="effect-16 validate"  required="required" [(ngModel)]="list.filesId"  
                     id="Image" 
                     name="Image"> -->
-      <input type="hidden" name="filesId" id="filesId" [value]="fileIdfield.filesId" [(ngModel)]="fileIdfield.filesId">
+      <input type="hidden" name="filesId" id="filesId" [value]="fileIdfield.filesId" [(ngModel)]="eventMaster.filesId">
 
 
-      <div class="form-group date_picker">
+      <div class="form-group date_picker" [(ngModel)]='eventdate'>
         <label style="width:100%;">event date:</label> <br>
-        <input type="date" name="eventdate" id="eventdate" [(ngModel)]="list.eventDate" style="width:100%;">
+        <input type="date" name="eventdate" id="eventdate" [(ngModel)]="eventMaster.eventDate" style="width:100%;">
 
       </div>
       <div class="form-group time_picker col-sm-6" style="padding-left: 0px;">
@@ -369,7 +372,7 @@
       <div class="clearfix"></div>
       <div class="form-group">
         <div class="input-effect form-group md-form ">
-          <input type="text" class="effect-16 validate" required="required" [(ngModel)]="list.venueName" name="venueName"
+          <input type="text" class="effect-16 validate" required="required" [(ngModel)]="eventMaster.venueName" name="venueName"
             id="venueName">
 
           <label>VenueName</label>
@@ -378,7 +381,7 @@
       </div>
       <div class="form-group">
         <div class="input-effect form-group md-form ">
-          <select class="effect-16 validate" id="Country" [(ngModel)]="country_id" name="country_id" (change)="country($event)">
+          <select class="effect-16 validate" id="Country" [(ngModel)]="eventMaster.countryId" name="country_id" (change)="country($event)">
             <option *ngFor="let country of arra ;let c =index" type="text" id="{{country.countryName}}" checked name="countryName"
               placeholder="Country" [value]="c" required>
               {{country.countryName }}
@@ -393,7 +396,7 @@
       <div class="clearfix"></div>
       <div class="form-group">
         <div class="input-effect form-group md-form ">
-          <select name="district" class="effect-16 validate" [(ngModel)]="dist_id" name="dist_id" (change)="districtA($event)">
+          <select name="district" class="effect-16 validate" [(ngModel)]="eventMaster.districtId" name="dist_id" (change)="districtA($event)">
             <option *ngFor="let dist of district ;let d =index" type="text" id="{{dist.name}}" checked name="dist"
               placeholder="Country" [value]="d" required>
               {{dist.name }}
@@ -408,7 +411,7 @@
       <div class="clearfix"></div>
       <div class="form-group">
         <div class="input-effect form-group md-form ">
-          <select class="effect-16 validate" [(ngModel)]="sub_id" name="sub_id" (change)="subr($event)">
+          <select class="effect-16 validate" [(ngModel)]="eventMaster.suburbId" name="sub_id" (change)="subr($event)">
             <!-- (change)="country($event)" -->
             <option *ngFor="let sub of suburb ;let s =index" type="text" id="{{sub.name}}" checked name="sub"
               placeholder="Suburb" [value]="s" required>
@@ -424,7 +427,7 @@
       <div class="clearfix"></div>
       <div class="form-group">
         <div class="input-effect form-group md-form ">
-          <input type="text" class="effect-16 validate" required="required" [(ngModel)]="list.location" name="Location"
+          <input type="text" class="effect-16 validate" required="required" [(ngModel)]="eventMaster.location" name="Location"
             id="Location">
           <label>Location</label>
           <span class="focus-border"></span>
@@ -432,7 +435,7 @@
       </div>
       <div class="form-group">
         <div class="input-effect form-group md-form ">
-          <input type="text" class="effect-16 validate" required="required" [(ngModel)]="list.capacity" name="Capacity"
+          <input type="text" class="effect-16 validate" required="required" [(ngModel)]="eventMaster.capacity" name="Capacity"
             id="Capacity">
           <label>Capacity</label>
           <span class="focus-border"></span>
@@ -440,7 +443,7 @@
       </div>
       <div class="form-group">
         <div class="input-effect form-group md-form ">
-          <input type="text" class="effect-16 validate" required="required" [(ngModel)]="list.eventDescription" name="eventDescription"
+          <input type="text" class="effect-16 validate" required="required" [(ngModel)]="eventMaster.eventDescription" name="eventDescription"
             id="eventDescription">
 
           <label>Description</label>
@@ -449,7 +452,7 @@
       </div>
       <div class="form-group">
         <div class="input-effect form-group md-form ">
-          <input type="text" class="effect-16 validate" required="required" [(ngModel)]="list.entry" name="entry" id="entry">
+          <input type="text" class="effect-16 validate" required="required" [(ngModel)]="eventMaster.entry" name="entry" id="entry">
 
           <label>Entry</label>
           <span class="focus-border"></span>
@@ -458,7 +461,7 @@
 
       <div class="form-group">
         <div class="input-effect form-group md-form ">
-          <input type="text" class="effect-16 validate" required="required" [(ngModel)]="list.entryFee" name="entryFee"
+          <input type="text" class="effect-16 validate" required="required" [(ngModel)]="eventMaster.entryFee" name="entryFee"
             id="entryFee">
 
           <label>entryFee</label>
@@ -468,15 +471,15 @@
 
     </div>
     <div class="modal-footer">
-      <button type="submit" class="btn newbtn">Save</button>
+      <button type="button" class="btn newbtn" (click)='AddUpdateEvent(list)'>Save_123</button>
 
       <button type="button" class="btn newbtn newcancelbtn" (click)="c('Close click')">Cancel</button>
     </div>
   </form>
 </ng-template>
 
-
-<form (ngSubmit)="editevent(data)" #data="ngForm">
+<!--(ngSubmit)="editevent(data)"-->
+<form   #data="ngForm">
   <div class="modal fade" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -662,7 +665,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn newbtn">Save</button>
+            <button type="submit" class="btn newbtn" (click)='AddUpdateEvent(data)'>Save_567</button>
 
             <button type="button" class="btn  newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
           </div>

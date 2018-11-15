@@ -19,6 +19,7 @@ export class NgbduserModalContent {
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit {
+  eventMaster: eventMaster = new eventMaster();
   description_dailog = false; 
   eventArray: any = [];
   modelfield: any = {};
@@ -94,7 +95,9 @@ export class EventListComponent implements OnInit {
 
 
   createImageFromBlob(image: Blob) {
+    
     let reader = new FileReader();
+    if(reader!=null){
     reader.addEventListener("load", () => {
       this.imageToShow = reader.result;
     }, false);
@@ -103,16 +106,21 @@ export class EventListComponent implements OnInit {
       reader.readAsDataURL(image);
     }
   }
+  }
+
   getImageFromService() {
     this.isImageLoading = true;
     this.imageService.getImage('https://s3.us-east-2.amazonaws.com/prefect-image/efc074d5-ccb0-41af-94c8-3d51acaa1a65username.png').subscribe(data => {
-      this.createImageFromBlob(data);
+      if(data!=null){
+    this.createImageFromBlob(data);
       this.isImageLoading = false;
-    }, error => {
+    } error => {
       this.isImageLoading = false;
       console.log(error);
-    });
+    };
+  });
   }
+
   // path = "https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg";
   path = "https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg";
   data: any = [{ files: { path: "https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" } }]
@@ -141,6 +149,7 @@ export class EventListComponent implements OnInit {
 
   // function run on file selection..
   onFileChanged(event) {
+    alert(event);
     this.imageToUpload = event.target.files[0];
   }
 
@@ -189,7 +198,7 @@ export class EventListComponent implements OnInit {
                       formData.append('AlbumId', '2');
                       formData.append(this.imageToUpload.name, this.imageToUpload);
                       console.log(this.imageToUpload)
-                      alert("xcbvdfg");
+                      // alert("xcbvdfg");
 
                       this.http.post(this.uploadimage, formData, { headers: headerForImageUpload }).subscribe(data => {
                         this.fileIdfield = data.json() as string[],
@@ -330,11 +339,6 @@ export class EventListComponent implements OnInit {
     this.eventdate = v.eventsDates[0].eventDate.split('T')[0]
     this.endtime = v.eventsDates[0].endTime.split('T')[1]
     this.startime = v.eventsDates[0].startTime.split('T')[1]
-    // console.log( this.eventdate );
-    // console.log( this.endtime );
-    // console.log( this.startime );
-    // console.log( this.modelfield );
-
   }
 
   editsave(data: any) {
@@ -379,19 +383,12 @@ export class EventListComponent implements OnInit {
     console.log(editData)
     this.http.post(this.eventposturl, editData, { headers: headers }).subscribe(data => {
       console.log(data.json());
-
     },error=>{console.log(error)})
   }
 
   past_upcomming_event(past){
     console.log(past);
-   // if (past == 1) 
-   //  { past = true;
-   //    up = false;
-   //   }else{
-   //    past = false;
-   //    up = true;
-   //   }
+
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -446,6 +443,77 @@ export class EventListComponent implements OnInit {
   closeModel(){         
     this.description_dailog = false;  
   }
+  /// Implemented By Raju.
+  loadEvents(){
+    this.http.get('').subscribe((data)=>{
+      this.eventArray = data;
+    });
+  }
+  AddUpdateEvent(e){
+    console.log(e);
+  //   let headerForImageUpload = new Headers();
+  //   var authToken = localStorage.getItem('userToken');
+  //   headerForImageUpload.append("Authorization", 'Bearer ' + authToken);
+  //   const formData = new FormData();
+  //   formData.append('AlbumId', '2');
+  //   formData.append(this.imageToUpload.name, this.imageToUpload);
+  //   console.log(this.imageToUpload)
+  //   // alert("xcbvdfg");
+
+  //   this.http.post(this.uploadimage, formData, { headers: headerForImageUpload }).subscribe(data => {
+  //     this.fileIdfield = data.json() as string[],
+  //     this.list.fileIdfield = this.fileIdfield;
+  //     this.modelfield.fileIdfield = this.fileIdfield;
+  //     this.eventMaster.filesId = this.fileIdfield;
+  //     console.log(this.fileIdfield);
+  //     console.log(data.json());
+                      
+  //     console.log(this.list);
+  //     let headers = new Headers();
+  //     var authToken = localStorage.getItem('userToken');
+  //     headers.append('Accept', 'application/json')
+  //     headers.append('Content-Type', 'application/json');
+  //     headers.append("Authorization", 'Bearer ' + authToken);
+
+  //   console.log(this.eventMaster);
+  // this.eventMaster.eventDates.push(this.eventdate);
+
+  //   this.http.post(this.eventposturl,this.eventMaster,{'headers': headers}).subscribe((data)=>{
+  //     this.eventMaster = new eventMaster();
+  //     alert('event created successfully !');
+  //   })
+  // });
+}
 
 
+}
+export class eventMaster{
+  
+    eventId: number;
+    eventTitle: string;
+    filesId: number;
+    venueName: string;
+    countryId: number;
+    districtId: number;
+    suburbId: number;
+    location: string;
+    lat: number;
+    long: number;
+    capacity: number;
+    entry: string;
+    entryFee: number;
+    eventDescription: string;
+    eventDates: Array<eventsDates>;
+    constructor(){
+      this.eventDates = new Array<eventsDates>();
+    }
+    
+  
+}
+export class eventsDates { 
+      eventsMoreDatesId: number;
+      eventId: number;
+      eventDate: Date;
+      startTime: Date;
+      endTime: Date;
 }

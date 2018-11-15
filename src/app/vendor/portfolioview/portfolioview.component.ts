@@ -129,12 +129,20 @@ export class PortfolioviewComponent implements OnInit {
     let headers = new  Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append("Authorization",'Bearer '+authToken);
-  
+
     this.http.post(this.uploadimage,formData,{headers:headers})
       .subscribe(data =>{ 
         console.log(data.json().filesId);
-      
-        this.http.post(this.addportfolio,{filesId:data.json().filesId},{headers:headers})
+        const data2 = {
+            portfolioId: 0,
+            filesId: data.json().filesId,
+            tags: "string",
+            colorTags: "string",
+            setAsBackgroud: true
+          }
+
+          console.log(data2);
+        this.http.post(this.addportfolio,data2,{headers:headers})
       .subscribe(data =>{ 
         console.log(data.json());
         this.http.get(this.mygeturl,{headers:headers})

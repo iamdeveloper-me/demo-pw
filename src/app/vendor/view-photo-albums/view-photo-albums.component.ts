@@ -30,7 +30,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   uploadphoto_dailog = false;
 
 
-
+  find_image;
   albumid:any;
   albumname:any;
   tags:any;
@@ -254,8 +254,14 @@ $(document)
   }
   
 
-
-
+  high_light(e){
+console.log(e)
+//this.find_image = clr;
+  }
+  // higcs(img){
+  //   img
+  //   rett
+  // }
 
 
 

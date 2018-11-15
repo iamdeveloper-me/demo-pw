@@ -28,13 +28,13 @@
                             <div class="card-body">
                                 <div class="text-center bg-form col-sm-12" (click)="openModel(data)"> 
                                     <div class="img-section">
-                                            <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [(fitBounds)]='location.viewport'>
-                                                    <agm-marker [(latitude)]="location.marker.lat" [(longitude)]="location.marker.lng" [markerDraggable]="location.marker.draggable" (dragEnd)='markerDragEnd(m)'></agm-marker>
-                                                    <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle>
+                                            <agm-map [(latitude)]="data.lat" [(longitude)]="data.long"  [disableDefaultUI]="true" [zoomControl]="true" >
+                                                    <agm-marker [(latitude)]="data.lat" [(longitude)]="data.long" ></agm-marker>
+                                                    <!-- <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle> -->
                                             </agm-map>
                                         <div class="img_overlay " (click)="OpenmapDailog(); " >
                                             <div class="col-lg-12 col-md-12 pad_left_0px whitetext">
-                                                   <span> Edit Map </span>
+                                                   <span> Edit Map</span>
                                                 <button type="button" class="btn edit_btn1" >
                                                     <i class="material-icons">edit</i>
                                                 </button>
@@ -51,10 +51,12 @@
                                     </span>
                                             <div class="col-sm-10 col-11 minheight130px" >
                                              
-                                                    : {{data?.mapAddress}}  <br>
-                                                    : {{data?.country?.countryName }} <br>
-                                                    : {{data?.districts?.name}} <br> 
-                                                    : {{data?.suburb?.name}}   
+                                                    <div>: {{data?.mapAddress}}  </div>
+                                                    <div>: {{data?.country?.countryName }} </div>
+                                                    <div>: {{data?.districts?.name}} </div>
+                                                    <div>: {{data?.suburb?.name}}   </div>
+                                                    <div>: {{data?.address}}</div>
+                                                    <div>: {{data?.postalCode}}</div>
                                                 <i class="material-icons edit_btn"> edit</i>
                                             </div>
                                         </div>
@@ -63,32 +65,30 @@
                                 </div>
                                 <div class="col-lg-12 text_left phone_icon1">
                                     <div class=" nopadd weekboxinput">
-                                        <div class="col-lg-12 col-md-12 edit_hide"  (click)="openphone(data)">
-                    
-                                            <div class="col-sm-10 col-11 " >
-                                         
-                                                    More  Phone :
+                                        <div class="col-lg-12 col-md-12 edit_hide minphoneheight"  (click)="openphone(data)">
                                                     <span class="acce_time1 col-1">
                                                     <i  class="material-icons" >local_phone</i> 
                                                     </span>
-                                                        <div *ngFor="let new_phone of data.locationPhones;let i=index">
-                                                            <div *ngIf = "new_phone.phoneType == 'Phone'">
-                                                                    {{data.phone}}    ,
-                                                                    {{new_phone.phoneNumber}},
-                                                            </div> 
-                                                         </div>
-                                          
-                                                    More  Mobile :
+                                                    <div class="col-sm-10 col-11" >
+                                                            <span *ngFor="let new_phone of data.locationPhones;let i=index">
+                                                                <span *ngIf = "new_phone.phoneType == 'Phone'">
+                                                                       <!--  {{data.phone}}    , -->
+                                                                        {{new_phone.phoneNumber}},
+                                                                </span> 
+                                                            </span>
+                                                    </div>
+                                                    <div class="col-sm-12 martikset"></div>
                                                     <span class="acce_time1 col-1">
                                                     <i  class="material-icons">phone_iphone</i>
                                                     </span> 
-                                                    <div *ngFor="let new_phone of data.locationPhones;let i=index">
-                                                        <div *ngIf = "new_phone.phoneType == 'Mobile'">  
-                                                                {{data.mobile}},      {{new_phone.phoneNumber}},
-                                                        </div>
-                                                    </div>              
-                                            </div>
-                                           
+                                                    <div class="col-sm-10 col-11" >
+                                                        <span *ngFor="let new_phone of data.locationPhones;let i=index">
+                                                        <span *ngIf = "new_phone.phoneType == 'Mobile'">  
+                                                               <!--  {{data.mobile}},    -->
+                                                                   {{new_phone.phoneNumber}},
+                                                        </span>
+                                                        </span>
+                                                    </div> 
                                         </div>
                                     </div>
                                 </div>
@@ -255,7 +255,7 @@
                         </div>
                         <div class="clearfix"></div>
                         <div class="text-center">  
-                            <p><strong>OR</strong></p>
+                            <p><strong>OR  {{k}} /// {{l}}  </strong></p>
                             <button class="btn newbtn marbot20px" (click)="Find_current_location()">
                                     <i class="material-icons pull-left">my_location</i> 
                                     Use My Location
@@ -263,6 +263,7 @@
                         </div>
                     </div>
                 </div>
+                             
                 <div class="modal-footer">
                     <button type="submit" class="btn newbtn newcancelbtn">Save</button>&nbsp;
                     <button type="button" class="btn newbtn" (click)="closeModel()">Close</button> 
@@ -778,7 +779,7 @@
 </form>  
 
 
-<form (ngSubmit)="update_phone(e.value, modelfield)" #e="ngForm">        
+<form (ngSubmit)="update_phone()" #e="ngForm">        
     <div class="modal fade" id="phone" tabindex="-1" [ngClass] = "{'show' : phone_dailog}" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -788,10 +789,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="clearfix"></div>
-                    <h6 class="col-xs-offset-2 phonepopuphead"> Add More Number</h6>
+                 <!--    <h6 class="col-xs-offset-2 phonepopuphead"> Add More Number</h6> -->
                     <div [formGroup]="formPhone" class="col-sm-10 col-9 nopadd">  
                         <div formArrayName="phoneArry"  class=" fristfieldremovebtnnone nopadd">
-                            <div *ngFor="let new_phone of formPhone.controls.phoneArry.controls let i=index" [formGroupName]="i">
+                            <div class="marbot10px" *ngFor="let new_phone of formPhone.controls.phoneArry.controls let i=index" [formGroupName]="i">
                                 
                                     <div class="col-sm-2 col-3">
                                         <select name="phoneType" formControlName="phoneType" >
@@ -812,7 +813,7 @@
                                     ng-pattern="/^[0-9]{1,7}$/"
                                     name="phoneNumber+{{i}}" 
                                     >   
-                                    <label for="urlName">Is prime or not</label>
+                                    <label for="urlName">&nbsp;&nbsp;Is primary</label>
                                
                                     <input  
                                     type="checkbox"  
@@ -829,7 +830,7 @@
                                   > 
     
                                 
-                                    <button type="button" class="remove btn btn-danger btn-raised"  (click)="removeColumn(new_phone)">x</button>
+                                    <button type="button" class="remove btn btn-danger btn-raised"  (click)="removePhone(new_phone,i)">x</button>
                             </div>
                             <!-- <fieldset  *ngFor="let column of columns; let i = index">
                                 <div style="position: relative;overflow: hidden;">

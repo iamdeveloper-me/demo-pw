@@ -254,17 +254,6 @@ $(document)
   }
   
 
-  high_light(e){
-console.log(e)
-//this.find_image = clr;
-  }
-  // higcs(img){
-  //   img
-  //   rett
-  // }
-
-
-
   //service
   deleteImage(image,index){
 
@@ -324,10 +313,8 @@ console.log(e)
          
          if(this.albumid.id == item.albumsId)
           {
-          //    alert("dsf"); 
-          // console.log(item);
-          // console.log(item.albumImages);
-          this.myalbumimages =  item.albumImages;
+              this.albumImagesModify =  item.albumImages;
+              console.log(  this.albumImagesModify ); 
            }
       }
         

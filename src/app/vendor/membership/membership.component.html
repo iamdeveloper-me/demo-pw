@@ -105,6 +105,8 @@
 									<div class="panel-footer text-center" >
 										<button class="btn btnchoosetik"   type="submit" (click) = "monthlyPrice(plan)" [disabled]="plan.pricingPlanId == pricingPlanId  && payFrequency == 0">SELECTED PLAN
 										</button>
+										{{payFrequency}}
+
 									</div>
 									<!-- <ng-template #other_content>
 										<a class="btn btnchoosetik"   type="submit" (click) = "monthlyPrice(plan)" > CURRENT PLAN	
@@ -156,8 +158,9 @@
 											<li class="list-group-item"><i class="material-icons bluetext" >report</i> Low Priority in Search Results {{plan.priorityInSearch}}</li>
 								</ul>
 									<div class="panel-footer text-center">
-
-										<button class="btn btnchoosetik"  type="submit" (click) = "annualPrice(plan)" [disabled]="plan.pricingPlanId == pricingPlanId  && payFrequency == 1">SELECTED PLAN
+										<!-- btnchoosetik -->
+										{{payFrequency}}
+										<button   type="submit" (click) = "annualPrice(plan)" [disabled]="plan.pricingPlanId == pricingPlanId  && payFrequency == 1">SELECTED PLAN
 										</button>
 									</div>
 								</div>

@@ -201,7 +201,7 @@ const appRoutes: Routes = [
     { path: 'vendor/PromoteBusiness', component:    PromoteBusinessComponent},
     { path: 'vendor/statistics', component:  StatisticsComponent},
     { path: 'vendor/albumdetailsetting', component:   Albumsetting2Component  },
-    { path: 'vendor/mailseach', component:  MailsearchComponent},
+    { path: 'vendor/msg/:id', component:  MailsearchComponent},
     { path: 'vendor/enquiry', component:  EnquiriesComponent},
     { path: 'vendor/storefront', component:  StorefrontComponent},
     { path: 'vendor/actionfront', component:  ActionsComponent},

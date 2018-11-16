@@ -36,7 +36,6 @@ export class MessageService {
     return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Messages/Post',{subject:subject,message:message,replyTo:replyTo,sendByFirstName:sendByFirstName,sendByLastName:sendByLastName,sendByUserId:sendByUserId,sendToUserId:sendToUserId,sendByEmail:sendByEmail},{headers: headers})
 
   }
-
   vendorHis(){
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
@@ -45,17 +44,27 @@ export class MessageService {
     headers.append("Authorization",'Bearer '+authToken);
     return this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Messages/messagehistory',{headers:headers})
 
-  // }
-  
-  // marksread(){
-  //   let headers = new Headers();
-  //   var authToken = localStorage.getItem('userToken');
-  //   headers.append('Accept', 'application/json')
-  //   headers.append('Content-Type', 'application/json');
-  //   headers.append("Authorization",'Bearer '+authToken);
-  //    return this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Messages/markasread',{headers:headers})
+  }
 
+  vendorMessages(data){
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+    return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Messages/mymessages',data,{headers:headers})
+
+  }
   
+  marksread(id){
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+     return this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Messages/markstaread?id='+id,{headers:headers})
+
+  }
 
   // markstared(){
   //   let headers = new Headers();
@@ -65,8 +74,16 @@ export class MessageService {
   //   headers.append("Authorization",'Bearer '+authToken);
   //   return this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Messages/markstared',{headers:headers})
 
-
+  messageHistory(ids){
+    let headers = new Headers();
+      var authToken = localStorage.getItem('userToken');
+      headers.append('Accept', 'application/json')
+      headers.append('Content-Type', 'application/json');
+      headers.append("Authorization",'Bearer '+authToken);
+      return this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Messages/messagehistory?id='+ids,{headers:headers})
+   
   }
+  
   ngOnInit()  {
 
     

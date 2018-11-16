@@ -11,11 +11,11 @@
                       <div class="inbox-head">
                         <h3>Inbox</h3>
                         <div class="btn-group">
-                            <a href="#">All (14)</a>
+                            <a (click)="initDatatable(1)">All (14)</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="#">Unread (03)</a>
+                            <a (click)="initDatatable(2)">Unread (02)</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="#">Stared (03)</a>
+                            <a (click)="initDatatable(3)">Stared (03)</a>
                         </div>
                           <form action="#" class="pull-right position">
                               <div class="input-append">
@@ -24,116 +24,40 @@
                               </div>
                           </form>
                       </div>
- 
+ <!-- {{ historyArr | json}} -->
                       <div class="inbox-body">
-                        <div class="cardmessagebox" *ngFor="let history of historyArr">
-                          <input type="checkbox" class="mail-checkbox">
-                          <div class="imgboxmessage" routerLink= "../mailseach">
-                              <img  class="userimg" src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg"/>
-                          </div>
-                          <div class="textboxmessage"  routerLink= "../mailseach">
-                                        <div>
-                                          <strong>
-                                            {{history.sendByFirstName}} {{history.sendByLastName}}
-                                          </strong>
-                                          <span _ngcontent-c0="" class="label label-info">
-                                            Administrator 
-                                          </span>
-                                        </div>
-                                        <div>
-                                          {{history.subject}}
-                                        </div>
-                                        <div class="secondarytext">
-                                        {{history.message}}
-                                        </div>
-                                        <div class="messdatetext">
-                                        {{history.sentDateString}}
-                                         <!--{{history.sentDate|date:"HH:mm"}}-->
-                                        </div>
-                                        <i class="fa fa-star starfix"></i>
-                          </div>
-                        </div>  
-                        <div class="cardmessagebox">
-                          <input type="checkbox" class="mail-checkbox">
-                          <div class="imgboxmessage" routerLink= "../mailseach">
-                              <img  class="userimg" src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg"/>
-                          </div>
-                          <div class="textboxmessage"  routerLink= "../mailseach">
-                                        <div>
-                                          <strong>
-                                            Pankaj Agrawal
-                                          </strong>
-                                          <span _ngcontent-c0="" class="label label-info">
-                                            Administrator 
-                                          </span>
-                                        </div>
-                                        <div>
-                                          Subject
-                                        </div>
-                                        <div class="secondarytext">
-                                        Message Detail
-                                        </div>
-                                        <div class="messdatetext">
-                                        25-Oct-2018
-                                         <!--{{history.sentDate|date:"HH:mm"}}-->
-                                        </div>
-                                        <i class="fa fa-star starfix"></i>
-                          </div>
-                        </div> 
-                        <div class="cardmessagebox">
-                          <input type="checkbox" class="mail-checkbox">
-                          <div class="imgboxmessage" routerLink= "../mailseach">
-                              <img  class="userimg" src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg"/>
-                          </div>
-                          <div class="textboxmessage"  routerLink= "../mailseach">
-                                        <div>
-                                          <strong>
-                                            Pankaj Agrawal
-                                          </strong>
-                                          <span _ngcontent-c0="" class="label label-info">
-                                            Administrator 
-                                          </span>
-                                        </div>
-                                        <div>
-                                          Subject
-                                        </div>
-                                        <div class="secondarytext">
-                                        Message Detail
-                                        </div>
-                                        <div class="messdatetext">
-                                        25-Oct-2018
-                                         <!--{{history.sentDate|date:"HH:mm"}}-->
-                                        </div>
-                                        <i class="fa fa-star starfix"></i>
-                          </div>
-                        </div> 
-                        <div class="cardmessagebox">
-                          <input type="checkbox" class="mail-checkbox">
-                          <div class="imgboxmessage" routerLink= "../mailseach">
-                              <img  class="userimg" src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg"/>
-                          </div>
-                          <div class="textboxmessage"  routerLink= "../mailseach">
-                                        <div>
-                                          <strong>
-                                            Pankaj Agrawal
-                                          </strong>
-                                          <span _ngcontent-c0="" class="label label-info">
-                                            Administrator 
-                                          </span>
-                                        </div>
-                                        <div>
-                                          Subject
-                                        </div>
-                                        <div class="secondarytext">
-                                        Message Detail
-                                        </div>
-                                        <div class="messdatetext">
-                                        25-Oct-2018
-                                         <!--{{history.sentDate|date:"HH:mm"}}-->
-                                        </div>
-                                        <i class="fa fa-star starfix"></i>
-                          </div>
-                        </div> 
+                      
+                            <div class="cardmessagebox" *ngFor="let history of historyArr">
+                                <input type="checkbox" class="mail-checkbox">
+                                <a class="imgboxmessage" routerLink="../msg/{{history.messageId}}">
+                                    <img  class="userimg" src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg"/>
+                                </a>
+                                <div class="textboxmessage"  routerLink= "../msg">
+                                              <div>
+                                                <strong>
+                                                  {{history.sendByFirstName}} {{history.sendByLastName}}
+                                                </strong>
+                                                <span _ngcontent-c0="" class="label label-info">
+                                                  Administrator c
+                                                </span>
+                                              </div>
+                                              <div>
+                                                {{history.subject}}
+                                              </div>
+                                              <div class="secondarytext">
+                                              {{history.message}}
+                                              </div>
+                                              <div class="messdatetext">
+                                              {{history.sentDateString}}
+                                               <!--{{history.sentDate|date:"HH:mm"}}-->
+                                              </div>
+                                              <span (click)="readMark(history.messageId)">
+                                              <i class="fa fa-star starfix"></i>
+                                              </span>
+                                </div>
+                              </div> 
+                         
+                       
                       </div>
                   </aside>
              </div> 

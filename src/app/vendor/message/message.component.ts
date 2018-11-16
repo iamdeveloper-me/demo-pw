@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { MessageService } from '../../shared/service/vendor/message.service';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -19,7 +20,9 @@ export class MessageComponent implements OnInit {
   closeResult: string;
   mail: Mail[];
   message: Message;
-  constructor(private elRef: ElementRef, private modalService: NgbModal, private inboxService: InboxService, private hservice: MessageService) {
+  filter_id:number = 1
+  uiLoading:boolean = true;
+  constructor(public route: Router,private elRef: ElementRef, private modalService: NgbModal, private inboxService: InboxService, private hservice: MessageService) {
     this.mail = this.inboxService.inbox.filter((mail: Mail) => mail.mailType === 'Inbox');
     this.message = this.inboxService.message.filter((message: Message) => message.mailId === 4)[0];
   }
@@ -31,18 +34,8 @@ export class MessageComponent implements OnInit {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
+    this.initDatatable(this.filter_id)
 
-
-      
-      this.hservice.vendorHis().subscribe(( data )  =>  
-      { 
-        console.log("tttttttttttt");
-        console.log(data.json());
-        console.log("oooooooooo");
-        this.historyArr = data.json() as string[] ; 
-      },error => 
-      alert(error) // error path
-    )
 
     // this.hservice.marksread().subscribe(( data )  =>  
     //   { 
@@ -63,6 +56,29 @@ export class MessageComponent implements OnInit {
     //   alert(error) // error path
     // )
   
+  }
+  initDatatable(filter_id){
+    const json ={
+      "filter" : filter_id
+    }      
+          this.hservice.vendorMessages(json).subscribe(( data )  =>  
+          { 
+            this.uiLoading = false;
+            this.historyArr = data.json() as string[] ; 
+            console.log(this.historyArr)
+          },error => 
+          alert(error) // error path
+        )
+  }
+  readMark(id){
+    alert(id)
+    this.hservice.marksread(id).subscribe(( data )  =>  
+    { 
+        
+      console.log(data.json() as string[])
+    },error => 
+    alert(error) // error path
+  )
   }
 
   //inbox user list click event function
@@ -133,5 +149,7 @@ export class MessageComponent implements OnInit {
     //set active class for selected item 
     event.currentTarget.setAttribute('class', 'list-group-item active no-border');
   }
-
+  nextPage(id){
+    this.route.navigate(['../msg' , id])
+  }
 }

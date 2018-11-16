@@ -9,53 +9,45 @@
              <div class="card martop0px">
               
                 <div class="col-sm-12 borbot1px marbot15px">
-                  <a class="iconfloatleft" routerLink="../Message">
+                  <a class="iconfloatleft" routerLink="../../Message">
                     <i _ngcontent-c5="" class="material-icons"> arrow_back_ios </i>
                     <span _ngcontent-c5="">All Messages</span>
                   </a>
                   <div _ngcontent-c5="" class="subheadtik">
-                    Aakruti
+                    {{profile_name}}
                   </div>
                   </div>
 
 
 
                 <div class="clearfix"></div>
-                <div class="chatscroll">
-              <div class="dateholder">
+                <div class="chatscroll" >
+                  <div *ngFor="let msg of total_message">
+              <!-- <div class="dateholder">
                     <span class="dateholdercontainer">
                       Tuesday, August 28, 2018
                     </span>
-              </div>   
-               
-               <div class="man_img">
+              </div>    -->
+               <div class="man_img" *ngIf="msg.sendToUserId == userId">
                   <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> 
-                  <div class="exellent_par"> 
-                    <span class="revie_name">Peeter Parker, 8:09 PM</span> 
-                    <p>Excellent Service. Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
+                  <div class="exellent_par" > 
+                    <span class="revie_name">{{msg.sendByFirstName}}, 8:09 PM</span> 
+                    <p>{{msg.message}}</p>
                   </div>
                </div>
-                <div class="man_imgright">
-                    <div class="exellent_parright"> 
-                      <span class="revie_name">Aakruti, 8:22 PM</span> 
-                      <p>Excellent Service. Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
-                    </div>
+                <div class="man_imgright" *ngIf="msg.sendToUserId != userId">
+                  <div class="exellent_parright" > 
+                    <span class="revie_name">{{msg.sendByFirstName}}, 8:09 PM
+                        {{msg.SentToUserId}}
+                    </span> 
+                    <p>{{msg.message}}</p>
+                  </div>
                 </div>
-                <div class="man_img">
-                  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> 
-                  <div class="exellent_par"> 
-                    <span class="revie_name">Peeter Parker, 8:09 PM</span> 
-                    <p>Excellent Service. Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
-                  </div>
-               </div>
-                <div class="man_imgright">
-                    <div class="exellent_parright"> 
-                      <span class="revie_name">Aakruti, 8:22 PM</span> 
-                      <p>Excellent Service. Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
-                    </div>
-                </div> 
+                 
+              </div>
+               
 
-                 <div class="dateholder">
+                 <!-- <div class="dateholder">
                     <span class="dateholdercontainer">
                       Wednesday
                     </span>
@@ -91,7 +83,7 @@
                       <span class="revie_name">Aakruti, 8:22 PM</span> 
                       <p>Excellent Service. Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="clearfix"></div>
               <div class="container marbot15px">

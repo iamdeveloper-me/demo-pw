@@ -30,7 +30,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   uploadphoto_dailog = false;
 
 
-
+  find_image;
   albumid:any;
   albumname:any;
   tags:any;
@@ -254,11 +254,6 @@ $(document)
   }
   
 
-
-
-
-
-
   //service
   deleteImage(image,index){
 
@@ -318,10 +313,8 @@ $(document)
          
          if(this.albumid.id == item.albumsId)
           {
-          //    alert("dsf"); 
-          // console.log(item);
-          // console.log(item.albumImages);
-          this.myalbumimages =  item.albumImages;
+              this.albumImagesModify =  item.albumImages;
+              console.log(  this.albumImagesModify ); 
            }
       }
         

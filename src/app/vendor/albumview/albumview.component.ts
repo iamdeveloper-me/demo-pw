@@ -129,6 +129,7 @@ createAlbum(Album){
       tags: "Add tags ",
       colorTags: "Add your colour tag"
     }
+    console.log(album)
     this.http.post(this.url+'api/Albums/createupdatealbum',album,{headers:headers})
       .subscribe(data =>{console.log(data.json()); 
         console.log(this.eventArray); 

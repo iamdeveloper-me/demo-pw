@@ -112,14 +112,6 @@ public serviceFormArray:any;
                   }
               });
 
-              $(document).on('click', ".saveall", function() {
-                  $(this).parents('.modal').css("display", "none");
-                  $(this).parents('.modal').removeClass("show");
-                  $('.modal-backdrop').hide();
-                  $('.modal-backdrop').removeClass("fade");
-                  $('.modal-backdrop').removeClass("show");
-                  $('body').removeClass("modal-open");
-                })
 
           let headers = new Headers();
           var authToken = localStorage.getItem('userToken');
@@ -284,16 +276,13 @@ this.modaldata.forEach(element => {
       "userValue": form.value.customFieldId.split('xx')[1]
     }
     this.serviceData.push(o)
-
-
-    console.log('@@@@@@@@@@@@',this.serviceData)
+  console.log('@@@@@@@@@@@@',this.serviceData)
   // console.log(this.pricelistArray)
   console.log(this.Selected_serveice.customFields)
   this.pricelistArray.forEach((data)=>{
     data['pick'] = false;
   })
-  
-    this.pricelistArray.forEach((element,pos)=>{
+  this.pricelistArray.forEach((element,pos)=>{
       if(element.key == form.value.customFieldId.split('xx')[1]){
         // console.log('ss2',element)
         element['pick'] = true;
@@ -301,10 +290,10 @@ this.modaldata.forEach(element => {
       }
 
       console.log(this.selectP)
-    })
-    // this.pricelistArray.customFieldId
-    console.log(this.pricelistArray)
-      }
+  })
+  // this.pricelistArray.customFieldId
+  console.log(this.pricelistArray)
+  }
   onChange(email: string, isChecked: boolean) {
      this.serviceFormArray = <FormArray>this.myForm.controls.useremail;
     //  this.genderControl = <FormArray>this.myForm.controls.useremail;
@@ -319,31 +308,25 @@ this.modaldata.forEach(element => {
       this.serviceFormArray.removeAt(index);
     }
   }
- 
   toggleBool: boolean=true;
-
- changeEvent(event) {
-        if (event.target.checked) {
-          
+  changeEvent(event) {
+        if (event.target.checked) {         
             this.toggleBool= false;
         }
         else {
             this.toggleBool= true;
         }
-    }
+  }
   service(info){
     console.log(info);
-  
     this.Selected_serveice = info;
-
-
   }
   back_services(){ this.show = false;
     this.allservices = true;
     if(this.Selected_serveice.customFields.length > 0){
       this.Selected_serveice.customFields = [];
-    }}
-
+    }
+  }
   addnew_services(){
     this.show = true;
     this.allservices = false;
@@ -355,37 +338,29 @@ this.modaldata.forEach(element => {
     // console.log(this.pricelistArray);
   }
   result(custom){
-    this.Selected_serveice.servicesId;
-    
-    console.log(this.Selected_serveice.servicesId);
-    console.log(custom);
-    this.final.push({customFieldId: custom.customFieldId, userValue: custom.key });
-   var data =  {  servicesId: this.Selected_serveice.servicesId ,  
-                  serviceFields: this.final}
-
+                  this.Selected_serveice.servicesId; 
+                  console.log(this.Selected_serveice.servicesId);
+                  console.log(custom);
+                  this.final.push({customFieldId: custom.customFieldId, userValue: custom.key });
+                  var data =  {  
+                                servicesId: this.Selected_serveice.servicesId ,  
+                                serviceFields: this.final
+                              }
                   console.log(data);
-
                   let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization",'Bearer '+authToken);
-
-
-
-    // yha se selection post hoga
-     this.http.post(this.api+'api/Supplier/savebusinessservices',data,
-            {headers:headers}).subscribe(data =>{console.log( data.json()) 
-    
-        
-            },error => {console.log(error)});
+                  var authToken = localStorage.getItem('userToken');
+                  headers.append('Accept', 'application/json')
+                  headers.append('Content-Type', 'application/json');
+                  headers.append("Authorization",'Bearer '+authToken);
+                  // yha se selection post hoga
+                  this.http.post(this.api+'api/Supplier/savebusinessservices',data,
+                          {headers:headers}).subscribe(data =>{console.log( data.json()) 
+                          },error => {console.log(error)});
   }
-
   modal1(category){ 
-    
-  console.log(category);
-  this.modaldata = category;}
-
+    console.log(category);
+    this.modaldata = category;
+  }
   showcontent:boolean=false;
   readioSelected:any;
   readioService:any;
@@ -395,7 +370,6 @@ this.modaldata.forEach(element => {
   
   /////////////////////////////////////
   showContent(){
-  
     this.showcontent =this.readioSelected;
     this.service_data = this.categoryserveice[this.readioSelected];
     console.log(this.service_data );
@@ -404,100 +378,78 @@ this.modaldata.forEach(element => {
     if(this.Selected_serveice.customFields.length > 0){
       this.Selected_serveice.customFields = [];
     }
-
-  
     this.costserviceTrue = true;
   }
-
-
   serviceShowFunc(){
     this.serviceShow = !this.serviceShow
   }
   serviceProvide(){
     console.log(this.serviceFormArray)  
   }
-
-
-  closeModel(){
-       
+  closeModel(){     
     this.service_provide_dailog = false;
     this.service_provide_dailog_2 = false;
   }
-
-
-
-
   dataSaveDB(){
-    console.log('-------->>>')
-  //  1
-  this.serviceData.forEach((dc)=>{
-   console.log(dc)
-  })
- const db = {
-    "categoryId": localStorage.getItem('id_of_selected_category')
-    ,
-    "servicesId": localStorage.getItem('id_of_selected_service'),
-
-    "serviceFields": this.serviceData.splice(1)
-    
+                 console.log('-------->>>')
+                  //  1
+                  this.serviceData.forEach((dc)=>{
+                  console.log(dc)
+                  })
+                  const db = {
+                    "categoryId": localStorage.getItem('id_of_selected_category'),
+                    "servicesId": localStorage.getItem('id_of_selected_service'),
+                    "serviceFields": this.serviceData.splice(1)     
+                  }
+                  console.log(db)
+                  this.Selected_serveice
+                  // 2
+                  // 3
+                  let headers = new Headers();
+                  var authToken = localStorage.getItem('userToken');
+                  headers.append('Accept', 'application/json')
+                  headers.append('Content-Type', 'application/json');
+                  headers.append("Authorization",'Bearer '+authToken);
+                  // yha se selection post hoga
+                  this.http.post(this.serveicepost,db,
+                          {headers:headers}).subscribe(data =>{console.log( data.json()) 
+                          },error => {console.log(error)});
   }
-  console.log(db)
-  this.Selected_serveice
-  // 2
-
-  // 3
-  let headers = new Headers();
-  var authToken = localStorage.getItem('userToken');
-  headers.append('Accept', 'application/json')
-  headers.append('Content-Type', 'application/json');
-  headers.append("Authorization",'Bearer '+authToken);
-
-
-
-  // yha se selection post hoga
-   this.http.post(this.serveicepost,db,
-          {headers:headers}).subscribe(data =>{console.log( data.json()) 
-  
-      
-          },error => {console.log(error)});
-}
-  
-
   checkingService(i,eve:Event){
     console.log(i)
     console.log(eve)
     console.log(this.val)
   }
   showService(i){
-    this.readioService = i;
-    console.log(this.readioService)
-    
+                      this.readioService = i;
+                      console.log(this.readioService)
+                      
 
-    const var_cat_id = this.readioService;
+                      const var_cat_id = this.readioService;
 
-    
-    this.seviceName = this.User_services[var_cat_id].serviceName
-    console.log(this.User_services[var_cat_id])
-    this.first_category = this.User_services[var_cat_id]
-    const CategoryId = this.first_category.categoryId
-    const ServiceId = this.first_category.servicesId
-    if(this.first_category.customFields != null){
-      localStorage.setItem('id_of_selected_category', this.first_category.categoryId);
-      localStorage.setItem('id_of_selected_service', this.first_category.servicesId);
-      const CustomFieldsId = this.first_category.customFields[0].fieldValue
-      console.log(CustomFieldsId)
-      this.serviceId = ServiceId;
-      this.customFieldsIds = CustomFieldsId;
-    }
-    
+                      
+                      this.seviceName = this.User_services[var_cat_id].serviceName
+                      console.log(this.User_services[var_cat_id])
+                      this.first_category = this.User_services[var_cat_id]
+                      const CategoryId = this.first_category.categoryId
+                      const ServiceId = this.first_category.servicesId
+                      if(this.first_category.customFields != null){
+                        localStorage.setItem('id_of_selected_category', this.first_category.categoryId);
+                        localStorage.setItem('id_of_selected_service', this.first_category.servicesId);
+                        const CustomFieldsId = this.first_category.customFields[0].fieldValue
+                        console.log(CustomFieldsId)
+                        this.serviceId = ServiceId;
+                        this.customFieldsIds = CustomFieldsId;
+                      }
+                      
 
-    console.log(this.categoryserveice )
-    this.categoryserveice.forEach((ele)=>{
-      if(ele.categoryId == CategoryId){
-        this.modaldata = ele.services
-      }
-    })
-    console.log(this.modaldata)
+                      console.log(this.categoryserveice )
+                      this.categoryserveice.forEach((ele)=>{
+                        if(ele.categoryId == CategoryId){
+                          this.modaldata = ele.services
+                        }
+                      })
+                      console.log(this.modaldata)
 
   }
 }

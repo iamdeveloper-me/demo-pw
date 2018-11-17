@@ -11,7 +11,7 @@
         <div class="row gulterbot20px"   *ngFor="let data of HomePage;let i=index " > 
           <div class="col-12 boxcolumn">
             <div class="card">
-                <a class="backicon" routerlink="../PromoteBusiness">
+                <a class="backicon" (click)='navigateTo()'>
                   <i _ngcontent-c6="" class="material-icons"> arrow_back_ios </i>
                 </a>
                 <h1>{{data.title}} For Featured Supplier</h1>
@@ -76,7 +76,7 @@
                             <td align="center">{{list.availability }}</td>
                             <td>{{list.cost }}</td>
                             <td align="center">
-                              <button class="btn btnbluecode btnradius20px" type="submit" (click)= "package(list)" >Add to Cart </button>
+                              <button class="btn btnbluecode btnradius20px" [disabled]='list.isSelected' type="submit" (click)= "package(list)" >Add to Cart </button>
                             </td>
                           </tr>
                       
@@ -91,8 +91,6 @@
               <div class="clearfix"></div>
                 <form (ngSubmit)="prmocode(code)" #code="ngForm">
                   <div class="codecontainer">
-                  
-                    
                       <input class="vouchercodeinput" name="voucherCode" placeholder="Voucher Code" [(ngModel)]="code.voucherCode"  type="text">
                       <input   name="adTypeId" [(ngModel)]="data.adTypeId"  type="hidden">
                       <button class="btn btnbluecode" type="submit" >Enter</button>
@@ -102,13 +100,13 @@
                   <div class="col-sm-12 nopadd">
                     <table class="table table-striped">
                         <tbody>
-                          <tr  *ngFor="let selectlist of selecteditem;let a=index " >
+                          <tr  *ngFor="let selectlist of selecteditem;let i=index " >
                           
                             <td> WK-{{selectlist.week}}</td>
                             <!-- <td class="redtext">All Booked</td> -->
                             <td>$  {{selectlist.cost}}
   
-                                <button type="button" class="close" aria-label="Close" (click)="deletepackage(selecteditem,a)">
+                                <button type="button" class="close" aria-label="Close" (click)="deletepackage(selecteditem,i)">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                             </td>

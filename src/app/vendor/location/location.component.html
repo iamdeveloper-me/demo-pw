@@ -219,16 +219,16 @@
 <form (ngSubmit)="update__googlemap(info,address_modelfield)" #info="ngForm">   
   
     <div class="modal fade" [ngClass] = "{'show' : mapDailog}" id="googlemap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div *ngIf="mapDailog" class="modal-dialog" role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Edit Map Location {{address_modelfield}}</h4>
+                    <h4 class="modal-title">Edit Map Location</h4>
                     <button type="button" class="close" (click)="closeModel()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="card-content selectboxservice">
+                    <div *ngIf="mapDailog" class="card-content selectboxservice">
                         <agm-map [(latitude)]="mapDialogObj.lat" [(longitude)]="mapDialogObj.lng" [disableDefaultUI]="true" [zoomControl]="true" >
                             <agm-marker [(latitude)]="mapDialogObj.lat" [(longitude)]="mapDialogObj.lng" ></agm-marker>
                         </agm-map>
@@ -245,17 +245,17 @@
                                 <input type = "text" 
                                 [(ngModel)] = "address"   
                                 name="mapAddress" 
-                                (change) = "findLocation(address)"
+                                
                                  class="effect-16 validate" placeholder="Search for Location" autocorrect="off" autocapitalize="off" spellcheck="off"  #search> 
                                 <label for="comment">Enter Your Address</label>
                                 <span class="focus-border"></span>
                             </div>
-                            <!-- [(ngModel)] = "address_modelfield.mapAddress"    (change) = "findLocation(address_modelfield.mapAddress)" -->
+                            <!-- (change) = "findLocation(address)" [(ngModel)] = "address_modelfield.mapAddress"    (change) = "findLocation(address_modelfield.mapAddress)" -->
                         </div>
                         <div class="clearfix"></div>
                         <div class="text-center">  
-                            <p><strong>OR  {{k}} /// {{l}}  </strong></p>
-                            <button class="btn newbtn marbot20px" (click)="Find_current_location()">
+                            <p><strong>OR</strong></p>
+                            <button type="button" class="btn newbtn marbot20px" (click)="Find_current_location()">
                                     <i class="material-icons pull-left">my_location</i> 
                                     Use My Location
                             </button>
@@ -641,7 +641,7 @@
 
                             <div class="form-group">
                                     <div class="input-effect form-group md-form">
-                                    <select    class="effect-16 validate"  id="Country" [(ngModel)]="country_id"  name="country_id" (change)="country($event)">
+                                    <select    class="effect-16 validate"  id="Country" [(ngModel)]="address_modelfield.country_id"  name="country_id" (change)="country($event)">
                                             <option   *ngFor="let country of arra ;let c =index" 
                                                 type="text"
                                                 id="{{country.countryName}}"

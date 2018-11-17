@@ -255,7 +255,8 @@
                                 
                             </strong>  </h4>
                         <p>Do you have a Facebook Page for your business?</p>
-                        <button type="button" class="close" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        
+                        <button type="button" class="close" (click)='closeModel()' aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <div class="clearfix"></div>
                     </div>
                     
@@ -294,16 +295,17 @@
                                         [ngModel] = "modelfield.facebookURL" 
                                        
                                         id="facebook"> -->
+
+                                        <!-- [disabled]="!modelfield.fbAvailable"
+                                            name="facebookURL"  -->
                                         <input 
                                             type="text" 
                                             class="effect-16 validate endent_10px width_60" 
-                                           
-                                            name="facebookURL" 
                                             #facebookURL="ngModel"
                                             placeholder="Don't have any URL"
                                             [ngModel] = "modelfield.facebookURL" 
                                             url
-                                            required  />
+                                            required [readonly]='!disabletxtFburl' />
                                      
                                             <small class="form-text text-muted danger" *ngIf="facebookURL.errors?.required"> facebookURL name field required </small>
                                             <small class="form-text text-muted danger" *ngIf="facebookURL.errors?.url">url error</small>
@@ -318,8 +320,8 @@
                         </div>
                     </div>
                     <div class="modal-footer text-center marTop50px" >
-
-                        <button type="submit" class="btn btn-secondary newbtn" [disabled]="facebookURL.errors?.url || facebookURL.errors?.required ||modelfield.fbAvailable == false "    >Save</button> 
+                        <button type="submit" class="btn btn-secondary newbtn" >Save</button> 
+                        <!--[disabled]="facebookURL.errors?.url || facebookURL.errors?.required ||modelfield.fbAvailable == false "-->
                         <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()" >Cancel</button>
 
                     </div>
@@ -369,10 +371,10 @@
                                         id="twitter" 
                                     
                                         name="twitterURL"> -->
+                                       <!--  [disabled]="!modelfield.twitterAvailable" -->
                                         <input 
                                         type="text" 
                                         class="effect-16 validate endent_10px width_60"
-                                       
                                         name="twitterURL" 
                                         #twitterURL="ngModel"
                                         placeholder="Don't have any URL"
@@ -414,8 +416,7 @@
                     <div class="modal-body">
                         <div class="col-sm-12  text-center">
                                 <div class="switbtn">
-                                        <div class="switbtn">   
-                                            
+                                        <div class="switbtn">  
                                                 <ui-switch 
                                                 [(ngModel)]="modelfield.googleAvailable"
                                                 id="googleAvailable" 
@@ -524,7 +525,6 @@
                                 <input 
                                 type="text" 
                                 class="effect-16 validate endent_10px width_60"
-                               
                                 name="instalURL" 
                                 #instalURL="ngModel"
                                 placeholder="Don't have any URL"
@@ -534,7 +534,6 @@
                             <small class="form-text text-muted danger" *ngIf="instalURL.errors?.url">url error</small>
                             <small class="form-text text-muted danger" *ngIf="instalURL.errors?.required"> instalURL name field required </small>
                             </div>
-
                                 <!-- <div *ngIf="modelfield.instaAvailable  ==  false">
                                     <input class="effect-16 validate endent_10px width_60" 
                                     type="text" disabled="disabled"

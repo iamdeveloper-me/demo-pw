@@ -223,86 +223,32 @@ export class LocationComponent implements OnInit {
     },
     zoom: 5
   };
-  updateOnMap() {
-    let full_address:string = this.location.address_level_1 || ""
-    if (this.location.address_level_2) full_address = full_address + " " + this.location.address_level_2
-    if (this.location.address_state) full_address = full_address + " " + this.location.address_state
-    if (this.location.address_country) full_address = full_address + " " + this.location.address_country
-
-    this.findLocation(full_address) ;
-  }
-  findLocation(address) {
-    console.log(address);
-    if (!this.geocoder) this.geocoder = new google.maps.autocomplete.Geocoder()
-    this.geocoder.geocode({
-      'address': address
-    }, (results, status) => {
-      console.log( this.geocoder);
-      console.log(results);
-      
-       
-         
-      this.address = results[0].formatted_address      ;
-    
-      if (status == google.maps.GeocoderStatus.OK) {  
-          this.k = results[0].geometry.location.lat();
-          this.l = results[0].geometry.location.lng();
-          console.log( this.k);
-          console.log( this.l );
-
-          // this.data.lat = this.k;
-          // this.data.long =  this.l;
-
-        for (var i = 0; i < results[0].address_components.length; i++) {
-         
-          let types = results[0].address_components[i].types
-          console.log(results[0].address_components[i].long_name);
-          if (types.indexOf('locality') != -1) {
-            this.location.address_level_2 = results[0].address_components[i].long_name
-          }
-          if (types.indexOf('country') != -1) {
-            this.location.address_country = results[0].address_components[i].long_name
-          }
-          if (types.indexOf('postal_code') != -1) {
-            this.location.address_zip = results[0].address_components[i].long_name;
-            console.log(results[0].address_components[i].long_name);
-          }
-          if (types.indexOf('administrative_area_level_1') != -1) {
-            this.location.address_state = results[0].address_components[i].long_name
-          }
-        }
-        if (results[0].geometry.location) {
-          
-          this.location.lat = results[0].geometry.location.lat();
-          this.location.lng = results[0].geometry.location.lng();
-          this.location.marker.lat = results[0].geometry.location.lat();
-          this.location.marker.lng = results[0].geometry.location.lng();
-          this.location.marker.draggable = true;
-          this.location.viewport = results[0].geometry.viewport;
-          console.log( results[0].geometry.location);
-        }
-        
-        this.map.triggerResize()
-      } else {
-        alert("Sorry, this search produced no results.");
-      }
-    })
-  }
 
   Find_current_location(){
-    alert("dsfcds");
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
        (position) => {
-         console.log(position);
-         this.location.lat =  position.coords.longitude;
-         this.location.lng =  position.coords.latitude;
-         this.location.marker.lat =  position.coords.longitude;
-         this.location.marker.lng =  position.coords.latitude;
-         this.location.marker.draggable = true;
-         console.log(  this.location.lat);
-         console.log( this.location.lng);
+      let geocoder = new google.maps.Geocoder();
+      let latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      let request = { latLng: latlng };
+      geocoder.geocode(request, (results, status) => {
+        if (status === google.maps.GeocoderStatus.OK) {
+          let result = results[0];
+          let rsltAdrComponent = result.address_components;
+          let resultLength = rsltAdrComponent.length;
+          if (result != null) {
+             console.log('xxxxxxxxxxxxxxxxx',position,results);
+            this.mapDialogObj.mapAddress = results[0].formatted_address;
+            this.address = results[0].formatted_address;
+            this.mapDialogObj.lat = position.coords.latitude
+            this.mapDialogObj.lng = position.coords.longitude;
+          } else {
+            alert('No address available!');
+          }
+        }
+      });
         
+                
        }, (error) => {
         
          console.log('Geolocation error: '+ error);
@@ -345,6 +291,24 @@ export class LocationComponent implements OnInit {
                 types: ["address"]
               });
 
+              autocomplete.addListener("place_changed", () => {
+                  this.zone.run(() => {
+                    //get the place result
+                    let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+                    //verify result
+                    if (place.geometry === undefined || place.geometry === null) {
+                      return;
+                    }
+                      console.log(place);
+                    //set latitude, longitude and zoom
+                    this.mapDialogObj.mapAddress = place.formatted_address;
+                    this.address = place.formatted_address;
+                    this.mapDialogObj.lat = place.geometry.location.lat();
+                    this.mapDialogObj.lng = place.geometry.location.lng();
+                    this.zoom = 12;
+                  });
+                });
               });
 
                   this.location.marker.draggable = true;
@@ -382,7 +346,7 @@ export class LocationComponent implements OnInit {
 
        openModel(b) { 
             this.address_modelfield  = b;
-            console.log(this.address_modelfield);
+            console.log('aaaaaa',this.address_modelfield);
        }
 
       openphone(b){
@@ -527,16 +491,74 @@ export class LocationComponent implements OnInit {
        mapDialogObj : any;
        OpenmapDailog(locationObj){
          console.log('aaaaaaaaaaaaaa',locationObj);
-                        this.mapDialogObj = locationObj
-                         this.mapDailog = true;
-                      }
+            this.mapDialogObj = locationObj
+            this.address = this.mapDialogObj.mapAddress
+            this.mapDailog = true;
+        }
+    findLocation(address) {
+      console.log(address);
+      if (!this.geocoder) this.geocoder = new google.maps.autocomplete.Geocoder()
+      this.geocoder.geocode({
+        'address': address
+      }, (results, status) => {
+        console.log( this.geocoder);
+        console.log(results);
+      
+       
+         
+      this.address = results[0].formatted_address      ;
+    
+      if (status == google.maps.GeocoderStatus.OK) {  
+          this.k = results[0].geometry.location.lat();
+          this.l = results[0].geometry.location.lng();
+          console.log( this.k);
+          console.log( this.l );
+
+          // this.data.lat = this.k;
+          // this.data.long =  this.l;
+
+        for (var i = 0; i < results[0].address_components.length; i++) {
+         
+          let types = results[0].address_components[i].types
+          console.log(results[0].address_components[i].long_name);
+          if (types.indexOf('locality') != -1) {
+            this.location.address_level_2 = results[0].address_components[i].long_name
+          }
+          if (types.indexOf('country') != -1) {
+            this.location.address_country = results[0].address_components[i].long_name
+          }
+          if (types.indexOf('postal_code') != -1) {
+            this.location.address_zip = results[0].address_components[i].long_name;
+            console.log(results[0].address_components[i].long_name);
+          }
+          if (types.indexOf('administrative_area_level_1') != -1) {
+            this.location.address_state = results[0].address_components[i].long_name
+          }
+        }
+        if (results[0].geometry.location) {
+          
+          this.location.lat = results[0].geometry.location.lat();
+          this.location.lng = results[0].geometry.location.lng();
+          this.location.marker.lat = results[0].geometry.location.lat();
+          this.location.marker.lng = results[0].geometry.location.lng();
+          this.location.marker.draggable = true;
+          this.location.viewport = results[0].geometry.viewport;
+          console.log( results[0].geometry.location);
+        }
+        
+        this.map.triggerResize()
+      } else {
+        alert("Sorry, this search produced no results.");
+      }
+    })
+  }
 
        update__googlemap(e,a)
-      {
+      { 
           console.log(e.value)
           console.log(a);
           const loc_add = {
-                              mapAddress: e.value.mapAddress,
+                              mapAddress: this.address,
                               vendorId:a.vendorId,
                               vendorLocationId:a.vendorLocationId,
                               postalCode: a.postalCode,
@@ -546,8 +568,8 @@ export class LocationComponent implements OnInit {
                               suburbId:  a.suburbId ,
                             
                               address: a.Address,
-                              lat:  this.k,
-                              long: this.l,
+                              lat:  this.mapDialogObj.lat,
+                              long: this.mapDialogObj.lng,
                               isActive: a.isActive,
                               locationPhones:a.locationPhones,
                               phone: a.phone ,

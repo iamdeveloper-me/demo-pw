@@ -19,7 +19,7 @@
                         </div>
                           <form action="#" class="pull-right position">
                               <div class="input-append">
-                                  <input type="text" class="sr-input" placeholder="Search Mail">
+                                  <input type="text" [(ngModel)]="find_name" name=" find_name" (change)="modelChanged($event)" class="sr-input" placeholder="Search Mail">
                                   <button class="btn sr-btn" type="button"><i class="fa fa-search"></i></button>
                               </div>
                           </form>

@@ -63,6 +63,10 @@ this.vendorMsg['sendToUserId'] = msg.sendByUserId
     //     $('.dateholdercontainer').remove(); 
     //   }
     // }, 2000);
+
+    $(".chatscroll").animate({ scrollTop: $(document).height() }, "slow");
+  return false;
+  
   
   }
   

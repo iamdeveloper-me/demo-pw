@@ -26,7 +26,7 @@
                 <div class="clearfix"></div>
                 <div class="chatscroll" >
                   <div *ngFor="let msg of total_message">
-              <div class="dateholder" *ngIf="getDate(msg.sentDate) != false ">
+              <div class="dateholder" id="message">
                 
                     <span class="dateholdercontainer" [innerHtml]="getDate(msg.sentDate)">
                       <!-- Tuesday, August 28, 2018 -->

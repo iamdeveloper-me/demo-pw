@@ -1,5 +1,5 @@
 import { ToastrService } from 'ngx-toastr';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Http ,Headers} from '@angular/http';
 
 import { Component, ViewEncapsulation, ViewChild, ElementRef, PipeTransform, Pipe, OnInit } from '@angular/core';
@@ -7,10 +7,11 @@ import { DomSanitizer } from "@angular/platform-browser";
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
-  constructor(public toastr: ToastrService,private sanitizer: DomSanitizer) { }
+constructor(public toastr: ToastrService,private sanitizer: DomSanitizer , public fb: FormBuilder) { }
   transform(url) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
+  
 }
 
 @Component({
@@ -20,10 +21,12 @@ export class SafePipe implements PipeTransform {
 })
 
 export class VediosettingComponent implements OnInit {
-
+  validtionform:FormGroup
+  objVideo:any = {}
+  ;
   form: FormGroup;
   video: string = "https://www.youtube.com/embed/CD-E-LDc384"
-  videoForm: FormGroup
+  // videoForm: FormGroup
 
 
   Editvediodetail_dailog = false;
@@ -31,6 +34,12 @@ export class VediosettingComponent implements OnInit {
   video_all_data= [];
   constructor(private http: Http,private fb: FormBuilder) {
     this.createForm();
+
+    this.validtionform = fb.group({
+      'id': new FormControl(Validators.required),
+      'title': new FormControl(Validators.required),
+      'link': new FormControl(Validators.required),
+    });
    }
 
   createForm() {
@@ -45,14 +54,14 @@ export class VediosettingComponent implements OnInit {
   }
   ngOnInit() {
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
-    this.videoForm = this.fb.group(
-      {
-          id:      [],
-          title:       ['', Validators.required],
-          Link:       ['', Validators.required, Validators.pattern(reg)],
-          videosId: ["0"],
-          createdOn: "2018-10-29T17:35:51.067Z"
-      })
+    // this.videoForm = this.fb.group(
+    //   {
+    //       id:      [],
+    //       title:       ['', Validators.required],
+    //       Link:       ['', Validators.required, Validators.pattern(reg)],
+    //       videosId: ["0"],
+    //       createdOn: "2018-10-29T17:35:51.067Z"
+    //   })
 
     let headers = new Headers();
           var authToken = localStorage.getItem('userToken');
@@ -82,19 +91,15 @@ this.Editvediodetail_dailog = true;
 
 }
 singleData(data){
-  this.videoForm =  data;
-  console.log(this.videoForm)
+  this.objVideo = data;
+  // this.validtionform =  data;
+  console.log(this.validtionform)
   this.Editvediodetail_dailog = true 
 }
-videosave(e){
-  e.preventDefault();
-const updatedata =
-  {
-    "videosId": e.target.elements[2].value,
-    "Title": e.target.elements[3].value,
-    "Link": e.target.elements[4].value,
-    "createdOn": "2018-10-30T15:48:46.151Z"
-  }
+videosave(){
+  
+const updatedata = this.objVideo
+  
   console.log(updatedata)
   let headers = new Headers();
           var authToken = localStorage.getItem('userToken');
@@ -105,9 +110,9 @@ const updatedata =
           headers.append("Authorization",'Bearer '+authToken);
 
       this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Videos/createupdatevideos',{
-        videosId: e.target.elements[1].value,
-        Title: e.target.elements[2].value,
-        Link: e.target.elements[3].value,
+        videosId: this.objVideo['id'],
+        Title: this.objVideo['title'],
+        Link: this.objVideo['link'],
         createdOn: "2018-10-30T15:48:46.151Z"
       },{headers:headers})
                 .subscribe(

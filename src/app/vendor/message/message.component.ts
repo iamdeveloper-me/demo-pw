@@ -23,6 +23,7 @@ export class MessageComponent implements OnInit {
   message: Message;
   filter_id:number = 1
   uiLoading:boolean = true;
+  find_name:string;
   constructor(public toastr: ToastrService ,public route: Router,private elRef: ElementRef, private modalService: NgbModal, private inboxService: InboxService, private hservice: MessageService) {
     this.mail = this.inboxService.inbox.filter((mail: Mail) => mail.mailType === 'Inbox');
     this.message = this.inboxService.message.filter((message: Message) => message.mailId === 4)[0];
@@ -58,6 +59,19 @@ export class MessageComponent implements OnInit {
     // )
   
   }
+  modelChanged(newObj){
+console.log(this.find_name.toUpperCase())
+
+console.log(this.historyArr)
+this.historyArr.forEach(el=>{
+  debugger
+  var name = el['sendByFirstName']
+  // if(name.match(/ain/gi) == this.find_name.toUpperCase()){
+  //   alert('yes')
+  //   debugger
+  // }
+})
+  }
   initDatatable(filter_id){
     const json ={
       "filter" : filter_id
@@ -65,7 +79,7 @@ export class MessageComponent implements OnInit {
           this.hservice.vendorMessages(json).subscribe(( data )  =>  
           { 
             this.uiLoading = false;
-            this.historyArr = data.json() as string[] ; 
+            this.historyArr = data.json()  ; 
             console.log(this.historyArr)
           },error => 
           alert(error) // error path

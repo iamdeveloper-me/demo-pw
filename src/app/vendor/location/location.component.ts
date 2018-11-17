@@ -332,6 +332,7 @@ export class LocationComponent implements OnInit {
     }
     
       ngOnInit(): void {
+        $.getScript('./assets/js/vendorsidebar.js');
             this.formPhone = this._fb.group({
               phoneArry: new FormArray([
                 

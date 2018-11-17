@@ -123,6 +123,7 @@ export class BusinessInfoComponent implements OnInit {
   
   
   ngOnInit() {
+                $.getScript('./assets/js/vendorsidebar.js');
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')

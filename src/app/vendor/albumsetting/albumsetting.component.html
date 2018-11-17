@@ -12,7 +12,7 @@
                   <a routerLink= "../../albumview" class="pull-left iconfloatleft">
                   <i class="material-icons"> arrow_back_ios </i> <span>Album</span>
                   </a> 
-                <div class="subheadtik">Album Name Settingssss</div>
+                <div class="subheadtik">Album Name Settings</div>
               </div> 
 
                 <table width="100%" class="tablelisttags" cell-spacing="5" cell-padding="5">
@@ -76,7 +76,7 @@
                               <div *ngIf = "g == 'brown'">
                                   <span class="colortags brownbg"></span>
                               </div>
-                            </div>
+                          </div>
                       
                       </td>
                       <td class="text-center" >
@@ -113,14 +113,14 @@
                   <div class="col-md-12 padtop20px">
                     <div class="form-group">
                         <div class="input-effect form-group md-form ">
-
+                        
                           <input class="effect-16 validate" 
                           type="text"  
                           [(ngModel)] = "taggg"
                           
                           name="tags"  
                           required="required"> 
-                     
+                          <small class="form-text text-muted danger" *ngIf="tags_picker1.length == 0" >{{tag_error}}</small>
                           <input 
                           type="hidden"  
                           [(ngModel)] = "formdata.albumImageId"
@@ -141,25 +141,9 @@
                                 </span>  
                           </li>
                         </ul>  
-                        <!-- <div *ngFor="let g of tai;let i=index">
-                            <span class="tagstik"> 
-                                {{g}}
-                                <i class="material-icons" (click) = "remove_colour_picker(i)">clears</i>
-                              </span>  
-                        </div> -->
-                        <!-- <div>
-                          <span class="tagstik"> 
-                            {{tags_picker1}}
-                            <i class="material-icons">clears</i>
-                          </span>      
-                        </div> -->
+                     
                         <a (click) = "tags_bage(taggg)">ADD Tag</a>
-                        <!-- <div *ngFor="let tag of album_tag;let i=index">
-                          <span class="tagstik"> 
-                              {{tag}}    
-                            <i class="material-icons">clears</i>
-                          </span>      
-                        </div> -->
+                      
                         <hr>
 
                         <ul class="list_inline">
@@ -170,18 +154,8 @@
                                 </span>  
                           </li>
                           </ul>
-                        <!-- <div *ngFor="let g of a;let i=index">
-                            <span class="tagstik"> 
-                                {{g}}
-                                <i class="material-icons" (click) = "remove_colour_picker(i)">clears</i>
-                              </span>  
-                        </div> -->
-                        <!-- <div>
-                          <span class="tagstik"> 
-                            {{colour_picker1}}
-                            <i class="material-icons">clears</i>
-                          </span>      
-                        </div> -->
+                          <small class="form-text text-muted danger" *ngIf="colour_picker1.length == 0"> {{colour_tag_error}}</small>
+
                     </div>
                   </div>
                 </div>
@@ -300,7 +274,7 @@
                 <div class="clearfix"></div>
               </div>
               <div class="modal-footer text-center">
-                  <button type="submit" class="btn newbtn">Save</button>&nbsp;
+                  <button type="submit" class="btn newbtn" [disabled]="tags_picker1 == 0|| colour_picker1 ==0">Save</button>&nbsp;
                   <button type="button" class="btn  newbtn newcancelbtn" (click)="closeModel()">Cancel</button>
               </div>
           </div>

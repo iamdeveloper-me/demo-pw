@@ -5,7 +5,7 @@ import { GoogleMapsAPIWrapper } from '@agm/core/services';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup,FormArray,FormBuilder, Validators, NgForm } from '@angular/forms';
 import swal from 'sweetalert2';
-
+import { apiService } from '../../shared/service/api.service';
 declare var google: any;
  
 interface Marker {
@@ -320,7 +320,8 @@ export class LocationComponent implements OnInit {
     public mapsApiLoader: MapsAPILoader,
     public http: Http,private zone: NgZone,
     private wrapper: GoogleMapsAPIWrapper,
-    private _fb: FormBuilder
+    private _fb: FormBuilder,
+    private apiService : apiService,
   )
   {
       this.mapsApiLoader = mapsApiLoader;
@@ -391,23 +392,27 @@ export class LocationComponent implements OnInit {
                       this.formPhone = this._fb.group({phoneArry: new FormArray([])});
                       let control = <FormArray>this.formPhone.controls['phoneArry'];
                       // add new formgroup
-                      for(let i = 0; i<b.locationPhones.length;i++){
-                        control.push(this._fb.group({
-                            // list all your form controls here, which belongs to your form array
-                            phoneType: [b.locationPhones[i].phoneType],
-                            number: [b.locationPhones[i].phoneNumber],
-                            isprime: [b.locationPhones[i].isPrimary],
-                            vendorLocationId :[b.locationPhones[i].vendorLocationId],
-                            locationPhoneId: [b.locationPhones[i].locationPhoneId]
-                        }));
-                        }
+                      if(b.locationPhones.length){
+                        for(let i = 0; i<b.locationPhones.length;i++){
+                          control.push(this._fb.group({
+                              // list all your form controls here, which belongs to your form array
+                              phoneType: [b.locationPhones[i].phoneType],
+                              number: [b.locationPhones[i].phoneNumber],
+                              isprime: [b.locationPhones[i].isPrimary],
+                              vendorLocationId :[b.locationPhones[i].vendorLocationId],
+                              locationPhoneId: [b.locationPhones[i].locationPhoneId]
+                          }));
+                          }
+                      }else{
+                        this.addNewColumn();
+                      }
       }
 
       addNewColumn() {
                         let control = <FormArray>this.formPhone.controls['phoneArry'];
                         control.push(this._fb.group({
                             // list all your form controls here, which belongs to your form array
-                            phoneType: [],
+                            phoneType: ['Phone'],
                             number: [],
                             isprime: [false],
                             vendorLocationId :[],
@@ -433,58 +438,45 @@ export class LocationComponent implements OnInit {
         }
         
         console.log(reqObj);
-         
-        let headers = new Headers();
-        var authToken = localStorage.getItem('userToken');
-        headers.append('Accept', 'application/json')
-        headers.append('Content-Type', 'application/json');
-        headers.append("Authorization",'Bearer '+authToken);
 
-           // this.http.post(this.post_phone_number,reqObj,{headers:headers}).subscribe( (data)=> { 
-           //          //this.phoneData (need to update this)
-           //          console.log(data)
-           //          this.toastr.success(data.statusText);
-           //           this.phone_dailog = false;
-           //    },(error)=>{ console.log(error);
-           //      this.toastr.error(error._body);});
         if(reqObj.length > 0){ 
             for (var item of  reqObj ) {
                if(item.locationPhoneId == 0){
                         this.create_phone.push(item);
-                     }else{
-                        this.update_phone1.push(item);                      
-                     }
+                }else{
+                  this.update_phone1.push(item);                      
+                }
              }    
         }
-        
+        //console.log("asdassssssssss",); 
         if(this.create_phone.length > 0){
-
-           console.log( this.create_phone);
-        this.http.post(this.post_phone_number,this.create_phone,{headers:headers}).subscribe( 
-                          (data)=> {  console.log(data.json())
-                                      this.toastr.success(data.statusText);
-                                      this.phone_dailog = false;
-                                      this.create_phone = [];
-                                      reqObj = [];
-                                   },(error)=>{ console.log(error);
-                                                this.toastr.error(error._body);
-                                              });
-      
-
+          this.apiService.postData(this.post_phone_number,this.create_phone).subscribe(data =>{
+            console.log('crrrrrrrrrr',data)
+            this.toastr.success(data.statusText);
+            this.phone_dailog = false;
+            this.create_phone = [];
+            reqObj = [];
+            //this.phoneData.locationPhones
+            },
+            error => {
+              this.toastr.error(error._body);
+              }
+          )    
         }
        
         if(this.update_phone1.length > 0){
-           console.log( this.update_phone1);
-
-        this.http.post(this.post_phone_number,this.update_phone1,{headers:headers}).subscribe(
-                         (data)=> { 
-                                    console.log(data)
-                                    this.toastr.success(data.statusText);
-                                    this.phone_dailog = false;
-                                    this.update_phone1 = [] ;
-                                    reqObj = [];
-                                 },(error)=>{ console.log(error);
-                                  this.toastr.error(error._body);});
+          this.apiService.postData(this.post_phone_number,this.update_phone1).subscribe(data =>{
+            console.log('uuuuuuuu',data)
+            this.toastr.success(data.statusText);
+            this.phone_dailog = false;
+            this.update_phone1 = [] ;
+            reqObj = [];
+           
+          },
+          error => {
+              this.toastr.error(error._body);
+            }
+          )
 
         }                
       }
@@ -532,8 +524,10 @@ export class LocationComponent implements OnInit {
                     this.week_dailog =true;
                   }
      
-       
-       OpenmapDailog(){
+       mapDialogObj : any;
+       OpenmapDailog(locationObj){
+         console.log('aaaaaaaaaaaaaa',locationObj);
+                        this.mapDialogObj = locationObj
                          this.mapDailog = true;
                       }
 

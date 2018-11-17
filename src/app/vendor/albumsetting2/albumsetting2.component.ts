@@ -42,23 +42,30 @@ private update_portfolio: string  = "http://testapp-env.tyad3n63sa.ap-south-1.el
       constructor( public http: Http,public toastr: ToastrService ) { }
             tags_bage(e){
                         
-                          this.t = e;
-                          this.tags_picker1.push(e);
-                          console.log(   this.tags_picker1);
-                          this.tai =  this.tags_picker1;
-                          this.taggg = '';
+                         
+                          if(typeof(e) == 'undefined' )
+                         {
+                           this.tag_error = "empty tag not added tags"
+                         }else{
+                          this.tai.push(e);
+                                 
+                          console.log(this.tai);
+                                 this.taggg = '';
+                         }
                         }
             colour_picker(d){
                     console.log(d)
                     this.colour = d;
-                    this.colour_picker1.push(this.colour );
-                    console.log( this.colour_picker1);
-                  
-                    this.a  = this.colour_picker1
+                    this.a.push(this.colour );
+                   // console.log( this.colour_picker1);
+                    this.a = this.a.filter((el, i, a) => i === a.indexOf(el));
+                   
+                    console.log( this.a);
                   }
             remove_tag_picker(g){
               console.log(g); 
               this.tai.splice(g, 1);
+              console.log(this.tai); 
               if(this.tai.length == 0 )
               { 
                
@@ -68,7 +75,7 @@ private update_portfolio: string  = "http://testapp-env.tyad3n63sa.ap-south-1.el
             remove_colour_picker(g){
               console.log(g);
               this.a.splice(g, 1);
-             
+              console.log(g); 
               if(this.a.length == 0 )
               {
               
@@ -102,19 +109,18 @@ private update_portfolio: string  = "http://testapp-env.tyad3n63sa.ap-south-1.el
             openModel(e)
             {
               this.formdata = e;
-                  this.tai = [];
-                  this.a = [];
+
                   this.tai = this.formdata.tags;
                   this.a = this.formdata.colorTags;
             }
         editSettting(e){
-                      
+                    
                         console.log(e);
                         const fire = {
                           portfolioId: e.value.portfolioId,
                           filesId: e.value.filesId,
-                          tags:  this.tags_picker1.join(','),
-                          colorTags: this.colour_picker1.join(','),
+                          tags:  this.tai.join(','),
+                          colorTags: this.a.join(','),
                           setAsBackgroud: false
                         }
                         console.log(fire);
@@ -143,10 +149,11 @@ private update_portfolio: string  = "http://testapp-env.tyad3n63sa.ap-south-1.el
                                                     console.log(  item['colorTags'] )
                                                   }
                                                   this.albumImagesModify.push(item);
+                                                 
                                               } 
                                             });
                        
-                       
+                                         
                        
                        
                        

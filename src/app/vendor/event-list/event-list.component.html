@@ -28,27 +28,29 @@
                 <button class="btn btn-small btn-link" (click)="twitterDailog = true" >
                   <i class="material-icons"> add </i> 
                   <span>
-                       <strong> Create New Event{{fileIdfield.filesId}}</strong>
+                       <strong> Create New Event {{fileIdfield.filesId}}</strong>
                   </span>
                 </button>
               </div>
-              <form (ngSubmit)="addFile(info)" #info="ngForm" class="padding-left: 84%">
+              <!--Commented By Raj-->
+              <!-- <form (ngSubmit)="addFile(info)" #info="ngForm" class="padding-left: 84%">
                 <input #fileInput type="file" [(ngModel)]="gallery.files" name="image" id="image" />
                 <button type="submit" class="btn btn-small btn-link">
                   <i class="material-icons"> add </i>
                   upload event image 
                 </button>
                 <span class="focus-border"></span>
-              </form>
+              </form> -->
             </div>
             <div class="clearfix"></div>
             <section  (click) = "past = true">
               <div class="col-sm-12 nopadd" *ngFor="let data of eventArray;let i=index">
+                  
                 <div class="card martop0px" *ngFor="let name of data.eventsDates">
                   <div class="card-body borall">
                     <div class="card-block">
                       <div class="col-md-4 col-12 pad_0px ">
-                     <!--    <img [src]="data.files.path" class="img-responsive"> -->
+                          <img [src]="data.files.path" class="img-responsive">      
                         <!-- <p>{{data.files.path}}</p> -->
                       </div>
 
@@ -444,8 +446,10 @@
                         </div>
                         <div class="form-group">
                           <div class="input-effect form-group md-form ">
-                            <input type="text" class="effect-16 validate" required="required" [(ngModel)]="objevent.entry" name="entry" id="entry">
-
+                            <select [(ngModel)]="objevent.entry" class="effect-16 validate" required="required"  name="entry" id="entry">
+                              <option value='Paid'>Paid</option>
+                              <option value='Free'>Free</option>
+                            </select>
                             <label>Entry</label>
                             <span class="focus-border"></span>
                           </div>

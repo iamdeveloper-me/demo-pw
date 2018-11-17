@@ -61,7 +61,8 @@ export class MembershipComponent implements OnInit {
            this.endDateString   = data.json().endDateString; 
            this.pricingPlantitle   = data.json().pricingPlan.title;
            this.pricingPlanId   = data.json().pricingPlanId;
-           this.payFrequency = data.json().pricingPlanId
+           this.payFrequency = data.json().payFrequency
+
            },error => {console.log(error)});
 
 

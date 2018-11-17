@@ -9,53 +9,61 @@
              <div class="card martop0px">
               
                 <div class="col-sm-12 borbot1px marbot15px">
-                  <a class="iconfloatleft" routerLink="../Message">
+                  <a class="iconfloatleft" routerLink="../../Message">
                     <i _ngcontent-c5="" class="material-icons"> arrow_back_ios </i>
                     <span _ngcontent-c5="">All Messages</span>
                   </a>
                   <div _ngcontent-c5="" class="subheadtik">
-                    Aakruti
+                    {{profile_name}}
+
+                     
                   </div>
                   </div>
 
-
-
+                  {{today}}<br/>
+                  <!-- {{ today | date : "dd.MM.y" }}<br/>
+                  {{ today | date:'medium' }} <br/> -->
                 <div class="clearfix"></div>
-                <div class="chatscroll">
-              <div class="dateholder">
-                    <span class="dateholdercontainer">
-                      Tuesday, August 28, 2018
+                <div class="chatscroll" >
+                  <div *ngFor="let msg of total_message">
+              <div class="dateholder" id="message">
+                
+                    <span class="dateholdercontainer" [innerHtml]="getDate(msg.sentDate)">
+                      <!-- Tuesday, August 28, 2018 -->
                     </span>
               </div>   
-               
-               <div class="man_img">
+               <div class="man_img" *ngIf="msg.sendToUserId == userId">
                   <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> 
-                  <div class="exellent_par"> 
-                    <span class="revie_name">Peeter Parker, 8:09 PM</span> 
-                    <p>Excellent Service. Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
-                  </div>
-               </div>
-                <div class="man_imgright">
-                    <div class="exellent_parright"> 
-                      <span class="revie_name">Aakruti, 8:22 PM</span> 
-                      <p>Excellent Service. Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
-                    </div>
-                </div>
-                <div class="man_img">
-                  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> 
-                  <div class="exellent_par"> 
-                    <span class="revie_name">Peeter Parker, 8:09 PM</span> 
-                    <p>Excellent Service. Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
-                  </div>
-               </div>
-                <div class="man_imgright">
-                    <div class="exellent_parright"> 
-                      <span class="revie_name">Aakruti, 8:22 PM</span> 
-                      <p>Excellent Service. Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
-                    </div>
-                </div> 
+                  <div class="exellent_par" > 
+                      
+                    <span class="revie_name" *ngIf="getTime(msg.sentDate) != false ">{{msg.sendByFirstName}}, 
+                      <!-- 8:09 PM -->
+                       <span [innerHtml]="getTime(msg.sentDate )" >
 
-                 <div class="dateholder">
+                       </span>
+                      
+                    </span> 
+                   
+                    <p>{{msg.message}}</p>
+                  </div>
+               </div>
+                <div class="man_imgright" *ngIf="msg.sendToUserId != userId">
+                  <div class="exellent_parright" > 
+                    <span class="revie_name">{{msg.sendByFirstName}},
+                       <!-- 8:09 PM -->
+                       <span [innerHtml]="getTime(msg.sentDate )">
+
+                        </span>
+
+                    </span> 
+                    <p>{{msg.message}}</p>
+                  </div>
+                </div>
+                 
+              </div>
+               
+
+                 <!-- <div class="dateholder">
                     <span class="dateholdercontainer">
                       Wednesday
                     </span>
@@ -91,13 +99,13 @@
                       <span class="revie_name">Aakruti, 8:22 PM</span> 
                       <p>Excellent Service. Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="clearfix"></div>
               <div class="container marbot15px">
                   <form role="form" action="" method="post" class="mt-25 mtx-0" (ngSubmit)="onSubmit()" #f="ngForm">
                     <div class="type_massege"> 
-                      <input type="text" name="" id="" placeholder="Type Message......" > 
+                      <input type="text" name="vendorMsg.message" id="" [(ngModel)]="vendorMsg.message" placeholder="Type Message......" > 
                       <button type="submit" class="plusbtn">
                         <i class="material-icons">add</i>
                       </button>

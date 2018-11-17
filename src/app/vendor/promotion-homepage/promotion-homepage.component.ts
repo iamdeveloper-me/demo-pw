@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterModule, Router } from '@angular/router';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-promotion-homepage',
@@ -7,26 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PromotionHomepageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
 
     $('.togglebtnmenu').on('click', function(){
-     //alert("h1");
-    //$(this).toggleClass('cross');
-      //$('.blackoverlaymobile').toggleClass('blockmobile');
-    //$('#page-content-wrapper').toggleClass('overhidden');
      $('#wrapper').toggleClass('toggled');
     });
-
-  
-
      $('.mobilefixedcart').on('click', function(){
-     //alert("hi  ");
      $('.mobilefixedcart').toggleClass('bottom0px');
-      //$('.mobilebtncart').addClass('nonevisi');
     });
 
   }
+  navigateTo(){
+    this.router.navigateByUrl('/vendor/PromoteBusiness');
+  }
+  PromoteBusiness
 
 }

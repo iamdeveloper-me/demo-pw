@@ -14,15 +14,15 @@ export class UsermessageComponent implements OnInit {
 
 
   ngOnInit() {
-    this.uservice.vendorHis().subscribe(( data )  =>  
-      { 
-        console.log("tttttttttttt");
-        console.log(data.json());
-        console.log("oooooooooo");
-        this.historyArr = data.json() as string[] ; 
-      },error => 
-      alert(error) // error path
-    )
+    // this.uservice.vendorHis().subscribe(( data )  =>  
+    //   { 
+    //     console.log("tttttttttttt");
+    //     console.log(data.json());
+    //     console.log("oooooooooo");
+    //     this.historyArr = data.json() as string[] ; 
+    //   },error => 
+    //   alert(error) // error path
+    // )
   //   this.uservice.marksread().subscribe(( data )  =>  
   //     { 
   //       console.log("-----------");

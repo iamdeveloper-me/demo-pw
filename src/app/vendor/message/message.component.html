@@ -32,7 +32,7 @@
                                 <a class="imgboxmessage" routerLink="../msg/{{history.messageId}}">
                                     <img  class="userimg" src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg"/>
                                 </a>
-                                <div class="textboxmessage"  routerLink= "../msg">
+                                <div class="textboxmessage"  >
                                               <div>
                                                 <strong>
                                                   {{history.sendByFirstName}} {{history.sendByLastName}}
@@ -51,8 +51,11 @@
                                               {{history.sentDateString}}
                                                <!--{{history.sentDate|date:"HH:mm"}}-->
                                               </div>
-                                              <span (click)="readMark(history.messageId)">
+                                              <span *ngIf="!history.isStared" (click)="readMark(history.messageId)">
                                               <i class="fa fa-star starfix"></i>
+                                              </span>
+                                              <span *ngIf="history.isStared"(click)="readMark(history.messageId)">
+                                                <i class="fa fa-star starfix yellow"></i>
                                               </span>
                                 </div>
                               </div> 

@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { MessageService } from '../../shared/service/vendor/message.service';
 import { Component, OnInit, ElementRef } from '@angular/core';
@@ -22,7 +23,7 @@ export class MessageComponent implements OnInit {
   message: Message;
   filter_id:number = 1
   uiLoading:boolean = true;
-  constructor(public route: Router,private elRef: ElementRef, private modalService: NgbModal, private inboxService: InboxService, private hservice: MessageService) {
+  constructor(public toastr: ToastrService ,public route: Router,private elRef: ElementRef, private modalService: NgbModal, private inboxService: InboxService, private hservice: MessageService) {
     this.mail = this.inboxService.inbox.filter((mail: Mail) => mail.mailType === 'Inbox');
     this.message = this.inboxService.message.filter((message: Message) => message.mailId === 4)[0];
   }
@@ -71,11 +72,8 @@ export class MessageComponent implements OnInit {
         )
   }
   readMark(id){
-    alert(id)
     this.hservice.marksread(id).subscribe(( data )  =>  
-    { 
-        
-      console.log(data.json() as string[])
+    {this.toastr.success(data.json().message)
     },error => 
     alert(error) // error path
   )

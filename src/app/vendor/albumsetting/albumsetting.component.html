@@ -12,7 +12,7 @@
                 <a routerLink= "../../albumview" class="pull-left iconfloatleft">
                 <i class="material-icons"> arrow_back_ios </i> <span>Album</span>
                 </a> 
-              <div class="subheadtik">Album Name Settings</div>
+              <div class="subheadtik">{{albumname}}</div>
             </div> 
 
             <table width="100%" class="tablelisttags" cell-spacing="5" cell-padding="5">
@@ -31,7 +31,8 @@
                 </td>
                 <td valign="top"> 
                   <div class="tagcontainer">
-                    <span *ngFor="let ag of image.tags;let i=index">
+                    <span *ngFor="let ag of image.tags;let i=index"> 
+                    
                       <span class="tagstik"> 
                           {{ag}}    
                       </span>      
@@ -118,8 +119,9 @@
                           [(ngModel)] = "taggg"
                           name="tags"  
                           required="required"> 
-                   
-                          <small class="form-text text-muted danger" *ngIf="tags_picker1.length == 0" >{{tag_error}}</small>
+                          <!-- <small class="form-text text-muted danger" >{{tag_error}}</small> -->
+                            
+                          <small class="form-text text-muted danger" *ngIf="tag_array.length == 0" >{{tag_error}}</small>
                             
                           <input 
                           type="hidden"  
@@ -135,26 +137,29 @@
                         </div>
                         <ul class="list_inline">
                           <li  *ngFor="let g of tag_array;let i=index">
-                              <span class="tagstik"> 
-                                  {{g}}
+                            <div *ngIf = "g != ''">
+                                <span class="tagstik"> 
+                                    {{g}}
                                   <i class="material-icons" (click) = "remove_tag_picker(i)">clears</i>
-                                </span>  
+                              </span>  
+                            </div>
+                           
                           </li>
                         </ul>  
                      
-                      <a class="btn-sm btn btn-success editbtn" (click) = "tags_bage(taggg)">ADD Tag</a>
+                        <a class="btn-sm btn btn-success editbtn" (click) = "tags_bage(taggg)">ADD Tag</a>
                       
                         <hr>
 
                         <ul class="list_inline">
                           <li *ngFor="let g of a;let i=index">
-                              <span class="tagstik"> 
-                                  {{g}}
-                                  <i class="material-icons" (click) = "remove_colour_picker(i)">clears</i>
-                                </span>  
+                            <span class="tagstik"> 
+                              {{g}}
+                              <i class="material-icons" (click) = "remove_colour_picker(i)">clears</i>
+                            </span>  
                           </li>
-                          </ul>
-                          <small class="form-text text-muted danger" *ngIf="colour_picker1.length == 0"> {{colour_tag_error}}</small>
+                        </ul>
+                        <small class="form-text text-muted danger" *ngIf="colour_picker1.length == 0"> {{colour_tag_error}}</small>
 
                     </div>
                   </div>
@@ -274,7 +279,7 @@
                 <div class="clearfix"></div>
               </div>
               <div class="modal-footer text-center">
-                  <button type="submit" class="btn newbtn" [disabled]="tag_array.length == 0|| colour_picker1.length ==0">Save</button>&nbsp;
+                  <button type="submit" class="btn newbtn" [disabled]=" tag_array.length == 0 || a.length == 0">Save</button>&nbsp;
                   <button type="button" class="btn  newbtn newcancelbtn" (click)="closeModel()">Cancel</button>
               </div>
           </div>

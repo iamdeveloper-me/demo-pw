@@ -9,10 +9,10 @@
           <div class="container-fluid mobilefixedcontainer">
             <div class="col-md-12 card martop0px">
               <div class="col-sm-12  subheadtikwrapper">
-                <a routerLink= "../portfolioview" class="pull-left ">
+                <a routerLink= "../portfolioview" class="pull-left iconfloatleft ">
                   <i class="material-icons"> arrow_back_ios </i> <span>PORTFOLIO</span>
                 </a>  
-                <div class="subheadtik">PORTFOLIO</div>
+                <div class="subheadtik">PORTFOLIO SETTINGS</div>
               </div> 
               <table  class="tablelisttags" cell-spacing="5" cell-padding="5">
                 <tr>
@@ -31,51 +31,54 @@
                         
                     </a>
                     </td>
-                    <td> 
-                      <div *ngFor="let ag of data.tags;let i=index">
-                        <span class="tagstik"> 
-                            {{ag}}    
-                          <i class="material-icons">clears</i>
-                        </span>      
-                      </div>
+                    <td valign="top"> 
+                      <div class="tagcontainer">
+                        <span *ngFor="let ag of data.tags;let i=index">
+                          <span class="tagstik"> 
+                              {{ag}}    
+                          </span>
+                        </span>
+                    </div>
                     </td>
-                    <td>
-                      <div *ngFor="let g of data.colorTags;let i=index">
-                        <!-- {{g}} -->
-                          <div *ngIf = "g == 'pink'">
-                              <span class="colortags pinkbg"></span>
-                          </div>
-                          <div *ngIf = "g == 'red'">
-                              <span class="colortags redbg"></span>
-                          </div>
-                          <div *ngIf = "g == 'blue'">
-                              <span class="colortags bluebg"></span>
-                          </div>
-                          <div *ngIf = "g == 'yellow'">
-                              <span class="colortags yellowbg"></span>
-                          </div>
-                          <div *ngIf = "g == 'green'">
-                              <span class="colortags greenbg"></span>
-                          </div>
-                          <div *ngIf = "g == 'purple'">
-                              <span class="colortags purplebg"></span>
-                          </div>
-                          <div *ngIf = "g == 'white'">
-                              <span class="colortags whitebg"></span>
-                          </div>
-                          <div *ngIf = "g == 'black'">
-                              <span class="colortags blackbg"></span>
-                          </div>
-                          <div *ngIf = "g == 'grey'">
-                              <span class="colortags greybg"></span>
-                          </div>
-                          <div *ngIf = "g == 'orange'">
-                              <span class="colortags orangebg"></span>
-                          </div>
-                          <div *ngIf = "g == 'brown'">
-                              <span class="colortags brownbg"></span>
-                          </div>
-                      </div>
+                   <td valign="top"> 
+                      <div class="tagcontainer">
+                        <span *ngFor="let g of data.colorTags;let i=index">
+                          <!-- {{g}} -->
+                            <span *ngIf = "g == 'pink'">
+                                <span class="colortags pinkbg"></span>
+                            </span>
+                            <span *ngIf = "g == 'red'">
+                                <span class="colortags redbg"></span>
+                            </span>
+                            <span *ngIf = "g == 'blue'">
+                                <span class="colortags bluebg"></span>
+                            </span>
+                            <span *ngIf = "g == 'yellow'">
+                                <span class="colortags yellowbg"></span>
+                            </span>
+                            <span *ngIf = "g == 'green'">
+                                <span class="colortags greenbg"></span>
+                            </span>
+                            <span *ngIf = "g == 'purple'">
+                                <span class="colortags purplebg"></span>
+                            </span>
+                            <span *ngIf = "g == 'white'">
+                                <span class="colortags whitebg"></span>
+                            </span>
+                            <span *ngIf = "g == 'black'">
+                                <span class="colortags blackbg"></span>
+                            </span>
+                            <span *ngIf = "g == 'grey'">
+                                <span class="colortags greybg"></span>
+                            </span>
+                            <span *ngIf = "g == 'orange'">
+                                <span class="colortags orangebg"></span>
+                            </span>
+                            <span *ngIf = "g == 'brown'">
+                                <span class="colortags brownbg"></span>
+                            </span>
+                        </span>
+                    </div>
                     </td>
                     <td class="text-center" (click) = openModel(data) >
                         <button class="btn btn-success editbtn"  id="prompt-function"   data-reactid="333" (click)="description_dailog = true ">Edit</button><br/>

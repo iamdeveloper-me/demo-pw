@@ -87,6 +87,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
 
   ngOnInit() {
 
+     $.getScript('./assets/js/vendorsidebar.js');
 
   this.route.params.subscribe( params => {
     console.log(params) ;

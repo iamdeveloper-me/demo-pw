@@ -58,6 +58,8 @@ export class GalleryComponent implements OnInit {
     private _ngZone: NgZone
   ) { }
   ngOnInit() {
+  
+       $.getScript('./assets/js/vendorsidebar.js');
 
     // let headers = new Headers();
     // var authToken = localStorage.getItem('userToken');

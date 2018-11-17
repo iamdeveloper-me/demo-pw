@@ -22,9 +22,9 @@
               </a>      
           </div>	
         </div> 
-        <div class="container-fluid photo_gallery" >     
-            <div class="color_optin text-center" *ngFor="let image of albumImagesModify; let i=index ">
-                <div class="clearfix"></div>
+        <div class="container-fluid photo_gallery" >  
+          <div class="text-center">   
+            <span class="color_optin text-center" *ngFor="let image of albumImagesModify; let i=index ">
                 <span *ngFor="let g of image.colorTags;let i=index">
                     <!-- {{g}} -->
                      
@@ -59,24 +59,26 @@
                      
                     
                           <span *ngIf = "g == 'brown'" class="colortags brownbg" ></span>
-                      
                 </span>
-             
-            </div>   
-            <div class="clearfix"></div>
-            
+            </span>   
+          </div>
+          <div class="clearfix"></div>
             <!-- <p class="beach_outdoor"> <span>{{tags}}</span> <span>Outdoor</span> </p> -->
-          <div *ngFor="let image of albumImagesModify; let i=index ">
-            <div *ngFor="let ag of image.tags;let i=index">
+            <div class="text-center">
+            <span *ngFor="let image of albumImagesModify; let i=index ">
+              <span *ngFor="let ag of image.tags;let i=index">
                 <span class="tagstik"> 
                     {{ag}}    
                   <i class="material-icons">clears</i>
                 </span>      
-              </div>
-            </div>
+              </span>
+            </span>
+          </div>
+          <div class="text-center">
             <p class="add_photos">
                 <button  id="Google-function" class="btn newbtn" (click)="uploadphoto_dailog = true" data-reactid="339" >Add photos</button>
             </p>  
+          </div>
             <div class="row mar_top_50px">
               <div   class="col-lg-3 col-md-4 col-xs-6 "  *ngFor="let image of albumImagesModify; let i=index ">
                 <div class="thumb hovereffect" (clss)='{cl : higcs(image)}' data-target="#image-gallery" data-toggle="modal"  >

@@ -77,6 +77,7 @@ private update_portfolio: string  = "http://testapp-env.tyad3n63sa.ap-south-1.el
               
             }
     ngOnInit() {
+     $.getScript('./assets/js/vendorsidebar.js');
                 let headers = new Headers();
                 var authToken = localStorage.getItem('userToken');
                 headers.append('Accept', 'application/json')

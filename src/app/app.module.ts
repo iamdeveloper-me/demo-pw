@@ -200,6 +200,10 @@ import { FailureComponent } from './vendor/failure/failure.component';
 import { PhotogallerydetailComponent } from './photogallerydetail/photogallerydetail.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
+// code by v
+import {BrowserModule} from '@angular/platform-browser';
+import {NgxPaginationModule} from 'ngx-pagination';
+
 //import { VendorComponent } from './dashboard/vendor/vendor.component';
 
 import { apiService } from './shared/service/api.service';
@@ -420,7 +424,9 @@ export function getAuthServiceConfigs() {
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyBr5_picK8YJK7fFR2CPzTVMj6GG1TtRGo',
             libraries: ["places"]
-        })
+        }),
+        // code by v
+        BrowserModule, NgxPaginationModule
     ],
 
     providers: [
@@ -437,7 +443,7 @@ export function getAuthServiceConfigs() {
         },
         apiService
     ],
-    bootstrap: [AppComponent],
+    bootstrap: [AppComponent, MylistingComponent],
     entryComponents: [NgbdModalContent],
    
 })

@@ -79,29 +79,16 @@ export class EventListComponent implements OnInit {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
 
     $.getScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js');
-
-
     $.getScript('./assets/js/vendorsidebar.js');
-
-    // $("#filter2").show();
-    // $("#action2").hide();
-
     $(".Suppliertab").click(function () {
-    
       $(".Suppliertab").addClass("selected");
       $(".Registertab").removeClass("selected");
     });
-
     $(".Registertab").click(function () {
-     
       $(".Suppliertab").removeClass("selected");
       $(".Registertab").addClass("selected");
     });
-
-
   }
-
-
   createImageFromBlob(image: Blob) {
     let reader = new FileReader();
     reader.addEventListener("load", () => {
@@ -190,7 +177,7 @@ export class EventListComponent implements OnInit {
                       headerForImageUpload.append("Authorization", 'Bearer ' + authToken);
                       const formData = new FormData();
                       formData.append('AlbumId', '2');
-                      alert(JSON.stringify(this.imageToUpload));
+                  //    alert(JSON.stringify(this.imageToUpload));
                       formData.append(this.imageToUpload.name, this.imageToUpload);
                       console.log(this.imageToUpload)
                       
@@ -206,7 +193,15 @@ export class EventListComponent implements OnInit {
                                             headers.append('Accept', 'application/json')
                                             headers.append('Content-Type', 'application/json');
                                             headers.append("Authorization", 'Bearer ' + authToken);
-                                            console.log(this.objevent);
+                                            let eventdates=
+                                            {
+                                                "eventsMoreDatesId": 0,
+                                                "eventId": 0,
+                                                "eventDate": "2018-11-17T06:17:03.990Z",
+                                                "startTime": "2018-11-17T06:17:03.990Z",
+                                                "endTime": "2018-11-17T06:17:03.991Z"
+                                            }
+                                           // this.objevent.eventsDates.push(eventdates);
                                              this.http.post(this.eventposturl,this.objevent,{headers:headers}).subscribe((data)=>{
                                                let response=JSON.parse(data.text());
                                                   alert(JSON.stringify(response.message));
@@ -380,6 +375,7 @@ entryFee:	number
 eventDescription:	string;
 eventsDates: Array<EventsDatesVM>;
 constructor(){
+  this.eventId=0;
   this.eventsDates = new Array<EventsDatesVM>();
   let objeventdates = {
     endTime:'00:00',
@@ -388,6 +384,8 @@ constructor(){
     eventsMoreDatesId:0,
     eventId:0,
   };
+  this.lat = 0;
+  this.long = 0;
   // this.eventsDates.push(objeventdates);
 }
 

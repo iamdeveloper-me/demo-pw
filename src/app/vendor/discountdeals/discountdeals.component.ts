@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-discountdeals',
   templateUrl: './discountdeals.component.html',
@@ -10,8 +11,6 @@ export class DiscountdealsComponent implements OnInit {
 
   editdeal_dailog = false;  
   createdeal_dailog = false;
-
-
   private discountGet: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/discounts'
   discount:any = [];
   
@@ -35,7 +34,9 @@ export class DiscountdealsComponent implements OnInit {
   private mydeal: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mydeals'
   recentmydeal:any = [];
   readioSelected_serv:boolean;
-  constructor(public http: Http,public toastr: ToastrService) { }
+  constructor(public http: Http,public toastr: ToastrService) {
+   
+   }
 
   ngOnInit() {
   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
@@ -86,7 +87,7 @@ export class DiscountdealsComponent implements OnInit {
 
      let headers = new Headers();
      var authToken = localStorage.getItem('userToken');
-    
+     
      headers.append('Accept', 'application/json')
      headers.append('Content-Type', 'application/json');
      headers.append("Authorization",'Bearer '+authToken);

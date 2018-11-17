@@ -23,6 +23,7 @@ export class DiscountdealsComponent implements OnInit {
   private deal: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/createupdatedeals'
   title;
   disTitle;
+  createdial = false;
   createdeal:{dealId: 0,  title: "",  conditions: "",  startDate: "", endDate: "", neverExpire: true};
   updatemydeal:any = {
     title: "",
@@ -115,6 +116,7 @@ export class DiscountdealsComponent implements OnInit {
 open(c){console.log(c);}
 
 updatedis(service){
+  this.createdial = false;
   console.log(service.value.select);
   console.log(service.value.select.title);
  this.disTitle = service.value.select.title;
@@ -130,7 +132,8 @@ this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/ap
 },{headers:headers}).subscribe(
     data =>{  
     console.log(data.json());
-   this.toastr.success("Discount updated successfully.");
+   this.toastr.success("Discount updated successfully."); 
+    this.createdial = false;
    this.updiscount = data.json();
   },error => {console.log(error)})
  
@@ -225,6 +228,7 @@ openupdatedeal(data){
   closeModel(){         
     this.editdeal_dailog = false;  
     this.createdeal_dailog = false;
+    this.createdial = false;
   }
 
 

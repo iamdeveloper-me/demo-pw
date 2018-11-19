@@ -21,6 +21,7 @@ export class BusinessInfoComponent implements OnInit {
   imagecropDailog = false;
   BusinessDailog = false;
   progress = false;
+  disabletxtFburl=true;
   cropperupload =true;
   nodata = '';
   Description;
@@ -188,7 +189,7 @@ export class BusinessInfoComponent implements OnInit {
           this.total = 80;
 
           console.log(this.fileid)
-          const data3=    {   
+          let data3=    {   
             nameOfBusiness: v.nameOfBusiness,
             businessDetails: v.businessDetails,
             fileId:    this.fileid,
@@ -197,7 +198,13 @@ export class BusinessInfoComponent implements OnInit {
             googleURL:v.googleURL,
             instalURL:v.instalURL ,
             perfectWeddingURL: v.perfectWeddingURL,
+            "fbAvailable":v.fbAvailable,
+            "twitterAvailable":v.twitterAvailable,
+            "googleAvailable":v.googleAvailable,
+            "instaAvailable":v.instaAvailable,
+            "perfectWeddingAvailable":v.perfectWeddingAvailable,
           }
+          
           console.log(data3);
           
           let updatebusinessinfo = this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatebusinessinfo",
@@ -379,9 +386,9 @@ export class BusinessInfoComponent implements OnInit {
     }
 
 
-    closeModel(){  
+    closeModel(){
+
                   // this.myForm.reset('nameOfBusiness');
-                 
                     this.facebookDailog = false;
                     this.twitterDailog = false;
                     this.instagramDailog =false;
@@ -393,8 +400,11 @@ export class BusinessInfoComponent implements OnInit {
     } 
     
     switch_fbAvailable(e){
-      console.log(e);
-    
+      if(e==true){
+      this.disabletxtFburl=true;
+      }else{
+      this.disabletxtFburl=false;
+      }
       if(e  ==  false || e ==true)
       {
         this.modelfield.facebookURL = '';
@@ -404,6 +414,7 @@ export class BusinessInfoComponent implements OnInit {
       if(e ==  false || e ==true)
       {
         this.modelfield.twitterURL = '';
+
       }
     }
 

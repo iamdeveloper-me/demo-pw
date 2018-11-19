@@ -24,8 +24,8 @@
         </div> 
         <div class="container-fluid photo_gallery" >  
           <div class="text-center">   
-            <span class="color_optin text-center" *ngFor="let image of albumImagesModify; let i=index ">
-                <span *ngFor="let g of image.colorTags;let i=index">
+            <span class="color_optin text-center" >
+                <span *ngFor="let g of colour_table;let i=index">
                     <!-- {{g}} -->
                      
                           <span *ngIf = "g == 'pink'" class="colortags pinkbg" ></span>
@@ -69,7 +69,7 @@
               <span *ngFor="let ag of image.tags;let i=index">
                 <span class="tagstik"> 
                     {{ag}}    
-                  <i class="material-icons">clears</i>
+                
                 </span>      
               </span>
             </span>

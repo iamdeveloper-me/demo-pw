@@ -209,9 +209,23 @@
                 </div>
                 <form [formGroup]="form" (ngSubmit)="addDetails()">
                    <div class="modal-body">
+                      
                       <div class="form-group">
                         <div class="input-effect form-group md-form ">
-                          <input class="effect-16 validate" type="text" id="link" formControlName="link" >
+                          <input class="effect-16 validate" type="text" id="title" required="required" formControlName="title" >
+                          <label>Enter Vedio Title</label>
+                          <span class="focus-border"></span>
+                        </div>
+                        <!-- <label for="title">Title:</label>
+                        <br>
+                        <input style="width:80%" type="text" id="title" formControlName="title" /> -->
+                        <div style="color:red" *ngIf="  title.value && title.invalid">
+                          Please provide valid tite
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-effect form-group md-form ">
+                          <input class="effect-16 validate" type="text" id="link" required="required" formControlName="link" >
                           <label>Enter Vedio Url</label>
                           <span class="focus-border"></span>
                         </div>
@@ -224,19 +238,6 @@
                         <div style="color:red" *ngIf="link.value && link.invalid">
                           Please provide valid url
                         </div> -->
-                      </div>
-                      <div class="form-group">
-                        <div class="input-effect form-group md-form ">
-                          <input class="effect-16 validate" type="text" id="title" formControlName="title" >
-                          <label>Enter Vedio Title</label>
-                          <span class="focus-border"></span>
-                        </div>
-                        <!-- <label for="title">Title:</label>
-                        <br>
-                        <input style="width:80%" type="text" id="title" formControlName="title" /> -->
-                        <div style="color:red" *ngIf="  title.value && title.invalid">
-                          Please provide valid tite
-                        </div>
                       </div>
                       <!-- <br>
                       <button type="submit">Submit</button>

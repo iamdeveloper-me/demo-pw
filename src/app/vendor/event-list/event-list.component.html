@@ -1,452 +1,331 @@
 <div id="wrapper" class="toggled">
-  <div id="sidebar-wrapper">
-    <app-vendorsidebar></app-vendorsidebar>
-  </div>
-  <div id="page-content-wrapper">
-    <app-navemenu></app-navemenu>
-    <router-outlet></router-outlet>
-    <div class="container-fluid mobilefixedcontainer">
-      <div class="col-sm-12 card">
-        <div class="createmyalbum">
-
-          <div class=" text-center">
-            <h2>MY EVENTS </h2>
-            <span>Increase your brand awareness through event hosting. It's free! </span>
-          </div>
-
-          <ul class="tabbingdesign">
-            <li class="card-title selected Suppliertab" (click) = "past_upcomming_event(1)">Past Event</li>
-            <li class="card-title Registertab" (click) = "past_upcomming_event(2)">Upcoming Event</li>
-          </ul>
-        </div>
-        <div class="clearfix"></div>
-        <div class="col-md-12">
-          <div class="">
-            <div class="col-md-12 nopadd">
-              <div class="serchbox" >
-                <input type="text" placeholder="Search...." name="">
-                <button class="btn btn-small btn-link" (click)="twitterDailog = true" >
-                  <i class="material-icons"> add </i> 
-                  <span>
-                       <strong> Create New Event {{fileIdfield.filesId}}</strong>
-                  </span>
-                </button>
-              </div>
-              <!--Commented By Raj-->
-              <!-- <form (ngSubmit)="addFile(info)" #info="ngForm" class="padding-left: 84%">
-                <input #fileInput type="file" [(ngModel)]="gallery.files" name="image" id="image" />
-                <button type="submit" class="btn btn-small btn-link">
-                  <i class="material-icons"> add </i>
-                  upload event image 
-                </button>
-                <span class="focus-border"></span>
-              </form> -->
+    <div id="sidebar-wrapper">
+      <app-vendorsidebar></app-vendorsidebar>
+    </div>
+    <div id="page-content-wrapper">
+      <app-navemenu></app-navemenu>
+      <router-outlet></router-outlet>
+      <div class="container-fluid mobilefixedcontainer">
+        <div class="col-sm-12 card">
+          <div class="createmyalbum">
+  
+            <div class=" text-center">
+              <h2>MY EVENTS </h2>
+              <span>Increase your brand awareness through event hosting. It's free! </span>
             </div>
-            <div class="clearfix"></div>
-            <section  (click) = "past = true">
-              <div class="col-sm-12 nopadd" *ngFor="let data of eventArray;let i=index">
-                  
-                <div class="card martop0px" *ngFor="let name of data.eventsDates">
-                  <div class="card-body borall">
-                    <div class="card-block">
-                      <div class="col-md-4 col-12 pad_0px ">
-                          <img [src]="data.files.path" class="img-responsive">      
-                        <!-- <p>{{data.files.path}}</p> -->
-                      </div>
-
-
-                      <div class="col-md-8 col-12 textboxevent">
-                        <table>
-                          <tr>
-                            <td>
-                              <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
+  
+            <ul class="tabbingdesign">
+              <li class="card-title selected Suppliertab " (click) = "past_upcomming_event(1)">Past Event</li>
+              <li class="card-title  Registertab" (click) = "past_upcomming_event(2)">Upcoming Event</li>
+            </ul>
+          </div>
+          <div class="clearfix"></div>
+          <div class="col-md-12">
+            <div class="">
+              <div class="col-md-12 nopadd">
+                <div class="serchbox" >
+                  <input type="text" placeholder="Search...." name="">
+                  <button class="btn btn-small btn-link" (click)="twitterDailog = true" >
+                    <i class="material-icons"> add </i> 
+                    <span>
+                         <strong> Create New Event</strong>
+                    </span>
+                  </button>
+                </div>
+                <!--Commented By Raj-->
+                <!-- <form (ngSubmit)="addFile(info)" #info="ngForm" class="padding-left: 84%">
+                  <input #fileInput type="file" [(ngModel)]="gallery.files" name="image" id="image" />
+                  <button type="submit" class="btn btn-small btn-link">
+                    <i class="material-icons"> add </i>
+                    upload event image 
+                  </button>
+                  <span class="focus-border"></span>
+                </form> -->
+              </div>
+              <div class="clearfix"></div>
+              <section>
+              
+                <div class="col-sm-12 nopadd" *ngFor="let data of eventArray;let i=index ">
+                  <div class="card martop0px  eventbox" >   
+                    <div class="row eventrow ">
+                        <div class="col-4 ">
+                            <img [src]="data.files.path" class="img-responsive">  
+                       
+                        </div>
+                        <div class="col-6 ">
+                            <div class="col-12">
                                 <div class="club_heading">
-                            <!-- <form (ngSubmit)="addFile(info)" #info="ngForm" >
-                                  <input #fileInput 
-                                      type="file"
-                                      [(ngModel)]="gallery.files" 
-                                      name="image" 
-                                      id="image"/>
-
-                      
-                                  <label>Image</label>
-                                  <button type="submit" class="btn btn-secondary btn-raise saveall" (click) = "addFile(info)">upload</button>   
-                                  <span class="focus-border"></span>
-                           </form> -->
                                   <h5> {{data.eventTitle}} </h5>
                                 </div>
                                 <p>
-                                  <strong> Capacity:{{data.capacity}}</strong>
+                                  Capacity:{{data.capacity}}
                                 </p>
-                                <p>
-                                  <strong> Venue:{{data.venueName}}</strong>
+                                <p>Venue:{{data.venueName}}
                                 </p>
-                                <p>
-                                  <strong>Event Town:{{data.location}}</strong>
+                                <p>Event Town:{{data.location}}
                                 </p>
-                                <p>
-                                  <strong>Entry Fee:{{data.entryFee}}</strong>
+                                <p>Entry Fee:{{data.entryFee}}
                                 </p>
                                 <p class="locat_tag">
                                   <i class="material-icons"> location_on</i>
                                   {{data.location}}
                                 </p>
-                                <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px" *ngFor="let name of data.eventsDates">
-                                  <p>
-                                    <i class="material-icons">access_time </i>
+                                <div class="col-md-12 nopadd row col-12 margin_p mob_font_12px mob_font_14px">
+                                   <div class="col-sm-1">
+                                     <i class="material-icons">access_time </i>
+                                    </div> 
+                                    <div class="col-sm-11">
+                                  <p  *ngFor="let name of data.eventsDates">
                                     <strong> Start Time {{name.startTime | date :
                                       "shortTime" }}</strong>
                                   </p>
-
-
+  
+                                  <p *ngFor="let name of data.eventsDates">
+                                    <strong>End
+                                        Time {{name.endTime | date : "shortTime" }}
+                                      </strong>
+                                    </p>
+                                    </div>
+                                    <div class="col-sm-12">
+                                    <p  *ngFor="let name of data.eventsDates">
+                                        <i class="material-icons">date_range </i><strong>
+                                          Recurring Date {{name.eventDate | date}}
+                                        </strong>
+                                      </p>
+                                    </div>
                                 </div>
-                                <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px" *ngFor="let name of data.eventsDates">
-                                  <p>
-                                    <i class="material-icons">access_time </i><strong>End
-                                      Time {{name.endTime | date : "shortTime" }}
-                                    </strong>
-                                  </p>
-
-                                </div>
-                                <div class="col-md-12 col-12 mar_top_10px"></div>
-                                <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px" *ngFor="let name of data.eventsDates">
-
-                                  <p>
-                                    <i class="material-icons">date_range </i><strong>
-                                      Recurring Date {{name.eventDate | date}}
-                                    </strong>
-                                  </p>
-
-
-
-                                </div>
-                              </div>
-                            </td>
-                            <td class="text-center">
-                              <button class="btn btn-success whitetext btn-rounded" (click)="editevent(data)"
-                                data-target="#Description" data-toggle="modal" id="description-function">Edit{{data.eventId}}</button>
-
-                              <button class="btn btn-warning whitetext btn-rounded" (click)="deletevent(data,i)">Delete
-                                {{data.eventId}}
-                              </button>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                      <div class="col-md-12 pad_0px">
-                        <p>
-                          <strong>Description dfed {{data.entryFee}}</strong><br />
-                          {{data.entryFee}}
-                          {{data.eventDescription}}
-                        </p>
-                      </div>
-                    </div>
+                               
+                               
+                                
+                            </div>
+                        </div>  
+                        <div class="col-2 tikdiv">
+                            <button class="btn btn-success whitetext btn-rounded" (click)="editevent(data) "
+                            id="description-function">Edit</button>
+                              <!-- {{data.eventId}} -->
+                            
+                            <button class="btn btn-warning whitetext btn-rounded" (click)="deletevent(data,i)">
+                              Delete
+                            </button>
+                            <!-- {{data.eventId}} -->
+                        </div>
+                      </div>  
                   </div>
                 </div>
-              </div>
-            </section>
-            <section  (click) = "up = true">
-              <div class="col-sm-12 nopadd" *ngFor="let data of eventArray;let i=index ">
-                <div class="card martop0px" >
-                  <div class="card-body borall" *ngFor="let name of data.eventsDates" >
-                    <div class="card-block">
-                      <div class="col-md-4 col-12 pad_0px">
-                        {{data.files |json}}
-                      <!--   <img [src]="data.files.path" class="img-responsive"> -->
-                      </div>
-                      <div class="col-md-8 col-12 textboxevent">
-                        <table>
-                          <tr>
-                            <td>
-                              <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px">
-                                <div class="club_heading">
-                                  <h5> {{data.eventTitle}}
-
-                                  </h5>
-                                </div>
-                                <p>
-                                  <strong> Capacity:{{data.capacity}}</strong>
-                                </p>
-                                <p>
-                                  <strong> Venue:{{data.venueName}}</strong>
-                                </p>
-                                <p>
-                                  <strong>Event Town:{{data.location}}</strong>
-                                </p>
-                                <p>
-                                  <strong>Entry Fee:{{data.entryFee}}</strong>
-                                </p>
-                                 <p>
-                                  <strong>Entry :{{data.entry}}</strong>
-                                </p>
-                                <p class="locat_tag">
-                                  <i class="material-icons"> location_on</i>
-                                  {{data.location}}
-                                </p>
-                                <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px" *ngFor="let name of data.eventsDates">
-                                  <p>
-                                    <i class="material-icons">access_time </i>
-                                    <strong> Start Time {{data.createdOn | date :
-                                      "shortTime" }}</strong>
-                                  </p>
-
-                                </div>
-                                <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px" *ngFor="let name of data.eventsDates">
-                                  <p>
-                                    <i class="material-icons">access_time </i><strong>End
-                                      Time {{name.endTime | date : "shortTime" }}
-                                    </strong>
-                                  </p>
-
-                                </div>
-                                <div class="col-md-12 col-12 mar_top_10px"></div>
-                                <div class="col-md-12 col-12 margin_p mob_font_12px mob_font_14px" *ngFor="let name of data.eventsDates">
-
-                                  <p>
-                                    <i class="material-icons">date_range </i><strong>
-                                      Recurring Date {{name.eventDate | date}}
-                                    </strong>
-                                  </p>
-
-
-
-                                </div>
-                              </div>
-                            </td>
-                            <td class="text-center">
-                              <button class="btn btn-success whitetext btn-rounded" (click)="editevent(data)"
-                                data-target="#Description" data-toggle="modal" id="description-function">Edit{{data.eventId}}</button>
-                              <button class="btn btn-warning whitetext btn-rounded" (click)="deletevent(data)">Delete
-                                {{data.eventId}}
-                              </button>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                      <div class="col-md-12 pad_0px">
-                        <p>
-                          <strong>Description dfed {{data.entryFee}}</strong><br />
-                          {{data.eventDescription}}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
+              </section>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
-  <form (ngSubmit)="event(objevent)" #list="ngForm">
+  
+    <form (ngSubmit)="event(objevent)" #list="ngForm">
       <div class="modal fade" [ngClass] = "{'show' : twitterDailog}" id="facebook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-              <div class="modal-content">
-
-                      <div class="modal-header text-center">
-                        <h4 class="modal-title"><b>Create Event {{fileIdfield.filesId}}</b></h4>
-                        <button type="button" class="close" (click) = "closeModel()">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-
-                      <div>
-                        <input #fileInput type="file" name="image" id="image" (change)="onFileChanged($event)" />
-                      </div>
-                      
-                      <div class="modal-body" style="max-height: 500px;
-                      overflow-x:hidden;overflow-y:scroll;">
-                        <div class="form-group">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title"><b>Create Event</b></h4>
+                <button type="button" class="close" (click) = "closeModel()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+           
+            <div class="modal-body">
+                <div class="col-sm-12 nopadd rowpaddadjust">
+                  <div class="col-sm-6">
+                      <div class="form-group">
                           <div class="input-effect form-group md-form ">
-                            <input class="effect-16 validate" required="required" [(ngModel)]="objevent.eventTitle" id="Title" name="Title">
+                              <input class="effect-16 validate" #fileInput type="file" name="image" id="image" (change)="onFileChanged($event)" />
+                              <label>Event Image</label>
+                            <span class="focus-border"></span>
+                            </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                          <div class="input-effect form-group md-form ">
+                            <input class="effect-16 validate" 
+                            [(ngModel)]="objevent.eventTitle" 
+                            id="Title" 
+                            name="Title"
+                            #Titlee="ngModel" 
+                            required 
+                            placeholder="required">
+                            <small class="form-text text-muted danger" *ngIf="Titlee.errors?.required">required error</small>
                             <label>Title</label>
                             <span class="focus-border"></span>
-
+          
                           </div>
                         </div>
-
-                        <!-- <input  type="file" accept="image/*" class="effect-16 validate"  required="required" [(ngModel)]="list.filesId"  
-                                      id="Image" 
-                                      name="Image"> -->
-                        <input type="hidden" name="filesId" id="filesId" [value]="fileIdfield.filesId" [(ngModel)]="objevent.filesId">
-
-
-                        <div class="form-group date_picker">
-                          <label style="width:100%;">event date:</label> <br>
-                          <input type="date" name="eventdate" id="eventdate" [(ngModel)]="list.eventDate" style="width:100%;">
-
-                        </div>
-                        <div class="form-group time_picker col-sm-6" style="padding-left: 0px;">
-                          <label style="width:100%;">
-                            <a href=""> start time </a>
+                  </div>
+                </div>
+              
+                <div class="clearfix"></div>
+               
+                
+                <input type="hidden" name="filesId" id="filesId" [value]="fileIdfield.filesId" [(ngModel)]="objevent.filesId">
+                <div class="form-group">
+                    <div class="input-effect form-group md-form">
+                      <input class="effect-16 validate"  type="date" name="eventdate" id="eventdate" [(ngModel)]="objevent.eventdate" style="width:100%;">
+                      <label style="width:100%;">event date: {{objevent.eventdate}}</label> 
+                      <span class="focus-border"></span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    <div class="input-effect form-group md-form ">
+                      <input type="text" class="effect-16 validate" 
+                      [(ngModel)]="objevent.eventDescription"
+                      name="eventDescription" 
+                      id="eventDescription"
+                      #eventDescriptions="ngModel" 
+                      required 
+                      placeholder="required"
+                      >
+      
+                      <label>Description</label>
+                      <small class="form-text text-muted danger" *ngIf="eventDescriptions.errors?.required">required error</small>
+                      <span class="focus-border"></span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-12 nopadd date_picker">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>
+                            <a>end time</a>
                           </label><br>
-                          <select>
-                            <option>00</option>
-                            <option>01</option>
-                            <option>02</option>
-                            <option>03</option>
-                            <option>04</option>
-                            <option>05</option>
-                            <option>06</option>
-                            <option>07</option>
-                            <option>08</option>
-                            <option>09</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
+                          <input type="time" class="form-control"  name="endTime" id="endTime" [(ngModel)]="endtime"/>
+                     
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                          <div class="form-group date_picker">
+                            <label>
+                              <a>start time </a>
+                            </label><br>
+                            <input type="time" class="form-control"  [(ngModel)]="startTimee"  name="startTime" id="startTime"/>
+                        
+                          </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 nopadd rowpaddadjust">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="input-effect form-group md-form ">
+                              <input type="text" class="effect-16 validate" 
+                              [(ngModel)]="objevent.venueName" 
+                              name="venueName"
+                              id="venueName"
+                              #venueNames="ngModel" 
+                              required 
+                              placeholder="required">
+                              <small class="form-text text-muted danger" *ngIf="venueNames.errors?.required">required error</small>
+                
+                              <label>VenueName</label>
+                              <span class="focus-border"></span>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <div class="input-effect form-group md-form ">
+                                <select class="effect-16 validate" id="Country" [(ngModel)]="objevent.countryId" name="country_id" (change)="country($event)">
+                                  <option *ngFor="let country of arra ;let c =index" type="text" id="{{country.countryName}}" checked name="countryName"
+                                    placeholder="Country" [value]="c" required>
+                                    {{country.countryName }}
+                
+                                  </option>
+                
+                                </select>
+                
+                                <span class="focus-border"></span>
+                              </div>
+                            </div>
+                      </div>
+                </div>
+                <div class="col-sm-12 nopadd rowpaddadjust">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <div class="input-effect form-group md-form ">
+                          <select name="district" class="effect-16 validate" [(ngModel)]="objevent.districtId" name="dist_id" (change)="districtA($event)">
+                            <option *ngFor="let dist of district ;let d =index" type="text" id="{{dist.name}}" checked name="dist"
+                              placeholder="Country" [value]="d" required>
+                              {{dist.name }}
+  
+                            </option>
+  
                           </select>
-                          <select>
-                            <option>00</option>
-                            <option>05</option>
-                            <option>10</option>
-                            <option>15</option>
-                            <option>20</option>
-                            <option>25</option>
-                            <option>30</option>
-                            <option>35</option>
-                            <option>40</option>
-                            <option>45</option>
-                            <option>50</option>
-                            <option>55</option>
+  
+                          <span class="focus-border"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <div class="input-effect form-group md-form ">
+                          <select class="effect-16 validate" [(ngModel)]="objevent.suburbId" name="sub_id" (change)="subr($event)">
+                            <!-- (change)="country($event)" -->
+                            <option *ngFor="let sub of suburb ;let s =index" type="text" id="{{sub.name}}" checked name="sub"
+                              placeholder="Suburb" [value]="s" required>
+                              {{sub.name }}
+  
+                            </option>
+  
                           </select>
-                          <select>
-                            <option>AM</option>
-                            <option>PM</option>
-                          </select>
-                          <!--    <input type="time" 
-                                  name="starttime"
-                                  id="starttime"
-                                  [(ngModel)]="list.startTime" style="width:100%;"> -->
+  
+                          <span class="focus-border"></span>
                         </div>
-                        <div class="form-group time_picker  col-sm-6" style="padding-right:0px;">
-                          <label style="width:100%;">
-                            <a href="">end time </a>
-                          </label><br>
-                          <select>
-                            <option>00</option>
-                            <option>01</option>
-                            <option>02</option>
-                            <option>03</option>
-                            <option>04</option>
-                            <option>05</option>
-                            <option>06</option>
-                            <option>07</option>
-                            <option>08</option>
-                            <option>09</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                          </select>
-                          <select>
-                            <option>00</option>
-                            <option>05</option>
-                            <option>10</option>
-                            <option>15</option>
-                            <option>20</option>
-                            <option>25</option>
-                            <option>30</option>
-                            <option>35</option>
-                            <option>40</option>
-                            <option>45</option>
-                            <option>50</option>
-                            <option>55</option>
-                          </select>
-                          <select>
-                            <option>AM</option>
-                            <option>PM</option>
-                          </select>
-                          <!-- <input type="time" 
-                                      name="endtime"
-                                      id="endtime"
-                                      [(ngModel)]="list.endTime" style="width:100%;"> -->
+                      </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 nopadd rowpaddadjust">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <div class="input-effect form-group md-form ">
+                          <input type="text" class="effect-16 validate"
+                            [(ngModel)]="objevent.location"
+                            name="Location"
+                            id="Location"
+                            #Locations="ngModel" 
+                            required 
+                            placeholder="required"
+                            >
+                            <small class="form-text text-muted danger" *ngIf="Locations.errors?.required">required error</small>
+                          <label>Location</label>
+                          <span class="focus-border"></span>
                         </div>
-                        <div class="clearfix"></div>
-                        <div class="form-group">
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <div class="input-effect form-group md-form ">
+                          <input type="text" class="effect-16 validate" 
+                          [(ngModel)]="objevent.capacity"
+                          name="Capacity"
+                          id="Capacity"
+                          #Capacitys="ngModel" 
+                          required 
+                          placeholder="required">
+                          <label>Capacity</label>
+                          <small class="form-text text-muted danger" *ngIf="Capacitys.errors?.required">required error</small>
+                          <span class="focus-border"></span>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 nopadd date_picker">
+                  <div class="col-sm-6">
+                      <div class="form-group">
                           <div class="input-effect form-group md-form ">
-                            <input type="text" class="effect-16 validate" required="required" [(ngModel)]="objevent.venueName"  name="venueName"
-                              id="venueName">
-
-                            <label>VenueName</label>
-                            <span class="focus-border"></span>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <div class="input-effect form-group md-form ">
-                            <select class="effect-16 validate" id="Country" [(ngModel)]="objevent.countryId" name="country_id" (change)="country($event)">
-                              <option *ngFor="let country of arra ;let c =index" type="text" id="{{country.countryName}}" checked name="countryName"
-                                placeholder="Country" [value]="c" required>
-                                {{country.countryName }}
-
-                              </option>
-
-                            </select>
-
-                            <span class="focus-border"></span>
-                          </div>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="form-group">
-                          <div class="input-effect form-group md-form ">
-                            <select name="district" class="effect-16 validate" [(ngModel)]="objevent.districtId" name="dist_id" (change)="districtA($event)">
-                              <option *ngFor="let dist of district ;let d =index" type="text" id="{{dist.name}}" checked name="dist"
-                                placeholder="Country" [value]="d" required>
-                                {{dist.name }}
-
-                              </option>
-
-                            </select>
-
-                            <span class="focus-border"></span>
-                          </div>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="form-group">
-                          <div class="input-effect form-group md-form ">
-                            <select class="effect-16 validate" [(ngModel)]="objevent.suburbId" name="sub_id" (change)="subr($event)">
-                              <!-- (change)="country($event)" -->
-                              <option *ngFor="let sub of suburb ;let s =index" type="text" id="{{sub.name}}" checked name="sub"
-                                placeholder="Suburb" [value]="s" required>
-                                {{sub.name }}
-
-                              </option>
-
-                            </select>
-
-                            <span class="focus-border"></span>
-                          </div>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="form-group">
-                          <div class="input-effect form-group md-form ">
-                            <input type="text" class="effect-16 validate" required="required" [(ngModel)]="objevent.location" name="Location"
-                              id="Location">
-                            <label>Location</label>
-                            <span class="focus-border"></span>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <div class="input-effect form-group md-form ">
-                            <input type="text" class="effect-16 validate" required="required" [(ngModel)]="objevent.capacity" name="Capacity"
-                              id="Capacity">
-                            <label>Capacity</label>
-                            <span class="focus-border"></span>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <div class="input-effect form-group md-form ">
-                            <input type="text" class="effect-16 validate" required="required" [(ngModel)]="objevent.eventDescription" name="eventDescription"
-                              id="eventDescription">
-
-                            <label>Description</label>
-                            <span class="focus-border"></span>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <div class="input-effect form-group md-form ">
-                            <select [(ngModel)]="objevent.entry" class="effect-16 validate" required="required"  name="entry" id="entry">
+                            <select 
+                            [(ngModel)]="objevent.entry" 
+                            class="effect-16 validate"
+                             name="entry" 
+                             id="entry">
+            
                               <option value='Paid'>Paid</option>
                               <option value='Free'>Free</option>
                             </select>
@@ -454,224 +333,301 @@
                             <span class="focus-border"></span>
                           </div>
                         </div>
-
-                        <div class="form-group">
+                  </div>
+                  <div class="col-sm-6">
+                      <div class="form-group">
                           <div class="input-effect form-group md-form ">
-                            <input type="text" class="effect-16 validate" required="required" [(ngModel)]="objevent.entryFee" name="entryFee"
-                              id="entryFee">
-
+                            <input type="text" class="effect-16 validate" 
+                            [(ngModel)]="objevent.entryFee" 
+                            name="entryFee"
+                            id="entryFee"
+                            #entryFees="ngModel" 
+                            required 
+                            placeholder="required">
+            
                             <label>entryFee</label>
+                            <small class="form-text text-muted danger" *ngIf="entryFees.errors?.required">required error</small>
                             <span class="focus-border"></span>
                           </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn newbtn">Save</button>
-    
-                            <button type="button" class="btn newbtn newcancelbtn" >Cancel</button>
-                          </div>
-                      </div>
-                    
-               </div>       
-            </div>          
-       </div>               
-
-  </form>
-
-
-
-<form (ngSubmit)="editevent(data)" #data="ngForm">
-  <div class="modal fade" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header text-center">
-          <h4 class="modal-title">Edit Business  {{eventdate | json}}</h4>
-        </div>
-        <div class="modal-body">
-
-          <div class="modal-header text-center">
-            <h4 class="modal-title"><b>edit Event {{modelfield }} </b></h4>
-            <button type="button" class="close btn_mar_padd" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+                  </div>
+                </div>
+              
+            </div> 
+            <div class="modal-footer marbot0px">
+                <button type="submit"  class="btn newbtn" [disabled]="!list.valid">Save</button>
+  
+                <button type="button" class="btn newbtn newcancelbtn"  (click) = "closeModel()">Cancel</button>
+              </div>
+          </div>       
+        </div>          
+      </div>               
+    </form>
+  
+  
+  
+  <form (ngSubmit)="editsave(data)" #data="ngForm">
+    <div class="modal fade " [ngClass] = "{'show' : eventupdaterDailog}" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
           <div class="modal-body">
-
-            <div class="form-group">
-              <div class="input-effect form-group md-form ">
-                <input class="effect-16 validate whitebg" required="required" [(ngModel)]="modelfield.eventTitle" id="Title"
-                  name="Title">
-                <input class="effect-16 validate" type="hidden" [(ngModel)]="modelfield.eventId" id="id" name="id">
-                <label>Title {{modelfield.title}}</label>
-                <span class="focus-border"></span>
+  
+            <div class="modal-header text-center">
+                <h4 class="modal-title">Edit Event</h4>
+              <button type="button" class="close btn_mar_padd" (click) = "closeModel()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        
+            <div class="modal-body">
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <div class="input-effect form-group md-form ">
+                        <input class="effect-16 validate whitebg" required="required" 
+                        [(ngModel)]="modelfield.eventTitle" 
+                        id="Title"
+                        name="Title"
+                        #Title="ngModel" 
+                        required 
+                        placeholder="required">
+                        <small class="form-text text-muted danger" *ngIf="Title.errors?.required">required error</small>
+                        <input  
+                        type="hidden" 
+                        [(ngModel)]="modelfield.eventId" 
+                        id="id" 
+                        name="eventId">
+        
+                        <input 
+                        type="hidden" 
+                        [(ngModel)]="modelfield.filesId" 
+                        id="id" 
+                        name="filesId">
+        
+                     
+                        <label>Title</label>
+                        <span class="focus-border"></span>
+                      </div>
+                    </div>
               </div>
-            </div>
-            <!-- <div class="form-group">
-
-                                                            <form (ngSubmit)="addFile(info)" #info="ngForm" class="    padding-left: 84%">
-                                                                    <input #fileInput 
-                                                                        type="file"
-                                                                        [(ngModel)]="gallery.files" 
-                                                                        name="image" 
-                                                                        id="image"/>                     
-                                                                  
-                                                                    <button type="submit" class="btn btn-small btn-link" >
-                                                                            <i class="material-icons"> add </i>
-                                                                        upload event image </button>   
-                                                                    <span class="focus-border"></span>
-                                                            </form>   
-            </div> -->
-
-            <div class="form-group date_picker">
-              <label>event date: {{modelfield.eventDate}}</label> <br>
-              <input type="date" name="eventdate" id="eventdate" [(ngModel)]="eventdate">
-
-            </div>
-            <div class="form-group date_picker">
-              <label>
-                <a href=""> start time </a>
-              </label><br>
-              <select>
-                <option>00</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>
-                <option>08</option>
-                <option>09</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
-              </select>
-              <select>
-                <option>00</option>
-                <option>05</option>
-                <option>10</option>
-                <option>15</option>
-                <option>20</option>
-                <option>25</option>
-                <option>30</option>
-                <option>35</option>
-                <option>40</option>
-                <option>45</option>
-                <option>50</option>
-                <option>55</option>
-              </select>
-              <select>
-                <option>AM</option>
-                <option>PM</option>
-              </select>
-              <!-- <input type="time" 
-                                        name="starttime"
-                                        id="starttime"
-                                        [(ngModel)]="startime"> -->
-            </div>
-            <div class="form-group date_picker">
-              <label>
-                <a href="">end time</a>
-              </label><br>
-              <select>
-                <option>00</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>
-                <option>08</option>
-                <option>09</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
-              </select>
-              <select>
-                <option>00</option>
-                <option>05</option>
-                <option>10</option>
-                <option>15</option>
-                <option>20</option>
-                <option>25</option>
-                <option>30</option>
-                <option>35</option>
-                <option>40</option>
-                <option>45</option>
-                <option>50</option>
-                <option>55</option>
-              </select>
-              <select>
-                <option>AM</option>
-                <option>PM</option>
-              </select>
-              <!--  <input type="time" 
-                                            name="endtime"
-                                            id="endtime"
-                                            
-                                            [(ngModel)]="endtime"> -->
-
-            </div>
-            <div class="form-group">
-              <div class="input-effect form-group md-form ">
-                <input type="text" class="effect-16 validate" required="required" [(ngModel)]="modelfield.location"
-                  name="Location" id="Location">
-                <label>Location}</label>
-                <span class="focus-border"></span>
+              <div class="col-sm-12 nopadd rowpaddadjust">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="input-effect form-group md-form ">
+                              <input type="text" class="effect-16 validate" 
+                              [(ngModel)]="objevent.venueName" 
+                              name="venueName"
+                              id="venueName"
+                              #venueNames="ngModel" 
+                              required 
+                              placeholder="required">
+                              <small class="form-text text-muted danger" *ngIf="venueNames.errors?.required">required error</small>
+                
+                              <label>VenueName</label>
+                              <span class="focus-border"></span>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <div class="input-effect form-group md-form ">
+                                <select class="effect-16 validate" id="Country" [(ngModel)]="objevent.countryId" name="country_id" (change)="country($event)">
+                                  <option *ngFor="let country of arra ;let c =index" type="text" id="{{country.countryName}}" checked name="countryName"
+                                    placeholder="Country" [value]="c" required>
+                                    {{country.countryName }}
+                
+                                  </option>
+                
+                                </select>
+                
+                                <span class="focus-border"></span>
+                              </div>
+                            </div>
+                      </div>
+                </div>
+                <div class="col-sm-12 nopadd rowpaddadjust">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <div class="input-effect form-group md-form ">
+                          <select name="district" class="effect-16 validate" [(ngModel)]="objevent.districtId" name="dist_id" (change)="districtA($event)">
+                            <option *ngFor="let dist of district ;let d =index" type="text" id="{{dist.name}}" checked name="dist"
+                              placeholder="Country" [value]="d" required>
+                              {{dist.name }}
+  
+                            </option>
+  
+                          </select>
+  
+                          <span class="focus-border"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <div class="input-effect form-group md-form ">
+                          <select class="effect-16 validate" [(ngModel)]="objevent.suburbId" name="sub_id" (change)="subr($event)">
+                            <!-- (change)="country($event)" -->
+                            <option *ngFor="let sub of suburb ;let s =index" type="text" id="{{sub.name}}" checked name="sub"
+                              placeholder="Suburb" [value]="s" required>
+                              {{sub.name }}
+  
+                            </option>
+  
+                          </select>
+  
+                          <span class="focus-border"></span>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              <div class="col-sm-6">
+                <div class="form-group date_picker">
+                  <label>event date:</label> <br>
+                
+                  <!-- <div *ngFor="let f of modelfield.eventsDates;let i=index ">
+                    {{f.eventDate | date }} <br>
+                    {{ f.endTime | date:'shortTime' }} 
+                  </div>                 -->
+                      <input type="date" name="eventdate" id="eventdate" [(ngModel)]="eventdate">
+          
+                  
+  
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <div class="input-effect form-group md-form ">
-                <input type="text" class="effect-16 validate" required="required" [(ngModel)]="modelfield.capacity"
-                  name="Capacity" id="Capacity">
-                <label>Capacity</label>
-                <span class="focus-border"></span>
+              <div class="col-sm-6">
+                    <div class="form-group date_picker">
+                      <label>
+                        <a>end time</a>
+                      </label><br>
+                      <input type="time" class="form-control"  name="endTime" id="endTime" [(ngModel)]="endtime"/>
+                    
+                      <!-- <select  >
+                        <option>AM</option>
+                        <option>PM</option>
+                      </select> -->
+                    </div>
               </div>
-            </div>
-            <div class="form-group">
-              <div class="input-effect form-group md-form ">
-                <input type="text" class="effect-16 validate" required="required" [(ngModel)]="modelfield.eventDescription"
-                  name="eventDescription" id="eventDescription">
-                <label>Description</label>
-                <span class="focus-border"></span>
+              <div class="col-sm-6">
+                      <div class="form-group date_picker">
+                        <label>
+                          <a>start time</a>
+                        </label><br>
+                        <input type="time" class="form-control"  [(ngModel)]="startTimee"  name="startTime" id="startTime"/>
+<!--                       
+                        <select  >
+                          <option>AM</option>
+                          <option>PM</option>
+                        </select> -->
+                      </div>
               </div>
-            </div>
-            <div class="form-group">
-              <div class="input-effect form-group md-form ">
-                <input type="text" class="effect-16 validate" required="required" [(ngModel)]="modelfield.entry" name="entry"
-                  id="entry">
-
-                <label>Entry</label>
-                <span class="focus-border"></span>
+              <div class="col-sm-6">
+                  <div class="form-group">
+                    <div class="input-effect form-group md-form ">
+                      <input type="text" class="effect-16 validate" required="required" 
+                      [(ngModel)]="modelfield.location"
+                      name="Location" 
+                      id="Location"
+                      #Location="ngModel" 
+                      required 
+                      placeholder="required">
+                      <label>Location}</label>
+                      <small class="form-text text-muted danger" *ngIf="Location.errors?.required">required error</small>
+                      <span class="focus-border"></span>
+                    </div>
+                  </div>
               </div>
-            </div>
-            <div class="form-group">
-              <div class="input-effect form-group md-form ">
-                <input type="text" class="effect-16 validate" required="required" [(ngModel)]="modelfield.entryFee"
-                  name="entryFee" id="entryFee">
-
-                <label>entryFee</label>
-                <span class="focus-border"></span>
+              <div class="col-sm-6">
+              <div class="form-group">
+                <div class="input-effect form-group md-form ">
+                  <input type="text" class="effect-16 validate" required="required" 
+                  [(ngModel)]="modelfield.capacity"
+                  name="Capacity" 
+                  id="Capacity"
+                  #Capacity="ngModel" 
+                  required 
+                  placeholder="required">
+                  <label>Capacity</label>
+                  <small class="form-text text-muted danger" *ngIf="Capacity.errors?.required">required error</small>
+                  <span class="focus-border"></span>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <div class="input-effect form-group md-form ">
-                <input type="text" class="effect-16 validate" required="required" [(ngModel)]="modelfield.venueName"
-                  name="venueName" id="venueName">
-
-                <label>VenueName</label>
-                <span class="focus-border"></span>
               </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <div class="input-effect form-group md-form ">
+                    <input type="text" class="effect-16 validate" required="required" 
+                    [(ngModel)]="modelfield.eventDescription"
+                    name="eventDescription" 
+                    id="eventDescription"
+                    #eventDescription="ngModel" 
+                    required 
+                    placeholder="required">
+                    <label>Description</label>
+                    <small class="form-text text-muted danger" *ngIf="eventDescription.errors?.required">required error</small>
+                    <span class="focus-border"></span>
+                  </div>
+                </div>
+              </div>  
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <div class="input-effect form-group md-form ">
+                    <input type="text" class="effect-16 validate" required="required" 
+                    [(ngModel)]="modelfield.entry" 
+                    name="entry"
+                    id="entry"
+                    #entry="ngModel" 
+                    required 
+                    placeholder="required">
+  
+                    <label>Entry</label>
+                    <small class="form-text text-muted danger" *ngIf="entry.errors?.required">required error</small>
+  
+                    <span class="focus-border"></span>
+                  </div>
+                </div>
+              </div>  
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <div class="input-effect form-group md-form ">
+                    <input type="text" class="effect-16 validate" required="required" 
+                    [(ngModel)]="modelfield.entryFee"
+                    name="entryFee" 
+                    id="entryFee"
+                    #entryFee="ngModel" 
+                    required 
+                    placeholder="required">
+  
+                    <label>entryFee</label>
+                    <small class="form-text text-muted danger" *ngIf="entryFee.errors?.required">required error</small>
+                    <span class="focus-border"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+              <div class="form-group">
+                <div class="input-effect form-group md-form ">
+                  <input type="text" class="effect-16 validate" required="required" 
+                  [(ngModel)]="modelfield.venueName"
+                  name="venueName" 
+                  id="venueName"
+                  #venueName="ngModel" 
+                  required 
+                  placeholder="required">
+  
+                  <label>VenueName</label>
+                  <small class="form-text text-muted danger" *ngIf="venueName.errors?.required">required error</small>
+                  <span class="focus-border"></span>
+                </div>
+              </div>
+             </div> 
             </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn newbtn"  >Save</button>
+  
+              <button type="button" class="btn  newbtn newcancelbtn" (click) = "closeModel()">Cancel</button>
+            </div>
+  
           </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn newbtn">Save</button>
-
-            <button type="button" class="btn  newbtn newcancelbtn" data-dismiss="modal">Cancel</button>
-          </div>
-
         </div>
       </div>
     </div>
-  </div>
-</form>
+  </form>

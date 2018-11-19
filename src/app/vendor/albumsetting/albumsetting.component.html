@@ -1,96 +1,96 @@
 <div id="wrapper" class="toggled">      
-    <div id="sidebar-wrapper">
-        <app-vendorsidebar></app-vendorsidebar>
-    </div>
-    <div id="page-content-wrapper">    
-        <div class="container-fluid nopadd">                    
-          <app-navemenu></app-navemenu>
-          <router-outlet></router-outlet> 
-           <div class="container-fluid mobilefixedcontainer">
-              <div class="col-md-12 card">
-                <div class="col-sm-12 subheadtikwrapper">
-                  <a routerLink= "../../albumview" class="pull-left iconfloatleft">
-                  <i class="material-icons"> arrow_back_ios </i> <span>Album</span>
-                  </a> 
-                <div class="subheadtik">Album Name Settingssss</div>
-              </div> 
+  <div id="sidebar-wrapper">
+      <app-vendorsidebar></app-vendorsidebar>
+  </div>
+  <div id="page-content-wrapper">    
+      <div class="container-fluid nopadd">                    
+        <app-navemenu></app-navemenu>
+        <router-outlet></router-outlet> 
+          <div class="container-fluid mobilefixedcontainer">
+            <div class="col-md-12 card">
+              <div class="col-sm-12 subheadtikwrapper">
+                <a routerLink= "../../albumview" class="pull-left iconfloatleft">
+                <i class="material-icons"> arrow_back_ios </i> <span>Album</span>
+                </a> 
+              <div class="subheadtik">{{albumname}}</div>
+            </div> 
 
-                <table width="100%" class="tablelisttags" cell-spacing="5" cell-padding="5">
-                  <tr>
-                    <th></th>
-                    <th>Tags</th>
-                    <th>Color</th>
-                    <th></th>
-                  </tr>
-         
-                     <tr *ngFor="let image of albumImagesModify; let i=index " >
-                      <td class="imgboxlist">               
-                        <div >
-                        <img class="img-thumbnail" src="{{image.path}}"> 
-                        </div> 
-                      </td>
-                      <td> 
-                      
-                        <div *ngFor="let ag of image.tags;let i=index">
-                            <span class="tagstik"> 
-                                {{ag}}    
-                              <i class="material-icons">clears</i>
-                            </span>      
-                          </div>
-                      </td>
-              
-                      <td>
-                      
-                          <div *ngFor="let g of image.colorTags;let i=index">
-                            <!-- {{g}} -->
-                              <div *ngIf = "g == 'pink'">
-                                  <span class="colortags pinkbg"></span>
-                              </div>
-                              <div *ngIf = "g == 'red'">
-                                  <span class="colortags redbg"></span>
-                              </div>
-                              <div *ngIf = "g == 'blue'">
-                                  <span class="colortags bluebg"></span>
-                              </div>
-                              <div *ngIf = "g == 'yellow'">
-                                  <span class="colortags yellowbg"></span>
-                              </div>
-                              <div *ngIf = "g == 'green'">
-                                  <span class="colortags greenbg"></span>
-                              </div>
-                              <div *ngIf = "g == 'purple'">
-                                  <span class="colortags purplebg"></span>
-                              </div>
-                              <div *ngIf = "g == 'white'">
-                                  <span class="colortags whitebg"></span>
-                              </div>
-                              <div *ngIf = "g == 'black'">
-                                  <span class="colortags blackbg"></span>
-                              </div>
-                              <div *ngIf = "g == 'grey'">
-                                  <span class="colortags greybg"></span>
-                              </div>
-                              <div *ngIf = "g == 'orange'">
-                                  <span class="colortags orangebg"></span>
-                              </div>
-                              <div *ngIf = "g == 'brown'">
-                                  <span class="colortags brownbg"></span>
-                              </div>
-                            </div>
-                      
-                      </td>
-                      <td class="text-center" >
-                        <button class="btn btn-success editbtn"  id="prompt-function"
-                        (click)="openModel(image)" data-reactid="333">Edit </button><br/>
-                        <button class="btn btn-warining deletebtn" (click)="deleteImage(image,i)" > Delete </button>
-                     
-                      </td>
-                     </tr>
-                </table>   
-              </div>
-           </div>
+            <table width="100%" class="tablelisttags" cell-spacing="5" cell-padding="5">
+              <tr>
+                <th></th>
+                <th>Tags</th>
+                <th>Color</th>
+                <th></th>
+              </tr>
+     
+              <tr *ngFor="let image of albumImagesModify; let i=index " >
+                <td class="imgboxlist">               
+                  <div >
+                    <img class="img-thumbnail" src="{{image.path}}"> 
+                  </div> 
+                </td>
+                <td valign="top"> 
+                  <div class="tagcontainer">
+                    <span *ngFor="let ag of image.tags;let i=index"> 
+                    
+                      <span class="tagstik"> 
+                          {{ag}}    
+                      </span>      
+                    </span>
+                  </div>
+                </td>
+                <td valign="top"> 
+                    <div class="tagcontainer">
+                    
+                        <span *ngFor="let g of image.colorTags;let i=index">
+                          <!-- {{g}} -->
+                            <span *ngIf = "g == 'pink'">
+                                <span class="colortags pinkbg"></span>
+                            </span>
+                            <span *ngIf = "g == 'red'">
+                                <span class="colortags redbg"></span>
+                            </span>
+                            <span *ngIf = "g == 'blue'">
+                                <span class="colortags bluebg"></span>
+                            </span>
+                            <span *ngIf = "g == 'yellow'">
+                                <span class="colortags yellowbg"></span>
+                            </span>
+                            <span *ngIf = "g == 'green'">
+                                <span class="colortags greenbg"></span>
+                            </span>
+                            <span *ngIf = "g == 'purple'">
+                                <span class="colortags purplebg"></span>
+                            </span>
+                            <span *ngIf = "g == 'white'">
+                                <span class="colortags whitebg"></span>
+                            </span>
+                            <span *ngIf = "g == 'black'">
+                                <span class="colortags blackbg"></span>
+                            </span>
+                            <span *ngIf = "g == 'grey'">
+                                <span class="colortags greybg"></span>
+                            </span>
+                            <span *ngIf = "g == 'orange'">
+                                <span class="colortags orangebg"></span>
+                            </span>
+                            <span *ngIf = "g == 'brown'">
+                                <span class="colortags brownbg"></span>
+                            </span>
+                        </span>
+                    </div>
+                </td>
+                <td class="text-center" >
+                  <button class="btn btn-success editbtn"  id="prompt-function"
+                  (click)="openModel(image)" data-reactid="333">Edit </button><br/>
+                  <button class="btn btn-warining deletebtn" (click)="deleteImage(image,i)" > Delete </button>
+                </td>
+              </tr>
+            </table>   
+          </div>
         </div>
-    </div>
+      </div>
+  </div>
 </div>
   <app-foot></app-foot>
   
@@ -105,7 +105,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header text-center">
-                  <h4 class="modal-title">Photo Settings{{formdata.albumImageId}}</h4>
+                  <h4 class="modal-title">Photo Settings</h4>
                   <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body" style="background-color: white">
@@ -113,14 +113,16 @@
                   <div class="col-md-12 padtop20px">
                     <div class="form-group">
                         <div class="input-effect form-group md-form ">
-
+                        
                           <input class="effect-16 validate" 
                           type="text"  
                           [(ngModel)] = "taggg"
-                          
                           name="tags"  
                           required="required"> 
-                     
+                          <!-- <small class="form-text text-muted danger" >{{tag_error}}</small> -->
+                            
+                          <small class="form-text text-muted danger" *ngIf="tag_array.length == 0" >{{tag_error}}</small>
+                            
                           <input 
                           type="hidden"  
                           [(ngModel)] = "formdata.albumImageId"
@@ -134,54 +136,31 @@
                           <span class="focus-border"></span>
                         </div>
                         <ul class="list_inline">
-                          <li  *ngFor="let g of tai;let i=index">
-                              <span class="tagstik"> 
-                                  {{g}}
+                          <li  *ngFor="let g of tag_array;let i=index">
+                            <div *ngIf = "g != ''">
+                                <span class="tagstik"> 
+                                    {{g}}
                                   <i class="material-icons" (click) = "remove_tag_picker(i)">clears</i>
-                                </span>  
+                              </span>  
+                            </div>
+                           
                           </li>
                         </ul>  
-                        <!-- <div *ngFor="let g of tai;let i=index">
-                            <span class="tagstik"> 
-                                {{g}}
-                                <i class="material-icons" (click) = "remove_colour_picker(i)">clears</i>
-                              </span>  
-                        </div> -->
-                        <!-- <div>
-                          <span class="tagstik"> 
-                            {{tags_picker1}}
-                            <i class="material-icons">clears</i>
-                          </span>      
-                        </div> -->
-                        <a (click) = "tags_bage(taggg)">ADD Tag</a>
-                        <!-- <div *ngFor="let tag of album_tag;let i=index">
-                          <span class="tagstik"> 
-                              {{tag}}    
-                            <i class="material-icons">clears</i>
-                          </span>      
-                        </div> -->
+                     
+                        <a class="btn-sm btn btn-success editbtn" (click) = "tags_bage(taggg)">ADD Tag</a>
+                      
                         <hr>
 
                         <ul class="list_inline">
                           <li *ngFor="let g of a;let i=index">
-                              <span class="tagstik"> 
-                                  {{g}}
-                                  <i class="material-icons" (click) = "remove_colour_picker(i)">clears</i>
-                                </span>  
-                          </li>
-                          </ul>
-                        <!-- <div *ngFor="let g of a;let i=index">
                             <span class="tagstik"> 
-                                {{g}}
-                                <i class="material-icons" (click) = "remove_colour_picker(i)">clears</i>
-                              </span>  
-                        </div> -->
-                        <!-- <div>
-                          <span class="tagstik"> 
-                            {{colour_picker1}}
-                            <i class="material-icons">clears</i>
-                          </span>      
-                        </div> -->
+                              {{g}}
+                              <i class="material-icons" (click) = "remove_colour_picker(i)">clears</i>
+                            </span>  
+                          </li>
+                        </ul>
+                        <small class="form-text text-muted danger" *ngIf="colour_picker1.length == 0"> {{colour_tag_error}}</small>
+
                     </div>
                   </div>
                 </div>
@@ -300,7 +279,7 @@
                 <div class="clearfix"></div>
               </div>
               <div class="modal-footer text-center">
-                  <button type="submit" class="btn newbtn">Save</button>&nbsp;
+                  <button type="submit" class="btn newbtn" [disabled]=" tag_array.length == 0 || a.length == 0">Save</button>&nbsp;
                   <button type="button" class="btn  newbtn newcancelbtn" (click)="closeModel()">Cancel</button>
               </div>
           </div>

@@ -5,7 +5,7 @@ import { GoogleMapsAPIWrapper } from '@agm/core/services';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup,FormArray,FormBuilder, Validators, NgForm } from '@angular/forms';
 import swal from 'sweetalert2';
-
+import { apiService } from '../../shared/service/api.service';
 declare var google: any;
  
 interface Marker {
@@ -223,22 +223,286 @@ export class LocationComponent implements OnInit {
     },
     zoom: 5
   };
-  updateOnMap() {
-    let full_address:string = this.location.address_level_1 || ""
-    if (this.location.address_level_2) full_address = full_address + " " + this.location.address_level_2
-    if (this.location.address_state) full_address = full_address + " " + this.location.address_state
-    if (this.location.address_country) full_address = full_address + " " + this.location.address_country
 
-    this.findLocation(full_address) ;
+  Find_current_location(){
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+       (position) => {
+      let geocoder = new google.maps.Geocoder();
+      let latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      let request = { latLng: latlng };
+      geocoder.geocode(request, (results, status) => {
+        if (status === google.maps.GeocoderStatus.OK) {
+          let result = results[0];
+          let rsltAdrComponent = result.address_components;
+          let resultLength = rsltAdrComponent.length;
+          if (result != null) {
+             console.log('xxxxxxxxxxxxxxxxx',position,results);
+            this.mapDialogObj.mapAddress = results[0].formatted_address;
+            this.address = results[0].formatted_address;
+            this.mapDialogObj.lat = position.coords.latitude
+            this.mapDialogObj.lng = position.coords.longitude;
+          } else {
+            alert('No address available!');
+          }
+        }
+      });
+        
+                
+       }, (error) => {
+        
+         console.log('Geolocation error: '+ error);
+       });
+     } else {
+       console.log('Geolocation not supported in this browser');
+      
+     }
   }
-  findLocation(address) {
-    console.log(address);
-    if (!this.geocoder) this.geocoder = new google.maps.autocomplete.Geocoder()
-    this.geocoder.geocode({
-      'address': address
-    }, (results, status) => {
-      console.log( this.geocoder);
-      console.log(results);
+
+  @ViewChild(AgmMap) map: AgmMap;
+  @ViewChild('gmapInput') gmapInput : ElementRef;
+  
+  constructor(public toastr: ToastrService,
+    public mapsApiLoader: MapsAPILoader,
+    public http: Http,private zone: NgZone,
+    private wrapper: GoogleMapsAPIWrapper,
+    private _fb: FormBuilder,
+    private apiService : apiService,
+  )
+  {
+      this.mapsApiLoader = mapsApiLoader;
+      this.zone = zone;
+      this.wrapper = wrapper;
+      this.mapsApiLoader.load().then(() => {
+      this.geocoder = new google.maps.Geocoder();
+      });
+    }
+    
+      ngOnInit(): void {
+        $.getScript('./assets/js/vendorsidebar.js');
+            this.formPhone = this._fb.group({
+              phoneArry: new FormArray([
+                
+            ])
+            });
+            this.mapsApiLoader.load().then(() => {
+              this.geocoder = new google.maps.Geocoder();
+              let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+                types: ["address"]
+              });
+
+              autocomplete.addListener("place_changed", () => {
+                  this.zone.run(() => {
+                    //get the place result
+                    let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+                    //verify result
+                    if (place.geometry === undefined || place.geometry === null) {
+                      return;
+                    }
+                      console.log(place);
+                    //set latitude, longitude and zoom
+                    this.mapDialogObj.mapAddress = place.formatted_address;
+                    this.address = place.formatted_address;
+                    this.mapDialogObj.lat = place.geometry.location.lat();
+                    this.mapDialogObj.lng = place.geometry.location.lng();
+                    this.zoom = 12;
+                  });
+                });
+              });
+
+                  this.location.marker.draggable = true;
+                  let headers = new Headers();
+                  var authToken = localStorage.getItem('userToken');
+                  headers.append('Accept', 'application/json')
+                  headers.append('Content-Type', 'application/json');
+                  headers.append("Authorization",'Bearer '+authToken);
+                                    
+                  this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
+                  this.location_Array = data.json() ;
+              
+                  console.log(  this.location_Array  );
+                  })
+
+           
+                  let country = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries");
+                  country.subscribe(data => { 
+                    this.countryArray = data.json();
+                    console.log( this.countryArray);  
+                    this.arra = this.countryArray
+                  })
+                  $.getScript('./assets/js/vertical-timeline.js');    
+          }
+
+      keyPress(event: any) {
+        const pattern = /[0-9]/;
+
+        let inputChar = String.fromCharCode(event.charCode);
+        if (event.keyCode != 8 && !pattern.test(inputChar)) {
+          event.preventDefault();
+          this.toastr.error('Only Numbers');
+        }
+      }
+
+       openModel(b) { 
+            this.address_modelfield  = b;
+            console.log('aaaaaa',this.address_modelfield);
+       }
+
+      openphone(b){
+                      this.phone_dailog = true
+                      this.phoneData = b;
+                      this.modelfield  = Object.assign({}, b);
+                      this.formPhone = this._fb.group({phoneArry: new FormArray([])});
+                      let control = <FormArray>this.formPhone.controls['phoneArry'];
+                      // add new formgroup
+                      if(b.locationPhones.length){
+                        for(let i = 0; i<b.locationPhones.length;i++){
+                          control.push(this._fb.group({
+                              // list all your form controls here, which belongs to your form array
+                              phoneType: [b.locationPhones[i].phoneType],
+                              number: [b.locationPhones[i].phoneNumber],
+                              isprime: [b.locationPhones[i].isPrimary],
+                              vendorLocationId :[b.locationPhones[i].vendorLocationId],
+                              locationPhoneId: [b.locationPhones[i].locationPhoneId]
+                          }));
+                          }
+                      }else{
+                        this.addNewColumn();
+                      }
+      }
+
+      addNewColumn() {
+                        let control = <FormArray>this.formPhone.controls['phoneArry'];
+                        control.push(this._fb.group({
+                            // list all your form controls here, which belongs to your form array
+                            phoneType: ['Phone'],
+                            number: [],
+                            isprime: [false],
+                            vendorLocationId :[],
+                            locationPhoneId: 0
+                        }));
+                        console.log('aaaaaaaaaaaaaa',control.value);
+                        this.arra_col = control.value;
+      }
+
+  update_phone(){
+        //console.log(this.formPhone.value.phoneArry)
+         let reqObj = [];
+        for(let i=0;i<this.formPhone.value.phoneArry.length;i++){
+         let obj = {
+              "locationPhoneId": this.formPhone.value.phoneArry[i].locationPhoneId,
+              "vendorLocationId": this.formPhone.value.phoneArry[i].vendorLocationId,
+              "phoneType": this.formPhone.value.phoneArry[i].phoneType,
+              "phoneNumber":this.formPhone.value.phoneArry[i].number,
+              "isPrimary": this.formPhone.value.phoneArry[i].isprime
+            }
+
+            reqObj.push(obj)
+        }
+        
+        console.log(reqObj);
+
+        if(reqObj.length > 0){ 
+            for (var item of  reqObj ) {
+               if(item.locationPhoneId == 0){
+                        this.create_phone.push(item);
+                }else{
+                  this.update_phone1.push(item);                      
+                }
+             }    
+        }
+        //console.log("asdassssssssss",); 
+        if(this.create_phone.length > 0){
+          this.apiService.postData(this.post_phone_number,this.create_phone).subscribe(data =>{
+            console.log('crrrrrrrrrr',data)
+            this.toastr.success(data.statusText);
+            this.phone_dailog = false;
+            this.create_phone = [];
+            reqObj = [];
+            //this.phoneData.locationPhones
+            },
+            error => {
+              this.toastr.error(error._body);
+              }
+          )    
+        }
+       
+        if(this.update_phone1.length > 0){
+          this.apiService.postData(this.post_phone_number,this.update_phone1).subscribe(data =>{
+            console.log('uuuuuuuu',data)
+            this.toastr.success(data.statusText);
+            this.phone_dailog = false;
+            this.update_phone1 = [] ;
+            reqObj = [];
+           
+          },
+          error => {
+              this.toastr.error(error._body);
+            }
+          )
+
+        }                
+      }
+
+      removePhone(phoneObj,index) {
+       
+                //this.phone_dailog = false;
+                if(phoneObj.value.locationPhoneId){
+                      let con = confirm('Are you sure you want to delete this?')
+                      if (con) {
+
+                                      let obj = {
+                                        "locationPhoneId": phoneObj.value.locationPhoneId,
+                                        "vendorLocationId": phoneObj.value.vendorLocationId,
+                                        "phoneType": phoneObj.value.phoneType,
+                                        "phoneNumber":phoneObj.value.number,
+                                        "isPrimary": phoneObj.value.isprime
+                                      }
+                                      let headers = new Headers();
+                                      var authToken = localStorage.getItem('userToken');
+                                      headers.append('Accept', 'application/json')
+                                      headers.append('Content-Type', 'application/json');
+                                      headers.append("Authorization",'Bearer '+authToken);
+                                      this.http.post(this.remove_phone_number,obj,{headers:headers}).subscribe( 
+                                        (data)=> { 
+                                                    console.log(data)
+                                                    this.toastr.success(data.statusText);
+                                                    let control = <FormArray>this.formPhone.controls['phoneArry'];
+                                                    control.removeAt(index);
+                                                  },(error)=>{ console.log(error);
+                                                               this.toastr.error(error._body);
+                      });
+                             }}
+                             else{
+                                     let control = <FormArray>this.formPhone.controls['phoneArry'];
+                                     control.removeAt(index);
+                                  }
+
+      }
+
+       openweek(b){
+         
+                    this.modelfield  = b;
+                    console.log(this.modelfield);
+                    this.week_dailog =true;
+                  }
+     
+       mapDialogObj : any;
+       OpenmapDailog(locationObj){
+         console.log('aaaaaaaaaaaaaa',locationObj);
+            this.mapDialogObj = locationObj
+            this.address = this.mapDialogObj.mapAddress
+            this.mapDailog = true;
+        }
+    findLocation(address) {
+      console.log(address);
+      if (!this.geocoder) this.geocoder = new google.maps.autocomplete.Geocoder()
+      this.geocoder.geocode({
+        'address': address
+      }, (results, status) => {
+        console.log( this.geocoder);
+        console.log(results);
       
        
          
@@ -289,259 +553,12 @@ export class LocationComponent implements OnInit {
     })
   }
 
-  Find_current_location(){
-    alert("dsfcds");
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-       (position) => {
-         console.log(position);
-         this.location.lat =  position.coords.longitude;
-         this.location.lng =  position.coords.latitude;
-         this.location.marker.lat =  position.coords.longitude;
-         this.location.marker.lng =  position.coords.latitude;
-         this.location.marker.draggable = true;
-         console.log(  this.location.lat);
-         console.log( this.location.lng);
-        
-       }, (error) => {
-        
-         console.log('Geolocation error: '+ error);
-       });
-     } else {
-       console.log('Geolocation not supported in this browser');
-      
-     }
-  }
-
-  @ViewChild(AgmMap) map: AgmMap;
-  @ViewChild('gmapInput') gmapInput : ElementRef;
-  
-  constructor(public toastr: ToastrService,
-    public mapsApiLoader: MapsAPILoader,
-    public http: Http,private zone: NgZone,
-    private wrapper: GoogleMapsAPIWrapper,
-    private _fb: FormBuilder
-  )
-  {
-      this.mapsApiLoader = mapsApiLoader;
-      this.zone = zone;
-      this.wrapper = wrapper;
-      this.mapsApiLoader.load().then(() => {
-      this.geocoder = new google.maps.Geocoder();
-      });
-    }
-    
-      ngOnInit(): void {
-            this.formPhone = this._fb.group({
-              phoneArry: new FormArray([
-                
-            ])
-            });
-            this.mapsApiLoader.load().then(() => {
-              this.geocoder = new google.maps.Geocoder();
-              let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-                types: ["address"]
-              });
-
-              });
-
-                  this.location.marker.draggable = true;
-                  let headers = new Headers();
-                  var authToken = localStorage.getItem('userToken');
-                  headers.append('Accept', 'application/json')
-                  headers.append('Content-Type', 'application/json');
-                  headers.append("Authorization",'Bearer '+authToken);
-                                    
-                  this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
-                  this.location_Array = data.json() ;
-              
-                  console.log(  this.location_Array  );
-                  })
-
-           
-                  let country = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries");
-                  country.subscribe(data => { 
-                    this.countryArray = data.json();
-                    console.log( this.countryArray);  
-                    this.arra = this.countryArray
-                  })
-                  $.getScript('./assets/js/vertical-timeline.js');    
-          }
-
-      keyPress(event: any) {
-        const pattern = /[0-9]/;
-
-        let inputChar = String.fromCharCode(event.charCode);
-        if (event.keyCode != 8 && !pattern.test(inputChar)) {
-          event.preventDefault();
-          this.toastr.error('Only Numbers');
-        }
-      }
-
-       openModel(b) { 
-            this.address_modelfield  = b;
-            console.log(this.address_modelfield);
-       }
-
-      openphone(b){
-                      this.phone_dailog = true
-                      this.phoneData = b;
-                      this.modelfield  = Object.assign({}, b);
-                      this.formPhone = this._fb.group({phoneArry: new FormArray([])});
-                      let control = <FormArray>this.formPhone.controls['phoneArry'];
-                      // add new formgroup
-                      for(let i = 0; i<b.locationPhones.length;i++){
-                        control.push(this._fb.group({
-                            // list all your form controls here, which belongs to your form array
-                            phoneType: [b.locationPhones[i].phoneType],
-                            number: [b.locationPhones[i].phoneNumber],
-                            isprime: [b.locationPhones[i].isPrimary],
-                            vendorLocationId :[b.locationPhones[i].vendorLocationId],
-                            locationPhoneId: [b.locationPhones[i].locationPhoneId]
-                        }));
-                        }
-      }
-
-      addNewColumn() {
-                        let control = <FormArray>this.formPhone.controls['phoneArry'];
-                        control.push(this._fb.group({
-                            // list all your form controls here, which belongs to your form array
-                            phoneType: [],
-                            number: [],
-                            isprime: [false],
-                            vendorLocationId :[],
-                            locationPhoneId: 0
-                        }));
-                        console.log('aaaaaaaaaaaaaa',control.value);
-                        this.arra_col = control.value;
-      }
-
-  update_phone(){
-        //console.log(this.formPhone.value.phoneArry)
-         let reqObj = [];
-        for(let i=0;i<this.formPhone.value.phoneArry.length;i++){
-         let obj = {
-              "locationPhoneId": this.formPhone.value.phoneArry[i].locationPhoneId,
-              "vendorLocationId": this.formPhone.value.phoneArry[i].vendorLocationId,
-              "phoneType": this.formPhone.value.phoneArry[i].phoneType,
-              "phoneNumber":this.formPhone.value.phoneArry[i].number,
-              "isPrimary": this.formPhone.value.phoneArry[i].isprime
-            }
-
-            reqObj.push(obj)
-        }
-        
-        console.log(reqObj);
-         
-        let headers = new Headers();
-        var authToken = localStorage.getItem('userToken');
-        headers.append('Accept', 'application/json')
-        headers.append('Content-Type', 'application/json');
-        headers.append("Authorization",'Bearer '+authToken);
-
-           // this.http.post(this.post_phone_number,reqObj,{headers:headers}).subscribe( (data)=> { 
-           //          //this.phoneData (need to update this)
-           //          console.log(data)
-           //          this.toastr.success(data.statusText);
-           //           this.phone_dailog = false;
-           //    },(error)=>{ console.log(error);
-           //      this.toastr.error(error._body);});
-        if(reqObj.length > 0){ 
-            for (var item of  reqObj ) {
-               if(item.locationPhoneId == 0){
-                        this.create_phone.push(item);
-                     }else{
-                        this.update_phone1.push(item);                      
-                     }
-             }    
-        }
-        
-        if(this.create_phone.length > 0){
-
-           console.log( this.create_phone);
-        this.http.post(this.post_phone_number,this.create_phone,{headers:headers}).subscribe( 
-                          (data)=> {  console.log(data.json())
-                                      this.toastr.success(data.statusText);
-                                      this.phone_dailog = false;
-                                      this.create_phone = [];
-                                      reqObj = [];
-                                   },(error)=>{ console.log(error);
-                                                this.toastr.error(error._body);
-                                              });
-      
-
-        }
-       
-        if(this.update_phone1.length > 0){
-           console.log( this.update_phone1);
-
-        this.http.post(this.post_phone_number,this.update_phone1,{headers:headers}).subscribe(
-                         (data)=> { 
-                                    console.log(data)
-                                    this.toastr.success(data.statusText);
-                                    this.phone_dailog = false;
-                                    this.update_phone1 = [] ;
-                                    reqObj = [];
-                                 },(error)=>{ console.log(error);
-                                  this.toastr.error(error._body);});
-
-        }                
-      }
-
-      removePhone(phoneObj,index) {
-       
-                //this.phone_dailog = false;
-                if(phoneObj.value.locationPhoneId){
-                      let con = confirm('Are you sure you want to delete this?')
-                      if (con) {
-
-                                      let obj = {
-                                        "locationPhoneId": phoneObj.value.locationPhoneId,
-                                        "vendorLocationId": phoneObj.value.vendorLocationId,
-                                        "phoneType": phoneObj.value.phoneType,
-                                        "phoneNumber":phoneObj.value.number,
-                                        "isPrimary": phoneObj.value.isprime
-                                      }
-                                      let headers = new Headers();
-                                      var authToken = localStorage.getItem('userToken');
-                                      headers.append('Accept', 'application/json')
-                                      headers.append('Content-Type', 'application/json');
-                                      headers.append("Authorization",'Bearer '+authToken);
-                                      this.http.post(this.remove_phone_number,obj,{headers:headers}).subscribe( 
-                                        (data)=> { 
-                                                    console.log(data)
-                                                    this.toastr.success(data.statusText);
-                                                    let control = <FormArray>this.formPhone.controls['phoneArry'];
-                                                    control.removeAt(index);
-                                                  },(error)=>{ console.log(error);
-                                                               this.toastr.error(error._body);
-                      });
-                             }}
-                             else{
-                                     let control = <FormArray>this.formPhone.controls['phoneArry'];
-                                     control.removeAt(index);
-                                  }
-
-      }
-
-       openweek(b){
-         
-                    this.modelfield  = b;
-                    console.log(this.modelfield);
-                    this.week_dailog =true;
-                  }
-     
-       
-       OpenmapDailog(){
-                         this.mapDailog = true;
-                      }
-
        update__googlemap(e,a)
-      {
+      { 
           console.log(e.value)
           console.log(a);
           const loc_add = {
-                              mapAddress: e.value.mapAddress,
+                              mapAddress: this.address,
                               vendorId:a.vendorId,
                               vendorLocationId:a.vendorLocationId,
                               postalCode: a.postalCode,
@@ -551,8 +568,8 @@ export class LocationComponent implements OnInit {
                               suburbId:  a.suburbId ,
                             
                               address: a.Address,
-                              lat:  this.k,
-                              long: this.l,
+                              lat:  this.mapDialogObj.lat,
+                              long: this.mapDialogObj.lng,
                               isActive: a.isActive,
                               locationPhones:a.locationPhones,
                               phone: a.phone ,

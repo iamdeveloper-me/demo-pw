@@ -22,71 +22,69 @@
               </a>      
           </div>	
         </div> 
-        <div class="container-fluid photo_gallery" >     
-            <div class="color_optin text-center" *ngFor="let image of albumImagesModify; let i=index ">
-                <div class="clearfix"></div>
-                <span *ngFor="let g of image.colorTags;let i=index">
+        <div class="container-fluid photo_gallery" >  
+          <div class="text-center">   
+            <span class="color_optin text-center" >
+                <span *ngFor="let g of colour_table;let i=index">
                     <!-- {{g}} -->
                      
-                          <span *ngIf = "g == 'pink'" class="colortags pinkbg" (click) = "high_light(image)"></span>
+                          <span *ngIf = "g == 'pink'" class="colortags pinkbg" ></span>
                       
                       
-                          <span *ngIf = "g == 'red'" class="colortags redbg" (click) = "high_light(image)"></span>
+                          <span *ngIf = "g == 'red'" class="colortags redbg" ></span>
                       
                       
-                          <span  *ngIf = "g == 'blue'" class="colortags bluebg" (click) = "high_light(image)"></span>
+                          <span  *ngIf = "g == 'blue'" class="colortags bluebg" ></span>
                      
                       
-                          <span  *ngIf = "g == 'yellow'" class="colortags yellowbg" (click) = "high_light(image)"></span>
+                          <span  *ngIf = "g == 'yellow'" class="colortags yellowbg" ></span>
                       
                    
-                          <span *ngIf = "g == 'green'" class="colortags greenbg" (click) = "high_light(image)"></span>
+                          <span *ngIf = "g == 'green'" class="colortags greenbg" ></span>
                      
                     
-                          <span  *ngIf = "g == 'purple'" class="colortags purplebg" (click) = "high_light(image)"></span>
+                          <span  *ngIf = "g == 'purple'" class="colortags purplebg" ></span>
                      
                      
-                          <span  *ngIf = "g == 'white'" class="colortags whitebg" (click) = "high_light(image)"></span>
+                          <span  *ngIf = "g == 'white'" class="colortags whitebg" ></span>
                      
                      
-                          <span *ngIf = "g == 'black'" class="colortags blackbg" (click) = "high_light(image)"></span>
-                     
-                      
-                          <span *ngIf = "g == 'grey'" class="colortags greybg" (click) = "high_light(image)"></span>
+                          <span *ngIf = "g == 'black'" class="colortags blackbg" ></span>
                      
                       
-                          <span *ngIf = "g == 'orange'" class="colortags orangebg" (click) = "high_light(image)"></span>
+                          <span *ngIf = "g == 'grey'" class="colortags greybg" ></span>
+                     
+                      
+                          <span *ngIf = "g == 'orange'" class="colortags orangebg" ></span>
                      
                     
-                          <span *ngIf = "g == 'brown'" class="colortags brownbg" (click) = "high_light(image)"></span>
-                      
+                          <span *ngIf = "g == 'brown'" class="colortags brownbg" ></span>
                 </span>
-             
-            </div>   
-            <div class="clearfix"></div>
-            
+            </span>   
+          </div>
+          <div class="clearfix"></div>
             <!-- <p class="beach_outdoor"> <span>{{tags}}</span> <span>Outdoor</span> </p> -->
-          <div *ngFor="let image of albumImagesModify; let i=index ">
-            <div *ngFor="let ag of image.tags;let i=index">
+            <div class="text-center">
+            <span *ngFor="let image of albumImagesModify; let i=index ">
+              <span *ngFor="let ag of image.tags;let i=index">
                 <span class="tagstik"> 
                     {{ag}}    
-                  <i class="material-icons">clears</i>
+                
                 </span>      
-              </div>
-            </div>
+              </span>
+            </span>
+          </div>
+          <div class="text-center">
             <p class="add_photos">
                 <button  id="Google-function" class="btn newbtn" (click)="uploadphoto_dailog = true" data-reactid="339" >Add photos</button>
             </p>  
+          </div>
             <div class="row mar_top_50px">
               <div   class="col-lg-3 col-md-4 col-xs-6 "  *ngFor="let image of albumImagesModify; let i=index ">
                 <div class="thumb hovereffect" (clss)='{cl : higcs(image)}' data-target="#image-gallery" data-toggle="modal"  >
                     <button class="deletebtn" (click)="deleteImage(image,i)">&times;</button>
                     
-                    <a class="thumbnail" data-fancybox="gallery" href="{{image.path}}"  >
-                      <div class="image-div" *ngIf = "find_image == image.path">
-                        <img class="img-thumbnail" src="{{image.path}}"alt="Another alt text">
-                      </div>
-                    </a>
+                  
 
                     <a class="thumbnail" data-fancybox="gallery" href="{{image.path}}"  >
                         <div class="image-div">

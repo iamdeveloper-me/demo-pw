@@ -19,4 +19,20 @@ export class apiService {
 
     return this.http.get(url,httpOptions);
   }
+
+
+  postData(url, reqObj) : Observable<any> {
+    var authToken = localStorage.getItem('userToken');
+
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Accept' : 'application/json',
+        'Authorization': 'Bearer '+authToken
+      })
+    };
+
+    return this.http.post(url,reqObj,httpOptions);
+  }
+
 }

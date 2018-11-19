@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 @Component({
   selector: 'app-albumsetting',
   templateUrl: './albumsetting.component.html',
@@ -35,13 +36,16 @@ colour_grey = 'grey';
 colour_white = 'white';
 colour_picker1 = [];
 tags_picker1 = [];
-taggg = '';
 t='';
-tai:any;
+tag_array = [];
 choose:any ;
-a:any;
+a = [];
+tag_error;
+e_data;
+taggg:any;
 albumImagesModify = [];
-
+colour_tag_error;
+@ViewChild('portEdit') validationForm: FormGroup;
   constructor(private http: Http ,  private route: ActivatedRoute ,public toastr: ToastrService) { 
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
@@ -54,11 +58,11 @@ albumImagesModify = [];
     this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
     .subscribe(data =>{
      this.totalImage =  data.json();
-     console.log(data.json()); 
-     console.log(this.albumid.id); 
+    // console.log(data.json()); 
+  //   console.log(this.albumid.id); 
     //  this.album_tag =  this.totalImage.tags.split(',');
     //  console.log(  this.album_tag );
-     console.log(data.json()); 
+  //   console.log(data.json()); 
      for (var item of  this.totalImage ) {
      
      if(this.albumid.id == item.albumsId)
@@ -67,8 +71,7 @@ albumImagesModify = [];
        console.log(item);
       // console.log(item.tags);
       this.albumname = item.albumName;
-      this.tags = item.tags;
-      this.colourtags = item.colorTags;
+     
       this.myalbumimages =  item.albumImages;
   
       for (var albumtag of  this.myalbumimages ) {
@@ -78,7 +81,7 @@ albumImagesModify = [];
         }
         
         this.albumImagesModify.push(albumtag);
-        console.log(this.albumImagesModify)
+       // console.log(this.albumImagesModify)
       }
       
        }
@@ -90,87 +93,155 @@ albumImagesModify = [];
   }
 
   ngOnInit() {
+     $.getScript('./assets/js/vendorsidebar.js');
     this.route.params.subscribe( params => {
-      console.log(params) ;
+     // console.log(params) ;
           this.albumid = params;
     });
   }
   openModel(e){
    
     this.description_dailog = true
-    console.log(e);
+   // console.log(e);
     this.formdata = e;
-      this.album_tag =  this.formdata.tags.split(',');
-      console.log(  this.album_tag );
+    //console.log(e.tags.length != 0);
+    if(e.tags.length != 0){
+      this.tag_array = e.tags;
+     // console.log( this.tag_array );
+    }
+    this.a = e.colorTags;
+   // console.log(  this.a);
+    
+      // this.album_tag =  this.formdata.tags.split(',');
+      // console.log(  this.album_tag );
   }
 
   tags_bage(e){
-    console.log(e);
-   this.t = e;
-   this.tags_picker1.push(e);
-    console.log(   this.tags_picker1);
-    this.tai =  this.tags_picker1
-
-    this.taggg = '';
-  }
+            
+              // if(this.tag_array.length != 0 && typeof(e) != 'undefined' || e != ''){
+              //         this.tag_array.push(e);
+              //         console.log(this.tag_array);
+              //         this.taggg = '';
+              // }
+           
+              // if( this.tag_array.length == 0)
+              // {
+              //   this.tag_array.push(e);
+              //    this.taggg = '';
+              // }
+              console.log(e);
+               if(typeof(e) == 'undefined' )
+              {
+                this.tag_error = "empty tag not added tags"
+              }else{
+                      this.tag_array.push(e);
+                      
+                      console.log(this.tag_array);
+                      this.taggg = '';
+              }
+   }
   colour_picker(d){
-  console.log(d)
-  this.colour = d;
-  this.colour_picker1.push(this.colour );
-  console.log( this.colour_picker1);
-  // for (var c of  this.colour_picker1 ) {
-  //   console.log(c);
-  //   this.a =  c.split(',');
-  // }
+  
+    if(this.a.length == 0 ){
+      this.a.push(d);
+      this.a = this.a.filter((el, i, a) => i === a.indexOf(el));
+     
+  
+    }
+    if(this.a.length > 0 ){
+      this.tag_error = '';
+      this.a.push(d);
+      // this.colour_picker1.push(d);
+       this.a = this.a.filter((el, i, a) => i === a.indexOf(el));
+       console.log(this.a);
+     
+    
+    }
+     
+          
 
-   this.a  = this.colour_picker1
-  // console.log(this.a );
- 
 }
 remove_tag_picker(g){
-  console.log(g);
+ /// console.log(g);
  
-  this.tags_picker1.splice(g, 1);
+  this.tag_array.splice(g, 1);
+  console.log(this.tag_array);
+  if(this.tag_array.length == 0 )
+  { 
+   
+     this.tag_error = "required tags"
+  }
 }
 remove_colour_picker(g){
-  console.log(g);
-  this.colour_picker1.splice(g, 1);
+  //console.log(g);
+  this.a.splice(g, 1);
+  console.log(this.a);
+  if(this.a.length == 0 )
+  {
+  
+     this.colour_tag_error = "required colour tags"
+  }
   
 }
 editSetting(f){
        
   this.description_dailog = false;
-  console.log(f);
-  console.log(this.tags_picker1.join(','));
-  console.log(this.colour_picker1.join(','));
+ // console.log(f);
+ // console.log(this.tag_array.join(','));
+ // console.log(this.colour_picker1.join(','));
 
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
   headers.append('Accept', 'application/json')
   headers.append('Content-Type', 'application/json');
   headers.append("Authorization",'Bearer '+authToken);
-const fire  = {       
-   AlbumImageId: f.value.AlbumImageId,
-  AlbumsId: f.value.AlbumsId,
-  Tags:this.tags_picker1.join(','),
-  ColorTags:  this.colour_picker1.join(','),
-  SetAsBackground: true}
-  console.log(fire)
-      this.http.post(this.update_portfolio_album,{
-        albumImageId: f.value.AlbumImageId,
-        AlbumsId: f.value.AlbumsId,
-        Tags:this.tags_picker1.join(','),
-        ColorTags:  this.colour_picker1.join(','),
-        SetAsBackground: true
-      },{headers:headers}).subscribe(data =>{
-     
-      console.log(data.json());
+          const fire  = {       
+            AlbumImageId: f.value.AlbumImageId,
+            AlbumsId: f.value.AlbumsId,
+            Tags:this.tag_array.join(','),
+            ColorTags:  this.a.join(','),
+            SetAsBackground: true
+          }
+         console.log(fire)
+      this.http.post(this.update_portfolio_album,fire,{headers:headers}).subscribe(data =>{
+       //     console.log(data.json());   
+            this.albumImagesModify = [];  
+          //Album Get
+          this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
+          .subscribe(data =>{
+                            console.log(data.json()); 
+                            for (var item of  data.json() ) {
+                            
+                            if(this.albumid.id == item.albumsId)
+                        
+                              {   console.log(item);
+                              
+                              
+                                for (var albumtag of  item.albumImages ) {
+
+                                  if(albumtag.tags != null && albumtag.colorTags != null){
+                                 
+                                    albumtag['tags'] = albumtag['tags'].split(',');
+                                    albumtag['colorTags'] = albumtag['colorTags'].split(',');
+                                  }
+                                  this.albumImagesModify.push(albumtag);
+                                  console.log(this.albumImagesModify);
+                                }
+                              }
+                            }
+                            
+                               this.tags = item.tags;
+                               this.colourtags = item.colorTags;
+                          });
       this.toastr.success(data.json().message);
   },error=> console.log(error)    )
   this.description_dailog = false;
 
 }
 
+err(e){
+  console.log(e)
+}
 onSelect(tags){
   console.log(tags);
   console.log('tag selected: value is ' + tags);

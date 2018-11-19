@@ -19,7 +19,7 @@
               </select>
 
             <div class="clearfix"></div>
-            <div class="col-sm-12">
+            <div *ngIf='countryArray.length>0' class="col-sm-12">
               <div *ngFor="let category of countryArray.items" ngClass="{active: n == countryArray.page}">
                        <!--    <a (click)="search(n)" *ngIf="n != countryArray.page">{{n+1}}</a> -->
                           <span *ngIf="n == countryArray.page">{{n+1}}</span>
@@ -90,7 +90,7 @@
         <pagination-controls (pageChange)="page_number = $event"></pagination-controls>  -->
         
     <div class="col-sm-12">
-      <div class="card text-center">
+      <!-- <div class="card text-center">
         <div class="paddtop10px">
           <i class="material-icons">star_border</i>
           <i class="material-icons">star_border</i>
@@ -99,7 +99,7 @@
           <i class="material-icons">star_border</i>
         </div>
           <p class="lineheight30px">Their are no customer review yet.</p>
-      </div>
+      </div> -->
     </div>
 
 

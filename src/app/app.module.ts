@@ -1,3 +1,4 @@
+import { reverse } from 'dns';
 import { NgModule} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RatingModule} from "ngx-rating";
@@ -148,7 +149,7 @@ import { ViewPhotoAlbumsComponent } from './vendor/view-photo-albums/view-photo-
 import { AlbumsettingComponent } from './vendor/albumsetting/albumsetting.component';
 import { EventListComponent } from './vendor/event-list/event-list.component';
 import { Albumsetting2Component } from './vendor/albumsetting2/albumsetting2.component';
-import { MailsearchComponent } from './vendor/mailsearch/mailsearch.component';
+import { MailsearchComponent, ReversePipe } from './vendor/mailsearch/mailsearch.component';
 import { EnquiriesComponent } from './vendor/enquiries/enquiries.component';
 import { StorefrontComponent } from './vendor/storefront/storefront.component';
 import { ActionsComponent } from './vendor/actions/actions.component';
@@ -233,7 +234,9 @@ export function getAuthServiceConfigs() {
     declarations: [
         SafePipeP,
         SafePipe,
-        AppComponent,
+
+ReversePipe  ,
+      AppComponent,
         InvoiceDetailComponent,
         EnquiriesComponent,
         TipslistComponent,

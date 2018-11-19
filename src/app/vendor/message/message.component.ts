@@ -24,6 +24,9 @@ export class MessageComponent implements OnInit {
   filter_id:number = 1
   uiLoading:boolean = true;
   find_name:string;
+  all_msg:number;
+  unread_msg:number;
+  stared_msg:number;
   constructor(public toastr: ToastrService ,public route: Router,private elRef: ElementRef, private modalService: NgbModal, private inboxService: InboxService, private hservice: MessageService) {
     this.mail = this.inboxService.inbox.filter((mail: Mail) => mail.mailType === 'Inbox');
     this.message = this.inboxService.message.filter((message: Message) => message.mailId === 4)[0];
@@ -36,7 +39,9 @@ export class MessageComponent implements OnInit {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
-    this.initDatatable(this.filter_id)
+    this.stared(3)
+    this.unread(2)
+    this.initDatatable(1)
 
 
     // this.hservice.marksread().subscribe(( data )  =>  
@@ -59,20 +64,29 @@ export class MessageComponent implements OnInit {
     // )
   
   }
-  modelChanged(newObj){
+  search(newObj){
 console.log(this.find_name.toUpperCase())
 
 console.log(this.historyArr)
-this.historyArr.forEach(el=>{
-  debugger
-  var name = el['sendByFirstName']
-  // if(name.match(/ain/gi) == this.find_name.toUpperCase()){
-  //   alert('yes')
-  //   debugger
-  // }
-})
+// console.log(this.filter_id)
+// this.filter_id = 1
+const json ={
+  "filter" : this.filter_id,
+  "search" : this.find_name
+}
+this.hservice.vendorMessages(json).subscribe(( data )  =>  
+          { 
+            this.uiLoading = false;
+            this.historyArr = data.json()  ; 
+            this.unread_msg = this.historyArr.length;
+            console.log(this.historyArr)
+          },error => 
+          alert(error) // error path
+        )
+
   }
   initDatatable(filter_id){
+   this.filter_id = filter_id
     const json ={
       "filter" : filter_id
     }      
@@ -80,11 +94,45 @@ this.historyArr.forEach(el=>{
           { 
             this.uiLoading = false;
             this.historyArr = data.json()  ; 
+            this.all_msg = this.historyArr.length;
             console.log(this.historyArr)
           },error => 
           alert(error) // error path
         )
   }
+  unread(filter_id){
+    this.filter_id = filter_id
+
+    const json ={
+      "filter" : filter_id
+    }      
+          this.hservice.vendorMessages(json).subscribe(( data )  =>  
+          { 
+            this.uiLoading = false;
+            this.historyArr = data.json()  ; 
+            this.unread_msg = this.historyArr.length;
+            console.log(this.historyArr)
+          },error => 
+          alert(error) // error path
+        )
+  }
+  stared(filter_id){
+    this.filter_id = filter_id
+
+    const json ={
+      "filter" : filter_id
+    }      
+          this.hservice.vendorMessages(json).subscribe(( data )  =>  
+          { 
+            this.uiLoading = false;
+            this.historyArr = data.json()  ; 
+            this.stared_msg = this.historyArr.length;
+            console.log(this.historyArr)
+          },error => 
+          alert(error) // error path
+        )
+  }
+ 
   readMark(id){
     this.hservice.marksread(id).subscribe(( data )  =>  
     {this.toastr.success(data.json().message)
@@ -163,5 +211,8 @@ this.historyArr.forEach(el=>{
   }
   nextPage(id){
     this.route.navigate(['../msg' , id])
+  }
+  set(filter_id){
+    this.filter_id = filter_id
   }
 }

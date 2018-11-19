@@ -11,15 +11,15 @@
                       <div class="inbox-head">
                         <h3>Inbox</h3>
                         <div class="btn-group">
-                            <a (click)="initDatatable(1)">All (14)</a>
+                            <a (click)="initDatatable(1) && set(1)">All ({{all_msg}})</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a (click)="initDatatable(2)">Unread (02)</a>
+                            <a (click)="unread(2) && set(2)">Unread ({{unread_msg}})</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a (click)="initDatatable(3)">Stared (03)</a>
+                            <a (click)="stared(3) && set(3)">Stared ({{stared_msg}})</a>
                         </div>
                           <form action="#" class="pull-right position">
                               <div class="input-append">
-                                  <input type="text" [(ngModel)]="find_name" name=" find_name" (change)="modelChanged($event)" class="sr-input" placeholder="Search Mail">
+                                  <input type="text" [(ngModel)]="find_name" name=" find_name" (change)="search($event)" class="sr-input" placeholder="Search Mail">
                                   <button class="btn sr-btn" type="button"><i class="fa fa-search"></i></button>
                               </div>
                           </form>

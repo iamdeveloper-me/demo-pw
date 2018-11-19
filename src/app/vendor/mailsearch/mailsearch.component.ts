@@ -3,6 +3,18 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../../shared/service/vendor/message.service';
 import { reverse } from 'dns';
 import * as $ from 'jquery';
+
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({ name: 'reverse' })
+
+export class ReversePipe implements PipeTransform {
+  transform(value) {
+    return value.slice().reverse();
+  }
+}
+
+
 @Component({
   selector: 'app-mailsearch',
   templateUrl: './mailsearch.component.html',
@@ -39,16 +51,33 @@ date_true:boolean = true;
         this.total_message = data.json()
         this.total_message.forEach((msg)=>{
          
-         if(msg.sendToUserId == this.userId){
-          this.profile_name = msg.sendByFirstName+' '+msg.sendByLastName
+
+          msg.messages.forEach(ele_arr => {
+            if(ele_arr.sendToUserId == this.userId){
+                        this.profile_name = ele_arr.sendByFirstName+' '+ele_arr.sendByLastName
+              
+              this.vendorMsg['sendToUserId'] = ele_arr.sendByUserId
+              
+                       }else{
+              
+              
+              
+                       }
+          });
+
+
+
 debugger
-this.vendorMsg['sendToUserId'] = msg.sendByUserId
+//          if(msg.messages.sendToUserId == this.userId){
+//           this.profile_name = msg.messages.sendByFirstName+' '+msg.messages.sendByLastName
+// debugger
+// this.vendorMsg['sendToUserId'] = msg.messages.sendByUserId
 
-         }else{
+//          }else{
 
 
 
-         }
+//          }
  
         })
       },error => 
@@ -64,8 +93,8 @@ this.vendorMsg['sendToUserId'] = msg.sendByUserId
     //   }
     // }, 2000);
 
-    $(".chatscroll").animate({ scrollTop: $(document).height() }, "slow");
-  return false;
+  //   $(".chatscroll").animate({ scrollTop: $(document).height() }, "slow");
+  // return false;
   
   
   }

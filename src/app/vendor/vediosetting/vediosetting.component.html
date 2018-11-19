@@ -108,7 +108,7 @@
 
   <div class="modal fade"  [ngClass] = "{'show' : Editvediodetail_dailog}" id="Editvediodetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
-            <form [formGroup]='validtionform' >
+            <form [formGroup]='validtionform' (submit)="videosave()">
 
               <div class="modal-content">
                    <div class="modal-header">
@@ -123,14 +123,31 @@
                                      
                                   <div class="form-group">
                                   <div class="input-effect md-form">
-                                    <input type="text"  class="effect-16 validate" [(ngModel)]='objVideo.title' formControlName='title' placeholder="title"/>
-                                      
+                                    <input type="text"  class="effect-16 validate" [(ngModel)]='objVideo.title' formControlName='title' placeholder="title" required/>
+                                    <div *ngIf="title.invalid && (title.dirty || title.touched)"
+                                    class="alert alert-danger">
+                                
+                                  <div *ngIf="title.errors.required">
+                                    title is required.
+                                  </div>
+                                 
+                                </div>
                                   </div>
                                   </div>
                                   <div class="form-group">
                                   <div class="input-effect md-form">
-                                    <input  class="effect-16 validate" type="text" [(ngModel)]='objVideo.link' formControlName='link' placeholder="link"/>
-                                      
+                                    <input  class="effect-16 validate" type="text" [(ngModel)]='objVideo.link' formControlName='link' placeholder="link" required/>
+                                    <div *ngIf="link.invalid && (link.dirty || link.touched)"
+                                    class="alert alert-danger">
+                                
+                                  <div *ngIf="link.errors.required">
+                                    link is required.
+                                  </div>
+                                  <div *ngIf="link.errors.pattern">
+                                    link is required . (https and http)
+                                  </div>
+                                 
+                                </div>
                                   </div>
 
                                 </div>
@@ -142,7 +159,7 @@
                        
                    </div>
                    <div class="modal-footer text-center">
-                   <button type="submit" class="btn newbtn" (click)="videosave()">SAVE</button> &nbsp;
+                   <button type="submit" class="btn newbtn" >SAVE</button> &nbsp;
                     <button type="button" class="btn newbtn newcancelbtn" 
                     (click)="closeModel()"> Close</button>
                 </div>

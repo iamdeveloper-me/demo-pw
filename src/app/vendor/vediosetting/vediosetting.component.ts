@@ -155,6 +155,7 @@ deleteData(data){
               this.video_all_data.splice(this.video_all_data.indexOf(data.videosId),1);
                 console.log('Delete Responce '+res)
                                            })
+                                           this.ngOnInit();
           }
       
 }

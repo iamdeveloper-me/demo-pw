@@ -28,7 +28,7 @@
                             <i class="material-icons" style="font-size:80px;">missed_video_call</i><br/>
                              <span> No video upload yet</span>
                             </p>
-                            <p class="upload_bt text-center"> <button data-target="#Addvediodetail" data-toggle="modal" > Add Video</button>  </p>
+                            <p class="upload_bt text-center"> <button data-target="#Addvediodetail" data-toggle="modal" (click)="Addvediodetail_dailog = true"> Add Video</button>  </p>
                          
                             <p class="text-center uplod_para padd_top_30px"> Want unlimited Videos? <a href=""> Upgrade</a> </p>
                       </div>
@@ -209,6 +209,20 @@
                 </div>
                 <form [formGroup]="form" (ngSubmit)="addDetails()">
                    <div class="modal-body">
+                     
+                      <div class="form-group">
+                        <div class="input-effect form-group md-form ">
+                          <input class="effect-16 validate" type="text" id="title" formControlName="title" >
+                          <label>Enter Vedio Title</label>
+                          <span class="focus-border"></span>
+                        </div>
+                        <!-- <label for="title">Title:</label>
+                        <br>
+                        <input style="width:80%" type="text" id="title" formControlName="title" /> -->
+                        <div style="color:red" *ngIf="  title.value && title.invalid">
+                          Please provide valid tite
+                        </div>
+                      </div>
                       <div class="form-group">
                         <div class="input-effect form-group md-form ">
                           <input class="effect-16 validate" type="text" id="link" formControlName="link" >
@@ -224,19 +238,6 @@
                         <div style="color:red" *ngIf="link.value && link.invalid">
                           Please provide valid url
                         </div> -->
-                      </div>
-                      <div class="form-group">
-                        <div class="input-effect form-group md-form ">
-                          <input class="effect-16 validate" type="text" id="title" formControlName="title" >
-                          <label>Enter Vedio Title</label>
-                          <span class="focus-border"></span>
-                        </div>
-                        <!-- <label for="title">Title:</label>
-                        <br>
-                        <input style="width:80%" type="text" id="title" formControlName="title" /> -->
-                        <div style="color:red" *ngIf="  title.value && title.invalid">
-                          Please provide valid tite
-                        </div>
                       </div>
                       <!-- <br>
                       <button type="submit">Submit</button>

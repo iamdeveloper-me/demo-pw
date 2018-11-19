@@ -1,6 +1,6 @@
 import { DomSanitizer } from '@angular/platform-browser';
 import { Http ,Headers} from '@angular/http';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, ViewEncapsulation, ViewChild, ElementRef, PipeTransform, Pipe, OnInit } from '@angular/core';
 
@@ -57,8 +57,8 @@ export class VideosComponent implements OnInit {
      createForm() {
       const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
       this.form = this.fb.group({
-        link: ['', [Validators.required, Validators.pattern(reg)]],
-        title: ['', [Validators.required]],
+        title: new FormControl('',Validators.required),
+        link: new FormControl('',Validators.pattern(reg)),
         
        
       });
@@ -86,6 +86,7 @@ export class VideosComponent implements OnInit {
       this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Videos/createupdatevideos',data,{headers:headers})
                 .subscribe(
                     resp => {
+                      this.Addvediodetail_dailog = false;
                         // this.t.success('Project created successfully');
                         // this.ui.laddaSave = false;
                         // this.initForm();

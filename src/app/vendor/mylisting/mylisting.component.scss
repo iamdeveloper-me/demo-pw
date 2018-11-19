@@ -14,6 +14,7 @@
     padding: 0px 10px;
     margin: 0px;
 }
+
 .lineheight30px{
     line-height: 30px!important;
 }
@@ -85,6 +86,7 @@ margin-top: 10px!important;
   float:right;
   margin:0px 0px 15px 0px;
   padding:10px;
+  background:#fff;
 }
 .listing li a{
     color:#ffffff!important;
@@ -212,6 +214,7 @@ float:left;
     border-color: rgb(28, 228, 55);
     margin-right: 20px;
     border-radius: 5px;
+    outline:none!important;
 }
 .pin_tack2{
     float: right;
@@ -224,6 +227,21 @@ float:left;
     transform: rotate(40deg);
     font-size: 30px;
     color: rgb(92, 95, 92);
+}
+.graypin{
+    float: right;
+    background: none;
+    border: 1px solid;
+    padding: 4px 10px;
+    border-color: #999;
+    margin-right: 20px;
+    border-radius: 5px;
+    outline:none!important;
+}
+.graypin i{
+    transform: rotate(40deg);
+    font-size: 20px;
+    color: #999;
 }
 .pin_tack i{
     transform: rotate(40deg);
@@ -355,6 +373,7 @@ display:block!important;
     .content{
       padding-left: 0;
       padding-right: 0px;
+      background:transparent;
     }
     .man_info {
       margin-bottom: 30px !important;
@@ -379,7 +398,10 @@ display:block!important;
   .textemail{
   text-align:left;
   }
-
+.breakword{
+max-width:100%;
+    word-break: break-all;
+}
 #wrapper.toggled #sidebar-wrapper {
     width: 0;
 }
@@ -470,6 +492,9 @@ display:block!important;
 }
 #wrapper {
     padding-left: 250px;
+}
+.content, .events-container, .year-header, .calendar-container {
+    width: 100%;
 }
 }
 

@@ -28,7 +28,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   private albumcoverimage: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/albumcoverimage"
 
   uploadphoto_dailog = false;
-
+  colour_table = [];
 
   find_image;
   albumid:any;
@@ -87,6 +87,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
 
   ngOnInit() {
 
+     $.getScript('./assets/js/vendorsidebar.js');
 
   this.route.params.subscribe( params => {
     console.log(params) ;
@@ -129,8 +130,6 @@ export class ViewPhotoAlbumsComponent implements OnInit {
    this.totalImage =  data.json();
    console.log(data.json()); 
    console.log(this.albumid.id); 
-
-   console.log(data.json()); 
    for (var item of  this.totalImage ) {
    
    if(this.albumid.id == item.albumsId)
@@ -151,11 +150,24 @@ export class ViewPhotoAlbumsComponent implements OnInit {
       
       this.albumImagesModify.push(albumtag);
       console.log(this.albumImagesModify)
+     
     }
-     }
-}
+
+
   
-   
+     }
+    }
+  
+    for (var image of  this.albumImagesModify ) 
+    {  
+       for (var g of  image.colorTags ) 
+        {
+          this.colour_table.push(g)
+          this.colour_table = this.colour_table.filter((el, i, a) => i === a.indexOf(el))
+
+         }
+    }
+    console.log(this.colour_table)
   });
  
   let modalId = $('#image-gallery');
@@ -254,17 +266,6 @@ $(document)
   }
   
 
-  high_light(e){
-console.log(e)
-//this.find_image = clr;
-  }
-  // higcs(img){
-  //   img
-  //   rett
-  // }
-
-
-
   //service
   deleteImage(image,index){
 
@@ -324,10 +325,8 @@ console.log(e)
          
          if(this.albumid.id == item.albumsId)
           {
-          //    alert("dsf"); 
-          // console.log(item);
-          // console.log(item.albumImages);
-          this.myalbumimages =  item.albumImages;
+              this.albumImagesModify =  item.albumImages;
+              console.log(  this.albumImagesModify ); 
            }
       }
         

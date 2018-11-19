@@ -102,13 +102,13 @@
         </div>
   </div>
   </div>
-  <app-foot></app-foot>
+  <!-- <app-foot></app-foot> -->
   
 
 
   <div class="modal fade"  [ngClass] = "{'show' : Editvediodetail_dailog}" id="Editvediodetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
-                    <form   (submit)="videosave($event)">
+            <form [formGroup]='validtionform' (submit)="videosave()">
 
               <div class="modal-content">
                    <div class="modal-header">
@@ -119,58 +119,53 @@
                 </div>
                   
                    <div class="modal-body">
-                                        <!-- <input type="hidden"
-                                        id="projectinput1"
-                                        class="effect-16 validate"
-                                        placeholder="id "
-                                        [(ngModel)]="videoForm.videosId"
-                                        name="videosId"
-                                        > -->
+                    <input type="hidden" [(ngModel)]='objVideo.id' formControlName='id'/>
                                      
                                   <div class="form-group">
                                   <div class="input-effect md-form">
-                                        <!-- <input type="text"
-                                        id="projectinput1"
-                                        class="effect-16 validate"
-                                        placeholder="Title "
-                                        [(ngModel)]="videoForm.title"
-                                        name="title"
-                                        > -->
-                                      <label for="projectinput1">Vedio Title</label>
-                                      <span class="focus-border"></span>
-                                      <!-- <form-error-msg controlName="title"></form-error-msg> -->
+                                    <input type="text"  class="effect-16 validate" [(ngModel)]='objVideo.title' formControlName='title' placeholder="title" required/>
+                                    <div *ngIf="title.invalid && (title.dirty || title.touched)"
+                                    class=" redtext">
+                                
+                                  <div *ngIf="title.errors.required">
+                                    title is required.
                                   </div>
+                                 
                                 </div>
-                              <div class="form-group">
-                                  <div class="input-effect md-form">
-                                      <!-- <input type="text"
-                                          id="projectinput1"
-                                          class="effect-16 validate"
-                                          placeholder="Url  "
-                                          [(ngModel)]="videoForm.link"
-                                        name="link"
-
-                                        > -->
-                                          <label for="projectinput1">Vedio Url</label>
-                                      <span class="focus-border"></span>
-                                      <!-- <form-error-msg controlName="url"></form-error-msg> -->
                                   </div>
-                              </div>
-                              <!--<div>
-                                 <button type="submit">submit</button> 
-                              </div>-->
+                                  </div>
+                                  <div class="form-group">
+                                  <div class="input-effect md-form">
+                                    <input  class="effect-16 validate" type="text" [(ngModel)]='objVideo.link' formControlName='link' placeholder="link" required/>
+                                    <div *ngIf="link.invalid && (link.dirty || link.touched)"
+                                    class="redtext">
+                                
+                                  <div *ngIf="link.errors.required">
+                                    link is required.
+                                  </div>
+                                  <div *ngIf="link.errors.pattern">
+                                    link is required . 
+                                  </div>
+                                 
+                                </div>
+                                  </div>
+
+                                </div>
+                            
+                                 
+                          
                      
                      
                        
                    </div>
                    <div class="modal-footer text-center">
-                   <button type="submit" class="btn newbtn" (click)="editvedio()">SAVE</button> &nbsp;
+                   <button type="submit" class="btn newbtn" >SAVE</button> &nbsp;
                     <button type="button" class="btn newbtn newcancelbtn" 
                     (click)="closeModel()"> Close</button>
                 </div>
 
               </div>
-</form>
+</form> 
 
           </div>
       </div>

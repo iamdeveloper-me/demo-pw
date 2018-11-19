@@ -250,7 +250,7 @@
                                               </div>
                                           </div>
                                       </div> 
-                                      <div class="col-md-6">
+                                      <div class="col-md-6" *ngIf='!createdeal.neverExpire'>
                                           <div class="form-group">
                                               <div class="input-effect form-group md-form ">
                                                   <input 
@@ -422,5 +422,6 @@
                       </form>
                   </div>
               </div>
+
     </div> 
-        
+

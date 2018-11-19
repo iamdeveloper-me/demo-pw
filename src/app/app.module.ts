@@ -1,3 +1,4 @@
+import { reverse } from 'dns';
 import { NgModule} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RatingModule} from "ngx-rating";
@@ -148,7 +149,7 @@ import { ViewPhotoAlbumsComponent } from './vendor/view-photo-albums/view-photo-
 import { AlbumsettingComponent } from './vendor/albumsetting/albumsetting.component';
 import { EventListComponent } from './vendor/event-list/event-list.component';
 import { Albumsetting2Component } from './vendor/albumsetting2/albumsetting2.component';
-import { MailsearchComponent } from './vendor/mailsearch/mailsearch.component';
+import { MailsearchComponent, ReversePipe } from './vendor/mailsearch/mailsearch.component';
 import { EnquiriesComponent } from './vendor/enquiries/enquiries.component';
 import { StorefrontComponent } from './vendor/storefront/storefront.component';
 import { ActionsComponent } from './vendor/actions/actions.component';
@@ -200,6 +201,10 @@ import { FailureComponent } from './vendor/failure/failure.component';
 import { PhotogallerydetailComponent } from './photogallerydetail/photogallerydetail.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
+// code by v
+import {BrowserModule} from '@angular/platform-browser';
+import {NgxPaginationModule} from 'ngx-pagination';
+
 //import { VendorComponent } from './dashboard/vendor/vendor.component';
 
 import { apiService } from './shared/service/api.service';
@@ -229,7 +234,9 @@ export function getAuthServiceConfigs() {
     declarations: [
         SafePipeP,
         SafePipe,
-        AppComponent,
+
+ReversePipe  ,
+      AppComponent,
         InvoiceDetailComponent,
         EnquiriesComponent,
         TipslistComponent,
@@ -420,7 +427,9 @@ export function getAuthServiceConfigs() {
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyBr5_picK8YJK7fFR2CPzTVMj6GG1TtRGo',
             libraries: ["places"]
-        })
+        }),
+        // code by v
+        BrowserModule, NgxPaginationModule
     ],
 
     providers: [
@@ -437,7 +446,7 @@ export function getAuthServiceConfigs() {
         },
         apiService
     ],
-    bootstrap: [AppComponent],
+    bootstrap: [AppComponent, MylistingComponent],
     entryComponents: [NgbdModalContent],
    
 })

@@ -1,4 +1,4 @@
-   <div id="wrapper" class="toggled">
+<div id="wrapper" class="toggled">
         <div id="sidebar-wrapper">
             <app-vendorsidebar></app-vendorsidebar>
             <router-outlet></router-outlet>
@@ -231,7 +231,7 @@
                             #required="ngModel" 
                             required 
                             placeholder="Bussiness name" />
-                            <small class="form-text text-muted danger" *ngIf="required.errors?.required"> Bussiness name field required </small>
+                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="required.errors?.required"> Bussiness name field required </small>
 
                             </p>
                         
@@ -297,16 +297,16 @@
                                         <input 
                                             type="text" 
                                             class="effect-16 validate endent_10px width_60" 
-                                           
+                                           [readonly]='disabletxtFburl && modelfield.fbAvailable==false'
                                             name="facebookURL" 
                                             #facebookURL="ngModel"
                                             placeholder="Don't have any URL"
-                                            [ngModel] = "modelfield.facebookURL" 
-                                            url
-                                            required  />
-                                     
-                                            <small class="form-text text-muted danger" *ngIf="facebookURL.errors?.required"> facebookURL name field required </small>
-                                            <small class="form-text text-muted danger" *ngIf="facebookURL.errors?.url">url error</small>
+                                            [(ngModel)] = "modelfield.facebookURL" 
+                                            required 
+                                            (ngModelChange)='isValidUrl(modelfield.facebookURL,"Fb")'
+                                            />
+                                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="facebookURL.errors?.required"> facebookURL name field required </small>
+                                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidFbUrl===false && modelfield.fbAvailable == true && !facebookURL.errors?.required">invalid url </small>
                                     </div>
                                   
                             </div>
@@ -319,7 +319,7 @@
                     </div>
                     <div class="modal-footer text-center marTop50px" >
 
-                        <button type="submit" class="btn btn-secondary newbtn" [disabled]="facebookURL.errors?.url || facebookURL.errors?.required ||modelfield.fbAvailable == false "    >Save</button> 
+                        <button type="submit" class="btn btn-secondary newbtn" [disabled]="isValidFbUrl===false && modelfield.fbAvailable == true "    >Save</button> 
                         <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()" >Cancel</button>
 
                     </div>
@@ -372,15 +372,15 @@
                                         <input 
                                         type="text" 
                                         class="effect-16 validate endent_10px width_60"
-                                       
+                                        [readonly]='disabletxtTwurl && modelfield.twitterAvailable==false'
                                         name="twitterURL" 
                                         #twitterURL="ngModel"
                                         placeholder="Don't have any URL"
-                                        [ngModel] = "modelfield.twitterURL" 
-                                        url 
+                                        [(ngModel)] = "modelfield.twitterURL" 
+                                        (ngModelChange)='isValidUrl(modelfield.twitterURL,"Tw")'
                                         required/>
-                                    <small class="form-text text-muted danger" *ngIf="twitterURL.errors?.url">url error</small>
-                                    <small class="form-text text-muted danger" *ngIf="twitterURL.errors?.required"> twitterURL name field required </small>
+                                    <small class="form-text text-muted danger validationErrorMsg" *ngIf="isVaidTwUrl===false && modelfield.twitterAvailable == true && !twitterURL.errors?.required">Invalid url</small>
+                                    <small class="form-text text-muted danger validationErrorMsg" *ngIf="twitterURL.errors?.required"> twitterURL name field required </small>
                                     </div>    
                                 <!-- <div *ngIf="modelfield.twitterAvailable  ==  false">
                                         <input class="effect-16 validate endent_10px width_60" 
@@ -394,7 +394,7 @@
                         </div>
                     </div>
                     <div class="modal-footer text-center marTop50px">
-                        <button type="submit" class="btn newbtn" [disabled]="twitterURL.errors?.url || twitterURL.errors?.required ||modelfield.twitterAvailable == false " >Save</button>&nbsp;
+                        <button type="submit" class="btn newbtn" [disabled]="isVaidTwUrl===false && modelfield.twitterAvailable == true " >Save</button>&nbsp;
                         <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
                     </div>
                 </div>
@@ -448,15 +448,15 @@
                                 <input 
                                 type="text" 
                                 class="effect-16 validate endent_10px width_60"
-                               
+                                [readonly]='disabletxtGoogeurl && modelfield.googleAvailable==false'
                                 name="googleURL" 
                                 #googleURL="ngModel"
                                 placeholder="Don't have any URL"
-                                [ngModel] = "modelfield.googleURL" 
-                                url
+                                [(ngModel)] = "modelfield.googleURL" 
+                                (ngModelChange)='isValidUrl(modelfield.googleURL,"Google")'
                                 required />
-                            <small class="form-text text-muted danger" *ngIf="googleURL.errors?.url">url error</small>
-                            <small class="form-text text-muted danger" *ngIf="googleURL.errors?.required"> googleURL name field required </small>
+                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidGoogeUrl===false && modelfield.googleAvailable == true  && !modelfield.googleURL.errors?.required">Invalid url</small>
+                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="googleURL.errors?.required"> googleURL name field required </small>
                             </div>    
                             <!-- <div *ngIf="modelfield.googleAvailable  ==  false">
                                 <input class="effect-16 validate endent_10px width_60" 
@@ -469,7 +469,7 @@
                         </div>
                     </div>
                     <div class="modal-footer text-center marTop50px">
-                        <button type="submit" class="btn newbtn" [disabled]="googleURL.errors?.url || googleURL.errors?.required ||modelfield.googleAvailable == false "    >SAVE</button> &nbsp;
+                        <button type="submit" class="btn newbtn" [disabled]="isValidGoogeUrl===false && modelfield.googleAvailable == true " >SAVE</button> &nbsp;
                         <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
                     </div>
                 </div>
@@ -524,15 +524,15 @@
                                 <input 
                                 type="text" 
                                 class="effect-16 validate endent_10px width_60"
-                               
+                                [readonly]='disabletxtInstaUrl && modelfield.instaAvailable==false'
                                 name="instalURL" 
                                 #instalURL="ngModel"
                                 placeholder="Don't have any URL"
-                                [ngModel] = "modelfield.instalURL" 
-                                url 
+                                [(ngModel)] = "modelfield.instalURL" 
+                                (ngModelChange)='isValidUrl(modelfield.instalURL,"Insta")'
                                 required/>
-                            <small class="form-text text-muted danger" *ngIf="instalURL.errors?.url">url error</small>
-                            <small class="form-text text-muted danger" *ngIf="instalURL.errors?.required"> instalURL name field required </small>
+                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidInstaUrl===false && modelfield.instaAvailable == true  && !instalURL.errors?.required">url error</small>
+                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="instalURL.errors?.required"> instalURL name field required </small>
                             </div>
 
                                 <!-- <div *ngIf="modelfield.instaAvailable  ==  false">
@@ -546,7 +546,7 @@
                     </div>
                 </div>
                <div class="modal-footer text-center marTop50px">
-                    <button type="submit" class="btn newbtn"  [disabled]="instalURL.errors?.url || instalURL.errors?.required ||modelfield.instaAvailable == false "  >SAVE</button> &nbsp;
+                    <button type="submit" class="btn newbtn"  [disabled]="isValidInstaUrl===false && modelfield.instaAvailable == true " >SAVE</button> &nbsp;
                     <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
                 </div>
             </div>
@@ -601,15 +601,15 @@
                                 <input 
                                 type="text" 
                                 class="effect-16 validate endent_10px width_60"
-                               
+                                [readonly]='disabletxtOtherUrl && modelfield.perfectWeddingAvailable == false'    
                                 name="perfectWeddingURL" 
                                 #perfectWeddingURL="ngModel"
                                 placeholder="Don't have any URL"
-                                [ngModel] = "modelfield.perfectWeddingURL" 
-                                url
+                                [(ngModel)] = "modelfield.perfectWeddingURL" 
+                                (ngModelChange)='isValidUrl(modelfield.perfectWeddingURL,"Other")'
                                 required />
-                            <small class="form-text text-muted danger" *ngIf="perfectWeddingURL.errors?.url">url error</small>
-                            <small class="form-text text-muted danger" *ngIf="perfectWeddingURL.errors?.required"> perfectWeddingURL name field required </small>   
+                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidOtherUrl===false && modelfield.perfectWeddingAvailable == true  && !perfectWeddingURL.errors?.required">url error</small>
+                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="perfectWeddingURL.errors?.required"> perfectWeddingURL name field required </small>   
                         </div>
                                 <!-- <div *ngIf="modelfield.perfectWeddingAvailable  ==  false">
                                     <input class="effect-16 validate endent_10px width_60" 
@@ -623,7 +623,7 @@
                     </div>
                 </div>
                 <div class="modal-footer text-center marTop50px">
-                    <button type="submit" class="btn newbtn"   [disabled]="perfectWeddingURL.errors?.url || perfectWeddingURL.errors?.required  ||modelfield.perfectWeddingAvailable == false"   ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+                    <button type="submit" class="btn newbtn"   [disabled]="isValidOtherUrl===false && modelfield.perfectWeddingAvailable == true " ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
                     <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
                 </div>
                 <div class="col-sm-12 mob_margin_30px">

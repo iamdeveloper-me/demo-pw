@@ -10,29 +10,16 @@
 				  <section id="user-profile">
 					  <div class="col-12 nopadd">
 						  <div  class="card-header text-center">	
-							  <!-- <button type="button" class="addmorebtn newbtn" *ngIf="!show"  (click)="addnew_services()">Add More Services</button>		
-							  <button type="button" *ngIf="!allservices"  class="addmorebtn newbtn"   (click)="back_services()">back to  your services</button>	 -->					
 							  <div  *ngIf="!show" >
-								  <!-- <div class="subheadtik card-title" >
-									  {{first_category.categoryName}}  	
-								  </div>	 -->
 								  <div class="sliderholder" >
 									<button class="prebtn">
 											<i class="material-icons">arrow_back_ios</i>
 									</button>
 									<div class="servicecontainer"  >
-										
 										<div class="activehide"  *ngFor="let category of User_services ;let i = index;">
-										
 											<button  (click)= "showService(i)" >
-													<span>{{category.categoryName}}</span>
-											</button>
-											<!-- <input 
-											<name="Service" 
-
-											type="radio" [(ngModel)]="readioService" value= "{{category.categoryId}}" (change)= "showService()" > -->
-											
-										
+												<span>{{category.categoryName}}</span>
+											</button>										
 										</div>
 									</div>
 									<button class="nextbtn" type="submit" >
@@ -65,24 +52,8 @@
 								  <h5 class="text-center">Which service do you provide?</h5>
 								  <div class="container">
 										  <div class="row text-center">
-											<div class="displaycentertik">{{seviceName}}</div> 
-											  <!-- <div class="col-md-3" *ngFor="let category of first_category.services ">
-												  <label class="container1">
-														{{cho_Ser_name}}{{isActive}}
-														{{category.serviceName}}
-													  
-														  <input name="serviceId"  
-														  type="radio" 
-														  (change) = "service(category)"
-													  
-														  >
-													  <span class="checkmark"></span>
-												  </label>
-											  
-											  </div> -->
-											  <!-- <span  class="newbtn " (click)= 'modal1(first_category.services) ' >select</span> -->
-											  <span  class="newbtn btncenter" (click)="service_provide_dailog = true" >select</span>
-											  
+											<div class="displaycentertik">{{seviceName}}</div> 											
+											  <span  class="newbtn btncenter" (click)="service_provide_dailog = true" >select</span>  
 										  </div>
 								  </div>
 								  <div class="card-content selectboxservice"  >
@@ -96,26 +67,11 @@
 											<div class="col-md-3" *ngFor="let customFields of Selected_serveice.customFields
 											;let i = index;" >
 											   <div class="labelclick">
-													  <!-- <span class="checkmark containerselectbox">
-														  <i class="material-icons">
-														  check
-														  </i>
-													  </span> -->
-													  <!-- llllll -->
-													  <!-- <input type="checkbox" ([ngModel])="val" name="val"/>{{val}} -->
 													  <input type="checkbox" (change)="changeEvent($event)" [(ngModel)]="customFields.up" name="p" value="customFields.up">
-  
-													  <!-- <input type="checkbox" (change)="changeEvent($event)" (change)="checkingServ()"/> -->
-  
 												  {{customFields.name}}
-  
-							  
-												  <div class="clearfix"></div>
-												  <!-- <ul *ngFor="let h of customFields.customFieldOptionList">
-													  <li *ngIf="h.pick">{{h.displayText}}</li>
-												  </ul> -->
 
-												  <div *ngFor="let h of customFields.customFieldOptionList">
+												  <div class="clearfix"></div>
+																							  <div *ngFor="let h of customFields.customFieldOptionList">
 													<span class="blue" *ngIf="h.pick">{{h.displayText}}</span>
 												</div>
 
@@ -432,9 +388,6 @@
 
 
 
-   <div>
-	   Hemant
-   </div>
   
   
   

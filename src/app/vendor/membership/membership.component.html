@@ -102,14 +102,19 @@
 												<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.noOfLocationAllowed}} location</li>
 												<li class="list-group-item"><i class="material-icons bluetext" >report</i> Low Priority in Search Results {{plan.priorityInSearch}}</li>
 									</ul>
-									<div class="panel-footer text-center" >
-										<button class="btn btnchoosetik"   type="submit" (click) = "monthlyPrice(plan)" [disabled]="plan.pricingPlanId == pricingPlanId  && payFrequency == 0">SELECTED PLAN
+									<div class="panel-footer text-center" *ngIf="plan.pricingPlanId == pricingPlanId  && payFrequency == 0 ; else opo">
+										<button class="btn btnchoosetik disabled"   type="submit" (click) = "monthlyPrice(plan)" [disabled]="true">SELECTED PLAN
 										</button>
+										<!-- {{payFrequency}} -->
+
 									</div>
-									<!-- <ng-template #other_content>
-										<a class="btn btnchoosetik"   type="submit" (click) = "monthlyPrice(plan)" > CURRENT PLAN	
-											</a>
-									</ng-template> -->
+									
+									<ng-template #opo>
+											<div class="panel-footer text-center">
+										<button class="btn btnchoosetik"   type="submit" (click) = "monthlyPrice(plan)" [disabled]="false">chosse PLAN
+										</button>
+										</div>
+									</ng-template>
 									
 								</div>
 							</div>
@@ -155,11 +160,18 @@
 											<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.noOfLocationAllowed}} location</li>
 											<li class="list-group-item"><i class="material-icons bluetext" >report</i> Low Priority in Search Results {{plan.priorityInSearch}}</li>
 								</ul>
-									<div class="panel-footer text-center">
-
-										<button class="btn btnchoosetik"  type="submit" (click) = "annualPrice(plan)" [disabled]="plan.pricingPlanId == pricingPlanId  && payFrequency == 1">SELECTED PLAN
+									<div *ngIf="plan.pricingPlanId == pricingPlanId  && payFrequency == 1 ; else ooo">
+										<!-- btnchoosetik -->
+										<!-- {{payFrequency}} -->
+										<button  class="btn btnchoosetik disabled" type="submit" (click) = "annualPrice(plan)" [disabled]="true">SELECTED PLAN
 										</button>
 									</div>
+									<ng-template #ooo>
+											<div class="panel-footer text-center">
+										<button   class="btn btnchoosetik" type="submit" (click) = "annualPrice(plan)" [disabled]="false">Choose PLAN
+										</button>
+									</div>
+									</ng-template>
 								</div>
 							</div>
 						</div>
@@ -171,7 +183,7 @@
 </div>               
 </div> 
 </div>
-<app-foot></app-foot>
+<!-- <app-foot></app-foot> -->
 <router-outlet></router-outlet>
 </div>
 

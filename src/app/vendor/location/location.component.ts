@@ -1,11 +1,13 @@
 import { Component, OnInit ,Input , ViewChild, NgZone, ElementRef,} from '@angular/core';
 import { Http,Headers } from '@angular/http';
+//import { } from 'googlemaps';
 import { MapsAPILoader, AgmMap } from '@agm/core';
 import { GoogleMapsAPIWrapper } from '@agm/core/services';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup,FormArray,FormBuilder, Validators, NgForm } from '@angular/forms';
 import swal from 'sweetalert2';
 import { apiService } from '../../shared/service/api.service';
+
 declare var google: any;
  
 interface Marker {
@@ -134,10 +136,12 @@ export class LocationComponent implements OnInit {
     saturdayClose: "", 
     isSaturdayOpen: true, 
     locationPhones: [] };
+    
   address : any = '';
   obj = [];
   k;
   l;
+  zoom:any;
   create_phone = [];
   update_phone1 = [];
   formPhone : any;
@@ -292,9 +296,10 @@ export class LocationComponent implements OnInit {
               });
 
               autocomplete.addListener("place_changed", () => {
+            
                   this.zone.run(() => {
                     //get the place result
-                    let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+                    let place = autocomplete.getPlace();
 
                     //verify result
                     if (place.geometry === undefined || place.geometry === null) {
@@ -413,36 +418,36 @@ export class LocationComponent implements OnInit {
              }    
         }
         //console.log("asdassssssssss",); 
-        if(this.create_phone.length > 0){
-          this.apiService.postData(this.post_phone_number,this.create_phone).subscribe(data =>{
+        //if(this.create_phone.length > 0){
+          this.apiService.postData(this.post_phone_number,reqObj).subscribe(data =>{
             console.log('crrrrrrrrrr',data)
             this.toastr.success(data.statusText);
             this.phone_dailog = false;
             this.create_phone = [];
-            reqObj = [];
-            //this.phoneData.locationPhones
+            //reqObj = [];
+            this.phoneData.locationPhones = reqObj
             },
             error => {
               this.toastr.error(error._body);
               }
           )    
-        }
+        //}
        
-        if(this.update_phone1.length > 0){
-          this.apiService.postData(this.post_phone_number,this.update_phone1).subscribe(data =>{
-            console.log('uuuuuuuu',data)
-            this.toastr.success(data.statusText);
-            this.phone_dailog = false;
-            this.update_phone1 = [] ;
-            reqObj = [];
+        // if(this.update_phone1.length > 0){
+        //   this.apiService.postData(this.post_phone_number,this.update_phone1).subscribe(data =>{
+        //     console.log('uuuuuuuu',data)
+        //     this.toastr.success(data.statusText);
+        //     this.phone_dailog = false;
+        //     this.update_phone1 = [] ;
+        //     reqObj = [];
            
-          },
-          error => {
-              this.toastr.error(error._body);
-            }
-          )
+        //   },
+        //   error => {
+        //       this.toastr.error(error._body);
+        //     }
+        //   )
 
-        }                
+        // }                
       }
 
       removePhone(phoneObj,index) {
@@ -470,6 +475,8 @@ export class LocationComponent implements OnInit {
                                                     this.toastr.success(data.statusText);
                                                     let control = <FormArray>this.formPhone.controls['phoneArry'];
                                                     control.removeAt(index);
+                                                    //this.phoneData.locationPhones.removeAt(index);
+                                                    console.log('phoneData',this.phoneData)
                                                   },(error)=>{ console.log(error);
                                                                this.toastr.error(error._body);
                       });

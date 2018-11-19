@@ -43,7 +43,7 @@
               </form> -->
             </div>
             <div class="clearfix"></div>
-            <section  (click) = "past = true">
+            <section>
               <div class="col-sm-12 nopadd" *ngFor="let data of eventArray;let i=index">
                   
                 <div class="card martop0px" *ngFor="let name of data.eventsDates">
@@ -145,9 +145,11 @@
                 </div>
               </div>
             </section>
-            <section  (click) = "up = true">
+            <section>
+            
               <div class="col-sm-12 nopadd" *ngFor="let data of eventArray;let i=index ">
                 <div class="card martop0px" >
+                    <!-- {{eventArray | json }} -->
                   <div class="card-body borall" *ngFor="let name of data.eventsDates" >
                     <div class="card-block">
                       <div class="col-md-4 col-12 pad_0px">

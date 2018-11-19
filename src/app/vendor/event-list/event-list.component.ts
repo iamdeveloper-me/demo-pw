@@ -53,6 +53,7 @@ export class EventListComponent implements OnInit {
    { 
      this.test = this.datePipe.transform(this.myDate, 'yyyy-MM-dd'); 
       this.objevent = new EventsCreateUpdateVM();
+      this.past_upcomming_event(2);
     }
   
   ngOnInit() {
@@ -68,7 +69,7 @@ export class EventListComponent implements OnInit {
       this.arra = this.countryArray
     })
 
-     this.past_upcomming_event(2);
+     
 
     // this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/eventdetails?Id' +'='+37 ,{headers:headers}).subscribe(data =>{
     // console.log(data.json());})
@@ -201,7 +202,7 @@ export class EventListComponent implements OnInit {
                                                 "startTime": "2018-11-17T06:17:03.990Z",
                                                 "endTime": "2018-11-17T06:17:03.991Z"
                                             }
-                                           // this.objevent.eventsDates.push(eventdates);
+                                            this.objevent.eventsDates.push(eventdates);
                                              this.http.post(this.eventposturl,this.objevent,{headers:headers}).subscribe((data)=>{
                                                let response=JSON.parse(data.text());
                                                   alert(JSON.stringify(response.message));
@@ -305,21 +306,23 @@ export class EventListComponent implements OnInit {
 
   past_upcomming_event(past){
     console.log(past);
-   // if (past == 1) 
-   //  { past = true;
-   //    up = false;
-   //   }else{
-   //    past = false;
-   //    up = true;
-   //   }
+    if (past == 1) 
+     { past = true;
+       this.up = false;
+      }else{
+       past = false;
+       this.up = true;
+      }
+      
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
+    
     this.http.post(this.myevent_Post_url, { Filter: past },{ headers: headers }).subscribe(data => {
       this.eventArray = data.json() as string[];
-      console.log(data.json());
+      console.log(this.eventArray);
     },error => {console.log(error);})
   }
 
@@ -360,19 +363,19 @@ export class EventListComponent implements OnInit {
 }
 export class EventsCreateUpdateVM{
   eventId:number;
-eventTitle:	string
-filesId	:number;
-venueName:	string
+eventTitle:  string
+filesId  :number;
+venueName:  string
 countryId:number;
 districtId:number;
 suburbId:number;
-location:	string
-lat:	number;
-long:	number;
-capacity:	number;
-entry:	string;
-entryFee:	number
-eventDescription:	string;
+location:  string
+lat:  number;
+long:  number;
+capacity:  number;
+entry:  string;
+entryFee:  number
+eventDescription:  string;
 eventsDates: Array<EventsDatesVM>;
 constructor(){
   this.eventId=0;
@@ -392,8 +395,8 @@ constructor(){
 }
 export class EventsDatesVM{
   eventsMoreDatesId:number;
-eventId:	number;
-eventDate:	string;
-startTime:	string;
-endTime:	string;
+eventId:  number;
+eventDate:  string;
+startTime:  string;
+endTime:  string;
 }

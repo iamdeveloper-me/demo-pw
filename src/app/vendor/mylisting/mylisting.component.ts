@@ -8,7 +8,7 @@ import { Http, Headers } from '@angular/http';
 })
 export class MylistingComponent implements OnInit {
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Reviews/postreview'
-  private urlg: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Reviews/myreviews'
+  private base_url : string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Reviews'
   
   countryArray:string[];
   public SearchModel = <any>{};
@@ -41,8 +41,6 @@ export class MylistingComponent implements OnInit {
 
     constructor(public http: Http) { 
         this.MyReviews();
-        this.ReviewReadStatus();
-        this.GetMarkAsPinned();
     }
   Pinned;
   
@@ -56,7 +54,6 @@ export class MylistingComponent implements OnInit {
   }
 
   MyReviews(){
-      this.urlg;
       var data = {
         "page": this.page_number, 
         "pageSize": 10,
@@ -66,7 +63,7 @@ export class MylistingComponent implements OnInit {
         "status": this.optionSelected
       }
     
-    this.http.post(this.urlg, data, { headers: this.header() }).subscribe(
+    this.http.post(this.base_url + "/myreviews", data, { headers: this.header() }).subscribe(
         data =>{
           this.countryArray = data.json()
           this.collection = this.countryArray
@@ -76,26 +73,28 @@ export class MylistingComponent implements OnInit {
     });
   }
   
-  ReviewReadStatus(){
+  ReviewReadStatus(reviewId, reviewStatus){
     var data = {
-        "reviewId": 13,
-        "reviewStatus": 1
+        "reviewId": reviewId,
+        "reviewStatus": reviewStatus
     }
-    var review_status_url = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Reviews/ReviewReadStatus';
-    this.http.post(review_status_url, data, { headers: this.header() }).subscribe(
+
+    this.http.post(this.base_url + "/ReviewReadStatus", data, { headers: this.header() }).subscribe(
         data =>{
         console.log(data.json());
+        this.MyReviews()
     },error=>{
         console.log(error);
     });
   }
 
-  GetMarkAsPinned(){
-      var id =13;
-    var mark_as_pinned = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Reviews/markaspinned?ReviewId' + '=' + id;
-    this.http.get(mark_as_pinned,{ headers: this.header() }).subscribe(
+  GetMarkAsPinned(reviewId){
+    console.log(reviewId)
+
+    this.http.get(this.base_url + "/markaspinned?ReviewId" + '=' + reviewId,{ headers: this.header() }).subscribe(
         data =>{
             console.log(data.json());
+            this.MyReviews()
     },error=>{
         console.log(error);
     });

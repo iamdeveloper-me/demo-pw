@@ -30,20 +30,23 @@
                                   <span class="weeks_ago"> {{category.dateAddedOnString}}</span>
                                   <span class="weeks_ago">  {{category.sendByEmail}}</span>
                               </span>
-                              <span class="reviewbadge badge badge-secondary" (click)="ReviewReadStatus(category.reviewId, 2)"> {{category.reviewStatusString}}</span> 
-                              <button class="pin_tack">
-                              <div *ngIf = "category.isPinned == false" (click)="GetMarkAsPinned(category.reviewId)">  
-                                <i class="fa fa-thumb-tack" aria-hidden="true"></i>not pinned
-                              </div>
-                              <div *ngIf = "category.isPinned == true " (click)="GetMarkAsPinned(category.reviewId)"><i class="fa fa-thumb-tack" aria-hidden="true"></i>pinned
+                              <span *ngIf="category.reviewStatus == 2" class="reviewbadge badge badge-secondary" (click)="ReviewReadStatus(category.reviewId, 1)"> {{category.reviewStatusString}}</span> 
+
+                              <span *ngIf="category.reviewStatus == 1" class="reviewbadge badge badge-secondary" (click)="ReviewReadStatus(category.reviewId, 2)"> {{category.reviewStatusString}}</span> 
+                              
+                              <div>  
+                                <button class="graypin" *ngIf = "category.isPinned == false" (click)="GetMarkAsPinned(category.reviewId)"><i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                                </button>
+                              
+                                <button class="pin_tack" *ngIf = "category.isPinned == true " (click)="GetMarkAsPinned(category.reviewId)"><i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                                </button>
                               </div> 
-                              </button>
                               <div class="clearfix"></div>
                               <div class="rating_star">
-                                  <rating [(ngModel)]="category.rating"></rating>
-                              </div>{{category.rating}}
+                                  <rating [(ngModel)]="category.rating" readonly="isReadonly"   ></rating>
+                              </div><!-- {{category.rating}} -->
                               <div class="textemail">
-                                <p> {{category.comments}}</p>
+                                <p class="breakword"> {{category.comments}}</p>
                               </div>
                               <div class="clearfix"></div>
                               <div class="btn_button text-center">
@@ -82,7 +85,7 @@
         </ul>     
         <pagination-controls (pageChange)="page_number = $event"></pagination-controls>  -->
         
-    <div class="col-sm-12">
+    <div class="col-sm-12" *ngIf="!countryArray">
       <div class="card text-center">
         <div class="paddtop10px">
           <i class="material-icons">star_border</i>
@@ -101,5 +104,5 @@
 
 <div class="clearfix"></div>
    
-</div>  <app-foot></app-foot></div>
+</div> <!--  <app-foot></app-foot> --></div>
 <router-outlet></router-outlet>

@@ -221,14 +221,10 @@ export class BusinessInfoComponent implements OnInit {
             "perfectWeddingAvailable":v.perfectWeddingAvailable,
           }
           
-          console.log(data3);
-          
           let updatebusinessinfo = this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatebusinessinfo",
          data3,{headers:headers})
              
              updatebusinessinfo.subscribe((data)=>{
-               console.log(data.json().message);
-         
                this.toastr.success(data.json().message);
              
                let headers = new  Headers();
@@ -243,17 +239,8 @@ export class BusinessInfoComponent implements OnInit {
 
 
                  setTimeout(() => {
-                  console.log('aaaaaaaaaaa',data.json()); 
                   this.imagecropDailog = false;
                   }, 2000);
-                
-               
-                 console.log(this.imagee);
-                 //if(this.total == 80 && !data.json().files.path)
-                 
-                //  console.log(this.total);
-                //  {   this.imagecropDailog = false;}
-           
                  if(!data.json().files)
                  { 
                    this.imagee = 'https://api.asm.skype.com/v1/objects/0-sa-d7-42ce40a5cedd583b57e96843e17d67e2/views/imgpsh_fullsize'}
@@ -261,16 +248,10 @@ export class BusinessInfoComponent implements OnInit {
                   }
 
                });
-        
-              
+           
               });
-
-
-
         });
       }
-
-
     }
 
     openModel(b){
@@ -354,9 +335,6 @@ export class BusinessInfoComponent implements OnInit {
                         if(responce.status == 200)
                         {
                           this.http.get(this.url,{headers:headers}).subscribe(data =>{
-                          
-                            console.log(this.vendor );
-                            console.log(data.json().perfectWeddingURL );
                             this.modelfield.nameOfBusiness =data.json().nameOfBusiness;
                             this.modelfield.businessDetails = data.json().businessDetails;
                             if(data.json().fbAvailable ==  false)
@@ -418,22 +396,23 @@ export class BusinessInfoComponent implements OnInit {
     } 
     
     switch_fbAvailable(e){
+      
       if(e==true){
         this.modelfield.facebookURL="";
-      this.disabletxtFburl=true;
+        this.disabletxtFburl=false;
       }else{
         this.modelfield.facebookURL="Don't have any url";
-        this.disabletxtFburl=false;
+        this.disabletxtFburl=true;
       }
       this.isValidUrl(this.modelfield.facebookURL,'Fb');
     }
     switch_twitterAvailable(e){
     if(e==true){
       this.modelfield.twitterURL="";
-      this.disabletxtTwurl=true;
+      this.disabletxtTwurl=false;
     }else{
       this.modelfield.twitterURL="Don't have any url";
-      this.disabletxtTwurl=false;
+      this.disabletxtTwurl=true;
     }
       this.isValidUrl(this.modelfield.twitterURL,'Tw');
     }
@@ -441,30 +420,30 @@ export class BusinessInfoComponent implements OnInit {
     switch_googleAvailable(e){
       if(e==true){
         this.modelfield.googleURL="";
-      this.disabletxtGoogeurl=true;
+      this.disabletxtGoogeurl=false;
       }else{
         this.modelfield.googleURL="Don't have any url";
-        this.disabletxtGoogeurl=false;
+        this.disabletxtGoogeurl=true;
       }
       this.isValidUrl(this.modelfield.googleURL,'Google');
     }
     switch_instaAvailable(e){
       if(e==true){
         this.modelfield.instalURL="";
-      this.disabletxtInstaUrl=true;
+      this.disabletxtInstaUrl=false;
       }else{
         this.modelfield.instalURL="Don't have any url";
-        this.disabletxtInstaUrl=false;
+        this.disabletxtInstaUrl=true;
       }
       this.isValidUrl(this.modelfield.instalURL,'Insta');
     }
     switch_perfectWeddingAvailable(e){
       if(e==true){
         this.modelfield.perfectWeddingURL="";
-      this.disabletxtOtherUrl=true;
+      this.disabletxtOtherUrl=false;
       }else{
         this.modelfield.perfectWeddingURL="Don't have any url";
-        this.disabletxtOtherUrl=false;
+        this.disabletxtOtherUrl=true;
       }
       this.isValidUrl(this.modelfield.perfectWeddingURL,'Other');
     }

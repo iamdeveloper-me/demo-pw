@@ -1,10 +1,11 @@
 import { CropperSettings, ImageCropperComponent } from 'ng2-img-cropper';
-import { Component, OnInit ,Input , ViewChild, NgZone,} from '@angular/core';
+import { Component, OnInit ,Input , ViewChild, NgZone, ElementRef,} from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms'
 import 'rxjs/add/operator/delay';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
+import { isValid } from 'date-fns';
 @Component({
   selector: 'app-business-info',
   templateUrl: './business-info.component.html',
@@ -21,7 +22,7 @@ export class BusinessInfoComponent implements OnInit {
   imagecropDailog = false;
   BusinessDailog = false;
   progress = false;
-  disabletxtFburl=true;
+   
   cropperupload =true;
   nodata = '';
   Description;
@@ -32,6 +33,21 @@ export class BusinessInfoComponent implements OnInit {
   Businesname;
   perfectWedding;
   facebook;
+  isValidFbUrl = false;
+  disabletxtFburl=true;
+
+  isVaidTwUrl = false;
+  disabletxtTwurl=true;
+
+  isValidGoogeUrl=false
+  disabletxtGoogeurl=true;
+  
+  isValidInstaUrl=false;
+  disabletxtInstaUrl=true;
+
+  isValidOtherUrl=false;
+  disabletxtOtherUrl=true;
+
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader';
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessinfo'
   vendor: any = { nameOfBusiness: '',
@@ -264,9 +280,10 @@ export class BusinessInfoComponent implements OnInit {
 
 
     upForm(e,data){
+      
            console.log(e.value);
            console.log(data);
-
+           
           
           this.facebookDailog = false;
           this.twitterDailog = false;
@@ -276,7 +293,7 @@ export class BusinessInfoComponent implements OnInit {
           this.DescriptionDailog = false;
           this.BusinessDailog = false;
           this.imagecropDailog = false;
-      
+          
               let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
               headers.append('Accept', 'application/json')
@@ -287,6 +304,7 @@ export class BusinessInfoComponent implements OnInit {
               e.value.instaAvailable == false && !e.value.instalURL ||
               e.value.perfectWeddingAvailable == false && !e.value.perfectWeddingURL ||
               e.value.twitterAvailable == false && !e.value.twitterURL){
+               
                 this.toastr.error("Can not save empty field")
                 this.http.get(this.url,{headers:headers}).subscribe(data =>{
                           
@@ -401,48 +419,74 @@ export class BusinessInfoComponent implements OnInit {
     
     switch_fbAvailable(e){
       if(e==true){
+        this.modelfield.facebookURL="";
       this.disabletxtFburl=true;
       }else{
-      this.disabletxtFburl=false;
+        this.modelfield.facebookURL="Don't have any url";
+        this.disabletxtFburl=false;
       }
-      if(e  ==  false || e ==true)
-      {
-        this.modelfield.facebookURL = '';
-      }
+      this.isValidUrl(this.modelfield.facebookURL,'Fb');
     }
     switch_twitterAvailable(e){
-      if(e ==  false || e ==true)
-      {
-        this.modelfield.twitterURL = '';
-
-      }
+    if(e==true){
+      this.modelfield.twitterURL="";
+      this.disabletxtTwurl=true;
+    }else{
+      this.modelfield.twitterURL="Don't have any url";
+      this.disabletxtTwurl=false;
+    }
+      this.isValidUrl(this.modelfield.twitterURL,'Tw');
     }
 
     switch_googleAvailable(e){
-
-
-      if(e  ==  false || e ==true)
-      {
-        this.modelfield.googleURL = '';
-        
+      if(e==true){
+        this.modelfield.googleURL="";
+      this.disabletxtGoogeurl=true;
+      }else{
+        this.modelfield.googleURL="Don't have any url";
+        this.disabletxtGoogeurl=false;
       }
+      this.isValidUrl(this.modelfield.googleURL,'Google');
     }
     switch_instaAvailable(e){
-
-      if(e ==  false || e ==true)
-      {
-        this.modelfield.instalURL = '';
-       
+      if(e==true){
+        this.modelfield.instalURL="";
+      this.disabletxtInstaUrl=true;
+      }else{
+        this.modelfield.instalURL="Don't have any url";
+        this.disabletxtInstaUrl=false;
       }
-
+      this.isValidUrl(this.modelfield.instalURL,'Insta');
     }
     switch_perfectWeddingAvailable(e){
-      if(e ==  false || e ==true)
-      {
-        this.modelfield.perfectWeddingURL = '';
-       
+      if(e==true){
+        this.modelfield.perfectWeddingURL="";
+      this.disabletxtOtherUrl=true;
+      }else{
+        this.modelfield.perfectWeddingURL="Don't have any url";
+        this.disabletxtOtherUrl=false;
       }
-
+      this.isValidUrl(this.modelfield.perfectWeddingURL,'Other');
     }
 
+isValidUrl(url, urlType){
+  let matcher = /^(?:\w+:)?\/\/([^\s\.]+\.\S{2}|localhost[\:?\d]*)\S*$/;
+  switch(urlType){
+    case 'Fb':
+    this.isValidFbUrl= matcher.test(url);
+    break;
+    case 'Tw':
+    this.isVaidTwUrl = matcher.test(url);
+    break;
+    case 'Google':
+    this.isValidGoogeUrl = matcher.test(url);
+    break;
+    case 'Insta':
+    this.isValidInstaUrl = matcher.test(url);
+    break;
+    case 'Other':
+    this.isValidOtherUrl = matcher.test(url);
+    break;
+  }
+}
 }

@@ -34,14 +34,17 @@ export class VediosettingComponent implements OnInit {
   video_all_data= [];
   constructor(private http: Http,private fb: FormBuilder) {
     this.createForm();
+    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 
     this.validtionform = fb.group({
       'id': new FormControl(Validators.required),
       'title': new FormControl(Validators.required),
-      'link': new FormControl(Validators.required),
+      'link': new FormControl(Validators.required,Validators.pattern(reg)),
     });
    }
+   get title() { return this.validtionform.get('title'); }
 
+   get link() { return this.validtionform.get('link'); }
   createForm() {
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.form = this.fb.group({
@@ -152,6 +155,7 @@ deleteData(data){
               this.video_all_data.splice(this.video_all_data.indexOf(data.videosId),1);
                 console.log('Delete Responce '+res)
                                            })
+                                           this.ngOnInit();
           }
       
 }

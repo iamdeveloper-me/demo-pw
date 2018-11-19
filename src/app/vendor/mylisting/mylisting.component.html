@@ -10,7 +10,7 @@
         <div id ="navmenu">
           <app-navemenu></app-navemenu>
         </div>
-        <section class="Reviews_page container-fluid mobilefixedcontainer">
+        <section *ngIf="countryArray" class="Reviews_page container-fluid mobilefixedcontainer">
             <div class="man_info">
               
               <!-- code by v -->
@@ -19,7 +19,7 @@
               </select>
 
             <div class="clearfix"></div>
-            <div *ngIf='countryArray.length>0' class="col-sm-12">
+            <div class="col-sm-12">
               <div *ngFor="let category of countryArray.items" ngClass="{active: n == countryArray.page}">
                        <!--    <a (click)="search(n)" *ngIf="n != countryArray.page">{{n+1}}</a> -->
                           <span *ngIf="n == countryArray.page">{{n+1}}</span>
@@ -30,27 +30,23 @@
                                   <span class="weeks_ago"> {{category.dateAddedOnString}}</span>
                                   <span class="weeks_ago">  {{category.sendByEmail}}</span>
                               </span>
-                              <span class="reviewbadge badge badge-secondary"> {{category.reviewStatusString}}</span> 
-                              <button class="pin_tack">
-                              <div *ngIf = "category.isPinned == true">  
-                                <i class="fa fa-thumb-tack" aria-hidden="true"></i>
-                              </div>
-                              <div *ngIf = "category.isPinned == false">  
-                                  <i class="fa fa-thumb-tack" aria-hidden="true"></i>
-                                  not pinned
-                                </div>
-                                 <div *ngIf = "category.isPinned == true
-                                 ">  
-                                  <i class="fa fa-thumb-tack" aria-hidden="true"></i>
-                                  pinned
-                                </div> 
-                              </button>
+                              <span *ngIf="category.reviewStatus == 2" class="reviewbadge badge badge-secondary" (click)="ReviewReadStatus(category.reviewId, 1)"> {{category.reviewStatusString}}</span> 
+
+                              <span *ngIf="category.reviewStatus == 1" class="reviewbadge badge badge-secondary" (click)="ReviewReadStatus(category.reviewId, 2)"> {{category.reviewStatusString}}</span> 
+                              
+                              <div>  
+                                <button class="graypin" *ngIf = "category.isPinned == false" (click)="GetMarkAsPinned(category.reviewId)"><i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                                </button>
+                              
+                                <button class="pin_tack" *ngIf = "category.isPinned == true " (click)="GetMarkAsPinned(category.reviewId)"><i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                                </button>
+                              </div> 
                               <div class="clearfix"></div>
                               <div class="rating_star">
-                                  <rating [(ngModel)]="category.rating"></rating>
-                              </div>{{category.rating}}
+                                  <rating [(ngModel)]="category.rating" readonly="isReadonly"   ></rating>
+                              </div><!-- {{category.rating}} -->
                               <div class="textemail">
-                                <p> {{category.comments}}</p>
+                                <p class="breakword"> {{category.comments}}</p>
                               </div>
                               <div class="clearfix"></div>
                               <div class="btn_button text-center">
@@ -89,8 +85,8 @@
         </ul>     
         <pagination-controls (pageChange)="page_number = $event"></pagination-controls>  -->
         
-    <div class="col-sm-12">
-      <!-- <div class="card text-center">
+    <div class="col-sm-12" *ngIf="!countryArray">
+      <div class="card text-center">
         <div class="paddtop10px">
           <i class="material-icons">star_border</i>
           <i class="material-icons">star_border</i>
@@ -99,7 +95,7 @@
           <i class="material-icons">star_border</i>
         </div>
           <p class="lineheight30px">Their are no customer review yet.</p>
-      </div> -->
+      </div>
     </div>
 
 
@@ -108,5 +104,5 @@
 
 <div class="clearfix"></div>
    
-</div>  <app-foot></app-foot></div>
+</div> <!--  <app-foot></app-foot> --></div>
 <router-outlet></router-outlet>

@@ -301,6 +301,8 @@ export class LocationComponent implements OnInit {
                     //get the place result
                     let place = autocomplete.getPlace();
 
+                   // let place: any;
+
                     //verify result
                     if (place.geometry === undefined || place.geometry === null) {
                       return;
@@ -311,7 +313,7 @@ export class LocationComponent implements OnInit {
                     this.address = place.formatted_address;
                     this.mapDialogObj.lat = place.geometry.location.lat();
                     this.mapDialogObj.lng = place.geometry.location.lng();
-                    this.zoom = 12;
+                     this.zoom = 12;
                   });
                 });
               });

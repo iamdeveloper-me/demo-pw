@@ -84,7 +84,7 @@
                     </td>
                     <td class="text-center" (click) = openModel(data) >
                         <button class="btn btn-success editbtn"  id="prompt-function"   data-reactid="333" (click)="description_dailog = true ">Edit</button><br/>
-                      <button class="btn btn-warining deletebtn"  (click)="delete_portfolio(data,i)">Delete</button>
+                        <button class="btn btn-warining deletebtn"  (click)="delete_portfolio(data,i)">Delete</button>
                     </td>
                 </tr>
               </table>
@@ -99,8 +99,6 @@
   <router-outlet></router-outlet> 
 
   
-  
-   
   <div class="modal fade" [ngClass] = "{'show' : description_dailog}" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <form (ngSubmit)="editSettting(portEdit)" #portEdit="ngForm">
@@ -276,6 +274,7 @@
             <button type="submit" class="btn newbtn" [disabled]="a.length == 0 || tai.length == 0">Save</button>&nbsp;
             <button type="button" class="btn  newbtn newcancelbtn" (click)="closeModel()">Cancel</button>
           </div>
+
         </div>
       </form>            
     </div>

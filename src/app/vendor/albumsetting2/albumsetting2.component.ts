@@ -38,6 +38,7 @@ colour_tag_error;
 albumImagesModify = [];
 private mygeturl: string  = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myportfolio"
 private update_portfolio: string  = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updateportfolio"
+
 constructor( public http: Http,public toastr: ToastrService ) { }
     tags_bage(e){
                 
@@ -84,7 +85,18 @@ constructor( public http: Http,public toastr: ToastrService ) { }
     }
     ngOnInit() {
     $.getScript('./assets/js/vendorsidebar.js');
+
                 let headers = new Headers();
+              //     if(this.a.length == 0 )
+              // {
+              
+              //    this.colour_tag_error = "required colour tags"
+              // }
+              //  if(this.tai.length == 0 )
+              // { 
+               
+              //    this.tag_error = "required tags"
+              // }
                 var authToken = localStorage.getItem('userToken');
                 headers.append('Accept', 'application/json')
                 headers.append('Content-Type', 'application/json');
@@ -104,10 +116,12 @@ constructor( public http: Http,public toastr: ToastrService ) { }
                                 this.albumImagesModify.push(item);
                             } 
                       })
+
     }
     openModel(e)
     {
       this.formdata = e;
+
 
           this.tai = this.formdata.tags;
           this.a = this.formdata.colorTags;

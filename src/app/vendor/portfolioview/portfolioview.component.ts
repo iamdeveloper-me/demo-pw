@@ -68,6 +68,7 @@ export class PortfolioviewComponent implements OnInit {
     hasBaseDropZoneOver = false;
     hasAnotherDropZoneOver = false;
   // Angular2 File Upload
+
     fileOverBase(e: any): void {
         this.hasBaseDropZoneOver = e;
     }
@@ -118,10 +119,12 @@ export class PortfolioviewComponent implements OnInit {
     setbackground(setId){
         let headers = new Headers();
         console.log(setId)
+
         var authToken = localStorage.getItem('userToken');
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
+
     
        this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/setasstorefrontimage?PortfolioId'+ '=' + setId,{headers:headers}).subscribe(data =>{
             this.Set_as_background = data.json() as string[];
@@ -178,6 +181,7 @@ swal({
     //  }
     }else{
      // alert('Cancel Process !');
+
     }
    },error=>{
      alert(JSON.stringify(error));
@@ -187,4 +191,5 @@ swal({
   }
 
 }
+
 

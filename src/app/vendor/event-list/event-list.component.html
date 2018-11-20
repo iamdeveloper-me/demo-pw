@@ -124,7 +124,7 @@
     </div>
   </div>
   
-    <form (ngSubmit)="event(objevent)" #list="ngForm">
+  <form (ngSubmit)="event(objevent)" #list="ngForm">
       <div class="modal fade" [ngClass] = "{'show' : twitterDailog}" id="facebook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -140,7 +140,12 @@
                   <div class="col-sm-6">
                       <div class="form-group">
                           <div class="input-effect form-group md-form ">
-                              <input class="effect-16 validate" #fileInput type="file" name="image" id="image" (change)="onFileChanged($event)" />
+                              <input class="effect-16 validate" 
+                               #fileInput 
+                               type="file" 
+                               name="image" 
+                               id="image" 
+                               (change)="onFileChanged($event)" />
                               <label>Event Image</label>
                             <span class="focus-border"></span>
                             </div>
@@ -322,11 +327,11 @@
                 </div>
                 <div class="col-sm-12 nopadd date_picker">
                   <div class="col-sm-6">
-                      <div class="form-group">
-                          <div class="input-effect form-group md-form ">
+                      <div class="form-group marbot0px">
+                          <div class="input-effect form-group md-form marbot0px">
                             <select 
                             [(ngModel)]="objevent.entry" 
-                            class="effect-16 validate"
+                            class="effect-16 validate marbot0px"
                              name="entry" 
                              id="entry">
             
@@ -339,9 +344,9 @@
                         </div>
                   </div>
                   <div class="col-sm-6">
-                      <div class="form-group">
-                          <div class="input-effect form-group md-form ">
-                            <input type="text" class="effect-16 validate" 
+                      <div class="form-group marbot0px">
+                          <div class="input-effect form-group md-form marbot0px">
+                            <input type="text" class="effect-16 validate marbot0px" 
                             [(ngModel)]="objevent.entryFee" 
                             name="entryFee"
                             id="entryFee"
@@ -366,29 +371,23 @@
           </div>       
         </div>          
       </div>               
-    </form>
-  
-  
-  
+  </form>
   <form (ngSubmit)="editsave(data)" #data="ngForm">
     <div class="modal fade " [ngClass] = "{'show' : eventupdaterDailog}" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-body">
-  
             <div class="modal-header text-center">
                 <h4 class="modal-title">Edit Event</h4>
-              <button type="button" class="close btn_mar_padd" (click) = "closeModel()">
-                <span aria-hidden="true">&times;</span>
-              </button>
+                <button type="button" class="close btn_mar_padd" (click) = "closeModel()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-        
             <div class="modal-body">
-              <div class="col-sm-6">
+              <div class="col-sm-12 nopadd">
                   <div class="form-group">
                       <div class="input-effect form-group md-form ">
                         <input class="effect-16 validate whitebg" required="required" 
-                        [(ngModel)]="modelfield.eventTitle" 
+                        [ngModel]="modelfield.eventTitle" 
                         id="Title"
                         name="Title"
                         #Title="ngModel" 
@@ -483,7 +482,7 @@
                       </div>
                     </div>
                 </div>
-              <div class="col-sm-6">
+              <div class="col-sm-12 nopadd rowpaddadjust">
                 <div class="form-group date_picker">
                   <label>event date:</label> <br>
                 
@@ -496,6 +495,14 @@
                   
   
                 </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="form-group date_picker">
+                    <label>
+                      <a>start time </a>
+                    </label><br>
+                    <input type="time" class="form-control"  [(ngModel)]="startimee"  name="startTime" id="startTime"/>
+                  </div>
               </div>
               <div class="col-sm-6">
                     <div class="form-group date_picker">
@@ -511,39 +518,26 @@
                     </div>
               </div>
               <div class="col-sm-6">
-                      <div class="form-group date_picker">
-                        <label>
-                          <a>start time</a>
-                        </label><br>
-                        <input type="time" class="form-control"  [(ngModel)]="startTimee"  name="startTime" id="startTime"/>
-<!--                       
-                        <select  >
-                          <option>AM</option>
-                          <option>PM</option>
-                        </select> -->
-                      </div>
-              </div>
-              <div class="col-sm-6">
-                  <div class="form-group">
-                    <div class="input-effect form-group md-form ">
-                      <input type="text" class="effect-16 validate" required="required" 
-                      [(ngModel)]="modelfield.location"
-                      name="Location" 
-                      id="Location"
-                      #Location="ngModel" 
-                      required 
-                      placeholder="required">
-                      <label>Location}</label>
-                      <small class="form-text text-muted danger" *ngIf="Location.errors?.required">required error</small>
-                      <span class="focus-border"></span>
-                    </div>
+                <div class="form-group">
+                  <div class="input-effect form-group md-form ">
+                    <input type="text" class="effect-16 validate" required="required" 
+                    [ngModel]="modelfield.location"
+                    name="Location" 
+                    id="Location"
+                    #Location="ngModel" 
+                    required 
+                    placeholder="required">
+                    <label>Location}</label>
+                    <small class="form-text text-muted danger" *ngIf="Location.errors?.required">required error</small>
+                    <span class="focus-border"></span>
                   </div>
+                </div>
               </div>
               <div class="col-sm-6">
               <div class="form-group">
                 <div class="input-effect form-group md-form ">
                   <input type="text" class="effect-16 validate" required="required" 
-                  [(ngModel)]="modelfield.capacity"
+                  [ngModel]="modelfield.capacity"
                   name="Capacity" 
                   id="Capacity"
                   #Capacity="ngModel" 
@@ -559,7 +553,7 @@
                 <div class="form-group">
                   <div class="input-effect form-group md-form ">
                     <input type="text" class="effect-16 validate" required="required" 
-                    [(ngModel)]="modelfield.eventDescription"
+                    [ngModel]="modelfield.eventDescription"
                     name="eventDescription" 
                     id="eventDescription"
                     #eventDescription="ngModel" 
@@ -575,7 +569,7 @@
                 <div class="form-group">
                   <div class="input-effect form-group md-form ">
                     <input type="text" class="effect-16 validate" required="required" 
-                    [(ngModel)]="modelfield.entry" 
+                    [ngModel]="modelfield.entry" 
                     name="entry"
                     id="entry"
                     #entry="ngModel" 
@@ -590,10 +584,10 @@
                 </div>
               </div>  
               <div class="col-sm-6">
-                <div class="form-group">
-                  <div class="input-effect form-group md-form ">
-                    <input type="text" class="effect-16 validate" required="required" 
-                    [(ngModel)]="modelfield.entryFee"
+                <div class="form-group marbot0px">
+                  <div class="input-effect form-group md-form marbot0px">
+                    <input type="text" class="effect-16 validate marbot0px" required="required" 
+                    [ngModel]="modelfield.entryFee"
                     name="entryFee" 
                     id="entryFee"
                     #entryFee="ngModel" 
@@ -607,21 +601,21 @@
                 </div>
               </div>
               <div class="col-sm-6">
-              <div class="form-group">
-                <div class="input-effect form-group md-form ">
-                  <input type="text" class="effect-16 validate" required="required" 
-                  [(ngModel)]="modelfield.venueName"
-                  name="venueName" 
-                  id="venueName"
-                  #venueName="ngModel" 
-                  required 
-                  placeholder="required">
-  
-                  <label>VenueName</label>
-                  <small class="form-text text-muted danger" *ngIf="venueName.errors?.required">required error</small>
-                  <span class="focus-border"></span>
+                <div class="form-group marbot0px">
+                  <div class="input-effect form-group md-form marbot0px">
+                    <input type="text" class="effect-16 validate marbot0px" required="required" 
+                    [ngModel]="modelfield.venueName"
+                    name="venueName" 
+                    id="venueName"
+                    #venueName="ngModel" 
+                    required 
+                    placeholder="required">
+    
+                    <label>VenueName</label>
+                    <small class="form-text text-muted danger" *ngIf="venueName.errors?.required">required error</small>
+                    <span class="focus-border"></span>
+                  </div>
                 </div>
-              </div>
              </div> 
             </div>
             <div class="modal-footer">
@@ -629,8 +623,6 @@
   
               <button type="button" class="btn  newbtn newcancelbtn" (click) = "closeModel()">Cancel</button>
             </div>
-  
-          </div>
         </div>
       </div>
     </div>

@@ -41,17 +41,15 @@ private update_portfolio: string  = "http://testapp-env.tyad3n63sa.ap-south-1.el
 
       constructor( public http: Http,public toastr: ToastrService ) { }
             tags_bage(e){
-                        
-                         
-                          if(typeof(e) == 'undefined' )
-                         {
-                           this.tag_error = "empty tag not added tags"
-                         }else{
-                          this.tai.push(e);
-                                 
-                          console.log(this.tai);
-                                 this.taggg = '';
-                         }
+                            if(typeof(e) == 'undefined' )
+                           {
+                             this.tag_error = "empty tag not added tags"
+                           }else{
+                            this.tai.push(e);
+                                   
+                            console.log(this.tai);
+                                   this.taggg = '';
+                           }
                         }
             colour_picker(d){
                     console.log(d)
@@ -59,33 +57,40 @@ private update_portfolio: string  = "http://testapp-env.tyad3n63sa.ap-south-1.el
                     this.a.push(this.colour );
                    // console.log( this.colour_picker1);
                     this.a = this.a.filter((el, i, a) => i === a.indexOf(el));
-                   
+               if(this.a.length == 0 )
+              {   
+                 this.colour_tag_error = "required colour tags"
+              }
+
                     console.log( this.a);
                   }
             remove_tag_picker(g){
               console.log(g); 
               this.tai.splice(g, 1);
               console.log(this.tai); 
-              if(this.tai.length == 0 )
-              { 
-               
-                 this.tag_error = "required tags"
-              }
+             
             }
             remove_colour_picker(g){
               console.log(g);
               this.a.splice(g, 1);
               console.log(g); 
-              if(this.a.length == 0 )
-              {
-              
-                 this.colour_tag_error = "required colour tags"
-              }
+            
               
             }
     ngOnInit() {
+
      $.getScript('./assets/js/vendorsidebar.js');
                 let headers = new Headers();
+              //     if(this.a.length == 0 )
+              // {
+              
+              //    this.colour_tag_error = "required colour tags"
+              // }
+              //  if(this.tai.length == 0 )
+              // { 
+               
+              //    this.tag_error = "required tags"
+              // }
                 var authToken = localStorage.getItem('userToken');
                 headers.append('Accept', 'application/json')
                 headers.append('Content-Type', 'application/json');
@@ -109,12 +114,35 @@ private update_portfolio: string  = "http://testapp-env.tyad3n63sa.ap-south-1.el
             openModel(e)
             {
               this.formdata = e;
-
+           
                   this.tai = this.formdata.tags;
                   this.a = this.formdata.colorTags;
+
+
+                       if(this.a.length == 0 )
+                      {
+                      
+                         this.colour_tag_error = "required colour tags"
+                      }
+                       if(this.tai.length == 0 )
+                      { 
+                       
+                         this.tag_error = "required tags"
+                      }
             }
         editSettting(e){
-                    
+
+
+                      if(this.a.length == 0 )
+                      {
+                      
+                         this.colour_tag_error = "required colour tags"
+                      }
+                       if(this.tai.length == 0 )
+                      { 
+                       
+                         this.tag_error = "required tags"
+                      }
                         console.log(e);
                         const fire = {
                           portfolioId: e.value.portfolioId,
@@ -124,6 +152,7 @@ private update_portfolio: string  = "http://testapp-env.tyad3n63sa.ap-south-1.el
                           setAsBackgroud: false
                         }
                         console.log(fire);
+
                         let headers = new Headers();
                         var authToken = localStorage.getItem('userToken');
                         headers.append('Accept', 'application/json')

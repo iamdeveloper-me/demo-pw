@@ -115,103 +115,99 @@ export class PortfolioviewComponent implements OnInit {
     this.hasAnotherDropZoneOver = e;
   }
 
- list:any = {
-    "filesId": 1
-  }
-  uploadAll(){
-    this.uploadphoto_dailog = false;
-      
-    const formData = new FormData();
-    for(let file of this.uploader.queue){
-    formData.append(file['some'].name,file['some'])
-    }        
-  
-    let headers = new  Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append("Authorization",'Bearer '+authToken);
-
-    this.http.post(this.uploadimage,formData,{headers:headers})
-      .subscribe(data =>{ 
-        console.log(data.json().filesId);
-        const data2 = {
-            portfolioId: 0,
-            filesId: data.json().filesId,
-            tags: "string",
-            colorTags: "string",
-            setAsBackgroud: true
-          }
-
-          console.log(data2);
-        this.http.post(this.addportfolio,data2,{headers:headers})
-      .subscribe(data =>{ 
-        console.log(data.json());
-        this.http.get(this.mygeturl,{headers:headers})
-        .subscribe(data =>{console.log(data.json()); 
-         this.PortgetArray =data.json() });
-      
-      },(error)=>{console.log(error)});
-      
-      },(error)=>{console.log(error)});
-  }
-
-
-  closeModel(){
-       
-  this.uploadphoto_dailog = false;
-}
-setbackground(setId){
- let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization",'Bearer '+authToken);
-  
-this.http.get(this.Setasbackground,{headers:headers}).subscribe(data =>{
-        this.Set_as_background = data.json() as string[];
-        console.log( this.Set_as_background );
-        this.toastr.success(data.json().message);
-    },error=>{console.log(error)})
-  console.log(setId)
-}
-
-
-  store_front_Image(){
-
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization",'Bearer '+authToken);
-  
-    this.http.get(this.BackgroundImage,{headers:headers}).subscribe(data =>{
-        console.log(data.json());},error=>{console.log(error)})
-
-  }
-
-
-  delete_portfolio(e,index){
-
-    let con = confirm('Are you sure you want to delete this?')
-    if (con) {
-            
-        console.log(e);
-        var id = e.portfolioId;
-        console.log(id);
-        this.PortgetArray.splice(index, 1);
-        let headers = new Headers();
-        var authToken = localStorage.getItem('userToken');
-        headers.append('Accept', 'application/json')
-        headers.append('Content-Type', 'application/json');
-        headers.append("Authorization", 'Bearer ' + authToken);
-        console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/removeportfolio?portfolioId'+ '=' + id);
-        this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/removeportfolio',{portfolioId: id}, { headers: headers }).subscribe(data => {
+   list:any = {
+      "filesId": 1
+    }
+    uploadAll(){
+      this.uploadphoto_dailog = false;
+        
+      const formData = new FormData();
+      for(let file of this.uploader.queue){
+      formData.append(file['some'].name,file['some'])
+      }        
     
-          console.log(data.json());
-          this.toastr.success(data.json().message);
-        }, error => { console.log(error) });
+      let headers = new  Headers();
+      var authToken = localStorage.getItem('userToken');
+      headers.append("Authorization",'Bearer '+authToken);
 
+      this.http.post(this.uploadimage,formData,{headers:headers})
+        .subscribe(data =>{ 
+          console.log(data.json().filesId);
+          const data2 = {
+              portfolioId: 0,
+              filesId: data.json().filesId,
+              tags: "",
+              colorTags: "",
+              setAsBackgroud: false
+            }
+
+            console.log(data2);
+          this.http.post(this.addportfolio,data2,{headers:headers})
+        .subscribe(data =>{ 
+          console.log(data.json());
+          this.http.get(this.mygeturl,{headers:headers})
+          .subscribe(data =>{console.log(data.json()); 
+           this.PortgetArray =data.json() });
+        
+        },(error)=>{console.log(error)});
+        
+        },(error)=>{console.log(error)});
     }
 
 
-  }
+   closeModel(){ this.uploadphoto_dailog = false;
+    }
+
+
+
+    setbackground(setId){
+     let headers = new Headers();
+        var authToken = localStorage.getItem('userToken');
+        headers.append('Accept', 'application/json')
+        headers.append('Content-Type', 'application/json');
+        headers.append("Authorization",'Bearer '+authToken);
+                          
+                        this.http.get(this.Setasbackground,{headers:headers}).subscribe(data =>{
+                                this.Set_as_background = data.json() as string[];
+                                console.log( this.Set_as_background );
+                                this.toastr.success(data.json().message);
+                            },error=>{console.log(error)})
+                          console.log(setId)
+    }
+
+    store_front_Image(){
+
+      let headers = new Headers();
+      var authToken = localStorage.getItem('userToken');
+      headers.append('Accept', 'application/json')
+      headers.append('Content-Type', 'application/json');
+      headers.append("Authorization",'Bearer '+authToken);
+    
+      this.http.get(this.BackgroundImage,{headers:headers}).subscribe(data =>{
+          console.log(data.json());},error=>{console.log(error)})
+    }
+
+    delete_portfolio(e,index){
+
+      let con = confirm('Are you sure you want to delete this?')
+      if (con) {
+              
+          console.log(e);
+          var id = e.portfolioId;
+          console.log(id);
+          this.PortgetArray.splice(index, 1);
+          let headers = new Headers();
+          var authToken = localStorage.getItem('userToken');
+          headers.append('Accept', 'application/json')
+          headers.append('Content-Type', 'application/json');
+          headers.append("Authorization", 'Bearer ' + authToken);
+          console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/removeportfolio?portfolioId'+ '=' + id);
+          this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/removeportfolio',{portfolioId: id}, { headers: headers }).subscribe(data => {
+      
+            console.log(data.json());
+            this.toastr.success(data.json().message);
+          }, error => { console.log(error) });
+
+      }
+    }
 }

@@ -4,7 +4,7 @@ import { Http, Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { Subject } from 'rxjs';
-
+import swal from 'sweetalert2';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 
 export class NgbduserModalContent {
@@ -151,6 +151,7 @@ export class EventListComponent implements OnInit {
   // function run on file selection..
   onFileChanged(event) {
     this.imageToUpload = event.target.files[0];
+   
   }
 
   addFile(info): void {
@@ -171,7 +172,8 @@ export class EventListComponent implements OnInit {
       }
 
 
-      console.log(fileToUpload)
+      console.log(fileToUpload);
+    
       this.http.post(this.uploadimage, formData, { headers: headers })
         .subscribe(data => { 
           this.fileIdfield = data.json() as string[], 
@@ -323,13 +325,13 @@ export class EventListComponent implements OnInit {
 
   past_upcomming_event(past){
     console.log(past);
-    if (past == 1) 
-     { past = true;
-       this.up = false;
-      }else{
-       past = false;
-       this.up = true;
-      }
+    // if (past == 1) 
+    //  { past = true;
+    //    this.up = false;
+    //   }else{
+    //    past = false;
+    //    this.up = true;
+    //   }
       
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
@@ -344,7 +346,19 @@ export class EventListComponent implements OnInit {
   }
 
   deletevent(data, index) {
-    alert(data)
+    swal({
+      title: "Are you sure?",
+  text: "You will not be able to recover this imaginary file!",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonClass: "btn-default",
+  confirmButtonText: "Yes, delete it!",
+  cancelButtonText: "No, cancel plx!",
+   }).then((res)=>{
+     console.log(res);
+     if(res.value===true){
+      // alert('delete Process !');
+          // alert(data)
     // console.log(id);
     var id = data.eventId;
     console.log(id);
@@ -358,6 +372,14 @@ export class EventListComponent implements OnInit {
     this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id' + '=' + id, { headers: headers }).subscribe(data => {
       this.toastr.success("delete sucessfully");
     }, error => { console.log(error) });
+    //  alert(JSON.stringify(res));
+     }else{
+      // alert('Cancel Process !');
+     }
+    },error=>{
+      alert(JSON.stringify(error));
+   })
+     return;
   }
 
   country(event): void {

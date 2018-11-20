@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import swal from 'sweetalert2';
+
 @Component({
   selector: 'app-discountdeals',
   templateUrl: './discountdeals.component.html',
@@ -10,6 +12,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 export class DiscountdealsComponent implements OnInit {
 
   editdeal_dailog = false;  
+  dealservice = false;
   createdeal_dailog = false;
   private discountGet: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/discounts'
   discount:any = [];
@@ -35,6 +38,9 @@ export class DiscountdealsComponent implements OnInit {
   private mydeal: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mydeals'
   recentmydeal:any = [];
   readioSelected_serv:boolean;
+
+  private deletedeal : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/deletedeal'
+
   constructor(public http: Http,public toastr: ToastrService) {
    
    }
@@ -116,7 +122,7 @@ export class DiscountdealsComponent implements OnInit {
 open(c){console.log(c);}
 
 updatedis(service){
-  this.createdial = false;
+  this.dealservice = false;
   console.log(service.value.select);
   console.log(service.value.select.title);
  this.disTitle = service.value.select.title;
@@ -124,21 +130,25 @@ updatedis(service){
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
   var id = service.value.select.discountId;
-
+  const a = {
+              discountId: service.value.select.discountId,
+              title:  service.value.select.title,
+              discount: service.value.select.discount
+             }
+         
   headers.append('Accept', 'application/json')
   headers.append('Content-Type', 'application/json');
   headers.append("Authorization",'Bearer '+authToken);
-this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatediscount?DiscountId'+'='+id, {Title: service.value.select.title ,Discount: service.value.select.discount
-},{headers:headers}).subscribe(
+this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatediscount?DiscountId'+'='+id, 
+   a,{headers:headers}).subscribe(
     data =>{  
     console.log(data.json());
    this.toastr.success("Discount updated successfully."); 
-    this.createdial = false;
+    this.dealservice = false;
    this.updiscount = data.json();
-  },error => {console.log(error)})
- 
-
-
+  },error => {console.log(error);
+      this.toastr.warning(error);
+  })
 } 
 
 
@@ -169,9 +179,6 @@ createdeals(createdeal){
     }
 
 
-
-
-
       console.log(data.json());   
       
       this.recentmydeal.unshift({dealId: data.json().id ,
@@ -195,7 +202,8 @@ openupdatedeal(data){
 
   this.updatemydeal = data ;
 }
-  updatedeal(info){alert("sdfvsv");
+  updatedeal(info){
+  alert("sdfvsv");
   console.log(info);
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
@@ -220,18 +228,60 @@ openupdatedeal(data){
   },error => {console.log(error.json().invalid_start_date );
      this.toastr.warning(error.json().invalid_start_date);})
 
-
-
   }
+
+
+deletedeals(a){
+
+swal({
+  title: "Are you sure?",
+text: "You will not be able to recover this imaginary file!",
+type: "warning",
+showCancelButton: true,
+confirmButtonClass: "btn-default",
+confirmButtonText: "Yes, delete it!",
+cancelButtonText: "No, cancel plx!",
+}).then((res)=>{
+  console.log(res);
+  if(res.value===true){
+   // alert('delete Process !');
+  console.log(a);
+  let headers = new Headers();
+  var authToken = localStorage.getItem('userToken');
+  headers.append('Accept', 'application/json')
+  headers.append('Content-Type', 'application/json');
+  headers.append("Authorization",'Bearer '+authToken);
+const aaa = {
+  dealId: a.dealId,
+  title: a.title,
+  conditions: a.conditions,
+  startDate: a.startDate,
+  endDate: a.endDate,
+  neverExpire: a.neverExpire
+}
+console.log(aaa);
+this.recentmydeal.splice(a,1);
+  this.http.post(this.deletedeal,aaa,{headers:headers}).subscribe(
+    data =>{  
+    console.log(data.json());
+    this.toastr.success(" Your deal is  delete successfully.");
+  }, error => { console.log(error) });
+  // alert(JSON.stringify(res));
+  }else{
+   // alert('Cancel Process !');
+  }
+ },error=>{
+   alert(JSON.stringify(error));
+})
+  return;
+}
 
 
   closeModel(){         
     this.editdeal_dailog = false;  
     this.createdeal_dailog = false;
-    this.createdial = false;
+    this.dealservice = false;
   }
-
-
 
   
 }

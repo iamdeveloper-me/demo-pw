@@ -45,7 +45,9 @@ export class VideosComponent implements OnInit {
       const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
       this.form = this.fb.group({
         title: new FormControl('',Validators.required),
-        link: new FormControl('',Validators.pattern(reg)),
+        // link: new FormControl('',Validators.pattern(reg)),
+        link: new FormControl('',Validators.required),
+
         
        
       });
@@ -59,7 +61,7 @@ export class VideosComponent implements OnInit {
     const data = {
       "videosId": 0,
       "title": this.form.value['title'],
-      "link": this.form.value['link'],
+      "link": this.form.value['link'].split('watch?v=').join('embed/'),
       "createdOn": "2018-10-30T20:19:33.381Z"
     }
     let headers = new Headers();

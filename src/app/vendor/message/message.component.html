@@ -16,20 +16,39 @@
                             <a (click)="unread(2) && set(2)">Unread ({{unread_msg}})</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <a (click)="stared(3) && set(3)">Stared ({{stared_msg}})</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a *ngIf="deletIcon && selectLength == 0"(click)="delete() && set(3)"><span class="glyphicon glyphicon-trash"></span></a>
                         </div>
                           <form action="#" class="pull-right position">
                               <div class="input-append">
-                                  <input type="text" [(ngModel)]="find_name" name=" find_name" (change)="search($event)" class="sr-input" placeholder="Search Mail">
-                                  <button class="btn sr-btn" type="button"><i class="fa fa-search"></i></button>
+                                  <!-- <input type="text" [(ngModel)]="find_name" name=" find_name" (change)="search($event)" class="sr-input" placeholder="Search Mail"> -->
+                                  
+                                  <input type="search"
+                                           class="form-control form-control-sm"
+                                           [(ngModel)]="myModel" (keydown)="onBlurMethod()"
+                                           [ngModelOptions]="{standalone: true}"
+                                           aria-controls="DataTables_Table_0"
+                                           placeholder="Search Mail">
+                                  
+                                  <!-- <button class="btn sr-btn" type="button"><i class="fa fa-search"></i></button> -->
                               </div>
                           </form>
                       </div>
  <!-- {{ historyArr | json}} -->
                       <div class="inbox-body">
-                      
+                        <!-- arrayLength -->
+
+                        <div *ngIf="arrayLength == 0 ;else showMessage">
+                          No Data
+                        </div>
+                        <ng-template #showMessage>
                             <div class="cardmessagebox" *ngFor="let history of historyArr">
-                                <input type="checkbox" class="mail-checkbox">
-                                <a class="imgboxmessage" routerLink="../msg/{{history.messageId}}">
+                                <input type="checkbox" name="radiogroup" 
+                                [checked]="idx === 0" 
+                                [value]="history.id" 
+                                (change)="onSelectionChange(history)"
+                                class="mail-checkbox">
+                                <a class="imgboxmessage" routerLink="../msg/{{history.messageId}}" (click)="markRead(history.messageId)">
                                     <img  class="userimg" src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg"/>
                                 </a>
                                 <div class="textboxmessage"  >
@@ -37,12 +56,13 @@
                                                 <strong>
                                                   {{history.sendByFirstName}} {{history.sendByLastName}}
                                                 </strong>
-                                                <span _ngcontent-c0="" class="label label-info">
+                                                <span _ngcontent-c0="" *ngIf="history.isFromAdmin == true "class="label label-info">
                                                   Administrator c
                                                 </span>
                                               </div>
                                               <div>
                                                 {{history.subject}}
+                                                <!-- {{history.checked}} -->
                                               </div>
                                               <div class="secondarytext">
                                               {{history.message}}
@@ -51,16 +71,18 @@
                                               {{history.sentDateString}}
                                                <!--{{history.sentDate|date:"HH:mm"}}-->
                                               </div>
-                                              <span *ngIf="!history.isStared" (click)="readMark(history.messageId)">
+                                              <span *ngIf="!history.isStared" (click)="starMark(history.messageId)">
                                               <i class="fa fa-star starfix"></i>
                                               </span>
-                                              <span *ngIf="history.isStared"(click)="readMark(history.messageId)">
+                                              <span *ngIf="history.isStared"(click)="starMark(history.messageId)">
                                                 <i class="fa fa-star starfix yellow"></i>
                                               </span>
                                 </div>
                               </div> 
+                        </ng-template>
+
+                            
                          
-                       
                       </div>
                   </aside>
              </div> 

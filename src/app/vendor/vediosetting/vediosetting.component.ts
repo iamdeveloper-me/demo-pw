@@ -39,7 +39,8 @@ export class VediosettingComponent implements OnInit {
     this.validtionform = fb.group({
       'id': new FormControl(Validators.required),
       'title': new FormControl(Validators.required),
-      'link': new FormControl(Validators.required,Validators.pattern(reg)),
+      // 'link': new FormControl(Validators.required,Validators.pattern(reg)),
+      'link': new FormControl(Validators.required),
     });
    }
    get title() { return this.validtionform.get('title'); }
@@ -85,7 +86,7 @@ export class VediosettingComponent implements OnInit {
   closeModel(){
 
 this.Editvediodetail_dailog = false;
-
+this.ngOnInit();
 }
  
 editvedio(){
@@ -96,14 +97,14 @@ this.Editvediodetail_dailog = true;
 singleData(data){
   this.objVideo = data;
   // this.validtionform =  data;
-  console.log(this.validtionform)
+  console.log(this.objVideo)
   this.Editvediodetail_dailog = true 
 }
 videosave(){
   
 const updatedata = this.objVideo
   
-  console.log(updatedata)
+  console.log(this.objVideo)
   let headers = new Headers();
           var authToken = localStorage.getItem('userToken');
           var categoryid = localStorage.getItem('categoryid');
@@ -113,9 +114,9 @@ const updatedata = this.objVideo
           headers.append("Authorization",'Bearer '+authToken);
 
       this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Videos/createupdatevideos',{
-        videosId: this.objVideo['id'],
+        videosId: this.objVideo['videosId'],
         Title: this.objVideo['title'],
-        Link: this.objVideo['link'],
+        Link: this.objVideo['link'].split('watch?v=').join('embed/'),
         createdOn: "2018-10-30T15:48:46.151Z"
       },{headers:headers})
                 .subscribe(
@@ -123,10 +124,9 @@ const updatedata = this.objVideo
                         // this.t.success('Project created successfully');
                         // this.ui.laddaSave = false;
                         // this.initForm();
-                        console.log(resp)
+                        this.ngOnInit();
                         if(resp.status == 200){
                           // this.toastr.error(e.statusText );
-
                           this.Editvediodetail_dailog = false;  
                         }
                         

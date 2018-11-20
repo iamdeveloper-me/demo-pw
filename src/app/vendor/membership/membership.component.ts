@@ -46,6 +46,7 @@ export class MembershipComponent implements OnInit {
     $(".Registertab").addClass("selected");  
   });
 
+ 
 
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');

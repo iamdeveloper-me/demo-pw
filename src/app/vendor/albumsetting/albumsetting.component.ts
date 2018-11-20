@@ -3,6 +3,8 @@ import { Http,Headers } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
+import swal from 'sweetalert2';
+
 @Component({
   selector: 'app-albumsetting',
   templateUrl: './albumsetting.component.html',
@@ -256,9 +258,19 @@ closeModel(){
   //service
   deleteImage(image,index){
 
-
-    let con = confirm('Are you sure you want to delete this?')
-    if (con) {
+    swal({
+      title: "Are you sure?",
+    text: "You will not be able to recover this imaginary file!",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonClass: "btn-default",
+    confirmButtonText: "Yes, delete it!",
+    cancelButtonText: "No, cancel plx!",
+    }).then((res)=>{
+      console.log(res);
+      if(res.value===true){
+    // let con = confirm('Are you sure you want to delete this?')
+    // if (con) {
       console.log(image);
       console.log(index);
       console.log(image.albumImageId);
@@ -277,7 +289,16 @@ closeModel(){
         this.toastr.success(data.json().message);
           }); 
 
-    }
+    // }
+
+  }else{
+    // alert('Cancel Process !');
+   }
+  },error=>{
+    alert(JSON.stringify(error));
+ })
+   return;
+   
 
   }
 

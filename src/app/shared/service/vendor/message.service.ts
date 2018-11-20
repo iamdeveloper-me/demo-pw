@@ -56,7 +56,7 @@ export class MessageService {
 
   }
   
-  marksread(id){
+  markStar(id){
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -66,14 +66,14 @@ export class MessageService {
 
   }
 
-  // markstared(){
-  //   let headers = new Headers();
-  //   var authToken = localStorage.getItem('userToken');
-  //   headers.append('Accept', 'application/json')
-  //   headers.append('Content-Type', 'application/json');
-  //   headers.append("Authorization",'Bearer '+authToken);
-  //   return this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Messages/markstared',{headers:headers})
-
+  readMark(ids){
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+    return this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Messages/markasread?id='+ids,{headers:headers})
+  }
   messageHistory(ids){
     let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
@@ -81,6 +81,17 @@ export class MessageService {
       headers.append('Content-Type', 'application/json');
       headers.append("Authorization",'Bearer '+authToken);
       return this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Messages/messagehistory?id='+ids,{headers:headers})
+   
+  }
+
+  // Delete message (delete)
+  delete(msg_ids){
+    let headers = new Headers();
+      var authToken = localStorage.getItem('userToken');
+      headers.append('Accept', 'application/json')
+      headers.append('Content-Type', 'application/json');
+      headers.append("Authorization",'Bearer '+authToken);
+      return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Messages/deletemessages',msg_ids,{headers:headers})
    
   }
   

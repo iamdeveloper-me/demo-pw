@@ -103,10 +103,11 @@
                 </div> -->
             </div>
             <div class="clearfix"></div>
-              <div class="container marbot15px">
-                  <form role="form" action="" method="post" class="mt-25 mtx-0" (ngSubmit)="onSubmit()" #f="ngForm">
+              <div class="container-fluid marbot15px">
+                  <form role="form" action="" method="post" class="mt-25 mtx-0" (keyup.enter)="onSubmit()" #f="ngForm">
                     <div class="type_massege"> 
-                      <input type="text" name="vendorMsg.message" id="" [(ngModel)]="vendorMsg.message" placeholder="Type Message......" > 
+                      <textarea type="text" class="messtext" name="vendorMsg.message" id="" [(ngModel)]="vendorMsg.message" placeholder="Type Message......" > 
+                      </textarea>
                       <button type="submit" class="plusbtn">
                         <i class="material-icons">add</i>
                       </button>
@@ -117,7 +118,7 @@
              </div> 
          </section> 
        <div class="clearfix"></div>
-        <app-foot></app-foot>
+        <!-- <app-foot></app-foot> -->
         <router-outlet></router-outlet>
    </div>
  </div>

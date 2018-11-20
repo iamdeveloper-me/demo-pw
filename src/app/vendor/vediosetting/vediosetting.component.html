@@ -119,14 +119,14 @@
                 </div>
                   
                    <div class="modal-body">
-                    <input type="hidden" [(ngModel)]='objVideo.id' formControlName='id'/>
+                      <input type="hidden"  class="effect-16 validate" [(ngModel)]='objVideo.videosId' formControlName='videosId' value="{{objVideo.videosId}}" />
                                      
                                   <div class="form-group">
                                   <div class="input-effect md-form">
-                                    <input type="text"  class="effect-16 validate" [(ngModel)]='objVideo.title' formControlName='title' placeholder="title" required/>
+                                    <input type="text"  class="effect-16 validate" [(ngModel)]='objVideo.title' formControlName='title' placeholder="title" value="{{objVideo.title}}"required/>
                                     <div *ngIf="title.invalid && (title.dirty || title.touched)"
                                     class=" redtext">
-                                
+                                    {{objVideo.title}}
                                   <div *ngIf="title.errors.required">
                                     title is required.
                                   </div>

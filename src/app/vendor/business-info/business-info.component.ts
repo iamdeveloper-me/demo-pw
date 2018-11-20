@@ -110,12 +110,9 @@ export class BusinessInfoComponent implements OnInit {
                       isThursdayOpen:"",
                       isTuesdayOpen:  "",
                       isWednesdayOpen:"",
-
                       }
   @ViewChild('e') validationForm: FormGroup;
   data: any;
-
-
   @ViewChild('cropper', undefined)
   cropper: ImageCropperComponent;
   fileChangeListener($event) {
@@ -142,7 +139,6 @@ export class BusinessInfoComponent implements OnInit {
   confirmButtonText: "Yes, delete it!",
   cancelButtonText: "No, cancel plx!",
    }).then((res)=>{
-     
      alert(JSON.stringify(res));
    },error=>{
     alert(JSON.stringify(error));

@@ -340,13 +340,15 @@ export class LocationComponent implements OnInit {
         }
       }
        openModel(b) { 
+         console.log(b);
             this.loadCountries();
-            this.district =  this.arra.filter(c=>c.country_id == this.address_modelfield.country_id)[0].districts;
+            this.district =  this.arra.filter(c=>c.countryId == b.countryId)[0].districts;
+            console.log(this.district)
             this.dist_id=b.districtId;
              this.suburb= this.district[0].suburb;
              this.sub_id = b.suburbId;
             this.address_modelfield  = b;
-            let districts= this.arra.filter(s=>s.districts)
+         
        }
       openphone(b){
                       this.phone_dailog = true
@@ -776,27 +778,27 @@ export class LocationComponent implements OnInit {
           console.log(e.value.country_id,e.value.dist_id,e.value.sub_id);
           
           console.log(this.arra)
-          this.arra.forEach((ele,pos)=>{
-            if(pos  == e.value.country_id){
-              this.ao = ele.countryId;
-              ele['districts'].forEach((elem,pp) => {
-                  if(pp == e.value.dist_id){
-                    this.bo = elem.districtId;
-                    elem['suburb'].forEach((eleme,oo) => {
-                      if(oo == e.value.sub_id){
-                       this.co = eleme.suburbId;
-                      }
-                    });
-                  }
-              });
-            }
-          })
+          // this.arra.forEach((ele,pos)=>{
+          //   if(pos  == e.value.country_id){
+          //     this.ao = ele.countryId;
+          //     ele['districts'].forEach((elem,pp) => {
+          //         if(pp == e.value.dist_id){
+          //           this.bo = elem.districtId;
+          //           elem['suburb'].forEach((eleme,oo) => {
+          //             if(oo == e.value.sub_id){
+          //              this.co = eleme.suburbId;
+          //             }
+          //           });
+          //         }
+          //     });
+          //   }
+          // })
           console.log('main'+this.ao,this.bo,this.co)
             const datapanel =  {
                 vendorLocationId: e.value.vendorLocationId,
-                countryId: this.ao ,
-                districtId: this.bo,
-                suburbId:  this.co ,
+                countryId: this.address_modelfield.countryId ,
+                districtId: this.dist_id, //this.bo,
+                suburbId:  this.sub_id, //this.co ,
                 vendorId: e.value.vendorid ,
                 postalCode: e.value.Postal_code          ,
                 address: e.value.Address,
@@ -859,6 +861,7 @@ export class LocationComponent implements OnInit {
                   const newVal = event.target.value;
                  // console.log(newVal)
                   this.c_id = this.arra[newVal].countryId
+                  this.address_modelfield.country_id=this.c_id;
                   this.country_name =this.arra[newVal].countryName
                   this.district = this.arra[newVal].districts
                  console.log(  this.country_name)

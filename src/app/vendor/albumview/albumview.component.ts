@@ -3,7 +3,8 @@ import { ViewEncapsulation, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
- 
+import swal from 'sweetalert2';
+
 export class NgbdgalleryModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) { }
@@ -24,9 +25,10 @@ export class AlbumviewComponent implements OnInit {
     private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
     eventArray:any = [];
     image={ path:""};
+    noimage;
     defaultImage: string = "https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
   ngOnInit() {
-
+    this.noimage = 'https://vignette.wikia.nocookie.net/roblox-phantom-forces/images/7/7c/Noimage.png/revision/latest?cb=20171115203949';
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
    
@@ -38,17 +40,6 @@ export class AlbumviewComponent implements OnInit {
         this.eventArray = data.json()
     
         console.log(this.eventArray);
-        // for (var item of  this.eventArray ) {
-        //         if(item.albumImages.length == 0)
-        //         {  
-        //             this.image.path = 'https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
-        //             alert("empty array"); 
-        //         }else{  
-        //             alert("not empty array");
-                   
-        //               }
-            
-        // }
        })
 
      
@@ -130,20 +121,27 @@ createAlbum(Album){
       colorTags: "Add your colour tag"
     }
     console.log(album)
+  
     this.http.post(this.url+'api/Albums/createupdatealbum',album,{headers:headers})
       .subscribe(data =>{console.log(data.json()); 
         console.log(this.eventArray); 
         
-         this.eventArray.unshift({  albumsId: data.json().id,
-                                    albumName:  Album.value.albumName,
-                                    albumType:0,
-                                    colorTags:"string",
-                                    dateAddedOn:"2018-09-25T10:50:14.6795084",
-                                    tags:"string",
-                                    updatedOn:"2018-10-02T11:09:56.5713857",
-                                  });
+        //  this.eventArray.unshift({  albumsId: data.json().id,
+        //                             albumName:  Album.value.albumName,
+        //                             albumType:0,
+        //                             colorTags:"string",
+        //                             dateAddedOn:"2018-09-25T10:50:14.6795084",
+        //                             tags:"string",
+        //                             updatedOn:"2018-10-02T11:09:56.5713857",
+        //                           });
         
-        
+
+    this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
+      this.eventArray = data.json()
+      this.noimage = 'https://vignette.wikia.nocookie.net/roblox-phantom-forces/images/7/7c/Noimage.png/revision/latest?cb=20171115203949';
+      console.log(this.eventArray);
+     })
+   
         
         },(error)=>{console.log(error._body);
       this.typeWarning(error._body);
@@ -162,10 +160,20 @@ closeModel(){
 
   //service
   albumdelete(image,index){
+    swal({
+      title: "Are you sure?",
+    text: "You will not be able to recover this imaginary file!",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonClass: "btn-default",
+    confirmButtonText: "Yes, delete it!",
+    cancelButtonText: "No, cancel plx!",
+    }).then((res)=>{
+      console.log(res);
+      if(res.value===true){
 
-
-    let con = confirm('Are you sure you want to delete this?')
-    if (con) {
+    // let con = confirm('Are you sure you want to delete this?')
+    // if (con) {
       console.log(image);
       console.log(index);
       console.log(image.albumsId);
@@ -184,7 +192,15 @@ closeModel(){
         this.toastr.success(data.json().message);
           }); 
 
-    }
+    // }
+
+  }else{
+    // alert('Cancel Process !');
+   }
+  },error=>{
+    alert(JSON.stringify(error));
+ })
+   return;
 
   }
 

@@ -27,8 +27,16 @@
                         <div class="col-md-3  col-xs-6 marbot15px" *ngFor='let album of eventArray;let i=index '>
                                 <button class="deletebtn" (click)= "albumdelete(album,i)">&times;</button>
                             <a routerLink="../albumviewphoto/{{album.albumsId}} " class="" rel="ligthbox">
-                            
-                                <div class="image-div" >
+
+                                <div class="image-div"  >
+
+                                    <div >
+                                        <div *ngIf="album.albumImages?.length ==  0"  class="imgcontainer">
+                                            <img class="img-thumbnail "  alt="Another alt text"  [src]="noimage" />
+                                            <img class="img-thumbnail imghalf"  alt="Another alt text"  [src]="noimage" />
+                                            <img class="img-thumbnail imghalf"  alt="Another alt text"  [src]="noimage" />
+                                        </div>
+                                    </div>    
                                     <div *ngFor='let ar of  album.albumImages '>
                             
                                             <div *ngIf="album.albumImages?.length ==  2"  class=" imghalffull">
@@ -59,11 +67,7 @@
                                             </div>
                                     </div>
             
-                                    <div *ngIf="album.albumImages?.length ==  0"  class="imgcontainer">
-                                        <img class="img-thumbnail "  alt="Another alt text"  src="../../../assets/img/noImg.png" />
-                                        <!-- <img class="img-thumbnail imghalf"  alt="Another alt text"  src="../../../assets/img/no-image.png" />
-                                        <img class="img-thumbnail imghalf"  alt="Another alt text"  src="../../../assets/img/no-image.png" /> -->
-                                    </div>
+                                  
                                 </div>
                             </a>   
                                 <div class="over_like">

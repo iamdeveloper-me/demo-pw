@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit  ,ChangeDetectionStrategy } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
+import swal from 'sweetalert2';
 
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 @Component({
@@ -19,20 +20,23 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   albumImagesModify =[];
   totalImage=[];
   myalbumimages=[];
+  lodar = false;
+  total;
   private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
   eventArray:any = [];
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ImageUploader/FileUploader'
   private Setasbackground: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/setascoverimage"
   private BackgroundImage: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/BackgroundImage"
-  private albumcoverimage: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/albumcoverimage"
+  // private albumcoverimage: string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/albumcoverimage"
 
   uploadphoto_dailog = false;
   colour_table = [];
-
+  selcte_setAsBackground;
   find_image;
   albumid:any;
   albumname:any;
+  id:any;
   tags:any;
   colourtags:any;
   uploader: FileUploader = new FileUploader({
@@ -62,27 +66,23 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   //Album Get
   this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
   .subscribe(data =>{
-   this.totalImage =  data.json();
-   console.log(data.json()); 
-   console.log(this.albumid.id); 
-
-   console.log(data.json()); 
-   for (var item of  this.totalImage ) {
-   
-   if(this.albumid.id == item.albumsId)
-    {
-    //    alert("dsf"); 
-     console.log(item);
-    // console.log(item.tags);
-    this.albumname = item.albumName;
-    this.tags = item.tags;
-    this.colourtags = item.colorTags;
-    this.myalbumimages =  item.albumImages;
-     }
-}
-  
-   
-  });
+                        this.totalImage =  data.json();
+                        console.log(data.json()); 
+                        console.log(this.albumid.id); 
+                        console.log(data.json()); 
+                        for (var item of  this.totalImage ) {
+                        
+                        if(this.albumid.id == item.albumsId)
+                          {
+                          //    alert("dsf"); 
+                          console.log(item);
+                          // console.log(item.tags);
+                          this.albumname = item.albumName;
+                          this.tags = item.tags;
+                          this.colourtags = item.colorTags;
+                          this.myalbumimages =  item.albumImages;
+                          }
+                        } });
   }
 
   ngOnInit() {
@@ -124,6 +124,18 @@ export class ViewPhotoAlbumsComponent implements OnInit {
             
         // }
        })
+
+
+       this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/storefrontimage',{headers:headers}).subscribe(data =>{
+        console.log(data.json())
+
+       if(data.json().setAsBackground == true ){   
+        this.selcte_setAsBackground =  data.json().setAsBackground;
+        this.id =  data.json().albumImageId;
+          } 
+        
+    
+      },error=>{console.log(error)})
   //Album Get
   this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
   .subscribe(data =>{
@@ -269,9 +281,19 @@ $(document)
   //service
   deleteImage(image,index){
 
-
-    let con = confirm('Are you sure you want to delete this?')
-    if (con) {
+    swal({
+      title: "Are you sure?",
+    text: "You will not be able to recover this imaginary file!",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonClass: "btn-default",
+    confirmButtonText: "Yes, delete it!",
+    cancelButtonText: "No, cancel plx!",
+    }).then((res)=>{
+      console.log(res);
+      if(res.value===true){
+    // let con = confirm('Are you sure you want to delete this?')
+    // if (con) {
       console.log(image);
       console.log(index);
       console.log(image.albumImageId);
@@ -287,18 +309,40 @@ $(document)
       this.http.get(this.url+'api/Albums/removeimage?AlbumImageId'+'='+image.albumImageId,{headers:headers})
       .subscribe(data =>{
         console.log(data.json());
-        this.toastr.success(data.json().message);
-          }); 
+          //Album Get
+          this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
+          .subscribe(data =>{
+           this.totalImage =  data.json();
+           console.log(data.json()); 
+           console.log(this.albumid.id); 
+           console.log(data.json()); 
+           for (var item of  this.totalImage ) {
+              if(this.albumid.id == item.albumsId)
+                {
+                    this.albumImagesModify =  item.albumImages;
+                    console.log(  this.albumImagesModify ); 
+                }
+            }
+          });},(error)=>{console.log(error)});
 
-    }
+    // }
+
+  }else{
+    // alert('Cancel Process !');
+   }
+  },error=>{
+    alert(JSON.stringify(error));
+ })
+   return;
 
   }
 
 
 
   uploadAll(){
-
+   this.total = 80;
    this.uploadphoto_dailog = false;
+   this.lodar = true;
     const formData = new FormData();
     for(let file of this.uploader.queue){
     formData.append(file['some'].name,file['some'])
@@ -312,6 +356,7 @@ $(document)
     
     //Post Album 2 photos
     console.log(formData);
+    this.uploader.queue = [];
     this.http.post(this.uploadimage,formData,{headers:headers})
       .subscribe(data =>{console.log(data.json());
         this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
@@ -319,46 +364,20 @@ $(document)
          this.totalImage =  data.json();
          console.log(data.json()); 
          console.log(this.albumid.id); 
-      
          console.log(data.json()); 
+         this.lodar = false;
          for (var item of  this.totalImage ) {
-         
-         if(this.albumid.id == item.albumsId)
-          {
-              this.albumImagesModify =  item.albumImages;
-              console.log(  this.albumImagesModify ); 
-           }
-      }
-        
-         
-        });
-        
-
-        // this.myalbumimages.unshift({dealId: data.json().id ,
-        //   albumImageId: 3,
-        //   albumsId:4,
-        //   originalFileName: "50309108-81f1-4c45-9d70-9215e752d28cScreenshot from 2018-08-22 18-00-49.png",
-        //   path:    "https://s3.us-east-2.amazonaws.com/prefect-image/50309108-81f1-4c45-9d70-9215e752d28cScreenshot from 2018-08-22 18-00-49.png",
-        //   serverFileName:""});
-      },(error)=>{console.log(error)});
+            if(this.albumid.id == item.albumsId)
+              {
+                  this.albumImagesModify =  item.albumImages;
+                  console.log(  this.albumImagesModify ); 
+                 
+              }
+          }
+        });},(error)=>{console.log(error)});
   }
 
-setbackground(setId){
- let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization",'Bearer '+authToken);
-  
-this.http.get(this.Setasbackground,{headers:headers}).subscribe(data =>{
-        this.Set_as_background = data.json() as string[];
-        console.log( this.Set_as_background );
-        this.toastr.success(data.json().message);
-    },error=>{console.log(error)})
-  console.log(setId)
-}
-
-  set_Album_background(albumId){
+  albumcoverimage(albumId){
     console.log(albumId)
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
@@ -381,21 +400,35 @@ this.http.get(this.Setasbackground,{headers:headers}).subscribe(data =>{
     this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/setasstorefrontimage?AlbumImageId' + '=' + a,{headers:headers}).subscribe(data =>{
       console.log(data.json())
       this.toastr.success(data.json().message);
+
+      this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/storefrontimage',{headers:headers}).subscribe(data =>{
+        console.log(data.json())
+
+       if(data.json().setAsBackground == true ){   
+        this.selcte_setAsBackground =  data.json().setAsBackground;
+        this.id =  data.json().albumImageId;
+          } 
+        
+    
+      },error=>{console.log(error)})
     },error=>{console.log(error)})
   }
-  storefrontimage(){
-
+  setascoverimage(setId){
     let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization",'Bearer '+authToken);
-    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/storefrontimage',{headers:headers}).subscribe(data =>{
-      console.log(data.json())
-    },error=>{console.log(error)})
-
+        var authToken = localStorage.getItem('userToken');
+        headers.append('Accept', 'application/json')
+        headers.append('Content-Type', 'application/json');
+        headers.append("Authorization",'Bearer '+authToken);
+      
+    this.http.get(this.Setasbackground,{headers:headers}).subscribe(data =>{
+            this.Set_as_background = data.json() as string[];
+            console.log( this.Set_as_background );
+            this.toastr.success(data.json().message);
+        },error=>{console.log(error)})
+      console.log(setId)
   }
-        closeModel(){
-              this.uploadphoto_dailog = false;
-              }
+
+  closeModel(){this.uploadphoto_dailog = false;
+    this.lodar= false;
+  }
 }

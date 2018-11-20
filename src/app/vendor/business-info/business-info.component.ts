@@ -1,11 +1,16 @@
 import { CropperSettings, ImageCropperComponent } from 'ng2-img-cropper';
-import { Component, OnInit ,Input , ViewChild, NgZone, ElementRef,} from '@angular/core';
+import { Component, OnInit ,Input , ViewChild, NgZone, ElementRef, EventEmitter, Output,} from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms'
 import 'rxjs/add/operator/delay';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { isValid } from 'date-fns';
+import { NavemenuComponent } from '../navemenu/navemenu.component';
+import { LoginServiceService } from 'app/shared/service/login-service.service';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-business-info',
   templateUrl: './business-info.component.html',
@@ -13,6 +18,8 @@ import { isValid } from 'date-fns';
 })
 
 export class BusinessInfoComponent implements OnInit {
+  
+  @Output() valueChange = new EventEmitter();
   facebookDailog = false;
   twitterDailog = false;
   instagramDailog  = false;
@@ -22,7 +29,6 @@ export class BusinessInfoComponent implements OnInit {
   imagecropDailog = false;
   BusinessDailog = false;
   progress = false;
-   
   cropperupload =true;
   nodata = '';
   Description;
@@ -126,9 +132,28 @@ export class BusinessInfoComponent implements OnInit {
 
     myReader.readAsDataURL(file);
   }
+  showSweetAlert(){
+    swal({
+      title: "Are you sure?",
+  text: "You will not be able to recover this imaginary file!",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonClass: "btn-danger",
+  confirmButtonText: "Yes, delete it!",
+  cancelButtonText: "No, cancel plx!",
+   }).then((res)=>{
+     
+     alert(JSON.stringify(res));
+   },error=>{
+    alert(JSON.stringify(error));
+   })
+  }
 
-  constructor(public http: Http,public toastr: ToastrService)
+  constructor(public http: Http,public toastr: ToastrService,
+    public translate: TranslateService ,private cservice: LoginServiceService, private router: Router 
+    )
         {
+         // this.showSweetAlert();          
           this.cropperSettings = new CropperSettings();
           this.cropperSettings.croppedWidth =100;
           this.cropperSettings.croppedHeight = 100;
@@ -140,41 +165,9 @@ export class BusinessInfoComponent implements OnInit {
   
   
   ngOnInit() {
-                $.getScript('./assets/js/vendorsidebar.js');
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization",'Bearer '+authToken);
-    this.http.get(this.url,{headers:headers}).subscribe(data =>{
-    this.vendor = data.json();
-    console.log(this.vendor)
-   
-         
-    if(!this.vendor.fileId)
-                   {
-                    
-                     console.log(this.vendor.files );
-                     this.imagee = "https://api.asm.skype.com/v1/objects/0-sa-d7-42ce40a5cedd583b57e96843e17d67e2/views/imgpsh_fullsize";
-                     console.log( this.imagee);
-                    }else{  
-                      this.imagee = this.vendor.files.path ;
-                    console.log(this.imagee)}
-
-                   
-    this.facebook = data.json().facebookURL ;
-
-    this.twitter = data.json().twitterURL ;
-    this.instagram = data.json().instalURL ;
-    this.google = data.json().googleURL;
-    this.Businesname = data.json().nameOfBusiness ;
-    this.Description = data.json().businessDetails ;  
-    this.perfectWedding = data.json().perfectWeddingURL  ;
-    console.log(data.json());
-
-    })
+   this.pageInitialize();
   }
-
+  
   //businessinformation 
   gallery = { files: ''}
   @ViewChild("fileInput") fileInput;
@@ -244,7 +237,10 @@ export class BusinessInfoComponent implements OnInit {
                  if(!data.json().files)
                  { 
                    this.imagee = 'https://api.asm.skype.com/v1/objects/0-sa-d7-42ce40a5cedd583b57e96843e17d67e2/views/imgpsh_fullsize'}
-                 else{ this.imagee = data.json().files.path ;
+                 else{ 
+                   this.imagee = data.json().files.path ;
+                //  let objnavmenu = new NavemenuComponent(this.translate,this.http,this.cservice,this.router);
+                    this.updateHeaderImg();
                   }
 
                });
@@ -257,6 +253,9 @@ export class BusinessInfoComponent implements OnInit {
     openModel(b){
       this.modelfield = b; 
       console.log(this.modelfield);
+    }
+    passToHeader(){
+      
     }
 
 
@@ -288,7 +287,6 @@ export class BusinessInfoComponent implements OnInit {
                
                 this.toastr.error("Can not save empty field")
                 this.http.get(this.url,{headers:headers}).subscribe(data =>{
-                          
                   console.log(this.vendor );
                   this.modelfield.nameOfBusiness =data.json().nameOfBusiness;
                   this.modelfield.businessDetails = data.json().businessDetails;
@@ -319,10 +317,6 @@ export class BusinessInfoComponent implements OnInit {
                   {
                     this.modelfield.perfectWeddingURL = 'Dont have any URL';
                   }else{     this.modelfield.perfectWeddingURL = data.json().perfectWeddingURL;}
-
-              
-          
-                
                 
                 },error=>{console.log(error)})
               } else{
@@ -358,32 +352,19 @@ export class BusinessInfoComponent implements OnInit {
                             {
                               this.modelfield.instalURL = 'Dont have any URL';
                             }else{       this.modelfield.instalURL = data.json().instalURL;}
-                          
-                        
                             if(data.json().perfectWeddingAvailable ==  false)
                             {
                               this.modelfield.perfectWeddingURL = 'Dont have any URL';
                             }else{     this.modelfield.perfectWeddingURL = data.json().perfectWeddingURL;}
 
-                        
-                    
-                          
-                          
                           },error=>{console.log(error)})
-                                                      
-                        
                         } 
 
                         },(error)=>{console.log(error)
                       this.toastr.error(error._body,error.statusText);});
               }
-            
-        
     }
-
-
     closeModel(){
-
                   // this.myForm.reset('nameOfBusiness');
                     this.facebookDailog = false;
                     this.twitterDailog = false;
@@ -393,6 +374,7 @@ export class BusinessInfoComponent implements OnInit {
                     this.DescriptionDailog = false;
                     this.BusinessDailog = false;
                     this.imagecropDailog = false;
+                    this.pageInitialize();
     } 
     
     switch_fbAvailable(e){
@@ -467,5 +449,41 @@ isValidUrl(url, urlType){
     this.isValidOtherUrl = matcher.test(url);
     break;
   }
+}
+pageInitialize(){
+  $.getScript('./assets/js/vendorsidebar.js');
+  let headers = new Headers();
+  var authToken = localStorage.getItem('userToken');
+  headers.append('Accept', 'application/json')
+  headers.append('Content-Type', 'application/json');
+  headers.append("Authorization",'Bearer '+authToken);
+  this.http.get(this.url,{headers:headers}).subscribe(data =>{
+  this.vendor = data.json();
+  console.log(this.vendor)
+  if(!this.vendor.fileId)
+                 {
+                  
+                   console.log(this.vendor.files );
+                   this.imagee = "https://api.asm.skype.com/v1/objects/0-sa-d7-42ce40a5cedd583b57e96843e17d67e2/views/imgpsh_fullsize";
+                   console.log( this.imagee);
+                  }else{  
+                    this.imagee = this.vendor.files.path ;
+                  console.log(this.imagee)}
+
+                 
+  this.facebook = data.json().facebookURL ;
+
+  this.twitter = data.json().twitterURL ;
+  this.instagram = data.json().instalURL ;
+  this.google = data.json().googleURL;
+  this.Businesname = data.json().nameOfBusiness ;
+  this.Description = data.json().businessDetails ;  
+  this.perfectWedding = data.json().perfectWeddingURL  ;
+  console.log(data.json());
+
+  })
+}
+updateHeaderImg(){
+   this.valueChange.emit(this.imagee);
 }
 }

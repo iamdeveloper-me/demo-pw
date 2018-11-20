@@ -225,7 +225,7 @@ export class LocationComponent implements OnInit {
       lng: 7.809007,
       draggable: true
     },
-    zoom: 5
+    zoom: 25
   };
 
   Find_current_location(){
@@ -294,7 +294,6 @@ export class LocationComponent implements OnInit {
               let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
                 types: ["address"]
               });
-
               autocomplete.addListener("place_changed", () => {
             
                   this.zone.run(() => {
@@ -313,11 +312,11 @@ export class LocationComponent implements OnInit {
                     this.address = place.formatted_address;
                     this.mapDialogObj.lat = place.geometry.location.lat();
                     this.mapDialogObj.lng = place.geometry.location.lng();
-                     this.zoom = 12;
+                     this.zoom = 25;
                   });
+                  
                 });
               });
-
                   this.location.marker.draggable = true;
                   let headers = new Headers();
                   var authToken = localStorage.getItem('userToken');
@@ -327,20 +326,10 @@ export class LocationComponent implements OnInit {
                                     
                   this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
                   this.location_Array = data.json() ;
-              
                   console.log(  this.location_Array  );
                   })
-
-           
-                  let country = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries");
-                  country.subscribe(data => { 
-                    this.countryArray = data.json();
-                    console.log( this.countryArray);  
-                    this.arra = this.countryArray
-                  })
-                  $.getScript('./assets/js/vertical-timeline.js');    
+                  this.loadCountries();
           }
-
       keyPress(event: any) {
         const pattern = /[0-9]/;
 
@@ -350,12 +339,15 @@ export class LocationComponent implements OnInit {
           this.toastr.error('Only Numbers');
         }
       }
-
        openModel(b) { 
+            this.loadCountries();
+            this.district =  this.arra.filter(c=>c.country_id == this.address_modelfield.country_id)[0].districts;
+            this.dist_id=b.districtId;
+             this.suburb= this.district[0].suburb;
+             this.sub_id = b.suburbId;
             this.address_modelfield  = b;
-            console.log('aaaaaa',this.address_modelfield);
+            let districts= this.arra.filter(s=>s.districts)
        }
-
       openphone(b){
                       this.phone_dailog = true
                       this.phoneData = b;
@@ -499,7 +491,6 @@ export class LocationComponent implements OnInit {
      
        mapDialogObj : any;
        OpenmapDailog(locationObj){
-         console.log('aaaaaaaaaaaaaa',locationObj);
             this.mapDialogObj = locationObj
             this.address = this.mapDialogObj.mapAddress
             this.mapDailog = true;
@@ -522,7 +513,7 @@ export class LocationComponent implements OnInit {
           this.l = results[0].geometry.location.lng();
           console.log( this.k);
           console.log( this.l );
-
+            
           // this.data.lat = this.k;
           // this.data.long =  this.l;
 
@@ -885,8 +876,6 @@ export class LocationComponent implements OnInit {
             this.subr_name =this.suburb[newVal].name
             console.log(this.subr_name )
       }
-
-
       closeModel(){ 
             this.photo_ved_dailog = false;
             this.phone_dailog = false;
@@ -894,6 +883,15 @@ export class LocationComponent implements OnInit {
             this.week_dailog = false ;
             this.mapDailog =false;
       } 
+      loadCountries(){
+        let country = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries");
+        country.subscribe(data => { 
+          this.countryArray = data.json();
+          console.log( this.countryArray);  
+          this.arra = this.countryArray
+        })
+        $.getScript('./assets/js/vertical-timeline.js');
+      }
       
 
 

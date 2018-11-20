@@ -17,7 +17,7 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <a (click)="stared(3) && set(3)">Stared ({{stared_msg}})</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a *ngIf="deletIcon "(click)="delete() && set(3)"><span class="glyphicon glyphicon-trash"></span></a>
+                            <a *ngIf="deletIcon && selectLength == 0"(click)="delete() && set(3)"><span class="glyphicon glyphicon-trash"></span></a>
                         </div>
                           <form action="#" class="pull-right position">
                               <div class="input-append">

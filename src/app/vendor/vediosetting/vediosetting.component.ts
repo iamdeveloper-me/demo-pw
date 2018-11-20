@@ -39,7 +39,8 @@ export class VediosettingComponent implements OnInit {
     this.validtionform = fb.group({
       'id': new FormControl(Validators.required),
       'title': new FormControl(Validators.required),
-      'link': new FormControl(Validators.required,Validators.pattern(reg)),
+      // 'link': new FormControl(Validators.required,Validators.pattern(reg)),
+      'link': new FormControl(Validators.required),
     });
    }
    get title() { return this.validtionform.get('title'); }
@@ -123,6 +124,7 @@ const updatedata = this.objVideo
                         // this.t.success('Project created successfully');
                         // this.ui.laddaSave = false;
                         // this.initForm();
+                        this.ngOnInit();
                         if(resp.status == 200){
                           // this.toastr.error(e.statusText );
                           this.Editvediodetail_dailog = false;  

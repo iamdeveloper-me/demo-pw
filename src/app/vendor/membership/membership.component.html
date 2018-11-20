@@ -81,7 +81,9 @@
 													<table align="center">
 														<tr>
 															<td>MUR</td>
-															<td class="pricebig">{{plan.monthlyPrice}}</td>
+															<td>
+																<div class="pricebig">{{plan.monthlyPrice}}</div>
+															</td>
 															<td class="text-left lineheight16px">00<br/>/Month</td>
 														</tr>
 													</table>
@@ -142,7 +144,8 @@
 											<table align="center">
 												<tr>
 													<td>MUR</td>
-													<td class="pricebig">{{(plan.monthlyPrice * (12 - plan.noOfMonthFeeOff))/12 }}</td>
+													<td>
+															<div class="pricebig">{{(plan.monthlyPrice * (12 - plan.noOfMonthFeeOff))/12 }}</div></td>
 													<td class="text-left lineheight16px">00<br/>/Monthly</td>
 												</tr>
 											</table>

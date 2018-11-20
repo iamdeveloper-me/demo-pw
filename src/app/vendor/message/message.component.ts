@@ -73,12 +73,16 @@ export class MessageComponent implements OnInit {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
-    this.stared(3)
-    this.unread(2)
-    this.initDatatable(1)
-    this.selectLength =   this.result.length
-    this.initDatatable(1)
-    this.arrayLength = 1;
+    
+
+    setTimeout(() => {
+      this.stared(3)
+      this.unread(2)
+      this.initDatatable(1)
+      this.selectLength =   this.result.length
+      this.initDatatable(1)
+      this.arrayLength = 1;  
+    }, 200);
     // this.hservice.marksread().subscribe(( data )  =>  
     //   { 
     //     console.log(data.json());

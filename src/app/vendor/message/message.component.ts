@@ -1,3 +1,4 @@
+import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { MessageService } from '../../shared/service/vendor/message.service';
@@ -12,6 +13,7 @@ import { Mail, Message } from './inbox.model';
   providers: [InboxService]
 })
 export class MessageComponent implements OnInit {
+  deletIcon = false;
   historyArr:string[];
   mreadArr:string[];
   // markred:string[];
@@ -27,13 +29,45 @@ export class MessageComponent implements OnInit {
   all_msg:number;
   unread_msg:number;
   stared_msg:number;
-  constructor(public toastr: ToastrService ,public route: Router,private elRef: ElementRef, private modalService: NgbModal, private inboxService: InboxService, private hservice: MessageService) {
+  myModel: any;
+  form: FormGroup;
+  selectedEntry = [];
+  selectDelete = []
+  result = []
+  selectLength = 0
+  arrayLength:number;
+  constructor(private formBuilder: FormBuilder,public toastr: ToastrService ,public route: Router,private elRef: ElementRef, private modalService: NgbModal, private inboxService: InboxService, private hservice: MessageService) {
     this.mail = this.inboxService.inbox.filter((mail: Mail) => mail.mailType === 'Inbox');
     this.message = this.inboxService.message.filter((message: Message) => message.mailId === 4)[0];
+  
+  
   }
 
   
-  
+  onSelectionChange(entry_id) {
+    this.deletIcon = true
+    if(entry_id['checked']){
+      entry_id['checked'] = false;
+    }else{
+      entry_id['checked'] = true;
+}
+
+    // this.selectDelete.push(entry_id);
+    
+
+
+    // this.selectDelete.forEach(el=>{
+    //   if(el == entry_id){
+    //     this.selectDelete.unshift(entry_id);
+    
+    //    }else{
+    //     this.selectDelete.push(entry_id);
+    
+    //    }
+    // })
+    
+    // console.log(this.selectDelete)
+}
   ngOnInit() {
     $.getScript('./assets/js/inbox.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
@@ -42,8 +76,9 @@ export class MessageComponent implements OnInit {
     this.stared(3)
     this.unread(2)
     this.initDatatable(1)
-
-
+    this.selectLength =   this.result.length
+    this.initDatatable(1)
+    this.arrayLength = 1;
     // this.hservice.marksread().subscribe(( data )  =>  
     //   { 
     //     console.log(data.json());
@@ -62,6 +97,9 @@ export class MessageComponent implements OnInit {
     //   },error => 
     //   alert(error) // error path
     // )
+
+   
+
   
   }
   search(newObj){
@@ -77,7 +115,8 @@ const json ={
 this.hservice.vendorMessages(json).subscribe(( data )  =>  
           { 
             this.uiLoading = false;
-            this.historyArr = data.json()  ; 
+            this.historyArr = data.json()  ;
+            this.arrayLength =  this.historyArr.length
             this.unread_msg = this.historyArr.length;
             console.log(this.historyArr)
           },error => 
@@ -85,7 +124,33 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
         )
 
   }
+  onBlurMethod(){
+    if(this.myModel != ""){
+      const json ={
+        "filter" : this.filter_id,
+        "search" : this.myModel
+      }
+      this.hservice.vendorMessages(json).subscribe(( data )  =>  
+                { 
+                  this.uiLoading = false;
+                  this.historyArr = data.json()  ; 
+                  this.unread_msg = this.historyArr.length;
+                  this.arrayLength =  this.historyArr.length
+
+                  console.log(this.historyArr)
+                },error => 
+                alert(error) // error path
+              )
+      
+    }else{
+        this.ngOnInit();
+
+    }
+    
+}
   initDatatable(filter_id){
+    this.deletIcon = false
+
    this.filter_id = filter_id
     const json ={
       "filter" : filter_id
@@ -94,13 +159,20 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
           { 
             this.uiLoading = false;
             this.historyArr = data.json()  ; 
+            this.historyArr.forEach(element => {
+              element['checked'] = false;
+            });
             this.all_msg = this.historyArr.length;
+            this.arrayLength =  this.historyArr.length
+
             console.log(this.historyArr)
           },error => 
           alert(error) // error path
         )
   }
   unread(filter_id){
+    this.deletIcon = false
+
     this.filter_id = filter_id
 
     const json ={
@@ -110,13 +182,20 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
           { 
             this.uiLoading = false;
             this.historyArr = data.json()  ; 
+            this.historyArr.forEach(element => {
+              element['checked'] = false;
+            });
             this.unread_msg = this.historyArr.length;
+            this.arrayLength =  this.historyArr.length
+
             console.log(this.historyArr)
           },error => 
           alert(error) // error path
         )
   }
   stared(filter_id){
+    this.deletIcon = false
+
     this.filter_id = filter_id
 
     const json ={
@@ -126,19 +205,44 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
           { 
             this.uiLoading = false;
             this.historyArr = data.json()  ; 
+            this.historyArr.forEach(element => {
+              element['checked'] = false;
+            });
             this.stared_msg = this.historyArr.length;
+            this.arrayLength = this.historyArr.length;
             console.log(this.historyArr)
           },error => 
           alert(error) // error path
         )
   }
  
-  readMark(id){
-    this.hservice.marksread(id).subscribe(( data )  =>  
+  starMark(id){
+    if(this.filter_id == 3){
+      this.hservice.markStar(id).subscribe(( data )  =>  
+      {this.toastr.success(data.json().message)
+        this.ngOnInit()
+      },error => 
+      alert(error) // error path
+    )
+    }else{
+      this.hservice.markStar(id).subscribe(( data )  =>  
     {this.toastr.success(data.json().message)
+      this.ngOnInit()
+
     },error => 
     alert(error) // error path
   )
+    }
+    
+  }
+  markRead(id){
+    if(this.filter_id == 2){
+      this.hservice.readMark(id).subscribe(( data )  =>  
+      {this.toastr.success(data.json().message)
+      },error => 
+      alert(error) // error path
+    )
+    }
   }
 
   //inbox user list click event function
@@ -215,4 +319,23 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
   set(filter_id){
     this.filter_id = filter_id
   }
+
+  delete(){
+   this.historyArr.forEach((el)=>{
+   if(el['checked']){
+     this.result.push(el['messageId'])
+   }
+   })
+   if(this.result.length != 0){
+    this.hservice.delete(this.result).subscribe(( data )  =>  
+    {this.toastr.success(data.json().message)
+      this.ngOnInit();
+    },error => 
+    alert(error) // error path
+   )
+  }
+   }
+   
+
+  
 }

@@ -93,9 +93,13 @@ debugger
     //   }
     // }, 2000);
 
-  //   $(".chatscroll").animate({ scrollTop: $(document).height() }, "slow");
+    // $(".chatscroll").animate({ scrollTop: $(document).height() }, "slow");
   // return false;
+
   
+  
+  this.dScrool()
+
   
   }
   
@@ -113,6 +117,8 @@ console.log(this.vendorMsg)
       },error => 
       alert(error) // error path
     )
+    this.dScrool()
+    
   }
    
 
@@ -152,5 +158,12 @@ console.log(this.vendorMsg)
     }
     
     
+  }
+
+  dScrool(){
+    setTimeout(() => {
+      var d = $('.chatscroll');
+      d.scrollTop(d.prop("scrollHeight"));
+    }, 250);
   }
 }

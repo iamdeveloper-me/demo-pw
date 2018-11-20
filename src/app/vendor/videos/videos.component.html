@@ -28,7 +28,10 @@
                             <i class="material-icons" style="font-size:80px;">missed_video_call</i><br/>
                              <span> No video upload yet</span>
                             </p>
-                            <p class="upload_bt text-center"> <button data-target="#Addvediodetail" data-toggle="modal" (click)="Addvediodetail_dailog = true"> Add Video</button>  </p>
+                            <p class="upload_bt text-center"> 
+                                <button class="add_videobt"  (click)="Addvediodetail_dailog = true" >Add Video</button> 
+              
+                             </p>
                          
                             <p class="text-center uplod_para padd_top_30px"> Want unlimited Videos? <a href=""> Upgrade</a> </p>
                       </div>
@@ -209,10 +212,11 @@
                 </div>
                 <form [formGroup]="form" (ngSubmit)="addDetails()">
                    <div class="modal-body">
-                     
+                      
+
                       <div class="form-group">
                         <div class="input-effect form-group md-form ">
-                          <input class="effect-16 validate" type="text" id="title" formControlName="title" >
+                          <input class="effect-16 validate" type="text" id="title" required="required" formControlName="title" >
                           <label>Enter Vedio Title</label>
                           <span class="focus-border"></span>
                         </div>
@@ -225,7 +229,7 @@
                       </div>
                       <div class="form-group">
                         <div class="input-effect form-group md-form ">
-                          <input class="effect-16 validate" type="text" id="link" formControlName="link" >
+                          <input class="effect-16 validate" type="text" id="link" required="required" formControlName="link" >
                           <label>Enter Vedio Url</label>
                           <span class="focus-border"></span>
                         </div>

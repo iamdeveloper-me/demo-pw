@@ -184,14 +184,14 @@
                                     <li class="nav-item usernavmenu" ngbDropdown placement="bottom-right">
                                             <a class="nav-link afternone navuserlink position-relative" id="dropdownBasic3" ngbDropdownToggle>
                                                  <!-- <i class="material-icons">account_circle</i> -->
-                                                 <img [src] = "vendor.profileImage" class="userimgtop" >
+                                                 <img [src] = "userImg" class="userimgtop" >
                                                 <p class="d-none">User Settings {{vendor.profileImage}}</p>
                                             </a>
                                             <div class="blackoverlaymainuser">
                                             <div ngbDropdownMenu aria-labelledby="dropdownBasic3">       <div class="vendorpicsec">
                                             <div class="imgsection">
                                               <!-- <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png"/> -->
-                                              <img [src] = "vendor.profileImage" class="userimgtop" >
+                                              <img [(src)] = "userImg" class="userimgtop" >
                                             </div>
                                             <div class="detailsection">
                                             Hi {{vendor.firstName}}!

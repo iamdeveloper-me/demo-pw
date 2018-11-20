@@ -28,9 +28,9 @@
                             <div class="card-body">
                                 <div class="text-center bg-form col-sm-12" (click)="openModel(data)"> 
                                     <div class="img-section">
-                                            <agm-map [(latitude)]="data.lat" [(longitude)]="data.long"  [disableDefaultUI]="true" [zoomControl]="true" >
+                                            <agm-map [(latitude)]="data.lat" [(longitude)]="data.long"  [disableDefaultUI]="true" [zoomControl]="true" [zoom]="15" >
                                                     <agm-marker [(latitude)]="data.lat" [(longitude)]="data.long" ></agm-marker>
-                                                    <!-- <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle> -->
+                                                <!-- <agm-circle [latitude]="location.lat" [longitude]="location.lng" [(radius)]="circleRadius" [fillColor]="'blue'" [circleDraggable]="true" [editable]="true"></agm-circle> -->
                                             </agm-map>
                                         <div class="img_overlay " (click)="OpenmapDailog(data); " >
                                             <div class="col-lg-12 col-md-12 pad_left_0px whitetext">
@@ -641,21 +641,12 @@
 
                             <div class="form-group">
                                     <div class="input-effect form-group md-form">
-                                    <select    class="effect-16 validate"  id="Country" [(ngModel)]="address_modelfield.country_id"  name="country_id" (change)="country($event)">
-                                            <option   *ngFor="let country of arra ;let c =index" 
-                                                type="text"
-                                                id="{{country.countryName}}"
-                                                checked
-                                                name = "countryName"  
-                                                placeholder="Country" 
-                                                [value]="c"
-                                                required
-                                                >
+                                    <select  class="effect-16 validate"  id="Country" [(ngModel)]="address_modelfield.countryId"  name="country_id" (change)="country($event)">
+                                            <option *ngFor="let country of arra ;let c =index" [value]="country.countryId">
                                                 {{country.countryName }}
-                                        
                                             </option>
                                         </select>
-                                    <label>Country</label>
+                                    <label>Country {{address_modelfield}}</label>
                                     <span class="focus-border"></span>
                                     </div>
                             </div>
@@ -669,7 +660,7 @@
                                                 checked
                                                 name = "dist"  
                                                 placeholder="District" 
-                                                [value]="d"
+                                                [value]="dist.districtId"
                                                 required
                                                 
                                                 >
@@ -691,7 +682,7 @@
                                                 checked
                                                 name = "sub"  
                                                 placeholder="Suburb" 
-                                                [value]="s"
+                                                [value]="sub.suburbId"
                                                 required
                                                 >
                                                 {{sub.name }}

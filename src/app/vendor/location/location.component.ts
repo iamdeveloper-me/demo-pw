@@ -225,7 +225,7 @@ export class LocationComponent implements OnInit {
       lng: 7.809007,
       draggable: true
     },
-    zoom: 5
+    zoom: 25
   };
 
   Find_current_location(){
@@ -294,7 +294,6 @@ export class LocationComponent implements OnInit {
               let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
                 types: ["address"]
               });
-
               autocomplete.addListener("place_changed", () => {
             
                   this.zone.run(() => {
@@ -313,11 +312,11 @@ export class LocationComponent implements OnInit {
                     this.address = place.formatted_address;
                     this.mapDialogObj.lat = place.geometry.location.lat();
                     this.mapDialogObj.lng = place.geometry.location.lng();
-                     this.zoom = 12;
+                     this.zoom = 25;
                   });
+                  
                 });
               });
-
                   this.location.marker.draggable = true;
                   let headers = new Headers();
                   var authToken = localStorage.getItem('userToken');
@@ -327,20 +326,10 @@ export class LocationComponent implements OnInit {
                                     
                   this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
                   this.location_Array = data.json() ;
-              
                   console.log(  this.location_Array  );
                   })
-
-           
-                  let country = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries");
-                  country.subscribe(data => { 
-                    this.countryArray = data.json();
-                    console.log( this.countryArray);  
-                    this.arra = this.countryArray
-                  })
-                  $.getScript('./assets/js/vertical-timeline.js');    
+                  this.loadCountries();
           }
-
       keyPress(event: any) {
         const pattern = /[0-9]/;
 
@@ -350,12 +339,17 @@ export class LocationComponent implements OnInit {
           this.toastr.error('Only Numbers');
         }
       }
-
        openModel(b) { 
+         console.log(b);
+            this.loadCountries();
+            this.district =  this.arra.filter(c=>c.countryId == b.countryId)[0].districts;
+            console.log(this.district)
+            this.dist_id=b.districtId;
+             this.suburb= this.district[0].suburb;
+             this.sub_id = b.suburbId;
             this.address_modelfield  = b;
-            console.log('aaaaaa',this.address_modelfield);
+         
        }
-
       openphone(b){
                       this.phone_dailog = true
                       this.phoneData = b;
@@ -499,7 +493,6 @@ export class LocationComponent implements OnInit {
      
        mapDialogObj : any;
        OpenmapDailog(locationObj){
-         console.log('aaaaaaaaaaaaaa',locationObj);
             this.mapDialogObj = locationObj
             this.address = this.mapDialogObj.mapAddress
             this.mapDailog = true;
@@ -522,7 +515,7 @@ export class LocationComponent implements OnInit {
           this.l = results[0].geometry.location.lng();
           console.log( this.k);
           console.log( this.l );
-
+            
           // this.data.lat = this.k;
           // this.data.long =  this.l;
 
@@ -785,27 +778,27 @@ export class LocationComponent implements OnInit {
           console.log(e.value.country_id,e.value.dist_id,e.value.sub_id);
           
           console.log(this.arra)
-          this.arra.forEach((ele,pos)=>{
-            if(pos  == e.value.country_id){
-              this.ao = ele.countryId;
-              ele['districts'].forEach((elem,pp) => {
-                  if(pp == e.value.dist_id){
-                    this.bo = elem.districtId;
-                    elem['suburb'].forEach((eleme,oo) => {
-                      if(oo == e.value.sub_id){
-                       this.co = eleme.suburbId;
-                      }
-                    });
-                  }
-              });
-            }
-          })
+          // this.arra.forEach((ele,pos)=>{
+          //   if(pos  == e.value.country_id){
+          //     this.ao = ele.countryId;
+          //     ele['districts'].forEach((elem,pp) => {
+          //         if(pp == e.value.dist_id){
+          //           this.bo = elem.districtId;
+          //           elem['suburb'].forEach((eleme,oo) => {
+          //             if(oo == e.value.sub_id){
+          //              this.co = eleme.suburbId;
+          //             }
+          //           });
+          //         }
+          //     });
+          //   }
+          // })
           console.log('main'+this.ao,this.bo,this.co)
             const datapanel =  {
                 vendorLocationId: e.value.vendorLocationId,
-                countryId: this.ao ,
-                districtId: this.bo,
-                suburbId:  this.co ,
+                countryId: this.address_modelfield.countryId ,
+                districtId: this.dist_id, //this.bo,
+                suburbId:  this.sub_id, //this.co ,
                 vendorId: e.value.vendorid ,
                 postalCode: e.value.Postal_code          ,
                 address: e.value.Address,
@@ -868,6 +861,7 @@ export class LocationComponent implements OnInit {
                   const newVal = event.target.value;
                  // console.log(newVal)
                   this.c_id = this.arra[newVal].countryId
+                  this.address_modelfield.country_id=this.c_id;
                   this.country_name =this.arra[newVal].countryName
                   this.district = this.arra[newVal].districts
                  console.log(  this.country_name)
@@ -885,8 +879,6 @@ export class LocationComponent implements OnInit {
             this.subr_name =this.suburb[newVal].name
             console.log(this.subr_name )
       }
-
-
       closeModel(){ 
             this.photo_ved_dailog = false;
             this.phone_dailog = false;
@@ -894,6 +886,15 @@ export class LocationComponent implements OnInit {
             this.week_dailog = false ;
             this.mapDailog =false;
       } 
+      loadCountries(){
+        let country = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries");
+        country.subscribe(data => { 
+          this.countryArray = data.json();
+          console.log( this.countryArray);  
+          this.arra = this.countryArray
+        })
+        $.getScript('./assets/js/vertical-timeline.js');
+      }
       
 
 

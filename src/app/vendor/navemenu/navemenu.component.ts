@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { Http,Headers } from '@angular/http';
@@ -8,17 +8,18 @@ import { LoginServiceService } from '../../shared/service/login-service.service'
   templateUrl: './navemenu.component.html',
   styleUrls: ['./navemenu.component.scss']
 })
-export class NavemenuComponent implements OnInit {
+export class NavemenuComponent implements OnChanges,OnInit   {
     currentLang = 'en';
     toggleClass = 'ft-maximize';
     private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
     vendor: any = {};
-  
+    @Input() userImg: any;
+   // @Output() userImg = new EventEmitter<string>();
+   // @Output('userImg') img:string;
     public data = '' ;
     constructor(public translate: TranslateService ,public http: Http,private cservice: LoginServiceService, private router: Router ) { const browserLang: string = translate.getBrowserLang();
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : 'en'); }
-
- 
+  
   ngOnInit() {
 
       var firstName = localStorage.getItem('firstName');
@@ -33,6 +34,7 @@ export class NavemenuComponent implements OnInit {
       this.http.get(this.url,{headers:headers}).subscribe(
         data =>{ this.vendor = data.json();
                //  console.log(this.vendor);
+                this.userImg = this.vendor.profileImage;
                  if(!this.vendor.profileImage)
                  {
                  this.vendor.profileImage = "https://cdn4.iconfinder.com/data/icons/gray-user-management/512/rounded-512.png"
@@ -152,6 +154,7 @@ export class NavemenuComponent implements OnInit {
   typeLogout() {
     this.cservice.typeLogout();
 }
+ngOnChanges(){};
   
   
   
@@ -175,4 +178,6 @@ export class NavemenuComponent implements OnInit {
           else
               this.toggleClass = 'ft-maximize'
       }
+      
 }
+

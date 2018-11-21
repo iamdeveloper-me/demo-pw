@@ -1,6 +1,7 @@
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Http ,Headers} from '@angular/http';
+import swal from 'sweetalert2';
 
 import { Component, ViewEncapsulation, ViewChild, ElementRef, PipeTransform, Pipe, OnInit } from '@angular/core';
 import { DomSanitizer } from "@angular/platform-browser";
@@ -141,6 +142,18 @@ const updatedata = this.objVideo
                 )
 }
 deleteData(data){
+
+  swal({
+    title: "Are you sure?",
+  text: "You will not be able to recover this imaginary file!",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonClass: "btn-default",
+  confirmButtonText: "Yes, delete it!",
+  cancelButtonText: "No, cancel plx!",
+  }).then((res)=>{
+    console.log(res);
+    if(res.value===true){
   console.log(data.videosId)
   let headers = new Headers();
           var authToken = localStorage.getItem('userToken');
@@ -150,13 +163,20 @@ deleteData(data){
           headers.append('Content-Type', 'application/json');
           headers.append("Authorization",'Bearer '+authToken);
 
-          if(confirm("Are you sure to delete ")) {
+          // if(confirm("Are you sure to delete ")) {
             this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Videos/removevideo?VideoId'+'='+data.videosId,{headers:headers}).subscribe((res)=>{
               this.video_all_data.splice(this.video_all_data.indexOf(data.videosId),1);
                 console.log('Delete Responce '+res)
                                            })
                                            this.ngOnInit();
-          }
-      
-}
+          // }
+        }else{
+          // alert('Cancel Process !');
+       }
+    },error=>{
+          alert(JSON.stringify(error));
+   })
+         return;    
+  }
+  
 }

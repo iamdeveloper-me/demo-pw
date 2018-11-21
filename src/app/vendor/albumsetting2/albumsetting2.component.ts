@@ -89,16 +89,16 @@ constructor( public http: Http,public toastr: ToastrService ) {
             
     //         console.log( this.a);
     // }
-    // remove_tag_picker(g){
-    //   console.log(g); 
-    //   this.tai.splice(g, 1);
-    //   console.log(this.tai); 
-    //   if(this.tai.length == 0 )
-    //   { 
+    remove_tag_picker(g){
+      console.log(g); 
+      this.tai.splice(g, 1);
+      console.log(this.tai); 
+      if(this.tai.length == 0 )
+      { 
         
-    //       this.tag_error = "required tags"
-    //   }
-    // }
+          this.tag_error = "required tags"
+      }
+    }
     // remove_colour_picker(g){
     //   console.log(g);
     //   this.a.splice(g, 1);

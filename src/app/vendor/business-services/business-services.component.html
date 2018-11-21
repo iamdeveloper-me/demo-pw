@@ -34,12 +34,10 @@
 								  <div class="servicecontainer"  >
 									  <div class="activedisplay"><input type="radio" checked/> Cakes</div>
 									  <div class="activehide"  *ngFor="let category of categoryserveice ;let i = index;">
-									  
 										  <input 
 										  name="Service" 
 										  type="radio" [(ngModel)]="readioSelected" value= "{{i}}" (change)= "showContent()" >
 										  <span>{{category.categoryName}}</span>
-									  
 									  </div>
 								  </div>
 								  <button class="nextbtn" type="submit" >

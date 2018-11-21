@@ -24,6 +24,7 @@ export class MembershipComponent implements OnInit {
   pricingPlanId:number;
   payFrequency:number;
   ngOnInit() {
+
     //  Code formatting script
    // $.getScript('./assets/js/prism.min.js');
     //$.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
@@ -131,5 +132,14 @@ ngAfterViewChecked(): void {
 ,    );
    }
   
-
+getDecimal(monthlyPrice,noOfMonthFeeOff){
+var number = (monthlyPrice * (12 - noOfMonthFeeOff))/12
+var a = (monthlyPrice * (12 - noOfMonthFeeOff))/ 12 | number
+return (number - a) % 100
 }
+}
+
+
+// 123.25468544824
+// 123
+// 25

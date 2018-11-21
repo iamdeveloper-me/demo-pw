@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../../shared/service/vendor/message.service';
-import { reverse } from 'dns';
+// import { reverse } from 'dns';
 import * as $ from 'jquery';
 
 import { Pipe, PipeTransform } from '@angular/core';
@@ -41,7 +41,12 @@ date_true:boolean = true;
   constructor(private msg: MessageService,private vservice: MessageService,private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    
+    $("textarea").keydown(function(event) {
+      if (event.keyCode == 13 && !event.shiftKey) {
+        
+       return false;
+       }
+});
 
    this.messageId = parseInt(this.activatedRoute.snapshot.paramMap.get('id'))
    this.userId = localStorage.getItem('userId');
@@ -67,7 +72,7 @@ date_true:boolean = true;
 
 
 
-debugger
+
 //          if(msg.messages.sendToUserId == this.userId){
 //           this.profile_name = msg.messages.sendByFirstName+' '+msg.messages.sendByLastName
 // debugger
@@ -104,8 +109,11 @@ debugger
   }
   
 
-    onSubmit() {   
-      
+    onSubmit() {
+      // setTimeout(() => {
+      //   $(".dropmsg").last().append('<div class""><div _ngcontent-c1 class="man_imgright"><div  _ngcontent-c1 class="exellent_parright"><pre  class="chat-content">aaaaaaaaa</pre></div></div></div>') 
+ 
+      // }, 100);
 console.log(this.vendorMsg)
 this.vendorMsg['replyTo'] = parseInt(this.activatedRoute.snapshot.paramMap.get('id'))
 

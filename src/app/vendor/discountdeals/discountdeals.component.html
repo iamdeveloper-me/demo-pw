@@ -102,7 +102,7 @@
                                   <i class="fa fa-pencil" aria-hidden="true"></i> Edit {{data.dealId}}
                                 </button>
                                 <div class="clearfix"></div>
-                                <button class="btn btn-danger" (click)="deletedeals(data)">
+                                <button class="btn btn-danger" (click)="deletedeals(data,a)">
                                   <i class="fa fa-trash" aria-hidden="true"></i> Remove
                                 </button>
                               </td>
@@ -179,30 +179,24 @@
                                               <div class="input-effect form-group md-form ">
                                                   <input class="effect-16 validate" 
                                                       type="text"
-                                                      placeholder=""
                                                       name= "title"
                                                       [(ngModel)] ="createdeal.title"
                                                       id = "deal_title"
-                                                      required="required">
+                                                      #titles="ngModel" 
+                                                      required 
+                                                  >
+                                                  <small class="form-text text-muted danger" *ngIf="titles.errors?.required">required error</small>
+                    
+                                                      <input 
+                                                      type="hidden"
+                                                      name= "dealId" 
+                                                      [value] = '0' >
                                                   <label>Deal Title</label>
                                                   <span class="focus-border"></span>
                                               </div>
                                           </div>
                                       </div>  
-                                      <!-- <div class="col-md-12">
-                                              <div class="form-group">
-                                                  <div class="input-effect form-group md-form ">
-                                                      <input class="effect-16 validate" 
-                                                      type="text" 
-                                                      placeholder="" 
-                                                      required="required"
-                                                      name= "Discription"
-                                                      [(ngModel)] ="newdeal.title">
-                                                      <label>Discription</label>
-                                                      <span class="focus-border"></span>
-                                                  </div>
-                                              </div>
-                                      </div> -->
+
                                       <div class="col-md-12 row">
                                           <div class="col-md-6 radio-btn">
                                               
@@ -240,13 +234,17 @@
                                               <div class="input-effect form-group md-form ">
                                                   <input 
                                                   class="effect-16 validate" 
-                                                  type="text" 
-                                                  placeholder="" 
+                                                  type="date" 
+                                           
                                                   required="required"
                                                   name= "startdate"
-                                                  [(ngModel)] ="createdeal.startDate"  >
+                                                  [(ngModel)] ="createdeal.startDate"  
+                                                  #startdates="ngModel" 
+                                                  required >
                                                   <label>Start Date</label>
                                                   <span class="focus-border"></span>
+                                                  <small class="form-text text-muted danger" *ngIf="startdates.errors?.required">required error</small>
+                    
                                               </div>
                                           </div>
                                       </div> 
@@ -255,13 +253,17 @@
                                               <div class="input-effect form-group md-form ">
                                                   <input 
                                                   class="effect-16 validate" 
-                                                  type="text" 
-                                                  placeholder="" 
+                                                  type="date" 
+                                              
                                                   required="required"
                                                   name= "EndDate"
-                                                  [(ngModel)] ="createdeal.endDate" >
+                                                  [(ngModel)] ="createdeal.endDate" 
+                                                  #EndDates="ngModel" 
+                                                  required>
                                                   <label>End Date</label>
                                                   <span class="focus-border"></span>
+                                                  <small class="form-text text-muted danger" *ngIf="EndDates.errors?.required">required error</small>
+                    
                                               </div>
                                           </div>
                                       </div> 
@@ -272,12 +274,14 @@
                                                   <input 
                                                   class="effect-16 validate" 
                                                   type="text" 
-                                                  placeholder="" 
                                                   name= "Condition"
                                                   [(ngModel)] ="createdeal.conditions"
-                                                  required="required">
+                                                  #Conditionss="ngModel" 
+                                                  required >
                                                   <label>Terms & Condition of your deal</label>
                                                   <span class="focus-border"></span>
+                                                  <small class="form-text text-muted danger" *ngIf="Conditionss.errors?.required">required error</small>
+                    
                                               </div>
                                           </div>
                                       </div>  
@@ -314,28 +318,23 @@
                                                   <input 
                                                   class="effect-16 validate" 
                                                   type="text" 
-                                                  placeholder="" 
                                                   name= "update_title"
                                                   id = "update_title"
-                                                  [(ngModel)] ="updatemydeal.title"
-                                              
-                                                  required="required">
-                                               
-                                                  
+                                                  [ngModel] ="updatemydeal.title"
+                                                  #update_title="ngModel" 
+                                                  required 
+                                                  >  
                                                   <label>Deal Title</label>
                                                   <span class="focus-border"></span>
+                                                  <small class="form-text text-muted danger" *ngIf="update_title.errors?.required">required error</small>
+                    
                                               </div>
                                           </div>
                                       </div>  
-                                      <!-- <div class="col-md-12">
-                                              <div class="form-group">
-                                                  <div class="input-effect form-group md-form ">
-                                                      <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                                      <label>Discription</label>
-                                                      <span class="focus-border"></span>
-                                                  </div>
-                                              </div>
-                                      </div> -->
+                                     
+                             
+                                           
+                                   
                                       <input 
                                       class="effect-16 validate" 
                                       type="hidden" 
@@ -343,53 +342,70 @@
                                       name= "dealId"
                                       id = "dealId"
                                       [(ngModel)] ="updatemydeal.dealId"
-                                  
                                       required="required">
                                       <div class="col-md-12 row">
-                                          <div class="col-md-6 radio-btn">
+                                            <div class="col-md-6 radio-btn">
                                               <label><input 
                                                   type="radio" 
                                                   name="optradio" 
-                                                
-                                                  checked>Choose date</label>
-                                              </div>
-                                              <div class="col-md-6 radio-btn">
-                                              <label><input 
-                                                  type="radio"
-                                                      name="optradio" 
-                                                      checked>Never Expire</label>
-                                              </div> 
-                                      </div>  
+                                                 
+                                                  [value]="false"
+                                                  [(ngModel)] ="updatemydeal.neverExpire"
+                                                >Choose date</label>
+                                            </div>
+                                            <div class="col-md-6 radio-btn">
+                                              <label>
+                                                  <input 
+                                                    type="radio"
+                                                    name="optradio" 
+                                                   
+                                                    [value]="true"
+                                                    [(ngModel)] ="updatemydeal.neverExpire"
+                                                  >Never Expire {{updatemydeal.neverExpire}}</label>
+                                            </div> 
+                                            
+                                     
+                                        </div>  
                                       <div class="col-md-12 row">
                                           <div class="col-md-6">
                                           <div class="form-group">
                                               <div class="input-effect form-group md-form ">
                                                   <input 
                                                   class="effect-16 validate" 
-                                                  type="text" 
-                                                  placeholder="" 
+                                                  type="date" 
+                                           
                                                   name= "Start_date"
                                                   id = "Start_date"
-                                                  [(ngModel)] ="updatemydeal.startDate"
-                                                  required="required">
-                                                  <label>Start Date</label>
+                                                  [(ngModel)] ="update_start_date"
+                                                  #Start_date="ngModel" 
+                                                  required 
+                                                  placeholder="required"
+                                                >
+                                                  <label>Start Date </label>
                                                   <span class="focus-border"></span>
+                                                  <small class="form-text text-muted danger" *ngIf="Start_date.errors?.required">required error</small>
+                    
                                               </div>
                                           </div>
                                       </div> 
                                       <div class="col-md-6">
                                           <div class="form-group">
-                                              <div class="input-effect form-group md-form ">
+                                              <div class="input-effect form-group md-form "  *ngIf ="!updatemydeal.neverExpire">
                                                   <input
                                                       class="effect-16 validate" 
-                                                      type="text" 
-                                                      placeholder="" 
-                                                      [(ngModel)] ="updatemydeal.endDate"
+                                                      type="date" 
+                                           
+                                                      [(ngModel)] ="update_end_date"
                                                       name= "End_date"
                                                       id = "End_date"
-                                                      required="required">
+                                                      #End_date="ngModel" 
+                                                      required 
+                                                      placeholder="required"
+                                                      >
                                                   <label>End Date</label>
                                                   <span class="focus-border"></span>
+                                                  <small class="form-text text-muted danger" *ngIf="End_date.errors?.required">required error</small>
+                    
                                               </div>
                                           </div>
                                       </div> 
@@ -400,13 +416,19 @@
                                                   <input 
                                                   class="effect-16 validate" 
                                                   type="text" 
-                                                  placeholder="" 
-                                                  [(ngModel)] ="updatemydeal.conditions"
+                                                 
+                                                  [ngModel] ="updatemydeal.conditions"
                                                   name= "Condition"
                                                   id = "Condition"
-                                                  required="required">
+                                                  #Condition="ngModel" 
+                                                  required 
+                                                  placeholder="required" 
+                                                 >
                                                   <label>Terms & Condition of your deal</label>
                                                   <span class="focus-border"></span>
+
+                                                  <small class="form-text text-muted danger" *ngIf="Condition.errors?.required">required error</small>
+                    
                                               </div>
                                           </div>
                                       </div>  
@@ -415,7 +437,7 @@
                               </div>
                           </div>
                           <div class="modal-footer">
-                                <button type="submit" class="btn newbtn">Save</button>
+                                <button type="submit" class="btn newbtn"  [disabled]="!info.valid">Save</button>
                                 <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
                              
                           </div>

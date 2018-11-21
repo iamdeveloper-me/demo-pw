@@ -145,19 +145,24 @@
                     <a class="btn-sm btn btn-success editbtn" (click) = "tags_bage(taggg)">ADD Tag</a>
                     <hr>
                     <small class="form-text text-muted danger" *ngIf="colour_picker1.length == 0"> {{colour_tag_error}}</small>
-                    <ul  class="list_inline">        
+                    <!-- <ul  class="list_inline">        
                       <li *ngFor="let g of a;let i=index">
                           <span class="tagstik"> 
                               {{g}}
                               <i class="material-icons" (click) = "remove_colour_picker(i)">clears</i>
                             </span>  
                       </li>
-                    </ul>
+                    </ul> -->
                 </div>
               </div>
             </div>
-
             <div class="row">
+                  <div *ngFor='let c of colors' (click)='SelectColor(c)' class="btn btn-default col-md-2 col-md-offset-1" [style.background-color]='c.colorName' style="color:white">
+                    <i class="fa fa-check" *ngIf='c.isSelected'></i>
+                      {{c.colorName}}
+                  </div>
+            </div>
+            <!-- <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
                   <label>Color Tags</label>
@@ -266,7 +271,7 @@
                     </div>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="clearfix"></div>
           </div>
 

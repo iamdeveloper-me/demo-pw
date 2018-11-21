@@ -19,8 +19,8 @@ export class EditprofileComponent implements OnInit {
  vendorContactInfo:{ email:''}
 
 };
-personal_data_update : false;
-changePassword_form: false;
+personal_data_update = false;
+changePassword_form = false;
  private geturl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/mypersonalinfo'
   getaccount : any = {};
 

@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../../shared/service/vendor/message.service';
-import { reverse } from 'dns';
+// import { reverse } from 'dns';
 import * as $ from 'jquery';
 
 import { Pipe, PipeTransform } from '@angular/core';
@@ -72,7 +72,7 @@ date_true:boolean = true;
 
 
 
-debugger
+
 //          if(msg.messages.sendToUserId == this.userId){
 //           this.profile_name = msg.messages.sendByFirstName+' '+msg.messages.sendByLastName
 // debugger

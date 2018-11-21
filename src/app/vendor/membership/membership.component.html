@@ -145,8 +145,10 @@
 												<tr>
 													<td>MUR</td>
 													<td>
-															<div class="pricebig">{{(plan.monthlyPrice * (12 - plan.noOfMonthFeeOff))/12 }}</div></td>
-													<td class="text-left lineheight16px">00<br/>/Monthly</td>
+															<div class="pricebig">{{(plan.monthlyPrice * (12 - plan.noOfMonthFeeOff))/12 | number: '1.0-0'}} </div></td>
+													<td class="text-left lineheight16px" > {{(plan.monthlyPrice * (12 - plan.noOfMonthFeeOff))/12 | number:'1.0-2'}}<br/>/Monthly</td>
+                                                    <!-- <td class="text-left lineheight16px" > {{getDecimal(plan.monthlyPrice , plan.noOfMonthFeeOff)}}<br/>/Monthly</td> -->
+													<!-- | number:'4.5-5':'fr' -->
 												</tr>
 											</table>
 										</div>

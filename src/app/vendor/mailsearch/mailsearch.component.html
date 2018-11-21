@@ -24,8 +24,8 @@
                   <!-- {{ today | date : "dd.MM.y" }}<br/>
                   {{ today | date:'medium' }} <br/> -->
                 <div class="clearfix"></div>
-                <div class="chatscroll" >
-                <div *ngFor="let msg_loop of total_message | reverse">
+                <div class="chatscroll chat-body" >
+                <div class="dropmsg" *ngFor="let msg_loop of total_message | reverse">
               <div class="dateholder" id="message">
                 
                     <span class="dateholdercontainer" [innerHtml]="getDate(msg_loop.sentDate)">
@@ -50,14 +50,17 @@
                </div>
                 <div class="man_imgright" *ngIf="msg.sendToUserId != userId">
                   <div class="exellent_parright" > 
-                    <span class="revie_name">{{msg.sendByFirstName}},
-                       <!-- 8:09 PM -->
+                    <!-- <span class="revie_name">{{msg.sendByFirstName}},
                        <span [innerHtml]="getTime(msg.sentDate )">
 
                         </span>
 
-                    </span> 
-                    <p>{{msg.message}}</p>
+                    </span>  -->
+                    
+                      <pre class="chat-content">
+                        {{msg.message}}
+                      </pre>
+                   
                   </div>
                 </div>
               </div>    

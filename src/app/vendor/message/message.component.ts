@@ -45,10 +45,12 @@ export class MessageComponent implements OnInit {
 
   
   onSelectionChange(entry_id) {
-    this.deletIcon = true
+    
     if(entry_id['checked']){
+      this.deletIcon = false
       entry_id['checked'] = false;
     }else{
+      this.deletIcon = true
       entry_id['checked'] = true;
 }
 
@@ -103,7 +105,19 @@ export class MessageComponent implements OnInit {
     // )
 
    
+    $(function() {
+      // $("a").on("click", function() {
+      //   alert('gfgfgdf')
+      //     $(".btn-default.active").removeClass("active");
+      //     $(this).find(".btn-default").addClass("active");
+      // });
 
+      $(".msg_buttons").on("click", function(){
+        // debugger
+        $(".msg_buttons").removeClass("active");
+        $(this).addClass("active");
+      });
+  });
   
   }
   search(newObj){
@@ -341,5 +355,10 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
    }
    
 
+
+  //  Change Route for name click
+  changeRoute(id){
+this.route.navigate(['vendor/msg',id])
+  }
   
 }

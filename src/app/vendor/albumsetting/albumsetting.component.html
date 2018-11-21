@@ -43,7 +43,7 @@
                     <div class="tagcontainer">
                         <span *ngFor="let g of image.colorTags
                         ;let i=index">
-                        {{g}}
+                        <!-- {{g}} -->
                           <!-- {{g}} -->
                             <span *ngIf = "g == 'pink'">
                                 <span class="colortags pinkbg"></span>
@@ -152,14 +152,14 @@
                       
                         <hr>
 
-                        <ul class="list_inline">
+                        <!-- <ul class="list_inline" >
                           <li *ngFor="let g of a;let i=index">
                             <span class="tagstik"> 
                               {{g}}
                               <i class="material-icons" (click) = "remove_colour_picker(i)">clears</i>
                             </span>  
                           </li>
-                        </ul>
+                        </ul> -->
                         <small class="form-text text-muted danger" *ngIf="albumsetting2.colour_picker1.length == 0"> {{colour_tag_error}}</small>
 
                     </div>
@@ -286,7 +286,7 @@
                 <div class="clearfix"></div>
               </div>
               <div class="modal-footer text-center">
-                  <button type="submit" class="btn newbtn" [disabled]=" tag_array.length == 0 || albumsetting2.colour_picker1.length == 0">Save </button>&nbsp;
+                  <button type="submit" class="btn newbtn" [disabled]="tag_array.length== 0 ">Save </button>&nbsp;
                   <button type="button" class="btn  newbtn newcancelbtn" (click)="closeModel()">Cancel</button>
               </div>
           </div>

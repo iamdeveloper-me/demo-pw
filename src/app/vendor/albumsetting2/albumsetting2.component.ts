@@ -71,6 +71,7 @@ constructor( public http: Http,public toastr: ToastrService ) {
   }
  }
     tags_bage(e){
+      
                   if(typeof(e) == 'undefined' )
                   {
                     this.tag_error = "empty tag not added tags"

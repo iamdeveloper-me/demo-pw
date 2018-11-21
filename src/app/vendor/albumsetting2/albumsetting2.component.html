@@ -143,8 +143,9 @@
                       </li>
                     </ul>  
                     <a class="btn-sm btn btn-success editbtn" (click) = "tags_bage(taggg)">ADD Tag</a>
+                    <!--   {{tai.length}} -->
                     <hr>
-                    <small class="form-text text-muted danger" *ngIf="colour_picker1.length == 0"> {{colour_tag_error}}</small>
+                    <small class="form-text text-muted danger" *ngIf="tai.length == 0"> {{colour_tag_error}}</small>
                     <!-- <ul  class="list_inline">        
                       <li *ngFor="let g of a;let i=index">
                           <span class="tagstik"> 
@@ -276,7 +277,7 @@
           </div>
 
           <div class="modal-footer text-center">
-            <button type="submit" class="btn newbtn" [disabled]="a.length == 0 || tai.length == 0">Save</button>&nbsp;
+            <button type="submit" class="btn newbtn" [disabled]="tai.length == 0">Save </button>&nbsp;
             <button type="button" class="btn  newbtn newcancelbtn" (click)="closeModel()">Cancel</button>
           </div>
 

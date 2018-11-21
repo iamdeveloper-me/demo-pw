@@ -61,7 +61,10 @@ export class BusinessServicesComponent implements OnInit {
   allservices = true; 
   customFieldsa=[]
   final =[];
-  constructor(public http: Http,private fb: FormBuilder){ }  
+  vendorServiceVM: VendorServiceVM;
+  constructor(public http: Http,private fb: FormBuilder){ 
+    this.vendorServiceVM = new VendorServiceVM();
+  }  
   ngOnInit() {  
               this.show = false;
               this.allservices = true;
@@ -130,6 +133,7 @@ export class BusinessServicesComponent implements OnInit {
        
   }
   submitS(form: FormGroup){
+    this.vendorServiceVM.servicesId= this.form.value;
 this.serviceData.push(form.value)
 this.service_provide_dailog = false;
 localStorage.setItem('id_of_selected_service', this.serviceData[0]['servicesId']);
@@ -276,6 +280,10 @@ this.modaldata.forEach(element => {
   }
   checkingService(i,eve:Event){
   }
+  showService1(c){
+    console.log(c);
+    this.vendorServiceVM.categoryId = c.categoryId;
+  }
   showService(i){
                       this.readioService = i;
                       const var_cat_id = this.readioService;
@@ -296,6 +304,20 @@ this.modaldata.forEach(element => {
                         }
                       })
   }
+}
+export class VendorServiceVM{
+  public servicesId	: number;
+  public categoryId	: number;
+  public serviceFields: Array<ServiceFieldValuesVM>;
+  public serviceField: ServiceFieldValuesVM;
+  constructor(){
+    this.serviceField = new ServiceFieldValuesVM();
+    this.serviceFields = new Array<ServiceFieldValuesVM>();
+  }
+}
+export class ServiceFieldValuesVM{
+  public customFieldId:number;
+  public userValue:string;
 }
 
 

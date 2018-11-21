@@ -170,26 +170,30 @@ editSetting(f){
          console.log(fire)
       this.http.post(this.update_portfolio_album,fire,{headers:headers}).subscribe(data =>{
             this.albumImagesModify = [];  
-          this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
+         this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
           .subscribe(data =>{
-                            console.log(data.json()); 
                             for (var item of  data.json() ) {
                             if(this.albumid.id == item.albumsId)
                               {   console.log(item);
                                 for (var albumtag of  item.albumImages ) {
-                                  if(albumtag.tags != null && albumtag.colorTags != null){
+                                  if(albumtag.tags != null){
                                     albumtag['tags'] = albumtag['tags'].split(',');
-                                    albumtag['colorTags'] = this.albumsetting2.csvColors;
+                                   //  albumtag['colorTags'] = this.albumsetting2.csvColors;
+                                  }
+                                  if(albumtag.colorTags !=null){
+                                    //  albumtag['colorTags'] = albumtag['colorTags'].split(',');
+                                    albumtag['colorTags'] = albumtag['colorTags'].split(',');
                                   }
                                   this.albumImagesModify.push(albumtag);
-                                  console.log(this.albumImagesModify);
                                 }
                               }
                             }
                                this.tags = item.tags;
                                this.colourtags = item.colorTags;
                           });
+          
       this.toastr.success(data.json().message);
+      
   },error=> console.log(error)    )
   this.description_dailog = false;
 

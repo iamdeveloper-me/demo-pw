@@ -19,7 +19,10 @@
 										<div class="activehide"  *ngFor="let category of User_services ;let i = index;">
 											<button  (click)= "showService(i)" >
 												<span>{{category.categoryName}}</span>
-											</button>										
+											</button>	
+											<button class="btn btn-success"  (click)= "showService1(category)" >
+													<span>{{category.categoryName}}</span>
+												</button>																			
 										</div>
 									</div>
 									<button class="nextbtn" type="submit" >
@@ -257,12 +260,7 @@
 					  <button type="button " class="close digi_btn" aria-label="Close" (click)="closeModel()"><span aria-hidden="true">&times;</span></button>
 					  <h4  class="card-title text-center titleset">Please Select Service Provide</h4>
 					  <div class="">
-  
- 
-
-
-						  <div class="col-md-12 text-center" *ngFor="let cate of modaldata
-						  ">	
+						  <div class="col-md-12 text-center" *ngFor="let cate of modaldata">	
 						  <label class="container1 radioadjustbox">
 								  {{cate.serviceName}}
 									<div *ngIf="cate.servicesId == serviceId ; else ccc">

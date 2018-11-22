@@ -297,17 +297,10 @@ export class LocationComponent implements OnInit {
               autocomplete.addListener("place_changed", () => {
             
                   this.zone.run(() => {
-                    //get the place result
                     let place = autocomplete.getPlace();
-
-                   // let place: any;
-
-                    //verify result
                     if (place.geometry === undefined || place.geometry === null) {
                       return;
                     }
-                      console.log(place);
-                    //set latitude, longitude and zoom
                     this.mapDialogObj.mapAddress = place.formatted_address;
                     this.address = place.formatted_address;
                     this.mapDialogObj.lat = place.geometry.location.lat();
@@ -326,13 +319,11 @@ export class LocationComponent implements OnInit {
                                     
                   this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
                   this.location_Array = data.json() ;
-                  console.log(  this.location_Array  );
                   })
                   this.loadCountries();
           }
       keyPress(event: any) {
         const pattern = /[0-9]/;
-
         let inputChar = String.fromCharCode(event.charCode);
         if (event.keyCode != 8 && !pattern.test(inputChar)) {
           event.preventDefault();
@@ -340,13 +331,11 @@ export class LocationComponent implements OnInit {
         }
       }
        openModel(b) { 
-         console.log(b);
             this.loadCountries();
             this.district =  this.arra.filter(c=>c.countryId == b.countryId)[0].districts;
-            console.log(this.district)
             this.dist_id=b.districtId;
-             this.suburb= this.district[0].suburb;
-             this.sub_id = b.suburbId;
+            this.suburb= this.district[0].suburb;
+            this.sub_id = b.suburbId;
             this.address_modelfield  = b;
          
        }
@@ -356,7 +345,6 @@ export class LocationComponent implements OnInit {
                       this.modelfield  = Object.assign({}, b);
                       this.formPhone = this._fb.group({phoneArry: new FormArray([])});
                       let control = <FormArray>this.formPhone.controls['phoneArry'];
-                      // add new formgroup
                       if(b.locationPhones.length){
                         for(let i = 0; i<b.locationPhones.length;i++){
                           control.push(this._fb.group({
@@ -376,19 +364,16 @@ export class LocationComponent implements OnInit {
       addNewColumn() {
                         let control = <FormArray>this.formPhone.controls['phoneArry'];
                         control.push(this._fb.group({
-                            // list all your form controls here, which belongs to your form array
                             phoneType: ['Phone'],
                             number: [],
                             isprime: [false],
                             vendorLocationId :[],
                             locationPhoneId: 0
                         }));
-                        console.log('aaaaaaaaaaaaaa',control.value);
                         this.arra_col = control.value;
       }
 
   update_phone(){
-        //console.log(this.formPhone.value.phoneArry)
          let reqObj = [];
         for(let i=0;i<this.formPhone.value.phoneArry.length;i++){
          let obj = {
@@ -401,9 +386,6 @@ export class LocationComponent implements OnInit {
 
             reqObj.push(obj)
         }
-        
-        console.log(reqObj);
-
         if(reqObj.length > 0){ 
             for (var item of  reqObj ) {
                if(item.locationPhoneId == 0){
@@ -413,42 +395,20 @@ export class LocationComponent implements OnInit {
                 }
              }    
         }
-        //console.log("asdassssssssss",); 
-        //if(this.create_phone.length > 0){
           this.apiService.postData(this.post_phone_number,reqObj).subscribe(data =>{
-            console.log('crrrrrrrrrr',data)
             this.toastr.success(data.statusText);
             this.phone_dailog = false;
             this.create_phone = [];
-            //reqObj = [];
             this.phoneData.locationPhones = reqObj
             },
             error => {
               this.toastr.error(error._body);
               }
           )    
-        //}
-       
-        // if(this.update_phone1.length > 0){
-        //   this.apiService.postData(this.post_phone_number,this.update_phone1).subscribe(data =>{
-        //     console.log('uuuuuuuu',data)
-        //     this.toastr.success(data.statusText);
-        //     this.phone_dailog = false;
-        //     this.update_phone1 = [] ;
-        //     reqObj = [];
-           
-        //   },
-        //   error => {
-        //       this.toastr.error(error._body);
-        //     }
-        //   )
-
-        // }                
       }
 
       removePhone(phoneObj,index) {
        
-                //this.phone_dailog = false;
                 if(phoneObj.value.locationPhoneId){
                       let con = confirm('Are you sure you want to delete this?')
                       if (con) {
@@ -467,12 +427,9 @@ export class LocationComponent implements OnInit {
                                       headers.append("Authorization",'Bearer '+authToken);
                                       this.http.post(this.remove_phone_number,obj,{headers:headers}).subscribe( 
                                         (data)=> { 
-                                                    console.log(data)
                                                     this.toastr.success(data.statusText);
                                                     let control = <FormArray>this.formPhone.controls['phoneArry'];
                                                     control.removeAt(index);
-                                                    //this.phoneData.locationPhones.removeAt(index);
-                                                    console.log('phoneData',this.phoneData)
                                                   },(error)=>{ console.log(error);
                                                                this.toastr.error(error._body);
                       });
@@ -481,13 +438,9 @@ export class LocationComponent implements OnInit {
                                      let control = <FormArray>this.formPhone.controls['phoneArry'];
                                      control.removeAt(index);
                                   }
-
-      }
-
+  }
        openweek(b){
-         
                     this.modelfield  = b;
-                    console.log(this.modelfield);
                     this.week_dailog =true;
                   }
      
@@ -498,31 +451,18 @@ export class LocationComponent implements OnInit {
             this.mapDailog = true;
         }
     findLocation(address) {
-      console.log(address);
       if (!this.geocoder) this.geocoder = new google.maps.autocomplete.Geocoder()
       this.geocoder.geocode({
         'address': address
       }, (results, status) => {
-        console.log( this.geocoder);
-        console.log(results);
-      
-       
          
       this.address = results[0].formatted_address      ;
-    
       if (status == google.maps.GeocoderStatus.OK) {  
           this.k = results[0].geometry.location.lat();
           this.l = results[0].geometry.location.lng();
-          console.log( this.k);
-          console.log( this.l );
-            
-          // this.data.lat = this.k;
-          // this.data.long =  this.l;
-
         for (var i = 0; i < results[0].address_components.length; i++) {
          
           let types = results[0].address_components[i].types
-          console.log(results[0].address_components[i].long_name);
           if (types.indexOf('locality') != -1) {
             this.location.address_level_2 = results[0].address_components[i].long_name
           }
@@ -531,7 +471,6 @@ export class LocationComponent implements OnInit {
           }
           if (types.indexOf('postal_code') != -1) {
             this.location.address_zip = results[0].address_components[i].long_name;
-            console.log(results[0].address_components[i].long_name);
           }
           if (types.indexOf('administrative_area_level_1') != -1) {
             this.location.address_state = results[0].address_components[i].long_name
@@ -557,8 +496,6 @@ export class LocationComponent implements OnInit {
 
        update__googlemap(e,a)
       { 
-          console.log(e.value)
-          console.log(a);
           const loc_add = {
                               mapAddress: this.address,
                               vendorId:a.vendorId,
@@ -616,28 +553,17 @@ export class LocationComponent implements OnInit {
                                 this.toastr.success(data.statusText);
                                 this.http.get(this.urlget,{headers:headers}).subscribe((data) => { 
                                      this.location_Array = data.json() ;
-                                     console.log(  this.location_Array  );
                             })
-
-
                               },(error)=>{ console.log(error); 
                                   this.toastr.success(error.statusText);}); 
       }
-
-
-
-
       update__week(e){
-        console.log(e);
-        console.log(e);
-   
         this.week_dailog = false ;
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
-   
             this.http.post(this.urlpost,{
               vendorLocationId: e.value.vendorLocationId,
               countryId: e.value.country.countryId  ,
@@ -650,8 +576,6 @@ export class LocationComponent implements OnInit {
                 suburb : {
                                 name : e.value.suburb.name,
                                 suburbId:   e.value.suburb.suburbId
-                  
-                       
               }  ,
               suburbId:  e.value.suburbId ,        
               address: e.value.address,
@@ -690,18 +614,11 @@ export class LocationComponent implements OnInit {
       }
      
       isActive(b,e){ 
-             console.log(b);
-           
-             console.log(e);
              let headers = new Headers();
              var authToken = localStorage.getItem('userToken');
              headers.append('Accept', 'application/json')
              headers.append('Content-Type', 'application/json');
              headers.append("Authorization",'Bearer '+authToken);
-       
-          
-
-            
                      this.http.post(this.urlpost,e,{headers:headers}).subscribe( (data)=> { console.log(data);
                       if(b == false)
                       { this.toastr.info('Your location NOT Active');
@@ -710,14 +627,10 @@ export class LocationComponent implements OnInit {
                ,(error)=>{ console.log(error);   });
       }
       cerate(e){
-        console.log(e.value);
-        
         this.create_location_dailog = false;
-   
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         var vendorID = localStorage.getItem('vendorid');
-
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
@@ -774,33 +687,14 @@ export class LocationComponent implements OnInit {
 
       Update_Address(e)
      {
-
           console.log(e.value.country_id,e.value.dist_id,e.value.sub_id);
-          
-          console.log(this.arra)
-          // this.arra.forEach((ele,pos)=>{
-          //   if(pos  == e.value.country_id){
-          //     this.ao = ele.countryId;
-          //     ele['districts'].forEach((elem,pp) => {
-          //         if(pp == e.value.dist_id){
-          //           this.bo = elem.districtId;
-          //           elem['suburb'].forEach((eleme,oo) => {
-          //             if(oo == e.value.sub_id){
-          //              this.co = eleme.suburbId;
-          //             }
-          //           });
-          //         }
-          //     });
-          //   }
-          // })
-          console.log('main'+this.ao,this.bo,this.co)
             const datapanel =  {
                 vendorLocationId: e.value.vendorLocationId,
                 countryId: this.address_modelfield.countryId ,
-                districtId: this.dist_id, //this.bo,
-                suburbId:  this.sub_id, //this.co ,
+                districtId: this.dist_id, 
+                suburbId:  this.sub_id, 
                 vendorId: e.value.vendorid ,
-                postalCode: e.value.Postal_code          ,
+                postalCode: e.value.Postal_code,
                 address: e.value.Address,
                 lat: e.value.lat,
                 long: e.value.long,
@@ -830,25 +724,18 @@ export class LocationComponent implements OnInit {
                 saturdayClose: e.value.saturdayClose,
                 isSaturdayOpen: e.value.isSaturdayOpen 
             }
-          console.log(datapanel);
           let headers = new Headers();
           var authToken = localStorage.getItem('userToken');
           headers.append('Accept', 'application/json')
           headers.append('Content-Type', 'application/json');
           headers.append("Authorization",'Bearer '+authToken);
-          // var vendorID = localStorage.getItem('vendorid');
                   this.http.post(this.urlpost,datapanel,{headers:headers}).subscribe(    (responce)=>{ console.log(responce);
                                 this.toastr.success(responce.statusText);
                                if(responce.status == 200)
                                 {
-                                  
                                   this.photo_ved_dailog = false;
-                                 
-                                }   
-      
-              
-                ///console.log("saved");
-           
+                                } 
+                                  
             },(error)=> { console.log(error) ;
               this.toastr.error(error._body );
               this.toastr.error(error.json().text() );
@@ -856,28 +743,25 @@ export class LocationComponent implements OnInit {
       }    
       closeResult: string;
      
-
       country(event): void {  
                   const newVal = event.target.value;
-                 // console.log(newVal)
-                  this.c_id = this.arra[newVal].countryId
-                  this.address_modelfield.country_id=this.c_id;
-                  this.country_name =this.arra[newVal].countryName
-                  this.district = this.arra[newVal].districts
-                 console.log(  this.country_name)
+                 let country=this.arra.filter(c=>c.countryId == newVal)[0]; 
+                 this.c_id= this.arra.filter(c=>c.countryId == newVal)[0].countryId;
+                  this.address_modelfield.country_id=country.countryId;
+                  this.country_name =country.countryName
+                 this.district = country.districts
       }
       districtA(event): void {  
                 const newVal = event.target.value;
                 this.d_id = this.district[newVal].districtId
                 this.district_name =this.district[newVal].name
                 this.suburb = this.district[newVal].suburb
-                console.log(  this.district_name)
       }
       subr(event): void {  
             const newVal = event.target.value;
-            this.s_id = this.suburb[newVal].suburbId
+            let suburb= this.district.filter(s=>s.suburbId== newVal)[0];
+                this.s_id = this.suburb[newVal].suburbId
             this.subr_name =this.suburb[newVal].name
-            console.log(this.subr_name )
       }
       closeModel(){ 
             this.photo_ved_dailog = false;
@@ -885,6 +769,7 @@ export class LocationComponent implements OnInit {
             this.create_location_dailog = false;
             this.week_dailog = false ;
             this.mapDailog =false;
+            this.ngOnInit();
       } 
       loadCountries(){
         let country = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries");

@@ -4,23 +4,47 @@
 	</div>
 	<div id="page-content-wrapper">    
 	  <div class="container-fluid nopadd"> 
-		<app-navemenu></app-navemenu>
-		<router-outlet></router-outlet> 
-			<div class="container-fluid mobilefixedcontainer " > 
-				<section id="user-profile">
-					<div class="col-12 nopadd">
-						<div  class="card-header text-center">	
-							<div class="sliderholder" >
+
+		  <app-navemenu></app-navemenu>
+		  <router-outlet></router-outlet> 
+			  <div class="container-fluid mobilefixedcontainer " > 
+				  <section id="user-profile">
+					  <div class="col-12 nopadd">
+						  <div  class="card-header text-center">	
+							  <div  *ngIf="!show" >
+								  <div class="sliderholder" >
+									<button class="prebtn">
+											<i class="material-icons">arrow_back_ios</i>
+									</button>
+									<div class="servicecontainer"  >
+										<div class="activehide"  *ngFor="let category of User_services ;let i = index;">
+											<button  (click)= "showService(i)" >
+												<span>{{category.categoryName}}</span>
+											</button>	
+											<button class="btn btn-success"  (click)= "showService1(category)" >
+													<span>{{category.categoryName}}</span>
+												</button>																			
+										</div>
+									</div>
+									<button class="nextbtn" type="submit" >
+										<i class="material-icons">arrow_forward_ios</i>
+									</button>
+								</div>
+							  </div>
+							  <div class="sliderholder" *ngIf="!allservices">
+
 								  <button class="prebtn">
 										  <i class="material-icons">arrow_back_ios</i>
 								  </button>
 								  <div class="servicecontainer"  >
-								
-									  <div class="activehide" >
+
+									  <div class="activedisplay"><input type="radio" checked/> Cakes</div>
+									  <div class="activehide"  *ngFor="let category of categoryserveice ;let i = index;">
 										  <input 
 										  name="Service" 
-										  type="radio"   >
-										  <span>rftgrfy</span>
+										  type="radio" [(ngModel)]="readioSelected" value= "{{i}}" (change)= "showContent()" >
+										  <span>{{category.categoryName}}</span>
+
 									  </div>
 								  </div>
 								  <button class="nextbtn" type="submit" >
@@ -189,12 +213,7 @@
 					  <button type="button " class="close digi_btn" aria-label="Close" (click)="closeModel()"><span aria-hidden="true">&times;</span></button>
 					  <h4  class="card-title text-center titleset">Please Select Service Provide</h4>
 					  <div class="">
-  
- 
-
-
-						  <div class="col-md-12 text-center" *ngFor="let cate of modaldata
-						  ">	
+						  <div class="col-md-12 text-center" *ngFor="let cate of modaldata">	
 						  <label class="container1 radioadjustbox">
 								  {{cate.serviceName}}
 									<div *ngIf="cate.servicesId == serviceId ; else ccc">

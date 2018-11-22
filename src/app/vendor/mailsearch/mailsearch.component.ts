@@ -117,7 +117,7 @@ date_true:boolean = true;
 // var str = this.today |  date
         $(".dropmsg").last().append('<div  _ngcontent-c1 ><div _ngcontent-c1 class="man_imgright"><div  _ngcontent-c1 class="exellent_parright"><span _ngcontent-c1 class="revie_name">Just Now</span> <pre _ngcontent-c1 class="chat-content">'+this.vendorMsg['message']+'</pre><span class="deliver" _ngcontent-c1><i _ngcontent-c1 class="fa fa-check" aria-hidden="true"></i></span></div></div></div>') 
  
-      }, 10);
+      }, 100);
 console.log(this.vendorMsg)
 this.vendorMsg['replyTo'] = parseInt(this.activatedRoute.snapshot.paramMap.get('id'))
 
@@ -127,7 +127,7 @@ console.log(this.vendorMsg)
         setTimeout(() => {
                  this.ngOnInit();
  
-        }, 100);
+        }, 200);
         this.vendorMsg['message'] = ''
       },error => 
       alert(error) // error path

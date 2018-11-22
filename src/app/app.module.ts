@@ -1,4 +1,4 @@
-// import { reverse } from 'dns';
+import { reverse } from 'dns';
 import { NgModule} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RatingModule} from "ngx-rating";

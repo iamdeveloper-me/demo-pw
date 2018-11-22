@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../../shared/service/vendor/message.service';
-// import { reverse } from 'dns';
+import { reverse } from 'dns';
 import * as $ from 'jquery';
 
 import { Pipe, PipeTransform } from '@angular/core';

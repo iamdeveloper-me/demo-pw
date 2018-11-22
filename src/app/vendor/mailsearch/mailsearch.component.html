@@ -25,7 +25,7 @@
                   {{ today | date:'medium' }} <br/> -->
                 <div class="clearfix"></div>
                 <div class="chatscroll chat-body" >
-                <div class="dropmsg" *ngFor="let msg_loop of total_message ">
+                <div class="dropmsg" *ngFor="let msg_loop of total_message | reverse">
                     <!-- | reverse -->
               <div class="dateholder" id="message">
                 
@@ -33,7 +33,7 @@
                       <!-- Tuesday, August 28, 2018 -->
                     </span>
               </div>
-              <div *ngFor="let msg of msg_loop.messages" >  
+              <div *ngFor="let msg of msg_loop.messages | reverse" >  
                 <!-- | reverse -->
                <div class="man_img" *ngIf="msg.sendToUserId == userId">
                   <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> 

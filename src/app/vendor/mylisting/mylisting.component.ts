@@ -22,9 +22,9 @@ export class MylistingComponent implements OnInit {
   // code by v
   page_number : number = 0;
   collection: any[];  
-  options = [{key : 'Highest Rating', value : 1}, {key : 'Lowest Rating', value : 2}, {key : 'Most Recent', value : 3}, {key : 'Earliest', value : 4}, {key : 'Not Replied', value : 5}, {key : 'Replied', value : 6}, {key : 'Pinned', value : 7}]
+  options = [{key : 'Highest Rating', value : 1}, {key : 'Lowest Rating', value : 2}, {key : 'Most Recent', value : 3}, {key : 'Earliest', value : 4}, {key : 'Not Replied', value : 5}, {key : 'Replied', value : 6}, {key : 'Pinned', value : 7}, {key : 'Unread', value : 8}]
 
-  optionSelected = 1;
+  optionSelected = 8;
 
   onOptionsSelected(event){
     this.optionSelected = parseInt(event)

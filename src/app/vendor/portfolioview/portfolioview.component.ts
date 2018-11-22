@@ -36,6 +36,8 @@ export class PortfolioviewComponent implements OnInit {
         "filesId": 1
     }
     ngOnInit() {
+
+        $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
                     $.getScript('./assets/js/vendorsidebar.js');
                     let headers = new Headers();
                     var authToken = localStorage.getItem('userToken');

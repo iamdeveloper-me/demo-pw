@@ -35,9 +35,8 @@
                           </form>
                       </div>
  <!-- {{ historyArr | json}} -->
-                      <div class="inbox-body">
+                      <div class="inbox-body all show" [ngClass] = "{'show' : alltab}">
                         <!-- arrayLength -->
-
                         <div *ngIf="arrayLength == 0 ;else showMessage">
                           No Data
                         </div>
@@ -78,12 +77,102 @@
                                                 <i class="fa fa-star starfix yellow"></i>
                                               </span>
                                 </div>
-                              </div> 
+                            </div> 
                         </ng-template>
 
                             
                          
                       </div>
+
+                      <div class="inbox-body unread" [ngClass] = "{'show' : unreadtab}">
+                          <div *ngIf="arrayLength == 0 ;else showMessage">
+                              No Data
+                            </div>
+                            <ng-template #showMessage>
+                                <div class="cardmessagebox" *ngFor="let history of historyArr">
+                                    <input type="checkbox" name="radiogroup" 
+                                    [checked]="idx === 0" 
+                                    [value]="history.id" 
+                                    (change)="onSelectionChange(history)"
+                                    class="mail-checkbox">
+                                    <a class="imgboxmessage" routerLink="../msg/{{history.messageId}}" (click)="markRead(history.messageId)">
+                                        <img  class="userimg" src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg"/>
+                                    </a>
+                                    <div class="textboxmessage"  >
+                                                  <div>
+                                                    <strong (click)="changeRoute(history.messageId)">
+                                                      {{history.sendByFirstName}} {{history.sendByLastName}}
+                                                    </strong>
+                                                    <span _ngcontent-c0="" *ngIf="history.isFromAdmin == true "class="label label-info">
+                                                      Administrator c
+                                                    </span>
+                                                  </div>
+                                                  <div>
+                                                    {{history.subject}}
+                                                    <!-- {{history.checked}} -->
+                                                  </div>
+                                                  <div class="secondarytext">
+                                                  {{history.message}}
+                                                  </div>
+                                                  <div class="messdatetext">
+                                                  {{history.sentDateString}}
+                                                   <!--{{history.sentDate|date:"HH:mm"}}-->
+                                                  </div>
+                                                  <span *ngIf="!history.isStared" (click)="starMark(history.messageId)">
+                                                  <i class="fa fa-star starfix"></i>
+                                                  </span>
+                                                  <span *ngIf="history.isStared"(click)="starMark(history.messageId)">
+                                                    <i class="fa fa-star starfix yellow"></i>
+                                                  </span>
+                                    </div>
+                                </div> 
+                            </ng-template>
+                      </div>
+
+                      <div class="inbox-body started" [ngClass] = "{'show' : startedtab}">
+                         <div *ngIf="arrayLength == 0 ;else showMessage">
+                          No Data
+                        </div>
+                        <ng-template #showMessage>
+                            <div class="cardmessagebox" *ngFor="let history of historyArr">
+                                <input type="checkbox" name="radiogroup" 
+                                [checked]="idx === 0" 
+                                [value]="history.id" 
+                                (change)="onSelectionChange(history)"
+                                class="mail-checkbox">
+                                <a class="imgboxmessage" routerLink="../msg/{{history.messageId}}" (click)="markRead(history.messageId)">
+                                    <img  class="userimg" src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg"/>
+                                </a>
+                                <div class="textboxmessage"  >
+                                              <div>
+                                                <strong (click)="changeRoute(history.messageId)">
+                                                  {{history.sendByFirstName}} {{history.sendByLastName}}
+                                                </strong>
+                                                <span _ngcontent-c0="" *ngIf="history.isFromAdmin == true "class="label label-info">
+                                                  Administrator c
+                                                </span>
+                                              </div>
+                                              <div>
+                                                {{history.subject}}
+                                                <!-- {{history.checked}} -->
+                                              </div>
+                                              <div class="secondarytext">
+                                              {{history.message}}
+                                              </div>
+                                              <div class="messdatetext">
+                                              {{history.sentDateString}}
+                                               <!--{{history.sentDate|date:"HH:mm"}}-->
+                                              </div>
+                                              <span *ngIf="!history.isStared" (click)="starMark(history.messageId)">
+                                              <i class="fa fa-star starfix"></i>
+                                              </span>
+                                              <span *ngIf="history.isStared"(click)="starMark(history.messageId)">
+                                                <i class="fa fa-star starfix yellow"></i>
+                                              </span>
+                                </div>
+                            </div> 
+                        </ng-template>
+                        </div>
                   </aside>
              </div> 
            </div>    	

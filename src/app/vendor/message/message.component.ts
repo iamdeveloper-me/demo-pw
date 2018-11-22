@@ -13,6 +13,9 @@ import { Mail, Message } from './inbox.model';
   providers: [InboxService]
 })
 export class MessageComponent implements OnInit {
+  alltab = true;
+  unreadtab = false;
+  startedtab = false;
   deletIcon = false;
   historyArr:string[];
   mreadArr:string[];
@@ -168,7 +171,10 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
 }
   initDatatable(filter_id){
     this.deletIcon = false
-
+    this.alltab = true;
+    this.unreadtab = false;
+    this.startedtab = false;
+    
    this.filter_id = filter_id
     const json ={
       "filter" : filter_id
@@ -190,6 +196,10 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
   }
   unread(filter_id){
     this.deletIcon = false
+
+    this.alltab = false;
+    this.unreadtab = true;
+    this.startedtab = false;
 
     this.filter_id = filter_id
 
@@ -213,6 +223,10 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
   }
   stared(filter_id){
     this.deletIcon = false
+
+    this.alltab = false;
+    this.unreadtab = false;
+    this.startedtab = true;
 
     this.filter_id = filter_id
 
@@ -238,13 +252,16 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
     if(this.filter_id == 3){
       this.hservice.markStar(id).subscribe(( data )  =>  
       {this.toastr.success(data.json().message)
-        this.ngOnInit()
+        this.filter_id = 1
+        this.stared(3)
+        debugger
       },error => 
       alert(error) // error path
     )
     }else{
       this.hservice.markStar(id).subscribe(( data )  =>  
     {this.toastr.success(data.json().message)
+      this.filter_id = 1
       this.ngOnInit()
 
     },error => 

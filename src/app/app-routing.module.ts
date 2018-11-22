@@ -13,7 +13,7 @@ import { AuthGuard } from './shared/auth/auth-guard.service';
 import { ErrorComponent } from './error/error.component';
 
 import { HomeComponent } from './home/home.component';
-
+import { ChatComponent } from "./vendor/chat/chat.component";
 import { DashboardComponent } from "./vendor/dashboard/dashboard.component";
 import { BusinessInfoComponent } from "./vendor/business-info/business-info.component";
 import { LocationComponent } from "./vendor/location/location.component";
@@ -21,7 +21,7 @@ import { LocationComponent } from "./vendor/location/location.component";
 import { MembershipComponent } from "./vendor/membership/membership.component";
 
 import { DetailpageComponent } from './detailpage/detailpage.component';
-// import { ChatComponent } from "./vendor/chat/chat.component";
+
 import { EditprofileComponent } from './vendor/editprofile/editprofile.component';
 import { MylistingComponent } from './vendor/mylisting/mylisting.component';
 import { FaquestionComponent } from './faquestion/faquestion.component';
@@ -168,8 +168,8 @@ const appRoutes: Routes = [
  
    { path: 'home/Photogallerydetail', component:  PhotogallerydetailComponent },
 { path: 'home/ResetPassword', component:  ResetPasswordComponent },
-
-    { path: 'vendor/creatpromo', component:  CreatePromotionComponent  },
+{ path: 'vendor/creatpromo', component:  CreatePromotionComponent  },
+    { path: 'vendor/messagess', component:  ChatComponent  },
     { path: 'vendor/dashboard', component:  DashboardComponent  },
     { path: 'vendor/albumview', component:  AlbumviewComponent  },
     { path: 'vendor/albumviewphoto/:id', component:  ViewPhotoAlbumsComponent  },

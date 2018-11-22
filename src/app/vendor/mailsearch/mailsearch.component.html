@@ -52,17 +52,15 @@
                </div>
                 <div class="man_imgright" *ngIf="msg.sendToUserId != userId">
                   <div class="exellent_parright" > 
-                    <!-- <span class="revie_name">{{msg.sendByFirstName}},
-                       <span [innerHtml]="getTime(msg.sentDate )">
+                    <span class="revie_name" [innerHtml]="getTime(msg.sentDate )">
+                     
 
-                        </span>
-
-                    </span>  -->
+                    </span> 
                     
-                      <pre class="chat-content">
-                        {{msg.message}}
-                      </pre>
-                   
+                      <pre class="chat-content">{{msg.message}}</pre>
+                      <span class="sent"><i class="fa fa-check " aria-hidden="true"></i></span>
+                      
+
                   </div>
                 </div>
               </div>    

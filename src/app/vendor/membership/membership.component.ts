@@ -133,9 +133,10 @@ ngAfterViewChecked(): void {
    }
   
 getDecimal(monthlyPrice,noOfMonthFeeOff){
+  // {{((plan.monthlyPrice * (12 - plan.noOfMonthFeeOff))/12 | number:'1.0-2')}}
 var number = (monthlyPrice * (12 - noOfMonthFeeOff))/12
 var a = (monthlyPrice * (12 - noOfMonthFeeOff))/ 12 | number
-return (number - a) % 100
+return number.toFixed(2).split(".")[1]
 }
 }
 

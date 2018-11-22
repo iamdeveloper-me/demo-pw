@@ -274,9 +274,20 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
     if(this.filter_id == 2){
       this.hservice.readMark(id).subscribe(( data )  =>  
       {this.toastr.success(data.json().message)
+        this.filter_id = 1
+        this.unread(2)
+        debugger
       },error => 
       alert(error) // error path
     )
+    }else{
+      this.hservice.readMark(id).subscribe(( data )  =>  
+      {this.toastr.success(data.json().message)
+        this.filter_id = 1
+        this.ngOnInit()
+      },error => 
+      alert(error) // error path
+    ) 
     }
   }
 

@@ -9,7 +9,8 @@ import { FormControl, FormGroup, Validators, NgForm ,FormBuilder,FormArray} from
 
 })
 export class BusinessServicesComponent implements OnInit {
-
+  service_provide_dailog_3 =false;
+  service_provide_dailog_4 = false;
   //  private serveiceget: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories/categorieswithservices'
   private serveicepost: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savebusinessservices'
   //  private userservesicege:string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessservices'

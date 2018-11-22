@@ -43,6 +43,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div class="col-sm-12 text_left">
                                     <div class=" nopadd weekboxinput">
                                         <div class="col-sm-12  edit_hide" id="address-function"   (click)="openModel(data); photo_ved_dailog = true" >
@@ -677,14 +678,7 @@
                                         <select    class="effect-16 validate" [(ngModel)] = "sub_id"  name="sub_id" (change)="subr($event)" > 
                                                 <!-- (change)="country($event)" -->
                                             <option   *ngFor="let sub of suburb ;let s =index" 
-                                                type="text"
-                                                id="{{sub.name}}"
-                                                checked
-                                                name = "sub"  
-                                                placeholder="Suburb" 
-                                                [value]="sub.suburbId"
-                                                required
-                                                >
+                                                [value]="sub.suburbId">
                                                 {{sub.name }}
                                             </option>
                                         </select>

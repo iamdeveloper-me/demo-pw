@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import { apiPath } from '../../shareApi/apiPath';
+import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-business-services',
@@ -9,7 +10,6 @@ import { apiPath } from '../../shareApi/apiPath';
 
 })
 export class BusinessServicesComponent implements OnInit {
-<<<<<<< HEAD
   //  private serveiceget: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories/categorieswithservices'
   private serveicepost: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savebusinessservices'
   //  private userservesicege:string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessservices'
@@ -56,21 +56,9 @@ export class BusinessServicesComponent implements OnInit {
   constructor(public http: Http,private fb: FormBuilder){ 
     this.vendorServiceVM = new VendorServiceVM();
   }  
-=======
-  private api = apiPath.url; 
-  selected_category;
-  categoryserveice;
-  service_provide_dailog = false;
-  service_provide_dailog_2 = false;
-  service_provide_dailog_3 = false;
-  service_provide_dailog_4 = false;
-
-  constructor(public http: Http){ }  
->>>>>>> a5ae3db884fbf7986c9777c35f97577ab5f97d3d
   ngOnInit() {  
             
               $.getScript('./assets/js/vendorsidebar.js');
-<<<<<<< HEAD
               setTimeout(function(){ $(".servicecontainer div:first").removeClass("activehide"); $(".servicecontainer div:first").addClass("activedisplay"); $(".servicecontainer div:first button").click(); }, 2000);
                 $(document).on('click', '.nextbtn', function(){
                   var active = $(this).siblings('.servicecontainer').find('.activedisplay');
@@ -96,8 +84,6 @@ export class BusinessServicesComponent implements OnInit {
                   active.prev('div').find("button").click();
                   }
               });
-=======
->>>>>>> a5ae3db884fbf7986c9777c35f97577ab5f97d3d
               let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
               var categoryid = localStorage.getItem('categoryid');
@@ -105,7 +91,6 @@ export class BusinessServicesComponent implements OnInit {
               headers.append('Content-Type', 'application/json');
               headers.append("Authorization",'Bearer '+authToken);
               //jo data post kar rhe h 
-<<<<<<< HEAD
                 this.http.get(this.api+'api/Supplier/businessservices',{headers:headers}).subscribe(data =>{
                   this.User_services = data.json();
                   this.categoryserveice = JSON.parse(localStorage.getItem('categoryserveice'));
@@ -309,20 +294,6 @@ this.modaldata.forEach(element => {
                         }
                       })
   }
-=======
-              this.http.get(this.api+'api/Supplier/businessservices',{headers:headers}).subscribe(data =>{
-                console.log(data.json());
-                this.selected_category =  data.json();
-                  });
-              // 20 data
-              this.http.get(this.api+'api/Categories/categorieswithservices',{headers:headers}).subscribe(data =>{
-                this.categoryserveice = data.json() as string[];
-                console.log( this.categoryserveice );
-
-            
-              },error => {console.log(error)});
-      }
->>>>>>> a5ae3db884fbf7986c9777c35f97577ab5f97d3d
 }
 export class VendorServiceVM{
   public servicesId	: number;

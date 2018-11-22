@@ -111,7 +111,7 @@
                     <div class="type_massege"> 
                       <textarea type="text" class="messtext" name="vendorMsg.message" id="" [(ngModel)]="vendorMsg.message" placeholder="Type Message......" > 
                       </textarea>
-                      <button type="submit" class="plusbtn">
+                      <button type="submit" (click)="onSubmit()" class="plusbtn">
                         <i class="material-icons">add</i>
                       </button>
                     </div>

@@ -92,8 +92,8 @@ changePassword_form = false;
   //     });
   // }
 
-  updatesub(data,f2){
-    console.log(data);
+  updatesub(f2){
+   
     console.log(f2);
   //   let headers = new Headers();
   //   var authToken = localStorage.getItem('userToken');

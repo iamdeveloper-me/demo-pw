@@ -1,4 +1,4 @@
-import { DateTimePickerComponent } from './../calendertable/date-time-picker.component';
+//import { DateTimePickerComponent } from './../calendertable/date-time-picker.component';
 import { TimeFormatter } from './../../components/extra/nouislider/nouislider.component';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';

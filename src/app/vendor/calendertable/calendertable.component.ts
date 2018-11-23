@@ -26,25 +26,27 @@ export class CalendertableComponent implements OnInit {
    upcomming =2;
    past = 1
    vendorJobsId = 0;
-   edit_job_form = {};
+   edit_job_form = {
+    vendorJobsId: 0,
+    clientName: "string",
+    clientNumber: "string",
+    eventTitle: "string",
+    eventLocation: "string",
+    startDate: "2018-11-23T07:28:05.224Z",
+    endDate: "2018-11-23T07:28:05.224Z",
+    userId: "string",
+    vendorId: 0
+  };
+  
    jobdate = false;
    jobedit = false;
-   event = {  vendorJobsId: 0,
-              contactnumber: "",
-              location: "",
-              clientName: "",
-              numberOfPeople: 0,
-              clientPhoneNumber: "",
-              jobLocation: "",
-              lat: 0,
-              long: 0,
-              jobDate: "",
-              jobTime: "",
-              userId: "",
-              vendorId: 0
-             }
 
-  private urlgetremove: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob'
+   clientName;
+   eventTitle;
+   clientNumber;
+   eventLocation;
+   startDate;
+   endDate;
   private creat_job_url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/createupdatejobs';
   private geturl: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/myjobs';
   vendor: any = [];
@@ -57,6 +59,7 @@ export class CalendertableComponent implements OnInit {
   t: any;
   currentJustify = 'start';
   currentOrientation = 'horizontal';
+
 
   public beforeChange($event: NgbTabChangeEvent) {
     if ($event.nextId === 'bar') {

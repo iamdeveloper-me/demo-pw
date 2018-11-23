@@ -42,6 +42,8 @@ export class EventListComponent implements OnInit {
   updatestarttime ; 
   eventupdaterDailog =false;
   isCreateEventVisible=false;
+  startDates;
+  endDates;
 
   public sub_id: any; public dist_id: any; public country_id: any;
   objevent= new EventsCreateUpdateVM();  
@@ -141,7 +143,9 @@ export class EventListComponent implements OnInit {
       {
         eventDate: "",
         startTime: "",
-        endTime: ""
+        endTime: "",
+        startDate: "",
+        endDate: "",
       }]
   }
 
@@ -215,9 +219,14 @@ export class EventListComponent implements OnInit {
                                                 "eventsMoreDatesId": 0,
                                                 "eventId": 0,
                                                 "eventDate": this.objevent.eventdate,
+
+                                                "startDate": this.objevent.startDate,
+                                                "endDate": this.objevent.endDate,
                                                 "startTime": this.startTimee,
                                                 "endTime": this.endtime
                                             }
+
+                                         
 
                                             this.objevent.eventsDates.push(events);
 
@@ -271,13 +280,19 @@ export class EventListComponent implements OnInit {
 
   editevent(v) {
     console.log(v);
+    console.log( "dgfdg");
     this.modelfield = v;
     this.eventupdaterDailog = true;
     this.eventdate = v.eventsDates[0].eventDate.split('T')[0]
     this.endtime = v.eventsDates[0].endTime.split('T')[1];
-    console.log( this.endtime );
     this.startimee = v.eventsDates[0].startTime.split('T')[1];
-    console.log( this.startimee);
+
+    //////
+    this.startDates = v.eventsDates[0].startDate.split('T')[1];
+    this.endDates = v.eventsDates[0].endDate.split('T')[1];
+  
+    console.log( v.eventsDates[0]);
+    console.log( v.eventsDates[0].endDate);
   }
 
   editsave(data: any) {
@@ -309,7 +324,9 @@ export class EventListComponent implements OnInit {
               eventId: data.value.eventId,
               eventDate: data.value.eventdate,
               startTime: data.value.startTime,
-              endTime: data.value.endTime
+              endTime: data.value.endTime,
+              startDate: data.value.startDate,
+              endDate: data.value.endDate,
             }
           ]
 
@@ -418,16 +435,22 @@ entryFee:  number
 eventDescription:  string;
 eventsDates: Array<EventsDatesVM>;
 eventdate: string  = '';
+endDate:string;
+startDate:string;
 constructor(){
   this.eventId=0;
   this.eventsDates = new Array<EventsDatesVM>();
+
   let objeventdates = {
     endTime:'00:00',
     startTime: '00:00',
     eventDate:'16/11/2018',
+    startDate: "2018-11-23T14:20:30.221Z",
+    endDate: "2018-11-23T14:20:30.221Z",
     eventsMoreDatesId:0,
     eventId:0,
   };
+  
   this.lat = 0;
   this.long = 0;
   // this.eventsDates.push(objeventdates);
@@ -440,4 +463,6 @@ eventId:  number;
 eventDate:  string;
 startTime:  string;
 endTime:  string;
+startDate: string;
+endDate: string;
 }

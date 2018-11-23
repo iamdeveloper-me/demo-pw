@@ -2,44 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
 import { DatePipe } from '@angular/common';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import swal from 'sweetalert2';
 import {
   ChangeDetectionStrategy,
   ViewChild,
   TemplateRef
 } from '@angular/core';
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours
-} from 'date-fns';
+
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {
-  CalendarEvent,
-  CalendarEventAction,
-  CalendarEventTimesChangedEvent
-} from 'angular-calendar';
-import { getEventsInPeriod } from 'calendar-utils';
 
-const colors: any = {
-  red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3'
-  },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF'
-  },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA'
-  }
-};
 @Component({
   selector: 'app-calendertable',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -48,8 +22,13 @@ const colors: any = {
 })
 export class CalendertableComponent implements OnInit {
    jobArray:string[];
-   
-  
+   all = 3;
+   upcomming =2;
+   past = 1
+   vendorJobsId = 0;
+   edit_job_form = {};
+   jobdate = false;
+   jobedit = false;
    event = {  vendorJobsId: 0,
               contactnumber: "",
               location: "",
@@ -66,13 +45,15 @@ export class CalendertableComponent implements OnInit {
              }
 
   private urlgetremove: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob'
-  private url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/createupdatejobs';
+  private creat_job_url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/createupdatejobs';
   private geturl: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/myjobs';
   vendor: any = [];
   test: string;
   dates: string;
   entry: string;
   myDate = new Date(); 
+  userId;
+  vendorid;
   t: any;
   currentJustify = 'start';
   currentOrientation = 'horizontal';
@@ -83,20 +64,31 @@ export class CalendertableComponent implements OnInit {
     }
   };
 
-  constructor(private modal: NgbModal,public http: Http,private datePipe: DatePipe) { 
+  constructor(private toastr: ToastrService,private modal: NgbModal,public http: Http,private datePipe: DatePipe) { 
    this.test = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
   }
-
+ 
   ngOnInit() {
-     this.getEvents();
-
-    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
-    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
+   
     $.getScript('./assets/js/vendorsidebar.js');
-    $.getScript('./assets/js/calendar.js');
+   $.getScript('./assets/js/calendar.js');
+  
 
-
-
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    this.userId = localStorage.getItem('userId');
+    this.vendorid = localStorage.getItem('vendorid');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+     //all
+    //  this.http.post(this.geturl,{
+    //   filter: 3
+    // },{headers:headers}).subscribe(data =>{
+    //   console.log( data.json() );
+    //   this.jobArray = data.json() as string[]; 
+  
+    //  },error => {  console.log(error)});
 
 $(".weddingjobstab").click(function(){
     $("#weddingjobs").show();
@@ -113,6 +105,24 @@ $(".weddingjobstab").click(function(){
     $(".calendartab").addClass("selected");  
   
   });
+
+  // setTimeout(() => {
+  //   this.jobview(2)
+  //   this.jobview(1)
+  //   this.jobview(3)
+  //   this.jobview(3)
+  // }, 200);
+  
+  setTimeout(function(){ document.getElementById("last_li").click(); setTimeout(function(){ document.getElementById("last_li").click(); }, 200); }, 200);
+  // jQuery('#last_li').click();
+
+  $(function() {
+    $(".nav-link").on("click", function(){
+      // debugger
+      $(".nav-link").removeClass("active");
+      $(this).addClass("active");
+    });
+});
 
     //accordian my wedding job 
     var acc = document.getElementsByClassName("accordion");
@@ -136,195 +146,138 @@ $(".weddingjobstab").click(function(){
   }
 
 
+  @ViewChild('create') validationForm: FormGroup;
 
-  getEvents(){
-    
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization",'Bearer '+authToken);
-    this.http.get(this.geturl,{headers:headers}).subscribe(data =>{
-    this.jobArray = data.json() as string[]; 
 
-   });
-   
-  }
-
-  @ViewChild('modalContent') modalContent: TemplateRef<any>;
+ @ViewChild('modalContent') modalContent: TemplateRef<any>;
   view: string = 'month';
-  newEvent: CalendarEvent;
+  
   viewDate: Date = new Date();
-  modalData: {
-    action: string;
-    event: CalendarEvent;
-  };
-  actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fa fa-fw fa-pencil"></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edit this event', event);
-      }
-    },
-    {
-      label: '<i class="fa fa-fw fa-times"></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter(iEvent => iEvent !== event);
-        this.handleEvent('This event is deleted!', event);
-      }
 
-    }
-    
-    
-  ];
   refresh: Subject<any> = new Subject();
-
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: new Date(),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    }
-  ];
-
   activeDayIsOpen: boolean = true;
   
-  
-  dayClicked({ date, events}: { date: Date; events: CalendarEvent[] }): void {
-         
-    
 
-    if (isSameMonth(date, this.viewDate)) {
-      if ( (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) || events.length === 0)
-        {
-          this.activeDayIsOpen = false;
-       
-        } else {
-          this.activeDayIsOpen = true;
-        this.viewDate = date;
-        }
-        if( (isSameDay(this.viewDate, date) && this.activeDayIsOpen === false) || events.length === 0){
-          this.modal.open(this.modalContent, { size: 'lg' });
-         
-        }
-
-    }
-  }
-  eventTimesChanged({
-    event,
-    newStart,
-    newEnd
-    }: CalendarEventTimesChangedEvent): void {
-    event.start = newStart;
-    event.end = newEnd;
-    this.handleEvent('Dropped or resized', event);
-    this.refresh.next();
-  }
-
-  handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
-  }
-
-  addEvent(): void {
-    this.newEvent = {
-      title: 'New event',
-      start: startOfDay(new Date()),
-      end: endOfDay(new Date()),
-      color: colors.red,
-      draggable: true,
-      resizable: {
-      beforeStart: true,
-      afterEnd: true
-      },
-      actions: this.actions,
-    }
-    this.events.push(this.newEvent);
-
-    // this.refresh.next();
-    this.handleEvent('Add new event', this.newEvent);
-     this.refresh.next();
-  }
-
-job(jo){
-  console.log(jo)
-  var contactname =    jo.event.clientName;
-  var contactnumber =  jo.event.contactnumber ;
-  var guest =          jo.event.guest;
-  var location =       jo.event.location;
-  var starts =         jo.event.start;
-  var end =            jo.event.end; 
-  let headers = new Headers();
-  var authToken = localStorage.getItem('userToken');
-  var userId = localStorage.getItem('userId');
-  var vendorid = localStorage.getItem('vendorid');
-  headers.append('Accept', 'application/json')
-  headers.append('Content-Type', 'application/json');
-  headers.append("Authorization",'Bearer '+authToken);
-
-  this.http.post(this.url,{      
-    vendorJobsId: 0,
-    clientName: contactname,
-    numberOfPeople: guest,
-    clientPhoneNumber: contactnumber,
-    jobLocation: location,
-    lat: 0,
-    long: 0,
-    jobDate: starts,
-    jobTime: end,
-    userId: userId,
-    vendorId: vendorid },{headers:headers}).subscribe(
-    data =>{ const vendor = data.json(); 
-            
-      this.vendor.push(vendor);
-             console.log(this.vendor.push(vendor));
-            });
+  job(jo){    let headers = new Headers();
+              var authToken = localStorage.getItem('userToken');
+              headers.append('Accept', 'application/json')
+              headers.append('Content-Type', 'application/json');
+              headers.append("Authorization",'Bearer '+authToken);
+              this.jobdate = false;
+              this.http.post(this.creat_job_url,jo.value,{headers:headers}).subscribe(
+                data =>{ 
+                        console.log( data.json() );
+                        this.toastr.success(data.json().message );
+                   
+                        }),error => {  console.log(error)};
   
   }
-
-  deletevent(job,index){
-   // alert(id)
-    console.log(job);
-    this.jobArray.splice(index, 1);
-   
-    var deleteid = job.vendorJobsId ;
+  
+  edit_job_modle(a){
+    console.log(a);
+    this.jobedit = true;
+    this.edit_job_form = a;
+  }
+  edit_job(b){
+    console.log(b.value);
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
+    this.jobedit = false;
+    this.http.post(this.creat_job_url,b.value,{headers:headers}).subscribe(
+      data =>{ 
+              console.log( data.json() );
+              this.toastr.success(data.json().message );
+          
+              }),error => {  console.log(error)};
+  
+  }
+  deletevent(job,index){
+    this.jobArray.splice(index, 1);
 
-    console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob?VendorJobId'+'='+deleteid);
-    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob?VendorJobId'+'='+deleteid,{headers:headers}).subscribe(
-      data =>{
-     console.log(data.json());
-    },error =>{ console.log(error)});
- }
+    swal({
+      title: "Are you sure?",
+    text: "You will not be able to recover this imaginary file!",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonClass: "btn-default",
+    confirmButtonText: "Yes, delete it!",
+    cancelButtonText: "No, cancel plx!",
+    }).then((res)=>{
+      if(res.value===true){
+        console.log(job);
+       
+       
+        var deleteid = job.vendorJobsId ;
+        let headers = new Headers();
+        var authToken = localStorage.getItem('userToken');
+        headers.append('Accept', 'application/json')
+        headers.append('Content-Type', 'application/json');
+        headers.append("Authorization",'Bearer '+authToken);
+    
+        this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob?VendorJobId'+'='+deleteid,{headers:headers}).subscribe(
+          data =>{
+         console.log(data.json());
+         this.toastr.success(data.json().message );
+                   
+        },error =>{ console.log(error)});
+      }else{
+      }
+      },error=>{
+      alert(JSON.stringify(error));
+      })
+      return;
+        // alert(id)
+   
+  }
 
+  close()
+ {
+   this.jobdate =false;
+   this.jobedit = false;
+  }
+ 
+  jobview(a){
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+    //upcomming
+    this.http.post(this.geturl,{
+      filter: a
+    },{headers:headers}).subscribe(data =>{
+      console.log( data.json() );
+      this.jobArray = data.json() as string[]; 
+  
+     },error => {  console.log(error)});
+  }
+  jobview_Past(a){ let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+    //upcomming
+    this.http.post(this.geturl,{
+      filter: a
+    },{headers:headers}).subscribe(data =>{
+      console.log( data.json() );
+      this.jobArray = data.json() as string[]; 
+  
+     },error => {  console.log(error)});}
+  jobview_Upcoming(a){ let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+    //upcomming
+    this.http.post(this.geturl,{
+      filter: a
+    },{headers:headers}).subscribe(data =>{
+      console.log( data.json() );
+      this.jobArray = data.json() as string[]; 
+  
+     },error => {  console.log(error)});}
 }

@@ -6,23 +6,10 @@
 	<div id="page-content-wrapper">
 		<app-navemenu></app-navemenu>
 		<div class="container mobilefixedcontainer">
-			<div>
-				<ul class="tabbingdesign">
-                    <li class="card-title selected weddingjobstab">All Jobs</li>
-                    
-                    <li class="card-title calendartab">Calendar
-                    </li>
-				</ul> 
-			
-			</div>
-				<div class="row">
-					<div class="container">
-						<div class="col-md-12">
-									{{test }}
-						</div>	
-					</div>	
-				</div>	
-
+			<ul class="tabbingdesign">
+                <li class="card-title selected weddingjobstab">All Jobs</li>
+                <li class="card-title calendartab">Calendar</li>
+			</ul> 
 			<div class="row calendarcontainer">
 				<div class="clearfix"></div>
 				<section id="weddingjobs" class="col-sm-12">
@@ -31,278 +18,221 @@
 							<div class="card-header_padd  border_bottom_none card-header-warning card-header-icon">
 								<div class="col-md-12 ">
 									<p class="card-category upcominghead"> <b>  My Wedding Jobs </b> 
-									<button class="float_righ"  (click)="addEvent()">Add Job</button></p>
+									<button class="float_righ"  (click)="jobdate = true" >Add Job</button></p>
 								</div>
 							</div>
 								
 							<div class="card">
 								<div class="card-body">
 									<div class="card-block calendartabjob">
-										<ngb-tabset type="pills">
-											<ngb-tab title="Upcoming">
-												<ng-template ngbTabContent>
-														<div class="upcominglisthomepage"  *ngFor="let job of jobArray">
-														   <div  *ngIf="job.jobDate >= test" >
-																<div class="col-sm-5 col-8">
-																	<i class="material-icons">date_range</i>  {{job.jobDate |  date:'medium' }}<br/>
-																	<ul>
-																		<li>Guests: {{job.numberOfPeople}}</li>
-																		<li>Name: {{job.clientName}}</li>
-																	
-																	</ul>
-																</div>
-																<div class="col-sm-3 col-4 upcomingright">
-																	<div>
-																		<i class="material-icons ">location_on
-																		</i>{{job.jobLocation}}
-																	</div>
-																	{{job.clientPhoneNumber}}																<br/>
-																	<button class="callbutton">Call</button>
-																</div>
-																<div class="col-sm-4 col-4 upcomingright">
-																			
-																		<button type="button" class="btn btn-danger whitetext" >delete {{job.vendorJobsId}}</button>
-																</div>
-															</div>
-														</div> 
-												</ng-template>
-											</ngb-tab>
-											<ngb-tab title="Past">
-												<ng-template ngbTabContent>
-														<div *ngFor="let job of jobArray">
-																<div class="upcominglisthomepage"  *ngIf="job.jobDate < test" >
-																	 <div class="col-sm-5 col-8">
-																		 <i class="material-icons">date_range</i>  {{job.jobDate |  date:'medium' }}<br/>
-																		 <ul>
-																			 <li>Guests: {{job.numberOfPeople}}</li>
-																			 <li>Name: {{job.clientName}}</li>
-																		 
-																		 </ul>
-																	 </div>
-																	 <div class="col-sm-3 col-4 upcomingright">
-																		 <div>
-																			 <i class="material-icons ">location_on
-																			 </i>{{job.jobLocation}}
-																		 </div>
-																		 {{job.clientPhoneNumber}}																<br/>
-																		 <button class="callbutton">Call</button>
-																	 </div>
-																	 <div class="col-sm-4 col-4 upcomingright">
-																				 
-																			 <button type="button" class="btn btn-danger whitetext" >delete {{job.vendorJobsId}}</button>
-																	 </div>
-																 </div>
-															 </div> 
-												</ng-template>
-											</ngb-tab>
-											<ngb-tab title="All">
-												<ng-template ngbTabContent>
-														<div class="upcominglisthomepage"  *ngFor="let job of jobArray ; let i = index" >
-																<div class="col-sm-5 col-8">
-																	<i class="material-icons">date_range</i>  {{job.jobDate |  date:'medium' }}<br/>
-																	<ul>
-																		<li>Guests: {{job.numberOfPeople}}</li>
-																		<li>Name: {{job.clientName}}</li>
-																	</ul>
-																</div>
-																<div class="col-sm-3 col-4 upcomingright">
-																	<div>
-																		<i class="material-icons ">location_on
-																		</i>{{job.jobLocation}}
-																	</div>
-																	{{job.clientPhoneNumber}}																<br/>
-																	<button class="callbutton">Call</button>
-																</div>
-																<div class="col-sm-4 col-4 upcomingright">
-																			
-																		<button type="button" (click)= "deletevent(job,i)" class="btn btn-danger whitetext" >delete {{job.vendorJobsId}}</button>
-																	</div>
-														</div> 
-												</ng-template>
-											</ngb-tab>
-										</ngb-tabset>
+										<!-- <ul class="nav nav-pills">
+											<li class="nav-items"><a class="nav-link" id="firstli" role="tab" (click) = "jobview(2)">Upcoming</a></li>
+											<li class="nav-items"><a class="nav-link" id="midli" role="tab" (click) = "jobview(1)">Past</a></li>
+											<li class="nav-items"><a class="nav-link" id="last_li" role="tab" (click) = "jobview(3)">All</a>  </li>
+										</ul> -->
+										
+										<ul class="nav nav-pills">
+												<li ><a  (click) = "jobview_Upcoming(2)">Upcoming</a></li>
+												<li ><a (click) = "jobview_Past(1)">Past</a></li>
+												<li><a  (click) = "jobview(3)">All</a>  </li>
+											</ul>
+										
 									</div>
+									<div class="upcominglisthomepage"  *ngFor="let job of jobArray;let i=index ">
+										<div class="col-sm-5 col-8">
+											<i class="material-icons">date_range</i>  {{job.startDate |  date:'medium' }}<br/>
+											<ul>
+												<li>Guests: {{job.clientNumber}}</li><br/>
+												<li>Name: {{job.clientName}}</li><br/>
+												<li>end Date: {{job.endDate  |  date:'medium'}}</li><br/>
+											    <li>start Date : {{job.startDate  |  date:'medium'}}</li><br/>
+											 
+											</ul>
+										</div>
+										<div class="col-sm-3 col-4 upcomingright">
+											<div>
+												<i class="material-icons ">location_on
+												</i>{{job.eventLocation}}
+											</div>
+											{{job.clientPhoneNumber}}																<br/>
+											<button class="callbutton">Call</button>
+										</div>
+										<div class="col-sm-4 col-4 upcomingright">
+											<button type="button" class="btn btn-danger whitetext" (click) = "edit_job_modle(job)" >Edit</button>			
+											<button type="button" class="btn btn-danger whitetext" (click) = "deletevent(job,i)" >delete {{job.vendorJobsId}}</button>
+										</div>
+									</div> 
 								</div>
 							</div>
 						</div>     
 					</div> 
 				</section>
+			
 				<section id="calendartabing" class="col-sm-12" style="display: none;">
 					<div class="col-sm-12">
 						<section id="calendar">
-							<!-- <div class="card">
-								<div class="card-body">
-									<div class="card-block">
-										<div class="d-flex flex-wrap justify-content-md-between xs-1 mb-3 no-gutters">
-											<div class="col-sm-4 col-2 text-left">
-												<div class="btn-group">
-													<i class="material-icons" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">arrow_back</i>
-												</div>
-											</div>
-											<div class="col-sm-4 text-center col-8">
-												<h6 class="text-uppercase mb-0 text_weight"> {{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}  </h6>
-											</div>
-											<div class="col-sm-4 col-2 text-right">
-												<div class="btn-group">
-												<i class="material-icons" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">arrow_forward</i>
-												</div>
-											</div>
-										</div>
-										<div [ngSwitch]="view">
-											<mwl-calendar-month-view *ngSwitchCase="'month'" 
-											[viewDate]="viewDate"
-											 [events]="events" [refresh]="refresh" 
-											 [activeDayIsOpen]="activeDayIsOpen" 
-											 (dayClicked)="dayClicked($event.day)" 
-											 (eventTimesChanged)="eventTimesChanged($event)" >
-											</mwl-calendar-month-view>												
-										</div>
+							<div class="contentcalendar">
+								<div class="calendar-container">
+									<div class="calendar"> 
+										<div class="year-header"> 
+											<span class="left-button" id="prev"> &lang; </span> 
+											<span class="year" id="label"></span> 
+											<span class="right-button" id="next"> &rang; </span>
+										</div> 
+										<table class="months-table"> 
+											<tbody>
+												<tr class="months-row">
+												<td class="month">Jan</td> 
+												<td class="month">Feb</td> 
+												<td class="month">Mar</td> 
+												<td class="month">Apr</td> 
+												<td class="month">May</td> 
+												<td class="month">Jun</td> 
+												<td class="month">Jul</td>
+												<td class="month">Aug</td> 
+												<td class="month">Sep</td> 
+												<td class="month">Oct</td>          
+												<td class="month">Nov</td>
+												<td class="month">Dec</td>
+												</tr>
+											</tbody>
+										</table> 
+										
+										<table class="days-table"> 
+											<td class="day">Sun</td> 
+											<td class="day">Mon</td> 
+											<td class="day">Tue</td> 
+											<td class="day">Wed</td> 
+											<td class="day">Thu</td> 
+											<td class="day">Fri</td> 
+											<td class="day">Sat</td>
+										</table> 
+										<div class="frame"> 
+										<table class="dates-table"> 
+											<tbody class="tbody">             
+											</tbody> 
+										</table>
+									</div> 
+										<button class="button" id="add-button">Add Event</button>
 									</div>
 								</div>
-							</div> -->
-							  <div class="contentcalendar">
-    <div class="calendar-container">
-      <div class="calendar"> 
-        <div class="year-header"> 
-          <span class="left-button" id="prev"> &lang; </span> 
-          <span class="year" id="label"></span> 
-          <span class="right-button" id="next"> &rang; </span>
-        </div> 
-        <table class="months-table"> 
-          <tbody>
-            <tr class="months-row">
-              <td class="month">Jan</td> 
-              <td class="month">Feb</td> 
-              <td class="month">Mar</td> 
-              <td class="month">Apr</td> 
-              <td class="month">May</td> 
-              <td class="month">Jun</td> 
-              <td class="month">Jul</td>
-              <td class="month">Aug</td> 
-              <td class="month">Sep</td> 
-              <td class="month">Oct</td>          
-              <td class="month">Nov</td>
-              <td class="month">Dec</td>
-            </tr>
-          </tbody>
-        </table> 
-        
-        <table class="days-table"> 
-          <td class="day">Sun</td> 
-          <td class="day">Mon</td> 
-          <td class="day">Tue</td> 
-          <td class="day">Wed</td> 
-          <td class="day">Thu</td> 
-          <td class="day">Fri</td> 
-          <td class="day">Sat</td>
-        </table> 
-        <div class="frame"> 
-          <table class="dates-table"> 
-              <tbody class="tbody">             
-              </tbody> 
-          </table>
-        </div> 
-        <button class="button" id="add-button">Add Event</button>
-      </div>
-    </div>
-    <div class="events-container">
-    </div>
-    <div class="dialog" id="dialog">
-        <h2 class="dialog-header"> Add New Event </h2>
-        <form class="form" id="form">
-          <div class="form-container" align="center">
-            <div class="modal-body">
-
-				<div class="row">
-						<div class="col-md-6 col-12">
-								<div class="form-group">
-										<label>Client Name</label>	
-								  <input 
-									type="text" 
-									name="event-contactname" 
-									class="effect-16" 
-								> 
-								</div>	
-						</div>
-						<div class="col-md-6 col-12">
-								<div class="form-group">
-										<label>Event Title:</label>
-										<input type="text" 
-										 name="event-title" 
-										 class="effect-16" [(ngModel)]="modalData?.event.title"
-										  (keyup)="refresh.next()">
-									</div>
-						</div>
-						<div class="col-md-6 col-12">
-								<div class="form-group">
-										<label>Client Number</label>
-										<input
-											type="text" 
-											name="event-contactnumber" 
-											class="effect-16" 
-											> 
-										
-										
+								<div class="events-container">
 								</div>
-						</div>
-						<div class="col-md-6 col-12">
-								<div class="form-group">
-										<label>Event Location:</label>		
-										 <input 
-										type="text
-										" name="event-location"
-											class="effect-16"
-											> 
-										
+								<div class="dialog" id="dialog" >
+									<h2 class="dialog-header"> Add New Event </h2>
+									<form class="form" id="form" (ngSubmit)="job(e)" #e="ngForm">
+										<div class="form-container" align="center">
+									        <div class="modal-body">
+														<div class="row">
+															<div class="col-md-6 col-12">
+																	<div class="form-group">
+																	<label>Client Name</label>	
+																	<input 
+																		type="text" 
+																		name="clientName" 
+																		class="effect-16" 
+																		[(ngModel)]="clientName" 
+																		>
+																	</div>	
+															</div>
+															<div class="col-md-6 col-12">
+																	<div class="form-group">
+																			<label>Event Title:</label>
+																			<input type="text" 
+																			name="eventTitle" 
+																			class="effect-16" 
+																			[(ngModel)]="eventTitle"
+																			>
+																		</div>
+															</div>
+															<div class="col-md-6 col-12">
+																	<div class="form-group">
+																			<label>Client Number</label>
+																			<input
+																				type="text" 
+																				name="clientNumber" 
+																				class="effect-16" 
+																				[(ngModel)]="clientNumber" 
+																				>
+																			
+																			
+																	</div>
+															</div>
+															<div class="col-md-6 col-12">
+																	<div class="form-group">
+																			<label>Event Location:</label>		
+																			<input 
+																			type="text" 
+																			name="eventLocation"
+																			class="effect-16"
+																			[(ngModel)]="eventLocation" 
+																			>
+																			
+																	</div>
+															</div>
+															<div class="col-md-6 col-12">
+																<div class="form-group">
+																	<label> Start date Event :</label>		
+																	<input 
+																	type="date" 
+																	name="startDate"
+																	class="effect-16"
+																	[(ngModel)]="startDate" 
+																	>
+																			
+																</div>
+															</div>
+															<div class="col-md-6 col-12">
+																<div class="form-group">
+																		<label> end date Event :</label>		
+																		<input 
+																		type="date" 
+																		name="endDate"
+																		class="effect-16"
+																		[(ngModel)]="endDate" 
+																		>
+																	
+													
+								
+																</div>
+																<div class="col-md-6 col-12">
+																		<div class="form-group">
+																				<input 
+																		type="hidden" 
+																		name="userId"
+																	
+																		[(ngModel)]="userId" >
+																		</div>
+																</div>		
+																<div class="col-md-6 col-12">
+																		<div class="form-group">
+																				<input 
+																		type="hidden" 
+																		name="vendorJobsId"
+																		[(ngModel)]="vendorJobsId" >
+																		</div>
+																</div>	
+																<div class="col-md-6 col-12">
+																		<div class="form-group">
+																							
+																		<input 
+																		type="hidden" 
+																		name="vendorId"
+																		[(ngModel)]="vendorid" >
+																		</div>
+																</div>		
+															</div>
+														</div>
+											</div>
+											<div class="modal-footer btn_center">
+												<button type="submit" class="btn newbtn"  value="Cancel" class="button" id="cancel-button">SAVE</button>
+												<input type="button" value="Cancel" class="button" id="cancel-button">
+											</div>
+										</div>
+									</form>
+								
 								</div>
-						</div>
-					</div>
-
-				
-			
-		
-							
-			<!-- <div class="row">
-				<div class="col-md-6 col-12 text-left">
-					<div class="form-group">
-						<label>Primary Color:</label>
-						<input type="color" name="primary-color" [(ngModel)]="modalData?.event.color.primary" (change)="refresh.next()">
-					</div>	
-				</div>
-				<div class="col-md-6 col-12 text-left">
-					<div class="form-group">
-						<label>Secondary Color:</label>
-						<input type="color" name="secondary-color" [(ngModel)]="modalData?.event.color.secondary" (change)="refresh.next()">
-					</div>	
-				</div>
-			</div> -->
-			<div class="row">
-				<div class="col-md-6 col-12">
-					<div class="form-group">
-						<label>Starts At:</label>
-						<mwl-demo-utils-date-time-picker class="padd10px" name="starts-at" [(ngModel)]="modalData?.event.start" (ngModelChange)="refresh.next()" placeholder="Not set">
-						</mwl-demo-utils-date-time-picker>
-					</div>
-				</div>
-				<div class="col-md-6 col-12">
-					<div class="form-group">
-						<label>Ends At:</label>
-						<mwl-demo-utils-date-time-picker class="padd10px" name="ends-at" [(ngModel)]="modalData?.event.end" (ngModelChange)="refresh.next()" placeholder="Not set">
-						</mwl-demo-utils-date-time-picker>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal-footer btn_center">
-			<button type="submit" class="btn newbtn"  (click)="job(modalData)" >SAVE</button>
-			<input type="button" value="Cancel" class="button" id="cancel-button">
-		</div>
-            <!-- <input type="button" value="Cancel" class="button" id="cancel-button">
-            <input type="button" value="OK" class="button" id="ok-button"> -->
-          </div>
-        </form>
-      </div>
-  </div>
+                            </div>
 						</section>
 					</div>
 				</section>
@@ -313,40 +243,49 @@
 </div>
 
 
-
-
-<ng-template #modalContent let-close="close" class="even_picker">
-
-	<div class="card-block" style="background: #fff;">
-		<div class="modal-header">
-				<h5 class="modal-title"><b> Calender </b> </h5>
-			<!-- <h5 class="modal-title">{{ modalData?.action }}</h5> -->
-			<button type="button" class="close" (click)="close()">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-
-		<div class="modal-body">
-
-				<div class="row">
+<form (ngSubmit)="job(create)" #create="ngForm"> 
+	<div class="modal fade" [ngClass] = "{'show' : jobdate}" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="card-block" style="background: #fff;">
+			<div class="modal-header">
+					<h5 class="modal-title"><b> Calender </b> </h5>
+				<button type="button" class="close" (click)="close()">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			
+				<div class="modal-body">
+					<div class="row">
 						<div class="col-md-6 col-12">
 								<div class="form-group">
 								<label>Client Name</label>	
-								  <input 
+								<input 
 									type="text" 
-									name="event-contactname" 
+									name="clientName" 
 									class="effect-16" 
-									[(ngModel)]="modalData?.event.clientName" 
-									(keyup)="refresh.next()">
+									[(ngModel)]="clientName" 
+									id = "clientName"
+									#titles="ngModel" 
+									required 
+									>
+									<small class="form-text text-muted danger" *ngIf="titles.errors?.required">required error</small>
+                    
 								</div>	
 						</div>
 						<div class="col-md-6 col-12">
 								<div class="form-group">
 										<label>Event Title:</label>
 										<input type="text" 
-										 name="event-title" 
-										 class="effect-16" [(ngModel)]="modalData?.event.title"
-										  (keyup)="refresh.next()">
+										name="eventTitle" 
+										class="effect-16" 
+										[(ngModel)]="eventTitle"
+										id = "eventTitle"
+										#et="ngModel" 
+										required 
+										>
+										<small class="form-text text-muted danger" *ngIf="et.errors?.required">required error</small>
+                    
 									</div>
 						</div>
 						<div class="col-md-6 col-12">
@@ -354,11 +293,15 @@
 										<label>Client Number</label>
 										<input
 											type="text" 
-											name="event-contactnumber" 
+											name="clientNumber" 
 											class="effect-16" 
-											[(ngModel)]="modalData?.event.contactnumber" 
-											(keyup)="refresh.next()">
-										
+											[(ngModel)]="clientNumber" 
+											id = "clientNumber"
+										    #cn="ngModel" 
+										    required 
+											>
+											<small class="form-text text-muted danger" *ngIf="cn.errors?.required">required error</small>
+                    
 										
 								</div>
 						</div>
@@ -366,62 +309,238 @@
 								<div class="form-group">
 										<label>Event Location:</label>		
 										<input 
-										type="text
-										" name="event-location"
-											class="effect-16"
-											[(ngModel)]="modalData?.event.location" 
-											(keyup)="refresh.next()">
-										
+										type="text" 
+										name="eventLocation"
+										class="effect-16"
+										[(ngModel)]="eventLocation" 
+										id = "eventLocation"
+										#el="ngModel" 
+										required 
+										>
+										<small class="form-text text-muted danger" *ngIf="el.errors?.required">required error</small>
+                    
 								</div>
 						</div>
-					</div>
-
+						<div class="col-md-6 col-12">
+							<div class="form-group">
+								<label> Start date Event :</label>		
+								<input 
+								type="date" 
+								name="startDate"
+								class="effect-16"
+								[(ngModel)]="startDate" 
+								id = "eventLocation"
+								#sd="ngModel" 
+								required 
+								>
+								<small class="form-text text-muted danger" *ngIf="sd.errors?.required">required error</small>
+                    
+							</div>
+						</div>
+						<div class="col-md-6 col-12">
+							<div class="form-group">
+									<label> end date Event :</label>		
+									<input 
+									type="date" 
+									name="endDate"
+									class="effect-16"
+									[(ngModel)]="endDate" 
+									id = "endDate"
+								     #ed="ngModel" 
+								    required 
+									>
+									<small class="form-text text-muted danger" *ngIf="ed.errors?.required">required error</small>
+                    
 				
+
+							</div>
+							<div class="col-md-6 col-12">
+									<div class="form-group">
+											<input 
+									type="hidden" 
+									name="userId"
+								
+									[(ngModel)]="userId" >
+									</div>
+							</div>		
+							<div class="col-md-6 col-12">
+									<div class="form-group">
+											<input 
+									type="hidden" 
+									name="vendorJobsId"
+									[(ngModel)]="vendorJobsId" >
+									</div>
+							</div>	
+							<div class="col-md-6 col-12">
+									<div class="form-group">
+														
+									<input 
+									type="hidden" 
+									name="vendorId"
+									[(ngModel)]="vendorid" >
+									</div>
+							</div>		
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer btn_center">
+					<button type="submit" class="btn newbtn">SAVE</button>
+					<button type="button" class="btn newbtn newcancelbtn" (click)="close()">CANCEL</button>
+				</div>
 			
-		
-							
-			<!-- <div class="row">
-				<div class="col-md-6 col-12">
-					<div class="form-group">
-						<label>Primary Color:</label>
-						<input type="color" name="primary-color" [(ngModel)]="modalData?.event.color.primary" (change)="refresh.next()">
-					</div>	
-				</div>
-				<div class="col-md-6 col-12">
-					<div class="form-group">
-						<label>Secondary Color:</label>
-						<input type="color" name="secondary-color" [(ngModel)]="modalData?.event.color.secondary" (change)="refresh.next()">
-					</div>	
-				</div>
-			</div> -->
-			<div class="row">
-				<div class="col-md-6 col-12">
-					<div class="form-group">
-						<label>Starts At:</label>
-						<mwl-demo-utils-date-time-picker class="padd10px" name="starts-at" [(ngModel)]="modalData?.event.start" (ngModelChange)="refresh.next()" placeholder="Not set">
-						</mwl-demo-utils-date-time-picker>
+		</div>
+	</div>
+	</div>
+	</div>				
+</form>	
+<div class="modal fade" [ngClass] = "{'show' : jobedit}" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="card-block" style="background: #fff;">
+					<div class="modal-header">
+							<h5 class="modal-title"><b> Edit Job </b> </h5>
+						<button type="button" class="close" (click)="close()">
+							<span aria-hidden="true">&times;</span>
+						</button>
 					</div>
-				</div>
-				<div class="col-md-6 col-12">
-					<div class="form-group">
-						<label>Ends At:</label>
-						<mwl-demo-utils-date-time-picker class="padd10px" name="ends-at" [(ngModel)]="modalData?.event.end" (ngModelChange)="refresh.next()" placeholder="Not set">
-						</mwl-demo-utils-date-time-picker>
-					</div>
+					<form (ngSubmit)="edit_job(g)" #g="ngForm"> 
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-6 col-12">
+										<div class="form-group">
+										<label>Client Name</label>	
+										<input 
+											type="text" 
+											name="clientName" 
+											class="effect-16" 
+											[(ngModel)]="edit_job_form.clientName" 
+											id = "eclientName"
+								            #eCN="ngModel" 
+								            required 
+											>
+											<small class="form-text text-muted danger" *ngIf="eCN.errors?.required">required error</small>
+                    
+										</div>	
+								</div>
+								<div class="col-md-6 col-12">
+										<div class="form-group">
+												<label>Event Title:</label>
+												<input type="text" 
+												name="eventTitle" 
+												class="effect-16" 
+												[(ngModel)]="edit_job_form.eventTitle"
+												id = "eeventTitle"
+												#eet="ngModel" 
+												required 
+												>
+												<small class="form-text text-muted danger" *ngIf="eet.errors?.required">required error</small>
+                    
+											</div>
+								</div>
+								<div class="col-md-6 col-12">
+										<div class="form-group">
+												<label>Client Number</label>
+												<input
+													type="text" 
+													name="clientNumber" 
+													class="effect-16" 
+													[(ngModel)]="edit_job_form.clientNumber" 
+													id = "endDate"
+													#eet="ngModel" 
+													required 
+													>
+													<small class="form-text text-muted danger" *ngIf="eet.errors?.required">required error</small>
+                    
+												
+										</div>
+								</div>
+								<div class="col-md-6 col-12">
+										<div class="form-group">
+												<label>Event Location:</label>		
+												<input 
+												type="text" 
+												name="eventLocation"
+												class="effect-16"
+												[(ngModel)]="edit_job_form.eventLocation" 
+												id = "endDate"
+												#eel="ngModel" 
+												required 
+												>
+												<small class="form-text text-muted danger" *ngIf="eel.errors?.required">required error</small>
+                    
+										</div>
+								</div>
+								<div class="col-md-6 col-12">
+									<div class="form-group">
+										<label> Start date Event :</label>		
+										<input 
+										type="date" 
+										name="startDate"
+										class="effect-16"
+										[(ngModel)]="edit_job_form.startDate" 
+										id = "endDate"
+										#esd="ngModel" 
+										required 
+										>
+										<small class="form-text text-muted danger" *ngIf="esd.errors?.required">required error</small>
+                    
+									</div>
+								</div>
+								<div class="col-md-6 col-12">
+									<div class="form-group">
+											<label> end date Event :</label>		
+											<input 
+											type="date" 
+											name="endDate"
+											class="effect-16"
+											[(ngModel)]="edit_job_form.endDate" 
+											id = "endDate"
+											#eel="ngModel" 
+											required 
+											>
+										
+											<small class="form-text text-muted danger" *ngIf="eel.errors?.required">required error</small>
+                    
+	
+									</div>
+									<div class="col-md-6 col-12">
+											<div class="form-group">
+													<input 
+											type="hidden" 
+											name="userId"
+										
+											[(ngModel)]="userId" >
+										   </div>
+									</div>		
+									<div class="col-md-6 col-12">
+											<div class="form-group">
+											<input 
+											type="hidden" 
+											name="vendorJobsId"
+											[(ngModel)]="edit_job_form.vendorJobsId" 
+										>
+											
+										   </div>
+									</div>	
+									<div class="col-md-6 col-12">
+											<div class="form-group">
+																
+											<input 
+											type="hidden" 
+											name="vendorId"
+											[(ngModel)]="vendorid" >
+										   </div>
+									</div>		
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer btn_center">
+							<button type="submit" class="btn newbtn">SAVE</button>
+							<button type="button" class="btn newbtn newcancelbtn" (click)="close()">CANCEL</button>
+						</div>
+					</form>	
 				</div>
 			</div>
 		</div>
-		<div class="modal-footer btn_center">
-			<button type="submit" class="btn newbtn"  (click)="job(modalData)" (click)="close()">SAVE</button>
-			<button type="button" class="btn newbtn newcancelbtn" (click)="close()">CANCEL</button>
-		</div>
-	</div>
-	
-
-
-	
-
-
-</ng-template> 
-
-	<router-outlet></router-outlet>
+</div>	
+<router-outlet></router-outlet>

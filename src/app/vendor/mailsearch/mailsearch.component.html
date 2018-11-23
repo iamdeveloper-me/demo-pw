@@ -25,7 +25,7 @@
                   {{ today | date:'medium' }} <br/> -->
                 <div class="clearfix"></div>
                 <div class="chatscroll chat-body" >
-                <div class="dropmsg" *ngFor="let msg_loop of total_message ">
+                <div class="dropmsg" *ngFor="let msg_loop of total_message | reverse">
                     <!-- | reverse -->
               <div class="dateholder" id="message">
                 
@@ -33,7 +33,7 @@
                       <!-- Tuesday, August 28, 2018 -->
                     </span>
               </div>
-              <div *ngFor="let msg of msg_loop.messages" >  
+              <div *ngFor="let msg of msg_loop.messages | reverse" >  
                 <!-- | reverse -->
                <div class="man_img" *ngIf="msg.sendToUserId == userId">
                   <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> 
@@ -52,17 +52,15 @@
                </div>
                 <div class="man_imgright" *ngIf="msg.sendToUserId != userId">
                   <div class="exellent_parright" > 
-                    <!-- <span class="revie_name">{{msg.sendByFirstName}},
-                       <span [innerHtml]="getTime(msg.sentDate )">
+                    <span class="revie_name" [innerHtml]="getTime(msg.sentDate )">
+                     
 
-                        </span>
-
-                    </span>  -->
+                    </span> 
                     
-                      <pre class="chat-content">
-                        {{msg.message}}
-                      </pre>
-                   
+                      <pre class="chat-content">{{msg.message}}</pre>
+                      <span class="sent"><i class="fa fa-check " aria-hidden="true"></i></span>
+                      
+
                   </div>
                 </div>
               </div>    
@@ -113,7 +111,7 @@
                     <div class="type_massege"> 
                       <textarea type="text" class="messtext" name="vendorMsg.message" id="" [(ngModel)]="vendorMsg.message" placeholder="Type Message......" > 
                       </textarea>
-                      <button type="submit" class="plusbtn">
+                      <button type="submit" (click)="onSubmit()" class="plusbtn">
                         <i class="material-icons">add</i>
                       </button>
                     </div>

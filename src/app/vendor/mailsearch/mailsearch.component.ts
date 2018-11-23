@@ -1,10 +1,12 @@
+import { DateTimePickerComponent } from './../calendertable/date-time-picker.component';
+import { TimeFormatter } from './../../components/extra/nouislider/nouislider.component';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../../shared/service/vendor/message.service';
-// import { reverse } from 'dns';
 import * as $ from 'jquery';
 
 import { Pipe, PipeTransform } from '@angular/core';
+import { setInterval } from 'core-js';
 
 @Pipe({ name: 'reverse' })
 
@@ -105,22 +107,27 @@ date_true:boolean = true;
   
   this.dScrool()
 
+  // setInterval(() => {
+  //   this.ngOnInit(); 
+  //   }, 2000);  }
   
   }
-  
-
     onSubmit() {
-      // setTimeout(() => {
-      //   $(".dropmsg").last().append('<div class""><div _ngcontent-c1 class="man_imgright"><div  _ngcontent-c1 class="exellent_parright"><pre  class="chat-content">aaaaaaaaa</pre></div></div></div>') 
+      setTimeout(() => {
+// var str = this.today |  date
+        $(".dropmsg").last().append('<div  _ngcontent-c1 ><div _ngcontent-c1 class="man_imgright"><div  _ngcontent-c1 class="exellent_parright"><span _ngcontent-c1 class="revie_name">Just Now</span> <pre _ngcontent-c1 class="chat-content">'+this.vendorMsg['message']+'</pre><span class="deliver" _ngcontent-c1><i _ngcontent-c1 class="fa fa-check" aria-hidden="true"></i></span></div></div></div>') 
  
-      // }, 100);
+      }, 100);
 console.log(this.vendorMsg)
 this.vendorMsg['replyTo'] = parseInt(this.activatedRoute.snapshot.paramMap.get('id'))
 
 console.log(this.vendorMsg)
       this.vservice.message(this.vendorMsg).subscribe(( data )  =>  
       { console.log(data.json())
-        this.ngOnInit();
+        setTimeout(() => {
+                 this.ngOnInit();
+ 
+        }, 200);
         this.vendorMsg['message'] = ''
       },error => 
       alert(error) // error path

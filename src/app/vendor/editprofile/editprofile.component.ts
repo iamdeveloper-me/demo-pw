@@ -10,14 +10,14 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EditprofileComponent implements OnInit {
 
- constructor(public toastr: ToastrService,private router: Router,public http: Http ) { }
+ constructor(private router: Router,public http: Http ,public toastr: ToastrService) { }
  private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
  vendor: any = {
-   firstName: '',
- lastName: '',
- phoneNumber:'',
- vendorContactInfo:{ email:''}
-
+    firstName: '',
+    lastName: '',
+    phoneNumber:'',
+    // email : '',
+    vendorContactInfo:{ email:''}
 };
 personal_data_update = false;
 changePassword_form = false;
@@ -30,12 +30,15 @@ changePassword_form = false;
  private changepassurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Accounts/changepassword'
   changepass : any = {};
 
- private membershipurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/mymembership'
+ private membershipurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mymembership'
   membershipdetail : any = {
     pricingPlan: {title: ''},
     endDateString:'',
-    startDateString:''
+    startDateString:'',
   };
+
+  private subscriptionurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/subscriptionsettings'
+  mysub : any = {};
 
   ngOnInit() {   
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
@@ -55,15 +58,23 @@ changePassword_form = false;
       data =>{ this.vendor = data.json();
                console.log(this.vendor);
       });
+
     //membership api
-
-
     this.http.get(this.membershipurl,{headers:headers}).subscribe(
-      data =>{  console.log("zxdfdsf");
+      data =>{  
+              // console.log("zxdfdsf");
                console.log(data.json());
               this.membershipdetail = data.json();
-
       });
+
+    //Subscription Api
+    this.http.get(this.subscriptionurl,{headers:headers}).subscribe(
+      data =>{  
+              console.log("Subscription From Console!");
+               console.log(data.json());
+              this.mysub = data.json();
+      });
+
     
   }
   //getData
@@ -106,7 +117,7 @@ changePassword_form = false;
         this.vendor = data.json();
          alert("Profile Updated!");
         this.toastr.success("profile update sucessfully");
-         
+        this.personal_data_update = false;
     },error=>{console.log(error)});
   }
 
@@ -128,13 +139,12 @@ changePassword_form = false;
       this.http.post(this.changepassurl,cp,{headers:headers}).subscribe(
         data =>{
                  console.log(data.json());
+                 alert("password reset sucessfully!");
                  this.toastr.success("your password reset sucessfully");
                  this.changePassword_form =false;
         },error=>{console.log(error)});
     }
   }
-
-
 
 closeModel(){
   this.personal_data_update = false;

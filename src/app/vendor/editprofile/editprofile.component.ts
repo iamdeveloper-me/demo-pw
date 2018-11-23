@@ -19,9 +19,10 @@ export class EditprofileComponent implements OnInit {
     // email : '',
     vendorContactInfo:{ email:''}
 };
+fbAvailable = false;
 personal_data_update = false;
 changePassword_form = false;
- private geturl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/mypersonalinfo'
+ private geturl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mypersonalinfo'
   getaccount : any = {};
 
  private updateurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatepersonalinfo' 
@@ -32,9 +33,9 @@ changePassword_form = false;
 
  private membershipurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mymembership'
   membershipdetail : any = {
-    pricingPlan: {title: ''},
-    endDateString:'',
     startDateString:'',
+    endDateString:'',
+    pricingPlan: {title: ''},
   };
 
   private subscriptionurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/subscriptionsettings'
@@ -66,24 +67,63 @@ changePassword_form = false;
                console.log(data.json());
               this.membershipdetail = data.json();
       });
-
-    //Subscription Api
-    this.http.get(this.subscriptionurl,{headers:headers}).subscribe(
-      data =>{  
-              console.log("Subscription From Console!");
-               console.log(data.json());
-              this.mysub = data.json();
-      });
-
     
+    //Subscriptions
+     this.http.get(this.subscriptionurl,{headers:headers}).subscribe(
+        data =>{ this.mysub = data.json();
+                 console.log(this.mysub);
+
+        });
+
   }
+
+  //Subscription Api
+  // getSub(data){
+  //   this.mysub = data;
+  //   let headers = new Headers();
+  //   var authToken = localStorage.getItem('userToken');
+  //   headers.append('Accept', 'application/json')
+  //   headers.append('Content-Type', 'application/json');
+  //   headers.append("Authorization",'Bearer '+authToken);
+
+  //   this.http.get(this.subscriptionurl,{headers:headers}).subscribe(
+  //     data =>{ this.mysub = data.json();
+  //              console.log(this.mysub);
+  //     });
+  // }
+
+  updatesub(f2){
+   
+    console.log(f2);
+  //   let headers = new Headers();
+  //   var authToken = localStorage.getItem('userToken');
+  //   headers.append('Accept', 'application/json')
+  //   headers.append('Content-Type', 'application/json');
+  //   headers.append("Authorization",'Bearer '+authToken);
+
+  //   const sub =  
+  //   {
+  //     marketingEmails: true,
+  //     notifications: true,
+  //     appUpdates: true
+  //   }
+
+  //   console.log(sub);
+  //   this.http.post(this.subscriptionurl,sub,{headers:headers}).subscribe(
+  //     data =>{ 
+  //       this.mysub = data.json();
+  //        alert("Profile Updated!");
+  //       this.toastr.success("subscription update sucessfully");
+  //   },error=>{console.log(error)});
+   }
+
   //getData
   getData(data){
     this.getaccount = data;
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
+    headers.append('  Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
 
     this.http.get(this.geturl,{headers:headers}).subscribe(

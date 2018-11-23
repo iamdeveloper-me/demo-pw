@@ -61,7 +61,7 @@
                             <div class="member_name">
                                 <h5><strong> MEMBERSHIP</strong> </h5>
                             </div>
-                            <p>Member since : {{membershipdetail?.startDateStrring}}</p>
+                            <p>Member since : {{membershipdetail?.startDateString}}</p>
                             <p class="col_green">Expiry : {{membershipdetail?.endDateString}} </p>
 
                             <p>Plan type: <span>{{membershipdetail?.pricingPlan.title}}</span>
@@ -166,12 +166,11 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn newbtn">Save</button>
+                    <button type="submit" class="btn newbtn"  [disabled]="!f1.valid">Save</button>
                     <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
                 </div>
             </div>
@@ -243,7 +242,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn newbtn">Save</button>
+                    <button type="submit" class="btn newbtn" [disabled]="!f.valid">Save</button>
                     <!-- [disabled]="!f.valid" -->
                     &nbsp;&nbsp;
                     <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
@@ -253,6 +252,8 @@
     </div>
 </form>
 <!--Form 2 End-->
+
+<form (ngSubmit)="updatesub(f2)" #f2="ngForm">
 <div class="modal fade" id="setting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -263,20 +264,26 @@
             <div class="modal-body">
                 <div class="col-sm-12 nopadd">
                     <div class="container">
-
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="switbtn">
-                                    <ui-switch id="receiveUpdates" name="receiveUpdates">
+                                    <!-- <ui-switch id="receiveUpdates" name="receiveUpdates" ngModel #receiveUpdates="ngModel" > -->
 
-                                    </ui-switch>
+                                        <!-- </ui-switch>  -->
+                                        <ui-switch 
+                                        [(ngModel)]="fbAvailable"
+                                        id="fbAvailable" 
+                                        name = "switchfb"
+                                        (change)="fbAvailable  = !fbAvailable "
+                                        class="pull-left"
+                                        ></ui-switch>
+                                        <!-- {{fbAvailable}} -->
                                     <span class="texthead">Receive Updates</span>
                                 </div>
-
                             </div>
                             <div class="col-xs-12">
                                 <div class="switbtn">
-                                    <ui-switch id="marketingMails" name="marketingMails">
+                                    <ui-switch id="marketingMails" name="marketingMails" ngModel #marketingMails="ngModel">
 
                                     </ui-switch>
                                     <span class="texthead">Marketing Mails</span>
@@ -284,7 +291,9 @@
                             </div>
                             <div class="col-xs-12">
                                 <div class="switbtn">
-                                    <ui-switch id="notifications" name="notifications"></ui-switch>
+                                    <ui-switch id="notifications" name="notifications"  ngModel #notifications="ngModel">
+
+                                    </ui-switch>
                                     <span class="texthead">Notifications</span>
                                 </div>
                             </div>
@@ -293,11 +302,12 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn newbtn" data-dismiss="modal">Save</button>
+                <button type="submit" class="btn newbtn" data-dismiss="modal"[disabled]="!f2.valid">Save</button>
                 &nbsp;&nbsp;
                 <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal" (click)="closeModel()">Close</button>
             </div>
         </div>
     </div>
 </div>
+</form> <!--Form 3 End-->
 <!--mail popup -->

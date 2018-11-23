@@ -21,11 +21,19 @@ export class DashboardComponent implements OnInit {
     angularLogo = 'https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg';
     
     constructor(config: NgbCarouselConfig ,public http: Http ,private router: Router) {
-
+      
     config.interval = 10000;
     config.wrap = false;
     config.keyboard = false;
   }
+
+  private membershipurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mymembership'
+  membershipdetail : any = {
+    startDateString:'',
+    endDateString:'',
+    pricingPlan: {title: ''},
+  };
+//membership api
 
   x: any;
   greeting = {};
@@ -245,8 +253,12 @@ export class DashboardComponent implements OnInit {
     
           
           
-    
-       
+          this.http.get(this.membershipurl,{headers:headers}).subscribe(
+            data =>{  
+                     console.log(data.json());
+                    this.membershipdetail = data.json();
+            });
+          //membership api
        
        
         }

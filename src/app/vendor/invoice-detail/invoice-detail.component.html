@@ -8,27 +8,41 @@
         <router-outlet></router-outlet>
         <div class="col-sm-12 nopadd mobilefixedcontainer">
             <div class="container">
+                <form #f="ngForm">
                <div class="col-sm-12 row searchform">
                                             <div class="col-sm-3 col-6">
                                                 <label>Start Date</label>
-                                                <input type="date" name="startdate">
+                                                <input type="date" ngModel id="startDate" #startDate="ngModel" name="startDate">
                                             </div>
                                             <div class="col-sm-3  col-6">
                                                 <label>End Date</label>
-                                                <input type="date" name="enddate">
+                                                <input type="date" ngModel id="endDate" #endDate="ngModel" name="endDate">
                                             </div>
                                             <div class="col-sm-2  col-6">
                                                 <label>Invoice Number</label>
-                                                <input type="text" name="enddate">
+                                                <input type="text" ngModel id="invoiceId" #invoiceId="ngModel"  name="invoiceId" >
                                             </div>
-                                            <div class="col-sm-2  col-6">
+                                            <!-- <div class="col-sm-2 col-6">
                                                 <label>Invoice Type</label>
                                                 <input type="text" name="enddate">
-                                            </div>
+                                            </div> -->
+
+                                            <div class=" col-sm-2 col-6 dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Invoice Type
+                                                    <!-- <span class="caret"></span> -->
+                                                </button>
+                                                    <ul class="dropdown-menu">
+                                                      <li><a href="">All</a></li>
+                                                      <li><a href="">Business Pormotion</a></li>
+                                                      <li><a href="">Membership Plan</a></li>
+                                                    </ul>
+                                                  </div>
+
                                             <div class="col-sm-2">
-                                                <button>Search</button>
+                                                <button (click)="postData(f)">Search</button>
                                             </div>
                 </div>
+            </form>
             </div>    
             <div class="container">   
                 

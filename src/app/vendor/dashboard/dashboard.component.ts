@@ -14,17 +14,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.scss'],
   providers: [NgbCarouselConfig]
 })
+
 export class DashboardComponent implements OnInit {
   jobArray:string[];
+    // venderDash : string [];
     PhoneEdit = '5555555' ;
     angularLogo = 'https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg';
     
     constructor(config: NgbCarouselConfig ,public http: Http ,private router: Router) {
-
+      
     config.interval = 10000;
     config.wrap = false;
     config.keyboard = false;
   }
+
+  private membershipurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mymembership'
+  membershipdetail : any = {
+    startDateString:'',
+    endDateString:'',
+    pricingPlan: {title: ''},
+  };
+//membership api
 
   x: any;
   greeting = {};
@@ -41,6 +51,10 @@ export class DashboardComponent implements OnInit {
   tradingName;
   test = 12.5;
   test1 = 0;
+  VendorDashboard_data = {portfolioImage : '',portfolioCount: '',
+  videoCount : '',albumCount: '',impression: '',enquiries: '',loveCount: '',reviews: ''};
+  //VendorDashboard
+  
   baseUrl = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
   // Context and manual triggers section
   @ViewChild('x') public tooltip: NgbTooltip;
@@ -73,7 +87,10 @@ export class DashboardComponent implements OnInit {
           console.log(this.jobArray);
       
          });
-        this.http.get(this.dashboard,{headers:headers}).subscribe((data)=> {console.log(data.json())});
+        this.http.get(this.dashboard,{headers:headers}).subscribe((data)=> 
+        {
+          console.log(data.json())});
+
         if(!authToken) 
        {  this.router.navigate(['../home']);
         }
@@ -117,8 +134,24 @@ export class DashboardComponent implements OnInit {
                           this.tradingName = data.json().profileCompletion.tradingName;
                     } , error=>{console.log(error)});
 
+                    //EnquiriesAndLeads
+                    this.http.get(this.dashboard,{headers:headers}).subscribe(
+                      data =>{  
+                              // console.log("zxdfdsf");
+                               console.log(data.json());
+                              this.dashboard = data.json();
+                
+                      });
 
-         
+                      this.http.get(this.VendorDashboard,{headers:headers}).subscribe(
+                        data =>{  
+                                // console.log("zxdfdsf");
+                                 console.log(data.json());
+                                //  this.venderDash = data.json() as string[]; 
+                                this.VendorDashboard_data = data.json();
+                  
+                        });
+
                   $.getScript('./assets/js/prism.min.js');
                   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
                   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
@@ -224,9 +257,13 @@ export class DashboardComponent implements OnInit {
           }
     
           
-    
-    
-       
+          
+          this.http.get(this.membershipurl,{headers:headers}).subscribe(
+            data =>{  
+                     console.log(data.json());
+                    this.membershipdetail = data.json();
+            });
+          //membership api
        
        
         }

@@ -174,7 +174,7 @@
               <div class="card-body nopadd" style="overflow: hidden;">
                  <div class="col-sm-5 nopadd maxheight335px">
                    <div class="infoimgbox">
-                    <img src="../../../assets/img/no-image.png" class="" alt="Profile picture" >
+                    <img src="{{VendorDashboard_data.portfolioImage}}" class="" alt="Profile picture" >
                   </div>
                     <div class="viewstore">
                        <a routerLink="../../home/detailprofile">View Storefront</a>
@@ -199,14 +199,13 @@
                              <!-- <p data-target="#currentLocation" data-toggle="modal">{{currentLocation}}<br/>2 More Branches </p> -->
                              <p>
                                 <a routerLink="../location">
-
                                  
                                   {{vendor.city}} ,
                                   {{vendor.suburb.name}}, {{vendor.address}}, <br/>2 More Branches
 
                                 </a>
                              </p>
-                             <span  class="editbtn">Edit</span>  
+                             <span  class="editbtn" routerLink="../location">Edit</span>  
                           </div>
                           <div class="prolinkmob">
                              <a routerLink="../PromoteBusiness" class="font11px bluelink">
@@ -223,7 +222,7 @@
 
                              <p >
                                 <a routerLink="../location">
-                                {{PhoneEdit}} 
+                                {{vendor.vendorContactInfo.phone}} , <br/>2 More Numbers 
                                 <span class="editbtn">Edit</span> 
                                 </a>
                              </p>
@@ -234,8 +233,8 @@
                              <i class="material-icons">work_outline</i>
                           </div>
                           <div class="col-xs-11 nopadd">
-                             <span class="pinkchip">Wedding Venue</span><br/>
-                             Membership Type: Free <a routerLink="../membership" class="bluelink">Upgrade to Premium</a>
+                             <span class="pinkchip">{{vendor.firstName}}</span><br/>
+                             Membership Type: {{membershipdetail?.pricingPlan.title}} <a routerLink="../membership" class="bluelink">Upgrade to Premium</a>
                           </div>
                        </div>
                        <div class="clearfix"></div>
@@ -245,7 +244,7 @@
                        <div class="col-xs-4 text-center">
                           <a routerLink="../portfolioview" class="blacktext">
                              <i class="material-icons">photo_library</i>
-                             <strong>1</strong>
+                             <strong>{{VendorDashboard_data.portfolioCount}}</strong>
                              <div class="clearfix"></div>
                              Portfolio
                           </a>
@@ -253,7 +252,7 @@
                        <div class="col-xs-4 text-center">
                           <a routerLink="../Videos" class="blacktext">
                              <i class="material-icons">video_library</i>
-                             <strong>1</strong>
+                             <strong>{{VendorDashboard_data.videoCount}}</strong>
                              <div class="clearfix"></div>
                              Vedios
                           </a>
@@ -261,7 +260,7 @@
                        <div class="col-xs-4 text-center">
                           <a routerLink="../albumview" class="blacktext">
                              <i class="material-icons">library_books</i>
-                             <strong>1</strong>
+                             <strong>{{VendorDashboard_data.albumCount}}</strong>
                              <div class="clearfix"></div>
                              Albums
                           </a>
@@ -306,7 +305,7 @@
                     <i class="material-icons">store</i>
                  </div>
                  <p class="card-category">Impressions</p>
-                 <h3 class="card-title"> 184</h3>
+                 <h3 class="card-title"> {{VendorDashboard_data.impression}}</h3>
               </div>
               <div class="card-footer mobilenone">
                  <div class="stats">
@@ -323,7 +322,7 @@
                     <i class="material-icons">equalizer</i>
                  </div>
                  <p class="card-category">Enquiries <span class="tabnone">& Leads </span> </p>
-                 <h3 class="card-title"> 53</h3>
+                 <h3 class="card-title"> {{VendorDashboard_data.enquiries}}</h3>
               </div>
               <div class="card-footer mobilenone">
                  <div class="stats">
@@ -340,7 +339,7 @@
                     <i class="material-icons">favorite_border</i>
                  </div>
                  <p class="card-category">Love count</p>
-                 <h3 class="card-title"> 4</h3>
+                 <h3 class="card-title">  {{VendorDashboard_data.loveCount}}</h3>
               </div>
               <div class="card-footer mobilenone">
                  <div class="stats">
@@ -357,7 +356,7 @@
                     <i class="material-icons">message</i>
                  </div>
                  <p class="card-category">Reviews</p>
-                 <h3 class="card-title"> 15</h3>
+                 <h3 class="card-title">{{VendorDashboard_data.reviews}}</h3>
               </div>
               <div class="card-footer mobilenone">
                  <div class="stats">
@@ -374,9 +373,9 @@
 
      <div class="col-sm-6 mobnopadd padleft0px">
         <div class="col-md-12 card mobnopadd padleft0px height360px">
-            <div class="card card-stats mobileviewcontent card_padd_bottom">
-              <div class="card-header border_bottom_none card-header-warning card-header-icon">
-                  <div class="card-icon  white_bg margRight0">
+            <div class="card card-stats ">
+                  <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon  white_bg margRight0 cardiconset">
                     <i class="material-icons">event_available</i>
                   </div>
                   <p class="card-category upcominghead">Upcoming Weddings </p>
@@ -386,19 +385,21 @@
                
                   <div class="upcominglisthomepage" *ngFor="let job of jobArray | slice:0:3 ">
                      <div class="col-sm-8 col-8">
-                       <i class="material-icons">date_range</i>  {{job.jobDate |  date:'medium' }}<br/>
+                       <i class="material-icons flotleft">date_range</i>  {{job.jobDate |  date:'medium' }}
                        <ul>
-                         <li>Guests: {{job.numberOfPeople}}</li>
-                         <li>Name: {{job.clientName}}</li>
                        
+                         <!-- <li>Name: {{job.clientName}}</li> -->
+                         <li>Event Title: {{job.eventTitle}}</li>
+                         <li>Start Date: {{job.startDate | date:'medium'}}</li>
+                      
                        </ul>
                      </div>
                      <div class="col-sm-4 col-4 upcomingright">
                        <div>
                          <i class="material-icons ">location_on
-                         </i>{{job.jobLocation}}
+                         </i>{{job.eventLocation}}
                        </div>
-                      <a href="tel:{{job.clientPhoneNumber}}"> {{job.clientPhoneNumber}}	</a>													
+                       <!-- <button [routerLink] = "../vendor/eventlist">View All</button>					 -->
                      </div>
                    </div>
 

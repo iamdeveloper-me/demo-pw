@@ -43,7 +43,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                
                                 <div class="col-sm-12 text_left">
                                     <div class=" nopadd weekboxinput">
                                         <div class="col-sm-12  edit_hide" id="address-function"   (click)="openModel(data); photo_ved_dailog = true" >
@@ -617,7 +616,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn newbtn" >Save</button>&nbsp;
-                    <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Closee</button>
+                    <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
                  
                 </div>
             </div>
@@ -678,7 +677,14 @@
                                         <select    class="effect-16 validate" [(ngModel)] = "sub_id"  name="sub_id" (change)="subr($event)" > 
                                                 <!-- (change)="country($event)" -->
                                             <option   *ngFor="let sub of suburb ;let s =index" 
-                                                [value]="sub.suburbId">
+                                                type="text"
+                                                id="{{sub.name}}"
+                                                checked
+                                                name = "sub"  
+                                                placeholder="Suburb" 
+                                                [value]="sub.suburbId"
+                                                required
+                                                >
                                                 {{sub.name }}
                                             </option>
                                         </select>

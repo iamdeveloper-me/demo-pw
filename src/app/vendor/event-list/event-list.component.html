@@ -91,7 +91,9 @@
                                     <div class="col-sm-12">
                                     <p  *ngFor="let name of data.eventsDates">
                                         <i class="material-icons">date_range </i><strong>
-                                          Recurring Date {{name.eventDate | date}}
+                                          Event start Date : {{name.startDate | date}}<br>
+                                          Event end Date  :  {{name.endDate | date}}<br>
+                                         
                                         </strong>
                                       </p>
                                     </div>
@@ -176,8 +178,15 @@
                 <input type="hidden" name="filesId" id="filesId" [value]="fileIdfield.filesId" [(ngModel)]="objevent.filesId">
                 <div class="form-group">
                     <div class="input-effect form-group md-form">
-                      <input class="effect-16 validate"  type="date" name="eventdate" id="eventdate" [(ngModel)]="objevent.eventdate" style="width:100%;">
-                      <label style="width:100%;">event date: {{objevent.eventdate}}</label> 
+                      <input class="effect-16 validate"  type="date" name="startDate" id="eventdate" [(ngModel)]="objevent.startDate" style="width:100%;">
+                      <label style="width:100%;"> start date : {{objevent.eventdate}}</label> 
+                      <span class="focus-border"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-effect form-group md-form">
+                      <input class="effect-16 validate"  type="date" name="endDate" id="eventdate" [(ngModel)]="objevent.endDate" style="width:100%;">
+                      <label style="width:100%;">end  date: {{objevent.startDate}}</label> 
                       <span class="focus-border"></span>
                     </div>
                 </div>
@@ -482,20 +491,7 @@
                       </div>
                     </div>
                 </div>
-              <div class="col-sm-12 nopadd rowpaddadjust">
-                <div class="form-group date_picker">
-                  <label>event date:</label> <br>
-                
-                  <!-- <div *ngFor="let f of modelfield.eventsDates;let i=index ">
-                    {{f.eventDate | date }} <br>
-                    {{ f.endTime | date:'shortTime' }} 
-                  </div>                 -->
-                      <input type="date" name="eventdate" id="eventdate" [(ngModel)]="eventdate">
-          
-                  
-  
-                </div>
-              </div>
+           
               <div class="col-sm-6">
                   <div class="form-group date_picker">
                     <label>
@@ -527,7 +523,7 @@
                     #Location="ngModel" 
                     required 
                     placeholder="required">
-                    <label>Location}</label>
+                    <label>Location</label>
                     <small class="form-text text-muted danger" *ngIf="Location.errors?.required">required error</small>
                     <span class="focus-border"></span>
                   </div>
@@ -617,6 +613,24 @@
                   </div>
                 </div>
              </div> 
+              <div class="col-sm-6">
+                <div class="form-group">
+                    <div class="input-effect form-group md-form">
+                      <input class="effect-16 validate"  type="date" name="startDate" id="eventdate" [(ngModel)]="startDates" style="width:100%;">
+                      <label style="width:100%;"> start date : {{startDates}}</label> 
+                      <span class="focus-border"></span>
+                    </div>
+                </div>
+              </div>  
+              <div class="col-sm-6">
+                <div class="form-group">
+                    <div class="input-effect form-group md-form">
+                      <input class="effect-16 validate"  type="date" name="endDate" id="eventdate" [(ngModel)]="endDates" style="width:100%;">
+                      <label style="width:100%;">end  date: {{endDates}}</label> 
+                      <span class="focus-border"></span>
+                    </div>
+                </div> 
+              </div>  
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn newbtn"  >Save</button>

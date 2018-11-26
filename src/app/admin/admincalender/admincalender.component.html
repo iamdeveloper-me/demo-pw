@@ -32,15 +32,15 @@
               <div class="col-md-6 col-12">
                 <div class="form-group">
                   <label>Starts At:</label>
-                  <mwl-demo-utils-date-time-picker name="starts-at" [(ngModel)]="modalData?.event.start" (ngModelChange)="refresh.next()" placeholder="Not set">
-                  </mwl-demo-utils-date-time-picker>
+                  <!-- <mwl-demo-utils-date-time-picker name="starts-at" [(ngModel)]="modalData?.event.start" (ngModelChange)="refresh.next()" placeholder="Not set">
+                  </mwl-demo-utils-date-time-picker> -->
                 </div>
               </div>
               <div class="col-md-6 col-12">
                 <div class="form-group">
                   <label>Ends At:</label>
-                  <mwl-demo-utils-date-time-picker name="ends-at" [(ngModel)]="modalData?.event.end" (ngModelChange)="refresh.next()" placeholder="Not set">
-                  </mwl-demo-utils-date-time-picker>
+                  <!-- <mwl-demo-utils-date-time-picker name="ends-at" [(ngModel)]="modalData?.event.end" (ngModelChange)="refresh.next()" placeholder="Not set">
+                  </mwl-demo-utils-date-time-picker> -->
                 </div>
               </div>
             </div>
@@ -119,7 +119,7 @@
           
           
           <div [ngSwitch]="view">
-            <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen"
+            <!-- <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen"
              (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
             </mwl-calendar-month-view>
             <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
@@ -127,7 +127,7 @@
             </mwl-calendar-week-view>
             <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
              (eventTimesChanged)="eventTimesChanged($event)">
-            </mwl-calendar-day-view>
+            </mwl-calendar-day-view> -->
           </div>
         </div>
       </div>

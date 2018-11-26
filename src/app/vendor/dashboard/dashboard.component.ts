@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   jobArray:string[];
+  
     // venderDash : string [];
     PhoneEdit = '5555555' ;
     angularLogo = 'https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg';
@@ -84,7 +85,8 @@ export class DashboardComponent implements OnInit {
          });
         this.http.get(this.dashboard,{headers:headers}).subscribe((data)=> 
         {
-          console.log(data.json())});
+          // console.log(data.json());
+          });
 
         if(!authToken) 
        {  this.router.navigate(['../home']);
@@ -114,7 +116,8 @@ export class DashboardComponent implements OnInit {
                           this.total = data.json().profileCompletion.total;
 
                           if(this.total == '100')
-                          {alert("profile completed");
+                          {
+                            alert("profile completed");
                           
                           $(".profile").hide();
                          
@@ -140,7 +143,6 @@ export class DashboardComponent implements OnInit {
 
                       this.http.get(this.VendorDashboard,{headers:headers}).subscribe(
                         data =>{  
-                                // console.log("zxdfdsf");
                                  console.log(data.json());
                                 //  this.venderDash = data.json() as string[]; 
                                 this.VendorDashboard = data.json();
@@ -255,7 +257,7 @@ export class DashboardComponent implements OnInit {
           
           this.http.get(this.membershipurl,{headers:headers}).subscribe(
             data =>{  
-                     console.log(data.json());
+                    //  console.log(data.json());
                     this.membershipdetail = data.json();
             });
           //membership api

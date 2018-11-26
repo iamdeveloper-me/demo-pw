@@ -61,12 +61,14 @@
                             <div class="member_name">
                                 <h5><strong> MEMBERSHIP</strong> </h5>
                             </div>
-                            <p>Member since : {{membershipdetail?.startDateString}}</p>
-                            <p class="col_green">Expiry : {{membershipdetail?.endDateString}} </p>
-
-                            <p>Plan type: <span>{{membershipdetail?.pricingPlan.title}}</span>
+                            <p>Account created : {{membershipdetail?.pricingPlan.dateAddedOnString}}</p>
+                            <p>Plan name: <span>{{membershipdetail?.pricingPlan.title}}</span>
                                 <span class="upgrade"><a routerLink="../membership"> Upgrade now </a> </span>
                             </p>
+                            <!-- <br> -->
+                            <p>Start date : {{membershipdetail?.startDateString}}</p>
+                            <p class="col_green">End date : {{membershipdetail?.endDateString}} </p>
+
                         </div>
                     </div>
                     <div class="col-md-12 mem_detail">
@@ -146,7 +148,8 @@
                                     <div class="input-effect form-group md-form ">
                                         <input class="effect-16 validate" type="number" maxlength="10" pattern="^[0-9]{10}$"
                                             type="text" #phoneNumber="ngModel" id="phoneNumber" name="phoneNumber"
-                                            [(ngModel)]="vendor.vendorContactInfo.phone" placeholder="" required>
+                                            [(ngModel)]="vendor.vendorContactInfo.phone" placeholder="" pattern="^[0-9]{10}$"
+                                            required>
                                         <label>Phone Number</label>
                                         <span class="focus-border"></span>
                                         <small class="form-text text-muted danger" *ngIf="!phoneNumber.valid && (phoneNumber.dirty || phoneNumber.touched)">Please
@@ -158,11 +161,12 @@
                                 <div class="form-group">
                                     <div class="input-effect form-group md-form ">
                                         <input class="effect-16 validate" type="email" #email="ngModel" id="email" name="email"
-                                            [(ngModel)]="vendor.vendorContactInfo.email" placeholder="" required>
+                                            [(ngModel)]="vendor.vendorContactInfo.email" [disabled]="email" placeholder=""
+                                            pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$" required>
                                         <label>Email</label>
                                         <span class="focus-border"></span>
-                                        <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">Please
-                                            enter a valid email!</small>
+                                        <!-- <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">Please
+                                            enter a valid email!</small> -->
                                     </div>
                                 </div>
                             </div>
@@ -170,7 +174,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn newbtn"  [disabled]="!f1.valid">Save</button>
+                    <button type="submit" class="btn newbtn" [disabled]="!f1.valid">Save</button>
                     <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
                 </div>
             </div>
@@ -232,18 +236,17 @@
                             <small class="form-text text-muted danger validationErrorMsg" *ngIf="!f.NewPassword == f.ConfirmPassword">
                                 password not match </small>
 
-                            <div class="col-md-12">
+                            <!-- <div class="col-md-12">
                                 <div class="form-group">
                                     Premium members only.
                                     <a routerLink="../membership">Upgrade</a>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn newbtn" [disabled]="!f.valid">Save</button>
-                    <!-- [disabled]="!f.valid" -->
                     &nbsp;&nbsp;
                     <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
                 </div>
@@ -253,61 +256,63 @@
 </form>
 <!--Form 2 End-->
 
-<form (ngSubmit)="updatesub(f2)" #f2="ngForm">
-<div class="modal fade" id="setting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">SUBSCRIPTION SETTINGS</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <div class="col-sm-12 nopadd">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="switbtn">
-                                    <!-- <ui-switch id="receiveUpdates" name="receiveUpdates" ngModel #receiveUpdates="ngModel" > -->
+<!--  -->
+<form #s="ngForm">
+    <div class="modal fade" id="setting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">SUBSCRIPTION SETTINGS</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-12 nopadd">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="switbtn">
+                                        <ui-switch id="appUpdates" ngModel name="appUpdates" #appUpdates="ngModel">
+                                        </ui-switch>
+                                        <!-- <ui-switch 
+                                            [(ngModel)]="fbAvailable"
+                                            id="fbAvailable" 
+                                            name = "switchfb"
+                                            #switchfb="ngModel"
+                                            (change)="fbAvailable  = !fbAvailable "
+                                            class="pull-left"
+                                            ></ui-switch>
+                                            {{fbAvailable}} -->
 
-                                        <!-- </ui-switch>  -->
-                                        <ui-switch 
-                                        [(ngModel)]="fbAvailable"
-                                        id="fbAvailable" 
-                                        name = "switchfb"
-                                        (change)="fbAvailable  = !fbAvailable "
-                                        class="pull-left"
-                                        ></ui-switch>
-                                        <!-- {{fbAvailable}} -->
-                                    <span class="texthead">Receive Updates</span>
+                                        <span class="texthead">App Updates</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xs-12">
-                                <div class="switbtn">
-                                    <ui-switch id="marketingMails" name="marketingMails" ngModel #marketingMails="ngModel">
-
-                                    </ui-switch>
-                                    <span class="texthead">Marketing Mails</span>
+                                <div class="col-xs-12">
+                                    <div class="switbtn">
+                                        <ui-switch id="marketingEmails" ngModel name="marketingEmails" #marketingEmails="ngModel">
+                                        </ui-switch>
+                                        <span class="texthead">Marketing Emails</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xs-12">
-                                <div class="switbtn">
-                                    <ui-switch id="notifications" name="notifications"  ngModel #notifications="ngModel">
+                                <div class="col-xs-12">
+                                    <div class="switbtn">
+                                        <ui-switch id="notifications" ngModel name="notifications" #notifications="ngModel">
 
-                                    </ui-switch>
-                                    <span class="texthead">Notifications</span>
+                                        </ui-switch>
+                                        <span class="texthead">Notifications</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn newbtn" data-dismiss="modal"[disabled]="!f2.valid">Save</button>
-                &nbsp;&nbsp;
-                <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal" (click)="closeModel()">Close</button>
+                <div class="modal-footer">
+                    <button type="submit" class="btn newbtn" data-dismiss="modal" (click)="updatesub(s)">Save</button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal" (click)="closeModel()">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-</form> <!--Form 3 End-->
+</form>
+<!--Form 3 End-->
 <!--mail popup -->

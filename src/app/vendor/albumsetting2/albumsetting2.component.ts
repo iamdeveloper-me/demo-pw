@@ -190,12 +190,12 @@ constructor( public http: Http,public toastr: ToastrService ) {
 
       swal({
         title: "Are you sure?",
-      text: "You will not be able to recover this imaginary file!",
+      text: "You will not be able to recover this file!",
       type: "warning",
       showCancelButton: true,
       confirmButtonClass: "btn-default",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "No, cancel plx!",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
       }).then((res)=>{
         if(res.value===true){
       var id = e.portfolioId;

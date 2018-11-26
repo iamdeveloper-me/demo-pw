@@ -4,6 +4,7 @@ import { apiPath } from '../../shareApi/apiPath';
 import { BusinessCategoriesVM } from './BusinessServiceVm';
 import { forEach } from '@angular/router/src/utils/collection';
 import { BusinessService } from 'app/ngservices/business.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class BusinessServicesComponent implements OnInit {
   private api = apiPath.url; 
   selected_category;
   categoryserveice= [];
+  SavedService:any;
   customFields=new Array<any>();
   customFieldSelectOptions=Array<any>();
   bc: Array<BusinessCategoriesVM>;
@@ -30,16 +32,15 @@ export class BusinessServicesComponent implements OnInit {
   service_provide_dailog_4 = false;
   radioSelected:any;
   header:Headers;
-  constructor(public http: Http, public bs_service: BusinessService){ 
+  constructor(public http: Http, public bs_service: BusinessService, public toastr: ToastrService){ 
     this.objVenderServiceVm = new VendorServiceVM();
     this.objVenderServiceVm.categoryId
     this.categories = new Array<CategoryVm>();
     this.bc=new Array<BusinessCategoriesVM>();
     this.categoryWiseService = new BusinessCategoriesVM();
-    
   }  
   ngOnInit() {  
-            
+   
     $.getScript('./assets/js/vendorsidebar.js');
 
     setTimeout(function(){ $(".servicecontainer div:first").removeClass("activehide"); $(".servicecontainer div:first").addClass("activedisplay"); $(".servicecontainer div:first span").click(); }, 1000);
@@ -75,72 +76,123 @@ export class BusinessServicesComponent implements OnInit {
               headers.append("Authorization",'Bearer '+authToken);
               this.header = headers;
               //jo data post kar rhe h 
+              this.SavedService=JSON.parse(localStorage.getItem(this.bs_service.savedBusinessService));
+              console.log(this.SavedService);
               this.http.get(this.api+'api/Supplier/businessservices',{headers:headers}).subscribe(data =>{
                 this.bc=data.json();
+                console.log(this.bc);
                 });
               this.http.get(this.api+'api/Categories/categorieswithservices',{headers:headers}).subscribe(data =>{
                 this.categoryserveice = data.json() as string[];
+                console.log(this.SavedService);
+              if(this.SavedService!=undefined){
+                this.selected_category =   this.SavedService.categoryId;
+              this.objVenderServiceVm.categoryId = this.SavedService.categoryId;
+              this.objVenderServiceVm.serviceName= this.SavedService.serviceNAme;
+              this.objVenderServiceVm.servicesId = this.SavedService.servicesId;
+              this.objVenderServiceVm.serviceFields = this.SavedService.serviceFields;
+              this.getServicesByCategory(this.objVenderServiceVm.categoryId);
+              this.getCustomFieldBySreviceId(this.objVenderServiceVm.servicesId);
+              this.getSelectedCustomFieldOption(this.customFields);
+            }
               },error => {console.log(error)});
 
-              console.log(this.objVenderServiceVm);
-      }
+              
+    }
       getServicesByCategory(catId){
-        this.objVenderServiceVm = new VendorServiceVM();
+       // this.selected_category = this.bc.filter(c=>c.categoryId==catId)[0].categoryName;
+       if(this.objVenderServiceVm==undefined){
+        this.objVenderServiceVm = new VendorServiceVM();}
         this.objVenderServiceVm.categoryId=catId;
         this.resetCustomFileds();  
         let abc= this.categoryserveice.filter(m=>m.categoryId==catId)[0];
         this.services=abc.services;
+        let service=null;
+        if(this.objVenderServiceVm.servicesId==undefined){
+         service=this.services.filter(s=>s.categoryId==catId)[0];
+        }else{
+          service=this.services.filter(s=>s.servicesId==this.objVenderServiceVm.servicesId)[0];
+        }
+       // console.log(this.objVenderServiceVm);
+      //  this.objVenderServiceVm.serviceName = service.serviceName?service.serviceName:''; 
+      //  this.objVenderServiceVm.servicesId = service.servicesId?service.servicesId:'' ;
+        
       }
       resetCustomFileds(){
         this.customFields=[];
         this.customFieldSelectOptions=[];
       }
       getCustomFieldBySreviceId(id){
-        this.resetCustomFileds();
+       this.resetCustomFileds();
        this.objVenderServiceVm.servicesId = id ;
-      // this.SaveIntoDb();
        let servicecustomfield= this.services.filter(s=>s.servicesId==this.objVenderServiceVm.servicesId)[0];
+       this.objVenderServiceVm.serviceName=servicecustomfield.serviceName;
        this.customFields = servicecustomfield.customFields;
        for (let i = 0; i < this.customFields.length; i++) {
-         this.customFields[i].prop('isEnable',false);
+         this.customFields[i].isEnable=false;
        }
-       
       }
       getSelectOptions(customFieldId){
           this.customFieldSelectOptions = customFieldId
+          console.log(this.customFieldSelectOptions);
+          console.log(this.objVenderServiceVm);
       }
+      getSelectedCustomFieldOption(customFieldId){
+        console.log(this.services);
+        console.log(this.SavedService);
+        let selectedoption=this.SavedService.serviceFields.filter(f=>f.customFieldId==customFieldId)[0];
+        if(selectedoption){
+           return selectedoption
+        }else{
+          return ''
+        }
+      }
+
       seveCustomField(cfo) {
+        console.log(cfo);
         let smv=new ServiceFieldValuesVM();
         smv.FieldValue= cfo.key;
         smv.customFieldId = cfo.customFieldId;
-
+        smv.id=cfo.id;
        if(this.objVenderServiceVm.serviceFields.length>0){
          let isCustomFieldExist= this.objVenderServiceVm.serviceFields.filter(cfid=> cfid.customFieldId== cfo.customFieldId)[0];
         if(isCustomFieldExist){
           this.objVenderServiceVm.serviceFields.splice(this.objVenderServiceVm.serviceFields.indexOf(isCustomFieldExist),1);
           this.objVenderServiceVm.serviceFields.push(smv) ;
        }else{
-         this.objVenderServiceVm.serviceFields.push(smv)}
-       }else{
+         this.objVenderServiceVm.serviceFields.push(smv)
+        }
+       }
+       else{
         this.objVenderServiceVm.serviceFields.push(smv)
        }
-       this.bs_service.SaveIntoDb(this.objVenderServiceVm);
+       this.bs_service.SaveIntoDb(this.objVenderServiceVm).subscribe(res=>{
+         if(res.status==200){
+           console.log(res);
+           this.toastr.success(res.json().message);
+           localStorage.setItem(this.bs_service.savedBusinessService,JSON.stringify(this.objVenderServiceVm));
+           this.bs_service.setIntoLocalDb(this.objVenderServiceVm);
+           this.SavedService = localStorage.getItem(this.bs_service.savedBusinessService);
+         }
+       });
       }
       SaveIntoDb(){
+
         this.bs_service.SaveIntoDb(this.objVenderServiceVm).subscribe((response)=>{
           console.log(response);
+          this.toastr.success(response.json().message);
           let existingServices= localStorage.getItem(this.bs_service.savedBusinessService);
           if(existingServices){
             let objExistingServices= JSON.parse(existingServices);
             this.objVenderServiceVm.serviceFields.forEach(element => {
+              console.log(element);
               objExistingServices.serviceFields.push(element);
             });
             localStorage.setItem(this.bs_service.savedBusinessService,JSON.stringify(objExistingServices));
-            this.objVenderServiceVm.serviceFields = objExistingServices;
+            this.objVenderServiceVm.serviceFields.push(objExistingServices);
           }else{
             localStorage.setItem(this.bs_service.savedBusinessService,JSON.stringify(this.objVenderServiceVm));
           }
-        console.log(this.objVenderServiceVm);
       },error=>{
         console.log(error);
       });
@@ -159,6 +211,7 @@ export class ServiceFieldValuesVM{
   public customFieldId:number;
   public FieldValue:string;
   public displayText:string;
+  public id:number;
 }
 export class CategoryVm{
   public categoryId:number;

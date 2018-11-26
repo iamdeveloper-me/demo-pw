@@ -20,10 +20,11 @@ export class BusinessService {
               this.header.append('Content-Type', 'application/json');
               this.header.append("Authorization",'Bearer '+authToken);
    }  
-   getExistingVendorServices():any{
-    return JSON.parse(localStorage.getItem(this.savedBusinessService));
+   setIntoLocalDb(data){
+    localStorage.setItem(this.savedBusinessService,JSON.stringify(data));
    }
    SaveIntoDb(objVenderServiceVm:VendorServiceVM){
+     console.log(objVenderServiceVm);
     if(objVenderServiceVm.serviceFields.length<1){
       let svm=new ServiceFieldValuesVM();
       svm.customFieldId=28;

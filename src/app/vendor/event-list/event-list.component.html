@@ -24,14 +24,18 @@
             <div class="">
               <div class="col-md-12 nopadd">
                 <div class="serchbox" >
-                  <input type="text" placeholder="Search...." name="">
-                  <button class="btn btn-small btn-link" (click)="twitterDailog = true" >
+                    <form (ngSubmit)="search_event(s)" #s="ngForm">
+                      <input type="text" placeholder="Search...." name="search">
+                      <button type="submit" class="btn btn-small btn-link">
+                        search</button>
+                    </form>    
+                </div>
+                <button class="btn btn-small btn-link" (click)="twitterDailog = true" >
                     <i class="material-icons"> add </i> 
                     <span>
                          <strong> Create New Event</strong>
                     </span>
                   </button>
-                </div>
                 <!--Commented By Raj-->
                 <!-- <form (ngSubmit)="addFile(info)" #info="ngForm" class="padding-left: 84%">
                   <input #fileInput type="file" [(ngModel)]="gallery.files" name="image" id="image" />

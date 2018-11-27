@@ -85,10 +85,10 @@ export class EventListComponent implements OnInit {
     // this.http.get(this.removeeventgeturl,{headers:headers}).subscribe(data =>{
     // console.log(data.json());})
 
-    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
-    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
+  //  $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
+   // $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
 
-    $.getScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js');
+   // $.getScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
     $(".Suppliertab").click(function () {
       $(".Suppliertab").addClass("selected");
@@ -399,6 +399,22 @@ export class EventListComponent implements OnInit {
      return;
   }
 
+  search_event(e){
+    console.log(e)
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization", 'Bearer ' + authToken);
+   const a = {
+      filter: 1,
+      search: "string"
+    }
+    console.log(a)
+    this.http.post(this.myevent_Post_url,a,{ headers: headers }).subscribe(data => {
+      this.eventArray = data.json() as string[];
+      console.log(this.eventArray);
+    },error => {console.log(error);})}
   country(event): void {
     const newVal = event.target.value;
     this.district = this.arra[newVal].districts

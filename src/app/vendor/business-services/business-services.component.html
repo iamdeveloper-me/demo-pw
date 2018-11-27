@@ -62,17 +62,17 @@
 															<input type="checkbox" [value]='cf.isEnable' [(ngModel)]='cf.isEnable'/>
 															{{cf.name}} <br/>
 															<span>
-																	 <!-- {{getSelectedCustomFieldOption(cf.customFieldId).FieldValue}}   -->
+																	  {{getSelectedCustomFieldOption(cf).FieldValue}}   
 															</span>
 														<!-- <span *ngFor='let cfo of cf.customFieldOptionList'>
 														 <span>{{getSelectedCustomFieldOption(cf.customFieldId)}}</span> 
 														</span>	 -->
 															
-															<span *ngFor='let st of objVenderServiceVm.serviceFields'>
+															<!-- <span *ngFor='let st of objVenderServiceVm.serviceFields'>
 																<span *ngIf='cf.customFieldId==st.customFieldId'>
 																		{{cf.displayText}} 
 																</span>
-															</span>
+															</span> -->
 														</label>
 															<button [disabled]='!cf.isEnable' class="btn newbtn" *ngIf='cf.fieldType==5' (click)='getSelectOptions(cf.customFieldOptionList)'>
 																Select
@@ -88,7 +88,7 @@
 						<div class="col-md-12">
 							 <div class="btn btn-default col-md-6 col-md-offset-3" *ngFor='let cfo of customFieldSelectOptions'>
 								<label (click)='seveCustomField(cfo)'>
-							<input id="enum_answer_{{cfo.customFieldId}}" [value]='cfo.key' [checked]='cfo.FieldValue==custom'  type="radio" name="cfo">
+							<input id="enum_answer_{{cfo.customFieldId}}" [value]='cfo.key' [checked]='cfo.isSelected'  type="radio" name="cfo">
 							{{cfo.displayText}}
 								</label>
 							</div> 

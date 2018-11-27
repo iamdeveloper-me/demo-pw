@@ -8,7 +8,7 @@ import { VendorServiceVM, ServiceFieldValuesVM } from 'app/vendor/business-servi
   providedIn: 'root'
 })
 export class BusinessService {
-  savedBusinessService='savedBusinessService';
+  savedBusinessService='savedService';
   private api = apiPath.url;
   private postUrl='/api/Supplier/savebusinessservices'; 
   private header:Headers;
@@ -21,7 +21,7 @@ export class BusinessService {
               this.header.append("Authorization",'Bearer '+authToken);
    }  
    setIntoLocalDb(data){
-    localStorage.setItem(this.savedBusinessService,JSON.stringify(data));
+    localStorage.setItem('savedService',JSON.stringify(data));
    }
    SaveIntoDb(objVenderServiceVm:VendorServiceVM){
      console.log(objVenderServiceVm);

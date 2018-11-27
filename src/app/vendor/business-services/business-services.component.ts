@@ -76,7 +76,7 @@ export class BusinessServicesComponent implements OnInit {
               headers.append("Authorization",'Bearer '+authToken);
               this.header = headers;
               //jo data post kar rhe h 
-              this.SavedService=JSON.parse(localStorage.getItem(this.bs_service.savedBusinessService));
+              this.SavedService=JSON.parse(localStorage.getItem('savedService'));
               console.log(this.SavedService);
               this.http.get(this.api+'api/Supplier/businessservices',{headers:headers}).subscribe(data =>{
                 this.bc=data.json();
@@ -85,7 +85,7 @@ export class BusinessServicesComponent implements OnInit {
               this.http.get(this.api+'api/Categories/categorieswithservices',{headers:headers}).subscribe(data =>{
                 this.categoryserveice = data.json() as string[];
                 console.log(this.SavedService);
-              if(this.SavedService!=undefined){
+              if(this.SavedService!=undefined && this.SavedService!=null){
                 this.selected_category =   this.SavedService.categoryId;
               this.objVenderServiceVm.categoryId = this.SavedService.categoryId;
               this.objVenderServiceVm.serviceName= this.SavedService.serviceNAme;
@@ -134,18 +134,25 @@ export class BusinessServicesComponent implements OnInit {
       }
       getSelectOptions(customFieldId){
           this.customFieldSelectOptions = customFieldId
-          console.log(this.customFieldSelectOptions);
-          console.log(this.objVenderServiceVm);
+          this.customFieldSelectOptions.forEach(element => {
+           let isExist= this.SavedService.serviceFields.filter(f=>f.id==element.id)[0]
+           if(isExist){
+             element.isSelected=true;
+             //this.SavedService.serviceFields.indexOf(element).isSelected=true;
+           }
+          });
       }
-      getSelectedCustomFieldOption(customFieldId){
-        console.log(this.services);
-        console.log(this.SavedService);
-        let selectedoption=this.SavedService.serviceFields.filter(f=>f.customFieldId==customFieldId)[0];
+      getSelectedCustomFieldOption(customField){
+        if(this.SavedService!=undefined && this.SavedService!=null && this.SavedService.serviceFields!=undefined){
+        let selectedoption=this.SavedService.serviceFields.filter(f=>f.customFieldId==customField.customFieldId)[0];
         if(selectedoption){
            return selectedoption
         }else{
-          return ''
+          return '';
         }
+      }else{
+        return '';
+      }
       }
 
       seveCustomField(cfo) {
@@ -166,36 +173,18 @@ export class BusinessServicesComponent implements OnInit {
        else{
         this.objVenderServiceVm.serviceFields.push(smv)
        }
+       
        this.bs_service.SaveIntoDb(this.objVenderServiceVm).subscribe(res=>{
          if(res.status==200){
            console.log(res);
            this.toastr.success(res.json().message);
-           localStorage.setItem(this.bs_service.savedBusinessService,JSON.stringify(this.objVenderServiceVm));
-           this.bs_service.setIntoLocalDb(this.objVenderServiceVm);
-           this.SavedService = localStorage.getItem(this.bs_service.savedBusinessService);
+           localStorage.setItem('savedService',JSON.stringify(this.objVenderServiceVm));
+           this.SavedService = localStorage.getItem('savedService');
+          
+          this.ngOnInit();
+           console.log(localStorage.getItem('savedService'));
          }
        });
-      }
-      SaveIntoDb(){
-
-        this.bs_service.SaveIntoDb(this.objVenderServiceVm).subscribe((response)=>{
-          console.log(response);
-          this.toastr.success(response.json().message);
-          let existingServices= localStorage.getItem(this.bs_service.savedBusinessService);
-          if(existingServices){
-            let objExistingServices= JSON.parse(existingServices);
-            this.objVenderServiceVm.serviceFields.forEach(element => {
-              console.log(element);
-              objExistingServices.serviceFields.push(element);
-            });
-            localStorage.setItem(this.bs_service.savedBusinessService,JSON.stringify(objExistingServices));
-            this.objVenderServiceVm.serviceFields.push(objExistingServices);
-          }else{
-            localStorage.setItem(this.bs_service.savedBusinessService,JSON.stringify(this.objVenderServiceVm));
-          }
-      },error=>{
-        console.log(error);
-      });
       }
 }
 export class VendorServiceVM{

@@ -70,7 +70,15 @@
                    <div class="photos_gallery">
                           <div class="row firt_row">
                             <div class="col-md-3 marbot15px" *ngFor="let single_video of video_all_data">
-                              <iframe  [src]="single_video.link  | safe" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                             <div class="borderedbox">
+                                <div>
+                                    <iframe  [src]="single_video.link  | safe" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                </div>
+                                <div>
+                                    <i class="material-icons">play_circle_outline</i>
+                                    <strong>{{single_video.title}}</strong>
+                                </div>
+                            </div>
                             </div>
                           </div>
                       </div>

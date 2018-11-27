@@ -16,9 +16,8 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   jobArray:string[];
-  
-    // venderDash : string [];
-    PhoneEdit = '5555555' ;
+
+    // PhoneEdit = '5555555' ;
     angularLogo = 'https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg';
     
     constructor(config: NgbCarouselConfig ,public http: Http ,private router: Router) {
@@ -27,14 +26,6 @@ export class DashboardComponent implements OnInit {
     config.wrap = false;
     config.keyboard = false;
   }
-
-  private membershipurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mymembership'
-  membershipdetail : any = {
-    startDateString:'',
-    endDateString:'',
-    pricingPlan: {title: ''},
-  };
-//membership api
 
   x: any;
   greeting = {};
@@ -49,12 +40,18 @@ export class DashboardComponent implements OnInit {
   photos;
   pricingPlanId;
   tradingName;
+  add;
+  ph;
+  mb;
+  ct;
+  priceplantitle;
+  isPrimary;
   test = 12.5;
   test1 = 0;
   baseUrl = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
   // Context and manual triggers section
   @ViewChild('x') public tooltip: NgbTooltip;
-  private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
+   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
   private dashboard: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorDashboard/EnquiriesAndLeads'
  
   private VendorDashboard:string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorDashboard/Home";
@@ -91,10 +88,27 @@ export class DashboardComponent implements OnInit {
         if(!authToken) 
        {  this.router.navigate(['../home']);
         }
+
         this.http.get(this.url,{headers:headers}).subscribe(
           data =>{ this.vendor = data.json();
                    console.log(this.vendor);
-                   console.log(data.json().vendorCategories[0].categoryId);
+                   console.log(this.vendor.vendorLocations);
+
+                  //  console.log(this.vendor.vendorLocations[0].mapAddress);
+                   this.add = this.vendor.vendorLocations[0].mapAddress;
+                  
+                  //  console.log(this.vendor.vendorLocations[0].locationPhones[0].phoneNumber);
+                  this.ph = this.vendor.vendorLocations[0].locationPhones[0].phoneNumber;
+
+                  //  console.log(this.vendor.vendorLocations[0].locationPhones[1].phoneNumber);
+                   this.mb = this.vendor.vendorLocations[0].locationPhones[1].phoneNumber;                 
+
+                  //  console.log(this.vendorCategories[0].categories.categoryName);
+                   this.ct = this.vendor.vendorCategories[0].categories.categoryName;
+
+                  //  console.log(this.vendor.pricingPlan.title);
+                  this.priceplantitle = this.vendor.pricingPlan.title;
+
                    localStorage.setItem('categoryid',data.json().vendorCategories[0].categoryId);
                    localStorage.setItem('firstName',data.json().firstName);
                    localStorage.setItem('countryid',data.json().countryId);
@@ -136,7 +150,7 @@ export class DashboardComponent implements OnInit {
                     this.http.get(this.dashboard,{headers:headers}).subscribe(
                       data =>{  
                               // console.log("zxdfdsf");
-                               console.log(data.json());
+                              //  console.log(data.json());
                               this.dashboard = data.json();
                 
                       });
@@ -254,15 +268,6 @@ export class DashboardComponent implements OnInit {
           }
     
           
-          
-          this.http.get(this.membershipurl,{headers:headers}).subscribe(
-            data =>{  
-                    //  console.log(data.json());
-                    this.membershipdetail = data.json();
-            });
-          //membership api
-       
-       
         }
 
         getEvents(){

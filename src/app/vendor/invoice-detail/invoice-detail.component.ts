@@ -10,7 +10,8 @@ import { ToastrService } from 'ngx-toastr';
 export class InvoiceDetailComponent implements OnInit {
 
   constructor(public http: Http ,private router: Router, public toastr: ToastrService) { }
-
+  dataArray:string[];
+  dataArray1:string[];
   private invoiceurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myinvoices'
   invoiceData : any = {};
   // invoiceData : any = {
@@ -19,7 +20,6 @@ export class InvoiceDetailComponent implements OnInit {
   //   invoiceId:'',
   //   userId:'',
   // };
-    invoicedata :string[];
   ngOnInit() {
   	  $.getScript('http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js');
       $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
@@ -30,14 +30,16 @@ export class InvoiceDetailComponent implements OnInit {
 
 
   
-    }     //NgOnInit End
-a= "all";
-b="Business Pormotion";
-c="Membership Plan";
-type(e){
-  console.log(e);
-  return e;
-}
+    }     
+    //NgOnInit End
+    
+// a= "all";
+// b="Business Pormotion";
+// c="Membership Plan";
+// type(e){
+//   console.log(e);
+//   return e;
+// }
   
 invoice(data){
   console.log(data);
@@ -51,17 +53,19 @@ invoice(data){
     userId: authId,
     invoiceId: data.value.invoiceId,
     invoiceType: data.value.invoiceType
-    // userId: f.value.userId
   }
   console.log(inc);
 
   headers.append('Accept', 'application/json')
   headers.append('Content-Type', 'application/json');
   headers.append("Authorization",'Bearer '+authToken);
-  this.invoiceData = data.json() as string[]; 
+  // this.invoiceData = data.json() as string[]; 
   this.http.post(this.invoiceurl,inc,{headers:headers}).subscribe(
     data =>{
-             console.log(data.json());
+      this.dataArray = data.json() as string[]; 
+         console.log(this.dataArray);
+            //  console.log(data.json());
+            //  console.log(data);
              this.toastr.success("Update sucessfully");
     },error=>{console.log(error)});
 

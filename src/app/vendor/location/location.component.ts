@@ -408,10 +408,20 @@ export class LocationComponent implements OnInit {
       }
 
       removePhone(phoneObj,index) {
-       
-                if(phoneObj.value.locationPhoneId){
-                      let con = confirm('Are you sure you want to delete this?')
-                      if (con) {
+        swal({
+          title: "Are you sure?",
+        text: "You will not be able to recover this number!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-default",
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+        }).then((res)=>{    console.log(res);
+          if(res.value===true){
+  
+                // if(phoneObj.value.locationPhoneId){
+                //       let con = confirm('Are you sure you want to delete this?')
+                //       if (con) {
 
                                       let obj = {
                                         "locationPhoneId": phoneObj.value.locationPhoneId,
@@ -433,11 +443,18 @@ export class LocationComponent implements OnInit {
                                                   },(error)=>{ console.log(error);
                                                                this.toastr.error(error._body);
                       });
-                             }}
-                             else{
-                                     let control = <FormArray>this.formPhone.controls['phoneArry'];
-                                     control.removeAt(index);
-                                  }
+                            //  }}
+                            //  else{
+                            //          let control = <FormArray>this.formPhone.controls['phoneArry'];
+                            //          control.removeAt(index);
+                            //       }
+                                }else{
+                                  // alert('Cancel Process !');
+                               }
+                            },error=>{
+                                  alert(JSON.stringify(error));
+                           })
+                                 return; 
   }
        openweek(b){
                     this.modelfield  = b;
@@ -621,9 +638,9 @@ export class LocationComponent implements OnInit {
              headers.append("Authorization",'Bearer '+authToken);
                      this.http.post(this.urlpost,e,{headers:headers}).subscribe( (data)=> { console.log(data);
                       if(b == false)
-                      { this.toastr.info('Your location NOT Active');
+                      { this.toastr.info('Vacation Mode is OFF');
                       
-                      }else{this.toastr.success("Your location is Active")}}
+                      }else{this.toastr.success("Vacation Mode is ON")}}
                ,(error)=>{ console.log(error);   });
       }
       cerate(e){
@@ -787,6 +804,8 @@ export class LocationComponent implements OnInit {
 
     
     
-      
+
+
+
      
 }

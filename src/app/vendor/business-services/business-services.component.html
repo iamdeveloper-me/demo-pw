@@ -10,13 +10,13 @@
 				  
 				<section>
 					<div class="sliderholder">
-						<button class="prebtn"><i class="material-icons">arrow_back_ios</i></button>
+						<button class="prebtn" (click)='gatNavTest()'><i class="material-icons">arrow_back_ios</i></button>
 						<div class="servicecontainer">
 								<div class="activehide" *ngFor='let c of bc' (click)='getServicesByCategory(c.categoryId)'>
 										<span>{{c.categoryName}}</span>
 								</div>
 						</div>
-						<button class="nextbtn">	<i class="material-icons">arrow_forward_ios</i></button>
+						<button class="nextbtn" (click)='gatNavTest()'>	<i class="material-icons">arrow_forward_ios</i></button>
 					</div>
 
 				
@@ -26,17 +26,24 @@
 					</div>
 					<div class="card"> 
 					<div class="card-content selectboxservice text-center"> 
+						
 							<h5 class="text-center">Which service do you provide?</h5>
 							<div class="container">
 									<div class="row text-center">
-										<div class="col-sm-12">	{{objVenderServiceVm.serviceName}}</div>
+										<div class="col-sm-12" *ngIf='SavedService!=null && SavedService.categoryId==objVenderServiceVm.categoryId'>	
+											{{objVenderServiceVm.serviceName}}
+											<!-- {{getCustomFieldBySreviceId(objVenderServiceVm.servicesId)}} -->
+
+										</div>
 										<div class="col-sm-12"><button class="btn newbtn">Select</button></div>
 
-										<div class="col-md-12 text-center" *ngFor="let enum of services">
-															<label for="enum_answer_{{enum.serviceName}}">
-																	<input id="enum_answer_{{enum.name}}" [checked]='objVenderServiceVm.serviceName==enum.serviceName'  (change)='getCustomFieldBySreviceId(enum.servicesId)' type="radio" name="enums">
-																	{{enum.serviceName}}
-																</label>
+										<div class="ratio-btns">
+											<div class="col-md-12 text-center" style="cursor:pointer" *ngFor="let enum of services" (click)='getCustomFieldBySreviceId(enum.servicesId)'>
+																<label for="enum_answer_{{enum.serviceName}}">
+																		<input id="enum_answer_{{enum.name}}" value="objVenderServiceVm.serviceName==enum.serviceName" [checked]='objVenderServiceVm.serviceName==enum.serviceName'  (change)='getCustomFieldBySreviceId(enum.servicesId)' type="radio" name="enums">
+																		{{enum.serviceName}}
+																	</label>
+											</div>
 										</div>
 										<div class="col-md-offlset-3 col-md-6">
 											<button class="btn newbtn" (click)='SaveIntoDb()'>Save</button>
@@ -62,7 +69,7 @@
 															<input type="checkbox" [value]='cf.isEnable' [(ngModel)]='cf.isEnable'/>
 															{{cf.name}} <br/>
 															<span>
-																	  {{getSelectedCustomFieldOption(cf).FieldValue}}   
+																	 <i class="fa fa-check"> {{getSelectedCustomFieldOption(cf).FieldValue }}   </i>
 															</span>
 														<!-- <span *ngFor='let cfo of cf.customFieldOptionList'>
 														 <span>{{getSelectedCustomFieldOption(cf.customFieldId)}}</span> 

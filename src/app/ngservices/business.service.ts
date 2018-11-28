@@ -33,5 +33,8 @@ export class BusinessService {
     }
    return this.http.post(this.api+'/api/Supplier/savebusinessservices',objVenderServiceVm,{headers:this.header});    
   }
+  update_VendorSocialLink(model): Observable<any>{
+   return this.http.post(this.api+'/api/Supplier/updatebusinessinfo',model,{headers:this.header});
+  }
 
 }

@@ -183,7 +183,7 @@
                       type="date"
                       name="endDate" 
                       id="eventdate"
-                      (keypress)="keyPress($event)" 
+                      (keypress)="endDatess($event)" 
                       [(ngModel)]="objevent.endDate" 
                       style="width:100%;">
                       <label style="width:100%;">End  date: </label> 
@@ -193,6 +193,7 @@
                 </div>
                 <div class="form-group">
                     <div class="input-effect form-group md-form">
+
                       <input class="effect-16 validate" 
                         type="date"
                         name="startDate" 
@@ -202,6 +203,7 @@
                         style="width:100%;">
                       <label style="width:100%;"> Start date : </label> 
                       <small class="form-text text-muted danger" >{{startDates}}</small>
+
                       <span class="focus-border"></span>
                     </div>
                 </div>

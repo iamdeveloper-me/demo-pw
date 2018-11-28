@@ -71,7 +71,9 @@ export class CalendertableComponent implements OnInit {
     ngOnInit() {
    
     $.getScript('./assets/js/vendorsidebar.js');
-    $.getScript('./assets/js/calendar.js');
+
+   // $.getScript('./assets/js/calendar.js');
+
   
 
         let headers = new Headers();
@@ -86,6 +88,7 @@ export class CalendertableComponent implements OnInit {
           filter: 3
         },{headers:headers}).subscribe(data =>{
           
+
           this.final_List = data.json();
 
           this.final_List.forEach(function (value) {
@@ -95,6 +98,7 @@ export class CalendertableComponent implements OnInit {
           console.log(this.final_List );
     
          
+
         },error => {  console.log(error)});
 
           $(".weddingjobstab").click(function(){
@@ -144,6 +148,7 @@ export class CalendertableComponent implements OnInit {
               });
           }
 
+
        
     }
     demo(){
@@ -154,6 +159,7 @@ export class CalendertableComponent implements OnInit {
       console.log("demo1 test")
       
     }
+
 
             @ViewChild('create') validationForm: FormGroup;
             @ViewChild('modalContent') modalContent: TemplateRef<any>;
@@ -174,6 +180,7 @@ export class CalendertableComponent implements OnInit {
                                   this.toastr.success(data.json().message );
                                   this.jobview(3);
                                   }),error => {  console.log(error)};
+
     
     }
     edit_job_modle(a){
@@ -235,6 +242,7 @@ export class CalendertableComponent implements OnInit {
           // alert(id)
     
     }
+
     close()
   {
     this.jobdate =false;
@@ -255,12 +263,6 @@ export class CalendertableComponent implements OnInit {
     
       },error => {  console.log(error)});
     }
- 
 
-    ///calender
-    // Initialize the calendar by appending the HTML dates
-  
-   
-  
 
 }

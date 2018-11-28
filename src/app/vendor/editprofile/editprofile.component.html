@@ -61,6 +61,7 @@
                             <div class="member_name">
                                 <h5><strong> MEMBERSHIP</strong> </h5>
                             </div>
+
                             <p>Account created : {{membershipdetail?.pricingPlan.dateAddedOnString}}</p>
                             <p>Plan name: <span>{{membershipdetail?.pricingPlan.title}}</span>
                                 <span class="upgrade"><a routerLink="../membership"> Upgrade now </a> </span>
@@ -68,6 +69,7 @@
                             <!-- <br> -->
                             <p>Start date : {{membershipdetail?.startDateString}}</p>
                             <p class="col_green">End date : {{membershipdetail?.endDateString}} </p>
+
 
                         </div>
                     </div>
@@ -106,8 +108,10 @@
         <router-outlet></router-outlet>
     </div>
 </div>
+
 <!-- <form (ngSubmit)="updateData(f1,)" #f1="ngForm"> -->
 <form (ngSubmit)="event(objevent)" #f1="ngForm">
+
     <div class="modal fade" id="photo_ved" [ngClass]="{'show' : personal_data_update}" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -123,6 +127,7 @@
                                 <div class="form-group">
                                     <div class="input-effect form-group md-form ">
                                         <input class="effect-16 validate" type="text" #firstName="ngModel" id="firstName"
+
                                             name="firstName" [(ngModel)]="vendor.firstName" 
                                             (keypress)="firstName($event)" 
                                             placeholder="" required>
@@ -131,6 +136,7 @@
                                         <!-- <small class="form-text text-muted danger" *ngIf="!firstName.valid && (firstName.dirty || firstName.touched)">Please
                                             enter a valid firstname!</small> -->
                                             <small class="form-text text-muted danger" >{{firstName}}</small>
+
                                     </div>
                                 </div>
                             </div>
@@ -151,8 +157,10 @@
                                     <div class="input-effect form-group md-form ">
                                         <input class="effect-16 validate" type="number" maxlength="10" pattern="^[0-9]{10}$"
                                             type="text" #phoneNumber="ngModel" id="phoneNumber" name="phoneNumber"
+
                                             [(ngModel)]="vendor.vendorContactInfo.phone" placeholder="" pattern="^[0-9]{10}$"
                                             required>
+
                                         <label>Phone Number</label>
                                         <span class="focus-border"></span>
                                         <small class="form-text text-muted danger" *ngIf="!phoneNumber.valid && (phoneNumber.dirty || phoneNumber.touched)">Please
@@ -163,6 +171,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="input-effect form-group md-form ">
+
                                         <input class="effect-16 validate disablefield" type="email" #email="ngModel" id="email" name="email"
                                             [(ngModel)]="vendor.vendorContactInfo.email" [disabled]="email" placeholder=""
                                             pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$" required>
@@ -170,6 +179,7 @@
                                         <span class="focus-border"></span>
                                         <!-- <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">Please
                                             enter a valid email!</small> -->
+
                                     </div>
                                 </div>
                             </div>
@@ -177,7 +187,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+
                     <button type="submit" class="btn newbtn" [disabled]="!f1.valid" (click)="updateData(f1)">Save</button>
+
                     <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
                 </div>
             </div>
@@ -207,6 +219,7 @@
                                         <span class="focus-border"></span>
                                         <small class="form-text text-muted danger validationErrorMsg" *ngIf="!OldPassword.valid && (OldPassword.dirty || OldPassword.touched)">Please
                                             enter a valid old password!</small>
+
                                     </div>
                                 </div>
                             </div>
@@ -233,6 +246,7 @@
                                         <small class="form-text text-muted danger validationErrorMsg" *ngIf="!ConfirmPassword.valid && (ConfirmPassword.dirty || ConfirmPassword.touched)">Please
                                             enter a valid confirm password!</small>
                                     </div>
+
                                 </div>
                             </div>
                             <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="f.NewPassword == f.ConfirmPassword"> password match </small> -->
@@ -250,6 +264,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn newbtn" [disabled]="!f.valid">Save</button>
+
                     &nbsp;&nbsp;
                     <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
                 </div>
@@ -258,6 +273,7 @@
     </div>
 </form>
 <!--Form 2 End-->
+
 
 <!--  -->
 <form #s="ngForm">
@@ -319,3 +335,4 @@
 </form>
 <!--Form 3 End-->
 <!--mail popup -->
+

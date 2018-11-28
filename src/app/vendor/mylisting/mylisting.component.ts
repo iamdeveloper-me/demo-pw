@@ -9,8 +9,11 @@ import { ToastrService } from 'ngx-toastr';
 export class MylistingComponent implements OnInit, AfterViewInit {
   private base_url : string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Reviews'
   edit_re= false;
-  modify_reply = {};
-  countryArray:string[];
+
+  countryArray = [  {
+    "reviewId": 0,
+    "feedback": "string"
+  }];
   public SearchModel = <any>{};
   public eventsData: Array<any> = [];
   public page: number = 0;
@@ -18,7 +21,7 @@ export class MylistingComponent implements OnInit, AfterViewInit {
   public searchQuery: string;
   public Loading: boolean = false;
   public isSearching: boolean = false;
-  re_Edit = {
+  modify_reply = {
     "reviewId": 0,
     "feedback": "string"
   }

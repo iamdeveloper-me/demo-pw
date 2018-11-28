@@ -53,6 +53,7 @@ export class EventListComponent implements OnInit {
     entry;
     eventDescriptions;
     endDate;
+
   public sub_id: any; public dist_id: any; public country_id: any;
   objevent= new EventsCreateUpdateVM();  
 
@@ -313,7 +314,6 @@ locations(event: any) { this.location  = '';}
                                                 "endTime": this.endtime
                                             }
 
-                  
 
                                             this.objevent.eventsDates.push(events);
 

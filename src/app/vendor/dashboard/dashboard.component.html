@@ -174,11 +174,7 @@
               <div class="card-body nopadd" style="overflow: hidden; height: 420px;">
                  <div class="col-sm-5 nopadd maxheight335px">
                    <div class="infoimgbox">
-
                     <img src="{{VendorDashboard_data.portfolioImage}}" class="" alt="Profile picture" >
-
-
-                    <!-- <img [src]="VendorDashboard?.portfolioImage" class="" alt="Cover picture" > -->
 
                   </div>
                     <div class="viewstore">
@@ -204,9 +200,11 @@
                              <!-- <p data-target="#currentLocation" data-toggle="modal">{{currentLocation}}<br/>2 More Branches </p> -->
                              <p >
                                 <a routerLink="../location">
+
                                  {{ add }} 
                                   <br/>{{total_phone_no}} More Branches
                                   <!-- {{url.address}} -->
+
                                 </a>
                              </p>
                              <span  class="editbtn" routerLink="../location">Edit</span>  
@@ -225,9 +223,11 @@
                           <div class="col-xs-8 nopadd edithovering">
 
                              <p >
+
                                 <a routerLink="../location" >
                              {{ph}} <br/>{{total_phone_no}} More Numbers 
                              
+
                                 <span class="editbtn">Edit</span> 
                                 </a>
                              </p>
@@ -238,8 +238,10 @@
                              <i class="material-icons">work_outline</i>
                           </div>
                           <div class="col-xs-11 nopadd">
+
                              <span class="pinkchip">{{ct}},{{total_business_Services}} More Services  </span><br/>
                              Membership Type: {{priceplantitle}} <a routerLink="../membership" class="bluelink">Upgrade</a>
+
                           </div>
                        </div>
                        <div class="clearfix"></div>
@@ -266,12 +268,14 @@
                           <a routerLink="../albumview" class="blacktext">
                              <i class="material-icons">library_books</i>
 
+
                              <strong>{{VendorDashboard_data.albumCount}}</strong>
 
                              <!-- <strong>{{VendorDashboard.albumImageCount}}</strong> -->
 
+
                              <div class="clearfix"></div>
-                             Albums ({{VendorDashboard.albumCount}})
+                             Albums 
                           </a>
                        </div>
                     </div>
@@ -397,9 +401,11 @@
                        <i class="material-icons flotleft">date_range</i>  {{job.jobDate |  date:'medium' }}
                        <ul>
                        
+
                          <li>Client Name: {{job.clientName}}</li>
                          <li>Start Date: {{job.startDate | date}}</li>
                          <li>Time: {{job.startDate | date:'shortTime'}}</li>
+
                       
                        </ul>
                      </div>
@@ -408,10 +414,12 @@
                          <i class="material-icons ">location_on
                          </i>{{job.eventLocation}}
                        </div>
+
                        <div>
                            <i class="material-icons ">phone
                            </i>{{job.clientNumber}}
                          </div>
+
                        <!-- <button [routerLink] = "../vendor/eventlist">View All</button>					 -->
                      </div>
                    </div>

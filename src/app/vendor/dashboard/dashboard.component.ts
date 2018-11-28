@@ -18,7 +18,9 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
   jobArray:string[];
 
+
     // PhoneEdit = '5555555' ;
+
     angularLogo = 'https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg';
     
     constructor(config: NgbCarouselConfig ,public http: Http ,private router: Router) {
@@ -27,6 +29,14 @@ export class DashboardComponent implements OnInit {
     config.wrap = false;
     config.keyboard = false;
   }
+
+  private membershipurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mymembership'
+  membershipdetail : any = {
+    startDateString:'',
+    endDateString:'',
+    pricingPlan: {title: ''},
+  };
+//membership api
 
   x: any;
   greeting = {};
@@ -51,6 +61,7 @@ export class DashboardComponent implements OnInit {
   isPrimary;
   test = 12.5;
   test1 = 0;
+  albumCount;
   VendorDashboard_data = {portfolioImage : '',portfolioCount: '',
   videoCount : '',albumCount: '',impression: '',enquiries: '',loveCount: '',reviews: ''};
   //VendorDashboard
@@ -89,8 +100,10 @@ export class DashboardComponent implements OnInit {
          });
         this.http.get(this.dashboard,{headers:headers}).subscribe((data)=> 
         {
+
           // console.log(data.json());
           });
+
 
         if(!authToken) 
        {  this.router.navigate(['../home']);
@@ -158,13 +171,17 @@ export class DashboardComponent implements OnInit {
                     this.http.get(this.dashboard,{headers:headers}).subscribe(
                       data =>{  
                               // console.log("zxdfdsf");
+
                               //  console.log(data.json());
+
                               this.dashboard = data.json();
                 
                       });
 
                       this.http.get(this.VendorDashboard,{headers:headers}).subscribe(
                         data =>{  
+
+
                                  console.log(data.json());
                                 //  this.venderDash = data.json() as string[]; 
                                 this.VendorDashboard_data = data.json();
@@ -275,7 +292,7 @@ export class DashboardComponent implements OnInit {
               });
           }
     
-          
+        
         }
 
         getEvents(){

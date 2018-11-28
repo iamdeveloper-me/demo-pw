@@ -51,8 +51,8 @@ invoice(data){
     startDate: data.value.startDate,
     endDate: data.value.endDate,
     userId: authId,
-    invoiceId: data.value.invoiceId,
-    invoiceType: data.value.invoiceType
+    invoiceId: '',
+    invoiceType: ""
   }
   console.log(inc);
 

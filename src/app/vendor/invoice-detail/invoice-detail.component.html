@@ -28,22 +28,23 @@
                             <div class=" col-sm-2 col-6 dropdown">
                                 <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Invoice Type
                                     <!-- <span class="caret"></span> -->
+                                    <ul class="dropdown-menu">
+                                            <li><a >All
+                                                    <input type="hidden" ngModel id="invoiceType"  [value]="all" #invoiceType="ngModel" name="invoiceType" >
+                                                    
+                                                </a>
+                                            </li>
+                                            <li><a >Business Pormotion
+                                                    <input type="hidden" ngModel id="invoiceType"  [value]="BusinessPromotion" #invoiceType="ngModel" name="invoiceType" >
+                                                </a>
+                                            </li>
+                                            <!-- <li><a (click)="type(c)">Membership Plan -->
+                                            <li><a >Membership Plan
+                                                    <input type="hidden" ngModel id="invoiceType"  [value]="MembershipPlan" #invoiceType="ngModel" name="invoiceType" >
+                                                </a></li>
+                                        </ul>
                                 </button>
-                                <ul class="dropdown-menu">
-                                    <li><a >All
-                                            <input type="hidden" ngModel id="invoiceType"  [value]="all" #invoiceType="ngModel" name="invoiceType" >
-                                            
-                                        </a>
-                                    </li>
-                                    <li><a >Business Pormotion
-                                            <input type="hidden" ngModel id="invoiceType"  [value]="BusinessPromotion" #invoiceType="ngModel" name="invoiceType" >
-                                        </a>
-                                    </li>
-                                    <!-- <li><a (click)="type(c)">Membership Plan -->
-                                    <li><a >Membership Plan
-                                            <input type="hidden" ngModel id="invoiceType"  [value]="MembershipPlan" #invoiceType="ngModel" name="invoiceType" >
-                                        </a></li>
-                                </ul>
+                             
                             </div>
 
                             <div class="col-sm-2">

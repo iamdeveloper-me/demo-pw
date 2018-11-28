@@ -49,7 +49,7 @@
                                   <a routerLink="../business" *ngIf="businessProfilePic == test" class="done">
                                     <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
   
-                                    <strong class="blacktext" >Business Profile Picture </strong>
+                                    <strong class="blacktext" >Business Logo </strong>
                                     <button class="editbtn">Select to Edit</button>
                                   </a>
                                 <a routerLink="../business"  *ngIf="businessProfilePic == test1" >
@@ -63,20 +63,20 @@
                           <div class="col-sm-3  displya_name">
                               <ul>
                                   <li>
-                                    <a routerLink="../business" *ngIf="businessService == test" class="done">
+                                    <a routerLink="../business-services" *ngIf="businessService == test" class="done">
                                       <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
     
                                       <strong class="blacktext" >Service</strong>
                                       <button class="editbtn">Select to Edit</button>
                                     </a>
-                                  <a routerLink="../business"  *ngIf="businessService == test1" >
+                                  <a routerLink="../business-services"  *ngIf="businessService == test1" >
                                       <i class="material-icons graytext" ngbTooltip="Description">error_outline</i> 
                                       <strong class="blacktext">Service</strong>  
                                       <span  class="editbtn">Edit</span> 
                                   </a>
                                  </li>
+
                                  <li>
-                              
                                     <a routerLink="../location" *ngIf="mapSettings == test" class="done">
                                       <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
     
@@ -171,17 +171,22 @@
      <div class="row">
         <div class="container-fluid Profile_com">
            <div class="card overviewbox">
-              <div class="card-body nopadd" style="overflow: hidden;">
+              <div class="card-body nopadd" style="overflow: hidden; height: 420px;">
                  <div class="col-sm-5 nopadd maxheight335px">
                    <div class="infoimgbox">
+
                     <img src="{{VendorDashboard_data.portfolioImage}}" class="" alt="Profile picture" >
+
+
+                    <!-- <img [src]="VendorDashboard?.portfolioImage" class="" alt="Cover picture" > -->
+
                   </div>
                     <div class="viewstore">
                        <a routerLink="../../home/detailprofile">View Storefront</a>
                     </div>
                  </div>
                  <div class="col-sm-7 nopadd maxheight335px mobileheightauto ">
-                    <div class="martop15px"></div>
+                    <div class="martop15px"></div> 
                     <div class="col-sm-2 col-3 mobpadd10 edithovering">
                       
                        <img [src] = "vendor.profileImage" class="oviewviewimgcircle" alt="Profile picture" >
@@ -195,14 +200,13 @@
                           <div class="col-xs-1 nopadd">
                              <i class="material-icons">location_on</i>
                           </div>
-                          <div class="col-xs-8 nopadd edithovering">
+                          <div class="col-xs-8 nopadd edithovering" >
                              <!-- <p data-target="#currentLocation" data-toggle="modal">{{currentLocation}}<br/>2 More Branches </p> -->
-                             <p>
+                             <p >
                                 <a routerLink="../location">
-                                 
-                                  {{vendor.city}} ,
-                                  {{vendor.suburb.name}}, {{vendor.address}}, <br/>2 More Branches
-
+                                 {{ add }} 
+                                  <br/>{{total_phone_no}} More Branches
+                                  <!-- {{url.address}} -->
                                 </a>
                              </p>
                              <span  class="editbtn" routerLink="../location">Edit</span>  
@@ -221,8 +225,9 @@
                           <div class="col-xs-8 nopadd edithovering">
 
                              <p >
-                                <a routerLink="../location">
-                                {{vendor.vendorContactInfo.phone}} , <br/>2 More Numbers 
+                                <a routerLink="../location" >
+                             {{ph}} <br/>{{total_phone_no}} More Numbers 
+                             
                                 <span class="editbtn">Edit</span> 
                                 </a>
                              </p>
@@ -233,8 +238,8 @@
                              <i class="material-icons">work_outline</i>
                           </div>
                           <div class="col-xs-11 nopadd">
-                             <span class="pinkchip">{{vendor.firstName}}</span><br/>
-                             Membership Type: {{membershipdetail?.pricingPlan.title}} <a routerLink="../membership" class="bluelink">Upgrade to Premium</a>
+                             <span class="pinkchip">{{ct}},{{total_business_Services}} More Services  </span><br/>
+                             Membership Type: {{priceplantitle}} <a routerLink="../membership" class="bluelink">Upgrade</a>
                           </div>
                        </div>
                        <div class="clearfix"></div>
@@ -260,9 +265,13 @@
                        <div class="col-xs-4 text-center">
                           <a routerLink="../albumview" class="blacktext">
                              <i class="material-icons">library_books</i>
+
                              <strong>{{VendorDashboard_data.albumCount}}</strong>
+
+                             <!-- <strong>{{VendorDashboard.albumImageCount}}</strong> -->
+
                              <div class="clearfix"></div>
-                             Albums
+                             Albums ({{VendorDashboard.albumCount}})
                           </a>
                        </div>
                     </div>
@@ -282,7 +291,7 @@
                     </div>
                     <div class="col-sm-12 bottop padbot0px padtop7px text-center clearfix">
                        <a class="text-muted mobilenone" target="_blank">
-                       <i class="material-icons">share</i> Share Vision Photography
+                       <i class="material-icons" routerLink="../PromoteBusiness">share</i> Share Vision Photography
                        </a>
                        <div class="clearfix"></div>
                        <div class="col-8 pull-left desktopnone blacktext padbot5px text-left">
@@ -388,9 +397,9 @@
                        <i class="material-icons flotleft">date_range</i>  {{job.jobDate |  date:'medium' }}
                        <ul>
                        
-                         <!-- <li>Name: {{job.clientName}}</li> -->
-                         <li>Event Title: {{job.eventTitle}}</li>
-                         <li>Start Date: {{job.startDate | date:'medium'}}</li>
+                         <li>Client Name: {{job.clientName}}</li>
+                         <li>Start Date: {{job.startDate | date}}</li>
+                         <li>Time: {{job.startDate | date:'shortTime'}}</li>
                       
                        </ul>
                      </div>
@@ -399,6 +408,10 @@
                          <i class="material-icons ">location_on
                          </i>{{job.eventLocation}}
                        </div>
+                       <div>
+                           <i class="material-icons ">phone
+                           </i>{{job.clientNumber}}
+                         </div>
                        <!-- <button [routerLink] = "../vendor/eventlist">View All</button>					 -->
                      </div>
                    </div>

@@ -150,12 +150,12 @@ export class PortfolioviewComponent implements OnInit {
 
 swal({
     title: "Are you sure?",
-  text: "You will not be able to recover this imaginary file!",
+  text: "You will not be able to recover this image!",
   type: "warning",
   showCancelButton: true,
   confirmButtonClass: "btn-default",
-  confirmButtonText: "Yes, delete it!",
-  cancelButtonText: "No, cancel plx!",
+  confirmButtonText: "Yes",
+  cancelButtonText: "No",
   }).then((res)=>{
     console.log(res);
     if(res.value===true){

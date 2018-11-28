@@ -15,7 +15,7 @@
                             <div class="heightequal365 mobnopadd padleft0px ">
                                 <div class="card heightequal365 margintop0px mobmargintop30px" (click)="openModel(vendor)">
                                     <div class="card-header">
-                                        <div class="busines_img">
+                                        <div class="busines_img" ngbTooltip="Business Logo">
                                             <i class="material-icons" (click)="imagecropDailog = true" id="description-function"> camera_alt </i> 
                                                 <img [src] = "imagee"  >   
                                         </div>
@@ -24,7 +24,7 @@
 
                                             <div class="on_hover" (click)="BusinessDailog = true" id="Instagram-function" >
 
-                                                    <h6 >Business logo or Contact Person </h6>
+                                                    <h6 >Business Name</h6>
                                                 <div> {{vendor.nameOfBusiness}}</div>
                                                 <span class="text-right col-lg-12 editbtn">
                                                 <i class="material-icons"  >edit</i>
@@ -52,7 +52,7 @@
                             
                             <div class=" linkbox margintop0px heightequal365 card padright0px">
                                 <div class="card-header">
-                                    <h6 class="card-title text-center">Link Accounts & Websites</h6>
+                                    <h6 class="card-title text-center">Linked Accounts & Websites</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="col-sm-12">

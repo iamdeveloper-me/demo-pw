@@ -10,6 +10,9 @@ import { NavemenuComponent } from '../navemenu/navemenu.component';
 import { LoginServiceService } from 'app/shared/service/login-service.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+
 import swal from 'sweetalert2';
 @Component({
   selector: 'app-business-info',
@@ -54,6 +57,8 @@ export class BusinessInfoComponent implements OnInit {
   isValidOtherUrl=false;
   disabletxtOtherUrl=true;
 
+  @ViewChild('x') public tooltip: NgbTooltip;
+  
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader';
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessinfo'
   vendor: any = { nameOfBusiness: '',

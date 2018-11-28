@@ -63,9 +63,9 @@ invoice(data){
   this.http.post(this.invoiceurl,inc,{headers:headers}).subscribe(
     data =>{
       this.dataArray = data.json() as string[]; 
-         console.log(this.dataArray);
+             console.log(this.dataArray);
             //  console.log(data.json());
-            //  console.log(data);
+             console.log(data);
              this.toastr.success("Update sucessfully");
     },error=>{console.log(error)});
 

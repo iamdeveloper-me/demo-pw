@@ -106,8 +106,8 @@
         <router-outlet></router-outlet>
     </div>
 </div>
-
-<form (ngSubmit)="updateData(f1)" #f1="ngForm">
+<!-- <form (ngSubmit)="updateData(f1,)" #f1="ngForm"> -->
+<form (ngSubmit)="event(objevent)" #f1="ngForm">
     <div class="modal fade" id="photo_ved" [ngClass]="{'show' : personal_data_update}" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -123,11 +123,14 @@
                                 <div class="form-group">
                                     <div class="input-effect form-group md-form ">
                                         <input class="effect-16 validate" type="text" #firstName="ngModel" id="firstName"
-                                            name="firstName" [(ngModel)]="vendor.firstName" placeholder="" required>
+                                            name="firstName" [(ngModel)]="vendor.firstName" 
+                                            (keypress)="firstName($event)" 
+                                            placeholder="" required>
                                         <label>First Name</label>
                                         <span class="focus-border"></span>
-                                        <small class="form-text text-muted danger" *ngIf="!firstName.valid && (firstName.dirty || firstName.touched)">Please
-                                            enter a valid firstname!</small>
+                                        <!-- <small class="form-text text-muted danger" *ngIf="!firstName.valid && (firstName.dirty || firstName.touched)">Please
+                                            enter a valid firstname!</small> -->
+                                            <small class="form-text text-muted danger" >{{firstName}}</small>
                                     </div>
                                 </div>
                             </div>
@@ -174,7 +177,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn newbtn" [disabled]="!f1.valid">Save</button>
+                    <button type="submit" class="btn newbtn" [disabled]="!f1.valid" (click)="updateData(f1)">Save</button>
                     <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
                 </div>
             </div>

@@ -385,35 +385,6 @@ export class BusinessInfoComponent implements OnInit {
                   }else{     this.modelfield.perfectWeddingURL = data.json().perfectWeddingURL;}
                 
                 },error=>{console.log(error)})
-              }else if(e.value.fbAvailable == true && e.value.facebookURL|| 
-                e.value.googleAvailable == true && !e.value.googleURL ||
-                e.value.instaAvailable == true && !e.value.instalURL ||
-                e.value.perfectWeddingAvailable == true && !e.value.perfectWeddingURL ||
-                e.value.twitterAvailable == true && !e.value.twitterURL) {
-                  
-                  if(this.isValidUrl(e.value.facebookURL,'Fb')==false){
-                      this.toastr.error('Invalid Facebook Url');
-                      e.preventDefault;
-                      return ;
-                  }
-                  if(this.isValidUrl(e.value.googleURL,'Google')==false){
-                    this.toastr.error('Invalid Google Url');
-                      return ;
-                  }
-                  if(this.isValidUrl(e.value.twitterURL,'Tw')){
-                    this.toastr.error('Invalid Facebook Url');
-                      return ;
-                  }
-                  if(this.isValidUrl(e.value.instalURL,'Insta')){
-                    this.toastr.error('Invalid Facebook Url');
-                      return ;
-                  }
-                  if(this.isValidUrl(e.value.perfectWeddingURL,'Other')){
-                    this.toastr.error('Invalid Facebook Url');
-                    return ;
-                  }
-
-
               } else{
                       let updatebusinessinfo = this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatebusinessinfo",
                       this.vendor,{headers:headers});  
@@ -599,10 +570,7 @@ pageInitialize(){
                   }else{  
                     this.imagee = this.vendor.files.path ;
                   console.log(this.imagee)}
-
-                 
-  this.facebook = data.json().facebookURL ;
-
+                  this.facebook = data.json().facebookURL ;
   this.twitter = data.json().twitterURL ;
   this.instagram = data.json().instalURL ;
   this.google = data.json().googleURL;

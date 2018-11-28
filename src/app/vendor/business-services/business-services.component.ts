@@ -5,14 +5,11 @@ import { BusinessCategoriesVM } from './BusinessServiceVm';
 import { forEach } from '@angular/router/src/utils/collection';
 import { BusinessService } from 'app/ngservices/business.service';
 import { ToastrService } from 'ngx-toastr';
-
-
 @Component({
   selector: 'app-business-services',
   templateUrl: './business-services.component.html',
   styleUrls: ['./business-services.component.scss'],
   providers: [ BusinessService]
-
 })
 export class BusinessServicesComponent implements OnInit {
   private api = apiPath.url; 
@@ -42,7 +39,6 @@ export class BusinessServicesComponent implements OnInit {
   ngOnInit() {  
    
     $.getScript('./assets/js/vendorsidebar.js');
-
     setTimeout(function(){ $(".servicecontainer div:first").removeClass("activehide"); $(".servicecontainer div:first").addClass("activedisplay"); $(".servicecontainer div:first span").click(); }, 1000);
       $(document).on('click', '.nextbtn', function(){
         var active = $(this).siblings('.servicecontainer').find('.activedisplay');
@@ -99,11 +95,8 @@ export class BusinessServicesComponent implements OnInit {
               this.objVenderServiceVm.categoryId =this.selected_category;
             }
               },error => {console.log(error)});
-
-              
     }
       getServicesByCategory(catId){
-       // this.selected_category = this.bc.filter(c=>c.categoryId==catId)[0].categoryName;
        if(this.objVenderServiceVm==undefined){
         this.objVenderServiceVm = new VendorServiceVM();}
         this.objVenderServiceVm.categoryId=catId;
@@ -117,10 +110,6 @@ export class BusinessServicesComponent implements OnInit {
         }else{
           service=this.services.filter(s=>s.servicesId==this.objVenderServiceVm.servicesId)[0];
         }
-       // console.log(this.objVenderServiceVm);
-      //  this.objVenderServiceVm.serviceName = service.serviceName?service.serviceName:''; 
-      //  this.objVenderServiceVm.servicesId = service.servicesId?service.servicesId:'' ;
-        
       }
       resetCustomFileds(){
         this.customFields=[];

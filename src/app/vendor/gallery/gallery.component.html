@@ -93,35 +93,63 @@
                 <div class="">
                   <div class="col-md-3 " *ngFor='let album of albumArray | slice:0:4'>
                     <div class="image-div" >
-                      <div *ngFor='let ar of  album.albumImages '>
+                      <!-- <div *ngFor='let ar of  album.albumImages '>
                               <div  routerLink="../albumviewphoto/{{album.albumsId}} "  *ngIf="album.albumImages?.length ==  2"  class="imgcontainer imghalffull">
                                 <img class="img-thumbnail  imghalffull" 
                                 alt="Another alt text"
                                 [src] = "ar.path" />
                               </div>
-                      </div>
+                      </div> -->
 
-                      <div *ngFor='let ar of  album.albumImages '>
+                      <!-- <div *ngFor='let ar of  album.albumImages '>
                               <div *ngIf="album.albumImages?.length ==  1"  class="imgcontainer imgfull">
                                 <img class="img-thumbnail" 
                                 alt="Another alt text"
                                 [src] = "ar.path" />
                             </div>
-                      </div>
-                      <div *ngFor='let ar of  album.albumImages  | slice:0:3 ;let i=index'>
-                              <div *ngIf="album.albumImages?.length >=  3"  class="imgcontainer imghalffull">
+                      </div> -->
+                      <div routerLink="../albumviewphoto/{{album.albumsId}} " *ngFor='let ar of  album.albumImages  | slice:0:3 ;let i=index'>
+                          
+
+                        
+                    
+
+                        <div   *ngIf="album.albumImages?.length ==  2"  class="imgcontainer imghalffull">
+                          <img *ngIf="i==0"class="img-thumbnail  imgfull " 
+                          alt="Another alt text"
+                          [src] = "ar.path" />
+                          <img *ngIf="i>0" class="img-thumbnail  imghalf  " 
+                          alt="Another alt text"
+                          [src] = "ar.path" />
+
+
+                          <img *ngIf="i>0" class="img-thumbnail  imghalf  " 
+                          alt="Another alt text"
+                          src="../../../assets/img/noImg.png"/>
+
+                          </div>
+                        
+                        <div *ngIf="album.albumImages?.length >=  3"  class="imgcontainer imghalffull">
                                 <img *ngIf="i==0"class="img-thumbnail  imgfull " 
                                 alt="Another alt text"
                                 [src] = "ar.path" />
                                 <img *ngIf="i>0" class="img-thumbnail  imghalf  " 
                                 alt="Another alt text"
                                 [src] = "ar.path" />
-                              </div>
+                        </div>
+
+                      
+
                       </div>
 
-                      <div *ngIf="album.albumImages?.length ==  0"  class="imgcontainer">
-                          <img class="img-thumbnail "  alt="Another alt text"  src="../../../assets/img/noImg.png" />   
+                      <div routerLink="../albumviewphoto/{{album.albumsId}} " *ngIf="album.albumImages?.length ==  0"  class="imgcontainer imghalffull tiktik">
+                          <img class="img-thumbnail imgfull"  alt="Another alt text"  src="../../../assets/img/noImg.png"  />
+                          <img class="img-thumbnail imghalf"  alt="Another alt text"   src="../../../assets/img/noImg.png"  />
+                          <img class="img-thumbnail imghalf"  alt="Another alt text"   src="../../../assets/img/noImg.png"  />
                       </div>
+                     
+                 
+
                     </div>
                      
                     <div class="over_like">

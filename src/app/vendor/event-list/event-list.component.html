@@ -24,14 +24,18 @@
             <div class="">
               <div class="col-md-12 nopadd">
                 <div class="serchbox" >
-                  <input type="text" placeholder="Search...." name="">
-                  <button class="btn btn-small btn-link" (click)="twitterDailog = true" >
+                    <form (ngSubmit)="search_event(s)" #s="ngForm">
+                      <input type="text" placeholder="Search...." name="search">
+                      <button type="submit" class="btn btn-small btn-link">
+                        search</button>
+                    </form>    
+                </div>
+                <button class="btn btn-small btn-link" (click)="twitterDailog = true" >
                     <i class="material-icons"> add </i> 
                     <span>
                          <strong> Create New Event</strong>
                     </span>
                   </button>
-                </div>
                 <!--Commented By Raj-->
                 <!-- <form (ngSubmit)="addFile(info)" #info="ngForm" class="padding-left: 84%">
                   <input #fileInput type="file" [(ngModel)]="gallery.files" name="image" id="image" />
@@ -160,10 +164,9 @@
                             [(ngModel)]="objevent.eventTitle" 
                             id="Title" 
                             name="Title"
-                            #Titlee="ngModel" 
-                            required 
+                            (keypress)="Titleee($event)" 
                             placeholder="required">
-                            <small class="form-text text-muted danger" *ngIf="Titlee.errors?.required">required error</small>
+                           <small class="form-text text-muted danger" >{{Titlee}}</small>
                             <label>Title</label>
                             <span class="focus-border"></span>
           
@@ -171,22 +174,36 @@
                         </div>
                   </div>
                 </div>
-              
-                <div class="clearfix"></div>
-               
-                
+                <div class="clearfix"></div>        
                 <input type="hidden" name="filesId" id="filesId" [value]="fileIdfield.filesId" [(ngModel)]="objevent.filesId">
+           
                 <div class="form-group">
                     <div class="input-effect form-group md-form">
-                      <input class="effect-16 validate"  type="date" name="startDate" id="eventdate" [(ngModel)]="objevent.startDate" style="width:100%;">
-                      <label style="width:100%;"> start date : {{objevent.eventdate}}</label> 
+                      <input class="effect-16 validate"  
+                      type="date"
+                      name="endDate" 
+                      id="eventdate"
+                      (keypress)="endDatess($event)" 
+                      [(ngModel)]="objevent.endDate" 
+                      style="width:100%;">
+                      <label style="width:100%;">End  date: </label> 
+                      <small class="form-text text-muted danger" >{{endDate}}</small>
                       <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-effect form-group md-form">
-                      <input class="effect-16 validate"  type="date" name="endDate" id="eventdate" [(ngModel)]="objevent.endDate" style="width:100%;">
-                      <label style="width:100%;">end  date: {{objevent.startDate}}</label> 
+
+                      <input class="effect-16 validate" 
+                        type="date"
+                        name="startDate" 
+                        id="eventdate" 
+                        [(ngModel)]="objevent.startDate" 
+                        (keypress)="startDatess($event)" 
+                        style="width:100%;">
+                      <label style="width:100%;"> Start date : </label> 
+                      <small class="form-text text-muted danger" >{{startDates}}</small>
+
                       <span class="focus-border"></span>
                     </div>
                 </div>
@@ -197,13 +214,14 @@
                       [(ngModel)]="objevent.eventDescription"
                       name="eventDescription" 
                       id="eventDescription"
-                      #eventDescriptions="ngModel" 
-                      required 
+                      (keypress)="eventDescriptionss($event)" 
                       placeholder="required"
                       >
       
                       <label>Description</label>
-                      <small class="form-text text-muted danger" *ngIf="eventDescriptions.errors?.required">required error</small>
+                      <small class="form-text text-muted danger" >{{eventDescriptions}}</small>
+                      
+                      <!-- <small class="form-text text-muted danger" *ngIf="eventDescriptions.errors?.required">required error</small> -->
                       <span class="focus-border"></span>
                     </div>
                 </div>
@@ -214,7 +232,12 @@
                           <label>
                             <a>end time</a>
                           </label><br>
-                          <input type="time" class="form-control"  name="endTime" id="endTime" [(ngModel)]="endtime"/>
+                          <input type="time"
+                           class="form-control"  
+                           name="endTime" 
+                           id="endTime" 
+                          
+                           [(ngModel)]="endtime"/>
                      
                         </div>
                     </div>
@@ -236,11 +259,9 @@
                               [(ngModel)]="objevent.venueName" 
                               name="venueName"
                               id="venueName"
-                              #venueNames="ngModel" 
-                              required 
+                              (keypress)="venueNamees($event)" 
                               placeholder="required">
-                              <small class="form-text text-muted danger" *ngIf="venueNames.errors?.required">required error</small>
-                
+                              <small class="form-text text-muted danger" >{{venueNamee}}</small>
                               <label>VenueName</label>
                               <span class="focus-border"></span>
                             </div>
@@ -307,11 +328,11 @@
                             [(ngModel)]="objevent.location"
                             name="Location"
                             id="Location"
-                            #Locations="ngModel" 
-                            required 
+                            (keypress)="locations($event)" 
                             placeholder="required"
                             >
-                            <small class="form-text text-muted danger" *ngIf="Locations.errors?.required">required error</small>
+                            <small class="form-text text-muted danger" >{{location}}</small>
+                            <!-- <small class="form-text text-muted danger" *ngIf="Locations.errors?.required">required error</small> -->
                           <label>Location</label>
                           <span class="focus-border"></span>
                         </div>
@@ -324,11 +345,11 @@
                           [(ngModel)]="objevent.capacity"
                           name="Capacity"
                           id="Capacity"
-                          #Capacitys="ngModel" 
-                          required 
+                          (keypress)="capacitys($event)" 
                           placeholder="required">
                           <label>Capacity</label>
-                          <small class="form-text text-muted danger" *ngIf="Capacitys.errors?.required">required error</small>
+                          <small class="form-text text-muted danger" >{{capacity}}</small>
+                         <!-- <small class="form-text text-muted danger" *ngIf="Capacitys.errors?.required">required error</small> -->
                           <span class="focus-border"></span>
                         </div>
                       </div>
@@ -342,8 +363,9 @@
                             [(ngModel)]="objevent.entry" 
                             class="effect-16 validate marbot0px"
                              name="entry" 
-                             id="entry">
-            
+                             id="entry"
+                             (keypress)="entrys($event)" >
+                             <small class="form-text text-muted danger" >{{entry}}</small>
                               <option value='Paid'>Paid</option>
                               <option value='Free'>Free</option>
                             </select>
@@ -359,12 +381,12 @@
                             [(ngModel)]="objevent.entryFee" 
                             name="entryFee"
                             id="entryFee"
-                            #entryFees="ngModel" 
-                            required 
+                            (keypress)="entryFeess($event)" 
                             placeholder="required">
             
                             <label>entryFee</label>
-                            <small class="form-text text-muted danger" *ngIf="entryFees.errors?.required">required error</small>
+                            <small class="form-text text-muted danger" >{{entryFees}}</small>
+                            <!-- <small class="form-text text-muted danger" *ngIf="entryFees.errors?.required">required error</small> -->
                             <span class="focus-border"></span>
                           </div>
                         </div>
@@ -373,7 +395,7 @@
               
             </div> 
             <div class="modal-footer marbot0px">
-                <button type="submit"  class="btn newbtn" [disabled]="!list.valid">Save</button>
+                <button type="submit"  class="btn newbtn">Save</button>
   
                 <button type="button" class="btn newbtn newcancelbtn"  (click) = "closeModel()">Cancel</button>
               </div>

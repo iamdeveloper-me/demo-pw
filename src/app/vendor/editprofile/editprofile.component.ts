@@ -19,6 +19,8 @@ export class EditprofileComponent implements OnInit {
     // email : '',
     vendorContactInfo:{ email:''}
 };
+objevent;
+event;
 fbAvailable = false;
 personal_data_update = false;
 changePassword_form = false;
@@ -35,11 +37,19 @@ changePassword_form = false;
   membershipdetail : any = {
     startDateString:'',
     endDateString:'',
-    pricingPlan: {title: ''},
+
+    pricingPlan: {
+      title: '',
+      dateAddedOnString:''
+    },
   };
 
-  private subscriptionurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/subscriptionsettings'
+  private subscriptionurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/subscriptionsettings'
   mysub : any = {};
+
+  private subupdateurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatesubscriptionsettings'
+  myupdatesub : any = {};
+  
 
   ngOnInit() {   
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
@@ -78,46 +88,49 @@ changePassword_form = false;
   }
 
   //Subscription Api
-  // getSub(data){
-  //   this.mysub = data;
-  //   let headers = new Headers();
-  //   var authToken = localStorage.getItem('userToken');
-  //   headers.append('Accept', 'application/json')
-  //   headers.append('Content-Type', 'application/json');
-  //   headers.append("Authorization",'Bearer '+authToken);
 
-  //   this.http.get(this.subscriptionurl,{headers:headers}).subscribe(
-  //     data =>{ this.mysub = data.json();
-  //              console.log(this.mysub);
-  //     });
-  // }
+  getSub(data){
+    this.mysub = data;
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
 
-  updatesub(f2){
-   
-    console.log(f2);
-  //   let headers = new Headers();
-  //   var authToken = localStorage.getItem('userToken');
-  //   headers.append('Accept', 'application/json')
-  //   headers.append('Content-Type', 'application/json');
-  //   headers.append("Authorization",'Bearer '+authToken);
+    this.http.get(this.subscriptionurl,{headers:headers}).subscribe(
+      data =>{ this.mysub = data.json();
+               console.log(this.mysub);
+      });
+  }
 
-  //   const sub =  
-  //   {
-  //     marketingEmails: true,
-  //     notifications: true,
-  //     appUpdates: true
-  //   }
 
-  //   console.log(sub);
-  //   this.http.post(this.subscriptionurl,sub,{headers:headers}).subscribe(
-  //     data =>{ 
-  //       this.mysub = data.json();
-  //        alert("Profile Updated!");
-  //       this.toastr.success("subscription update sucessfully");
-  //   },error=>{console.log(error)});
+  updatesub(data){
+    console.log(data);
+    // console.log(s);
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+
+    const sub =  
+    {
+      appUpdates: data.value.appUpdates,
+      marketingEmails: data.value.marketingEmails,
+      notifications: data.value.notifications,
+    }
+    console.log(sub);
+    this.http.post(this.subupdateurl,sub,{headers:headers}).subscribe(
+      data =>{ 
+        this.myupdatesub = data.json();
+         alert("Profile Updated!");
+        this.toastr.success("subscription update sucessfully");
+    },error=>{console.log(error)});
+
    }
 
-  //getData
+  //getData Profile
+
   getData(data){
     this.getaccount = data;
     let headers = new Headers();
@@ -132,9 +145,8 @@ changePassword_form = false;
       });
 }
 
-  //update Data
+  //update Data Profile
   updateData(data){
-
     // this.updateaccount = data;
     console.log(data);
     let headers = new Headers();
@@ -155,8 +167,10 @@ changePassword_form = false;
     this.http.post(this.updateurl,update,{headers:headers}).subscribe(
       data =>{ 
         this.vendor = data.json();
-         alert("Profile Updated!");
         this.toastr.success("profile update sucessfully");
+
+         alert("Profile Updated!");
+
         this.personal_data_update = false;
     },error=>{console.log(error)});
   }
@@ -181,10 +195,12 @@ changePassword_form = false;
                  console.log(data.json());
                  alert("password reset sucessfully!");
                  this.toastr.success("your password reset sucessfully");
+                 alert("password reset sucessfully!");
                  this.changePassword_form =false;
         },error=>{console.log(error)});
     }
   }
+
 
 closeModel(){
   this.personal_data_update = false;

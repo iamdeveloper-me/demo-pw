@@ -122,34 +122,34 @@
                       <input type="hidden"  class="effect-16 validate" [(ngModel)]='objVideo.videosId' formControlName='videosId' value="{{objVideo.videosId}}" />
                                      
                                   <div class="form-group">
-                                  <div class="input-effect md-form">
-                                    <input type="text"  class="effect-16 validate" [(ngModel)]='objVideo.title' formControlName='title' placeholder="title" value="{{objVideo.title}}"required/>
+                                    <div class="styled-input">
+                                      <input type="text"  class="effect-16 validate" [(ngModel)]='objVideo.title' formControlName='title' placeholder="title" value="{{objVideo.title}}"required/>
+                                      <label>Vedio Title</label>
+                                      <span class="focus-border"></span>
+                                    </div>
                                     <div *ngIf="title.invalid && (title.dirty || title.touched)"
                                     class=" redtext">
                                     {{objVideo.title}}
-                                  <div *ngIf="title.errors.required">
-                                    title is required.
-                                  </div>
-                                 
-                                </div>
-                                  </div>
+                                      <div *ngIf="title.errors.required">
+                                        title is required.
+                                      </div>
+                                    </div>
                                   </div>
                                   <div class="form-group">
-                                  <div class="input-effect md-form">
-                                    <input  class="effect-16 validate" type="text" [(ngModel)]='objVideo.link' formControlName='link' placeholder="link" required/>
+                                    <div class="styled-input">
+                                      <input  class="effect-16 validate" type="text" [(ngModel)]='objVideo.link' formControlName='link' placeholder="link" required/>
+                                      <label>Vedio URL</label>
+                                      <span class="focus-border"></span>
+                                    </div>
                                     <div *ngIf="link.invalid && (link.dirty || link.touched)"
-                                    class="redtext">
-                                
-                                  <div *ngIf="link.errors.required">
-                                    link is required.
-                                  </div>
-                                  <div *ngIf="link.errors.pattern">
-                                    link is required . 
-                                  </div>
-                                 
-                                </div>
-                                  </div>
-
+                                        class="redtext">
+                                      <div *ngIf="link.errors.required">
+                                        link is required.
+                                      </div>
+                                      <div *ngIf="link.errors.pattern">
+                                        link is required . 
+                                      </div>
+                                    </div>
                                 </div>
                             
                                  

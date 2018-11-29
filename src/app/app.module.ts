@@ -16,7 +16,7 @@ import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.com
 import { CommonModule } from "@angular/common";
 import { NgbModalModule, NgbDatepickerModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarModule, CalendarDateFormatter } from 'angular-calendar';
-import { DateTimePickerComponent } from './vendor/calendertable/date-time-picker.component';
+// import { DateTimePickerComponent } from './vendor/calendertable/date-time-picker.component';
 
 //indox of vendor
 import { QuillModule } from 'ngx-quill'
@@ -319,7 +319,7 @@ export function getAuthServiceConfigs() {
         NgbdpromotbusinessModalContent,
 
         VedioviewComponent,
-        DateTimePickerComponent,
+        // DateTimePickerComponent,
         MessageComponent,
         StatisticsComponent,
         UserReviewsComponent,

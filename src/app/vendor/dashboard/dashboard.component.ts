@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.scss'],
   providers: [NgbCarouselConfig]
 })
+
 export class DashboardComponent implements OnInit {
   jobArray:string[];
 
@@ -48,6 +49,10 @@ export class DashboardComponent implements OnInit {
   isPrimary;
   test = 12.5;
   test1 = 0;
+  VendorDashboard_data = {portfolioImage : '',portfolioCount: '',
+  videoCount : '',albumCount: '',impression: '',enquiries: '',loveCount: '',reviews: ''};
+  //VendorDashboard
+  
   baseUrl = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
   // Context and manual triggers section
   @ViewChild('x') public tooltip: NgbTooltip;
@@ -159,7 +164,7 @@ export class DashboardComponent implements OnInit {
                         data =>{  
                                  console.log(data.json());
                                 //  this.venderDash = data.json() as string[]; 
-                                this.VendorDashboard = data.json();
+                                this.VendorDashboard_data = data.json();
                   
                         });
 

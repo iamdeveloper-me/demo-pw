@@ -119,7 +119,12 @@
 
                         <div class="form-group">
                             <label for="required">required</label>
-                            <input type="text" class="form-control" ngModel name="required" #required="ngModel" required placeholder="required" />
+                            <input type="text" class="form-control" 
+                            ngModel 
+                            name="required" 
+                            #required="ngModel" 
+                            required 
+                            placeholder="required" />
                             <small class="form-text text-muted danger" *ngIf="required.errors?.required">required error</small>
 
                         </div>

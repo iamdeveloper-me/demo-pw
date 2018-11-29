@@ -91,9 +91,10 @@ changePassword_form = false;
       });
   }
 
-  updatesub(data){
-    console.log(data);
-    // console.log(s);
+
+  updatesub(f2){
+  //  this.myupdatesub = data;
+    console.log(f2);
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -102,14 +103,15 @@ changePassword_form = false;
 
     const sub =  
     {
-      appUpdates: data.value.appUpdates,
-      marketingEmails: data.value.marketingEmails,
-      notifications: data.value.notifications,
+      marketingEmails: true,
+      notifications: true,
+      appUpdates: true
     }
+
     console.log(sub);
     this.http.post(this.subupdateurl,sub,{headers:headers}).subscribe(
       data =>{ 
-        this.myupdatesub = data.json();
+        this.mysub = data.json();
          alert("Profile Updated!");
         this.toastr.success("subscription update sucessfully");
     },error=>{console.log(error)});
@@ -159,7 +161,7 @@ changePassword_form = false;
   }
 
   changePassword(f){
-  //  console.log(f.value);
+   console.log(f.value);
     const cp = {
       OldPassword : f.value.OldPassword,
       NewPassword :  f.value.NewPassword,

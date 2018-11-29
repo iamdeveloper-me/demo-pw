@@ -67,8 +67,8 @@
                                               {{history.message}}
                                               </div>
                                               <div class="messdatetext">
-                                              {{history.sentDateString}}
-                                               <!--{{history.sentDate|date:"HH:mm"}}-->
+                                              <!-- {{history.sentDateString}} -->
+                                               {{history.sentDate | date:'hh:mm'}}
                                               </div>
                                               <span *ngIf="!history.isStared" (click)="starMark(history.messageId)">
                                               <i class="fa fa-star starfix"></i>
@@ -115,8 +115,8 @@
                                                   {{history.message}}
                                                   </div>
                                                   <div class="messdatetext">
-                                                  {{history.sentDateString}}
-                                                   <!--{{history.sentDate|date:"HH:mm"}}-->
+                                                  <!-- {{history.sentDateString}} -->
+                                                   {{history.sentDate | date:'hh:mm'}}
                                                   </div>
                                                   <span *ngIf="!history.isStared" (click)="starMark(history.messageId)">
                                                   <i class="fa fa-star starfix"></i>
@@ -160,8 +160,8 @@
                                               {{history.message}}
                                               </div>
                                               <div class="messdatetext">
-                                              {{history.sentDateString}}
-                                               <!--{{history.sentDate|date:"HH:mm"}}-->
+                                              <!-- {{history.sentDateString}} -->
+                                               {{history.sentDate | date:'hh:mm'}}
                                               </div>
                                               <span *ngIf="!history.isStared" (click)="starMark(history.messageId)">
                                               <i class="fa fa-star starfix"></i>

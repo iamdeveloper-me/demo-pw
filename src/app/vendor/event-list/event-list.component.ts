@@ -6,6 +6,7 @@ import { DatePipe } from '@angular/common';
 import { Subject } from 'rxjs';
 import swal from 'sweetalert2';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
+import { resetFakeAsyncZone } from '@angular/core/testing';
 
 export class NgbduserModalContent {
   @Input() name;
@@ -44,6 +45,14 @@ export class EventListComponent implements OnInit {
   isCreateEventVisible=false;
   startDates;
   endDates;
+  Titlee;
+  venueNamee;
+    location;
+    capacity;
+    entryFees;
+    entry;
+    eventDescriptions;
+    endDate;
 
   public sub_id: any; public dist_id: any; public country_id: any;
   objevent= new EventsCreateUpdateVM();  
@@ -85,10 +94,10 @@ export class EventListComponent implements OnInit {
     // this.http.get(this.removeeventgeturl,{headers:headers}).subscribe(data =>{
     // console.log(data.json());})
 
-    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
-    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
+  //  $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
+   // $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
 
-    $.getScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js');
+   // $.getScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
     $(".Suppliertab").click(function () {
       $(".Suppliertab").addClass("selected");
@@ -188,10 +197,89 @@ export class EventListComponent implements OnInit {
     }
 
   }
+  Titleee(event: any) {
+    console.log(event);
+    this.Titlee = ''
+}
+
+startDatess(event: any) { this.startDates = ''}
+endDatess(event: any) { this.endDate  = '';}
+venueNamees(event: any) { this.venueNamee  = '';}
+eventDescriptionss(event: any) {this.eventDescriptions  = '';}
+entryFeess(event: any) { this.entryFees  = '';}
+entrys(event: any) { this.entry  = '';}
+capacitys(event: any) {this.capacity  = '';}
+locations(event: any) { this.location  = '';}
 
   event(list) {        
-    console.log(this.objevent);
-    this.twitterDailog = false;
+    console.log(this.objevent.eventTitle); 
+    if( typeof(this.objevent.eventTitle) == 'undefined')
+    {
+      this.Titlee = ' Titlee Field Required'
+    }else{
+      this.Titlee = ''  
+    }  
+    if( typeof(this.objevent.startDate) == 'undefined'){
+      this.startDates = 'startDates Field Required'
+    }else
+    {
+      this.startDates  = '';
+    }
+    if( typeof(this.objevent.endDate) == 'undefined'){
+
+      this.endDate = 'Field Required'
+    }else
+    {
+      this.endDate  = '';
+    }
+    if( typeof(this.objevent.eventDescription) == 'undefined'){
+      this.eventDescriptions = 'Field Required'   
+    }else
+    {
+      this.eventDescriptions  = '';
+    }
+    if( typeof(this.objevent.entryFee) == 'undefined'){
+      this.entryFees = 'Field Required'
+    }else
+    {
+      this.entryFees  = '';
+    }
+    if( typeof(this.objevent.entry) == 'undefined'){
+      this.entry = 'Field Required'
+    }else
+    {
+      this.entry  = '';
+    }
+    if( typeof(this.objevent.capacity) == 'undefined'){
+      this.capacity = 'Field Required'
+    }else
+    {
+      this.capacity  = '';
+    }
+    if( typeof(this.objevent.location) == 'undefined'){
+      this.location = 'Field Required'
+    }else
+    {
+      this.location  = '';
+    }
+    if( typeof(this.objevent.venueName) == 'undefined'){
+      this.venueNamee = 'Field Required'
+    }else
+    {
+      this.venueNamee  = '';
+    }
+    if(typeof(this.objevent.venueName)  != 'undefined' && 
+    typeof(this.objevent.venueName) != 'undefined'&& 
+    typeof(this.objevent.location)!= 'undefined'&& 
+    typeof(this.objevent.capacity) != 'undefined'&& 
+    typeof(this.objevent.entry) !='undefined'&& 
+    typeof(this.objevent.entryFee)!= 'undefined'&& 
+    typeof(this.objevent.eventDescription) != 'undefined'&& 
+    typeof(this.objevent.endDate)!= 'undefined'&& 
+    typeof(this.objevent.startDate) != 'undefined'&& 
+    typeof(this.objevent.eventTitle)!='undefined'
+  ){
+        this.twitterDailog = false;
     
                       let headerForImageUpload = new Headers();
                       var authToken = localStorage.getItem('userToken');
@@ -226,7 +314,6 @@ export class EventListComponent implements OnInit {
                                                 "endTime": this.endtime
                                             }
 
-                                         
 
                                             this.objevent.eventsDates.push(events);
 
@@ -239,9 +326,11 @@ export class EventListComponent implements OnInit {
                                                   this.twitterDailog = false;
                                              },error=>{
                                               alert(JSON.stringify(data));
-                                             })
+                                             })   })
+    }else{   this.toastr.error("fill completly");}
+ 
                       
-   }) }
+ }
 
 
   /////////////////////////////////popupmode
@@ -372,7 +461,7 @@ export class EventListComponent implements OnInit {
   confirmButtonText: "Yes, delete it!",
   cancelButtonText: "No, cancel plx!",
    }).then((res)=>{
-     console.log(res);
+  
      if(res.value===true){
       // alert('delete Process !');
           // alert(data)
@@ -399,6 +488,22 @@ export class EventListComponent implements OnInit {
      return;
   }
 
+  search_event(e){
+    console.log(e)
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization", 'Bearer ' + authToken);
+   const a = {
+      filter: 1,
+      search: "string"
+    }
+    console.log(a)
+    this.http.post(this.myevent_Post_url,a,{ headers: headers }).subscribe(data => {
+      this.eventArray = data.json() as string[];
+      console.log(this.eventArray);
+    },error => {console.log(error);})}
   country(event): void {
     const newVal = event.target.value;
     this.district = this.arra[newVal].districts
@@ -414,6 +519,15 @@ export class EventListComponent implements OnInit {
  closeModel(){         
     this.eventupdaterDailog = false;  
     this.twitterDailog = false;
+    this.Titlee = ''
+    this.startDates  = '';
+    this.endDate  = '';
+    this.venueNamee  = '';
+    this.eventDescriptions  = '';
+    this.entryFees  = '';
+    this.entry  = '';
+    this.capacity  = '';
+    this.location  = '';
   }
 
 

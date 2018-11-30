@@ -61,6 +61,7 @@
                             <div class="member_name">
                                 <h5><strong> MEMBERSHIP</strong> </h5>
                             </div>
+
                             <p>Account created : {{membershipdetail?.pricingPlan.dateAddedOnString}}</p>
                             <p>Plan name: <span>{{membershipdetail?.pricingPlan.title}}</span>
                                 <span class="upgrade"><a routerLink="../membership"> Upgrade now </a> </span>
@@ -68,6 +69,7 @@
                             <!-- <br> -->
                             <p>Start date : {{membershipdetail?.startDateString}}</p>
                             <p class="col_green">End date : {{membershipdetail?.endDateString}} </p>
+
 
                         </div>
                     </div>
@@ -107,8 +109,14 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 <!--Form F1 Profile-->
 <form name="form" (ngSubmit)="f1.form.valid && updateData(f1)" #f1="ngForm" novalidate>
+=======
+<!-- <form (ngSubmit)="updateData(f1,)" #f1="ngForm"> -->
+<form (ngSubmit)="event(objevent)" #f1="ngForm">
+
+>>>>>>> 94655a1051ae9567f4a995cf32329e7c3f88ec13
     <div class="modal fade" id="photo_ved" [ngClass]="{'show' : personal_data_update}" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -123,6 +131,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="input-effect form-group md-form ">
+<<<<<<< HEAD
                                         <input 
                                             class="effect-16 validate form-control" 
                                             type="text" 
@@ -134,15 +143,27 @@
                                             [ngClass]="{ 'is-invalid': f1.submitted && firstName.invalid }" 
                                             required 
                                         />
+=======
+                                        <input class="effect-16 validate" type="text" #firstName="ngModel" id="firstName"
+
+                                            name="firstName" [(ngModel)]="vendor.firstName" 
+                                            (keypress)="firstName($event)" 
+                                            placeholder="" required>
+>>>>>>> 94655a1051ae9567f4a995cf32329e7c3f88ec13
                                         <label>First Name</label>
                                         <span class="focus-border"></span>
                                         <!-- <small class="form-text text-muted danger" *ngIf="!firstName.valid && (firstName.dirty || firstName.touched)">Please
                                             enter a valid firstname!</small> -->
+<<<<<<< HEAD
                                         <div *ngIf="f1.submitted && firstName.invalid" class="invalid-feedback form-submit">
                                             <small class="form-text text-muted danger" *ngIf="firstName.errors.required">
                                                 First Name is required
                                             </small>
                                         </div>
+=======
+                                            <small class="form-text text-muted danger" >{{firstName}}</small>
+
+>>>>>>> 94655a1051ae9567f4a995cf32329e7c3f88ec13
                                     </div>
                                 </div>
                             </div>
@@ -175,6 +196,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="input-effect form-group md-form ">
+<<<<<<< HEAD
                                         <input 
                                             class="effect-16 validate form-control" 
                                             type="tel"
@@ -189,6 +211,14 @@
                                             pattern="^[0-9]{10}$" 
                                             required
                                         />
+=======
+                                        <input class="effect-16 validate" type="number" maxlength="10" pattern="^[0-9]{10}$"
+                                            type="text" #phoneNumber="ngModel" id="phoneNumber" name="phoneNumber"
+
+                                            [(ngModel)]="vendor.vendorContactInfo.phone" placeholder="" pattern="^[0-9]{10}$"
+                                            required>
+
+>>>>>>> 94655a1051ae9567f4a995cf32329e7c3f88ec13
                                         <label>Phone Number</label>
                                         <span class="focus-border"></span>
                                         <!-- <small class="form-text text-muted danger" *ngIf="!phoneNumber.valid && (phoneNumber.dirty || phoneNumber.touched)">Please
@@ -204,6 +234,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="input-effect form-group md-form ">
+<<<<<<< HEAD
                                         <input 
                                             class="effect-16 validate disablefield" 
                                             type="email" 
@@ -217,10 +248,17 @@
                                             [ngClass]="{ 'is-invalid': f1.submitted && email.invalid }"
                                             required
                                         />
+=======
+
+                                        <input class="effect-16 validate disablefield" type="email" #email="ngModel" id="email" name="email"
+                                            [(ngModel)]="vendor.vendorContactInfo.email" [disabled]="email" placeholder=""
+                                            pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$" required>
+>>>>>>> 94655a1051ae9567f4a995cf32329e7c3f88ec13
                                         <label>Email</label>
                                         <span class="focus-border"></span>
                                          <!-- <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">Please
                                             enter a valid email!</small> -->
+<<<<<<< HEAD
                                         <div *ngIf="f1.submitted && email.invalid" class="invalid-feedback form-submit">
                                             <small class="form-text text-muted danger" *ngIf="email.errors.required">
                                                 Email is required
@@ -229,6 +267,9 @@
                                                 Email must be a valid email address
                                             </small>
                                         </div>
+=======
+
+>>>>>>> 94655a1051ae9567f4a995cf32329e7c3f88ec13
                                     </div>
                                 </div>
                             </div>
@@ -236,8 +277,14 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+<<<<<<< HEAD
                       <!-- [disabled]="!f1.valid" -->
                     <button type="submit" class="btn newbtn" >Save</button>
+=======
+
+                    <button type="submit" class="btn newbtn" [disabled]="!f1.valid" (click)="updateData(f1)">Save</button>
+
+>>>>>>> 94655a1051ae9567f4a995cf32329e7c3f88ec13
                     <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
                 </div>
             </div>
@@ -343,23 +390,38 @@
                                                 </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <div class="modal-footer">
                             <!-- [disabled]="!f.valid" -->
                         <button type="submit" class="btn newbtn" >Save</button>
                         &nbsp;&nbsp;
                         <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
                     </div>
+=======
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn newbtn" [disabled]="!f.valid">Save</button>
+
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
+>>>>>>> 94655a1051ae9567f4a995cf32329e7c3f88ec13
                 </div>
             </div>
         </div>
     </form>
 <!--Form F Change Password End-->
 
+<<<<<<< HEAD
 <!-- Form 3 Starts -->
+=======
+
+<!--  -->
+>>>>>>> 94655a1051ae9567f4a995cf32329e7c3f88ec13
 <form #s="ngForm">
     <div class="modal fade" id="setting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -419,3 +481,4 @@
 </form>
 <!--Form 3 End-->
 <!--mail popup -->
+

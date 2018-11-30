@@ -22,6 +22,8 @@ export class EditprofileComponent implements OnInit {
       email:''
     }
 };
+objevent;
+event;
 fbAvailable = false;
 personal_data_update = false;
 changePassword_form = false;
@@ -38,6 +40,7 @@ changePassword_form = false;
   membershipdetail : any = {
     startDateString:'',
     endDateString:'',
+
     pricingPlan: {
       title: '',
       dateAddedOnString:''
@@ -50,6 +53,7 @@ changePassword_form = false;
   private subupdateurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatesubscriptionsettings'
   myupdatesub : any = {};
   
+
   ngOnInit() {   
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
@@ -78,9 +82,17 @@ changePassword_form = false;
               this.membershipdetail = data.json();
       });
     
+    //Subscriptions
+     this.http.get(this.subscriptionurl,{headers:headers}).subscribe(
+        data =>{ this.mysub = data.json();
+                 console.log(this.mysub);
+
+        });
+
   }
 
   //Subscription Api
+
   getSub(data){
     this.mysub = data;
     let headers = new Headers();
@@ -122,6 +134,7 @@ changePassword_form = false;
    }
 
   //getData Profile
+
   getData(data){
     this.getaccount = data;
     let headers = new Headers();
@@ -159,7 +172,9 @@ changePassword_form = false;
       data =>{ 
         this.vendor = data.json();
         this.toastr.success("profile update sucessfully");
+
          alert("Profile Updated!");
+
         this.personal_data_update = false;
     },error=>{console.log(error)});
   }
@@ -182,6 +197,7 @@ changePassword_form = false;
       this.http.post(this.changepassurl,cp,{headers:headers}).subscribe(
         data =>{
                  console.log(data.json());
+                 alert("password reset sucessfully!");
                  this.toastr.success("your password reset sucessfully");
                  alert("password reset sucessfully!");
                  this.changePassword_form =false;

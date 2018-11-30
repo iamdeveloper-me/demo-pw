@@ -18,7 +18,9 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
   jobArray:string[];
 
+
     // PhoneEdit = '5555555' ;
+
     angularLogo = 'https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg';
     
     constructor(config: NgbCarouselConfig ,public http: Http ,private router: Router) {
@@ -28,10 +30,19 @@ export class DashboardComponent implements OnInit {
     config.keyboard = false;
   }
 
+  private membershipurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mymembership'
+  membershipdetail : any = {
+    startDateString:'',
+    endDateString:'',
+    pricingPlan: {title: ''},
+  };
+//membership api
+
   x: any;
   greeting = {};
   name = 'World';
   total;
+  total_business_Services;
   buinessPhone;
   businessProfilePic;
   businessService;
@@ -45,10 +56,12 @@ export class DashboardComponent implements OnInit {
   ph;
   mb;
   ct;
+  total_phone_no;
   priceplantitle;
   isPrimary;
   test = 12.5;
   test1 = 0;
+  albumCount;
   VendorDashboard_data = {portfolioImage : '',portfolioCount: '',
   videoCount : '',albumCount: '',impression: '',enquiries: '',loveCount: '',reviews: ''};
   //VendorDashboard
@@ -87,8 +100,10 @@ export class DashboardComponent implements OnInit {
          });
         this.http.get(this.dashboard,{headers:headers}).subscribe((data)=> 
         {
+
           // console.log(data.json());
           });
+
 
         if(!authToken) 
        {  this.router.navigate(['../home']);
@@ -97,7 +112,7 @@ export class DashboardComponent implements OnInit {
         this.http.get(this.url,{headers:headers}).subscribe(
           data =>{ this.vendor = data.json();
                    console.log(this.vendor);
-                   console.log(this.vendor.vendorLocations);
+                  // console.log(this.vendor.vendorLocations);
 
                   //  console.log(this.vendor.vendorLocations[0].mapAddress);
                    this.add = this.vendor.vendorLocations[0].mapAddress;
@@ -105,10 +120,11 @@ export class DashboardComponent implements OnInit {
                   //  console.log(this.vendor.vendorLocations[0].locationPhones[0].phoneNumber);
                   this.ph = this.vendor.vendorLocations[0].locationPhones[0].phoneNumber;
 
-                  //  console.log(this.vendor.vendorLocations[0].locationPhones[1].phoneNumber);
-                   this.mb = this.vendor.vendorLocations[0].locationPhones[1].phoneNumber;                 
-
-                  //  console.log(this.vendorCategories[0].categories.categoryName);
+                  
+                  this.total_business_Services = this.vendor.businessServices.length -1;
+                  this.total_phone_no =  this.vendor.vendorLocations.length - 1;
+                    console.log(this.total_business_Services);
+                    console.log(this.total_phone_no);
                    this.ct = this.vendor.vendorCategories[0].categories.categoryName;
 
                   //  console.log(this.vendor.pricingPlan.title);
@@ -155,13 +171,17 @@ export class DashboardComponent implements OnInit {
                     this.http.get(this.dashboard,{headers:headers}).subscribe(
                       data =>{  
                               // console.log("zxdfdsf");
+
                               //  console.log(data.json());
+
                               this.dashboard = data.json();
                 
                       });
 
                       this.http.get(this.VendorDashboard,{headers:headers}).subscribe(
                         data =>{  
+
+
                                  console.log(data.json());
                                 //  this.venderDash = data.json() as string[]; 
                                 this.VendorDashboard_data = data.json();
@@ -272,7 +292,7 @@ export class DashboardComponent implements OnInit {
               });
           }
     
-          
+        
         }
 
         getEvents(){

@@ -37,10 +37,16 @@
  <!-- {{ historyArr | json}} -->
                       <div class="inbox-body all show" [ngClass] = "{'show' : alltab}">
                         <!-- arrayLength -->
-                        <div *ngIf="arrayLength == 0 ;else showMessage">
-                          No Data
+                        <div *ngIf="arrayLength == 0 ;else showMessage" class="blankmsg">
+                            <div class="card text-center">
+                                <div class="paddtop10px">
+                                    <img src="{{imgmail}}" class="imgNoMail"> 
+                                </div>
+                                <p ngcontent-c0="" class="lineheight30px">Your inbox is Empty!! :(</p>
+                            </div>
                         </div>
                         <ng-template #showMessage>
+
                             <div class="cardmessagebox" *ngFor="let history of historyArr">
                                 <input type="checkbox" name="radiogroup" 
                                 [checked]="idx === 0" 
@@ -79,14 +85,19 @@
                                 </div>
                             </div> 
                         </ng-template>
-
-                            
-                         
+    
                       </div>
 
                       <div class="inbox-body unread" [ngClass] = "{'show' : unreadtab}">
-                          <div *ngIf="arrayLength == 0 ;else showMessage">
-                              No Data
+                          <div *ngIf="arrayLength == 0 ;else showMessage" class="blankmsg">
+
+                              <div class="card text-center">
+                                <div class="paddtop10px">
+                                    <img src="{{imgmail}}" class="imgNoMail"> 
+                                </div>
+                                <p ngcontent-c0="" class="lineheight30px">Your inbox is Empty!! :(</p>
+                            </div>
+  
                             </div>
                             <ng-template #showMessage>
                                 <div class="cardmessagebox" *ngFor="let history of historyArr">
@@ -130,8 +141,13 @@
                       </div>
 
                       <div class="inbox-body started" [ngClass] = "{'show' : startedtab}">
-                         <div *ngIf="arrayLength == 0 ;else showMessage">
-                          No Data
+                         <div *ngIf="arrayLength == 0 ;else showMessage" class="blankmsg">
+                            <div class="card text-center">
+                                <div class="paddtop10px">
+                                    <img src="{{imgmail}}" class="imgNoMail"> 
+                                </div>
+                                <p ngcontent-c0="" class="lineheight30px">Your inbox is Empty!! :(</p>
+                            </div>
                         </div>
                         <ng-template #showMessage>
                             <div class="cardmessagebox" *ngFor="let history of historyArr">

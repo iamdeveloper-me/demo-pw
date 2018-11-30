@@ -94,6 +94,18 @@ export class ViewPhotoAlbumsComponent implements OnInit {
         this.albumid = params;
   });
 
+  $(function() {
+  var current_progress = 0;
+  var interval = setInterval(function() {
+      current_progress += 10;
+      $("#dynamic")
+      .css("width", current_progress + "%")
+      .attr("aria-valuenow", current_progress)
+      .text(current_progress + "% Complete");
+      if (current_progress >= 100)
+          clearInterval(interval);
+  }, 1000);
+});
 
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
@@ -283,7 +295,7 @@ $(document)
 
     swal({
       title: "Are you sure?",
-    text: "You will not be able to recover this file!",
+    text: "You will not be able to recover this image!",
     type: "warning",
     showCancelButton: true,
     confirmButtonClass: "btn-default",
@@ -340,8 +352,10 @@ $(document)
 
 
   uploadAll(){
-   this.total = 80;
-   this.uploadphoto_dailog = false;
+   
+
+  
+    this.total = 100;
    this.lodar = true;
     const formData = new FormData();
     for(let file of this.uploader.queue){
@@ -356,9 +370,11 @@ $(document)
     
     //Post Album 2 photos
     console.log(formData);
+    this.uploadphoto_dailog = false;
     this.uploader.queue = [];
     this.http.post(this.uploadimage,formData,{headers:headers})
       .subscribe(data =>{console.log(data.json());
+        this.uploadphoto_dailog = false;
         this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
         .subscribe(data =>{
          this.totalImage =  data.json();

@@ -15,18 +15,22 @@
                             <div class="heightequal365 mobnopadd padleft0px ">
                                 <div class="card heightequal365 margintop0px mobmargintop30px" (click)="openModel(vendor)">
                                     <div class="card-header">
-                                        <div class="busines_img" ngbTooltip="Business Logo">
+
+                                        <div class="busines_img" title="Change Business Image">
+
                                             <i class="material-icons" (click)="imagecropDailog = true" id="description-function"> camera_alt </i> 
                                                 <img [src] = "imagee"  >   
                                         </div>
                                         
                                         <div class="busi_contact">
 
-                                            <div class="on_hover" (click)="BusinessDailog = true" id="Instagram-function" >
+                                            <div class="on_hover" (click)="openBusinessDialog('BusinessDailog')" id="Instagram-function" >
 
-                                                    <h6 >Business Name</h6>
+
+                                                    <h6 >Business Name </h6>
+
                                                 <div> {{vendor.nameOfBusiness}}</div>
-                                                <span class="text-right col-lg-12 editbtn">
+                                                <span class="text-right col-lg-12 editbtn" (click)='openBusinessDialog("BusinessDailog")'>
                                                 <i class="material-icons"  >edit</i>
                                                 </span>
 
@@ -34,7 +38,7 @@
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
-                                        <div class="on_hoverdiv" (click)="DescriptionDailog = true"   id="description-function" >
+                                        <div class="on_hoverdiv" (click)="openBusinessDialog('DescriptionDailog')"   id="description-function" >
                                             <h6 class="text-center">Business Description </h6>
                                             <span class=" editbtn  editbtn11">
                                             <i class="material-icons">edit</i>
@@ -59,7 +63,7 @@
                                         <div class="social-connect  col-sm-12" data-reactid="330">
                                             <div class="social" data-reactid="332">
                                             <i class="fa fa-facebook fa-2x" data-reactid="334"></i>
-                                            <span id="prompt-function"  (click)="facebookDailog = true" data-reactid="333">
+                                            <span id="prompt-function"  (click)="openBusinessDialog('facebookDailog')" data-reactid="333">
                                                  
                                                  <div *ngIf="vendor.fbAvailable  ==  true" >
                                                     : {{vendor.facebookURL}}
@@ -80,7 +84,7 @@
                                         <div class="social-connect  col-sm-12" data-reactid="330">
                                             <div class="social" data-reactid="332">
                                             <i class="fa fa-twitter fa-2x " data-reactid="338"></i>
-                                            <span id="Pinterest-function" (click)="twitterDailog = true"  data-reactid="337">
+                                            <span id="Pinterest-function" (click)="openBusinessDialog('twitterDailog')"  data-reactid="337">
                                            
                                            <div *ngIf="vendor.twitterAvailable  ==  true" >
                                             : {{vendor.twitterURL}}
@@ -102,7 +106,7 @@
                                         <div class="social-connect col-sm-12" data-reactid="330">
                                             <div class="social" data-reactid="332">
                                             <i class="fa fa-google-plus fa-2x" data-reactid="340"></i>
-                                            <span id="Google-function" (click)="googleDailog = true"  data-reactid="339">
+                                            <span id="Google-function" (click)="openBusinessDialog('googleDailog')"  data-reactid="339">
                                          
                                            <div *ngIf="vendor.googleAvailable  ==  true" >
                                             :  {{vendor.googleURL}}
@@ -123,7 +127,7 @@
                                         <div class="social-connect col-sm-12" data-reactid="330">
                                             <div class="social" data-reactid="332">
                                             <i class="fa fa-instagram fa-2x" data-reactid="342"></i>
-                                            <span id="Instagram-function"  (click)="instagramDailog = true"  data-reactid="341">
+                                            <span id="Instagram-function"  (click)="openBusinessDialog('instagramDailog')"  data-reactid="341">
                                         
                                            <div *ngIf="vendor.instaAvailable  ==  true" >
                                             :  {{vendor.instalURL}}
@@ -144,7 +148,7 @@
                                         <div class="social-connect  col-sm-12" data-reactid="330">
                                             <div class="social" data-reactid="332">
                                             <i class="fa fa-globe fa-2x" data-reactid="342"></i>
-                                            <span id="Instagram-function" (click)="instagram2Dailog = true"  data-reactid="341">
+                                            <span id="Instagram-function" (click)="openBusinessDialog('instagram2Dailog')"  data-reactid="341">
                                            
                                             <div *ngIf="vendor.perfectWeddingAvailable  ==  true" >
                                                 :{{vendor.perfectWeddingURL}}
@@ -181,7 +185,7 @@
                 <div class="modal-content">
                     <div class="modal-header text-center">
                         <h4 class="modal-title">Edit Business Description</h4>
-                        <button  type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button  type="button" class="close btn_mar_padd" (click)="closeModel('DescriptionDailog')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
                         <div class="col-sm-12  text-center"> 
@@ -190,6 +194,7 @@
                             class="textareaclass" 
                             type="text" 
                             id="businessDetails" 
+                            #businessDetails
                             placeholder="Enter Description"
                             [ngModel] = "modelfield.businessDetails"                        
                             name="businessDetails"
@@ -199,7 +204,7 @@
                     </div>
                     <div class="modal-footer text-center">
                         <button type="submit"  class="btn btn-secondary btn-raised descsave newbtn" >Save</button>
-                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Cancel</button>
+                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('DescriptionDailog')">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -210,40 +215,29 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h4 class="modal-title">Edit Business Name or Contact </h4>
-                        <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Edit Business Name </h4>
+                        <button type="button" class="close btn_mar_padd" (click)="closeModel('BusinessDailog')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
                         <div class="col-sm-12  text-center">
                             <p class="input_para">
-                            <!-- <input
-                            class="endent_10px width_60" 
-                            type="text"  
-                            [ngModel]="modelfield.nameOfBusiness" 
-                            name="nameOfBusiness" 
-                            id="nameOfBusiness"
-                            required
-                            placeholder="Vision Photography" > -->
                             <input 
                             type="text" 
                             class=" effect-16 validate endent_10px width_60" 
                             [ngModel]="modelfield.nameOfBusiness" 
                             id="nameOfBusiness"
+                            #nameOfBusiness
                             name="nameOfBusiness" 
                             #required="ngModel" 
                             required 
                             placeholder="Bussiness name" />
                             <small class="form-text text-muted danger validationErrorMsg" *ngIf="required.errors?.required"> Bussiness name field required </small>
-
-                            </p>
-                        
-                          
-                        
+                           </p>
                         </div>
                     </div>
                     <div class="modal-footer text-center">
                         <button type="submit" class="btn namesave newbtn">Save</button> 
-                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Cancel</button>
+                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('BusinessDailog')">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -257,7 +251,7 @@
                                 
                             </strong>  </h4>
                         <p>Do you have a Facebook Page for your business?</p>
-                        <button type="button" class="close" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close" (click)="closeModel('facebookDailog')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <div class="clearfix"></div>
                     </div>
                     
@@ -275,7 +269,7 @@
                                     ></ui-switch>
                                
                                 <span class="have_one" *ngIf="modelfield.fbAvailable  ==  false" >
-                                     No, I don't! 
+                                     None! 
                                     <input class="effect-16 " type="hidden"  name="fbAvailable" [ngModel] = "false"  >
                                 </span>
                                
@@ -286,7 +280,7 @@
                             </div>
 
                             <div class="clearfix"></div>
-                            <div class="input_facebook input-effect form-group">
+                            <div class="input_facebook input-effect form-group" *ngIf='modelfield.fbAvailable'>
                                 <i class="fa fa-facebook fa-2x" data-reactid="334" ></i> 
                                     <div   >
                                         <!-- <input class="effect-16 validate endent_10px width_60" 
@@ -302,13 +296,15 @@
                                            [readonly]='disabletxtFburl && modelfield.fbAvailable==false'
                                             name="facebookURL" 
                                             #facebookURL="ngModel"
+                                            id='fburl'
+                                            #fburl
                                             placeholder="Don't have any URL"
-                                            [(ngModel)] = "modelfield.facebookURL" 
+                                            [ngModel] = "modelfield.facebookURL" 
                                             required 
                                             (ngModelChange)='isValidUrl(modelfield.facebookURL,"Fb")'
                                             />
-                                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="facebookURL.errors?.required"> facebookURL name field required </small>
-                                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidFbUrl===false && modelfield.fbAvailable == true && !facebookURL.errors?.required">invalid url </small>
+                                            <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="facebookURL.errors?.required"> facebookURL name field required </small>
+                                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidFbUrl===false && modelfield.fbAvailable == true && !facebookURL.errors?.required">invalid url </small> -->
                                     </div>
                                   
                             </div>
@@ -320,9 +316,9 @@
                         </div>
                     </div>
                     <div class="modal-footer text-center marTop50px" >
-
-                        <button type="submit" class="btn btn-secondary newbtn" [disabled]="isValidFbUrl===false && modelfield.fbAvailable == true "    >Save</button> 
-                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()" >Cancel</button>
+                        <button type="button" class="btn btn-secondary newbtn" (click)='UpdateSocialUrl("Fb")'>Save</button>
+                        <button type="submit" class="btn btn-secondary newbtn" style='display:none'>Save</button> 
+                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('facebookDailog')" >Cancel</button>
 
                     </div>
                 </div>
@@ -335,7 +331,7 @@
                 <div class="modal-content">
                     <div class="modal-header text-center">
                         <h4 class="modal-title">Edit twitter</h4>
-                        <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close btn_mar_padd" (click)="closeModel('twitterDailog')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
                         <div class="clearfix"></div>
                     </div>
@@ -346,12 +342,13 @@
                                         <ui-switch 
                                         [(ngModel)]="modelfield.twitterAvailable"
                                         id="twitterAvailable" 
+                                        #twitterAvailable
                                         name = "switchtwitter"
                                         (click) = "switch_twitterAvailable(modelfield.twitterAvailable)" 
                                         (change)="modelfield.twitterAvailable  = !modelfield.twitterAvailable "
                                         class="pull-left"
                                         ></ui-switch>
-                                        <span class="have_one" *ngIf="modelfield.twitterAvailable  ==  false" > No, I don't! 
+                                        <span class="have_one" *ngIf="modelfield.twitterAvailable  ==  false" > None 
                                             <input class="effect-16 " type="hidden"  name="twitterAvailable" [ngModel] = "false"  >
                                         </span>
                                         <!-- =={{modelfield.fbAvailable }} -->
@@ -361,7 +358,7 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                            <div class="input_facebook input-effect form-group">
+                            <div class="input_facebook input-effect form-group" *ngIf='modelfield.twitterAvailable'>
                                 <i class="fa fa-twitter fa-2x" data-reactid="334" ></i> 
                                     <div >  
                                         <!-- <input class="effect-16 validate endent_10px width_60" 
@@ -375,14 +372,16 @@
                                         type="text" 
                                         class="effect-16 validate endent_10px width_60"
                                         [readonly]='disabletxtTwurl && modelfield.twitterAvailable==false'
-                                        name="twitterURL" 
+                                        name="twitterURL"
+                                        id='twurl'
+                                        #twurl 
                                         #twitterURL="ngModel"
                                         placeholder="Don't have any URL"
-                                        [(ngModel)] = "modelfield.twitterURL" 
+                                        [ngModel] = "modelfield.twitterURL" 
                                         (ngModelChange)='isValidUrl(modelfield.twitterURL,"Tw")'
                                         required/>
-                                    <small class="form-text text-muted danger validationErrorMsg" *ngIf="isVaidTwUrl===false && modelfield.twitterAvailable == true && !twitterURL.errors?.required">Invalid url</small>
-                                    <small class="form-text text-muted danger validationErrorMsg" *ngIf="twitterURL.errors?.required"> twitterURL name field required </small>
+                                    <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="isVaidTwUrl===false && modelfield.twitterAvailable == true && !twitterURL.errors?.required">Invalid url</small>
+                                    <small class="form-text text-muted danger validationErrorMsg" *ngIf="twitterURL.errors?.required"> twitterURL name field required </small> -->
                                     </div>    
                                 <!-- <div *ngIf="modelfield.twitterAvailable  ==  false">
                                         <input class="effect-16 validate endent_10px width_60" 
@@ -396,8 +395,9 @@
                         </div>
                     </div>
                     <div class="modal-footer text-center marTop50px">
-                        <button type="submit" class="btn newbtn" [disabled]="isVaidTwUrl===false && modelfield.twitterAvailable == true " >Save</button>&nbsp;
-                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
+                         <button type="button" class="btn btn-secondary newbtn" (click)='UpdateSocialUrl("Tw")'>Save</button>
+                        <!-- <button type="submit" class="btn newbtn" [disabled]="isVaidTwUrl===false && modelfield.twitterAvailable == true " >Save</button>&nbsp; -->
+                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('twitterDailog')">CANCEL</button>
                     </div>
                 </div>
             </div>
@@ -410,7 +410,7 @@
                     <div class="modal_head text-center">
                         <h4 class="modal-title"><strong> Link your Google Page </strong>  </h4>
                         <p>Do you have a Google Page for your business?</p>
-                        <button type="button" class="close" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close" (click)="closeModel('googleDailog')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <div class="clearfix"></div>
                     </div>
                     <div class="modal-body">
@@ -427,7 +427,7 @@
                                                 (change)="modelfield.googleAvailable  = !modelfield.googleAvailable " 
                                                 class="pull-left"
                                                 ></ui-switch>
-                                                <span class="have_one" *ngIf="modelfield.googleAvailable  ==  false" > No, I don't! 
+                                                <span class="have_one" *ngIf="modelfield.googleAvailable  ==  false" > None 
                                                     <input class="effect-16 " type="hidden"  name="googleAvailable" [ngModel] = "false"  >
                                                 </span>
                                                 <!-- =={{modelfield.fbAvailable }} -->
@@ -437,7 +437,7 @@
                                         </div>
                                     </div>
                             <div class="clearfix"></div>
-                            <div class="input_facebook input-effect form-group">
+                            <div class="input_facebook input-effect form-group" *ngIf='modelfield.googleAvailable'>
                             <i class="fa fa-google-plus fa-2x" data-reactid="334" style="font-size:1.6em" ></i> 
                             <div  >
                                 <!-- <input class="effect-16 validate endent_10px width_60" 
@@ -452,9 +452,11 @@
                                 class="effect-16 validate endent_10px width_60"
                                 [readonly]='disabletxtGoogeurl && modelfield.googleAvailable==false'
                                 name="googleURL" 
+                                id='gUrl'
+                                #gUrl
                                 #googleURL="ngModel"
                                 placeholder="Don't have any URL"
-                                [(ngModel)] = "modelfield.googleURL" 
+                                [ngModel] = "modelfield.googleURL" 
                                 (ngModelChange)='isValidUrl(modelfield.googleURL,"Google")'
                                 required />
                             <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidGoogeUrl===false && modelfield.googleAvailable == true  && !modelfield.googleURL.errors?.required">Invalid url</small>
@@ -471,8 +473,9 @@
                         </div>
                     </div>
                     <div class="modal-footer text-center marTop50px">
-                        <button type="submit" class="btn newbtn" [disabled]="isValidGoogeUrl===false && modelfield.googleAvailable == true " >SAVE</button> &nbsp;
-                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
+                            <button type="button" class="btn btn-secondary newbtn" (click)='UpdateSocialUrl("Google")'>Save</button>
+                        <!-- <button type="submit" class="btn newbtn" [disabled]="isValidGoogeUrl===false && modelfield.googleAvailable == true " >SAVE</button> &nbsp; -->
+                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('googleDailog')">CANCEL</button>
                     </div>
                 </div>
             </div>
@@ -485,7 +488,7 @@
                 <div class="modal_head text-center">
                     <h4 class="modal-title"><strong> Link your Instagram Page </strong>  </h4>
                     <p>Do you have a Instagram Page for your business?</p>
-                    <button type="button" class="close" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" (click)="closeModel('instagramDailog')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <div class="clearfix"></div>
                 </div>
                 <div class="modal-body">
@@ -502,7 +505,7 @@
                                             (change)="modelfield.instaAvailable  = !modelfield.instaAvailable "
                                             class="pull-left"
                                             ></ui-switch>
-                                            <span class="have_one" *ngIf="modelfield.instaAvailable  ==  false" > No, I don't! 
+                                            <span class="have_one" *ngIf="modelfield.instaAvailable  ==  false" > None! 
                                                 <input class="effect-16 " type="hidden"  name="instaAvailable" [ngModel] = "false"  >
                                             </span>
                                             <!-- =={{modelfield.fbAvailable }} -->
@@ -512,7 +515,7 @@
                                     </div>
                                 </div>
                         <div class="clearfix"></div>
-                        <div class="input_facebook input-effect form-group">
+                        <div class="input_facebook input-effect form-group" *ngIf='modelfield.instaAvailable'>
                         <i class="fa fa-instagram fa-2x" data-reactid="334" ></i> 
 
                            <div >
@@ -527,14 +530,16 @@
                                 type="text" 
                                 class="effect-16 validate endent_10px width_60"
                                 [readonly]='disabletxtInstaUrl && modelfield.instaAvailable==false'
-                                name="instalURL" 
+                                name="instalURL"
+                                id='insUrl'
+                                #insUrl
                                 #instalURL="ngModel"
                                 placeholder="Don't have any URL"
-                                [(ngModel)] = "modelfield.instalURL" 
+                                [ngModel] = "modelfield.instalURL" 
                                 (ngModelChange)='isValidUrl(modelfield.instalURL,"Insta")'
                                 required/>
-                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidInstaUrl===false && modelfield.instaAvailable == true  && !instalURL.errors?.required">url error</small>
-                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="instalURL.errors?.required"> instalURL name field required </small>
+                            <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidInstaUrl===false && modelfield.instaAvailable == true  && !instalURL.errors?.required">url error</small>
+                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="instalURL.errors?.required"> instalURL name field required </small> -->
                             </div>
 
                                 <!-- <div *ngIf="modelfield.instaAvailable  ==  false">
@@ -548,8 +553,9 @@
                     </div>
                 </div>
                <div class="modal-footer text-center marTop50px">
-                    <button type="submit" class="btn newbtn"  [disabled]="isValidInstaUrl===false && modelfield.instaAvailable == true " >SAVE</button> &nbsp;
-                    <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
+                    <button type="button" class="btn btn-secondary newbtn" (click)='UpdateSocialUrl("Insta")'>Save</button>
+                    <!-- <button type="submit" class="btn newbtn"  [disabled]="isValidInstaUrl===false && modelfield.instaAvailable == true " >SAVE</button> &nbsp; -->
+                    <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('instagramDailog')">CANCEL</button>
                 </div>
             </div>
             </div>
@@ -562,7 +568,7 @@
                 <div class="modal_head text-center">
                     <h4 class="modal-title"><strong> Link your Website </strong>  </h4>
                     <p>Do you have a Trading Page for your business?</p>
-                    <button type="button"  class="close"  (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button"  class="close"  (click)="closeModel('instagram2Dailog')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <div class="clearfix"></div>
                 </div>
                 <div class="modal-body">
@@ -579,7 +585,7 @@
                                             (change)="modelfield.perfectWeddingAvailable  = !modelfield.perfectWeddingAvailable "
                                             class="pull-left"
                                             ></ui-switch>
-                                            <span class="have_one" *ngIf="modelfield.perfectWeddingAvailable  ==  false" > No, I don't! 
+                                            <span class="have_one" *ngIf="modelfield.perfectWeddingAvailable  ==  false" > None  
                                                 <input class="effect-16 " type="hidden"  name="perfectWeddingAvailable" [ngModel] = "false"  >
                                             </span>
                                             <!-- =={{modelfield.fbAvailable }} -->
@@ -589,7 +595,7 @@
                             </div>
                                
                         <div class="clearfix"></div>
-                        <div class="input_facebook input-effect form-group">
+                        <div class="input_facebook input-effect form-group" *ngIf='modelfield.perfectWeddingAvailable'>
                         <i class="fa fa-globe fa-2x" data-reactid="334" ></i> 
                             <div >
                                 <!-- <input class="effect-16 validate endent_10px width_60" 
@@ -604,10 +610,12 @@
                                 type="text" 
                                 class="effect-16 validate endent_10px width_60"
                                 [readonly]='disabletxtOtherUrl && modelfield.perfectWeddingAvailable == false'    
-                                name="perfectWeddingURL" 
+                                name="perfectWeddingURL"
+                                id='pwUrl'
+                                #pwUrl 
                                 #perfectWeddingURL="ngModel"
                                 placeholder="Don't have any URL"
-                                [(ngModel)] = "modelfield.perfectWeddingURL" 
+                                [ngModel] = "modelfield.perfectWeddingURL" 
                                 (ngModelChange)='isValidUrl(modelfield.perfectWeddingURL,"Other")'
                                 required />
                             <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidOtherUrl===false && modelfield.perfectWeddingAvailable == true  && !perfectWeddingURL.errors?.required">url error</small>
@@ -625,8 +633,9 @@
                     </div>
                 </div>
                 <div class="modal-footer text-center marTop50px">
-                    <button type="submit" class="btn newbtn"   [disabled]="isValidOtherUrl===false && modelfield.perfectWeddingAvailable == true " ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-                    <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
+                        <button type="button" class="btn btn-secondary newbtn" (click)='UpdateSocialUrl("Other")'>Save</button>
+                    <!-- <button type="submit" class="btn newbtn"   [disabled]="isValidOtherUrl===false && modelfield.perfectWeddingAvailable == true " ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp; -->
+                    <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('instagram2Dailog')">CANCEL</button>
                 </div>
                 <div class="col-sm-12 mob_margin_30px">
                     <div class="card col-sm-12 notebox text-center">
@@ -652,7 +661,7 @@
                     <div class="modal_head text-center">
                         <h4 class="modal-title marbot0px"><strong> Business Profile Image  </strong>  </h4>
                         <p class="marbot0px">Please update Profile Image for your business</p>
-                        <button type="button" class="close" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close" (click)="closeModel(dialogname)" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <div class="clearfix"></div>
                     </div>
                     <div class="modal-body">
@@ -698,7 +707,7 @@
                     </div>
                     <div class="modal-footer text-center">
                         <button type="submit" class="btn newbtn">Save</button>&nbsp;
-                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
+                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel(dialogname)">Close</button>
                     </div>
                 </div>
             </div>    

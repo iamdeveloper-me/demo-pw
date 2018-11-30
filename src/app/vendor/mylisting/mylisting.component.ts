@@ -1,16 +1,19 @@
-import { Component, OnInit, DebugElement } from '@angular/core';
+import { Component, OnInit, DebugElement, AfterViewInit } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-mylisting',
   templateUrl: './mylisting.component.html',
   styleUrls: ['./mylisting.component.scss']
 })
-export class MylistingComponent implements OnInit {
-  private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Reviews/postreview'
+export class MylistingComponent implements OnInit, AfterViewInit {
   private base_url : string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Reviews'
-  
-  countryArray:string[];
+  edit_re= false;
+
+  countryArray = [  {
+    "reviewId": 0,
+    "feedback": "string"
+  }];
   public SearchModel = <any>{};
   public eventsData: Array<any> = [];
   public page: number = 0;
@@ -18,13 +21,16 @@ export class MylistingComponent implements OnInit {
   public searchQuery: string;
   public Loading: boolean = false;
   public isSearching: boolean = false;
-
+  modify_reply = {
+    "reviewId": 0,
+    "feedback": "string"
+  }
   // code by v
   page_number : number = 0;
   collection: any[];  
   options = [{key : 'Highest Rating', value : 1}, {key : 'Lowest Rating', value : 2}, {key : 'Most Recent', value : 3}, {key : 'Earliest', value : 4}, {key : 'Not Replied', value : 5}, {key : 'Replied', value : 6}, {key : 'Pinned', value : 7}, {key : 'Unread', value : 8}]
 
-  optionSelected = 8;
+  optionSelected = 3;
 
   onOptionsSelected(event){
     this.optionSelected = parseInt(event)
@@ -39,7 +45,7 @@ export class MylistingComponent implements OnInit {
       sortedBy: 'Title'
   };
 
-    constructor(public http: Http) { 
+    constructor(public http: Http ,public toastr: ToastrService,) { 
         this.MyReviews();
     }
   Pinned;
@@ -62,12 +68,13 @@ export class MylistingComponent implements OnInit {
         "searchQuery": '',
         "status": this.optionSelected
       }
-    
+
     this.http.post(this.base_url + "/myreviews", data, { headers: this.header() }).subscribe(
         data =>{
           this.countryArray = data.json()
+          console.log(  this.countryArray);  
           this.collection = this.countryArray
-          console.log(this.countryArray);  
+          
     },error=>{
           console.log(error)
     });
@@ -85,6 +92,37 @@ export class MylistingComponent implements OnInit {
         this.MyReviews()
     },error=>{
         console.log(error);
+    });
+  }
+
+  UpdateReviewstatus(){
+    var data = {
+        "page": 0, 
+        "pageSize": 10,
+        "sortDir": 'asc',
+        "sortedBy": '',
+        "searchQuery": '',
+        "status": 8
+    }
+
+    this.http.post(this.base_url + "/myreviews", data, { headers: this.header() }).subscribe(
+        data =>{
+            alert("dfd")
+          this.countryArray = data.json()
+          console.log(  this.countryArray);  
+
+          for (let item of this.countryArray) {
+              console.log(item )
+            //   for (let item of item.items) {
+            //         if(this.item.reviewStatus == 1 )
+            //         {
+            //             this.ReviewReadStatus( item.reviewId,item.reviewStatus);
+            //         }
+            // }
+            }
+          
+    },error=>{
+          console.log(error)
     });
   }
 
@@ -111,8 +149,17 @@ export class MylistingComponent implements OnInit {
     // NotReplied=5,
     // Replied=6,
     // Pinned=7
+
+    setTimeout(function(){
+
+        this.UpdateReviewstatus()
+    }, 25000);
+    
   }
 
+  ngAfterViewInit(){
+    
+  }
   public sort(sortValue) {
     if (this.filterCriteria.sortedBy == sortValue)
         this.filterCriteria.sortDir = this.filterCriteria.sortDir == 'ASC' ? 'DESC' : 'ASC';
@@ -152,5 +199,25 @@ public search(page) {
     //     this.isSearching = false;
     // });
 }
+open(a){
+    this.edit_re = true;
+    console.log(a);
+    this.modify_reply =a;
+}
+    feed_baack(e){
+            this.http.post(this.base_url + "/sendfeedback",e.value, { headers: this.header() }).subscribe(
+                data =>{
+                console.log(data.json());
+                this.toastr.success(data.json().message);
+                        
+                this.MyReviews();
+                this.edit_re= false;
+            },error=>{
+                console.log(error);
+            });
+    }
+    closeModel(){
+        this.edit_re= false;
+    }
 }
 

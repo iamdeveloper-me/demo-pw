@@ -21,6 +21,7 @@ export class PortfolioviewComponent implements OnInit {
     PortpostArray:any= {};
     Set_as_background:any = [];
     uploadphoto_dailog = false;
+    lodar = false;
     selected_Background;
     portfolioId;
     // Portpost1Array:any= {};
@@ -35,6 +36,7 @@ export class PortfolioviewComponent implements OnInit {
     list:any = {
         "filesId": 1
     }
+    constructor( public http: Http ,public toastr: ToastrService) { }
     ngOnInit() {
 
         $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
@@ -58,17 +60,18 @@ export class PortfolioviewComponent implements OnInit {
                     },error=>{ console.log(error)
                            })
 
+                          
                }
  
 
     @ViewChild("fileInput") fileInput;
-    constructor( public http: Http ,public toastr: ToastrService) { }
+  
     uploader: FileUploader = new FileUploader({
         url: URL,
         isHTML5: true
     });
-    hasBaseDropZoneOver = false;
-    hasAnotherDropZoneOver = false;
+    hasBaseDropZoneOver = true;
+    hasAnotherDropZoneOver = true;
   // Angular2 File Upload
 
     fileOverBase(e: any): void {
@@ -79,11 +82,26 @@ export class PortfolioviewComponent implements OnInit {
     }
     uploadAll(){
         this.uploadphoto_dailog = false;
+       
         const formData = new FormData();
         for(let file of this.uploader.queue){
              formData.append(file['some'].name,file['some'])
         }        
     
+     
+          var basicplan = localStorage.getItem('basic-plan');
+         
+      console.log(parseInt(basicplan) );
+      if( parseInt(basicplan) == 1 && this.PortgetArray.length == 5 ){ 
+            alert("cahange palan not allow more than 5");   
+        }else{
+            this.photoupload(formData);
+            this.lodar = true ;
+        }
+    }
+    photoupload(formData){
+
+
         let headers = new  Headers();
         var authToken = localStorage.getItem('userToken');
         headers.append("Authorization",'Bearer '+authToken);
@@ -100,23 +118,45 @@ export class PortfolioviewComponent implements OnInit {
             }
 
             //console.log(data2);
-           
+            
             this.http.post(this.addportfolio,data2,{headers:headers})
         .subscribe(data =>{ 
                             //console.log(data.json());
                             this.uploader.queue = [];
                             this.http.get(this.mygeturl,{headers:headers})
                             .subscribe(data =>{   
-                            //console.log(data.json()); 
-                            this.PortgetArray =data.json() });
+                            console.log(data.json()); 
+                            this.PortgetArray =data.json() 
+
+                           
+                          });
                         
-                        },(error)=>{  //console.log(error)
+                          $(function() {
+                            var current_progress = 0;
+                            var interval = setInterval(function() {
+                                current_progress += 10;
+                                $("#dynamic")
+                                .css("width", current_progress + "%")
+                                .attr("aria-valuenow", current_progress)
+                                .text(current_progress + "% Complete");
+                                if (current_progress >= 100)
+                                    clearInterval(interval);
+                                   
+                            }, 1500);
+                           
+                          });
+                          console.log(data.json());
+                          this.toastr.success(data.json());
+                          this.lodar = false;
+                        },(error)=>{        this.toastr.error(error.json());
                                 });
-        
-        },(error)=>{   //console.log(error)
+                                this.lodar = false;
+        },(error)=>{         this.toastr.error(error.json());
                   });
     }
     closeModel(){this.uploadphoto_dailog = false;
+        this.uploader.queue =[];
+
     }
     setbackground(setId){
         let headers = new Headers();
@@ -140,8 +180,10 @@ export class PortfolioviewComponent implements OnInit {
 
                 }
             },error=>{ console.log(error)
+                this.toastr.error(error.json());
                    })
         },error=>{// console.log(error)
+            this.toastr.error(error.json());
                 })
     //console.log(setId)
     }
@@ -159,31 +201,19 @@ swal({
   }).then((res)=>{
     console.log(res);
     if(res.value===true){
-     // alert('delete Process !');
-    //  let con = confirm('Are you sure you want to delete this?')
-    //  if (con) {
-             
-         //console.log(e);
          var id = e.portfolioId;
-         //console.log(id);
          this.PortgetArray.splice(index, 1);
          let headers = new Headers();
          var authToken = localStorage.getItem('userToken');
          headers.append('Accept', 'application/json')
          headers.append('Content-Type', 'application/json');
-         headers.append("Authorization", 'Bearer ' + authToken);
-        // console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/removeportfolio?portfolioId'+ '=' + id);
+         headers.append("Authorization", 'Bearer ' + authToken);       
          this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/removeportfolio',{portfolioId: id}, { headers: headers }).subscribe(data => {
-     
-        // console.log(data.json());
          this.toastr.success(data.json().message);
          }, error => { 
-             //console.log(error) 
+            this.toastr.error(error.json());
          });
-    //  }
     }else{
-     // alert('Cancel Process !');
-
     }
    },error=>{
      alert(JSON.stringify(error));

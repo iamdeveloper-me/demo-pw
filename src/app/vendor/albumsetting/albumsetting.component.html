@@ -33,9 +33,10 @@
                   <div class="tagcontainer">
                     <span *ngFor="let ag of image.tags;let i=index"> 
                     
-                      <span class="tagstik"> 
+                      <span class="tagstik"  > 
                           {{ag}}    
                       </span>      
+                     
                     </span>
                   </div>
                 </td>
@@ -114,7 +115,7 @@
                   <div class="col-md-12 padtop20px">
                     <div class="form-group">
                         <div class="input-effect form-group md-form ">
-                        
+                       
                           <input class="effect-16 validate" 
                           type="text"  
                           [(ngModel)] = "taggg"
@@ -138,7 +139,7 @@
                         </div>
                         <ul class="list_inline">
                           <li  *ngFor="let g of tag_array;let i=index">
-                            <div *ngIf = "g != ''">
+                            <div *ngIf = "g">
                                 <span class="tagstik"> 
                                     {{g}}
                                   <i class="material-icons" (click) = "remove_tag_picker(i)">clears</i>
@@ -147,8 +148,10 @@
                            
                           </li>
                         </ul>  
-                     
-                        <a class="btn-sm btn btn-success editbtn" (click) = "tags_bage(taggg)">ADD Tag</a>
+                       
+                       
+                            <a (click) = "tags_bage(taggg)" class="btn-sm btn btn-success editbtn"   > ADD Tag</a> 
+                       
                       
                         <hr>
 
@@ -286,7 +289,7 @@
                 <div class="clearfix"></div>
               </div>
               <div class="modal-footer text-center">
-                  <button type="submit" class="btn newbtn" [disabled]="tag_array.length== 0 ">Save </button>&nbsp;
+                  <button type="submit" class="btn newbtn" >Save </button>&nbsp;
                   <button type="button" class="btn  newbtn newcancelbtn" (click)="closeModel()">Cancel</button>
               </div>
           </div>

@@ -192,7 +192,11 @@ createdeal.reset();
 
       this.toastr.success(" New Deal is created");
       console.log( this.recentmydeal); 
-    },error => {console.log(error);  this.toastr.warning(error);})
+    },error => {console.log(error); 
+      this.toastr.warning(error._body.split('[')[1].split(']')[0])
+                    
+      
+      })
  
 }
 openupdatedeal(data){

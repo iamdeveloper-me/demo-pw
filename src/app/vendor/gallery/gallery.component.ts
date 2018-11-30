@@ -5,7 +5,7 @@ import { ImageuploadService } from '../../shared/service/vendor/imageupload.serv
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 import { apiService } from '../../shared/service/api.service';
-
+import { Router } from '@angular/router';
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
 @Component({
@@ -20,6 +20,7 @@ export class GalleryComponent implements OnInit {
   gallery = { files: ''}
   fileToUpload:any;
   albumsId:'';
+  lodar = false;
   eventArray:any = {};
   portfolio:any = [];
   iterations = [1,2];
@@ -39,8 +40,8 @@ export class GalleryComponent implements OnInit {
     url: URL,
     isHTML5: true
   });
-  hasBaseDropZoneOver = false;
-  hasAnotherDropZoneOver = false;
+  hasBaseDropZoneOver = true;
+  hasAnotherDropZoneOver = true;
   // Angular2 File Upload
   fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
@@ -55,47 +56,45 @@ export class GalleryComponent implements OnInit {
     public HttpClient: HttpClient,
     public toastr: ToastrService,
     private apiService : apiService,
-    private _ngZone: NgZone
+    private _ngZone: NgZone,
+    private router: Router 
+  
   ) { }
   ngOnInit() {
   
        $.getScript('./assets/js/vendorsidebar.js');
 
-    // let headers = new Headers();
-    // var authToken = localStorage.getItem('userToken');
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
     
-    // headers.append('Accept', 'application/json')
-    // headers.append('Content-Type', 'application/json');
-    // headers.append("Authorization",'Bearer '+authToken);
-    // var basicplan = localStorage.getItem('basic-plan');
-    // //  console.log(parseInt(basicplan) );
-    //   if( parseInt(basicplan) == 1 ){
-    //     alert("cant create");
-    //     $(".albumlist").hide();
-    //   }else{
-    //     $('div').removeClass("overlay");
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+    var basicplan = localStorage.getItem('basic-plan');
+      console.log(parseInt(basicplan) );
+      if( parseInt(basicplan) == 1 ){
+        // alert("cant create");
+        $(".albumlist").hide();
+      }else{
+        $('div').removeClass("overlay");
       
-    //   }
+      }
     
     //Album Get
     
     this.showport();
 
     this.showalbum();
-
-
-
-
-
   }
 
 
         
 
        addFile(info): void {
-        console.log(info);
+       // console.log(info);
     
         let fi = this.fileInput.nativeElement;
+      
         if (fi.files && fi.files[0]) {
              
             let fileToUpload = fi.files;
@@ -144,29 +143,54 @@ export class GalleryComponent implements OnInit {
 
         uploadAll(){
 
-         this.uploadphoto_dailog = false;
-
+         
+         this.lodar = true;
           const formData = new FormData();
+
+        
           for(let file of this.uploader.queue){
           formData.append(file['some'].name,file['some'])
           }        
+
+           this.uploadphoto_dailog = false;
           // Headers
           let headers = new  Headers();
           var authToken = localStorage.getItem('userToken');
           headers.append("Authorization",'Bearer '+authToken);
-          
+         
           //Post Album 2 photos
           this.http.post(this.uploadimage,formData,{headers:headers})
             .subscribe(data =>{ 
               console.log(data.json().filesId);
-            
-              this.http.post(this.addportfolio,{filesId:data.json().filesId},{headers:headers})
+            const a ={
+              portfolioId: 0,
+              filesId: data.json().filesId,
+              tags: "add tag",
+              colorTags: "add colour tag",
+              setAsBackgroud: false
+            }
+           
+              this.http.post(this.addportfolio,a,{headers:headers})
             .subscribe(data =>{ 
               console.log(data.json());
+              $(function() {
+                var current_progress = 0;
+                var interval = setInterval(function() {
+                    current_progress += 10;
+                    $("#dynamic")
+                    .css("width", current_progress + "%")
+                    .attr("aria-valuenow", current_progress)
+                    .text(current_progress + "% Complete");
+                    if (current_progress >= 100)
+                        clearInterval(interval);
+                        this.lodar = false;
+                }, 1500);
+              });
+              this.router.navigate(['../vendor/portfolioview'])
             
-            
-            
-            },(error)=>{console.log(error)});
+            },(error)=>{console.log(error)
+              this.toastr.warning(error._body.split('[')[1].split(']')[0]);
+            });
             
             },(error)=>{console.log(error)});
         }
@@ -184,9 +208,9 @@ export class GalleryComponent implements OnInit {
           this.apiService.getData(this.getportfolio).subscribe(res =>{
             this.portfolio = res;
             this.portArray = res;
-           
             },
-            error => { console.log('aaaaaaaaaaa',error)}
+            error => { console.log('aaaaaaaaaaa',error)
+          }
           )
         }
 
@@ -201,27 +225,7 @@ export class GalleryComponent implements OnInit {
                       
                       
                       this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
-                      this.eventArray = data.json();
                       this.albumArray = data.json() ;
-                     
-                      console.log(this.eventArray);  
-                      if(!this.eventArray || this.eventArray.length == 0){
-                        console.log("Array is  empty ");
-                        $('.album2').hide();
-                        
-                        }
-                      else
-                      {
-                        console.log("Array is not empty ")
-                        $('.album').hide();
-                        }
-              
-              
-
-                      
-                        console.log( this.eventArray );
-                 
-  
                     })
                  }
 
@@ -230,7 +234,7 @@ export class GalleryComponent implements OnInit {
        
   this.uploadphoto_dailog = false;
   this.createalbum_dailog = false;
-
+  this.uploader.queue =[];
 
 }
 

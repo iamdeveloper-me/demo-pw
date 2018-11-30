@@ -43,8 +43,8 @@ export class ViewPhotoAlbumsComponent implements OnInit {
     url: URL,
     isHTML5: true
   });
-  hasBaseDropZoneOver = false;
-  hasAnotherDropZoneOver = false;
+  hasBaseDropZoneOver = true;
+  hasAnotherDropZoneOver = true;
 
   // Angular2 File Upload
   fileOverBase(e: any): void {
@@ -93,19 +93,19 @@ export class ViewPhotoAlbumsComponent implements OnInit {
     console.log(params) ;
         this.albumid = params;
   });
-
   $(function() {
-  var current_progress = 0;
-  var interval = setInterval(function() {
-      current_progress += 10;
-      $("#dynamic")
-      .css("width", current_progress + "%")
-      .attr("aria-valuenow", current_progress)
-      .text(current_progress + "% Complete");
-      if (current_progress >= 100)
-          clearInterval(interval);
-  }, 1000);
-});
+    var current_progress = 0;
+    var interval = setInterval(function() {
+        current_progress += 10;
+        $("#dynamic")
+        .css("width", current_progress + "%")
+        .attr("aria-valuenow", current_progress)
+        .text(current_progress + "% Complete");
+        if (current_progress >= 100)
+            clearInterval(interval);
+    }, 2000);
+  });
+
 
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
@@ -355,8 +355,8 @@ $(document)
    
 
   
-    this.total = 100;
-   this.lodar = true;
+ 
+    this.lodar = true;
     const formData = new FormData();
     for(let file of this.uploader.queue){
     formData.append(file['some'].name,file['some'])
@@ -381,7 +381,7 @@ $(document)
          console.log(data.json()); 
          console.log(this.albumid.id); 
          console.log(data.json()); 
-         this.lodar = false;
+        
          for (var item of  this.totalImage ) {
             if(this.albumid.id == item.albumsId)
               {
@@ -390,7 +390,23 @@ $(document)
                  
               }
           }
+
+
+          // $(function() {
+          //   var current_progress = 0;
+          //   var interval = setInterval(function() {
+          //       current_progress += 10;
+          //       $("#dynamic")
+          //       .css("width", current_progress + "%")
+          //       .attr("aria-valuenow", current_progress)
+          //       .text(current_progress + "% Complete");
+          //       if (current_progress >= 100)
+          //           clearInterval(interval);
+          //   }, 1000);
+          // });
+          this.lodar = false;
         });},(error)=>{console.log(error)});
+       
   }
 
   albumcoverimage(albumId){

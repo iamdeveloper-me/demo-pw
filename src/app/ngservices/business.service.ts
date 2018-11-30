@@ -3,7 +3,7 @@ import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import { apiPath } from '../shareApi/apiPath';
-import { VendorServiceVM, ServiceFieldValuesVM } from 'app/vendor/business-services/business-services.component';
+import { VendorServiceVM } from 'app/vendor/business-services/business-services.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,14 +23,16 @@ export class BusinessService {
    setIntoLocalDb(data){
     localStorage.setItem('savedService',JSON.stringify(data));
    }
-   SaveIntoDb(objVenderServiceVm:VendorServiceVM){
-     console.log(objVenderServiceVm);
-    if(objVenderServiceVm.serviceFields.length<1){
-      let svm=new ServiceFieldValuesVM();
-      svm.customFieldId=28;
-      svm.FieldValue='Custum';
+   SaveIntoDb(objVenderServiceVm){
+     debugger;
+     if(objVenderServiceVm.serviceFields==undefined){
+      objVenderServiceVm.serviceFields=[];
+     }
+    if(objVenderServiceVm.serviceFields.length<1 || objVenderServiceVm.serviceFields.length==undefined){
+      let svm={customFieldId:28,FieldValue:'Custum', id:7};
       objVenderServiceVm.serviceFields.push(svm);
     }
+    debugger;
    return this.http.post(this.api+'/api/Supplier/savebusinessservices',objVenderServiceVm,{headers:this.header});    
   }
   update_VendorSocialLink(model): Observable<any>{

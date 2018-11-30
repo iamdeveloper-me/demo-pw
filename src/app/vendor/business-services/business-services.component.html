@@ -12,7 +12,7 @@
 					<div class="sliderholder">
 						<button class="prebtn" (click)='gatNavTest()'><i class="material-icons">arrow_back_ios</i></button>
 						<div class="servicecontainer">
-								<div class="activehide" *ngFor='let c of bc' (click)='getServicesByCategory(c.categoryId)'>
+								<div class="activehide" *ngFor='let c of selected_category' (click)='getServicesByCategory(c.categoryId)'>
 										<span>{{c.categoryName}}</span>
 								</div>
 						</div>
@@ -30,25 +30,12 @@
 							<h5 class="text-center">Which service do you provide?</h5>
 							<div class="container">
 									<div class="row text-center">
-										<div class="col-sm-12" *ngIf='SavedService!=null && SavedService.categoryId==objVenderServiceVm.categoryId'>	
+										<div class="col-sm-12">	
 											{{objVenderServiceVm.serviceName}}
 											<!-- {{getCustomFieldBySreviceId(objVenderServiceVm.servicesId)}} -->
 
 										</div>
-										<div class="col-sm-12"><button class="btn newbtn">Select</button></div>
-
-										<div class="ratio-btns">
-											<div class="col-md-12 text-center" style="cursor:pointer" *ngFor="let enum of services" (click)='getCustomFieldBySreviceId(enum.servicesId)'>
-																<label for="enum_answer_{{enum.serviceName}}">
-																		<input id="enum_answer_{{enum.name}}" value="objVenderServiceVm.serviceName==enum.serviceName" [checked]='objVenderServiceVm.serviceName==enum.serviceName'  (change)='getCustomFieldBySreviceId(enum.servicesId)' type="radio" name="enums">
-																		{{enum.serviceName}}
-																	</label>
-											</div>
-										</div>
-										<div class="col-md-offlset-3 col-md-6">
-											<button class="btn newbtn" (click)='SaveIntoDb()'>Save</button>
-											<button class="btn newbtn">Cancel</button>
-										</div>
+										<div class="col-sm-12"><button class="btn newbtn" (click)='showServiceDialog()'>Select</button></div>
 									</div>
 							</div>
 						</div>
@@ -66,10 +53,11 @@
 											<div class="col-md-3" *ngFor='let cf of customFields'>
 													<div class="col-md-12">
 															<label>
-															<input type="checkbox" [value]='cf.isEnable' [(ngModel)]='cf.isEnable'/>
+															<input type="checkbox" [checked]='cf.isSelect' [value]='cf.isEnable' [(ngModel)]='cf.isEnable'/>
 															{{cf.name}} <br/>
 															<span>
-																	 <i class="fa fa-check"> {{getSelectedCustomFieldOption(cf).FieldValue }}   </i>
+																{{cf.SelectedOptionValue}}
+																	  <!-- <i class="fa fa-check"> {{getSelectedCustomFieldOption(cf).fieldValue }}   </i>  -->
 															</span>
 														<!-- <span *ngFor='let cfo of cf.customFieldOptionList'>
 														 <span>{{getSelectedCustomFieldOption(cf.customFieldId)}}</span> 
@@ -81,7 +69,7 @@
 																</span>
 															</span> -->
 														</label>
-															<button [disabled]='!cf.isEnable' class="btn newbtn" *ngIf='cf.fieldType==5' (click)='getSelectOptions(cf.customFieldOptionList)'>
+															<button [disabled]='!cf.isEnable' class="btn newbtn" (click)='getSelectOptions(cf)'>
 																Select
 															</button>
 													</div>
@@ -92,20 +80,72 @@
 								</div>
 							</div>
 					</div>
+					<div class="modal fade"  id="serviceselect" [ngClass] = "{'show' : customDialog}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content mobminheight">
+									<div class="modal_head text-center">
+											<h4 class="modal-title"><strong> Please Select Option</strong>  </h4>
+											<button type="button" class="close" (click)="closeCustomDialog()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<div class="clearfix"></div>
+									</div>
+									<div class="modal-body">
 						<div class="col-md-12">
+							
 							 <div class="btn btn-default col-md-6 col-md-offset-3" *ngFor='let cfo of customFieldSelectOptions'>
 								<label (click)='seveCustomField(cfo)'>
-							<input id="enum_answer_{{cfo.customFieldId}}" [value]='cfo.key' [checked]='cfo.isSelected'  type="radio" name="cfo">
+							<input id="enum_answer_{{cfo.customFieldId}}" [value]='cfo.key' [checked]='cfo.isSelect'  type="radio" name="cfo">
 							{{cfo.displayText}}
 								</label>
 							</div> 
+						</div>
+						</div>
+						</div>
+						</div>
 						</div>
 					</div>
 				  </section>
 			</div>
 	  </div>		
 	</div>
+</div>
+<div *ngIf='showLoader' style='width:100%;height:100%;z-index: 99999;position: absolute;background-color:transparent'>
+<h4 style="text-align: center;color:tomato;top:15%;">Processing...........</h4>
 </div>	
+<div class="modal fade"  id="serviceselect" [ngClass] = "{'show' : serviceDialog}" *ngIf='serviceDialog' tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content mobminheight">
+			<div class="modal_head text-center">
+					<h4 class="modal-title"><strong> Please Select Service</strong>  </h4>
+					<button type="button" class="close" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<div class="clearfix"></div>
+			</div>
+			<div class="modal-body">
+				<div class="col-sm-12  text-center mobnopadd"  *ngIf= "cropperupload">
+				
+					<div class="clearfix"></div>
+
+					<div class="ratio-btns">
+						<div class="col-md-12 text-center" style="cursor:pointer" *ngFor="let enum of services" (change)='getCustomFieldBySreviceId(enum.servicesId,enum.serviceName)'>
+											<label for="enum_answer_{{enum.serviceName}}" (click)='getCustomFieldBySreviceId(enum.servicesId)'>
+													<input id="enum_answer_{{enum.name}}" value="objVenderServiceVm.serviceName==enum.serviceName" [checked]='enum.isSelect'  (change)='getCustomFieldBySreviceId(enum.servicesId)' type="radio" name="enums">
+													{{enum.serviceName}}
+											</label>
+						</div>
+					</div>
+					<div class="col-md-offlset-3 col-md-6">
+						<button class="btn newbtn" (click)='SaveIntoDb()'>Save</button>
+						<button class="btn newbtn" (click)="closeModel('serviceDialog')">Cancel</button>
+					</div>
+
+				</div>
+				
+			</div>
+			<div class="modal-footer text-center">
+				
+			</div>
+		</div>
+	</div>    
+</div>    
    
   
   

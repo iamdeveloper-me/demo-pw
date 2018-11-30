@@ -17,7 +17,10 @@ export class EditprofileComponent implements OnInit {
     lastName: '',
     phoneNumber:'',
     // email : '',
-    vendorContactInfo:{ email:''}
+    vendorContactInfo:{ 
+      phone:'',      
+      email:''
+    }
 };
 fbAvailable = false;
 personal_data_update = false;
@@ -64,6 +67,7 @@ changePassword_form = false;
     this.http.get(this.url,{headers:headers}).subscribe(
       data =>{ this.vendor = data.json();
                console.log(this.vendor);
+               console.log(this.vendor.vendorContactInfo);
       });
 
     //membership api

@@ -108,7 +108,7 @@
 </div>
 
 <!--Form F1 Profile-->
-<form name="formprofile" (ngSubmit)="f1.formprofile.valid && updateData(f1)" #f1="ngForm" novalidate>
+<form name="form" (ngSubmit)="f1.form.valid && updateData(f1)" #f1="ngForm" novalidate>
     <div class="modal fade" id="photo_ved" [ngClass]="{'show' : personal_data_update}" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -248,7 +248,7 @@
 
 <!--Form F Change Password-->
 
-<form name="form"  (ngSubmit)="f.form.valid && changePassword(f)" #f="ngForm" novalidate>
+<form name="form"  (ngSubmit)="f.form.valid && changePassword(f)" #f="ngForm" novalidate >
         <div class="modal fade" id="cPassword" [ngClass]="{'show' : changePassword_form}" tabindex="-1" role="dialog"
             aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -281,7 +281,7 @@
                                                 enter a valid old password!</small> -->
                                                 <div *ngIf="f.submitted && OldPassword.invalid" class="invalid-feedback  form-submit">
                                                         <small class="form-text text-muted danger" *ngIf="OldPassword.errors.required">Old Password is required</small>
-                                                        <small class="form-text text-muted danger"  *ngIf="OldPassword.errors.minlength">Old Password must be at least 6 characters</small>
+                                                        <!-- <small class="form-text text-muted danger"  *ngIf="OldPassword.errors.minlength">Old Password must be at least 6 characters</small> -->
                                                 </div>
                                         </div>
                                     </div>
@@ -308,7 +308,7 @@
                                                 enter a valid new password!</small>  -->
                                                 <div *ngIf="f.submitted && NewPassword.invalid" class="invalid-feedback form-submit">
                                                         <small class="form-text text-muted danger"  *ngIf="NewPassword.errors.required">New Password is required</small>
-                                                        <small class="form-text text-muted danger"  *ngIf="NewPassword.errors.minlength">New Password must be at least 6 characters</small>
+                                                        <!-- <small class="form-text text-muted danger"  *ngIf="NewPassword.errors.minlength">New Password must be at least 6 characters</small> -->
                                                         <small class="form-text text-muted danger"  *ngIf="ConfirmPassword.errors.pattern">Minimum 6 characters,1 uppercase,1 lowercase,1 number,1 special character!</small>
                                                 </div>
                                         </div>
@@ -329,19 +329,17 @@
                                                 [ngClass]="{ 'is-invalid': f.submitted && ConfirmPassword.invalid }" 
                                                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$"
                                                 required
-                                            />
+                                            />                                         
                                             <label>Confirm Password</label>
                                             <span class="focus-border"></span>
-                                                <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="!ConfirmPassword.valid && (ConfirmPassword.dirty || ConfirmPassword.touched)">Please
-                                                enter a valid confirm password!</small> -->
+                                            <small class="form-text text-muted danger"  *ngIf="f.ConfirmPassword !== f.NewPassword">
+                                                password not match 
+                                            </small>
                                                 <div *ngIf="f.submitted && ConfirmPassword.invalid" class="invalid-feedback form-submit">
                                                         <small class="form-text text-muted danger"  *ngIf="ConfirmPassword.errors.required">Confirm Password is required</small>
-                                                        <small class="form-text text-muted danger"  *ngIf="ConfirmPassword.errors.minlength">Confirm Password must be at least 6 characters</small>
+                                                        <!-- <small class="form-text text-muted danger"  *ngIf="ConfirmPassword.errors.minlength">Confirm Password must be at least 6 characters</small> -->
                                                         <small class="form-text text-muted danger"  *ngIf="ConfirmPassword.errors.pattern">Minimum 6 characters,1 uppercase,1 lowercase,1 number,1 special character!</small>
-                                                        <!-- <div *ngIf="confirmPassword.errors.mustMatch">Passwords must match</div> -->
-                                                        <small class="form-text text-muted danger validationErrorMsg" *ngIf="!f.NewPassword == f.ConfirmPassword">
-                                                                password not match 
-                                                        </small>
+                                                        <!-- <small class="form-text text-muted danger"  *ngIf="ConfirmPassword.errors.mustMatch">Passwords must match</small> -->
                                                 </div>
                                         </div>
                                     </div>

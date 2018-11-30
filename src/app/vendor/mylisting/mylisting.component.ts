@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 export class MylistingComponent implements OnInit, AfterViewInit {
   private base_url : string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Reviews'
   edit_re= false;
-
+c;
   countryArray = [  {
     "reviewId": 0,
     "feedback": "string"
@@ -72,7 +72,9 @@ export class MylistingComponent implements OnInit, AfterViewInit {
     this.http.post(this.base_url + "/myreviews", data, { headers: this.header() }).subscribe(
         data =>{
           this.countryArray = data.json()
-          console.log(  this.countryArray);  
+
+          console.log(  this.countryArray);
+          this.c=   data.json().count;
           this.collection = this.countryArray
           
     },error=>{

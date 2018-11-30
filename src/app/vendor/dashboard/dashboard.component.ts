@@ -3,7 +3,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
 import { Router } from '@angular/router';
-
+import swal from 'sweetalert2';
 
 // Add the RxJS Observable operators we need in this app.
 
@@ -62,6 +62,7 @@ export class DashboardComponent implements OnInit {
   test = 12.5;
   test1 = 0;
   albumCount;
+  totaljobArray;
   VendorDashboard_data = {portfolioImage : '',portfolioCount: '',
   videoCount : '',albumCount: '',impression: '',enquiries: '',loveCount: '',reviews: ''};
   //VendorDashboard
@@ -94,9 +95,10 @@ export class DashboardComponent implements OnInit {
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
         this.http.post(this.geturl,{ filter: 2 },{headers:headers}).subscribe(data =>{
-          this.jobArray = data.json() as string[]; 
+          this.jobArray = data.json(); 
           console.log(this.jobArray);
-      
+          this.totaljobArray =   this.jobArray.length; 
+          console.log( this.totaljobArray);
          });
         this.http.get(this.dashboard,{headers:headers}).subscribe((data)=> 
         {
@@ -112,23 +114,26 @@ export class DashboardComponent implements OnInit {
         this.http.get(this.url,{headers:headers}).subscribe(
           data =>{ this.vendor = data.json();
                    console.log(this.vendor);
-                  // console.log(this.vendor.vendorLocations);
+                   if(!this.vendor.profileImage )
+                   {
+                  
+                   this.vendor.profileImage = "https://openclipart.org/download/247324/abstract-user-flat-1.svg"
+                  }
 
-                  //  console.log(this.vendor.vendorLocations[0].mapAddress);
+                  this.priceplantitle = this.vendor.pricingPlan.title
+
+
                    this.add = this.vendor.vendorLocations[0].mapAddress;
                   
                   //  console.log(this.vendor.vendorLocations[0].locationPhones[0].phoneNumber);
                   this.ph = this.vendor.vendorLocations[0].locationPhones[0].phoneNumber;
 
                   
-                  this.total_business_Services = this.vendor.businessServices.length -1;
-                  this.total_phone_no =  this.vendor.vendorLocations.length - 1;
+                  this.total_business_Services =Math.abs(this.vendor.businessServices.length);
+                  this.total_phone_no = Math.abs(this.vendor.vendorLocations.length ); 
                     console.log(this.total_business_Services);
                     console.log(this.total_phone_no);
                    this.ct = this.vendor.vendorCategories[0].categories.categoryName;
-
-                  //  console.log(this.vendor.pricingPlan.title);
-                  this.priceplantitle = this.vendor.pricingPlan.title;
 
                    localStorage.setItem('categoryid',data.json().vendorCategories[0].categoryId);
                    localStorage.setItem('firstName',data.json().firstName);
@@ -137,11 +142,9 @@ export class DashboardComponent implements OnInit {
                    localStorage.setItem('basic-plan',data.json().pricingPlan.pricingPlanId);
                  
                    
-                   if(!this.vendor.profileImage )
-                   {
-                   console.log(this.vendor.profileImage);
-                   this.vendor.profileImage = "https://api.asm.skype.com/v1/objects/0-sa-d7-42ce40a5cedd583b57e96843e17d67e2/views/imgpsh_fullsize"
-                  }
+                 
+           
+    
                  });
 
                  this.http.get(this.VendorDashboard,{headers:headers}).subscribe(
@@ -152,10 +155,22 @@ export class DashboardComponent implements OnInit {
 
                           if(this.total == '100')
                           {
-                            alert("profile completed");
                           
+                          
+                        
+                          swal({
+                            title: "Are you sure?",
+                        text: "profile completed",
+                        type: "warning",
+                        showCancelButton: true,
+                      
+                        }).then((res)=>{
                           $(".profile").hide();
-                         
+        
+                          },error=>{
+                            alert(JSON.stringify(error));
+                        })
+                          return;
                         } 
                           this.buinessPhone = data.json().profileCompletion.buinessPhone;
                           this.businessProfilePic = data.json().profileCompletion.businessProfilePic;
@@ -185,14 +200,14 @@ export class DashboardComponent implements OnInit {
                                  console.log(data.json());
                                 //  this.venderDash = data.json() as string[]; 
                                 this.VendorDashboard_data = data.json();
-                  
+                                                       
                         });
 
                   $.getScript('./assets/js/prism.min.js');
-                  $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
-                  $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
+             //     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
+              //    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
 
-                  $.getScript('https://www.jssor.com/script/jssor.slider-27.4.0.min.js');
+             //     $.getScript('https://www.jssor.com/script/jssor.slider-27.4.0.min.js');
 
                   $.getScript('./assets/js/owljsor.js');
                   $.getScript('./assets/js/vendorsidebar.js');

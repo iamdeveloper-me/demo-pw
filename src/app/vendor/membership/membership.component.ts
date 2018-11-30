@@ -26,7 +26,7 @@ export class MembershipComponent implements OnInit {
   payFrequency:number;
   ngOnInit() {
 
-    $.getScript('./assets/js/vendorsidebar.js');  
+  //  $.getScript('./assets/js/vendorsidebar.js');  
     $.getScript('./assets/js/membershipslider.js'); 
 
     $(".Suppliertab").click(function(){
@@ -75,6 +75,7 @@ export class MembershipComponent implements OnInit {
   ngAfterViewChecked(): void {
   //Called after every check of the component's view. Applies to components only.
   //Add 'implements AfterViewChecked' to the class.
+
   }
   
   constructor(config: NgbCarouselConfig,public http: Http,private router: Router) {

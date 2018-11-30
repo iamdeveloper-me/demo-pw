@@ -132,6 +132,79 @@ color:#cc0000!important;
        width:200px;
        margin-right:20px;
     }
+
+    %label-movement {
+        // Move up, colorize and shrink
+        font-size: 0.75em;
+        color:rgb(240, 17, 140);
+        top: -1.25rem;
+        transition: all 0.4s;
+      }
+      
+      .styled-input {
+        float: left;
+        width: 100%;
+        margin: 0 0 1rem;
+        position: relative;
+        label {
+          color: #999;
+          padding: 1rem 0px;
+          position: absolute;
+          top: 0;    
+          left: 0;
+          transition: all 0.4s;
+          pointer-events: none;
+        }
+        &.wide {
+          // Full width textarea fields
+          width: 100%;
+        }
+      }
+      
+      .styled-input input, .styled-input textarea {
+        padding: 25px 0px 5px 0;
+        border: 0; 
+        width: 100%;
+        font-size: 1rem;
+        border-bottom: 1px solid #e5e5e5;
+        ~ span {
+          // Border Effect
+          display: block;
+          width: 0;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          height: 2px;
+          background-color: rgb(240, 17, 140);
+          transition: 0.4s;
+        }
+        &:focus {
+          // Trigger the effects
+          outline: 0;
+            ~ label {
+            // Move Label
+            @extend %label-movement;
+            }
+          ~ span {
+            // Expand across
+            width: 100%;
+             transition: 0.4s;
+          }
+          }
+        &:valid  label/*, &.not-empty  label*/ {
+          // Keep label above field after its filled out
+          @extend %label-movement;
+        }
+      }
+      
+      .styled-input textarea {
+        // Mods needed for multiline inputs
+        width: 100%;
+        min-height: 15em;
+      }
+
+
+
     @media(max-width:767px){
     .cardlisting{
     max-width: 100%; 

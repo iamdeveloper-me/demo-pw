@@ -452,40 +452,40 @@ locations(event: any) { this.location  = '';}
   }
 
   deletevent(data, index) {
-    swal({
-      title: "Are you sure?",
-  text: "You will not be able to recover this imaginary file!",
-  type: "warning",
-  showCancelButton: true,
-  confirmButtonClass: "btn-default",
-  confirmButtonText: "Yes, delete it!",
-  cancelButtonText: "No, cancel plx!",
-   }).then((res)=>{
-  
-     if(res.value===true){
-      // alert('delete Process !');
-          // alert(data)
-    // console.log(id);
-    var id = data.eventId;
-    console.log(id);
-    this.eventArray.splice(index, 1);
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization", 'Bearer ' + authToken);
-    console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id' + '=' + id);
-    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id' + '=' + id, { headers: headers }).subscribe(data => {
-      this.toastr.success("delete sucessfully");
-    }, error => { console.log(error) });
-    //  alert(JSON.stringify(res));
-     }else{
-      // alert('Cancel Process !');
-     }
-    },error=>{
-      alert(JSON.stringify(error));
-   })
-     return;
+          swal({
+            title: "Are you sure?",
+        text: "You will not be able to recover this imaginary file!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-default",
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel plx!",
+        }).then((res)=>{
+        
+          if(res.value===true){
+            // alert('delete Process !');
+                // alert(data)
+          // console.log(id);
+          var id = data.eventId;
+          console.log(id);
+          this.eventArray.splice(index, 1);
+          let headers = new Headers();
+          var authToken = localStorage.getItem('userToken');
+          headers.append('Accept', 'application/json')
+          headers.append('Content-Type', 'application/json');
+          headers.append("Authorization", 'Bearer ' + authToken);
+          console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id' + '=' + id);
+          this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id' + '=' + id, { headers: headers }).subscribe(data => {
+            this.toastr.success("delete sucessfully");
+          }, error => { console.log(error) });
+          //  alert(JSON.stringify(res));
+          }else{
+            // alert('Cancel Process !');
+          }
+          },error=>{
+            alert(JSON.stringify(error));
+        })
+          return;
   }
 
   search_event(e){

@@ -35,10 +35,11 @@ export class NavemenuComponent implements OnChanges,OnInit   {
         data =>{ this.vendor = data.json();
                //  console.log(this.vendor);
                 this.userImg = this.vendor.profileImage;
-                 if(!this.vendor.profileImage)
-                 {
-                 this.vendor.profileImage = "https://cdn4.iconfinder.com/data/icons/gray-user-management/512/rounded-512.png"
-              }
+                if(!this.vendor.profileImage )
+                {
+                
+                this.userImg = "https://openclipart.org/download/247324/abstract-user-flat-1.svg"
+               }
                                });
       // alert(firstName);
 

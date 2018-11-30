@@ -629,3 +629,36 @@ left:0px;
     padding-left: 0;
 }
 }
+
+
+
+
+%label-movement {
+    // Move up, colorize and shrink
+    font-size: 0.75em;
+    color:rgb(240, 17, 140);
+    top: -1.25rem!important;
+    transition: all 0.4s;
+  }
+  
+  .styled-input {
+    float: left;
+    width: 100%;
+    margin: 0 0 1rem;
+    position: relative;
+    label {
+      color: #999;
+      padding: 1rem 0px;
+      position: absolute;
+      top: 0;    
+      left: 0;
+      transition: all 0.4s;
+      pointer-events: none;
+    }
+    &.wide {
+      // Full width textarea fields
+      width: 100%;
+    }
+  }
+  
+  

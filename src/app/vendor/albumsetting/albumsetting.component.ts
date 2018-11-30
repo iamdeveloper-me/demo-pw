@@ -40,6 +40,7 @@ colour_picker1 = [];
 tags_picker1 = [];
 t='';
 tag_array = [];
+tag_array2:string;
 choose:any ;
 a = [];
 tag_error;
@@ -97,7 +98,9 @@ colour_tag_error;
     this.formdata = e;
     if(e.tags.length != 0){
       this.tag_array = e.tags;
+
     }
+   
     if(e.colorTags==undefined){e.colorTags=[];}
     this.a = e.colorTags;
     
@@ -109,12 +112,15 @@ colour_tag_error;
 
   tags_bage(e){
               console.log(e);
-               if(typeof(e) == 'undefined' )
+               if(typeof(e) == 'undefined' || e == '')
               {
                 this.tag_error = "empty tag not added tags"
+                console.log(this.tag_array.length);
               }else{
                       this.tag_array.push(e);
+                        console.log(this.tag_array);
                       this.taggg = '';
+                   
               }
    }
   colour_picker(d){
@@ -154,51 +160,83 @@ remove_colour_picker(g){
 editSetting(f){
   console.log(f);
   this.description_dailog = false;
+ 
+  // alert(f.value.AlbumImageId);
+
+    
+    this.tag_array = this.tag_array.filter(element => element !== "")
+   console.log(  this.tag_array);
+   if(this.tag_array.length == 0 ){
+   
+    this.tag_array2 =  null
+    const fire  = {       
+      AlbumImageId: f.value.AlbumImageId,
+      AlbumsId: f.value.AlbumsId,
+      Tags:this.tag_array2,
+      ColorTags:  this.albumsetting2.csvColors,
+      SetAsBackground: false
+  }
+                       console.log(fire)
+                       this.post_tag_edit(fire)
+   }else{
+
+    this.tag_array2 = this.tag_array.join(',')
+    console.log(this.tag_array2)
+    const fire  = {       
+       AlbumImageId: f.value.AlbumImageId,
+       AlbumsId: f.value.AlbumsId,
+       Tags:this.tag_array2,
+       ColorTags:  this.albumsetting2.csvColors,
+       SetAsBackground: false
+   }
+                        console.log(fire)
+                        this.post_tag_edit(fire)
+                
+  
+   }
+  
+         
+
+}
+
+
+post_tag_edit(fire){
+
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
   headers.append('Accept', 'application/json')
   headers.append('Content-Type', 'application/json');
   headers.append("Authorization",'Bearer '+authToken);
-  alert(f.value.AlbumImageId);
-          const fire  = {       
-            AlbumImageId: f.value.AlbumImageId,
-            AlbumsId: f.value.AlbumsId,
-            Tags:this.tag_array.join(','),
-            ColorTags:  this.albumsetting2.csvColors,
-            SetAsBackground: true
-          }
-         console.log(fire)
-      this.http.post(this.update_portfolio_album,fire,{headers:headers}).subscribe(data =>{
-            this.albumImagesModify = [];  
-         this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
-          .subscribe(data =>{
-                            for (var item of  data.json() ) {
-                            if(this.albumid.id == item.albumsId)
-                              {   console.log(item);
-                                for (var albumtag of  item.albumImages ) {
-                                  if(albumtag.tags != null){
-                                    albumtag['tags'] = albumtag['tags'].split(',');
-                                   //  albumtag['colorTags'] = this.albumsetting2.csvColors;
-                                  }
-                                  if(albumtag.colorTags !=null){
-                                    //  albumtag['colorTags'] = albumtag['colorTags'].split(',');
-                                    albumtag['colorTags'] = albumtag['colorTags'].split(',');
-                                  }
-                                  this.albumImagesModify.push(albumtag);
-                                }
-                              }
-                            }
-                               this.tags = item.tags;
-                               this.colourtags = item.colorTags;
-                          });
-          
-      this.toastr.success(data.json().message);
-      
-  },error=> console.log(error)    )
-  this.description_dailog = false;
-
+        this.http.post(this.update_portfolio_album,fire,{headers:headers}).subscribe(data =>{
+                          this.albumImagesModify = [];  
+                       this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
+                        .subscribe(data =>{
+                                          for (var item of  data.json() ) {
+                                          if(this.albumid.id == item.albumsId)
+                                            {   console.log(item);
+                                              for (var albumtag of  item.albumImages ) {
+                                                if(albumtag.tags != null){
+                                                  albumtag['tags'] = albumtag['tags'].split(',');
+                                                 //  albumtag['colorTags'] = this.albumsetting2.csvColors;
+                                                }
+                                                if(albumtag.colorTags !=null){
+                                                  //  albumtag['colorTags'] = albumtag['colorTags'].split(',');
+                                                  albumtag['colorTags'] = albumtag['colorTags'].split(',');
+                                                }
+                                                this.albumImagesModify.push(albumtag);
+                                              }
+                                            }
+                                          }
+                                             this.tags = item.tags;
+                                          
+                                             this.colourtags = item.colorTags;
+                                        });
+                        
+                      this.toastr.success(data.json().message);
+                      
+                      },error=> console.log(error)    )
+                      this.description_dailog = false;
 }
-
 err(e){
   console.log(e)
 }
@@ -210,6 +248,7 @@ onSelect(tags){
 
 closeModel(){
   this.description_dailog = false;
+  this.tag_array = [];
 }
   //service
   deleteImage(image,index){

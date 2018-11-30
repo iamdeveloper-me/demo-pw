@@ -44,7 +44,7 @@ export class SignupVendorService {
 
         contactInfo: { contactPerson: contactPerson, email: email, phone: "9826812185", website: website},
         businessInfo: {countryId:countryId,districtId:districtId ,suburbId:suburbId,city: city, postalCode: postalcode,address: address, nameOfBusiness: nameOfBusiness, 
-                       pricingPlanId:planId['pricingPlanId'] ,payFrequency:planId['payFrequency'] },
+                       pricingPlanId:planId.pricingPlanId ,payFrequency: parseInt(planId.payFrequency) },
         vendorCategories: [ { categoryId: categoryId }]
         } ,{headers: header});
 

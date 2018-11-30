@@ -45,7 +45,8 @@ export class MessageComponent implements OnInit {
   
   
   }
-
+  
+  imgmail = "https://image.flaticon.com/icons/svg/138/138690.svg";
   
   onSelectionChange(entry_id) {
     

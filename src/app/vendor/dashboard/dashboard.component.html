@@ -31,14 +31,14 @@
                         <div class="col-sm-3  displya_name">
                             <ul>
                               <li > 
-                                <a routerLink="../business" *ngIf="buinessPhone == test">
+                                <a routerLink="../location" *ngIf="buinessPhone == test">
                                 
                                   <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
 
                                    <strong class="blacktext" >Buiness Phone </strong>
                                    <button class="editbtn">Select to Edit</button>
                                 </a>
-                                <a routerLink="../business" *ngIf="buinessPhone == test1">
+                                <a routerLink="../location" *ngIf="buinessPhone == test1">
                                   <i class="material-icons graytext" ngbTooltip="Description">error_outline</i> 
 
                                   <strong class="blacktext" >Buiness Phone </strong>
@@ -101,7 +101,7 @@
                                          <strong class="blacktext" >Description</strong>
                                          <button class="editbtn">Select to Edit</button>
                                        </a>
-                                     <a routerLink="../business-services"  *ngIf="description == test1" >
+                                     <a routerLink="../business"  *ngIf="description == test1" >
                                          <i class="material-icons graytext" ngbTooltip="Description">error_outline</i> 
                                          <strong class="blacktext">Description</strong>  
                                          <span  class="editbtn">Edit</span> 
@@ -141,13 +141,13 @@
                                      </li>
                                      <li > 
                              
-                                        <a routerLink="../portfolioview" *ngIf="tradingName == test" class="done">
+                                        <a routerLink="../business" *ngIf="tradingName == test" class="done">
                                           <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
         
                                           <strong class="blacktext" >Trading Name</strong>
                                           <button class="editbtn">Select to Edit</button>
                                         </a>
-                                      <a routerLink="../portfolioview"  *ngIf="tradingName == test1" >
+                                      <a routerLink="../business"  *ngIf="tradingName == test1" >
                                           <i class="material-icons graytext" ngbTooltip="Description">error_outline</i> 
                                           <strong class="blacktext">Trading Name</strong>  
                                           <span  class="editbtn">Edit</span> 
@@ -174,7 +174,10 @@
               <div class="card-body nopadd" style="overflow: hidden; height: 420px;">
                  <div class="col-sm-5 nopadd maxheight335px">
                    <div class="infoimgbox">
-                    <img src="{{VendorDashboard_data.portfolioImage}}" class="" alt="Profile picture" >
+
+                    <!-- <img src="{{VendorDashboard_data.portfolioImage}}" class="" alt="Profile picture" > -->
+                    <img [src] = "vendor.profileImage"  alt="Profile picture" >
+                  
 
                   </div>
                     <div class="viewstore">
@@ -192,29 +195,34 @@
                     <div class="col-sm-10 col-9 blacktext nopadd pull-left">
                        <h2 class="titlehead"><strong>{{vendor.nameOfBusiness}}</strong></h2>
 
-                       <div class="overhiddenmob mobmartop15px">
+                       <div class="overhiddenmob mobmartop15px"  >
                           <div class="col-xs-1 nopadd">
                              <i class="material-icons">location_on</i>
                           </div>
                           <div class="col-xs-8 nopadd edithovering" >
+                          
+                            <!-- *ngIf = "vendor.vendorLocations > 0" -->
                              <!-- <p data-target="#currentLocation" data-toggle="modal">{{currentLocation}}<br/>2 More Branches </p> -->
-                             <p >
-                                <a routerLink="../location">
-
-                                 {{ add }} 
-                                  <br/>{{total_phone_no}} More Branches
-                                  <!-- {{url.address}} -->
-
-                                </a>
-                             </p>
+                             <div  *ngFor='let c of vendor.vendorLocations | slice:0:1 ;let p=index'>
+                                <div >
+                                  <a routerLink="../location"  >
+                                  {{vendor.city}},
+                                  {{vendor.country.countryName }},
+                                  {{vendor.districts.name}},
+                                  {{vendor.suburb.name}},
+                                  {{vendor.vendorLocations.length}} Total Location
+                                  </a>
+                                </div>  
+                      
+                              </div>
                              <span  class="editbtn" routerLink="../location">Edit</span>  
                           </div>
-                          <div class="prolinkmob">
-                             <a routerLink="../PromoteBusiness" class="font11px bluelink">
-                             <i class="material-icons">assessment</i> <span>Promote Business</span></a><br/>
-                             <a routerLink="../statistics" class="font11px bluelink"><i class="material-icons">equalizer</i> <span>Business Insight</span></a>
-                          </div>
                        </div>
+                       <div class="prolinkmob">
+                        <a routerLink="../PromoteBusiness" class="font11px bluelink">
+                        <i class="material-icons">assessment</i> <span>Promote Business</span></a><br/>
+                        <a routerLink="../statistics" class="font11px bluelink"><i class="material-icons">equalizer</i> <span>Business Insight</span></a>
+                     </div>
                        <div class="clearfix"></div>
                        <div class="overhiddenmob" >
                           <div class="col-xs-1 nopadd">
@@ -225,11 +233,15 @@
                              <p >
 
                                 <a routerLink="../location" >
-                             {{ph}} <br/>{{total_phone_no}} More Numbers 
+                             {{vendor.vendorContactInfo?.phone }} <br/>
                              
 
                                 <span class="editbtn">Edit</span> 
                                 </a>
+                               
+                                  <a routerLink="../location" >
+                                   {{total_phone_no}} Total Numbers 
+                                  </a>
                              </p>
                           </div>
                        </div>
@@ -238,9 +250,14 @@
                              <i class="material-icons">work_outline</i>
                           </div>
                           <div class="col-xs-11 nopadd">
-
-                             <span class="pinkchip">{{ct}},{{total_business_Services}} More Services  </span><br/>
-                             Membership Type: {{priceplantitle}} <a routerLink="../membership" class="bluelink">Upgrade</a>
+                            
+                             <span class="pinkchip">
+                               
+                                <p *ngFor='let c of vendor.vendorCategories ;let p=index'>
+                                    {{c.categories.categoryName }}
+                                </p>
+                              ,{{total_business_Services}} Total Services  </span><br/>
+                             Membership Type: {{vendor.pricingPlan?.title}} <a routerLink="../membership" class="bluelink">Upgrade</a>
 
                           </div>
                        </div>
@@ -387,15 +404,15 @@
      <div class="col-sm-6 mobnopadd padleft0px">
         <div class="col-md-12 card mobnopadd padleft0px height360px">
             <div class="card card-stats ">
+             
+              <div class="col-sm-12" *ngIf = "totaljobArray > 0 ">
                   <div class="card-header card-header-warning card-header-icon">
-                  <div class="card-icon  white_bg margRight0 cardiconset">
-                    <i class="material-icons">event_available</i>
+                      <div class="card-icon  white_bg margRight0 cardiconset">
+                        <i class="material-icons">event_available</i>
+                      </div>
+                      <p class="card-category upcominghead">Upcoming Jobs</p>
                   </div>
-                  <p class="card-category upcominghead">Upcoming Weddings </p>
-              </div>
-                <div class="col-sm-12">
-                  
-               
+              
                   <div class="upcominglisthomepage" *ngFor="let job of jobArray | slice:0:3 ">
                      <div class="col-sm-8 col-8">
                        <i class="material-icons flotleft">date_range</i>  {{job.jobDate |  date:'medium' }}
@@ -425,6 +442,21 @@
                    </div>
 
                    <div class="col-sm-12 text-center"><a  class="viewallbutton" routerLink="../calender"> View All</a></div>
+              </div>
+              <div class="col-sm-12" *ngIf = "totaljobArray == 0">
+                  <div class="card-header card-header-warning card-header-icon">
+                      <div class="card-icon  white_bg margRight0 cardiconset">
+                        <i class="material-icons">event_available</i>
+                      </div>
+                      <p class="card-category upcominghead">No planned jobs</p>
+                  </div>
+                 
+                  <div class="upcominglisthomepage">
+                    
+                      <img src = "http://ethnographicalmuseum.com/wp-content/uploads/2018/04/no-events.jpg"  alt="Profile picture" >
+                   </div>
+
+                   <div class="col-sm-12 text-center"><a  class="viewallbutton" routerLink="../calender"> Go to Planner</a></div>
               </div>
             </div>
         </div>

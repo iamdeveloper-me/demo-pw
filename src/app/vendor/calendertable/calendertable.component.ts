@@ -21,7 +21,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./calendertable.component.scss']
 })
 export class CalendertableComponent implements OnInit {
-    jobArray:string[];
+  
+    jobArray: any = [];
     all = 3;
     upcomming =2;
     past = 1
@@ -205,8 +206,7 @@ export class CalendertableComponent implements OnInit {
     
     }
     deletevent(job,index){
-      this.jobArray.splice(index, 1);
-
+     
       swal({
         title: "Are you sure?",
       text: "You will not be able to recover this imaginary file!",
@@ -230,6 +230,7 @@ export class CalendertableComponent implements OnInit {
           this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob?VendorJobId'+'='+deleteid,{headers:headers}).subscribe(
             data =>{
           console.log(data.json());
+          this.jobArray.splice(index, 1);
           this.toastr.success(data.json().message );
                     
           },error =>{ console.log(error)});

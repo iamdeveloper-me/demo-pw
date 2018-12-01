@@ -206,12 +206,12 @@
                              <div  *ngFor='let c of vendor.vendorLocations | slice:0:1 ;let p=index'>
                                 <div >
                                   <a routerLink="../location"  >
-                                  {{vendor.city}},
-                                  {{vendor.country.countryName }},
-                                  {{vendor.districts.name}},
+                                  {{vendor.address}},
                                   {{vendor.suburb.name}},
-                                  {{vendor.vendorLocations.length}} Total Location
+                                  {{vendor.districts.name}},
+                                  {{vendor.country.countryName }},
                                   </a>
+                                  <a *ngIf = "ct > 0"> {{ct}} more Location</a>
                                 </div>  
                       
                               </div>
@@ -238,9 +238,10 @@
 
                                 <span class="editbtn">Edit</span> 
                                 </a>
-                               
-                                  <a routerLink="../location" >
-                                   {{total_phone_no}} Total Numbers 
+                              
+                                  <a  *ngIf = "ph > 0" routerLink="../location" >
+                                   {{ph}} more Numbers 
+                                                                   
                                   </a>
                              </p>
                           </div>
@@ -253,11 +254,16 @@
                             
                              <span class="pinkchip">
                                
-                                <p *ngFor='let c of vendor.vendorCategories ;let p=index'>
-                                    {{c.categories.categoryName }}
-                                </p>
-                              ,{{total_business_Services}} Total Services  </span><br/>
-                             Membership Type: {{vendor.pricingPlan?.title}} <a routerLink="../membership" class="bluelink">Upgrade</a>
+                                <a *ngFor='let c of vendor.vendorCategories| slice:0:1'>
+                                    {{c.categories.categoryName }},
+                                </a>
+
+                                <a  *ngIf = "total_business_Services > 0" routerLink="../location" >
+                                  {{total_business_Services}} more Numbers 
+                                                                  
+                                 </a>
+                              </span><br/>
+                             Membership Type: {{vendor.pricingPlan?.title}} <a routerLink="../membership" class="bluelink">Change plan</a>
 
                           </div>
                        </div>
@@ -278,7 +284,7 @@
                              <i class="material-icons">video_library</i>
                              <strong>{{VendorDashboard_data.videoCount}}</strong>
                              <div class="clearfix"></div>
-                             Vedios
+                             Videos
                           </a>
                        </div>
                        <div class="col-xs-4 text-center">

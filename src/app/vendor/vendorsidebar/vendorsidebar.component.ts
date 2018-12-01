@@ -44,7 +44,14 @@ export class VendorsidebarComponent implements OnInit {
   this.http.post(this.base_url + "/myreviews", data, { headers: this.header() }).subscribe(
       data =>{
       
-        console.log(data.json().count);  
+      //   console.log(data.json().items);  
+
+      //   for (let entry of data.json().items) {
+         
+      //     console.log( entry.reviewStatusString);
+      //     console.log(entry); // 1, "string", false
+      // }
+      
         this.countss = data.json().count
   },error=>{
         console.log(error)

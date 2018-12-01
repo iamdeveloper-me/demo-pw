@@ -21,7 +21,7 @@
           <div class="container-fluid photo_gallery">
             <section class="p-0 container" id="portfolio">
               <div class="">
-                <div class="drop_zone text-center">
+                <div class="drop_zone text-center" *ngIf = "basicplane == 0 ">
                     <a  id="Google-function" (click)="uploadphoto_dailog = true" data-reactid="339"  > <i class="material-icons">camera_alt</i> </a>  
                     <p>Click to add or drop image here</p>
                     <!-- (click)="open(content)" -->

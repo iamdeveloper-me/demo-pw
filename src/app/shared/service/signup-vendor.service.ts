@@ -20,7 +20,7 @@ export class SignupVendorService {
     var contactPerson = user.contactInfo.contactPerson;
 
     var email = user.contactInfo.email;
-    // var phone = user.contactInfo.phone;
+     var phone = user.contactInfo.phone;
     var website = user.contactInfo.website;
     var city = user.businessInfo.city;
 
@@ -42,7 +42,7 @@ export class SignupVendorService {
     return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/register',
       { logInInfo: {  firstName: firstname,lastName:lastname, password:upassword,confirmPassword: cpassword},
 
-        contactInfo: { contactPerson: contactPerson, email: email, phone: "9826812185", website: website},
+        contactInfo: { contactPerson: contactPerson, email: email, phone: phone, website: website},
         businessInfo: {countryId:countryId,districtId:districtId ,suburbId:suburbId,city: city, postalCode: postalcode,address: address, nameOfBusiness: nameOfBusiness, 
                        pricingPlanId:planId.pricingPlanId ,payFrequency: parseInt(planId.payFrequency) },
         vendorCategories: [ { categoryId: categoryId }]

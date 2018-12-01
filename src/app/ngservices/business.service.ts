@@ -32,7 +32,7 @@ export class BusinessService {
       let svm={customFieldId:28,FieldValue:'Custum', id:7};
       objVenderServiceVm.serviceFields.push(svm);
     }
-    debugger;
+    console.log(JSON.stringify(objVenderServiceVm ));
    return this.http.post(this.api+'/api/Supplier/savebusinessservices',objVenderServiceVm,{headers:this.header});    
   }
   update_VendorSocialLink(model): Observable<any>{

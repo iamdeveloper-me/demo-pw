@@ -447,7 +447,7 @@ locations(event: any) { this.location  = '';}
   deletevent(data, index) {
           swal({
             title: "Are you sure?",
-        text: "You will not be able to recover this imaginary file!",
+        text: "You will not be able to recover this event!",
         type: "warning",
         showCancelButton: true,
         confirmButtonClass: "btn-default",

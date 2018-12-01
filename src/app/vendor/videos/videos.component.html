@@ -65,7 +65,14 @@
             <div class="my_video_bg11 ">
           <section class="p-0 container" id="portfolio">
                <div class="text-center">
-                 <button class="add_videobt"  (click)="Addvediodetail_dailog = true" >Add Video</button> 
+                    <!--Disable Condition Start-->
+                  <div *ngIf="basicplan == 1 ;else cc" >       
+                      <button class="add_videobt"  (click)="Addvediodetail_dailog = true" [disabled]="true">Add Video</button> 
+                  </div>
+                  <ng-template #cc>
+                      <button class="add_videobt"  (click)="Addvediodetail_dailog = true" >Add Video</button> 
+                  </ng-template>
+                   <!--Disable Condition End-->
                 </div>
                    <div class="photos_gallery">
                           <div class="row firt_row">

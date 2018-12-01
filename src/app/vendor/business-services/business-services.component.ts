@@ -14,8 +14,11 @@ import { element } from 'protractor';
 })
 export class BusinessServicesComponent implements OnInit {
   private api = apiPath.url; 
-  selected_category;
+  name_d= ''
+  selectedCategoryName='';
+  selected_category:Array<any>=[];
   categoryserveice= [];
+  categoryIndex:number=0;
   // SavedService:any;
   showLoader:boolean=false;
   serviceDialog:boolean=false;
@@ -39,34 +42,11 @@ export class BusinessServicesComponent implements OnInit {
     this.objVenderServiceVm.categoryId
     this.categories = new Array<CategoryVm>();
     this.categoryWiseService = new BusinessCategoriesVM();
+  //  this.saveServiceWithoutOptions();
   }  
   ngOnInit() {  
     $.getScript('./assets/js/vendorsidebar.js');
     setTimeout(function(){ $(".servicecontainer div:first").removeClass("activehide"); $(".servicecontainer div:first").addClass("activedisplay"); $(".servicecontainer div:first span").click(); }, 1000);
-      $(document).on('click', '.nextbtn', function(){
-        var active = $(this).siblings('.servicecontainer').find('.activedisplay');
-        if (active.next('div').hasClass('activehide')) {
-          active.find('input').prop("checked", false);
-          active.removeClass('activedisplay');
-          active.addClass('activehide');
-        // active.next('div').find('input').prop("checked", true);
-          active.next('div').removeClass('activehide');
-          active.next('div').addClass('activedisplay');
-          active.next('div').find("span").click();
-        }
-      });
-    $(document).on('click', '.prebtn', function(){
-      var active = $(this).siblings('.servicecontainer').find('.activedisplay');
-      if (active.prev('div').hasClass('activehide')) {
-        active.find('input').prop("checked", false);
-        active.removeClass('activedisplay');
-        active.addClass('activehide');
-    //    active.prev('div').find('input').prop("checked", true);
-        active.prev('div').removeClass('activehide');
-        active.prev('div').addClass('activedisplay');
-        active.prev('div').find("span").click();
-        }
-    });
               let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
               var categoryid = localStorage.getItem('categoryid');
@@ -74,91 +54,113 @@ export class BusinessServicesComponent implements OnInit {
               headers.append('Content-Type', 'application/json');
               headers.append("Authorization",'Bearer '+authToken);
               this.header = headers;
-              //jo data post kar rhe h 
-              // this.http.get(this.api+'api/Supplier/businessservices',{headers:headers}).subscribe(data =>{
-              // this.SavedServices = data.json();
-              // console.log(JSON.stringify(this.SavedServices));
-              // });
-              // api/Categories/categorieswithservices
               this.showLoader=true;
               this.http.get(this.api+'api/Supplier/mybusinessservices',{headers:headers}).subscribe(data =>{
-                this.categoryserveice = data.json() as string[];
-                
-                 this.selected_category=this.categoryserveice.filter(c=>c.isSelect==true);
-                 console.log(JSON.stringify(this.selected_category));
-                // if(this.SavedServices!=undefined && this.SavedServices!=null){
-//                 this.selected_category =   this.SavedServices[0].categoryId;
-//               this.objVenderServiceVm.categoryId = this.selected_category;
-//               let Service=this.SavedServices.filter(m=>m.categoryId==this.selected_category)[0];
-              
-//               this.objVenderServiceVm.serviceName= Service.serviceName;
-//               this.objVenderServiceVm.servicesId = Service.servicesId;
-//               this.objVenderServiceVm.serviceFields = Service.serviceFields;
-//               this.getServicesByCategory(this.objVenderServiceVm.categoryId);
-//               this.getCustomFieldBySreviceId(this.objVenderServiceVm.servicesId,'');
-// //              this.getSelectedCustomFieldOption(this.customFields);
-//             }else{
-//               this.selected_category =   this.SavedServices[0].categoryId;
-//               this.objVenderServiceVm.categoryId =this.selected_category;
-//               this.objVenderServiceVm.categoryId = this.categoryserveice.filter(c=>c.isSelect==true)[0]
-//             }
-                
+               this.categoryserveice = data.json() as string[];
+               console.log(JSON.stringify(this.categoryserveice));
+               this.selected_category=this.categoryserveice.filter(c=>c.isSelect==true);
                this.objVenderServiceVm.categoryId = this.selected_category[0].categoryId;
-               let x=this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services;
-              console.log(x);
-              this.services= this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services;               
-              this.objVenderServiceVm.serviceName= this.services[0].serviceName;
-              this.objVenderServiceVm.servicesId = this.services[0].servicesId;
-             // this.objVenderServiceVm.serviceFields = Service.serviceFields;
-              this.getServicesByCategory(this.objVenderServiceVm.categoryId);
-              this.getCustomFieldBySreviceId(this.objVenderServiceVm.servicesId,'');
-            this.showLoader=false;
-              },error => {console.log(error)
+               this.selectedCategoryName=this.selected_category[0].categoryName;
+               this.services= this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services;               
+               if(this.services==undefined || this.services.length<0){
+                 this.objVenderServiceVm.serviceName='No Service Selected ! ';
+                this.name_d = this.objVenderServiceVm.serviceName  
+                this.objVenderServiceVm.servicesId=0;
+               }else{
+               this.objVenderServiceVm.serviceName= this.services.filter(s=>s.isSelect==true)[0].serviceName;
+               this.name_d = this.objVenderServiceVm.serviceName
+               this.objVenderServiceVm.servicesId = this.services.filter(s=>s.isSelect==true)[0].servicesId;
+               this.getServicesByCategory(this.objVenderServiceVm.categoryId);
+               this.getCustomFieldBySreviceId(this.objVenderServiceVm.servicesId,this.objVenderServiceVm.serviceName);
+               this.saveServiceWithoutOptions();
+              
+               this.showLoader=false;
+               }
+               },error => {console.log(error)
                 this.showLoader=false;
-              });
+               });
     }
       getServicesByCategory(catId){
        if(this.objVenderServiceVm==undefined){
         this.objVenderServiceVm = new VendorServiceVM();}
         this.objVenderServiceVm.categoryId=catId;
         this.resetCustomFileds();  
-        let abc= this.categoryserveice.filter(m=>m.categoryId==catId)[0];
+        let cat= this.categoryserveice.filter(m=>m.categoryId==catId)[0];
         if(this.objVenderServiceVm.servicesId==undefined){
-        this.services= abc.services;
+        this.services= cat.services;
         }else{
-          this.services=abc.services;
+          this.services=cat.services;
         }
-        console.log(this.services);
       }
       resetCustomFileds(){
         this.customFields=[];
         this.customFieldSelectOptions=[];
       }
-      gatNavTest(){
-        this.getCustomFieldBySreviceId(this.objVenderServiceVm.servicesId,'');
-      }
+      ///TODO: Raj 
+      navigateToCategory(arrow){
+        if(arrow=='r' && this.categoryserveice.length> this.categoryIndex){
+          this.categoryIndex+=1;
+            var active = $('.nextbtn').siblings('.servicecontainer').find('.activedisplay');
+            if (active.next('div').hasClass('activehide')) {
+              active.find('input').prop("checked", false);
+              active.removeClass('activedisplay');
+              active.addClass('activehide');
+              active.next('div').removeClass('activehide');
+              active.next('div').addClass('activedisplay');
+              active.next('div').find("span").click();
+            }
+            this.selectedCategoryName= this.selected_category[this.categoryIndex].categoryName;
+              this.objVenderServiceVm.categoryId = this.selected_category[this.categoryIndex].categoryId;
+        }else{
+          if(this.categoryIndex>0){
+          this.categoryIndex-=1
+            var active = $('.prebtn').siblings('.servicecontainer').find('.activedisplay');
+            if (active.prev('div').hasClass('activehide')) {
+              active.find('input').prop("checked", false);
+              active.removeClass('activedisplay');
+              active.addClass('activehide');
+              active.prev('div').removeClass('activehide');
+              active.prev('div').addClass('activedisplay');
+              active.prev('div').find("span").click();
+              
+              }
+              this.selectedCategoryName= this.selected_category[this.categoryIndex].categoryName;
+              this.objVenderServiceVm.categoryId = this.selected_category[this.categoryIndex].categoryId;
+          }
+        }
+       
+       let service=this.selected_category[this.categoryIndex].services.filter(s=>s.isSelect==true)[0];
+       console.log(service)
+       this.name_d=service.serviceName;
+       this.objVenderServiceVm.serviceName= service.serviceName;
+       this.objVenderServiceVm.servicesId=service.servicesId;
+      // this.objVenderServiceVm.categoryId=service.categoryId;
+      this.saveServiceWithoutOptions();
+       
+   }
       getCustomFieldBySreviceId(id,name){
        this.resetCustomFileds();
        this.objVenderServiceVm.servicesId = id ;
        this.objVenderServiceVm.serviceName=name;
-      console.log(this.categoryserveice.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0])
-       let customFields=this.categoryserveice.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.servicesId==id)[0].customFields;
-       if(customFields!=undefined){
-       for (let i = 0; i < customFields.length; i++) {
-      console.log(customFields[i]);
-       let selectedOption= this.categoryserveice.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.servicesId==this.objVenderServiceVm.servicesId)[0].customFields.filter(c=>c.customFieldId==customFields[i].customFieldId)[0].customFieldOptionList.filter(s=>s.isSelect==true)[0];
-       if(selectedOption){
-       customFields[i].isEnable=false;
-          customFields[i].SelectedOptionValue=selectedOption.displayText;
-          customFields[i].SelectedOptionId=selectedOption.id;
-          this.customFields.push(customFields[i])
-        }else{
-          customFields[i].SelectedOptionValue=0;
-          customFields[i].SelectedOptionId=0;
-          this.customFields.push(customFields[i])
-        }         
-       }}
-       console.log(this.customFields);
+       
+      }
+      saveServiceWithoutOptions(){
+        this.customFields=[];
+        let customFields=this.categoryserveice.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.servicesId==this.objVenderServiceVm.servicesId)[0].customFields;
+        if(customFields!=undefined){
+          for (let i = 0; i < customFields.length; i++) {
+          let selectedOption= this.categoryserveice.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.servicesId==this.objVenderServiceVm.servicesId)[0].customFields.filter(c=>c.customFieldId==customFields[i].customFieldId)[0].customFieldOptionList.filter(s=>s.isSelect==true)[0];
+          if(selectedOption){
+             customFields[i].isEnable=false;
+             customFields[i].SelectedOptionValue=selectedOption.displayText;
+             customFields[i].SelectedOptionId=selectedOption.id;
+             this.customFields.push(customFields[i])
+           }else{
+             customFields[i].SelectedOptionValue=0;
+             customFields[i].SelectedOptionId=0;
+             this.customFields.push(customFields[i])
+           }
+          }}   
       }
       getSelectOptions(customField){
           this.customFieldSelectOptions = this.categoryserveice.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.servicesId==this.objVenderServiceVm.servicesId)[0].customFields.filter(cf=>cf.customFieldId==customField.customFieldId)[0].customFieldOptionList;
@@ -201,6 +203,7 @@ export class BusinessServicesComponent implements OnInit {
        });
       }
       SaveIntoDb(){
+        this.saveServiceWithoutOptions();
         console.log(this.services);
         this.services.filter(s=>s.isSelect=true)[0].isSelect=false;
         this.services.filter(s=>s.servicesId==this.objVenderServiceVm.servicesId)[0].isSelect=true;

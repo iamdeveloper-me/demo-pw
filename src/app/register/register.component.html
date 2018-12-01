@@ -72,7 +72,7 @@
                 required minlength="3">
                 <label>First Name</label>
                 <span class="focus-border"></span>
-                <small class="form-text text-muted danger" *ngIf="!firstName.valid && (firstName.dirty || firstName.touched)" minLenth="3"  maxlength="15">Please enter a valid firstname!</small>
+                <small class="form-text text-muted danger" *ngIf="!firstName.valid && (firstName.dirty || firstName.touched)" minLenth="3"  maxlength="15">Firstname is required!</small>
 
             </div>
             <div class="input-effect form-group md-form mt-3">
@@ -83,7 +83,7 @@
                 minlength="3">
                 <label>Last Name</label>
                 <span class="focus-border"></span>
-                <small class="form-text text-muted danger" *ngIf="!lastName.valid && (lastName.dirty || lastName.touched)" minLenth="3"  maxlength="15">Please enter a valid lastname!</small>
+                <small class="form-text text-muted danger" *ngIf="!lastName.valid && (lastName.dirty || lastName.touched)" minLenth="3"  maxlength="15">Lastname is required!</small>
             </div>
             <div class="input-effect form-group md-form mt-3">
                 <input class="effect-16  validate" type="email" 
@@ -95,40 +95,46 @@
                 placeholder="Email">
                 <label>Email</label>
                 <span class="focus-border"></span>
-                <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">Please enter a valid email!</small>
+                <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">Email is required!</small>
             </div>
             <!-- [(ngModel)] = "user.contactInfo.email"   -->
             <div class="input-effect form-group md-form mt-3">
-                <input class="effect-16" type="password" 
+                <input class="effect-16 form-control" type="password" 
                 placeholder="Password" 
                 [(ngModel)] = "user.logInInfo.password" 
                 name = "password" ngModel #password="ngModel" [ngModelOptions]="{updateOn: 'blur'}"
-                autocomplete="new-password" 
-                required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$"
+                autocomplete="new-password"  [ngClass]="{ 'is-invalid': password.invalid }"
+                required 
                 minlength="6">
-                <!-- Minimum six characters, at least one uppercase letter, one lowercase letter, one number and one special character -->
                 <label>Password</label>
                 <span class="focus-border"></span>
-                <small class="form-text text-muted danger" *ngIf="!password.valid && (password.dirty || password.touched)">Minimum 6 characters,1 uppercase,1 lowercase,1 number,1 special character!</small>
-
+                <div *ngIf="password.touched && password.invalid" class="invalid-feedback form-submit">
+                        <small class="form-text text-muted danger"  *ngIf="password.errors.required">Password is required!</small>
+                        <small class="form-text text-muted danger"  *ngIf="password.errors.minlength">Password must be at least 6 characters!</small>
+                </div>
             </div>
             <div class="input-effect form-group md-form mt-3 mb-xs-20">
-                <input class="effect-16" 
+                <input class="effect-16 form-control" 
                 type="password" 
                 placeholder="Confirm Password" 
                 autocomplete="new-password"
                 id="confirmPassword" ngModel #confirmPassword="ngModel" [ngModelOptions]="{updateOn: 'blur'}"
                 [(ngModel)] = "user.logInInfo.confirmPassword" 
-                name = "confirmPassword" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$"
+                name = "confirmPassword" minlength="6" [ngClass]="{ 'is-invalid': confirmPassword.invalid }"
                 required>
-                <!-- Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character -->
-                <label>Confirm Password</label>
+                 <label>Confirm Password</label>
                 <span class="focus-border"></span>
-                <small class="form-text text-muted danger" *ngIf="!confirmPassword.valid && (confirmPassword.dirty || confirmPassword.touched)">
-                    <!-- Please enter a valid confirm password! -->
-                    Minimum 6 characters,1 uppercase,1 lowercase,1 number,1 special character!
+                <!-- <small class="form-text text-muted danger" *ngIf="confirmPassword.touched || confirmPassword.valid && f.password == f.confirmPassword">
+                        Password Match
+                </small> -->
+                <small class="form-text text-muted danger" *ngIf="confirmPassword.touched || confirmPassword.valid && password != confirmPassword">
+                        Password Not Match
                 </small>
+                <div *ngIf="confirmPassword.touched && confirmPassword.invalid" class="invalid-feedback form-submit">
+                        <small class="form-text text-muted danger"  *ngIf="confirmPassword.errors.required">Confirm Password is required!</small>
+                        <small class="form-text text-muted danger"  *ngIf="confirmPassword.errors.minlength">Confirm Password must be at least 6 characters!</small>
 
+                </div>
             </div>
             <div class="input-effect form-group md-form mt-3">
                 <input class="effect-16 validate" type="text"  
@@ -136,10 +142,11 @@
                 [(ngModel)] = "user.contactInfo.phone" 
                 name = "phone" 
                 required
+                minlength="7" maxlength="10"
                 placeholder="Phone no">
                 <label>Phone no</label>
                 <span class="focus-border"></span>
-                <small class="form-text text-muted danger" *ngIf="!phone.valid && (phone.dirty || phone.touched)">Please enter a valid phone!</small>
+                <small class="form-text text-muted danger" *ngIf="!phone.valid && (phone.dirty || phone.touched)">Phone is required!</small>
 
             </div>
             <!-- [(ngModel)] = "user.contactInfo.phone"  -->
@@ -164,7 +171,7 @@
                 <label>Name of your Bussiness</label>
                 <!-- pattern="^[a-zA-Z ]{3,}$"  -->
                 <span class="focus-border"></span>
-                <small class="form-text text-muted danger" *ngIf="!nameOfBusiness.valid && (nameOfBusiness.dirty || nameOfBusiness.touched)">Please enter a valid name!</small>
+                <small class="form-text text-muted danger" *ngIf="!nameOfBusiness.valid && (nameOfBusiness.dirty || nameOfBusiness.touched)">Name is required!</small>
 
             </div>
             <!-- <div class="input-effect form-group md-form mt-3 ">
@@ -259,7 +266,7 @@
                     <!-- Postal Code must be 6 digit -->
                     <label>Postal Code</label>
                     <span class="focus-border"></span>
-                    <small class="form-text text-muted danger" *ngIf="!postalCode.valid && (postalCode.dirty || postalCode.touched)">Please enter a valid postal code!</small>
+                    <small class="form-text text-muted danger" *ngIf="!postalCode.valid && (postalCode.dirty || postalCode.touched)">postal code is required!</small>
                 </div>
 
             <div class="input-effect form-group md-form mt-3">
@@ -272,7 +279,7 @@
                 required minlength="3">
                 <label>Street Address</label>
                 <span class="focus-border"></span>
-                <small class="form-text text-muted danger" *ngIf="!address.valid && (address.dirty || address.touched)">Please enter a valid address!</small>
+                <small class="form-text text-muted danger" *ngIf="!address.valid && (address.dirty || address.touched)">address is required!</small>
             </div>
 
             <!-- <div class="input-effect form-group md-form mt-3">
@@ -297,7 +304,7 @@
                 <!-- pattern="^(ftp|http|https):\/\/[^ "]+$" -->
                 <label>Website</label>
                 <span class="focus-border"></span>
-                <small class="form-text text-muted danger" *ngIf="!website.valid && (website.dirty || website.touched)">Please enter a valid website!</small>
+                <small class="form-text text-muted danger" *ngIf="!website.valid && (website.dirty || website.touched)">website is required!</small>
 
             </div>
             <!--[(ngModel)] = "user.businessInfo.postalCode"  -->

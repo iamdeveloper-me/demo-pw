@@ -15,6 +15,7 @@ import { element } from 'protractor';
 export class BusinessServicesComponent implements OnInit {
   private api = apiPath.url; 
   name_d= ''
+  selectedCategoryName='';
   selected_category:Array<any>=[];
   categoryserveice= [];
   categoryIndex:number=0;
@@ -41,13 +42,11 @@ export class BusinessServicesComponent implements OnInit {
     this.objVenderServiceVm.categoryId
     this.categories = new Array<CategoryVm>();
     this.categoryWiseService = new BusinessCategoriesVM();
-    this.saveServiceWithoutOptions();
+  //  this.saveServiceWithoutOptions();
   }  
   ngOnInit() {  
     $.getScript('./assets/js/vendorsidebar.js');
     setTimeout(function(){ $(".servicecontainer div:first").removeClass("activehide"); $(".servicecontainer div:first").addClass("activedisplay"); $(".servicecontainer div:first span").click(); }, 1000);
-      
-    
               let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
               var categoryid = localStorage.getItem('categoryid');
@@ -58,15 +57,25 @@ export class BusinessServicesComponent implements OnInit {
               this.showLoader=true;
               this.http.get(this.api+'api/Supplier/mybusinessservices',{headers:headers}).subscribe(data =>{
                this.categoryserveice = data.json() as string[];
+               console.log(JSON.stringify(this.categoryserveice));
                this.selected_category=this.categoryserveice.filter(c=>c.isSelect==true);
                this.objVenderServiceVm.categoryId = this.selected_category[0].categoryId;
+               this.selectedCategoryName=this.selected_category[0].categoryName;
                this.services= this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services;               
-               this.objVenderServiceVm.serviceName= this.services[0].serviceName;
+               if(this.services==undefined || this.services.length<0){
+                 this.objVenderServiceVm.serviceName='No Service Selected ! ';
+                this.name_d = this.objVenderServiceVm.serviceName  
+                this.objVenderServiceVm.servicesId=0;
+               }else{
+               this.objVenderServiceVm.serviceName= this.services.filter(s=>s.isSelect==true)[0].serviceName;
                this.name_d = this.objVenderServiceVm.serviceName
-               this.objVenderServiceVm.servicesId = this.services[0].servicesId;
+               this.objVenderServiceVm.servicesId = this.services.filter(s=>s.isSelect==true)[0].servicesId;
                this.getServicesByCategory(this.objVenderServiceVm.categoryId);
                this.getCustomFieldBySreviceId(this.objVenderServiceVm.servicesId,this.objVenderServiceVm.serviceName);
+               this.saveServiceWithoutOptions();
+              
                this.showLoader=false;
+               }
                },error => {console.log(error)
                 this.showLoader=false;
                });
@@ -100,6 +109,8 @@ export class BusinessServicesComponent implements OnInit {
               active.next('div').addClass('activedisplay');
               active.next('div').find("span").click();
             }
+            this.selectedCategoryName= this.selected_category[this.categoryIndex].categoryName;
+              this.objVenderServiceVm.categoryId = this.selected_category[this.categoryIndex].categoryId;
         }else{
           if(this.categoryIndex>0){
           this.categoryIndex-=1
@@ -111,7 +122,10 @@ export class BusinessServicesComponent implements OnInit {
               active.prev('div').removeClass('activehide');
               active.prev('div').addClass('activedisplay');
               active.prev('div').find("span").click();
+              
               }
+              this.selectedCategoryName= this.selected_category[this.categoryIndex].categoryName;
+              this.objVenderServiceVm.categoryId = this.selected_category[this.categoryIndex].categoryId;
           }
         }
        
@@ -120,7 +134,8 @@ export class BusinessServicesComponent implements OnInit {
        this.name_d=service.serviceName;
        this.objVenderServiceVm.serviceName= service.serviceName;
        this.objVenderServiceVm.servicesId=service.servicesId;
-       this.objVenderServiceVm.categoryId=service.categoryId;
+      // this.objVenderServiceVm.categoryId=service.categoryId;
+      this.saveServiceWithoutOptions();
        
    }
       getCustomFieldBySreviceId(id,name){
@@ -130,6 +145,7 @@ export class BusinessServicesComponent implements OnInit {
        
       }
       saveServiceWithoutOptions(){
+        this.customFields=[];
         let customFields=this.categoryserveice.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.servicesId==this.objVenderServiceVm.servicesId)[0].customFields;
         if(customFields!=undefined){
           for (let i = 0; i < customFields.length; i++) {

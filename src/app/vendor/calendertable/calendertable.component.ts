@@ -333,6 +333,7 @@ days_in_month(month, year) {
 
 // Event handler for when a date is clicked
  date_click(event) {
+   alert(JSON.stringify(event));
   $(".events-container").show(250);
   $("#dialog").hide(250);
   $(".active-date").removeClass("active-date");

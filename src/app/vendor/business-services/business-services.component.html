@@ -17,7 +17,7 @@
 								<span style="text-align:center">{{c.categoryName}}</span>
 							</div> -->
 						</div>
-						<button class="nextbtn" *ngIf='categoryIndex<selected_category.length-1' (click)='navigateToCategory("r")'> <i class="material-icons">arrow_forward_ios</i></button>
+						<button class="nextbtn" *ngIf='categoryIndex<selected_category.length-1 && selected_category.length> 0' (click)='navigateToCategory("r")'> <i class="material-icons">arrow_forward_ios</i></button>
 					</div>
 					<div class="col-md-12">
 						<div class="col-md-4 col-md-offset-2">

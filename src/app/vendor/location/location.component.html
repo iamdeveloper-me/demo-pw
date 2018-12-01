@@ -282,7 +282,33 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="col-sm-12 loca_hours sund_top">
+                <div class="col-md-12">
+                    <div class="col-md-12" *ngFor='let d of timeslot.days'>
+                    <div class="col-md-6">{{d.name}}
+                            <span class="ui_switch">
+                                <ui-switch 
+                                    [(ngModel)] ="d.IsOpen"
+                                    class="pull-left"> 
+                                </ui-switch>
+                            </span>
+    
+                            <span class="textopenclose" *ngIf = "d.IsOpen == false" >close </span>
+                            <span class="textopenclose" *ngIf = "d.IsOpen == true">Open </span>
+                        </div>
+                    
+                    <div class="col-md-3">
+                        <select class="form-group form-control">
+                            <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                            <select class="form-group form-control">
+                                <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 loca_hours sund_top" style="display:none">
                     <div class="col-sm-2">
                         Sunday
                     </div>
@@ -324,7 +350,7 @@
 
                     </div>
                 </div>
-                <div class="col-sm-12 loca_hours">
+                <div class="col-sm-12 loca_hours" style="display:none">
                     <div class="col-sm-2">
                         Monday
                     </div>
@@ -352,7 +378,7 @@
 
                     </div>
                 </div>
-                <div class="col-sm-12 loca_hours">
+                <div class="col-sm-12 loca_hours" style="display:none">
                     <div class="col-sm-2">
                         Tuesday
                     </div>
@@ -380,7 +406,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 loca_hours">
+                <div class="col-sm-12 loca_hours" style="display:none">
                     <div class="col-sm-2">
                         Wednesday
                     </div>
@@ -408,7 +434,7 @@
 
                     </div>
                 </div>
-                <div class="col-sm-12 loca_hours">
+                <div class="col-sm-12 loca_hours" style="display:none">
                     <div class="col-sm-2">
                         Thursday
                     </div>
@@ -434,7 +460,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 loca_hours">
+                <div class="col-sm-12 loca_hours" style="display:none">
                     <div class="col-sm-2">
                         Friday
                     </div>
@@ -462,7 +488,7 @@
 
                     </div>
                 </div>
-                <div class="col-sm-12 loca_hours">
+                <div class="col-sm-12 loca_hours" style="display:none">
                     <div class="col-sm-2">
                         Saturday
                     </div>
@@ -507,7 +533,7 @@
 
                     </div>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer" style="display:none">
 
                     <button type="submit" class="btn newbtn">Save</button>&nbsp;
                     <button type="button" class="btn newbtn newcancelbtn"  (click)="closeModel()" >Close</button>
@@ -803,15 +829,15 @@
                                     ng-pattern="/^[0-9]{1,7}$/"
                                     name="phoneNumber+{{i}}" 
                                     >   
-                                    <label for="urlName">&nbsp;&nbsp;Is primary</label>
+                                    <!-- <label for="urlName">&nbsp;&nbsp;Is primary</label> -->
                                
-                                    <input  
+                                    <!-- <input  
                                     type="checkbox"  
                                     class="inputbottombor"
                                     formControlName="isprime"
                                     checked
                                     name="isPrimary" 
-                                    > 
+                                    >  -->
                                     <input type = "hidden"      
                                     [value] =  "modelfield.vendorLocationId"
                                     [(ngModel)] =  "modelfield.vendorLocationId"
@@ -827,11 +853,12 @@
                     </div>
                     <div class="col-sm-12">
                         <br/>
-                        <a class="addfields btn btn-info btn-raised" (click)="addNewColumn()">Add More Number</a>
+                        <a class="addfields btn btn-info btn-raised" (click)="addNewColumn()">Add another number</a>
                     </div>     
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn newbtn">Save</button>&nbsp;
+                        <!-- <button type="button" class="btn newbtn" (click)='update_phone()' >Udpate</button>&nbsp; -->
+                    <button type="submit" class="btn newbtn" [disabled]=''>Save</button>&nbsp;
                     <button type="button" class="btn newbtn newcancelbtn"  (click)="closeModel()">Close</button>
                 </div>
             </div>

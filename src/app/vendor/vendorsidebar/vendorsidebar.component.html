@@ -51,7 +51,9 @@
         <a routerLink="../mylisting" >
             <i class="material-icons">stars</i>
              Review  
-             <span class="notification badge badge-pill badge-danger">{{countss}}</span>
+             <span *ngIf = "countss > 0" class="notification badge badge-pill badge-danger">
+                 
+               New {{countss}}</span>
                                          
             
             </a>

@@ -28,15 +28,17 @@ colour_grey = 'grey';
 colour_white = 'white';
 colour_picker1 = [];
 tags_picker1 = [];
-taggg = '';
+tag_array2:string;
+taggg:any;
 t='';
-tai:any = [];
+tai = [];
 choose:any ;
 a:any = [];
 description_dailog = false;
 tag_error ;
 colour_tag_error;
 albumImagesModify = [];
+albumImages = [];
 private mygeturl: string  = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myportfolio"
 private update_portfolio: string  = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updateportfolio"
 
@@ -70,26 +72,9 @@ constructor( public http: Http,public toastr: ToastrService ) {
     this.colour_picker1.push(selectedColors[i].colorName);
   }
  }
-    tags_bage(e){
-      
-                  if(typeof(e) == 'undefined' )
-                  {
-                    this.tag_error = "empty tag not added tags"
-                  }else{
-                  this.tai.push(e);
-                  console.log(this.tai);
-                  this.taggg = '';
-                  }
-    }
-    // colour_picker(d){
-    //         console.log(d)
-    //         this.colour = d;
-    //         this.a.push(this.colour );
-          
-    //         this.a = this.a.filter((el, i, a) => i === a.indexOf(el));
-            
-    //         console.log( this.a);
-    // }
+
+
+  
     remove_tag_picker(g){
       console.log(g); 
       this.tai.splice(g, 1);
@@ -100,91 +85,119 @@ constructor( public http: Http,public toastr: ToastrService ) {
           this.tag_error = "required tags"
       }
     }
-    // remove_colour_picker(g){
-    //   console.log(g);
-    //   this.a.splice(g, 1);
-    //   console.log(g); 
-    //   if(this.a.length == 0 )
-    //   {
-      
-    //       this.colour_tag_error = "required colour tags"
-    //   }
-      
-    // }
+  
     ngOnInit() {
     $.getScript('./assets/js/vendorsidebar.js');
 
                 let headers = new Headers();
-              //     if(this.a.length == 0 )
-              // {
-              
-              //    this.colour_tag_error = "required colour tags"
-              // }
-              //  if(this.tai.length == 0 )
-              // { 
-               
-              //    this.tag_error = "required tags"
-              // }
+       
                 var authToken = localStorage.getItem('userToken');
                 headers.append('Accept', 'application/json')
                 headers.append('Content-Type', 'application/json');
                 headers.append("Authorization",'Bearer '+authToken);
                     this.http.get(this.mygeturl,{headers:headers}).subscribe(data =>{
-                            for (var item of  data.json()) {
-                              this.tags = item.tags;
-                              this.colourtags = item.colorTags;
-                                if(item.tags != null && item.colorTags != null){
-                                  item['tags'] = item['tags'].split(',');
-                                  item['colorTags'] = item['colorTags'].split(',');
-                                }
-                                this.albumImagesModify.push(item);
-                            } 
+                      console.log(data.json())
+                      this.albumImagesModify = data.json()
+                      
+                      this.albumImagesModify.forEach(ele=>{
+                        if(ele['tags'] != ''){
+                          ele['tags'] = ele['tags'].split(',')
+                          ele['colorTags'] = ele['colorTags'].split(',')
+                          this.albumImages.push(ele)
+                          console.log(this.albumImages)
+                        }else{
+                          
+                          this.albumImages.push(ele)
+                        }
+                      })
+                      console.log('albumImages',this.albumImages)
+                            // for (var item of  data.json()) {
+                            //   this.tags = item.tags;
+                            //   this.colourtags = item.colorTags;
+                            //     if(item.tags != null){
+                            //       item['tags'] = item['tags'].split(',');
+                            //       item['colorTags'] = item['colorTags'].split(',');
+                            //     }else{
+                            //     this.albumImagesModify.push(item)
+                            //     }
+                            //     debugger
+                            //     this.albumImagesModify.push(item);
+                            // } 
+                            // debugger
                       })
     }
     openModel(e)
     {
       this.formdata = e;
-          this.tai = this.formdata.tags;
+      console.log(this.formdata)
+          this.tai = this.formdata['tags'].split(',')
+       //   this.tai = this.tai.filter(element => element !== "")
+       //   this.tai = this.tai.filter(element => element !== ',')
+          console.log( this.tai )
           this.a = this.formdata.colorTags;
           this.createColorPanel();
           for (let i = 0; i < e.colorTags.length; i++) {
             let c= this.colors.filter(cn=>cn.colorName==e.colorTags[i])[0].isSelected=true;
           }
     }
+
+    tags_edit(e){
+      this.taggg = ''
+     
+     
+      this.tai.push(e)
+      this.tai = this.tai.filter(element => element !== "")         
+      console.log(this.tai); 
+     }
     editSettting(e){
-                const fire = {
-                  portfolioId: e.value.portfolioId,
-                  filesId: e.value.filesId,
-                  tags:  this.tai.join(','),
-                  colorTags: this.csvColors,
-                  setAsBackgroud: false
-                }
-                let headers = new Headers();
-                var authToken = localStorage.getItem('userToken');
-                headers.append('Accept', 'application/json')
-                headers.append('Content-Type', 'application/json');
-                headers.append("Authorization",'Bearer '+authToken);
-                this.http.post(this.update_portfolio,fire,{headers:headers}).subscribe(data =>{
-                    this.toastr.success(data.json().message);
-                    this.albumImagesModify = [];
-                    this.http.get(this.mygeturl,{headers:headers})
-                    .subscribe(data =>{
-                                      for (var item of  data.json()) {
-                                        this.tags = item.tags;
-                                        this.colourtags = item.colorTags;
-                                          if(item.tags != null && item.colorTags != null){
-                                            item['tags'] = item['tags'].split(',');
-                                            item['colorTags'] = item['colorTags'].split(',');
-                                          }
-                                          this.albumImagesModify.push(item);
-                                      } 
-                                    });
-                
-                  },error => {console.log(error)})
-                this.description_dailog = false;
+        
+      this.tag_array2 = this.tai.join(',')
+      console.log(this.tag_array2)
+      const fire = {
+       portfolioId: e.value.portfolioId,
+       filesId: e.value.filesId,
+       tags:  this.tag_array2,
+       colorTags: this.csvColors,
+       setAsBackgroud: false
+      }
+      this.postapi_tag(fire)        
+
+    }
+
+
+
+    postapi_tag(fire){
+
+
+      let headers = new Headers();
+      var authToken = localStorage.getItem('userToken');
+      headers.append('Accept', 'application/json')
+      headers.append('Content-Type', 'application/json');
+      headers.append("Authorization",'Bearer '+authToken);
+      this.http.post(this.update_portfolio,fire,{headers:headers}).subscribe(data =>{
+          this.toastr.success(data.json().message);
+          this.albumImagesModify = [];
+          this.http.get(this.mygeturl,{headers:headers})
+          .subscribe(data =>{
+                            for (var item of  data.json()) {
+                              this.tags = item.tags;
+                              this.colourtags = item.colorTags;
+                                if(item.tags != null){
+                                  item['tags'] = item['tags'].split(',');
+                                  item['colorTags'] = item['colorTags'].split(',');
+                               
+                                }
+                                this.albumImagesModify.push(item);
+                                console.log( this.albumImagesModify)
+                              
+                            } 
+                          });
+      
+        },error => {console.log(error)})
+      this.description_dailog = false;
     }
     closeModel(){   
-  this.description_dailog = false;
+       this.description_dailog = false;
     }
     delete_portfolio(e,index){
 

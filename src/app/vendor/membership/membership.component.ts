@@ -98,7 +98,7 @@ export class MembershipComponent implements OnInit {
   }
   annualPrice(plan){ 
     var planid = plan.pricingPlanId;
-    var  payFrequency = '0';
+    var  payFrequency = '2';
     this.updatemembership(planid,payFrequency);
   }
   updatemembership(planid,payFrequency){
@@ -113,7 +113,13 @@ export class MembershipComponent implements OnInit {
    
     var palnvoucher = this.palnvoucher;
 
-
+const plan = 
+{
+  pricingPlanId: planid,
+  payFrequency: payFrequency,
+  voucherCode: palnvoucher
+}
+console.log(plan)
     this.http.post(this.updatemember,
      
       {

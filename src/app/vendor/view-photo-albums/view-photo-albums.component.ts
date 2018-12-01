@@ -97,7 +97,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
     var current_progress = 0;
     var interval = setInterval(function() {
         current_progress += 10;
-        $("#dynamic")
+        $(".dynamic")
         .css("width", current_progress + "%")
         .attr("aria-valuenow", current_progress)
         .text(current_progress + "% Complete");

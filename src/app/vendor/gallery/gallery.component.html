@@ -37,55 +37,57 @@
                               </p>
                       </div>
                   </div>
-                  <div class="col-sm-12 card create_album"  *ngIf = "albumArray.length == 0" >
-                    <div class="" >
-                      <div class="text-center headin_gally">
-                        <h5 >MY ALBUM </h5>
-                      
-                        <P>Create, label and group your work with albums </P>
-                      </div>  
-                      <div class="mainalbumbtn">
-                          <p class="oops">
-                            <i class="material-icons" style="font-size:100px;">photo_library</i>
-                            <br/>
-                              <span>Oops!</span> You have no Photo Albums 
-                          </p>
-                            <p class="upload_bt text-center" >
+
+                  <div  class="container-fluid nopadd portfolio_images" *ngIf = "portArray.length > 0" >
+                      <div class="card">
+                        <div  class=" text-center headin_gally col-sm-12 bordernone">
+                            <h5 ><i class="material-icons">camera_alt</i> MY PORTFOLIO </h5>
+                            <p >Collection of the best photo and work to highlight your profile</p>
+                        </div>
+        
+                     
+                        <div class="port_row"> 
+                          <div class="col-lg-3 col-md-4 col-6 thumb" *ngFor='let obj of portArray | slice:0:4' >
+                        
+                              <img class="img-thumbnail img-responsive" alt="{{obj.files.path}}" [src] = "obj.files.path"  >   
                           
-                              <button  id="Google-function" (click)="createalbum_dailog = true" data-reactid="339" >Create</button>  </p>
-                            <p class="text-center uplod_para"> <a href="">Get organised with UNLIMITED albums. Upgrade to Premium Account </a>  </p>
-                      </div>
-                      <div class="overlay">
+                          </div>
                        
+                          <div class="clearfix"></div>
+                          <div class="text-center viev_all"> 
+                            <a  class="btn" routerLink="../portfolioview" >View All</a> 
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>     
+                  </div>
+                   
               </div>
           </div>
 
           <!-- show images -->
-          <div  class="container-fluid nopadd portfolio_images" *ngIf = "portArray.length > 0" >
-              <div class="card">
-                <div  class=" text-center headin_gally col-sm-12 bordernone">
-                    <h5 ><i class="material-icons">camera_alt</i> MY PORTFOLIO </h5>
-                    <p >Collection of the best photo and work to highlight your profile</p>
-                </div>
-
-             
-                <div class="port_row"> 
-                  <div class="col-lg-3 col-md-4 col-6 thumb" *ngFor='let obj of portArray | slice:0:4' >
+          <div class="col-sm-12 card create_album"  *ngIf = "albumArray.length == 0" >
+              <div class="" >
+                <div class="text-center headin_gally">
+                  <h5 >MY ALBUM </h5>
                 
-                      <img class="img-thumbnail img-responsive" alt="{{obj.files.path}}" [src] = "obj.files.path"  >   
-                  
-                  </div>
-               
-                  <div class="clearfix"></div>
-                  <div class="text-center viev_all"> 
-                    <a  class="btn" routerLink="../portfolioview" >View All</a> 
-                  </div>
+                  <P>Create, label and group your work with albums </P>
+                </div>  
+                <div class="mainalbumbtn">
+                    <p class="oops">
+                      <i class="material-icons" style="font-size:100px;">photo_library</i>
+                      <br/>
+                        <span>Oops!</span> You have no Photo Albums 
+                    </p>
+                      <p class="upload_bt text-center" >
+                    
+                        <button  id="Google-function" (click)="createalbum_dailog = true" data-reactid="339" >Create</button>  </p>
+                      <p class="text-center uplod_para"> <a href="">Get organised with UNLIMITED albums. Upgrade to Premium Account </a>  </p>
+                </div>
+                <div class="overlay">
+                 
                 </div>
               </div>
-          </div> 
+            </div>  
           <div   *ngIf = "albumArray.length > 0"  class="container-fluid nopadd albumlist album_containing_images"  >
               <div class="card">
                 <div  class="text-center headin_gally col-sm-12 bordernone">

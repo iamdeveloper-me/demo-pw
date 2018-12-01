@@ -8,6 +8,7 @@ import { Http, Headers } from '@angular/http';
 export class VendorsidebarComponent implements OnInit {
   private base_url : string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Reviews'
  countss;
+ route:boolean = false
   constructor(public http: Http ) { }
   header(){
     let header = new Headers();
@@ -19,6 +20,12 @@ export class VendorsidebarComponent implements OnInit {
   }
 
   ngOnInit() { 
+    if(window.location.href.indexOf('/msg/') != -1 || window.location.href.indexOf('settingalbum/business-services') != -1 || window.location.href.indexOf('/albumviewphoto/') != -1 || window.location.href.indexOf('/settingalbum/') != -1){
+      this.route = true;
+    }else{
+      this.route = false;
+
+    }
     $.getScript('./assets/js/jquery.slimscroll.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
 
@@ -37,7 +44,14 @@ export class VendorsidebarComponent implements OnInit {
   this.http.post(this.base_url + "/myreviews", data, { headers: this.header() }).subscribe(
       data =>{
       
-        console.log(data.json().count);  
+      //   console.log(data.json().items);  
+
+      //   for (let entry of data.json().items) {
+         
+      //     console.log( entry.reviewStatusString);
+      //     console.log(entry); // 1, "string", false
+      // }
+      
         this.countss = data.json().count
   },error=>{
         console.log(error)

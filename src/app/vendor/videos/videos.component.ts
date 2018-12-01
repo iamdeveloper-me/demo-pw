@@ -28,7 +28,7 @@ export class VideosComponent implements OnInit {
     
 
   video: string = "https://www.youtube.com/embed/CD-E-LDc384"
-
+  basicplan:number;
     Addvediodetail_dailog = false;
     
     videoForm: FormGroup;
@@ -39,7 +39,8 @@ export class VideosComponent implements OnInit {
     form: FormGroup;
 
     constructor( private fb: FormBuilder,public http: Http) {
-      
+      this.basicplan = JSON.parse(localStorage.getItem('basic-plan'));
+          //  alert(this.basicplan);
      }
      createForm() {
       const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';

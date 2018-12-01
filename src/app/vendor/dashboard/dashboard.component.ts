@@ -126,14 +126,30 @@ export class DashboardComponent implements OnInit {
                    this.add = this.vendor.vendorLocations[0].mapAddress;
                   
                   //  console.log(this.vendor.vendorLocations[0].locationPhones[0].phoneNumber);
-                  this.ph = this.vendor.vendorLocations[0].locationPhones[0].phoneNumber;
-
+                 
+                  if(this.vendor.vendorLocations[0].locationPhones.length > 1){
+                    this.ph = this.vendor.vendorLocations[0].locationPhones.length-1;
+                  }else{
+                    this.ph = 0;
+                  }
+               
                   
-                  this.total_business_Services =Math.abs(this.vendor.businessServices.length);
+               
+                  if(this.vendor.vendorCategories.length > 1){
+                    this.total_business_Services = this.vendor.vendorCategories.length-1;
+                  }else{
+                    this.total_business_Services = 0;
+                  }
                   this.total_phone_no = Math.abs(this.vendor.vendorLocations.length ); 
-                    console.log(this.total_business_Services);
+                   
                     console.log(this.total_phone_no);
-                   this.ct = this.vendor.vendorCategories[0].categories.categoryName;
+
+                    if(this.vendor.vendorLocations.length > 1){
+                      this.ct = this.vendor.vendorLocations.length-1;
+                    }else{
+                      this.ct = 0;
+                    }
+                 
 
                    localStorage.setItem('categoryid',data.json().vendorCategories[0].categoryId);
                    localStorage.setItem('firstName',data.json().firstName);

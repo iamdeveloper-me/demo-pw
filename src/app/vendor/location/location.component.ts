@@ -7,6 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup,FormArray,FormBuilder, Validators, NgForm } from '@angular/forms';
 import swal from 'sweetalert2';
 import { apiService } from '../../shared/service/api.service';
+import { SSL_OP_NO_TICKET } from 'constants';
+import { setHours } from 'date-fns';
 
 declare var google: any;
  
@@ -45,6 +47,7 @@ export class LocationComponent implements OnInit {
   ao:string;
   bo:string;
   co:string;
+  timeslot=new TimeSlot();
   arra_col =[];
   phone = []
   typePhone= []
@@ -274,6 +277,7 @@ export class LocationComponent implements OnInit {
     private apiService : apiService,
   )
   {
+    this.generateTimeSlots();
       this.mapsApiLoader = mapsApiLoader;
       this.zone = zone;
       this.wrapper = wrapper;
@@ -402,7 +406,16 @@ export class LocationComponent implements OnInit {
             this.phoneData.locationPhones = reqObj
             },
             error => {
-              this.toastr.error(error._body);
+              var msg='';
+              for(let i=0 ;i<=10;i++){
+                msg=error.error['['+i+'].PhoneNumber'];
+                if(msg!=undefined){
+                  break;
+                }
+              }
+              this.toastr.error(msg);
+              
+              
               }
           )    
       }
@@ -581,7 +594,21 @@ export class LocationComponent implements OnInit {
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
-            this.http.post(this.urlpost,{
+        debugger;
+        let TimeArray=[
+          {day:'Sunday',openTime:e.value.sundayOpen,closeTime:e.value.sundayClose},
+          {day:'Monday',openTime:e.value.mondayOpen,closeTime:e.value.mondayClose},
+          {day:'Tuesday',openTime:e.value.tuesdayOpen,closeTime:e.value.tuesdayClose},
+          {day:'Wednesday',openTime:e.value.wednesdayOpen,closeTime:e.value.wednesdayClose},
+          {day:'Thursday',openTime:e.value.thursdayOpen,closeTime:e.value.thursdayClose},
+          {day:'Friday',openTime:e.value.fridayOpen,closeTime:e.value.fridayClose},
+          {day:'Saturday',openTime:e.value.saturdayOpen,closeTime:e.value.saturdayClose}
+
+        ]
+        let isvalidTIme=this.validateTradingTime(TimeArray); 
+        debugger;
+        if(isvalidTIme==1){
+        this.http.post(this.urlpost,{
               vendorLocationId: e.value.vendorLocationId,
               countryId: e.value.country.countryId  ,
               vendorId: e.value.vendorId,
@@ -626,8 +653,10 @@ export class LocationComponent implements OnInit {
               
               locationPhones: this.col
             },{headers:headers}).subscribe( (data)=> { console.log(data)
-              this.toastr.success(data.statusText);},(error)=>{ console.log(error); 
-                this.toastr.success(error.statusText);});              
+              this.toastr.success(data.statusText);},
+              (error)=>{ console.log(error); 
+                this.toastr.error(error.statusText);});              
+              }
       }
      
       isActive(b,e){ 
@@ -642,6 +671,25 @@ export class LocationComponent implements OnInit {
                       
                       }else{this.toastr.success("Vacation Mode is ON")}}
                ,(error)=>{ console.log(error);   });
+      }
+      validateTradingTime(obj){
+        let isvalid=1;
+        for (let i = 0; i < obj.length; i++) {        
+        if(obj[i].openTime==null || obj[i].openTime==''  && obj[i].closeTime!=null || obj[i].closeTime!=''){
+          this.toastr.error(obj[i].day+' Invalid Open Time!');
+          isvalid= 0;
+          alert(obj[i].day+' Invalid Open Time!');
+          break;
+
+        }
+        else if(obj[i].closeTime==null || obj[i].closeTime=='' && obj[i].openTime!=null ||obj[i].openTime!='' ){
+          this.toastr.error(obj[i].day+' Invalid Closing Time!');
+          isvalid= 0;
+          alert(obj[i].day+' Invalid Closing Time!');
+          break;
+        }
+      }
+      return isvalid;
       }
       cerate(e){
         this.create_location_dailog = false;
@@ -797,15 +845,72 @@ export class LocationComponent implements OnInit {
         })
         $.getScript('./assets/js/vertical-timeline.js');
       }
-      
+      generateTimeSlots(){
+        
+      }
+}
+export class TimeSlot{
+  public days:Array<any>
+  public timing:Array<any>;
+  constructor(){
+    this.timing=[];
+    this.days=[]
+    this.days.push({id:1,name:'Sunday','IsOpen':false});
+    this.days.push({id:1,name:'Monday','IsOpen':false});
+    this.days.push({id:1,name:'Tuesday','IsOpen':false});
+    this.days.push({id:1,name:'Wednesay','IsOpen':false});
+    this.days.push({id:1,name:'Thurseday','IsOpen':false});
+    this.days.push({id:1,name:'Friday','IsOpen':false});
+    this.days.push({id:1,name:'Saturday','IsOpen':false});
+
+    this.timing.push({startTime:'00:00',endTime:'00:30'});
+      this.timing.push({startTime:'00:30',endTime:'01:00'});
+      this.timing.push({startTime:'01:00',endTime:'01:30'});
+      this.timing.push({startTime:'01:30',endTime:'02:00'});
+      this.timing.push({startTime:'02:00',endTime:'02:30'});
+      this.timing.push({startTime:'02:30',endTime:'03:00'});
+      this.timing.push({startTime:'03:00',endTime:'03:30'});
+      this.timing.push({startTime:'03:30',endTime:'04:00'});
+      this.timing.push({startTime:'04:00',endTime:'04:30'});
+      this.timing.push({startTime:'04:30',endTime:'05:00'});
+      this.timing.push({startTime:'05:00',endTime:'05:30'});
+      this.timing.push({startTime:'05:30',endTime:'06:00'});
+      this.timing.push({startTime:'06:00',endTime:'06:30'});
+      this.timing.push({startTime:'06:30',endTime:'07:00'});
+      this.timing.push({startTime:'07:00',endTime:'07:30'});
+      this.timing.push({startTime:'07:30',endTime:'08:30'});
+      this.timing.push({startTime:'08:30',endTime:'09:00'});
+      this.timing.push({startTime:'09:00',endTime:'09:30'});
+      this.timing.push({startTime:'09:30',endTime:'10:00'});
+      this.timing.push({startTime:'10:00',endTime:'10:30'});
+      this.timing.push({startTime:'10:30',endTime:'11:00'});
+      this.timing.push({startTime:'11:00',endTime:'11:30'});
+      this.timing.push({startTime:'11:30',endTime:'12:00'});
+      this.timing.push({startTime:'12:00',endTime:'13:30'});
+      this.timing.push({startTime:'13:30',endTime:'14:00'});
+      this.timing.push({startTime:'14:00',endTime:'14:30'});
+      this.timing.push({startTime:'14:30',endTime:'15:00'});
+      this.timing.push({startTime:'15:00',endTime:'15:30'});
+      this.timing.push({startTime:'15:30',endTime:'16:00'});
+      this.timing.push({startTime:'16:00',endTime:'16:30'});
+      this.timing.push({startTime:'16:30',endTime:'17:00'});
+      this.timing.push({startTime:'00:30',endTime:'17:30'});
+      this.timing.push({startTime:'17:30',endTime:'18:00'});
+      this.timing.push({startTime:'18:00',endTime:'18:30'});
+      this.timing.push({startTime:'18:30',endTime:'19:00'});
+      this.timing.push({startTime:'19:00',endTime:'19:30'});
+      this.timing.push({startTime:'19:30',endTime:'20:00'});
+      this.timing.push({startTime:'20:00',endTime:'20:30'});
+      this.timing.push({startTime:'20:30',endTime:'21:00'});
+      this.timing.push({startTime:'21:00',endTime:'21:30'});
+      this.timing.push({startTime:'21:30',endTime:'22:00'});
+      this.timing.push({startTime:'22:00',endTime:'22:30'});
+      this.timing.push({startTime:'22:30',endTime:'23:00'});
+      this.timing.push({startTime:'23:00',endTime:'23:30'});
+      this.timing.push({startTime:'23:30',endTime:'00:00'});
+      }
+  public startTime: string;
+  public endTime:string;
 
 
-      
-
-    
-    
-
-
-
-     
 }

@@ -1,7 +1,7 @@
 
 <div class="lm_bg">
      
-<ul class="sidebar-nav" id="testDiv">         
+<ul *ngIf="!route; else next"class="sidebar-nav" id="testDiv">         
   <a class="lm_top_head logo_icon" routerLink="../../home" >Perfect Wedding</a> 
     <li class="sidebar-brand" id="dashboard">
         <a routerLink="../dashboard">
@@ -51,7 +51,9 @@
         <a routerLink="../mylisting" >
             <i class="material-icons">stars</i>
              Review  
-             <span class="notification badge badge-pill badge-danger">{{countss}}</span>
+             <span *ngIf = "countss > 0" class="notification badge badge-pill badge-danger">
+                 
+               New {{countss}}</span>
                                          
             
             </a>
@@ -97,6 +99,104 @@
             <a routerLink="../statistics" >
                 <i class="material-icons"> calendar_view_day</i> Statistics </a>
         </li>
-      
-    </ul>
+</ul>
+<ng-template #next>
+        <ul class="sidebar-nav" id="testDiv">         
+                <a class="lm_top_head logo_icon" routerLink="../../home" >Perfect Wedding</a> 
+                  <li class="sidebar-brand" id="dashboard">
+                      <a routerLink="../../dashboard">
+                          <i class="material-icons">dashboard</i>
+                          Dashboard
+                      </a>
+                  </li>
+              
+                      <li class="sidebar-brand" id="business">
+                          
+                          <a routerLink="../../business" >
+                              <i class="material-icons">business</i>
+                              Business information</a>
+                      </li>
+                      <li class="sidebar-brand" id="location_on">
+                              <a routerLink="../../location" >
+                                  <i class="material-icons">location_on</i>
+                                  Branches &Trading </a>
+                      </li>
+                      <li class="sidebar-brand" id="Services">
+                                  
+                          <a routerLink="../../business-services" >
+                              <i class="material-icons">work</i>
+                              Business Services </a>
+                      </li>
+                      <li class="sidebar-brand" id="message">
+                              
+                              <a routerLink="../../Message">
+                                  <i class="material-icons">message</i>
+                                  Messages</a>
+                      </li>
+                      <li class="sidebar-brand" id="photo_album">
+              
+                                  
+                          <a routerLink="../../gallery" > 
+                              <i class="material-icons">photo_album</i>
+                                  Portfolio &Albums</a>
+                          <!-- routerLink="../../gallery" -->
+                      </li>
+                      <li class="sidebar-brand" id="play_circle_outline">
+                                      
+                          <a routerLink="../../Videos" >
+                              <i class="material-icons">play_circle_outline</i>
+                                  Videos </a>
+                      </li>
+                      <li class="sidebar-brand" id="stars">
+                      <a routerLink="../../mylisting" >
+                          <i class="material-icons">stars</i>
+                           Review  
+                           <span class="notification badge badge-pill badge-danger">{{countss}}</span>
+                                                       
+                          
+                          </a>
+              
+                      </li>       
+              
+                      <li class="sidebar-brand" id="event_available">
+                              <a routerLink="../../eventlist" >
+                                  <i class="material-icons">event_available</i>
+                                      Events </a>
+                      </li>
+                      <li class="sidebar-brand" id="card_membership">
+                              <a routerLink="../../membership" >
+                                      <i class="material-icons">card_membership</i>
+                                  Membership  </a>
+                              <!-- routerLink="../../Membership" -->
+              
+                      </li>     
+                      <li class="sidebar-brand" id="Calender">
+                              <a routerLink="../../calender">
+                                      <i class="material-icons">event_note</i>
+                                  My Planner </a>
+                          
+                      </li>
+                      <li class="sidebar-brand"  id="Promotions">
+              
+                              <a routerLink="../../PromoteBusiness" >
+                                      <i class="material-icons">calendar_view_day</i>
+              
+                                  Promote Business </a>
+                              
+                      </li>
+                      <li class="sidebar-brand"  id="Promotions">
+              
+                              <a routerLink="../../discountdeals" >
+                                      <i class="material-icons">calendar_view_day</i>
+              
+                                  Discount & Deals </a>
+                              
+                      </li>
+              
+                      <li class="sidebar-brand" id="Statistics">
+                          <a routerLink="../../statistics" >
+                              <i class="material-icons"> calendar_view_day</i> Statistics </a>
+                      </li>
+              </ul>
+</ng-template>
 </div>

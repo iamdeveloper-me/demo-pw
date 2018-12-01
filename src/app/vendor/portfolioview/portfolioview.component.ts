@@ -1,7 +1,7 @@
 import { Component, OnInit,ViewChild ,ChangeDetectionStrategy} from '@angular/core';
 import { ViewEncapsulation, Input } from '@angular/core';
 import swal from 'sweetalert2';
-
+import { Router } from '@angular/router';
 import { Http,Headers } from '@angular/http';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
@@ -24,6 +24,8 @@ export class PortfolioviewComponent implements OnInit {
     lodar = false;
     selected_Background;
     portfolioId;
+    basicplane;
+    free_limit;
     // Portpost1Array:any= {};
     private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader'
     private addportfolio: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/addportfolio'
@@ -36,7 +38,7 @@ export class PortfolioviewComponent implements OnInit {
     list:any = {
         "filesId": 1
     }
-    constructor( public http: Http ,public toastr: ToastrService) { }
+    constructor( public http: Http ,public toastr: ToastrService,   private router: Router ) { }
     ngOnInit() {
 
         $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
@@ -47,9 +49,43 @@ export class PortfolioviewComponent implements OnInit {
                     headers.append('Content-Type', 'application/json');
                     headers.append("Authorization",'Bearer '+authToken);
                     this.http.get(this.mygeturl,{headers:headers}).subscribe(data =>{
-                    this.PortgetArray = data.json() as string[];
+                    this.PortgetArray = data.json() ;
+                   // var basicplan = localStorage.getItem('basic-plan');
+                    this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
+                    this.free_limit =this.PortgetArray.length
+
+
+
+                    
+                    // console.log(parseInt(basicplan) );
+                 if( parseInt(this.basicplane) == 1 && this.PortgetArray.length == 5 ){ 
+                        swal({
+                            title: "cant upload more than 5",
+                          text: "upgrade your plan",
+                          type: "warning",
+                          showCancelButton: true,
+                          confirmButtonClass: "btn-default",
+                          confirmButtonText: "Yes",
+                          cancelButtonText: "No",
+                          }).then((res)=>{
+                            console.log(res);
+                            if(res.value===true){
+                                this.router.navigate(['../vendor/membership'])
+                            }
+                        
+                           },error=>{
+                             alert(JSON.stringify(error));
+                          })
+                            return;
+                          
+                      }else{
+                        this.basicplane = 0
+                     }
                     //console.log(data.json());
                     })
+
+
+                   
                     this.http.get(this.Get_backgroundImage,{headers:headers}).subscribe(data =>{
                         console.log(data.json());
                         if(data.json().setAsBackgroud == true){
@@ -87,17 +123,10 @@ export class PortfolioviewComponent implements OnInit {
         for(let file of this.uploader.queue){
              formData.append(file['some'].name,file['some'])
         }        
-    
+        this.photoupload(formData);
+        this.lodar = true ;
      
-          var basicplan = localStorage.getItem('basic-plan');
-         
-      console.log(parseInt(basicplan) );
-      if( parseInt(basicplan) == 1 && this.PortgetArray.length == 5 ){ 
-            alert("cahange palan not allow more than 5");   
-        }else{
-            this.photoupload(formData);
-            this.lodar = true ;
-        }
+        
     }
     photoupload(formData){
 

@@ -86,19 +86,8 @@ export class EventListComponent implements OnInit {
       console.log(this.countryArray);
       this.arra = this.countryArray
     })
-
-     
-
-    // this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/eventdetails?Id' +'='+37 ,{headers:headers}).subscribe(data =>{
-    // console.log(data.json());})
-    // this.http.get(this.removeeventgeturl,{headers:headers}).subscribe(data =>{
-    // console.log(data.json());})
-
-  //  $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
-   // $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
-
-   // $.getScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js');
-    $.getScript('./assets/js/vendorsidebar.js');
+    this.past_upcomming_event(3);
+         $.getScript('./assets/js/vendorsidebar.js');
     $(".Suppliertab").click(function () {
       $(".Suppliertab").addClass("selected");
       $(".Registertab").removeClass("selected");
@@ -122,7 +111,7 @@ export class EventListComponent implements OnInit {
       reader.readAsDataURL(image);
     }
   }
-  getImageF
+  
   romService() {
     this.isImageLoading = true;
     this.imageService.getImage('https://s3.us-east-2.amazonaws.com/prefect-image/efc074d5-ccb0-41af-94c8-3d51acaa1a65username.png').subscribe(data => {
@@ -324,8 +313,10 @@ locations(event: any) { this.location  = '';}
                                                   this.objevent = new EventsCreateUpdateVM();
                                                   this.past_upcomming_event(2);
                                                   this.twitterDailog = false;
+                                                  list.reset()
                                              },error=>{
-                                              alert(JSON.stringify(data));
+                                              // alert(JSON.stringify(data));
+                                              this.toastr.error(error);
                                              })   })
     }else{   this.toastr.error("fill completly");}
  
@@ -339,7 +330,7 @@ locations(event: any) { this.location  = '';}
   open(content) {
     this.isCreateEventVisible = true;
     this.modalService.open(content).result.then((result) => {
-      alert(result);
+    //  alert(result);
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -362,7 +353,7 @@ locations(event: any) { this.location  = '';}
   }
   // Open content with dark section
   openContent() {
-    alert('create event opened');
+   // alert('create event opened');
     const modalRef = this.modalService.open(NgbduserModalContent);
     modalRef.componentInstance.name = 'World';
   }
@@ -426,7 +417,9 @@ locations(event: any) { this.location  = '';}
       this.toastr.success("saved sucessfully");
       this.eventupdaterDailog = false;
       this.past_upcomming_event(2);
-    },error=>{console.log(error)})
+     
+    },error=>{console.log(error);
+      this.toastr.error(error);})
   }
 
   past_upcomming_event(past){
@@ -454,7 +447,7 @@ locations(event: any) { this.location  = '';}
   deletevent(data, index) {
           swal({
             title: "Are you sure?",
-        text: "You will not be able to recover this imaginary file!",
+        text: "You will not be able to recover this event!",
         type: "warning",
         showCancelButton: true,
         confirmButtonClass: "btn-default",
@@ -516,8 +509,9 @@ locations(event: any) { this.location  = '';}
     const newVal = event.target.value;
     console.log(newVal)
   }
- closeModel(){         
+ closeModel(list){         
     this.eventupdaterDailog = false;  
+    list.reset();
     this.twitterDailog = false;
     this.Titlee = ''
     this.startDates  = '';

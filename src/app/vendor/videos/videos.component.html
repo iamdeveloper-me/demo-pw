@@ -67,7 +67,8 @@
                <div class="text-center">
                     <!--Disable Condition Start-->
                   <div *ngIf="basicplan == 1 ;else cc" >       
-                      <button class="add_videobt"  (click)="Addvediodetail_dailog = true" [disabled]="true">Add Video</button> 
+                      <button class="add_videobt" style="display:none" (click)="Addvediodetail_dailog = true" [disabled]="true">Add Video</button> 
+                      <button class="add_videobt" (click)="addVideo()" >Add Video</button> 
                   </div>
                   <ng-template #cc>
                       <button class="add_videobt"  (click)="Addvediodetail_dailog = true" >Add Video</button> 
@@ -133,7 +134,7 @@
                                 <div class="form-group">
                                     <div class="input-effect form-group md-form ">
                                         <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                        <label>Paste your YouTube or Vimeo Link here</label>
+                                        <label>Paste your YouTube or Video Link here</label>
                                         <span class="focus-border"></span>
                                     </div>
                                 </div>
@@ -220,7 +221,7 @@
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                    <div class="modal-header">
-                    <h4 class="modal-title">Add Vedio</h4>
+                    <h4 class="modal-title">Add Video</h4>
                     <button type="button" class="close posiTop20px"  (click)="closeModel()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -231,39 +232,50 @@
 
                       <div class="form-group">
                         <div class="input-effect form-group md-form ">
-                          <input class="effect-16 validate" type="text" id="title" required="required" formControlName="title" >
-                          <label>Enter Vedio Title</label>
+                          <input class="effect-16 validate form-control" type="text" id="title" required="required" formControlName="title" 
+                          [ngClass]="{ 'is-invalid': submitted && f.title.errors }" />
+                          <label>Enter Video Title</label>
                           <span class="focus-border"></span>
+                          <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                              <div *ngIf="f.title.errors.required">Title is required</div>
+                          </div>
                         </div>
-                        <!-- <label for="title">Title:</label>
-                        <br>
-                        <input style="width:80%" type="text" id="title" formControlName="title" /> -->
-                        <div style="color:red" *ngIf="  title.value && title.invalid">
-                          Please provide valid tite
-                        </div>
+                          <!-- <div *ngIf="title.invalid && (title.dirty || title.touched)"  class="form-text text-muted danger" >
+                              <div  class="form-text text-muted danger"  *ngIf="title.errors.required">
+                                  title is required.
+                              </div>
+                          </div> -->
                       </div>
                       <div class="form-group">
                         <div class="input-effect form-group md-form ">
-                          <input class="effect-16 validate" type="url" id="link" required="required" formControlName="link" >
-                          <label>Enter Vedio Url</label>
+                          <input class="effect-16 validate form-control" type="url" id="link" required="required" formControlName="link" 
+                          pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
+                          [ngClass]="{ 'is-invalid': submitted && f.link.errors }"
+                          />
+                          <label>Enter Video Url</label>
                           <span class="focus-border"></span>
+                          <div *ngIf="submitted && f.link.errors" class="invalid-feedback">
+                              <div   class="form-text text-muted danger"  *ngIf="f.link.errors.required">
+                                Link is required
+                              </div>
+                              <div  class="form-text text-muted danger"  *ngIf="link.errors.pattern">
+                                Link is not valid!. 
+                              </div>
+                          </div>
+                            <!-- <div *ngIf="link.invalid && (link.dirty || link.touched)"  class="form-text text-muted danger" >
+                                <div  class="form-text text-muted danger"  *ngIf="link.errors.required">
+                                  link is required.
+                                </div>
+                                <div  class="form-text text-muted danger"  *ngIf="link.errors.pattern">
+                                  link is not valid!. 
+                                </div>
+                            </div> -->
                         </div>
-                        <div style="color:red" *ngIf="link.value && link.invalid">
-                          Please provide valid url
-                        </div>
-                        <!-- <label for="link">URL:</label>
-                        <br>
-                        <input style="width:80%" type="text" id="link" formControlName="link" />
-                        <div style="color:red" *ngIf="link.value && link.invalid">
-                          Please provide valid url
-                        </div> -->
                       </div>
-                      <!-- <br>
-                      <button type="submit">Submit</button>
-                      <br> -->
+
                    </div>
                    <div class="modal-footer text-center">
-                    <button  [disabled]="form.invalid" type="submit"  class="btn newbtn " >SAVE</button> &nbsp; 
+                    <button type="submit" class="btn newbtn " >SAVE</button> &nbsp; 
                     <button type="button" class="btn newbtn newcancelbtn" 
                     (click)="closeModel()"> Close</button>
                   </div>

@@ -47,13 +47,13 @@
 											<div class="col-md-3" *ngFor='let cf of customFields'>
 												<div class="col-md-12">
 													<label>
-														<input type="checkbox" [checked]='cf.isSelect' [value]='cf.isEnable' [(ngModel)]='cf.isEnable' />
+														<input type="checkbox" [(checked)]='cf.isSelect' [value]='cf.isEnable'  />
 														{{cf.name}} <br />
 														<span>
 															{{cf.SelectedOptionValue}}
 														</span>
 													</label>
-													<button [disabled]='!cf.isEnable' class="btn newbtn" (click)='getSelectOptions(cf)'>
+													<button [disabled]='!cf.isSelect' class="btn newbtn" (click)='getSelectOptions(cf)'>
 														Select
 													</button>
 												</div>

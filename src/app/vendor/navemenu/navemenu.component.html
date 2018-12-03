@@ -189,7 +189,16 @@
                                     <li class="nav-item usernavmenu" ngbDropdown placement="bottom-right">
                                             <a class="nav-link afternone navuserlink position-relative" id="dropdownBasic3" ngbDropdownToggle>
                                                  <!-- <i class="material-icons">account_circle</i> -->
-                                                 <img [src] = "userImg" class="userimgtop" >
+                                                 <!-- <img [src] = "userImg" class="userimgtop" > -->
+                                                 <div *ngIf = "!userImg"  > 
+                                                        <img  [src] = "userImg" class="userimgtop " alt="Profile picture" >
+                                                      </div>
+                                                   
+                                                      <div *ngIf = "userImg != ''"> 
+                                                        <img   [src] = "userImg" class="userimgtop" alt="Profile picture" >
+                                                      </div>
+                                                    
+
                                                 <p class="d-none">User Settings {{vendor.profileImage}}</p>
                                             </a>
                                             <div class="blackoverlaymainuser">

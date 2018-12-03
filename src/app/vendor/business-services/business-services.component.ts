@@ -6,6 +6,9 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { BusinessService } from 'app/ngservices/business.service';
 import { ToastrService } from 'ngx-toastr';
 import { element } from 'protractor';
+import { Router } from '@angular/router';
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 @Component({
   selector: 'app-business-services',
   templateUrl: './business-services.component.html',
@@ -37,8 +40,10 @@ export class BusinessServicesComponent implements OnInit {
   service_provide_dailog_4 = false;
   radioSelected:any;
   header:Headers;
-  constructor(public http: Http, public bs_service: BusinessService, public toastr: ToastrService){ 
+  
+  constructor(private config: NgbCarouselConfig,private router: Router,public http: Http, public bs_service: BusinessService, public toastr: ToastrService){ 
     this.objVenderServiceVm = new VendorServiceVM();
+  
     this.objVenderServiceVm.categoryId
     this.categories = new Array<CategoryVm>();
     this.categoryWiseService = new BusinessCategoriesVM();
@@ -135,6 +140,8 @@ export class BusinessServicesComponent implements OnInit {
        this.objVenderServiceVm.serviceName= service.serviceName;
        this.objVenderServiceVm.servicesId=service.servicesId;
       // this.objVenderServiceVm.categoryId=service.categoryId;
+      this.services=this.selected_category[this.categoryIndex].services;
+      this.getCustomFieldBySreviceId(this.objVenderServiceVm.servicesId,this.objVenderServiceVm.serviceName);
       this.saveServiceWithoutOptions();
        
    }
@@ -142,7 +149,9 @@ export class BusinessServicesComponent implements OnInit {
        this.resetCustomFileds();
        this.objVenderServiceVm.servicesId = id ;
        this.objVenderServiceVm.serviceName=name;
-       
+       this.name_d=name;
+       this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.isSelect==true)[0].isSelect=false;
+       this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.servicesId==id)[0].isSelect=true;
       }
       saveServiceWithoutOptions(){
         this.customFields=[];
@@ -160,7 +169,8 @@ export class BusinessServicesComponent implements OnInit {
              customFields[i].SelectedOptionId=0;
              this.customFields.push(customFields[i])
            }
-          }}   
+          }}
+          console.log(this.customFields);   
       }
       getSelectOptions(customField){
           this.customFieldSelectOptions = this.categoryserveice.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.servicesId==this.objVenderServiceVm.servicesId)[0].customFields.filter(cf=>cf.customFieldId==customField.customFieldId)[0].customFieldOptionList;
@@ -174,6 +184,7 @@ export class BusinessServicesComponent implements OnInit {
        return customField.customFieldOptionList.filter(o=>o.isSelect==true)[0].FieldValue
       }
       showServiceDialog(){
+        
         this.serviceDialog=true;
         this.cropperupload=true;
       }

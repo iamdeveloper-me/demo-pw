@@ -145,7 +145,7 @@ deleteData(data){
 
   swal({
     title: "Are you sure?",
-  text: "You will not be able to recover this imaginary file!",
+  text: "You will not be able to recover this video file!",
   type: "warning",
   showCancelButton: true,
   confirmButtonClass: "btn-default",

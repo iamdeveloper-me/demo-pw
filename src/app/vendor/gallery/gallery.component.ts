@@ -6,6 +6,7 @@ import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 import { apiService } from '../../shared/service/api.service';
 import { Router } from '@angular/router';
+import swal from 'sweetalert2';
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
 @Component({
@@ -20,6 +21,7 @@ export class GalleryComponent implements OnInit {
   gallery = { files: ''}
   fileToUpload:any;
   albumsId:'';
+  basicplane
   lodar = false;
   eventArray:any = {};
   portfolio:any = [];
@@ -71,6 +73,7 @@ export class GalleryComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
     var basicplan = localStorage.getItem('basic-plan');
+    this.basicplane =  localStorage.getItem('basic-plan');
       console.log(parseInt(basicplan) );
       if( parseInt(basicplan) == 1 ){
         // alert("cant create");
@@ -228,7 +231,33 @@ export class GalleryComponent implements OnInit {
                       this.albumArray = data.json() ;
                     })
                  }
-
+                 upgrade(){
+                  this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
+                  if( parseInt(this.basicplane) == 1 ){ 
+                    $(".drop_zone").hide();
+                    swal({
+                        title: "Change your plan for Album",
+                      text: "upgrade your plan",
+                      type: "warning",
+                      showCancelButton: true,
+                      confirmButtonClass: "btn-default",
+                      confirmButtonText: "Yes",
+                      cancelButtonText: "No",
+                      }).then((res)=>{
+                        console.log(res);
+                        if(res.value===true){
+                            this.router.navigate(['../vendor/membership'])
+                        }
+                    
+                       },error=>{
+                         alert(JSON.stringify(error));
+                      })
+                        return;
+                      
+                  }else{
+                    this.basicplane = 0
+                 }
+                 }
 
   closeModel(){
        

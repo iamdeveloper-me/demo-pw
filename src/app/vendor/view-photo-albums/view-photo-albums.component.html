@@ -34,7 +34,7 @@
                           <span *ngIf = "g == 'red'" class="colortags redbg" ></span>
                       
                       
-                          <span  *ngIf = "g == 'blue'" class="colortags bluebg" ></span>
+                          <span  *ngIf = "g == 'Blue'" class="colortags bluebg" ></span>
                      
                       
                           <span  *ngIf = "g == 'yellow'" class="colortags yellowbg" ></span>
@@ -185,7 +185,7 @@
                                   <tr *ngFor="let item of uploader.queue; let i= index">
                                     <td><strong>{{ item?.file?.name }}</strong>
 
-                                      <ngb-progressbar type="primary" [value]="80"></ngb-progressbar>
+                                    
                                       
                                     </td>
                                   
@@ -264,6 +264,7 @@
                             <span id="current-progress"></span>
                           </div>
                         </div>
+                        <p>Do not refresh page until the upload is completed</p>
                     </div>
                   </div>    
               </div>

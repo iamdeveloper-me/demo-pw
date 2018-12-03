@@ -15,13 +15,13 @@
                             <div class="heightequal365 mobnopadd padleft0px ">
                                 <div class="card heightequal365 margintop0px mobmargintop30px" (click)="openModel(vendor)">
                                     <div class="card-header">
+                                        <div>
+                                        <div class="busines_img" ngbTooltip="Upload/Change your business logo or profile image of your business representative">
 
-                                        <div class="busines_img" title="Change Business Image">
-
-                                            <i class="material-icons" (click)="imagecropDailog = true" id="description-function"> camera_alt </i> 
-                                                <img [src] = "imagee"  >   
+                                            <i class="material-icons" (click)="imagecropDailog = true" id="description-function" style="cursor:pointer"> camera_alt </i> 
+                                                <img [src] = "imagee" >   
                                         </div>
-                                        
+                                        </div>
                                         <div class="busi_contact">
 
                                             <div class="on_hover" (click)="openBusinessDialog('BusinessDailog')" id="Instagram-function" >
@@ -68,8 +68,8 @@
                                                  <div *ngIf="vendor.fbAvailable  ==  true" >
                                                     : {{vendor.facebookURL}}
                                                  </div>
-                                                 <div *ngIf="vendor.fbAvailable  ==  false" >
-                                                    :Dont have any URL
+                                                 <div *ngIf="vendor.fbAvailable  ==  false" class="nonedisplay" >
+                                                    : None
                                                  </div>
                                             
                                                 </span>
@@ -89,8 +89,8 @@
                                            <div *ngIf="vendor.twitterAvailable  ==  true" >
                                             : {{vendor.twitterURL}}
                                          </div>
-                                         <div *ngIf="vendor.twitterAvailable  ==  false" >
-                                            :Dont have any URL
+                                         <div *ngIf="vendor.twitterAvailable  ==  false"  class="nonedisplay">
+                                            : None
                                          </div>
                                     
                                         
@@ -111,8 +111,8 @@
                                            <div *ngIf="vendor.googleAvailable  ==  true" >
                                             :  {{vendor.googleURL}}
                                          </div>
-                                         <div *ngIf="vendor.googleAvailable  ==  false" >
-                                            :Dont have any URL
+                                         <div *ngIf="vendor.googleAvailable  ==  false"  class="nonedisplay" >
+                                            : None
                                          </div>
                                           
                                             </span>
@@ -132,8 +132,8 @@
                                            <div *ngIf="vendor.instaAvailable  ==  true" >
                                             :  {{vendor.instalURL}}
                                          </div>
-                                         <div *ngIf="vendor.instaAvailable  ==  false" >
-                                            :Dont have any URL
+                                         <div *ngIf="vendor.instaAvailable  ==  false"  class="nonedisplay">
+                                            : None
                                          </div>
                                         
                                            </span>
@@ -153,8 +153,8 @@
                                             <div *ngIf="vendor.perfectWeddingAvailable  ==  true" >
                                                 :{{vendor.perfectWeddingURL}}
                                              </div>
-                                             <div *ngIf="vendor.perfectWeddingAvailable  ==  false" >
-                                                :Dont have any URL
+                                             <div *ngIf="vendor.perfectWeddingAvailable  ==  false"  class="nonedisplay">
+                                                : None
                                              </div>
                                          
                                             </span>
@@ -192,7 +192,7 @@
                             <div class="col-sm-12  text-center">      
                             <textarea  
                             class="textareaclass" 
-                            type="text" 
+                            type="text"
                             id="businessDetails" 
                             #businessDetails
                             placeholder="Enter Description"
@@ -230,13 +230,13 @@
                             name="nameOfBusiness" 
                             #required="ngModel" 
                             required 
-                            placeholder="Bussiness name" />
-                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="required.errors?.required"> Bussiness name field required </small>
+                            placeholder="Business name" />
+                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="required.errors?.required">Business name cannot be blank!</small>
                            </p>
                         </div>
                     </div>
                     <div class="modal-footer text-center">
-                        <button type="submit" class="btn namesave newbtn">Save</button> 
+                        <button type="submit" class="btn namesave newbtn" [disabled]="!required.valid">Save</button> 
                         <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('BusinessDailog')">Cancel</button>
                     </div>
                 </div>
@@ -298,7 +298,7 @@
                                             #facebookURL="ngModel"
                                             id='fburl'
                                             #fburl
-                                            placeholder="Don't have any URL"
+                                            placeholder="None"
                                             [ngModel] = "modelfield.facebookURL" 
                                             required 
                                             (ngModelChange)='isValidUrl(modelfield.facebookURL,"Fb")'
@@ -376,7 +376,7 @@
                                         id='twurl'
                                         #twurl 
                                         #twitterURL="ngModel"
-                                        placeholder="Don't have any URL"
+                                        placeholder="None"
                                         [ngModel] = "modelfield.twitterURL" 
                                         (ngModelChange)='isValidUrl(modelfield.twitterURL,"Tw")'
                                         required/>
@@ -455,12 +455,12 @@
                                 id='gUrl'
                                 #gUrl
                                 #googleURL="ngModel"
-                                placeholder="Don't have any URL"
+                                placeholder="None"
                                 [ngModel] = "modelfield.googleURL" 
                                 (ngModelChange)='isValidUrl(modelfield.googleURL,"Google")'
                                 required />
-                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidGoogeUrl===false && modelfield.googleAvailable == true  && !modelfield.googleURL.errors?.required">Invalid url</small>
-                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="googleURL.errors?.required"> googleURL name field required </small>
+                            <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidGoogeUrl===false && modelfield.googleAvailable == true  && !modelfield.googleURL.errors?.required">Invalid url</small>
+                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="googleURL.errors?.required"> googleURL name field required </small> -->
                             </div>    
                             <!-- <div *ngIf="modelfield.googleAvailable  ==  false">
                                 <input class="effect-16 validate endent_10px width_60" 
@@ -534,7 +534,7 @@
                                 id='insUrl'
                                 #insUrl
                                 #instalURL="ngModel"
-                                placeholder="Don't have any URL"
+                                placeholder="None"
                                 [ngModel] = "modelfield.instalURL" 
                                 (ngModelChange)='isValidUrl(modelfield.instalURL,"Insta")'
                                 required/>
@@ -614,12 +614,12 @@
                                 id='pwUrl'
                                 #pwUrl 
                                 #perfectWeddingURL="ngModel"
-                                placeholder="Don't have any URL"
+                                placeholder="None"
                                 [ngModel] = "modelfield.perfectWeddingURL" 
                                 (ngModelChange)='isValidUrl(modelfield.perfectWeddingURL,"Other")'
                                 required />
                             <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidOtherUrl===false && modelfield.perfectWeddingAvailable == true  && !perfectWeddingURL.errors?.required">url error</small>
-                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="perfectWeddingURL.errors?.required"> perfectWeddingURL name field required </small>   
+                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="perfectWeddingURL.errors?.required"> url cannot be blank! </small>   
                         </div>
                                 <!-- <div *ngIf="modelfield.perfectWeddingAvailable  ==  false">
                                     <input class="effect-16 validate endent_10px width_60" 
@@ -642,8 +642,11 @@
                         <p>No Website? No Problem!</p>
                         <div class="noproblum">
                         <p>1. Copy the link to your profile on Perfect Weddings 
-                            <span>Copy</span>
-                        </p>
+                            <div class="copyinput">
+                                <input type="text" value="http://perfectwedding.com/" #userinput/>
+                                <span class="btn" (click)="copyInputMessage(userinput)" >Copy</span>
+                            </div>          
+                        <!-- </p> -->
                         <p>2. Go to your Facebook Page and add the link as your website</p>
                         <p>3. You are done! That was easy, isn’t it?</p>
                         </div>

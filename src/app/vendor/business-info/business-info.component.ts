@@ -9,6 +9,7 @@ import { isValid } from 'date-fns';
 import { NavemenuComponent } from '../navemenu/navemenu.component';
 import { LoginServiceService } from 'app/shared/service/login-service.service';
 import { Router } from '@angular/router';
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import {BusinessService} from '../../ngservices/business.service';
@@ -31,7 +32,7 @@ export class BusinessInfoComponent implements OnInit {
   @ViewChild('gUrl') gUrl:ElementRef;
   @ViewChild('insUrl') insUrl:ElementRef;
   @ViewChild('pwUrl') pwUrl:ElementRef;
-  
+  @ViewChild('x') public tooltip: NgbTooltip;
   dialogname;
   facebookDailog = false;
   twitterDailog = false;
@@ -169,7 +170,13 @@ export class BusinessInfoComponent implements OnInit {
           this.data = {};
          }  
   
-  
+  /* To copy Text from Textbox */
+  copyInputMessage(inputElement){
+    inputElement.select();
+    document.execCommand('copy');
+    inputElement.setSelectionRange(0, 0);
+  }
+
   ngOnInit() {
    this.pageInitialize();
   }
@@ -242,7 +249,7 @@ export class BusinessInfoComponent implements OnInit {
                   }, 2000);
                  if(!data.json().files)
                  { 
-                   this.imagee = 'https://api.asm.skype.com/v1/objects/0-sa-d7-42ce40a5cedd583b57e96843e17d67e2/views/imgpsh_fullsize'}
+                   this.imagee = 'https://openclipart.org/download/247324/abstract-user-flat-1.svg'}
                  else{ 
                    this.imagee = data.json().files.path ;
                 //  let objnavmenu = new NavemenuComponent(this.translate,this.http,this.cservice,this.router);
@@ -568,7 +575,7 @@ pageInitialize(){
                  {
                   
                    console.log(this.vendor.files );
-                   this.imagee = "https://api.asm.skype.com/v1/objects/0-sa-d7-42ce40a5cedd583b57e96843e17d67e2/views/imgpsh_fullsize";
+                   this.imagee = "https://openclipart.org/download/247324/abstract-user-flat-1.svg";
                    console.log( this.imagee);
                   }else{  
                     this.imagee = this.vendor.files.path ;

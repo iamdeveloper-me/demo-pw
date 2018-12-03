@@ -61,6 +61,7 @@ import { FootComponent } from './foot/foot.component';
 
 import { VendorcardComponent } from './vendorcard/vendorcard.component';
 import { RegisterComponent } from './register/register.component';
+import { EqualValidator } from './register/equal-validator.directive';
 import { SearchresultComponent } from './searchresult/searchresult.component';
 import { PhotoComponent } from './photo/photo.component';
 import { TipsComponent } from './tips/tips.component';
@@ -374,7 +375,7 @@ export function getAuthServiceConfigs() {
         FailureComponent,
         ResetPasswordComponent,
 
-       
+        EqualValidator
         
         
 

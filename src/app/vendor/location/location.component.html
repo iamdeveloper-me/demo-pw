@@ -11,8 +11,8 @@
                     <div class="col-sm-4 " *ngFor="let data of location_Array;let i=index"  >
                         <div class="card martop10px" >
                             <div class="col-sm-12">
-                                <h4 class="mainhead" *ngIf="data.isPrimary == false"  > Branch </h4>
-                                <h4 class="mainhead" *ngIf="data.isPrimary == true"  > Main  </h4>
+                                <h4 class="mainhead" *ngIf="data.isPrimary == false"  > Secondary </h4>
+                                <h4 class="mainhead" *ngIf="data.isPrimary == true"  > Primary  </h4>
                             
                                 <div class="switbtn">
                                     <ui-switch 
@@ -51,7 +51,7 @@
                                     </span>
                                             <div class="col-sm-10 col-11 minheight130px" >
                                              
-                                                    <!-- <div>: {{data?.mapAddress}}  </div> -->
+                                                    <div>: {{data?.mapAddress}}  </div>
                                                     <div>: {{data?.country?.countryName }} </div>
                                                     <div>: {{data?.districts?.name}} </div>
                                                     <div>: {{data?.suburb?.name}}   </div>
@@ -102,7 +102,7 @@
                                             <div class="col-sm-12 nopadd weekboxinput3">
                                                 <div class="col-sm-4 col-xs-5-mob nopadd">Sunday </div>
                                                 <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isSundayOpen == true ">
-                                                    {{data.sundayOpen}}AM to {{data.sundayClose}}PM
+                                                    {{data.sundayOpen}} {{'-'+data.sundayClose==null?'':data.sundayClose}}
                                                     <i class="material-icons edit_btn1">edit</i>
 
                                                 </div>
@@ -116,7 +116,7 @@
                                                         Monday
                                                     </div>
                                                     <div class="col-sm-8 col-xs-7-mob nopadd"  *ngIf = "data.isMondayOpen == true ">
-                                                        {{data.mondayOpen}}AM to {{data.mondayClose}}PM
+                                                        {{data.mondayOpen}} {{'-'+data.mondayClose==null?'':data.mondayClose}}
                                                     </div>
                                                     <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isMondayOpen == false ">
                                                             closed
@@ -130,7 +130,7 @@
                                                         Tuesday
                                                     </div>
                                                     <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isTuesdayOpen == true ">
-                                                        {{data.tuesdayOpen}}AM to {{data.tuesdayClose}}PM
+                                                        {{data.tuesdayOpen}}{{'-'+data.tuesdayClose==null?'':data.tuesdayClose}}
                                                     </div>
                                                     <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isTuesdayOpen == false ">
                                                             closed
@@ -143,7 +143,7 @@
                                                         Webnesday
                                                     </div>
                                                     <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isWednesdayOpen == true ">
-                                                        {{data.wednesdayOpen}}AM to {{data.wednesdayClose}}PM
+                                                        {{data.wednesdayOpen}} {{'-'+data.wednesdayClose==null?'':data.wednesdayClose}}
                                                     </div>
                                                     <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isWednesdayOpen == false ">
                                                             closed
@@ -155,7 +155,7 @@
                                                         Thursday
                                                     </div>
                                                     <div class="col-sm-8 col-xs-7-mob nopadd"  *ngIf = "data.isThursdayOpen == true ">
-                                                        {{data.thursdayOpen}}AM to {{data.thursdayClose}}PM
+                                                        {{data.thursdayOpen}}  {{'-'+data.thursdayClose==null?'':data.thursdayClose}}
                                                     </div>
                                                     <div class="col-sm-8 col-xs-7-mob nopadd"  *ngIf = "data.isThursdayOpen == false ">
                                                             closed
@@ -167,7 +167,7 @@
                                                         Friday
                                                     </div>
                                                     <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isFridayOpen == true ">
-                                                        {{data.fridayOpen}}AM to {{data.fridayClose}}PM
+                                                        {{data.fridayOpen}} {{'-'+data.fridayClose==null?'':data.fridayClose}}
                                                     </div>
                                                     <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isFridayOpen == false ">
                                                             closed
@@ -179,7 +179,7 @@
                                                         Saturday
                                                     </div>
                                                     <div class="col-sm-8 col-xs-7-mob nopadd"  *ngIf = "data.isSaturdayOpen == true ">
-                                                        {{data.saturdayOpen}}AM to {{data.saturdayClose}}PM
+                                                        {{data.saturdayOpen}} {{'-'+data.saturdayClose==null?'':data.saturdayClose}}
                                                     </div>
                                                     <div class="col-sm-8 col-xs-7-mob nopadd"  *ngIf = "data.isSaturdayOpen == false ">
                                                             closed
@@ -198,10 +198,11 @@
                             <div class="text-center bg-form col-sm-12 addlocationbox">
                                 <i class="material-icons font80px">  add_location </i>
                                 <div>Have more business branches?</div>
-                                <button (click)="create_location_dailog = true"  type="button" class="martopbot15px borderbtnonly"> Add New Location </button>
-                                <div>Premium members only.
-                                    <a routerLink="../membership" class="bluelink">Upgrade</a>
-                                </div>
+                                
+                                <button (click)="checkPlanForAddingLocation()"  type="button" class="martopbot15px borderbtnonly"> Add New Location </button>
+                                <!--<div>Premium members only.
+                                     <a routerLink="../membership" class="bluelink">Upgrade</a> 
+                                </div>-->
                             </div>
                         </div>
                     </div>
@@ -282,7 +283,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12" style="display:none">
                     <div class="col-md-12" *ngFor='let d of timeslot.days'>
                     <div class="col-md-6">{{d.name}}
                             <span class="ui_switch">
@@ -297,18 +298,14 @@
                         </div>
                     
                     <div class="col-md-3">
-                        <select class="form-group form-control">
-                            <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
-                        </select>
+                        
                     </div>
                     <div class="col-md-3">
-                            <select class="form-group form-control">
-                                <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
-                            </select>
+                            
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 loca_hours sund_top" style="display:none">
+                <div class="col-sm-12 loca_hours sund_top">
                     <div class="col-sm-2">
                         Sunday
                     </div>
@@ -328,29 +325,34 @@
                     <div class="col-sm-7">
                         <div class="form-group registration-date">
                             <div class="input-group registration-date-time col-sm-6" >
-                                <input 
-                                    type="time" 
+                                    <select 
                                     class="inputbottombor form-control"   
                                     [(ngModel)]="modelfield.sundayOpen" 
                                     [disabled] = "!modelfield.isSundayOpen " 
-                                
                                     id="sundayOpen" 
-                                    name="sundayOpen">
+                                    name="sundayOpen"
+                                    #sundayOpen
+                                    >
+                                            <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
+                                        </select>
                             </div>
                             <div class="input-group registration-date-time col-sm-6">
-                                <input 
+                                    <select 
                                     class="form-control" 
-                                    type="time" 
                                     [(ngModel)]="modelfield.sundayClose"    
                                     [disabled] = "!modelfield.isSundayOpen " 
-                                    id="sundayClose" 
-                                    name="sundayClose">
+                                    id="sundayClose"
+                                    #sundayClose 
+                                    name="sundayClose" *ngIf='modelfield.sundayOpen!=="24 Hours"'
+                                    >
+                                            <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
+                                        </select>
                             </div>
                         </div>
 
                     </div>
                 </div>
-                <div class="col-sm-12 loca_hours" style="display:none">
+                <div class="col-sm-12 loca_hours">
                     <div class="col-sm-2">
                         Monday
                     </div>
@@ -369,16 +371,20 @@
                     <div class="col-sm-7">
                         <div class="form-group registration-date">
                             <div class="input-group registration-date-time col-sm-6">
-                                <input class="form-control" type="time" [(ngModel)]="modelfield.mondayOpen" [disabled] = "!modelfield.isMondayOpen"  id="mondayOpen" name="mondayOpen">
+                                <select class="form-control" type="time" [(ngModel)]="modelfield.mondayOpen" [disabled] = "!modelfield.isMondayOpen"  id="mondayOpen" #mondayOpen name="mondayOpen">
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
+                                </select>
                             </div>
                             <div class="input-group registration-date-time col-sm-6">
-                                <input class="form-control" type="time" [(ngModel)]="modelfield.mondayClose" [disabled] = "!modelfield.isMondayOpen" id="mondayClose" name="mondayClose">
+                                <select class="form-control" type="time" *ngIf='modelfield.mondayOpen!=="24 Hours"' [(ngModel)]="modelfield.mondayClose" [disabled] = "!modelfield.isMondayOpen" id="mondayClose" #mondayClose name="mondayClose">
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
+                                </select>
                             </div>
                         </div>
 
                     </div>
                 </div>
-                <div class="col-sm-12 loca_hours" style="display:none">
+                <div class="col-sm-12 loca_hours">
                     <div class="col-sm-2">
                         Tuesday
                     </div>
@@ -398,15 +404,19 @@
                     <div class="col-sm-7">
                         <div class="form-group registration-date">
                             <div class="input-group registration-date-time col-sm-6">
-                                <input class="form-control" type="time"  [disabled] = "!modelfield.isTuesdayOpen" [(ngModel)]="modelfield.tuesdayOpen" id="tuesdayOpen" name="tuesdayOpen">
+                                <select class="form-control" type="time"  [disabled] = "!modelfield.isTuesdayOpen" [(ngModel)]="modelfield.tuesdayOpen" id="tuesdayOpen" #tuesdayOpen name="tuesdayOpen">
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
+                                </select>
                             </div>
                             <div class="input-group registration-date-time col-sm-6">
-                                <input class="form-control" type="time"  [disabled] = "!modelfield.isTuesdayOpen" [(ngModel)]="modelfield.tuesdayClose" id="tuesdayClose" name="tuesdayClose">
+                                <select class="form-control" type="time" *ngIf='modelfield.tuesdayOpen!=="24 Hours"' [disabled] = "!modelfield.isTuesdayOpen" [(ngModel)]="modelfield.tuesdayClose" id="tuesdayClose" #tuesdayClose name="tuesdayClose">
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 loca_hours" style="display:none">
+                <div class="col-sm-12 loca_hours">
                     <div class="col-sm-2">
                         Wednesday
                     </div>
@@ -425,16 +435,21 @@
 
                         <div class="form-group registration-date">
                             <div class="input-group registration-date-time col-sm-6">
-                                <input class="form-control" type="time"  [disabled] = "!modelfield.isWednesdayOpen" [(ngModel)]="modelfield.wednesdayOpen" id="wednesdayOpen" name="wednesdayOpen">
+                                <select class="form-control" type="time"  [disabled] = "!modelfield.isWednesdayOpen" [(ngModel)]="modelfield.wednesdayOpen" id="wednesdayOpen" #wednesdayOpen name="wednesdayOpen">
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
+                                </select>
                             </div>
                             <div class="input-group registration-date-time col-sm-6">
-                                <input class="form-control" type="time"  [disabled] = "!modelfield.isWednesdayOpen" [(ngModel)]="modelfield.wednesdayClose" id="wednesdayClose" name="wednesdayClose">
+                                <select class="form-control" type="time" *ngIf='modelfield.wednesdayOpen!=="24 Hours"'  [disabled] = "!modelfield.isWednesdayOpen" [(ngModel)]="modelfield.wednesdayClose" id="wednesdayClose" #wednesdayClose name="wednesdayClose">
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
+                                </select>
+                                
                             </div>
                         </div>
 
                     </div>
                 </div>
-                <div class="col-sm-12 loca_hours" style="display:none">
+                <div class="col-sm-12 loca_hours">
                     <div class="col-sm-2">
                         Thursday
                     </div>
@@ -452,15 +467,19 @@
                     <div class="col-sm-7">
                         <div class="form-group registration-date">
                             <div class="input-group registration-date-time col-sm-6">
-                                <input class="form-control" type="time"  [disabled] = "!modelfield.isThursdayOpen" [(ngModel)]="modelfield.thursdayOpen" id="thursdayOpen" name="thursdayOpen">
+                                <select class="form-control" type="time"  [disabled] = "!modelfield.isThursdayOpen" [(ngModel)]="modelfield.thursdayOpen" id="thursdayOpen" #thursdayOpen name="thursdayOpen">
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
+                                </select>
                             </div>
                             <div class="input-group registration-date-time col-sm-6">
-                                <input class="form-control" type="time"  [disabled] = "!modelfield.isThursdayOpen" [(ngModel)]="modelfield.thursdayClose" id="thursdayClose" name="thursdayClose">
+                                <select class="form-control" type="time"  *ngIf='modelfield.thursdayOpen!=="24 Hours"' [disabled] = "!modelfield.isThursdayOpen" [(ngModel)]="modelfield.thursdayClose" id="thursdayClose" #thursdayClose name="thursdayClose">
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 loca_hours" style="display:none">
+                <div class="col-sm-12 loca_hours">
                     <div class="col-sm-2">
                         Friday
                     </div>
@@ -479,16 +498,20 @@
 
                         <div class="form-group registration-date">
                             <div class="input-group registration-date-time col-sm-6">
-                                <input class="form-control" type="time"  [disabled] = "!modelfield.isFridayOpen" [(ngModel)]="modelfield.fridayOpen" id="fridayOpen" name="fridayOpen">
+                                <select class="form-control" type="time"  [disabled] = "!modelfield.isFridayOpen" [(ngModel)]="modelfield.fridayOpen" id="fridayOpen" #fridayOpen name="fridayOpen">
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
+                                </select>
                             </div>
-                            <div class="input-group registration-date-time col-sm-6">
-                                <input class="form-control" type="time"  [disabled] = "!modelfield.isFridayOpen" [(ngModel)]="modelfield.fridayClose" id="fridayClose" name="fridayClose">
+                            <div class="input-group registration-date-time col-sm-6" *ngIf='modelfield.fridayOpen!=="24 Hours"'>
+                                <select class="form-control" type="time"  [disabled] = "!modelfield.isFridayOpen" [(ngModel)]="modelfield.fridayClose" id="fridayClose" #fridayClose name="fridayClose">
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
+                                </select>
                             </div>
                         </div>
 
                     </div>
                 </div>
-                <div class="col-sm-12 loca_hours" style="display:none">
+                <div class="col-sm-12 loca_hours">
                     <div class="col-sm-2">
                         Saturday
                     </div>
@@ -507,10 +530,14 @@
 
                         <div class="form-group registration-date">
                             <div class="input-group registration-date-time col-sm-6">
-                                <input class="form-control" type="time"  [disabled] = "!modelfield.isSaturdayOpen" [(ngModel)]="modelfield.saturdayOpen" id="saturdayOpen" name="saturdayOpen">
+                                <select class="form-control" type="time"  [disabled] = "!modelfield.isSaturdayOpen" [(ngModel)]="modelfield.saturdayOpen" id="saturdayOpen" #saturdayOpen name="saturdayOpen">
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
+                                </select>
                             </div>
-                            <div class="input-group registration-date-time col-sm-6">
-                                <input class="form-control" type="time"  [disabled] = "!modelfield.isSaturdayOpen" [(ngModel)]="modelfield.saturdayClose" id="saturdayClose" name="saturdayClose">
+                            <div class="input-group registration-date-time col-sm-6" *ngIf='modelfield.saturdayOpen!=="24 Hours"'>
+                                <select class="form-control" [disabled] = "!modelfield.isSaturdayOpen" [(ngModel)]="modelfield.saturdayClose" id="saturdayClose" #saturdayClose name="saturdayClose">
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
+                                </select>
                            
                                 <input type="hidden" [(ngModel)]="modelfield.vendorLocationId" id="vendorLocationId" name="vendorLocationId">
                                 <input type="hidden"  [(ngModel)]="modelfield.country" id="country" name="country">
@@ -533,7 +560,7 @@
 
                     </div>
                 </div>
-                <div class="modal-footer" style="display:none">
+                <div class="modal-footer">
 
                     <button type="submit" class="btn newbtn">Save</button>&nbsp;
                     <button type="button" class="btn newbtn newcancelbtn"  (click)="closeModel()" >Close</button>
@@ -812,8 +839,7 @@
                                 
                                     <div class="col-sm-2 col-3">
                                         <select name="phoneType" formControlName="phoneType" >
-                                            <!--*ngIf="isPrimary == true"-->
-                                            <option [value]="'Phone'" *ngIf="isPrimary == true">Phone</option>
+                                            <option [value]="'Phone'">Phone</option>
                                                 <option [value]="'Mobile'">Mobile</option>
                                         </select>
                                     </div>
@@ -825,17 +851,15 @@
                                     formControlName="number"
                                     placeholder="000-000-000"
                                     (keypress)="keyPress($event)"
-                                    minlength=7 
+                                    minlength=10 
                                     maxlength=10 
-                                    ng-pattern="/^[0-9]{7,10}$/"
+                                    ng-pattern="/^[0-9]{1,7}$/"
                                     name="phoneNumber+{{i}}" 
                                     >   
-
                                     <!-- <label for="urlName">&nbsp;&nbsp;Is primary</label> -->
                                
                                     <!-- <input  
                                     type="checkbox"  
-
                                     class="inputbottombor"
                                     formControlName="isprime"
                                     checked
@@ -860,7 +884,7 @@
                     </div>     
                 </div>
                 <div class="modal-footer">
-                        <!-- <button type="button" class="btn newbtn" (click)='update_phone()' >Udpate</button>&nbsp; -->
+                        <button type="button" class="btn newbtn" (click)='update_phone()' >Udpate</button>&nbsp;
                     <button type="submit" class="btn newbtn" [disabled]=''>Save</button>&nbsp;
                     <button type="button" class="btn newbtn newcancelbtn"  (click)="closeModel()">Close</button>
                 </div>

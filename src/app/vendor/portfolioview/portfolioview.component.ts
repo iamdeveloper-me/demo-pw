@@ -51,36 +51,7 @@ export class PortfolioviewComponent implements OnInit {
                     this.http.get(this.mygeturl,{headers:headers}).subscribe(data =>{
                     this.PortgetArray = data.json() ;
                    // var basicplan = localStorage.getItem('basic-plan');
-                    this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
-                    this.free_limit =this.PortgetArray.length
-
-
-
-                    
-                    // console.log(parseInt(basicplan) );
-                 if( parseInt(this.basicplane) == 1 && this.PortgetArray.length == 5 ){ 
-                        swal({
-                            title: "cant upload more than 5",
-                          text: "upgrade your plan",
-                          type: "warning",
-                          showCancelButton: true,
-                          confirmButtonClass: "btn-default",
-                          confirmButtonText: "Yes",
-                          cancelButtonText: "No",
-                          }).then((res)=>{
-                            console.log(res);
-                            if(res.value===true){
-                                this.router.navigate(['../vendor/membership'])
-                            }
-                        
-                           },error=>{
-                             alert(JSON.stringify(error));
-                          })
-                            return;
-                          
-                      }else{
-                        this.basicplane = 0
-                     }
+          
                     //console.log(data.json());
                     })
 
@@ -115,6 +86,39 @@ export class PortfolioviewComponent implements OnInit {
     }
     fileOverAnother(e: any): void {
         this.hasAnotherDropZoneOver = e;
+    }
+    popup(){
+
+        this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
+        this.free_limit =this.PortgetArray.length
+
+
+        if( parseInt(this.basicplane) == 1 && this.PortgetArray.length == 5 ){ 
+            this.uploadphoto_dailog = false;
+            swal({
+                    title: "Account is limited to only 5images.",
+                  text: "upgrade your plan",
+                  type: "warning",
+                  showCancelButton: true,
+                  confirmButtonClass: "btn-default",
+                  confirmButtonText: "change plan",
+                  cancelButtonText: "No",
+                  }).then((res)=>{
+                    console.log(res);
+                    if(res.value===true){
+                        this.router.navigate(['../vendor/membership'])
+                    }
+                
+                   },error=>{
+                     alert(JSON.stringify(error));
+                  })
+                    return;
+                  
+              }else{
+                this.basicplane = 0
+                this.uploadphoto_dailog = true;
+             }
+
     }
     uploadAll(){
         this.uploadphoto_dailog = false;
@@ -156,7 +160,10 @@ export class PortfolioviewComponent implements OnInit {
                             .subscribe(data =>{   
                             console.log(data.json()); 
                             this.PortgetArray =data.json() 
-
+                            this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
+                            
+                            // console.log(parseInt(basicplan) );
+                  
                            
                           });
                         
@@ -219,35 +226,36 @@ export class PortfolioviewComponent implements OnInit {
 
     delete_portfolio(e,index){
 
-swal({
-    title: "Are you sure?",
-  text: "You will not be able to recover this image!",
-  type: "warning",
-  showCancelButton: true,
-  confirmButtonClass: "btn-default",
-  confirmButtonText: "Yes",
-  cancelButtonText: "No",
-  }).then((res)=>{
-    console.log(res);
-    if(res.value===true){
-         var id = e.portfolioId;
-         this.PortgetArray.splice(index, 1);
-         let headers = new Headers();
-         var authToken = localStorage.getItem('userToken');
-         headers.append('Accept', 'application/json')
-         headers.append('Content-Type', 'application/json');
-         headers.append("Authorization", 'Bearer ' + authToken);       
-         this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/removeportfolio',{portfolioId: id}, { headers: headers }).subscribe(data => {
-         this.toastr.success(data.json().message);
-         }, error => { 
-            this.toastr.error(error.json());
-         });
-    }else{
-    }
-   },error=>{
-     alert(JSON.stringify(error));
-  })
-    return;
+                swal({
+                    title: "Are you sure?",
+                text: "You will not be able to recover this image!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-default",
+                confirmButtonText: "Yes",
+                cancelButtonText: "No",
+                }).then((res)=>{
+                    console.log(res);
+                    if(res.value===true){
+                        var id = e.portfolioId;
+                        this.PortgetArray.splice(index, 1);
+                    
+                        let headers = new Headers();
+                        var authToken = localStorage.getItem('userToken');
+                        headers.append('Accept', 'application/json')
+                        headers.append('Content-Type', 'application/json');
+                        headers.append("Authorization", 'Bearer ' + authToken);       
+                        this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/removeportfolio',{portfolioId: id}, { headers: headers }).subscribe(data => {
+                        this.toastr.success(data.json().message);
+                        }, error => { 
+                            this.toastr.error(error.json());
+                        });
+                    }else{
+                    }
+                },error=>{
+                    alert(JSON.stringify(error));
+                })
+                    return;
     
   }
 

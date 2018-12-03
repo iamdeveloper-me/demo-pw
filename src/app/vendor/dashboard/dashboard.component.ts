@@ -18,7 +18,7 @@ import swal from 'sweetalert2';
 export class DashboardComponent implements OnInit {
   jobArray:string[];
 
-
+  VendorDashboard_data_image;
     // PhoneEdit = '5555555' ;
 
     angularLogo = 'https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg';
@@ -63,6 +63,8 @@ export class DashboardComponent implements OnInit {
   test1 = 0;
   albumCount;
   totaljobArray;
+  noPhone;
+  banner_image;
   VendorDashboard_data = {portfolioImage : '',portfolioCount: '',
   videoCount : '',albumCount: '',impression: '',enquiries: '',loveCount: '',reviews: ''};
   //VendorDashboard
@@ -91,6 +93,7 @@ export class DashboardComponent implements OnInit {
      
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
+        
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
@@ -118,13 +121,14 @@ export class DashboardComponent implements OnInit {
                    {
                   
                    this.vendor.profileImage = "https://openclipart.org/download/247324/abstract-user-flat-1.svg"
+                  
                   }
 
                   this.priceplantitle = this.vendor.pricingPlan.title
 
 
                    this.add = this.vendor.vendorLocations[0].mapAddress;
-                  
+                  this.noPhone = this.vendor.vendorLocations[0].locationPhones.length;
                   //  console.log(this.vendor.vendorLocations[0].locationPhones[0].phoneNumber);
                  
                   if(this.vendor.vendorLocations[0].locationPhones.length > 1){
@@ -162,18 +166,19 @@ export class DashboardComponent implements OnInit {
            
     
                  });
-
+                
+      
                  this.http.get(this.VendorDashboard,{headers:headers}).subscribe(
                     data =>{  console.log(data.json().profileCompletion);
                               console.log(data.json().profileCompletion.total);
                     
                           this.total = data.json().profileCompletion.total;
-
-                          if(this.total == '100')
+                      
+                         var profile = localStorage.getItem('profile');
+                          if( profile == '1' && this.total == '100')
                           {
-                          
-                          
-                        
+                            localStorage.setItem('profile','2');
+                         
                           swal({
                             title: "Are you sure?",
                         text: "profile completed",
@@ -187,7 +192,12 @@ export class DashboardComponent implements OnInit {
                             alert(JSON.stringify(error));
                         })
                           return;
+                         
                         } 
+
+                        if( profile == '2'){
+                          $(".profile").hide();
+                        }
                           this.buinessPhone = data.json().profileCompletion.buinessPhone;
                           this.businessProfilePic = data.json().profileCompletion.businessProfilePic;
                           this.businessService = data.json().profileCompletion.businessService;
@@ -216,7 +226,8 @@ export class DashboardComponent implements OnInit {
                                  console.log(data.json());
                                 //  this.venderDash = data.json() as string[]; 
                                 this.VendorDashboard_data = data.json();
-                                                       
+                                this.VendorDashboard_data_image = data.json().portfolioImage;
+                                this.banner_image = "../../../assets/img/store_noimg.jpg"
                         });
 
                   $.getScript('./assets/js/prism.min.js');

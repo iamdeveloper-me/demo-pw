@@ -78,14 +78,19 @@
                       <br/>
                         <span>Oops!</span> You have no Photo Albums 
                     </p>
-                      <p class="upload_bt text-center" >
+                      <p class="upload_bt text-center" *ngIf = "basicplane == 1" >
+                   
+                        <button  (click)="upgrade()">Create</button>
+                        </p>
+                        <p class="upload_bt text-center" *ngIf = "basicplane > 1" >
                     
-                        <button  id="Google-function" (click)="createalbum_dailog = true" data-reactid="339" >Create</button>  </p>
-                      <p class="text-center uplod_para"> <a href="">Get organised with UNLIMITED albums. Upgrade to Premium Account </a>  </p>
+                            <button  id="Google-function"  (click)="createalbum_dailog = true" data-reactid="339" >Create</button>
+                            </p>
+                      <p class="text-center uplod_para"> <a>Get organised with UNLIMITED albums. Upgrade to Premium Account </a>  </p>
                 </div>
-                <div class="overlay">
+                <!-- <div class="overlay" (click) = "upgrade()">
                  
-                </div>
+                </div> -->
               </div>
             </div>  
           <div   *ngIf = "albumArray.length > 0"  class="container-fluid nopadd albumlist album_containing_images"  >

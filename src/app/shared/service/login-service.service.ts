@@ -14,6 +14,7 @@ export class LoginServiceService {
   {
   var username = user.username;
   var password = user.password; 
+  localStorage.setItem('profile','1');
   const headers = new Headers({'Content-Type':'application/json'});
   return this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/auth/login",{userName: username , password: password},{headers:headers});
 }

@@ -174,9 +174,10 @@ constructor( public http: Http,public toastr: ToastrService ) {
       headers.append('Accept', 'application/json')
       headers.append('Content-Type', 'application/json');
       headers.append("Authorization",'Bearer '+authToken);
+      this.albumImagesModify = [];
       this.http.post(this.update_portfolio,fire,{headers:headers}).subscribe(data =>{
           this.toastr.success(data.json().message);
-          this.albumImagesModify = [];
+     
           this.http.get(this.mygeturl,{headers:headers})
           .subscribe(data =>{
                             for (var item of  data.json()) {

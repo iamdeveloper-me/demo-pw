@@ -197,7 +197,17 @@ venueNamees(event: any) { this.venueNamee  = '';}
 eventDescriptionss(event: any) {this.eventDescriptions  = '';}
 entryFeess(event: any) { this.entryFees  = '';}
 entrys(event: any) { this.entry  = '';}
-capacitys(event: any) {this.capacity  = '';}
+capacitys(event: any) {
+ 
+  const pattern = /[0-9]/;
+  let inputChar = String.fromCharCode(event.charCode);
+  if (event.keyCode != 8 && !pattern.test(inputChar)) {
+    event.preventDefault();
+    this.capacity = 'Only Numbers'
+    this.toastr.error('Only Numbers');
+  }
+  this.capacity  = '';
+ }
 locations(event: any) { this.location  = '';}
 
   event(list) {        

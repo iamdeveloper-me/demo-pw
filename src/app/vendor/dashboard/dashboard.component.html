@@ -39,7 +39,7 @@
                                    <button class="editbtn">Select to Edit</button>
                                 </a>
                                 <a routerLink="../location" *ngIf="buinessPhone == test1">
-                                  <i class="material-icons graytext" ngbTooltip="Description">error_outline</i> 
+                                  <i class="material-icons graytext" ngbTooltip="Buiness Phone">error_outline</i> 
 
                                   <strong class="blacktext" >Buiness Phone </strong>
                                   <span  class="editbtn">Edit</span> 
@@ -53,7 +53,7 @@
                                     <button class="editbtn">Select to Edit</button>
                                   </a>
                                 <a routerLink="../business"  *ngIf="businessProfilePic == test1" >
-                                    <i class="material-icons graytext" ngbTooltip="Description">error_outline</i> 
+                                    <i class="material-icons graytext" ngbTooltip="Business Profile Picture">error_outline</i> 
                                     <strong class="blacktext">Business Profile Picture </strong>  
                                     <span  class="editbtn">Edit</span> 
                                 </a>
@@ -70,7 +70,7 @@
                                       <button class="editbtn">Select to Edit</button>
                                     </a>
                                   <a routerLink="../business-services"  *ngIf="businessService == test1" >
-                                      <i class="material-icons graytext" ngbTooltip="Description">error_outline</i> 
+                                      <i class="material-icons graytext" ngbTooltip="Service">error_outline</i> 
                                       <strong class="blacktext">Service</strong>  
                                       <span  class="editbtn">Edit</span> 
                                   </a>
@@ -84,7 +84,7 @@
                                       <button class="editbtn">Select to Edit</button>
                                     </a>
                                   <a routerLink="../location"  *ngIf="mapSettings == test1" >
-                                      <i class="material-icons graytext" ngbTooltip="Description">error_outline</i> 
+                                      <i class="material-icons graytext" ngbTooltip="location">error_outline</i> 
                                       <strong class="blacktext">location (map)</strong>  
                                       <span  class="editbtn">Edit</span> 
                                   </a>
@@ -116,7 +116,7 @@
                                          <button class="editbtn">Select to Edit</button>
                                        </a>
                                      <a routerLink="../gallery"  *ngIf="photos == test1" >
-                                         <i class="material-icons" ngbTooltip="Description">error_outline</i> 
+                                         <i class="material-icons" ngbTooltip="Photos">error_outline</i> 
                                          <strong class="blacktext">Photos</strong>  
                                          <span  class="editbtn">Edit</span> 
                                      </a>
@@ -128,13 +128,13 @@
                                     <li > 
                                
                                         <a routerLink="../portfolioview" *ngIf="coverImage == test" class="done">
-                                          <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
+                                          <i class="material-icons" ngbTooltip="Business Cover">check_circle</i>
         
                                           <strong class="blacktext" >Business Cover</strong>
                                           <button class="editbtn">Select to Edit</button>
                                         </a>
                                       <a routerLink="../portfolioview" *ngIf="coverImage == test1" >
-                                          <i class="material-icons graytext" ngbTooltip="Description">error_outline</i> 
+                                          <i class="material-icons graytext" ngbTooltip="Business Cover">error_outline</i> 
                                           <strong class="blacktext">Business Cover</strong>  
                                           <span  class="editbtn">Edit</span> 
                                       </a>
@@ -148,7 +148,7 @@
                                           <button class="editbtn">Select to Edit</button>
                                         </a>
                                       <a routerLink="../business"  *ngIf="tradingName == test1" >
-                                          <i class="material-icons graytext" ngbTooltip="Description">error_outline</i> 
+                                          <i class="material-icons graytext" ngbTooltip="Trading Name">error_outline</i> 
                                           <strong class="blacktext">Trading Name</strong>  
                                           <span  class="editbtn">Edit</span> 
                                       </a>
@@ -171,14 +171,22 @@
      <div class="row">
         <div class="container-fluid Profile_com">
            <div class="card overviewbox">
-              <div class="card-body nopadd" style="overflow: hidden; height: 420px;">
+              <div class="card-body nopadd" style="overflow: hidden;">
                  <div class="col-sm-5 nopadd maxheight335px">
                    <div class="infoimgbox">
 
-                    <!-- <img src="{{VendorDashboard_data.portfolioImage}}" class="" alt="Profile picture" > -->
-                    <img [src] = "vendor.profileImage"  alt="Profile picture" >
+                   
+                    <!-- <img [src] = "VendorDashboard_data_image "  alt="Profile picture" > -->
+                    
                   
-
+                    <div *ngIf = "!VendorDashboard_data_image"> 
+                        <img [src] = "banner_image" alt="Profile picture" >
+                      </div>
+                   
+                      <div *ngIf = "VendorDashboard_data_image != ''"> 
+                        <img [src] = "VendorDashboard_data_image" alt="Profile picture" >
+                      </div>
+                    
                   </div>
                     <div class="viewstore">
                        <a routerLink="../../home/detailprofile">View Storefront</a>
@@ -187,9 +195,15 @@
                  <div class="col-sm-7 nopadd maxheight335px mobileheightauto ">
                     <div class="martop15px"></div> 
                     <div class="col-sm-2 col-3 mobpadd10 edithovering">
+                        <div *ngIf = "!vendor.profileImage"> 
+                          <img [src] = "vendor.profileImage" class="oviewviewimgcircle" alt="Profile picture" >
+                        </div>
+                     
+                        <div *ngIf = "vendor.profileImage != ''"> 
+                          <img [src] = "vendor.profileImage" class="oviewviewimgcircle" alt="Profile picture" >
+                        </div>
                       
-                       <img [src] = "vendor.profileImage" class="oviewviewimgcircle" alt="Profile picture" >
-                  
+                       
                        <button class="photoedit" data-target="#camera" data-toggle="modal" type="button"><i class="material-icons">camera</i></button>
                     </div>
                     <div class="col-sm-10 col-9 blacktext nopadd pull-left">
@@ -209,7 +223,7 @@
                                   {{vendor.address}},
                                   {{vendor.suburb.name}},
                                   {{vendor.districts.name}},
-                                  {{vendor.country.countryName }},
+                                  {{vendor.country.countryName }}
                                   </a>
                                   <a *ngIf = "ct > 0"> {{ct}} more Location</a>
                                 </div>  
@@ -233,9 +247,23 @@
                              <p >
 
                                 <a routerLink="../location" >
-                             {{vendor.vendorContactInfo?.phone }} <br/>
+                                  <br/>
                              
-
+                                   <div *ngFor='let c of vendor.vendorLocations | slice:0:1 ;let p=index'> 
+                                      <div *ngFor='let a of c.locationPhones | slice:0:1 '> 
+                                         
+                                        <p *ngIf = "a.isPrimary == false" >
+                    
+                                            {{a.phoneNumber}}
+                                        </p>
+                                       
+                                      </div>  
+                                    
+                                              <p *ngIf = "noPhone == 0" >
+                                                  No business Phone number
+                                              </p>
+                                     
+                                   </div>
                                 <span class="editbtn">Edit</span> 
                                 </a>
                               
@@ -255,15 +283,15 @@
                              <span class="pinkchip">
                                
                                 <a *ngFor='let c of vendor.vendorCategories| slice:0:1'>
-                                    {{c.categories.categoryName }},
+                                    {{c.categories.categoryName }}
                                 </a>
 
                                 <a  *ngIf = "total_business_Services > 0" routerLink="../location" >
-                                  {{total_business_Services}} more Numbers 
+                                 , {{total_business_Services}} more Categories 
                                                                   
                                  </a>
                               </span><br/>
-                             Membership Type: {{vendor.pricingPlan?.title}} <a routerLink="../membership" class="bluelink">Change plan</a>
+                             Membership Type: {{vendor.pricingPlan?.title}} <a routerLink="../membership" class="viewallbutton">Upgrade</a>
 
                           </div>
                        </div>
@@ -321,11 +349,14 @@
                        <i class="material-icons" routerLink="../PromoteBusiness">share</i> Share Vision Photography
                        </a>
                        <div class="clearfix"></div>
-                       <div class="col-8 pull-left desktopnone blacktext padbot5px text-left">
+                        <div class="col-8 pull-left desktopnone blacktext padbot5px text-left">
                           Membership Type : Free
+                            
                        </div>
-                       <div class="col-4 pull-left text-right desktopnone padbot5px">
-                         <a routerLink="../membership" class="bluelink">Upgrade</a>
+                      <div class="col-4 pull-left text-right desktopnone padbot5px">
+                         <button routerLink="../membership" class="col-sm-12 text-center viewallbutton">Upgrade</button>
+                         
+
                         </div>
                     </div>
                  </div>
@@ -454,15 +485,16 @@
                       <div class="card-icon  white_bg margRight0 cardiconset">
                         <i class="material-icons">event_available</i>
                       </div>
-                      <p class="card-category upcominghead">No planned jobs</p>
+                      <p class="card-category upcominghead">Upcoming Jobs</p>
                   </div>
-                 
+                 <div class="clearfix"></div>
                   <div class="upcominglisthomepage">
-                    
-                      <img src = "http://ethnographicalmuseum.com/wp-content/uploads/2018/04/no-events.jpg"  alt="Profile picture" >
-                   </div>
-
-                   <div class="col-sm-12 text-center"><a  class="viewallbutton" routerLink="../calender"> Go to Planner</a></div>
+                    <div class="text-center martop20px">
+                     <img src = "../../../assets/img/noplan.jpg"  alt="Profile picture" >
+                    <p class="martop20px"><strong>Nothing Planned!</strong></p>
+                    </div>
+                  </div>
+                   <div class="col-sm-12 text-center "><a  class="viewallbutton" routerLink="../calender"> Go to Planner</a></div>
               </div>
             </div>
         </div>

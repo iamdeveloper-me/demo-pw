@@ -488,6 +488,19 @@ width: 55px;
 .margin_top_20{
     margin-top: 20px !important;
 }
+.nonedisplay{
+    color:#666;
+    font-style: italic;
+}
+.copyinput{
+    margin-bottom: 10px;
+}
+.copyinput input{
+    width:calc(100% - 65px);
+    border:1px solid #ccc;
+    margin-right:5px;
+    padding:5px;
+}
 .busines_img img{
     width: 100px;
     height: 100px;
@@ -495,6 +508,12 @@ width: 55px;
     position: relative;
     cursor: pointer;
     object-fit: cover;
+}
+.busines_img i{
+    display:none;
+}
+.busines_img:hover i{
+    display:inherit;
 }
 .social i.fa{
     margin-right:15px!important;

@@ -73,7 +73,7 @@ export class CalendertableComponent implements OnInit {
    
     $.getScript('./assets/js/vendorsidebar.js');
 
-   // $.getScript('./assets/js/calendar.js');
+    $.getScript('./assets/js/calendar.js');
 
   
 

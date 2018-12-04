@@ -35,8 +35,8 @@
                       <div class="tagcontainer">
                         <span *ngFor="let ag of data.tags;let i=index">
                             <div *ngIf = "ag != ''"> </div> 
-                                  <span class="tagstik"> 
-                                      {{ag}}    
+                                  <span *ngIf = "ag != ''" class="tagstik"> 
+                                      {{ag}}   
                                   </span>
                                  
                         </span>
@@ -82,8 +82,8 @@
                         </span>
                     </div>
                     </td>
-                    <td class="text-center" (click) = openModel(data) >
-                        <button class="btn btn-success editbtn"  id="prompt-function"   data-reactid="333" (click)="description_dailog = true ">Edit</button><br/>
+                    <td class="text-center" >
+                        <button class="btn btn-success editbtn"  id="prompt-function"   data-reactid="333" (click)="openModel(data) || description_dailog = true ">Edit</button><br/>
                         <button class="btn btn-warining deletebtn"  (click)="delete_portfolio(data,i)">Delete</button>
                     </td>
                 </tr>
@@ -101,17 +101,18 @@
   
   <div class="modal fade" [ngClass] = "{'show' : description_dailog}" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-      <form (ngSubmit)="editSettting(portEdit)" #portEdit="ngForm">
+     
+       <form (ngSubmit)="editSettting(portEdit)" #portEdit="ngForm">
         <div class="modal-content">
           <div class="modal-header text-center">
             <h4 class="modal-title"> Photo Settings</h4>
             <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
-
+          <!-- {{formdata | json}} -->
           <div class="modal-body" style="background-color: white">
             <div class="row" >
               <div class="col-md-12 padtop20px">
-                <div class="form-group">
+                 <div class="form-group">
                     <div class="input-effect form-group md-form ">
                     
                       <input class="effect-16 validate" 
@@ -134,21 +135,20 @@
                     </div>
                     <ul class="list_inline">
                     
-                      <li  *ngFor="let g of tai;let i=index">
+                      <li  *ngFor="let g of formdata.tags;let i=index">
                    
-                          <span class="tagstik"> 
+                          <span class="tagstik" *ngIf="g != ''"> 
                               {{g}}
-                              <i class="material-icons" (click) = "remove_tag_picker(i)">clears</i>
+                              <i class="material-icons" (click) = "remove_tag_picker(g)">clears</i>
                             </span>  
                      
                       </li>
                     </ul>  
                     <a class="btn-sm btn btn-success editbtn" (click) = "tags_edit(taggg)">ADD Tag</a>
-                    <!--   {{tai.length}} -->
                     <hr>
                     <small class="form-text text-muted danger" *ngIf="tai.length == 0"> {{colour_tag_error}}</small>
   
-                </div>
+                </div> 
               </div>
             </div>
             <div class="row">
@@ -167,6 +167,6 @@
           </div>
 
         </div>
-      </form>            
+      </form>             
     </div>
   </div>

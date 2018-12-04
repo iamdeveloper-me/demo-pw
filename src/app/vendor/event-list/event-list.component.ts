@@ -7,7 +7,8 @@ import { Subject } from 'rxjs';
 import swal from 'sweetalert2';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { resetFakeAsyncZone } from '@angular/core/testing';
-
+import { TimeSlot } from '../location/location.component';
+//export class TimeSlot
 export class NgbduserModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) { }
@@ -21,6 +22,7 @@ export class NgbduserModalContent {
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit {
+  select_time: TimeSlot
   description_dailog = false; 
   eventArray: any = [];
   modelfield: any = {};
@@ -72,8 +74,10 @@ export class EventListComponent implements OnInit {
      this.test = this.datePipe.transform(this.myDate, 'yyyy-MM-dd'); 
       this.objevent = new EventsCreateUpdateVM();
       this.past_upcomming_event(2);
+      this.select_time = new TimeSlot();
     }
-  
+
+
   ngOnInit() {
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
@@ -315,7 +319,7 @@ locations(event: any) { this.location  = '';}
 
 
                                             this.objevent.eventsDates.push(events);
-
+                                            console.log(this.objevent)
                                              this.http.post(this.eventposturl,this.objevent,{headers:headers}).subscribe((data)=>{
                                                let response=JSON.parse(data.text());
                                                  // alert(JSON.stringify(response.message));
@@ -326,9 +330,13 @@ locations(event: any) { this.location  = '';}
                                                   list.reset()
                                              },error=>{
                                               // alert(JSON.stringify(data));
+                                              console.log(error.json())
                                               this.toastr.error(error);
                                              })   })
-    }else{   this.toastr.error("fill completly");}
+                                             
+    }else{  
+       this.toastr.error("fill completly");
+      }
  
                       
  }

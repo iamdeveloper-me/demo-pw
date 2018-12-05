@@ -1001,9 +1001,9 @@ export class TimeSlot {
     this.timing.push({ startTime: '02:00 Am', endTime: '02:30 Am' });
     this.timing.push({ startTime: '02:30 Am', endTime: '03:00 Am' });
     this.timing.push({ startTime: '03:00 Am', endTime: '03:30 Am' });
-    this.timing.push({ startTime: '03:30 Am', endTime: '04:00 Am' });
+    this.timing.push({ startTime: '03:30Am', endTime: '04:00 Am' });
     this.timing.push({ startTime: '04:00 Am', endTime: '04:30 Am' });
-    this.timing.push({ startTime: '04:30 Am', endTime: '05:00 Am' });
+    this.timing.push({ startTime: '04:30Am', endTime: '05:00 Am' });
     this.timing.push({ startTime: '05:00 Am', endTime: '05:30 Am' });
     this.timing.push({ startTime: '05:30 Am', endTime: '06:00 Am' });
     this.timing.push({ startTime: '06:00 Am', endTime: '06:30 Am' });

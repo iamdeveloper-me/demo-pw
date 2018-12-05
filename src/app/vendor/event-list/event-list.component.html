@@ -25,7 +25,7 @@
               <div class="col-md-12 nopadd">
                 <div class="serchbox" >
                     <form (ngSubmit)="search_event(s)" #s="ngForm">
-                      <input type="text" placeholder="Search...." name="search">
+                      <input type="text" [(ngModel)] = "search" placeholder="Search...." name="search">
                       <button type="submit" class="btn btn-small btn-link">
                         search</button>
                     </form>    
@@ -36,15 +36,7 @@
                          <strong> Create New Event</strong>
                     </span>
                   </button>
-                <!--Commented By Raj-->
-                <!-- <form (ngSubmit)="addFile(info)" #info="ngForm" class="padding-left: 84%">
-                  <input #fileInput type="file" [(ngModel)]="gallery.files" name="image" id="image" />
-                  <button type="submit" class="btn btn-small btn-link">
-                    <i class="material-icons"> add </i>
-                    upload event image 
-                  </button>
-                  <span class="focus-border"></span>
-                </form> -->
+               
               </div>
 
               <div class="clearfix"></div>
@@ -68,14 +60,16 @@
                                 </p>
                                 <p>Venue:{{data.venueName}}
                                 </p>
-                                <p>Event Town:{{data.location}}
+                                <p>Address:{{data.country?.countryName}},{{data.districts
+                                    ?.name}},{{data.suburb?.name}}
                                 </p>
-                                <p>Entry Fee:{{data.entryFee}}
-                                </p>
+                             
                                 <p class="locat_tag">
                                   <i class="material-icons"> location_on</i>
                                   {{data.location}}
                                 </p>
+                                <p>Entry Fee:{{data.entryFee}}
+                                  </p>
                                 <div class="col-md-12 nopadd row col-12 margin_p mob_font_12px mob_font_14px">
                                    <div class="col-sm-1">
                                      <i class="material-icons">access_time </i>
@@ -141,210 +135,148 @@
                 </button>
             </div>
            
-            <div class="modal-body">
-                <div class="col-sm-12 nopadd rowpaddadjust">
+            <div class="modal-body formscroll">
+                <div class="col-sm-12 nopadd">
                   <div class="col-sm-6">
-                      <div class="form-group">
-                          <div class="input-effect form-group md-form ">
-                              <input class="effect-16 validate" 
-                               #fileInput 
-                               type="file" 
-                               name="image" 
-                               id="image" 
-                               (change)="onFileChanged($event)" />
-                              <label>Event Image</label>
-                            <span class="focus-border"></span>
-                            </div>
-
-                          
-                     
+                        <div class="form-group">
+                            <label>Event Image</label>
+                            <input class="form-control" 
+                             #fileInput 
+                             type="file" 
+                             name="image" 
+                             id="image" 
+                             (change)="onFileChanged($event)" />
+                          </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                            <label>Title</label>
+                            <input class="form-control" 
+                          [(ngModel)]="objevent.eventTitle" 
+                          id="Title" 
+                          name="Title"
+                          (keypress)="Titleee($event)" 
+                          placeholder="required">
+                         <small class="form-text text-muted danger" >{{Titlee}}</small>
+                         
                       </div>
                   </div>
+                  <div class="clearfix"></div>        
+                  <input type="hidden" name="filesId" id="filesId" [value]="fileIdfield.filesId" [(ngModel)]="objevent.filesId">    
                   <div class="col-sm-6">
-                      <div class="form-group">
-                          <div class="input-effect form-group md-form ">
-                            <input class="effect-16 validate" 
-                            [(ngModel)]="objevent.eventTitle" 
-                            id="Title" 
-                            name="Title"
-                            (keypress)="Titleee($event)" 
-                            placeholder="required">
-                           <small class="form-text text-muted danger" >{{Titlee}}</small>
-                            <label>Title</label>
-                            <span class="focus-border"></span>
-          
-                          </div>
-                        </div>
-                  </div>
-                </div>
-                <div class="clearfix"></div>        
-                <input type="hidden" name="filesId" id="filesId" [value]="fileIdfield.filesId" [(ngModel)]="objevent.filesId">
-                
-                <div class="col-sm-12 nopadd rowpaddadjust">
-                
-                <div class="col-sm-6">
-                <div class="form-group">
-                    <div class="input-effect form-group md-form">
-
-                      <input class="effect-16 validate" 
-                        type="date"
-                        name="startDate" 
-                        id="eventdate" 
-                        [(ngModel)]="objevent.startDate" 
-                        (keypress)="startDatess($event)" 
-                        style="width:100%;">
-                      <label style="width:100%;"> Start date : </label> 
-                      <small class="form-text text-muted danger" >{{startDates}}</small>
-
-                      <span class="focus-border"></span>
-                    </div>
-                </div>
-                </div>
-                <div class="col-sm-6">
                     <div class="form-group">
-                        <div class="input-effect form-group md-form">
-                           
-                                <div class="form-group date_picker">
+
+                            <label>Start Date</label>
+                            <input class="form-control" 
+                            type="date"
+                            name="startDate" 
+                            id="eventdate" 
+                            [(ngModel)]="objevent.startDate" 
+                            (keypress)="startDatess($event)" 
+                            style="width:100%;">
+                         
+                          <small class="form-text text-muted danger" >{{startDates}}</small>
+
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                            
                                   <label>
-                                    <a>start time </a>
-                                  </label><br>
+                                    start time
+                                  </label>
                                   <!-- <input type="time" class="form-control"  [(ngModel)]="startTimee"  name="startTime" id="startTime"/> -->
-                                 
+                                  
                                   <select class="form-control" type="time" [(ngModel)]="startTimee"  id="startTime" name="startTime">
                                     <option *ngFor='let s of select_time.timing' [value]='s.startTime'>{{s.startTime}}</option>
-                            </select>
-                                </div>
+                                  </select>
                             
-                         
-                        </div>
-                    </div>
-                    </div>
-                </div>
-
-              
-                <div class="clearfix"></div>
-                <div class="col-sm-12 nopadd date_picker">
-                    <div class="col-sm-6">
-                        <div class="form-group date_picker">
-                            <input class="effect-16 validate"  
-                            type="date"
-                            name="endDate" 
-                            id="eventdate"
-                            (keypress)="endDatess($event)" 
-                            [(ngModel)]="objevent.endDate" 
-                            style="width:100%;">
-                            <label style="width:100%;">End  date: </label> 
-                            <small class="form-text text-muted danger" >{{endDate}}</small>
-                            <span class="focus-border"></span>
-                        </div>
-                     </div>
-                  <div class="col-sm-6">
-                        <div class="form-group">
-                          <label>
-                            <a>end time</a>
-                          </label><br>
-                          <input type="time"
-                           class="form-control"  
-                           name="endTime" 
-                           id="endTime" 
                           
-                           [(ngModel)]="endtime"/>
-                     
-                        </div>
-                    </div>                  
-                </div>
-                <div class="col-sm-12 nopadd rowpaddadjust">
-                      <div class="col-sm-6">
+                      </div>
+                  </div>
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                          <label>End  Date</label> 
+                          <input class="form-control"  
+                          type="date"
+                          name="endDate" 
+                          id="eventdate"
+                          (keypress)="endDatess($event)" 
+                          [(ngModel)]="objevent.endDate" 
+                          style="width:100%;">
+                        
+                          <small class="form-text text-muted danger" >{{endDate}}</small>
+                          
+                      </div>
+                  </div>
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>
+                          End Time
+                        </label>
+                        <select class="form-control" type="time" [(ngModel)]="endtime"  id="endTime" name="endTime">
+                          <option *ngFor='let s of select_time.timing' [value]='s.endTime'>{{s.endTime}}</option>
+                        </select>
+                        <!-- <input type="time"
+                        class="form-control"  
+                        name="endTime" 
+                        id="endTime" 
+                        
+                        [(ngModel)]="endtime"/> -->
+                  
+                      </div>
+                  </div> 
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                          <label>Venue Name</label>
+                            <input type="text" class="form-control" 
+                            [(ngModel)]="objevent.venueName" 
+                            name="venueName"
+                            id="venueName"
+                            (keypress)="venueNamees($event)" 
+                            placeholder="required">
+                            <small class="form-text text-muted danger" >{{venueNamee}}</small>
+                      </div>
+                  </div>
+                 
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Country</label>
+                        <select class="form-control" id="Country" [(ngModel)]="objevent.countryId" name="country_id" (change)="country($event)">
+                          <option *ngFor="let country of arra ;let c =index" type="text" id="{{country.countryName}}" checked name="countryName"
+                            placeholder="Country" [value]="country.countryId"  required>
+                            {{country.countryName }}
+                          </option>
+                        </select>
+                    </div>
+                  </div> 
+                  <div class="col-sm-6">
+                      <label>District</label>
                         <div class="form-group">
-                            <div class="input-effect form-group md-form ">
-                              <input type="text" class="effect-16 validate" 
-                              [(ngModel)]="objevent.venueName" 
-                              name="venueName"
-                              id="venueName"
-                              (keypress)="venueNamees($event)" 
-                              placeholder="required">
-                              <small class="form-text text-muted danger" >{{venueNamee}}</small>
-                              <label>VenueName</label>
-                              <span class="focus-border"></span>
-                            </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                          <div class="form-group">
-                              <div class="input-effect form-group md-form ">
-                                <select class="effect-16 validate" id="Country" [(ngModel)]="objevent.countryId" name="country_id" (change)="country($event)">
-                                  <option *ngFor="let country of arra ;let c =index" type="text" id="{{country.countryName}}" checked name="countryName"
-                                    placeholder="Country" [value]="country.countryId"  required>
-                                    {{country.countryName }}/{{objevent.countryId}}// {{country.countryId }}
-                
-                                  </option>
-                
-                                </select>
-                
-                                <span class="focus-border"></span>
-                              </div>
-                            </div>
-                      </div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="form-group">
-                    <div class="input-effect form-group md-form ">
-                      <input type="text" class="effect-16 validate" 
-                      [(ngModel)]="objevent.eventDescription"
-                      name="eventDescription" 
-                      id="eventDescription"
-                      (keypress)="eventDescriptionss($event)" 
-                      placeholder="required"
-                      >
-      
-                      <label>Description</label>
-                      <small class="form-text text-muted danger" >{{eventDescriptions}}</small>
-                      
-                      <!-- <small class="form-text text-muted danger" *ngIf="eventDescriptions.errors?.required">required error</small> -->
-                      <span class="focus-border"></span>
-                    </div>
-                </div>
-                <div class="col-sm-12 nopadd rowpaddadjust">
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <div class="input-effect form-group md-form ">
-                          <select name="district" class="effect-16 validate" [(ngModel)]="objevent.districtId" name="dist_id" (change)="districtA($event)">
+                          <select name="district" class="form-control" [(ngModel)]="objevent.districtId" name="dist_id" (change)="districtA($event)">
                             <option *ngFor="let dist of district ;let d =index" type="text" id="{{dist.name}}" checked name="dist"
-                              placeholder="Country" [value]="d" required>
+                              placeholder="Country" [value]="dist.districtId" required>
                               {{dist.name }}
-  
                             </option>
-  
                           </select>
-  
-                          <span class="focus-border"></span>
-                        </div>
                       </div>
-                    </div>
-                    <div class="col-sm-6">
+                  </div>
+                  <div class="col-sm-6">
+                    <label>Suburb</label>
                       <div class="form-group">
-                        <div class="input-effect form-group md-form ">
-                          <select class="effect-16 validate" [(ngModel)]="objevent.suburbId" name="sub_id" (change)="subr($event)">
+                          <select class="form-control" [(ngModel)]="objevent.suburbId" name="sub_id" (change)="subr($event)">
                             <!-- (change)="country($event)" -->
                             <option *ngFor="let sub of suburb ;let s =index" type="text" id="{{sub.name}}" checked name="sub"
-                              placeholder="Suburb" [value]="s" required>
+                              placeholder="Suburb" [value]="sub.suburbId" required>
                               {{sub.name }}
-  
                             </option>
-  
                           </select>
-  
-                          <span class="focus-border"></span>
-                        </div>
                       </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 nopadd rowpaddadjust">
-                    <div class="col-sm-6">
+                  </div>
+                  <div class="col-sm-6">
                       <div class="form-group">
-                        <div class="input-effect form-group md-form ">
-                          <input type="text" class="effect-16 validate"
+                          <label>Location</label>
+                          <input type="text" class="form-control"
                             [(ngModel)]="objevent.location"
                             name="Location"
                             id="Location"
@@ -353,68 +285,67 @@
                             >
                             <small class="form-text text-muted danger" >{{location}}</small>
                             <!-- <small class="form-text text-muted danger" *ngIf="Locations.errors?.required">required error</small> -->
-                          <label>Location</label>
-                          <span class="focus-border"></span>
+                      
                         </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <div class="input-effect form-group md-form ">
-                          <input type="text" class="effect-16 validate" 
-                          [(ngModel)]="objevent.capacity"
-                          name="Capacity"
-                          id="Capacity"
-                          (keypress)="capacitys($event)" 
-                          minlength="1" 
-                          pattern="^-?([0-9]*\.?[0-9]+|[0-9]+\.?[0-9]*)$"
-                          placeholder="required">
-                          <label>Capacity</label>
-                          <small class="form-text text-muted danger" >{{capacity}}</small>
-                         <!-- <small class="form-text text-muted danger" *ngIf="Capacitys.errors?.required">required error</small> -->
-                          <span class="focus-border"></span>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 nopadd date_picker">
+                  </div>
                   <div class="col-sm-6">
-                      <div class="form-group marbot0px">
-                          <div class="input-effect form-group md-form marbot0px">
+                        <div class="form-group">
+                            <label>Capacity</label>
+                            <input type="text" class="form-control" 
+                            [(ngModel)]="objevent.capacity"
+                            name="Capacity"
+                            id="Capacity"
+                            (keypress)="capacitys($event)" 
+                            minlength="1" 
+                            pattern="^-?([0-9]*\.?[0-9]+|[0-9]+\.?[0-9]*)$"
+                            placeholder="required">
+                            <small class="form-text text-muted danger" >{{capacity}}</small>
+                           <!-- <small class="form-text text-muted danger" *ngIf="Capacitys.errors?.required">required error</small> -->
+                          </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>Description</label>
+                            <input type="text" class="form-control" 
+                            [(ngModel)]="objevent.eventDescription"
+                            name="eventDescription" 
+                            id="eventDescription"
+                            (keypress)="eventDescriptionss($event)" 
+                            placeholder="required"
+                            >
+                            <small class="form-text text-muted danger" >{{eventDescriptions}}</small>      
+                    </div>
+                  </div>
+                  <div class="col-sm-6 date_picker">
+                      <div class="form-group">
+                        <label>Event Type</label>
                             <select 
                             [(ngModel)]="objevent.entry" 
                             class="effect-16 validate marbot0px"
                              name="entry" 
                              id="entry"
-                             (keypress)="entrys($event)" >
+                             (keypress)="entrys($event)" class="form-control" >
                              <small class="form-text text-muted danger" >{{entry}}</small>
                               <option value='Paid'>Paid</option>
                               <option value='Free'>Free</option>
                             </select>
-                            <label>Entry</label>
-                            <span class="focus-border"></span>
-                          </div>
-                        </div>
+                      </div>
                   </div>
-                  <div class="col-sm-6">
-                      <div class="form-group marbot0px">
-                          <div class="input-effect form-group md-form marbot0px">
-                            <input type="text" class="effect-16 validate marbot0px" 
+                  <div class="col-sm-6" *ngIf = "objevent.entry == 'Paid'">
+                    <div class="form-group">
+                            <label>Entry Fee</label>
+                            <input type="text" class="form-control" 
                             [(ngModel)]="objevent.entryFee" 
                             name="entryFee"
                             id="entryFee"
                             (keypress)="entryFeess($event)" 
                             placeholder="required">
-            
-                            <label>entryFee</label>
                             <small class="form-text text-muted danger" >{{entryFees}}</small>
                             <!-- <small class="form-text text-muted danger" *ngIf="entryFees.errors?.required">required error</small> -->
                             <span class="focus-border"></span>
-                          </div>
-                        </div>
+                    </div>
                   </div>
                 </div>
-              
             </div> 
             <div class="modal-footer marbot0px">
                 <button type="submit"  class="btn newbtn">Save</button>
@@ -437,254 +368,216 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body formscroll">
               <div class="col-sm-12 nopadd">
-                  <div class="form-group">
-                      <div class="input-effect form-group md-form ">
-                        <input class="effect-16 validate whitebg" required="required" 
-                        [ngModel]="modelfield.eventTitle" 
-                        id="Title"
-                        name="Title"
-                        #Title="ngModel" 
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Title</label>
+                            <input class="form-control" required="required" 
+                            [ngModel]="modelfield.eventTitle" 
+                            id="Title"
+                            name="Title"
+                            #Title="ngModel" 
+                            required 
+                            placeholder="required">
+                            <small class="form-text text-muted danger" *ngIf="Title.errors?.required">required error</small>
+                            <input  
+                            type="hidden" 
+                            [(ngModel)]="modelfield.eventId" 
+                            id="id" 
+                            name="eventId">
+            
+                            <input 
+                            type="hidden" 
+                            [(ngModel)]="modelfield.filesId" 
+                            id="id" 
+                            name="filesId">
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                        <label style="width:100%;"> Start Date  {{startDates}} </label> 
+                          <input class="form-control"  type="date" name="startDate" id="eventdate" [ngModel]="startDates" style="width:100%;">
+                           <!-- {{startDates | shortDate}} -->
+                    </div>
+                  </div>  
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>
+                          Start Time  {{startimee}}
+                        </label><br>
+                        <select class="form-control" type="time" [(ngModel)]="startimee"  id="startTime" name="startTime">
+                          
+                          
+                          <option *ngFor='let s of select_time.timing' [value]='s.startTime'>{{s.startTime}}</option>
+                        </select>
+                        <!-- <input type="time" class="form-control"  [(ngModel)]="startimee"  name="startTime" id="startTime"/> -->
+                      </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                        <label style="width:100%;">End  Date:{{endDates  }}</label> 
+                          <input class="form-control"  type="date" name="endDate" id="eventdate" [ngModel]="endDates" style="width:100%;">    
+                    </div> 
+                  </div>  
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>
+                          End Time:{{endtime}}
+                        </label>
+                        
+                        <select class="form-control" type="time" [ngModel]="endtime"  id="endTime" name="endTime">
+                            <!-- <option  [value]="endtime" *ngIf =  "!s.endTime" >{{endtime | date: 'h:m a' }} </option> -->
+                          <option *ngFor='let s of select_time.timing' [value]='s.endTime'>{{s.endTime}}</option>
+                        </select>
+                              <!-- <input type="time" class="form-control"  name="endTime" id="endTime" [(ngModel)]="endtime"/> -->
+                      </div>
+                  </div>
+                
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                          <label>Venue Name</label>
+                          <input type="text" class="form-control" required="required" 
+                          [ngModel]="modelfield.venueName"
+                          name="venueName" 
+                          id="venueName"
+                          #venueName="ngModel" 
+                          required 
+                          placeholder="required">
+                          <small class="form-text text-muted danger" *ngIf="venueName.errors?.required">required error</small>
+                      </div>
+                    </div> 
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Country</label>
+                            <!-- <select class="effect-16 validate" id="Country" [(ngModel)]="objevent.countryId" name="country_id" (change)="country($event)">
+                              <option *ngFor="let country of arra ;let c =index" type="text" id="{{country.countryName}}" checked name="countryName"
+                                placeholder="Country" [value]="country.countryId" required>
+                                {{country.countryName }}
+            
+                              </option>
+            
+                            </select> -->
+                            <select  class="form-control"  id="Country" [(ngModel)]="objevent.countryId"  name="country_id" (change)="country($event)">
+                              <option *ngFor="let country of arra ;let c =index" [value]="country.countryId">
+                                  {{country.countryName }}
+                              </option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>District</label>
+                        <select name="district" class="form-control" [(ngModel)]="objevent.districtId" name="dist_id" (change)="districtA($event)">
+                          <option *ngFor="let dist of district ;let d =index" type="text" id="{{dist.name}}" checked name="dist"
+                            placeholder="Country" [value]="dist.districtId" required>
+                            {{dist.name }}
+                          </option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Suburb</label>
+                        <select class="form-control" [(ngModel)]="objevent.suburbId" name="sub_id" (change)="subr($event)">
+                          <!-- (change)="country($event)" -->
+                          <option *ngFor="let sub of suburb ;let s =index" type="text" id="{{sub.name}}" checked name="sub"
+                            placeholder="Suburb" [value]="sub.suburbId" required>
+                            {{sub.name }}
+                          </option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                          <label>Location</label>
+                          <input type="text" class="form-control" required="required" 
+                          [ngModel]="modelfield.location"
+                          name="Location" 
+                          id="Location"
+                          #Location="ngModel" 
+                          required 
+                          placeholder="required">
+                         
+                          <small class="form-text text-muted danger" *ngIf="Location.errors?.required">required error</small>
+                        
+                      </div>
+                  </div>
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                          <label>Capacity</label>
+                          <input type="text" class="form-control" required="required" 
+                          [ngModel]="modelfield.capacity"
+                          name="Capacity" 
+                          id="Capacity"
+                          #Capacity="ngModel" 
+                          required 
+                          (keypress)="capacitys($event)" 
+                          pattern="^-?([0-9]*\.?[0-9]+|[0-9]+\.?[0-9]*)$"
+                          placeholder="required">
+                          <small class="form-text text-muted danger" *ngIf="Capacity.errors?.required">required error</small>
+                      </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" class="form-control" required="required" 
+                        [ngModel]="modelfield.eventDescription"
+                        name="eventDescription" 
+                        id="eventDescription"
+                        #eventDescription="ngModel" 
                         required 
                         placeholder="required">
-                        <small class="form-text text-muted danger" *ngIf="Title.errors?.required">required error</small>
-                        <input  
-                        type="hidden" 
-                        [(ngModel)]="modelfield.eventId" 
-                        id="id" 
-                        name="eventId">
-        
-                        <input 
-                        type="hidden" 
-                        [(ngModel)]="modelfield.filesId" 
-                        id="id" 
-                        name="filesId">
-        
-                     
-                        <label>Title</label>
-                        <span class="focus-border"></span>
-                      </div>
+                        <small class="form-text text-muted danger" *ngIf="eventDescription.errors?.required">required error</small>
                     </div>
-              </div>
-              <div class="col-sm-12 nopadd rowpaddadjust">
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                            <div class="input-effect form-group md-form ">
-                              <input type="text" class="effect-16 validate" 
-                              [(ngModel)]="objevent.venueName" 
-                              name="venueName"
-                              id="venueName"
-                              #venueNames="ngModel" 
-                              required 
-                              placeholder="required">
-                              <small class="form-text text-muted danger" *ngIf="venueNames.errors?.required">required error</small>
-                
-                              <label>VenueName</label>
-                              <span class="focus-border"></span>
-                            </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                          <div class="form-group">
-                              <div class="input-effect form-group md-form ">
-                                <select class="effect-16 validate" id="Country" [(ngModel)]="objevent.countryId" name="country_id" (change)="country($event)">
-                                  <option *ngFor="let country of arra ;let c =index" type="text" id="{{country.countryName}}" checked name="countryName"
-                                    placeholder="Country" [value]="c" required>
-                                    {{country.countryName }}
-                
-                                  </option>
-                
-                                </select>
-                
-                                <span class="focus-border"></span>
-                              </div>
-                            </div>
-                      </div>
-                </div>
-                <div class="col-sm-12 nopadd rowpaddadjust">
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <div class="input-effect form-group md-form ">
-                          <select name="district" class="effect-16 validate" [(ngModel)]="objevent.districtId" name="dist_id" (change)="districtA($event)">
-                            <option *ngFor="let dist of district ;let d =index" type="text" id="{{dist.name}}" checked name="dist"
-                              placeholder="Country" [value]="d" required>
-                              {{dist.name }}
-  
-                            </option>
-  
-                          </select>
-  
-                          <span class="focus-border"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <div class="input-effect form-group md-form ">
-                          <select class="effect-16 validate" [(ngModel)]="objevent.suburbId" name="sub_id" (change)="subr($event)">
-                            <!-- (change)="country($event)" -->
-                            <option *ngFor="let sub of suburb ;let s =index" type="text" id="{{sub.name}}" checked name="sub"
-                              placeholder="Suburb" [value]="s" required>
-                              {{sub.name }}
-  
-                            </option>
-  
-                          </select>
-  
-                          <span class="focus-border"></span>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-           
-        
-              <div class="col-sm-6">
-                  <div class="form-group">
-                      <div class="input-effect form-group md-form">
-                        <input class="effect-16 validate"  type="date" name="startDate" id="eventdate" [(ngModel)]="startDates" style="width:100%;">
-                        <label style="width:100%;"> start date : {{startDates}}</label> 
-                        <span class="focus-border"></span>
-                      </div>
-                  </div>
-                </div>  
-                <div class="col-sm-6">
-                    <div class="form-group date_picker">
-                      <label>
-                        <a>start time </a>
-                      </label><br>
-                      <input type="time" class="form-control"  [(ngModel)]="startimee"  name="startTime" id="startTime"/>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                      <div class="input-effect form-group md-form">
-                        <input class="effect-16 validate"  type="date" name="endDate" id="eventdate" [(ngModel)]="endDates" style="width:100%;">
-                        <label style="width:100%;">end  date: {{endDates}}</label> 
-                        <span class="focus-border"></span>
-                      </div>
                   </div> 
-                </div>  
-              <div class="col-sm-6">
-                    <div class="form-group date_picker">
-                      <label>
-                        <a>end time</a>
-                      </label><br>
-                      <input type="time" class="form-control"  name="endTime" id="endTime" [(ngModel)]="endtime"/>
-                    
-                      <!-- <select  >
-                        <option>AM</option>
-                        <option>PM</option>
-                      </select> -->
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                            <!-- <input type="text" class="effect-16 validate" required="required" 
+                            [ngModel]="modelfield.entry" 
+                            name="entry"
+                            id="entry"
+                            #entry="ngModel" 
+                            required 
+                            placeholder="required">
+          
+                            <label>Entry</label>
+                            <small class="form-text text-muted danger" *ngIf="entry.errors?.required">required error</small>
+          
+                            <span class="focus-border"></span>
+                          </div> -->
+                         
+                              <label>Entry Type</label>
+                              <select class="form-control"
+                              [(ngModel)]="modelfield.entry" 
+                              name="entry" 
+                              id="entry"
+                              (keypress)="entrys($event)" >
+                                 <option value='Paid'>Paid</option>
+                                <option value='Free'>Free</option>
+                              </select>
+                              <small class="form-text text-muted danger" >{{entry}}</small>
+                            
+                      </div> 
                     </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <div class="input-effect form-group md-form ">
-                    <input type="text" class="effect-16 validate" required="required" 
-                    [ngModel]="modelfield.location"
-                    name="Location" 
-                    id="Location"
-                    #Location="ngModel" 
-                    required 
-                    placeholder="required">
-                    <label>Location</label>
-                    <small class="form-text text-muted danger" *ngIf="Location.errors?.required">required error</small>
-                    <span class="focus-border"></span>
-                  </div>
-                </div>
-              </div>
-            
-        
-              <div class="col-sm-6">
-                <div class="form-group marbot0px">
-                  <div class="input-effect form-group md-form marbot0px">
-                    <input type="text" class="effect-16 validate marbot0px" required="required" 
-                    [ngModel]="modelfield.entryFee"
-                    name="entryFee" 
-                    id="entryFee"
-                    #entryFee="ngModel" 
-                    required 
-                    placeholder="required">
-  
-                    <label>entryFee</label>
-                    <small class="form-text text-muted danger" *ngIf="entryFee.errors?.required">required error</small>
-                    <span class="focus-border"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                  <div class="form-group">
-                    <div class="input-effect form-group md-form ">
-                      <input type="text" class="effect-16 validate" required="required" 
-                      [ngModel]="modelfield.entry" 
-                      name="entry"
-                      id="entry"
-                      #entry="ngModel" 
-                      required 
-                      placeholder="required">
-    
-                      <label>Entry</label>
-                      <small class="form-text text-muted danger" *ngIf="entry.errors?.required">required error</small>
-    
-                      <span class="focus-border"></span>
-                    </div>
-                  </div>
+                    <div class="col-sm-6" *ngIf = "modelfield.entry == 'Paid'">
+                        <div class="form-group">
+                            <label>Entry Fee</label>
+                            <input type="text" class="form-control" required="required" 
+                            [ngModel]="modelfield.entryFee"
+                            name="entryFee" 
+                            id="entryFee"
+                            #entryFee="ngModel" 
+                            required 
+                            placeholder="required">
+                            <small class="form-text text-muted danger" *ngIf="entryFee.errors?.required">required error</small>   
+                        </div>
+                    </div> 
+                 
+                  
               </div> 
-              <div class="col-sm-6">
-                  <div class="form-group">
-                    <div class="input-effect form-group md-form ">
-                      <input type="text" class="effect-16 validate" required="required" 
-                      [ngModel]="modelfield.eventDescription"
-                      name="eventDescription" 
-                      id="eventDescription"
-                      #eventDescription="ngModel" 
-                      required 
-                      placeholder="required">
-                      <label>Description</label>
-                      <small class="form-text text-muted danger" *ngIf="eventDescription.errors?.required">required error</small>
-                      <span class="focus-border"></span>
-                    </div>
-                  </div>
-                </div>  
-            
-              <div class="col-sm-6">
-                <div class="form-group marbot0px">
-                  <div class="input-effect form-group md-form marbot0px">
-                    <input type="text" class="effect-16 validate marbot0px" required="required" 
-                    [ngModel]="modelfield.venueName"
-                    name="venueName" 
-                    id="venueName"
-                    #venueName="ngModel" 
-                    required 
-                    placeholder="required">
-    
-                    <label>VenueName</label>
-                    <small class="form-text text-muted danger" *ngIf="venueName.errors?.required">required error</small>
-                    <span class="focus-border"></span>
-                  </div>
-                </div>
-             </div> 
-             <div class="col-sm-6">
-                <div class="form-group">
-                  <div class="input-effect form-group md-form ">
-                    <input type="text" class="effect-16 validate" required="required" 
-                    [ngModel]="modelfield.capacity"
-                    name="Capacity" 
-                    id="Capacity"
-                    #Capacity="ngModel" 
-                    required 
-                    (keypress)="capacitys($event)" 
-                    pattern="^-?([0-9]*\.?[0-9]+|[0-9]+\.?[0-9]*)$"
-                    placeholder="required">
-                    <label>Capacity</label>
-                    <small class="form-text text-muted danger" *ngIf="Capacity.errors?.required">required error</small>
-                    <span class="focus-border"></span>
-                  </div>
-                </div>
-                </div>
-           
-            </div>
+            </div>       
             <div class="modal-footer">
               <button type="submit" class="btn newbtn"  >Save</button>
   

@@ -8,6 +8,8 @@ import swal from 'sweetalert2';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { resetFakeAsyncZone } from '@angular/core/testing';
 import { TimeSlot } from '../location/location.component';
+import { getHours, getMinutes } from 'date-fns';
+import { forEach } from '@angular/router/src/utils/collection';
 //export class TimeSlot
 export class NgbduserModalContent {
   @Input() name;
@@ -48,6 +50,9 @@ export class EventListComponent implements OnInit {
   startDates;
   endDates;
   Titlee;
+  public c_id: any;
+  public country_name: any;
+  arr = []
   venueNamee;
     location;
     capacity;
@@ -73,7 +78,7 @@ export class EventListComponent implements OnInit {
    { 
      this.test = this.datePipe.transform(this.myDate, 'yyyy-MM-dd'); 
       this.objevent = new EventsCreateUpdateVM();
-      this.past_upcomming_event(2);
+    //  this.past_upcomming_event(2);
       this.select_time = new TimeSlot();
     }
 
@@ -241,12 +246,7 @@ locations(event: any) { this.location  = '';}
     {
       this.eventDescriptions  = '';
     }
-    if( typeof(this.objevent.entryFee) == 'undefined'){
-      this.entryFees = 'Field Required'
-    }else
-    {
-      this.entryFees  = '';
-    }
+  
     if( typeof(this.objevent.entry) == 'undefined'){
       this.entry = 'Field Required'
     }else
@@ -325,7 +325,8 @@ locations(event: any) { this.location  = '';}
                                                  // alert(JSON.stringify(response.message));
                                                   this.toastr.success("created  event sucessfully");
                                                   this.objevent = new EventsCreateUpdateVM();
-                                                  this.past_upcomming_event(2);
+                                             
+                                                this.past_upcomming_event(0)
                                                   this.twitterDailog = false;
                                                   list.reset()
                                              },error=>{
@@ -341,7 +342,9 @@ locations(event: any) { this.location  = '';}
                       
  }
 
-
+ formatAMPM() {
+ 
+  }
   /////////////////////////////////popupmode
   closeResult: string;
   // Open default modal
@@ -366,7 +369,7 @@ locations(event: any) { this.location  = '';}
   }
   // Open modal with dark section
   openModal(customContent) {
-    alert('create event opened');
+   // alert('create event opened');
     this.modalService.open(customContent, { windowClass: 'dark-modal' });
   }
   // Open content with dark section
@@ -377,20 +380,64 @@ locations(event: any) { this.location  = '';}
   }
 
   editevent(v) {
-    console.log(v);
-    console.log( "dgfdg");
-    this.modelfield = v;
-    this.eventupdaterDailog = true;
-    this.eventdate = v.eventsDates[0].eventDate.split('T')[0]
-    this.endtime = v.eventsDates[0].endTime.split('T')[1];
-    this.startimee = v.eventsDates[0].startTime.split('T')[1];
+    console.log(v)
+    // console.log(v.eventsDates[0].endTime.split('T')[1]);
+   
 
-    //////
-    this.startDates = v.eventsDates[0].startDate.split('T')[1];
-    this.endDates = v.eventsDates[0].endDate.split('T')[1];
+    let hrs=getHours(v.eventsDates[0].endTime);
+    let min=getMinutes(v.eventsDates[0].endTime);
+    if(hrs<12){
+    //alert('0'+hrs+':'+min+':'+' Am');
+    this.endtime = '0'+hrs+':'+min+':'+' Am'
+    }else{
+    //alert(hrs+':'+min+':'+' Pm');
+    this.endtime   = hrs+':'+min+':'+' Pm'
+    }
+    let hrss=getHours( v.eventsDates[0].startTime);
+    let minn=getMinutes( v.eventsDates[0].startTime);
+    if(hrs<12){
+   // alert('0'+hrss+':'+minn+':'+' Am');
+    this.startimee = '0'+hrss+':'+minn+':'+' Am'
+    }else{
+   // alert(hrss+':'+minn+':'+' Pm');
+    this.startimee   = hrss+':'+minn+':'+' Pm'
+    }
+
+
+    // const a = {
+    //   endTime: this.endtime,
+    //   startTime: this.startimee 
+    // }
+    // this.select_time.timing.unshift(a);
+
+    
+    // for(let a of this.select_time.timing) {
+      
+    //   if(a.startTime.include(this.select_time.timing)){
+    //     this.startimee = a.startTime
+    //   }
+    //   if(a.endtime.include(this.select_time.endTime)){
+    //     this.endtime = a.endtime;
+    //   }
+     
+    // }
+    console.log(this.endtime)
+    console.log( this.startimee)
+
+
+    console.log(v.eventsDates[0].endTime.split('T')[1]);
+    console.log(v.eventsDates[0].startTime.split('T')[1]);
+    this.startDates = v.eventsDates[0].startDate.split('T')[0];
+    this.endDates = v.eventsDates[0].endDate.split('T')[0];
+
+     
+    // this.endtime = v.eventsDates[0].endTime;
+    // this.startimee = v.eventsDates[0].startTime;
   
-    console.log( v.eventsDates[0]);
-    console.log( v.eventsDates[0].endDate);
+    this.modelfield = v;
+    console.log(this.modelfield);
+    this.eventupdaterDailog = true;
+
   }
 
   editsave(data: any) {
@@ -434,7 +481,7 @@ locations(event: any) { this.location  = '';}
       console.log(data.json());
       this.toastr.success("saved sucessfully");
       this.eventupdaterDailog = false;
-      this.past_upcomming_event(2);
+      this.past_upcomming_event(0);
      
     },error=>{console.log(error);
       this.toastr.error(error);})
@@ -442,23 +489,23 @@ locations(event: any) { this.location  = '';}
 
   past_upcomming_event(past){
     console.log(past);
-    // if (past == 1) 
-    //  { past = true;
-    //    this.up = false;
-    //   }else{
-    //    past = false;
-    //    this.up = true;
-    //   }
-      
+  
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
-    
+       //  this.eventArray.unshift(this.objevent);
     this.http.post(this.myevent_Post_url, { Filter: past },{ headers: headers }).subscribe(data => {
-      this.eventArray = data.json() as string[];
-      console.log(this.eventArray);
+      this.eventArray = data.json() ;
+      
+      for (let entry of   data.json()) {
+       
+      //  console.log(entry); 
+        this.event_Detail(entry.eventId)
+    }
+    
+    //  console.log(this.eventArray);
     },error => {console.log(error);})
   }
 
@@ -498,29 +545,63 @@ locations(event: any) { this.location  = '';}
         })
           return;
   }
-
   search_event(e){
-    console.log(e)
+ 
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
    const a = {
-      filter: 1,
-      search: "string"
+      filter: 3,
+      search: e.value.search
     }
-    console.log(a)
+    console.log(a);
     this.http.post(this.myevent_Post_url,a,{ headers: headers }).subscribe(data => {
-      this.eventArray = data.json() as string[];
+    //  this.eventArray = data.json();
+        for (let entry of  data.json()) {
+        console.log(entry);
+        this.event_Detail(entry.eventId)
+    }
+      console.log( data.json());
+    },error => {console.log(error);})
+  }
+  event_Detail(e){
+   
+    var id = e;
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization", 'Bearer ' + authToken);
+    this.eventArray = [];
+    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/eventdetails?id' + '=' + id,{ headers: headers }).subscribe(data => {
+     // this.eventArray = [];
+   // this.eventArray.push( data.json()) ;
+   //   console.log(data.json());
+     
+      this.eventArray.push(data.json()) 
       console.log(this.eventArray);
-    },error => {console.log(error);})}
+     
+    },error => {console.log(error);})
+  }
+  
+  // country(event): void {
+  //   const newVal = event.target.value;
+  //   this.district = this.arra[newVal].districts
+  // }
   country(event): void {
     const newVal = event.target.value;
     this.district = this.arra[newVal].districts
+    let country = this.arra.filter(c => c.countryId == newVal)[0];
+    this.c_id = this.arra.filter(c => c.countryId == newVal)[0].countryId;
+    this.objevent.countryId = country.countryId;
+    this.country_name = country.countryName
+   // this.district = country.districts
   }
   districtA(event): void {
     const newVal = event.target.value;
+    console.log(this.district[newVal]);
     this.suburb = this.district[newVal].suburb
   }
   subr(event): void {

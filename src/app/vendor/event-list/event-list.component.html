@@ -85,7 +85,7 @@
                                     <strong> Start Time {{name.startTime | date :
                                       "shortTime" }}</strong>
                                   </p>
-  
+                                 
                                   <p *ngFor="let name of data.eventsDates">
                                     <strong>End
                                         Time {{name.endTime | date : "shortTime" }}
@@ -155,6 +155,9 @@
                               <label>Event Image</label>
                             <span class="focus-border"></span>
                             </div>
+
+                          
+                     
                       </div>
                   </div>
                   <div class="col-sm-6">
@@ -205,8 +208,11 @@
                                   <label>
                                     <a>start time </a>
                                   </label><br>
-                                  <input type="time" class="form-control"  [(ngModel)]="startTimee"  name="startTime" id="startTime"/>
-                              
+                                  <!-- <input type="time" class="form-control"  [(ngModel)]="startTimee"  name="startTime" id="startTime"/> -->
+                                 
+                                  <select class="form-control" type="time" [(ngModel)]="startTimee"  id="startTime" name="startTime">
+                                    <option *ngFor='let s of select_time.timing' [value]='s.startTime'>{{s.startTime}}</option>
+                            </select>
                                 </div>
                             
                          
@@ -268,8 +274,8 @@
                               <div class="input-effect form-group md-form ">
                                 <select class="effect-16 validate" id="Country" [(ngModel)]="objevent.countryId" name="country_id" (change)="country($event)">
                                   <option *ngFor="let country of arra ;let c =index" type="text" id="{{country.countryName}}" checked name="countryName"
-                                    placeholder="Country" [value]="c" required>
-                                    {{country.countryName }}
+                                    placeholder="Country" [value]="country.countryId"  required>
+                                    {{country.countryName }}/{{objevent.countryId}}// {{country.countryId }}
                 
                                   </option>
                 

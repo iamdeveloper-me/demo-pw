@@ -60,7 +60,7 @@ export class EventListComponent implements OnInit {
     entry;
     eventDescriptions;
     endDate;
-
+    search;
   public sub_id: any; public dist_id: any; public country_id: any;
   objevent= new EventsCreateUpdateVM();  
 

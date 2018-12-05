@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit {
   totaljobArray;
   noPhone;
   banner_image;
-  VendorDashboard_data = {portfolioImage : '',portfolioCount: '',
+  VendorDashboard_data = {portfolioImage : '',portfolioCount: '',albumImageCount:'',
   videoCount : '',albumCount: '',impression: '',enquiries: '',loveCount: '',reviews: ''};
   //VendorDashboard
   

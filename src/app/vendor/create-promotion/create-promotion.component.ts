@@ -12,7 +12,7 @@ export class CreatePromotionComponent implements OnInit {
 
    countryArray: string[];
       public arra = new Array(); public district = new Array(); public suburb = new Array();
-  arra =[];
+
   constructor(public http: Http,public toastr: ToastrService,private router: Router) { }
   private createpromo: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PromoteBusiness/saveadlog';
   code = {voucherCode: ""}

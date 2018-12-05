@@ -13,7 +13,7 @@ export class PromotionPriorityComponent implements OnInit {
 
     countryArray: string[];
       public arra = new Array(); public district = new Array(); public suburb = new Array();
-  arra =[];
+
   private createpromo: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PromoteBusiness/saveadlog';
   code = {voucherCode: ""}
   private allpromo: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PromoteBusiness/allPromotion';

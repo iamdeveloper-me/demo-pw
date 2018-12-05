@@ -1,30 +1,30 @@
+import { apiPath } from './../../shareApi/apiPath';
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-discountdeals',
   templateUrl: './discountdeals.component.html',
   styleUrls: ['./discountdeals.component.scss']
 })
 export class DiscountdealsComponent implements OnInit {
+  url = apiPath.url;
   selected = "all";
   editdeal_dailog = false;  
   dealservice = false;
   createdeal_dailog = false;
-  private discountGet: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/discounts'
   discount:any = [];
   update_end_date;
   update_start_date;
-  private updatediscountPost: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatediscount'
   updiscount:any = [];
-
-  private SupplierdiscountGet: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/discount'
+  noDiscount:boolean =  false;
+  upgradeMsg=''
+  upgradeMembership:boolean = false;
   Supplierdiscount:any = [];
 
-  private deal: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/createupdatedeals'
   title;
   disTitle;
   createdial = false;
@@ -37,14 +37,13 @@ export class DiscountdealsComponent implements OnInit {
     endDate: "",
     neverExpire: true
   };
-  private mydeal: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mydeals'
   recentmydeal:any = [];
   readioSelected_serv:boolean;
+  ram:boolean =false
+  basicplan:number
+  constructor(public http: Http,public toastr: ToastrService, private router: Router  ) {
+    this.basicplan = JSON.parse(localStorage.getItem('basic-plan'));
 
-  private deletedeal : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/deletedeal'
-
-  constructor(public http: Http,public toastr: ToastrService) {
-   
    }
 
   ngOnInit() {
@@ -100,20 +99,28 @@ export class DiscountdealsComponent implements OnInit {
      headers.append('Accept', 'application/json')
      headers.append('Content-Type', 'application/json');
      headers.append("Authorization",'Bearer '+authToken);
-     this.http.get(this.discountGet,{headers:headers}).subscribe(data =>{  
+     this.http.get(this.url+'api/LookupMaster/discounts',{headers:headers}).subscribe(data =>{  
        console.log(data.json());
        this.discount = data.json();
      })
-     this.http.get(this.SupplierdiscountGet,{headers:headers}).subscribe(data =>{  
+     this.http.get(this.url+'api/Supplier/discount',{headers:headers}).subscribe(data =>{  
       console.log(data.json());
      this.Supplierdiscount = data.json();
      this.disTitle =   this.Supplierdiscount.title ;
      if(this.Supplierdiscount.length == 0 ){
        alert("dcds");
       this.Supplierdiscount.title = "No Discounts Applied" ;
+      
+     }
+    },
+    e=>{
+      
+     if(e.status == 400){
+      this.toastr.error(JSON.parse(e._body)['no_discount'][0])
+      this.noDiscount = true;
      }
     })
-    this.http.get(this.mydeal,{headers:headers}).subscribe(data =>{  
+    this.http.get(this.url+'api/Supplier/mydeals',{headers:headers}).subscribe(data =>{  
      
      this.recentmydeal = data.json();
      console.log( this.recentmydeal);
@@ -126,10 +133,14 @@ open(c){
        
 }
 updatedis(service){
+  
+
+
+
   this.dealservice = false;
   console.log(service.value.select);
   console.log(service.value.select.title);
- this.disTitle = service.value.select.title;
+//  this.disTitle = service.value.select.title;
 
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
@@ -147,15 +158,51 @@ this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/ap
    a,{headers:headers}).subscribe(
     data =>{  
     console.log(data.json());
+    this.noDiscount = false;
+    this.disTitle = service.value.select.title;
+
    this.toastr.success("Discount updated successfully."); 
     this.dealservice = false;
    this.updiscount = data.json();
   },error => {console.log(error);
-      this.toastr.warning(error);
+    this.noDiscount = true;
+    
+    if(error.status == 400){
+      
+      this.upgradeMsg = JSON.parse(error._body)["upgrade_membership"][0] 
+      this.upgradeMembership = true;
+
+
+      swal({
+        // title: "Are you sure to change membership plan?",
+        title: "Free Plan",
+        text: this.upgradeMsg,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-default",
+        confirmButtonText: "Yes, Upgrade Now!",
+        cancelButtonText: "Remind Me Later!",
+    }).then((res)=>{
+      debugger
+                    if(res.value===true){
+                      this.router.navigate(['../vendor/membership'])
+                   }else{
+                      // alert('Cancel Process !');
+                          this.toastr.warning(JSON.parse(error._body)["upgrade_membership"][0]);
+                    }
+    },error=>{
+      alert(JSON.stringify(error));
+    })
+    return;
+        
+    
+    }
+    this.toastr.warning(error);
   })
+ 
 } 
 createdeals(createdeal){
-
+this.ram = true
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
  
@@ -173,18 +220,19 @@ createdeals(createdeal){
   }
 
   console.log(a);
-  this.http.post(this.deal,a,{headers:headers}).subscribe(
+  this.http.post(this.url+'api/Supplier/createupdatedeals',a,{headers:headers}).subscribe(
     data =>{  
       
       if(data.status == 200)      {        
         this.createdeal_dailog = false;       
-        console.log("saved");      
+        console.log("saved");  
+        this.ram =false    
     }
 
 
       console.log(data.json());   
 createdeal.reset();
-      this.http.get(this.mydeal,{headers:headers}).subscribe(data =>{  
+      this.http.get(this.url+'api/Supplier/mydeals',{headers:headers}).subscribe(data =>{  
      
         this.recentmydeal = data.json();
         console.log( this.recentmydeal);
@@ -204,9 +252,14 @@ openupdatedeal(data){
   console.log(data);
 
   this.updatemydeal = data ;
-  this.update_end_date = data.endDate.split('T')[0];
-   this.update_start_date =data.startDate.split('T')[0];
+  if(data.endDate != null){
+    this.update_end_date = data.endDate.split('T')[0];
+  }
+  if(data.startDate != null){
+    this.update_start_date =data.startDate.split('T')[0];
+  }
  
+  
 }
 updatedeal(info){
                    
@@ -227,12 +280,12 @@ updatedeal(info){
                       neverExpire: info.value.optradio
                     }
                     console.log(upc);
-                    this.http.post(this.deal,upc,{headers:headers}).subscribe(
+                    this.http.post(this.url+'api/Supplier/createupdatedeals',upc,{headers:headers}).subscribe(
                       data =>{  
                       console.log(data.json());
                       this.toastr.success(" Your deal is  updated successfully.");
 
-                      this.http.get(this.mydeal,{headers:headers}).subscribe(data =>{  
+                      this.http.get(this.url+'api/Supplier/mydeals',{headers:headers}).subscribe(data =>{  
      
                         this.recentmydeal = data.json();
                         console.log( this.recentmydeal);
@@ -274,7 +327,7 @@ deletedeals(a ,index){
                                                          }
                                                     console.log(aaa);
                                                     this.recentmydeal.splice(index,1);
-                                                    this.http.post(this.deletedeal,aaa,{headers:headers}).subscribe(
+                                                    this.http.post(this.url+'api/Supplier/deletedeal',aaa,{headers:headers}).subscribe(
                                                       data =>{  
                                                       console.log(data.json());
                                                       this.toastr.success(" Your deal is  delete successfully.");
@@ -288,13 +341,66 @@ deletedeals(a ,index){
               })
               return;
 }
-closeModel(){         
+closeModel(){  
+  this.ram  = false       
     this.editdeal_dailog = false;  
     this.createdeal_dailog = false;
     this.dealservice = false;
 }
 
   
+changePlan(){
+  if(this.noDiscount){
+    swal({
+      // title: "Are you sure to change membership plan?",
+      title: "Free Plan",
+      text: this.upgradeMsg,
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-default",
+      confirmButtonText: "Yes, Upgrade Now!",
+      cancelButtonText: "Remind Me Later!",
+  }).then((res)=>{
+    debugger
+                  if(res.value===true){
+                    this.router.navigate(['../vendor/membership'])
+                 }else{
+                    // alert('Cancel Process !');
+                        this.toastr.warning(this.upgradeMsg);
+                  }
+  },error=>{
+    alert(JSON.stringify(error));
+  })
+  return;
+      
+  
+  } 
+  }
+  
+  
+noDealSwal(){
+  swal({
+    // title: "Are you sure to change membership plan?",
+    title: "Free Plan",
+    text:'Free Membership cannot create Deals and Discount',
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonClass: "btn-default",
+    confirmButtonText: "Yes, Upgrade Now!",
+    cancelButtonText: "Remind Me Later!",
+}).then((res)=>{
+  debugger
+                if(res.value===true){
+                  this.router.navigate(['../vendor/membership'])
+               }else{
+                  // alert('Cancel Process !');
+                      // this.toastr.warning('Free Membership cannot create Deals and Discount');
+                }
+},error=>{
+  alert(JSON.stringify(error));
+})
+return; 
+}  
 }
 
 

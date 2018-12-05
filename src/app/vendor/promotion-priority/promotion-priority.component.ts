@@ -3,6 +3,7 @@ import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { ViewCell } from 'ng2-smart-table';
+
 @Component({
   selector: 'app-promotion-priority',
   templateUrl: './promotion-priority.component.html',
@@ -10,6 +11,9 @@ import { ViewCell } from 'ng2-smart-table';
 })
 export class PromotionPriorityComponent implements OnInit {
 
+    countryArray: string[];
+      public arra = new Array(); public district = new Array(); public suburb = new Array();
+  arra =[];
   private createpromo: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PromoteBusiness/saveadlog';
   code = {voucherCode: ""}
   private allpromo: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PromoteBusiness/allPromotion';
@@ -19,10 +23,11 @@ export class PromotionPriorityComponent implements OnInit {
   selecteditem:any = [];
   sum = 0 ;
   sub = 0;
+ 
   headers = new Headers();
-  constructor(public http: Http,public toastr: ToastrService,private router: Router) { }
+  constructor(public http: Http,public toastr: ToastrService,private router: Router) {  }
   ngOnInit() {
-
+      this.loadCountries();
     $('.togglebtnmenu').on('click', function(){
      $('#wrapper').toggleClass('toggled');
     });
@@ -54,11 +59,15 @@ export class PromotionPriorityComponent implements OnInit {
     this.router.navigateByUrl('/vendor/PromoteBusiness');
   }
   prmocode(code){
+
+   
               const  promoData = {
                 adTypeId: code.value.adTypeId,
                 voucherCode: code.value.voucherCode,
+                countryId: code.value.country_id,
                 slotIds: this.selecteditem
               }
+               console.log(promoData)
       this.http.post(this.createpromo,promoData,{headers:this.headers}).subscribe(data =>{
       console.log(data.json());
       this.router.navigate([]).then(result => {  window.open(data.json().url, '_blank'); });
@@ -84,5 +93,22 @@ export class PromotionPriorityComponent implements OnInit {
    selecteditem[a].isSelected = false;
   this.selecteditem = this.HomePage[0].adAvailableSlots.filter(m=>m.isSelected===true);
   this.calculateSum(this.selecteditem);
+  }
+
+   loadCountries() {
+            let country = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries");
+            country.subscribe(data => {
+              this.countryArray = data.json();
+              console.log(this.countryArray);
+              this.arra = this.countryArray
+            })      
+  }
+   country(event): void {
+        const newVal = event.target.value;
+        let country = this.arra.filter(c => c.countryId == newVal)[0];
+        // this.c_id = this.arra.filter(c => c.countryId == newVal)[0].countryId;
+        // this.address_modelfield.country_id = country.countryId;
+        // this.country_name = country.countryName
+        // this.district = country.districts
   }
 }

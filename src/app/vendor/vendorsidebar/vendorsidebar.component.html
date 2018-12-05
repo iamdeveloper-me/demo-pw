@@ -3,16 +3,20 @@
      
 <ul *ngIf="!route; else next"class="sidebar-nav" id="testDiv">         
   <a class="lm_top_head logo_icon" routerLink="../../home" >Perfect Wedding</a> 
-    <li class="sidebar-brand" id="dashboard">
-        <a routerLink="../dashboard">
+<!--   <button (click)="shouldShow = !shouldShow"> Show/Hide </button>
+<label [ngClass]="{show: shouldShow, hide: !shouldShow}"> ... </label> -->
+
+
+    <li id="dashboard" class="sidebar-brand">
+        <a    routerLink="../dashboard"  >
             <i class="material-icons">dashboard</i>
             Dashboard
         </a>
     </li>
 
-        <li class="sidebar-brand" id="business">
+        <li  id="business" class="sidebar-brand" >
             
-            <a routerLink="../business" >
+            <a   routerLink="../business"   >
                 <i class="material-icons">business</i>
                 Business information</a>
         </li>

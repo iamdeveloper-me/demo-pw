@@ -53,6 +53,8 @@ export class NavemenuComponent implements OnChanges,OnInit   {
         this.data = ' Location Trading ';
       } else if(window.location.href.indexOf('/vendor/business-services')>-1) {
        this.data = 'Business Services ';
+      } else if(window.location.href.indexOf('/vendor/allpromotion')>-1) {
+       this.data = 'PROMOTE BUSINESS ';
       } else if(window.location.href.indexOf('/vendor/Message')>-1) {
         this.data = 'Messages ';
       } else if(window.location.href.indexOf('/vendor/gallery')>-1) {
@@ -80,9 +82,9 @@ export class NavemenuComponent implements OnChanges,OnInit   {
       } else if(window.location.href.indexOf('/vendor/storefront')>-1) {
        this.data = 'Statistics ';
       } else if(window.location.href.indexOf('/vendor/editprofile')>-1) {
-        this.data = 'Edit profile ';
+        this.data = 'My Account ';
       } else if(window.location.href.indexOf('/vendor/calender')>-1) { 
-        this.data = 'Calender';
+        this.data = 'Planner';
       } else if(window.location.href.indexOf('/vendor/gallery')>-1) {
        this.data = 'Overview';
       } else if(window.location.href.indexOf('/vendor/portfolioview')>-1) {
@@ -140,6 +142,15 @@ export class NavemenuComponent implements OnChanges,OnInit   {
         $('.blackoverlaymobile').toggleClass('blockmobile');
         $('#page-content-wrapper').toggleClass('overhidden');
       });
+
+      //   $('.sidebar-brand').on('click', function(){
+      // alert("h1");
+      //    $(this).addClass('colour');
+      // });
+
+
+
+
            });
   }
     

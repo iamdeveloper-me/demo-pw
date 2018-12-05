@@ -670,3 +670,75 @@ button{
     padding-left: 0;
 }
 }
+
+
+
+
+
+// Effect Styles Start Here
+
+%label-movement {
+  // Move up, colorize and shrink
+  font-size: 0.75em;
+  color: rgb(240, 17, 140);
+  top: -1.25rem;
+  transition: all 0.25s;
+}
+
+.styled-input {
+  width: 100%;
+  margin: 2rem 0 1rem;
+  position: relative;
+  label {
+    color: #999;
+    position: absolute;
+    top: 0;    
+    left: 0;
+    transition: all 0.25s;
+    pointer-events: none;
+  }
+  &.wide {
+    // Full width textarea fields
+    width: 100%;
+  }
+}
+
+.styled-input input, textarea, .styled-input .form-control {
+  padding: 5px;
+  border: 0; 
+  width: 100%;
+  font-size: 1rem;
+  border:0px;
+  border-radius:0px;
+  outline:none!important;
+  border-bottom:1px solid #e5e5e5;
+  box-shadow:none;
+  ~ span {
+    // Border Effect
+    display: block;
+    width: 0;
+    height: 2px;
+    background:  rgb(240, 17, 140);
+    position: absolute;
+    top:33px;
+    left: 0;
+    transition: all 0.4s;
+  }
+  &:focus {
+    // Trigger the effects
+    outline: 0;
+      ~ label {
+      // Move Label
+      @extend %label-movement;
+    }
+    ~ span {
+      // Expand across
+      width: 100%;
+      transition: all 0.4s;
+    }
+    }
+  &:valid ~ label/*, &.not-empty ~ label*/ {
+    // Keep label above field after its filled out
+    @extend %label-movement;
+  }
+}

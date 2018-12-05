@@ -30,30 +30,31 @@
           </div>
         </div>
       </div>
-  
       <div class="clearfix"></div>
+    <form (ngSubmit)="prmocode(code)" #code="ngForm">
       <div class="col-12 boxcolumn">
           <div class="card">
               <h1>Where do you want to advertise</h1>
-            <div class="form-group">
-              <select class="form-control">
-                <option>Choose Location: (Country)</option>
-                <option>India</option>
-                <option>England</option>
-                <option>New York</option>
-              </select>
-            </div>
+     
+                <div class="form-group">
+                        <div class="input-effect form-group md-form">
+                        <select  class="effect-16 validate"  id="Country" [(ngModel)]="country.countryId"  name="country_id" (change)="country($event)">
+                                <option *ngFor="let country of arra ;let c =index" [value]="country.countryId">
+                                    {{country.countryName }}
+                                </option>
+                            </select>
+                        <label>Country {{address_modelfield}}</label>
+                        <span class="focus-border"></span>
+                        </div>
+                </div>
+                            
+            
           </div>
-        </div>
-  
-  
-  
+      </div>
       <div class="clearfix"></div>
-  
-  
-      <div class="col-sm-8  col-12 boxcolumn paddbottomfixed">
+      <div class="col-sm-12  col-12 boxcolumn paddbottomfixed">
         <div class="card tableless100">
-            <h1>Pick the period you want to promote your business</h1>
+            <h1 class="text-left">Pick the period you want to promote your business</h1>
           <table _ngcontent-c5="" class="table table-striped">
                 <thead _ngcontent-c5="">
                     <tr _ngcontent-c5="">
@@ -82,11 +83,11 @@
           </table>
         </div>
       </div>
-      <div class="col-sm-4  col-12 boxcolumn mobilefixedcart">
+      <div class="col-sm-12  col-12 boxcolumn mobilefixedcart">
         <div class="card">
-          <strong class="text-center mobilebtncartless padbott">Select Detailed <i class="material-icons">expand_more</i></strong>
+          <strong class="mobilebtncartless padbott">Select Detailed</strong>
           <div class="clearfix"></div>
-          <form (ngSubmit)="prmocode(code)" #code="ngForm">
+       
               <div class="codecontainer">
                   <input class="vouchercodeinput" name="voucherCode" placeholder="Voucher Code" [(ngModel)]="code.voucherCode"  type="text">
                   <input   name="adTypeId" [(ngModel)]="data.adTypeId"  type="hidden">
@@ -116,16 +117,110 @@
                     </tbody>
                 </table>
                   <div class="clearfix"></div>
-              <div class="col-sm-12 nopadd text-center">
-                <a href="https://www.paypal.com/in/signin" class="btn inblock textwhite btn-success" target="blank">
-                  Proceed
-                </a>
+               <!--  <a href="https://www.paypal.com/in/signin" class="btn inblock textwhite btn-success" target="blank">
+                  Proceedeee
+                </a> -->
+                 
+                   
+                  <hr>
+                
+                    <aside class="col-sm-12 nopadd">
+                       <strong class="padbott">Payment Methods</strong>
+                          <article class="card">
+                                <div class="card-body">
+
+                                        <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
+                                          <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
+                                            <i class="fa fa-credit-card"></i> Credit Card</a></li>
+                                          <li class="nav-item">
+                                            <a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
+                                            <i class="fab fa-paypal"></i>  Paypal</a></li>
+                                          <li class="nav-item">
+                                            <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
+                                            <i class="fa fa-university"></i>  Bank Transfer</a></li>
+                                        </ul>
+
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade show active" id="nav-tab-card">
+                                              <p class="alert alert-success">Some text success or error</p>
+                                              <form role="form">
+                                              <div class="form-group">
+                                                <label for="username">Full name (on the card)</label>
+                                                <input type="text" class="form-control" name="username" placeholder="" required="">
+                                              </div> <!-- form-group.// -->
+
+                                              <div class="form-group">
+                                                <label for="cardNumber">Card number</label>
+                                                <div class="input-group">
+                                                  <input type="text" class="form-control" name="cardNumber" placeholder="">
+                                                  <div class="input-group-append">
+                                                    <span class="input-group-text text-muted">
+                                                      <i class="fab fa-cc-visa"></i>   <i class="fab fa-cc-amex"></i>   
+                                                      <i class="fab fa-cc-mastercard"></i> 
+                                                    </span>
+                                                  </div>
+                                                </div>
+                                              </div> <!-- form-group.// -->
+
+                                              <div class="row">
+                                                  <div class="col-sm-8">
+                                                      <div class="form-group">
+                                                          <label><span class="hidden-xs">Expiration</span> </label>
+                                                        <div class="input-group">
+                                                          <input type="number" class="form-control" placeholder="MM" name="">
+                                                            <input type="number" class="form-control" placeholder="YY" name="">
+                                                        </div>
+                                                      </div>
+                                                  </div>
+                                                  <div class="col-sm-4">
+                                                      <div class="form-group">
+                                                          <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
+                                                          <input type="number" class="form-control" required="">
+                                                      </div> <!-- form-group.// -->
+                                                  </div>
+                                              </div> <!-- row.// -->
+                                              <button class="subscribe btn btn-primary btn-block" type="button"> Confirm  </button>
+                                              </form>
+                                            </div> <!-- tab-pane.// -->
+                                            <div class="tab-pane fade" id="nav-tab-paypal">
+                                                <p>Paypal is easiest way to pay online</p>
+                                                <p>
+                                               <!--  <button type="button" class="btn btn-primary"> <i class="fab fa-paypal"></i> Log in my Paypal </button> -->
+
+                                                 <button class="btn inblock textwhite btn-success" type="submit" >Proceed to Payment</button>
+                                                </p>
+                                                <p><strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                tempor incididunt ut labore et dolore magna aliqua. </p>
+                                            </div>
+                                            <div class="tab-pane fade" id="nav-tab-bank">
+                                                <p>Bank accaunt details</p>
+                                                <dl class="param">
+                                                  <dt>BANK: </dt>
+                                                  <dd> THE WORLD BANK</dd>
+                                                </dl>
+                                                <dl class="param">
+                                                  <dt>Accaunt number: </dt>
+                                                  <dd> 12345678912345</dd>
+                                                </dl>
+                                                <dl class="param">
+                                                  <dt>IBAN: </dt>
+                                                  <dd> 123456789</dd>
+                                                </dl>
+                                                <p><strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                tempor incididunt ut labore et dolore magna aliqua. </p>
+                                            </div> <!-- tab-pane.// -->
+                                        </div> <!-- tab-content .// -->
+                                </div> <!-- card-body.// -->
+                          </article> <!-- card.// -->
+                    </aside> <!-- col.// -->
+                 
               </div>
-              </div>
-            </form>
-  
+         
         </div>
       </div>
+    </form>
+    
     </div>
   
    

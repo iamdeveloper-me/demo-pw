@@ -231,15 +231,18 @@
                       
 
                       <div class="form-group">
-                        <div class="input-effect form-group md-form ">
-                          <input class="effect-16 validate form-control" type="text" id="title" required="required" formControlName="title" 
-                          [ngClass]="{ 'is-invalid': submitted && f.title.errors }" />
-                          <label>Enter Video Title</label>
-                          <span class="focus-border"></span>
-                          <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
-                              <div *ngIf="f.title.errors.required">Title is required</div>
-                          </div>
+                         <div class="styled-input">
+                            <input class="form-control" type="text" id="title" required="required" formControlName="title" 
+                            [ngClass]="{ 'is-invalid': submitted && f.title.errors }" />
+                            <label>Enter Video Title</label>
+                            <span></span>
+                            <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                              <div *ngIf="f.title.errors.required">
+                                  Title is required
+                              </div>
+                            </div>
                         </div>
+                        
                           <!-- <div *ngIf="title.invalid && (title.dirty || title.touched)"  class="form-text text-muted danger" >
                               <div  class="form-text text-muted danger"  *ngIf="title.errors.required">
                                   title is required.
@@ -247,21 +250,14 @@
                           </div> -->
                       </div>
                       <div class="form-group">
-                        <div class="input-effect form-group md-form ">
-                          <input class="effect-16 validate form-control" type="url" id="link" required="required" formControlName="link" 
+                         <div class="styled-input">
+                          <input class="form-control" type="url" id="link" required="required" formControlName="link" 
                           pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
                           [ngClass]="{ 'is-invalid': submitted && f.link.errors }"
                           />
                           <label>Enter Video Url</label>
-                          <span class="focus-border"></span>
-                          <div *ngIf="submitted && f.link.errors" class="invalid-feedback">
-                              <div   class="form-text text-muted danger"  *ngIf="f.link.errors.required">
-                                Link is required
-                              </div>
-                              <div  class="form-text text-muted danger"  *ngIf="link.errors.pattern">
-                                Link is not valid!. 
-                              </div>
-                          </div>
+                          <span></span>
+                         
                             <!-- <div *ngIf="link.invalid && (link.dirty || link.touched)"  class="form-text text-muted danger" >
                                 <div  class="form-text text-muted danger"  *ngIf="link.errors.required">
                                   link is required.
@@ -270,7 +266,16 @@
                                   link is not valid!. 
                                 </div>
                             </div> -->
+                            <div *ngIf="submitted && f.link.errors" class="invalid-feedback">
+                                <div   class="form-text text-muted danger"  *ngIf="f.link.errors.required">
+                                  Link is required
+                                </div>
+                                <div  class="form-text text-muted danger"  *ngIf="link.errors.pattern">
+                                  Link is not valid!. 
+                                </div>
+                            </div>
                         </div>
+
                       </div>
 
                    </div>

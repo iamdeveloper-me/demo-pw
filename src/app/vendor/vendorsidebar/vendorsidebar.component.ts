@@ -8,6 +8,8 @@ import { Http, Headers } from '@angular/http';
 export class VendorsidebarComponent implements OnInit {
   private base_url : string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Reviews'
  countss;
+
+public shouldShow = false;
  route:boolean = false
   constructor(public http: Http ) { }
   header(){
@@ -20,6 +22,10 @@ export class VendorsidebarComponent implements OnInit {
   }
 
   ngOnInit() { 
+    // $('.sidebar-brand').on('click', function(){
+   
+    //      $('this').addClass('colour');
+    //   });
     if(window.location.href.indexOf('/msg/') != -1 || window.location.href.indexOf('settingalbum/business-services') != -1 || window.location.href.indexOf('/albumviewphoto/') != -1 || window.location.href.indexOf('/settingalbum/') != -1){
       this.route = true;
     }else{
@@ -28,10 +34,13 @@ export class VendorsidebarComponent implements OnInit {
     }
     $.getScript('./assets/js/jquery.slimscroll.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
-
+    
  $(".blackoverlaymain").click(function(){
        //alert("hi");
     });
+
+    
+
     var data = {
       "page": 0, 
       "pageSize": 10,
@@ -58,5 +67,7 @@ export class VendorsidebarComponent implements OnInit {
   });
 
     }
-
+tog(){
+   $('this').addClass('colour');
+}
 }

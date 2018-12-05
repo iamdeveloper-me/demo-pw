@@ -104,7 +104,7 @@
             </div>
         </section>
         <div class="clearfix"></div>
-        <app-foot></app-foot>
+        <!-- <app-foot></app-foot> -->
         <router-outlet></router-outlet>
     </div>
 </div>
@@ -187,8 +187,7 @@
                                             name="phoneNumber"
                                             [(ngModel)]="vendor.vendorContactInfo.phone" 
                                             minlength="7" 
-                                            maxlength="10"
-                                            pattern="^[0-9]{10}$" 
+                                            maxlength="10" 
                                             required
                                         />
                                         <label>Phone Number</label>
@@ -199,7 +198,15 @@
                                             <small class="form-text text-muted danger" *ngIf="phoneNumber.errors.required">
                                                 Phone Number is required
                                             </small>
+                                            <!-- <small class="form-text text-muted danger" *ngIf="phoneNumber.errors.minlength">
+                                                    Phone Number is minimum 7 digit required!
+                                            </small> -->
                                         </div>
+                                        <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"  class="form-text text-muted danger" >
+                                                <div  class="form-text text-muted danger"  *ngIf="phoneNumber.errors.minlength">
+                                                        Phone Number is minimum 7 digit required!
+                                                      </div>
+                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -303,6 +310,7 @@
                                                 minlength="6"
                                                 [ngClass]="{ 'is-invalid': f.submitted && NewPassword.invalid }" 
                                                 required
+                                                validateEqual="ConfirmPassword" reverse="true"
                                             />
                                             <label>New Password</label>
                                             <span class="focus-border"></span>
@@ -330,18 +338,20 @@
                                                 minlength="6"
                                                 [ngClass]="{ 'is-invalid': f.submitted && ConfirmPassword.invalid }" 
                                                 required
+                                                validateEqual="NewPassword" reverse="false"
                                             /> 
                                             <!-- pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$"                                         -->
                                             <label>Confirm Password</label>
                                             <span class="focus-border"></span>
-                                            <small class="form-text text-muted danger"  *ngIf="f.ConfirmPassword !== f.NewPassword">
-                                                password not match 
-                                            </small>
                                                 <div *ngIf="f.submitted && ConfirmPassword.invalid" class="invalid-feedback form-submit">
                                                         <small class="form-text text-muted danger"  *ngIf="ConfirmPassword.errors.required">Confirm Password is required</small>
                                                         <small class="form-text text-muted danger"  *ngIf="ConfirmPassword.errors.minlength">Confirm Password must be at least 6 characters</small>
                                                         <!-- <small class="form-text text-muted danger"  *ngIf="ConfirmPassword.errors.pattern">Minimum 6 characters,1 uppercase,1 lowercase,1 number,1 special character!</small> -->
-                                                        <!-- <small class="form-text text-muted danger"  *ngIf="ConfirmPassword.errors.mustMatch">Passwords must match</small> -->
+                                                </div>
+                                                <div *ngIf="ConfirmPassword.invalid && (ConfirmPassword.dirty || ConfirmPassword.touched)"  class="form-text text-muted danger" >
+                                                    <small [hidden]="ConfirmPassword.valid || (ConfirmPassword.pristine && !f.submitted)" class="text-danger">
+                                                            Password mismatch
+                                                    </small>
                                                 </div>
                                         </div>
                                     </div>

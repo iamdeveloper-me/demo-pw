@@ -250,3 +250,52 @@ height:30px;
 .form-submit{
   font-size: 13pt !important;
 }
+.form-group input{
+  outline:none!important;
+}
+
+.input-effect .effect-16{
+  border: 0;
+  padding: 4px 0;
+  border: 0px;
+  border-bottom: 1px solid #ccc;
+  background-color: transparent;
+  z-index: 2;
+  position: relative;
+  width: 100%;
+  border-radius:0px;
+  box-shadow: none;
+}
+.input-effect .effect-16 ~ label {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 9px;
+  color: #aaa;
+  transition: 0.3s;
+  z-index: 1;
+  letter-spacing: 0.5px;
+
+}
+.input-effect .effect-16 ~ .focus-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: rgb(240, 17, 140);
+  transition: 0.4s;
+}
+
+.input-effect .effect-16:focus ~ label{
+  top: -17px;
+  font-size: 12px;
+  color:  rgb(240, 17, 140);
+  transition: 0.3s;
+  z-index:999;
+}
+
+.input-effect .effect-16:focus ~ .focus-border{
+  width: 100%;
+  transition: 0.4s;
+}

@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
@@ -39,6 +40,7 @@ tag_error ;
 colour_tag_error;
 albumImagesModify = [];
 albumImages = [];
+arr = []
 private mygeturl: string  = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myportfolio"
 private update_portfolio: string  = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updateportfolio"
 
@@ -77,7 +79,10 @@ constructor( public http: Http,public toastr: ToastrService ) {
   
     remove_tag_picker(g){
       console.log(g); 
-      this.tai.splice(g, 1);
+      // console.log('dff',this.tai.split(','))
+      
+      debugger
+      this.formdata['tags'].splice(g, 1);
       console.log(this.tai); 
       if(this.tai.length == 0 )
       { 
@@ -129,39 +134,70 @@ constructor( public http: Http,public toastr: ToastrService ) {
     openModel(e)
     {
       this.formdata = e;
+      if(this.formdata['tags'] == ''){
+        this.formdata['tags'] = ['']
+      }
+      if(this.formdata['colorTags'] == ''){
+        this.formdata['colorTags'] = ['']
+      }
       console.log(this.formdata)
-          this.tai = this.formdata['tags'].split(',')
-       //   this.tai = this.tai.filter(element => element !== "")
-       //   this.tai = this.tai.filter(element => element !== ',')
-          console.log( this.tai )
-          this.a = this.formdata.colorTags;
+      if(this.formdata['tags'] != ''){
+        this.tai = this.formdata['tags'].join(',')
+
+      }
+          
+
+        //  this.tai = this.tai.filter(element => element !== "")
+        //  this.tai = this.tai.filter(element => element !== ',')
+      //     console.log( this.tai )
+          // this.a = this.formdata.colorTags;
           this.createColorPanel();
-          for (let i = 0; i < e.colorTags.length; i++) {
-            let c= this.colors.filter(cn=>cn.colorName==e.colorTags[i])[0].isSelected=true;
-          }
+          console.log(this.colors)
+        if(this.formdata['colorTags'] != ''){
+          this.formdata['colorTags'].forEach(element => {
+            this.colors.forEach(el=>{
+              if(element == el['colorName']){
+               el['isSelected'] = true;
+              }
+            }) 
+          });
+
+        }
+          
+          
+      //     for (let i = 0; i < e.colorTags.length; i++) {
+      //       let c= this.colors.filter(cn=>cn.colorName==e.colorTags[i])[0].isSelected=true;
+      //     }
     }
 
     tags_edit(e){
       this.taggg = ''
      
-     
-      this.tai.push(e)
-      this.tai = this.tai.filter(element => element !== "")         
-      console.log(this.tai); 
+     console.log(e)
+      this.formdata['tags'].push(e)
+      // this.formdata['tags'] = this.tai.filter(element => element !== "")         
+      // console.log(this.formdata); 
+      // this.taggg = ''
      }
     editSettting(e){
         
-      this.tag_array2 = this.tai.join(',')
-      console.log(this.tag_array2)
+      console.log(e.value.tags)
+      console.log(this.colors)
+      this.colors.forEach(element=>{
+        if(element['isSelected']){
+          this.arr.push(element['colorName'])
+        }
+      })
       const fire = {
        portfolioId: e.value.portfolioId,
        filesId: e.value.filesId,
-       tags:  this.tag_array2,
-       colorTags: this.csvColors,
+       tags:  this.formdata['tags'].join(','),
+       colorTags: this.arr.join(','),
        setAsBackgroud: false
       }
+      console.log(fire)
       this.postapi_tag(fire)        
-
+this.arr  = []
     }
 
 
@@ -199,6 +235,8 @@ constructor( public http: Http,public toastr: ToastrService ) {
     }
     closeModel(){   
        this.description_dailog = false;
+       this.ngOnInit()
+       
     }
     delete_portfolio(e,index){
 

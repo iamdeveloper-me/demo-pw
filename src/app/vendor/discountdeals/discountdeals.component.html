@@ -24,12 +24,22 @@
                         <div class="col-md-9">
                           <h6>Perfect wedding exclusive discounts</h6>
                             <p>Attract potential audience with a discounted offer</p>
-                            <h4>{{disTitle}}</h4>
-                          
-                            <div class="button11">
-                             <button (click)="dealservice = true" class="select-btn">Select Discount
-                            </button>
-                          </div>
+                            <h4>{{disTitle}}
+                                <img *ngIf="noDiscount" src="../../../assets/img/noDiscount.png">
+                            </h4>
+                            
+                            
+                             
+                            <div class="button11" *ngIf="basicplan == 1 ;else dd" >       
+                                    <button class="select-btn" style="display:none" (click)="dealservice = true" [disabled]="true">Select Discount</button> 
+                                    <button class="select-btn" (click)="noDealSwal()" >Select Discount</button> 
+                                </div>
+                                <ng-template #dd>
+                                        <div class="button11">
+                                          <button (click)="dealservice = true" class="select-btn">Select Discount</button>
+                                        </div>    
+                            </ng-template>
+                         
                         </div>   
                       </div> 
                       </div> 
@@ -50,10 +60,18 @@
                         <div class="col-md-9">
                           <h6>Deals & Offers</h6>
                           <p>create personallsed & unique offers</p>
-                          <div class="button11">
-                          <button (click)="createdeal_dailog = true" class="select-btn">Create Deal
-                          </button>
-                        </div>
+                       
+
+                        <div class="button11" *ngIf="basicplan == 1 ;else cc" >       
+                                <button class="select-btn" style="display:none" (click)="createdeal_dailog = true" [disabled]="true">Create Deal</button> 
+                                <button class="select-btn" (click)="noDealSwal()" >Create Deal</button> 
+                            </div>
+                            <ng-template #cc>
+                                    <div class="button11">
+                                            <button (click)="createdeal_dailog = true " class="select-btn">Create Deal
+                                                </button>
+                                    </div>    
+                        </ng-template>
                         </div>   
                       </div>
                       </div> 
@@ -66,9 +84,9 @@
         <div class="container-fluid nopadd">
           <div class="card col-sm-12">
           
-                  <div class="card-header padleft0px">
+                  <div class="card-header padleft0px" *ngIf="recentmydeal.length > 0">
                       <h4 _ngcontent-c0="" class="card-title">
-                      Recent  Deals
+                      Recent  Deals  
                     </h4>
                   </div>
                     <div class="card-body">
@@ -119,7 +137,7 @@
       </section>
         </section>
          </div>
-      <app-foot></app-foot>
+      <!-- <app-foot></app-foot> -->
       
       </div>
       </div>
@@ -127,7 +145,7 @@
       <form (ngSubmit)="updatedis(service)" #service="ngForm" >
           <div class="modal fade" [ngClass] = "{'show' : dealservice}" id="selectdiscount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
-                  <div class="modal-content">
+                  <div class="modal-content" >
                       <div class="modal-header">
                           <h4 class="card-title">Select Discount </h4>
                           <button type="button" class="close"  (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -164,7 +182,7 @@
       <form>   
       
     <div class="modal fade" id="createdeal" [ngClass] = "{'show' : createdeal_dailog}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-              <div class="modal-dialog" role="document">
+              <div class="modal-dialog" role="document" >
                   <form (ngSubmit)="createdeals(createdeal)" #createdeal="ngForm">
                       <div class="modal-content">
                           <div class="modal-header">
@@ -185,7 +203,8 @@
                                                       #titles="ngModel" 
                                                       required 
                                                   >
-                                                  <small class="form-text text-muted danger" *ngIf="titles.errors?.required">required error</small>
+                                                  
+                                                  <small class="form-text text-muted danger" *ngIf="ram && titles.errors?.required ">required error</small>
                     
                                                       <input 
                                                       type="hidden"
@@ -243,7 +262,7 @@
                                                   required >
                                                   <label>Start Date</label>
                                                   <span class="focus-border"></span>
-                                                  <small class="form-text text-muted danger" *ngIf="startdates.errors?.required">required error</small>
+                                                  <small class="form-text text-muted danger" *ngIf="ram && startdates.errors?.required">required error</small>
                     
                                               </div>
                                           </div>
@@ -262,7 +281,7 @@
                                                   required>
                                                   <label>End Date</label>
                                                   <span class="focus-border"></span>
-                                                  <small class="form-text text-muted danger" *ngIf="EndDates.errors?.required">required error</small>
+                                                  <small class="form-text text-muted danger" *ngIf="ram && EndDates.errors?.required">required error</small>
                     
                                               </div>
                                           </div>
@@ -280,7 +299,7 @@
                                                   required >
                                                   <label>Terms & Condition of your deal</label>
                                                   <span class="focus-border"></span>
-                                                  <small class="form-text text-muted danger" *ngIf="Conditionss.errors?.required">required error</small>
+                                                  <small class="form-text text-muted danger" *ngIf="ram && Conditionss.errors?.required">required error</small>
                     
                                               </div>
                                           </div>
@@ -296,6 +315,7 @@
                       </div>
                   </form>       
               </div>
+             
     </div> 
 
     <div class="modal fade" id="editdeal" [ngClass] = "{'show' : editdeal_dailog}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

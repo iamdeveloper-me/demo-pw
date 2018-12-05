@@ -102,14 +102,28 @@ openModel(e){
       this.tag_array = e.tags;
 
     }
-   
-    if(e.colorTags==undefined){e.colorTags=[];}
-    this.a = e.colorTags;
+   console.log(this.albumsetting2.colors)
+  
+  
+   if(this.formdata['colorTags'] != ''){
+    this.formdata['colorTags'].forEach(element => {
+      this.albumsetting2.colors.forEach(el=>{
+        if(element == el['colorName']){
+         el['isSelected'] = true;
+        }
+      }) 
+    });
+
+  }
+  
+  
+    // if(e.colorTags==undefined){e.colorTags=[];}
+    // this.a = e.colorTags;
     
-    for (let i = 0; i < e.colorTags.length; i++) {
-      let c = this.albumsetting2.colors.filter(cn=>cn.colorName==e.colorTags[i])[0].isSelected=true;
-    console.log(c)
-    }
+    // for (let i = 0; i < e.colorTags.length; i++) {
+    //   let c = this.albumsetting2.colors.filter(cn=>cn.colorName==e.colorTags[i])[0].isSelected=true;
+    // console.log(c)
+    // }
     
 }
 tags_bage(e){
@@ -232,7 +246,7 @@ post_tag_edit(fire){
                     );
                       
                     this.toastr.success(data.json().message);
-                      
+                     this.ngOnInit(); 
                   },error=> console.log(error))
           this.description_dailog = false;
 }

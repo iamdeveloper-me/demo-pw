@@ -135,14 +135,14 @@ export class BusinessServicesComponent implements OnInit {
         this.selectedCategoryName= this.selected_category[this.categoryIndex].categoryName;
         this.objVenderServiceVm.categoryId = this.selected_category[this.categoryIndex].categoryId;
        let service=this.selected_category[this.categoryIndex].services.filter(s=>s.isSelect==true)[0];
-       console.log(service)
+       if(service!=undefined){
        this.name_d=service.serviceName;
        this.objVenderServiceVm.serviceName= service.serviceName;
        this.objVenderServiceVm.servicesId=service.servicesId;
+       }
       // this.objVenderServiceVm.categoryId=service.categoryId;
       this.services= this.selected_category[this.categoryIndex].services;
       this.getServicesByCategory(this.categoryserveice[this.categoryIndex].categoryId);
-      debugger;
       this.getCustomFieldBySreviceId(this.objVenderServiceVm.servicesId,this.objVenderServiceVm.serviceName);
       this.saveServiceWithoutOptions();
        
@@ -156,8 +156,11 @@ export class BusinessServicesComponent implements OnInit {
        this.objVenderServiceVm.servicesId = id ;
        this.objVenderServiceVm.serviceName=name;
        this.name_d=name;
+       let isServiceExist=this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.isSelect==true)[0];
+      if(isServiceExist!=undefined){
        this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.isSelect==true)[0].isSelect=false;
        this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.servicesId==id)[0].isSelect=true;
+      }
       }
       saveServiceWithoutOptions(){
         this.customFields=[];
@@ -190,7 +193,7 @@ export class BusinessServicesComponent implements OnInit {
        return customField.customFieldOptionList.filter(o=>o.isSelect==true)[0].FieldValue
       }
       showServiceDialog(){
-        this.bs_service.oldModel = this.objVenderServiceVm;
+        this.beforeUpdateData=new VendorServiceVM();
         this.serviceDialog=true;
         this.cropperupload=true;
       }

@@ -46,6 +46,8 @@ export class LocationComponent implements OnInit {
   @ViewChild('f') floatingLabelForm: NgForm;
   @ViewChild('vform') validationForm: FormGroup;
   @ViewChild("search") public searchElementRef: ElementRef;
+  @ViewChild('ele_dist') ele_dist:ElementRef;
+@ViewChild('ele_suburb') ele_suburb:ElementRef;
   regularForm: FormGroup;
   ao: string;
   bo: string;
@@ -160,6 +162,7 @@ export class LocationComponent implements OnInit {
   formPhone: any;
   phoneData: any;
   mapDailog: boolean = false;
+  formAddress:FormGroup;
   private urlget: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mylocations'
   private post_phone_number: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/addupdatephones'
   private remove_phone_number: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/deletelocationphone'
@@ -287,7 +290,15 @@ export class LocationComponent implements OnInit {
     private apiService: apiService,
     private config: NgbCarouselConfig,
     private router: Router,
+    private fb:FormBuilder
   ) {
+    this.formAddress=this.fb.group({
+      'country':new FormControl(Validators.required),
+      'district':new FormControl(Validators.required),
+      'subUrb': new FormControl(Validators.required),
+      'street':new FormControl(),
+      'pincode': new FormControl()
+    })
     this.objDashboard= new DashboardComponent(this.config,this.http,this.router);
     this.mapsApiLoader = mapsApiLoader;
     this.zone = zone;
@@ -334,6 +345,7 @@ export class LocationComponent implements OnInit {
 
     this.http.get(this.urlget, { headers: headers }).subscribe((data) => {
       this.location_Array = data.json();
+      console.log(JSON.stringify(this.location_Array));
     })
     this.loadCountries();
   }
@@ -346,10 +358,11 @@ export class LocationComponent implements OnInit {
     }
   }
   openModel(b) {
-    this.loadCountries();
-    this.district = this.arra.filter(c => c.countryId == b.countryId)[0].districts;
-    this.dist_id = b.districtId;
-    this.suburb = this.district[0].suburb;
+  //  this.loadCountries();
+    this.dist_id=b.districtId;
+   // this.district = this.arra.filter(c => c.countryId == b.countryId)[0].districts;
+   // this.dist_id = b.districtId;
+   // this.suburb = this.district[0].suburb;
     this.sub_id = b.suburbId;
     this.address_modelfield = b;
 
@@ -376,7 +389,7 @@ export class LocationComponent implements OnInit {
     }
   }
   checkPlanForAddingLocation(){
-    if(this.objDashboard.vendor.noOfLocationAllowed<2){
+    if(this.objDashboard.vendor.noOfLocationAllowed>1){
       this.create_location_dailog=true;
     }else{
      let response= swal({
@@ -873,12 +886,16 @@ export class LocationComponent implements OnInit {
 
 
   Update_Address(e) {
-    console.log(e.value.country_id, e.value.dist_id, e.value.sub_id);
+    if(this.ele_dist.nativeElement.value=='-1'){
+      this.toastr.error('Invalid District Selected !');
+    }else if(this.ele_suburb.nativeElement.value=='-1'|| this.ele_suburb.nativeElement.value==''){
+      this.toastr.error('Invalid Suburb Selected !');
+    }else{
     const datapanel = {
       vendorLocationId: e.value.vendorLocationId,
       countryId: this.address_modelfield.countryId,
       districtId: this.dist_id,
-      suburbId: this.sub_id,
+      suburbId: this.sub_id, //e.value.sub_id,
       vendorId: e.value.vendorid,
       postalCode: e.value.Postal_code,
       address: e.value.Address,
@@ -920,6 +937,7 @@ export class LocationComponent implements OnInit {
       this.toastr.success(responce.statusText);
       if (responce.status == 200) {
         this.photo_ved_dailog = false;
+        this.ngOnInit();
       }
 
     }, (error) => {
@@ -928,27 +946,53 @@ export class LocationComponent implements OnInit {
       this.toastr.error(error.json().text());
     });
   }
+  }
   closeResult: string;
 
-  country(event): void {
-    const newVal = event.target.value;
-    let country = this.arra.filter(c => c.countryId == newVal)[0];
-    this.c_id = this.arra.filter(c => c.countryId == newVal)[0].countryId;
-    this.address_modelfield.country_id = country.countryId;
-    this.country_name = country.countryName
-    this.district = country.districts
+  country(): void {
+   // const newVal = event.target.value;
+   // let country = this.arra.filter(c => c.countryId == newVal)[0];
+  //  this.c_id = this.arra.filter(c => c.countryId == newVal)[0].countryId;
+  //  this.address_modelfield.country_id = country.countryId;
+  //  this.country_name = country.countryName
+
+    this.district =this.arra.filter(c=>c.countryId==this.address_modelfield.countryId)[0].districts
+    console.log(this.district);
   }
-  districtA(event): void {
-    const newVal = event.target.value;
-    this.d_id = this.district[newVal].districtId
-    this.district_name = this.district[newVal].name
-    this.suburb = this.district[newVal].suburb
+  districtA(): void {
+    //const newVal = event.target.value;
+   // this.d_id = this.district[newVal].districtId
+   // this.district_name = this.district[newVal].name
+   // this.suburb = this.district[newVal].suburb
+   
+   this.district =this.arra.filter(c=>c.countryId==this.address_modelfield.countryId)[0].districts;
+   let selectedDist=this.district.filter(d=>d.districtId==this.dist_id);
+   if(selectedDist==undefined){
+     this.ele_dist.nativeElement.value='-1';
+   }
+    this.subr();
+  // this.suburb = this.district.filter(d=>d.dist_id==this.dist_id)[0].suburb;
   }
-  subr(event): void {
-    const newVal = event.target.value;
-    let suburb = this.district.filter(s => s.suburbId == newVal)[0];
-    this.s_id = this.suburb[newVal].suburbId
-    this.subr_name = this.suburb[newVal].name
+  subr(): void {
+//    const newVal = event.target.value;
+//    let suburb = this.district.filter(s => s.suburbId == newVal)[0];
+//    this.s_id = this.suburb[newVal].suburbId
+ //   this.subr_name = this.suburb[newVal].name
+ this.suburb=[];
+ debugger;
+ if(this.district.filter(d=>d.districtId==this.dist_id)[0]==undefined){
+  if(this.suburb==undefined){
+    this.ele_suburb.nativeElement.value='-1';
+  }
+ }else{
+ this.suburb =this.district.filter(d=>d.districtId==this.dist_id)[0].suburb;
+ }
+ 
+
+// this.suburb= this.district.filter(d=>d.districtId==5)[0].suburb
+
+
+ console.log(this.suburb);
   }
   closeModel() {
     this.photo_ved_dailog = false;
@@ -965,6 +1009,9 @@ export class LocationComponent implements OnInit {
       this.countryArray = data.json();
       console.log(this.countryArray);
       this.arra = this.countryArray
+     // this.district=this.arra.filter(c=>c.countryId==this.address_modelfield.countryId)[0].district;
+      this.districtA();
+      this.subr();
     })
     $.getScript('./assets/js/vertical-timeline.js');
   }

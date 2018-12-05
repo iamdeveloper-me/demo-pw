@@ -10,6 +10,7 @@ import { VendorServiceVM } from 'app/vendor/business-services/business-services.
 export class BusinessService {
   savedBusinessService='savedService';
   private api = apiPath.url;
+  public oldModel:any;
   private postUrl='/api/Supplier/savebusinessservices'; 
   private header:Headers;
   constructor(public http:Http) {
@@ -24,14 +25,14 @@ export class BusinessService {
     localStorage.setItem('savedService',JSON.stringify(data));
    }
    SaveIntoDb(objVenderServiceVm){
-     debugger;
+   console.log(JSON.stringify(objVenderServiceVm));
      if(objVenderServiceVm.serviceFields==undefined){
       objVenderServiceVm.serviceFields=[];
      }
-    if(objVenderServiceVm.serviceFields.length<1 || objVenderServiceVm.serviceFields.length==undefined){
-      let svm={customFieldId:28,FieldValue:'Custum', id:7};
-      objVenderServiceVm.serviceFields.push(svm);
-    }
+   // if(objVenderServiceVm.serviceFields.length<1 || objVenderServiceVm.serviceFields.length==undefined){
+    //  let svm={customFieldId:28,FieldValue:'Custum', id:7};
+    //  objVenderServiceVm.serviceFields.push(svm);
+   // }
     console.log(JSON.stringify(objVenderServiceVm ));
    return this.http.post(this.api+'/api/Supplier/savebusinessservices',objVenderServiceVm,{headers:this.header});    
   }

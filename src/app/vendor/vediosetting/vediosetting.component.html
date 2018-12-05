@@ -125,7 +125,7 @@
                                     <div class="styled-input">
                                       <input type="text"  class="" [(ngModel)]='objVideo.title' formControlName='title' placeholder="title" value="{{objVideo.title}}"required/>
                                       <label>Video Title</label>
-                                      <span class="focus-border"></span>
+                                      <span></span>
                                     </div>
                                     <div *ngIf="title.invalid && (title.dirty || title.touched)"
                                     class=" redtext">
@@ -141,7 +141,7 @@
                                       pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
                                       />
                                       <label>Video URL</label>
-                                      <span class="focus-border"></span>
+                                      <span></span>
                                     </div>
                                     <div *ngIf="link.invalid && (link.dirty || link.touched)"  class="form-text text-muted danger" >
                                         <div  class="form-text text-muted danger"  *ngIf="link.errors.required">

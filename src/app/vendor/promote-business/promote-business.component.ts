@@ -33,8 +33,11 @@ export class NgbdpromotbusinessModalContent {
 export class PromoteBusinessComponent implements OnInit {
   private allpromo: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PromoteBusiness/allPromotion';
   promotion = [];
+  promotion_length;
 //accordian
  acc: any;
+ bussiness_name ;
+ private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
   // Prevent panel toggle code
   public beforeChange($event: NgbPanelChangeEvent) {
     if ($event.panelId === '2') {
@@ -60,8 +63,16 @@ export class PromoteBusinessComponent implements OnInit {
     this.http.get(this.allpromo,{headers:headers}).subscribe(data =>{ data.json();
       console.log(data.json());
       this.promotion = data.json();
+      this.promotion_length =   this.promotion.length;
     },error => { console.log(error)});
 
+
+
+ this.http.get(this.url,{headers:headers}).subscribe(
+          data =>{ 
+                   this.bussiness_name = data.json().nameOfBusiness
+          console.log(data.json().nameOfBusiness)
+          })
     $(".close").click(function(){
         $(".alert").hide();
      });

@@ -25,9 +25,9 @@ export class DashboardComponent implements OnInit {
     
     constructor(config: NgbCarouselConfig ,public http: Http ,private router: Router) {
       
-    config.interval = 10000;
-    config.wrap = false;
-    config.keyboard = false;
+    //config.interval = 10000;
+   // config.wrap = false;
+    //config.keyboard = false;
   }
 
   private membershipurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mymembership'
@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit {
   totaljobArray;
   noPhone;
   banner_image;
-  VendorDashboard_data = {portfolioImage : '',portfolioCount: '',
+  VendorDashboard_data = {portfolioImage : '',portfolioCount: '',albumImageCount:'',
   videoCount : '',albumCount: '',impression: '',enquiries: '',loveCount: '',reviews: ''};
   //VendorDashboard
   
@@ -79,7 +79,7 @@ export class DashboardComponent implements OnInit {
   private geturl: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/myjobs';
   vendor: any = {suburb:
     {suburbId: '', districtId: '', name: ""}};
-
+  bussiness_name;
   public changeGreeting(greeting: any): void {
     const isOpen = this.tooltip.isOpen();
     this.tooltip.close();
@@ -116,6 +116,7 @@ export class DashboardComponent implements OnInit {
 
         this.http.get(this.url,{headers:headers}).subscribe(
           data =>{ this.vendor = data.json();
+          this.bussiness_name = data.json().nameOfBusiness,
                    console.log(this.vendor.pricingPlan);
                    if(!this.vendor.profileImage )
                    {

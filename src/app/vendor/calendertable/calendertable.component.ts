@@ -35,6 +35,9 @@ export class CalendertableComponent implements OnInit {
                       eventLocation: "string",
                       startDate: "2018-11-23T07:28:05.224Z",
                       endDate: "2018-11-23T07:28:05.224Z",
+                      startTime: "2018-12-05T09:54:26.407Z",
+                      endTime: "2018-12-05T09:54:26.407Z",
+                      noOfGuests: 0,
                       userId: "string",
                       vendorId: 0
                     };
@@ -47,7 +50,11 @@ export class CalendertableComponent implements OnInit {
    clientNumber;
    eventLocation;
    startDate;
-    endDate;
+   endDate;
+   startTime;
+   endTime;
+   noOfGuests;
+   
     private creat_job_url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/createupdatejobs';
     private geturl: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/myjobs';
     vendor: any = [];
@@ -68,12 +75,13 @@ export class CalendertableComponent implements OnInit {
   };
     constructor(private toastr: ToastrService,private modal: NgbModal,public http: Http,private datePipe: DatePipe) { 
      this.test = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+     
     }
     ngOnInit() {
    
     $.getScript('./assets/js/vendorsidebar.js');
 
-   // $.getScript('./assets/js/calendar.js');
+    $.getScript('./assets/js/calendar.js');
 
   
 
@@ -84,19 +92,19 @@ export class CalendertableComponent implements OnInit {
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
+        
      //all
         this.http.post(this.geturl,{
           filter: 3
         },{headers:headers}).subscribe(data =>{
           
-
           this.final_List = data.json();
-
+          console.log(this.final_List );
           this.final_List.forEach(function (value) {
             this.event_data.events.push(value);
           }); 
          
-          console.log(this.final_List );
+         
     
          
 
@@ -209,7 +217,7 @@ export class CalendertableComponent implements OnInit {
      
       swal({
         title: "Are you sure?",
-      text: "You will not be able to recover this imaginary file!",
+      text: "You will not be able to recover event!",
       type: "warning",
       showCancelButton: true,
       confirmButtonClass: "btn-default",

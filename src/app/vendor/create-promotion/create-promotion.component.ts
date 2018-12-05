@@ -9,6 +9,10 @@ import { utilities } from 'app/utilitymodel';
   styleUrls: ['./create-promotion.component.scss']
 })
 export class CreatePromotionComponent implements OnInit {
+
+   countryArray: string[];
+      public arra = new Array(); public district = new Array(); public suburb = new Array();
+
   constructor(public http: Http,public toastr: ToastrService,private router: Router) { }
   private createpromo: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PromoteBusiness/saveadlog';
   code = {voucherCode: ""}
@@ -48,8 +52,10 @@ export class CreatePromotionComponent implements OnInit {
             const  promoData = {
               adTypeId: code.value.adTypeId,
               voucherCode: code.value.voucherCode,
+               countryId: code.value.country_id,
               slotIds: this.selecteditem
             }
+             console.log(promoData)
     this.http.post(this.createpromo,promoData,{headers:this.headers}).subscribe(data =>{
     this.router.navigate([]).then(result => {  window.open(data.json().url, '_blank'); });
     this.toastr.success( data.json().message);
@@ -75,5 +81,22 @@ this.calculateSum(selecteditem);
     for (let i = 0; i < this.selecteditem.length; i++) {
         this.sum =this.sum+ this.selecteditem[i].cost;
       }
+  }
+
+     loadCountries() {
+            let country = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries");
+            country.subscribe(data => {
+              this.countryArray = data.json();
+              console.log(this.countryArray);
+              this.arra = this.countryArray
+            })      
+  }
+   country(event): void {
+        const newVal = event.target.value;
+        let country = this.arra.filter(c => c.countryId == newVal)[0];
+        // this.c_id = this.arra.filter(c => c.countryId == newVal)[0].countryId;
+        // this.address_modelfield.country_id = country.countryId;
+        // this.country_name = country.countryName
+        // this.district = country.districts
   }
 }

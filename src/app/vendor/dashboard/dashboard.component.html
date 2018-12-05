@@ -172,33 +172,26 @@
         <div class="container-fluid Profile_com">
            <div class="card overviewbox">
               <div class="card-body nopadd" style="overflow: hidden;">
-                 <div class="col-sm-5 nopadd maxheight335px">
+                <div class="col-sm-5 nopadd maxheight335px">
                    <div class="infoimgbox">
-
-                   
                     <!-- <img [src] = "VendorDashboard_data_image "  alt="Profile picture" > -->
-                    
-                  
-                    <div *ngIf = "!VendorDashboard_data_image"> 
-                        <img [src] = "banner_image" alt="Profile picture" >
+                      <div *ngIf = "!VendorDashboard_data_image"> 
+                          <img [src] = "banner_image" alt="Profile picture" >
                       </div>
-                   
                       <div *ngIf = "VendorDashboard_data_image != ''"> 
-                        <img [src] = "VendorDashboard_data_image" alt="Profile picture" >
+                          <img [src] = "VendorDashboard_data_image" alt="Profile picture" >
                       </div>
-                    
-                  </div>
-                    <div class="viewstore">
-                       <a routerLink="../../home/detailprofile">View Storefront</a>
                     </div>
-                 </div>
-                 <div class="col-sm-7 nopadd maxheight335px mobileheightauto ">
+                    <div class="viewstore">
+                         <a routerLink="../../home/detailprofile">View Storefront</a>
+                    </div>
+                </div>
+                <div class="col-sm-7 nopadd maxheight335px mobileheightauto ">
                     <div class="martop15px"></div> 
                     <div class="col-sm-2 col-3 mobpadd10 edithovering">
                         <div *ngIf = "!vendor.profileImage"> 
                           <img [src] = "vendor.profileImage" class="oviewviewimgcircle" alt="Profile picture" >
                         </div>
-                     
                         <div *ngIf = "vendor.profileImage != ''"> 
                           <img [src] = "vendor.profileImage" class="oviewviewimgcircle" alt="Profile picture" >
                         </div>
@@ -243,20 +236,13 @@
                              <i class="material-icons">phone</i>
                           </div>
                           <div class="col-xs-8 nopadd edithovering">
-
-                             <p >
-
-                                <a routerLink="../location" >
-                                  <br/>
-                             
+                             <p>
+                                <a routerLink="../location">
                                    <div *ngFor='let c of vendor.vendorLocations | slice:0:1 ;let p=index'> 
                                       <div *ngFor='let a of c.locationPhones | slice:0:1 '> 
-                                         
                                         <p *ngIf = "a.isPrimary == false" >
-                    
                                             {{a.phoneNumber}}
                                         </p>
-                                       
                                       </div>  
                                     
                                               <p *ngIf = "noPhone == 0" >
@@ -279,26 +265,27 @@
                              <i class="material-icons">work_outline</i>
                           </div>
                           <div class="col-xs-11 nopadd">
-                            
-                             <span class="pinkchip">
-                               
+                              <span class="pinkchip">
                                 <a *ngFor='let c of vendor.vendorCategories| slice:0:1'>
                                     {{c.categories.categoryName }}
                                 </a>
-
                                 <a  *ngIf = "total_business_Services > 0" routerLink="../location" >
-                                 , {{total_business_Services}} more Categories 
-                                                                  
+                                 , {{total_business_Services}} more Categories                               
                                  </a>
-                              </span><br/>
-                             Membership Type: {{vendor.pricingPlan?.title}} <a routerLink="../membership" class="viewallbutton">Upgrade</a>
-
+                              </span>
+                              <br/>
+                              <div class="clearfix"></div>
+                              <div class="membershipbox">
+                               Membership Type: {{vendor.pricingPlan?.title}} 
+                               <a routerLink="../membership" class="viewallbutton">Upgrade
+                               </a>
+                             </div>
                           </div>
                        </div>
                        <div class="clearfix"></div>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="col-sm-12 nopadd martop15px marbot15px clearfix">
+                    <div class="col-sm-12 nopadd marbot15px clearfix">
                        <div class="col-xs-4 text-center">
                           <a routerLink="../portfolioview" class="blacktext">
                              <i class="material-icons">photo_library</i>
@@ -320,17 +307,17 @@
                              <i class="material-icons">library_books</i>
 
 
-                             <strong>{{VendorDashboard_data.albumCount}}</strong>
+                             <strong>{{VendorDashboard_data.albumImageCount}}</strong>
 
                              <!-- <strong>{{VendorDashboard.albumImageCount}}</strong> -->
 
 
                              <div class="clearfix"></div>
-                             Albums 
+                             Albums ({{VendorDashboard_data.albumCount}})
                           </a>
                        </div>
                     </div>
-                    <div class="col-sm-12 bottop desktopnone nopadd paddtop15 martop15px marbot15px clearfix">
+                    <div class="col-sm-12 bortop desktopnone nopadd paddtopbot10  clearfix">
                        <div class="col-sm-6 col-6 pull-left text-center"> 
                           <a routerLink="../PromoteBusiness" class="font11px bluelink">
                           <i class="material-icons">assessment</i> <br/>
@@ -344,8 +331,8 @@
                           </a>
                        </div>
                     </div>
-                    <div class="col-sm-12 bottop padbot0px padtop7px text-center clearfix">
-                       <a class="text-muted mobilenone" target="_blank">
+                    <div class="col-sm-12 bottop padbot0px padtop0px text-center clearfix">
+                       <a class="text-muted mobilenone sharelink" target="_blank">
                        <i class="material-icons" routerLink="../PromoteBusiness">share</i> Share Vision Photography
                        </a>
                        <div class="clearfix"></div>
@@ -355,8 +342,6 @@
                        </div>
                       <div class="col-4 pull-left text-right desktopnone padbot5px">
                          <button routerLink="../membership" class="col-sm-12 text-center viewallbutton">Upgrade</button>
-                         
-
                         </div>
                     </div>
                  </div>

@@ -47,13 +47,13 @@
 											<div class="col-md-3" *ngFor='let cf of customFields'>
 												<div class="col-md-12">
 													<label>
-														<input type="checkbox" [(checked)]='cf.isSelect' [value]='cf.isEnable'  />
+														<!-- <input type="checkbox" [(checked)]='cf.isSelect' (change)='cf.isSelect?false:true' [value]='cf.isEnable' [(ngModel)]='cf.isSelect'  /> -->
 														{{cf.name}} <br />
 														<span>
 															{{cf.SelectedOptionValue}}
 														</span>
 													</label>
-													<button [disabled]='!cf.isSelect' class="btn newbtn" (click)='getSelectOptions(cf)'>
+													<button class="btn newbtn" (click)='getSelectOptions(cf)'>
 														Select
 													</button>
 												</div>
@@ -108,9 +108,9 @@
 					<div class="clearfix"></div>
 					<div class="ratio-btns">
 						<div class="col-md-12 text-center" style="cursor:pointer" *ngFor="let enum of services">
-							<label for="enum_answer_{{enum.serviceName}}" (click)='getCustomFieldBySreviceId(enum.servicesId,enum.serviceName)'>
+							<label for="enum_answer_{{enum.serviceName}}" (click)='SetInto_serviceTempStorage(enum.servicesId,enum.serviceName)'>
 								<input id="enum_answer_{{enum.serviceName}}" value="objVenderServiceVm.serviceName==enum.serviceName" [checked]='enum.isSelect'
-								 (change)='getCustomFieldBySreviceId(enum.servicesId,enum.serviceName)' type="radio" name="enums">
+								 (change)='SetInto_serviceTempStorage(enum.servicesId,enum.serviceName)' type="radio" name="enums">
 								{{enum.serviceName}}
 							</label>
 						</div>

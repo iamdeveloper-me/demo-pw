@@ -614,7 +614,7 @@
                                         checked
                                         name = "dist"  
                                         placeholder="District" 
-                                        [value]="d"
+                                        [value]="d.districtId"
                                         required
                                         
                                         >
@@ -630,14 +630,7 @@
                                 <select    class="effect-16 validate" [(ngModel)] = "sub_id"  name="sub_id" (change)="subr($event)" > 
                                         <!-- (change)="country($event)" -->
                                     <option   *ngFor="let sub of suburb ;let s =index" 
-                                        type="text"
-                                        id="{{sub.name}}"
-                                        checked
-                                        name = "sub"  
-                                        placeholder="Suburb" 
-                                        [value]="s"
-                                        required
-                                        >
+                                        [value]="sub.suburbId">
                                         {{sub.name }}
                                     </option>
                                 </select>
@@ -694,8 +687,8 @@
 
                             <div class="form-group">
                                     <div class="input-effect form-group md-form">
-                                    <select  class="effect-16 validate"  id="Country" [(ngModel)]="address_modelfield.countryId"  name="country_id" (change)="country($event)">
-                                            <option *ngFor="let country of arra ;let c =index" [value]="country.countryId">
+                                    <select  class="effect-16 validate" required="required"  id="Country" [(ngModel)]="address_modelfield.countryId"  name="country_id" (change)="districtA()">
+                                        <option *ngFor="let country of arra ;let c =index" [value]="country.countryId">
                                                 {{country.countryName }}
                                             </option>
                                         </select>
@@ -706,19 +699,11 @@
                             <div class="form-group">
                                     <div class="input-effect form-group md-form" >      
                                 
-                                        <select name="district"   class="effect-16 validate"  [(ngModel)]="dist_id"  name="dist_id" (change)="districtA($event)"  > 
-                                            <option   *ngFor="let dist of district ;let d =index" 
-                                                type="text"
-                                                id="{{dist.name}}"
-                                                checked
-                                                name = "dist"  
-                                                placeholder="District" 
-                                                [value]="dist.districtId"
-                                                required
-                                                
-                                                >
+                                        <select name="district" required="required" #ele_dist class="effect-16 validate"  [(ngModel)]="dist_id"  name="dist_id" (change)="subr()"  > 
+                                            <option value="-1">--Select Dist--</option>
+                                            <option   *ngFor="let dist of district ;let d =index" [value]="dist.districtId"
+                                               >
                                                 {{dist.name }}
-                                            
                                             </option>
                                         </select>
                                         <label>District</label>
@@ -727,16 +712,10 @@
                             </div>
                             <div class="form-group">
                                     <div class="input-effect form-group md-form"> 
-                                        <select    class="effect-16 validate" [(ngModel)] = "sub_id"  name="sub_id" (change)="subr($event)" > 
-                                                <!-- (change)="country($event)" -->
+                                        <select  required="required" #ele_suburb  class="effect-16 validate" [(ngModel)] = "sub_id"  name="sub_id"> 
+                                                <option value='-1'>--Select Suburb--</option>
                                             <option   *ngFor="let sub of suburb ;let s =index" 
-                                                type="text"
-                                                id="{{sub.name}}"
-                                                checked
-                                                name = "sub"  
-                                                placeholder="Suburb" 
                                                 [value]="sub.suburbId"
-                                                required
                                                 >
                                                 {{sub.name }}
                                             </option>

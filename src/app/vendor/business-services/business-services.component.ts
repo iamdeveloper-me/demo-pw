@@ -9,6 +9,7 @@ import { element } from 'protractor';
 import { Router } from '@angular/router';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { getDate, getHours, getMinutes } from 'date-fns';
 @Component({
   selector: 'app-business-services',
   templateUrl: './business-services.component.html',
@@ -40,10 +41,10 @@ export class BusinessServicesComponent implements OnInit {
   service_provide_dailog_4 = false;
   radioSelected:any;
   header:Headers;
-  
+  beforeUpdateData:VendorServiceVM;
+
   constructor(private config: NgbCarouselConfig,private router: Router,public http: Http, public bs_service: BusinessService, public toastr: ToastrService){ 
     this.objVenderServiceVm = new VendorServiceVM();
-  
     this.objVenderServiceVm.categoryId
     this.categories = new Array<CategoryVm>();
     this.categoryWiseService = new BusinessCategoriesVM();
@@ -114,8 +115,9 @@ export class BusinessServicesComponent implements OnInit {
               active.next('div').addClass('activedisplay');
               active.next('div').find("span").click();
             }
-            this.selectedCategoryName= this.selected_category[this.categoryIndex].categoryName;
-              this.objVenderServiceVm.categoryId = this.selected_category[this.categoryIndex].categoryId;
+            // this.selectedCategoryName= this.selected_category[this.categoryIndex].categoryName;
+            //   this.objVenderServiceVm.categoryId = this.selected_category[this.categoryIndex].categoryId;
+              
         }else{
           if(this.categoryIndex>0){
           this.categoryIndex-=1
@@ -127,26 +129,30 @@ export class BusinessServicesComponent implements OnInit {
               active.prev('div').removeClass('activehide');
               active.prev('div').addClass('activedisplay');
               active.prev('div').find("span").click();
-              
               }
-              this.selectedCategoryName= this.selected_category[this.categoryIndex].categoryName;
-              this.objVenderServiceVm.categoryId = this.selected_category[this.categoryIndex].categoryId;
           }
         }
-       
+        this.selectedCategoryName= this.selected_category[this.categoryIndex].categoryName;
+        this.objVenderServiceVm.categoryId = this.selected_category[this.categoryIndex].categoryId;
        let service=this.selected_category[this.categoryIndex].services.filter(s=>s.isSelect==true)[0];
        console.log(service)
        this.name_d=service.serviceName;
        this.objVenderServiceVm.serviceName= service.serviceName;
        this.objVenderServiceVm.servicesId=service.servicesId;
       // this.objVenderServiceVm.categoryId=service.categoryId;
-      this.services=this.selected_category[this.categoryIndex].services;
+      this.services= this.selected_category[this.categoryIndex].services;
+      this.getServicesByCategory(this.categoryserveice[this.categoryIndex].categoryId);
+      debugger;
       this.getCustomFieldBySreviceId(this.objVenderServiceVm.servicesId,this.objVenderServiceVm.serviceName);
       this.saveServiceWithoutOptions();
        
    }
+   SetInto_serviceTempStorage(id,name){
+    this.beforeUpdateData.servicesId=id;
+    this.beforeUpdateData.serviceName=name;
+   }
       getCustomFieldBySreviceId(id,name){
-       this.resetCustomFileds();
+        this.resetCustomFileds();
        this.objVenderServiceVm.servicesId = id ;
        this.objVenderServiceVm.serviceName=name;
        this.name_d=name;
@@ -165,8 +171,8 @@ export class BusinessServicesComponent implements OnInit {
              customFields[i].SelectedOptionId=selectedOption.id;
              this.customFields.push(customFields[i])
            }else{
-             customFields[i].SelectedOptionValue=0;
-             customFields[i].SelectedOptionId=0;
+             customFields[i].SelectedOptionValue='NA';
+             customFields[i].SelectedOptionId=78;
              this.customFields.push(customFields[i])
            }
           }}
@@ -184,7 +190,7 @@ export class BusinessServicesComponent implements OnInit {
        return customField.customFieldOptionList.filter(o=>o.isSelect==true)[0].FieldValue
       }
       showServiceDialog(){
-        
+        this.bs_service.oldModel = this.objVenderServiceVm;
         this.serviceDialog=true;
         this.cropperupload=true;
       }
@@ -192,14 +198,20 @@ export class BusinessServicesComponent implements OnInit {
         this.customDialog=false;
       }
       seveCustomField(cfo) {
+        //alert(JSON.stringify(cfo));
         cfo.isSelected=true;
         let smv=new ServiceFieldValuesVM();
-        smv.FieldValue= cfo.displayText;
+        smv.FieldValue= cfo.key;
         smv.customFieldId = cfo.customFieldId;
-        smv.id=cfo.id;
+       // smv.id=cfo.id;
         this.customFields.filter(c=>c.customFieldId==cfo.customFieldId)[0].SelectedOptionId=smv.id;
-        this.customFields.filter(c=>c.customFieldId==cfo.customFieldId)[0].SelectedOptionValue=smv.FieldValue;
-        debugger;
+        this.customFields.filter(c=>c.customFieldId==cfo.customFieldId)[0].SelectedOptionValue=smv.FieldValue;        
+        let options= this.customFields.filter(c=>c.customFieldId==cfo.customFieldId)[0].customFieldOptionList;
+        options.forEach(element => {
+          if(element.id!=cfo.id){
+            element.isSelect=false;
+          }
+        });
         if(this.objVenderServiceVm.serviceFields==undefined){
         this.objVenderServiceVm.serviceFields=[];
       }
@@ -207,6 +219,7 @@ export class BusinessServicesComponent implements OnInit {
        this.bs_service.SaveIntoDb(this.objVenderServiceVm).subscribe(res=>{
          if(res.status==200){
            this.toastr.success(res.json().message);
+           this.objVenderServiceVm.serviceFields=[];
            this.customDialog=false;
          }else{
           this.toastr.error(res.json().message);
@@ -214,21 +227,30 @@ export class BusinessServicesComponent implements OnInit {
        });
       }
       SaveIntoDb(){
+        if(this.beforeUpdateData!=undefined){
+          this.getCustomFieldBySreviceId(this.beforeUpdateData.servicesId,this.beforeUpdateData.serviceName);
+        }else{
+          this.getCustomFieldBySreviceId(this.objVenderServiceVm.servicesId,this.objVenderServiceVm.serviceName);
+        }
         this.saveServiceWithoutOptions();
-        console.log(this.services);
+        this.showLoader=true;
         this.services.filter(s=>s.isSelect=true)[0].isSelect=false;
         this.services.filter(s=>s.servicesId==this.objVenderServiceVm.servicesId)[0].isSelect=true;
+
         this.bs_service.SaveIntoDb(this.objVenderServiceVm).subscribe((response)=>{
           this.toastr.success(response.json().message);
           this.serviceDialog = false;
+          this.showLoader=false;
       },error=>{
         this.toastr.error(error);
         console.log(error);
+        this.showLoader=false;
       });
        }
 
        closeModel(dialogname){
         this.serviceDialog=false;
+        this.beforeUpdateData=new VendorServiceVM();
       }
     
 }

@@ -18,8 +18,8 @@
 						<div class="card mobileviewcontent card_padd_bottom">
 							<div class="card-header_padd  border_bottom_none card-header-warning card-header-icon">
 								<div class="col-md-12 ">
-									<p class="card-category upcominghead"> <b>  My Wedding Jobs </b> 
-									<button class="float_righ"  (click)="jobdate = true" >Add Job</button></p>
+									<p class="card-category upcominghead"> <b>  My Jobs </b> 
+									<button class="float_righ"  (click)="jobdate = true" >Create New Job</button></p>
 								</div>
 							</div>
 								
@@ -39,8 +39,11 @@
 												<ul>
 													<li>Guests: {{job.clientNumber}}</li><br/>
 													<li>Name: {{job.clientName}}</li><br/>
-													<li>end Date: {{job.endDate  |  date:'medium'}}</li><br/>
-													<li>start Date : {{job.startDate  |  date:'medium'}}</li><br/>
+													<li>Start Date : {{job.startDate | date}}</li><br/>
+													<li>End Date: {{job.endDate | date}}</li><br/>
+													<li>Start Time: {{job.startTime | date:'shortTime' }}</li><br/>
+													<li>End Time : {{job.endTime | date:'shortTime' }}</li><br/>
+													<li>No Of Guests : {{job.noOfGuests}}</li><br/>
 													
 												</ul>
 											</div>
@@ -53,8 +56,12 @@
 												<button class="callbutton">Call</button>
 											</div>
 											<div class="col-sm-4 col-4 upcomingright">
-												<button type="button" class="btn btn-danger whitetext" (click) = "edit_job_modle(job)" >Edit</button>			
-												<button type="button" class="btn btn-danger whitetext" (click) = "deletevent(job ,i)" >delete {{job.vendorJobsId}}</button>
+												<button type="button" class="btn btn-danger whitetext" (click) = "edit_job_modle(job)" >Edit</button>
+												&nbsp;&nbsp;			
+												<button type="button" class="btn btn-danger whitetext" (click) = "deletevent(job ,i)" >
+													delete
+													 <!-- {{job.vendorJobsId}} -->
+												</button>
 											</div>
 										</div> 
 									</div>
@@ -64,9 +71,11 @@
 											<ul>
 												<li>Guests: {{job.clientNumber}}</li><br/>
 												<li>Name: {{job.clientName}}</li><br/>
-												<li>end Date: {{job.endDate  |  date:'medium'}}</li><br/>
-												<li>start Date : {{job.startDate  |  date:'medium'}}</li><br/>
-											
+												<li>Start Date : {{job.startDate | date}}</li><br/>
+												<li>End Date: {{job.endDate | date}}</li><br/>
+												<li>Start Time: {{job.startTime | date:'shortTime' }}</li><br/>
+												<li>End Time : {{job.endTime | date:'shortTime' }}</li><br/>
+												<li>No Of Guests : {{job.noOfGuests}}</li><br/>
 											</ul>
 										</div>
 										<div class="col-sm-3 col-4 upcomingright">
@@ -78,8 +87,12 @@
 											<button class="callbutton">Call</button>
 										</div>
 										<div class="col-sm-4 col-4 upcomingright">
-											<button type="button" class="btn btn-danger whitetext" (click) = "edit_job_modle(job)" >Edit</button>			
-											<button type="button" class="btn btn-danger whitetext" (click) = "deletevent(job,i)" >delete {{job.vendorJobsId}}</button>
+											<button type="button" class="btn btn-danger whitetext" (click) = "edit_job_modle(job)" >Edit</button>
+											&nbsp;&nbsp;			
+											<button type="button" class="btn btn-danger whitetext" (click) = "deletevent(job,i)" >
+												delete 
+												<!-- {{job.vendorJobsId}} -->
+											</button>
 										</div>
 					            </div>
 								</div> 	
@@ -143,6 +156,7 @@
 								</div>
 								<div class="dialog" id="dialog" >
 									<h2 class="dialog-header"> Add New Event </h2>
+									<!--Calendar Plan Form-->
 									<form class="form" id="form" (ngSubmit)="job(e)" #e="ngForm">
 										<div class="form-container" align="center">
 									        <div class="modal-body">
@@ -155,7 +169,14 @@
 																		name="clientName" 
 																		class="effect-16" 
 																		[(ngModel)]="clientName" 
-																		>
+																		#ANEname="ngModel"
+																		required
+																		/>
+																		<div *ngIf="ANEname.invalid && (ANEname.dirty || ANEname.touched)" class="text-danger">
+																				<div *ngIf="ANEname.errors.required">
+																					  Client Name is required.
+																			  </div>
+																		  </div>
 																	</div>	
 															</div>
 															<div class="col-md-6 col-12">
@@ -165,7 +186,14 @@
 																			name="eventTitle" 
 																			class="effect-16" 
 																			[(ngModel)]="eventTitle"
-																			>
+																			#ANEtitle="ngModel"
+																			required
+																			/>
+																			<div *ngIf="ANEtitle.invalid && (ANEtitle.dirty || ANEtitle.touched)" class="text-danger">
+																					<div *ngIf="ANEtitle.errors.required">
+																						  Event Title is required.
+																				  </div>
+																			  </div>
 																		</div>
 															</div>
 															<div class="col-md-6 col-12">
@@ -176,8 +204,19 @@
 																				name="clientNumber" 
 																				class="effect-16" 
 																				[(ngModel)]="clientNumber" 
-																				>
-																			
+																				minlength="7"
+																				maxlength="10"
+																				#ANEnumber="ngModel"
+																				required
+																				/>
+																				<div *ngIf="ANEnumber.invalid && (ANEnumber.dirty || ANEnumber.touched)" class="text-danger">
+																						<div *ngIf="ANEnumber.errors.required">
+																								Client Number is required.
+																					  </div>
+																					  <div *ngIf="ANEnumber.errors.minlength">
+																							Number Must Be 7 Digit Minumum!.
+																				 	 </div>
+																				  </div>
 																			
 																	</div>
 															</div>
@@ -188,35 +227,51 @@
 																			type="text" 
 																			name="eventLocation"
 																			class="effect-16"
-																			[(ngModel)]="eventLocation" 
-																			>
-																			
+																			[(ngModel)]="eventLocation"
+																			#ANElocation="ngModel"
+																			required 
+																			/>
+																			<div *ngIf="ANElocation.invalid && (ANElocation.dirty || ANElocation.touched)" class="text-danger">
+																					<div *ngIf="ANElocation.errors.required">
+																						  Event Location is required.
+																				  </div>
+																			  </div>	
 																	</div>
 															</div>
 															<div class="col-md-6 col-12">
 																<div class="form-group">
-																	<label> Start date Event :</label>		
+																	<label> Start Date Event :</label>		
 																	<input 
 																	type="date" 
 																	name="startDate"
 																	class="effect-16"
 																	[(ngModel)]="startDate" 
-																	>
-																			
+																	#ANEStateDate="ngModel"
+																	required
+																	/>
+																	<div *ngIf="ANEStateDate.invalid && (ANEStateDate.dirty || ANEStateDate.touched)" class="text-danger">
+																			<div *ngIf="ANEStateDate.errors.required">
+																				  Start Date is required.
+																		  </div>
+																	  </div>		
 																</div>
 															</div>
 															<div class="col-md-6 col-12">
 																<div class="form-group">
-																		<label> end date Event :</label>		
+																		<label> End date Event :</label>		
 																		<input 
 																		type="date" 
 																		name="endDate"
 																		class="effect-16"
 																		[(ngModel)]="endDate" 
-																		>
-																	
-													
-								
+																		#ANEendDate="ngModel"
+																		required
+																		/>
+																		<div *ngIf="ANEendDate.invalid && (ANEendDate.dirty || ANEendDate.touched)" class="text-danger">
+																				<div *ngIf="ANEendDate.errors.required">
+																					  End Date is required.
+																			  </div>
+																		  </div>
 																</div>
 																<div class="col-md-6 col-12">
 																		<div class="form-group">
@@ -325,8 +380,7 @@
 	<div class="clearfix"></div>
 </div>
 
-
-<form (ngSubmit)="job(create)" #create="ngForm"> 
+<form (ngSubmit)="job(create)" #create="ngForm" > 
 	<div class="modal fade" [ngClass] = "{'show' : jobdate}" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 	<div class="modal-content">
@@ -349,11 +403,14 @@
 									class="effect-16" 
 									[(ngModel)]="clientName" 
 									id = "clientName"
-									#titles="ngModel" 
+									#cname="ngModel" 
 									required 
-									>
-									<small class="form-text text-muted danger" *ngIf="titles.errors?.required">required error</small>
-                    
+									/>
+									<div *ngIf="cname.invalid && (cname.dirty || cname.touched)" class="text-danger">
+								  		<div *ngIf="cname.errors.required">
+												Client Name is required.
+										</div>
+									</div>
 								</div>	
 						</div>
 						<div class="col-md-6 col-12">
@@ -364,11 +421,14 @@
 										class="effect-16" 
 										[(ngModel)]="eventTitle"
 										id = "eventTitle"
-										#et="ngModel" 
+										#ctitle="ngModel" 
 										required 
-										>
-										<small class="form-text text-muted danger" *ngIf="et.errors?.required">required error</small>
-                    
+										/>
+										<div *ngIf="ctitle.invalid && (ctitle.dirty || ctitle.touched)" class="text-danger">
+											  <div *ngIf="ctitle.errors.required">
+													Event Title is required.
+											</div>
+										</div>
 									</div>
 						</div>
 						<div class="col-md-6 col-12">
@@ -380,12 +440,15 @@
 											class="effect-16" 
 											[(ngModel)]="clientNumber" 
 											id = "clientNumber"
-										    #cn="ngModel" 
+											#cClient="ngModel" 
+											minlength="7"
+											maxlength="10"
 										    required 
-											>
-											<small class="form-text text-muted danger" *ngIf="cn.errors?.required">required error</small>
-                    
-										
+											/>
+										<div *ngIf="cClient.invalid && (cClient.dirty || cClient.touched)" class="text-danger">
+												<div *ngIf="cClient.errors.required">Client Number is required.</div>
+												<!-- <div *ngIf="cClient.errors.minlength">Client Number is minimum 7.</div> -->
+										</div>
 								</div>
 						</div>
 						<div class="col-md-6 col-12">
@@ -397,11 +460,14 @@
 										class="effect-16"
 										[(ngModel)]="eventLocation" 
 										id = "eventLocation"
-										#el="ngModel" 
+										#ceventl="ngModel" 
 										required 
-										>
-										<small class="form-text text-muted danger" *ngIf="el.errors?.required">required error</small>
-                    
+										/>
+									<div *ngIf="ceventl.invalid && (ceventl.dirty || ceventl.touched)" class="text-danger">
+											<div *ngIf="ceventl.errors.required">
+													Event Location is required.
+											</div>
+									</div>
 								</div>
 						</div>
 						<div class="col-md-6 col-12">
@@ -413,30 +479,92 @@
 								class="effect-16"
 								[(ngModel)]="startDate" 
 								id = "eventLocation"
-								#sd="ngModel" 
+								#cStartDate="ngModel" 
 								required 
 								>
-								<small class="form-text text-muted danger" *ngIf="sd.errors?.required">required error</small>
-                    
+								<div *ngIf="cStartDate.invalid && (cStartDate.dirty || cStartDate.touched)" class="text-danger">
+										<div *ngIf="cStartDate.errors.required">
+												Start date is required.
+										</div>
+								</div>
 							</div>
 						</div>
 						<div class="col-md-6 col-12">
 							<div class="form-group">
-									<label> end date Event :</label>		
+									<label> End date Event :</label>		
 									<input 
 									type="date" 
 									name="endDate"
 									class="effect-16"
 									[(ngModel)]="endDate" 
 									id = "endDate"
-								     #ed="ngModel" 
+								     #cEndDate="ngModel" 
 								    required 
 									>
-									<small class="form-text text-muted danger" *ngIf="ed.errors?.required">required error</small>
-                    
-				
-
+									<div *ngIf="cEndDate.invalid && (cEndDate.dirty || cEndDate.touched)" class="text-danger">
+											<div *ngIf="cEndDate.errors.required">
+													End date is required.
+											</div>
+									</div>
 							</div>
+						</div>
+						<div class="col-md-6 col-12">
+							<div class="form-group">
+								<label> Start Time Event :</label>		
+								<input 
+								type="time" 
+								name="startTime"
+								class="effect-16"
+								[(ngModel)]="startTime" 
+								id = "startTime"
+								#cStartTime="ngModel" 
+								required 
+								>
+								<div *ngIf="cStartTime.invalid && (cStartTime.dirty || cStartTime.touched)" class="text-danger">
+										<div *ngIf="cStartTime.errors.required">
+												Start Time is required.
+										</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-12">
+							<div class="form-group">
+									<label> End Time Event :</label>		
+									<input 
+									type="time" 
+									name="endTime"
+									class="effect-16"
+									[(ngModel)]="endTime" 
+									id = "endTime"
+									 #cEndTime="ngModel" 
+									required 
+									>
+									<div *ngIf="cEndTime.invalid && (cEndTime.dirty || cEndTime.touched)" class="text-danger">
+											<div *ngIf="cEndTime.errors.required">
+													End Time is required.
+											</div>
+									</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-12">
+							<div class="form-group">
+									<label> No of Guests :</label>
+									<input 
+										type="text" 
+										name="noOfGuests"
+										class="effect-16"
+										[(ngModel)]="noOfGuests" 
+										id = "noOfGuests"
+										 #cNoGroups="ngModel" 
+										required 
+									 />
+									 <div *ngIf="cNoGroups.invalid && (cNoGroups.dirty || cNoGroups.touched)" class="text-danger">
+											<div *ngIf="cNoGroups.errors.required">
+													No of Guests is required.
+											</div>
+									</div>
+							</div>
+						</div>
 							<div class="col-md-6 col-12">
 									<div class="form-group">
 											<input 
@@ -464,10 +592,9 @@
 									</div>
 							</div>		
 						</div>
-					</div>
 				</div>
 				<div class="modal-footer btn_center">
-					<button type="submit" class="btn newbtn">SAVE</button>
+					<button type="submit" class="btn newbtn" [disabled]="!create.valid">SAVE</button>
 					<button type="button" class="btn newbtn newcancelbtn" (click)="close()">CANCEL</button>
 				</div>
 			
@@ -498,11 +625,14 @@
 											class="effect-16" 
 											[(ngModel)]="edit_job_form.clientName" 
 											id = "eclientName"
-								            #eCN="ngModel" 
+								            #ejName="ngModel" 
 								            required 
-											>
-											<small class="form-text text-muted danger" *ngIf="eCN.errors?.required">required error</small>
-                    
+											/>
+											<div *ngIf="ejName.invalid && (ejName.dirty || ejName.touched)" class="text-danger">
+												  <div *ngIf="ejName.errors.required">
+														  Client Name is required.
+												  </div>
+											</div>
 										</div>	
 								</div>
 								<div class="col-md-6 col-12">
@@ -513,11 +643,14 @@
 												class="effect-16" 
 												[(ngModel)]="edit_job_form.eventTitle"
 												id = "eeventTitle"
-												#eet="ngModel" 
+												#ejTitle="ngModel" 
 												required 
-												>
-												<small class="form-text text-muted danger" *ngIf="eet.errors?.required">required error</small>
-                    
+												/>
+												<div *ngIf="ejTitle.invalid && (ejTitle.dirty || ejTitle.touched)" class="text-danger">
+														<div *ngIf="ejTitle.errors.required">
+																Client Name is required.
+														</div>
+												  </div>
 											</div>
 								</div>
 								<div class="col-md-6 col-12">
@@ -528,13 +661,17 @@
 													name="clientNumber" 
 													class="effect-16" 
 													[(ngModel)]="edit_job_form.clientNumber" 
-													id = "endDate"
-													#eet="ngModel" 
+													id = "eclientNumber"
+													#ejClient="ngModel" 
+													minlength="7"
+													maxlength="10"
 													required 
-													>
-													<small class="form-text text-muted danger" *ngIf="eet.errors?.required">required error</small>
-                    
-												
+													/>
+													<div *ngIf="ejClient.invalid && (ejClient.dirty || ejClient.touched)" class="text-danger">
+															<div *ngIf="ejClient.errors.required">
+																	Client Number is required.
+															</div>
+													</div>
 										</div>
 								</div>
 								<div class="col-md-6 col-12">
@@ -545,46 +682,111 @@
 												name="eventLocation"
 												class="effect-16"
 												[(ngModel)]="edit_job_form.eventLocation" 
-												id = "endDate"
-												#eel="ngModel" 
+												id = "eeventLocation"
+												#ejLocation="ngModel" 
 												required 
-												>
-												<small class="form-text text-muted danger" *ngIf="eel.errors?.required">required error</small>
-                    
+												/>
+												<div *ngIf="ejLocation.invalid && (ejLocation.dirty || ejLocation.touched)" class="text-danger">
+														<div *ngIf="ejLocation.errors.required">
+																Event Location is required.
+														</div>
+												</div>
 										</div>
 								</div>
 								<div class="col-md-6 col-12">
 									<div class="form-group">
-										<label> Start date Event :</label>		
+										<label>Start date Event :</label>		
 										<input 
-										type="date" 
+										type="datetime-local" 
 										name="startDate"
 										class="effect-16"
 										[(ngModel)]="edit_job_form.startDate" 
-										id = "endDate"
-										#esd="ngModel" 
+										id = "estartDate"
+										#ejStartDate="ngModel" 
 										required 
-										>
-										<small class="form-text text-muted danger" *ngIf="esd.errors?.required">required error</small>
-                    
+										/>                   -->
+										<div *ngIf="ejStartDate.invalid && (ejStartDate.dirty || ejStartDate.touched)" class="text-danger">
+												<div *ngIf="ejName.errors.required">
+														Start date is required.
+												</div>
+										  </div>
 									</div>
 								</div>
 								<div class="col-md-6 col-12">
-									<div class="form-group">
-											<label> end date Event :</label>		
+										<div class="form-group">
+												<label> End date Event :</label>		
+												<input 
+												type="datetime-local" 
+												name="endDate"
+												class="effect-16"
+												[(ngModel)]="edit_job_form.endDate" 
+												id = "eendDate"
+												#ejEndDate="ngModel" 
+												required 
+												/>
+												<div *ngIf="ejEndDate.invalid && (ejEndDate.dirty || ejEndDate.touched)" class="text-danger">
+														<div *ngIf="ejEndDate.errors.required">
+																End Date is required.
+														</div>
+												</div>
+										</div>
+									</div>
+								<div class="col-md-6 col-12">
+										<div class="form-group">
+											<label> Start Time Event :</label>		
 											<input 
-											type="date" 
-											name="endDate"
+											type="time" 
+											name="startTime"
 											class="effect-16"
-											[(ngModel)]="edit_job_form.endDate" 
-											id = "endDate"
-											#eel="ngModel" 
+											[(ngModel)]="edit_job_form.startTime" 
+											id = "estartTime"
+											#ejStartTime="ngModel" 
 											required 
-											>
-										
-											<small class="form-text text-muted danger" *ngIf="eel.errors?.required">required error</small>
-                    
-	
+											/>
+											<div *ngIf="ejStartTime.invalid && (ejStartTime.dirty || ejStartTime.touched)" class="text-danger">
+													<div *ngIf="ejStartTime.errors.required">
+															Start Time is required.
+													</div>
+											</div>
+										</div>
+								</div>
+
+								<div class="col-md-6 col-12">
+									<div class="form-group">
+											<label> End Time Event :</label>		
+											<input 
+											type="time" 
+											name="endTime"
+											class="effect-16"
+											[(ngModel)]="edit_job_form.endTime" 
+											id = "eendTime"
+											 #ejEndTime="ngModel" 
+											required 
+											/>
+											<div *ngIf="ejEndTime.invalid && (ejEndTime.dirty || ejEndTime.touched)" class="text-danger">
+													<div *ngIf="ejEndTime.errors.required">
+															End Time is required.
+													</div>
+											</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-12">
+										<div class="form-group">
+												<label> No of Guests :</label>
+												<input 
+												type="text" 
+												name="noOfGuests"
+												class="effect-16"
+												[(ngModel)]="edit_job_form.noOfGuests" 
+												id = "enoOfGuests"
+												 #ejGuests="ngModel" 
+												/>
+												<div *ngIf="ejGuests.invalid && (ejGuests.dirty || ejGuests.touched)" class="text-danger">
+														<div *ngIf="ejGuests.errors.required">
+																No of Guests is required.
+														</div>
+												</div>
+										</div>
 									</div>
 									<div class="col-md-6 col-12">
 											<div class="form-group">
@@ -592,7 +794,7 @@
 											type="hidden" 
 											name="userId"
 										
-											[(ngModel)]="userId" >
+											[(ngModel)]="userId" />
 										   </div>
 									</div>		
 									<div class="col-md-6 col-12">
@@ -601,7 +803,7 @@
 											type="hidden" 
 											name="vendorJobsId"
 											[(ngModel)]="edit_job_form.vendorJobsId" 
-										>
+											/>
 											
 										   </div>
 									</div>	
@@ -611,14 +813,14 @@
 											<input 
 											type="hidden" 
 											name="vendorId"
-											[(ngModel)]="vendorid" >
+											[(ngModel)]="vendorid" />
 										   </div>
 									</div>		
-								</div>
+								<!-- </div> -->
 							</div>
 						</div>
 						<div class="modal-footer btn_center">
-							<button type="submit" class="btn newbtn">SAVE</button>
+							<button type="submit" class="btn newbtn"  [disabled]="!g.valid">SAVE</button>
 							<button type="button" class="btn newbtn newcancelbtn" (click)="close()">CANCEL</button>
 						</div>
 					</form>	

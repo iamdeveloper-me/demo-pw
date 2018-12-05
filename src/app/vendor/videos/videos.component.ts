@@ -111,13 +111,13 @@ export class VideosComponent implements OnInit {
   addVideo(){
     swal({
       // title: "Are you sure to change membership plan?",
-      title: "Change Membership Plan",
-      text: "Free Account! You are not able to upload more videos!",
+      title: "Limited Video Plan",
+      text: "Please Upgrade Your Plan For Unlimited Video !",
       type: "warning",
-      showCancelButton: false,
+      showCancelButton: true,
       confirmButtonClass: "btn-default",
-      confirmButtonText: "Upgrade",
-      cancelButtonText: "No",
+      confirmButtonText: "Upgrade Now!",
+      cancelButtonText: "Remind Me Later!",
   }).then((res)=>{
                   if(res.value===true){
                     this.router.navigate(['../vendor/membership'])

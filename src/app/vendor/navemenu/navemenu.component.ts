@@ -80,7 +80,7 @@ export class NavemenuComponent implements OnChanges,OnInit   {
       } else if(window.location.href.indexOf('/vendor/storefront')>-1) {
        this.data = 'Statistics ';
       } else if(window.location.href.indexOf('/vendor/editprofile')>-1) {
-        this.data = 'Edit profile ';
+        this.data = 'My Account ';
       } else if(window.location.href.indexOf('/vendor/calender')>-1) { 
         this.data = 'Calender';
       } else if(window.location.href.indexOf('/vendor/gallery')>-1) {

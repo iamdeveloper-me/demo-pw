@@ -104,7 +104,7 @@
             </div>
         </section>
         <div class="clearfix"></div>
-        <app-foot></app-foot>
+        <!-- <app-foot></app-foot> -->
         <router-outlet></router-outlet>
     </div>
 </div>
@@ -187,8 +187,7 @@
                                             name="phoneNumber"
                                             [(ngModel)]="vendor.vendorContactInfo.phone" 
                                             minlength="7" 
-                                            maxlength="10"
-                                            pattern="^[0-9]{10}$" 
+                                            maxlength="10" 
                                             required
                                         />
                                         <label>Phone Number</label>
@@ -199,7 +198,15 @@
                                             <small class="form-text text-muted danger" *ngIf="phoneNumber.errors.required">
                                                 Phone Number is required
                                             </small>
+                                            <!-- <small class="form-text text-muted danger" *ngIf="phoneNumber.errors.minlength">
+                                                    Phone Number is minimum 7 digit required!
+                                            </small> -->
                                         </div>
+                                        <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"  class="form-text text-muted danger" >
+                                                <div  class="form-text text-muted danger"  *ngIf="phoneNumber.errors.minlength">
+                                                        Phone Number is minimum 7 digit required!
+                                                      </div>
+                                            </div>
                                     </div>
                                 </div>
                             </div>

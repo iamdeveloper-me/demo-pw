@@ -586,7 +586,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                             <div class="input-effect form-group md-form">
-                            <select    class="effect-16 validate"  id="Country" [(ngModel)]="country_id"  name="country_id" (change)="country($event)">
+                            <select    class="effect-16 validate"  id="Country" [(ngModel)]="country_id"  name="country_id" (change)="country()">
                                     <option   *ngFor="let country of arra ;let c =index" 
                                         type="text"
                                         id="{{country.countryName}}"
@@ -607,7 +607,7 @@
                     <div class="form-group">
                             <div class="input-effect form-group md-form">      
                         
-                                <select name="district"   class="effect-16 validate"  [(ngModel)]="dist_id"  name="dist_id" (change)="districtA($event)"  > 
+                                <select name="district"   class="effect-16 validate"  [(ngModel)]="dist_id"  name="dist_id" (change)="districtA()"  > 
                                     <option   *ngFor="let dist of district ;let d =index" 
                                         type="text"
                                         id="{{dist.name}}"
@@ -627,7 +627,7 @@
                     </div>
                     <div class="form-group">
                             <div class="input-effect form-group md-form"> 
-                                <select    class="effect-16 validate" [(ngModel)] = "sub_id"  name="sub_id" (change)="subr($event)" > 
+                                <select    class="effect-16 validate" [(ngModel)] = "sub_id"  name="sub_id" (change)="subr()" > 
                                         <!-- (change)="country($event)" -->
                                     <option   *ngFor="let sub of suburb ;let s =index" 
                                         [value]="sub.suburbId">

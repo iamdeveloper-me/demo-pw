@@ -15,7 +15,7 @@
 			</div>
 			<div class="col-sm-9 col-12 cardtextbox">
 					<p>Member since: {{statdate}}</p>
-					<p>Plan Type: {{pricingPlantitle}}</p>
+					<p>Plan Name: {{pricingPlantitle}}</p>
 					<p>Expiry: {{endDateString}} <span class="greentext">(Active)</span></p>
 					<p>Plan Begin Date: {{account_create_date}}</p>
 			</div>
@@ -100,12 +100,20 @@
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPromoteProfile">check_circle</i><i *ngIf="!plan.isPromoteProfile" class="material-icons redtext">cancel</i> Promote Profile</li>
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPublishEvents">check_circle</i><i *ngIf="!plan.isPublishEvents" class="material-icons redtext">cancel</i> Publish Events</li>
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isReviewManagement">check_circle</i><i *ngIf="!plan.isReviewManagement" class="material-icons redtext">cancel</i> Review Management</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isReviewManagement">check_circle</i><i *ngIf="!plan.isReviewManagement" class="material-icons redtext">cancel</i> Deals & Discounts</li>
+
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.pinnedReviews">check_circle</i><i *ngIf="!plan.pinnedReviews" class="material-icons redtext">cancel</i> Pinned reviews</li>
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedPhotos">check_circle</i><i *ngIf="!plan.unlimitedPhotos" class="material-icons redtext">cancel</i> Limited Photos</li>
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimmited Album</li>
 												<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.performanceAnalytics}} Performance analytics</li>
-												<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.noOfLocationAllowed}} location</li>
-												<li class="list-group-item"><i class="material-icons bluetext" >report</i> Low Priority in Search Results {{plan.priorityInSearch}}</li>
+												<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.noOfLocationAllowed}} locations</li>
+
+												<!-- Low Priority -->
+												<li class="list-group-item" *ngIf="plan.priorityInSearch == 0"><i class="material-icons bluetext" >report</i> Low Priority in Search Results </li>
+												<li class="list-group-item" *ngIf="plan.priorityInSearch == 1"><i class="material-icons bluetext" >report</i> Medium Priority in Search Results </li>
+												<li class="list-group-item" *ngIf="plan.priorityInSearch == 2"><i class="material-icons bluetext" >report</i> High Priority in Search Results </li>
+												<!-- Low Priority -->
+
 									</ul>
 									<div class="panel-footer text-center" *ngIf="plan.pricingPlanId == pricingPlanId  && payFrequency == 0 ; else opo">
 										<button class="btn btnchoosetik disabled"   type="submit" (click) = "monthlyPrice(plan)" [disabled]="true">SELECTED PLAN
@@ -116,7 +124,7 @@
 									
 									<ng-template #opo>
 											<div class="panel-footer text-center">
-										<button class="btn btnchoosetik"   type="submit" (click) = "monthlyPrice(plan)" [disabled]="false">chosse PLAN
+										<button class="btn btnchoosetik"   type="submit" (click) = "monthlyPrice(plan)" [disabled]="false">Choose Plan
 										</button>
 										</div>
 									</ng-template>
@@ -163,11 +171,12 @@
 											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPromoteProfile">check_circle</i><i *ngIf="!plan.isPromoteProfile" class="material-icons redtext">cancel</i> Promote Profile</li>
 											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPublishEvents">check_circle</i><i *ngIf="!plan.isPublishEvents" class="material-icons redtext">cancel</i> Publish Events</li>
 											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isReviewManagement">check_circle</i><i *ngIf="!plan.isReviewManagement" class="material-icons redtext">cancel</i> Review Management</li>
+											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isReviewManagement">check_circle</i><i *ngIf="!plan.isReviewManagement" class="material-icons redtext">cancel</i> Deals & Discounts</li>
 											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.pinnedReviews">check_circle</i><i *ngIf="!plan.pinnedReviews" class="material-icons redtext">cancel</i> Pinned reviews</li>
 											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedPhotos">check_circle</i><i *ngIf="!plan.unlimitedPhotos" class="material-icons redtext">cancel</i> Limited Photos</li>
-											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimmited Album</li>
+											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimited Album</li>
 											<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.performanceAnalytics}} Performance analytics</li>
-											<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.noOfLocationAllowed}} location</li>
+											<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.noOfLocationAllowed}} locations</li>
 											<li class="list-group-item"><i class="material-icons bluetext" >report</i> Low Priority in Search Results {{plan.priorityInSearch}}</li>
 								</ul>
 									<div *ngIf="plan.pricingPlanId == pricingPlanId  && payFrequency == 1 ; else ooo">

@@ -3,7 +3,7 @@ import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { ViewCell } from 'ng2-smart-table';
-
+import { MainData } from '../payment-selection/payment-selection.component';
 @Component({
   selector: 'app-promotion-priority',
   templateUrl: './promotion-priority.component.html',
@@ -11,6 +11,7 @@ import { ViewCell } from 'ng2-smart-table';
 })
 export class PromotionPriorityComponent implements OnInit {
 
+  public xyz:MainData;
     countryArray: string[];
       public arra = new Array(); public district = new Array(); public suburb = new Array();
 
@@ -67,7 +68,9 @@ export class PromotionPriorityComponent implements OnInit {
                 countryId: code.value.country_id,
                 slotIds: this.selecteditem
               }
+             // this.xyz=promoData;
                console.log(promoData)
+               sessionStorage.setItem('selected_plan',JSON.stringify(promoData));
       this.http.post(this.createpromo,promoData,{headers:this.headers}).subscribe(data =>{
       console.log(data.json());
       this.router.navigate([]).then(result => {  window.open(data.json().url, '_blank'); });

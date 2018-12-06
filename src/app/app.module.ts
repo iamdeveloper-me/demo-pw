@@ -208,6 +208,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 //import { VendorComponent } from './dashboard/vendor/vendor.component';
 
 import { apiService } from './shared/service/api.service';
+import { PaymentSelectionComponent } from './vendor/payment-selection/payment-selection.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -375,7 +376,9 @@ export function getAuthServiceConfigs() {
         FailureComponent,
         ResetPasswordComponent,
 
-        EqualValidator
+        EqualValidator,
+
+        PaymentSelectionComponent
         
         
 

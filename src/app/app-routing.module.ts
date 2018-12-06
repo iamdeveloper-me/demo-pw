@@ -1,3 +1,4 @@
+import { PaymentSelectionComponent } from './vendor/payment-selection/payment-selection.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 
@@ -215,7 +216,8 @@ const appRoutes: Routes = [
 
     { path: 'vendor/Success', component:  SuccessComponent},
     { path: 'vendor/Failure', component:  FailureComponent},
-
+    { path: 'vendor/payment-selection', component:  PaymentSelectionComponent  },
+    
   
 
 

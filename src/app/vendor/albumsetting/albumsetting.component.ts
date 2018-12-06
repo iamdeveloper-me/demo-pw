@@ -52,6 +52,15 @@ colour_tag_error;
 
 @ViewChild('portEdit') validationForm: FormGroup;
   constructor(private http: Http ,  private route: ActivatedRoute ,public toastr: ToastrService) { 
+    
+  }
+
+ngOnInit(){
+     $.getScript('./assets/js/vendorsidebar.js');
+    this.route.params.subscribe( params => {
+          this.albumid = params;
+    });
+
     this.albumsetting2 = new Albumsetting2Component(this.http,this.toastr);
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
@@ -72,6 +81,11 @@ colour_tag_error;
       this.myalbumimages =  item.albumImages;
       for (var albumtag of  this.myalbumimages ) {
         if(albumtag.tags != null){
+          albumtag['tags_two'] = albumtag['tags'].split(',');
+         
+        }
+        if(albumtag.tags != null){
+          // albumtag['tags_two'] = albumtag['tags'].split(',');
           albumtag['tags'] = albumtag['tags'].split(',');
          
         }
@@ -84,13 +98,6 @@ colour_tag_error;
        }
            }
            console.log(this.albumImagesModify);
-    });
-  }
-
-ngOnInit(){
-     $.getScript('./assets/js/vendorsidebar.js');
-    this.route.params.subscribe( params => {
-          this.albumid = params;
     });
 }
 openModel(e){
@@ -221,32 +228,12 @@ post_tag_edit(fire){
                     this.http.get(this.url+'api/Albums/myalbums',{headers:headers}).subscribe(
                       
                       data =>{
-                                for (var item of  data.json() ) {
-                                if(this.albumid.id == item.albumsId)
-                                  {  
-                                    for (var albumtag of  item.albumImages ) {
-                                      if(albumtag.tags != null  ){
-                                        albumtag['tags'] = albumtag['tags'].split(',');
-                                      //  albumtag['colorTags'] = albumtag['colorTags'].split(',');
-                                      }
-                                      if(albumtag.colorTags !=null){
-                                       
-                                         albumtag['colorTags'] = albumtag['colorTags'].split(',');
-                                       }
-                                      
-                                      this.albumImagesModify.push(albumtag);
-                                     
-                                      console.log(this.albumImagesModify);
-                                    }
-                                  }
-                                }
-                                this.tags = item.tags;
-                                this.colourtags = item.colorTags;
-                              }
+                        this.toastr.success(data.json().message);
+                        this.ngOnInit();        
+                      }
                     );
                       
-                    this.toastr.success(data.json().message);
-                     this.ngOnInit(); 
+                    
                   },error=> console.log(error))
           this.description_dailog = false;
 }

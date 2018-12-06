@@ -26,7 +26,7 @@ public shouldShow = false;
    
     //      $('this').addClass('colour');
     //   });
-    if(window.location.href.indexOf('/msg/') != -1 || window.location.href.indexOf('settingalbum/business-services') != -1 || window.location.href.indexOf('/albumviewphoto/') != -1 || window.location.href.indexOf('/settingalbum/') != -1){
+    if(window.location.href.indexOf('/payment-selection/') != -1 || window.location.href.indexOf('/msg/') != -1 || window.location.href.indexOf('settingalbum/business-services') != -1 || window.location.href.indexOf('/albumviewphoto/') != -1 || window.location.href.indexOf('/settingalbum/') != -1){
       this.route = true;
     }else{
       this.route = false;

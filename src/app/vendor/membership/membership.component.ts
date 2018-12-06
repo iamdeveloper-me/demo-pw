@@ -102,6 +102,14 @@ export class MembershipComponent implements OnInit {
     this.updatemembership(planid,payFrequency);
   }
   updatemembership(planid,payFrequency){
+
+
+    // this.router.navigate([]).then(result => {  window.open('http://localhost:4200/#/vendor/payment-selection/'+planid+'-'+payFrequency, '_blank'); });
+
+
+
+
+
     alert("dfcdr");
     console.log(planid);
     console.log(payFrequency);
@@ -119,21 +127,24 @@ const plan =
   payFrequency: payFrequency,
   voucherCode: palnvoucher
 }
+sessionStorage.setItem('selected_plan',JSON.stringify(plan))
+this.router.navigate(['../vendor/payment-selection'])
+
 console.log(plan)
-    this.http.post(this.updatemember,
+//     this.http.post(this.updatemember,
      
-      {
-        pricingPlanId: planid,
-        payFrequency: payFrequency,
-        voucherCode: palnvoucher
-      }
-    ,{headers:headers}).subscribe( (data)=> { console.log(data.json())
+//       {
+//         pricingPlanId: planid,
+//         payFrequency: payFrequency,
+//         voucherCode: palnvoucher
+//       }
+//     ,{headers:headers}).subscribe( (data)=> { console.log(data.json())
     
      
-      this.router.navigate([]).then(result => {  window.open(data.json().url, '_blank'); });
+//       this.router.navigate([]).then(result => {  window.open(data.json().url, '_blank'); });
     
-    },(error)=>{console.log(error);}
-,    );
+//     },(error)=>{console.log(error);}
+// ,    );
   }
   getDecimal(monthlyPrice,noOfMonthFeeOff){
   // {{((plan.monthlyPrice * (12 - plan.noOfMonthFeeOff))/12 | number:'1.0-2')}}

@@ -10,7 +10,7 @@ import {
   ViewChild,
   TemplateRef
 } from '@angular/core';
-
+import { TimeSlot } from '../location/location.component';
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -21,7 +21,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./calendertable.component.scss']
 })
 export class CalendertableComponent implements OnInit {
-  
+    select_time: TimeSlot
     jobArray: any = [];
     all = 3;
     upcomming =2;
@@ -75,7 +75,7 @@ export class CalendertableComponent implements OnInit {
   };
     constructor(private toastr: ToastrService,private modal: NgbModal,public http: Http,private datePipe: DatePipe) { 
      this.test = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
-     
+     this.select_time = new TimeSlot();
     }
     ngOnInit() {
    

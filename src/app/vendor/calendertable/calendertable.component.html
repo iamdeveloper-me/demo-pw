@@ -35,16 +35,14 @@
 										</div>
 										<div class="upcominglisthomepage"  *ngFor="let job of jobArray;let i=index ">
 											<div class="col-sm-5 col-8">
-												<i class="material-icons">date_range</i>  {{job.startDate |  date:'medium' }}<br/>
+												<!-- <i class="material-icons">date_range</i>  {{job.startDate |  date:'medium' }} <br/> -->
 												<ul>
-													<li>Guests: {{job.clientNumber}}</li><br/>
-													<li>Name: {{job.clientName}}</li><br/>
-													<li>Start Date : {{job.startDate | date}}</li><br/>
-													<li>End Date: {{job.endDate | date}}</li><br/>
-													<li>Start Time: {{job.startTime | date:'shortTime' }}</li><br/>
-													<li>End Time : {{job.endTime | date:'shortTime' }}</li><br/>
-													<li>No Of Guests : {{job.noOfGuests}}</li><br/>
 													
+													<li>Name: {{job.clientName}}</li><br/>
+													<li>Guests Number: {{job.clientNumber}}</li><br/>
+													<li><i class="material-icons">access_time</i> Start At : {{job.startDate | date}} {{job.startTime | date:'shortTime' }}</li><br/>
+													<li><i class="material-icons">access_time</i> End At:   {{job.endDate | date}} {{job.endTime | date:'shortTime' }}</li><br/>
+													<li>No Of Guests : {{job.noOfGuests}}</li><br/>
 												</ul>
 											</div>
 											<div class="col-sm-3 col-4 upcomingright">
@@ -52,13 +50,13 @@
 													<i class="material-icons ">location_on
 													</i>{{job.eventLocation}}
 												</div>
-												{{job.clientPhoneNumber}}																<br/>
+												{{job.clientPhoneNumber}} <br/>
 												<button class="callbutton">Call</button>
 											</div>
 											<div class="col-sm-4 col-4 upcomingright">
 												<button type="button" class="btn btn-danger whitetext" (click) = "edit_job_modle(job)" >Edit</button>
 												&nbsp;&nbsp;			
-												<button type="button" class="btn btn-danger whitetext" (click) = "deletevent(job ,i)" >
+												<button type="button" class="btn btn-danger whitetext" (click) = "deletevent(job,index)" >
 													delete
 													 <!-- {{job.vendorJobsId}} -->
 												</button>
@@ -67,29 +65,27 @@
 									</div>
 									<div class="upcominglisthomepage alldata "  *ngFor="let job of final_List;let i=index ">
 										<div class="col-sm-5 col-8">
-											<i class="material-icons">date_range</i>  {{job.startDate |  date:'medium' }}<br/>
-											<ul>
-												<li>Guests: {{job.clientNumber}}</li><br/>
-												<li>Name: {{job.clientName}}</li><br/>
-												<li>Start Date : {{job.startDate | date}}</li><br/>
-												<li>End Date: {{job.endDate | date}}</li><br/>
-												<li>Start Time: {{job.startTime | date:'shortTime' }}</li><br/>
-												<li>End Time : {{job.endTime | date:'shortTime' }}</li><br/>
-												<li>No Of Guests : {{job.noOfGuests}}</li><br/>
-											</ul>
+											<!-- <i class="material-icons">date_range</i>  {{job.startTime |  date:'medium' }}<br/> -->
+												<ul>
+													<li>Name: {{job.clientName}}</li><br/>
+													<li>Guests Number: {{job.clientNumber}}</li><br/>
+													<li><i class="material-icons">access_time</i> Start At : {{job.startDate | date}} {{job.startTime | date:'shortTime' }}</li><br/>
+													<li><i class="material-icons">access_time</i> End At:   {{job.endDate | date}} {{job.endTime | date:'shortTime' }}</li><br/>
+													<li>No Of Guests : {{job.noOfGuests}}</li><br/>
+												</ul>
 										</div>
 										<div class="col-sm-3 col-4 upcomingright">
 											<div>
 												<i class="material-icons ">location_on
 												</i>{{job.eventLocation}}
 											</div>
-											{{job.clientPhoneNumber}}																<br/>
+											{{job.clientPhoneNumber}} <br/>
 											<button class="callbutton">Call</button>
 										</div>
 										<div class="col-sm-4 col-4 upcomingright">
 											<button type="button" class="btn btn-danger whitetext" (click) = "edit_job_modle(job)" >Edit</button>
 											&nbsp;&nbsp;			
-											<button type="button" class="btn btn-danger whitetext" (click) = "deletevent(job,i)" >
+											<button type="button" class="btn btn-danger whitetext" (click) = "deletevent(job,index)" >
 												delete 
 												<!-- {{job.vendorJobsId}} -->
 											</button>
@@ -386,7 +382,7 @@
 	<div class="modal-content">
 		<div class="card-block" style="background: #fff;">
 			<div class="modal-header">
-					<h5 class="modal-title"><b> Calender </b> </h5>
+					<h5 class="modal-title"><b> Create new Job </b> </h5>
 				<button type="button" class="close" (click)="close()">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -471,6 +467,36 @@
 								</div>
 						</div>
 						<div class="col-md-6 col-12">
+								<div class="form-group">
+									<label> Start Time Event :</label>	
+									<select 
+									class="form-control" 
+									type="time" 
+									[(ngModel)]="startTime"  
+									id="startTime" 
+									name="startTime"						
+									#cStartTime="ngModel" 
+									required>
+											<option *ngFor='let s of select_time.timing' [value]='s.startTime'>{{s.startTime}}</option>
+									</select>
+										
+									<!-- <input 
+									type="time" 
+									name="startTime"
+									class="effect-16"
+									[(ngModel)]="startTime" 
+									id = "startTime"
+									#cStartTime="ngModel" 
+									required 
+									> -->
+									<div *ngIf="cStartTime.invalid && (cStartTime.dirty || cStartTime.touched)" class="text-danger">
+											<div *ngIf="cStartTime.errors.required">
+													Start Time is required.
+											</div>
+									</div>
+								</div>
+							</div>
+						<div class="col-md-6 col-12">
 							<div class="form-group">
 								<label> Start date Event :</label>		
 								<input 
@@ -490,6 +516,29 @@
 							</div>
 						</div>
 						<div class="col-md-6 col-12">
+								<div class="form-group">
+										<label> End Time Event :</label>		
+										<!-- <input 
+										type="time" 
+										name="endTime"
+										class="effect-16"
+										[(ngModel)]="endTime" 
+										id = "endTime"
+										 #cEndTime="ngModel" 
+										required 
+										> -->
+										<select class="form-control" type="time" [(ngModel)]="endtime"  id="endTime" name="endTime" #cEndTime="ngModel" 
+										required >
+												<option *ngFor='let s of select_time.timing' [value]='s.endTime'>{{s.endTime}}</option>
+										</select>
+										<div *ngIf="cEndTime.invalid && (cEndTime.dirty || cEndTime.touched)" class="text-danger">
+												<div *ngIf="cEndTime.errors.required">
+														End Time is required.
+												</div>
+										</div>
+								</div>
+							</div>
+						<div class="col-md-6 col-12">
 							<div class="form-group">
 									<label> End date Event :</label>		
 									<input 
@@ -508,44 +557,8 @@
 									</div>
 							</div>
 						</div>
-						<div class="col-md-6 col-12">
-							<div class="form-group">
-								<label> Start Time Event :</label>		
-								<input 
-								type="time" 
-								name="startTime"
-								class="effect-16"
-								[(ngModel)]="startTime" 
-								id = "startTime"
-								#cStartTime="ngModel" 
-								required 
-								>
-								<div *ngIf="cStartTime.invalid && (cStartTime.dirty || cStartTime.touched)" class="text-danger">
-										<div *ngIf="cStartTime.errors.required">
-												Start Time is required.
-										</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-12">
-							<div class="form-group">
-									<label> End Time Event :</label>		
-									<input 
-									type="time" 
-									name="endTime"
-									class="effect-16"
-									[(ngModel)]="endTime" 
-									id = "endTime"
-									 #cEndTime="ngModel" 
-									required 
-									>
-									<div *ngIf="cEndTime.invalid && (cEndTime.dirty || cEndTime.touched)" class="text-danger">
-											<div *ngIf="cEndTime.errors.required">
-													End Time is required.
-											</div>
-									</div>
-							</div>
-						</div>
+
+
 						<div class="col-md-6 col-12">
 							<div class="form-group">
 									<label> No of Guests :</label>
@@ -735,7 +748,7 @@
 										<div class="form-group">
 											<label> Start Time Event :</label>		
 											<input 
-											type="time" 
+											type="datetime-local" 
 											name="startTime"
 											class="effect-16"
 											[(ngModel)]="edit_job_form.startTime" 
@@ -755,7 +768,7 @@
 									<div class="form-group">
 											<label> End Time Event :</label>		
 											<input 
-											type="time" 
+											type="datetime-local" 
 											name="endTime"
 											class="effect-16"
 											[(ngModel)]="edit_job_form.endTime" 

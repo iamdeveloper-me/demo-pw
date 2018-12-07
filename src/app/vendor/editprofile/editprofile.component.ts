@@ -77,7 +77,6 @@ changePassword_form = false;
     //membership api
     this.http.get(this.membershipurl,{headers:headers}).subscribe(
       data =>{  
-              // console.log("zxdfdsf");
                console.log(data.json());
               this.membershipdetail = data.json();
       });

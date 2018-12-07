@@ -8,9 +8,9 @@ import { copyStyles } from '@angular/animations/browser/src/util';
 })
 export class PaymentSelectionComponent implements OnInit {
 
-  selection:[]
+  // selection:[]
   constructor() { }
-  public MainData: MainData;
+  // public MainData: MainData;
   ngOnInit() {
     $.getScript('./assets/js/membershipslider.js'); 
     // console.log(JSON.parse(sessionStorage.getItem('selected_plan')))

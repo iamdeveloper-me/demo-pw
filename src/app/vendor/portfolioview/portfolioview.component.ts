@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild ,ChangeDetectionStrategy} from '@angular/core';
+import { Component, OnInit,ViewChild ,ChangeDetectionStrategy, ElementRef} from '@angular/core';
 import { ViewEncapsulation, Input } from '@angular/core';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
@@ -16,17 +16,21 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
   
 })
 export class PortfolioviewComponent implements OnInit {
+    @ViewChild('previewimg') previewimg: ElementRef;
     fileToUpload:any;
     PortgetArray:any= [];
     PortpostArray:any= {};
     Set_as_background:any = [];
     uploadphoto_dailog = false;
-    lodar = false;
+   
     selected_Background;
     portfolioId;
     basicplane;
     free_limit;
+    urlll = ''
     // Portpost1Array:any= {};
+      private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/';
+
     private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader'
     private addportfolio: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/addportfolio'
     private mygeturl: string  = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myportfolio"
@@ -43,6 +47,7 @@ export class PortfolioviewComponent implements OnInit {
 
         $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
                     $.getScript('./assets/js/vendorsidebar.js');
+                    this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
                     let headers = new Headers();
                     var authToken = localStorage.getItem('userToken');
                     headers.append('Accept', 'application/json')
@@ -77,8 +82,8 @@ export class PortfolioviewComponent implements OnInit {
         url: URL,
         isHTML5: true
     });
-    hasBaseDropZoneOver = true;
-    hasAnotherDropZoneOver = true;
+    hasBaseDropZoneOver = false;
+    hasAnotherDropZoneOver = false;
   // Angular2 File Upload
 
     fileOverBase(e: any): void {
@@ -89,7 +94,7 @@ export class PortfolioviewComponent implements OnInit {
     }
     popup(){
 
-        this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
+     
         this.free_limit =this.PortgetArray.length
 
 
@@ -120,19 +125,51 @@ export class PortfolioviewComponent implements OnInit {
              }
 
     }
-    uploadAll(){
-        this.uploadphoto_dailog = false;
+    
+
+      previewFile(event) {
+        var preview = this.previewimg.nativeElement;
+        var file    = event.target.files[0];
+        var reader  = new FileReader();
+        debugger
+        reader.readAsDataURL(event.target.files[0]); // read file as data url
+        reader.addEventListener("load", function () {
+            preview.src = reader.result;
+        }, false);
+      
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+      }
+      uploadAll(){
+        //
        
         const formData = new FormData();
         for(let file of this.uploader.queue){
              formData.append(file['some'].name,file['some'])
-        }        
-        this.photoupload(formData);
-        this.lodar = true ;
-     
+             file.upload()
         
-    }
-    photoupload(formData){
+        }        
+
+        let headers = new  Headers();
+        var authToken = localStorage.getItem('userToken');
+        headers.append("Authorization",'Bearer '+authToken);
+        this.http.post(this.url+'api/ImageUploader/PortfolioUploader',formData,{headers:headers})
+        .subscribe(data =>{ 
+       
+                            this.toastr.success(data.json().message);
+                            this.router.navigate(['../vendor/portfolioview'])
+                            this.http.get(this.mygeturl,{headers:headers})
+                            .subscribe(data =>{   
+                                            console.log(data.json()); 
+                                            this.PortgetArray =data.json() 
+                                            this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
+                                            this.uploadphoto_dailog = false;
+                          });
+                          },(error)=>{console.log(error)});
+        // this.photoupload(formData);   
+      }
+      photoupload(formData){
 
 
         let headers = new  Headers();
@@ -167,29 +204,16 @@ export class PortfolioviewComponent implements OnInit {
                            
                           });
                         
-                          $(function() {
-                            var current_progress = 0;
-                            var interval = setInterval(function() {
-                                current_progress += 10;
-                                $("#dynamic")
-                                .css("width", current_progress + "%")
-                                .attr("aria-valuenow", current_progress)
-                                .text(current_progress + "% Complete");
-                                if (current_progress >= 100)
-                                    clearInterval(interval);
-                                   
-                            }, 1500);
-                           
-                          });
+                       
                           console.log(data.json());
                           this.toastr.success(data.json());
-                          this.lodar = false;
+                       
                         },(error)=>{        this.toastr.error(error.json());
                                 });
-                                this.lodar = false;
+                             
         },(error)=>{         this.toastr.error(error.json());
                   });
-    }
+      }
     closeModel(){this.uploadphoto_dailog = false;
         this.uploader.queue =[];
 
@@ -207,7 +231,7 @@ export class PortfolioviewComponent implements OnInit {
        this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/setasstorefrontimage?PortfolioId'+ '=' + setId,{headers:headers}).subscribe(data =>{
             this.Set_as_background = data.json() as string[];
             console.log( this.Set_as_background );
-            this.toastr.success(data.json().message);
+            this.toastr.success("Image set as Business Cover");
             this.http.get(this.Get_backgroundImage,{headers:headers}).subscribe(data =>{
                 console.log(data.json());
                 if(data.json().setAsBackgroud == true){
@@ -223,7 +247,6 @@ export class PortfolioviewComponent implements OnInit {
                 })
     //console.log(setId)
     }
-
     delete_portfolio(e,index){
 
                 swal({
@@ -257,7 +280,7 @@ export class PortfolioviewComponent implements OnInit {
                 })
                     return;
     
-  }
+    }
 
 }
 

@@ -17,10 +17,10 @@ import swal from 'sweetalert2';
 
 export class DashboardComponent implements OnInit {
   jobArray:string[];
-
+  images_colour = false ;
   VendorDashboard_data_image;
     // PhoneEdit = '5555555' ;
-
+    private urll: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/';
     angularLogo = 'https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg';
     
     constructor(config: NgbCarouselConfig ,public http: Http ,private router: Router) {
@@ -50,12 +50,13 @@ export class DashboardComponent implements OnInit {
   description;
   mapSettings;
   photos;
-  pricingPlanId;
+  pricingPlanId = {pricingPlanId:''};
   tradingName;
   add;
   ph;
   mb;
   ct;
+  images_dialog = false;
   total_phone_no;
   priceplantitle;
   isPrimary;
@@ -74,12 +75,14 @@ export class DashboardComponent implements OnInit {
   @ViewChild('x') public tooltip: NgbTooltip;
    private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
   private dashboard: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorDashboard/EnquiriesAndLeads'
- 
+  private images: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/allimages'
+
   private VendorDashboard:string = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorDashboard/Home";
   private geturl: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/myjobs';
   vendor: any = {suburb:
     {suburbId: '', districtId: '', name: ""}};
   bussiness_name;
+  image_data;
   public changeGreeting(greeting: any): void {
     const isOpen = this.tooltip.isOpen();
     this.tooltip.close();
@@ -90,13 +93,18 @@ export class DashboardComponent implements OnInit {
   }
  // supArray:string[];  
       ngOnInit()  {
-     
+        
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization",'Bearer '+authToken);
+        this.http.get(this.images,{headers:headers}).subscribe(data =>{
+        this.image_data = data.json();
+          console.log(data.json());
+       
+         });
         this.http.post(this.geturl,{ filter: 2 },{headers:headers}).subscribe(data =>{
           this.jobArray = data.json(); 
           console.log(this.jobArray);
@@ -118,6 +126,7 @@ export class DashboardComponent implements OnInit {
           data =>{ this.vendor = data.json();
           this.bussiness_name = data.json().nameOfBusiness,
                    console.log(this.vendor.pricingPlan);
+                   this.pricingPlanId = this.vendor.pricingPlan;
                    if(!this.vendor.profileImage )
                    {
                   
@@ -212,18 +221,11 @@ export class DashboardComponent implements OnInit {
                     //EnquiriesAndLeads
                     this.http.get(this.dashboard,{headers:headers}).subscribe(
                       data =>{  
-                              // console.log("zxdfdsf");
-
-                              //  console.log(data.json());
-
                               this.dashboard = data.json();
-                
-                      });
+                             });
 
                       this.http.get(this.VendorDashboard,{headers:headers}).subscribe(
                         data =>{  
-
-
                                  console.log(data.json());
                                 //  this.venderDash = data.json() as string[]; 
                                 this.VendorDashboard_data = data.json();
@@ -232,11 +234,6 @@ export class DashboardComponent implements OnInit {
                         });
 
                   $.getScript('./assets/js/prism.min.js');
-             //     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
-              //    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
-
-             //     $.getScript('https://www.jssor.com/script/jssor.slider-27.4.0.min.js');
-
                   $.getScript('./assets/js/owljsor.js');
                   $.getScript('./assets/js/vendorsidebar.js');
                 
@@ -348,5 +345,73 @@ export class DashboardComponent implements OnInit {
         
          
         }
+
+        closeModel(){
+          this.images_dialog = false;
+        }
+
+        setportfolio_image(image){ 
+          let headers = new Headers();
+          var authToken = localStorage.getItem('userToken');
+        
+            $("img").addClass("greentext");
+       
+          headers.append('Accept', 'application/json')
+          headers.append('Content-Type', 'application/json');
+          headers.append("Authorization",'Bearer '+authToken);
+
+          if(image.type == 'Portfolio'){
+            this.http.get(this.urll+'api/supplier/setasstorefrontimage?PortfolioId'+ '=' + image.id,{headers:headers}).subscribe(data =>{
+            
+              console.log(data.json());
+                    this.getstoreimage();
+             });
+          }else{
+            this.http.get(this.urll+'/api/albums/setasstorefrontimage?AlbumImageId'+'='+image.id,{headers:headers}).subscribe(data =>{
+          
+              console.log(data.json());
+              this.getstoreimage();
+            
+             });
+          }
+         
+
+        }
+
+
+        getstoreimage(){
+          let headers = new Headers();
+          var authToken = localStorage.getItem('userToken');
+          
+          headers.append('Accept', 'application/json')
+          headers.append('Content-Type', 'application/json');
+          headers.append("Authorization",'Bearer '+authToken);
+          this.http.get(this.VendorDashboard,{headers:headers}).subscribe(
+            data =>{  
+                  console.log(data.json())
+                    this.VendorDashboard_data_image = data.json().portfolioImage;
+                    this.banner_image = "../../../assets/img/store_noimg.jpg"
+                    this.images_dialog = false;
+            });
+        }
+        freeuser(){
+                          swal({
+                            title: "Change your Plan",
+                        text: "profile completed",
+                        type: "warning",
+                        showCancelButton: true,
+                      
+                        }).then((res)=>{
+                          if(res.value===true){
+                            this.router.navigate(['../vendor/membership'])
+                        }
+
+                          },error=>{
+                            alert(JSON.stringify(error));
+                        })
+                          return;
+                        
+        } 
+         
 }
 

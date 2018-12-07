@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core'
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core'
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Http, Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
@@ -10,11 +10,11 @@ import { resetFakeAsyncZone } from '@angular/core/testing';
 import { TimeSlot } from '../location/location.component';
 import { getHours, getMinutes } from 'date-fns';
 import { forEach } from '@angular/router/src/utils/collection';
+import { viewClassName } from '@angular/compiler';
 //export class TimeSlot
 export class NgbduserModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) { }
-
 }
 
 
@@ -50,8 +50,14 @@ export class EventListComponent implements OnInit {
   startDates;
   endDates;
   Titlee;
+  showLoader:boolean=false;
   public c_id: any;
   public country_name: any;
+  @ViewChild('ele_country') ele_country:ElementRef;
+  @ViewChild('ele_distid') ele_distid:ElementRef;
+  @ViewChild('ele_suburb') ele_suburb:ElementRef;
+  @ViewChild('ele_startTime') ele_startTime:ElementRef;
+  @ViewChild('ele_endTime') ele_endTime:ElementRef;
   arr = []
   venueNamee;
     location;
@@ -80,6 +86,7 @@ export class EventListComponent implements OnInit {
       this.objevent = new EventsCreateUpdateVM();
     //  this.past_upcomming_event(2);
       this.select_time = new TimeSlot();
+      this.select_time.timing.splice(0,1);
     }
 
 
@@ -94,6 +101,9 @@ export class EventListComponent implements OnInit {
       this.countryArray = data.json();
       console.log(this.countryArray);
       this.arra = this.countryArray
+      this.country();
+      this.districtA();
+      this.subr();
     })
     this.past_upcomming_event(3);
          $.getScript('./assets/js/vendorsidebar.js');
@@ -291,16 +301,13 @@ locations(event: any) { this.location  = '';}
                       formData.append('AlbumId', '2');
                   //    alert(JSON.stringify(this.imageToUpload));
                       formData.append(this.imageToUpload.name, this.imageToUpload);
-                      console.log(this.imageToUpload)
-                      
+                      this.showLoader=true;
                       this.http.post(this.uploadimage, formData, { headers: headerForImageUpload }).subscribe((data) => {
                         let response=JSON.parse(data.text());
-                        console.log(response);
                         let fileId = response.filesId;
                         this.objevent.filesId = fileId;
                         this.fileIdfield = data.json() as string[];
-             
-                                            let headers = new Headers();
+                                  let headers = new Headers();
                                             var authToken = localStorage.getItem('userToken');
                                             headers.append('Accept', 'application/json')
                                             headers.append('Content-Type', 'application/json');
@@ -310,29 +317,31 @@ locations(event: any) { this.location  = '';}
                                                 "eventsMoreDatesId": 0,
                                                 "eventId": 0,
                                                 "eventDate": this.objevent.eventdate,
-
                                                 "startDate": this.objevent.startDate,
                                                 "endDate": this.objevent.endDate,
                                                 "startTime": this.startTimee,
                                                 "endTime": this.endtime
                                             }
-
-
                                             this.objevent.eventsDates.push(events);
                                             console.log(this.objevent)
                                              this.http.post(this.eventposturl,this.objevent,{headers:headers}).subscribe((data)=>{
                                                let response=JSON.parse(data.text());
                                                  // alert(JSON.stringify(response.message));
                                                   this.toastr.success("created  event sucessfully");
+                                                  this.showLoader=false;
                                                   this.objevent = new EventsCreateUpdateVM();
                                              
                                                 this.past_upcomming_event(0)
                                                   this.twitterDailog = false;
                                                   list.reset()
+
+                                                  
+                                                  
                                              },error=>{
                                               // alert(JSON.stringify(data));
                                               console.log(error.json())
                                               this.toastr.error(error);
+                                              this.showLoader=false;
                                              })   })
                                              
     }else{  
@@ -342,9 +351,6 @@ locations(event: any) { this.location  = '';}
                       
  }
 
- formatAMPM() {
- 
-  }
   /////////////////////////////////popupmode
   closeResult: string;
   // Open default modal
@@ -380,10 +386,13 @@ locations(event: any) { this.location  = '';}
   }
 
   editevent(v) {
+   debugger;
+   this.objevent.districtId=v.districtId;
+   this.objevent.suburbId = v.suburbId;
+   this.objevent.countryId = v.countryId;
     console.log(v)
     // console.log(v.eventsDates[0].endTime.split('T')[1]);
-   
-
+   this.country();
     let hrs=getHours(v.eventsDates[0].endTime);
     let min=getMinutes(v.eventsDates[0].endTime);
     if(hrs<12){
@@ -402,53 +411,25 @@ locations(event: any) { this.location  = '';}
    // alert(hrss+':'+minn+':'+' Pm');
     this.startimee   = hrss+':'+minn+':'+' Pm'
     }
-
-
-    // const a = {
-    //   endTime: this.endtime,
-    //   startTime: this.startimee 
-    // }
-    // this.select_time.timing.unshift(a);
-
-    
-    // for(let a of this.select_time.timing) {
-      
-    //   if(a.startTime.include(this.select_time.timing)){
-    //     this.startimee = a.startTime
-    //   }
-    //   if(a.endtime.include(this.select_time.endTime)){
-    //     this.endtime = a.endtime;
-    //   }
-     
-    // }
-    console.log(this.endtime)
-    console.log( this.startimee)
-
-
-    console.log(v.eventsDates[0].endTime.split('T')[1]);
-    console.log(v.eventsDates[0].startTime.split('T')[1]);
     this.startDates = v.eventsDates[0].startDate.split('T')[0];
     this.endDates = v.eventsDates[0].endDate.split('T')[0];
-
-     
-    // this.endtime = v.eventsDates[0].endTime;
-    // this.startimee = v.eventsDates[0].startTime;
-  
     this.modelfield = v;
-    console.log(this.modelfield);
+    this.objevent=v;
+    console.log(this.objevent);
+    this.ele_country.nativeElement.value=v.countryId;
+    this.ele_distid.nativeElement.value=v.districtId;
+    this.ele_suburb.nativeElement.value=v.sub_id;
     this.eventupdaterDailog = true;
 
   }
 
   editsave(data: any) {
-    console.log(data);
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
-   console.log(data.value.filesId)
-  const editData = {
+     const editData = {
           eventId: data.value.eventId,
           eventTitle: data.value.Title,
           filesId: data.value.filesId,
@@ -474,10 +455,15 @@ locations(event: any) { this.location  = '';}
               endDate: data.value.endDate,
             }
           ]
-
-}
-    console.log(editData)
-    this.http.post(this.eventposturl, editData, { headers: headers }).subscribe(data => {
+      }
+      if(this.ele_suburb.nativeElement.value.length==0){
+          this.toastr.error('Invalid Suburb! Please Select Valid Suburb');
+      }else if(this.ele_startTime.nativeElement.value.length==0){
+        this.toastr.error('Invalid Start Time! Please Select Valid Start Time');
+      }else if(this.ele_endTime.nativeElement.value.length==0){
+        this.toastr.error('Invalid End Time! Please Select Valid End Time');
+      }else{
+      this.http.post(this.eventposturl, editData, { headers: headers }).subscribe(data => {
       console.log(data.json());
       this.toastr.success("saved sucessfully");
       this.eventupdaterDailog = false;
@@ -486,10 +472,10 @@ locations(event: any) { this.location  = '';}
     },error=>{console.log(error);
       this.toastr.error(error);})
   }
+}
 
   past_upcomming_event(past){
     console.log(past);
-  
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -498,14 +484,10 @@ locations(event: any) { this.location  = '';}
        //  this.eventArray.unshift(this.objevent);
     this.http.post(this.myevent_Post_url, { Filter: past },{ headers: headers }).subscribe(data => {
       this.eventArray = data.json() ;
-      
+      console.log(JSON.stringify(this.eventArray));
       for (let entry of   data.json()) {
-       
-      //  console.log(entry); 
         this.event_Detail(entry.eventId)
     }
-    
-    //  console.log(this.eventArray);
     },error => {console.log(error);})
   }
 
@@ -519,11 +501,7 @@ locations(event: any) { this.location  = '';}
         confirmButtonText: "Yes, delete it!",
         cancelButtonText: "No, cancel plx!",
         }).then((res)=>{
-        
           if(res.value===true){
-            // alert('delete Process !');
-                // alert(data)
-          // console.log(id);
           var id = data.eventId;
           console.log(id);
           this.eventArray.splice(index, 1);
@@ -536,7 +514,6 @@ locations(event: any) { this.location  = '';}
           this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id' + '=' + id, { headers: headers }).subscribe(data => {
             this.toastr.success("delete sucessfully");
           }, error => { console.log(error) });
-          //  alert(JSON.stringify(res));
           }else{
             // alert('Cancel Process !');
           }
@@ -546,7 +523,6 @@ locations(event: any) { this.location  = '';}
           return;
   }
   search_event(e){
- 
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -556,18 +532,13 @@ locations(event: any) { this.location  = '';}
       filter: 3,
       search: e.value.search
     }
-    console.log(a);
     this.http.post(this.myevent_Post_url,a,{ headers: headers }).subscribe(data => {
-    //  this.eventArray = data.json();
         for (let entry of  data.json()) {
-        console.log(entry);
         this.event_Detail(entry.eventId)
     }
-      console.log( data.json());
     },error => {console.log(error);})
   }
-  event_Detail(e){
-   
+  event_Detail(e){   
     var id = e;
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
@@ -576,37 +547,25 @@ locations(event: any) { this.location  = '';}
     headers.append("Authorization", 'Bearer ' + authToken);
     this.eventArray = [];
     this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/eventdetails?id' + '=' + id,{ headers: headers }).subscribe(data => {
-     // this.eventArray = [];
-   // this.eventArray.push( data.json()) ;
-   //   console.log(data.json());
-     
       this.eventArray.push(data.json()) 
-      console.log(this.eventArray);
      
     },error => {console.log(error);})
   }
-  
-  // country(event): void {
-  //   const newVal = event.target.value;
-  //   this.district = this.arra[newVal].districts
-  // }
-  country(event): void {
-    const newVal = event.target.value;
-    this.district = this.arra[newVal].districts
-    let country = this.arra.filter(c => c.countryId == newVal)[0];
-    this.c_id = this.arra.filter(c => c.countryId == newVal)[0].countryId;
-    this.objevent.countryId = country.countryId;
-    this.country_name = country.countryName
-   // this.district = country.districts
+  country(): void {
+    this.c_id = this.objevent.countryId;
   }
-  districtA(event): void {
-    const newVal = event.target.value;
-    console.log(this.district[newVal]);
-    this.suburb = this.district[newVal].suburb
+  districtA(): void {
+    if(this.objevent.countryId!=undefined){
+   this.district=this.arra.filter(c=>c.countryId==this.objevent.countryId)[0].districts;
+    }else{
+      this.objevent.countryId=1;
+      this.district=this.arra.filter(c=>c.countryId==this.objevent.countryId)[0].districts;
+    }
+    this.subr();
   }
-  subr(event): void {
-    const newVal = event.target.value;
-    console.log(newVal)
+  subr(): void {
+    if(this.objevent.districtId!=undefined){
+   this.suburb= this.district.filter(d=>d.districtId==this.objevent.districtId)[0].suburb;}
   }
  closeModel(list){         
     this.eventupdaterDailog = false;  
@@ -622,8 +581,7 @@ locations(event: any) { this.location  = '';}
     this.capacity  = '';
     this.location  = '';
   }
-
-
+  
 }
 export class EventsCreateUpdateVM{
   eventId:number;
@@ -647,7 +605,6 @@ startDate:string;
 constructor(){
   this.eventId=0;
   this.eventsDates = new Array<EventsDatesVM>();
-
   let objeventdates = {
     endTime:'00:00',
     startTime: '00:00',
@@ -660,7 +617,6 @@ constructor(){
   
   this.lat = 0;
   this.long = 0;
-  // this.eventsDates.push(objeventdates);
 }
 
 }

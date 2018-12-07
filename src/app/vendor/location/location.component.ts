@@ -13,7 +13,7 @@ import { viewClassName } from '@angular/compiler';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
-
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 declare var google: any;
 
 interface Marker {
@@ -47,11 +47,13 @@ export class LocationComponent implements OnInit {
   @ViewChild('vform') validationForm: FormGroup;
   @ViewChild("search") public searchElementRef: ElementRef;
   @ViewChild('ele_dist') ele_dist:ElementRef;
-@ViewChild('ele_suburb') ele_suburb:ElementRef;
+  @ViewChild('ele_suburb') ele_suburb:ElementRef;
+  @ViewChild('x') public tooltip: NgbTooltip;
   regularForm: FormGroup;
   ao: string;
   bo: string;
   co: string;
+  vocationModeDisplayText:string='Vacation Mode';
   timeslot = new TimeSlot();
   arra_col = [];
   phone = []
@@ -171,7 +173,7 @@ export class LocationComponent implements OnInit {
   // location: any = {};
 
   countryArray: string[];
-  location_Array: string[];
+  location_Array: Array<any>;
   circleRadius: number = 5000;
   milesToRadius(value) {
     this.circleRadius = value / 0.00062137;
@@ -345,6 +347,7 @@ export class LocationComponent implements OnInit {
 
     this.http.get(this.urlget, { headers: headers }).subscribe((data) => {
       this.location_Array = data.json();
+      this.location_Array[0].locationPhones.reverse();
       console.log(JSON.stringify(this.location_Array));
     })
     this.loadCountries();
@@ -358,7 +361,7 @@ export class LocationComponent implements OnInit {
     }
   }
   openModel(b) {
-  //  this.loadCountries();
+    this.loadCountries();
     this.dist_id=b.districtId;
    // this.district = this.arra.filter(c => c.countryId == b.countryId)[0].districts;
    // this.dist_id = b.districtId;
@@ -431,7 +434,6 @@ export class LocationComponent implements OnInit {
         "phoneNumber": this.formPhone.value.phoneArry[i].number,
         "isPrimary": this.formPhone.value.phoneArry[i].isprime
       }
-
       reqObj.push(obj)
     }
     if (reqObj.length > 0) {
@@ -460,8 +462,6 @@ export class LocationComponent implements OnInit {
           }
         }
         this.toastr.error(msg);
-
-
       }
     )
   }
@@ -481,10 +481,11 @@ export class LocationComponent implements OnInit {
           "locationPhoneId": phoneObj.value.locationPhoneId,
           "vendorLocationId": phoneObj.value.vendorLocationId,
           "phoneType": phoneObj.value.phoneType,
-          "phoneNumber": phoneObj.value.number,
+          "phoneNumber": phoneObj.value.number?phoneObj.value.number:'0',
           "isPrimary": phoneObj.value.isprime
         }
         console.log(obj);
+        debugger;
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         headers.append('Accept', 'application/json')
@@ -497,15 +498,13 @@ export class LocationComponent implements OnInit {
             control.removeAt(index);
           }, (error) => {
             console.log(error);
-            this.toastr.error(error._body);
+            let control = <FormArray>this.formPhone.controls['phoneArry'];
+            control.removeAt(index);
           });
-        //  }}
-        //  else{
-        //          let control = <FormArray>this.formPhone.controls['phoneArry'];
-        //          control.removeAt(index);
-        //       }
       } else {
-        // alert('Cancel Process !');
+        let control = <FormArray>this.formPhone.controls['phoneArry'];
+            control.removeAt(index);
+            this.ngOnInit();
       }
     }, error => {
       alert(JSON.stringify(error));
@@ -632,20 +631,24 @@ export class LocationComponent implements OnInit {
     });
   }
   update__week(e) {
-    this.week_dailog = false;
+   // this.week_dailog = false;
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
     let isvalidTIme = this.validateTradingTime();
+    let Pincode=e.value.postalCode?e.value.postalCode:'No Postal Code';
+    console.log(Pincode)
+    alert(this.modelfield.country_id);
+    debugger;
     if (isvalidTIme == 1) {
       this.http.post(this.urlpost, {
         vendorLocationId: e.value.vendorLocationId,
-        countryId: e.value.country.countryId,
+        countryId: e.value.country.countryId?e.value.country.countryId:this.country_id,
         vendorId: e.value.vendorId,
-        country: e.value.country,
-        postalCode: e.value.postalCode,
+        country: e.value.country?e.value.country.countryId:this.country_id,
+        postalCode: Pincode,
         districtId: e.value.districtId,
         districts: {
           districtId: e.value.districtId,
@@ -706,11 +709,13 @@ export class LocationComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
     this.http.post(this.urlpost, e, { headers: headers }).subscribe((data) => {
-      console.log(data);
       if (b == false) {
         this.toastr.info('Vacation Mode is OFF');
-
-      } else { this.toastr.success("Vacation Mode is ON") }
+        this.vocationModeDisplayText='Vacation Mode';
+      }else{ 
+        this.toastr.success("Vacation Mode is ON");
+        this.vocationModeDisplayText='A little break from work';
+       }
     }
       , (error) => { console.log(error); });
   }
@@ -950,34 +955,17 @@ export class LocationComponent implements OnInit {
   closeResult: string;
 
   country(): void {
-   // const newVal = event.target.value;
-   // let country = this.arra.filter(c => c.countryId == newVal)[0];
-  //  this.c_id = this.arra.filter(c => c.countryId == newVal)[0].countryId;
-  //  this.address_modelfield.country_id = country.countryId;
-  //  this.country_name = country.countryName
-
     this.district =this.arra.filter(c=>c.countryId==this.address_modelfield.countryId)[0].districts
-    console.log(this.district);
   }
   districtA(): void {
-    //const newVal = event.target.value;
-   // this.d_id = this.district[newVal].districtId
-   // this.district_name = this.district[newVal].name
-   // this.suburb = this.district[newVal].suburb
-   
    this.district =this.arra.filter(c=>c.countryId==this.address_modelfield.countryId)[0].districts;
    let selectedDist=this.district.filter(d=>d.districtId==this.dist_id);
    if(selectedDist==undefined){
      this.ele_dist.nativeElement.value='-1';
    }
     this.subr();
-  // this.suburb = this.district.filter(d=>d.dist_id==this.dist_id)[0].suburb;
   }
   subr(): void {
-//    const newVal = event.target.value;
-//    let suburb = this.district.filter(s => s.suburbId == newVal)[0];
-//    this.s_id = this.suburb[newVal].suburbId
- //   this.subr_name = this.suburb[newVal].name
  this.suburb=[];
  debugger;
  if(this.district.filter(d=>d.districtId==this.dist_id)[0]==undefined){
@@ -987,12 +975,6 @@ export class LocationComponent implements OnInit {
  }else{
  this.suburb =this.district.filter(d=>d.districtId==this.dist_id)[0].suburb;
  }
- 
-
-// this.suburb= this.district.filter(d=>d.districtId==5)[0].suburb
-
-
- console.log(this.suburb);
   }
   closeModel() {
     this.photo_ved_dailog = false;
@@ -1031,63 +1013,63 @@ export class TimeSlot {
   public timing: Array<any>;
   constructor() {
     this.timing = [];
-    this.days = []
-    this.days.push({ id: 1, name: 'Sunday', 'IsOpen': false });
-    this.days.push({ id: 1, name: 'Monday', 'IsOpen': false });
-    this.days.push({ id: 1, name: 'Tuesday', 'IsOpen': false });
-    this.days.push({ id: 1, name: 'Wednesay', 'IsOpen': false });
-    this.days.push({ id: 1, name: 'Thurseday', 'IsOpen': false });
-    this.days.push({ id: 1, name: 'Friday', 'IsOpen': false });
-    this.days.push({ id: 1, name: 'Saturday', 'IsOpen': false });
+    // this.days = []
+    // this.days.push({ id: 1, name: 'Sunday', 'IsOpen': false });
+    // this.days.push({ id: 1, name: 'Monday', 'IsOpen': false });
+    // this.days.push({ id: 1, name: 'Tuesday', 'IsOpen': false });
+    // this.days.push({ id: 1, name: 'Wednesay', 'IsOpen': false });
+    // this.days.push({ id: 1, name: 'Thurseday', 'IsOpen': false });
+    // this.days.push({ id: 1, name: 'Friday', 'IsOpen': false });
+    // this.days.push({ id: 1, name: 'Saturday', 'IsOpen': false });
 
-    this.timing.push({ startTime: '24 Hours', endTime: '0' });
-    this.timing.push({ startTime: '00:00 Am', endTime: '00:30 Am' });
-    this.timing.push({ startTime: '00:30 Am', endTime: '01:00 Am' });
-    this.timing.push({ startTime: '01:00 Am', endTime: '01:30 Am' });
-    this.timing.push({ startTime: '01:30 Am', endTime: '02:00 Am' });
-    this.timing.push({ startTime: '02:00 Am', endTime: '02:30 Am' });
-    this.timing.push({ startTime: '02:30 Am', endTime: '03:00 Am' });
-    this.timing.push({ startTime: '03:00 Am', endTime: '03:30 Am' });
-    this.timing.push({ startTime: '03:30Am', endTime: '04:00 Am' });
-    this.timing.push({ startTime: '04:00 Am', endTime: '04:30 Am' });
-    this.timing.push({ startTime: '04:30Am', endTime: '05:00 Am' });
-    this.timing.push({ startTime: '05:00 Am', endTime: '05:30 Am' });
-    this.timing.push({ startTime: '05:30 Am', endTime: '06:00 Am' });
-    this.timing.push({ startTime: '06:00 Am', endTime: '06:30 Am' });
-    this.timing.push({ startTime: '06:30 Am', endTime: '07:00 Am' });
-    this.timing.push({ startTime: '07:00 Am', endTime: '07:30 Am' });
-    this.timing.push({ startTime: '07:30 Am', endTime: '08:30 Am' });
-    this.timing.push({ startTime: '08:30 Am', endTime: '09:00 Am' });
-    this.timing.push({ startTime: '09:00 Am', endTime: '09:30 Am' });
-    this.timing.push({ startTime: '09:30 Am', endTime: '10:00 Am' });
-    this.timing.push({ startTime: '10:00 Am', endTime: '10:30 Am' });
-    this.timing.push({ startTime: '10:30 Am', endTime: '11:00' });
-    this.timing.push({ startTime: '11:00 Am', endTime: '11:30 Am' });
-    this.timing.push({ startTime: '11:30 Am', endTime: '12:00 Pm' });
-    this.timing.push({ startTime: '12:00 Pm', endTime: '12:30 Pm' });
-    this.timing.push({ startTime: '12:30 Pm', endTime: '01:00 Pm' });
-    this.timing.push({ startTime: '01:00 Pm', endTime: '01:30 Pm' });
-    this.timing.push({ startTime: '01:30 Pm', endTime: '02:00 Pm' });
-    this.timing.push({ startTime: '02:00 Pm', endTime: '02:30 Pm' });
-    this.timing.push({ startTime: '02:30 Pm', endTime: '03:00 Pm' });
-    this.timing.push({ startTime: '03:00 Pm', endTime: '03:30 Pm' });
-    this.timing.push({ startTime: '03:30 Pm', endTime: '04:00 Pm' });
-    this.timing.push({ startTime: '04:00 Pm', endTime: '04:30 Pm' });
-    this.timing.push({ startTime: '04:30 Pm', endTime: '05:00 Pm' });
-    this.timing.push({ startTime: '05:00 Pm', endTime: '05:30 Pm' });
-    this.timing.push({ startTime: '05:30 Pm', endTime: '06:00 Pm' });
-    this.timing.push({ startTime: '06:00 Pm', endTime: '06:30 Pm' });
-    this.timing.push({ startTime: '06:30 Pm', endTime: '07:00 Pm' });
-    this.timing.push({ startTime: '07:00 Pm', endTime: '07:30 Pm' });
-    this.timing.push({ startTime: '07:30 Pm', endTime: '08:00 Pm' });
-    this.timing.push({ startTime: '08:00 Pm', endTime: '08:30 Pm' });
-    this.timing.push({ startTime: '08:30 Pm', endTime: '09:00 Pm' });
-    this.timing.push({ startTime: '09:00 Pm', endTime: '09:30 Pm' });
-    this.timing.push({ startTime: '09:30 Pm', endTime: '10:00 Pm' });
-    this.timing.push({ startTime: '10:00 Pm', endTime: '10:30 Pm' });
-    this.timing.push({ startTime: '10:30 Pm', endTime: '11:00 Pm' });
-    this.timing.push({ startTime: '11:00 Pm', endTime: '11:30 Pm' });
-    this.timing.push({ startTime: '11:30 Pm', endTime: '00:00 Am' });
+    this.timing.push({ startTime: '24 Hours', endTime: '00:00 am' });
+    this.timing.push({ startTime: '00:00 am', endTime: '00:30 am' });
+    this.timing.push({ startTime: '00:30 am', endTime: '01:00 am' });
+    this.timing.push({ startTime: '01:00 am', endTime: '01:30 am' });
+    this.timing.push({ startTime: '01:30 am', endTime: '02:00 am' });
+    this.timing.push({ startTime: '02:00 am', endTime: '02:30 am' });
+    this.timing.push({ startTime: '02:30 am', endTime: '03:00 am' });
+    this.timing.push({ startTime: '03:00 am', endTime: '03:30 am' });
+    this.timing.push({ startTime: '03:30 am', endTime: '04:00 am' });
+    this.timing.push({ startTime: '04:00 am', endTime: '04:30 am' });
+    this.timing.push({ startTime: '04:30 am', endTime: '05:00 am' });
+    this.timing.push({ startTime: '05:00 am', endTime: '05:30 am' });
+    this.timing.push({ startTime: '05:30 am', endTime: '06:00 am' });
+    this.timing.push({ startTime: '06:00 am', endTime: '06:30 am' });
+    this.timing.push({ startTime: '06:30 am', endTime: '07:00 am' });
+    this.timing.push({ startTime: '07:00 am', endTime: '07:30 am' });
+    this.timing.push({ startTime: '07:30 am', endTime: '08:30 am' });
+    this.timing.push({ startTime: '08:30 am', endTime: '09:00 am' });
+    this.timing.push({ startTime: '09:00 am', endTime: '09:30 am' });
+    this.timing.push({ startTime: '09:30 am', endTime: '10:00 am' });
+    this.timing.push({ startTime: '10:00 am', endTime: '10:30 am' });
+    this.timing.push({ startTime: '10:30 am', endTime: '11:00 am' });
+    this.timing.push({ startTime: '11:00 am', endTime: '11:30 am' });
+    this.timing.push({ startTime: '11:30 am', endTime: '12:00 pm' });
+    this.timing.push({ startTime: '12:00 pm', endTime: '12:30 pm' });
+    this.timing.push({ startTime: '12:30 pm', endTime: '01:00 pm' });
+    this.timing.push({ startTime: '01:00 pm', endTime: '01:30 pm' });
+    this.timing.push({ startTime: '01:30 pm', endTime: '02:00 pm' });
+    this.timing.push({ startTime: '02:00 pm', endTime: '02:30 pm' });
+    this.timing.push({ startTime: '02:30 pm', endTime: '03:00 pm' });
+    this.timing.push({ startTime: '03:00 pm', endTime: '03:30 pm' });
+    this.timing.push({ startTime: '03:30 pm', endTime: '04:00 pm' });
+    this.timing.push({ startTime: '04:00 pm', endTime: '04:30 pm' });
+    this.timing.push({ startTime: '04:30 pm', endTime: '05:00 pm' });
+    this.timing.push({ startTime: '05:00 pm', endTime: '05:30 pm' });
+    this.timing.push({ startTime: '05:30 pm', endTime: '06:00 pm' });
+    this.timing.push({ startTime: '06:00 pm', endTime: '06:30 pm' });
+    this.timing.push({ startTime: '06:30 pm', endTime: '07:00 pm' });
+    this.timing.push({ startTime: '07:00 pm', endTime: '07:30 pm' });
+    this.timing.push({ startTime: '07:30 pm', endTime: '08:00 pm' });
+    this.timing.push({ startTime: '08:00 pm', endTime: '08:30 pm' });
+    this.timing.push({ startTime: '08:30 pm', endTime: '09:00 pm' });
+    this.timing.push({ startTime: '09:00 pm', endTime: '09:30 pm' });
+    this.timing.push({ startTime: '09:30 pm', endTime: '10:00 pm' });
+    this.timing.push({ startTime: '10:00 pm', endTime: '10:30 pm' });
+    this.timing.push({ startTime: '10:30 pm', endTime: '11:00 pm' });
+    this.timing.push({ startTime: '11:00 pm', endTime: '11:30 pm' });
+    this.timing.push({ startTime: '11:30 pm', endTime: '00:00 am' });
   }
   public startTime: string;
   public endTime: string;

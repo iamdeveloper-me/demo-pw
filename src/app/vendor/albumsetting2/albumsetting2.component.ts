@@ -103,10 +103,17 @@ constructor( public http: Http,public toastr: ToastrService ) {
                     this.http.get(this.mygeturl,{headers:headers}).subscribe(data =>{
                       console.log(data.json())
                       this.albumImagesModify = data.json()
-                      
+                      this.albumImagesModify.forEach(el=>{
+                        if(el['tags'] != ''){
+                          el['tags_two'] = el['tags'].split(',')
+                          debugger
+                        }  
+                      })
                       this.albumImagesModify.forEach(ele=>{
                         if(ele['tags'] != ''){
                           ele['tags'] = ele['tags'].split(',')
+                          
+
                           ele['colorTags'] = ele['colorTags'].split(',')
                           this.albumImages.push(ele)
                           console.log(this.albumImages)
@@ -226,7 +233,7 @@ this.arr  = []
                                 }
                                 this.albumImagesModify.push(item);
                                 console.log( this.albumImagesModify)
-                              
+                                this.ngOnInit()
                             } 
                           });
       

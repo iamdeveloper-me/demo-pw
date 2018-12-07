@@ -240,6 +240,7 @@
                     </div>
                     <div class="viewstore">
                          <a routerLink="../../home/detailprofile">View Storefront</a>
+                         <button (click) = "images_dialog = true">images</button>
                     </div>
                 </div>
                 <div class="col-sm-7 nopadd maxheight335px mobileheightauto ">
@@ -362,7 +363,7 @@
                              Videos
                           </a>
                        </div>
-                       <div class="col-xs-4 text-center">
+                       <div class="col-xs-4 text-center" *ngIf = "pricingPlanId.pricingPlanId > '1'">
                           <a routerLink="../albumview" class="blacktext">
                              <i class="material-icons">library_books</i>
 
@@ -376,6 +377,20 @@
                              Albums ({{VendorDashboard_data.albumCount}})
                           </a>
                        </div>
+                       <div class="col-xs-4 text-center" *ngIf = "pricingPlanId.pricingPlanId == '1'">
+                        <a  class="blacktext" (click) = "freeuser()">
+                           <i class="material-icons">library_books</i>
+
+
+                           <strong>{{VendorDashboard_data.albumImageCount}}</strong>
+
+                           <!-- <strong>{{VendorDashboard.albumImageCount}}</strong> -->
+
+
+                           <div class="clearfix"></div>
+                           Albums ({{VendorDashboard_data.albumCount}})
+                        </a>
+                     </div>
                     </div>
                     <div class="col-sm-12 bortop desktopnone nopadd paddtopbot10  clearfix">
                        <div class="col-sm-6 col-6 pull-left text-center"> 
@@ -580,7 +595,43 @@
             </div>
       </div>
     </div>
-</div>
+  </div>
 
   
   <router-outlet></router-outlet>
+
+
+
+  <div class="modal fade" id="uploadphoto" [ngClass] = "{'show' : images_dialog}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> Change Image  </h4>
+                <button type="button" class="close" (click)="closeModel()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+    
+            <div class="modal-body">
+                <div class="col-sm-12  text-center">
+                  <div class="modal-body" style="background-color: white">
+                    
+                     <div class="row popupscrollfit">
+                        <div *ngFor="let images of image_data" class="col-3 imgbottom">
+                          
+                              <img [src] = "images.imageURL"  alt="Profile picture"  class="img-responsive" (click)="setportfolio_image(images)">
+                             
+                                  <i class="material-icons selectimg">check_circle</i>
+                            
+                              <!-- {{images.type }} -->
+                             
+                              
+                        </div>
+                      </div>
+                  </div>
+                </div>    
+            </div>
+           
+        </div>  
+    </div>    
+</div>

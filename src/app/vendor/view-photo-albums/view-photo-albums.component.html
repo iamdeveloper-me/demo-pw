@@ -159,12 +159,19 @@
                             <div class="col-md-12 col-lg-12 my-drop-zone">
                               <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader"
                                 class="mb-3 text-center font-medium-5 text-uppercase grey ">
-                                 Drop Image Here..!
+                                 Add image
                                 </div>
 
                                 <div class="btnholdertik">
-                                  <input type="file" class="uploadbtnhidden" ng2FileSelect [uploader]="uploader" multiple >
+                                  <input 
+                                    type="file" 
+                                    class="uploadbtnhidden" 
+                                    ng2FileSelect 
+                                  
+                                    [uploader]="uploader" 
+                                    multiple >
                                   <button class="newbtn Choosefilebtn">Choose File</button>
+                                  <!-- (change)="fileChangeListener($event)" -->
                                 </div>
                             </div>
                           </div>
@@ -185,7 +192,9 @@
                                   <tr *ngFor="let item of uploader.queue; let i= index">
                                     <td><strong>{{ item?.file?.name }}</strong>
 
-                                    
+                                      <!-- <div class="image-div">
+                                        <img class="img-thumbnail" [src]="uploader.uploader" alt="Another alt text">
+                                      </div> -->
                                       
                                     </td>
                                   
@@ -242,14 +251,12 @@
                 
               </div>
            <div class="modal-footer text-center">
-                    <button type="submit" class="btn newbtn" (click)="uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Save</button>&nbsp;
+              <button type="submit" class="btn newbtn" (click)="uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Save</button>&nbsp;
             
-                <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
+              <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
             </div>
         </div>  
-  </div>  
-
-   
+      </div>  
   </div>
   <div class="modal fade" id="uploadphoto" [ngClass] = "{'show' : lodar}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">

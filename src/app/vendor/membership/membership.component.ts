@@ -92,6 +92,7 @@ export class MembershipComponent implements OnInit {
   }
   monthlyPrice(plan){
     console.log(plan)
+    sessionStorage.setItem('which_plan',JSON.stringify(plan))
     var planid = plan.pricingPlanId;
     var  payFrequency = '1';
      this.updatemembership(planid,payFrequency);
@@ -125,7 +126,8 @@ const plan =
 {
   pricingPlanId: planid,
   payFrequency: payFrequency,
-  voucherCode: palnvoucher
+  voucherCode: palnvoucher,
+  route_key: 0
 }
 sessionStorage.setItem('selected_plan',JSON.stringify(plan))
 this.router.navigate(['../vendor/payment-selection'])

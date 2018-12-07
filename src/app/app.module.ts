@@ -209,6 +209,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 
 import { apiService } from './shared/service/api.service';
 import { PaymentSelectionComponent } from './vendor/payment-selection/payment-selection.component';
+import { HompageLocationComponent } from './vendor/hompage-location/hompage-location.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -378,7 +379,9 @@ export function getAuthServiceConfigs() {
 
         EqualValidator,
 
-        PaymentSelectionComponent
+        PaymentSelectionComponent,
+
+        HompageLocationComponent
         
         
 

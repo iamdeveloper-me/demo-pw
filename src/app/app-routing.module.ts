@@ -137,6 +137,7 @@ import { UseraccountComponent } from './userpannel/userboard/useraccount/useracc
 //import { VendorComponent } from './dashboard/vendor/vendor.component';
 
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { HompageLocationComponent } from './vendor/hompage-location/hompage-location.component';
 
 const appRoutes: Routes = [
 
@@ -210,6 +211,8 @@ const appRoutes: Routes = [
     { path: 'vendor/gallerybar', component:  GallerybarComponent},
     { path: 'vendor/vediosetting', component:  VediosettingComponent},
     { path: 'vendor/priority', component:  PromotionPriorityComponent},
+    { path: 'vendor/homepage-location', component:  HompageLocationComponent},
+
     { path: 'vendor/audience', component:  PromotionAudienceComponent},
     { path: 'vendor/deals', component:  PromotionDealsComponent},
     { path: 'vendor/homepage', component:  PromotionHomepageComponent},

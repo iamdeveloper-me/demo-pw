@@ -5,14 +5,14 @@ import { Router } from '@angular/router';
 import { ViewCell } from 'ng2-smart-table';
 import { MainData } from '../payment-selection/payment-selection.component';
 @Component({
-  selector: 'app-promotion-priority',
-  templateUrl: './promotion-priority.component.html',
-  styleUrls: ['./promotion-priority.component.scss']
+  selector: 'app-hompage-location',
+  templateUrl: './hompage-location.component.html',
+  styleUrls: ['./hompage-location.component.scss']
 })
-export class PromotionPriorityComponent implements OnInit {
+export class HompageLocationComponent implements OnInit {
 
   public xyz:MainData;
-  page_title: '' 
+  page_title: string 
     countryArray: string[];
       public arra = new Array(); public district = new Array(); public suburb = new Array();
 
@@ -56,7 +56,7 @@ export class PromotionPriorityComponent implements OnInit {
       obj= this.HomePage[0].adAvailableSlots[i];
       obj['isSelected']=false;
       this.HomePage[0].adAvailableSlots[i] = obj;
-      this.page_title = this.HomePage[0].title;
+      this.page_title = 'Home Page Location';
       debugger
       }    
   },error => { console.log(error)});

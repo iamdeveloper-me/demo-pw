@@ -67,11 +67,11 @@
     <div class="row setup-content-2" id="step-2">
         <div class="logininfobox">
             <h3 class="pl-0 my-4 lc_head"> Account Information </h3>
-            <div class="input-effect form-group md-form mt-3">
+            <div class="form-group">
+                  <label>First Name</label>
                 <input 
-                    class="effect-16" 
+                    class="form-control" 
                     type="text" 
-                    placeholder="First Name" 
                     id="firstName" 
                     ngModel #firstName="ngModel" 
                     [ngModelOptions]="{updateOn: 'blur'}"
@@ -80,16 +80,13 @@
                     pattern="^[a-zA-Z]{3,}$"
                     required
                 />
-                <label>First Name</label>
-                <span class="focus-border"></span>
                 <small class="form-text text-muted danger" *ngIf="!firstName.valid && (firstName.dirty || firstName.touched)">Firstname is required!</small>
-
             </div>
-            <div class="input-effect form-group md-form mt-3">
+            <div class="form-group">
+                <label>Last Name</label>
                 <input 
-                    class="effect-16" 
-                    type="text" 
-                    placeholder="Last Name"  
+                    class="form-control" 
+                    type="text"  
                     [(ngModel)] = "user.logInInfo.lastName" 
                     name = "lastName" 
                     id="lastName" 
@@ -99,13 +96,12 @@
                     required 
                     pattern="^[a-zA-Z]{3,}$"
                 />
-                <label>Last Name</label>
-                <span class="focus-border"></span>
                 <small class="form-text text-muted danger" *ngIf="!lastName.valid && (lastName.dirty || lastName.touched)">Lastname is required!</small>
             </div>
-            <div class="input-effect form-group md-form mt-3">
+            <div class="form-group">
+                <label>Email</label>
                 <input 
-                    class="effect-16  validate" 
+                    class="form-control" 
                     type="email" 
                     id="email" 
                     name = "email" 
@@ -116,18 +112,15 @@
                     [(ngModel)] = "user.contactInfo.email" 
                     required 
                     pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$"
-                    placeholder="Email"
                 />
-                <label>Email</label>
-                <span class="focus-border"></span>
                 <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">Email is required!</small>
             </div>
             <!-- [(ngModel)] = "user.contactInfo.email"   -->
-            <div class="input-effect form-group md-form mt-3">
+            <div class="form-group">
+                 <label>Password</label>
                 <input 
-                    class="effect-16" 
+                    class="form-control" 
                     type="password" 
-                    placeholder="Password" 
                     [(ngModel)] = "user.logInInfo.password" 
                     name = "password" 
                     ngModel 
@@ -138,8 +131,6 @@
                     minlength="6"
                     validateEqual="confirmPassword" reverse="true"
                 />
-                <label>Password</label>
-                <span class="focus-border"></span>
                 <!-- <div *ngIf="password.touched && password.invalid" class="invalid-feedback form-submit">
                         <small class="form-text text-muted danger"  *ngIf="password.errors.required">Password is required!</small>
                         <small class="form-text text-muted danger"  *ngIf="password.errors.minlength">Password must be at least 6 characters!</small>
@@ -153,11 +144,11 @@
                         </div>
                     </div>
             </div>
-            <div class="input-effect form-group md-form mt-3 mb-xs-20">
+            <div class="form-group">
+                 <label>Confirm Password</label>
                 <input 
-                    class="effect-16" 
+                    class="form-control" 
                     type="password" 
-                    placeholder="Confirm Password" 
                     autocomplete="new-password"
                     id="confirmPassword" 
                     ngModel 
@@ -169,8 +160,6 @@
                     required
                     validateEqual="password" reverse="false"
                 />
-                 <label>Confirm Password</label>
-                <span class="focus-border"></span>
                 <!-- <small [hidden]="confirmPassword.valid || (confirmPassword.pristine && !f.submitted)" class="text-danger">
                         Password mismatch
                       </small> -->
@@ -191,9 +180,10 @@
                     </div>
 
             </div>
-            <div class="input-effect form-group md-form mt-3">
+            <div class="form-group">
+                 <label>Phone No</label>
                 <input 
-                    class="effect-16 validate" 
+                    class="form-control" 
                     type="text"  
                     id="phone"  
                     ngModel #phone="ngModel" 
@@ -203,10 +193,7 @@
                     required
                     minlength="7" 
                     maxlength="10"
-                    placeholder="Phone no"
                 />
-                <label>Phone no</label>
-                <span class="focus-border"></span>
                 <small class="form-text text-muted danger" *ngIf="!phone.valid && (phone.dirty || phone.touched)">Phone is required!</small>
 
             </div>
@@ -221,9 +208,10 @@
     <div class="row setup-content-2" id="step-3">
         <div class="logininfobox">
             <h3 class="pl-0 my-4 lc_head"> Business Information </h3>
-            <div class="input-effect form-group md-form mt-3">
+            <div class="form-group">
+                 <label>Name of your Bussiness</label>
                 <input 
-                    class="effect-16 validate" 
+                    class="form-control" 
                     type="text" 
                     placeholder="Name of your Bussiness"
                     id="nameOfBusiness"  
@@ -234,11 +222,8 @@
                     name = "nameOfBusiness" 
                     required
                 />
-                <label>Name of your Bussiness</label>
                 <!-- pattern="^[a-zA-Z ]{3,}$"  -->
-                <span class="focus-border"></span>
                 <small class="form-text text-muted danger" *ngIf="!nameOfBusiness.valid && (nameOfBusiness.dirty || nameOfBusiness.touched)">Name is required!</small>
-
             </div>
             <!-- <div class="input-effect form-group md-form mt-3 ">
                 <input class="effect-16 validate" 
@@ -252,8 +237,9 @@
                 <label>Country </label>
                 <span class="focus-border"></span>
             </div> -->
-            <div class="input-effect form-group md-form mt-3 ">
-                <select name="country"   class="effect-16 validate"   [(ngModel)] = "country_id " name="country_id" (change)="country($event)">
+            <div class="form-group">
+                 <label>Country</label>
+                <select name="country"   class="form-control"   [(ngModel)] = "country_id " name="country_id" (change)="country($event)">
                         <option   *ngFor="let country of countryArray ;let c =index" 
                             type="text"
                             id="{{country.countryName}}"
@@ -277,14 +263,11 @@
                         required
                         > -->
                 </select>
-        
-             
-                <label>Country</label>
-                <span class="focus-border"></span>
             </div>
             <!-- {{district |json}} -->
-            <div class="input-effect form-group md-form mt-3">
-                 <select name="district"   class="effect-16 validate"  [(ngModel)] = "city_id"  name="city_id"(change)="districtA($event)"  > 
+            <div class="form-group">
+                <label>District</label>
+                 <select name="district"   class="form-control"  [(ngModel)] = "city_id"  name="city_id"(change)="districtA($event)"  > 
                         <!-- (change)="country($event)" -->
                     <option   *ngFor="let dist of district ;let d =index" 
                         type="text"
@@ -299,11 +282,10 @@
                     </option>
                    
                  </select>
-                <label>District</label>
-                <span class="focus-border"></span>
             </div>
-            <div class="input-effect form-group md-form mt-3">
-                    <select    class="effect-16 validate" [(ngModel)] = "sub_id"  name="sub_id" (change)="subr($event)" > 
+                <div class="form-group">
+                    <label>Suburb</label>
+                    <select class="form-control" [(ngModel)] = "sub_id"  name="sub_id" (change)="subr($event)" > 
                             <!-- (change)="country($event)" -->
                         <option   *ngFor="let sub of suburb ;let s =index" 
                             type="text"
@@ -314,16 +296,13 @@
                             [value]="s"
                             required>
                             {{sub.name }}
-                        
                         </option>
-                       
-                </select>
-                    <label>Suburb</label>
-                    <span class="focus-border"></span>
+                    </select>
                 </div>
-            <div class="input-effect form-group md-form mt-3">
+                <div class="form-group">
+                    <label>Postal Code</label>
                     <input 
-                        class="effect-16 validate" 
+                        class="form-control" 
                         type="text" 
                         placeholder="Postal Code"
                         id="postalCode" 
@@ -335,14 +314,13 @@
                         pattern="[0-9]{4,6}"
                     />
                     <!-- Postal Code must be 6 digit -->
-                    <label>Postal Code</label>
-                    <span class="focus-border"></span>
                     <!-- <small class="form-text text-muted danger" *ngIf="!postalCode.valid && (postalCode.dirty || postalCode.touched)">postal code is required!</small> -->
                 </div>
 
-            <div class="input-effect form-group md-form mt-3">
+            <div class="form-group">
+                <label>Street Address</label>
                 <input 
-                    class="effect-16 validate md-textarea" 
+                    class="form-control" 
                     type="text" 
                     id="address" 
                     ngModel #address="ngModel" 
@@ -353,8 +331,6 @@
                     required 
                     minlength="3"
                 />
-                <label>Street Address</label>
-                <span class="focus-border"></span>
                 <small class="form-text text-muted danger" *ngIf="!address.valid && (address.dirty || address.touched)">address is required!</small>
             </div>
 
@@ -369,9 +345,10 @@
                     <label>Contact Person</label>
                     <span class="focus-bo+rder"></span>
                 </div> -->
-            <div class="input-effect form-group md-form mt-3">
+            <div class="form-group">
+                <label>Website</label>
                 <input 
-                    class="effect-16 validate" 
+                    class="form-control" 
                     type="text" 
                     id="website" 
                     ngModel 
@@ -382,8 +359,6 @@
                     placeholder="Website"
                 />
                 <!-- pattern="^(ftp|http|https):\/\/[^ "]+$" -->
-                <label>Website</label>
-                <span class="focus-border"></span>
                 <!-- <small class="form-text text-muted danger" *ngIf="!website.valid && (website.dirty || website.touched)">website is required!</small> -->
 
             </div>

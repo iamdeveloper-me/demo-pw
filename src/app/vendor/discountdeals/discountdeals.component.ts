@@ -116,7 +116,7 @@ export class DiscountdealsComponent implements OnInit {
     e=>{
       
      if(e.status == 400){
-      this.toastr.error(JSON.parse(e._body)['no_discount'][0])
+      // this.toastr.error(JSON.parse(e._body)['no_discount'][0])
       this.noDiscount = true;
      }
     })

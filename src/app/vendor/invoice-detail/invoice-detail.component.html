@@ -56,7 +56,7 @@
                 </div>
                 <div class="container">
 
-                    <div class="col-md-12 nopadd">
+                    <div class="col-md-12 nopadd" >
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><strong>Order summary</strong></h3>
@@ -74,21 +74,24 @@
                                                 <th></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <!-- <tbody *ngIf="invoice_length > 0;else other">
                                             <tr *ngFor="let data of dataArray">
                                                 <td>{{data.paymentDate}}</td>
                                                 <td>{{data.purposeCode}}</td>
                                                 <td>{{data.invoiceId}}</td>
                                                 <td>{{data.amountPaid}}</td>
-                                                <!-- <td>Paypal</td> -->
+                                              
                                                 <td>
-                                                    <button data-toggle="modal" data-target="#invoicedetail">View
+                                                    <button data-toggle="modal" data-target="#invoicedetail" (click)="invoiceDataFunction(data)">View
                                                         Invoice</button>
                                                     <button>Save PDF</button>
                                                 </td>
                                             </tr>                                       
 
-                                        </tbody>
+                                        </tbody> -->
+                                        <ng-template #other> 
+                                                No data found..............
+                                        </ng-template>
                                     </table>
                                 </div>
                             </div>
@@ -99,7 +102,7 @@
             </div>
         </div>
 
-        <app-foot></app-foot>
+        <!-- <app-foot></app-foot> -->
         <router-outlet></router-outlet>
     </div>
 </div>
@@ -107,34 +110,35 @@
 <div class="modal fade" id="invoicedetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+             <div class="modal-header">
                 <h4 class="modal-title">Invoice Details
                     <span class="pull-right">Order # 12345</span>
                 </h4>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
+            </div> 
 
             <div class="modal-body">
                 <div class="col-sm-12 nopadd">
-                    <div class="container" *ngFor="let data of dataArray">
+                    <div class="container" >
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <address>
                                             <strong>Customer Detail</strong><br>
-                                            <!-- Customer Id : (# 12345678) <br>  --> {{data.invoiceId}}<br>
-                                            {{data.fullName}}<br>
-                                           {{data.fromAddress}}, {{data.fromCity}}<br>
-                                            {{data.fromState}},{{data.fromCountry}} {{data.fromFax}}
+                                          <!-- {{data.invoiceId}}<br> -->
+                                          
+                                            {{dataArray1.customerDetails.firstName}}<br>
+                                           <!-- {{data.fromAddress}}, {{data.fromCity}}<br> -->
+                                            <!-- {{data.fromState}},{{data.fromCountry}} {{data.fromFax}} -->
                                         </address>
                                     </div>
                                     <div class="col-xs-6 text-right">
                                         <address>
                                             <strong>Payment Method:</strong><br>
-                                            <!-- Visa ending **** 4242<br> --> {{data.paymentDetails}}<br>
-                                            {{data.email}}<br />
+                                         {{dataArray1.paymentType}}<br>
+                                            {{dataArray1.customerDetails.emailaddress}}<br />
                                         </address>
                                     </div>
                                 </div>
@@ -147,7 +151,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h3 class="panel-title"><strong>Order summary</strong>
-                                            <span class="pull-right"><strong>Date: {{data.paymentDate}}</strong></span>
+                                            <span class="pull-right"><strong>Date: {{dataArray1.paymentDate}}</strong></span>
                                         </h3>
                                     </div>
                                     <div class="panel-body">
@@ -162,7 +166,6 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <!-- foreach ($order->lineItems as $line) or some such thing here -->
                                                     <tr>
                                                         <td>BS-200</td>
                                                         <td class="text-center">$10.99</td>
@@ -197,7 +200,7 @@
                                                         <td class="no-line"></td>
                                                         <td class="no-line"></td>
                                                         <td class="no-line text-center"><strong>Total</strong></td>
-                                                        <td class="no-line text-right">${{data.amountPaid}}</td>
+                                                        <td class="no-line text-right">$34</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

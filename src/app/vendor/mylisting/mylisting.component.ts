@@ -106,26 +106,6 @@ c;
         "searchQuery": '',
         "status": 8
     }
-
-    this.http.post(this.base_url + "/myreviews", data, { headers: this.header() }).subscribe(
-        data =>{
-            alert("dfd")
-          this.countryArray = data.json()
-          console.log(  this.countryArray);  
-
-          for (let item of this.countryArray) {
-              console.log(item )
-            //   for (let item of item.items) {
-            //         if(this.item.reviewStatus == 1 )
-            //         {
-            //             this.ReviewReadStatus( item.reviewId,item.reviewStatus);
-            //         }
-            // }
-            }
-          
-    },error=>{
-          console.log(error)
-    });
   }
 
   GetMarkAsPinned(reviewId){
@@ -151,16 +131,18 @@ c;
     // NotReplied=5,
     // Replied=6,
     // Pinned=7
-
-    setTimeout(function(){
-
-        this.UpdateReviewstatus()
-    }, 25000);
     
+  }
+  ExecuteMyFunction(value){
+    for (var item of value.items) {
+      this.ReviewReadStatus(item.reviewId, 2);
+    }
   }
 
   ngAfterViewInit(){
-    
+    setTimeout( ()=>{
+      this.ExecuteMyFunction(this.countryArray);
+    }, 25000)
   }
   public sort(sortValue) {
     if (this.filterCriteria.sortedBy == sortValue)

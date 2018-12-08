@@ -35,16 +35,14 @@
 										</div>
 										<div class="upcominglisthomepage"  *ngFor="let job of jobArray;let i=index ">
 											<div class="col-sm-5 col-8">
-												<i class="material-icons">date_range</i>  {{job.startDate |  date:'medium' }}<br/>
+												<!-- <i class="material-icons">date_range</i>  {{job.startDate |  date:'medium' }} <br/> -->
 												<ul>
-													<li>Guests: {{job.clientNumber}}</li><br/>
-													<li>Name: {{job.clientName}}</li><br/>
-													<li>Start Date : {{job.startDate | date}}</li><br/>
-													<li>End Date: {{job.endDate | date}}</li><br/>
-													<li>Start Time: {{job.startTime | date:'shortTime' }}</li><br/>
-													<li>End Time : {{job.endTime | date:'shortTime' }}</li><br/>
-													<li>No Of Guests : {{job.noOfGuests}}</li><br/>
 													
+													<li>Name: {{job.clientName}}</li><br/>
+													<li>Guests Number: {{job.clientNumber}}</li><br/>
+													<li><i class="material-icons">access_time</i> Start At : {{job.startDate | date}} {{job.startTime | date:'shortTime' }}</li><br/>
+													<li><i class="material-icons">access_time</i> End At:   {{job.endDate | date}} {{job.endTime | date:'shortTime' }}</li><br/>
+													<li>No Of Guests : {{job.noOfGuests}}</li><br/>
 												</ul>
 											</div>
 											<div class="col-sm-3 col-4 upcomingright">
@@ -52,13 +50,13 @@
 													<i class="material-icons ">location_on
 													</i>{{job.eventLocation}}
 												</div>
-												{{job.clientPhoneNumber}}																<br/>
+												{{job.clientPhoneNumber}} <br/>
 												<button class="callbutton">Call</button>
 											</div>
 											<div class="col-sm-4 col-4 upcomingright">
 												<button type="button" class="btn btn-danger whitetext" (click) = "edit_job_modle(job)" >Edit</button>
 												&nbsp;&nbsp;			
-												<button type="button" class="btn btn-danger whitetext" (click) = "deletevent(job ,i)" >
+												<button type="button" class="btn btn-danger whitetext" (click) = "deletevent(job,index)" >
 													delete
 													 <!-- {{job.vendorJobsId}} -->
 												</button>
@@ -67,29 +65,27 @@
 									</div>
 									<div class="upcominglisthomepage alldata "  *ngFor="let job of final_List;let i=index ">
 										<div class="col-sm-5 col-8">
-											<i class="material-icons">date_range</i>  {{job.startDate |  date:'medium' }}<br/>
-											<ul>
-												<li>Guests: {{job.clientNumber}}</li><br/>
-												<li>Name: {{job.clientName}}</li><br/>
-												<li>Start Date : {{job.startDate | date}}</li><br/>
-												<li>End Date: {{job.endDate | date}}</li><br/>
-												<li>Start Time: {{job.startTime | date:'shortTime' }}</li><br/>
-												<li>End Time : {{job.endTime | date:'shortTime' }}</li><br/>
-												<li>No Of Guests : {{job.noOfGuests}}</li><br/>
-											</ul>
+											<!-- <i class="material-icons">date_range</i>  {{job.startTime |  date:'medium' }}<br/> -->
+												<ul>
+													<li>Name: {{job.clientName}}</li><br/>
+													<li>Guests Number: {{job.clientNumber}}</li><br/>
+													<li><i class="material-icons">access_time</i> Start At : {{job.startDate | date}} {{job.startTime | date:'shortTime' }}</li><br/>
+													<li><i class="material-icons">access_time</i> End At:   {{job.endDate | date}} {{job.endTime | date:'shortTime' }}</li><br/>
+													<li>No Of Guests : {{job.noOfGuests}}</li><br/>
+												</ul>
 										</div>
 										<div class="col-sm-3 col-4 upcomingright">
 											<div>
 												<i class="material-icons ">location_on
 												</i>{{job.eventLocation}}
 											</div>
-											{{job.clientPhoneNumber}}																<br/>
+											{{job.clientPhoneNumber}} <br/>
 											<button class="callbutton">Call</button>
 										</div>
 										<div class="col-sm-4 col-4 upcomingright">
 											<button type="button" class="btn btn-danger whitetext" (click) = "edit_job_modle(job)" >Edit</button>
 											&nbsp;&nbsp;			
-											<button type="button" class="btn btn-danger whitetext" (click) = "deletevent(job,i)" >
+											<button type="button" class="btn btn-danger whitetext" (click) = "deletevent(job,index)" >
 												delete 
 												<!-- {{job.vendorJobsId}} -->
 											</button>
@@ -303,8 +299,8 @@
 														</div>
 											</div>
 											<div class="modal-footer btn_center">
-												<button type="submit" class="btn newbtn"  value="Cancel" class="button" id="cancel-button">SAVE</button>
-												<button type="button"  value="Cancel" class="button" id="cancel-button">Cancle</button>
+												<button type="submit" class="btn newbtn" value="Cancel" id="cancel-button">SAVE</button>
+												<button type="button"  value="Cancel" class="btn newbtn newcancelbtn" id="cancel-button" (click)="close()">CANCEL</button>
 											</div>
 										</div>
 									</form>
@@ -386,7 +382,7 @@
 	<div class="modal-content">
 		<div class="card-block" style="background: #fff;">
 			<div class="modal-header">
-					<h5 class="modal-title"><b> Calender </b> </h5>
+					<h5 class="modal-title"><b> Create new Job </b> </h5>
 				<button type="button" class="close" (click)="close()">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -394,13 +390,13 @@
 			
 				<div class="modal-body">
 					<div class="row">
-						<div class="col-md-6 col-12">
+						<div class="col-sm-6">
 								<div class="form-group">
 								<label>Client Name</label>	
 								<input 
 									type="text" 
 									name="clientName" 
-									class="effect-16" 
+									class="form-control" 
 									[(ngModel)]="clientName" 
 									id = "clientName"
 									#cname="ngModel" 
@@ -413,12 +409,12 @@
 									</div>
 								</div>	
 						</div>
-						<div class="col-md-6 col-12">
+						<div class="col-sm-6">
 								<div class="form-group">
-										<label>Event Title:</label>
+										<label>Event Title</label>
 										<input type="text" 
 										name="eventTitle" 
-										class="effect-16" 
+										class="form-control"
 										[(ngModel)]="eventTitle"
 										id = "eventTitle"
 										#ctitle="ngModel" 
@@ -431,13 +427,13 @@
 										</div>
 									</div>
 						</div>
-						<div class="col-md-6 col-12">
+						<div class="col-sm-6">
 								<div class="form-group">
 										<label>Client Number</label>
 										<input
 											type="text" 
 											name="clientNumber" 
-											class="effect-16" 
+											class="form-control" 
 											[(ngModel)]="clientNumber" 
 											id = "clientNumber"
 											#cClient="ngModel" 
@@ -447,17 +443,17 @@
 											/>
 										<div *ngIf="cClient.invalid && (cClient.dirty || cClient.touched)" class="text-danger">
 												<div *ngIf="cClient.errors.required">Client Number is required.</div>
-												<!-- <div *ngIf="cClient.errors.minlength">Client Number is minimum 7.</div> -->
+												<div *ngIf="cClient.errors.minlength">Client Number is minimum 7.</div>
 										</div>
 								</div>
 						</div>
-						<div class="col-md-6 col-12">
+						<div class="col-sm-6">
 								<div class="form-group">
-										<label>Event Location:</label>		
+										<label>Event Location</label>		
 										<input 
 										type="text" 
 										name="eventLocation"
-										class="effect-16"
+										class="form-control" 
 										[(ngModel)]="eventLocation" 
 										id = "eventLocation"
 										#ceventl="ngModel" 
@@ -470,16 +466,69 @@
 									</div>
 								</div>
 						</div>
-						<div class="col-md-6 col-12">
+
+						<div class="col-sm-6">
+								<label>Start Date</label>
+									<input 
+									class="form-control" 
+									placeholder="yyyy-mm-dd"
+									 name="startDate" 
+									 [(ngModel)]="startDate"
+									  ngbDatepicker 
+									  id = "startDate"
+									  #cStartDate="ngModel" 
+									  [dayTemplate]="customDay"
+									  [markDisabled]="isDisabled" #d4="ngbDatepicker">
+									<div class="input-group-append">
+									  <div class="input-group-text" (click)="d4.toggle()">
+										<i class="fa fa-calendar" style="cursor: pointer;"></i>
+									  </div>
+									</div>
+									<div *ngIf="cStartDate.invalid && (cStartDate.dirty || cStartDate.touched)" class="text-danger">
+											<div *ngIf="cStartDate.errors.required">
+													Start date is required.
+											</div>
+									</div>
+							</div>
+						<div class="col-sm-6">
+								<div class="form-group">
+									<label>Start Time</label>	
+									<select 
+									class="form-control" 
+									type="time" 
+									[(ngModel)]="startTime"  
+									id="startTime" 
+									name="startTime"						
+									#cStartTime="ngModel" 
+									required>
+											<option *ngFor='let s of select_time.timing' [value]='s.startTime'>{{s.startTime}}</option>
+									</select>
+										
+									<!-- <input 
+									type="time" 
+									name="startTime"
+									class="effect-16"
+									[(ngModel)]="startTime" 
+									id = "startTime"
+									#cStartTime="ngModel" 
+									required 
+									> -->
+									<div *ngIf="cStartTime.invalid && (cStartTime.dirty || cStartTime.touched)" class="text-danger">
+											<div *ngIf="cStartTime.errors.required">
+													Start Time is required.
+											</div>
+									</div>
+								</div>
+						</div>
+						<!-- <div class="col-md-6 col-12">
 							<div class="form-group">
-								<label> Start date Event :</label>		
+								<label> Start Date :</label>	
 								<input 
 								type="date" 
 								name="startDate"
 								class="effect-16"
 								[(ngModel)]="startDate" 
-								id = "eventLocation"
-								#cStartDate="ngModel" 
+							
 								required 
 								>
 								<div *ngIf="cStartDate.invalid && (cStartDate.dirty || cStartDate.touched)" class="text-danger">
@@ -488,10 +537,62 @@
 										</div>
 								</div>
 							</div>
+						</div> -->
+
+
+					
+
+						<div class="col-sm-6">
+								<label>End Date</label>
+									<input 
+									class="form-control" 
+									placeholder="yyyy-mm-dd" 
+									name="endDate" 
+									[(ngModel)]="endDate"
+									 ngbDatepicker 
+									 [dayTemplate]="customDay"
+									 id = "endDate"
+									 #cEndDate="ngModel" 
+									 required 
+									  [markDisabled]="isDisabled" #d3="ngbDatepicker">
+									<div class="input-group-append">
+									  <div class="input-group-text" (click)="d3.toggle()">
+										<i class="fa fa-calendar" style="cursor: pointer;"></i>
+									  </div>
+									</div>
+									<div *ngIf="cEndDate.invalid && (cEndDate.dirty || cEndDate.touched)" class="text-danger">
+											<div *ngIf="cEndDate.errors.required">
+													End Date is required.
+											</div>
+									</div>
+							</div>
+
+						<div class="col-sm-6">
+								<div class="form-group">
+										<label> End Time</label>		
+										<!-- <input 
+										type="time" 
+										name="endTime"
+										class="effect-16"
+										[(ngModel)]="endTime" 
+										id = "endTime"
+										 #cEndTime="ngModel" 
+										required 
+										> -->
+										<select class="form-control" type="time" [(ngModel)]="endtime"  id="endTime" name="endTime" #cEndTime="ngModel" 
+										required >
+												<option *ngFor='let s of select_time.timing' [value]='s.endTime'>{{s.endTime}}</option>
+										</select>
+										<div *ngIf="cEndTime.invalid && (cEndTime.dirty || cEndTime.touched)" class="text-danger">
+												<div *ngIf="cEndTime.errors.required">
+														End Time is required.
+												</div>
+										</div>
+								</div>
 						</div>
-						<div class="col-md-6 col-12">
+						<!-- <div class="col-md-6 col-12">
 							<div class="form-group">
-									<label> End date Event :</label>		
+									<label> End Date :</label>		
 									<input 
 									type="date" 
 									name="endDate"
@@ -503,56 +604,22 @@
 									>
 									<div *ngIf="cEndDate.invalid && (cEndDate.dirty || cEndDate.touched)" class="text-danger">
 											<div *ngIf="cEndDate.errors.required">
-													End date is required.
+													End Date is required.
 											</div>
 									</div>
 							</div>
-						</div>
-						<div class="col-md-6 col-12">
-							<div class="form-group">
-								<label> Start Time Event :</label>		
-								<input 
-								type="time" 
-								name="startTime"
-								class="effect-16"
-								[(ngModel)]="startTime" 
-								id = "startTime"
-								#cStartTime="ngModel" 
-								required 
-								>
-								<div *ngIf="cStartTime.invalid && (cStartTime.dirty || cStartTime.touched)" class="text-danger">
-										<div *ngIf="cStartTime.errors.required">
-												Start Time is required.
-										</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-12">
-							<div class="form-group">
-									<label> End Time Event :</label>		
-									<input 
-									type="time" 
-									name="endTime"
-									class="effect-16"
-									[(ngModel)]="endTime" 
-									id = "endTime"
-									 #cEndTime="ngModel" 
-									required 
-									>
-									<div *ngIf="cEndTime.invalid && (cEndTime.dirty || cEndTime.touched)" class="text-danger">
-											<div *ngIf="cEndTime.errors.required">
-													End Time is required.
-											</div>
-									</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-12">
+						</div> -->
+
+
+						
+
+						<div class="col-sm-12">
 							<div class="form-group">
 									<label> No of Guests :</label>
 									<input 
 										type="text" 
 										name="noOfGuests"
-										class="effect-16"
+										class="form-control"
 										[(ngModel)]="noOfGuests" 
 										id = "noOfGuests"
 										 #cNoGroups="ngModel" 
@@ -565,16 +632,15 @@
 									</div>
 							</div>
 						</div>
-							<div class="col-md-6 col-12">
+							<div class="col-12">
 									<div class="form-group">
 											<input 
 									type="hidden" 
 									name="userId"
-								
 									[(ngModel)]="userId" >
 									</div>
 							</div>		
-							<div class="col-md-6 col-12">
+							<div class="col-12">
 									<div class="form-group">
 											<input 
 									type="hidden" 
@@ -582,7 +648,7 @@
 									[(ngModel)]="vendorJobsId" >
 									</div>
 							</div>	
-							<div class="col-md-6 col-12">
+							<div class="col-12">
 									<div class="form-group">
 														
 									<input 
@@ -616,13 +682,13 @@
 					<form (ngSubmit)="edit_job(g)" #g="ngForm"> 
 						<div class="modal-body">
 							<div class="row">
-								<div class="col-md-6 col-12">
+								<div class="col-sm-6">
 										<div class="form-group">
 										<label>Client Name</label>	
 										<input 
 											type="text" 
 											name="clientName" 
-											class="effect-16" 
+											class="form-control" 
 											[(ngModel)]="edit_job_form.clientName" 
 											id = "eclientName"
 								            #ejName="ngModel" 
@@ -635,12 +701,12 @@
 											</div>
 										</div>	
 								</div>
-								<div class="col-md-6 col-12">
+								<div class="col-sm-6">
 										<div class="form-group">
-												<label>Event Title:</label>
+												<label>Event Title</label>
 												<input type="text" 
 												name="eventTitle" 
-												class="effect-16" 
+												class="form-control" 
 												[(ngModel)]="edit_job_form.eventTitle"
 												id = "eeventTitle"
 												#ejTitle="ngModel" 
@@ -653,13 +719,13 @@
 												  </div>
 											</div>
 								</div>
-								<div class="col-md-6 col-12">
+								<div class="col-sm-6">
 										<div class="form-group">
 												<label>Client Number</label>
 												<input
 													type="text" 
 													name="clientNumber" 
-													class="effect-16" 
+													class="form-control" 
 													[(ngModel)]="edit_job_form.clientNumber" 
 													id = "eclientNumber"
 													#ejClient="ngModel" 
@@ -671,16 +737,19 @@
 															<div *ngIf="ejClient.errors.required">
 																	Client Number is required.
 															</div>
+															<div *ngIf="ejClient.errors.minlength">
+																Client Number is minimum 7 Digit.
+														</div>
 													</div>
 										</div>
 								</div>
-								<div class="col-md-6 col-12">
+								<div class="col-sm-6">
 										<div class="form-group">
-												<label>Event Location:</label>		
+												<label>Event Location</label>		
 												<input 
 												type="text" 
 												name="eventLocation"
-												class="effect-16"
+												class="form-control"
 												[(ngModel)]="edit_job_form.eventLocation" 
 												id = "eeventLocation"
 												#ejLocation="ngModel" 
@@ -693,32 +762,115 @@
 												</div>
 										</div>
 								</div>
-								<div class="col-md-6 col-12">
+								<div class="col-sm-6">
 									<div class="form-group">
-										<label>Start date Event :</label>		
-										<input 
+										<label> Start Time : {{edit_job_form.startTime | date:'shortTime'}} </label>		
+										<!-- <input 
 										type="datetime-local" 
-										name="startDate"
+										name="startTime"
 										class="effect-16"
+										[(ngModel)]="edit_job_form.startTime" 
+										id = "estartTime"
+										#ejStartTime="ngModel" 
+										required 
+										/> -->
+										<select 
+										class="form-control" 
+										type="time" 
+										[(ngModel)]="startTime"  
+										id="startTime" 
+										name="startTime"						
+										#ejStartTime="ngModel" 
+										required>
+												<option *ngFor='let s of select_time.timing' [value]='s.startTime'>{{s.startTime}}</option>
+										</select>
+										<div *ngIf="ejStartTime.invalid && (ejStartTime.dirty || ejStartTime.touched)" class="text-danger">
+												<div *ngIf="ejStartTime.errors.required">
+														Start Time is required.
+												</div>
+										</div>
+									</div>
+								</div>
+								<!-- <div class="col-sm-6">
+									<div class="form-group">
+										<label>Start Date</label>		
+										<input 
+										type="date" 
+										name="startDate"
+										class="form-control"
 										[(ngModel)]="edit_job_form.startDate" 
 										id = "estartDate"
 										#ejStartDate="ngModel" 
 										required 
-										/>                   -->
+										/>          
 										<div *ngIf="ejStartDate.invalid && (ejStartDate.dirty || ejStartDate.touched)" class="text-danger">
 												<div *ngIf="ejName.errors.required">
-														Start date is required.
+														Start Date is required.
 												</div>
 										  </div>
 									</div>
+								</div> -->
+                                
+								<div class="col-sm-6">
+									<label>Start Date</label>
+										<input 
+										class="form-control" 
+										placeholder="yyyy-mm-dd"
+										name="startDate" 
+										[(ngModel)]="edit_job_form.startDate"
+										ngbDatepicker 
+										id = "estartDate"
+										#ejStartDate="ngModel" 
+										[dayTemplate]="customDay"
+										[markDisabled]="isDisabled" #d4="ngbDatepicker">
+										<div class="input-group-append">
+										<div class="input-group-text" (click)="d4.toggle()">
+											<i class="fa fa-calendar" style="cursor: pointer;"></i>
+										</div>
+										</div>
+										<div *ngIf="ejStartDate.invalid && (ejStartDate.dirty || ejStartDate.touched)" class="text-danger">
+												<div *ngIf="ejName.errors.required">
+														Start Date is required.
+												</div>
+										  </div>
 								</div>
-								<div class="col-md-6 col-12">
+								<div class="col-sm-6">
+									<div class="form-group">
+											<label> End Time : {{edit_job_form.endTime | date:'shortTime'}} </label>		
+											<!-- <input 
+											type="datetime-local" 
+											name="endTime"
+											class="effect-16"	
+											[(ngModel)]="edit_job_form.endTime" 
+											id = "eendTime"
+											 #ejEndTime="ngModel" 
+											required 
+											/> -->
+											<select 
+											class="form-control" 
+											type="time" 
+											[(ngModel)]="endTime"  
+											id="endTime" 
+											name="endTime"						
+											#ejEndTime="ngModel" 
+											required>
+													<option *ngFor='let s of select_time.timing' [value]='s.startTime'>{{s.startTime}}</option>
+											</select>
+											<div *ngIf="ejEndTime.invalid && (ejEndTime.dirty || ejEndTime.touched)" class="text-danger">
+													<div *ngIf="ejEndTime.errors.required">
+															End Time is required.
+													</div>
+											</div>
+									</div>
+								</div>
+
+								<!-- <div class="col-sm-6">
 										<div class="form-group">
-												<label> End date Event :</label>		
+												<label> End Date :</label>		
 												<input 
-												type="datetime-local" 
+												type="date" 
 												name="endDate"
-												class="effect-16"
+												class="forn-control"
 												[(ngModel)]="edit_job_form.endDate" 
 												id = "eendDate"
 												#ejEndDate="ngModel" 
@@ -730,53 +882,40 @@
 														</div>
 												</div>
 										</div>
-									</div>
-								<div class="col-md-6 col-12">
-										<div class="form-group">
-											<label> Start Time Event :</label>		
-											<input 
-											type="time" 
-											name="startTime"
-											class="effect-16"
-											[(ngModel)]="edit_job_form.startTime" 
-											id = "estartTime"
-											#ejStartTime="ngModel" 
-											required 
-											/>
-											<div *ngIf="ejStartTime.invalid && (ejStartTime.dirty || ejStartTime.touched)" class="text-danger">
-													<div *ngIf="ejStartTime.errors.required">
-															Start Time is required.
-													</div>
-											</div>
+								</div> -->
+                                
+								<div class="col-sm-6">
+									<label>End Date</label>
+										<input 
+										class="form-control" 
+										placeholder="yyyy-mm-dd" 
+										name="endDate" 
+										[(ngModel)]="edit_job_form.endDate"
+										ngbDatepicker 
+										[dayTemplate]="customDay"
+										id = "eendDate"
+										#ejEndDate="ngModel" 
+										required 
+										[markDisabled]="isDisabled" #d3="ngbDatepicker">
+										<div class="input-group-append">
+										<div class="input-group-text" (click)="d3.toggle()">
+											<i class="fa fa-calendar" style="cursor: pointer;"></i>
+										</div>
+										</div>
+										<div *ngIf="ejEndDate.invalid && (ejEndDate.dirty || ejEndDate.touched)" class="text-danger">
+												<div *ngIf="ejEndDate.errors.required">
+														End Date is required.
+												</div>
 										</div>
 								</div>
 
-								<div class="col-md-6 col-12">
-									<div class="form-group">
-											<label> End Time Event :</label>		
-											<input 
-											type="time" 
-											name="endTime"
-											class="effect-16"
-											[(ngModel)]="edit_job_form.endTime" 
-											id = "eendTime"
-											 #ejEndTime="ngModel" 
-											required 
-											/>
-											<div *ngIf="ejEndTime.invalid && (ejEndTime.dirty || ejEndTime.touched)" class="text-danger">
-													<div *ngIf="ejEndTime.errors.required">
-															End Time is required.
-													</div>
-											</div>
-									</div>
-								</div>
-								<div class="col-md-6 col-12">
+								<div class="col-sm-6">
 										<div class="form-group">
 												<label> No of Guests :</label>
 												<input 
 												type="text" 
 												name="noOfGuests"
-												class="effect-16"
+												class="form-control"
 												[(ngModel)]="edit_job_form.noOfGuests" 
 												id = "enoOfGuests"
 												 #ejGuests="ngModel" 
@@ -787,34 +926,34 @@
 														</div>
 												</div>
 										</div>
-									</div>
-									<div class="col-md-6 col-12">
-											<div class="form-group">
+								</div>
+									<div class="col-12">
+											
 													<input 
 											type="hidden" 
 											name="userId"
 										
 											[(ngModel)]="userId" />
-										   </div>
+										
 									</div>		
-									<div class="col-md-6 col-12">
-											<div class="form-group">
+									<div class="col-12">
+											
 											<input 
 											type="hidden" 
 											name="vendorJobsId"
 											[(ngModel)]="edit_job_form.vendorJobsId" 
 											/>
 											
-										   </div>
+										  
 									</div>	
-									<div class="col-md-6 col-12">
-											<div class="form-group">
+									<div class="col-12">
+										
 																
 											<input 
 											type="hidden" 
 											name="vendorId"
 											[(ngModel)]="vendorid" />
-										   </div>
+										  
 									</div>		
 								<!-- </div> -->
 							</div>
@@ -829,3 +968,8 @@
 		</div>
 </div>	
 <router-outlet></router-outlet>
+
+
+
+
+

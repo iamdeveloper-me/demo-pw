@@ -21,6 +21,7 @@ export class GalleryComponent implements OnInit {
   gallery = { files: ''}
   fileToUpload:any;
   albumsId:'';
+  urls = new Array<string>();
   basicplane
   lodar = false;
   eventArray:any = {};
@@ -42,8 +43,8 @@ export class GalleryComponent implements OnInit {
     url: URL,
     isHTML5: true
   });
-  hasBaseDropZoneOver = true;
-  hasAnotherDropZoneOver = true;
+  hasBaseDropZoneOver = false;
+  hasAnotherDropZoneOver = false;
   // Angular2 File Upload
   fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
@@ -121,11 +122,11 @@ export class GalleryComponent implements OnInit {
 
         //Album create your token
         createAlbum(Album){
-          
+         
           this.createalbum_dailog = false;
 
           console.log(Album);
-          var  albumtype = Album.value.albumName;
+         
           let headers = new  Headers();
           var authToken = localStorage.getItem('userToken');
           headers.append("content-type",'application/json ');
@@ -139,7 +140,10 @@ export class GalleryComponent implements OnInit {
             colorTags: "add colour tags"
           }
           this.http.post(this.url+'api/Albums/createupdatealbum',album,{headers:headers})
-            .subscribe(data =>{console.log(data.json())},(error)=>{console.log(error._body);
+            .subscribe(data =>{console.log(data.json())
+              this.router.navigate(['../vendor/albumview'])
+              
+            },(error)=>{console.log(error._body);
             this.typeWarning(error._body);
         });
         }
@@ -160,42 +164,15 @@ export class GalleryComponent implements OnInit {
           let headers = new  Headers();
           var authToken = localStorage.getItem('userToken');
           headers.append("Authorization",'Bearer '+authToken);
-         
-          //Post Album 2 photos
-          this.http.post(this.uploadimage,formData,{headers:headers})
-            .subscribe(data =>{ 
-              console.log(data.json().filesId);
-            const a ={
-              portfolioId: 0,
-              filesId: data.json().filesId,
-              tags: "add tag",
-              colorTags: "add colour tag",
-              setAsBackgroud: false
-            }
+          this.http.post(this.url+'api/ImageUploader/PortfolioUploader',formData,{headers:headers})
+            .subscribe(data =>{ this.lodar = false;
            
-              this.http.post(this.addportfolio,a,{headers:headers})
-            .subscribe(data =>{ 
-              console.log(data.json());
-              $(function() {
-                var current_progress = 0;
-                var interval = setInterval(function() {
-                    current_progress += 10;
-                    $("#dynamic")
-                    .css("width", current_progress + "%")
-                    .attr("aria-valuenow", current_progress)
-                    .text(current_progress + "% Complete");
-                    if (current_progress >= 100)
-                        clearInterval(interval);
-                        this.lodar = false;
-                }, 1500);
-              });
-              this.router.navigate(['../vendor/portfolioview'])
-            
-            },(error)=>{console.log(error)
-              this.toastr.warning(error._body.split('[')[1].split(']')[0]);
-            });
-            
-            },(error)=>{console.log(error)});
+                                this.toastr.success(data.json().message);
+                                this.router.navigate(['../vendor/portfolioview'])
+                          
+                              },(error)=>{console.log(error)});
+             
+          
         }
 
         typeWarning(a) {
@@ -231,7 +208,7 @@ export class GalleryComponent implements OnInit {
                       this.albumArray = data.json() ;
                     })
                  }
-                 upgrade(){
+        upgrade(){
                   this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
                   if( parseInt(this.basicplane) == 1 ){ 
                     $(".drop_zone").hide();
@@ -259,6 +236,8 @@ export class GalleryComponent implements OnInit {
                  }
                  }
 
+             
+
   closeModel(){
        
   this.uploadphoto_dailog = false;
@@ -267,4 +246,18 @@ export class GalleryComponent implements OnInit {
 
 }
 
+
+detectFiles(event) {
+  this.urls = [];
+  let files = event.target.files;
+  if (files) {
+    for (let file of files) {
+      let reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.urls.push(e.target.result);
+      }
+      reader.readAsDataURL(file);
+    }
+  }
+}
   }

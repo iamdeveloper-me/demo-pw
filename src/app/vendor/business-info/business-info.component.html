@@ -15,12 +15,14 @@
                             <div class="heightequal365 mobnopadd padleft0px ">
                                 <div class="card heightequal365 margintop0px mobmargintop30px" (click)="openModel(vendor)">
                                     <div class="card-header">
-                                        <div>
-                                        <div class="busines_img" ngbTooltip="Upload/Change your business logo or profile image of your business representative">
+                                        <div class="posrelative">
+                                        <div class="busines_img" ngbTooltip="Change image/Logo">
 
-                                            <i class="material-icons" (click)="imagecropDailog = true" id="description-function" style="cursor:pointer"> camera_alt </i> 
+                                            <i class="material-icons"  (click)="imagecropDailog = true" id="description-function" style="cursor:pointer"> camera_alt </i> 
                                                 <img [src] = "imagee" >   
                                         </div>
+
+                                        <i class="material-icons helpicon" ngbTooltip="Upload your business logo or profile image of your business representative. This will be visible on your store front.">help_outline</i>
                                         </div>
                                         <div class="busi_contact">
 
@@ -247,9 +249,10 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal_head text-center">
-                        <h4 class="modal-title"><strong> Link your Facebook Page
-                                
-                            </strong>  </h4>
+                        <h4 class="modal-title">
+                            <i class="fa fa-facebook" data-reactid="334" ></i> 
+                            <strong> Link your Facebook Page</strong>  
+                        </h4>
                         <p>Do you have a Facebook Page for your business?</p>
                         <button type="button" class="close" (click)="closeModel('facebookDailog')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <div class="clearfix"></div>
@@ -269,7 +272,7 @@
                                     ></ui-switch>
                                
                                 <span class="have_one" *ngIf="modelfield.fbAvailable  ==  false" >
-                                     None! 
+                                     No..! 
                                     <input class="effect-16 " type="hidden"  name="fbAvailable" [ngModel] = "false"  >
                                 </span>
                                
@@ -281,7 +284,7 @@
 
                             <div class="clearfix"></div>
                             <div class="input_facebook input-effect form-group" *ngIf='modelfield.fbAvailable'>
-                                <i class="fa fa-facebook fa-2x" data-reactid="334" ></i> 
+                               
                                     <div   >
                                         <!-- <input class="effect-16 validate endent_10px width_60" 
                                         type="text" 
@@ -298,13 +301,15 @@
                                             #facebookURL="ngModel"
                                             id='fburl'
                                             #fburl
-                                            placeholder="None"
+                                            placeholder="Enter your Facebook Page Link here"
                                             [ngModel] = "modelfield.facebookURL" 
+                                            pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
                                             required 
                                             (ngModelChange)='isValidUrl(modelfield.facebookURL,"Fb")'
                                             />
-                                            <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="facebookURL.errors?.required"> facebookURL name field required </small>
-                                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidFbUrl===false && modelfield.fbAvailable == true && !facebookURL.errors?.required">invalid url </small> -->
+                                             <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="facebookURL.errors?.required"> Link entered is not valid </small> -->
+                                             <small class="form-text text-muted danger validationErrorMsg" *ngIf="facebookURL.errors?.pattern"> Link entered is not valid </small>
+                                            <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidFbUrl===false && modelfield.fbAvailable == true && !facebookURL.errors?.required">invalid url </small>  -->
                                     </div>
                                   
                             </div>
@@ -330,7 +335,11 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h4 class="modal-title">Edit twitter</h4>
+                        <h4 class="modal-title">
+                                <i class="fa fa-twitter fa-2x" data-reactid="334" ></i> 
+                                <strong> Link your Twitter Page</strong>  
+                            </h4>
+                            <p>Do you have a Twitter Page for your Business?</p>
                         <button type="button" class="close btn_mar_padd" (click)="closeModel('twitterDailog')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
                         <div class="clearfix"></div>
@@ -348,7 +357,7 @@
                                         (change)="modelfield.twitterAvailable  = !modelfield.twitterAvailable "
                                         class="pull-left"
                                         ></ui-switch>
-                                        <span class="have_one" *ngIf="modelfield.twitterAvailable  ==  false" > None 
+                                        <span class="have_one" *ngIf="modelfield.twitterAvailable  ==  false" > No.. 
                                             <input class="effect-16 " type="hidden"  name="twitterAvailable" [ngModel] = "false"  >
                                         </span>
                                         <!-- =={{modelfield.fbAvailable }} -->
@@ -359,7 +368,7 @@
                             </div>
                             <div class="clearfix"></div>
                             <div class="input_facebook input-effect form-group" *ngIf='modelfield.twitterAvailable'>
-                                <i class="fa fa-twitter fa-2x" data-reactid="334" ></i> 
+                                <!-- <i class="fa fa-twitter fa-2x" data-reactid="334" ></i>  -->
                                     <div >  
                                         <!-- <input class="effect-16 validate endent_10px width_60" 
                                         type="text" 
@@ -376,10 +385,12 @@
                                         id='twurl'
                                         #twurl 
                                         #twitterURL="ngModel"
-                                        placeholder="None"
+                                        placeholder="Enter your Twitter Page Link here"
                                         [ngModel] = "modelfield.twitterURL" 
                                         (ngModelChange)='isValidUrl(modelfield.twitterURL,"Tw")'
+                                        pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
                                         required/>
+                                        <small class="form-text text-muted danger validationErrorMsg" *ngIf="twitterURL.errors?.pattern"> Link entered is not valid </small>
                                     <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="isVaidTwUrl===false && modelfield.twitterAvailable == true && !twitterURL.errors?.required">Invalid url</small>
                                     <small class="form-text text-muted danger validationErrorMsg" *ngIf="twitterURL.errors?.required"> twitterURL name field required </small> -->
                                     </div>    
@@ -408,8 +419,11 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal_head text-center">
-                        <h4 class="modal-title"><strong> Link your Google Page </strong>  </h4>
-                        <p>Do you have a Google Page for your business?</p>
+                            <h4 class="modal-title">
+                                    <i class="fa fa-google-plus fa-2x" data-reactid="334" style="font-size:1.6em" ></i> 
+                                    <strong> Link your Google Page</strong>  
+                                </h4>
+                                <p>Do you have a Google Page for your Business?</p>
                         <button type="button" class="close" (click)="closeModel('googleDailog')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <div class="clearfix"></div>
                     </div>
@@ -427,7 +441,7 @@
                                                 (change)="modelfield.googleAvailable  = !modelfield.googleAvailable " 
                                                 class="pull-left"
                                                 ></ui-switch>
-                                                <span class="have_one" *ngIf="modelfield.googleAvailable  ==  false" > None 
+                                                <span class="have_one" *ngIf="modelfield.googleAvailable  ==  false" > No.. 
                                                     <input class="effect-16 " type="hidden"  name="googleAvailable" [ngModel] = "false"  >
                                                 </span>
                                                 <!-- =={{modelfield.fbAvailable }} -->
@@ -438,7 +452,7 @@
                                     </div>
                             <div class="clearfix"></div>
                             <div class="input_facebook input-effect form-group" *ngIf='modelfield.googleAvailable'>
-                            <i class="fa fa-google-plus fa-2x" data-reactid="334" style="font-size:1.6em" ></i> 
+                            <!-- <i class="fa fa-google-plus fa-2x" data-reactid="334" style="font-size:1.6em" ></i>  -->
                             <div  >
                                 <!-- <input class="effect-16 validate endent_10px width_60" 
                                 type="text" 
@@ -455,10 +469,12 @@
                                 id='gUrl'
                                 #gUrl
                                 #googleURL="ngModel"
-                                placeholder="None"
+                                placeholder="Enter your Instagram Page Link here"
                                 [ngModel] = "modelfield.googleURL" 
                                 (ngModelChange)='isValidUrl(modelfield.googleURL,"Google")'
+                                pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
                                 required />
+                                <small class="form-text text-muted danger validationErrorMsg" *ngIf="googleURL.errors?.pattern"> Link entered is not valid </small>    
                             <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidGoogeUrl===false && modelfield.googleAvailable == true  && !modelfield.googleURL.errors?.required">Invalid url</small>
                             <small class="form-text text-muted danger validationErrorMsg" *ngIf="googleURL.errors?.required"> googleURL name field required </small> -->
                             </div>    
@@ -486,8 +502,11 @@
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal_head text-center">
-                    <h4 class="modal-title"><strong> Link your Instagram Page </strong>  </h4>
-                    <p>Do you have a Instagram Page for your business?</p>
+                        <h4 class="modal-title">
+                                <i class="fa fa-instagram fa-2x" data-reactid="334" ></i> 
+                                <strong> Link your Instagram Page</strong>  
+                            </h4>
+                            <p>Do you have a Instagram Page for your Business?</p>
                     <button type="button" class="close" (click)="closeModel('instagramDailog')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <div class="clearfix"></div>
                 </div>
@@ -505,7 +524,7 @@
                                             (change)="modelfield.instaAvailable  = !modelfield.instaAvailable "
                                             class="pull-left"
                                             ></ui-switch>
-                                            <span class="have_one" *ngIf="modelfield.instaAvailable  ==  false" > None! 
+                                            <span class="have_one" *ngIf="modelfield.instaAvailable  ==  false" > No.. 
                                                 <input class="effect-16 " type="hidden"  name="instaAvailable" [ngModel] = "false"  >
                                             </span>
                                             <!-- =={{modelfield.fbAvailable }} -->
@@ -516,7 +535,7 @@
                                 </div>
                         <div class="clearfix"></div>
                         <div class="input_facebook input-effect form-group" *ngIf='modelfield.instaAvailable'>
-                        <i class="fa fa-instagram fa-2x" data-reactid="334" ></i> 
+                        <!-- <i class="fa fa-instagram fa-2x" data-reactid="334" ></i>  -->
 
                            <div >
                                 <!-- <input class="effect-16 validate endent_10px width_60" 
@@ -534,10 +553,12 @@
                                 id='insUrl'
                                 #insUrl
                                 #instalURL="ngModel"
-                                placeholder="None"
+                                placeholder="Enter your Instagram Page Link here"
                                 [ngModel] = "modelfield.instalURL" 
                                 (ngModelChange)='isValidUrl(modelfield.instalURL,"Insta")'
+                                pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
                                 required/>
+                                <small class="form-text text-muted danger validationErrorMsg" *ngIf="instalURL.errors?.pattern"> Link entered is not valid </small> 
                             <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidInstaUrl===false && modelfield.instaAvailable == true  && !instalURL.errors?.required">url error</small>
                             <small class="form-text text-muted danger validationErrorMsg" *ngIf="instalURL.errors?.required"> instalURL name field required </small> -->
                             </div>
@@ -566,8 +587,11 @@
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal_head text-center">
-                    <h4 class="modal-title"><strong> Link your Website </strong>  </h4>
-                    <p>Do you have a Trading Page for your business?</p>
+                    <h4 class="modal-title">
+                            <i class="fa fa-globe fa-2x" data-reactid="334" ></i>  
+                            <strong> Link your Website</strong>  
+                        </h4>
+                        <p>Do you have a Website Page for your Business?</p>
                     <button type="button"  class="close"  (click)="closeModel('instagram2Dailog')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <div class="clearfix"></div>
                 </div>
@@ -585,7 +609,7 @@
                                             (change)="modelfield.perfectWeddingAvailable  = !modelfield.perfectWeddingAvailable "
                                             class="pull-left"
                                             ></ui-switch>
-                                            <span class="have_one" *ngIf="modelfield.perfectWeddingAvailable  ==  false" > None  
+                                            <span class="have_one" *ngIf="modelfield.perfectWeddingAvailable  ==  false" > No..  
                                                 <input class="effect-16 " type="hidden"  name="perfectWeddingAvailable" [ngModel] = "false"  >
                                             </span>
                                             <!-- =={{modelfield.fbAvailable }} -->
@@ -596,7 +620,7 @@
                                
                         <div class="clearfix"></div>
                         <div class="input_facebook input-effect form-group" *ngIf='modelfield.perfectWeddingAvailable'>
-                        <i class="fa fa-globe fa-2x" data-reactid="334" ></i> 
+                        <!-- <i class="fa fa-globe fa-2x" data-reactid="334" ></i>  -->
                             <div >
                                 <!-- <input class="effect-16 validate endent_10px width_60" 
                                 type="text" 
@@ -614,12 +638,13 @@
                                 id='pwUrl'
                                 #pwUrl 
                                 #perfectWeddingURL="ngModel"
-                                placeholder="None"
+                                placeholder="Enter your Website Link here"
                                 [ngModel] = "modelfield.perfectWeddingURL" 
                                 (ngModelChange)='isValidUrl(modelfield.perfectWeddingURL,"Other")'
+                                pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
                                 required />
-                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidOtherUrl===false && modelfield.perfectWeddingAvailable == true  && !perfectWeddingURL.errors?.required">url error</small>
-                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="perfectWeddingURL.errors?.required"> url cannot be blank! </small>   
+                            <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidOtherUrl===false && modelfield.perfectWeddingAvailable == true  && !perfectWeddingURL.errors?.required">url error</small> -->
+                            <small class="form-text text-muted danger validationErrorMsg" *ngIf="perfectWeddingURL.errors?.pattern"> Link entered is not valid </small>   
                         </div>
                                 <!-- <div *ngIf="modelfield.perfectWeddingAvailable  ==  false">
                                     <input class="effect-16 validate endent_10px width_60" 
@@ -645,8 +670,7 @@
                             <div class="copyinput">
                                 <input type="text" value="http://perfectwedding.com/" #userinput/>
                                 <span class="btn" (click)="copyInputMessage(userinput)" >Copy</span>
-                            </div>          
-                        <!-- </p> -->
+                            </div> 
                         <p>2. Go to your Facebook Page and add the link as your website</p>
                         <p>3. You are done! That was easy, isn’t it?</p>
                         </div>

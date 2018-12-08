@@ -123,29 +123,23 @@ createAlbum(Album){
     console.log(album)
   
     this.http.post(this.url+'api/Albums/createupdatealbum',album,{headers:headers})
-      .subscribe(data =>{console.log(data.json()); 
-        console.log(this.eventArray); 
-        
-        //  this.eventArray.unshift({  albumsId: data.json().id,
-        //                             albumName:  Album.value.albumName,
-        //                             albumType:0,
-        //                             colorTags:"string",
-        //                             dateAddedOn:"2018-09-25T10:50:14.6795084",
-        //                             tags:"string",
-        //                             updatedOn:"2018-10-02T11:09:56.5713857",
-        //                           });
-        
+      .subscribe(data =>{
+                          
+                          console.log(this.eventArray); 
+                          this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
+                            this.eventArray = data.json()
+                            this.noimage = 'https://vignette.wikia.nocookie.net/roblox-phantom-forces/images/7/7c/Noimage.png/revision/latest?cb=20171115203949';
+                            console.log(this.eventArray);
+                          })
+                          console.log(data.json()); 
+                          this.toastr.success(data.json().message);
+                        },(error)=>{
+                                    console.log(error._body);
+                                    this.typeWarning(error._body);
+                                    }
+                );
 
-    this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
-      this.eventArray = data.json()
-      this.noimage = 'https://vignette.wikia.nocookie.net/roblox-phantom-forces/images/7/7c/Noimage.png/revision/latest?cb=20171115203949';
-      console.log(this.eventArray);
-     })
-   
-        
-        },(error)=>{console.log(error._body);
-      this.typeWarning(error._body);
-  });
+
   }
   typeWarning(a) {
     this.toastr.warning(a);
@@ -205,3 +199,4 @@ closeModel(){
   }
 
 }
+

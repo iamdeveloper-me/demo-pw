@@ -3,7 +3,7 @@ import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { ViewCell } from 'ng2-smart-table';
-
+import { MainData } from '../payment-selection/payment-selection.component';
 @Component({
   selector: 'app-promotion-priority',
   templateUrl: './promotion-priority.component.html',
@@ -11,6 +11,8 @@ import { ViewCell } from 'ng2-smart-table';
 })
 export class PromotionPriorityComponent implements OnInit {
 
+  public xyz:MainData;
+  page_title: '' 
     countryArray: string[];
       public arra = new Array(); public district = new Array(); public suburb = new Array();
 
@@ -23,7 +25,7 @@ export class PromotionPriorityComponent implements OnInit {
   selecteditem:any = [];
   sum = 0 ;
   sub = 0;
- 
+  PageData: undefined[]
   headers = new Headers();
   constructor(public http: Http,public toastr: ToastrService,private router: Router) {  }
   ngOnInit() {
@@ -42,7 +44,9 @@ export class PromotionPriorityComponent implements OnInit {
     this.headers.append('Accept', 'application/json')
     this.headers.append('Content-Type', 'application/json');
     this.headers.append("Authorization",'Bearer '+authToken);
-    this.http.get(this.allpromo,{headers:this.headers}).subscribe(data =>{data.json();
+    this.http.get(this.allpromo,{headers:this.headers}).subscribe(data =>{
+      data.json();
+      this.PageData = data.json();
     },error => { console.log(error)});
 
   this.http.get(this.adtypes,{headers:this.headers}).subscribe(data =>{ data.json();
@@ -52,6 +56,8 @@ export class PromotionPriorityComponent implements OnInit {
       obj= this.HomePage[0].adAvailableSlots[i];
       obj['isSelected']=false;
       this.HomePage[0].adAvailableSlots[i] = obj;
+      this.page_title = this.HomePage[0].title;
+      debugger
       }    
   },error => { console.log(error)});
   }
@@ -65,14 +71,21 @@ export class PromotionPriorityComponent implements OnInit {
                 adTypeId: code.value.adTypeId,
                 voucherCode: code.value.voucherCode,
                 countryId: code.value.country_id,
-                slotIds: this.selecteditem
+                countryName: code.value.countryName,
+
+                slotIds: this.selecteditem,
+                
+                route_key: 1,
+                title:this.page_title
               }
+             // this.xyz=promoData;
                console.log(promoData)
-      this.http.post(this.createpromo,promoData,{headers:this.headers}).subscribe(data =>{
-      console.log(data.json());
-      this.router.navigate([]).then(result => {  window.open(data.json().url, '_blank'); });
-      this.toastr.success( data.json().message);
-     })
+               sessionStorage.setItem('selected_plan',JSON.stringify(promoData));
+    //   this.http.post(this.createpromo,promoData,{headers:this.headers}).subscribe(data =>{
+    //   console.log(data.json());
+    //   this.router.navigate([]).then(result => {  window.open(data.json().url, '_blank'); });
+    //   this.toastr.success( data.json().message);
+    //  })
   }
   
   package(list){

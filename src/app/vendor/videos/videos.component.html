@@ -231,11 +231,10 @@
                       
 
                       <div class="form-group">
-                         <div class="styled-input">
+                        <label>Enter Video Title</label>
                             <input class="form-control" type="text" id="title" required="required" formControlName="title" 
                             [ngClass]="{ 'is-invalid': submitted && f.title.errors }" />
-                            <label>Enter Video Title</label>
-                            <span></span>
+                            
                             <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
                               <div *ngIf="f.title.errors.required">
                                   Title is required
@@ -248,17 +247,12 @@
                                   title is required.
                               </div>
                           </div> -->
-                      </div>
                       <div class="form-group">
-                         <div class="styled-input">
+                         <label>Enter Video Link</label>
                           <input class="form-control" type="url" id="link" required="required" formControlName="link" 
                           pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
                           [ngClass]="{ 'is-invalid': submitted && f.link.errors }"
-                          />
-                          <label>Enter Video Url</label>
-                          <span></span>
-                         
-                            <!-- <div *ngIf="link.invalid && (link.dirty || link.touched)"  class="form-text text-muted danger" >
+                          /><!-- <div *ngIf="link.invalid && (link.dirty || link.touched)"  class="form-text text-muted danger" >
                                 <div  class="form-text text-muted danger"  *ngIf="link.errors.required">
                                   link is required.
                                 </div>
@@ -275,8 +269,6 @@
                                 </div>
                             </div>
                         </div>
-
-                      </div>
 
                    </div>
                    <div class="modal-footer text-center">

@@ -122,11 +122,10 @@
                       <input type="hidden"  class="effect-16 validate" [(ngModel)]='objVideo.videosId' formControlName='videosId' value="{{objVideo.videosId}}" />
                                      
                                   <div class="form-group">
-                                    <div class="styled-input">
-                                      <input type="text"  class="" [(ngModel)]='objVideo.title' formControlName='title' placeholder="title" value="{{objVideo.title}}"required/>
-                                      <label>Video Title</label>
-                                      <span></span>
-                                    </div>
+                                <label>Enter Video Title</label>
+                                      <input type="text"  class="form-control" [(ngModel)]='objVideo.title' formControlName='title' value="{{objVideo.title}}"required/>
+                                     
+                                    
                                     <div *ngIf="title.invalid && (title.dirty || title.touched)"
                                     class=" redtext">
                                     {{objVideo.title}}
@@ -136,13 +135,12 @@
                                     </div>
                                   </div>
                                   <div class="form-group">
-                                    <div class="styled-input">
-                                      <input  class="effect-16 validate" type="text" [(ngModel)]='objVideo.link' formControlName='link' placeholder="link" required
+                                    <label>Enter Video Link</label>
+                                      <input  class="form-control" type="text" [(ngModel)]='objVideo.link' formControlName='link'  required
                                       pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
                                       />
-                                      <label>Video URL</label>
-                                      <span></span>
-                                    </div>
+                                     
+                                     
                                     <div *ngIf="link.invalid && (link.dirty || link.touched)"  class="form-text text-muted danger" >
                                         <div  class="form-text text-muted danger"  *ngIf="link.errors.required">
                                           link is required.

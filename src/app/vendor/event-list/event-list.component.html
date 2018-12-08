@@ -58,7 +58,7 @@
                                 <p>
                                   Capacity:{{data.capacity}}
                                 </p>
-                                <p>Venue:{{data.venueName}}
+                                <p>Venue:{{data.venueName}} 
                                 </p>
                                 <p>Address:{{data.country?.countryName}},{{data.districts
                                     ?.name}},{{data.suburb?.name}}
@@ -91,6 +91,7 @@
                                         <i class="material-icons">date_range </i><strong>
                                           Event start Date : {{name.startDate | date}}<br>
                                           Event end Date  :  {{name.endDate | date}}<br>
+                                          
                                          
                                         </strong>
                                       </p>
@@ -188,7 +189,7 @@
                                   <!-- <input type="time" class="form-control"  [(ngModel)]="startTimee"  name="startTime" id="startTime"/> -->
                                   
                                   <select class="form-control" type="time" [(ngModel)]="startTimee"  id="startTime" name="startTime">
-                                    <option *ngFor='let s of select_time.timing' [value]='s.startTime'>{{s.startTime}}</option>
+                                    <option *ngFor='let s of select_time.timing;let i=index' [value]='s.startTime'>{{s.startTime}}</option>
                                   </select>
                             
                           
@@ -242,9 +243,8 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label>Country</label>
-                        <select class="form-control" id="Country" [(ngModel)]="objevent.countryId" name="country_id" (change)="country($event)">
-                          <option *ngFor="let country of arra ;let c =index" type="text" id="{{country.countryName}}" checked name="countryName"
-                            placeholder="Country" [value]="country.countryId"  required>
+                        <select class="form-control" id="Country" [(ngModel)]="objevent.countryId" name="country_id" (change)="districtA()">
+                          <option *ngFor="let country of arra ;let c =index" [value]="country.countryId">
                             {{country.countryName }}
                           </option>
                         </select>
@@ -253,7 +253,7 @@
                   <div class="col-sm-6">
                       <label>District</label>
                         <div class="form-group">
-                          <select name="district" class="form-control" [(ngModel)]="objevent.districtId" name="dist_id" (change)="districtA($event)">
+                          <select name="district" class="form-control" [(ngModel)]="objevent.districtId" name="dist_id" (change)="subr($event)">
                             <option *ngFor="let dist of district ;let d =index" type="text" id="{{dist.name}}" checked name="dist"
                               placeholder="Country" [value]="dist.districtId" required>
                               {{dist.name }}
@@ -275,7 +275,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label>Location</label>
+                          <label>Street Name</label>
                           <input type="text" class="form-control"
                             [(ngModel)]="objevent.location"
                             name="Location"
@@ -397,7 +397,7 @@
                   <div class="clearfix"></div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                        <label style="width:100%;"> Start Date  {{startDates}} </label> 
+                        <label style="width:100%;"> Start Date  </label> 
                           <input class="form-control"  type="date" name="startDate" id="eventdate" [ngModel]="startDates" style="width:100%;">
                            <!-- {{startDates | shortDate}} -->
                     </div>
@@ -405,9 +405,9 @@
                   <div class="col-sm-6">
                       <div class="form-group">
                         <label>
-                          Start Time  {{startimee}}
+                          Start Time
                         </label><br>
-                        <select class="form-control" type="time" [(ngModel)]="startimee"  id="startTime" name="startTime">
+                        <select class="form-control" type="time" [(ngModel)]="startimee" #ele_startTime  id="startTime" name="startTime">
                           
                           
                           <option *ngFor='let s of select_time.timing' [value]='s.startTime'>{{s.startTime}}</option>
@@ -417,17 +417,19 @@
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                        <label style="width:100%;">End  Date:{{endDates  }}</label> 
+                        <label style="width:100%;">End Date</label> 
                           <input class="form-control"  type="date" name="endDate" id="eventdate" [ngModel]="endDates" style="width:100%;">    
                     </div> 
                   </div>  
                   <div class="col-sm-6">
                       <div class="form-group">
                         <label>
-                          End Time:{{endtime}}
+                          End Time
                         </label>
                         
-                        <select class="form-control" type="time" [ngModel]="endtime"  id="endTime" name="endTime">
+
+                        <select class="form-control" type="time" [ngModel]="endtime" #ele_endTime  id="endTime" name="endTime">
+
                             <!-- <option  [value]="endtime" *ngIf =  "!s.endTime" >{{endtime | date: 'h:m a' }} </option> -->
                           <option *ngFor='let s of select_time.timing' [value]='s.endTime'>{{s.endTime}}</option>
                         </select>
@@ -459,8 +461,8 @@
                               </option>
             
                             </select> -->
-                            <select  class="form-control"  id="Country" [(ngModel)]="objevent.countryId"  name="country_id" (change)="country($event)">
-                              <option *ngFor="let country of arra ;let c =index" [value]="country.countryId">
+                            <select  class="form-control"  id="Country" [(ngModel)]="objevent.countryId" #ele_country  name="country_id" (change)="districtA()">
+                              <option *ngFor="let country of arra" [value]="country.countryId">
                                   {{country.countryName }}
                               </option>
                           </select>
@@ -469,9 +471,8 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label>District</label>
-                        <select name="district" class="form-control" [(ngModel)]="objevent.districtId" name="dist_id" (change)="districtA($event)">
-                          <option *ngFor="let dist of district ;let d =index" type="text" id="{{dist.name}}" checked name="dist"
-                            placeholder="Country" [value]="dist.districtId" required>
+                        <select name="district" class="form-control" #ele_distid [(ngModel)]="objevent.districtId" name="dist_id" (ngModelChange)="subr($event)">
+                          <option *ngFor="let dist of district" [value]="dist.districtId">
                             {{dist.name }}
                           </option>
                         </select>
@@ -480,7 +481,7 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label>Suburb</label>
-                        <select class="form-control" [(ngModel)]="objevent.suburbId" name="sub_id" (change)="subr($event)">
+                        <select class="form-control" [(ngModel)]="objevent.suburbId" #ele_suburb name="sub_id">
                           <!-- (change)="country($event)" -->
                           <option *ngFor="let sub of suburb ;let s =index" type="text" id="{{sub.name}}" checked name="sub"
                             placeholder="Suburb" [value]="sub.suburbId" required>
@@ -491,7 +492,7 @@
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                          <label>Location</label>
+                          <label>Street Name</label>
                           <input type="text" class="form-control" required="required" 
                           [ngModel]="modelfield.location"
                           name="Location" 
@@ -589,3 +590,6 @@
 
   </form>
 
+  <div *ngIf='showLoader' style='top:0px;width:100%;height:100vh;z-index: 99999;position: absolute;background-color:rgba(0, 0, 0, 0.5)'>
+      <h4 style="text-align:center;color:#fff;">Event is being created. Do not refresh or close the page....</h4>
+    </div>

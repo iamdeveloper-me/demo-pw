@@ -33,6 +33,8 @@ export class NgbdpromotbusinessModalContent {
 export class PromoteBusinessComponent implements OnInit {
   private allpromo: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PromoteBusiness/allPromotion';
   promotion = [];
+
+  page_title = 'Priority Listingsvv'
   promotion_length;
 //accordian
  acc: any;
@@ -83,13 +85,26 @@ export class PromoteBusinessComponent implements OnInit {
         $(".audiencebox").hide();
         $(".dealsbox").hide();
         $(".homebannerbox").hide();
+        $(".homelocationbox").hide();
      });
+
+     $(".location").click(function(){
+      $(".homegallerybox").hide();
+      $(".homelocationbox").show();
+      $(".prioritybox").hide();
+      $(".audiencebox").hide();
+      $(".dealsbox").hide();
+      $(".homebannerbox").hide();
+   });
+
+
       $(".priority").click(function(){
         $(".homegallerybox").hide();
         $(".prioritybox").show();
         $(".audiencebox").hide();
         $(".dealsbox").hide();
         $(".homebannerbox").hide();
+        $(".homelocationbox").hide();
      });
       $(".audience").click(function(){
         $(".homegallerybox").hide();
@@ -97,6 +112,7 @@ export class PromoteBusinessComponent implements OnInit {
         $(".audiencebox").show();
         $(".dealsbox").hide();
         $(".homebannerbox").hide();
+        $(".homelocationbox").hide();
      });
       $(".deals").click(function(){
         $(".homegallerybox").hide();
@@ -104,6 +120,7 @@ export class PromoteBusinessComponent implements OnInit {
         $(".audiencebox").hide();
         $(".dealsbox").show();
         $(".homebannerbox").hide();
+        $(".homelocationbox").hide();
      });
       $(".homebanner").click(function(){
         $(".homegallerybox").hide();
@@ -111,6 +128,7 @@ export class PromoteBusinessComponent implements OnInit {
         $(".audiencebox").hide();
         $(".dealsbox").hide();
         $(".homebannerbox").show();
+        $(".homelocationbox").hide();
      });
 
 

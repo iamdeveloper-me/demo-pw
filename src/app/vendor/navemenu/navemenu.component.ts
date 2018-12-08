@@ -3,6 +3,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { Http,Headers } from '@angular/http';
 import { LoginServiceService } from '../../shared/service/login-service.service';
+import { MessageService } from '../../shared/service/vendor/message.service';
+
 @Component({
   selector: 'app-navemenu',
   templateUrl: './navemenu.component.html',
@@ -14,10 +16,20 @@ export class NavemenuComponent implements OnChanges,OnInit   {
     private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
     vendor: any = {};
     @Input() userImg: any;
+    find_name:string;
+    deletIcon = false;
+    alltab = true;
+    unreadtab = false;
+    filter_id:number = 1;
+    historyArray = [];
+    uiLoading:boolean = true;
+   arrayLength:number;
+   unread_msg:number;
+   startedtab = false;
    // @Output() userImg = new EventEmitter<string>();
    // @Output('userImg') img:string;
     public data = '' ;
-    constructor(public translate: TranslateService ,public http: Http,private cservice: LoginServiceService, private router: Router ) { const browserLang: string = translate.getBrowserLang();
+    constructor( private hservice: MessageService,public translate: TranslateService ,public http: Http,private cservice: LoginServiceService, private router: Router ) { const browserLang: string = translate.getBrowserLang();
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : 'en'); }
   
   ngOnInit() {
@@ -164,8 +176,55 @@ export class NavemenuComponent implements OnChanges,OnInit   {
 }
 ngOnChanges(){};
   
-  
-  
+search(newObj){
+  console.log(this.find_name.toUpperCase())
+
+  console.log(this.historyArray)
+  // console.log(this.filter_id)
+  // this.filter_id = 1
+  const json ={
+    "filter" : this.filter_id,
+    "search" : this.find_name
+  }
+  this.hservice.vendorMessages(json).subscribe(( data )  =>  
+            { 
+              this.uiLoading = false;
+              this.historyArray = data.json()  ;
+              this.arrayLength =  this.historyArray.length
+              this.unread_msg = this.historyArray.length;
+              console.log(this.historyArray)
+            },error => 
+            alert(error) // error path
+          )
+
+}
+unread(filter_id){
+  this.deletIcon = false
+
+  this.alltab = false;
+  this.unreadtab = true;
+  this.startedtab = false;
+
+  this.filter_id = filter_id
+
+  const json ={
+    "filter" : filter_id
+  }      
+        this.hservice.vendorMessages(json).subscribe(( data )  =>  
+        { 
+          this.uiLoading = false;
+          this.historyArray = data.json()  ; 
+          this.historyArray.forEach(element => {
+            element['checked'] = false;
+          });
+          this.unread_msg = this.historyArray.length;
+          this.arrayLength =  this.historyArray.length
+
+          console.log(this.historyArray)
+        },error => 
+        alert(error) // error path
+      )
+}
   logout(){
          localStorage.clear();
          this.router.navigate(['../home']);

@@ -33,7 +33,8 @@
                     </td>
                     <td valign="top"> 
                       <div class="tagcontainer">
-                        <span *ngFor="let ag of data.tags;let i=index">
+                        {{tags_two}}
+                        <span *ngFor="let ag of data.tags_two;let i=index">
                             <div *ngIf = "ag != ''"> </div> 
                                   <span *ngIf = "ag != ''" class="tagstik"> 
                                       {{ag}}   

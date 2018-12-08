@@ -28,9 +28,9 @@
                                       <span class="weeks_ago">  {{category.sendByEmail}}</span>
                                   </span>
 
-                                  <span class="reviewbadge badge badge-secondary" (click)="ReviewReadStatus(category.reviewId, 2)"> 
+                                  <span class="reviewbadge badge badge-secondary" (click)="ReviewReadStatus(category.reviewId, 1)"> 
                                       <div *ngIf = "category.reviewStatusString == 'Unread'"> New</div>
-                                      <div *ngIf = "category.reviewStatusString == 'Read'"> Read</div>                                      
+                                                                           
                                     </span>  
                                   <div>  
                                     <button class="graypin" *ngIf = "category.isPinned == false" (click)="GetMarkAsPinned(category.reviewId)"><i class="fa fa-thumb-tack" aria-hidden="true"></i>
@@ -88,10 +88,9 @@
                                   <span class="weeks_ago">  {{category.sendByEmail}}</span>
                               </span>
 
-                              <span class="reviewbadge badge badge-secondary" (click)="ReviewReadStatus(category.reviewId, 2)"> 
+                              <span class="reviewbadge badge badge-secondary"> 
                                 <div *ngIf = "category.reviewStatusString == 'unread'"> New</div>
-                                <div *ngIf = "category.reviewStatusString == 'read'"> Read</div>
-                                 
+                               
                                  
                               </span> 
                               

@@ -10,7 +10,7 @@ import {
   ViewChild,
   TemplateRef
 } from '@angular/core';
-
+import { TimeSlot } from '../location/location.component';
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -21,9 +21,15 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./calendertable.component.scss']
 })
 export class CalendertableComponent implements OnInit {
-  
+
+  customDay;
+  isDisabled;
+  endtime;
+    select_time: TimeSlot
     jobArray: any = [];
     all = 3;
+    end_date:string;
+    start_date:string;
     upcomming =2;
     past = 1
     vendorJobsId = 0;
@@ -74,8 +80,8 @@ export class CalendertableComponent implements OnInit {
     }
   };
     constructor(private toastr: ToastrService,private modal: NgbModal,public http: Http,private datePipe: DatePipe) { 
-     this.test = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
-     
+     this.test = this.datePipe.transform(this.myDate, 'yyyy-mm-dd');
+     this.select_time = new TimeSlot();
     }
     ngOnInit() {
    
@@ -160,14 +166,7 @@ export class CalendertableComponent implements OnInit {
 
        
     }
-    demo(){
-      console.log("demo test")
-      this.demo1();
-    }
-    demo1(){
-      console.log("demo1 test")
-      
-    }
+
 
 
             @ViewChild('create') validationForm: FormGroup;
@@ -177,6 +176,12 @@ export class CalendertableComponent implements OnInit {
             refresh: Subject<any> = new Subject();
             activeDayIsOpen: boolean = true;
     job(jo){
+     
+      this.end_date = jo.value['endDate']['year']+'-'+jo.value['endDate']['month']+'-'+jo.value['endDate']['day']
+      this.start_date = jo.value['startDate']['year']+'-'+jo.value['startDate']['month']+'-'+jo.value['startDate']['day']
+      jo.value.startDate = this.start_date
+      jo.value.endDate = this.end_date
+
                         let headers = new Headers();
                         var authToken = localStorage.getItem('userToken');
                         headers.append('Accept', 'application/json')
@@ -186,8 +191,10 @@ export class CalendertableComponent implements OnInit {
                         this.http.post(this.creat_job_url,jo.value,{headers:headers}).subscribe(
                           data =>{ 
                                   console.log( data.json() );
+                                  // alert("Added");  
                                   this.toastr.success(data.json().message );
                                   this.jobview(3);
+                                  // this.jobview.reset();
                                   }),error => {  console.log(error)};
 
     
@@ -196,9 +203,16 @@ export class CalendertableComponent implements OnInit {
       console.log(a);
       this.jobedit = true;
       this.edit_job_form = a;
+      this.edit_job_form.startDate = a.startDate.split('T')[0];
+      this.edit_job_form.endDate  = a.endDate.split('T')[0];
     }
     edit_job(b){
+      this.end_date = b.value['endDate']['year']+'-'+b.value['endDate']['month']+'-'+b.value['endDate']['day']
+      this.start_date = b.value['startDate']['year']+'-'+b.value['startDate']['month']+'-'+b.value['startDate']['day']
+      b.value.startDate = this.start_date
+      b.value.endDate = this.end_date
       console.log(b.value);
+      debugger
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
       headers.append('Accept', 'application/json')
@@ -208,13 +222,14 @@ export class CalendertableComponent implements OnInit {
       this.http.post(this.creat_job_url,b.value,{headers:headers}).subscribe(
         data =>{ 
                 console.log( data.json() );
+                this.ngOnInit()
                 this.toastr.success(data.json().message );
             
                 }),error => {  console.log(error)};
     
     }
     deletevent(job,index){
-     
+      this.jobArray.splice(index, 1);
       swal({
         title: "Are you sure?",
       text: "You will not be able to recover event!",
@@ -227,7 +242,6 @@ export class CalendertableComponent implements OnInit {
         if(res.value===true){
           console.log(job);
         
-        
           var deleteid = job.vendorJobsId ;
           let headers = new Headers();
           var authToken = localStorage.getItem('userToken');
@@ -238,7 +252,6 @@ export class CalendertableComponent implements OnInit {
           this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob?VendorJobId'+'='+deleteid,{headers:headers}).subscribe(
             data =>{
           console.log(data.json());
-          this.jobArray.splice(index, 1);
           this.toastr.success(data.json().message );
                     
           },error =>{ console.log(error)});
@@ -258,18 +271,20 @@ export class CalendertableComponent implements OnInit {
     this.jobedit = false;
     }
     jobview(a){
+     
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
       headers.append('Accept', 'application/json')
       headers.append('Content-Type', 'application/json');
       headers.append("Authorization",'Bearer '+authToken);
       //upcomming
+      
       this.http.post(this.geturl,{
         filter: a
       },{headers:headers}).subscribe(data =>{
         console.log( data.json() );
+       
         this.jobArray = data.json() as string[]; 
-    
       },error => {  console.log(error)});
     }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+
 @Component({
   selector: 'app-vendorsidebar',
   templateUrl: './vendorsidebar.component.html',
@@ -10,6 +11,7 @@ export class VendorsidebarComponent implements OnInit {
  counts;
   
 public shouldShow = false;
+
  route:boolean = false
   constructor(public http: Http ) {
     this.readStatus();
@@ -58,5 +60,13 @@ public shouldShow = false;
           console.log(error)
     });
   }
+
+
+    
+tog(){
+   $('this').addClass('colour');
+}
+
+
 
 }

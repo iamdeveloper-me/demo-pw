@@ -427,7 +427,11 @@
                           End Time:{{endtime}}
                         </label>
                         
-                        <select class="form-control" type="time" [ngModel]="endtime"  id="endTime" name="endTime">
+                        <select class="form-control" 
+                        type="time" 
+                        [ngModel]="endtime" 
+                         id="endTime" 
+                         name="endTime">
                             <!-- <option  [value]="endtime" *ngIf =  "!s.endTime" >{{endtime | date: 'h:m a' }} </option> -->
                           <option *ngFor='let s of select_time.timing' [value]='s.endTime'>{{s.endTime}}</option>
                         </select>

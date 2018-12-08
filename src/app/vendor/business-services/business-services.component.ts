@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { getDate, getHours, getMinutes } from 'date-fns';
+import { CustomFormsModule } from 'ng2-validation';
 @Component({
   selector: 'app-business-services',
   templateUrl: './business-services.component.html',
@@ -58,20 +59,32 @@ export class BusinessServicesComponent implements OnInit {
                this.selected_category=this.categoryserveice.filter(c=>c.isSelect==true);
                this.objVenderServiceVm.categoryId = this.selected_category[0].categoryId;
                this.selectedCategoryName=this.selected_category[0].categoryName;
+               debugger;
                this.services= this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services;               
                if(this.services==undefined || this.services.length<0){
                  this.objVenderServiceVm.serviceName='No Service Selected ! ';
                 this.name_d = this.objVenderServiceVm.serviceName  
                 this.objVenderServiceVm.servicesId=0;
                }else{
+                 if(this.objVenderServiceVm.serviceName!=undefined){
                this.objVenderServiceVm.serviceName= this.services.filter(s=>s.isSelect==true)[0].serviceName;
-               this.name_d = this.objVenderServiceVm.serviceName
+               this.name_d = this.objVenderServiceVm.serviceName;
                this.objVenderServiceVm.servicesId = this.services.filter(s=>s.isSelect==true)[0].servicesId;
                this.getServicesByCategory(this.objVenderServiceVm.categoryId);
                this.getCustomFieldBySreviceId(this.objVenderServiceVm.servicesId,this.objVenderServiceVm.serviceName);
                this.saveServiceWithoutOptions();
                this.showLoader=false;
-               }
+               }else{
+                 // Dt:07/12/18
+                 let service = this.services.filter(s=>s.isSelect==true)[0];
+                 this.objVenderServiceVm.servicesId = service.servicesId;
+                 this.objVenderServiceVm.serviceName=service.serviceName;
+                 this.name_d=this.objVenderServiceVm.serviceName;
+               this.getServicesByCategory(this.objVenderServiceVm.categoryId);
+               this.getCustomFieldBySreviceId(this.objVenderServiceVm.servicesId,this.objVenderServiceVm.serviceName);
+               this.saveServiceWithoutOptions();
+                this.showLoader=false;
+               }}
                },error => {console.log(error)
                 this.showLoader=false;
                });
@@ -196,7 +209,6 @@ export class BusinessServicesComponent implements OnInit {
       }
       seveCustomField(cfo,fieldType) {
         if(fieldType==='5'){
-       
         cfo.isSelected=true;
         let smv=new ServiceFieldValuesVM();
         smv.FieldValue= cfo.key;
@@ -224,33 +236,34 @@ export class BusinessServicesComponent implements OnInit {
           this.toastr.error(res.json().message);
          }
        });
-      }else if(fieldType=='6'){
-        /// Prepare Array To Post Data In Cahse Of Customfieldoption Save Button CLiack
-        cfo.isSelected=true;
-        let smv=new ServiceFieldValuesVM();
-        smv.FieldValue= cfo.key;
-        smv.customFieldId = cfo.customFieldId;
-        this.customFields.filter(c=>c.customFieldId==cfo.customFieldId)[0].SelectedOptionId=smv.id;
-        this.customFields.filter(c=>c.customFieldId==cfo.customFieldId)[0].SelectedOptionValue=smv.FieldValue;        
-        let options= this.customFields.filter(c=>c.customFieldId==cfo.customFieldId)[0].customFieldOptionList;
-        let CustomfieldType=this.customFields.filter(c=>c.customFieldId==cfo.customFieldId)[0].fieldType;
-        if(this.objVenderServiceVm.serviceFields==undefined){
-        this.objVenderServiceVm.serviceFields=[];
-      }
-      /// Save Into Database In Cahse Of Customfieldoption Save Button CLiack
-       this.objVenderServiceVm.serviceFields.push(smv);
       }
       else if(fieldType=='0'){
-        this.bs_service.SaveIntoDb(this.objVenderServiceVm).subscribe(res=>{
-          if(res.status==200){
-            this.toastr.success(res.json().message);
-            this.objVenderServiceVm.serviceFields=[];
-          }else{
-           this.toastr.error(res.json().message);
-          }
-        });
-      }
-      }
+        this.customFieldSelectOptions.forEach(element => {
+          if(element.isSelect==true){
+        let smv=new ServiceFieldValuesVM();
+        smv.FieldValue= element.key;
+        smv.customFieldId = element.customFieldId;
+        if(this.objVenderServiceVm.serviceFields==undefined){
+          this.objVenderServiceVm.serviceFields=[];
+        }
+        this.objVenderServiceVm.serviceFields.push(smv);
+        }
+      });
+      /// Post Data To Server
+      this.showLoader=true;
+      this.bs_service.SaveIntoDb(this.objVenderServiceVm).subscribe(res=>{
+        if(res.status==200){
+          this.toastr.success(res.json().message);
+          this.objVenderServiceVm.serviceFields=[];
+          this.showLoader=false;
+          this.customDialog=false;
+        }else{
+          this.showLoader=false;
+         this.toastr.error(res.json().message);
+        }
+      });
+    }
+    }
       SaveIntoDb(){
         if(this.beforeUpdateData!=undefined){
           this.getCustomFieldBySreviceId(this.beforeUpdateData.servicesId,this.beforeUpdateData.serviceName);

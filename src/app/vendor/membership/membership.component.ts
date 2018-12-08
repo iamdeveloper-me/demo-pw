@@ -111,7 +111,7 @@ export class MembershipComponent implements OnInit {
 
 
 
-    alert("dfcdr");
+    //alert("dfcdr");
     console.log(planid);
     console.log(payFrequency);
     let headers = new Headers();

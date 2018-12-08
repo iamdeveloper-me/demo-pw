@@ -21,21 +21,21 @@
                         <table class="table table table-bordered table-striped">
                             <tr>
                                 <th>Current Plan </th>
-                                <th>: {{MainData.title}}</th>
+                                <td> {{MainData.title}}</td>
                               </tr>
                           <tr>
-                              <th>Selected Plan : </th>
-                              <th>: {{WhichPlan.title}}</th>
+                              <th>Selected Plan  </th>
+                              <td> {{WhichPlan.title}}</td>
                           </tr>
                           <tr>
                               <th>Plan Duration </th> 
-                              <th *ngIf="MainData.payFrequency == 1">: 6 Month</th>
-                              <th *ngIf="MainData.payFrequency == 2">: Annually</th>
+                              <td *ngIf="MainData.payFrequency == 1"> 6 Month</td>
+                              <td *ngIf="MainData.payFrequency == 2"> Annually</td>
 
                           </tr>
                           <tr>
                               <th>Total Amount</th>
-                              <th> : {{totalAmount}} $</th>
+                              <td>  {{totalAmount}}</td>
                           </tr>
                         </table>
                       </div>

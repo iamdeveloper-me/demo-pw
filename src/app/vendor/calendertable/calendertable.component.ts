@@ -172,9 +172,9 @@ export class CalendertableComponent implements OnInit {
             refresh: Subject<any> = new Subject();
             activeDayIsOpen: boolean = true;
     job(jo){
-      debugger
+     
       this.end_date = jo.value['endDate']['year']+'-'+jo.value['endDate']['month']+'-'+jo.value['endDate']['day']
-      this.start_date = jo.value['endDate']['year']+'-'+jo.value['endDate']['month']+'-'+jo.value['endDate']['day']
+      this.start_date = jo.value['startDate']['year']+'-'+jo.value['startDate']['month']+'-'+jo.value['startDate']['day']
       jo.value.startDate = this.start_date
       jo.value.endDate = this.end_date
 
@@ -203,7 +203,12 @@ export class CalendertableComponent implements OnInit {
       this.edit_job_form.endDate  = a.endDate.split('T')[0];
     }
     edit_job(b){
+      this.end_date = b.value['endDate']['year']+'-'+b.value['endDate']['month']+'-'+b.value['endDate']['day']
+      this.start_date = b.value['startDate']['year']+'-'+b.value['startDate']['month']+'-'+b.value['startDate']['day']
+      b.value.startDate = this.start_date
+      b.value.endDate = this.end_date
       console.log(b.value);
+      debugger
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
       headers.append('Accept', 'application/json')

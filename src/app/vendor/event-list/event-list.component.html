@@ -471,7 +471,7 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label>District</label>
-                        <select name="district" class="form-control" #ele_distid [(ngModel)]="objevent.districtId" name="dist_id" (ngModelChange)="subr()">
+                        <select name="district" class="form-control" #ele_distid [(ngModel)]="objevent.districtId" name="dist_id" (ngModelChange)="subr($event)">
                           <option *ngFor="let dist of district" [value]="dist.districtId">
                             {{dist.name }}
                           </option>

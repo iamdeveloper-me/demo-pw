@@ -103,7 +103,7 @@ export class EventListComponent implements OnInit {
       this.arra = this.countryArray
       this.country();
       this.districtA();
-      this.subr();
+      this.subr(event);
     })
     this.past_upcomming_event(3);
          $.getScript('./assets/js/vendorsidebar.js');
@@ -561,9 +561,9 @@ locations(event: any) { this.location  = '';}
       this.objevent.countryId=1;
       this.district=this.arra.filter(c=>c.countryId==this.objevent.countryId)[0].districts;
     }
-    this.subr();
+    this.subr(event);
   }
-  subr(): void {
+  subr(event): void {
     if(this.objevent.districtId!=undefined){
    this.suburb= this.district.filter(d=>d.districtId==this.objevent.districtId)[0].suburb;}
   }

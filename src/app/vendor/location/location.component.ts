@@ -507,7 +507,7 @@ export class LocationComponent implements OnInit {
             this.ngOnInit();
       }
     }, error => {
-      alert(JSON.stringify(error));
+     // alert(JSON.stringify(error));
     })
     return;
   }
@@ -638,26 +638,24 @@ export class LocationComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
     let isvalidTIme = this.validateTradingTime();
-    let Pincode=e.value.postalCode?e.value.postalCode:'No Postal Code';
-    console.log(Pincode)
-    alert(this.modelfield.country_id);
-    debugger;
+   // let Pincode=e.value.postalCode?e.value.postalCode:'No Postal Code';
+    // alert(JSON.stringify(this.modelfield));
     if (isvalidTIme == 1) {
-      this.http.post(this.urlpost, {
-        vendorLocationId: e.value.vendorLocationId,
-        countryId: e.value.country.countryId?e.value.country.countryId:this.country_id,
+      let jsonPost={
+        vendorLocationId: this.modelfield.vendorLocationId,
+        countryId: this.modelfield.country.countryId,
         vendorId: e.value.vendorId,
-        country: e.value.country?e.value.country.countryId:this.country_id,
-        postalCode: Pincode,
+        country: this.modelfield.country.countryName,
+        postalCode: this.modelfield.postalCode?this.modelfield.postalCode:'Postal Code Not Available !',
         districtId: e.value.districtId,
-        districts: {
-          districtId: e.value.districtId,
-          name: e.value.districts.name
-        },
-        suburb: {
-          name: e.value.suburb.name,
-          suburbId: e.value.suburb.suburbId
-        },
+        // districts: {
+        //   districtId: e.value.districtId,
+        //   name: this.modelfield.districts.name
+        // },
+        // suburb: {
+        //   name: e.value.suburb.name,
+        //   suburbId: e.value.suburb.suburbId
+        // },
         suburbId: e.value.suburbId,
         address: e.value.address,
         mapAddress: e.value.mapAddress,
@@ -689,6 +687,55 @@ export class LocationComponent implements OnInit {
         isSaturdayOpen: e.value.isSaturdayOpen,
 
         locationPhones: this.col
+      }
+      console.log(JSON.stringify(jsonPost));
+      this.http.post(this.urlpost, {
+        // vendorLocationId: e.value.vendorLocationId,
+        // countryId: this.modelfield.country.countryId,
+        // vendorId: e.value.vendorId,
+        // country: this.modelfield.country.countryName,
+        // postalCode: Pincode,
+        // districtId: e.value.districtId,
+        // // districts: {
+        // //   districtId: e.value.districtId,
+        // //   name: this.modelfield.districts.name
+        // // },
+        // // suburb: {
+        // //   name: e.value.suburb.name,
+        // //   suburbId: e.value.suburb.suburbId
+        // // },
+        // suburbId: e.value.suburbId,
+        // address: e.value.address,
+        // mapAddress: e.value.mapAddress,
+        // lat: e.value.lat,
+        // long: e.value.long,
+        // phone: e.value.phone,
+        // mobile: e.value.mobile,
+        // isActive: e.value.isActive,
+        // sundayOpen: e.value.sundayOpen,
+        // sundayClose: e.value.sundayClose,
+        // isSundayOpen: e.value.isSundayOpen,
+        // mondayOpen: e.value.mondayOpen,
+        // mondayClose: e.value.mondayClose,
+        // isMondayOpen: e.value.isMondayOpen,
+        // tuesdayOpen: e.value.tuesdayOpen,
+        // tuesdayClose: e.value.tuesdayClose,
+        // isTuesdayOpen: e.value.isTuesdayOpen,
+        // wednesdayOpen: e.value.wednesdayOpen,
+        // wednesdayClose: e.value.wednesdayClose,
+        // isWednesdayOpen: e.value.isWednesdayOpen,
+        // thursdayOpen: e.value.thursdayOpen,
+        // thursdayClose: e.value.thursdayClose,
+        // isThursdayOpen: e.value.isThursdayOpen,
+        // fridayOpen: e.value.fridayOpen,
+        // fridayClose: e.value.fridayClose,
+        // isFridayOpen: e.value.isFridayOpen,
+        // saturdayOpen: e.value.saturdayOpen,
+        // saturdayClose: e.value.saturdayClose,
+        // isSaturdayOpen: e.value.isSaturdayOpen,
+
+        // locationPhones: this.col
+        jsonPost
       }, { headers: headers }).subscribe((data) => {
         console.log(data)
         this.toastr.success(data.statusText);

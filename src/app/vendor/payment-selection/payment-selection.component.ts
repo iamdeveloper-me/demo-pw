@@ -10,12 +10,14 @@ import { copyStyles } from '@angular/animations/browser/src/util';
   styleUrls: ['./payment-selection.component.scss']
 })
 export class PaymentSelectionComponent implements OnInit {
+
   url = apiPath.url;
   selection:undefined[]
   constructor(public http: Http,public router: Router) { }
   public MainData: MainData;
   totalAmount:number = 0;
   WhichPlan:undefined[]
+
   ngOnInit() {
     $.getScript('./assets/js/membershipslider.js'); 
 

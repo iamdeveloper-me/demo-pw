@@ -38,15 +38,16 @@ export class SignupVendorService {
     console.log(planId);
     var categoryId = user.vendorCategories[0].categoryId;
     const header = new Headers({'Content-Type': 'application/json'});
- 
-    return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/register',
-      { logInInfo: {  firstName: firstname,lastName:lastname, password:upassword,confirmPassword: cpassword},
+ const a =    { logInInfo: {  firstName: firstname,lastName:lastname, password:upassword,confirmPassword: cpassword},
 
-        contactInfo: { contactPerson: contactPerson, email: email, phone: phone, website: website},
-        businessInfo: {countryId:countryId,districtId:districtId ,suburbId:suburbId,city: city, postalCode: postalcode,address: address, nameOfBusiness: nameOfBusiness, 
-                       pricingPlanId:planId.pricingPlanId ,payFrequency: parseInt(planId.payFrequency) },
-        vendorCategories: [ { categoryId: categoryId }]
-        } ,{headers: header});
+ contactInfo: { contactPerson: contactPerson, email: email, phone: phone, website: website},
+ businessInfo: {countryId:countryId,districtId:districtId ,suburbId:suburbId,city: city, postalCode: postalcode,address: address, nameOfBusiness: nameOfBusiness, 
+                pricingPlanId:planId.pricingPlanId ,payFrequency: parseInt(planId.payFrequency) },
+ vendorCategories: [ { categoryId: categoryId }]
+ }
+ console.log(a)
+    return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/register',a
+    ,{headers: header});
 
 
     }

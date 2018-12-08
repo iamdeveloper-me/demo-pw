@@ -11,9 +11,9 @@ export class InvoiceDetailComponent implements OnInit {
 
   constructor(public http: Http ,private router: Router, public toastr: ToastrService) { }
 
-  dataArray:string[];
-  dataArray1:string[];
-
+  dataArray:undefined[];
+  dataArray1:undefined[];
+  invoice_length:number;
   private invoiceurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myinvoices'
   invoiceData : any = {};
   // invoiceData : any = {
@@ -32,10 +32,9 @@ export class InvoiceDetailComponent implements OnInit {
       $.getScript('http://code.jquery.com/jquery-1.11.1.min.js');
       $.getScript('https://code.jquery.com/ui/1.12.1/jquery-ui.js');
       $.getScript('./assets/js/vendorsidebar.js');
+      $.getScript('"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"');
 
-
-
-  
+      
     }     
     //NgOnInit End
     
@@ -68,11 +67,11 @@ invoice(data){
   // this.invoiceData = data.json() as string[]; 
   this.http.post(this.invoiceurl,inc,{headers:headers}).subscribe(
     data =>{
-      this.dataArray = data.json() as string[]; 
+      this.dataArray = data.json(); 
+      this.invoice_length = this.dataArray.length
              console.log(this.dataArray);
             //  console.log(data.json());
-             console.log(data);
-             this.toastr.success("Update sucessfully");
+             this.toastr.success("Search sucessfully");
     },error=>{console.log(error)});
 
 }
@@ -81,30 +80,34 @@ invoice(data){
   
     //NgOnInit End
 
-postData(f){
-  console.log(f);
-  let headers = new Headers();
-  var authToken = localStorage.getItem('userToken');
-  headers.append('Accept', 'application/json')
-  headers.append('Content-Type', 'application/json');
-  headers.append("Authorization",'Bearer '+authToken);
-  const update =
-    {
-      startDate: f.value.startDate,
-      endDate: f.value.endDate,
-      invoiceId: f.value.invoiceId,
-      userId: f.value.userId
-    }
+// postData(f){
+//   console.log(f);
+//   let headers = new Headers();
+//   var authToken = localStorage.getItem('userToken');
+//   headers.append('Accept', 'application/json')
+//   headers.append('Content-Type', 'application/json');
+//   headers.append("Authorization",'Bearer '+authToken);
+//   const update =
+//     {
+//       startDate: f.value.startDate,
+//       endDate: f.value.endDate,
+//       invoiceId: f.value.invoiceId,
+//       userId: f.value.userId
+//     }
 
-  console.log(update);
-  this.http.post(this.invoiceurl,update,{headers:headers}).subscribe(
-    data =>{ 
-      // this.vendor = data.json();
-       alert("Updated!");
-      this.toastr.success("Update sucessfully");
+//   console.log(update);
+//   this.http.post(this.invoiceurl,update,{headers:headers}).subscribe(
+//     data =>{ 
+//       // this.vendor = data.json();
+//        alert("Updated!");
+//       this.toastr.success("Update sucessfully");
        
-  },error=>{console.log(error)});
+//   },error=>{console.log(error)});
+// }
+invoiceDataFunction(s_data){
+console.log(s_data);
+this.dataArray1 = JSON.parse(s_data)
+debugger
 }
-  
 }
 

@@ -27,8 +27,8 @@ event;
 fbAvailable = false;
 personal_data_update = false;
 changePassword_form = false;
- private geturl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mypersonalinfo'
-  getaccount : any = {};
+//  private geturl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mypersonalinfo'
+//   getaccount : any = {};
 
  private updateurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatepersonalinfo' 
   updateaccount : any = {};
@@ -40,10 +40,10 @@ changePassword_form = false;
   membershipdetail : any = {
     startDateString:'',
     endDateString:'',
-
+    createdOnString:'',
     pricingPlan: {
       title: '',
-      dateAddedOnString:''
+      dateAddedOnString:'',
     },
   };
 
@@ -135,14 +135,14 @@ changePassword_form = false;
   //getData Profile
 
   getData(data){
-    this.getaccount = data;
+    this.vendor = data;
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('  Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
 
-    this.http.get(this.geturl,{headers:headers}).subscribe(
+    this.http.get(this.vendor,{headers:headers}).subscribe(
       data =>{ this.vendor = data.json();
                console.log(this.vendor);
       });
@@ -170,12 +170,12 @@ changePassword_form = false;
     this.http.post(this.updateurl,update,{headers:headers}).subscribe(
       data =>{ 
         this.vendor = data.json();
-        this.toastr.success("profile update sucessfully");
-
-         alert("Profile Updated!");
-
-        this.personal_data_update = false;
-    },error=>{console.log(error)});
+         this.ngOnInit();
+         this.toastr.success("Profile Update Sucessfully");
+    },error=>{
+      console.log(error);
+      this.toastr.error("Profile Not Update!");
+    });
   }
 
   changePassword(f){
@@ -196,11 +196,11 @@ changePassword_form = false;
       this.http.post(this.changepassurl,cp,{headers:headers}).subscribe(
         data =>{
                  console.log(data.json());
-                 alert("password reset sucessfully!");
-                 this.toastr.success("your password reset sucessfully");
-                 alert("password reset sucessfully!");
+                 this.toastr.success("Your Password Reset Sucessfully");
                  this.changePassword_form =false;
-        },error=>{console.log(error)});
+        },error=>{console.log(error);
+          this.toastr.error("Password Mismatch!");
+        });
     }
   }
 

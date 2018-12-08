@@ -21,7 +21,7 @@ export class NavemenuComponent implements OnChanges,OnInit   {
     alltab = true;
     unreadtab = false;
     filter_id:number = 1;
-    historyArr:string[];
+    historyArray = [];
     uiLoading:boolean = true;
    arrayLength:number;
    unread_msg:number;
@@ -179,7 +179,7 @@ ngOnChanges(){};
 search(newObj){
   console.log(this.find_name.toUpperCase())
 
-  console.log(this.historyArr)
+  console.log(this.historyArray)
   // console.log(this.filter_id)
   // this.filter_id = 1
   const json ={
@@ -189,10 +189,10 @@ search(newObj){
   this.hservice.vendorMessages(json).subscribe(( data )  =>  
             { 
               this.uiLoading = false;
-              this.historyArr = data.json()  ;
-              this.arrayLength =  this.historyArr.length
-              this.unread_msg = this.historyArr.length;
-              console.log(this.historyArr)
+              this.historyArray = data.json()  ;
+              this.arrayLength =  this.historyArray.length
+              this.unread_msg = this.historyArray.length;
+              console.log(this.historyArray)
             },error => 
             alert(error) // error path
           )
@@ -213,14 +213,14 @@ unread(filter_id){
         this.hservice.vendorMessages(json).subscribe(( data )  =>  
         { 
           this.uiLoading = false;
-          this.historyArr = data.json()  ; 
-          this.historyArr.forEach(element => {
+          this.historyArray = data.json()  ; 
+          this.historyArray.forEach(element => {
             element['checked'] = false;
           });
-          this.unread_msg = this.historyArr.length;
-          this.arrayLength =  this.historyArr.length
+          this.unread_msg = this.historyArray.length;
+          this.arrayLength =  this.historyArray.length
 
-          console.log(this.historyArr)
+          console.log(this.historyArray)
         },error => 
         alert(error) // error path
       )

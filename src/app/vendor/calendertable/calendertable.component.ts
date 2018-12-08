@@ -21,6 +21,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./calendertable.component.scss']
 })
 export class CalendertableComponent implements OnInit {
+
+  customDay;
+  isDisabled;
+  endtime;
     select_time: TimeSlot
     jobArray: any = [];
     all = 3;

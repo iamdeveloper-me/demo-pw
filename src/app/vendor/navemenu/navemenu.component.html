@@ -15,7 +15,7 @@
                     <span class="sr-only">Toggle navigation</span>
                 </button>
                 
-                <div id="navbarSupportedContent" class="headerrightbar" (click)="unread(2) && set(2)">
+                <div id="navbarSupportedContent" class="headerrightbar" (click)="unread(2)">
                     <ul class="navbar-nav right_listing" style="display:none;" >
                         <li class="nav-item" ngbDropdown placement="bottom-right">
                                 <a class="nav-link position-relative" id="dropdownBasic2" ngbDropdownToggle>
@@ -26,7 +26,7 @@
                                 
                                 <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="notification-dropdown notification_mob1 ">
                                     <div class="noti-list">
-                                        <a *ngFor="let data of historyArr;let i=index " class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
+                                        <a *ngFor="let data of historyArray;let i=index " class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
                                             <div class="notifyimgbox">
                                                     <img alt="" src="../../assets/img/photo.jpg">
                                             </div>
@@ -84,8 +84,8 @@
                                 <p class="d-none">Notifications</p>
                             </a>
                             <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="notification-dropdown">
-                                <div class="noti-list" *ngIf = "historyArr !=  ''">
-                                    <a *ngFor="let data of historyArr | slice:0:3 ;let i=index " class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
+                                <div class="noti-list" *ngIf = "unread_msg > 0 ">
+                                    <a *ngFor="let data of historyArray | slice:0:3 ;let i=index " class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
                                             <div class="notifyimgbox">
                                                     <img alt="" src="../../assets/img/photo.jpg">
                                             </div>
@@ -98,7 +98,7 @@
                                             </span>
                                     </a>
                                 </div>
-                                <div class="noti-list" *ngIf = "historyArr ==  ''">
+                                <div class="noti-list" *ngIf = "unread_msg == 0">
                                         <a  class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
                                                 <span class="noti-wrapper">
                                                     <span class="noti-title line-height-1 d-block text-bold-400 info">No Messages :(</span>

@@ -12,7 +12,8 @@ export class InvoiceDetailComponent implements OnInit {
   constructor(public http: Http ,private router: Router, public toastr: ToastrService) { }
 
   dataArray:undefined[];
-  dataArray1:undefined[];
+  dataArray1:{paymentDate:'',paymentType: '' ,customerDetails:{emailaddress:'' ,firstName:''}};
+
   invoice_length:number;
   private invoiceurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myinvoices'
   invoiceData : any = {};
@@ -106,8 +107,8 @@ invoice(data){
 // }
 invoiceDataFunction(s_data){
 console.log(s_data);
-this.dataArray1 = JSON.parse(s_data)
-debugger
+this.dataArray1 = (s_data)
+console.log(this.dataArray1)
 }
 }
 

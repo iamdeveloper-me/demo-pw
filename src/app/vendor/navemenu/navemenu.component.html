@@ -9,238 +9,160 @@
                         <div class="line3"></div>
                     </button>
                     <div class="blackoverlaymobile"></div>
-                    <!-- <p class="navbar-brandm navdrandm" id="Dashboard"> -->
-                          <h4 class="navdrandm navbar-brandm "> {{data}}  
 
-
-
-
-                               </h4> 
-
-
-                               <!-- <a class="dropdown-item py-1" routerLink="../messagess">
-                                <i class="ft-settings mr-2"></i>
-                                <span>Messages</span>
-                            </a>   
-                    -->
-
-
+                <h4 class="navdrandm navbar-brandm "> {{data}}   </h4> 
                 <button type="button" class="navbar-toggle d-lg-none float-left hidden-xs" data-toggle="collapse">
                     <span class="sr-only">Toggle navigation</span>
                 </button>
                 
-
-
-
-                        <div id="navbarSupportedContent" class="headerrightbar">
-                     
-                          <!--   <ul class="navbar-nav linkbtnholder">                           
-                                <li class="nav-item">
-                                    <a href="javascript:void(0)" class="btn btn-outline-light btnheadvendor" routerLink="gallery"> <i class="material-icons">add_a_photo</i> &nbsp;Manage Photos</a>
-                                </li>
-                                <li class="nav-item">
+                <div id="navbarSupportedContent" class="headerrightbar" (click)="unread(2) && set(2)">
+                    <ul class="navbar-nav right_listing" style="display:none;" >
+                        <li class="nav-item" ngbDropdown placement="bottom-right">
+                                <a class="nav-link position-relative" id="dropdownBasic2" ngbDropdownToggle>
+                                    <i class="ft-bell font-medium-3 blue-grey darken-4"></i>
+                                    <span class="notification badge badge-pill badge-danger">4</span>
+                                    <p class="d-none">Notifications</p>
+                                </a>
+                                
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="notification-dropdown notification_mob1 ">
+                                    <div class="noti-list">
+                                        <a *ngFor="let data of historyArr;let i=index " class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
+                                            <div class="notifyimgbox">
+                                                    <img alt="" src="../../assets/img/photo.jpg">
+                                            </div>
+                                            
+                                            <span class="noti-wrapper">
+                                                <span class="noti-title line-height-1 d-block text-bold-400 info">{{data.sendByFirstName }}</span>
+                                                <span class="noti-text">Lorem</span>
+                                            </span>
+                                        </a>
+                        
+                                    </div>
+                                    <a routerLink="../Message" class="noti-footer primary text-center d-block border-top border-top-blue-grey border-top-lighten-4 text-bold-400 py-1">Veiw All Messages</a>
+                                </div>
+                        </li>
+                        <li class="nav-item" ngbDropdown placement="bottom-right">
+                            
+                                <a class="nav-link position-relative" id="dropdownBasic3" ngbDropdownToggle>
+                                    <i class="material-icons">account_circle</i>
+                            
+                                    <p class="d-none">User Settings</p>
+                                </a>
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic3">  
                                     
-                                    <a href="javascript:void(0)" class="btn btn-outline-light btnheadvendor" routerLink="dashboard">
-                                         <i class="material-icons">build</i> &nbsp;Edit
+                                    <a  class="dropdown-item py-1" routerLink="../editprofile">
+                                        <i class="ft-edit mr-2"></i>
+                                        <span>My Profile</span>
                                     </a>
-                                </li>    
-                            </ul> -->
-                            <ul class="navbar-nav right_listing" style="display:none;">
-                                   <!--  <li class="nav-item mr-2">
-                                        <a href="javascript:;" class="nav-link" id="navbar-fullscreen" appToggleFullscreen (click)="ToggleClass()">                            
-                                            <i class="{{toggleClass}} font-medium-3 blue-grey darken-4"></i>
-                                            <p class="d-none">fullscreen</p>
-                                        </a>
-                                    </li> -->
-                                    <li class="nav-item" ngbDropdown placement="bottom-right">
-                                            <a class="nav-link position-relative" id="dropdownBasic2" ngbDropdownToggle>
-                                                <i class="ft-bell font-medium-3 blue-grey darken-4"></i>
-                                                <span class="notification badge badge-pill badge-danger">4</span>
-                                                <p class="d-none">Notifications</p>
-                                            </a>
-                                            <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="notification-dropdown notification_mob1 ">
-                                                <div class="noti-list">
-                                                    <a class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
-                                                        <div class="notifyimgbox">
-                                                             <img alt="" src="../../assets/img/photo.jpg">
-                                                        </div>
-                                                       
-                                                        <span class="noti-wrapper">
-                                                            <span class="noti-title line-height-1 d-block text-bold-400 info">Hotel Sayaji</span>
-                                                            <span class="noti-text">Lorem ipsum dolor sit ametitaque in, et!</span>
-                                                        </span>
-                                                    </a>
-                                                    <a class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
-                                                        <div class="notifyimgbox">
-                                                             <img alt="" src="../../assets/img/photo.jpg">
-                                                        </div>
-                                                        <span class="noti-wrapper">
-                                                            <span class="noti-title line-height-1 d-block text-bold-400 warning">Mayfair Banquets</span>
-                                                            <span class="noti-text">Lorem ipsum dolor sit ametitaque in </span>
-                                                        </span>
-                                                    </a>
-                                                    <a class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
-                                                        <div class="notifyimgbox">
-                                                             <img alt="" src="../../assets/img/photo.jpg">
-                                                        </div>
-                                                        <span class="noti-wrapper">
-                                                            <span class="noti-title line-height-1 d-block text-bold-400 danger">Vision Photography</span>
-                                                            <span class="noti-text">Lorem ipsum dolor sit ametest?</span>
-                                                        </span>
-                                                    </a>
-                                                    <a class="dropdown-item noti-container py-3">
-                                                       <div class="notifyimgbox">
-                                                             <img alt="" src="../../assets/img/photo.jpg">
-                                                        </div>
-                                                        <span class="noti-wrapper">
-                                                            <span class="noti-title line-height-1 d-block text-bold-400 success">New User Registered</span>
-                                                            <span class="noti-text">Lorem ipsum dolor sit ametnatus aut.</span>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <a routerLink="../Message" class="noti-footer primary text-center d-block border-top border-top-blue-grey border-top-lighten-4 text-bold-400 py-1">Veiw All Messages</a>
+                                    <a class="dropdown-item py-1" routerLink="chat">
+                                        <i class="ft-mail mr-2"></i>
+                                        <span>My Inbox</span>
+                                    </a>
+                                    <a class="dropdown-item py-1" href="javascript:;">
+                                        <i class="ft-settings mr-2"></i>
+                                        <span>Settings</span>
+                                    </a>
+                                    
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <i class="ft-power mr-2"></i>
+                                        <span>Logout</span>
+                                    </a>
+                                    <button (click)= "logout()" type="button">fvfvv</button>
+                                </div>
+                        </li>  
+                    </ul>
+                    <ul class="navbar-nav right_listing">    
+                        
+                        <li class="nav-item notilink" ngbDropdown placement="bottom-right">
+                            <a class="nav-link position-relative afternone" id="dropdownBasic2" ngbDropdownToggle>
+                                    <i class="material-icons">email</i>
+                                <div *ngIf= "unread_msg > 0">
+                                        <span class="notification badge badge-pill badge-danger">{{unread_msg}}</span>
+                                </div>
+                                  
+                                <p class="d-none">Notifications</p>
+                            </a>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="notification-dropdown">
+                                <div class="noti-list" *ngIf = "historyArr !=  ''">
+                                    <a *ngFor="let data of historyArr | slice:0:3 ;let i=index " class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
+                                            <div class="notifyimgbox">
+                                                    <img alt="" src="../../assets/img/photo.jpg">
                                             </div>
-                                    </li>
-                                    <li class="nav-item" ngbDropdown placement="bottom-right">
-                                        
-                                            <a class="nav-link position-relative" id="dropdownBasic3" ngbDropdownToggle>
-                                              <i class="material-icons">account_circle</i>
-                                        
-                                                <p class="d-none">User Settings</p>
-                                            </a>
-                                            <div ngbDropdownMenu aria-labelledby="dropdownBasic3">  
-                                             
-                                                <a  class="dropdown-item py-1" routerLink="../editprofile">
-                                                    <i class="ft-edit mr-2"></i>
-                                                    <span>My Profile</span>
-                                                </a>
-                                                <a class="dropdown-item py-1" routerLink="chat">
-                                                    <i class="ft-mail mr-2"></i>
-                                                    <span>My Inbox</span>
-                                                </a>
-                                                <a class="dropdown-item py-1" href="javascript:;">
-                                                    <i class="ft-settings mr-2"></i>
-                                                    <span>Settings</span>
-                                                </a>
-                                              
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="javascript:;">
-                                                    <i class="ft-power mr-2"></i>
-                                                    <span>Logout</span>
-                                                </a>
-                                                <button (click)= "logout()" type="button">fvfvv</button>
-                                            </div>
-                                    </li>  
-                            </ul>
-                            <ul class="navbar-nav right_listing">    
-                                 <!--    <li class="nav-item" placement="bottom-right">
-                                        <a class="nav-link position-relative">
-                                            <i class="material-icons">info </i>
-                                        </a>              
-                                    </li>
-                                    <li class="nav-item" placement="bottom-right">
-                                        <a class="nav-link position-relative">
-                                            <i class="material-icons"> add</i>
-                                        </a>       
-                                    </li> -->
-                                    <li class="nav-item notilink" ngbDropdown placement="bottom-right">
-                                        <a class="nav-link position-relative afternone" id="dropdownBasic2" ngbDropdownToggle>
-                                                <i class="material-icons">email</i>
-                                            <!-- <i class="ft-bell font-medium-3 blue-grey darken-4"></i> -->
-                                            <span class="notification badge badge-pill badge-danger">4</span>
-                                            <p class="d-none">Notifications</p>
-                                        </a>
-                                        <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="notification-dropdown">
-                                            <div class="noti-list">
-                                                <a class="dropdown-item afternone noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
-                                                   <div class="notifyimgbox">
-                                                             <img alt="" src="../../assets/img/photo.jpg">
-                                                        </div>
-                                                       
-                                                        <span class="noti-wrapper">
-                                                            <span class="noti-title line-height-1 d-block text-bold-400 info">Hotel Sayaji</span>
-                                                        <span class="noti-text">Lorem ipsum dolor sit ametitaque in, et!</span>
-                                                    </span>
-                                                </a>
-                                                <a class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
-                                                        <div class="notifyimgbox">
-                                                             <img alt="" src="../../assets/img/photo.jpg">
-                                                        </div>
-                                                       
-                                                        <span class="noti-wrapper">
-                                                            <span class="noti-title line-height-1 d-block text-bold-400 info">Mayfair  Banquets</span>
-                                                        <span class="noti-text">Lorem ipsum dolor sit ametitaque in </span>
-                                                    </span>
-                                                </a>
-                                                <a class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
-                                                        <div class="notifyimgbox">
-                                                             <img alt="" src="../../assets/img/photo.jpg">
-                                                        </div>
-                                                       
-                                                        <span class="noti-wrapper">
-                                                            <span class="noti-title line-height-1 d-block text-bold-400 info">Vision Photography</span>
-                                                        <span class="noti-text">Lorem ipsum dolor sit ametest?</span>
-                                                    </span>
-                                                </a>
-                                            </div>
-                                            <a class="noti-footer primary text-center d-block border-top border-top-blue-grey border-top-lighten-4 text-bold-400 py-1">Read All Notifications</a>
-                                        </div>
-                                    </li>
-                                    <li class="nav-item usernavmenu" ngbDropdown placement="bottom-right">
-                                            <a class="nav-link afternone navuserlink position-relative" id="dropdownBasic3" ngbDropdownToggle>
-                                                 <!-- <i class="material-icons">account_circle</i> -->
-                                                 <!-- <img [src] = "userImg" class="userimgtop" > -->
-                                                 <div *ngIf = "!userImg"  > 
-                                                        <img  [src] = "userImg" class="userimgtop " alt="Profile picture" >
-                                                      </div>
-                                                   
-                                                      <div *ngIf = "userImg != ''"> 
-                                                        <img   [src] = "userImg" class="userimgtop" alt="Profile picture" >
-                                                      </div>
-                                                    
-
-                                                <p class="d-none">User Settings {{vendor.profileImage}}</p>
-                                            </a>
-                                            <div class="blackoverlaymainuser">
-                                            <div ngbDropdownMenu aria-labelledby="dropdownBasic3">       <div class="vendorpicsec">
-                                            <div class="imgsection">
-                                              <!-- <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png"/> -->
-                                              <img [(src)] = "userImg" class="userimgtop" >
-                                            </div>
-                                            <div class="detailsection">
-                                            Hi {{vendor.firstName}}!
-                                            </div>
-                                        </div>                    
-                                                <a class="dropdown-item py-1" routerLink="../dashboard">
-                                                    <i class="ft-edit mr-2"></i>
-                                                    <span>Business Dashboard</span>
-                                                </a>
-
-                                                <a class="dropdown-item py-1" routerLink="../editprofile">
-                                                   <i class="ft-settings mr-2"></i>
-                                                    <span>My Account</span>
-                                                </a>
-                                                <a class="dropdown-item py-1" routerLink="../Message">
-                                                     <i class="ft-mail mr-2"></i>
-                                                    <span>Inbox</span>
-                                                </a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" (click)="logout()">
-                                                    <i class="ft-power mr-2"></i>
-                                                    <span>Logout</span>
-                                                </a>
-                                            </div>
+                                            
+                                            <span class="noti-wrapper">
+                                                <span class="noti-title line-height-1 d-block text-bold-400 info">{{data.sendByFirstName }}</span>
+                                                <span class="noti-text">{{data.message}}</span>
+                                                <span class="noti-text">{{data.sentDateString}}</span>
                                                 
-                                                    
-                                                    <button class="cross hidden-sm hidden-md hidden-lg" type="button">
-                                                        <div class="line1"></div>
-                                                        <div class="line2"></div>
-                                                        <div class="line3"></div>
-                                                    </button>
-                                                </div>
-                                    </li>  
-                            </ul>
-                        </div>
+                                            </span>
+                                    </a>
+                                </div>
+                                <div class="noti-list" *ngIf = "historyArr ==  ''">
+                                        <a  class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
+                                                <span class="noti-wrapper">
+                                                    <span class="noti-title line-height-1 d-block text-bold-400 info">No Messages :(</span>
+                                                </span>
+                                        </a>
+                                    </div>
+                                <a class="noti-footer primary text-center d-block border-top border-top-blue-grey border-top-lighten-4 text-bold-400 py-1" routerLink="../Message">Read All Notifications</a>
+                            </div>
+                        </li>
+                        <li class="nav-item usernavmenu" ngbDropdown placement="bottom-right">
+                                <a class="nav-link afternone navuserlink position-relative" id="dropdownBasic3" ngbDropdownToggle>
+                                        <!-- <i class="material-icons">account_circle</i> -->
+                                        <!-- <img [src] = "userImg" class="userimgtop" > -->
+                                        <div *ngIf = "!userImg"  > 
+                                            <img  [src] = "userImg" class="userimgtop " alt="Profile picture" >
+                                            </div>
+                                        
+                                            <div *ngIf = "userImg != ''"> 
+                                            <img   [src] = "userImg" class="userimgtop" alt="Profile picture" >
+                                            </div>
+                                        
+
+                                    <p class="d-none">User Settings {{vendor.profileImage}}</p>
+                                </a>
+                                <div class="blackoverlaymainuser">
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic3">       <div class="vendorpicsec">
+                                <div class="imgsection">
+                                    <!-- <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png"/> -->
+                                    <img [(src)] = "userImg" class="userimgtop" >
+                                </div>
+                                <div class="detailsection">
+                                Hi {{vendor.firstName}}!
+                                </div>
+                            </div>                    
+                                    <a class="dropdown-item py-1" routerLink="../dashboard">
+                                        <i class="ft-edit mr-2"></i>
+                                        <span>Business Dashboard</span>
+                                    </a>
+
+                                    <a class="dropdown-item py-1" routerLink="../editprofile">
+                                        <i class="ft-settings mr-2"></i>
+                                        <span>My Account</span>
+                                    </a>
+                                    <a class="dropdown-item py-1" routerLink="../Message">
+                                            <i class="ft-mail mr-2"></i>
+                                        <span>Inbox</span>
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" (click)="logout()">
+                                        <i class="ft-power mr-2"></i>
+                                        <span>Logout</span>
+                                    </a>
+                                </div>
+                                    
+                                        
+                                        <button class="cross hidden-sm hidden-md hidden-lg" type="button">
+                                            <div class="line1"></div>
+                                            <div class="line2"></div>
+                                            <div class="line3"></div>
+                                        </button>
+                                    </div>
+                        </li>  
+                    </ul>
+                </div>
                     
             </div>
 

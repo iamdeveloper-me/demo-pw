@@ -48,6 +48,9 @@
                                             <div class="col-lg-12 col-md-12 add_text text-center">
                                             {{vendor.businessDetails}}               
                                             </div>
+                                            <div *ngIf="!vendor.businessDetails"  class="nonedisplay text-center">
+                                                     No information
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

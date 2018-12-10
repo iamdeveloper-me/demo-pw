@@ -11,12 +11,11 @@
         <div class="row gulterbot20px"   *ngFor="let data of HomePage;let i=index " > 
           <div class="col-12 boxcolumn">
             <div class="card">
-                <a class="backicon" (click)='navigateTo()'>
-                  <i _ngcontent-c6="" class="material-icons"> arrow_back_ios </i>
-                </a>
-                <h1>{{data.title}} For Featured Supplier</h1>
+              <a class="backicon" (click)='navigateTo()'>
+                <i _ngcontent-c6="" class="material-icons"> arrow_back_ios </i>
+              </a>
+              <h1>{{data.title}} For Featured Supplier</h1>
               <div class="row">
-                  
                   <div class="roundedicon">
                     <img src="https://s3.us-east-2.amazonaws.com/prefect-image/bell.png" class="img-responsive">
                   </div>
@@ -25,16 +24,13 @@
                     <button class="btn btnbluecode"  >Enter</button>
                   </div>
               </div>
-             
-              
               <!-- <a class="btn gradint_blue borderradius promotebtn gallery">
                 Detail
               </a> -->
-  
             </div>
           </div>
           <div class="clearfix"></div>
-        <form (ngSubmit)="prmocode(code)" #code="ngForm">  
+          <form (ngSubmit)="prmocode(code)" #code="ngForm">  
           <div class="col-12 boxcolumn">
               <div class="card">
                   <h1>Where do you want to advertise</h1>
@@ -226,7 +222,7 @@
                
             </div>
           </div>
-         </form>  
+          </form>  
         </div>
         <div class="clearfix"></div>
       </div>

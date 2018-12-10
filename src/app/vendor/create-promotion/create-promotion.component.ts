@@ -31,6 +31,7 @@ export class CreatePromotionComponent implements OnInit {
      $('.mobilefixedcart').on('click', function(){
      $('.mobilefixedcart').toggleClass('bottom0px');
     });
+    this.loadCountries()
     var authToken = localStorage.getItem('userToken');
     this.headers.append('Accept', 'application/json')
     this.headers.append('Content-Type', 'application/json');

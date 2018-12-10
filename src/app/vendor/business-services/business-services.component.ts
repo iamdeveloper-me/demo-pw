@@ -59,6 +59,7 @@ export class BusinessServicesComponent implements OnInit {
                this.categoryserveice = data.json() as string[];
                console.log(JSON.stringify(this.categoryserveice));
                this.selected_category=this.categoryserveice.filter(c=>c.isSelect==true);
+
                if(this.selected_category.length==0){
                  this.selected_category=this.categoryserveice;
                }
@@ -69,6 +70,7 @@ export class BusinessServicesComponent implements OnInit {
                 this.selectedCategoryName=this.selected_category[0].categoryName;
                }              
                /// Set Service For EntityModel
+
                this.services= this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services;               
                
                if(this.services==undefined || this.services.length<0){
@@ -175,6 +177,7 @@ export class BusinessServicesComponent implements OnInit {
       }
       }
       saveServiceWithoutOptions(){
+
         // this.customFields=[];
         // let customFields=this.categoryserveice.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.servicesId==this.objVenderServiceVm.servicesId)[0].customFields;
         // if(customFields!=undefined){
@@ -200,10 +203,11 @@ export class BusinessServicesComponent implements OnInit {
         this.bs_service.SaveIntoDb(this.businessServiceEntity).subscribe(res=>{
           console.log(res);
         })
+
       }
       getSelectOptions(customField){
         console.log(JSON.stringify(customField));
-        debugger;
+      
           this.customFieldSelectOptions = this.categoryserveice.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.servicesId==this.objVenderServiceVm.servicesId)[0].customFields.filter(cf=>cf.customFieldId==customField.customFieldId)[0].customFieldOptionList;
           console.log(this.customFieldSelectOptions);
           this.customFieldSelectOptions.forEach(element => {

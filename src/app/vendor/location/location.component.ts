@@ -496,7 +496,7 @@ export class LocationComponent implements OnInit {
           "isPrimary": phoneObj.value.isprime
         }
         console.log(obj);
-        debugger;
+       
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         headers.append('Accept', 'application/json')
@@ -518,7 +518,7 @@ export class LocationComponent implements OnInit {
             this.ngOnInit();
       }
     }, error => {
-     // alert(JSON.stringify(error));
+    
     })
     return;
   }
@@ -650,7 +650,7 @@ export class LocationComponent implements OnInit {
     headers.append("Authorization", 'Bearer ' + authToken);
     let isvalidTIme = this.validateTradingTime();
    // let Pincode=e.value.postalCode?e.value.postalCode:'No Postal Code';
-     
+
     if (isvalidTIme == 1) {
       let jsonPost={
         vendorLocationId: this.modelfield.vendorLocationId,
@@ -980,7 +980,7 @@ export class LocationComponent implements OnInit {
   }
   subr(): void {
  this.suburb=[];
- debugger;
+
  if(this.district.filter(d=>d.districtId==this.dist_id)[0]==undefined){
   if(this.suburb==undefined){
     this.ele_suburb.nativeElement.value='-1';

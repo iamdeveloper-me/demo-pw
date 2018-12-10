@@ -114,7 +114,7 @@ export class MessageComponent implements OnInit {
     //     console.log("jjjjjjjj");
     //     this.mreadArr = data.json() as string[] ; 
     //   },error => 
-    //   alert(error) // error path
+   
     // )
   
 
@@ -124,19 +124,19 @@ export class MessageComponent implements OnInit {
     //     console.log("tttttttttttttt");
     //     this.markred = data.json() as string[] ; 
     //   },error => 
-    //   alert(error) // error path
+   
     // )
 
    
     $(function() {
       // $("a").on("click", function() {
-      //   alert('gfgfgdf')
+    
       //     $(".btn-default.active").removeClass("active");
       //     $(this).find(".btn-default").addClass("active");
       // });
 
       $(".msg_buttons").on("click", function(){
-        // debugger
+       
         $(".msg_buttons").removeClass("active");
         $(this).addClass("active");
       });
@@ -161,7 +161,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
             this.unread_msg = this.historyArr.length;
             console.log(this.historyArr)
           },error => 
-          alert(error) // error path
+          console.log(error) // error path
         )
 
   }
@@ -185,7 +185,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
 
                   console.log(this.historyArr)
                 },error => 
-                alert(error) // error path
+                console.log(error) // error path
               )
       
     }else{
@@ -216,7 +216,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
 
             console.log(this.historyArr)
           },error => 
-          alert(error) // error path
+          console.log(error) // error path
         )
   }
   unread(filter_id){
@@ -243,7 +243,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
 
             console.log(this.historyArr)
           },error => 
-          alert(error) // error path
+          console.log(error) // error path
         )
   }
   stared(filter_id){
@@ -269,7 +269,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
             this.arrayLength = this.historyArr.length;
             console.log(this.historyArr)
           },error => 
-          alert(error) // error path
+          console.log(error) // error path
         )
   }
  
@@ -279,9 +279,9 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
       {this.toastr.success(data.json().message)
         this.filter_id = 1
         this.stared(3)
-        debugger
+       
       },error => 
-      alert(error) // error path
+      console.log(error) // error path
     )
     }else{
       this.hservice.markStar(id).subscribe(( data )  =>  
@@ -290,7 +290,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
       this.ngOnInit()
 
     },error => 
-    alert(error) // error path
+    console.log(error) // error path
   )
     }
     
@@ -301,9 +301,9 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
       {this.toastr.success(data.json().message)
         this.filter_id = 1
         this.unread(2)
-        debugger
+      
       },error => 
-      alert(error) // error path
+      console.log(error) // error path
     )
     }else{
       this.hservice.readMark(id).subscribe(( data )  =>  
@@ -312,7 +312,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
         this.filter_id = 1
         this.ngOnInit()
       },error => 
-      alert(error) // error path
+      console.log(error) // error path
     ) 
     }
   }
@@ -403,7 +403,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
     {this.toastr.success(data.json().message)
       this.ngOnInit();
     },error => 
-    alert(error) // error path
+    console.log(error) // error path
    )
   }
    }

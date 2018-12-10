@@ -55,7 +55,7 @@ export class VediosettingComponent implements OnInit {
     });
   }
   addDetails() {
-    alert(this.form.value )
+    console.log(this.form.value )
   }
   ngOnInit() {
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
@@ -171,7 +171,7 @@ deleteData(data){
                                            this.ngOnInit();
           // }
         }else{
-          // alert('Cancel Process !');
+            console.log('Cancel Process !');
        }
     },error=>{
           alert(JSON.stringify(error));

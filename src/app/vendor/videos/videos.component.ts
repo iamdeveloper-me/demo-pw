@@ -40,7 +40,7 @@ export class VideosComponent implements OnInit {
 
     constructor( private fb: FormBuilder,public http: Http, private router: Router) {
       this.basicplan = JSON.parse(localStorage.getItem('basic-plan'));
-          //  alert(this.basicplan);
+         
      }
      createForm() {
       const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
@@ -122,7 +122,7 @@ export class VideosComponent implements OnInit {
                   if(res.value===true){
                     this.router.navigate(['../vendor/membership'])
                  } else{
-                    // alert('Cancel Process !');
+                     console.log('Cancel Process !');
                   }
 },error=>{
     alert(JSON.stringify(error));

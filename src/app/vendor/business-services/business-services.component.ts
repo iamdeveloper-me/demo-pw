@@ -59,7 +59,7 @@ export class BusinessServicesComponent implements OnInit {
                this.selected_category=this.categoryserveice.filter(c=>c.isSelect==true);
                this.objVenderServiceVm.categoryId = this.selected_category[0].categoryId;
                this.selectedCategoryName=this.selected_category[0].categoryName;
-               debugger;
+             
                this.services= this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services;               
                if(this.services==undefined || this.services.length<0){
                  this.objVenderServiceVm.serviceName='No Service Selected ! ';
@@ -178,7 +178,7 @@ export class BusinessServicesComponent implements OnInit {
              customFields[i].SelectedOptionValue='NA';
              customFields[i].SelectedOptionId=78;
              customFields[i].fieldType=customFields[i].fieldType;
-            // alert(customFields[i].fieldType);
+          
              this.customFields.push(customFields[i])
            }
           }}
@@ -186,7 +186,7 @@ export class BusinessServicesComponent implements OnInit {
       }
       getSelectOptions(customField){
         console.log(JSON.stringify(customField));
-        debugger;
+      
           this.customFieldSelectOptions = this.categoryserveice.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.servicesId==this.objVenderServiceVm.servicesId)[0].customFields.filter(cf=>cf.customFieldId==customField.customFieldId)[0].customFieldOptionList;
           console.log(this.customFieldSelectOptions);
           this.customFieldSelectOptions.forEach(element => {

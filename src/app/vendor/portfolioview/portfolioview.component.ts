@@ -125,95 +125,95 @@ export class PortfolioviewComponent implements OnInit {
              }
 
     }
-    
-
-      previewFile(event) {
+    previewFile(event) {
         var preview = this.previewimg.nativeElement;
         var file    = event.target.files[0];
         var reader  = new FileReader();
-        debugger
+       
         reader.readAsDataURL(event.target.files[0]); // read file as data url
         reader.addEventListener("load", function () {
             preview.src = reader.result;
         }, false);
-      
-        if (file) {
-          reader.readAsDataURL(file);
-        }
-      }
-      uploadAll(){
-        //
-       
-        const formData = new FormData();
-        for(let file of this.uploader.queue){
-             formData.append(file['some'].name,file['some'])
-             file.upload()
         
-        }        
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+    uploadAll(){
+    //
 
-        let headers = new  Headers();
-        var authToken = localStorage.getItem('userToken');
-        headers.append("Authorization",'Bearer '+authToken);
-        this.http.post(this.url+'api/ImageUploader/PortfolioUploader',formData,{headers:headers})
-        .subscribe(data =>{ 
-       
-                            this.toastr.success(data.json().message);
-                            this.router.navigate(['../vendor/portfolioview'])
-                            this.http.get(this.mygeturl,{headers:headers})
-                            .subscribe(data =>{   
-                                            console.log(data.json()); 
-                                            this.PortgetArray =data.json() 
-                                            this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
-                                            this.uploadphoto_dailog = false;
-                          });
-                          },(error)=>{console.log(error)});
-        // this.photoupload(formData);   
-      }
-      photoupload(formData){
+    
+    console.log(this.uploader.queue)
+    const formData = new FormData();
+    for(let file of this.uploader.queue){
+            formData.append(file['some'].name,file['some'])
+            file.upload()
+    
+    }        
+
+    let headers = new  Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append("Authorization",'Bearer '+authToken);
+    this.http.post(this.url+'api/ImageUploader/PortfolioUploader',formData,{headers:headers})
+    .subscribe(data =>{ 
+    
+                        this.toastr.success(data.json().message);
+                        this.router.navigate(['../vendor/portfolioview'])
+                        this.http.get(this.mygeturl,{headers:headers})
+                        .subscribe(data =>{   
+                                        console.log(data.json()); 
+                                        this.PortgetArray =data.json() 
+                                        this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
+                                        this.uploadphoto_dailog = false;
+                        });
+                        },(error)=>{console.log(error)});
+    // this.photoupload(formData);   
+    }
+    photoupload(formData){
 
 
-        let headers = new  Headers();
-        var authToken = localStorage.getItem('userToken');
-        headers.append("Authorization",'Bearer '+authToken);
+    let headers = new  Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append("Authorization",'Bearer '+authToken);
 
-        this.http.post(this.uploadimage,formData,{headers:headers})
-        .subscribe(data =>{ 
-            //console.log(data.json().filesId);
-            const data2 = {
-                portfolioId: 0,
-                filesId: data.json().filesId,
-                tags: "",
-                colorTags: "",
-                setAsBackgroud: false
-            }
+    this.http.post(this.uploadimage,formData,{headers:headers})
+    .subscribe(data =>{ 
+        //console.log(data.json().filesId);
+        const data2 = {
+            portfolioId: 0,
+            filesId: data.json().filesId,
+            tags: "",
+            colorTags: "",
+            setAsBackgroud: false
+        }
 
-            //console.log(data2);
-            
-            this.http.post(this.addportfolio,data2,{headers:headers})
-        .subscribe(data =>{ 
-                            //console.log(data.json());
-                            this.uploader.queue = [];
-                            this.http.get(this.mygeturl,{headers:headers})
-                            .subscribe(data =>{   
-                            console.log(data.json()); 
-                            this.PortgetArray =data.json() 
-                            this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
-                            
-                            // console.log(parseInt(basicplan) );
-                  
-                           
-                          });
+        //console.log(data2);
+        
+        this.http.post(this.addportfolio,data2,{headers:headers})
+    .subscribe(data =>{ 
+                        //console.log(data.json());
+                        this.uploader.queue = [];
+                        this.http.get(this.mygeturl,{headers:headers})
+                        .subscribe(data =>{   
+                        console.log(data.json()); 
+                        this.PortgetArray =data.json() 
+                        this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
                         
-                       
-                          console.log(data.json());
-                          this.toastr.success(data.json());
-                       
-                        },(error)=>{        this.toastr.error(error.json());
-                                });
-                             
-        },(error)=>{         this.toastr.error(error.json());
-                  });
-      }
+                        // console.log(parseInt(basicplan) );
+                
+                        
+                        });
+                    
+                    
+                        console.log(data.json());
+                        this.toastr.success(data.json());
+                    
+                    },(error)=>{        this.toastr.error(error.json());
+                            });
+                            
+    },(error)=>{         this.toastr.error(error.json());
+                });
+    }
     closeModel(){this.uploadphoto_dailog = false;
         this.uploader.queue =[];
 

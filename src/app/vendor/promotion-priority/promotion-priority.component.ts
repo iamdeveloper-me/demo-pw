@@ -57,7 +57,7 @@ export class PromotionPriorityComponent implements OnInit {
       obj['isSelected']=false;
       this.HomePage[0].adAvailableSlots[i] = obj;
       this.page_title = this.HomePage[0].title;
-      debugger
+     
       }    
   },error => { console.log(error)});
   }

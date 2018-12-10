@@ -77,7 +77,7 @@ date_true:boolean = true;
 
 //          if(msg.messages.sendToUserId == this.userId){
 //           this.profile_name = msg.messages.sendByFirstName+' '+msg.messages.sendByLastName
-// debugger
+
 // this.vendorMsg['sendToUserId'] = msg.messages.sendByUserId
 
 //          }else{
@@ -88,7 +88,7 @@ date_true:boolean = true;
  
         })
       },error => 
-      alert(error) // error path
+      console.log(error) // error path
     )
 
     // setTimeout(() => {
@@ -130,7 +130,7 @@ console.log(this.vendorMsg)
         }, 200);
         this.vendorMsg['message'] = ''
       },error => 
-      alert(error) // error path
+      console.log(error) // error path
     )
     this.dScrool()
     

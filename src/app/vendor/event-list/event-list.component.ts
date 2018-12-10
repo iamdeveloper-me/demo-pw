@@ -286,7 +286,6 @@ locations(event: any) { this.location  = '';}
     typeof(this.objevent.location)!= 'undefined'&& 
     typeof(this.objevent.capacity) != 'undefined'&& 
     typeof(this.objevent.entry) !='undefined'&& 
-    typeof(this.objevent.entryFee)!= 'undefined'&& 
     typeof(this.objevent.eventDescription) != 'undefined'&& 
     typeof(this.objevent.endDate)!= 'undefined'&& 
     typeof(this.objevent.startDate) != 'undefined'&& 
@@ -299,7 +298,7 @@ locations(event: any) { this.location  = '';}
                       headerForImageUpload.append("Authorization", 'Bearer ' + authToken);
                       const formData = new FormData();
                       formData.append('AlbumId', '2');
-                  //    alert(JSON.stringify(this.imageToUpload));
+                 
                       formData.append(this.imageToUpload.name, this.imageToUpload);
                       this.showLoader=true;
                       this.http.post(this.uploadimage, formData, { headers: headerForImageUpload }).subscribe((data) => {
@@ -326,7 +325,7 @@ locations(event: any) { this.location  = '';}
                                             console.log(this.objevent)
                                              this.http.post(this.eventposturl,this.objevent,{headers:headers}).subscribe((data)=>{
                                                let response=JSON.parse(data.text());
-                                                 // alert(JSON.stringify(response.message));
+                                               
                                                   this.toastr.success("created  event sucessfully");
                                                   this.showLoader=false;
                                                   this.objevent = new EventsCreateUpdateVM();
@@ -338,7 +337,7 @@ locations(event: any) { this.location  = '';}
                                                   
                                                   
                                              },error=>{
-                                              // alert(JSON.stringify(data));
+                                            
                                               console.log(error.json())
                                               this.toastr.error(error);
                                               this.showLoader=false;
@@ -357,7 +356,7 @@ locations(event: any) { this.location  = '';}
   open(content) {
     this.isCreateEventVisible = true;
     this.modalService.open(content).result.then((result) => {
-    //  alert(result);
+  
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -375,18 +374,18 @@ locations(event: any) { this.location  = '';}
   }
   // Open modal with dark section
   openModal(customContent) {
-   // alert('create event opened');
+  
     this.modalService.open(customContent, { windowClass: 'dark-modal' });
   }
   // Open content with dark section
   openContent() {
-   // alert('create event opened');
+ 
     const modalRef = this.modalService.open(NgbduserModalContent);
     modalRef.componentInstance.name = 'World';
   }
 
   editevent(v) {
-   debugger;
+  
    this.objevent.districtId=v.districtId;
    this.objevent.suburbId = v.suburbId;
    this.objevent.countryId = v.countryId;
@@ -396,19 +395,19 @@ locations(event: any) { this.location  = '';}
     let hrs=getHours(v.eventsDates[0].endTime);
     let min=getMinutes(v.eventsDates[0].endTime);
     if(hrs<12){
-    //alert('0'+hrs+':'+min+':'+' Am');
+    
     this.endtime = '0'+hrs+':'+min+':'+' Am'
     }else{
-    //alert(hrs+':'+min+':'+' Pm');
+   
     this.endtime   = hrs+':'+min+':'+' Pm'
     }
     let hrss=getHours( v.eventsDates[0].startTime);
     let minn=getMinutes( v.eventsDates[0].startTime);
     if(hrs<12){
-   // alert('0'+hrss+':'+minn+':'+' Am');
+  
     this.startimee = '0'+hrss+':'+minn+':'+' Am'
     }else{
-   // alert(hrss+':'+minn+':'+' Pm');
+  
     this.startimee   = hrss+':'+minn+':'+' Pm'
     }
     this.startDates = v.eventsDates[0].startDate.split('T')[0];
@@ -515,7 +514,7 @@ locations(event: any) { this.location  = '';}
             this.toastr.success("delete sucessfully");
           }, error => { console.log(error) });
           }else{
-            // alert('Cancel Process !');
+          
           }
           },error=>{
             alert(JSON.stringify(error));

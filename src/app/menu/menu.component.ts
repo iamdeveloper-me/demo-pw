@@ -28,15 +28,13 @@ export class MenuComponent implements OnInit {
     usercouple = {username:' ',password:' '}
     onSubmit(){ 
      // headers.append('Content-Type', 'application/json');
-      
      this.cservice.login(this.usercouple).subscribe(
           (data)=> {  console.log(data.json());
-
           if (data.statusText == "OK" && data.json().role =="Vendors" ) {
             this.typeSuccess();
             localStorage.setItem('userId',data.json().id);
             localStorage.setItem('userToken',data.json().auth_token);
-         
+            sessionStorage.setItem('userToken',data.json().auth_token);
             this.router.navigate(['../vendor/dashboard'])
             $("body").removeClass( "modal-open");
             $("div").removeClass( "modal-backdrop"); 
@@ -65,17 +63,19 @@ export class MenuComponent implements OnInit {
 
  userlogin(){ 
      // headers.append('Content-Type', 'application/json');
-      
+      debugger;
      this.cservice.login(this.user).subscribe(
           (data)=> {
               console.log(data.json());
           if (data.statusText == "OK"  && data.json().role =="Users") {
+              alert(data.json().auth_token);
+            localStorage.setItem('userToken',data.json().auth_token);
             this.typeSuccess();
             this.router.navigate(['../User/vendor'])
             $("div").removeClass( "modal-backdrop fade show");
             $("body").removeClass( "modal-open");
             localStorage.setItem('userId',data.json().id);
-            localStorage.setItem('userToken',data.json().auth_token);
+           // localStorage.setItem('userToken',data.json().auth_token);
             this.router.navigate(['../User/vendor'])
             $("body").removeClass( "modal-open");
             $("div").removeClass( "modal-backdrop"); 
@@ -108,7 +108,7 @@ export class MenuComponent implements OnInit {
  
   
  logout(){
-
+     alert('called');
     localStorage.clear();
     this.router.navigate(['../home']);
     $(".loginclick").show();

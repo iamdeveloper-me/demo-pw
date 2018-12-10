@@ -14,6 +14,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+import { forEach } from '@angular/router/src/utils/collection';
 declare var google: any;
 
 interface Marker {
@@ -74,6 +75,8 @@ export class LocationComponent implements OnInit {
   current_lng;
   first = true;
   country_id: any;
+  businessPhone:string;
+  businessMobile:string;
   public c_id: any;
   public country_name: any;
   public d_id: any;
@@ -347,7 +350,15 @@ export class LocationComponent implements OnInit {
 
     this.http.get(this.urlget, { headers: headers }).subscribe((data) => {
       this.location_Array = data.json();
+      this.location_Array.sort(p=>p.isPrimary).reverse();
       this.location_Array[0].locationPhones.reverse();
+      this.location_Array.forEach(element => {
+        element.str_businessPhone=this.arrayToCsv(element.locationPhones.filter(p=>p.phoneType=='Phone'));
+        element.str_businessMobile=this.arrayToCsv(element.locationPhones.filter(p=>p.phoneType=='Mobile'));
+        element.str_businessMobile=element.str_businessMobile?element.str_businessMobile:'No Business Mobile';
+        element.str_businessPhone=element.str_businessPhone?element.str_businessPhone:'No Business Phone';
+
+      });
       console.log(JSON.stringify(this.location_Array));
     })
     this.loadCountries();
@@ -1052,6 +1063,16 @@ export class LocationComponent implements OnInit {
 
       day.isvisible = false;
     }
+  }
+  arrayToCsv(inputArray:Array<any>): string {
+    let csv='';
+    inputArray.forEach(element => {
+      console.log(element);
+      csv+=element.phoneNumber+',';
+    });
+   csv= csv.substr(0,csv.length-1);
+    return csv;
+    
   }
 
 }

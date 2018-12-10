@@ -1,3 +1,8 @@
+<style>
+.notAvailable{
+    color:gray;font-style: italic;
+}
+</style>
 <div id="wrapper" class="toggled">
     <div id="sidebar-wrapper">
         <app-vendorsidebar></app-vendorsidebar>
@@ -56,7 +61,8 @@
                                                     <div>: {{data?.districts?.name}} </div>
                                                     <div>: {{data?.suburb?.name}}   </div>
                                                     <div>: {{data?.address}}</div>
-                                                    <div>: {{data?.postalCode}}</div>
+                                                    <div *ngIf='data?.postalCode'>: {{data?.postalCode}}</div>
+                                                    <div *ngIf='!data.postalCode' style='color:gray'> No Postal Code</div>
                                                 <i class="material-icons edit_btn"> edit</i>
                                             </div>
                                         </div>
@@ -71,28 +77,31 @@
                                                     <i  class="material-icons" >local_phone</i> 
                                                     </span>
                                                     <div class="col-sm-10 col-11 minheight30px" >
-                                                            <span *ngFor="let new_phone of data.locationPhones;let i=index">
+                                                            <!-- <span *ngFor="let new_phone of data.locationPhones;let i=index">
                                                                 <span *ngIf = "new_phone.phoneType == 'Phone'">
-                                                                       <!--  {{data.phone}}    , -->
                                                                        <span *ngIf='i>0'>{{', '+new_phone.phoneNumber}}</span>
                                                                        <span *ngIf='i==0'>{{new_phone.phoneNumber}}</span>
                                                                 </span> 
-                                                            </span>
+                                                            </span> -->
+                                                            <span [class.notAvailable]='data.str_businessPhone==="No Business Phone"'>
+                                                            {{data.str_businessPhone}}
+                                                        </span>
                                                     </div>
                                                     <div class="col-sm-12 martikset"></div>
                                                     <span class="acce_time1 col-1">
                                                     <i class="material-icons">phone_iphone</i>
                                                     </span> 
                                                     <div class="col-sm-10 col-11 minheight30px" >
-                                                        <span *ngFor="let new_phone of data.locationPhones;let i=index">
+                                                        <!-- <span *ngFor="let new_phone of data.locationPhones;let i=index">
                                                         <span *ngIf = "new_phone.phoneType == 'Mobile'">  
-                                                               <!--  {{data.mobile}},    -->
                                                                <span *ngIf='i>0'>{{new_phone.phoneNumber+','}}</span>
                                                         </span>
                                                         <span *ngIf = "new_phone.phoneType != 'Mobile'">  
-                                                            <!--  {{data.mobile}},    -->
                                                             <span *ngIf='i>0'>Mobile Not Available</span>
                                                      </span>
+                                                        </span> -->
+                                                        <span [class.notAvailable]='data.str_businessMobile==="No Business Mobile"'>
+                                                        {{data.str_businessMobile}}
                                                         </span>
                                                     </div> 
                                         </div>
@@ -137,7 +146,7 @@
                                                 <div class="clearfix"></div>
                                                 <div class="col-sm-12 nopadd">
                                                     <div class="col-sm-4 col-xs-5-mob nopadd font14px">
-                                                        Webnesday
+                                                        Wednesday
                                                     </div>
                                                     <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isWednesdayOpen == true ">
                                                         {{data.wednesdayOpen}} {{'-'+data.wednesdayClose==null?'':data.wednesdayClose}}

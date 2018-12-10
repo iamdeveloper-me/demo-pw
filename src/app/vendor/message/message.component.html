@@ -10,10 +10,11 @@
                   <aside class="lg-side">
                       <div class="inbox-head">
                         <h3>Inbox</h3>
+                        
                         <div class="btn-group">
                             <a class="btn-default active msg_buttons" (click)="initDatatable(1) && set(1)">All ({{all_msg}})</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a class="btn-default msg_buttons" (click)="unread(2) && set(2)">Unread ({{unread_msg}})</a>
+                            <a class="btn-default msg_buttons highlight" (click)="unread(2) && set(2)">Unread ({{unread_msg}})</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <a class="btn-default msg_buttons" (click)="stared(3) && set(3)">Starred ({{stared_msg}})</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -42,7 +43,8 @@
                                 <div class="paddtop10px">
                                     <img src="{{imgmail}}" class="imgNoMail"> 
                                 </div>
-                                <p ngcontent-c0="" class="lineheight30px">Your inbox is Empty!! :(</p>
+                                <p ngcontent-c0="" class="lineheight30px">Your inbox is Empty.... <i class="fa fa-frown-o" aria-hidden="true"></i>
+                                </p>
                             </div>
                         </div>
                         <ng-template #showMessage>
@@ -95,7 +97,7 @@
                                 <div class="paddtop10px">
                                     <img src="{{imgmail}}" class="imgNoMail"> 
                                 </div>
-                                <p ngcontent-c0="" class="lineheight30px">Your inbox is Empty!! :(</p>
+                                <p ngcontent-c0="" class="lineheight30px">Your inbox is Empty.... <i class="fa fa-frown-o" aria-hidden="true"></i></p>
                             </div>
   
                             </div>
@@ -146,7 +148,7 @@
                                 <div class="paddtop10px">
                                     <img src="{{imgmail}}" class="imgNoMail"> 
                                 </div>
-                                <p ngcontent-c0="" class="lineheight30px">Your inbox is Empty!! :(</p>
+                                <p ngcontent-c0="" class="lineheight30px">Your inbox is Empty.... <i class="fa fa-frown-o" aria-hidden="true"></i></p>
                             </div>
                         </div>
                         <ng-template #showMessage>

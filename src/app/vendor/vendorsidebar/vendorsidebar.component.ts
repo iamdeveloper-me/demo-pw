@@ -1,3 +1,4 @@
+import { MessageService } from './../../shared/service/vendor/message.service';
 import { Component, OnInit } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
@@ -9,11 +10,12 @@ import { Http, Headers } from '@angular/http';
 export class VendorsidebarComponent implements OnInit {
   private base_url : string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Reviews'
  counts;
-  
+ unread_msg:2
 public shouldShow = false;
 
  route:boolean = false
-  constructor(public http: Http ) {
+  constructor(public http: Http ,    private hservice: MessageService
+  ) {
     this.readStatus();
   }
   header(){
@@ -27,7 +29,6 @@ public shouldShow = false;
 
   ngOnInit() { 
 
-
     if(window.location.href.indexOf('/payment-selection/') != -1 || window.location.href.indexOf('/msg/') != -1 || window.location.href.indexOf('settingalbum/business-services') != -1 || window.location.href.indexOf('/albumviewphoto/') != -1 || window.location.href.indexOf('/settingalbum/') != -1)
     {
 
@@ -40,7 +41,18 @@ public shouldShow = false;
     $.getScript('./assets/js/vendorsidebar.js');
     
      
-    
+    const json ={
+      "filter" : 2
+    }      
+          this.hservice.vendorMessages(json).subscribe(( data )  =>  
+          { 
+            
+            this.unread_msg = data.json().length;
+        
+
+          },error => 
+          alert(error) // error path
+        ) 
   }
   readStatus(){
 

@@ -650,15 +650,16 @@ export class LocationComponent implements OnInit {
     headers.append("Authorization", 'Bearer ' + authToken);
     let isvalidTIme = this.validateTradingTime();
    // let Pincode=e.value.postalCode?e.value.postalCode:'No Postal Code';
-    // alert(JSON.stringify(this.modelfield));
+     
     if (isvalidTIme == 1) {
       let jsonPost={
         vendorLocationId: this.modelfield.vendorLocationId,
         countryId: this.modelfield.country.countryId,
-        vendorId: e.value.vendorId,
+        vendorId: this.modelfield.vendorId,
         country: this.modelfield.country.countryName,
         postalCode: this.modelfield.postalCode?this.modelfield.postalCode:'Postal Code Not Available !',
-        districtId: e.value.districtId,
+        districtId: this.modelfield.districtId,
+        addedOn:new Date().getDate(),
         // districts: {
         //   districtId: e.value.districtId,
         //   name: this.modelfield.districts.name
@@ -667,85 +668,39 @@ export class LocationComponent implements OnInit {
         //   name: e.value.suburb.name,
         //   suburbId: e.value.suburb.suburbId
         // },
-        suburbId: e.value.suburbId,
-        address: e.value.address,
-        mapAddress: e.value.mapAddress,
-        lat: e.value.lat,
-        long: e.value.long,
-        phone: e.value.phone,
-        mobile: e.value.mobile,
-        isActive: e.value.isActive,
-        sundayOpen: e.value.sundayOpen,
-        sundayClose: e.value.sundayClose,
-        isSundayOpen: e.value.isSundayOpen,
-        mondayOpen: e.value.mondayOpen,
-        mondayClose: e.value.mondayClose,
-        isMondayOpen: e.value.isMondayOpen,
-        tuesdayOpen: e.value.tuesdayOpen,
-        tuesdayClose: e.value.tuesdayClose,
-        isTuesdayOpen: e.value.isTuesdayOpen,
-        wednesdayOpen: e.value.wednesdayOpen,
-        wednesdayClose: e.value.wednesdayClose,
-        isWednesdayOpen: e.value.isWednesdayOpen,
-        thursdayOpen: e.value.thursdayOpen,
-        thursdayClose: e.value.thursdayClose,
-        isThursdayOpen: e.value.isThursdayOpen,
-        fridayOpen: e.value.fridayOpen,
-        fridayClose: e.value.fridayClose,
-        isFridayOpen: e.value.isFridayOpen,
-        saturdayOpen: e.value.saturdayOpen,
-        saturdayClose: e.value.saturdayClose,
-        isSaturdayOpen: e.value.isSaturdayOpen,
-
-        locationPhones: this.col
+        suburbId: this.modelfield.suburbId,
+        address: this.modelfield.address,
+        mapAddress: this.modelfield.address,
+        lat: 0, //e.value.lat,
+        long: 0, //e.value.long,
+        phone:this.modelfield.phone, //e.value.phone,
+        mobile:this.modelfield.mobile, // e.value.mobile,
+        isActive:this.modelfield.isActive,  //e.value.isActive,
+        sundayOpen: e.value.sundayOpen==undefined?0:e.value.sundayOpen,
+        sundayClose: e.value.sundayClose==undefined?0:e.value.sundayClose,
+        isSundayOpen: e.value.isSundayOpen==undefined?0:e.value.isSundayOpen,
+        mondayOpen: e.value.mondayOpen==undefined?0:e.value.mondayOpen,
+        mondayClose: e.value.mondayClose==undefined?0:e.value.mondayClose,
+        isMondayOpen: e.value.isMondayOpen==undefined?0:e.value.isMondayOpen,
+        tuesdayOpen: e.value.tuesdayOpen==undefined?0: e.value.tuesdayOpen,
+        tuesdayClose: e.value.tuesdayClose==undefined?0:e.value.tuesdayClose,
+        isTuesdayOpen: e.value.isTuesdayOpen==undefined?0:e.value.isTuesdayOpen,
+        wednesdayOpen: e.value.wednesdayOpen==undefined?0:e.value.wednesdayOpen,
+        wednesdayClose: e.value.wednesdayClose==undefined?0:e.value.wednesdayClose,
+        isWednesdayOpen: e.value.isWednesdayOpen==undefined?0:e.value.isWednesdayOpen,
+        thursdayOpen: e.value.thursdayOpen==undefined?0:e.value.thursdayOpen,
+        thursdayClose: e.value.thursdayClose==undefined?0:e.value.thursdayClose,
+        isThursdayOpen: e.value.isThursdayOpen==undefined?0:e.value.isThursdayOpen,
+        fridayOpen: e.value.fridayOpen==undefined?0:e.value.fridayOpen,
+        fridayClose: e.value.fridayClose==undefined?0:e.value.fridayClose,
+        isFridayOpen: e.value.isFridayOpen==undefined?0:e.value.isFridayOpen,
+        saturdayOpen: e.value.saturdayOpen==undefined?0:e.value.saturdayOpen,
+        saturdayClose: e.value.saturdayClose==undefined?0:e.value.saturdayClose,
+        isSaturdayOpen: e.value.isSaturdayOpen==undefined?0:e.value.isSaturdayOpen,
+       locationPhones: this.col
       }
       console.log(JSON.stringify(jsonPost));
       this.http.post(this.urlpost, {
-        // vendorLocationId: e.value.vendorLocationId,
-        // countryId: this.modelfield.country.countryId,
-        // vendorId: e.value.vendorId,
-        // country: this.modelfield.country.countryName,
-        // postalCode: Pincode,
-        // districtId: e.value.districtId,
-        // // districts: {
-        // //   districtId: e.value.districtId,
-        // //   name: this.modelfield.districts.name
-        // // },
-        // // suburb: {
-        // //   name: e.value.suburb.name,
-        // //   suburbId: e.value.suburb.suburbId
-        // // },
-        // suburbId: e.value.suburbId,
-        // address: e.value.address,
-        // mapAddress: e.value.mapAddress,
-        // lat: e.value.lat,
-        // long: e.value.long,
-        // phone: e.value.phone,
-        // mobile: e.value.mobile,
-        // isActive: e.value.isActive,
-        // sundayOpen: e.value.sundayOpen,
-        // sundayClose: e.value.sundayClose,
-        // isSundayOpen: e.value.isSundayOpen,
-        // mondayOpen: e.value.mondayOpen,
-        // mondayClose: e.value.mondayClose,
-        // isMondayOpen: e.value.isMondayOpen,
-        // tuesdayOpen: e.value.tuesdayOpen,
-        // tuesdayClose: e.value.tuesdayClose,
-        // isTuesdayOpen: e.value.isTuesdayOpen,
-        // wednesdayOpen: e.value.wednesdayOpen,
-        // wednesdayClose: e.value.wednesdayClose,
-        // isWednesdayOpen: e.value.isWednesdayOpen,
-        // thursdayOpen: e.value.thursdayOpen,
-        // thursdayClose: e.value.thursdayClose,
-        // isThursdayOpen: e.value.isThursdayOpen,
-        // fridayOpen: e.value.fridayOpen,
-        // fridayClose: e.value.fridayClose,
-        // isFridayOpen: e.value.isFridayOpen,
-        // saturdayOpen: e.value.saturdayOpen,
-        // saturdayClose: e.value.saturdayClose,
-        // isSaturdayOpen: e.value.isSaturdayOpen,
-
-        // locationPhones: this.col
         jsonPost
       }, { headers: headers }).subscribe((data) => {
         console.log(data)

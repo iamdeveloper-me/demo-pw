@@ -6,13 +6,32 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { InboxService } from './inbox.service';
 import { Mail, Message } from './inbox.model';
+
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss'],
   providers: [InboxService]
 })
+
 export class MessageComponent implements OnInit {
+   afuConfig = {
+    multiple: true,
+    formatsAllowed: ".jpg,.png",
+    maxSize: "1",
+    uploadAPI:  {
+      url:"http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ImageUploader/PortfolioUploader",
+      headers: {
+        "Accept"    : 'application/json, text/plain, */*',
+     "Content-Type" : "application/json; charset=utf-8",
+     "Authorization" : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqYXZlZEBtYWlsaW5hdG9yLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlZlbmRvcnMiLCJqdGkiOiIxNjMyNDNmNC05OWUyLTQ0NzAtODRjMi1hMGU1NTE0YjIyNDEiLCJpYXQiOjE1NDQ0MzYwNzUsInJvbCI6ImFwaV9hY2Nlc3MiLCJpZCI6ImUxMDQ5MGM3LWUyZjItNDg3ZS04NTZmLTQ2YTAzNWVlMTU2MiIsIm5iZiI6MTU0NDQzNjA3NSwiZXhwIjoxNTQ0NTIyNDc1LCJpc3MiOiJ3ZWJBcGkiLCJhdWQiOiJodHRwOi8vdGVzdGFwcC1lbnYudHlhZDNuNjNzYS5hcC1zb3V0aC0xLmVsYXN0aWNiZWFuc3RhbGsuY29tLyJ9.Vv49jgWmx1QOFWMleRfIiFT0tFV0_HMdIqq_-VWyiOE`
+      }
+    },
+    theme: "dragNDrop",
+    hideProgressBar: false,
+    hideResetBtn: true,
+    hideSelectBtn: false
+  };
   alltab = true;
   unreadtab = false;
   startedtab = false;
@@ -288,7 +307,8 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
     )
     }else{
       this.hservice.readMark(id).subscribe(( data )  =>  
-      {this.toastr.success(data.json().message)
+      {
+        // this.toastr.success(data.json().message)
         this.filter_id = 1
         this.ngOnInit()
       },error => 

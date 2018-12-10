@@ -63,8 +63,9 @@
                             </div>
 
                             <p>Member since : {{membershipdetail?.createdOnString}}</p>
-                            <p>Plan name: <span>{{membershipdetail?.pricingPlan.title}}</span></p>
-                            <!-- <br> -->
+                            
+                            <p *ngIf="membershipdetail?.payFrequency == 0">Plan Name: <b>{{membershipdetail?.pricingPlan.title}}</b>  (6 month)</p>
+					        <p *ngIf="membershipdetail?.payFrequency == 1">Plan Name: <b>{{membershipdetail?.pricingPlan.title}}</b>  (Annually)</p>
                             <p>Start date : {{membershipdetail?.startDateString}}</p>
                             <p class="col_green">End date : {{membershipdetail?.endDateString}} </p>
                             <p><a routerLink="../membership" class="borbtn"> Upgrade now </a></p>

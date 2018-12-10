@@ -35,7 +35,7 @@
                 
                 <a routerLink="../Message">
                     <i class="material-icons">message</i>
-                    Messages</a>
+                    Messages <span *ngIf="unread_msg != 0"class="notification badge badge-pill badge-danger">{{unread_msg}}</span></a>
         </li>
         <li class="sidebar-brand" id="photo_album">
 
@@ -135,7 +135,7 @@
                               
                               <a routerLink="../../Message">
                                   <i class="material-icons">message</i>
-                                  Messages</a>
+                                  Messages <span *ngIf="unread_msg != 0" class="notification badge badge-pill badge-danger">{{unread_msg}}</span></a>
                       </li>
                       <li class="sidebar-brand" id="photo_album">
               

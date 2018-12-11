@@ -33,7 +33,7 @@ export class NavemenuComponent implements OnChanges,OnInit   {
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : 'en'); }
   
   ngOnInit() {
-
+debugger
       var firstName = localStorage.getItem('firstName');
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
@@ -45,7 +45,7 @@ export class NavemenuComponent implements OnChanges,OnInit   {
 
       this.http.get(this.url,{headers:headers}).subscribe(
         data =>{ this.vendor = data.json();
-                 console.log(this.vendor);
+               //  console.log(this.vendor);
                this.userImg = data.json().profileImage;
 
                 
@@ -164,6 +164,8 @@ export class NavemenuComponent implements OnChanges,OnInit   {
 
 
            });
+           this.unread(2)
+
   }
     
   
@@ -175,11 +177,12 @@ export class NavemenuComponent implements OnChanges,OnInit   {
     this.cservice.typeLogout();
 }
 ngOnChanges(){};
+
   
 search(newObj){
-  console.log(this.find_name.toUpperCase())
+ // console.log(this.find_name.toUpperCase())
 
-  console.log(this.historyArray)
+ /// console.log(this.historyArray)
   // console.log(this.filter_id)
   // this.filter_id = 1
   const json ={
@@ -192,7 +195,7 @@ search(newObj){
               this.historyArray = data.json()  ;
               this.arrayLength =  this.historyArray.length
               this.unread_msg = this.historyArray.length;
-              console.log(this.historyArray)
+            //  console.log(this.historyArray)
             },error => 
             console.log(error) // error path
           )
@@ -220,22 +223,19 @@ unread(filter_id){
           this.unread_msg = this.historyArray.length;
           this.arrayLength =  this.historyArray.length
 
-          console.log(this.historyArray)
+          //console.log(this.historyArray)
         },error => 
         console.log(error) // error path
       )
 }
+
   logout(){
          sessionStorage.clear();
          localStorage.clear();
          this.router.navigate(['../home']);
          this.typeLogout();
         }
-  
-  
-  
-  
-  ChangeLanguage(language: string) {
+      ChangeLanguage(language: string) {
         this.translate.use(language);
       }
 

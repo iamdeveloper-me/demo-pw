@@ -84,13 +84,13 @@
 												</div>
 												<div *ngIf='cfo.fieldType!==5'>
 														<label>
-																<input id="enum_answer_{{cfo.customFieldId}}" [(ngModel)]='cfo.isSelect' [checked]='cfo.isSelect' type="checkbox" name="cfo">
+																<input id="enum_answer_{{cfo.customFieldId}}" (click)='seveCustomField("null","0")' [(ngModel)]='cfo.isSelect' [checked]='cfo.isSelect' type="checkbox" name="cfo">
 																{{cfo.displayText}}
 															</label>
 												</div>
 											</div>
 										</div>
-										<div class="btn newbtn" (click)='seveCustomField("null","0")'>Save</div>
+										<div class="btn newbtn">Save</div>
 										<div class="btn newbtn newcancelbtn" (click)='closeModel("customDialog")'>Cancel</div>
 									</div>
 								</div>
@@ -120,7 +120,7 @@
 					<div class="ratio-btns">
 						<div class="col-md-12 text-center" style="cursor:pointer" *ngFor="let enum of services">
 							<label for="enum_answer_{{enum.serviceName}}" (click)='SetInto_serviceTempStorage(enum.servicesId,enum.serviceName)'>
-								<input id="enum_answer_{{enum.serviceName}}" value="objVenderServiceVm.serviceName==enum.serviceName" [checked]='enum.isSelect'
+								<input id="enum_answer_{{enum.serviceName}}"  value="objVenderServiceVm.serviceName==enum.serviceName" [checked]='enum.isSelect'
 								 (change)='SetInto_serviceTempStorage(enum.servicesId,enum.serviceName)' type="radio" name="enums">
 								{{enum.serviceName}}
 							</label>

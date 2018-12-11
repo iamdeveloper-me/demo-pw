@@ -19,7 +19,7 @@ export class NgbdgalleryModalContent {
 })
 export class AlbumviewComponent implements OnInit {
     private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/';
-    
+    basicplane 
     createalbum_dailog = false;
 
     private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
@@ -28,6 +28,7 @@ export class AlbumviewComponent implements OnInit {
     noimage;
     defaultImage: string = "https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
   ngOnInit() {
+    this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
     this.noimage = 'https://vignette.wikia.nocookie.net/roblox-phantom-forces/images/7/7c/Noimage.png/revision/latest?cb=20171115203949';
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');

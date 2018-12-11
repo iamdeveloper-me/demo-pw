@@ -1092,7 +1092,7 @@ export class TimeSlot {
     this.timing.push({ startTime: '10:00 pm', endTime: '10:30 pm' });
     this.timing.push({ startTime: '10:30 pm', endTime: '11:00 pm' });
     this.timing.push({ startTime: '11:00 pm', endTime: '11:30 pm' });
-    this.timing.push({ startTime: '11:30 pm', endTime: '00:00 am' });
+    
   }
   public startTime: string;
   public endTime: string;

@@ -129,6 +129,7 @@ import { UseraccountComponent } from './userpannel/userboard/useraccount/useracc
 //import { VendorComponent } from './dashboard/vendor/vendor.component';
 
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { Gallery0Component } from './vendor/gallery0/gallery0.component';
 
 import { AuthGuardService } from './services/auth-guard.service';
 
@@ -159,27 +160,25 @@ const appRoutes: Routes = [
   { path: 'home/cuplefoot', component:  FootCupleComponent },
   { path: 'home/Photogallary', component:  PhotogallaryComponent },
   { path: 'home/Vediogallary', component:  VediogallaryComponent },
-
   { path: 'home/supplierbylocation', component:  SupplierbylocationComponent },
- 
-   { path: 'home/Photogallerydetail', component:  PhotogallerydetailComponent },
-{ path: 'home/ResetPassword', component:  ResetPasswordComponent },
-{ path: 'vendor/creatpromo', component:  CreatePromotionComponent, canActivate:[AuthGuardService]  },
-    { path: 'vendor/messagess', component:  ChatComponent, canActivate:[AuthGuardService]  },
-    { path: 'vendor/dashboard', component:  DashboardComponent,canActivate:[AuthGuardService]  },
-    { path: 'vendor/albumview', component:  AlbumviewComponent,canActivate:[AuthGuardService]  },
-    { path: 'vendor/albumviewphoto/:id', component:  ViewPhotoAlbumsComponent,canActivate:[AuthGuardService]  },
-    { path: 'vendor/portfolioview', component:  PortfolioviewComponent,canActivate:[AuthGuardService]  },
-    { path: 'vendor/settingalbum/:id', component:  AlbumsettingComponent,canActivate:[AuthGuardService]  },
-    { path: 'vendor/eventlist', component:  EventListComponent,canActivate:[AuthGuardService]  },
-    { path: 'vendor/invoice', component:  InvoiceDetailComponent,canActivate:[AuthGuardService]  },
-    { path: 'vendor/business', component:  BusinessInfoComponent,canActivate:[AuthGuardService]  },
-    { path: 'vendor/location', component:  LocationComponent,canActivate:[AuthGuardService]  },
-    { path: 'vendor/gallery', component: GalleryComponent,canActivate:[AuthGuardService]  },
-    { path: 'vendor/allpromotion', component: AllPromotionPageComponent,canActivate:[AuthGuardService]  },
-    { path: 'vendor/profile', component:  VendorprofileComponent,canActivate:[AuthGuardService]  },
+  { path: 'home/Photogallerydetail', component:  PhotogallerydetailComponent },
+  { path: 'home/ResetPassword', component:  ResetPasswordComponent },
 
-     { path: 'vendor/discountdeals', component:  DiscountdealsComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/creatpromo', component:  CreatePromotionComponent, canActivate:[AuthGuardService]  },
+  { path: 'vendor/messagess', component:  ChatComponent, canActivate:[AuthGuardService]  },
+  { path: 'vendor/dashboard', component:  DashboardComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/albumview', component:  AlbumviewComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/albumviewphoto/:id', component:  ViewPhotoAlbumsComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/portfolioview', component:  PortfolioviewComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/settingalbum/:id', component:  AlbumsettingComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/eventlist', component:  EventListComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/invoice', component:  InvoiceDetailComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/business', component:  BusinessInfoComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/location', component:  LocationComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/gallery', component: GalleryComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/allpromotion', component: AllPromotionPageComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/profile', component:  VendorprofileComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/discountdeals', component:  DiscountdealsComponent,canActivate:[AuthGuardService]  },
     // {
     //   path: 'vendor/chat',
     //   loadChildren: './chat/chat.module#ChatModule',
@@ -209,6 +208,7 @@ const appRoutes: Routes = [
     { path: 'vendor/audience', component:  PromotionAudienceComponent,canActivate:[AuthGuardService]},
     { path: 'vendor/deals', component:  PromotionDealsComponent,canActivate:[AuthGuardService]},
     { path: 'vendor/homepage', component:  PromotionHomepageComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/gallery0', component:  Gallery0Component,canActivate:[AuthGuardService]},
 
 
     { path: 'vendor/Success', component:  SuccessComponent},

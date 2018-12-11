@@ -10,18 +10,18 @@
     
     <div id="page-content-wrapper">
         <app-navemenu></app-navemenu>
-        <ul class="nav nav-tabs">
+
+     
+
+        <ul class="nav nav-tabs tabbingdesign">
                 <li class="active"><a data-toggle="tab" href="#home">Main Branch</a></li>
                 <li><a data-toggle="tab" href="#menu1">Other Branches</a></li>
               </ul>
               
               <div class="tab-content">
                 <div id="home" class="tab-pane fade in active">
-            
-                
 
         <section id="user-profile" class="">
-                
             <div class="clearfix"></div>
             <div class="col-sm-12 nopadd mobilefixedcontainer">      
                 <div class="custom-form" *ngFor="let data of location_Array;let i=index"  >
@@ -66,11 +66,11 @@
                                     <i  class="material-icons">location_on</i>
                                     </span>
                                             <div class="col-sm-10 col-11 minheight130px" >
-                                                    <div>: {{data?.country?.countryName }} </div>
-                                                    <div>: {{data?.districts?.name}} </div>
-                                                    <div>: {{data?.suburb?.name}}   </div>
-                                                    <div>: {{data?.address}}</div>
-                                                    <div *ngIf='data?.postalCode'>: {{data?.postalCode}}</div>
+                                                    <div> {{data?.country?.countryName }} </div>
+                                                    <div> {{data?.districts?.name}} </div>
+                                                    <div> {{data?.suburb?.name}}   </div>
+                                                    <div> {{data?.address}}</div>
+                                                    <div *ngIf='data?.postalCode'> {{data?.postalCode}}</div>
                                                     <div *ngIf='!data.postalCode' style='color:gray'> No Postal Code</div>
                                                 <i class="material-icons edit_btn"> edit</i>
                                             </div>
@@ -205,17 +205,18 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-4">
-                        <div class="card martop10px">
-                            <div class="text-center bg-form col-sm-12 addlocationbox">
-                                <i class="material-icons font80px">  add_location </i>
-                                <div>Have more business branches?</div>
-                                
-                                <button (click)="checkPlanForAddingLocation()"  type="button" class="martopbot15px borderbtnonly"> Add New Location </button>
+                    <div class="col-sm-4">
+                            <div class="card martop10px">
+                                <div class="text-center bg-form col-sm-12 addlocationbox">
+                                    <i class="material-icons font80px">  add_location </i>
+                                    <div>Have more business branches?</div>
+                                    
+                                    <button (click)="checkPlanForAddingLocation()"  type="button" class="martopbot15px borderbtnonly"> Add New Location </button>
+                                </div>
                             </div>
-                        </div>
                     </div>
+                </div>
+               
                 <div class="clearfix"></div>
             </div>
         </section>
@@ -265,11 +266,11 @@
                                             <i  class="material-icons">location_on</i>
                                             </span>
                                                     <div class="col-sm-10 col-11 minheight130px" >
-                                                            <div>: {{data?.country?.countryName }} </div>
-                                                            <div>: {{data?.districts?.name}} </div>
-                                                            <div>: {{data?.suburb?.name}}   </div>
-                                                            <div *ngIf='data?.address'>: {{data?.address}}</div>
-                                                            <div *ngIf='data?.postalCode'>: {{data?.postalCode}}</div>
+                                                            <div> {{data?.country?.countryName }} </div>
+                                                            <div> {{data?.districts?.name}} </div>
+                                                            <div> {{data?.suburb?.name}}   </div>
+                                                            <div *ngIf='data?.address'> {{data?.address}}</div>
+                                                            <div *ngIf='data?.postalCode'> {{data?.postalCode}}</div>
                                                             <div *ngIf='!data.postalCode' style='color:gray'> No Postal Code</div>
                                                         <i class="material-icons edit_btn"> edit</i>
                                                     </div>
@@ -417,6 +418,8 @@
                           
                         </div>
                         <div class="clearfix"></div>
+                        <h1>No More Branch Found!</h1>
+                        <img src='../../../assets/img/0011.jpg' class="img img-responsive" *ngIf='location_Array.length>0'>
                     </div>
                 </section>
     </div>

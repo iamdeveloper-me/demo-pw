@@ -9,7 +9,7 @@ export class AuthGuardService implements CanActivate,CanActivateChild {
   constructor(private router:Router) { }
   canActivate(){
     let Sessiondata=sessionStorage.getItem('userToken');
-  
+
     if(sessionStorage.getItem('userToken')==null || sessionStorage.getItem('userToken')==undefined){
    
       this.router.navigateByUrl('/home');

@@ -177,6 +177,7 @@ debugger
     this.cservice.typeLogout();
 }
 ngOnChanges(){};
+
   
 search(newObj){
  // console.log(this.find_name.toUpperCase())
@@ -227,17 +228,14 @@ unread(filter_id){
         console.log(error) // error path
       )
 }
+
   logout(){
          sessionStorage.clear();
          localStorage.clear();
          this.router.navigate(['../home']);
          this.typeLogout();
         }
-  
-  
-  
-  
-  ChangeLanguage(language: string) {
+      ChangeLanguage(language: string) {
         this.translate.use(language);
       }
 

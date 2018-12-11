@@ -237,8 +237,9 @@ export class BusinessInfoComponent implements OnInit {
         this.http.post(this.uploadimage,formData,{headers:headers}).subscribe( (data)=>{
           
           this.fileid = data.json().filesId;
-          this.total = 80;
 
+          this.total = 10*10;
+          
           console.log(this.fileid)
           let data3=    {   
             nameOfBusiness: v.nameOfBusiness,
@@ -261,7 +262,7 @@ export class BusinessInfoComponent implements OnInit {
              
              updatebusinessinfo.subscribe((data)=>{
                this.toastr.success(data.json().message);
-             
+              //  infoo.form.reset();
                let headers = new  Headers();
                var authToken = localStorage.getItem('userToken');
                headers.append('Accept', 'application/json')
@@ -470,6 +471,7 @@ export class BusinessInfoComponent implements OnInit {
               }
     }
     closeModel(dialogname){
+      this.total = 0;
                   // this.myForm.reset('nameOfBusiness');
                   switch(dialogname){
                     case 'DescriptionDailog':

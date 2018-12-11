@@ -75,7 +75,7 @@
                     [ngModelOptions]="{updateOn: 'blur'}"
                     [(ngModel)] = "user.logInInfo.firstName" 
                     name = "firstName" 
-                    pattern="^[a-zA-Z]{3,}$"
+                    pattern="^[a-zA-Z]{1,}$"
                     required
                 />
                 <span class="highlight"></span>
@@ -93,7 +93,7 @@
                     #lastName="ngModel" 
                     [ngModelOptions]="{updateOn: 'blur'}"
                     required 
-                    pattern="^[a-zA-Z]{3,}$"
+                    pattern="^[a-zA-Z]{1,}$"
                 />
                 <span class="highlight"></span>
                 <span class="bar"></span>

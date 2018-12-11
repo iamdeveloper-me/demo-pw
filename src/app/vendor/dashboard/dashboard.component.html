@@ -248,7 +248,7 @@
                     </div>
                     <div class="viewstore">
                          <a routerLink="../../home/detailprofile">View Storefront</a>
-                         <a class="btn" (click) = "images_dialog = true">Change Business Cover</a>
+                         <a (click) = "images_dialog = true">Change Business Cover</a>
                     </div>
                 </div>
                 <div class="col-sm-7 nopadd maxheight335px mobileheightauto ">
@@ -622,7 +622,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"> Change Image  </h4>
+                <h4 class="modal-title"> Change Business Cover </h4>
                 <button type="button" class="close" (click)="closeModel()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -633,7 +633,7 @@
                   <div class="modal-body" style="background-color: white">
 
                      <div *ngIf="image_data==0; else pp">
-                           No image available 
+                          <h3>No image available in Portfolio or Album</h3>  
                      </div>
 
                     <ng-template #pp>

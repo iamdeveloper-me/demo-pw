@@ -108,7 +108,6 @@ export class MenuComponent implements OnInit {
  
   
  logout(){
-     alert('called');
     localStorage.clear();
     this.router.navigate(['../home']);
     $(".loginclick").show();

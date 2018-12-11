@@ -46,7 +46,8 @@
                   <div class="card martop0px  eventbox" >   
                     <div class="row eventrow ">
                         <div class="col-4 ">
-                            <img [src]="data.files.path" class="img-responsive">  
+                          
+                            <img *ngIf='data.files' [src]="data.files.path" class="img-responsive">  
                        
                         </div>
                         <div class="col-6 ">
@@ -176,7 +177,7 @@
                             (keypress)="startDatess($event)" 
                             style="width:100%;">
                          
-                          <small class="form-text text-muted danger" >{{startDates}}</small>
+                          <!-- <small class="form-text text-muted danger" >{{startDates}}</small> -->
 
                     </div>
                   </div>
@@ -427,7 +428,7 @@
                           End Time
                         </label>
                         
-                        <select class="form-control" type="time" [ngModel]="endtime" #ele_endTime  id="endTime" name="endTime">
+                        <select class="form-control" type="time" [(ngModel)]="endtime" #ele_endTime  id="endTime" name="endTime">
                             <!-- <option  [value]="endtime" *ngIf =  "!s.endTime" >{{endtime | date: 'h:m a' }} </option> -->
                           <option *ngFor='let s of select_time.timing' [value]='s.endTime'>{{s.endTime}}</option>
                         </select>
@@ -481,8 +482,7 @@
                       <label>Suburb</label>
                         <select class="form-control" [(ngModel)]="objevent.suburbId" #ele_suburb name="sub_id">
                           <!-- (change)="country($event)" -->
-                          <option *ngFor="let sub of suburb ;let s =index" type="text" id="{{sub.name}}" checked name="sub"
-                            placeholder="Suburb" [value]="sub.suburbId" required>
+                          <option *ngFor="let sub of suburb ;let s =index" [value]="sub.suburbId">
                             {{sub.name }}
                           </option>
                         </select>

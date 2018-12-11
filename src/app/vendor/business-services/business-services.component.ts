@@ -88,6 +88,9 @@ export class BusinessServicesComponent implements OnInit {
                }else{
                  // Dt:07/12/18
                  let service = this.services.filter(s=>s.isSelect==true)[0];
+                 if(service==undefined){
+                  service = this.services[0];
+                 }
                  this.objVenderServiceVm.servicesId = service.servicesId;
                  this.objVenderServiceVm.serviceName=service.serviceName;
                  this.name_d=this.objVenderServiceVm.serviceName;
@@ -157,47 +160,37 @@ export class BusinessServicesComponent implements OnInit {
       this.saveServiceWithoutOptions();
    }
    SetInto_serviceTempStorage(id,name){
-     debugger;
     this.beforeUpdateData.servicesId=id;
     this.beforeUpdateData.serviceName=name;
     this.businessServiceEntity.servicesId=id;
+    this.selected_category.filter(c=>c.categoryId==this.businessServiceEntity.categoryId)[0].services.filter(s=>s.servicesId==id)[0].isSelect=true;
+    this.getCustomFieldBySreviceId(id,name);
    }
       getCustomFieldBySreviceId(id,name){
+        debugger;
         this.resetCustomFileds();
        this.objVenderServiceVm.servicesId = id ;
        this.objVenderServiceVm.serviceName=name;
+       this.businessServiceEntity.servicesId=id;
        this.name_d=name;
        let isServiceExist=this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.isSelect==true)[0];
        console.log(isServiceExist);
       if(isServiceExist!=undefined){
-       this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.isSelect==true)[0].isSelect=false;
-       this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.servicesId==id)[0].isSelect=true;
+     //  this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.isSelect==true)[0].isSelect=false;
+     //  this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.servicesId==id)[0].isSelect=true;
+       this.customFields= isServiceExist.customFields;
+       this.customFields.forEach(element =>{
+         let SelectedCustomFieldOption=element.customFieldOptionList.filter(o=>o.isSelect==true)[0];
+         if(SelectedCustomFieldOption!=undefined){
+         element.SelectedOptionValue=SelectedCustomFieldOption.displayText;}
+       })
+       console.log(this.customFields);
       }
       }
       saveServiceWithoutOptions(){
-        // this.customFields=[];
-        // let customFields=this.categoryserveice.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.servicesId==this.objVenderServiceVm.servicesId)[0].customFields;
-        // if(customFields!=undefined){
-        //   for (let i = 0; i < customFields.length; i++) {
-        //   let selectedOption= this.categoryserveice.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.servicesId==this.objVenderServiceVm.servicesId)[0].customFields.filter(c=>c.customFieldId==customFields[i].customFieldId)[0].customFieldOptionList.filter(s=>s.isSelect==true)[0];
-        //   console.log(selectedOption);
-        //   if(selectedOption){
-        //      customFields[i].isEnable=false;
-        //      customFields[i].SelectedOptionValue=selectedOption.displayText;
-        //      customFields[i].SelectedOptionId=selectedOption.id;
-        //      customFields[i].fieldType=customFields[i].fieldType;
-        //      this.customFields.push(customFields[i])
-        //    }else{
-        //      customFields[i].SelectedOptionValue='NA';
-        //      customFields[i].SelectedOptionId=78;
-        //      customFields[i].fieldType=customFields[i].fieldType;
-        //     // alert(customFields[i].fieldType);
-        //      this.customFields.push(customFields[i])
-        //    }
-        //   }}
-        //   console.log(this.customFields);
-
         this.bs_service.SaveIntoDb(this.businessServiceEntity).subscribe(res=>{
+          this.objVenderServiceVm.servicesId=this.businessServiceEntity.servicesId;
+          this.getCustomFieldBySreviceId(this.businessServiceEntity.servicesId,this.objVenderServiceVm.serviceName);
           console.log(res);
         })
       }
@@ -225,24 +218,26 @@ export class BusinessServicesComponent implements OnInit {
         this.customDialog=false;
       }
       seveCustomField(cfo,fieldType) {
+        debugger;
         if(fieldType==='5'){
         cfo.isSelected=true;
         let smv=new ServiceFieldValuesVM();
         smv.FieldValue= cfo.key;
         smv.customFieldId = cfo.customFieldId;
         this.customFields.filter(c=>c.customFieldId==cfo.customFieldId)[0].SelectedOptionId=smv.id;
-        this.customFields.filter(c=>c.customFieldId==cfo.customFieldId)[0].SelectedOptionValue=smv.FieldValue;        
+        this.customFields.filter(c=>c.customFieldId==cfo.customFieldId)[0].SelectedOptionValue=smv.FieldValue;  
         let options= this.customFields.filter(c=>c.customFieldId==cfo.customFieldId)[0].customFieldOptionList;
         let CustomfieldType=this.customFields.filter(c=>c.customFieldId==cfo.customFieldId)[0].fieldType;
         options.forEach(element => {
-          if(element.id!=cfo.id){
-            element.isSelect=false;
-          }
+       //   if(element.id!=cfo.id){
+         //   element.isSelect=false;
+         // }
         });
-        if(this.objVenderServiceVm.serviceFields==undefined){
-        this.objVenderServiceVm.serviceFields=[];
-      }
-       this.objVenderServiceVm.serviceFields.push(smv);
+      //   if(this.objVenderServiceVm.serviceFields==undefined){
+      //   this.objVenderServiceVm.serviceFields=[];
+      // }
+      // this.objVenderServiceVm.serviceFields.push(smv);
+      console.log(this.businessServiceEntity);
        this.bs_service.SaveIntoDb(this.businessServiceEntity).subscribe(res=>{
          if(res.status==200){
            this.toastr.success(res.json().message);
@@ -338,8 +333,8 @@ export class BusinessServiceEntityModel{
   constructor(){
     this.servicesId=0;
     this.categoryId=0;
-    this.customFieldId=0;
-    this.fieldValue='N/A';
+    this.customFieldId=2;
+    this.fieldValue='';
   }
 }
 

@@ -163,20 +163,13 @@ export class NavemenuComponent implements OnChanges,OnInit   {
     this.cservice.typeLogout();
 }
 ngOnChanges(){};
-  
-  
-  
   logout(){
          sessionStorage.clear();
          localStorage.clear();
          this.router.navigate(['../home']);
          this.typeLogout();
         }
-  
-  
-  
-  
-  ChangeLanguage(language: string) {
+      ChangeLanguage(language: string) {
         this.translate.use(language);
       }
 

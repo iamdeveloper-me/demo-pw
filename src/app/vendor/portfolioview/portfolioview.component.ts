@@ -1,6 +1,8 @@
 import { Component, OnInit,ViewChild ,ChangeDetectionStrategy, ElementRef} from '@angular/core';
 import { ViewEncapsulation, Input } from '@angular/core';
 import swal from 'sweetalert2';
+
+ 
 import { Router } from '@angular/router';
 import { Http,Headers } from '@angular/http';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
@@ -22,7 +24,7 @@ export class PortfolioviewComponent implements OnInit {
     PortpostArray:any= {};
     Set_as_background:any = [];
     uploadphoto_dailog = false;
-   
+    //lodar =false;
     selected_Background;
     portfolioId;
     basicplane;
@@ -42,7 +44,7 @@ export class PortfolioviewComponent implements OnInit {
     list:any = {
         "filesId": 1
     }
-    constructor( public http: Http ,public toastr: ToastrService,   private router: Router ) { }
+    constructor(public http: Http ,public toastr: ToastrService,   private router: Router ) { }
     ngOnInit() {
 
         $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
@@ -60,7 +62,19 @@ export class PortfolioviewComponent implements OnInit {
                     //console.log(data.json());
                     })
 
-
+                 
+                    $(function() {
+                      var current_progress = 0;
+                      var interval = setInterval(function() {
+                          current_progress += 10;
+                          $("#dynamic")
+                          .css("width", current_progress + "%")
+                          .attr("aria-valuenow", current_progress)
+                          .text(current_progress + "% Complete");
+                          if (current_progress >= 100)
+                              clearInterval(interval);
+                      }, 1000);
+                    });
                    
                     this.http.get(this.Get_backgroundImage,{headers:headers}).subscribe(data =>{
                         console.log(data.json());
@@ -140,34 +154,34 @@ export class PortfolioviewComponent implements OnInit {
         }
     }
     uploadAll(){
-    //
+                    //
 
-    
-    console.log(this.uploader.queue)
-    const formData = new FormData();
-    for(let file of this.uploader.queue){
-            formData.append(file['some'].name,file['some'])
-            file.upload()
-    
-    }        
+                    //this.lodar = true
+                    console.log(this.uploader.queue)
+                    const formData = new FormData();
+                    for(let file of this.uploader.queue){
+                            formData.append(file['some'].name,file['some'])
+                            file.upload()
+                    
+                    }        
 
-    let headers = new  Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append("Authorization",'Bearer '+authToken);
-    this.http.post(this.url+'api/ImageUploader/PortfolioUploader',formData,{headers:headers})
-    .subscribe(data =>{ 
-    
-                        this.toastr.success(data.json().message);
-                        this.router.navigate(['../vendor/portfolioview'])
-                        this.http.get(this.mygeturl,{headers:headers})
-                        .subscribe(data =>{   
-                                        console.log(data.json()); 
-                                        this.PortgetArray =data.json() 
-                                        this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
-                                        this.uploadphoto_dailog = false;
-                        });
-                        },(error)=>{console.log(error)});
-    // this.photoupload(formData);   
+                    let headers = new  Headers();
+                    var authToken = localStorage.getItem('userToken');
+                    headers.append("Authorization",'Bearer '+authToken);
+                    this.http.post(this.url+'api/ImageUploader/PortfolioUploader',formData,{headers:headers})
+                    .subscribe(data =>{ 
+                    
+                                        this.toastr.success(data.json().message);
+                                        this.router.navigate(['../vendor/portfolioview'])
+                                        this.http.get(this.mygeturl,{headers:headers})
+                                        .subscribe(data =>{   
+                                                        console.log(data.json()); 
+                                                        this.PortgetArray =data.json() 
+                                                        this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
+                                                        this.uploadphoto_dailog = false;
+                                        });
+                                        },(error)=>{console.log(error)});
+                    // this.photoupload(formData);   
     }
     photoupload(formData){
 

@@ -718,31 +718,31 @@
 															Client Name is required.
 													</div>
 												</div>
-										</div>
+									</div>
 							</div>
 							<div class="col-sm-6">
-									<div class="form-group">
-											<label>Client Number</label>
-											<input
-												type="text" 
-												name="clientNumber" 
-												class="form-control" 
-												[(ngModel)]="edit_job_form.clientNumber" 
-												id = "eclientNumber"
-												#ejClient="ngModel" 
-												minlength="7"
-												maxlength="10"
-												required 
-												/>
-												<div *ngIf="ejClient.invalid && (ejClient.dirty || ejClient.touched)" class="text-danger">
-														<div *ngIf="ejClient.errors?.required">
-																Client Number is required.
-														</div>
-														<div *ngIf="ejClient.errors.minlength">
-															Client Number is minimum 7 Digit.
-													</div>
-												</div>
-									</div>
+								<div class="form-group">
+									<label>Client Number</label>
+									<input
+										type="text" 
+										name="clientNumber" 
+										class="form-control" 
+										[(ngModel)]="edit_job_form.clientNumber" 
+										id = "eclientNumber"
+										#ejClient="ngModel" 
+										minlength="7"
+										maxlength="10"
+										required 
+										/>
+										<div *ngIf="ejClient.invalid && (ejClient.dirty || ejClient.touched)" class="text-danger">
+											<div *ngIf="ejClient.errors?.required">
+												Client Number is required.
+											</div>
+											<div *ngIf="ejClient.errors.minlength">
+												Client Number is minimum 7 Digit.
+											</div>
+										</div>
+								</div>
 							</div>
 							<div class="col-sm-6">
 									<div class="form-group">

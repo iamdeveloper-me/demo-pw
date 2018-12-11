@@ -384,7 +384,7 @@ $(document)
     
     //Post Album 2 photos
     console.log(formData);
-    this.uploadphoto_dailog = false;
+   
     this.uploader.queue = [];
     this.http.post(this.uploadimage,formData,{headers:headers})
       .subscribe(data =>{console.log(data.json());

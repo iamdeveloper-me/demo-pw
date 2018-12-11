@@ -240,7 +240,7 @@
                   <div class="col-sm-6">
                       <label>District</label>
                         <div class="form-group">
-                          <select name="district" class="form-control" [(ngModel)]="objevent.districtId" name="dist_id" (change)="subr($event)">
+                          <select name="district" class="form-control" [(ngModel)]="objevent.districtId" name="dist_id" (change)="subr()">
                             <option *ngFor="let dist of district ;let d =index" type="text" id="{{dist.name}}" checked name="dist"
                               placeholder="Country" [value]="dist.districtId" required>
                               {{dist.name }}
@@ -251,7 +251,7 @@
                   <div class="col-sm-6">
                     <label>Suburb</label>
                       <div class="form-group">
-                          <select class="form-control" [(ngModel)]="objevent.suburbId" name="sub_id" (change)="subr($event)">
+                          <select class="form-control" [(ngModel)]="objevent.suburbId" name="sub_id" (change)="subr()">
                             <!-- (change)="country($event)" -->
                             <option *ngFor="let sub of suburb ;let s =index" type="text" id="{{sub.name}}" checked name="sub"
                               placeholder="Suburb" [value]="sub.suburbId" required>
@@ -458,7 +458,7 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label>District</label>
-                        <select name="district" class="form-control" #ele_distid [(ngModel)]="objevent.districtId" name="dist_id" (ngModelChange)="subr($event)">
+                        <select name="district" class="form-control" #ele_distid [(ngModel)]="objevent.districtId" name="dist_id" (ngModelChange)="subr()">
                           <option *ngFor="let dist of district" [value]="dist.districtId">
                             {{dist.name }}
                           </option>

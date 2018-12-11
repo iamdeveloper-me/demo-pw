@@ -404,8 +404,8 @@ export class DashboardComponent implements OnInit {
         }
         freeuser(){
                           swal({
-                            title: "Change your Plan",
-                        text: "profile completed",
+                            title: "Want to unlock this feature?",
+                        text: "Choose a different subscription plan",
                         type: "warning",
                         showCancelButton: true,
                       

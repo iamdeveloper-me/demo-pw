@@ -7,7 +7,7 @@
         <router-outlet></router-outlet>
         <div class="col-sm-12 container-fluid mobilefixedcontainer">
             <div class="photo_gallery">
-                <div class="allport_row">
+                <div class="allport_row" *ngIf = "basicplane > 1">
                     <a routerLink="../gallery" class="leftarrowbacklink"><i class="material-icons"> arrow_back_ios </i>
                         <span class="mob_none"> Albums</span>
                     </a>
@@ -20,6 +20,9 @@
                             Albums
                         </button>
                     </div>
+                </div>
+                <div class="allport_row" *ngIf = "basicplane == 1">
+                     <h1 class="text-center">Free membership should not have had access to create the album at all!</h1>   
                 </div>
                 <div class="clearfix"> </div>
                 <section class="p-0 container" id="portfolio">

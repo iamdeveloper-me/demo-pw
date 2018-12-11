@@ -33,7 +33,7 @@ export class NavemenuComponent implements OnChanges,OnInit   {
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : 'en'); }
   
   ngOnInit() {
-
+debugger
       var firstName = localStorage.getItem('firstName');
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
@@ -148,7 +148,7 @@ export class NavemenuComponent implements OnChanges,OnInit   {
             $(".blackoverlaymainuser").css( 'right' , '-100%');
           });
       $('.blackoverlaymobile').on('click', function(){
-      //alert("h1");
+     
         $('#wrapper').toggleClass('toggled');
         $('.togglebtnmenu').toggleClass('cross');
         $('.blackoverlaymobile').toggleClass('blockmobile');
@@ -156,7 +156,7 @@ export class NavemenuComponent implements OnChanges,OnInit   {
       });
 
       //   $('.sidebar-brand').on('click', function(){
-      // alert("h1");
+     
       //    $(this).addClass('colour');
       // });
 
@@ -164,6 +164,8 @@ export class NavemenuComponent implements OnChanges,OnInit   {
 
 
            });
+           this.unread(2)
+
   }
     
   
@@ -194,7 +196,7 @@ search(newObj){
               this.unread_msg = this.historyArray.length;
               console.log(this.historyArray)
             },error => 
-            alert(error) // error path
+            console.log(error) // error path
           )
 
 }
@@ -222,10 +224,11 @@ unread(filter_id){
 
           console.log(this.historyArray)
         },error => 
-        alert(error) // error path
+        console.log(error) // error path
       )
 }
   logout(){
+         sessionStorage.clear();
          localStorage.clear();
          this.router.navigate(['../home']);
          this.typeLogout();

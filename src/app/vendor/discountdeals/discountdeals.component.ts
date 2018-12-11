@@ -108,7 +108,7 @@ export class DiscountdealsComponent implements OnInit {
      this.Supplierdiscount = data.json();
      this.disTitle =   this.Supplierdiscount.title ;
      if(this.Supplierdiscount.length == 0 ){
-       alert("dcds");
+     
       this.Supplierdiscount.title = "No Discounts Applied" ;
       
      }
@@ -183,11 +183,11 @@ this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/ap
         confirmButtonText: "Yes, Upgrade Now!",
         cancelButtonText: "Remind Me Later!",
     }).then((res)=>{
-      debugger
+     
                     if(res.value===true){
                       this.router.navigate(['../vendor/membership'])
                    }else{
-                      // alert('Cancel Process !');
+                    
                           this.toastr.warning(JSON.parse(error._body)["upgrade_membership"][0]);
                     }
     },error=>{
@@ -310,7 +310,7 @@ deletedeals(a ,index){
               }).then((res)=>{
                                 console.log(res);
                                 if(res.value===true){
-                                                        // alert('delete Process !');
+                                                       
                                                         console.log(a);
                                                       let headers = new Headers();
                                                       var authToken = localStorage.getItem('userToken');
@@ -334,7 +334,7 @@ deletedeals(a ,index){
                                                     }, error => { console.log(error) });
                                                     alert(JSON.stringify(res));
                                 }else{
-                                  // alert('Cancel Process !');
+                               
                                 }
                                 },error=>{
                                   alert(JSON.stringify(error));
@@ -361,11 +361,11 @@ changePlan(){
       confirmButtonText: "Yes, Upgrade Now!",
       cancelButtonText: "Remind Me Later!",
   }).then((res)=>{
-    debugger
+   
                   if(res.value===true){
                     this.router.navigate(['../vendor/membership'])
                  }else{
-                    // alert('Cancel Process !');
+                   
                         this.toastr.warning(this.upgradeMsg);
                   }
   },error=>{
@@ -389,11 +389,11 @@ noDealSwal(){
     confirmButtonText: "Yes, Upgrade Now!",
     cancelButtonText: "Remind Me Later!",
 }).then((res)=>{
-  debugger
+
                 if(res.value===true){
                   this.router.navigate(['../vendor/membership'])
                }else{
-                  // alert('Cancel Process !');
+                  
                       // this.toastr.warning('Free Membership cannot create Deals and Discount');
                 }
 },error=>{

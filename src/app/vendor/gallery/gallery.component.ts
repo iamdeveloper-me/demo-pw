@@ -77,13 +77,18 @@ export class GalleryComponent implements OnInit {
     this.basicplane =  localStorage.getItem('basic-plan');
       console.log(parseInt(basicplan) );
       if( parseInt(basicplan) == 1 ){
-        // alert("cant create");
+       
         $(".albumlist").hide();
       }else{
         $('div').removeClass("overlay");
       
       }
     
+      this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
+      // if( parseInt(this.basicplane) == 1 )
+      // { 
+      //   this.router.navigate(['../vendor/dashboard']);
+      //  }else{ this.router.navigate(['../vendor/albumview']);}
     //Album Get
     
     this.showport();
@@ -94,7 +99,7 @@ export class GalleryComponent implements OnInit {
 
         
 
-       addFile(info): void {
+        addFile(info): void {
        // console.log(info);
     
         let fi = this.fileInput.nativeElement;
@@ -144,7 +149,9 @@ export class GalleryComponent implements OnInit {
               this.router.navigate(['../vendor/albumview'])
               
             },(error)=>{console.log(error._body);
-            this.typeWarning(error._body);
+              this.toastr.error(error._body.split('[')[1].split(']')[0]);
+              // this.toastr.warning(error._body);
+           
         });
         }
 
@@ -170,7 +177,29 @@ export class GalleryComponent implements OnInit {
                                 this.toastr.success(data.json().message);
                                 this.router.navigate(['../vendor/portfolioview'])
                           
-                              },(error)=>{console.log(error)});
+                              },(error)=>{
+                                console.log(error);
+                                swal({
+                                  title:  error._body.split('[')[1].split(']')[0],
+                                text: "can upload only 5",
+                                type: "warning",
+                                showCancelButton: true,
+                                confirmButtonClass: "btn-default",
+                                confirmButtonText: "Yes",
+                                cancelButtonText: "No",
+                                }).then((res)=>{
+                                  console.log(res);
+                                  if(res.value===true){
+                                   
+                                      this.router.navigate(['../vendor/membership'])
+                                  }else{ this.router.navigate(['../vendor/portfolioview'])}
+                              
+                                 },error=>{
+                                   alert(JSON.stringify(error));
+                                })
+                                  return;
+                               
+                              });
              
           
         }

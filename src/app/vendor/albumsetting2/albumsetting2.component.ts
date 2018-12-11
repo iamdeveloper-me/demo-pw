@@ -81,7 +81,7 @@ constructor( public http: Http,public toastr: ToastrService ) {
       console.log(g); 
       // console.log('dff',this.tai.split(','))
       
-      debugger
+    
       this.formdata['tags'].splice(g, 1);
       console.log(this.tai); 
       if(this.tai.length == 0 )
@@ -106,7 +106,7 @@ constructor( public http: Http,public toastr: ToastrService ) {
                       this.albumImagesModify.forEach(el=>{
                         if(el['tags'] != ''){
                           el['tags_two'] = el['tags'].split(',')
-                          debugger
+                     
                         }  
                       })
                       this.albumImagesModify.forEach(ele=>{
@@ -132,10 +132,10 @@ constructor( public http: Http,public toastr: ToastrService ) {
                             //     }else{
                             //     this.albumImagesModify.push(item)
                             //     }
-                            //     debugger
+                            //   
                             //     this.albumImagesModify.push(item);
                             // } 
-                            // debugger
+                          
                       })
     }
     openModel(e)

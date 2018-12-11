@@ -127,7 +127,7 @@ changePassword_form = false;
     this.http.post(this.subupdateurl,sub,{headers:headers}).subscribe(
       data =>{ 
         this.mysub = data.json();
-         alert("Profile Updated!");
+     
         this.toastr.success("subscription update sucessfully");
     },error=>{console.log(error)});
    }
@@ -187,7 +187,7 @@ changePassword_form = false;
     }
     console.log(cp);
     if(f.value.NewPassword == f.value.ConfirmPassword){
-      // alert("Password Match!");
+    
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
       headers.append('Accept', 'application/json')

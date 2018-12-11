@@ -135,7 +135,8 @@ createAlbum(Album){
                           this.toastr.success(data.json().message);
                         },(error)=>{
                                     console.log(error._body);
-                                    this.typeWarning(error._body);
+                                  
+                                    this.typeWarning(error._body.split('[')[1].split(']')[0]);
                                     }
                 );
 
@@ -189,7 +190,7 @@ closeModel(){
     // }
 
   }else{
-    // alert('Cancel Process !');
+    
    }
   },error=>{
     alert(JSON.stringify(error));

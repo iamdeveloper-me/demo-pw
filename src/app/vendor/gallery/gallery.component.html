@@ -193,7 +193,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h4 class="modal-title">Add Portfolio</h4>
+                <h4 class="modal-title">Add images</h4>
                 <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>       
               <div class="clearfix"></div>
             </div>
@@ -232,6 +232,7 @@
                                      
                                       <tbody>
                                         <tr *ngFor="let item of uploader.queue">
+                                           
                                           <td><strong>{{ item?.file?.name }}</strong></td>
                                          
                                           <td nowrap>

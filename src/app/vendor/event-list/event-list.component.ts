@@ -321,6 +321,10 @@ export class EventListComponent implements OnInit {
       const formData = new FormData();
       formData.append('AlbumId', '2');
       //    alert(JSON.stringify(this.imageToUpload));
+      if (this.objevent.entry == 'Paid' && (this.objevent.entryFee==undefined || this.objevent.entryFee==0)) {
+        this.entry = 'Field Required'
+        this.toastr.error('Please Enter Valid Entry Fees!');
+      }else{
       formData.append(this.imageToUpload.name, this.imageToUpload);
       this.showLoader = true;
       this.http.post(this.uploadimage, formData, { headers: headerForImageUpload }).subscribe((data) => {
@@ -365,7 +369,7 @@ export class EventListComponent implements OnInit {
           this.showLoader = false;
         })
       })
-
+    }
     } else {
     //  this.toastr.error("fill completly");
     }
@@ -412,15 +416,9 @@ export class EventListComponent implements OnInit {
     this.objevent.districtId = v.districtId;
     this.objevent.suburbId = v.suburbId;
     this.objevent.countryId = v.countryId;
-    let EventEndTime = moment(v.eventsDates[0].endTime);
-    console.log(EventEndTime.utc().format('HH:mm a'));
-    this.endtime = EventEndTime.utc().format('HH:mm a');
-    console.log(this.select_time.timing.includes(s => s.endtime == this.endtime));
     this.country();
     this.districtA();
     this.subr();
-    let EventStartTime = moment(v.eventsDates[0].startTime);
-    this.startTimee = EventStartTime.utc().format('HH:mm a');
     this.startDates = v.eventsDates[0].startDate.split('T')[0];
     this.endDates = v.eventsDates[0].endDate.split('T')[0];
     this.modelfield = v;
@@ -439,6 +437,7 @@ export class EventListComponent implements OnInit {
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
+    console.log(data.value.entryFee +data.value.entry);
     const editData = {
       eventId: data.value.eventId,
       eventTitle: data.value.Title,
@@ -466,6 +465,7 @@ export class EventListComponent implements OnInit {
         }
       ]
     }
+    console.log(this.objevent)
     if (this.ele_suburb.nativeElement.value.length == 0) {
       this.toastr.error('Invalid Suburb! Please Select Valid Suburb');
     } else if (this.ele_startTime.nativeElement.value.length == 0) {
@@ -474,7 +474,11 @@ export class EventListComponent implements OnInit {
       this.toastr.error('Invalid End Time! Please Select Valid End Time');
     } else if (this.modelfield.entry == undefined) {
       this.toastr.error('Invalid Entry Type! Please Select Valid Entry Type');
-    } else {
+    }
+    else if (this.modelfield.entry != 'Free' && this.modelfield.entry!=undefined && this.modelfield.modelfield.entryFee=='' || this.modelfield.entryFee==undefined) {
+      this.toastr.error('Invalid Entry Fees! Please Enter Valid Entry Fees');
+    }
+    else {
       this.http.post(this.eventposturl, editData, { headers: headers }).subscribe(data => {
         console.log(data.json());
         this.toastr.success("saved sucessfully");

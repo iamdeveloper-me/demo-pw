@@ -54,20 +54,14 @@
                             <div class="col-12">
 
                                 <div class="club_heading">
-                                  <h5> {{data.eventTitle}} </h5>
+                                  <h5><strong>{{data.eventTitle}}</strong> </h5>
                                 </div>
                                 <p>
                                   Capacity:{{data.capacity}}
                                 </p>
-                                <p>Venue:{{data.venueName}} 
-                                </p>
-                                <p>Address:{{data.country?.countryName}},{{data.districts
-                                    ?.name}},{{data.suburb?.name}}
-                                </p>
-                             
-                                <p class="locat_tag">
-                                  <i class="material-icons"> location_on</i>
-                                  {{data.location}}
+                                <p><i class="material-icons"> location_on</i>
+                                  {{data.venueName}} {{data.location}} , {{data.suburb?.name}} {{data.districts
+                                    ?.name}}, {{data.country?.countryName}}
                                 </p>
                                 <p>Entry Fee:{{data.entryFee}}
                                   </p>
@@ -77,26 +71,18 @@
                                     </div> 
                                     <div class="col-sm-11">
                                   <p  *ngFor="let name of data.eventsDates">
-                                    <strong> Start Time {{name.startTime | date :
-                                      "shortTime" }}</strong>
+                                    Event Start:  {{name.startDate | date}},  {{name.startTime | date :
+                                      "shortTime" }}
                                   </p>
                                  
                                   <p *ngFor="let name of data.eventsDates">
-                                    <strong>End
-                                        Time {{name.endTime | date : "shortTime" }}
-                                      </strong>
+                                    Event End: {{name.endDate | date}}, 
+                                         {{name.endTime | date : "shortTime" }}
+                                     
                                     </p>
+                                    <p>{{data.eventDescription}}  </p>
                                     </div>
-                                    <div class="col-sm-12">
-                                    <p  *ngFor="let name of data.eventsDates">
-                                        <i class="material-icons">date_range </i><strong>
-                                          Event start Date : {{name.startDate | date}}<br>
-                                          Event end Date  :  {{name.endDate | date}}<br>
-                                          
-                                         
-                                        </strong>
-                                      </p>
-                                    </div>
+                                   
                                 </div>
 
                                

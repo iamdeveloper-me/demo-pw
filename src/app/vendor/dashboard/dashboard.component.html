@@ -33,7 +33,7 @@
                               <li > 
                                 <a routerLink="../location" *ngIf="buinessPhone == test">
                                 
-                                  <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
+                                  <i class="material-icons" ngbTooltip="Business Phone">check_circle</i>
 
                                    <strong class="blacktext" >Business Phone </strong>
                                    <span class="editbtn">
@@ -43,9 +43,9 @@
                                     </span>
                                 </a>
                                 <a routerLink="../location" *ngIf="buinessPhone == test1">
-                                  <i class="material-icons graytext" ngbTooltip="Buiness Phone">error_outline</i> 
+                                  <i class="material-icons graytext" ngbTooltip="Business Phone">error_outline</i> 
 
-                                  <strong class="blacktext" >Buiness Phone </strong>
+                                  <strong class="blacktext" >Business Phone </strong>
                                   <span class="editbtn">
                                        <i class="material-icons">
                                            edit
@@ -55,7 +55,7 @@
                              </li>
                               <li>
                                   <a routerLink="../business" *ngIf="businessProfilePic == test" class="done">
-                                    <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
+                                    <i class="material-icons" ngbTooltip="Business Logo">check_circle</i>
   
                                     <strong class="blacktext" >Business Logo </strong>
                                     <span class="editbtn">
@@ -201,12 +201,20 @@
                                           <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
         
                                           <strong class="blacktext" >Trading Name</strong>
-                                          <button class="editbtn">Select to Edit</button>
+                                          <span class="editbtn">
+                                                <i class="material-icons">
+                                                    edit
+                                                </i>
+                                              </span>
                                         </a>
                                       <a routerLink="../business"  *ngIf="tradingName == test1" >
                                           <i class="material-icons graytext" ngbTooltip="Trading Name">error_outline</i> 
                                           <strong class="blacktext">Trading Name</strong>  
-                                          <span  class="editbtn">Edit</span> 
+                                          <span class="editbtn">
+                                                <i class="material-icons">
+                                                    edit
+                                                </i>
+                                              </span>
                                       </a>
                                      </li>
                                   </ul>
@@ -240,7 +248,7 @@
                     </div>
                     <div class="viewstore">
                          <a routerLink="../../home/detailprofile">View Storefront</a>
-                         <button (click) = "images_dialog = true">images</button>
+                         <a class="btn" (click) = "images_dialog = true">Change Business Cover</a>
                     </div>
                 </div>
                 <div class="col-sm-7 nopadd maxheight335px mobileheightauto ">
@@ -279,7 +287,11 @@
                                 </div>  
                       
                               </div>
-                             <span  class="editbtn" routerLink="../location">Edit</span>  
+                             <span  class="editbtn" routerLink="../location"> <span class="editbtn">
+                                 <i class="material-icons">
+                                       arrow_forward
+                                 </i>
+                               </span></span>  
                           </div>
                        </div>
                        <div class="prolinkmob">
@@ -314,7 +326,11 @@
                                    </div>
 
                                   
-                                <span class="editbtn">Edit</span> 
+                                <span class="editbtn"> <span class="editbtn">
+                                    <i class="material-icons">
+                                          arrow_forward
+                                    </i>
+                                  </span></span> 
                                 </a>
                               
                                  
@@ -338,7 +354,7 @@
                               <div class="clearfix"></div>
                               <div class="membershipbox">
                                Membership Type: {{vendor.pricingPlan?.title}} 
-                               <a routerLink="../membership" class="viewallbutton">Change Plan
+                               <a routerLink="../membership" class="viewallbutton">Want to unlock this feature?
                                </a>
                              </div>
                           </div>
@@ -615,11 +631,16 @@
             <div class="modal-body">
                 <div class="col-sm-12  text-center">
                   <div class="modal-body" style="background-color: white">
-                    
-                     <div class="row popupscrollfit">
+
+                     <div *ngIf="image_data==0; else pp">
+                           No image available 
+                     </div>
+
+                    <ng-template #pp>
+                    <div class="row popupscrollfit">
                         <div *ngFor="let images of image_data" class="col-3 imgbottom">
                           
-                              <img [src] = "images.imageURL"  alt="Profile picture"  class="img-responsive" (click)="setportfolio_image(images)">
+                              <img [src] = "images.imageURL"  alt="Profile picture"  class="img-responsive selectimages" (click)="setportfolio_image(images)">
                              
                                   <i class="material-icons selectimg">check_circle</i>
                             
@@ -628,6 +649,11 @@
                               
                         </div>
                       </div>
+                     </ng-template> 
+
+
+                      <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel(dialogname)">Close</button>
+
                   </div>
                 </div>    
             </div>

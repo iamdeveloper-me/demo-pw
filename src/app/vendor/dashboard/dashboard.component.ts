@@ -82,7 +82,7 @@ export class DashboardComponent implements OnInit {
   vendor: any = {suburb:
     {suburbId: '', districtId: '', name: ""}};
   bussiness_name;
-  image_data;
+  image_data:number;
   public changeGreeting(greeting: any): void {
     const isOpen = this.tooltip.isOpen();
     this.tooltip.close();
@@ -190,11 +190,19 @@ export class DashboardComponent implements OnInit {
                             localStorage.setItem('profile','2');
                          
                           swal({
-                            title: "Are you sure?",
-                        text: "profile completed",
+                            title: "Choose a different subscription plan",
+                        // text: "Choose a different subscription plan",
                         type: "warning",
                         showCancelButton: true,
-                      
+                        confirmButtonClass: "btn-default",
+                        confirmButtonText: "View Plans",
+                        cancelButtonText: "Remind Me Later!",  
+
+                    }).then((res)=>{
+                                    if(res.value===true){
+                                      this.router.navigate(['../vendor/membership']);
+                                   }
+
                         }).then((res)=>{
                           $(".profile").hide();
         

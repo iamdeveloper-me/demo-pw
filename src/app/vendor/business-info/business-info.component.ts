@@ -67,6 +67,9 @@ export class BusinessInfoComponent implements OnInit {
 
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader';
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessinfo'
+
+  private profileurl: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
+
   vendor: any = { nameOfBusiness: '',
     businessDetails: '',
     contactPerson: '',
@@ -179,6 +182,32 @@ export class BusinessInfoComponent implements OnInit {
 
   ngOnInit() {
    this.pageInitialize();
+
+   let headers = new Headers();
+   var authToken = localStorage.getItem('userToken');
+   headers.append('Accept', 'application/json')
+   headers.append('Content-Type', 'application/json');
+   headers.append("Authorization",'Bearer '+authToken);
+
+   this.http.get(this.profileurl,{headers:headers}).subscribe(
+     data =>{ this.vendor = data.json();
+              console.log(this.vendor);
+     });
+
+//Progress Bar Icon
+     $(function() {
+      var current_progress = 0;
+      var interval = setInterval(function() {
+          current_progress += 10;
+          $("#dynamic")
+          .css("width", current_progress + "%")
+          .attr("aria-valuenow", current_progress)
+          .text(current_progress + "% Complete");
+          if (current_progress >= 100)
+              clearInterval(interval);
+      }, 900);
+    });
+
   }
   
   //businessinformation 
@@ -668,7 +697,7 @@ UpdateSocialUrl(urlType){
     }
   })
 }else{
-  this.toastr.error('Invalid Url');
+  this.toastr.error('Link entered is not valid');
 }
 }
 }

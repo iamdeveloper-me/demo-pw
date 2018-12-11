@@ -106,7 +106,9 @@
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.pinnedReviews">check_circle</i><i *ngIf="!plan.pinnedReviews" class="material-icons redtext">cancel</i> Pinned reviews</li>
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedPhotos">check_circle</i><i *ngIf="!plan.unlimitedPhotos" class="material-icons redtext">cancel</i> Limited Photos</li>
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimmited Album</li>
-												<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.performanceAnalytics}} Performance analytics</li>
+												<li class="list-group-item" *ngIf="plan.performanceAnalytics == 0 "><i class="material-icons bluetext">report</i>  No Performance Analytics</li>
+												<li class="list-group-item" *ngIf="plan.performanceAnalytics == 1 "><i class="material-icons bluetext">report</i>  Basic Performance Analytics</li>
+												<li class="list-group-item" *ngIf="plan.performanceAnalytics == 2 "><i class="material-icons bluetext">report</i>  Advanced Performance Analytics</li>
 												<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.noOfLocationAllowed}} locations</li>
 
 												<!-- Low Priority -->
@@ -176,9 +178,15 @@
 											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.pinnedReviews">check_circle</i><i *ngIf="!plan.pinnedReviews" class="material-icons redtext">cancel</i> Pinned reviews</li>
 											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedPhotos">check_circle</i><i *ngIf="!plan.unlimitedPhotos" class="material-icons redtext">cancel</i> Limited Photos</li>
 											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimited Album</li>
-											<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.performanceAnalytics}} Performance analytics</li>
+											<li class="list-group-item" *ngIf="plan.performanceAnalytics == 0 "><i class="material-icons bluetext">report</i>  No Performance Analytics</li>
+											<li class="list-group-item" *ngIf="plan.performanceAnalytics == 1 "><i class="material-icons bluetext">report</i>  Basic Performance Analytics</li>
+											<li class="list-group-item" *ngIf="plan.performanceAnalytics == 2 "><i class="material-icons bluetext">report</i>  Advanced Performance Analytics</li>
+											
+											
 											<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.noOfLocationAllowed}} locations</li>
-											<li class="list-group-item"><i class="material-icons bluetext" >report</i> Low Priority in Search Results {{plan.priorityInSearch}}</li>
+											<li class="list-group-item" *ngIf="plan.priorityInSearch == 0"><i class="material-icons bluetext" >report</i> Low Priority in Search Results </li>
+											<li class="list-group-item" *ngIf="plan.priorityInSearch == 1"><i class="material-icons bluetext" >report</i> Medium Priority in Search Results </li>
+											<li class="list-group-item" *ngIf="plan.priorityInSearch == 2"><i class="material-icons bluetext" >report</i> High Priority in Search Results </li>
 								</ul>
 									<div *ngIf="plan.pricingPlanId == pricingPlanId  && payFrequency == 1 ; else ooo">
 										<!-- btnchoosetik -->

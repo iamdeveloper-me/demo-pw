@@ -22,7 +22,7 @@ import { CalendarModule, CalendarDateFormatter } from 'angular-calendar';
 import { QuillModule } from 'ngx-quill'
 //vendorcharts
 import { PortfolioviewphotoComponent } from './vendor/portfolioviewphoto/portfolioviewphoto.component';
-import { AngularFileUploaderModule } from "angular-file-uploader";
+//import { AngularFileUploaderModule } from "angular-file-uploader";
 
 import { ChartsModule } from 'ng2-charts';
 import { ChartistModule} from 'ng-chartist';

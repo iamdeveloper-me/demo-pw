@@ -32,6 +32,7 @@ export class MessageComponent implements OnInit {
     hideResetBtn: true,
     hideSelectBtn: false
   };
+  loader= true
   alltab = true;
   unreadtab = false;
   startedtab = false;
@@ -215,6 +216,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
             this.arrayLength =  this.historyArr.length
 
             console.log(this.historyArr)
+            this.loader = true
           },error => 
           console.log(error) // error path
         )
@@ -242,6 +244,8 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
             this.arrayLength =  this.historyArr.length
 
             console.log(this.historyArr)
+            this.loader = false
+
           },error => 
           console.log(error) // error path
         )
@@ -268,6 +272,8 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
             this.stared_msg = this.historyArr.length;
             this.arrayLength = this.historyArr.length;
             console.log(this.historyArr)
+            this.loader = false
+
           },error => 
           console.log(error) // error path
         )
@@ -279,7 +285,6 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
       {this.toastr.success(data.json().message)
         this.filter_id = 1
         this.stared(3)
-       
       },error => 
       console.log(error) // error path
     )
@@ -301,7 +306,6 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
       {this.toastr.success(data.json().message)
         this.filter_id = 1
         this.unread(2)
-      
       },error => 
       console.log(error) // error path
     )

@@ -33,7 +33,7 @@ export class NavemenuComponent implements OnChanges,OnInit   {
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : 'en'); }
   
   ngOnInit() {
-
+debugger
       var firstName = localStorage.getItem('firstName');
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
@@ -164,6 +164,8 @@ export class NavemenuComponent implements OnChanges,OnInit   {
 
 
            });
+           this.unread(2)
+
   }
     
   

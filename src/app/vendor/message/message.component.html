@@ -1,4 +1,4 @@
-<div id="wrapper" class="toggled">
+<div id="wrapper" class="toggled" *ngIf="loader ; else loader">
         <div id="sidebar-wrapper" >
             <app-vendorsidebar></app-vendorsidebar>
         </div>
@@ -55,12 +55,12 @@
                                 [value]="history.id" 
                                 (change)="onSelectionChange(history)"
                                 class="mail-checkbox">
-                                <a class="imgboxmessage" routerLink="../msg/{{history.messageId}}" (click)="markRead(history.messageId)">
+                                <a class="imgboxmessage" routerLink="../msg/{{history.messageId}}" >
                                     <img  class="userimg" src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg"/>
                                 </a>
-                                <div class="textboxmessage"  >
+                                <div class="textboxmessage"  (click)="markRead(history.messageId) || changeRoute(history.messageId)">
                                               <div>
-                                                <strong (click)="changeRoute(history.messageId)">
+                                                <strong >
                                                   {{history.sendByFirstName}} {{history.sendByLastName}}
                                                 </strong>
                                                 <span _ngcontent-c0="" *ngIf="history.isFromAdmin == true "class="label label-info">
@@ -74,16 +74,19 @@
                                               <div class="secondarytext">
                                               {{history.message}}
                                               </div>
-                                              <div class="messdatetext">
-                                              <!-- {{history.sentDateString}} -->
-                                               {{history.sentDate | date:'hh:mm'}}
-                                              </div>
-                                              <span *ngIf="!history.isStared" (click)="starMark(history.messageId)">
-                                              <i class="fa fa-star starfix"></i>
-                                              </span>
-                                              <span *ngIf="history.isStared"(click)="starMark(history.messageId)">
-                                                <i class="fa fa-star starfix yellow"></i>
-                                              </span>
+                                          
+                                </div>
+                                <div class="timebox">
+                                    <div class="messdatetext">
+                                        <!-- {{history.sentDateString}} -->
+                                         {{history.sentDate | date:'hh:mm'}}
+                                        </div>
+                                        <span *ngIf="!history.isStared" (click)="starMark(history.messageId)">
+                                        <i class="fa fa-star starfix"></i>
+                                        </span>
+                                        <span *ngIf="history.isStared"(click)="starMark(history.messageId)">
+                                          <i class="fa fa-star starfix yellow"></i>
+                                        </span>
                                 </div>
                             </div> 
                         </ng-template>
@@ -108,12 +111,12 @@
                                     [value]="history.id" 
                                     (change)="onSelectionChange(history)"
                                     class="mail-checkbox">
-                                    <a class="imgboxmessage" routerLink="../msg/{{history.messageId}}" (click)="markRead(history.messageId)">
+                                    <a class="imgboxmessage" routerLink="../msg/{{history.messageId}}" >
                                         <img  class="userimg" src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg"/>
                                     </a>
-                                    <div class="textboxmessage"  >
+                                    <div class="textboxmessage"  (click)="markRead(history.messageId) || changeRoute(history.messageId)">
                                                   <div>
-                                                    <strong (click)="changeRoute(history.messageId)">
+                                                    <strong >
                                                       {{history.sendByFirstName}} {{history.sendByLastName}}
                                                     </strong>
                                                     <span _ngcontent-c0="" *ngIf="history.isFromAdmin == true "class="label label-info">
@@ -127,17 +130,20 @@
                                                   <div class="secondarytext">
                                                   {{history.message}}
                                                   </div>
-                                                  <div class="messdatetext">
-                                                  <!-- {{history.sentDateString}} -->
-                                                   {{history.sentDate | date:'hh:mm'}}
-                                                  </div>
-                                                  <span *ngIf="!history.isStared" (click)="starMark(history.messageId)">
-                                                  <i class="fa fa-star starfix"></i>
-                                                  </span>
-                                                  <span *ngIf="history.isStared"(click)="starMark(history.messageId)">
-                                                    <i class="fa fa-star starfix yellow"></i>
-                                                  </span>
-                                    </div>
+                                                
+                                    <div class="timebox">
+                                            <div class="messdatetext">
+                                                    <!-- {{history.sentDateString}} -->
+                                                     {{history.sentDate | date:'hh:mm'}}
+                                                    </div>
+                                                    <span *ngIf="!history.isStared" (click)="starMark(history.messageId)">
+                                                    <i class="fa fa-star starfix"></i>
+                                                    </span>
+                                                    <span *ngIf="history.isStared"(click)="starMark(history.messageId)">
+                                                      <i class="fa fa-star starfix yellow"></i>
+                                                    </span>
+                                      </div>
+                                        </div>
                                 </div> 
                             </ng-template>
                       </div>
@@ -152,18 +158,20 @@
                             </div>
                         </div>
                         <ng-template #showMessage>
-                            <div class="cardmessagebox" *ngFor="let history of historyArr">
+                            <div class="cardmessagebox "  *ngFor="let history of historyArr">
+                                <div >
                                 <input type="checkbox" name="radiogroup" 
                                 [checked]="idx === 0" 
                                 [value]="history.id" 
                                 (change)="onSelectionChange(history)"
                                 class="mail-checkbox">
-                                <a class="imgboxmessage" routerLink="../msg/{{history.messageId}}" (click)="markRead(history.messageId)">
+                                <a class="imgboxmessage" routerLink="../msg/{{history.messageId}}" >
                                     <img  class="userimg" src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg"/>
                                 </a>
-                                <div class="textboxmessage"  >
+                                </div>
+                                <div class="textboxmessage"  (click)="markRead(history.messageId) || changeRoute(history.messageId)">
                                               <div>
-                                                <strong (click)="changeRoute(history.messageId)">
+                                                <strong >
                                                   {{history.sendByFirstName}} {{history.sendByLastName}}
                                                 </strong>
                                                 <span _ngcontent-c0="" *ngIf="history.isFromAdmin == true "class="label label-info">
@@ -177,16 +185,19 @@
                                               <div class="secondarytext">
                                               {{history.message}}
                                               </div>
-                                              <div class="messdatetext">
-                                              <!-- {{history.sentDateString}} -->
-                                               {{history.sentDate | date:'hh:mm'}}
-                                              </div>
-                                              <span *ngIf="!history.isStared" (click)="starMark(history.messageId)">
-                                              <i class="fa fa-star starfix"></i>
-                                              </span>
-                                              <span *ngIf="history.isStared"(click)="starMark(history.messageId)">
-                                                <i class="fa fa-star starfix yellow"></i>
-                                              </span>
+                                              
+                                </div>
+                                <div class="timebox">
+                                        <div class="messdatetext">
+                                                <!-- {{history.sentDateString}} -->
+                                                 {{history.sentDate | date:'hh:mm'}}
+                                                </div>
+                                                <span *ngIf="!history.isStared" (click)="starMark(history.messageId)">
+                                                <i class="fa fa-star starfix"></i>
+                                                </span>
+                                                <span *ngIf="history.isStared"(click)="starMark(history.messageId)">
+                                                  <i class="fa fa-star starfix yellow"></i>
+                                                </span>
                                 </div>
                             </div> 
                         </ng-template>
@@ -199,7 +210,9 @@
 
 
 
-
+<ng-template #loader>
+  <img src="../../../assets/img/loader.gif">
+</ng-template>
 
 
 

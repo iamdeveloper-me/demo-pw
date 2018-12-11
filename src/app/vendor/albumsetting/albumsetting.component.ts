@@ -215,7 +215,7 @@ editSetting(f){
 }
 post_tag_edit(fire){
         console.log(fire);      
-       // debugger
+    
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         headers.append('Accept', 'application/json')
@@ -275,7 +275,7 @@ closeModel(){
         this.toastr.success(data.json().message);
           }); 
   }else{
-    // alert('Cancel Process !');
+   
    }
   },error=>{
     alert(JSON.stringify(error));

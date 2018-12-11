@@ -74,7 +74,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
                         
                         if(this.albumid.id == item.albumsId)
                           {
-                          //    alert("dsf"); 
+                          
                           console.log(item);
                           // console.log(item.tags);
                           this.albumname = item.albumName;
@@ -116,7 +116,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/BackgroundImage",{headers:headers})
   .subscribe(data => {console.log(data.json())},error=>{console.log(error)});
     $(".gearicon").click(function(){
-    //  alert();
+    
       $( this ).toggleClass( "open" );
   });
 
@@ -128,9 +128,9 @@ export class ViewPhotoAlbumsComponent implements OnInit {
         //         if(item.albumImages.length == 0)
         //         {  
         //             this.image.path = 'https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
-        //             alert("empty array"); 
+        //          
         //         }else{  
-        //             alert("not empty array");
+        //            
                    
         //               }
             
@@ -158,7 +158,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
    
    if(this.albumid.id == item.albumsId)
     {
-    //    alert("dsf"); 
+   
      console.log(item);
     // console.log(item.tags);
     this.albumname = item.albumName;
@@ -340,7 +340,7 @@ $(document)
     // }
 
   }else{
-    // alert('Cancel Process !');
+      console.log('Cancel Process !');
    }
   },error=>{
     alert(JSON.stringify(error));

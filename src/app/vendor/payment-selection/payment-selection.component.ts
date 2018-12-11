@@ -27,7 +27,7 @@ export class PaymentSelectionComponent implements OnInit {
     console.log(this.MainData)
 
     if(this.MainData.route_key == 0){
-      debugger
+    
       this.WhichPlan =   JSON.parse(sessionStorage.getItem('which_plan'))
       console.log(this.WhichPlan)
       if(this.MainData.payFrequency == 1){

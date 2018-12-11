@@ -57,7 +57,7 @@ export class HompageLocationComponent implements OnInit {
       obj['isSelected']=false;
       this.HomePage[0].adAvailableSlots[i] = obj;
       this.page_title = 'Home Page Location';
-      debugger
+     
       }    
   },error => { console.log(error)});
   }
@@ -123,5 +123,6 @@ export class HompageLocationComponent implements OnInit {
         // this.address_modelfield.country_id = country.countryId;
         // this.country_name = country.countryName
         // this.district = country.districts
+        
   }
 }

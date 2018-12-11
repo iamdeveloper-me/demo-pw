@@ -21,20 +21,10 @@ export class BusinessService {
               this.header.append('Content-Type', 'application/json');
               this.header.append("Authorization",'Bearer '+authToken);
    }  
-   setIntoLocalDb(data){
-    localStorage.setItem('savedService',JSON.stringify(data));
-   }
-   SaveIntoDb(objVenderServiceVm){
-   console.log(JSON.stringify(objVenderServiceVm));
-     if(objVenderServiceVm.serviceFields==undefined){
-      objVenderServiceVm.serviceFields=[];
-     }
-   // if(objVenderServiceVm.serviceFields.length<1 || objVenderServiceVm.serviceFields.length==undefined){
-    //  let svm={customFieldId:28,FieldValue:'Custum', id:7};
-    //  objVenderServiceVm.serviceFields.push(svm);
-   // }
-    console.log(JSON.stringify(objVenderServiceVm ));
-   return this.http.post(this.api+'/api/Supplier/savebusinessservices',objVenderServiceVm,{headers:this.header});    
+   
+   SaveIntoDb(obj){
+    console.log(JSON.stringify(obj));
+   return this.http.post(this.api+'/api/Supplier/savebusinessservices',obj,{headers:this.header});    
   }
   update_VendorSocialLink(model): Observable<any>{
    return this.http.post(this.api+'/api/Supplier/updatebusinessinfo',model,{headers:this.header});

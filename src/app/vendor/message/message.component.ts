@@ -6,13 +6,32 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { InboxService } from './inbox.service';
 import { Mail, Message } from './inbox.model';
+
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss'],
   providers: [InboxService]
 })
+
 export class MessageComponent implements OnInit {
+   afuConfig = {
+    multiple: true,
+    formatsAllowed: ".jpg,.png",
+    maxSize: "1",
+    uploadAPI:  {
+      url:"http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ImageUploader/PortfolioUploader",
+      headers: {
+        "Accept"    : 'application/json, text/plain, */*',
+     "Content-Type" : "application/json; charset=utf-8",
+     "Authorization" : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqYXZlZEBtYWlsaW5hdG9yLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlZlbmRvcnMiLCJqdGkiOiIxNjMyNDNmNC05OWUyLTQ0NzAtODRjMi1hMGU1NTE0YjIyNDEiLCJpYXQiOjE1NDQ0MzYwNzUsInJvbCI6ImFwaV9hY2Nlc3MiLCJpZCI6ImUxMDQ5MGM3LWUyZjItNDg3ZS04NTZmLTQ2YTAzNWVlMTU2MiIsIm5iZiI6MTU0NDQzNjA3NSwiZXhwIjoxNTQ0NTIyNDc1LCJpc3MiOiJ3ZWJBcGkiLCJhdWQiOiJodHRwOi8vdGVzdGFwcC1lbnYudHlhZDNuNjNzYS5hcC1zb3V0aC0xLmVsYXN0aWNiZWFuc3RhbGsuY29tLyJ9.Vv49jgWmx1QOFWMleRfIiFT0tFV0_HMdIqq_-VWyiOE`
+      }
+    },
+    theme: "dragNDrop",
+    hideProgressBar: false,
+    hideResetBtn: true,
+    hideSelectBtn: false
+  };
   alltab = true;
   unreadtab = false;
   startedtab = false;
@@ -95,7 +114,7 @@ export class MessageComponent implements OnInit {
     //     console.log("jjjjjjjj");
     //     this.mreadArr = data.json() as string[] ; 
     //   },error => 
-    //   alert(error) // error path
+   
     // )
   
 
@@ -105,19 +124,19 @@ export class MessageComponent implements OnInit {
     //     console.log("tttttttttttttt");
     //     this.markred = data.json() as string[] ; 
     //   },error => 
-    //   alert(error) // error path
+   
     // )
 
    
     $(function() {
       // $("a").on("click", function() {
-      //   alert('gfgfgdf')
+    
       //     $(".btn-default.active").removeClass("active");
       //     $(this).find(".btn-default").addClass("active");
       // });
 
       $(".msg_buttons").on("click", function(){
-        // debugger
+       
         $(".msg_buttons").removeClass("active");
         $(this).addClass("active");
       });
@@ -142,7 +161,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
             this.unread_msg = this.historyArr.length;
             console.log(this.historyArr)
           },error => 
-          alert(error) // error path
+          console.log(error) // error path
         )
 
   }
@@ -166,7 +185,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
 
                   console.log(this.historyArr)
                 },error => 
-                alert(error) // error path
+                console.log(error) // error path
               )
       
     }else{
@@ -197,7 +216,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
 
             console.log(this.historyArr)
           },error => 
-          alert(error) // error path
+          console.log(error) // error path
         )
   }
   unread(filter_id){
@@ -224,7 +243,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
 
             console.log(this.historyArr)
           },error => 
-          alert(error) // error path
+          console.log(error) // error path
         )
   }
   stared(filter_id){
@@ -250,7 +269,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
             this.arrayLength = this.historyArr.length;
             console.log(this.historyArr)
           },error => 
-          alert(error) // error path
+          console.log(error) // error path
         )
   }
  
@@ -260,9 +279,9 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
       {this.toastr.success(data.json().message)
         this.filter_id = 1
         this.stared(3)
-        debugger
+       
       },error => 
-      alert(error) // error path
+      console.log(error) // error path
     )
     }else{
       this.hservice.markStar(id).subscribe(( data )  =>  
@@ -271,7 +290,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
       this.ngOnInit()
 
     },error => 
-    alert(error) // error path
+    console.log(error) // error path
   )
     }
     
@@ -282,17 +301,18 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
       {this.toastr.success(data.json().message)
         this.filter_id = 1
         this.unread(2)
-        debugger
+      
       },error => 
-      alert(error) // error path
+      console.log(error) // error path
     )
     }else{
       this.hservice.readMark(id).subscribe(( data )  =>  
-      {this.toastr.success(data.json().message)
+      {
+        // this.toastr.success(data.json().message)
         this.filter_id = 1
         this.ngOnInit()
       },error => 
-      alert(error) // error path
+      console.log(error) // error path
     ) 
     }
   }
@@ -383,7 +403,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
     {this.toastr.success(data.json().message)
       this.ngOnInit();
     },error => 
-    alert(error) // error path
+    console.log(error) // error path
    )
   }
    }

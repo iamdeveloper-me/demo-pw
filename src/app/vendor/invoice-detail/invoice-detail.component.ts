@@ -100,7 +100,7 @@ invoice(data){
 //   this.http.post(this.invoiceurl,update,{headers:headers}).subscribe(
 //     data =>{ 
 //       // this.vendor = data.json();
-//        alert("Updated!");
+//    
 //       this.toastr.success("Update sucessfully");
        
 //   },error=>{console.log(error)});

@@ -67,10 +67,8 @@
     <div class="row setup-content-2" id="step-2">
         <div class="logininfobox">
             <h3 class="pl-0 my-4 lc_head"> Account Information </h3>
-            <div class="form-group">
-                  <label>First Name</label>
-                <input 
-                    class="form-control" 
+            <div class="group">
+                <input  
                     type="text" 
                     id="firstName" 
                     ngModel #firstName="ngModel" 
@@ -80,12 +78,13 @@
                     pattern="^[a-zA-Z]{3,}$"
                     required
                 />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>First Name</label>
                 <small class="form-text text-muted danger" *ngIf="!firstName.valid && (firstName.dirty || firstName.touched)">Firstname is required!</small>
             </div>
-            <div class="form-group">
-                <label>Last Name</label>
-                <input 
-                    class="form-control" 
+            <div class="group">
+                <input  
                     type="text"  
                     [(ngModel)] = "user.logInInfo.lastName" 
                     name = "lastName" 
@@ -96,12 +95,13 @@
                     required 
                     pattern="^[a-zA-Z]{3,}$"
                 />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Last Name</label>
                 <small class="form-text text-muted danger" *ngIf="!lastName.valid && (lastName.dirty || lastName.touched)">Lastname is required!</small>
             </div>
-            <div class="form-group">
-                <label>Email</label>
+            <div class="group">
                 <input 
-                    class="form-control" 
                     type="email" 
                     id="email" 
                     name = "email" 
@@ -113,13 +113,14 @@
                     required 
                     pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$"
                 />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Email</label>
                 <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">Email is required!</small>
             </div>
             <!-- [(ngModel)] = "user.contactInfo.email"   -->
-            <div class="form-group">
-                 <label>Password</label>
+            <div class="group">
                 <input 
-                    class="form-control" 
                     type="password" 
                     [(ngModel)] = "user.logInInfo.password" 
                     name = "password" 
@@ -131,6 +132,9 @@
                     minlength="6"
                     validateEqual="confirmPassword" reverse="true"
                 />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Password</label>
                 <!-- <div *ngIf="password.touched && password.invalid" class="invalid-feedback form-submit">
                         <small class="form-text text-muted danger"  *ngIf="password.errors.required">Password is required!</small>
                         <small class="form-text text-muted danger"  *ngIf="password.errors.minlength">Password must be at least 6 characters!</small>
@@ -144,10 +148,9 @@
                         </div>
                     </div>
             </div>
-            <div class="form-group">
-                 <label>Confirm Password</label>
+            <div class="group">
+                 
                 <input 
-                    class="form-control" 
                     type="password" 
                     autocomplete="new-password"
                     id="confirmPassword" 
@@ -160,6 +163,9 @@
                     required
                     validateEqual="password" reverse="false"
                 />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Confirm Password</label>
                 <!-- <small [hidden]="confirmPassword.valid || (confirmPassword.pristine && !f.submitted)" class="text-danger">
                         Password mismatch
                       </small> -->
@@ -180,10 +186,8 @@
                     </div>
 
             </div>
-            <div class="form-group">
-                 <label>Phone No</label>
-                <input 
-                    class="form-control" 
+            <div class="group">
+                <input  
                     type="text"  
                     id="phone"  
                     ngModel #phone="ngModel" 
@@ -194,8 +198,10 @@
                     minlength="7" 
                     maxlength="10"
                 />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Phone No</label>
                 <small class="form-text text-muted danger" *ngIf="!phone.valid && (phone.dirty || phone.touched)">Phone is required!</small>
-
             </div>
             <!-- [(ngModel)] = "user.contactInfo.phone"  -->
         </div>
@@ -208,10 +214,8 @@
     <div class="row setup-content-2" id="step-3">
         <div class="logininfobox">
             <h3 class="pl-0 my-4 lc_head"> Business Information </h3>
-            <div class="form-group">
-                 <label>Name of your Bussiness</label>
+            <div class="group">
                 <input 
-                    class="form-control" 
                     type="text" 
                     placeholder="Name of your Bussiness"
                     id="nameOfBusiness"  
@@ -222,6 +226,9 @@
                     name = "nameOfBusiness" 
                     required
                 />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Name of your Bussiness</label>
                 <!-- pattern="^[a-zA-Z ]{3,}$"  -->
                 <small class="form-text text-muted danger" *ngIf="!nameOfBusiness.valid && (nameOfBusiness.dirty || nameOfBusiness.touched)">Name is required!</small>
             </div>
@@ -237,20 +244,16 @@
                 <label>Country </label>
                 <span class="focus-border"></span>
             </div> -->
-            <div class="form-group">
-                 <label>Country</label>
-                <select name="country"   class="form-control"   [(ngModel)] = "country_id " name="country_id" (change)="country($event)">
+            <div class="group">
+                <select name="country" [(ngModel)] = "country_id " name="country_id" (change)="country($event)">
                         <option   *ngFor="let country of countryArray ;let c =index" 
                             type="text"
                             id="{{country.countryName}}"
                             checked
                             name = "countryName"  
-                            placeholder="Country" 
                             [value]="c"
                             required>
-
                             {{country.countryName }}
-                        
                         </option>
                         <!-- <input 
                         type="hidden" 
@@ -263,48 +266,48 @@
                         required
                         > -->
                 </select>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Country</label>
             </div>
             <!-- {{district |json}} -->
-            <div class="form-group">
-                <label>District</label>
-                 <select name="district"   class="form-control"  [(ngModel)] = "city_id"  name="city_id"(change)="districtA($event)"  > 
+            <div class="group">
+                <select name="district"  [(ngModel)] = "city_id"  name="city_id"(change)="districtA($event)"  > 
                         <!-- (change)="country($event)" -->
                     <option   *ngFor="let dist of district ;let d =index" 
                         type="text"
                         id="{{dist.name}}"
                         checked
                         name = "dist"  
-                        placeholder="District" 
                         [value]="d"
                         required >
                         {{dist.name }}
-                    
                     </option>
-                   
-                 </select>
+                </select>
+                   <span class="highlight"></span>
+              <span class="bar"></span>
+                <label>District</label>
             </div>
-                <div class="form-group">
-                    <label>Suburb</label>
-                    <select class="form-control" [(ngModel)] = "sub_id"  name="sub_id" (change)="subr($event)" > 
+            <div class="group">
+                    <select [(ngModel)] = "sub_id"  name="sub_id" (change)="subr($event)" > 
                             <!-- (change)="country($event)" -->
                         <option   *ngFor="let sub of suburb ;let s =index" 
                             type="text"
                             id="{{sub.name}}"
                             checked
                             name = "sub"  
-                            placeholder="Suburb" 
                             [value]="s"
                             required>
                             {{sub.name }}
                         </option>
                     </select>
-                </div>
-                <div class="form-group">
-                    <label>Postal Code</label>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Suburb</label>
+            </div>
+            <div class="group">
                     <input 
-                        class="form-control" 
                         type="text" 
-                        placeholder="Postal Code"
                         id="postalCode" 
                         ngModel 
                         #postalCode="ngModel" 
@@ -313,27 +316,28 @@
                         name = "postalCode" 
                         pattern="[0-9]{4,6}"
                     />
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Postal Code</label>
                     <!-- Postal Code must be 6 digit -->
                     <!-- <small class="form-text text-muted danger" *ngIf="!postalCode.valid && (postalCode.dirty || postalCode.touched)">postal code is required!</small> -->
-                </div>
-
-            <div class="form-group">
-                <label>Street Address</label>
-                <input 
-                    class="form-control" 
+            </div>
+            <div class="group">
+                <input  
                     type="text" 
                     id="address" 
                     ngModel #address="ngModel" 
                     [ngModelOptions]="{updateOn: 'blur'}" 
                     [(ngModel)] = "user.businessInfo.address" 
                     name = "address"
-                    placeholder="Street Address" 
                     required 
                     minlength="3"
                 />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Street Address</label>
                 <small class="form-text text-muted danger" *ngIf="!address.valid && (address.dirty || address.touched)">address is required!</small>
             </div>
-
             <!-- <div class="input-effect form-group md-form mt-3">
                     <input class="effect-16 validate" 
                     type="text" 
@@ -345,10 +349,8 @@
                     <label>Contact Person</label>
                     <span class="focus-bo+rder"></span>
                 </div> -->
-            <div class="form-group">
-                <label>Website</label>
+            <div class="group">
                 <input 
-                    class="form-control" 
                     type="text" 
                     id="website" 
                     ngModel 
@@ -356,11 +358,12 @@
                     [ngModelOptions]="{updateOn: 'blur'}"  
                     [(ngModel)] = "user.contactInfo.website"
                     name = "website" 
-                    placeholder="Website"
                 />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Website</label>
                 <!-- pattern="^(ftp|http|https):\/\/[^ "]+$" -->
                 <!-- <small class="form-text text-muted danger" *ngIf="!website.valid && (website.dirty || website.touched)">website is required!</small> -->
-
             </div>
             <!--[(ngModel)] = "user.businessInfo.postalCode"  -->
         </div>
@@ -417,20 +420,30 @@
                                                 <div class="basiccard">Billed Annually</div>
                                             </div>
                                             <ul class="list-group list-group-flush text-center">
-                                                <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
-                                                <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
-                                                <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
-                                                <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
-                                                <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
-                                                <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
-                                                <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
-                                                <li class="list-group-item"><i class="material-icons redtext">cancel</i> Pinned reviews</li>
-                                                <li class="list-group-item"><i class="material-icons bluetext">report</i> Limited Photos</li>
-                                                <li class="list-group-item"><i class="material-icons redtext">cancel</i> No Album</li>
-                                                <li class="list-group-item"><i class="material-icons redtext">cancel</i> No Performance analytics</li>
-                                                <li class="list-group-item"><i class="material-icons bluetext">report</i> 1 location</li>
-                                                <li class="list-group-item"><i class="material-icons bluetext">report</i> Low Priority in Search Results</li>
-                                            </ul>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isStoreFront">check_circle</i><i *ngIf="!plan.isStoreFront" class="material-icons redtext">cancel</i> Storefront</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isLeadManagement">check_circle</i><i *ngIf="!plan.isLeadManagement" class="material-icons redtext">cancel</i> Leads Management</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isLinkedAccount">check_circle</i><i *ngIf="!plan.isLinkedAccount" class="material-icons redtext">cancel</i> Linked Accounts</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isCalendar">check_circle</i><i *ngIf="!plan.isCalendar" class="material-icons redtext">cancel</i> Wedding Calendar</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPromoteProfile">check_circle</i><i *ngIf="!plan.isPromoteProfile" class="material-icons redtext">cancel</i> Promote Profile</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPublishEvents">check_circle</i><i *ngIf="!plan.isPublishEvents" class="material-icons redtext">cancel</i> Publish Events</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isReviewManagement">check_circle</i><i *ngIf="!plan.isReviewManagement" class="material-icons redtext">cancel</i> Review Management</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="!plan.isdealsAndDiscount">check_circle</i><i *ngIf="plan.isdealsAndDiscount" class="material-icons redtext">cancel</i> Deals & Discounts</li>
+
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.pinnedReviews">check_circle</i><i *ngIf="!plan.pinnedReviews" class="material-icons redtext">cancel</i> Pinned reviews</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedPhotos">check_circle</i><i *ngIf="!plan.unlimitedPhotos" class="material-icons redtext">cancel</i> Limited Photos</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimmited Album</li>
+												<li class="list-group-item" *ngIf="plan.performanceAnalytics == 0 "><i class="material-icons bluetext">report</i>  No Performance Analytics</li>
+												<li class="list-group-item" *ngIf="plan.performanceAnalytics == 1 "><i class="material-icons bluetext">report</i>  Basic Performance Analytics</li>
+												<li class="list-group-item" *ngIf="plan.performanceAnalytics == 2 "><i class="material-icons bluetext">report</i>  Advanced Performance Analytics</li>
+												<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.noOfLocationAllowed}} locations</li>
+
+												<!-- Low Priority -->
+												<li class="list-group-item" *ngIf="plan.priorityInSearch == 0"><i class="material-icons bluetext" >report</i> Low Priority in Search Results </li>
+												<li class="list-group-item" *ngIf="plan.priorityInSearch == 1"><i class="material-icons bluetext" >report</i> Medium Priority in Search Results </li>
+												<li class="list-group-item" *ngIf="plan.priorityInSearch == 2"><i class="material-icons bluetext" >report</i> High Priority in Search Results </li>
+												<!-- Low Priority -->
+
+									</ul>
                                             <div class="panel-footer text-center">
                                                 <a class="btn btnchoosetik" type="button" 
                                                 (click)= 
@@ -466,20 +479,30 @@
                                                 <div class="basiccard">Billed Annually</div>
                                             </div>
                                             <ul class="list-group list-group-flush text-center">
-                                                <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Storefront</li>
-                                                <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Leads Management</li>
-                                                <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Linked Accounts</li>
-                                                <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Wedding Calendar</li>
-                                                <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Promote Profile</li>
-                                                <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Publish Events</li>
-                                                <li class="list-group-item"><i class="material-icons greentext">check_circle</i> Review Management</li>
-                                                <li class="list-group-item"><i class="material-icons redtext">cancel</i> Pinned reviews</li>
-                                                <li class="list-group-item"><i class="material-icons bluetext">report</i> Limited Photos</li>
-                                                <li class="list-group-item"><i class="material-icons redtext">cancel</i> No Album</li>
-                                                <li class="list-group-item"><i class="material-icons redtext">cancel</i> No Performance analytics</li>
-                                                <li class="list-group-item"><i class="material-icons bluetext">report</i> 1 location</li>
-                                                <li class="list-group-item"><i class="material-icons bluetext">report</i> Low Priority in Search Results</li>
-                                            </ul>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isStoreFront">check_circle</i><i *ngIf="!plan.isStoreFront" class="material-icons redtext">cancel</i> Storefront</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isLeadManagement">check_circle</i><i *ngIf="!plan.isLeadManagement" class="material-icons redtext">cancel</i> Leads Management</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isLinkedAccount">check_circle</i><i *ngIf="!plan.isLinkedAccount" class="material-icons redtext">cancel</i> Linked Accounts</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isCalendar">check_circle</i><i *ngIf="!plan.isCalendar" class="material-icons redtext">cancel</i> Wedding Calendar</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPromoteProfile">check_circle</i><i *ngIf="!plan.isPromoteProfile" class="material-icons redtext">cancel</i> Promote Profile</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPublishEvents">check_circle</i><i *ngIf="!plan.isPublishEvents" class="material-icons redtext">cancel</i> Publish Events</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isReviewManagement">check_circle</i><i *ngIf="!plan.isReviewManagement" class="material-icons redtext">cancel</i> Review Management</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="!plan.isdealsAndDiscount">check_circle</i><i *ngIf="plan.isdealsAndDiscount" class="material-icons redtext">cancel</i> Deals & Discounts</li>
+
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.pinnedReviews">check_circle</i><i *ngIf="!plan.pinnedReviews" class="material-icons redtext">cancel</i> Pinned reviews</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedPhotos">check_circle</i><i *ngIf="!plan.unlimitedPhotos" class="material-icons redtext">cancel</i> Limited Photos</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimmited Album</li>
+												<li class="list-group-item" *ngIf="plan.performanceAnalytics == 0 "><i class="material-icons bluetext">report</i>  No Performance Analytics</li>
+												<li class="list-group-item" *ngIf="plan.performanceAnalytics == 1 "><i class="material-icons bluetext">report</i>  Basic Performance Analytics</li>
+												<li class="list-group-item" *ngIf="plan.performanceAnalytics == 2 "><i class="material-icons bluetext">report</i>  Advanced Performance Analytics</li>
+												<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.noOfLocationAllowed}} locations</li>
+
+												<!-- Low Priority -->
+												<li class="list-group-item" *ngIf="plan.priorityInSearch == 0"><i class="material-icons bluetext" >report</i> Low Priority in Search Results </li>
+												<li class="list-group-item" *ngIf="plan.priorityInSearch == 1"><i class="material-icons bluetext" >report</i> Medium Priority in Search Results </li>
+												<li class="list-group-item" *ngIf="plan.priorityInSearch == 2"><i class="material-icons bluetext" >report</i> High Priority in Search Results </li>
+												<!-- Low Priority -->
+
+									</ul>
                                             <div class="panel-footer text-center">
                                                 <a class="btn btnchoosetik" type="button" (click)= "annualPrice(plan)">Select
                                                 </a>

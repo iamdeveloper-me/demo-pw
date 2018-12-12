@@ -765,7 +765,7 @@
 							</div>
 							<div class="col-sm-6">
 								<div class="form-group">
-									<label> Start Time : {{edit_job_form.startTime | date:'shortTime'}} </label>		
+									<label> Start Time :  </label>		
 									<!-- <input 
 									type="datetime-local" 
 									name="startTime"
@@ -783,7 +783,8 @@
 									name="startTime"						
 									#ejStartTime="ngModel" 
 									required>
-											<option *ngFor='let s of select_time.timing' [value]='s.startTime'>{{s.startTime}}</option>
+									<option hidden [ngValue]="startTime">{{edit_job_form.startTime   | date:'shortTime'  }}</option>
+											<option *ngFor='let s of select_time.timing' [ngValue]="startTime" [value]='s.startTime'>{{s.startTime}}</option>
 									</select>
 									<div *ngIf="ejStartTime.invalid && (ejStartTime.dirty || ejStartTime.touched)" class="text-danger">
 											<div *ngIf="ejStartTime.errors?.required">
@@ -813,10 +814,10 @@
 							</div> -->
 							
 							<div class="col-sm-6">
-								<label>Start Date{{edit_job_form.startDate | json}}</label>
+								<label>Start Date</label>
 									<input 
-									class="form-control" 
-									placeholder="yyyy-mm-dd"
+									class="form-control placetik" 
+									placeholder="{{edit_job_form.startDate | date: 'dd-MM-yyyy'}}"  
 									name="startDate" 
 									[(ngModel)]="edit_job_form.startDate"
 									ngbDatepicker 
@@ -838,7 +839,7 @@
 							</div>
 							<div class="col-sm-6">
 								<div class="form-group">
-										<label> End Time : {{edit_job_form.endTime | date:'shortTime'}} </label>		
+										<label> End Time : </label>		
 										<!-- <input 
 										type="datetime-local" 
 										name="endTime"
@@ -856,7 +857,8 @@
 										name="endTime"						
 										#ejEndTime="ngModel" 
 										required>
-												<option *ngFor='let s of select_time.timing' [value]='s.startTime'>{{s.startTime}}</option>
+										<option hidden [ngValue]="endTime">{{edit_job_form.endTime  | date:'shortTime'  }}</option>
+										<option *ngFor='let s of select_time.timing' [value]='s.endTime' [ngValue]="endTime">{{s.endTime}}</option>
 										</select>
 										<div *ngIf="ejEndTime.invalid && (ejEndTime.dirty || ejEndTime.touched)" class="text-danger">
 												<div *ngIf="ejEndTime.errors?.required">
@@ -865,7 +867,6 @@
 										</div>
 								</div>
 							</div>
-
 							<!-- <div class="col-sm-6">
 									<div class="form-group">
 											<label> End Date :</label>		
@@ -887,10 +888,10 @@
 							</div> -->
 							
 							<div class="col-sm-6">
-								<label>End Date {{edit_job_form.endDate | json}}</label>
+								<label>End Date</label>
 									<input 
-										class="form-control" 
-										placeholder="yyyy-mm-dd" 
+										class="form-control placetik" 
+										placeholder="{{edit_job_form.endDate | date: 'dd-MM-yyyy'}}"  
 										name="endDate" 
 										[(ngModel)]="edit_job_form.endDate"
 										ngbDatepicker 

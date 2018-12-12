@@ -422,7 +422,7 @@ export class EventListComponent implements OnInit {
  
         this.objevent.endDate = endDate["year"]+'-'+endDate["month"]+'-'+endDate["day"]
 
-         console.log(this.objevent.startDate,this.objevent.endDate)
+         console.log(this.objevent.startDate,this.objevent.endDate )
          var startDate = this.objevent.startDate
          debugger
          console.log( this.objevent.endDate)

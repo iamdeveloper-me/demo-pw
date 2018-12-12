@@ -215,7 +215,7 @@
             </div>
         </div>
     
-   
+    <!--Business name--> 
         <div class="modal fade" [ngClass] = "{'show' : BusinessDailog}" id="Business" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -247,7 +247,9 @@
                 </div>
             </div>
         </div>
-    
+    <!--Business name End--> 
+
+    <!--Facebook Page-->
         <div class="modal fade" [ngClass] = "{'show' : facebookDailog}" id="facebook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -325,25 +327,28 @@
                         </div>
                     </div>
                     <div class="modal-footer text-center marTop50px" >
-                        <div *ngIf="modelfield.fbAvailable  ==  false; else fb">
+                        <!-- <div *ngIf="modelfield.fbAvailable  ==  false; else fb">
                                 <button type="button" class="btn btn-secondary newbtn" [disabled]="!fbAvailable" (click)='UpdateSocialUrl("Fb")'>Save</button>
-                                <!-- <button type="submit" class="btn btn-secondary newbtn" style='display:none'>Save</button>  -->
+                                <button type="submit" class="btn btn-secondary newbtn" style='display:none'>Save</button> 
                                 <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('facebookDailog')" >Cancel</button>
                         </div>
 
                         <ng-template #fb>
                                 <button type="button" class="btn btn-secondary newbtn" (click)='UpdateSocialUrl("Fb")'>Save</button>
-                                <!-- <button type="submit" class="btn btn-secondary newbtn" style='display:none'>Save</button>  -->
+                                <button type="submit" class="btn btn-secondary newbtn" style='display:none'>Save</button> 
                                 <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('facebookDailog')" >Cancel</button>
-                        </ng-template>
-
+                        </ng-template> -->
+                        <button type="button" class="btn btn-secondary newbtn" (click)='UpdateSocialUrl("Fb")'>Save</button>
+                        <!-- <button type="submit" class="btn btn-secondary newbtn" style='display:none'>Save</button>  -->
+                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('facebookDailog')" >Cancel</button>
 
                     </div>
                 </div>
             </div>
         </div>
+    <!--Facebook Page End-->
    
-    
+    <!--Twitter Page-->
         <div class="modal fade" [ngClass] = "{'show' : twitterDailog}" id="twitter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -420,24 +425,26 @@
                     </div>
                     <div class="modal-footer text-center marTop50px">
 
-                        <div *ngIf="modelfield.twitterAvailable  ==  false;else tw">
+                        <!-- <div *ngIf="modelfield.twitterAvailable  ==  false;else tw">
                                 <button type="button" class="btn newbtn" [disabled]="!twitterAvailable" (click)='UpdateSocialUrl("Tw")'>Save</button>
-                                <!-- <button type="submit" class="btn newbtn" [disabled]="isVaidTwUrl===false && modelfield.twitterAvailable == true " >Save</button>&nbsp; -->
+                                <button type="submit" class="btn newbtn" [disabled]="isVaidTwUrl===false && modelfield.twitterAvailable == true " >Save</button>&nbsp;
                                 <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('twitterDailog')">CANCEL</button>
                         </div>
 
                         <ng-template #tw>
                                 <button type="button" class="btn btn-secondary newbtn"  (click)='UpdateSocialUrl("Tw")'>Save</button>
-                                <!-- <button type="submit" class="btn newbtn" [disabled]="isVaidTwUrl===false && modelfield.twitterAvailable == true " >Save</button>&nbsp; -->
+                                <button type="submit" class="btn newbtn" [disabled]="isVaidTwUrl===false && modelfield.twitterAvailable == true " >Save</button>&nbsp;
                                 <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('twitterDailog')">CANCEL</button>
-                        </ng-template>
-                 
+                        </ng-template> -->
+                        <button type="button" class="btn newbtn" (click)='UpdateSocialUrl("Tw")'>Save</button>
+                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('twitterDailog')">CANCEL</button>
                     </div>
                 </div>
             </div>
         </div>
+    <!--Twitter Page End-->
   
-   
+    <!--Google Page-->
         <div class="modal fade"  [ngClass] = "{'show' : googleDailog}" id="google" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -514,24 +521,27 @@
                     </div>
                     <div class="modal-footer text-center marTop50px">
 
-                        <div *ngIf="modelfield.googleAvailable  ==  false;else ga">
+                        <!-- <div *ngIf="modelfield.googleAvailable  ==  false;else ga">
                                 <button type="button" class="btn btn-secondary newbtn" [disabled]="!googleAvailable" (click)='UpdateSocialUrl("Google")'>Save</button>
-                                <!-- <button type="submit" class="btn newbtn" [disabled]="isValidGoogeUrl===false && modelfield.googleAvailable == true " >SAVE</button> &nbsp; -->
+                                <button type="submit" class="btn newbtn" [disabled]="isValidGoogeUrl===false && modelfield.googleAvailable == true " >SAVE</button> &nbsp;
                                 <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('googleDailog')">CANCEL</button>
                         </div>
 
                         <ng-template #ga>
                                 <button type="button" class="btn btn-secondary newbtn" (click)='UpdateSocialUrl("Google")'>Save</button>
-                                <!-- <button type="submit" class="btn newbtn" [disabled]="isValidGoogeUrl===false && modelfield.googleAvailable == true " >SAVE</button> &nbsp; -->
+                                <button type="submit" class="btn newbtn" [disabled]="isValidGoogeUrl===false && modelfield.googleAvailable == true " >SAVE</button> &nbsp;
                                 <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('googleDailog')">CANCEL</button>
-                        </ng-template>
+                        </ng-template> -->
 
+                        <button type="button" class="btn btn-secondary newbtn" (click)='UpdateSocialUrl("Google")'>Save</button>
+                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('googleDailog')">CANCEL</button>
                     </div>
                 </div>
             </div>
         </div>
-    
-    
+    <!--Google Page End-->
+
+    <!--Instagram-->
         <div class="modal fade" [ngClass] = "{'show' : instagramDailog}" id="instagram" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -610,23 +620,27 @@
                 </div>
                <div class="modal-footer text-center marTop50px">
 
-                    <div *ngIf="modelfield.instaAvailable  ==  false; else ia">
+                    <!-- <div *ngIf="modelfield.instaAvailable  ==  false; else ia">
                             <button type="button" class="btn btn-secondary newbtn" [disabled]="!instaAvailable" (click)='UpdateSocialUrl("Insta")'>Save</button>
-                            <!-- <button type="submit" class="btn newbtn"  [disabled]="isValidInstaUrl===false && modelfield.instaAvailable == true " >SAVE</button> &nbsp; -->
+                            <button type="submit" class="btn newbtn"  [disabled]="isValidInstaUrl===false && modelfield.instaAvailable == true " >SAVE</button> &nbsp;
                             <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('instagramDailog')">CANCEL</button>
                     </div>
 
                     <ng-template #ia>
                             <button type="button" class="btn btn-secondary newbtn" (click)='UpdateSocialUrl("Insta")'>Save</button>
-                            <!-- <button type="submit" class="btn newbtn"  [disabled]="isValidInstaUrl===false && modelfield.instaAvailable == true " >SAVE</button> &nbsp; -->
+                            <button type="submit" class="btn newbtn"  [disabled]="isValidInstaUrl===false && modelfield.instaAvailable == true " >SAVE</button> &nbsp;
                             <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('instagramDailog')">CANCEL</button>
-                    </ng-template>
+                    </ng-template> -->
+                    <button type="button" class="btn btn-secondary newbtn" (click)='UpdateSocialUrl("Insta")'>Save</button>
+                    <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('instagramDailog')">CANCEL</button>
+
                 </div>
             </div>
             </div>
         </div>
-   
-   
+      <!--Instagram End-->
+
+   <!--Link your Website-->
         <div class="modal fade" [ngClass] = "{'show' : instagram2Dailog}" id="instagram2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -681,7 +695,7 @@
                                 name="perfectWeddingURL"
                                 id='pwUrl'
                                 #pwUrl 
-                                [(ngModel)]="perfectWeddingAvailable"
+                                [(ngModel)]="vendor.website"
                                 #perfectWeddingURL="ngModel"
                                 placeholder="Enter your Website Link here"
                                 [ngModel] = "modelfield.perfectWeddingURL" 
@@ -708,7 +722,7 @@
                             <div class="noproblum">
                             <p>1. Copy the link to your profile on Perfect Weddings 
                                 <div class="copyinput">
-                                    <input type="text" value="{{vendor.website}}" #userinput/>
+                                    <input type="text" value="www.perfectwedding.com" #userinput/>
                                     <span class="btn" (click)="copyInputMessage(userinput)" >Copy</span>
                                 </div> 
                             <p>2. Go to your Facebook Page and add the link as your website</p>
@@ -720,35 +734,48 @@
                     
                 <div class="modal-footer text-center marTop50px">
 
-                    <div *ngIf="modelfield.perfectWeddingAvailable  ==  false; else wa">
+                    <!-- <div *ngIf="modelfield.perfectWeddingAvailable  ==  false; else wa">
                             <button type="button" class="btn btn-secondary newbtn" [disabled]="!perfectWeddingAvailable" (click)='UpdateSocialUrl("Other")'>Save</button>
-                            <!-- <button type="submit" class="btn newbtn"   [disabled]="isValidOtherUrl===false && modelfield.perfectWeddingAvailable == true " ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp; -->
+                            <button type="submit" class="btn newbtn"   [disabled]="isValidOtherUrl===false && modelfield.perfectWeddingAvailable == true " ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
                             <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('instagram2Dailog')">CANCEL</button>
                     </div>
 
                     <ng-template #wa>
                             <button type="button" class="btn btn-secondary newbtn" (click)='UpdateSocialUrl("Other")'>Save</button>
-                            <!-- <button type="submit" class="btn newbtn"   [disabled]="isValidOtherUrl===false && modelfield.perfectWeddingAvailable == true " ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp; -->
+                            <button type="submit" class="btn newbtn"   [disabled]="isValidOtherUrl===false && modelfield.perfectWeddingAvailable == true " ><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
                             <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('instagram2Dailog')">CANCEL</button>
-                    </ng-template>
-
+                    </ng-template> -->
+                    <button type="button" class="btn btn-secondary newbtn"  (click)='UpdateSocialUrl("Other")'>Save</button>
+                    <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel('instagram2Dailog')">CANCEL</button>
                 </div>
 
             </div>
             </div>
         </div>
+    <!--Link your Website End-->
     </form> 
 
+<!--Logo Upload-->
     <form (ngSubmit)="addFile(infoo,vendor)" #infoo="ngForm" class="padding-left: 84%">
         <div class="modal fade" [ngClass] = "{'show' : imagecropDailog}" id="imagecrop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content mobminheight">
-                    <div class="modal_head text-center">
+                       
+                    <div class="modal_head text-center"  *ngIf="progress== true;else up">
                         <h4 class="modal-title marbot0px"><strong> Uploading Logo/Representative Profile  </strong>  </h4>
                         <p class="marbot0px">Do not refresh or close page</p>
                         <button type="button" class="close" (click)="closeModel(dialogname)" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <div class="clearfix"></div>
                     </div>
+                    <ng-template #up>
+                            <div class="modal_head text-center">
+                                    <h4 class="modal-title marbot0px"><strong> Business Profile Image  </strong>  </h4>
+                                    <p class="marbot0px">Please update Profile image of your Business</p>
+                                    <button type="button" class="close" (click)="closeModel(dialogname)" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <div class="clearfix"></div>
+                                </div>
+                    </ng-template>
+
                     <div class="modal-body">
                         <div class="col-sm-12  text-center mobnopadd"  *ngIf= "cropperupload == true">
                         
@@ -783,36 +810,45 @@
 
 
                         </div>
-                        <!-- <div class="progress nopadd col-sm-11 col-10" *ngIf= "progress== true" >
+                        <div class="progress nopadd col-sm-11 col-10" *ngIf= "progress== true" >
                                 <div class="progress-bar" role="progressbar" aria-valuenow="0"
                                    aria-valuemin="0" aria-valuemax="100" [style.width]="total + '%'">
                         {{total}}
                                 </div>
-                        </div> -->
+                        </div>
                         
-                    <div class="progress nopadd col-sm-11 col-10" *ngIf= "progress== true" >
+                    <!-- <div class="progress nopadd col-sm-11 col-10" *ngIf= "progress== true" >
                       <div 
                         id="dynamic" 
                         class="progress-bar progress-bar-success progress-bar-striped active" 
                         role="progressbar" 
                         aria-valuenow="0" 
                         aria-valuemin="0" 
-                        aria-valuemax="100" 
-                        style="width: 0%"
+                        aria-valuemax="100"
+                        [style.width]="total + '%'"
                       >
                         <span id="current-progress"> {{total}}</span>
                       </div>
-                    </div>
+                    </div> -->
 
                     </div>
-                    <div class="modal-footer text-center">
-                        <button type="submit" class="btn newbtn">Save</button>&nbsp;
-                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel(dialogname)">Close</button>
+                    <ng-template #cb>
+                            <div class="modal-footer text-center">
+                                    <button type="submit" class="btn newbtn">Save</button>&nbsp;
+                                    <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel(dialogname)">Close</button>
+                            </div>
+                    </ng-template>
+
+                    <div  class="modal-footer text-center" *ngIf="progress== true;else cb">
+                            <button type="reset" class="btn newbtn newcancelbtn">Cancel</button>&nbsp;
+                            <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel(dialogname)">Close</button>
                     </div>
+
+
                 </div>
             </div>    
         </div>    
     </form> 
-    
+<!--Logo Upload End-->
 
     

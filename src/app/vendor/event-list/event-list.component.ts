@@ -385,7 +385,6 @@ export class EventListComponent implements OnInit {
   open(content) {
     this.isCreateEventVisible = true;
     this.modalService.open(content).result.then((result) => {
-
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -403,12 +402,10 @@ export class EventListComponent implements OnInit {
   }
   // Open modal with dark section
   openModal(customContent) {
-
     this.modalService.open(customContent, { windowClass: 'dark-modal' });
   }
   // Open content with dark section
   openContent() {
-
     const modalRef = this.modalService.open(NgbduserModalContent);
     modalRef.componentInstance.name = 'World';
   }

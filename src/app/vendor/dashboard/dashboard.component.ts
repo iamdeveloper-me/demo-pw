@@ -138,7 +138,7 @@ export class DashboardComponent implements OnInit {
 
 
                    this.add = this.vendor.vendorLocations[0].mapAddress;
-                  this.noPhone = this.vendor.vendorLocations[0].locationPhones.length;
+                  this.noPhone = this.vendor.vendorLocations[0].locationPhones[0].phoneNumber.length;
                   //  console.log(this.vendor.vendorLocations[0].locationPhones[0].phoneNumber);
                  
                   if(this.vendor.vendorLocations[0].locationPhones.length > 1){
@@ -404,8 +404,8 @@ export class DashboardComponent implements OnInit {
         }
         freeuser(){
                           swal({
-                            title: "Change your Plan",
-                        text: "profile completed",
+                            title: "Want to unlock this feature?",
+                        text: "Choose a different subscription plan",
                         type: "warning",
                         showCancelButton: true,
                       

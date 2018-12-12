@@ -75,7 +75,7 @@
                     [ngModelOptions]="{updateOn: 'blur'}"
                     [(ngModel)] = "user.logInInfo.firstName" 
                     name = "firstName" 
-                    pattern="^[a-zA-Z]{3,}$"
+                    pattern="^[a-zA-Z]{1,}$"
                     required
                 />
                 <label for="firstName">First Name</label>
@@ -94,7 +94,7 @@
                     #lastName="ngModel" 
                     [ngModelOptions]="{updateOn: 'blur'}"
                     required 
-                    pattern="^[a-zA-Z]{3,}$"
+                    pattern="^[a-zA-Z]{1,}$"
                 />
                 <label for="lastName">Last Name</label>
             </div>
@@ -400,6 +400,7 @@
                                     <div  class="col-sm-12" *ngFor="let plan of planArray">
                                         <div class="panel card item" >
                                             <div class="panel-heading arrow_box text-center">
+<<<<<<< HEAD
 
 												<span class="mostpopulartext" *ngIf="plan.monthlyPrice == 0">Free</span>
 												<span class="mostpopulartext" *ngIf="plan.title == 'Premium'">Most Popular</span>
@@ -420,6 +421,22 @@
 
 									</div>
 									<ul class="list-group list-group-flush text-center">
+=======
+                                                <span class="mostpopulartext">Free</span>
+                                                <h3>{{plan.title}}</h3>
+                                                <div class="pricesec">
+                                                <table align="center">
+                                                    <tr>
+                                                    <td>MUR</td>
+                                                    <td class="pricebig">8</td>
+                                                    <td class="text-left lineheight16px">00<br/>/Month</td>
+                                                    </tr>
+                                                </table>
+                                                </div>
+                                                <div class="basiccard">Billed Annually</div>
+                                            </div>
+                                            <ul class="list-group list-group-flush text-center">
+>>>>>>> 354a115ae2dd7787ad19714de79e721ceb095694
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isStoreFront">check_circle</i><i *ngIf="!plan.isStoreFront" class="material-icons redtext">cancel</i> Storefront</li>
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isLeadManagement">check_circle</i><i *ngIf="!plan.isLeadManagement" class="material-icons redtext">cancel</i> Leads Management</li>
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isLinkedAccount">check_circle</i><i *ngIf="!plan.isLinkedAccount" class="material-icons redtext">cancel</i> Linked Accounts</li>
@@ -482,28 +499,31 @@
                                                     </div>
                                             </div>
 
-                                             <ul class="list-group list-group-flush text-center">
-											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isStoreFront">check_circle</i><i *ngIf="!plan.isStoreFront" class="material-icons redtext">cancel</i> Storefront</li>
-											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isLeadManagement">check_circle</i><i *ngIf="!plan.isLeadManagement" class="material-icons redtext">cancel</i> Leads Management</li>
-											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isLinkedAccount">check_circle</i><i *ngIf="!plan.isLinkedAccount" class="material-icons redtext">cancel</i> Linked Accounts</li>
-											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isCalendar">check_circle</i><i *ngIf="!plan.isCalendar" class="material-icons redtext">cancel</i> Wedding Calendar</li>
-											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPromoteProfile">check_circle</i><i *ngIf="!plan.isPromoteProfile" class="material-icons redtext">cancel</i> Promote Profile</li>
-											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPublishEvents">check_circle</i><i *ngIf="!plan.isPublishEvents" class="material-icons redtext">cancel</i> Publish Events</li>
-											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isReviewManagement">check_circle</i><i *ngIf="!plan.isReviewManagement" class="material-icons redtext">cancel</i> Review Management</li>
-											<li class="list-group-item"><i class="material-icons greentext" *ngIf="!plan.isdealsAndDiscount">check_circle</i><i *ngIf="plan.isdealsAndDiscount" class="material-icons redtext">cancel</i> Deals & Discounts</li>
-											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.pinnedReviews">check_circle</i><i *ngIf="!plan.pinnedReviews" class="material-icons redtext">cancel</i> Pinned reviews</li>
-											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedPhotos">check_circle</i><i *ngIf="!plan.unlimitedPhotos" class="material-icons redtext">cancel</i> Limited Photos</li>
-											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimited Album</li>
-											<li class="list-group-item" *ngIf="plan.performanceAnalytics == 0 "><i class="material-icons bluetext">report</i>  No Performance Analytics</li>
-											<li class="list-group-item" *ngIf="plan.performanceAnalytics == 1 "><i class="material-icons bluetext">report</i>  Basic Performance Analytics</li>
-											<li class="list-group-item" *ngIf="plan.performanceAnalytics == 2 "><i class="material-icons bluetext">report</i>  Advanced Performance Analytics</li>
-											
-											
-											<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.noOfLocationAllowed}} locations</li>
-											<li class="list-group-item" *ngIf="plan.priorityInSearch == 0"><i class="material-icons bluetext" >report</i> Low Priority in Search Results </li>
-											<li class="list-group-item" *ngIf="plan.priorityInSearch == 1"><i class="material-icons bluetext" >report</i> Medium Priority in Search Results </li>
-											<li class="list-group-item" *ngIf="plan.priorityInSearch == 2"><i class="material-icons bluetext" >report</i> High Priority in Search Results </li>
-								</ul> 
+                                            <ul class="list-group list-group-flush text-center">
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isStoreFront">check_circle</i><i *ngIf="!plan.isStoreFront" class="material-icons redtext">cancel</i> Storefront</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isLeadManagement">check_circle</i><i *ngIf="!plan.isLeadManagement" class="material-icons redtext">cancel</i> Leads Management</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isLinkedAccount">check_circle</i><i *ngIf="!plan.isLinkedAccount" class="material-icons redtext">cancel</i> Linked Accounts</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isCalendar">check_circle</i><i *ngIf="!plan.isCalendar" class="material-icons redtext">cancel</i> Wedding Calendar</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPromoteProfile">check_circle</i><i *ngIf="!plan.isPromoteProfile" class="material-icons redtext">cancel</i> Promote Profile</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPublishEvents">check_circle</i><i *ngIf="!plan.isPublishEvents" class="material-icons redtext">cancel</i> Publish Events</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isReviewManagement">check_circle</i><i *ngIf="!plan.isReviewManagement" class="material-icons redtext">cancel</i> Review Management</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="!plan.isdealsAndDiscount">check_circle</i><i *ngIf="plan.isdealsAndDiscount" class="material-icons redtext">cancel</i> Deals & Discounts</li>
+
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.pinnedReviews">check_circle</i><i *ngIf="!plan.pinnedReviews" class="material-icons redtext">cancel</i> Pinned reviews</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedPhotos">check_circle</i><i *ngIf="!plan.unlimitedPhotos" class="material-icons redtext">cancel</i> Limited Photos</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimmited Album</li>
+												<li class="list-group-item" *ngIf="plan.performanceAnalytics == 0 "><i class="material-icons bluetext">report</i>  No Performance Analytics</li>
+												<li class="list-group-item" *ngIf="plan.performanceAnalytics == 1 "><i class="material-icons bluetext">report</i>  Basic Performance Analytics</li>
+												<li class="list-group-item" *ngIf="plan.performanceAnalytics == 2 "><i class="material-icons bluetext">report</i>  Advanced Performance Analytics</li>
+												<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.noOfLocationAllowed}} locations</li>
+
+												<!-- Low Priority -->
+												<li class="list-group-item" *ngIf="plan.priorityInSearch == 0"><i class="material-icons bluetext" >report</i> Low Priority in Search Results </li>
+												<li class="list-group-item" *ngIf="plan.priorityInSearch == 1"><i class="material-icons bluetext" >report</i> Medium Priority in Search Results </li>
+												<li class="list-group-item" *ngIf="plan.priorityInSearch == 2"><i class="material-icons bluetext" >report</i> High Priority in Search Results </li>
+												<!-- Low Priority -->
+
+									</ul>
                                             <div class="panel-footer text-center">
                                                 <a class="btn btnchoosetik" type="button" (click)= "annualPrice(plan)">Select
                                                 </a>

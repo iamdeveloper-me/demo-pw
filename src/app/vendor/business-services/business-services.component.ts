@@ -162,7 +162,7 @@ export class BusinessServicesComponent implements OnInit {
       this.saveServiceWithoutOptions();
    }
    SetInto_serviceTempStorage(id,name){
-     debugger;
+  
     this.beforeUpdateData.servicesId=id;
     this.beforeUpdateData.serviceName=name;
     this.businessServiceEntity.servicesId=id;
@@ -170,8 +170,7 @@ export class BusinessServicesComponent implements OnInit {
     this.getCustomFieldBySreviceId(id,name);
    }
       getCustomFieldBySreviceId(id,name){
-        debugger;
-        this.resetCustomFileds();
+      this.resetCustomFileds();
        this.objVenderServiceVm.servicesId = id ;
        this.objVenderServiceVm.serviceName=name;
        this.businessServiceEntity.servicesId=id;
@@ -246,7 +245,7 @@ export class BusinessServicesComponent implements OnInit {
         this.customDialog=false;
       }
       seveCustomField(cfo,fieldType) {
-        debugger;
+       
         if(fieldType==='5'){
         cfo.isSelected=true;
         let smv=new ServiceFieldValuesVM();

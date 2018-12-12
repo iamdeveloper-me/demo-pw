@@ -178,7 +178,7 @@ export class CalendertableComponent implements OnInit {
 
             // { "YEAR": 2018, "MONTH": 12, "DAY": 22 }
               this.edit_job_form.endDate  = a.endDate.split('T')[0]
-              debugger
+           
             }
             edit_job(b){
               this.end_date = b.value['endDate']['year']+'-'+b.value['endDate']['month']+'-'+b.value['endDate']['day']

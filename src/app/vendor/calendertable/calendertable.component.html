@@ -816,8 +816,10 @@
 											</div>
 							</div>
 							<div class="col-sm-6">
-								<div class="field">
-										
+
+								<div class="form-group">
+									<label> Start Time :  </label>		
+
 									<!-- <input 
 									type="datetime-local" 
 									name="startTime"
@@ -835,7 +837,8 @@
 									name="startTime"						
 									#ejStartTime="ngModel" 
 									required>
-											<option *ngFor='let s of select_time.timing' [value]='s.startTime'>{{s.startTime}}</option>
+									<option hidden [ngValue]="startTime">{{edit_job_form.startTime   | date:'shortTime'  }}</option>
+											<option *ngFor='let s of select_time.timing' [ngValue]="startTime" [value]='s.startTime'>{{s.startTime}}</option>
 									</select>
 									<label for="startTime"> Start Time : {{edit_job_form.startTime | date:'shortTime'}} </label>	
 									
@@ -868,11 +871,13 @@
 							</div> -->
 							
 							<div class="col-sm-6">
+
 								<div class="field">
 								
+
 									<input 
-									class="form-control" 
-									placeholder="yyyy-mm-dd"
+									class="form-control placetik" 
+									placeholder="{{edit_job_form.startDate | date: 'dd-MM-yyyy'}}"  
 									name="startDate" 
 									[(ngModel)]="edit_job_form.startDate"
 									ngbDatepicker 
@@ -897,8 +902,10 @@
 									</div>
 						</div>
 							<div class="col-sm-6">
-								<div class="field">
-												
+
+								<div class="form-group">
+										<label> End Time : </label>		
+
 										<!-- <input 
 										type="datetime-local" 
 										name="endTime"
@@ -916,7 +923,8 @@
 										name="endTime"						
 										#ejEndTime="ngModel" 
 										required>
-												<option *ngFor='let s of select_time.timing' [value]='s.startTime'>{{s.startTime}}</option>
+										<option hidden [ngValue]="endTime">{{edit_job_form.endTime  | date:'shortTime'  }}</option>
+										<option *ngFor='let s of select_time.timing' [value]='s.endTime' [ngValue]="endTime">{{s.endTime}}</option>
 										</select>
 										<label for="endTime"> End Time : {{edit_job_form.endTime | date:'shortTime'}} </label>
 										
@@ -927,7 +935,6 @@
 												</div>
 								</div>
 							</div>
-
 							<!-- <div class="col-sm-6">
 									<div class="form-group">
 											<label> End Date :</label>		
@@ -949,11 +956,12 @@
 							</div> -->
 							
 							<div class="col-sm-6">
-								
-								<div class="field">
+
+								<label>End Date</label>
+
 									<input 
-										class="form-control" 
-										placeholder="yyyy-mm-dd" 
+										class="form-control placetik" 
+										placeholder="{{edit_job_form.endDate | date: 'dd-MM-yyyy'}}"  
 										name="endDate" 
 										[(ngModel)]="edit_job_form.endDate"
 										ngbDatepicker 

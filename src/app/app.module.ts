@@ -8,7 +8,11 @@ import { ImageCropperModule } from 'ng2-img-cropper';
 
 import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.component';
 
+
 //import { NgProgressModule } from 'ngx-progressbar';
+
+///import { NgProgressModule } from 'ngx-progressbar';
+
 
 
 

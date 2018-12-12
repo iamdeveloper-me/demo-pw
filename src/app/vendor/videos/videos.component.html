@@ -108,7 +108,7 @@
 </div>
 
 
- <ng-template #addvideo let-c="close" let-d="dismiss">
+<!--  <ng-template #addvideo let-c="close" let-d="dismiss">
                           <div class="card-block">
                               <div class="modal-header text-center" style="background-color: white">
                                 <h4 class="modal-title ">New Video</h4>
@@ -153,11 +153,11 @@
                               </div>
                               
                            </div>
-</ng-template>
+</ng-template> -->
 
 
 
-  <ng-template #newlink let-c="close" let-d="dismiss">
+<!--   <ng-template #newlink let-c="close" let-d="dismiss">
     <div class="card-block">
         <div class="modal-header text-center" style="background-color: white">
           <h4 class="modal-title ">New Video </h4>
@@ -213,7 +213,7 @@
         </div>
         
       </div>
-  </ng-template>
+  </ng-template> -->
               
 
 
@@ -228,28 +228,23 @@
                 </div>
                 <form [formGroup]="form" (ngSubmit)="addDetails()">
                    <div class="modal-body">
-                      
-
-                      <div class="form-group">
-                        <label>Enter Video Title</label>
-                            <input class="form-control" type="text" id="title" required="required" formControlName="title" 
+                        <div class="field">
+                            <input type="text" id="title" required="required" placeholder="Enter Video Title" formControlName="title" name="title"
                             [ngClass]="{ 'is-invalid': submitted && f.title.errors }" />
-                            
-                            <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                            <label for="title">Enter Video Title</label>
+                        </div>
+                        <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
                               <div *ngIf="f.title.errors.required">
                                   Title is required
                               </div>
-                            </div>
                         </div>
-                        
                           <!-- <div *ngIf="title.invalid && (title.dirty || title.touched)"  class="form-text text-muted danger" >
                               <div  class="form-text text-muted danger"  *ngIf="title.errors.required">
                                   title is required.
                               </div>
                           </div> -->
-                      <div class="form-group">
-                         <label>Enter Video Link</label>
-                          <input class="form-control" type="url" id="link" required="required" formControlName="link" 
+                      <div class="field">
+                          <input type="url" name="link" id="link" required="required" placeholder="Enter Video Link" formControlName="link" 
                           pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
                           [ngClass]="{ 'is-invalid': submitted && f.link.errors }"
                           /><!-- <div *ngIf="link.invalid && (link.dirty || link.touched)"  class="form-text text-muted danger" >
@@ -260,15 +255,16 @@
                                   link is not valid!. 
                                 </div>
                             </div> -->
-                            <div *ngIf="submitted && f.link.errors" class="invalid-feedback">
+                            <label for="link">Enter Video Link</label>
+                      </div>
+                      <div *ngIf="submitted && f.link.errors" class="invalid-feedback">
                                 <div   class="form-text text-muted danger"  *ngIf="f.link.errors.required">
                                   Link is required
                                 </div>
                                 <div  class="form-text text-muted danger"  *ngIf="link.errors.pattern">
                                   Link is not valid!. 
                                 </div>
-                            </div>
-                        </div>
+                      </div>
 
                    </div>
                    <div class="modal-footer text-center">

@@ -8,6 +8,7 @@ import { ImageCropperModule } from 'ng2-img-cropper';
 
 import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.component';
 
+import { NgProgressModule } from 'ngx-progressbar';
 
 
 
@@ -22,8 +23,6 @@ import { CalendarModule, CalendarDateFormatter } from 'angular-calendar';
 import { QuillModule } from 'ngx-quill'
 //vendorcharts
 import { PortfolioviewphotoComponent } from './vendor/portfolioviewphoto/portfolioviewphoto.component';
-// import { AngularFileUploaderModule } from "angular-file-uploader";
-
 import { ChartsModule } from 'ng2-charts';
 import { ChartistModule} from 'ng-chartist';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -211,6 +210,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { apiService } from './shared/service/api.service';
 import { PaymentSelectionComponent } from './vendor/payment-selection/payment-selection.component';
 import { HompageLocationComponent } from './vendor/hompage-location/hompage-location.component';
+import { Gallery0Component } from './vendor/gallery0/gallery0.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -382,7 +382,9 @@ export function getAuthServiceConfigs() {
 
         PaymentSelectionComponent,
 
-        HompageLocationComponent
+        HompageLocationComponent,
+
+        Gallery0Component
         
         
 
@@ -391,6 +393,7 @@ export function getAuthServiceConfigs() {
 
   ],
     imports: [
+        NgProgressModule,
         ReactiveFormsModule,
         CustomFormsModule,
         MatchHeightModule,

@@ -289,7 +289,7 @@ hr {
     }
       
     .price .list-group-item{
-      border-bottom-:1px solid rgba(250,250,250, .5);
+      border-bottom:1px solid rgba(250,250,250, .5);
     }
     
     .panel.price .list-group-item:last-child {
@@ -517,8 +517,8 @@ margin-left:0px;
 .panel.card{
   box-shadow:0px 0px 20px rgba(0, 0, 0, 0.2)!important;
 }
-.tabbingdesign li:hover{
-}
+// .tabbingdesign li:hover{
+// }
 .list-group .list-group-item{
 padding:0px 30px!important;
 font-size:14px;
@@ -841,104 +841,93 @@ max-width:100%;
 
 
 /* form starting stylings ------------------------------- */
-.group        { 
-  position:relative; 
-  margin-bottom:45px; 
-}
-.group input{
-  font-size:18px;
-  padding:10px 10px 10px 5px;
-  display:block;
-  width:100%;
-  border:none;
-  border-bottom:1px solid #757575;
-}
-.group select{
-  font-size:18px;
-  padding:10px 10px 10px 5px;
-  display:block;
-  width:100%;
-  border:none;
-  border-bottom:1px solid #757575;
-}
-.group input:focus     { outline:none; }
 
-.group select:focus     { outline:none; }
+.field {
+  display: flex;
+  flex-flow: column-reverse;
+  margin-top:10px;
+}
+/**
+* Add a transition to the label and input.
+* I'm not even sure that touch-action: manipulation works on
+* inputs, but hey, it's new and cool and could remove the 
+* pesky delay.
+*/
 
-/* LABEL ======================================= */
-.group label          {
-  color:#999; 
-  font-size:18px;
-  font-weight:normal;
-  position:absolute;
-  pointer-events:none;
-  left:5px;
-  top:10px;
-  transition:0.2s ease all; 
-  -moz-transition:0.2s ease all; 
-  -webkit-transition:0.2s ease all;
+ .field label, .field input, .field select {
+  transition: all 0.2s;
+  touch-action: manipulation;
 }
 
-/* active state */
-.group input:focus ~ label, .group input:valid ~ label    {
-  top:-20px;
-  font-size:14px;
-  color:#5264AE;
+ .field  input, .field select{
+  font-size: 1.2em;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  font-family: inherit;
+  -webkit-appearance: none;
+  border-radius: 0;
+  padding: 0 0 10px 0;
+  cursor: text;
 }
 
-/* BOTTOM BARS ================================= */
-.bar  { position:relative; display:block; width:100%; }
-.bar:before, .bar:after   {
-  content:'';
-  height:2px; 
-  width:0;
-  bottom:1px; 
-  position:absolute;
-  background:#5264AE; 
-  transition:0.2s ease all; 
-  -moz-transition:0.2s ease all; 
-  -webkit-transition:0.2s ease all;
-}
-.bar:before {
-  left:50%;
-}
-.bar:after {
-  right:50%; 
+ .field input:focus,   .field select:focus {
+  outline: 0;
+  border-bottom: 1px solid #f0118c;
 }
 
-/* active state */
-.group input:focus ~ .bar:before, .group input:focus ~ .bar:after {
-  width:50%;
+ .field label {
+  text-transform: uppercase;
+  margin-bottom: 0px;
+  letter-spacing: 0.05em;
+}
+/**
+* Translate down and scale the label up to cover the placeholder,
+* when following an input (with placeholder-shown support).
+* Also make sure the label is only on one row, at max 2/3rds of the
+* field—to make sure it scales properly and doesn't wrap.
+*/
+ .field input:placeholder-shown + label, .field select:placeholder-shown + label {
+  cursor: text;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: left bottom;
+  transform: translate(0, 2.125rem);
+  transition: .5s all;
+}
+/**
+* By default, the placeholder should be transparent. Also, it should 
+* inherit the transition.
+*/
+::-webkit-input-placeholder {
+  opacity: 0;
+  transition: inherit;
+   transition: .5s all;
+}
+/**
+* Show the placeholder when the input is focused.
+*/
+ .field input:focus::-webkit-input-placeholder,  .field select:focus::-webkit-input-placeholder {
+  opacity: 0;
+  color:#f0118c;
+}
+ .field input::placeholder{
+  color:#fff!important;
+ }
+/**
+* When the element is focused, remove the label transform.
+* Also, do this when the placeholder is _not_ shown, i.e. when 
+* there's something in the input at all.
+*/
+ .field input:not(:placeholder-shown) + label,
+ .field input:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
 }
 
-/* HIGHLIGHTER ================================== */
-.highlight {
-  position:absolute;
-  height:60%; 
-  width:100px; 
-  top:25%; 
-  left:0;
-  pointer-events:none;
-  opacity:0.5;
-}
-
-/* active state */
-.group input:focus ~ .highlight {
-  -webkit-animation:inputHighlighter 0.3s ease;
-  -moz-animation:inputHighlighter 0.3s ease;
-  animation:inputHighlighter 0.3s ease;
-}
-
-/* ANIMATIONS ================ */
-@-webkit-keyframes inputHighlighter {
-  from { background:#5264AE; }
-  to  { width:0; background:transparent; }
-}
-@-moz-keyframes inputHighlighter {
-  from { background:#5264AE; }
-  to  { width:0; background:transparent; }
-}
-@keyframes inputHighlighter {
-  from { background:#5264AE; }
-  to  { width:0; background:transparent; }
+ .field select:not(:placeholder-shown) + label,
+ .field select:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
 }

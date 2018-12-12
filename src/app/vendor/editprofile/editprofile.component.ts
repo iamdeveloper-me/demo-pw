@@ -128,7 +128,7 @@ changePassword_form = false;
       data =>{ 
         this.mysub = data.json();
      
-        this.toastr.success("Subscription Update Sucessfully");
+        this.toastr.success("subscription update sucessfully");
     },error=>{console.log(error)});
    }
 

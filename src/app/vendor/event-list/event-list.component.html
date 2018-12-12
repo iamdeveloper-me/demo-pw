@@ -46,27 +46,22 @@
                   <div class="card martop0px  eventbox" >   
                     <div class="row eventrow ">
                         <div class="col-4 ">
-                            <img [src]="data.files.path" class="img-responsive">  
+                          
+                            <img *ngIf='data.files' [src]="data.files.path" class="img-responsive">  
                        
                         </div>
                         <div class="col-6 ">
                             <div class="col-12">
 
                                 <div class="club_heading">
-                                  <h5> {{data.eventTitle}} </h5>
+                                  <h5><strong>{{data.eventTitle}}</strong> </h5>
                                 </div>
                                 <p>
                                   Capacity:{{data.capacity}}
                                 </p>
-                                <p>Venue:{{data.venueName}} 
-                                </p>
-                                <p>Address:{{data.country?.countryName}},{{data.districts
-                                    ?.name}},{{data.suburb?.name}}
-                                </p>
-                             
-                                <p class="locat_tag">
-                                  <i class="material-icons"> location_on</i>
-                                  {{data.location}}
+                                <p><i class="material-icons"> location_on</i>
+                                  {{data.venueName}} {{data.location}} , {{data.suburb?.name}} {{data.districts
+                                    ?.name}}, {{data.country?.countryName}}
                                 </p>
                                 <p>Entry Fee:{{data.entryFee}}
                                   </p>
@@ -76,26 +71,18 @@
                                     </div> 
                                     <div class="col-sm-11">
                                   <p  *ngFor="let name of data.eventsDates">
-                                    <strong> Start Time {{name.startTime | date :
-                                      "shortTime" }}</strong>
+                                    Event Start:  {{name.startDate | date}},  {{name.startTime | date :
+                                      "shortTime" }}
                                   </p>
                                  
                                   <p *ngFor="let name of data.eventsDates">
-                                    <strong>End
-                                        Time {{name.endTime | date : "shortTime" }}
-                                      </strong>
+                                    Event End: {{name.endDate | date}}, 
+                                         {{name.endTime | date : "shortTime" }}
+                                     
                                     </p>
+                                    <p>{{data.eventDescription}}  </p>
                                     </div>
-                                    <div class="col-sm-12">
-                                    <p  *ngFor="let name of data.eventsDates">
-                                        <i class="material-icons">date_range </i><strong>
-                                          Event start Date : {{name.startDate | date}}<br>
-                                          Event end Date  :  {{name.endDate | date}}<br>
-                                          
-                                         
-                                        </strong>
-                                      </p>
-                                    </div>
+                                   
                                 </div>
 
                                
@@ -176,7 +163,7 @@
                             (keypress)="startDatess($event)" 
                             style="width:100%;">
                          
-                          <small class="form-text text-muted danger" >{{startDates}}</small>
+                          <!-- <small class="form-text text-muted danger" >{{startDates}}</small> -->
 
                     </div>
                   </div>
@@ -253,7 +240,7 @@
                   <div class="col-sm-6">
                       <label>District</label>
                         <div class="form-group">
-                          <select name="district" class="form-control" [(ngModel)]="objevent.districtId" name="dist_id" (change)="subr($event)">
+                          <select name="district" class="form-control" [(ngModel)]="objevent.districtId" name="dist_id" (change)="subr()">
                             <option *ngFor="let dist of district ;let d =index" type="text" id="{{dist.name}}" checked name="dist"
                               placeholder="Country" [value]="dist.districtId" required>
                               {{dist.name }}
@@ -264,7 +251,7 @@
                   <div class="col-sm-6">
                     <label>Suburb</label>
                       <div class="form-group">
-                          <select class="form-control" [(ngModel)]="objevent.suburbId" name="sub_id" (change)="subr($event)">
+                          <select class="form-control" [(ngModel)]="objevent.suburbId" name="sub_id" (change)="subr()">
                             <!-- (change)="country($event)" -->
                             <option *ngFor="let sub of suburb ;let s =index" type="text" id="{{sub.name}}" checked name="sub"
                               placeholder="Suburb" [value]="sub.suburbId" required>
@@ -428,7 +415,7 @@
                         </label>
                         
 
-                        <select class="form-control" type="time" [ngModel]="endtime" #ele_endTime  id="endTime" name="endTime">
+                        <select class="form-control" type="time" [(ngModel)]="endtime" #ele_endTime  id="endTime" name="endTime">
 
                             <!-- <option  [value]="endtime" *ngIf =  "!s.endTime" >{{endtime | date: 'h:m a' }} </option> -->
                           <option *ngFor='let s of select_time.timing' [value]='s.endTime'>{{s.endTime}}</option>
@@ -471,7 +458,7 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label>District</label>
-                        <select name="district" class="form-control" #ele_distid [(ngModel)]="objevent.districtId" name="dist_id" (ngModelChange)="subr($event)">
+                        <select name="district" class="form-control" #ele_distid [(ngModel)]="objevent.districtId" name="dist_id" (ngModelChange)="subr()">
                           <option *ngFor="let dist of district" [value]="dist.districtId">
                             {{dist.name }}
                           </option>
@@ -483,8 +470,7 @@
                       <label>Suburb</label>
                         <select class="form-control" [(ngModel)]="objevent.suburbId" #ele_suburb name="sub_id">
                           <!-- (change)="country($event)" -->
-                          <option *ngFor="let sub of suburb ;let s =index" type="text" id="{{sub.name}}" checked name="sub"
-                            placeholder="Suburb" [value]="sub.suburbId" required>
+                          <option *ngFor="let sub of suburb ;let s =index" [value]="sub.suburbId">
                             {{sub.name }}
                           </option>
                         </select>
@@ -566,7 +552,7 @@
                         <div class="form-group">
                             <label>Entry Fee</label>
                             <input type="text" class="form-control" required="required" 
-                            [ngModel]="modelfield.entryFee"
+                            [(ngModel)]="modelfield.entryFee"
                             name="entryFee" 
                             id="entryFee"
                             #entryFee="ngModel" 

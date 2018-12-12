@@ -48,7 +48,6 @@
                             required
                         /> 
                         <label>{{category.categoryName}} </label>
-                        <span class="focus-border"></span>
                         <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="required.touched && required.errors?.required">Category is required!</small> -->
                         <!-- <small class="form-text text-muted danger" *ngIf="!category.valid && (category.dirty || category.untouched)">category is required!</small> -->
                     </li>
@@ -67,9 +66,10 @@
     <div class="row setup-content-2" id="step-2">
         <div class="logininfobox">
             <h3 class="pl-0 my-4 lc_head"> Account Information </h3>
-            <div class="group">
+            <div class="field">
                 <input  
                     type="text" 
+                    placeholder="First Name" 
                     id="firstName" 
                     ngModel #firstName="ngModel" 
                     [ngModelOptions]="{updateOn: 'blur'}"
@@ -78,14 +78,15 @@
                     pattern="^[a-zA-Z]{1,}$"
                     required
                 />
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>First Name</label>
+                <label for="firstName">First Name</label>
+                </div>
+                <div class="clearfix"></div>
                 <small class="form-text text-muted danger" *ngIf="!firstName.valid && (firstName.dirty || firstName.touched)">Firstname is required!</small>
-            </div>
-            <div class="group">
+            
+            <div class="field">
                 <input  
-                    type="text"  
+                    type="text" 
+                    placeholder="Last Name"  
                     [(ngModel)] = "user.logInInfo.lastName" 
                     name = "lastName" 
                     id="lastName" 
@@ -95,14 +96,15 @@
                     required 
                     pattern="^[a-zA-Z]{1,}$"
                 />
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Last Name</label>
-                <small class="form-text text-muted danger" *ngIf="!lastName.valid && (lastName.dirty || lastName.touched)">Lastname is required!</small>
+                <label for="lastName">Last Name</label>
             </div>
-            <div class="group">
+            <div class="clearfix"></div>
+            <small class="form-text text-muted danger" *ngIf="!lastName.valid && (lastName.dirty || lastName.touched)">Lastname is required!</small>
+          
+            <div class="field">
                 <input 
-                    type="email" 
+                    type="text" 
+                    placeholder="Email" 
                     id="email" 
                     name = "email" 
                     ngModel 
@@ -113,17 +115,18 @@
                     required 
                     pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$"
                 />
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Email</label>
-                <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">Email is required!</small>
+                <label for="email">Email</label>
             </div>
+            <div class="clearfix"></div>
+            <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">Email is required!</small>
             <!-- [(ngModel)] = "user.contactInfo.email"   -->
-            <div class="group">
+            <div class="field">
                 <input 
                     type="password" 
+                    placeholder="Password" 
                     [(ngModel)] = "user.logInInfo.password" 
                     name = "password" 
+                    id = "password" 
                     ngModel 
                     #password="ngModel" 
                     autocomplete="new-password"  
@@ -132,28 +135,27 @@
                     minlength="6"
                     validateEqual="confirmPassword" reverse="true"
                 />
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Password</label>
+                <label for="password">Password</label>
                 <!-- <div *ngIf="password.touched && password.invalid" class="invalid-feedback form-submit">
                         <small class="form-text text-muted danger"  *ngIf="password.errors.required">Password is required!</small>
                         <small class="form-text text-muted danger"  *ngIf="password.errors.minlength">Password must be at least 6 characters!</small>
                 </div> -->
-                <div *ngIf="password.invalid && (password.dirty || password.touched)"  class="form-text text-muted danger" >
+            </div>
+            <div *ngIf="password.invalid && (password.dirty || password.touched)"  class="form-text text-muted danger" >
                         <div  class="form-text text-muted danger"  *ngIf="password.errors.required">
                                Password is required.
                         </div>
                         <div  class="form-text text-muted danger"  *ngIf="password.errors.minlength">
                                 Password must be at least 6 characters!
                         </div>
-                    </div>
             </div>
-            <div class="group">
-                 
+
+            <div class="field">
                 <input 
                     type="password" 
                     autocomplete="new-password"
                     id="confirmPassword" 
+                    placeholder="Confirm Password" 
                     ngModel 
                     #confirmPassword="ngModel" 
                     [(ngModel)] = "user.logInInfo.confirmPassword" 
@@ -163,9 +165,7 @@
                     required
                     validateEqual="password" reverse="false"
                 />
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Confirm Password</label>
+                <label for="confirmPassword">Confirm Password</label>
                 <!-- <small [hidden]="confirmPassword.valid || (confirmPassword.pristine && !f.submitted)" class="text-danger">
                         Password mismatch
                       </small> -->
@@ -173,7 +173,8 @@
                         <small class="form-text text-muted danger"  *ngIf="confirmPassword.errors.required">Confirm Password is required!</small>
                         <small class="form-text text-muted danger"  *ngIf="confirmPassword.errors.minlength">Confirm Password must be at least 6 characters!</small>
                 </div> -->
-                    <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"  class="form-text text-muted danger" >
+            </div>
+            <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"  class="form-text text-muted danger" >
                         <div  class="form-text text-muted danger"  *ngIf="confirmPassword.errors.required">
                                Confirm Password is required.
                         </div>
@@ -183,13 +184,12 @@
                         <small [hidden]="confirmPassword.valid || (confirmPassword.pristine && !f.submitted)" class="text-danger">
                                 Password mismatch
                         </small>
-                    </div>
-
             </div>
-            <div class="group">
+            <div class="field">
                 <input  
                     type="text"  
                     id="phone"  
+                    placeholder="Phone" 
                     ngModel #phone="ngModel" 
                     [ngModelOptions]="{updateOn: 'blur'}"
                     [(ngModel)] = "user.contactInfo.phone" 
@@ -198,11 +198,10 @@
                     minlength="7" 
                     maxlength="10"
                 />
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Phone No</label>
-                <small class="form-text text-muted danger" *ngIf="!phone.valid && (phone.dirty || phone.touched)">Phone is required!</small>
+                <label for="phone">Phone No</label>
             </div>
+            <div class="clearfix"></div>
+             <small class="form-text text-muted danger" *ngIf="!phone.valid && (phone.dirty || phone.touched)">Phone is required!</small>
             <!-- [(ngModel)] = "user.contactInfo.phone"  -->
         </div>
         <div class="col-sm-12 btnholder">
@@ -214,10 +213,10 @@
     <div class="row setup-content-2" id="step-3">
         <div class="logininfobox">
             <h3 class="pl-0 my-4 lc_head"> Business Information </h3>
-            <div class="group">
+            <div class="field">
                 <input 
                     type="text" 
-                    placeholder="Name of your Bussiness"
+                    placeholder="Name of your Bussiness" 
                     id="nameOfBusiness"  
                     ngModel 
                     #nameOfBusiness="ngModel" 
@@ -226,12 +225,11 @@
                     name = "nameOfBusiness" 
                     required
                 />
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Name of your Bussiness</label>
+                <label for="nameOfBusiness">Name of your Bussiness</label>
                 <!-- pattern="^[a-zA-Z ]{3,}$"  -->
-                <small class="form-text text-muted danger" *ngIf="!nameOfBusiness.valid && (nameOfBusiness.dirty || nameOfBusiness.touched)">Name is required!</small>
             </div>
+            <div class="clearfix"></div>
+            <small class="form-text text-muted danger" *ngIf="!nameOfBusiness.valid && (nameOfBusiness.dirty || nameOfBusiness.touched)">Name is required!</small>
             <!-- <div class="input-effect form-group md-form mt-3 ">
                 <input class="effect-16 validate" 
                 type="hidden"
@@ -244,10 +242,11 @@
                 <label>Country </label>
                 <span class="focus-border"></span>
             </div> -->
-            <div class="group">
+            <div class="field">
                 <select name="country" [(ngModel)] = "country_id " name="country_id" (change)="country($event)">
                         <option   *ngFor="let country of countryArray ;let c =index" 
                             type="text"
+                            placeholder="Country"
                             id="{{country.countryName}}"
                             checked
                             name = "countryName"  
@@ -266,17 +265,16 @@
                         required
                         > -->
                 </select>
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Country</label>
+                <label for="country_id">Country</label>
             </div>
             <!-- {{district |json}} -->
-            <div class="group">
+            <div class="field">
                 <select name="district"  [(ngModel)] = "city_id"  name="city_id"(change)="districtA($event)"  > 
                         <!-- (change)="country($event)" -->
-                    <option   *ngFor="let dist of district ;let d =index" 
+                    <option *ngFor="let dist of district ;let d =index" 
                         type="text"
                         id="{{dist.name}}"
+                        placeholder="District"
                         checked
                         name = "dist"  
                         [value]="d"
@@ -284,15 +282,14 @@
                         {{dist.name }}
                     </option>
                 </select>
-                   <span class="highlight"></span>
-              <span class="bar"></span>
-                <label>District</label>
+                <label for="city_id">District</label>
             </div>
-            <div class="group">
+            <div class="field">
                     <select [(ngModel)] = "sub_id"  name="sub_id" (change)="subr($event)" > 
                             <!-- (change)="country($event)" -->
-                        <option   *ngFor="let sub of suburb ;let s =index" 
+                        <option *ngFor="let sub of suburb ;let s =index" 
                             type="text"
+                            placeholder="Suburb"
                             id="{{sub.name}}"
                             checked
                             name = "sub"  
@@ -301,12 +298,11 @@
                             {{sub.name }}
                         </option>
                     </select>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Suburb</label>
+                    <label for="sub_id">Suburb</label>
             </div>
-            <div class="group">
+            <div class="field">
                     <input 
+                        placeholder="Postal Code" 
                         type="text" 
                         id="postalCode" 
                         ngModel 
@@ -316,14 +312,13 @@
                         name = "postalCode" 
                         pattern="[0-9]{4,6}"
                     />
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Postal Code</label>
+                    <label for="postalCode">Postal Code</label>
                     <!-- Postal Code must be 6 digit -->
                     <!-- <small class="form-text text-muted danger" *ngIf="!postalCode.valid && (postalCode.dirty || postalCode.touched)">postal code is required!</small> -->
             </div>
-            <div class="group">
+             <div class="field">
                 <input  
+                    placeholder="Street Address" 
                     type="text" 
                     id="address" 
                     ngModel #address="ngModel" 
@@ -333,11 +328,10 @@
                     required 
                     minlength="3"
                 />
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Street Address</label>
-                <small class="form-text text-muted danger" *ngIf="!address.valid && (address.dirty || address.touched)">address is required!</small>
+                <label for="address">Street Address</label>
             </div>
+            <div class="clearfix"></div>
+             <small class="form-text text-muted danger" *ngIf="!address.valid && (address.dirty || address.touched)">address is required!</small>
             <!-- <div class="input-effect form-group md-form mt-3">
                     <input class="effect-16 validate" 
                     type="text" 
@@ -349,8 +343,10 @@
                     <label>Contact Person</label>
                     <span class="focus-bo+rder"></span>
                 </div> -->
-            <div class="group">
-                <input 
+
+                 <div class="field">
+                    <input 
+                    placeholder="website" 
                     type="text" 
                     id="website" 
                     ngModel 
@@ -358,13 +354,11 @@
                     [ngModelOptions]="{updateOn: 'blur'}"  
                     [(ngModel)] = "user.contactInfo.website"
                     name = "website" 
-                />
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Website</label>
-                <!-- pattern="^(ftp|http|https):\/\/[^ "]+$" -->
-                <!-- <small class="form-text text-muted danger" *ngIf="!website.valid && (website.dirty || website.touched)">website is required!</small> -->
-            </div>
+                    />
+                    <label for="website">Website</label>
+                </div>
+
+           
             <!--[(ngModel)] = "user.businessInfo.postalCode"  -->
         </div>
         <div class="col-sm-12 btnholder">

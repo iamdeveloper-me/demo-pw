@@ -235,6 +235,8 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
             this.historyArr = data.json()  ; 
             this.historyArr.forEach(element => {
               element['checked'] = false;
+              element['messageStatus'] = 2;
+
             });
             this.all_msg = this.historyArr.length;
             this.arrayLength =  this.historyArr.length
@@ -295,6 +297,8 @@ this.deletIcon = false
             this.historyArr = data.json()  ; 
             this.historyArr.forEach(element => {
               element['checked'] = false;
+              element['messageStatus'] = 3;
+
             });
             this.stared_msg = this.historyArr.length;
             this.arrayLength = this.historyArr.length;

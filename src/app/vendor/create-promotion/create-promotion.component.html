@@ -1,233 +1,149 @@
 <div id="wrapper" class="toggled">
-    <div id="sidebar-wrapper" >
-        <app-vendorsidebar></app-vendorsidebar>
-    </div>
-    <div id="page-content-wrapper">    
-      <div class="container-fluid nopadd">
-      <app-navemenu></app-navemenu> 
-      <router-outlet></router-outlet>
-      <div class="container-fluid">
-        <div class="content mobilefixedcontainer"></div>
-        <div class="row gulterbot20px"   *ngFor="let data of HomePage;let i=index " > 
-          <div class="col-12 boxcolumn">
-            <div class="card">
-              <a class="backicon" (click)='navigateTo()'>
-                <i _ngcontent-c6="" class="material-icons"> arrow_back_ios </i>
-              </a>
-              <h1>{{data.title}} For Featured Supplier</h1>
-              <div class="row">
-                  <div class="roundedicon">
-                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/bell.png" class="img-responsive">
-                  </div>
-                  <div class="codecontainermobile">
-                    <input class="vouchercodeinput" placeholder="Voucher Code" type="text">
-                    <button class="btn btnbluecode"  >Enter</button>
-                  </div>
-              </div>
-              <!-- <a class="btn gradint_blue borderradius promotebtn gallery">
-                Detail
-              </a> -->
-            </div>
-          </div>
-          <div class="clearfix"></div>
-          <form (ngSubmit)="prmocode(code)" #code="ngForm">  
-          <div class="col-12 boxcolumn">
-              <div class="card">
-                  <h1>Where do you want to advertise</h1>
-                  <div class="form-group">
-                        <div class="input-effect form-group md-form">
-                        <select  class="effect-16 validate"  id="Country" [(ngModel)]="country.countryId"  name="country_id" (change)="country($event)">
-                                <option *ngFor="let country of arra ;let c =index" [value]="country.countryId">
-                                    {{country.countryName }}
-                                </option>
-                            </select>
-                        <label>Country {{address_modelfield}}</label>
-                        <span class="focus-border"></span>
-                        </div>
-                  </div>
-              </div>
-          </div>
-          <div class="clearfix"></div>
-          <div class="col-sm-8 col-12 boxcolumn paddbottomfixed">
-            <div class="card tableless100">
-                <h1>Pick the period you want to promote your business</h1>
-                <div class="table-responsive">
-                  <table _ngcontent-c5="" class="table table-striped">
-                        <thead _ngcontent-c5="">
-                          <tr _ngcontent-c5="">
-                             <th _ngcontent-c5="">#weekNo</th>
-                            <th _ngcontent-c5="" align="center">Month</th>
-                            <!-- <th _ngcontent-c5="">Year</th> -->
-                            <th _ngcontent-c5="">Period</th>
-                            <th _ngcontent-c5="" align="center">Availability</th>
-                            <th _ngcontent-c5="">cost</th>
-                            <th _ngcontent-c5="" class="text-center">Select</th>
-                          </tr>
-                        </thead>
-                        <tbody _ngcontent-c5="">
-                          <tr _ngcontent-c5="" *ngFor="let list of data.adAvailableSlots;let i=index ">
-                             <th class="serialcolum" scope="row">{{list.weekNo}}</th> 
-                            <td class="monthcolumn">{{list.month}}</td>
-                            <!-- <td>{{list.year }}</td> -->
-                            <td>{{list.week }}</td>
-                            <td align="center">{{list.availability }}</td>
-                            <td>{{list.cost }}</td>
-                            <td align="center">
-                              <button class="btn btnbluecode btnradius20px" [disabled]='list.isSelected' type="submit" (click)= "package(list)" >Add to Cart </button>
-                            </td>
-                          </tr>
-                      
-                        </tbody>
-                  </table>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-12 boxcolumn mobilefixedcart">
-            <div class="card">
-              <strong class="text-center mobilebtncartless padbott">Select Detailed <i class="material-icons">expand_more</i></strong>
-              <div class="clearfix"></div>
-             
-                  <div class="codecontainer">
-                      <input class="vouchercodeinput" name="voucherCode" placeholder="Voucher Code" [(ngModel)]="code.voucherCode"  type="text">
-                      <input   name="adTypeId" [(ngModel)]="data.adTypeId"  type="hidden">
-                      <button class="btn btnbluecode" type="submit" >Enter</button>
-                    
-                  </div>
-                  <div class="clearfix"></div>
-                  <div class="col-sm-12 nopadd">
-                    <table class="table table-striped">
-                        <tbody>
-                          <tr  *ngFor="let selectlist of selecteditem;let i=index " >
-                          
-                            <td> WK-{{selectlist.week}}</td>
-                            <!-- <td class="redtext">All Booked</td> -->
-                            <td>$  {{selectlist.cost}}
-  
-                                <button type="button" class="close" aria-label="Close" (click)="deletepackage(selecteditem,i)">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                            </td>
-                          </tr>
-                            <tr>
-                            <td><strong>Total</strong></td>
-                            <td>$ {{sum}}</td>
-                          </tr>
-                        </tbody>
-                    </table>
-                      <div class="clearfix"></div>
-                  <div class="col-sm-12 nopadd text-center">
-              
-                   <!--  <button class="btn inblock textwhite btn-success" type="submit" >Proceed to Payment</button> -->
-
-                <div class="container">
-                  <hr>
-                  <div class="row">
-                    <aside class="col-sm-6">
-                          <p>Paymetn form2</p>
-                          <article class="card">
-                                <div class="card-body p-5">
-
-                                        <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
-                                          <li class="nav-item">
-                                            <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
-                                            <i class="fa fa-credit-card"></i> Credit Card</a></li>
-                                          <li class="nav-item">
-                                            <a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
-                                            <i class="fab fa-paypal"></i>  Paypal</a></li>
-                                          <li class="nav-item">
-                                            <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
-                                            <i class="fa fa-university"></i>  Bank Transfer</a></li>
-                                        </ul>
-
-                                        <div class="tab-content">
-                                            <div class="tab-pane fade show active" id="nav-tab-card">
-                                              <p class="alert alert-success">Some text success or error</p>
-                                              <form role="form">
-                                              <div class="form-group">
-                                                <label for="username">Full name (on the card)</label>
-                                                <input type="text" class="form-control" name="username" placeholder="" required="">
-                                              </div> <!-- form-group.// -->
-
-                                              <div class="form-group">
-                                                <label for="cardNumber">Card number</label>
-                                                <div class="input-group">
-                                                  <input type="text" class="form-control" name="cardNumber" placeholder="">
-                                                  <div class="input-group-append">
-                                                    <span class="input-group-text text-muted">
-                                                      <i class="fab fa-cc-visa"></i>   <i class="fab fa-cc-amex"></i>   
-                                                      <i class="fab fa-cc-mastercard"></i> 
-                                                    </span>
-                                                  </div>
-                                                </div>
-                                              </div> <!-- form-group.// -->
-
-                                              <div class="row">
-                                                  <div class="col-sm-8">
-                                                      <div class="form-group">
-                                                          <label><span class="hidden-xs">Expiration</span> </label>
-                                                        <div class="input-group">
-                                                          <input type="number" class="form-control" placeholder="MM" name="">
-                                                            <input type="number" class="form-control" placeholder="YY" name="">
-                                                        </div>
-                                                      </div>
-                                                  </div>
-                                                  <div class="col-sm-4">
-                                                      <div class="form-group">
-                                                          <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
-                                                          <input type="number" class="form-control" required="">
-                                                      </div> <!-- form-group.// -->
-                                                  </div>
-                                              </div> <!-- row.// -->
-                                              <button class="subscribe btn btn-primary btn-block" type="button"> Confirm  </button>
-                                              </form>
-                                            </div> <!-- tab-pane.// -->
-                                            <div class="tab-pane fade" id="nav-tab-paypal">
-                                                <p>Paypal is easiest way to pay online</p>
-                                                <p>
-                                               <!--  <button type="button" class="btn btn-primary"> <i class="fab fa-paypal"></i> Log in my Paypal </button> -->
-
-                                                 <button class="btn inblock textwhite btn-success" type="submit" >Proceed to Payment</button>
-                                                </p>
-                                                <p><strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. </p>
-                                            </div>
-                                            <div class="tab-pane fade" id="nav-tab-bank">
-                                                <p>Bank accaunt details</p>
-                                                <dl class="param">
-                                                  <dt>BANK: </dt>
-                                                  <dd> THE WORLD BANK</dd>
-                                                </dl>
-                                                <dl class="param">
-                                                  <dt>Accaunt number: </dt>
-                                                  <dd> 12345678912345</dd>
-                                                </dl>
-                                                <dl class="param">
-                                                  <dt>IBAN: </dt>
-                                                  <dd> 123456789</dd>
-                                                </dl>
-                                                <p><strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. </p>
-                                            </div> <!-- tab-pane.// -->
-                                        </div> <!-- tab-content .// -->
-                                </div> <!-- card-body.// -->
-                          </article> <!-- card.// -->
-                    </aside> <!-- col.// -->
-                  </div> <!-- row.// -->
-                </div> 
-            <!--container end.//-->
-
-
-                  </div>
-                  </div>
-               
-            </div>
-          </div>
-          </form>  
-        </div>
-        <div class="clearfix"></div>
-      </div>
-      </div>
-        
-
-    </div>
+  <div id="sidebar-wrapper" >
+      <app-vendorsidebar></app-vendorsidebar>
   </div>
+  <div id="page-content-wrapper">    
+<div class="container-fluid nopadd">
+  <app-navemenu></app-navemenu> 
+  <router-outlet></router-outlet>
+  <div class="container-fluid mobilefixedcontainer">
+    <div class="content"></div>
+
+
+  <div class="row gulterbot20px"  *ngFor="let data of HomePage;let i=index ">
+    <div class="col-12 boxcolumn">
+      <div class="card">
+          <a class="backicon" (click)="navigateTo()">
+            <i _ngcontent-c6="" class="material-icons"> arrow_back_ios </i>
+          </a>
+          <h1>{{page_title}}</h1>
+
+        <div class="row">
+             
+            <div class="roundedicon">
+          <img src="https://s3.us-east-2.amazonaws.com/prefect-image/home1.png" class="img-responsive">
+      </div>
+            <div class="codecontainermobile">
+              <input class="vouchercodeinput" placeholder="Voucher Code" type="text">
+              <button class="btn btnbluecode">Enter</button>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  <form (ngSubmit)="prmocode(code)" #code="ngForm" style="width:100%;">
+    <div class="col-12 boxcolumn">
+        <div class="card">
+            <h1>Where do you want to advertise</h1>
+   
+              <div class="form-group">
+                      <div class="input-effect form-group md-form">
+                      <select  class="effect-16 validate"  id="Country" [(ngModel)]="country.countryId"  name="country_id" (change)="country($event)">
+                              <option *ngFor="let country of arra ;let c =index" [value]="country.countryId">
+                                  {{country.countryName }}
+                              </option>
+                          </select>
+                      <label>Country {{address_modelfield}}</label>
+                      <span class="focus-border"></span>
+                      </div>
+              </div>
+                          
+          
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-sm-8 col-12 boxcolumn paddbottomfixed">
+      <div class="card tableless100">
+          <h1 class="text-left">Pick the period you want to promote your business</h1>
+        <table _ngcontent-c5="" class="table table-striped">
+              <thead _ngcontent-c5="">
+                  <tr _ngcontent-c5="">
+                       <th _ngcontent-c5="">#weekNo</th>
+                       <th _ngcontent-c5="">Month</th>
+                      <!--<th _ngcontent-c5="">Year</th>--> 
+                      <th _ngcontent-c5="">Period</th>
+                      <th _ngcontent-c5="" class="text-center">Availability</th>
+                      <th _ngcontent-c5="" class="text-center">cost</th>
+                      <th _ngcontent-c5="" class="text-center">Select</th>
+                    </tr>
+              </thead>
+              <tbody _ngcontent-c5="">
+                <tr _ngcontent-c5="" *ngFor="let list of data.adAvailableSlots;let i=index ">
+                    <th class="serialcolum" scope="row">{{list.weekNo}}</th>
+                    <td class="monthcolumn">{{list.month}}</td>
+                   <!-- <td>{{list.year }}</td> -->
+                    <td>{{list.week }}</td>
+                    <td class="text-center">{{list.availability }}</td>
+                    <td class="text-center">{{list.cost }}</td>
+                    <td class="text-center">
+                      <button class="btn btnbluecode btnradius20px" [disabled]='list.isSelected' type="submit" (click)= "package(list)" >Add to Cart </button>
+                    </td>
+                </tr>
+              </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-sm-4  col-12 boxcolumn mobilefixedcart">
+      <div class="card">
+        <strong class="mobilebtncartless padbott">Select Detailed</strong>
+        <div class="clearfix"></div>
+     
+            <div class="codecontainer">
+                <input class="vouchercodeinput" name="voucherCode" placeholder="Voucher Code" [(ngModel)]="code.voucherCode"  type="text">
+                <input   name="adTypeId" [(ngModel)]="data.adTypeId"  type="hidden">
+                <button class="btn btnbluecode" type="submit" >Enterme</button>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12 nopadd">
+              <table class="table table-striped">
+                  <tbody>
+                    <tr  *ngFor="let selectlist of selecteditem;let a=index " >
+                    
+                      <td> WK-{{selectlist.week}}</td>
+                      <!-- <td class="redtext">All Booked</td> -->
+                      <td>$  {{selectlist.cost}}
+                          <button type="button" class="close" aria-label="Close" (click)="deletepackage(selecteditem,a)">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                      </td>
+                    
+                      
+                      
+                    </tr>
+                      <tr>
+                      <td><strong>Total</strong></td>
+                      <td>$ {{sum}}</td>
+                    </tr>
+                  </tbody>
+              </table>
+                <div class="clearfix"></div>
+              <a routerLink="../../vendor/payment-selection" class="btn inblock textwhite btn-success" >
+                Proceed to Payment
+              </a>
+               
+                 
+               
+             
+            </div>
+       
+      </div>
+    </div>
+  </form>
+  
+  </div>
+
+ 
+
+  <div class="clearfix"></div>
+
+
+
+
+    
+
+
+
+  </div>
+</div>
+</div>
+</div>

@@ -34,7 +34,7 @@ export class PromoteBusinessComponent implements OnInit {
   private allpromo: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PromoteBusiness/allPromotion';
   promotion = [];
 
-  page_title = 'Priority Listingsvv'
+  // page_title = 'Priority Listings'
   promotion_length;
 //accordian
  acc: any;

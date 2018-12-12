@@ -1,3 +1,4 @@
+import { HompageLocationComponent } from './vendor/hompage-location/hompage-location.component';
 import { PaymentSelectionComponent } from './vendor/payment-selection/payment-selection.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
@@ -199,6 +200,9 @@ const appRoutes: Routes = [
     { path: 'vendor/albumdetailsetting', component:   Albumsetting2Component,canActivate:[AuthGuardService]  },
     { path: 'vendor/msg/:id', component:  MailsearchComponent,canActivate:[AuthGuardService]},
     { path: 'vendor/enquiry', component:  EnquiriesComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/homepage-location', component:  HompageLocationComponent,canActivate:[AuthGuardService]},
+
+    
     { path: 'vendor/storefront', component:  StorefrontComponent,canActivate:[AuthGuardService]},
     { path: 'vendor/actionfront', component:  ActionsComponent,canActivate:[AuthGuardService]},
     { path: 'vendor/reachbar', component:  ReachComponent,canActivate:[AuthGuardService]},

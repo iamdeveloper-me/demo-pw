@@ -400,19 +400,26 @@
                                     <div  class="col-sm-12" *ngFor="let plan of planArray">
                                         <div class="panel card item" >
                                             <div class="panel-heading arrow_box text-center">
-                                                <span class="mostpopulartext">Free</span>
-                                                <h3>{{plan.title}}</h3>
-                                                <div class="pricesec">
-                                                <table align="center">
-                                                    <tr>
-                                                    <td>MUR</td>
-                                                    <td class="pricebig">8</td>
-                                                    <td class="text-left lineheight16px">00<br/>/Month</td>
-                                                    </tr>
-                                                </table>
-                                                </div>
-                                                <div class="basiccard">Billed Annually</div>
-                                            </div>
+
+												<span class="mostpopulartext" *ngIf="plan.monthlyPrice == 0">Free</span>
+												<span class="mostpopulartext" *ngIf="plan.title == 'Premium'">Most Popular</span>
+												<span class="mostpopulartext" *ngIf="plan.title == 'Ultimate'">Best Value</span>
+												<h3>{{ plan.title}}</h3>
+												<div class="pricesec">
+													<table align="center">
+														<tr>
+															<td>MUR</td>
+															<td>
+																<div class="pricebig">{{plan.monthlyPrice}}</div>
+															</td>
+															<td class="text-left lineheight16px">00<br/>/Month</td>
+														</tr>
+													</table>
+												</div>
+												<div class="basiccard"> Total {{plan.monthlyPrice * 6}}.00</div>
+
+									</div>
+									
                                             <ul class="list-group list-group-flush text-center">
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isStoreFront">check_circle</i><i *ngIf="!plan.isStoreFront" class="material-icons redtext">cancel</i> Storefront</li>
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isLeadManagement">check_circle</i><i *ngIf="!plan.isLeadManagement" class="material-icons redtext">cancel</i> Leads Management</li>
@@ -459,19 +466,23 @@
                                     <div class="col-sm-12" *ngFor="let plan of planArray">
                                         <div class="panel card item">
                                             <div class="panel-heading arrow_box text-center">
-                                                <span class="mostpopulartext">Free</span>
-                                            <h3>{{plan.title}}</h3>
-                                                <div class="pricesec">
-                                                <table align="center">
-                                                    <tr>
-                                                    <td>MUR</td>
-                                                    <td class="pricebig">8</td>
-                                                    <td class="text-left lineheight16px">00<br/>/Annually</td>
-                                                    </tr>
-                                                </table>
-                                                </div>
-                                                <div class="basiccard">Billed Annually</div>
+                                                    <span class="mostpopulartext" *ngIf="plan.monthlyPrice == 0">Free</span>
+                                                    <span class="mostpopulartext" *ngIf="plan.title == 'Premium'">Most Popular</span>
+                                                    <span class="mostpopulartext" *ngIf="plan.title == 'Ultimate'">Best Value</span>
+                                                    <h3>{{ plan.title}}</h3>
+                                                    <div class="pricesec">
+                                                        <table align="center">
+                                                            <tr>
+                                                                <td>MUR</td>
+                                                                <td>
+                                                                        <div class="pricebig">{{(plan.monthlyPrice * (12 - plan.noOfMonthFeeOff))/12 | number: '1.0-0'}} </div></td>
+                                                                <td class="text-left lineheight16px" > <p class="nomar" [innerHtml]="getDecimal(plan.monthlyPrice,plan.noOfMonthFeeOff)"></p>/Monthly</td>
+                                                            
+                                                            </tr>
+                                                        </table>
+                                                    </div>
                                             </div>
+
                                             <ul class="list-group list-group-flush text-center">
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isStoreFront">check_circle</i><i *ngIf="!plan.isStoreFront" class="material-icons redtext">cancel</i> Storefront</li>
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isLeadManagement">check_circle</i><i *ngIf="!plan.isLeadManagement" class="material-icons redtext">cancel</i> Leads Management</li>

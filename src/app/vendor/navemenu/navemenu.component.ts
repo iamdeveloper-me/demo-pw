@@ -26,6 +26,7 @@ export class NavemenuComponent implements OnChanges,OnInit   {
    arrayLength:number;
    unread_msg:number;
    startedtab = false;
+   image_by_default:'..'
    // @Output() userImg = new EventEmitter<string>();
    // @Output('userImg') img:string;
     public data = '' ;
@@ -33,7 +34,6 @@ export class NavemenuComponent implements OnChanges,OnInit   {
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : 'en'); }
   
   ngOnInit() {
-debugger
       var firstName = localStorage.getItem('firstName');
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');

@@ -215,7 +215,7 @@
                       </div>
                     </div>
                     <div class="viewstore">
-                         <a routerLink="../../home/detailprofile">View Storefront</a>
+                         <a routerLink="../../home/detailprofile">View Storefront</a> &nbsp;&nbsp;
                          <a (click) = "images_dialog = true">Change Business Cover</a>
                     </div>
                 </div>
@@ -535,16 +535,20 @@
                          </i>{{job.eventLocation}}
                        </div>
 
-                       <div>
+                       <div class="mobilenone">
                            <i class="material-icons ">phone
                            </i>{{job.clientNumber}}
-                         </div>
+                        </div>
+
+                          <a class="callbutton" href="tel:{{job.clientNumber}}">
+                            Call
+                          </a>
 
                        <!-- <button [routerLink] = "../vendor/eventlist">View All</button>					 -->
                      </div>
                    </div>
 
-                   <div class="col-sm-12 text-center"><a  class="viewallbutton" routerLink="../calender"> View All</a></div>
+                   <div class="col-sm-12 text-center martop20px"><a  class="viewallbutton" routerLink="../calender"> View All</a></div>
               </div>
               <div class="col-sm-12" *ngIf = "totaljobArray == 0">
                   <div class="card-header card-header-warning card-header-icon">
@@ -593,17 +597,12 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-    
             <div class="modal-body">
-                <div class="col-sm-12  text-center">
-                  <div class="modal-body" style="background-color: white">
-
-                     <div *ngIf="image_data==0; else pp">
-                          <h3>No image available in Portfolio or Album</h3>  
-                     </div>
-
+                    <div *ngIf="image_data==0; else pp">
+                        <h3>No image available in Portfolio or Album</h3> 
+                    </div>
                     <ng-template #pp>
-                    <div class="row popupscrollfit">
+                      <div class="row popupscrollfit">
                         <div *ngFor="let images of image_data" class="col-3 imgbottom">
                           
                               <img [src] = "images.imageURL"  alt="Profile picture"  class="img-responsive selectimages" (click)="setportfolio_image(images)">
@@ -616,14 +615,12 @@
                         </div>
                       </div>
                      </ng-template> 
-
-
-                      <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
-
-                  </div>
-                </div>    
             </div>
-           
+            <div class="modal-footer">
+                    <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">
+                      Close
+                    </button>
+            </div>
         </div>  
     </div>    
-</div>
+  </div>

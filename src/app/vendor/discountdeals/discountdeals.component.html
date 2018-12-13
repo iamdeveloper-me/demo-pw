@@ -182,285 +182,326 @@
       <form>   
       
     <div class="modal fade" id="createdeal" [ngClass] = "{'show' : createdeal_dailog}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-              <div class="modal-dialog" role="document" >
-                  <form (ngSubmit)="createdeals(createdeal)" #createdeal="ngForm">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                                  <h4 class="card-title">Deal Details</h4>
-                              <button type="button" class="close" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                          </div>
-                          <div class="modal-body">   
-                                      <div class="col-md-12">
-                                          <div class="field">
-                                                  <input class="effect-16 validate" 
-                                                      type="text"
-                                                      placeholder="Deal Title" 
-                                                      name= "title"
-                                                      [(ngModel)] ="createdeal.title"
-                                                      id = "deal_title"
-                                                      #titles="ngModel" 
-                                                      required 
-                                                  >
-                                                  <label for="deal_title">Deal Title</label>
-                                                  
-                                              
-                                          </div>
-                                          <div class="clearfix"></div>
-                                          <small class="form-text text-muted danger" *ngIf="ram && titles.errors?.required ">required error</small>
-                                           <input 
-                                            type="hidden"
-                                            name= "dealId" 
-                                            [value] = '0' >
-                                      </div>  
+        <div class="modal-dialog" role="document" >
+            <form (ngSubmit)="createdeals(createdeal)" #createdeal="ngForm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="card-title">Deal Details</h4>
+                        <button type="button" class="close" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">   
+                        <div class="col-md-12">
+                            <div class="field">
+                                    <input class="effect-16 validate" 
+                                        type="text"
+                                        placeholder="Deal Title" 
+                                        name= "title"
+                                        [(ngModel)] ="createdeal.title"
+                                        id = "deal_title"
+                                        #titles="ngModel" 
+                                        required 
+                                    >
+                                    <label for="deal_title">Deal Title</label>
+                                    
+                                
+                            </div>
+                            <div class="clearfix"></div>
+                            <small class="form-text text-muted danger" *ngIf="ram && titles.errors?.required ">required error</small>
+                            <input 
+                            type="hidden"
+                            name= "dealId" 
+                            [value] = '0' >
+                        </div>  
 
-                                      <div class="col-md-12 row">
-                                          <div class="col-md-6 radio-btn">
-                                              
-                                             <label>
-                                                   
-                                                  <input 
-                                                  type="radio" 
-                                                  name="neverExpire" 
-                                                  [(ngModel)] ="createdeal.neverExpire"  
-                                                  [value]="false" 
-                                                  >Choose date</label>
-      
-                                                  <!-- <input 
-                                                  type="radio" 
-                                                  [(ngModel)] ="readioSelected_serv"  
-                                                  name="neverExpire" 
-                                                  [value]= "readioSelected_serv" 
-                                                  >     -->
-                                              </div>
-                                              <div class="col-md-6 radio-btn">
-                                              <label>
-                                                  <input 
-                                                  type="radio" 
-                                                  name="neverExpire" 
-                                                  [(ngModel)] ="createdeal.neverExpire" 
-                                                  [value]="true" 
-                                                  >
-                                                  Never Expire
-                                              </label>
-                                              </div> 
-                                      </div>  
-                                      <div class="col-md-12 row">
-                                          <div class="col-md-6">
-                                            <div class="field">
-                                                <div class="form-group md-form">
-                                                  <label for="Start_date">Start Date</label>
-                                                  <input 
-                                                  type="date" 
-                                                  name= "Start_date"
-                                                  id = "Start_date"
-                                                  [(ngModel)] ="update_start_date"
-                                                  #Start_date="ngModel" 
-                                                  required 
-                                                  placeholder="Start Date"
-                                                  >
-                                                  <small class="form-text text-muted danger" *ngIf="Start_date.errors?.required">required error</small>
+                        <div class="col-md-12 row">
+                            <div class="col-md-6 radio-btn">
+                                
+                                <label>
+                                    
+                                    <input 
+                                    type="radio" 
+                                    name="neverExpire" 
+                                    [(ngModel)] ="createdeal.neverExpire"  
+                                    [value]="false" 
+                                    >Choose date</label>
+
+                                    <!-- <input 
+                                    type="radio" 
+                                    [(ngModel)] ="readioSelected_serv"  
+                                    name="neverExpire" 
+                                    [value]= "readioSelected_serv" 
+                                    >     -->
+                                </div>
+                                <div class="col-md-6 radio-btn">
+                                <label>
+                                    <input 
+                                    type="radio" 
+                                    name="neverExpire" 
+                                    [(ngModel)] ="createdeal.neverExpire" 
+                                    [value]="true" 
+                                    >
+                                    Never Expire
+                                </label>
+                                </div> 
+                        </div>  
+                        <div class="col-md-12 row">
+                            <div class="col-md-6">
+                                <div class="field">
+                                        <label for="Start_date">Start Date {{create_start_date}}</label>
+                                <!-- <div class="form-group md-form">
+                                    
+                                    <input 
+                                    type="date" 
+                                    name= "Start_date"
+                                    id = "Start_date"
+                                    [(ngModel)] ="update_start_date"
+                                    #Start_date="ngModel" 
+                                    required 
+                                    placeholder="Start Date"
+                                    >
+                                    <small class="form-text text-muted danger" *ngIf="Start_date.errors?.required">required error</small>
+                                </div> -->
+                                <div class="input-group">
+                                        <input class="form-control" 
+                                        placeholder="yyyy-mm-dd" 
+                                        name="Start_date" 
+                                        [(ngModel)]="create_start_date"
+                                         
+                                        ngbDatepicker 
+                                         [dayTemplate]="customDay"
+                                            [markDisabled]="isDisabled" #d3_Start_date="ngbDatepicker"   #Start_date="ngModel" 
+                                            required >
+                                            <div class="input-group-append">
+                                                <div class="input-group-text" (click)="d3_Start_date.toggle()">
+                                                <i class="fa fa-calendar" style="cursor: pointer;"></i>
                                                 </div>
-                                              </div>
-                                          </div> 
-                                       
-                                      <div class="col-md-6">
-                                          <div class="field">
-                                              <div class="form-group md-form ">
-                                                <label for="End_date">End Date</label>
-                                                  <input
-                                                      class="effect-16 validate" 
-                                                      type="date" 
-                                                      [(ngModel)] ="update_end_date"
-                                                      name= "End_date"
-                                                      id = "End_date"
-                                                      #End_date="ngModel" 
-                                                      required 
-                                                      placeholder="End Date"
-                                                      >
-                                                  
-                                                  <small class="form-text text-muted danger" *ngIf="End_date.errors?.required">required error</small>
-                    
-                                              </div>
-                                          </div>
-                                      </div> 
-                                      </div> 
-                                      <div class="col-md-12">
-                                          <div class="field">
-                                             
-                                                  <input 
-                                                  class="effect-16 validate" 
-                                                  type="text" 
-                                                  placeholder="Terms & Condition of your deal" id="Condition"
-                                                  name= "Condition"
-                                                  [(ngModel)] ="createdeal.conditions"
-                                                  #Conditionss="ngModel" 
-                                                  required >
-                                                  <label for="Condition">Terms & Condition of your deal</label>
-                                              
-                                          </div>
-                                          <div class="clearfix"></div>
-                                          <span class="focus-border"></span>
-                                          <small class="form-text text-muted danger" *ngIf="ram && Conditionss.errors?.required">required error</small>
-                                      </div>  
-                                  </div> 
-                          <div class="modal-footer">
-                            <button type="submit" class="btn newbtn">Save</button>
-                            <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
-                          </div>
-                      </div>
-                  </form>       
-              </div>
-             
+                                            </div>
+                                            <small class="form-text text-muted danger" *ngIf="Start_date.errors?.required">required error</small>
+                                </div>
+                                </div> 
+                        
+                            </div> 
+                        
+                        <div class="col-md-6"  *ngIf = "createdeal.neverExpire == false ">
+                            <div class="field">
+                                    <label for="End_date">End Date {{create_end_date}}</label>
+                                <!-- <div class="form-group md-form ">
+                            
+                                    <input
+                                        class="effect-16 validate" 
+                                        type="date" 
+                                        [(ngModel)] ="update_end_date"
+                                        name= "End_date"
+                                        id = "End_date"
+                                        #End_date="ngModel" 
+                                        required 
+                                        placeholder="End Date"
+                                        >
+
+                                    <small class="form-text text-muted danger" *ngIf="End_date.errors?.required">required error</small>
+                                </div> -->
+                                <div class="input-group" >
+                                    <input class="form-control" placeholder="yyyy-mm-dd" name="End_date" [(ngModel)]="create_end_date" ngbDatepicker [dayTemplate]="customDay"
+                                    [markDisabled]="isDisabled" #d3_End_date="ngbDatepicker" #End_date="ngModel" 
+                                    required >
+                                    <div class="input-group-append">
+                                        <div class="input-group-text" (click)="d3_End_date.toggle()">
+                                        <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                        </div>
+                                    </div>
+                                    <small class="form-text text-muted danger" *ngIf="End_date.errors?.required">required error</small>
+                                </div>
+                            </div>
+                        </div> 
+                        </div> 
+                        <div class="col-md-12">
+                            <div class="field">
+                                
+                                    <input 
+                                    class="effect-16 validate" 
+                                    type="text" 
+                                    placeholder="Terms & Condition of your deal" id="Condition"
+                                    name= "Condition"
+                                    [(ngModel)] ="createdeal.conditions"
+                                    #Conditionss="ngModel" 
+                                    required >
+                                    <label for="Condition">Terms & Condition of your deal</label>
+                                
+                            </div>
+                            <div class="clearfix"></div>
+                            <span class="focus-border"></span>
+                            <small class="form-text text-muted danger" *ngIf="ram && Conditionss.errors?.required">required error</small>
+                        </div>  
+                    </div> 
+                    <div class="modal-footer">
+                    <button type="submit" class="btn newbtn">Save</button>
+                    <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
+                    </div>
+                </div>
+            </form>       
+        </div>        
     </div> 
 
     <div class="modal fade" id="editdeal" [ngClass] = "{'show' : editdeal_dailog}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-              <div class="modal-dialog" role="document">
-                  <div class="modal-content">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
                    
-                          <div class="modal-header">
-                                  <h4 class="card-title">Edit Deal Details {{updatemydeal.dealId}}</h4>
-                              <button type="button" class="close"  (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                          </div>
-      
-                      <form (ngSubmit)="updatedeal(info)" #info="ngForm">
-                     
-                          <div class="modal-body">   
-                              <div class="card">         
-                                  <div class="card-body">
-                                      <!-- <div class="col-md-12">
-                                          <div class="field">
-                                                  <input 
-                                                  type="text" 
-                                                  placeholder="Deal Title" 
-                                                  name= "update_title"
-                                                  id = "update_title"
-                                                  [ngModel] ="updatemydeal.title"
-                                                  #update_title="ngModel" 
-                                                  required 
-                                                  >  
-                                                  <label for="update_title">Deal Title</label>
-                                          </div>
-                                          <div class="clearfix"></div>
-                                          <small class="form-text text-muted danger" *ngIf="update_title.errors?.required">required error</small>
-                                           <input type="hidden" name= "dealId" id = "dealId"
-                                      [(ngModel)] ="updatemydeal.dealId"
-                                      required="required">
-                                      </div>  -->
-
-                                      <div class="col-md-12">
-                                          <div class="field">
-                                                  <input 
-                                                  type="text" 
-                                                  placeholder="Deal Title" 
-                                                  name= "update_title"
-                                                  id = "update_title"
-                                                  [ngModel] ="updatemydeal.title"
-                                                  #update_title="ngModel" 
-                                                  required 
-                                                  >  
-                                                  <label for="update_title">Deal Title</label>
-                                          </div>
-                                          <div class="clearfix"></div>
-                                          <small class="form-text text-muted danger" *ngIf="update_title.errors?.required">required error</small>
-                                           <input type="hidden" name= "dealId" id = "dealId"
-                                      [(ngModel)] ="updatemydeal.dealId"
-                                      required="required">
-                                      </div>
-
-
-                                     
-                                      <div class="col-md-12 row">
-                                            <div class="col-md-6 radio-btn">
-                                              <label><input 
-                                                  type="radio" 
-                                                  name="optradio" 
-                                                 
-                                                  [value]="false"
-                                                  [(ngModel)] ="updatemydeal.neverExpire"
-                                                >Choose date
-                                              </label>
-                                            </div>
-                                            <div class="col-md-6 radio-btn">
-                                              <label>
-                                                  <input 
-                                                    type="radio"
-                                                    name="optradio" 
-                                                   
-                                                    [value]="true"
-                                                    [(ngModel)] ="updatemydeal.neverExpire"
-                                                  >Never Expire {{updatemydeal.neverExpire}}</label>
-                                            </div> 
-                                        </div>  
-                                      <div class="col-md-12 row">
-                                          <div class="col-md-6">
-                                            <div class="field">
-                                                <div class="form-group md-form">
-                                                  <label for="Start_date">Start Date</label>
-                                                  <input 
-                                                  type="date" 
-                                                  name= "Start_date"
-                                                  id = "Start_date"
-                                                  [(ngModel)] ="update_start_date"
-                                                  #Start_date="ngModel" 
-                                                  required 
-                                                  placeholder="Start Date"
-                                                  >
-                                                  <small class="form-text text-muted danger" *ngIf="Start_date.errors?.required">required error</small>
-                                                </div>
-                                              </div>
-                                          </div> 
-                                       
-                                      <div class="col-md-6">
-                                          <div class="field">
-                                              <div class="form-group md-form ">
-                                                <label for="End_date">End Date</label>
-                                                  <input
-                                                      class="effect-16 validate" 
-                                                      type="date" 
-                                                      [(ngModel)] ="update_end_date"
-                                                      name= "End_date"
-                                                      id = "End_date"
-                                                      #End_date="ngModel" 
-                                                      required 
-                                                      placeholder="End Date"
-                                                      >
-                                                  
-                                                  <small class="form-text text-muted danger" *ngIf="End_date.errors?.required">required error</small>
-                    
-                                              </div>
-                                          </div>
-                                      </div> 
-                                      </div>                                      
-                                      <div class="col-md-12">
-                                          <div class="field">
-                                                  <input 
-                                                  class="effect-16 validate" 
-                                                  type="text" 
-                                                  placeholder="Terms & Condition of your deal" 
-                                                  [ngModel] ="updatemydeal.conditions"
-                                                  name= "Condition"
-                                                  id = "Condition"
-                                                  #Condition="ngModel" 
-                                                  required 
-                                                  placeholder="required" 
-                                                 >
-                                                  <label for="Condition">Terms & Condition of your deal</label>
-                                          </div>
-                                         <div class="clearfix"></div>
-                                          <small class="form-text text-muted danger" *ngIf="Condition.errors?.required">required error</small>
-                                      </div>  
-                                  </div> 
-      
-                              </div>
-                          </div>
-                          <div class="modal-footer">
-                                <button type="submit" class="btn newbtn"  [disabled]="!info.valid">Save</button>
-                                <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
-                             
-                          </div>
-                      </form>
-                  </div>
-              </div>
-
+                <div class="modal-header">
+                        <h4 class="card-title">Edit Deal Details</h4>
+                        <button type="button" class="close"  (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+    
+                <form (ngSubmit)="updatedeal(info)" #info="ngForm">
+                    <div class="modal-body">   
+                        <div class="card">         
+                            <div class="card-body">
+                                <!-- <div class="col-md-12">
+                                    <div class="field">
+                                            <input 
+                                            type="text" 
+                                            placeholder="Deal Title" 
+                                            name= "update_title"
+                                            id = "update_title"
+                                            [ngModel] ="updatemydeal.title"
+                                            #update_title="ngModel" 
+                                            required 
+                                            >  
+                                            <label for="update_title">Deal Title</label>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <small class="form-text text-muted danger" *ngIf="update_title.errors?.required">required error</small>
+                                    <input type="hidden" name= "dealId" id = "dealId"
+                                [(ngModel)] ="updatemydeal.dealId"
+                                required="required">
+                                </div>  -->
+                                <div class="col-md-12">
+                                    <div class="field">
+                                            <input 
+                                            type="text" 
+                                            placeholder="Deal Title" 
+                                            name= "update_title"
+                                            id = "update_title"
+                                            [ngModel] ="updatemydeal.title"
+                                            #update_title="ngModel" 
+                                            required 
+                                            >  
+                                            <label for="update_title">Deal Title</label>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <small class="form-text text-muted danger" *ngIf="update_title.errors?.required">required error</small>
+                                    <input type="hidden" name= "dealId" id = "dealId"
+                                [(ngModel)] ="updatemydeal.dealId"
+                                required="required">
+                                </div>
+                                <div class="col-md-12 row">
+                                    <div class="col-md-6 radio-btn">
+                                        <label><input 
+                                            type="radio" 
+                                            name="optradio" 
+                                            
+                                            [value]="false"
+                                            [(ngModel)] ="updatemydeal.neverExpire"
+                                        >Choose date
+                                        </label>
+                                    </div>
+                                    <div class="col-md-6 radio-btn">
+                                        <label>
+                                            <input 
+                                            type="radio"
+                                            name="optradio" 
+                                            
+                                            [value]="true"
+                                            [(ngModel)] ="updatemydeal.neverExpire"
+                                            >Never Expire {{updatemydeal.neverExpire}}</label>
+                                    </div> 
+                                </div>  
+                                <div class="col-md-12 row">
+                                    <div class="col-md-6">
+                                    <div class="field">
+                                        <div class="form-group md-form">
+                                            <label for="Start_date">Start Date</label>
+                                            <!-- <input 
+                                            type="date" 
+                                            name= "Start_date"
+                                            id = "Start_date"
+                                            [(ngModel)] ="update_start_date"
+                                            #Start_date="ngModel" 
+                                            required 
+                                            placeholder="Start Date"
+                                            > -->
+                                            <div class="input-group">
+                                                    <input class="form-control" placeholder="yyyy-mm-dd" name="Start_date" [(ngModel)]="update_start_date" ngbDatepicker [dayTemplate]="customDay"
+                                                      [markDisabled]="isDisabled" #d4_Start_date="ngbDatepicker"  #Start_date="ngModel" 
+                                                      required s>
+                                                        <div class="input-group-append">
+                                                          <div class="input-group-text" (click)="d4_Start_date.toggle()">
+                                                            <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                                          </div>
+                                                        </div>
+                                                  </div>
+                                            <small class="form-text text-muted danger" *ngIf="Start_date.errors?.required">required error</small>
+                                        </div>
+                                        </div>
+                                    </div> 
+                                
+                                <div class="col-md-6" *ngIf = "updatemydeal.neverExpire == false">
+                                    <div class="field">
+                                        <div class="form-group md-form ">
+                                        <label for="End_date">End Date</label>
+                                            <!-- <input
+                                                class="effect-16 validate" 
+                                                type="date" 
+                                                [(ngModel)] ="update_end_date"
+                                                name= "End_date"
+                                                id = "End_date"
+                                                #End_date="ngModel" 
+                                                required 
+                                                placeholder="End Date"
+                                                > -->
+                                                <div class="input-group">
+                                                        <input class="form-control" placeholder="yyyy-mm-dd" name="End_date" [(ngModel)]="update_end_date" ngbDatepicker [dayTemplate]="customDay"
+                                                          [markDisabled]="isDisabled" #d5_End_date="ngbDatepicker"   #End_date="ngModel" 
+                                                          required >
+                                                            <div class="input-group-append">
+                                                              <div class="input-group-text" (click)="d5_End_date.toggle()">
+                                                                <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                                              </div>
+                                                            </div>
+                                                      </div>
+                                            <small class="form-text text-muted danger" *ngIf="End_date.errors?.required">required error</small>
+            
+                                        </div>
+                                    </div>
+                                </div> 
+                                </div>                                      
+                                <div class="col-md-12">
+                                    <div class="field">
+                                            <input 
+                                            class="effect-16 validate" 
+                                            type="text" 
+                                            placeholder="Terms & Condition of your deal" 
+                                            [ngModel] ="updatemydeal.conditions"
+                                            name= "Condition"
+                                            id = "Condition"
+                                            #Condition="ngModel" 
+                                            required 
+                                            placeholder="required" 
+                                            >
+                                            <label for="Condition">Terms & Condition of your deal</label>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <small class="form-text text-muted danger" *ngIf="Condition.errors?.required">required error</small>
+                                </div>  
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                            <button type="submit" class="btn newbtn"  [disabled]="!info.valid">Save</button>
+                            <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
+                            
+                    </div>
+                </form>
+            </div>
+         </div>
     </div> 
 

@@ -838,16 +838,16 @@
 								<div class="field">
 									<input 
 									class="form-control placetik" 
-									placeholder="{{edit_job_form.startDate | date: 'dd-MM-yyyy'}}"  
+									placeholder=" dd-MM-yyyy"  
 									name="startDate" 
-									[(ngModel)]="edit_job_form.startDate"
+									[(ngModel)]="edit_startDate"
 									ngbDatepicker 
 									id = "estartDate"
 									#ejStartDate="ngModel" 
 									[dayTemplate]="customDay"
 									required
 									[markDisabled]="isDisabled" #d4="ngbDatepicker">
-									<label for="estartDate">Start Date</label>
+									<label for="estartDate">Start Date {{edit_startDate}}</label>
 									<div class="input-group-append">
 										<div class="input-group-text" (click)="d4.toggle()">
 											<i class="fa fa-calendar" style="cursor: pointer;"></i>
@@ -920,9 +920,9 @@
 								<div class="field">
 									<input 
 										class="form-control placetik" 
-										placeholder="{{edit_job_form.endDate | date: 'dd-MM-yyyy'}}"  
+										placeholder="dd-MM-yyyy"  
 										name="endDate" 
-										[(ngModel)]="edit_job_form.endDate"
+										[(ngModel)]="edit_endDate"
 										ngbDatepicker 
 										[dayTemplate]="customDay"
 										id = "eendDate"

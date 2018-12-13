@@ -15,8 +15,8 @@
             </div>
   
             <ul class="tabbingdesign">
-              <li class="card-title  Registertab" (click) = "past_upcomming_event(2)">Upcoming Event</li>
-              <li class="card-title selected Suppliertab " (click) = "past_upcomming_event(1)">Past Event</li>
+              <li class="card-title selected Registertab" (click) = "past_upcomming_event(2)">Upcoming Event</li>
+              <li class="card-title  Suppliertab " (click) = "past_upcomming_event(1)">Past Event</li>
             </ul>
           </div>
           <div class="clearfix"></div>
@@ -31,7 +31,7 @@
                       </button>
                     </form>    
                 </div>
-                <button class="btn btn-small btn-link" (click)="twitterDailog = true" >
+                <button class="btn btn-small btn-link" (click)="showhidetwitterDailog(0)" >
                     <i class="material-icons"> add </i> 
                     <span>
                          <strong> Create New Event</strong>
@@ -107,12 +107,12 @@
                                       <td valign="top" align="center" width="40px"><i class="material-icons">access_time </i></td>
                                        <td valign="top">
                                         <p  *ngFor="let name of data.eventsDates">
-                                          Event Start: &nbsp;{{name.startDate | date}},  {{name.startTime | date :
+                                          Event Start: &nbsp;{{name.startDate}},  {{name.startTime | date :
                                             "shortTime" }}
                                         </p>
                                        
                                         <p *ngFor="let name of data.eventsDates">
-                                          Event End: &nbsp;{{name.endDate | date}}, 
+                                          Event End: &nbsp;{{name.endDate}}, 
                                                {{name.endTime | date : "shortTime" }} 
                                         </p>
                                       </td>
@@ -242,19 +242,33 @@
                    
                   </div>
                   <div class="col-sm-6">
-                    <div class="field">
-                            
-                                 <input type="text" name="inputtime" id="inputtime">
 
-                                  <!-- <input type="time" class="form-control"  [(ngModel)]="startTimee"  name="startTime" id="startTime"/> -->
-                                  
+                    <div class="inputheight">
+                                 <!-- <input type="time" class="form-control"  [(ngModel)]="startTimee"  name="startTime" id="startTime"/> -->
+<!--                                   
                                   <select class="selectwet" placeholder="Start Time" type="time" [(ngModel)]="startTimee"  id="startTime" name="startTime">
                                     <option *ngFor='let s of select_time.timing;let i=index' [value]='s.startTime'>{{s.startTime}}</option>
                                   </select>
-                                  <label for="inputtime">
-                                    start time
-                                  </label>
+                                  <input class="summary_eventType" type="text" name="inputtimestart" id="inputtimestart" placeholder="Start Time">
+                                 
                           
+                                  <label for="inputtimestart">
+
+                                    start time
+                                  </label> -->
+                          
+                                  <select class="form-control selectwet" style="margin-top:29px;" placeholder="Start Time" type="time" [(ngModel)]="startTimee"  id="startTime" name="startTime">
+                                      <option *ngFor='let s of select_time.timing;let i=index' [value]='s.startTime'>{{s.startTime}}</option>
+                                    </select>
+                                   
+                            
+                                    <label class="selectlabel" for="startTime">
+                                      start time
+                                    </label> 
+
+
+
+
                       </div>
                   </div>
                   <div class="col-sm-6">
@@ -296,11 +310,12 @@
                        <small class="form-text text-muted danger" >{{endDate}}</small>
                   </div>
                   <div class="col-sm-6">
-                       <div class="field">
-                        <select class="form-control" type="time" [(ngModel)]="endtime"  id="endTime" name="endTime">
+                       <div class="inputheight">
+                        <select class="selectwet" type="time" [(ngModel)]="endtime"  id="endTime" name="endTime">
                           <option *ngFor='let s of select_time.timing' [value]='s.endTime'>{{s.endTime}}</option>
                         </select>
-                         <label for="endTime">
+                          
+                         <label class="selectlabel" for="inputtimeend">
                           End Time
                         </label>
                         <!-- <input type="time"
@@ -448,7 +463,7 @@
         <div class="modal-content">
             <div class="modal-header text-center">
                 <h4 class="modal-title">Edit Event {{modelfield.eventId}}</h4>
-                <button type="button" class="close btn_mar_padd" (click) = "closeModel(list)">
+                <button type="button" class="close btn_mar_padd" (click) = "closeModel(data)">
                   <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -485,13 +500,15 @@
                         <label style="width:100%;"> Start Date  </label> 
                           <input class="form-control"  type="date" name="startDate" id="eventdate" [ngModel]="startDates" style="width:100%;">
                     </div> -->
+
                     <div class="form-group">
                        
                       <div class="field">
+
                           <!-- <p>{{startDates}} </p> placeholder="{{startDates}}" -->
                         
-                             <input  class="form-control placetik" 
-                                placeholder="{{startDates | date: 'dd-MM-yyyy'}}"  
+                             <input  class="form-control " 
+                                placeholder=" Start Date "  
                                 name="startDate" 
                                 id="startDate"
                                 [(ngModel)]="startDates" 
@@ -509,12 +526,12 @@
                     </div>
                   </div>  
                   <div class="col-sm-6">
-                      <div class="field martop0px">
-                        <select class="form-control" type="time" [(ngModel)]="startimee" #ele_startTime  id="startTime" name="startTime">
+                      <div class="inputheight">
+                        <select class="form-control selectwet" type="time" [(ngModel)]="startimee" #ele_startTime  id="startTime" name="startTime">
                           <option hidden [ngValue]="startimee">{{startimee}}</option>
                           <option *ngFor='let s of select_time.timing' [value]='s.startTime'  [ngValue]="startimee">{{s.startTime}}</option>
                         </select>
-                          <label for="startTime">
+                          <label class="selectlabel" for="startTime">
                           Start Time
                         </label>
                       </div>
@@ -527,10 +544,10 @@
                     </div>  -->
 
                     <div class="form-group">
-                      <label>End Date</label> 
+                      <label>End Date </label> 
                         <div class="input-group">
                             <!-- <p>{{startDates}} </p> placeholder="{{startDates}}" -->
-                          <input class="form-control placetik" placeholder="{{endDates | date: 'dd-MM-yyyy'}}"  name="endDate" [(ngModel)]="endDates" ngbDatepicker [dayTemplate]="customDay"
+                          <input class="form-control " placeholder="End Date "  name="endDate" [(ngModel)]="endDates" ngbDatepicker [dayTemplate]="customDay"
                             [markDisabled]="isDisabled" #d3_eventdate="ngbDatepicker">
                               <div class="input-group-append">
                                 <div class="input-group-text" (click)="d3_eventdate.toggle()">
@@ -541,12 +558,12 @@
                       </div>
                   </div>  
                   <div class="col-sm-6">
-                      <div class="field martop0px">
-                        <select class="form-control" plaeholder="End Time"    type="time" [(ngModel)]="endtime" #ele_endTime  id="endTime" name="endTime">
+                      <div class="inputheight">
+                        <select class="form-control selectwet" plaeholder="End Time"    type="time" [(ngModel)]="endtime" #ele_endTime  id="endTime" name="endTime">
                             <option hidden [ngValue]="endtime">{{endtime}}</option>
                           <option *ngFor='let s of select_time.timing' [value]='s.endTime'  [ngValue]="endtime" aria-placeholder="sadas">{{s.endTime}}</option>
                         </select>
-                               <label for="endTime">
+                               <label for="endTime" class="selectlabel">
                           End Time
                         </label>
                       </div>
@@ -700,7 +717,7 @@
             <div class="modal-footer">
               <button type="submit" class="btn newbtn"  >Save</button>
   
-              <button type="button" class="btn  newbtn newcancelbtn" (click) = "closeModel(list)">Cancel</button>
+              <button type="button" class="btn  newbtn newcancelbtn" (click) = "closeModel(data)">Cancel</button>
             </div>
         </div>
       </div>
@@ -711,3 +728,6 @@
   <div *ngIf='showLoader' style='top:0px;width:100%;height:100vh;z-index: 99999;position: absolute;background-color:rgba(0, 0, 0, 0.5)'>
     <h4 style="text-align:center;color:#fff;">Event is being created. Do not refresh or close the page....</h4>
   </div>
+
+
+  

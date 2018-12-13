@@ -202,24 +202,61 @@ this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/ap
  
 } 
 createdeals(createdeal){
-this.ram = true
+  this.ram = true
+ 
+  console.log(createdeal.value.neverExpire);
+  console.log( createdeal.value.neverExpire == true );
+
+ 
+   if(createdeal.value.neverExpire == true){
+    alert("true");
+
+    createdeal.value.Start_date =  createdeal.value.Start_date["year"]+'-'+createdeal.value.Start_date["month"]+'-'+createdeal.value.Start_date["day"]
+
+    const a = {
+      dealId: 0,
+      title: createdeal.value.title,
+      conditions: createdeal.value.Condition ,
+      startDate: createdeal.value.Start_date ,
+      endDate:   "2018-12-13T13:14:59.522Z" ,
+      neverExpire: createdeal.value.neverExpire
+  
+    }
+
+    this.create_deal_api(a)
+    createdeal.reset();
+   }else{
+    createdeal.value.Start_date =  createdeal.value.Start_date["year"]+'-'+createdeal.value.Start_date["month"]+'-'+createdeal.value.Start_date["day"]
+    createdeal.value.End_date =  createdeal.value.End_date["year"]+'-'+createdeal.value.End_date["month"]+'-'+createdeal.value.End_date["day"]
+    
+    const a = {
+      dealId: 0,
+      title: createdeal.value.title,
+      conditions: createdeal.value.Condition ,
+      startDate: createdeal.value.Start_date ,
+      endDate: createdeal.value.End_date ,
+      neverExpire: createdeal.value.neverExpire
+  
+    }
+
+    this.create_deal_api(a);
+    createdeal.reset();
+   }
+
+
+  
+
+  
+ 
+}
+
+
+create_deal_api(a){
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
- 
   headers.append('Accept', 'application/json')
   headers.append('Content-Type', 'application/json');
   headers.append("Authorization",'Bearer '+authToken);
-  const a = {
-    dealId: 0,
-    title: createdeal.value.title,
-    conditions: createdeal.value.Condition ,
-    startDate: createdeal.value.startdate ,
-    endDate: createdeal.value.EndDate ,
-    neverExpire: createdeal.value.neverExpire
-
-  }
-
-  console.log(a);
   this.http.post(this.url+'api/Supplier/createupdatedeals',a,{headers:headers}).subscribe(
     data =>{  
       
@@ -231,7 +268,7 @@ this.ram = true
 
 
       console.log(data.json());   
-createdeal.reset();
+//
       this.http.get(this.url+'api/Supplier/mydeals',{headers:headers}).subscribe(data =>{  
      
         this.recentmydeal = data.json();
@@ -245,7 +282,6 @@ createdeal.reset();
                     
       
       })
- 
 }
 openupdatedeal(data){
   
@@ -254,9 +290,19 @@ openupdatedeal(data){
   this.updatemydeal = data ;
   if(data.endDate != null){
     this.update_end_date = data.endDate.split('T')[0];
+
+    this.update_end_date =  { "year": parseInt(data.endDate.split('T')[0].split('-')[0])   , 
+                                    "month": parseInt(data.endDate.split('T')[0].split('-')[1])  ,
+                                    "day": parseInt(data.endDate.split('T')[0].split('-')[2])}
+
   }
   if(data.startDate != null){
     this.update_start_date =data.startDate.split('T')[0];
+
+    this.update_start_date =  { "year": parseInt(data.startDate.split('T')[0].split('-')[0])   , 
+                                    "month": parseInt(data.startDate.split('T')[0].split('-')[1])  ,
+                                    "day": parseInt(data.startDate.split('T')[0].split('-')[2])}
+
   }
  
   
@@ -270,7 +316,9 @@ updatedeal(info){
                     headers.append('Accept', 'application/json')
                     headers.append('Content-Type', 'application/json');
                     headers.append("Authorization",'Bearer '+authToken);
-                    
+                    info.value.Start_date =  info.value.Start_date["year"]+'-'+info.value.Start_date["month"]+'-'+info.value.Start_date["day"]
+                    info.value.End_date =  info.value.End_date["year"]+'-'+info.value.End_date["month"]+'-'+info.value.End_date["day"]
+                 
                     const upc = {
                       dealId: info.value.dealId,
                       title: info.value.update_title ,

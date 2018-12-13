@@ -178,8 +178,47 @@ export class EventListComponent implements OnInit {
       this.districtA();
       this.subr();
     })
-    this.past_upcomming_event(3);
+    this.past_upcomming_event(2);
     $.getScript('./assets/js/vendorsidebar.js');
+
+  
+      // $( window ).load(function() {
+        // $(".selectwet").each(function () {
+        //   $(this).change(function () {
+        //   createSummary();
+        //   });
+        //   });
+        //   function createSummary() {
+        //   var eventType = $("#startTime option:selected").text()
+        //   $(".summary_eventType").html(eventType);
+        //   }
+          
+      // });
+
+      // $('.selectwet').on("focus", function(){
+      //   $(".summary_eventType").focus();
+      // })
+      // $('.selectwet').on("change", function(){
+      //   $(".summary_eventType").val($(this).val());
+      // })
+      // $('.selectwet1').on("focus", function(){
+      //   $(".summary_eventType1").focus();
+      // })
+      // $('.selectwet1').on("change", function(){
+      //   $(".summary_eventType1").val($(this).val());
+      // })
+      $('.selectwet').on("focus", function(){
+        $(".selectlabel").addClass("bottomtik");
+      });
+
+      $('.selectwet').on("focusout", function(){
+        if($(this).val() === null){
+          $(".selectlabel").removeClass("bottomtik");
+        }
+      });
+      
+
+
     $(".Suppliertab").click(function () {
       $(".Suppliertab").addClass("selected");
       $(".Registertab").removeClass("selected");
@@ -188,6 +227,11 @@ export class EventListComponent implements OnInit {
       $(".Suppliertab").removeClass("selected");
       $(".Registertab").addClass("selected");
     });
+
+
+
+
+
   }
 
   @ViewChild('list') validationForm: FormGroup;
@@ -424,7 +468,7 @@ export class EventListComponent implements OnInit {
 
          console.log(this.objevent.startDate,this.objevent.endDate )
          var startDate = this.objevent.startDate
-         debugger
+       
          console.log( this.objevent.endDate)
         let events =
         {
@@ -444,18 +488,15 @@ export class EventListComponent implements OnInit {
           this.toastr.success("created  event sucessfully");
           this.showLoader = false;
           this.objevent = new EventsCreateUpdateVM();
-
-          this.past_upcomming_event(0)
+         // this.past_upcomming_event(0)
           this.twitterDailog = false;
-          //list.reset()
-
-
-
+          list.reset()
         }, error => {
           console.log(error)
          // console.log(error.json().capacity[0])
           this.toastr.error(error.json().capacity);
           this.showLoader = false;
+          list.reset()
         })
       })
     }
@@ -508,9 +549,18 @@ export class EventListComponent implements OnInit {
     this.subr();
     this.startimee = v.eventsDates[0].startTimeString;
     this.endtime = v.eventsDates[0].endTimeString;
-    this.startDates = v.eventsDates[0].startDate.split('T')[0];
-    //this.startDates = now.getFullYear() +'-'+  now.getMonth() + 1 +'-'+  now.getDate();
-    this.endDates = v.eventsDates[0].endDate.split('T')[0];
+    //this.startDates = v.eventsDates[0].startDate.split('T')[0];
+  
+    v.eventsDates[0].startDate =  { "year": parseInt(v.eventsDates[0].startDate.split('T')[0].split('-')[0])   , 
+                                    "month": parseInt(v.eventsDates[0].startDate.split('T')[0].split('-')[1])  ,
+                                    "day": parseInt( v.eventsDates[0].startDate.split('T')[0].split('-')[2])}
+
+     v.eventsDates[0].endDate   =  {"year": parseInt(v.eventsDates[0].endDate.split('T')[0].split('-')[0])   , 
+                                    "month": parseInt(v.eventsDates[0].endDate.split('T')[0].split('-')[1])  ,
+                                    "day": parseInt( v.eventsDates[0].endDate.split('T')[0].split('-')[2])}                    
+    this.startDates =  v.eventsDates[0].startDate;
+  
+    this.endDates = v.eventsDates[0].endDate  ;
     this.modelfield = v;
     this.objevent = v;
     //console.log(this.objevent);
@@ -527,8 +577,11 @@ export class EventListComponent implements OnInit {
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
-    console.log(data);
+    console.log(data.value);
+    data.value.startDate =  data.value.startDate["year"]+'-'+ data.value.startDate["month"]+'-'+ data.value.startDate["day"]
  
+    data.value.endDate =  data.value.endDate["year"]+'-'+ data.value.endDate["month"]+'-'+ data.value.endDate["day"]
+
     const editData = {
       eventId: data.value.eventId,
       eventTitle: data.value.Title,
@@ -694,9 +747,17 @@ export class EventListComponent implements OnInit {
 
 
   }
+  /// 0 = New, 1=Edit
+  showhidetwitterDailog(operationType){
+    if(operationType==0){
+      this.objevent=new EventsCreateUpdateVM();
+    }
+    this.twitterDailog = true
+  }
 
   closeModel(list) {
-
+    list.reset()
+  
     this.fileInput.nativeElement.value = "";
     this.eventupdaterDailog = false;
     //list.reset();

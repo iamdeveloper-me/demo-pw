@@ -8,6 +8,7 @@ import { apiService } from '../../shared/service/api.service';
 })
 
 export class GalleryComponent implements OnInit {
+   $.getScript('./assets/js/vendorsidebar.js');
   @ViewChild("fileInput") fileInput;
   gallery = { files: ''}
   fileToUpload:any;

@@ -5,7 +5,7 @@
   <div id="page-content-wrapper">
     <app-navemenu></app-navemenu>    
     <router-outlet></router-outlet> 
-    <div class="col-sm-12">
+    <div class="col-sm-12 mobilefixedcontainer">
       <div class="container-fluid viewallalbums">
         <div class="allport_row">
           <a routerLink="../../albumview" class="leftarrowbacklink"><i class="material-icons"> arrow_back_ios </i>
@@ -100,7 +100,6 @@
                       <span> <i class="fa fa-heart"></i>&nbsp;&nbsp;</span> 
                       </td>
                       <td *ngIf = "image.albumImageId == id ">
-                        
                           Business Cover
                       </td>
                      

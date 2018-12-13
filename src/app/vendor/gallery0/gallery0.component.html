@@ -1,5 +1,5 @@
 
-        <div class="container-fluid mobilefixedcontainer">  
+        <div class="container-fluid">  
   
             <div  class="col-sm-12 mar_bot_30px card martop0px create_portfolio" *ngIf = "portArray.length == 0" >    
               <div class="text-center headin_gally">
@@ -151,7 +151,7 @@
             </div>
         </div>  
       </div>  
-    </div>
+  </div>
     <form (ngSubmit)="createAlbum(Album)" #Album="ngForm"> 
       <div class="modal fade" [ngClass] = "{'show' : createalbum_dailog}"  id="createalbum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 

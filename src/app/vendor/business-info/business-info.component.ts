@@ -517,7 +517,7 @@ export class BusinessInfoComponent implements OnInit {
                     this.pageInitialize();
     } 
     
-          // switch_fbAvailable(e){
+    // switch_fbAvailable(e){
     //   if(e==true){
     //     this.modelfield.facebookURL="";
     //     this.disabletxtFburl=false;
@@ -525,26 +525,36 @@ export class BusinessInfoComponent implements OnInit {
     //     this.modelfield.facebookURL="None";
     //     this.disabletxtFburl=true;
     //   }
-    //     this.isValidUrl(this.modelfield.facebookURL,'Tw');
+    //     this.isValidUrl(this.modelfield.facebookURL,'Fb');
     //   }
 
     switch_fbAvailable(e){
-      if(e==true){
-  
-        if(this.modelfield.facebookURL=this.modelfield.facebookURL){
-          this.modelfield.facebookURL;
-         }else{
-          this.modelfield.facebookURL="";
-         }
-       // this.modelfield.facebookURL="";
-        this.disabletxtFburl=false;
-      }else{
-        // this.modelfield.facebookURL="None";
-        this.disabletxtFburl=true;
-      }
-        this.isValidUrl(this.modelfield.facebookURL,'Fb');
-      }
+    if(e==true){
 
+      if(this.modelfield.facebookURL=this.modelfield.facebookURL){
+        this.modelfield.facebookURL;
+       }else{
+        this.modelfield.facebookURL="None";
+       }
+     // this.modelfield.facebookURL="";
+      this.disabletxtFburl=false;
+    }else{
+      // this.modelfield.facebookURL="None";
+      this.disabletxtFburl=true;
+    }
+      this.isValidUrl(this.modelfield.facebookURL,'Fb');
+    }
+
+      //     switch_twitterAvailable(e){
+      // if(e==true){
+      //   this.modelfield.twitterURL="";
+      //   this.disabletxtTwurl=false;
+      // }else{
+      //   this.modelfield.twitterURL="None";
+      //   this.disabletxtTwurl=true;
+      // }
+      //  this.isValidUrl(this.modelfield.twitterURL,'Tw');
+      // }
 
     switch_twitterAvailable(e){
     if(e==true){
@@ -552,7 +562,7 @@ export class BusinessInfoComponent implements OnInit {
       if(this.modelfield.twitterURL=this.modelfield.twitterURL){
         this.modelfield.twitterURL;
        }else{
-        this.modelfield.twitterURL="";
+        this.modelfield.twitterURL="None";
        }
      // this.modelfield.twitterURL="";
       this.disabletxtTwurl=false;
@@ -562,6 +572,18 @@ export class BusinessInfoComponent implements OnInit {
     }
       this.isValidUrl(this.modelfield.twitterURL,'Tw');
     }
+
+      //     switch_googleAvailable(e){
+      // if(e==true){
+      //   this.modelfield.googleURL="";
+      //   this.disabletxtGoogeurl=false;
+      // }else{
+      //   this.modelfield.googleURL="None";
+      //   this.disabletxtGoogeurl=true;
+      // }
+      // this.isValidUrl(this.modelfield.googleURL,'Google');
+      // }
+
 
     switch_googleAvailable(e){
       if(e==true){
@@ -579,6 +601,19 @@ export class BusinessInfoComponent implements OnInit {
       }
       this.isValidUrl(this.modelfield.googleURL,'Google');
     }
+
+    //       switch_instaAvailable(e){
+    //   if(e==true){
+    //     this.modelfield.instalURL="";
+    //     this.disabletxtInstaUrl=false;
+    //   }else{
+    //     this.modelfield.instalURL="None";
+    //     this.disabletxtInstaUrl=true;
+    //   }
+    //  this.isValidUrl(this.modelfield.instalURL,'Insta');
+    //   }
+
+
     switch_instaAvailable(e){
       if(e==true){
         if(this.modelfield.instalURL=this.modelfield.instalURL){
@@ -594,6 +629,19 @@ export class BusinessInfoComponent implements OnInit {
       }
       this.isValidUrl(this.modelfield.instalURL,'Insta');
     }
+
+      //     switch_perfectWeddingAvailable(e){
+      // if(e==true){
+      //   this.modelfield.perfectWeddingURL="";
+      //   this.disabletxtOtherUrl=false;
+      // }else{
+      //   this.modelfield.perfectWeddingURL="None";
+      //   this.disabletxtOtherUrl=true;
+      // }
+      // this.isValidUrl(this.modelfield.perfectWeddingURL,'Other');
+      // }
+
+
     switch_perfectWeddingAvailable(e){
       if(e==true){
         if(this.modelfield.perfectWeddingURL=this.modelfield.perfectWeddingURL){

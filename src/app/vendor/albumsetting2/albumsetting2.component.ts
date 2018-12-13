@@ -161,6 +161,7 @@ constructor( public http: Http,public toastr: ToastrService ) {
           this.createColorPanel();
           console.log(this.colors)
         if(this.formdata['colorTags'] != ''){
+          debugger;
           this.formdata['colorTags'].forEach(element => {
             this.colors.forEach(el=>{
               if(element == el['colorName']){

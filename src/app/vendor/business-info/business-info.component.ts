@@ -1,3 +1,4 @@
+import { ProgressHttp } from 'angular-progress-http';
 import { CropperSettings, ImageCropperComponent } from 'ng2-img-cropper';
 import { Component, OnInit ,Input , ViewChild, NgZone, ElementRef, EventEmitter, Output,} from '@angular/core';
 import { Http,Headers } from '@angular/http';
@@ -49,6 +50,9 @@ export class BusinessInfoComponent implements OnInit {
   Description;
   twitter;
   instagram;
+  progress_bar:boolean = false;
+  progressPercentage:number = 0
+
   google;
   total;
   Businesname;
@@ -159,7 +163,9 @@ export class BusinessInfoComponent implements OnInit {
    })
   }
 
-  constructor(public http: Http,public toastr: ToastrService,
+  constructor(private _http: ProgressHttp,
+
+    public http: Http,public toastr: ToastrService,
     public translate: TranslateService ,private cservice: LoginServiceService, private router: Router 
     )
         {
@@ -233,7 +239,7 @@ export class BusinessInfoComponent implements OnInit {
                   formData.append(image.name,image)
                 }
               
-
+// Hemant
         this.http.post(this.uploadimage,formData,{headers:headers}).subscribe( (data)=>{
           
           this.fileid = data.json().filesId;
@@ -289,6 +295,42 @@ export class BusinessInfoComponent implements OnInit {
                });
            
               });
+
+              this._http.withUploadProgressListener(progress => {this.progress_bar = true; console.log(`Uploading ${progress.percentage}%`); this.closeModel('DescriptionDailog');this.progressPercentage = progress.percentage})
+              .withDownloadProgressListener(progress => { console.log(`Downloading ${progress.percentage}%`); })
+              .post(this.url+'api/ImageUploader/PortfolioUploader', formData,{headers: headers})
+              .subscribe((data)=>{
+                this.toastr.success(data.json().message);
+               //  infoo.form.reset();
+                let headers = new  Headers();
+                var authToken = localStorage.getItem('userToken');
+                headers.append('Accept', 'application/json')
+                headers.append('Content-Type', 'application/json');
+                headers.append("Authorization",'Bearer '+authToken);
+                this.http.get(this.url,{headers:headers}).subscribe(data =>{            
+                 
+                 
+                  this.imagee = data.json().files.path ;
+ 
+ 
+                  setTimeout(() => {
+                   this.imagecropDailog = false;
+                   }, 2000);
+                  if(!data.json().files)
+                  { 
+                    this.imagee = 'https://openclipart.org/download/247324/abstract-user-flat-1.svg'}
+                  else{ 
+                    this.imagee = data.json().files.path ;
+                 //  let objnavmenu = new NavemenuComponent(this.translate,this.http,this.cservice,this.router);
+                     this.updateHeaderImg();
+                   }
+ 
+                });
+            
+               });
+ 
+
+
         });
       }
     }

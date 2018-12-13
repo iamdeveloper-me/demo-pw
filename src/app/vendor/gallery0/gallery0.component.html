@@ -74,7 +74,9 @@
             <div class="modal-header text-center">
                 <h4 class="modal-title">Add images</h4>
                 <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>       
-              <div class="clearfix"></div>
+                <button type="button" (click)="bar = true">dfdgdg</button>       
+
+                <div class="clearfix"></div>
             </div>
             <div class="modal-body">
                 <div class="col-sm-12  text-center">
@@ -90,9 +92,9 @@
                                   <div class="col-md-12 col-lg-12 my-drop-zone">
                                     <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader"
                                       class="mb-3 text-center font-medium-5 text-uppercase grey ">
-                                      Add Image !
+                                      Add Image ! {{bar}}
                                     </div>
-
+                                   
                                      <div class="btnholdertik">
                                       <input type="file" class="form-control uploadbtnhidden" ng2FileSelect [uploader]="uploader"  multiple  >
                                       <button class="newbtn Choosefilebtn">Choose File</button>
@@ -146,7 +148,7 @@
                 </div>    
             </div>
           <div class="modal-footer text-center">
-                <button type="submit" class="btn newbtn"  (click)="uploadAll()" [disabled]="!uploader.getNotUploadedItems().length" >Save</button>&nbsp; 
+                <button type="submit" class="btn newbtn"  (click)="uploadAll() " [disabled]="!uploader.getNotUploadedItems().length" >Save</button>&nbsp; 
                 <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
             </div>
         </div>  
@@ -180,3 +182,34 @@
 
       </div>
     </form>  
+
+
+
+
+    <div class="modal fade" [ngClass] = "{'show' : progress_bar}" id="uploadphoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title">Add images</h4>
+            
+            </div>
+            <div class="modal-body">
+              <div class="progress "  >
+                <div class="progress-bar" role="progressbar" [style.width.%]="progressPercentage" [attr.aria-valuenow]="progressPercentage" aria-valuemin="0" aria-valuemax="100">{{progressPercentage}}%</div>
+              </div> 
+              <p style="text-align:center;">Uploading images. Do not refresh or close</p>
+            </div>
+          <div class="modal-footer text-center">
+              
+            </div>
+        </div>  
+      </div>  
+    </div>
+
+
+
+
+
+
+
+

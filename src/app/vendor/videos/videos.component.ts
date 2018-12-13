@@ -30,6 +30,7 @@ export class VideosComponent implements OnInit {
   video: string = "https://www.youtube.com/embed/CD-E-LDc384"
   basicplan:number;
     Addvediodetail_dailog = false;
+    loader = false;
     
     videoForm: FormGroup;
 
@@ -207,6 +208,8 @@ export class VideosComponent implements OnInit {
                 console.log(res.json())
                 this.video_all_data = res.json();
                 this.video_total =  this.video_all_data.length
+
+                this.loader =  true
                 
           })
   //   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');

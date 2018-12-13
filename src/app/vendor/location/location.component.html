@@ -9,6 +9,8 @@
     </div>
     <div id="page-content-wrapper">
         <app-navemenu></app-navemenu>
+        <div class="col-sm-12 nopadd mobilefixedcontainer">  
+        <div class="clearfix"></div>    
             <ul class="nav nav-tabs tabbingdesign">
                 <li class="active">
                     <a data-toggle="tab" href="#home">Main Branch</a>
@@ -17,10 +19,9 @@
                     <a data-toggle="tab" href="#menu1">Other Branches</a>
                 </li>
             </ul>
-            <div class="tab-content">
+            <div class="tab-content nopadd">
                 <div id="home" class="tab-pane fade in active">
-                    <section id="user-profile">
-                        <div class="col-sm-12 nopadd mobilefixedcontainer">      
+                    <section id="user-profile"> 
                             <div class="custom-form col-sm-4" *ngFor="let data of location_Array;let i=index"  >
                                 <div *ngIf='i==0'>
                                     <div class="card martop10px" >
@@ -213,12 +214,10 @@
                                             </div>
                                         </div>
                             </div>
-                        </div>
                     </section>
                 </div>
                 <div id="menu1" class="tab-pane fade">
                     <section id="user-profile" class="">
-                    <div class="col-sm-12 nopadd mobilefixedcontainer">
 
                       
 
@@ -425,11 +424,11 @@
                                             </div>
                                         </div>
                         </div>
-                    </div>
                     </section>
                 </div>
             </div>
     </div>
+</div>
 </div>
 <router-outlet></router-outlet>
 <form (ngSubmit)="update__googlemap(info,address_modelfield)" #info="ngForm">   

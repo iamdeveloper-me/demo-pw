@@ -424,7 +424,7 @@ export class EventListComponent implements OnInit {
 
          console.log(this.objevent.startDate,this.objevent.endDate)
          var startDate = this.objevent.startDate
-         debugger
+       
          console.log( this.objevent.endDate)
         let events =
         {
@@ -445,17 +445,18 @@ export class EventListComponent implements OnInit {
           this.showLoader = false;
           this.objevent = new EventsCreateUpdateVM();
 
-          this.past_upcomming_event(0)
+         // this.past_upcomming_event(0)
           this.twitterDailog = false;
           //list.reset()
 
 
-
+          list.reset()
         }, error => {
           console.log(error)
          // console.log(error.json().capacity[0])
           this.toastr.error(error.json().capacity);
           this.showLoader = false;
+          list.reset()
         })
       })
     }
@@ -696,7 +697,7 @@ export class EventListComponent implements OnInit {
   }
 
   closeModel(list) {
-
+    list.reset()
     this.fileInput.nativeElement.value = "";
     this.eventupdaterDailog = false;
     //list.reset();

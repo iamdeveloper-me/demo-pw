@@ -119,6 +119,7 @@ if(this.num == 0){
     // console.log(this.selectDelete)
 }
   ngOnInit() {
+    this.deletIcon = false
     $.getScript('./assets/js/inbox.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
@@ -235,7 +236,6 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
             this.historyArr = data.json()  ; 
             this.historyArr.forEach(element => {
               element['checked'] = false;
-              element['messageStatus'] = 2;
 
             });
             this.all_msg = this.historyArr.length;
@@ -297,7 +297,6 @@ this.deletIcon = false
             this.historyArr = data.json()  ; 
             this.historyArr.forEach(element => {
               element['checked'] = false;
-              element['messageStatus'] = 3;
 
             });
             this.stared_msg = this.historyArr.length;
@@ -439,10 +438,9 @@ this.deletIcon = false
    if(this.result.length != 0){
     this.hservice.delete(this.result).subscribe(( data )  =>  
     {this.toastr.success(data.json().message)
-      setTimeout(() => {
+      this.deletIcon = false
         this.ngOnInit();
         
-      }, 300);
     },error => 
     console.log(error) // error path
    )
@@ -452,9 +450,15 @@ this.deletIcon = false
 
 
   //  Change Route for name click
-  changeRoute(id){
-this.route.navigate(['vendor/msg',id])
-this.markRead(id) 
+  changeRoute(msg_bundle){
+    if(msg_bundle['replyTo'] == 0){
+      this.markRead(msg_bundle['messageId']) 
+      this.route.navigate(['vendor/msg',msg_bundle['messageId']])
+
+    }else{
+      this.markRead(msg_bundle['replyTo']) 
+      this.route.navigate(['vendor/msg',msg_bundle['replyTo']]) 
+    }
   }
   
 }

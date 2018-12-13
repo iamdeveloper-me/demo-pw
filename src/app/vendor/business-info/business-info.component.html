@@ -804,12 +804,12 @@
 
 
                         </div>
-                        <div class="progress nopadd col-sm-11 col-10" *ngIf= "progress== true" >
-                                <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                                   aria-valuemin="0" aria-valuemax="100" [style.width]="total + '%'">
-                        {{total}}
-                                </div>
-                        </div>
+                        <div class="progress "  >
+                                <!-- <div class="progress-bar" role="progressbar" [style.width.%]="progressPercentage" [attr.aria-valuenow]="progressPercentage" aria-valuemin="0" aria-valuemax="100">{{progressPercentage}}%</div> -->
+
+                      {{progressPercentage}}
+                      {{progress_bar}}
+                            </div>
                         
                     <!-- <div class="progress nopadd col-sm-11 col-10" *ngIf= "progress== true" >
                       <div 

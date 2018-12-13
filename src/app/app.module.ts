@@ -7,6 +7,7 @@ import {DatePipe} from '@angular/common';
 import { ImageCropperModule } from 'ng2-img-cropper';
 
 import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.component';
+import { ProgressHttpModule } from 'angular-progress-http';
 
 
 //import { NgProgressModule } from 'ngx-progressbar';
@@ -397,6 +398,8 @@ export function getAuthServiceConfigs() {
 
   ],
     imports: [
+        ProgressHttpModule
+,
        // NgProgressModule,
         ReactiveFormsModule,
         CustomFormsModule,

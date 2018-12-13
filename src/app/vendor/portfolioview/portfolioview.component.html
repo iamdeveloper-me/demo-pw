@@ -208,3 +208,32 @@
             </div>  
         </div>    
     </div>  -->
+
+
+
+    <div class="modal fade" [ngClass] = "{'show' : progress_bar}" id="uploadphoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header text-center">
+                  <h4 class="modal-title">Add images</h4>
+              
+              </div>
+              <div class="modal-body">
+                <div class="progress "  >
+                  <div class="progress-bar" role="progressbar" [style.width.%]="progressPercentage" [attr.aria-valuenow]="progressPercentage" aria-valuemin="0" aria-valuemax="100">{{progressPercentage}}%</div>
+                </div> 
+                <p style="text-align:center;">Uploading images. Do not refresh or close</p>
+              </div>
+            <div class="modal-footer text-center">
+                
+              </div>
+          </div>  
+        </div>  
+      </div>
+  
+  
+  
+  
+  
+  
+  

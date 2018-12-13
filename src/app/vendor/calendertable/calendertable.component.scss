@@ -79,6 +79,8 @@
     border-radius: 50%;
   }
   .d-lg-block{display:inline-block!important;}
+
+  .dblock{display:block!important;}
   .navbar-brand span{
     font-size: 14px;
     display: inherit;
@@ -278,8 +280,8 @@ margin-left:0px;
 }
 .input-group-append{
     position: absolute;
-    bottom: 7px;
-    right: 14px;
+    bottom: 5px;
+    right: 0px;
     z-index: 9;
 }
 .form-group{
@@ -527,7 +529,12 @@ margin-left:0px;
     }
 
 
+.modal-body{
+  max-height:460px!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
 
+}
 #wrapper.toggled #sidebar-wrapper {
     width: 0;
 }
@@ -543,8 +550,13 @@ margin-left:0px;
 }
 @media(max-width: 767px){
 .d-lg-block{display:none!important;}
+
+.dblock{display:none!important;}
      .modal-content{
      max-width:90%;
+     }
+     .mobilemarright{
+     margin-right:10px;
      }
     .callbutton{
   display:block;
@@ -566,6 +578,10 @@ margin-left:0px;
 }
 #wrapper {
     padding-left: 250px;
+}
+
+.upcominglisthomepage{
+box-shadow:0px 5px 15px #e5e5e5
 }
 }
 
@@ -684,6 +700,150 @@ margin-left:0px;
     font-size: 13pt !important;
   }
 
+
+  
+button.whitetext.btn.btn-success {
+    border-radius: 50px;
+    color: #ffffff;
+    margin-bottom: 15px;
+    padding: 5px 20px !important;
+}
+button.whitetext.btn.btn-danger {
+    border-radius: 50px !important;
+    color: #ffffff !important;
+    border-radius: 50px !important;
+    margin-bottom: 15px;
+    padding: 5px 20px !important;
+}
+
+
+
+
+
+.field {
+  display: flex;
+  flex-flow: column-reverse;
+  margin-top:10px;
+  position:relative;
+}
+/**
+* Add a transition to the label and input.
+* I'm not even sure that touch-action: manipulation works on
+* inputs, but hey, it's new and cool and could remove the 
+* pesky delay.
+*/
+
+ .field label, .field input, .field select {
+  transition: all 0.2s;
+  touch-action: manipulation;
+}
+
+ .field  input, .field select{
+  font-size: 1.2em;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  font-family: inherit;
+  -webkit-appearance: none;
+  border-radius: 0;
+  padding: 0 0 10px 0;
+  cursor: text;
+}
+
+ .field input:focus,   .field select:focus {
+  outline: 0;
+  border-bottom: 1px solid #f0118c;
+}
+
+ .field label {
+  text-transform: uppercase;
+  margin-bottom: 0px;
+  letter-spacing: 0.05em;
+}
+/**
+* Translate down and scale the label up to cover the placeholder,
+* when following an input (with placeholder-shown support).
+* Also make sure the label is only on one row, at max 2/3rds of the
+* field—to make sure it scales properly and doesn't wrap.
+*/
+ .field input:placeholder-shown + label, .field select:placeholder-shown + label {
+  cursor: text;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: left bottom;
+  transform: translate(0, 2.125rem);
+  transition: .5s all;
+}
+/**
+* By default, the placeholder should be transparent. Also, it should 
+* inherit the transition.
+*/
+::-webkit-input-placeholder {
+  opacity: 0;
+  transition: inherit;
+   transition: .5s all;
+}
+/**
+* Show the placeholder when the input is focused.
+*/
+ .field input:focus::-webkit-input-placeholder,  .field select:focus::-webkit-input-placeholder {
+  opacity: 0;
+  color:#f0118c;
+}
+ .field input::placeholder{
+  color:#fff!important;
+ }
+/**
+* When the element is focused, remove the label transform.
+* Also, do this when the placeholder is not shown, i.e. when 
+* there's something in the input at all.
+*/
+ .field input:not(:placeholder-shown) + label,
+ .field input:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
+}
+
+ .field select:not(:placeholder-shown) + label,
+ .field select:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
+}
+
+.jobli li{
+  width:100%;
+  clear: both!important;
+  margin-bottom: 10px;
+}
+button.callbutton {
+    border-radius: 50px;
+    padding: 2px 20px !important;
+}
+
+
+.jobicon{
+  display: none;
+}
+
+@media only screen and (max-width: 767px) {
+  .upcominglisthomepage[_ngcontent-c1] ul[_ngcontent-c1] {
+    padding-left: 0px;
+  }
+  .mobilefixedcontainer {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.jobliicon{
+  display: none !important;
+}
+
+.jobicon{
+  display: block;
+}
+
+}
+
   .placetik::-webkit-input-placeholder { 
     color:#75787d;
   }
@@ -696,3 +856,4 @@ margin-left:0px;
   .placetik:-moz-placeholder { 
     color:#75787d;
   }
+

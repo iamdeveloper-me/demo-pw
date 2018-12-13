@@ -94,6 +94,7 @@ export class DashboardComponent implements OnInit {
  // supArray:string[];  
       ngOnInit()  {
         
+
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         

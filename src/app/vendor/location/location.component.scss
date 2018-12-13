@@ -123,7 +123,7 @@
 
 
 
-.tikform.form-group{
+.tikform.field{
     margin-bottom:10px!important;
     }
     .tikform.form-group label{margin-bottom:0px!important;}
@@ -680,6 +680,7 @@ float: left;
 #photo_ved .card-title{
     color: #000 !important;
 }
+
 #photo_ved .modal-content{
     text-align: left;
     padding: 10px;
@@ -860,6 +861,9 @@ overflow:hidden!important;
   border-radius: 0;
   padding: 0 0 10px 0;
   cursor: text;
+  background:transparent;
+  box-shadow: none;
+  z-index: 999;
 }
 .field select option{
   font-size: 16px;
@@ -934,6 +938,9 @@ overflow:hidden!important;
 .img-section iframe{
    width:100%;
    height:300px;
+}
+#photo_ved .modal-content{
+    max-width: 100%!important;
 }
 .swal2-popup .swal2-styled{
   padding:5px!important;

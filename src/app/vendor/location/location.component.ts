@@ -430,7 +430,7 @@ export class LocationComponent implements OnInit {
       type: 'info',
       showCancelButton: true,
       confirmButtonClass: 'btn-default',
-      confirmButtonText: 'Yes, Upgrade Now!',
+      confirmButtonText: 'Yes, Upgrade!',
       cancelButtonText: "Remind Me Later!",
       }).then(res=>{
         if(res.value==true){

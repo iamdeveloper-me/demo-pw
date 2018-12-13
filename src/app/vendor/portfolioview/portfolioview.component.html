@@ -124,16 +124,16 @@
                                     <td><strong>{{ item?.file?.name }}</strong></td>
                                     <td>   <img [src]="urlll" height="200" #item.progress id='item.progress'></td>
                                   
-                                    <td></td>
+                                   <!--  <td></td> -->
                                     <td >
-                                        <div class="progress" style="margin-bottom: 0;width: 205px;">
+                                       <!--  <div class="progress" style="margin-bottom: 0;width: 205px;">
                                             <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
-                                        </div>
-                                    </td>
+                                        </div> -->
+                                    
                                       <button type="button" class="btn btn-raised btn-danger btn-sm" (click)="item.remove()">
                                       &times;
                                     </button>
-                             
+                                  </td>
                                   </tr>
                                   <!-- <input type='file' (change)="previewFile($event)"> -->
                                  

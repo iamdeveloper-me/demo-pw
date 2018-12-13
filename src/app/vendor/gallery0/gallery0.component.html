@@ -74,8 +74,8 @@
             <div class="modal-header text-center">
                 <h4 class="modal-title">Add images</h4>
                 <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>       
-                <button type="button" (click)="bar = true">dfdgdg</button>       
-
+           <!--      <button type="button" (click)="bar = true">dfdgdg</button>       
+ -->
                 <div class="clearfix"></div>
             </div>
             <div class="modal-body">
@@ -92,7 +92,7 @@
                                   <div class="col-md-12 col-lg-12 my-drop-zone">
                                     <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader"
                                       class="mb-3 text-center font-medium-5 text-uppercase grey ">
-                                      Add Image ! {{bar}}
+                                      Add Image <!-- ! {{bar}} -->
                                     </div>
                                    
                                      <div class="btnholdertik">
@@ -115,11 +115,11 @@
                                         <tr *ngFor="let item of uploader.queue">
                                            
                                           <td><strong>{{ item?.file?.name }}</strong></td>
-                                          <td >
+                                        <!--   <td >
                                               <div class="progress" style="margin-bottom: 0;width: 205px;">
                                                   <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
                                               </div>
-                                          </td>
+                                          </td> -->
                                           <td nowrap>
                                          
                                             <button type="button" class="btn btn-raised btn-danger btn-sm" (click)="item.remove()">

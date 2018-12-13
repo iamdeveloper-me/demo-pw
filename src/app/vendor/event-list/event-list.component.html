@@ -237,7 +237,6 @@
                             </div>
                           </div>
                     </div>
-                    <div class="clearfix"></div>
                     
                    
                   </div>
@@ -257,7 +256,7 @@
                                     start time
                                   </label> -->
                           
-                                  <select class="form-control selectwet" style="margin-top:29px;" placeholder="Start Time" type="time" [(ngModel)]="startTimee"  id="startTime" name="startTime">
+                                  <select class="form-control selectwet" placeholder="Start Time" type="time" [(ngModel)]="startTimee"  id="startTime" name="startTime">
                                       <option *ngFor='let s of select_time.timing;let i=index' [value]='s.startTime'>{{s.startTime}}</option>
                                     </select>
                                    
@@ -311,11 +310,11 @@
                   </div>
                   <div class="col-sm-6">
                        <div class="inputheight">
-                        <select class="selectwet" type="time" [(ngModel)]="endtime"  id="endTime" name="endTime">
+                        <select class="form-control selectwet1" type="time" [(ngModel)]="endtime"  id="endTime" name="endTime">
                           <option *ngFor='let s of select_time.timing' [value]='s.endTime'>{{s.endTime}}</option>
                         </select>
                           
-                         <label class="selectlabel" for="inputtimeend">
+                         <label class="selectlabel1" for="inputtimeend">
                           End Time
                         </label>
                         <!-- <input type="time"
@@ -327,6 +326,7 @@
                   
                       </div>
                   </div> 
+                  <div class="clearfix"></div>
                   <div class="col-sm-6">
                       <div class="field">
                             <input type="text" class="form-control" 
@@ -341,40 +341,42 @@
                   </div>
                  
                   <div class="col-sm-6">
-                    <div class="field">
-                        <select class="form-control" id="Country" [(ngModel)]="objevent.countryId" name="country_id" (change)="districtA()">
+                    <div class="inputheight">
+                        <select class="form-control selectwet2" id="Country" [(ngModel)]="objevent.countryId" name="country_id" (change)="districtA()">
                           <option *ngFor="let country of arra ;let c =index" [value]="country.countryId">
                             {{country.countryName }}
                           </option>
                         </select>
-                        <label for="Country">Country</label>
+                        <label class="selectlabel2" for="Country">Country</label>
                     </div>
                   </div> 
+                   <div class="clearfix"></div>
                   <div class="col-sm-6">
-                        <div class="field">
-                          <select name="district" class="form-control" [(ngModel)]="objevent.districtId" name="dist_id" (change)="subr()">
+                      <div class="inputheight">
+                          <select name="district" class="form-control selectwet3" [(ngModel)]="objevent.districtId" name="dist_id" (change)="subr()">
                             <option *ngFor="let dist of district ;let d =index" type="text" id="{{dist.name}}" checked name="dist"
                               placeholder="Country" [value]="dist.districtId" required>
                               {{dist.name }}
                             </option>
                           </select>
-                          <label for="dist_id">District</label>
+                          <label class="selectlabel3" for="dist_id">District</label>
                       </div>
                       <small class="form-text text-muted danger" >{{districtId_valid}}</small>
                   </div>
                   <div class="col-sm-6">
-                      <div class="field">
-                          <select class="form-control" [(ngModel)]="objevent.suburbId" id="sub_id" name="sub_id" (change)="subr()">
+                      <div class="inputheight">
+                          <select class="form-control selectwet4" [(ngModel)]="objevent.suburbId" id="sub_id" name="sub_id" (change)="subr()">
                             <!-- (change)="country($event)" -->
                             <option *ngFor="let sub of suburb ;let s =index" type="text" id="{{sub.name}}" checked name="sub"
                               placeholder="Suburb" [value]="sub.suburbId" required>
                               {{sub.name }}
                             </option>
                           </select>
-                          <label for="sub_id">Suburb</label>
+                          <label class="selectlabel4" for="sub_id">Suburb</label>
                       </div>
                       <small class="form-text text-muted danger" >{{suburbId_valid}}</small>
                   </div>
+                   <div class="clearfix"></div>
                   <div class="col-sm-6">
                       <div class="field">
                           <input type="text" class="form-control"
@@ -404,6 +406,7 @@
                           </div>
                           <small class="form-text text-muted danger" >{{capacity}}</small>
                   </div>
+                   <div class="clearfix"></div>
                   <div class="col-sm-12">
                     <div class="field">
                             <input type="text" class="form-control" 
@@ -417,18 +420,18 @@
                     </div>
                     <small class="form-text text-muted danger" >{{eventDescriptions}}</small> 
                   </div>
-                  <div class="col-sm-6 date_picker">
-                      <div class="field">
+                  <div class="col-sm-6">
+                      <div class="inputheight">
                             <select 
                             [(ngModel)]="objevent.entry" 
-                            class="effect-16 validate marbot0px"
+                            class="form-control selectwet5"
                              name="entry" 
                              id="entry"
                              (keypress)="entrys($event)" class="form-control" >
                               <option value='Paid'>Paid</option>
                               <option value='Free'>Free</option>
                             </select>
-                        <label for="entry">Event Type</label>
+                        <label class="selectlabel5" for="entry">Event Type</label>
                       </div>
                         <small class="form-text text-muted danger" >{{entry}}</small>
                   </div>
@@ -462,7 +465,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h4 class="modal-title">Edit Event {{modelfield.eventId}}</h4>
+                <h4 class="modal-title">Edit Event <!-- {{modelfield.eventId}} --></h4>
                 <button type="button" class="close btn_mar_padd" (click) = "closeModel(data)">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -531,7 +534,7 @@
                           <option hidden [ngValue]="startimee">{{startimee}}</option>
                           <option *ngFor='let s of select_time.timing' [value]='s.startTime'  [ngValue]="startimee">{{s.startTime}}</option>
                         </select>
-                          <label class="selectlabel" for="startTime">
+                          <label class="selectlabel bottomtik" for="startTime">
                           Start Time
                         </label>
                       </div>
@@ -559,11 +562,11 @@
                   </div>  
                   <div class="col-sm-6">
                       <div class="inputheight">
-                        <select class="form-control selectwet" plaeholder="End Time"    type="time" [(ngModel)]="endtime" #ele_endTime  id="endTime" name="endTime">
-                            <option hidden [ngValue]="endtime">{{endtime}}</option>
+                        <select class="form-control selectwet1" plaeholder="End Time"    type="time" [(ngModel)]="endtime" #ele_endTime  id="endTime" name="endTime">
+                          <option hidden [ngValue]="endtime">{{endtime}}</option>
                           <option *ngFor='let s of select_time.timing' [value]='s.endTime'  [ngValue]="endtime" aria-placeholder="sadas">{{s.endTime}}</option>
                         </select>
-                               <label for="endTime" class="selectlabel">
+                          <label for="endTime" class="selectlabel1 bottomtik">
                           End Time
                         </label>
                       </div>
@@ -585,7 +588,7 @@
                        <small class="form-text text-muted danger" *ngIf="venueName.errors?.required">required error</small>
                     </div> 
                   <div class="col-sm-6">
-                      <div class="field">
+                      <div class="inputheight">
                             <!-- <select class="effect-16 validate" id="Country" [(ngModel)]="objevent.countryId" name="country_id" (change)="country($event)">
                               <option *ngFor="let country of arra ;let c =index" type="text" id="{{country.countryName}}" checked name="countryName"
                                 placeholder="Country" [value]="country.countryId" required>
@@ -594,36 +597,36 @@
                               </option>
             
                             </select> -->
-                            <select  class="form-control"  id="country_id" [(ngModel)]="objevent.countryId" #ele_country  name="country_id" (change)="districtA()">
+                            <select  class="form-control selectwet2"  id="country_id" [(ngModel)]="objevent.countryId" #ele_country  name="country_id" (change)="districtA()">
                               <option *ngFor="let country of arra" [value]="country.countryId">
                                   {{country.countryName }}
                               </option>
                           </select>
 
-                        <label for="country_id">Country</label>
+                        <label class="selectlabel2 bottomtik" for="country_id">Country</label>
                       </div>
                   </div>
                     <div class="clearfix"></div>
                   <div class="col-sm-6">
-                    <div class="field">
+                    <div class="inputheight">
                      
-                        <select name="district" id="dist_id" class="form-control" #ele_distid [(ngModel)]="objevent.districtId" name="dist_id" (ngModelChange)="subr()">
+                        <select name="district" id="dist_id" class="form-control selectwet3 " #ele_distid [(ngModel)]="objevent.districtId" name="dist_id" (ngModelChange)="subr()">
                           <option *ngFor="let dist of district" [value]="dist.districtId">
                             {{dist.name }}
                           </option>
                         </select>
-                         <label for="dist_id">District</label>
+                         <label class="selectlabel3 bottomtik" for="dist_id">District</label>
                     </div>
                   </div>
                   <div class="col-sm-6">
-                    <div class="field">
-                        <select class="form-control" [(ngModel)]="objevent.suburbId" #ele_suburb name="sub_id" id="sub_id">
+                    <div class="inputheight">
+                        <select class="form-control selectwet4" [(ngModel)]="objevent.suburbId" #ele_suburb name="sub_id" id="sub_id">
                           <!-- (change)="country($event)" -->
                           <option *ngFor="let sub of suburb ;let s =index" [value]="sub.suburbId">
                             {{sub.name }}
                           </option>
                         </select>
-                      <label for="sub_id">Suburb</label>
+                      <label class="selectlabel4 bottomtik"  for="sub_id">Suburb</label>
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -671,7 +674,7 @@
                     <small class="form-text text-muted danger" *ngIf="eventDescription.errors?.required">required error</small>
                   </div> 
                   <div class="col-sm-6">
-                      <div class="field">
+                      <div class="inputheight">
                             <!-- <input type="text" class="effect-16 validate" required="required" 
                             [ngModel]="modelfield.entry" 
                             name="entry"
@@ -685,7 +688,7 @@
           
                             <span class="focus-border"></span>
                           </div> -->
-                              <select class="form-control"
+                              <select class="form-control selectwet5"
                               [(ngModel)]="modelfield.entry" 
                               name="entry" 
                               id="entry"
@@ -693,7 +696,7 @@
                                  <option value='Paid'>Paid</option>
                                 <option value='Free'>Free</option>
                               </select>
-                               <label for="entry">Entry Type</label>
+                               <label class="selectlabel5 bottomtik"  for="entry">Entry Type</label>
                       </div> 
                               <small class="form-text text-muted danger" >{{entry}}</small>
                     </div>

@@ -218,6 +218,61 @@ export class EventListComponent implements OnInit {
       });
       
 
+      $('.selectwet1').on("focus", function(){
+        $(".selectlabel1").addClass("bottomtik");
+      });
+
+      $('.selectwet1').on("focusout", function(){
+        if($(this).val() === null){
+          $(".selectlabel1").removeClass("bottomtik");
+        }
+      });
+
+
+
+  $('.selectwet2').on("focus", function(){
+        $(".selectlabel2").addClass("bottomtik");
+      });
+
+      $('.selectwet2').on("focusout", function(){
+        if($(this).val() === null){
+          $(".selectlabel2").removeClass("bottomtik");
+        }
+      });
+
+      $('.selectwet3').on("focus", function(){
+        $(".selectlabel3").addClass("bottomtik");
+      });
+
+      $('.selectwet3').on("focusout", function(){
+        if($(this).val() === null){
+          $(".selectlabel3").removeClass("bottomtik");
+        }
+      });
+
+        $('.selectwet4').on("focus", function(){
+        $(".selectlabel4").addClass("bottomtik");
+      });
+
+      $('.selectwet4').on("focusout", function(){
+        if($(this).val() === null){
+          $(".selectlabel4").removeClass("bottomtik");
+        }
+      });
+
+
+        $('.selectwet5').on("focus", function(){
+        $(".selectlabel5").addClass("bottomtik");
+      });
+
+      $('.selectwet5').on("focusout", function(){
+        if($(this).val() === null){
+          $(".selectlabel5").removeClass("bottomtik");
+        }
+      });
+
+
+
 
     $(".Suppliertab").click(function () {
       $(".Suppliertab").addClass("selected");

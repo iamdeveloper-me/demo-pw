@@ -214,6 +214,7 @@ export class BusinessInfoComponent implements OnInit {
       }, 900);
     });
 
+ 
   }
   
   //businessinformation 

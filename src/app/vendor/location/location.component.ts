@@ -46,18 +46,18 @@ interface Location {
 export class LocationComponent implements OnInit {
 
 
-    $(window).load(function () {
-        $(".selectwet").each(function () {
-          $(this).change(function () {
-          createSummary();
-        });
-    });
-    function createSummary() {
-      var eventType = $("#ctl00_Search1_ddlCategory option:selected").text()
-      $(".summary_eventType").html(eventType);
-      addWidth();
-      }
-    });
+    // $(window).load(function () {
+    //     $(".selectwet").each(function () {
+    //       $(this).change(function () {
+    //       createSummary();
+    //     });
+    // });
+    // function createSummary() {
+    //   var eventType = $("#ctl00_Search1_ddlCategory option:selected").text()
+    //   $(".summary_eventType").html(eventType);
+    //   addWidth();
+    //   }
+    // });
 
   @ViewChild('f') floatingLabelForm: NgForm;
   @ViewChild('vform') validationForm: FormGroup;

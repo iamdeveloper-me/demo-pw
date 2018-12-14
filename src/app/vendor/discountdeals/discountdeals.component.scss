@@ -549,6 +549,52 @@ h4.card-title {
 }
 
 
+.inputheight{
+  display: flex;
+  flex-flow: column-reverse;
+  margin-top:10px;
+  position: relative;
+}
+.inputheight select{
+  font-size: 1.2em;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  font-family: inherit;
+  -webkit-appearance: none;
+  border-radius: 0;
+  padding: 0 0 10px 0;
+  cursor: text;
+  margin-top:20px;
+  touch-action: manipulation;
+}
+
+.inputheight select:focus {
+  outline: 0;
+  border-bottom: 1px solid #f0118c;
+}
+
+ .inputheight label{
+  transition: all 0.2s;
+  touch-action: manipulation;
+}
+
+.selectlabel{
+    position: absolute;
+    bottom: 0px;
+}
+.selectlabel.bottomtik{
+    bottom: 34px;
+}
+.selectlabel1{
+    position: absolute;
+    bottom: 0px;
+}
+.input-group-append {
+    position: absolute;
+    z-index: 999;
+    right: 0;
+    bottom: 3px;
+}
 
 @media (max-width: 1024px) {
 #wrapper.toggled #sidebar-wrapper {
@@ -599,7 +645,10 @@ h4.card-title {
 
 @media (max-width: 768px) {
 
-
+.funkyradio {
+  margin-bottom: 10px;
+  width:100%;
+}
 
  .boxcolumn{margin:0px auto;}
   .boxcolumn .card h1, .boxcolumn .card a{display:none;}
@@ -788,10 +837,14 @@ h4.card-title {
 }
 
 
+
+
+
 .field {
   display: flex;
   flex-flow: column-reverse;
   margin-top:0px;
+  position:relative;
 }
 /**
 * Add a transition to the label and input.
@@ -815,6 +868,9 @@ h4.card-title {
   padding: 0 0 10px 0;
   cursor: text;
   width:100%;
+  box-shadow:none;
+  background:transparent;
+  z-index:999;
 }
 .radio-btn{
   margin-top: 20px;

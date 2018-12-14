@@ -1,149 +1,153 @@
 <div id="wrapper" class="toggled">
-    <div id="sidebar-wrapper" >
-        <app-vendorsidebar></app-vendorsidebar>
-    </div>
-    <div id="page-content-wrapper">    
-  <div class="container-fluid nopadd">
-    <app-navemenu></app-navemenu> 
-    <router-outlet></router-outlet>
-    <div class="container-fluid mobilefixedcontainer">
-      <div class="content"></div>
-  
-  
-    <div class="row gulterbot20px"  *ngFor="let data of HomePage;let i=index ">
-      <div class="col-12 boxcolumn">
-        <div class="card">
-            <a class="backicon" (click)="navigateTo()">
-              <i _ngcontent-c6="" class="material-icons"> arrow_back_ios </i>
-            </a>
-            <h1>{{page_title}}</h1>
-  
-          <div class="row">
-               
-              <div class="roundedicon">
-            <img src="https://s3.us-east-2.amazonaws.com/prefect-image/home1.png" class="img-responsive">
-        </div>
-              <div class="codecontainermobile">
-                <input class="vouchercodeinput" placeholder="Voucher Code" type="text">
-                <button class="btn btnbluecode">Enter</button>
-              </div>
-          </div>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-    <form (ngSubmit)="prmocode(code)" #code="ngForm" style="width:100%;">
-      <div class="col-12 boxcolumn">
-          <div class="card">
-              <h1>Where do you want to advertise</h1>
-     
-                <div class="form-group">
-                        <div class="input-effect form-group md-form">
-                        <select  class="effect-16 validate"  id="Country" [(ngModel)]="country.countryId"  name="country_id" (change)="country($event)">
-                                <option *ngFor="let country of arra ;let c =index" [value]="country.countryId">
-                                    {{country.countryName }}
-                                </option>
-                            </select>
-                        <label>Country {{address_modelfield}}</label>
-                        <span class="focus-border"></span>
-                        </div>
+  <div id="sidebar-wrapper">
+    <app-vendorsidebar></app-vendorsidebar>
+  </div>
+  <div id="page-content-wrapper">
+    <div class="container-fluid nopadd">
+      <app-navemenu></app-navemenu>
+      <router-outlet></router-outlet>
+      <div class="container-fluid mobilefixedcontainer">
+        <div class="content"></div>
+
+
+        <div class="row gulterbot20px" *ngFor="let data of HomePage;let i=index ">
+          <div class="col-12 boxcolumn">
+            <div class="card">
+              <a class="backicon" (click)="navigateTo()">
+                <i _ngcontent-c6="" class="material-icons"> arrow_back_ios </i>
+              </a>
+              <h1>{{page_title}}</h1>
+
+              <div class="row">
+
+                <div class="roundedicon">
+                  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/home1.png" class="img-responsive">
                 </div>
-                            
-            
+                <div class="codecontainermobile">
+                  <input class="vouchercodeinput" placeholder="Voucher Code" type="text">
+                  <button class="btn btnbluecode">Enter</button>
+                </div>
+              </div>
+            </div>
           </div>
-      </div>
-      <div class="clearfix"></div>
-      <div class="col-sm-8 col-12 boxcolumn paddbottomfixed">
-        <div class="card tableless100">
-            <h1 class="text-left">Pick the period you want to promote your business</h1>
-          <table _ngcontent-c5="" class="table table-striped">
-                <thead _ngcontent-c5="">
+          <div class="clearfix"></div>
+          <form (ngSubmit)="prmocode(code)" #code="ngForm" style="width:100%;">
+            <div class="col-12 boxcolumn">
+              <div class="card">
+                <h1>Where do you want to advertise</h1>
+
+                <div class="form-group">
+                  <div class="input-effect form-group md-form">
+                    <select required class="effect-16 validate" id="Country" [(ngModel)]="country.countryId" name="country_id"
+                      (change)="country($event)">
+                      <option *ngFor="let country of arra ;let c =index" [value]="country.countryId">
+                        {{country.countryName }}
+                      </option>
+                    </select>
+                    <label>Country {{address_modelfield}}</label>
+                    <span class="focus-border"></span>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-8 col-12 boxcolumn paddbottomfixed">
+              <div class="card tableless100">
+                <h1 class="text-left">Pick the period you want to promote your business</h1>
+                <table _ngcontent-c5="" class="table table-striped">
+                  <thead _ngcontent-c5="">
                     <tr _ngcontent-c5="">
-                         <th _ngcontent-c5="">#weekNo</th>
-                         <th _ngcontent-c5="">Month</th>
-                        <!--<th _ngcontent-c5="">Year</th>--> 
-                        <th _ngcontent-c5="">Period</th>
-                        <th _ngcontent-c5="" class="text-center">Availability</th>
-                        <th _ngcontent-c5="" class="text-center">cost</th>
-                        <th _ngcontent-c5="" class="text-center">Select</th>
-                      </tr>
-                </thead>
-                <tbody _ngcontent-c5="">
-                  <tr _ngcontent-c5="" *ngFor="let list of data.adAvailableSlots;let i=index ">
+                      <th _ngcontent-c5="">#weekNo</th>
+                      <th _ngcontent-c5="">Month</th>
+                      <!--<th _ngcontent-c5="">Year</th>-->
+                      <th _ngcontent-c5="">Period</th>
+                      <th _ngcontent-c5="" class="text-center">Availability</th>
+                      <th _ngcontent-c5="" class="text-center">cost</th>
+                      <th _ngcontent-c5="" class="text-center">Select</th>
+                    </tr>
+                  </thead>
+                  <tbody _ngcontent-c5="">
+                    <tr _ngcontent-c5="" *ngFor="let list of data.adAvailableSlots;let i=index ">
                       <th class="serialcolum" scope="row">{{list.weekNo}}</th>
                       <td class="monthcolumn">{{list.month}}</td>
-                     <!-- <td>{{list.year }}</td> -->
+                      <!-- <td>{{list.year }}</td> -->
                       <td>{{list.week }}</td>
                       <td class="text-center">{{list.availability }}</td>
                       <td class="text-center">{{list.cost }}</td>
                       <td class="text-center">
-                        <button class="btn btnbluecode btnradius20px" [disabled]='list.isSelected' type="submit" (click)= "package(list)" >Add to Cart </button>
+                        <button class="btn btnbluecode btnradius20px" [disabled]='list.isSelected' type="submit"
+                          (click)="package(list)">Add to Cart </button>
                       </td>
-                  </tr>
-                </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="col-sm-4  col-12 boxcolumn mobilefixedcart">
-        <div class="card">
-          <strong class="mobilebtncartless padbott">Select Detailed</strong>
-          <div class="clearfix"></div>
-       
-              <div class="codecontainer">
-                  <input class="vouchercodeinput" name="voucherCode" placeholder="Voucher Code" [(ngModel)]="code.voucherCode"  type="text">
-                  <input   name="adTypeId" [(ngModel)]="data.adTypeId"  type="hidden">
-                  <button class="btn btnbluecode" type="submit" >Enterme</button>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              <div class="clearfix"></div>
-              <div class="col-sm-12 nopadd">
-                <table class="table table-striped">
+            </div>
+            <div class="col-sm-4  col-12 boxcolumn mobilefixedcart">
+              <div class="card">
+                <strong class="mobilebtncartless padbott">Select Detailed</strong>
+                <div class="clearfix"></div>
+
+                <div class="codecontainer">
+                  <input class="vouchercodeinput" name="voucherCode" placeholder="Voucher Code" [(ngModel)]="code.voucherCode"
+                    type="text">
+                  <input name="adTypeId" [(ngModel)]="data.adTypeId" type="hidden" required>
+                  <button class="btn btnbluecode" type="submit">Enterme</button>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-12 nopadd">
+                  <table class="table table-striped">
                     <tbody>
-                      <tr  *ngFor="let selectlist of selecteditem;let a=index " >
-                      
+                      <tr *ngFor="let selectlist of selecteditem;let a=index ">
+
                         <td> WK-{{selectlist.week}}</td>
                         <!-- <td class="redtext">All Booked</td> -->
-                        <td>$  {{selectlist.cost}}
-                            <button type="button" class="close" aria-label="Close" (click)="deletepackage(selecteditem,a)">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
+                        <td>$ {{selectlist.cost}}
+                          <button type="button" class="close" aria-label="Close" (click)="deletepackage(selecteditem,a)">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
                         </td>
-                      
-                        
-                        
+
+
+
                       </tr>
-                        <tr>
+                      <tr>
                         <td><strong>Total</strong></td>
                         <td>$ {{sum}}</td>
                       </tr>
                     </tbody>
-                </table>
+                  </table>
                   <div class="clearfix"></div>
-                <a routerLink="../../vendor/payment-selection" class="btn inblock textwhite btn-success" >
-                  Proceed to Payment
-                </a>
-                 
-                   
-                 
-               
+                  <!-- routerLink="../../vendor/payment-selection" -->
+                  <button class="btn inblock textwhite btn-success" [disabled]="!btnFalse" (click)="route()">
+                    <a style="color:white" routerLink="../../vendor/payment-selection">Proceed to Payment </a>
+                  </button>
+
+
+
+
+                </div>
+
               </div>
-         
+            </div>
+          </form>
+
         </div>
+
+
+
+        <div class="clearfix"></div>
+
+
+
+
+
+
+
+
       </div>
-    </form>
-    
-    </div>
-  
-   
-  
-    <div class="clearfix"></div>
-  
-  
-  
-  
-      
-  
-  
-  
     </div>
   </div>
-  </div>
-  </div>
+</div>

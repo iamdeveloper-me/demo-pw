@@ -21,11 +21,11 @@
                         <table class="table table table-bordered table-striped">
                             <tr>
                                 <th>Current Plan </th>
-                                <td> {{MainData.title}}</td>
+                                <td *ngIf="MainData.title != ''"> {{MainData.title}}</td>
                               </tr>
                           <tr>
                               <th>Selected Plan  </th>
-                              <td> {{WhichPlan.title}}</td>
+                              <td *ngIf="WhichPlan.title != ''"> {{WhichPlan.title}}</td>
                           </tr>
                           <tr>
                               <th>Plan Duration </th> 
@@ -51,10 +51,10 @@
             <div class="col-sm-12">
               <table class="table table-striped">
                   <tr>
-                      <th>Promotion :{{ MainData.title }}</th>
+                      <th *ngIf="MainData.title != ''" >Promotion :{{ MainData.title }}</th>
                     </tr>
                 <tr>
-                  <th>Voucher Code :{{MainData.voucherCode}}</th>
+                  <th *ngIf="MainData.voucherCode != ''">Voucher Code :{{MainData.voucherCode}}</th>
                 </tr>
                 <tr>
                   <th>Country :Mauritius</th>

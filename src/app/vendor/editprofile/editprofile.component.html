@@ -68,7 +68,7 @@
 					        <p *ngIf="membershipdetail?.payFrequency == 1">Plan Name: <b>{{membershipdetail?.pricingPlan.title}}</b>  (Annually)</p>
                             <p>Start date : {{membershipdetail?.startDateString}}</p>
                             <p class="col_green">End date : {{membershipdetail?.endDateString}} </p>
-                            <p><a routerLink="../membership" class="borbtn"> Upgrade now </a></p>
+                            <p><a routerLink="../membership" class="borbtn"> Go to Planner </a></p>
                         </div>
                     </div>
                     <div class="col-md-12 mem_detail">
@@ -231,7 +231,7 @@
                 </div>
                 <div class="modal-footer">
 
-                    <button type="submit" class="btn newbtn" [disabled]="!f1.valid" (click)="updateData(f1)">Save</button>
+                    <button type="submit" class="btn newbtn" [disabled]="!f1.valid" >Save</button>
 
                     <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
                 </div>

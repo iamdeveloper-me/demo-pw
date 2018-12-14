@@ -45,21 +45,23 @@
 									<hr class="hr-light">
 									<div class="row">
 										<div class="col-md-12">
-											<div class="col-md-3 marbot15px" *ngFor='let cf of customFields'>
+											<div class="col-md-6 marbot15px" *ngFor='let cf of customFields'>
 												<div class="col-md-12">
 													<label>
 														<!-- <input type="checkbox" [(checked)]='cf.isSelect' (change)='cf.isSelect?false:true' [value]='cf.isEnable' [(ngModel)]='cf.isSelect'  /> -->
-														{{cf.name}} <br />
+														<strong>{{cf.name}}</strong> <br />
 														<span>
-															{{cf.SelectedOptionValue}}
+															 {{cf.SelectedOptionValue}} <!--<span *ngIf='cf.fieldType==6' (click)='getSelectOptions(cf)'>More...</span> -->
 														</span>
 													</label>
-													<button class="btn newbtn" (click)='getSelectOptions(cf)'>
-														Select
-													</button>
 												</div>
+												<button class="btn newbtn" (click)='getSelectOptions(cf)'>
+													Select
+												</button>
 											</div>
+										
 										</div>
+										
 									</div>
 								</div>
 							</div>
@@ -68,9 +70,11 @@
 						 aria-labelledby="myModalLabel">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content mobminheight">
-									<div class="modal_head text-center">
+									<div class="modal-header text-center">
 										<h4 class="modal-title"><strong> Please Select Option</strong> </h4>
-										<button type="button" class="close" (click)="closeCustomDialog()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<button type="button" class="close" (click)="closeCustomDialog()" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
 										<div class="clearfix"></div>
 									</div>
 									<div class="modal-body">
@@ -79,19 +83,21 @@
 												<div *ngIf='cfo.fieldType===5'>
 												<label (click)='seveCustomField(cfo,"5")'>
 													<input id="enum_answer_{{cfo.customFieldId}}" [value]='cfo.key' [checked]='cfo.isSelect' type="radio" name="cfo">
-													{{cfo.displayText}}
+													{{cfo.displayText}} 
 												</label>
 												</div>
 												<div *ngIf='cfo.fieldType!==5'>
 														<label>
-																<input id="enum_answer_{{cfo.customFieldId}}" (click)='seveCustomField("null","0")' [(ngModel)]='cfo.isSelect' [checked]='cfo.isSelect' type="checkbox" name="cfo">
+																<input id="enum_answer_{{cfo.customFieldId}}" (change)='seveCustomField(cfo,"6")' [(ngModel)]='cfo.isSelect' [checked]='cfo.isSelect' type="checkbox" name="cfo">
 																{{cfo.displayText}}
 															</label>
 												</div>
 											</div>
 										</div>
-										<div class="btn newbtn">Save</div>
-										<div class="btn newbtn newcancelbtn" (click)='closeModel("customDialog")'>Cancel</div>
+									</div>
+									<div class="modal-footer text-center">
+										<div class="btn newbtn" style="display:none">Save</div>
+										<div class="btn newbtn newcancelbtn" (click)='closeModel("customDialog")'>Close</div>
 									</div>
 								</div>
 							</div>
@@ -109,13 +115,14 @@
  role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content mobminheight">
-			<div class="modal_head text-center">
-				<h4 class="modal-title"><strong> Please Select Service</strong> </h4>
+			<div class="modal-header text-center">
+				<h4 class="modal-title text-center"><strong> Please Select Service</strong> </h4>
 				<button type="button" class="close" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<div class="clearfix"></div>
 			</div>
+			<div *ngIf="cropperupload">
 			<div class="modal-body">
-				<div class="col-sm-12  text-center mobnopadd" *ngIf="cropperupload">
+				<div class="col-sm-12  text-center mobnopadd">
 					<div class="clearfix"></div>
 					<div class="ratio-btns">
 						<div class="col-md-12 text-center" style="cursor:pointer" *ngFor="let enum of services">
@@ -126,14 +133,14 @@
 							</label>
 						</div>
 					</div>
-					<div class="col-md-offlset-3 col-md-6">
+					
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<div class="modal-footer text-center">
 						<button class="btn newbtn" (click)='SaveIntoDb()'>Save</button>
 						<button class="btn newbtn newcancelbtn" (click)="closeModel('serviceDialog')">Cancel</button>
 					</div>
-				</div>
-			</div>
-			<div class="modal-footer text-center">
-
 			</div>
 		</div>
 	</div>

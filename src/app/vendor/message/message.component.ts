@@ -59,6 +59,8 @@ export class MessageComponent implements OnInit {
   result = []
   selectLength = 0
   arrayLength:number;
+  by_default_img: '../../../assets/img/logo_icon.png'
+  num:number = 0
   constructor(private formBuilder: FormBuilder,public toastr: ToastrService ,public route: Router,private elRef: ElementRef, private modalService: NgbModal, private inboxService: InboxService, private hservice: MessageService) {
     this.mail = this.inboxService.inbox.filter((mail: Mail) => mail.mailType === 'Inbox');
     this.message = this.inboxService.message.filter((message: Message) => message.mailId === 4)[0];
@@ -70,14 +72,36 @@ export class MessageComponent implements OnInit {
   
   onSelectionChange(entry_id) {
     
-    if(entry_id['checked']){
-      this.deletIcon = false
-      entry_id['checked'] = false;
-    }else{
-      this.deletIcon = true
-      entry_id['checked'] = true;
+
+
+
+
+if(entry_id['checked']){
+  entry_id['checked'] = false;
+  this.num = this.num - 1
+
+}else{
+  entry_id['checked'] = true;
+  this.deletIcon = true;
+  this.num = this.num + 1
+  if(this.num == 0){
+    this.deletIcon = false
+  
+  }
 }
 
+this.historyArr.forEach(ele=>{
+  if(ele['checked'] == true){
+   if(this.num == 0){
+     this.deletIcon = false
+   }
+  }
+  
+})
+
+if(this.num == 0){
+  this.deletIcon = false
+}
     // this.selectDelete.push(entry_id);
     
 
@@ -95,6 +119,7 @@ export class MessageComponent implements OnInit {
     // console.log(this.selectDelete)
 }
   ngOnInit() {
+    this.deletIcon = false
     $.getScript('./assets/js/inbox.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
@@ -211,9 +236,11 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
             this.historyArr = data.json()  ; 
             this.historyArr.forEach(element => {
               element['checked'] = false;
+
             });
             this.all_msg = this.historyArr.length;
             this.arrayLength =  this.historyArr.length
+this.deletIcon = false
 
             console.log(this.historyArr)
             this.loader = true
@@ -242,6 +269,8 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
             });
             this.unread_msg = this.historyArr.length;
             this.arrayLength =  this.historyArr.length
+            this.deletIcon = false
+
 
             console.log(this.historyArr)
             this.loader = false
@@ -268,9 +297,13 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
             this.historyArr = data.json()  ; 
             this.historyArr.forEach(element => {
               element['checked'] = false;
+
             });
             this.stared_msg = this.historyArr.length;
             this.arrayLength = this.historyArr.length;
+            this.deletIcon = false
+
+
             console.log(this.historyArr)
             this.loader = false
 
@@ -405,7 +438,9 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
    if(this.result.length != 0){
     this.hservice.delete(this.result).subscribe(( data )  =>  
     {this.toastr.success(data.json().message)
-      this.ngOnInit();
+      this.deletIcon = false
+        this.ngOnInit();
+        
     },error => 
     console.log(error) // error path
    )
@@ -415,8 +450,15 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
 
 
   //  Change Route for name click
-  changeRoute(id){
-this.route.navigate(['vendor/msg',id])
+  changeRoute(msg_bundle){
+    if(msg_bundle['replyTo'] == 0){
+      this.markRead(msg_bundle['messageId']) 
+      this.route.navigate(['vendor/msg',msg_bundle['messageId']])
+
+    }else{
+      this.markRead(msg_bundle['replyTo']) 
+      this.route.navigate(['vendor/msg',msg_bundle['replyTo']]) 
+    }
   }
   
 }

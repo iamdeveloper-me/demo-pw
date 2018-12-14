@@ -169,11 +169,12 @@ changePassword_form = false;
     this.personal_data_update = false;
     this.http.post(this.updateurl,update,{headers:headers}).subscribe(
       data =>{ 
-        this.vendor = data.json();
+        this.toastr.success(data.json()["message"]
+);
+       
          this.ngOnInit();
-         this.toastr.success("Profile Update Sucessfully");
     },error=>{
-      console.log(error);
+      console.log(error); 
       this.toastr.error("Profile Not Update!");
     });
   }

@@ -1,10 +1,13 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { apiService } from '../../shared/service/api.service';
-import { Http,Headers } from '@angular/http';
+import { Headers, Http } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
+import { ProgressHttp } from 'angular-progress-http';
+
+import { HttpEventType, HttpResponse, } from '@angular/common/http';
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 @Component({
   selector: 'app-gallery0',
@@ -13,18 +16,21 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 })
 export class Gallery0Component implements OnInit {
   @ViewChild("fileInput") fileInput;
+  bar = false;
   private getportfolio: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myportfolio'
   private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/';
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader'
   lodar = false;
   basicplane;
-  constructor(   public toastr: ToastrService,private apiService : apiService ,public http: Http, private router: Router ) { }
-  portArray:any = [];
+  progress_bar:boolean = false
+  constructor(   public toastr: ToastrService,private apiService : apiService ,public http: Http, private router: Router ,private _http: ProgressHttp) { }
+  portArray:any  [];
   portfolio:any = [];
   albumArray:any = [];
   uploadphoto_dailog = false;
   createalbum_dailog = false;
+  progressPercentage:number = 0
   
   uploader: FileUploader = new FileUploader({
     url: URL,
@@ -121,7 +127,7 @@ export class Gallery0Component implements OnInit {
          
     //this.lodar = true;
      const formData = new FormData();
-
+      //this.bar = true 
    
      for(let file of this.uploader.queue){
      formData.append(file['some'].name,file['some'])
@@ -132,35 +138,80 @@ export class Gallery0Component implements OnInit {
      let headers = new  Headers();
      var authToken = localStorage.getItem('userToken');
      headers.append("Authorization",'Bearer '+authToken);
-     this.http.post(this.url+'api/ImageUploader/PortfolioUploader',formData,{headers:headers})
-       .subscribe(data =>{ 
-                           this.toastr.success(data.json().message);
-                           this.uploadphoto_dailog = false; 
-                           this.router.navigate(['../vendor/portfolioview'])
+    //  this._http.post(this.url+'api/ImageUploader/PortfolioUploader',formData,{headers:headers})
+    //    .subscribe(data =>{ 
+    //                        this.toastr.success(data.json().message);
+    //                        this.uploadphoto_dailog = false; 
+    //                       //  this.router.navigate(['../vendor/portfolioview'])
                             
-                         },(error)=>{
-                           console.log(error);
-                           swal({
-                             title:  error._body.split('[')[1].split(']')[0],
-                           text: "can upload only 5",
-                           type: "warning",
-                           showCancelButton: true,
-                           confirmButtonClass: "btn-default",
-                           confirmButtonText: "Yes",
-                           cancelButtonText: "No",
-                           }).then((res)=>{
-                             console.log(res);
-                             if(res.value===true){
+    //                      }
+    //                      ,(error)=>{
+    //                        console.log(error);
+    //                        swal({
+    //                          title:  error._body.split('[')[1].split(']')[0],
+    //                        text: "can upload only 5",
+    //                        type: "warning",
+    //                        showCancelButton: true,
+    //                        confirmButtonClass: "btn-default",
+    //                        confirmButtonText: "Yes",
+    //                        cancelButtonText: "No",
+    //                        }).then((res)=>{
+    //                          console.log(res);
+    //                          if(res.value===true){
                               
-                                 this.router.navigate(['../vendor/membership'])
-                             }else{ this.router.navigate(['../vendor/portfolioview'])}
+    //                              this.router.navigate(['../vendor/membership'])
+    //                          }else{ this.router.navigate(['../vendor/portfolioview'])}
                          
-                            },error=>{
-                              alert(JSON.stringify(error));
-                           })
-                             return;
+    //                         },error=>{
+    //                           alert(JSON.stringify(error));
+    //                        })
+    //                          return;
                           
-                         });
+    //                      },
+    //                      event =>{
+    //                       if (event.type === HttpEventType.UploadProgress) {
+    //                         // This is an upload progress event. Compute and show the % done:
+    //                         const percentDone = Math.round(100 * event.loaded / event.total);
+    //                         console.log(`File is ${percentDone}% uploaded.`);
+    //                       } else if (event instanceof HttpResponse) {
+    //                         console.log('File is completely uploaded!');
+    //                       }
+    //                      }
+    //                     );
+
+    this._http.withUploadProgressListener(progress => {this.progress_bar = true; console.log(`Uploading ${progress.percentage}%`);this.closeModel(); this.progressPercentage = progress.percentage})
+        .withDownloadProgressListener(progress => { console.log(`Downloading ${progress.percentage}%`); })
+        .post(this.url+'api/ImageUploader/PortfolioUploader', formData,{headers: headers})
+        .subscribe((response) => {
+          this.progress_bar = false;
+          this.toastr.success(response.json().message);
+                               //  this.uploadphoto_dailog = false; 
+                                 this.router.navigate(['../vendor/portfolioview'])
+                                  
+                               }
+                               ,(error)=>{
+                                 console.log(error);
+                                 swal({
+                                   title:  error._body.split('[')[1].split(']')[0],
+                                 text: "can upload only 5",
+                                 type: "warning",
+                                 showCancelButton: true,
+                                 confirmButtonClass: "btn-default",
+                                 confirmButtonText: "Yes",
+                                 cancelButtonText: "No",
+                                 }).then((res)=>{
+                                   console.log(res);
+                                   if(res.value===true){
+                                    
+                                       this.router.navigate(['../vendor/membership'])
+                                   }else{ this.router.navigate(['../vendor/portfolioview'])}
+                               
+                                  },error=>{
+                                    alert(JSON.stringify(error));
+                                 })
+                                   return;
+                                
+        });
                       
     
   }

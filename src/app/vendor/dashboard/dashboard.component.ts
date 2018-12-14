@@ -94,6 +94,7 @@ export class DashboardComponent implements OnInit {
  // supArray:string[];  
       ngOnInit()  {
         
+
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         
@@ -138,7 +139,7 @@ export class DashboardComponent implements OnInit {
 
 
                    this.add = this.vendor.vendorLocations[0].mapAddress;
-                  this.noPhone = this.vendor.vendorLocations[0].locationPhones.length;
+                  this.noPhone = this.vendor.vendorLocations[0].locationPhones[0].phoneNumber.length;
                   //  console.log(this.vendor.vendorLocations[0].locationPhones[0].phoneNumber);
                  
                   if(this.vendor.vendorLocations[0].locationPhones.length > 1){
@@ -177,54 +178,7 @@ export class DashboardComponent implements OnInit {
     
                  });
                 
-      
-                 this.http.get(this.VendorDashboard,{headers:headers}).subscribe(
-                    data =>{  console.log(data.json().profileCompletion);
-                              console.log(data.json().profileCompletion.total);
-                    
-                          this.total = data.json().profileCompletion.total;
-                      
-                         var profile = localStorage.getItem('profile');
-                          if( profile == '1' && this.total == '100')
-                          {
-                            localStorage.setItem('profile','2');
-                         
-                          swal({
-                            title: "Choose a different subscription plan",
-                        // text: "Choose a different subscription plan",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonClass: "btn-default",
-                        confirmButtonText: "View Plans",
-                        cancelButtonText: "Remind Me Later!",  
-
-                    }).then((res)=>{
-                                    if(res.value===true){
-                                      this.router.navigate(['../vendor/membership']);
-                                   }
-
-                        }).then((res)=>{
-                          $(".profile").hide();
-        
-                          },error=>{
-                            alert(JSON.stringify(error));
-                        })
-                          return;
-                         
-                        } 
-
-                        if( profile == '2'){
-                          $(".profile").hide();
-                        }
-                          this.buinessPhone = data.json().profileCompletion.buinessPhone;
-                          this.businessProfilePic = data.json().profileCompletion.businessProfilePic;
-                          this.businessService = data.json().profileCompletion.businessService;
-                          this.coverImage = data.json().profileCompletion.coverImage;
-                          this.description = data.json().profileCompletion.description;
-                          this.mapSettings = data.json().profileCompletion.mapSettings;
-                          this.photos = data.json().profileCompletion.photos;
-                          this.tradingName = data.json().profileCompletion.tradingName;
-                    } , error=>{console.log(error)});
+                   this.vendor_board()
 
                     //EnquiriesAndLeads
                     this.http.get(this.dashboard,{headers:headers}).subscribe(
@@ -240,6 +194,12 @@ export class DashboardComponent implements OnInit {
                                 this.VendorDashboard_data_image = data.json().portfolioImage;
                                 this.banner_image = "../../../assets/img/store_noimg.jpg"
                         });
+
+
+
+
+
+
 
                   $.getScript('./assets/js/prism.min.js');
                   $.getScript('./assets/js/owljsor.js');
@@ -373,12 +333,14 @@ export class DashboardComponent implements OnInit {
             
               console.log(data.json());
                     this.getstoreimage();
+                    this.vendor_board()
              });
           }else{
             this.http.get(this.urll+'/api/albums/setasstorefrontimage?AlbumImageId'+'='+image.id,{headers:headers}).subscribe(data =>{
           
               console.log(data.json());
               this.getstoreimage();
+              this.vendor_board();
             
              });
           }
@@ -403,9 +365,9 @@ export class DashboardComponent implements OnInit {
             });
         }
         freeuser(){
-                          swal({
-                            title: "Change your Plan",
-                        text: "profile completed",
+                     swal({
+                            title: "Want to unlock this feature?",
+                        text: "Choose a different subscription plan",
                         type: "warning",
                         showCancelButton: true,
                       
@@ -417,9 +379,66 @@ export class DashboardComponent implements OnInit {
                           },error=>{
                             alert(JSON.stringify(error));
                         })
-                          return;
-                        
+                          return;                   
         } 
          
+         vendor_board(){
+                             let headers = new Headers();
+                            var authToken = localStorage.getItem('userToken');
+                            headers.append('Accept', 'application/json')
+                            headers.append('Content-Type', 'application/json');
+                            headers.append("Authorization",'Bearer '+authToken);
+                          
+                           
+                                   this.http.get(this.VendorDashboard,{headers:headers}).subscribe(
+                                      data =>{  console.log(data.json().profileCompletion);
+                                                console.log(data.json().profileCompletion.total);
+                                      
+                                            this.total = data.json().profileCompletion.total;
+                                        
+                                           var profile = localStorage.getItem('profile');
+                                            if( profile == '1' && this.total == '100')
+                                            {
+                                              localStorage.setItem('profile','2');
+                                           
+                                            swal({
+                                              title: "Choose a different subscription plan",
+                                          // text: "Choose a different subscription plan",
+                                          type: "warning",
+                                          showCancelButton: true,
+                                          confirmButtonClass: "btn-default",
+                                          confirmButtonText: "View Plans",
+                                          cancelButtonText: "Remind Me Later!",  
+
+                                      }).then((res)=>{
+                                                      if(res.value===true){
+                                                        this.router.navigate(['../vendor/membership']);
+                                                     }
+
+                                          }).then((res)=>{
+                                            $(".profile").hide();
+                          
+                                            },error=>{
+                                              alert(JSON.stringify(error));
+                                          })
+                                            return;
+                                           
+                                          } 
+
+                                          if( profile == '2'){
+                                            $(".profile").hide();
+                                          }
+                                            this.buinessPhone = data.json().profileCompletion.buinessPhone;
+                                            this.businessProfilePic = data.json().profileCompletion.businessProfilePic;
+                                            this.businessService = data.json().profileCompletion.businessService;
+                                            this.coverImage = data.json().profileCompletion.coverImage;
+                                            this.description = data.json().profileCompletion.description;
+                                            this.mapSettings = data.json().profileCompletion.mapSettings;
+                                            this.photos = data.json().profileCompletion.photos;
+                                            this.tradingName = data.json().profileCompletion.tradingName;
+                                      } , error=>{console.log(error)});
+
+                      }
+
 }
 

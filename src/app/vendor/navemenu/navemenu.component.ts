@@ -26,6 +26,7 @@ export class NavemenuComponent implements OnChanges,OnInit   {
    arrayLength:number;
    unread_msg:number;
    startedtab = false;
+   image_by_default:'..'
    // @Output() userImg = new EventEmitter<string>();
    // @Output('userImg') img:string;
     public data = '' ;
@@ -33,7 +34,7 @@ export class NavemenuComponent implements OnChanges,OnInit   {
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : 'en'); }
   
   ngOnInit() {
-debugger
+
       var firstName = localStorage.getItem('firstName');
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
@@ -57,7 +58,12 @@ debugger
                                });
 
       if(window.location.href.indexOf("/vendor/dashboard")>-1){
+        // debugger
         this.data = 'Dashboard';
+        // setTimeout(()=>{
+          // $('#dashboard').addClass('overhidden');
+        // },3000) 
+        // debugger
       }
       else if(window.location.href.indexOf('/vendor/business')>-1 ){
           this.data = 'Business information ';
@@ -148,17 +154,19 @@ debugger
             $(".blackoverlaymainuser").css( 'right' , '-100%');
           });
       $('.blackoverlaymobile').on('click', function(){
-     
         $('#wrapper').toggleClass('toggled');
         $('.togglebtnmenu').toggleClass('cross');
         $('.blackoverlaymobile').toggleClass('blockmobile');
         $('#page-content-wrapper').toggleClass('overhidden');
       });
 
-      //   $('.sidebar-brand').on('click', function(){
-     
-      //    $(this).addClass('colour');
-      // });
+        $('.sidebar-nav .sidebar-brand').on('click', function(){
+          $(this).addClass('colour')
+        //   _this = $(this)
+        //  setTimeout(()=>{
+        //    _this.addClass('colour');
+        // },3000);
+      });
 
 
 

@@ -19,10 +19,10 @@
                                 <label>End Date</label>
                                 <input type="date" ngModel id="endDate" #endDate="ngModel" name="endDate">
                             </div>
-                            <div class="col-sm-2  col-6">
+                            <!-- <div class="col-sm-2  col-6">
                                 <label>Invoice Number</label>
                                 <input type="text" ngModel id="invoiceId" #invoiceId="ngModel" name="invoiceId">
-                            </div>
+                            </div> -->
 
                             <input type="hidden" ngModel name="userId" id="userId" #userId="ngModel">
 
@@ -76,10 +76,11 @@
                                         </thead>
                                         <tbody *ngIf="invoice_length > 0;else other">
                                             <tr *ngFor="let data of dataArray">
-                                                <td>{{data.paymentDate}}</td>
+                                                <td>{{data.paymentDate | date:'mediumDate'}}</td>
                                                 <td>{{data.purposeCode}}</td>
-                                                <td>{{data.invoiceId}}</td>
-                                                <td>{{data.amountPaid}}</td>
+                                                <!-- <td>{{data.invoiceId}}</td> -->
+                                                <td>{{data.transactionID}}</td>
+                                                <td>{{data.paymentType}}</td>
                                                 <!-- <td>Paypal</td> -->
                                                 <td>
                                                     <button data-toggle="modal" data-target="#invoicedetail" (click)="invoiceDataFunction(data)">View
@@ -112,13 +113,13 @@
         <div class="modal-content">
              <div class="modal-header">
                 <h4 class="modal-title">Invoice Details
-                    <span class="pull-right">Order # 12345</span>
+                    <span class="pull-right">Order #{{dataArray1?.paymentId}}</span>
                 </h4>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div> 
 
-            <div class="modal-body">
+            <div class="modal-body" >
                 <div class="col-sm-12 nopadd">
                     <div class="container" >
                         <div class="row">
@@ -127,31 +128,33 @@
                                     <div class="col-xs-6">
                                         <address>
                                             <strong>Customer Detail</strong><br>
-                                          <!-- {{data.invoiceId}}<br> -->
-                                          
-                                            {{dataArray1["customerDetails"]["firstName"]}}<br>
-                                           <!-- {{data.fromAddress}}, {{data.fromCity}}<br> -->
-                                            <!-- {{data.fromState}},{{data.fromCountry}} {{data.fromFax}} -->
+                                            {{dataArray1?.transactionID}}<br> 
+                                            {{dataArray1?.paymentDate | date:'mediumDate'}} <br>
+                                            {{dataArray1?.customerDetails.firstName}} {{dataArray1?.customerDetails.lastName}} <br>
+                                            <!-- {{dataArray1?.customerDetails.street}},<br>  -->
+                                            {{dataArray1?.customerDetails.district.name}},<br> {{dataArray1?.customerDetails.suburb.name}},<br> {{dataArray1?.customerDetails.country.countryName}}<br> 
+                                            <!-- {{dataArray1["customerDetails"]["firstName"]}}<br> -->
+                                             <!-- {{dataArray1?.fromFax}} -->
                                         </address>
                                     </div>
                                     <div class="col-xs-6 text-right">
                                         <address>
                                             <strong>Payment Method:</strong><br>
-                                         <!-- {{data.paymentDetails}}<br> -->
-                                            <!-- {{data.email}}<br /> -->
+                                          {{dataArray1?.paymentType}}<br>
+                                          {{dataArray1?.customerDetails.emailaddress}}<br>
                                         </address>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
-<!---
+-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h3 class="panel-title"><strong>Order summary</strong>
-                                            <span class="pull-right"><strong>Date: {{data.paymentDate}}</strong></span>
+                                            <span class="pull-right"><strong>Date: {{dataArray1?.paymentDate | date:'mediumDate'}}</strong></span>
                                         </h3>
                                     </div>
                                     <div class="panel-body">
@@ -159,7 +162,7 @@
                                             <table class="table table-condensed">
                                                 <thead>
                                                     <tr>
-                                                        <td><strong>Item</strong></td>
+                                                        <!-- <td><strong>Item</strong></td> -->
                                                         <td class="text-center"><strong>Price</strong></td>
                                                         <td class="text-center"><strong>Quantity</strong></td>
                                                         <td class="text-right"><strong>Totals</strong></td>
@@ -167,12 +170,13 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td>BS-200</td>
-                                                        <td class="text-center">$10.99</td>
+                                                        <!-- <td>BS-200</td>
+                                                        <td class="text-center">$10.99</td> -->
+                                                        <td class="text-right">${{dataArray1?.taxPer}}</td>
                                                         <td class="text-center">1</td>
-                                                        <td class="text-right">$10.99</td>
+                                                        <td class="text-right">${{dataArray1?.taxPer}}</td>
                                                     </tr>
-                                                    <tr>
+                                                    <!-- <tr>
                                                         <td>BS-400</td>
                                                         <td class="text-center">$20.00</td>
                                                         <td class="text-center">3</td>
@@ -183,24 +187,24 @@
                                                         <td class="text-center">$600.00</td>
                                                         <td class="text-center">1</td>
                                                         <td class="text-right">$600.00</td>
-                                                    </tr>
-                                                    <tr>
+                                                    </tr> -->
+                                                    <!-- <tr>
                                                         <td class="thick-line"></td>
                                                         <td class="thick-line"></td>
                                                         <td class="thick-line text-center"><strong>Subtotal</strong></td>
                                                         <td class="thick-line text-right">$670.99</td>
-                                                    </tr>
-                                                    <tr>
+                                                    </tr> -->
+                                                    <!-- <tr>
                                                         <td class="no-line"></td>
                                                         <td class="no-line"></td>
                                                         <td class="no-line text-center"><strong>Shipping</strong></td>
                                                         <td class="no-line text-right">$15</td>
-                                                    </tr>
+                                                    </tr> -->
                                                     <tr class="litegraybg">
                                                         <td class="no-line"></td>
                                                         <td class="no-line"></td>
                                                         <td class="no-line text-center"><strong>Total</strong></td>
-                                                        <td class="no-line text-right">${{data.amountPaid}}</td>
+                                                        <td class="no-line text-right">${{dataArray1?.taxPer}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -212,9 +216,9 @@
                     </div>
 
                 </div>
-            </div> -->
+            </div>
 
-{{dataArray1 | json}}
+<!-- {{dataArray1 | json}} -->
 
         </div>
     </div>

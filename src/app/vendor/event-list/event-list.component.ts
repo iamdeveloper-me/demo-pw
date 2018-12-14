@@ -4,6 +4,7 @@ import { Http, Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { Subject } from 'rxjs';
+import { NgbDateStruct, NgbDatepickerI18n, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 import swal from 'sweetalert2';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { resetFakeAsyncZone } from '@angular/core/testing';
@@ -14,23 +15,56 @@ import { viewClassName } from '@angular/compiler';
 import { MOMENT } from 'angular-calendar';
 import * as moment from 'moment'
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+const now = new Date();
+const I18N_VALUES = {
+  en: {
+    weekdays: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+    months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  },
+};
 //export class TimeSlot
 export class NgbduserModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) { }
 }
 
+// Range datepicker Start 
+const equals = (one: NgbDateStruct, two: NgbDateStruct) =>
+  one && two && two.year === one.year && two.month === one.month && two.day === one.day;
 
+const before = (one: NgbDateStruct, two: NgbDateStruct) =>
+  !one || !two ? false : one.year === two.year ? one.month === two.month ? one.day === two.day
+    ? false : one.day < two.day : one.month < two.month : one.year < two.year;
+
+const after = (one: NgbDateStruct, two: NgbDateStruct) =>
+  !one || !two ? false : one.year === two.year ? one.month === two.month ? one.day === two.day
+    ? false : one.day > two.day : one.month > two.month : one.year > two.year;
+// Range datepicker Ends
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit {
+  model: NgbDateStruct;
+  // Range datepicker start
+  hoveredDate: NgbDateStruct;
+  customDay
+  fromDate: NgbDateStruct;
+  toDate: NgbDateStruct;
+
+  popupModel;
+  date: {year: number, month: number};
+  displayMonths = 2;
+  navigation = 'select';
+  disabledModel: NgbDateStruct = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
+  disabled = true;
+  customModel: NgbDateStruct;
   select_time: TimeSlot
   description_dailog = false;
   eventArray: any = [];
-  modelfield: any = {};
+  modelfield: any = { eventId: '' };
+  
   eventdate: any;
   endtime: any;
   startime: any = {};
@@ -53,6 +87,9 @@ export class EventListComponent implements OnInit {
   startDates;
   endDates;
   Titlee;
+  image_field;
+  suburbId_valid;
+  districtId_valid;
   showLoader: boolean = false;
   public c_id: any;
   public country_name: any;
@@ -91,6 +128,40 @@ export class EventListComponent implements OnInit {
     this.select_time.timing.splice(0, 1);
   }
 
+  // Range datepicker starts
+  onDateChange(date: NgbDateStruct) {
+    if (!this.fromDate && !this.toDate) {
+      this.fromDate = date;
+    } else if (this.fromDate && !this.toDate && after(date, this.fromDate)) {
+      this.toDate = date;
+    } else {
+      this.toDate = null;
+      this.fromDate = date;
+    }
+  }
+
+  isHovered = date => this.fromDate && !this.toDate && this.hoveredDate && after(date, this.fromDate) && before(date, this.hoveredDate);
+  isInside = date => after(date, this.fromDate) && before(date, this.toDate);
+  isFrom = date => equals(date, this.fromDate);
+  isTo = date => equals(date, this.toDate);
+  // Range datepicker ends
+
+
+  // Selects today's date
+  selectToday() {
+   // this.model =  now.getFullYear() +'-'+  now.getMonth() + 1 +'-'+  now.getDate();
+  }
+
+  // Custom Day View Starts
+  isWeekend(date: NgbDateStruct) {
+    const d = new Date(date.year, date.month - 1, date.day);
+    return d.getDay() === 0 || d.getDay() === 6;
+  }
+
+  isDisabled(date: NgbDateStruct, current: {month: number}) {
+    return date.month !== current.month;
+  }
+  // Custom Day View Ends  
 
   ngOnInit() {
     let headers = new Headers();
@@ -101,14 +172,108 @@ export class EventListComponent implements OnInit {
 
     this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries").subscribe(data => {
       this.countryArray = data.json();
-      console.log(this.countryArray);
+      //console.log(this.countryArray);
       this.arra = this.countryArray
       this.country();
       this.districtA();
       this.subr();
     })
-    this.past_upcomming_event(3);
+    this.past_upcomming_event(2);
     $.getScript('./assets/js/vendorsidebar.js');
+
+  
+      // $( window ).load(function() {
+        // $(".selectwet").each(function () {
+        //   $(this).change(function () {
+        //   createSummary();
+        //   });
+        //   });
+        //   function createSummary() {
+        //   var eventType = $("#startTime option:selected").text()
+        //   $(".summary_eventType").html(eventType);
+        //   }
+          
+      // });
+
+      // $('.selectwet').on("focus", function(){
+      //   $(".summary_eventType").focus();
+      // })
+      // $('.selectwet').on("change", function(){
+      //   $(".summary_eventType").val($(this).val());
+      // })
+      // $('.selectwet1').on("focus", function(){
+      //   $(".summary_eventType1").focus();
+      // })
+      // $('.selectwet1').on("change", function(){
+      //   $(".summary_eventType1").val($(this).val());
+      // })
+      $('.selectwet').on("focus", function(){
+        $(".selectlabel").addClass("bottomtik");
+      });
+
+      $('.selectwet').on("focusout", function(){
+        if($(this).val() === null){
+          $(".selectlabel").removeClass("bottomtik");
+        }
+      });
+      
+
+      $('.selectwet1').on("focus", function(){
+        $(".selectlabel1").addClass("bottomtik");
+      });
+
+      $('.selectwet1').on("focusout", function(){
+        if($(this).val() === null){
+          $(".selectlabel1").removeClass("bottomtik");
+        }
+      });
+
+
+
+  $('.selectwet2').on("focus", function(){
+        $(".selectlabel2").addClass("bottomtik");
+      });
+
+      $('.selectwet2').on("focusout", function(){
+        if($(this).val() === null){
+          $(".selectlabel2").removeClass("bottomtik");
+        }
+      });
+
+      $('.selectwet3').on("focus", function(){
+        $(".selectlabel3").addClass("bottomtik");
+      });
+
+      $('.selectwet3').on("focusout", function(){
+        if($(this).val() === null){
+          $(".selectlabel3").removeClass("bottomtik");
+        }
+      });
+
+        $('.selectwet4').on("focus", function(){
+        $(".selectlabel4").addClass("bottomtik");
+      });
+
+      $('.selectwet4').on("focusout", function(){
+        if($(this).val() === null){
+          $(".selectlabel4").removeClass("bottomtik");
+        }
+      });
+
+
+        $('.selectwet5').on("focus", function(){
+        $(".selectlabel5").addClass("bottomtik");
+      });
+
+      $('.selectwet5').on("focusout", function(){
+        if($(this).val() === null){
+          $(".selectlabel5").removeClass("bottomtik");
+        }
+      });
+
+
+
+
     $(".Suppliertab").click(function () {
       $(".Suppliertab").addClass("selected");
       $(".Registertab").removeClass("selected");
@@ -117,6 +282,11 @@ export class EventListComponent implements OnInit {
       $(".Suppliertab").removeClass("selected");
       $(".Registertab").addClass("selected");
     });
+
+
+
+
+
   }
 
   @ViewChild('list') validationForm: FormGroup;
@@ -140,7 +310,7 @@ export class EventListComponent implements OnInit {
       this.isImageLoading = false;
     }, error => {
       this.isImageLoading = false;
-      console.log(error);
+      //console.log(error);
     });
   }
   // path = "https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg";
@@ -174,11 +344,11 @@ export class EventListComponent implements OnInit {
   // function run on file selection..
   onFileChanged(event) {
     this.imageToUpload = event.target.files[0];
-
+    this.image_field = '';
   }
 
   addFile(info): void {
-    console.log(info);
+    //console.log(info);
 
     let fi = this.fileInput.nativeElement;
     if (fi.files && fi.files[0]) {
@@ -195,24 +365,26 @@ export class EventListComponent implements OnInit {
       }
 
 
-      console.log(fileToUpload);
+     // console.log(fileToUpload);
 
       this.http.post(this.uploadimage, formData, { headers: headers })
         .subscribe(data => {
-          this.fileIdfield = data.json() as string[],
-            console.log(this.fileIdfield),
-            console.log(data.json())
+          this.fileIdfield = data.json()
+            //console.log(this.fileIdfield),
+
+            //console.log(data.json())
         },
 
-          (error) => { console.log(error) });
+          (error) => { 
+            //console.log(error) 
+          });
     }
 
   }
   Titleee(event: any) {
-    console.log(event);
+ //   console.log(event);
     this.Titlee = ''
   }
-
   startDatess(event: any) { this.startDates = '' }
   endDatess(event: any) { this.endDate = ''; }
   venueNamees(event: any) { this.venueNamee = ''; }
@@ -233,10 +405,12 @@ export class EventListComponent implements OnInit {
   locations(event: any) { this.location = ''; }
 
   event(list) {
-    debugger;
-    console.log(this.objevent.eventTitle);
+   
+    //console.log(this.objevent.eventTitle);
     if(this.imageToUpload==undefined){
-      this.toastr.error('Please Select Event Image !');
+      this.image_field = 'Please Select Event Image !';
+  
+     // this.toastr.error('Please Select Event Image !');
       return false;
     }
     if (typeof (this.objevent.eventTitle) == 'undefined') {
@@ -300,9 +474,11 @@ export class EventListComponent implements OnInit {
       this.toastr.error('Please Select End Time!');
     }
     if (typeof (this.objevent.districtId) == 'undefined') {
+      this.districtId_valid = 'Please Select Valid District!'
       this.toastr.error('Please Select Valid District!');
     } 
     if (typeof (this.objevent.suburbId) == 'undefined') {
+      this.suburbId_valid =  "Please Select Valid Suburb!"
       this.toastr.error('Please Select Valid Suburb!');
     } 
     if (typeof (this.objevent.venueName) != 'undefined' &&
@@ -338,6 +514,17 @@ export class EventListComponent implements OnInit {
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization", 'Bearer ' + authToken);
+        var startDate = this.objevent.startDate
+        var endDate = this.objevent.endDate
+
+        this.objevent.startDate = startDate["year"]+'-'+startDate["month"]+'-'+startDate["day"]
+ 
+        this.objevent.endDate = endDate["year"]+'-'+endDate["month"]+'-'+endDate["day"]
+
+         console.log(this.objevent.startDate,this.objevent.endDate )
+         var startDate = this.objevent.startDate
+       
+         console.log( this.objevent.endDate)
         let events =
         {
           "eventsMoreDatesId": 0,
@@ -356,18 +543,15 @@ export class EventListComponent implements OnInit {
           this.toastr.success("created  event sucessfully");
           this.showLoader = false;
           this.objevent = new EventsCreateUpdateVM();
-
-          this.past_upcomming_event(0)
+         // this.past_upcomming_event(0)
           this.twitterDailog = false;
           list.reset()
-
-
-
         }, error => {
-          // alert(JSON.stringify(data));
-          console.log(error.json())
-          this.toastr.error(error);
+          console.log(error)
+         // console.log(error.json().capacity[0])
+          this.toastr.error(error.json().capacity);
           this.showLoader = false;
+          list.reset()
         })
       })
     }
@@ -385,7 +569,6 @@ export class EventListComponent implements OnInit {
   open(content) {
     this.isCreateEventVisible = true;
     this.modalService.open(content).result.then((result) => {
-
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -403,30 +586,39 @@ export class EventListComponent implements OnInit {
   }
   // Open modal with dark section
   openModal(customContent) {
-
     this.modalService.open(customContent, { windowClass: 'dark-modal' });
   }
   // Open content with dark section
   openContent() {
-
     const modalRef = this.modalService.open(NgbduserModalContent);
     modalRef.componentInstance.name = 'World';
   }
 
   editevent(v) {
-
+    console.log(v);
     this.objevent.districtId = v.districtId;
     this.objevent.suburbId = v.suburbId;
     this.objevent.countryId = v.countryId;
     this.country();
     this.districtA();
     this.subr();
+    this.startimee = v.eventsDates[0].startTimeString;
+    this.endtime = v.eventsDates[0].endTimeString;
+    //this.startDates = v.eventsDates[0].startDate.split('T')[0];
+  
+    v.eventsDates[0].startDate =  { "year": parseInt(v.eventsDates[0].startDate.split('T')[0].split('-')[0])   , 
+                                    "month": parseInt(v.eventsDates[0].startDate.split('T')[0].split('-')[1])  ,
+                                    "day": parseInt( v.eventsDates[0].startDate.split('T')[0].split('-')[2])}
 
-    this.startDates = v.eventsDates[0].startDate.split('T')[0];
-    this.endDates = v.eventsDates[0].endDate.split('T')[0];
+     v.eventsDates[0].endDate   =  {"year": parseInt(v.eventsDates[0].endDate.split('T')[0].split('-')[0])   , 
+                                    "month": parseInt(v.eventsDates[0].endDate.split('T')[0].split('-')[1])  ,
+                                    "day": parseInt( v.eventsDates[0].endDate.split('T')[0].split('-')[2])}                    
+    this.startDates =  v.eventsDates[0].startDate;
+  
+    this.endDates = v.eventsDates[0].endDate  ;
     this.modelfield = v;
     this.objevent = v;
-    console.log(this.objevent);
+    //console.log(this.objevent);
     // this.ele_country.nativeElement.value=v.countryId;
     // this.ele_distid.nativeElement.value=v.districtId;
     // this.ele_suburb.nativeElement.value=v.sub_id;
@@ -440,7 +632,11 @@ export class EventListComponent implements OnInit {
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
-    console.log(data.value.entryFee +data.value.entry);
+    console.log(data.value);
+    data.value.startDate =  data.value.startDate["year"]+'-'+ data.value.startDate["month"]+'-'+ data.value.startDate["day"]
+ 
+    data.value.endDate =  data.value.endDate["year"]+'-'+ data.value.endDate["month"]+'-'+ data.value.endDate["day"]
+
     const editData = {
       eventId: data.value.eventId,
       eventTitle: data.value.Title,
@@ -468,7 +664,7 @@ export class EventListComponent implements OnInit {
         }
       ]
     }
-    debugger;
+  
     if (this.ele_suburb.nativeElement.value.length == 0) {
       this.toastr.error('Invalid Suburb! Please Select Valid Suburb');
     } else if (this.ele_startTime.nativeElement.value.length == 0) {
@@ -483,20 +679,20 @@ export class EventListComponent implements OnInit {
     }
     else {
       this.http.post(this.eventposturl, editData, { headers: headers }).subscribe(data => {
-        console.log(data.json());
+        //console.log(data.json());
         this.toastr.success("saved sucessfully");
         this.eventupdaterDailog = false;
         this.past_upcomming_event(0);
-
+        //data.reset();
       }, error => {
-        console.log(error);
+        //console.log(error);
         this.toastr.error(error);
       })
     }
   }
 
   past_upcomming_event(past) {
-    console.log(past);
+   // console.log(past);
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -505,11 +701,13 @@ export class EventListComponent implements OnInit {
     //  this.eventArray.unshift(this.objevent);
     this.http.post(this.myevent_Post_url, { Filter: past }, { headers: headers }).subscribe(data => {
       this.eventArray = data.json();
-      console.log(JSON.stringify(this.eventArray));
+     // console.log(JSON.stringify(this.eventArray));
       for (let entry of data.json()) {
         this.event_Detail(entry.eventId)
       }
-    }, error => { console.log(error); })
+    }, error => { 
+     // console.log(error);
+     })
   }
 
   deletevent(data, index) {
@@ -525,17 +723,19 @@ export class EventListComponent implements OnInit {
     }).then((res) => {
       if (res.value === true) {
         var id = data.eventId;
-        console.log(id);
+       // console.log(id);
         this.eventArray.splice(index, 1);
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization", 'Bearer ' + authToken);
-        console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id' + '=' + id);
+        //console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id' + '=' + id);
         this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id' + '=' + id, { headers: headers }).subscribe(data => {
           this.toastr.success("delete sucessfully");
-        }, error => { console.log(error) });
+        }, error => { 
+         // console.log(error)
+         });
       } else {
         // alert('Cancel Process !');
       }
@@ -559,7 +759,9 @@ export class EventListComponent implements OnInit {
       for (let entry of data.json()) {
         this.event_Detail(entry.eventId)
       }
-    }, error => { console.log(error); })
+    }, error => { 
+      //console.log(error); 
+    })
   }
   event_Detail(e) {
     var id = e;
@@ -572,7 +774,9 @@ export class EventListComponent implements OnInit {
     this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/eventdetails?id' + '=' + id, { headers: headers }).subscribe(data => {
       this.eventArray.push(data.json())
 
-    }, error => { console.log(error); })
+    }, error => { 
+      //console.log(error); 
+    })
   }
   country(): void {
     this.c_id = this.objevent.countryId;
@@ -589,7 +793,7 @@ export class EventListComponent implements OnInit {
 
   subr(): void {
     if (this.objevent.districtId != undefined) {
-      debugger;
+   
       let abc = this.district.filter(d => d.districtId == this.objevent.districtId)[0];
       if (abc) {
         this.suburb = this.district.filter(d => d.districtId == this.objevent.districtId)[0].suburb;
@@ -598,10 +802,20 @@ export class EventListComponent implements OnInit {
 
 
   }
+  /// 0 = New, 1=Edit
+  showhidetwitterDailog(operationType){
+    if(operationType==0){
+      this.objevent=new EventsCreateUpdateVM();
+    }
+    this.twitterDailog = true
+  }
 
   closeModel(list) {
+    list.reset()
+  
+    this.fileInput.nativeElement.value = "";
     this.eventupdaterDailog = false;
-    list.reset();
+    //list.reset();
     this.twitterDailog = false;
     this.Titlee = ''
     this.startDates = '';
@@ -612,6 +826,9 @@ export class EventListComponent implements OnInit {
     this.entry = '';
     this.capacity = '';
     this.location = '';
+    this.image_field  = '';
+    this.suburbId_valid  = '';
+    this.districtId_valid  = ''
   }
 
 }

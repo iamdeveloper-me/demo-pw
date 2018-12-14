@@ -15,8 +15,8 @@
             </div>
   
             <ul class="tabbingdesign">
-              <li class="card-title  Registertab" (click) = "past_upcomming_event(2)">Upcoming Event</li>
-              <li class="card-title selected Suppliertab " (click) = "past_upcomming_event(1)">Past Event</li>
+              <li class="card-title selected Registertab" (click) = "past_upcomming_event(2)">Upcoming Event</li>
+              <li class="card-title  Suppliertab " (click) = "past_upcomming_event(1)">Past Event</li>
             </ul>
           </div>
           <div class="clearfix"></div>
@@ -27,10 +27,11 @@
                     <form (ngSubmit)="search_event(s)" #s="ngForm">
                       <input type="text" [(ngModel)] = "search" placeholder="Search...." name="search">
                       <button type="submit" class="btn btn-small btn-link">
-                        search</button>
+                        search
+                      </button>
                     </form>    
                 </div>
-                <button class="btn btn-small btn-link" (click)="twitterDailog = true" >
+                <button class="btn btn-small btn-link" (click)="showhidetwitterDailog(0)" >
                     <i class="material-icons"> add </i> 
                     <span>
                          <strong> Create New Event</strong>
@@ -45,60 +46,107 @@
                 <div class="col-sm-12 nopadd" *ngFor="let data of eventArray;let i=index ">
                   <div class="card martop0px  eventbox" >   
                     <div class="row eventrow ">
-                        <div class="col-4 ">
+                        <div class="col-sm-4 col-12">
                           
-                            <img *ngIf='data.files' [src]="data.files.path" class="img-responsive">  
+                            <img *ngIf='data.files' [src]="data.files.path" class="img-responsive" style="display: initial;">  
                        
                         </div>
-                        <div class="col-6 ">
-                            <div class="col-12">
-
+                        <div class="col-sm-6 col-12">
+                            <div>
                                 <div class="club_heading">
-                                  <h5><strong>{{data.eventTitle}}</strong> </h5>
+                                  <p><strong>{{data.eventTitle}}</strong> </p>
                                 </div>
-                                <p>
-                                  Capacity:{{data.capacity}}
-                                </p>
-                                <p><i class="material-icons"> location_on</i>
-                                  {{data.venueName}} {{data.location}} , {{data.suburb?.name}} {{data.districts
-                                    ?.name}}, {{data.country?.countryName}}
-                                </p>
-                                <p>Entry Fee:{{data.entryFee}}
-                                  </p>
-                                <div class="col-md-12 nopadd row col-12 margin_p mob_font_12px mob_font_14px">
-                                   <div class="col-sm-1">
-                                     <i class="material-icons">access_time </i>
-                                    </div> 
-                                    <div class="col-sm-11">
-                                  <p  *ngFor="let name of data.eventsDates">
-                                    Event Start:  {{name.startDate | date}},  {{name.startTime | date :
-                                      "shortTime" }}
-                                  </p>
-                                 
-                                  <p *ngFor="let name of data.eventsDates">
-                                    Event End: {{name.endDate | date}}, 
-                                         {{name.endTime | date : "shortTime" }}
-                                     
-                                    </p>
-                                    <p>{{data.eventDescription}}  </p>
-                                    </div>
-                                   
+                                  <div class="col-md-12 nopadd row col-12 margin_p">
+                                      <table>
+                                        <tr>
+                                          <td valign="top" align="center" width="40px"><i class="material-icons"> location_on</i></td>
+                                           <td valign="top">
+                                             <p>
+                                              {{data.venueName}} {{data.location}} , {{data.suburb?.name}} {{data.districts
+                                                ?.name}}, {{data.country?.countryName}}
+                                            </p>
+                                          </td>
+                                        </tr>
+                                      </table>
                                 </div>
-
-                               
-                               
+                                 <div class="col-md-12 nopadd row col-12 margin_p">
+                                    <table>
+                                        <tr>
+                                          <td valign="top" align="center" width="40px">
+                                          <i class="material-icons">money</i>
+                                          </td>
+                                          <td>
+                                          <p *ngIf = "data.entry == 'Paid' ">Entry Fee: &nbsp;{{data.entryFee}}
+                                          </p>
+                                          <p *ngIf = "data.entry == 'Free' ">Entry: &nbsp;{{data.entry}}
+                                          </p>
+                                          </td>
+                                        </tr>
+                                    </table>
+                                  </div>
+                              
+                                   <div class="col-md-12 nopadd row col-12 margin_p">
+                                      <table>
+                                        <tr>
+                                          <td valign="top" align="center" width="40px">
+                                            <i class="material-icons">event_seat</i>
+                                          </td>
+                                      <td>
+                                        <p>
+                                        Capacity: &nbsp;{{data.capacity}}
+                                        </p>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </div>
                                 
+                               
+                                <div class="col-md-12 nopadd row col-12 margin_p">
+                                  <table>
+                                    <tr>
+                                      <td valign="top" align="center" width="40px"><i class="material-icons">access_time </i></td>
+                                       <td valign="top">
+                                        <p  *ngFor="let name of data.eventsDates">
+                                          Event Start: &nbsp;{{name.startDate}},  {{name.startTime | date :
+                                            "shortTime" }}
+                                        </p>
+                                       
+                                        <p *ngFor="let name of data.eventsDates">
+                                          Event End: &nbsp;{{name.endDate}}, 
+                                               {{name.endTime | date : "shortTime" }} 
+                                        </p>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </div> 
+                                <div class="col-md-12 nopadd row col-12 margin_p">
+                                    <table>
+                                    <tr>
+                                       <td valign="top" align="center" width="40px"><i class="material-icons">speaker_notes</i></td>
+                                       <td valign="top">
+                                         <p>
+                                        {{data.eventDescription}}  </p>
+                                      </td>
+                                    </tr>
+                                    </table>
+                                </div>
+                               
+
+
+
+
+
                             </div>
                         </div>  
-                        <div class="col-2 tikdiv">
+                        <div class="col-sm-2 tikdiv col-12">
                             <button class="btn btn-success whitetext btn-rounded" (click)="editevent(data) "
                             id="description-function">Edit</button>
-                              <!-- {{data.eventId}} -->
+                             
                             
                             <button class="btn btn-warning whitetext btn-rounded" (click)="deletevent(data,i)">
                               Delete
                             </button>
-                            <!-- {{data.eventId}} -->
+                          
                         </div>
                       </div>  
 
@@ -126,33 +174,34 @@
             <div class="modal-body formscroll">
                 <div class="col-sm-12 nopadd">
                   <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Event Image</label>
-                            <input class="form-control" 
+                        <div class="field">
+                            <input placeholder="image" 
                              #fileInput 
                              type="file" 
                              name="image" 
                              id="image" 
                              (change)="onFileChanged($event)" />
+                             <label for="image">Event Image</label>
                           </div>
+                          <small class="form-text text-muted danger" >{{image_field}}</small>
                   </div>
                   <div class="col-sm-6">
-                    <div class="form-group">
-                            <label>Title</label>
-                            <input class="form-control" 
+                      <div class="field">
+                          <input class="form-control" 
                           [(ngModel)]="objevent.eventTitle" 
                           id="Title" 
                           name="Title"
                           (keypress)="Titleee($event)" 
-                          placeholder="required">
-                         <small class="form-text text-muted danger" >{{Titlee}}</small>
-                         
+                          placeholder="Title">
+                          <label for="Title">Title</label>
                       </div>
+                      <small class="form-text text-muted danger" >{{Titlee}}</small>
+                       <input type="hidden" name="filesId" id="filesId" [value]="fileIdfield.filesId" [(ngModel)]="objevent.filesId">  
                   </div>
                   <div class="clearfix"></div>        
-                  <input type="hidden" name="filesId" id="filesId" [value]="fileIdfield.filesId" [(ngModel)]="objevent.filesId">    
+                   
                   <div class="col-sm-6">
-                    <div class="form-group">
+                    <!-- <div class="form-group">
 
                             <label>Start Date</label>
                             <input class="form-control" 
@@ -162,28 +211,67 @@
                             [(ngModel)]="objevent.startDate" 
                             (keypress)="startDatess($event)" 
                             style="width:100%;">
-                         
-                          <!-- <small class="form-text text-muted danger" >{{startDates}}</small> -->
+                          <small class="form-text text-muted danger" >{{districtId_valid}}</small>
+                   
 
+                    </div> -->
+
+                    <div class="field">
+                        <!-- <p>{{startDates}} </p> placeholder="{{startDates}}" -->
+                        <input type="text" 
+                          class="form-control" 
+                          name="startDate" 
+                          id="startDate" 
+                          [(ngModel)]="objevent.startDate"  
+                          placeholder="dd-MM-yyyy" 
+                          ngbDatepicker 
+                          [dayTemplate]="customDay"
+                          [markDisabled]="isDisabled"
+                          #d1_startDate="ngbDatepicker"  
+                          (keypress)="startDatess($event)" 
+                          >
+                          <label for="startDate"> Start Date</label> 
+                           <div class="input-group-append">
+                            <div class="input-group-text" (click)="d1_startDate.toggle()">
+                              <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                            </div>
+                          </div>
                     </div>
+                    
+                   
                   </div>
                   <div class="col-sm-6">
-                    <div class="form-group">
-                            
-                                  <label>
-                                    start time
-                                  </label>
-                                  <!-- <input type="time" class="form-control"  [(ngModel)]="startTimee"  name="startTime" id="startTime"/> -->
-                                  
-                                  <select class="form-control" type="time" [(ngModel)]="startTimee"  id="startTime" name="startTime">
+
+                    <div class="inputheight">
+                                 <!-- <input type="time" class="form-control"  [(ngModel)]="startTimee"  name="startTime" id="startTime"/> -->
+<!--                                   
+                                  <select class="selectwet" placeholder="Start Time" type="time" [(ngModel)]="startTimee"  id="startTime" name="startTime">
                                     <option *ngFor='let s of select_time.timing;let i=index' [value]='s.startTime'>{{s.startTime}}</option>
                                   </select>
-                            
+                                  <input class="summary_eventType" type="text" name="inputtimestart" id="inputtimestart" placeholder="Start Time">
+                                 
                           
+                                  <label for="inputtimestart">
+
+                                    start time
+                                  </label> -->
+                          
+                                  <select class="form-control selectwet" placeholder="Start Time" type="time" [(ngModel)]="startTimee"  id="startTime" name="startTime">
+                                      <option *ngFor='let s of select_time.timing;let i=index' [value]='s.startTime'>{{s.startTime}}</option>
+                                    </select>
+                                   
+                            
+                                    <label class="selectlabel" for="startTime">
+                                      start time
+                                    </label> 
+
+
+
+
                       </div>
                   </div>
                   <div class="col-sm-6">
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                           <label>End  Date</label> 
                           <input class="form-control"  
                           type="date"
@@ -195,16 +283,40 @@
                         
                           <small class="form-text text-muted danger" >{{endDate}}</small>
                           
+                      </div> -->
+
+                      <div class="field">
+                       
+                         
+                        <input class="form-control" 
+                          placeholder="dd-MM-yyyy"   
+                          name="endDate"
+                          id="endDate"
+                          [(ngModel)]="objevent.endDate"  
+                          ngbDatepicker 
+                          [dayTemplate]="customDay"
+                          [markDisabled]="isDisabled" 
+                          #d1_endDate="ngbDatepicker"    
+                          (keypress)="endDatess($event)"  
+                          >
+                           <label for="endDate"> End Date  </label> 
+                            <div class="input-group-append">
+                              <div class="input-group-text" (click)="d1_endDate.toggle()">
+                                <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                              </div>
+                            </div>
                       </div>
+                       <small class="form-text text-muted danger" >{{endDate}}</small>
                   </div>
                   <div class="col-sm-6">
-                      <div class="form-group">
-                        <label>
-                          End Time
-                        </label>
-                        <select class="form-control" type="time" [(ngModel)]="endtime"  id="endTime" name="endTime">
+                       <div class="inputheight">
+                        <select class="form-control selectwet1" type="time" [(ngModel)]="endtime"  id="endTime" name="endTime">
                           <option *ngFor='let s of select_time.timing' [value]='s.endTime'>{{s.endTime}}</option>
                         </select>
+                          
+                         <label class="selectlabel1" for="inputtimeend">
+                          End Time
+                        </label>
                         <!-- <input type="time"
                         class="form-control"  
                         name="endTime" 
@@ -214,70 +326,73 @@
                   
                       </div>
                   </div> 
+                  <div class="clearfix"></div>
                   <div class="col-sm-6">
-                      <div class="form-group">
-                          <label>Venue Name</label>
+                      <div class="field">
                             <input type="text" class="form-control" 
                             [(ngModel)]="objevent.venueName" 
                             name="venueName"
                             id="venueName"
                             (keypress)="venueNamees($event)" 
-                            placeholder="required">
-                            <small class="form-text text-muted danger" >{{venueNamee}}</small>
+                            placeholder="Venue Name">
+                             <label for="venueName">Venue Name</label>
                       </div>
+                      <small class="form-text text-muted danger" >{{venueNamee}}</small>
                   </div>
                  
                   <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>Country</label>
-                        <select class="form-control" id="Country" [(ngModel)]="objevent.countryId" name="country_id" (change)="districtA()">
+                    <div class="inputheight">
+                        <select class="form-control selectwet2" id="Country" [(ngModel)]="objevent.countryId" name="country_id" (change)="districtA()">
                           <option *ngFor="let country of arra ;let c =index" [value]="country.countryId">
                             {{country.countryName }}
                           </option>
                         </select>
+                        <label class="selectlabel2" for="Country">Country</label>
                     </div>
                   </div> 
+                   <div class="clearfix"></div>
                   <div class="col-sm-6">
-                      <label>District</label>
-                        <div class="form-group">
-                          <select name="district" class="form-control" [(ngModel)]="objevent.districtId" name="dist_id" (change)="subr()">
+                      <div class="inputheight">
+                          <select name="district" class="form-control selectwet3" [(ngModel)]="objevent.districtId" name="dist_id" (change)="subr()">
                             <option *ngFor="let dist of district ;let d =index" type="text" id="{{dist.name}}" checked name="dist"
                               placeholder="Country" [value]="dist.districtId" required>
                               {{dist.name }}
                             </option>
                           </select>
+                          <label class="selectlabel3" for="dist_id">District</label>
                       </div>
+                      <small class="form-text text-muted danger" >{{districtId_valid}}</small>
                   </div>
                   <div class="col-sm-6">
-                    <label>Suburb</label>
-                      <div class="form-group">
-                          <select class="form-control" [(ngModel)]="objevent.suburbId" name="sub_id" (change)="subr()">
+                      <div class="inputheight">
+                          <select class="form-control selectwet4" [(ngModel)]="objevent.suburbId" id="sub_id" name="sub_id" (change)="subr()">
                             <!-- (change)="country($event)" -->
                             <option *ngFor="let sub of suburb ;let s =index" type="text" id="{{sub.name}}" checked name="sub"
                               placeholder="Suburb" [value]="sub.suburbId" required>
                               {{sub.name }}
                             </option>
                           </select>
+                          <label class="selectlabel4" for="sub_id">Suburb</label>
                       </div>
+                      <small class="form-text text-muted danger" >{{suburbId_valid}}</small>
                   </div>
+                   <div class="clearfix"></div>
                   <div class="col-sm-6">
-                      <div class="form-group">
-                          <label>Street Name</label>
+                      <div class="field">
                           <input type="text" class="form-control"
                             [(ngModel)]="objevent.location"
                             name="Location"
                             id="Location"
                             (keypress)="locations($event)" 
-                            placeholder="required"
+                            placeholder="Street Name"
                             >
-                            <small class="form-text text-muted danger" >{{location}}</small>
+                            <label for="Location">Street Name</label>
                             <!-- <small class="form-text text-muted danger" *ngIf="Locations.errors?.required">required error</small> -->
-                      
                         </div>
+                        <small class="form-text text-muted danger" >{{location}}</small>
                   </div>
                   <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Capacity</label>
+                        <div class="field">
                             <input type="text" class="form-control" 
                             [(ngModel)]="objevent.capacity"
                             name="Capacity"
@@ -285,14 +400,15 @@
                             (keypress)="capacitys($event)" 
                             minlength="1" 
                             pattern="^-?([0-9]*\.?[0-9]+|[0-9]+\.?[0-9]*)$"
-                            placeholder="required">
-                            <small class="form-text text-muted danger" >{{capacity}}</small>
+                            placeholder="Capacity">
+                            <label for="Capacity">Capacity</label>
                            <!-- <small class="form-text text-muted danger" *ngIf="Capacitys.errors?.required">required error</small> -->
                           </div>
+                          <small class="form-text text-muted danger" >{{capacity}}</small>
                   </div>
+                   <div class="clearfix"></div>
                   <div class="col-sm-12">
-                    <div class="form-group">
-                        <label>Description</label>
+                    <div class="field">
                             <input type="text" class="form-control" 
                             [(ngModel)]="objevent.eventDescription"
                             name="eventDescription" 
@@ -300,37 +416,37 @@
                             (keypress)="eventDescriptionss($event)" 
                             placeholder="required"
                             >
-                            <small class="form-text text-muted danger" >{{eventDescriptions}}</small>      
+                            <label for="eventDescription">Description</label>     
                     </div>
+                    <small class="form-text text-muted danger" >{{eventDescriptions}}</small> 
                   </div>
-                  <div class="col-sm-6 date_picker">
-                      <div class="form-group">
-                        <label>Event Type</label>
+                  <div class="col-sm-6">
+                      <div class="inputheight">
                             <select 
                             [(ngModel)]="objevent.entry" 
-                            class="effect-16 validate marbot0px"
+                            class="form-control selectwet5"
                              name="entry" 
                              id="entry"
                              (keypress)="entrys($event)" class="form-control" >
-                             <small class="form-text text-muted danger" >{{entry}}</small>
                               <option value='Paid'>Paid</option>
                               <option value='Free'>Free</option>
                             </select>
+                        <label class="selectlabel5" for="entry">Event Type</label>
                       </div>
+                        <small class="form-text text-muted danger" >{{entry}}</small>
                   </div>
                   <div class="col-sm-6" *ngIf = "objevent.entry == 'Paid'">
-                    <div class="form-group">
-                            <label>Entry Fee</label>
-                            <input type="text" class="form-control" 
+                    <div class="field">
+                            <input type="text" 
                             [(ngModel)]="objevent.entryFee" 
                             name="entryFee"
                             id="entryFee"
                             (keypress)="entryFeess($event)" 
-                            placeholder="required">
-                            <small class="form-text text-muted danger" >{{entryFees}}</small>
+                            placeholder="Entry Fee">
+                            <label for="entryFee">Entry Fee</label>
                             <!-- <small class="form-text text-muted danger" *ngIf="entryFees.errors?.required">required error</small> -->
-                            <span class="focus-border"></span>
                     </div>
+                     <small class="form-text text-muted danger" >{{entryFees}}</small>
                   </div>
                 </div>
             </div> 
@@ -344,31 +460,29 @@
       </div>               
   </form>
 
-
   <form (ngSubmit)="editsave(data)" #data="ngForm">
     <div class="modal fade " [ngClass] = "{'show' : eventupdaterDailog}" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h4 class="modal-title">Edit Event</h4>
-                <button type="button" class="close btn_mar_padd" (click) = "closeModel(list)">
+                <h4 class="modal-title">Edit Event <!-- {{modelfield.eventId}} --></h4>
+                <button type="button" class="close btn_mar_padd" (click) = "closeModel(data)">
                   <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body formscroll">
               <div class="col-sm-12 nopadd">
                   <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Title</label>
-                            <input class="form-control" required="required" 
+                    <div class="field">
+                            <input required="required" 
                             [ngModel]="modelfield.eventTitle" 
                             id="Title"
                             name="Title"
                             #Title="ngModel" 
                             required 
-                            placeholder="required">
-                            <small class="form-text text-muted danger" *ngIf="Title.errors?.required">required error</small>
-                            <input  
+                            placeholder="Title">
+                            <label for="Title">Title</label>
+                             <input  
                             type="hidden" 
                             [(ngModel)]="modelfield.eventId" 
                             id="id" 
@@ -380,53 +494,87 @@
                             id="id" 
                             name="filesId">
                     </div>
+                     <small class="form-text text-muted danger" *ngIf="Title.errors?.required">required error</small>
+                     
                   </div>
                   <div class="clearfix"></div>
                   <div class="col-sm-6">
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label style="width:100%;"> Start Date  </label> 
                           <input class="form-control"  type="date" name="startDate" id="eventdate" [ngModel]="startDates" style="width:100%;">
-                           <!-- {{startDates | shortDate}} -->
+                    </div> -->
+
+                    <div class="form-group">
+                       
+                      <div class="field">
+
+                          <!-- <p>{{startDates}} </p> placeholder="{{startDates}}" -->
+                        
+                             <input  class="form-control " 
+                                placeholder=" Start Date "  
+                                name="startDate" 
+                                id="startDate"
+                                [(ngModel)]="startDates" 
+                                ngbDatepicker 
+                                [dayTemplate]="customDay"
+                                [markDisabled]="isDisabled" 
+                                #d3="ngbDatepicker">
+                                <label for="startDate"> Start Date  </label> 
+                            <div class="input-group-append">
+                              <div class="input-group-text" (click)="d3.toggle()">
+                                <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                              </div>
+                            </div>
+                      </div>
                     </div>
                   </div>  
                   <div class="col-sm-6">
-                      <div class="form-group">
-                        <label>
-                          Start Time
-                        </label><br>
-                        <select class="form-control" type="time" [(ngModel)]="startimee" #ele_startTime  id="startTime" name="startTime">
-                          
-                          
-                          <option *ngFor='let s of select_time.timing' [value]='s.startTime'>{{s.startTime}}</option>
+                      <div class="inputheight">
+                        <select class="form-control selectwet" type="time" [(ngModel)]="startimee" #ele_startTime  id="startTime" name="startTime">
+                          <option hidden [ngValue]="startimee">{{startimee}}</option>
+                          <option *ngFor='let s of select_time.timing' [value]='s.startTime'  [ngValue]="startimee">{{s.startTime}}</option>
                         </select>
-                        <!-- <input type="time" class="form-control"  [(ngModel)]="startimee"  name="startTime" id="startTime"/> -->
+                          <label class="selectlabel bottomtik" for="startTime">
+                          Start Time
+                        </label>
                       </div>
                   </div>
+                  <div class="clearfix"></div>
                   <div class="col-sm-6">
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label style="width:100%;">End Date</label> 
                           <input class="form-control"  type="date" name="endDate" id="eventdate" [ngModel]="endDates" style="width:100%;">    
-                    </div> 
+                    </div>  -->
+
+                    <div class="form-group">
+                      <label>End Date </label> 
+                        <div class="input-group">
+                            <!-- <p>{{startDates}} </p> placeholder="{{startDates}}" -->
+                          <input class="form-control " placeholder="End Date "  name="endDate" [(ngModel)]="endDates" ngbDatepicker [dayTemplate]="customDay"
+                            [markDisabled]="isDisabled" #d3_eventdate="ngbDatepicker">
+                              <div class="input-group-append">
+                                <div class="input-group-text" (click)="d3_eventdate.toggle()">
+                                  <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                </div>
+                              </div>
+                        </div>
+                      </div>
                   </div>  
                   <div class="col-sm-6">
-                      <div class="form-group">
-                        <label>
+                      <div class="inputheight">
+                        <select class="form-control selectwet1" plaeholder="End Time"    type="time" [(ngModel)]="endtime" #ele_endTime  id="endTime" name="endTime">
+                          <option hidden [ngValue]="endtime">{{endtime}}</option>
+                          <option *ngFor='let s of select_time.timing' [value]='s.endTime'  [ngValue]="endtime" aria-placeholder="sadas">{{s.endTime}}</option>
+                        </select>
+                          <label for="endTime" class="selectlabel1 bottomtik">
                           End Time
                         </label>
-                        
-
-                        <select class="form-control" type="time" [(ngModel)]="endtime" #ele_endTime  id="endTime" name="endTime">
-
-                            <!-- <option  [value]="endtime" *ngIf =  "!s.endTime" >{{endtime | date: 'h:m a' }} </option> -->
-                          <option *ngFor='let s of select_time.timing' [value]='s.endTime'>{{s.endTime}}</option>
-                        </select>
-                              <!-- <input type="time" class="form-control"  name="endTime" id="endTime" [(ngModel)]="endtime"/> -->
                       </div>
                   </div>
-                
+                  <div class="clearfix"></div>
                   <div class="col-sm-6">
-                      <div class="form-group">
-                          <label>Venue Name</label>
+                      <div class="field">
+                         
                           <input type="text" class="form-control" required="required" 
                           [ngModel]="modelfield.venueName"
                           name="venueName" 
@@ -434,12 +582,13 @@
                           #venueName="ngModel" 
                           required 
                           placeholder="required">
-                          <small class="form-text text-muted danger" *ngIf="venueName.errors?.required">required error</small>
+                           <label for="venueName">Venue Name</label>
+                         
                       </div>
+                       <small class="form-text text-muted danger" *ngIf="venueName.errors?.required">required error</small>
                     </div> 
                   <div class="col-sm-6">
-                      <div class="form-group">
-                        <label>Country</label>
+                      <div class="inputheight">
                             <!-- <select class="effect-16 validate" id="Country" [(ngModel)]="objevent.countryId" name="country_id" (change)="country($event)">
                               <option *ngFor="let country of arra ;let c =index" type="text" id="{{country.countryName}}" checked name="countryName"
                                 placeholder="Country" [value]="country.countryId" required>
@@ -448,37 +597,40 @@
                               </option>
             
                             </select> -->
-                            <select  class="form-control"  id="Country" [(ngModel)]="objevent.countryId" #ele_country  name="country_id" (change)="districtA()">
+                            <select  class="form-control selectwet2"  id="country_id" [(ngModel)]="objevent.countryId" #ele_country  name="country_id" (change)="districtA()">
                               <option *ngFor="let country of arra" [value]="country.countryId">
                                   {{country.countryName }}
                               </option>
                           </select>
+
+                        <label class="selectlabel2 bottomtik" for="country_id">Country</label>
                       </div>
                   </div>
+                    <div class="clearfix"></div>
                   <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>District</label>
-                        <select name="district" class="form-control" #ele_distid [(ngModel)]="objevent.districtId" name="dist_id" (ngModelChange)="subr()">
+                    <div class="inputheight">
+                     
+                        <select name="district" id="dist_id" class="form-control selectwet3 " #ele_distid [(ngModel)]="objevent.districtId" name="dist_id" (ngModelChange)="subr()">
                           <option *ngFor="let dist of district" [value]="dist.districtId">
                             {{dist.name }}
                           </option>
                         </select>
+                         <label class="selectlabel3 bottomtik" for="dist_id">District</label>
                     </div>
                   </div>
                   <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>Suburb</label>
-                        <select class="form-control" [(ngModel)]="objevent.suburbId" #ele_suburb name="sub_id">
+                    <div class="inputheight">
+                        <select class="form-control selectwet4" [(ngModel)]="objevent.suburbId" #ele_suburb name="sub_id" id="sub_id">
                           <!-- (change)="country($event)" -->
                           <option *ngFor="let sub of suburb ;let s =index" [value]="sub.suburbId">
                             {{sub.name }}
                           </option>
                         </select>
+                      <label class="selectlabel4 bottomtik"  for="sub_id">Suburb</label>
                     </div>
                   </div>
                   <div class="col-sm-6">
-                      <div class="form-group">
-                          <label>Street Name</label>
+                      <div class="field">
                           <input type="text" class="form-control" required="required" 
                           [ngModel]="modelfield.location"
                           name="Location" 
@@ -486,14 +638,13 @@
                           #Location="ngModel" 
                           required 
                           placeholder="required">
-                         
-                          <small class="form-text text-muted danger" *ngIf="Location.errors?.required">required error</small>
+                          <label for="Location">Street Name</label>
                         
                       </div>
+                      <small class="form-text text-muted danger" *ngIf="Location.errors?.required">required error</small>
                   </div>
                   <div class="col-sm-6">
-                      <div class="form-group">
-                          <label>Capacity</label>
+                      <div class="field">
                           <input type="text" class="form-control" required="required" 
                           [ngModel]="modelfield.capacity"
                           name="Capacity" 
@@ -503,12 +654,14 @@
                           (keypress)="capacitys($event)" 
                           pattern="^-?([0-9]*\.?[0-9]+|[0-9]+\.?[0-9]*)$"
                           placeholder="required">
-                          <small class="form-text text-muted danger" *ngIf="Capacity.errors?.required">required error</small>
+
+                          <label for="Capacity">Capacity</label>
+                          
                       </div>
+                      <small class="form-text text-muted danger" *ngIf="Capacity.errors?.required">required error</small>
                   </div>
                   <div class="col-sm-12">
-                    <div class="form-group">
-                        <label>Description</label>
+                    <div class="field">
                         <input type="text" class="form-control" required="required" 
                         [ngModel]="modelfield.eventDescription"
                         name="eventDescription" 
@@ -516,11 +669,12 @@
                         #eventDescription="ngModel" 
                         required 
                         placeholder="required">
-                        <small class="form-text text-muted danger" *ngIf="eventDescription.errors?.required">required error</small>
+                        <label for="eventDescription">Description</label>
                     </div>
+                    <small class="form-text text-muted danger" *ngIf="eventDescription.errors?.required">required error</small>
                   </div> 
                   <div class="col-sm-6">
-                      <div class="form-group">
+                      <div class="inputheight">
                             <!-- <input type="text" class="effect-16 validate" required="required" 
                             [ngModel]="modelfield.entry" 
                             name="entry"
@@ -534,9 +688,7 @@
           
                             <span class="focus-border"></span>
                           </div> -->
-                         
-                              <label>Entry Type</label>
-                              <select class="form-control"
+                              <select class="form-control selectwet5"
                               [(ngModel)]="modelfield.entry" 
                               name="entry" 
                               id="entry"
@@ -544,13 +696,12 @@
                                  <option value='Paid'>Paid</option>
                                 <option value='Free'>Free</option>
                               </select>
-                              <small class="form-text text-muted danger" >{{entry}}</small>
-                            
+                               <label class="selectlabel5 bottomtik"  for="entry">Entry Type</label>
                       </div> 
+                              <small class="form-text text-muted danger" >{{entry}}</small>
                     </div>
                     <div class="col-sm-6" *ngIf = "modelfield.entry == 'Paid'">
-                        <div class="form-group">
-                            <label>Entry Fee</label>
+                        <div class="field">
                             <input type="text" class="form-control" required="required" 
                             [(ngModel)]="modelfield.entryFee"
                             name="entryFee" 
@@ -558,8 +709,9 @@
                             #entryFee="ngModel" 
                             required 
                             placeholder="required">
-                            <small class="form-text text-muted danger" *ngIf="entryFee.errors?.required">required error</small>   
+                            <label for="entryFee">Entry Fee</label>
                         </div>
+                          <small class="form-text text-muted danger" *ngIf="entryFee.errors?.required">required error</small>   
                     </div> 
                  
                   
@@ -568,7 +720,7 @@
             <div class="modal-footer">
               <button type="submit" class="btn newbtn"  >Save</button>
   
-              <button type="button" class="btn  newbtn newcancelbtn" (click) = "closeModel(list)">Cancel</button>
+              <button type="button" class="btn  newbtn newcancelbtn" (click) = "closeModel(data)">Cancel</button>
             </div>
         </div>
       </div>
@@ -577,5 +729,8 @@
   </form>
 
   <div *ngIf='showLoader' style='top:0px;width:100%;height:100vh;z-index: 99999;position: absolute;background-color:rgba(0, 0, 0, 0.5)'>
-      <h4 style="text-align:center;color:#fff;">Event is being created. Do not refresh or close the page....</h4>
-    </div>
+    <h4 style="text-align:center;color:#fff;">Event is being created. Do not refresh or close the page....</h4>
+  </div>
+
+
+  

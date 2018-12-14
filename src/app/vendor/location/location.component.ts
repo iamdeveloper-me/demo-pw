@@ -44,6 +44,21 @@ interface Location {
 })
 
 export class LocationComponent implements OnInit {
+
+
+    // $(window).load(function () {
+    //     $(".selectwet").each(function () {
+    //       $(this).change(function () {
+    //       createSummary();
+    //     });
+    // });
+    // function createSummary() {
+    //   var eventType = $("#ctl00_Search1_ddlCategory option:selected").text()
+    //   $(".summary_eventType").html(eventType);
+    //   addWidth();
+    //   }
+    // });
+
   @ViewChild('f') floatingLabelForm: NgForm;
   @ViewChild('vform') validationForm: FormGroup;
   @ViewChild("search") public searchElementRef: ElementRef;
@@ -177,6 +192,7 @@ export class LocationComponent implements OnInit {
 
   countryArray: string[];
   location_Array: Array<any>;
+  location_Array_length;
   circleRadius: number = 5000;
   milesToRadius(value) {
     this.circleRadius = value / 0.00062137;
@@ -350,6 +366,8 @@ export class LocationComponent implements OnInit {
 
     this.http.get(this.urlget, { headers: headers }).subscribe((data) => {
       this.location_Array = data.json();
+      this.location_Array_length = this.location_Array.length;
+      //alert( this.location_Array_length );
       this.location_Array.sort(p=>p.isPrimary).reverse();
       this.location_Array[0].locationPhones.reverse();
       this.location_Array.forEach(element => {
@@ -412,7 +430,7 @@ export class LocationComponent implements OnInit {
       type: 'info',
       showCancelButton: true,
       confirmButtonClass: 'btn-default',
-      confirmButtonText: 'Yes, Upgrade Now!',
+      confirmButtonText: 'Yes, Upgrade!',
       cancelButtonText: "Remind Me Later!",
       }).then(res=>{
         if(res.value==true){

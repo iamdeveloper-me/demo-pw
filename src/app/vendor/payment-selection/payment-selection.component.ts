@@ -62,18 +62,34 @@ PayPalPayment(){
   headers.append("Authorization",'Bearer '+authToken);
 
   
-
-
-  this.http.post(this.url+'api/Supplier/upgrademembership',this.MainData,{headers:headers}).subscribe( (data)=> { 
+  if(this.MainData['route_key'] == 0){
+    this.http.post(this.url+'api/Supplier/upgrademembership',this.MainData,{headers:headers}).subscribe( (data)=> { 
     
-        console.log(data.json())
-        this.router.navigate([]).then(result => {  window.open(data.json().url); });
-        
-        },
-        (error)=>{
-          console.log(error);
-        },   
-      );
+      console.log(data.json())
+      sessionStorage.removeItem('selected_plan');
+
+      this.router.navigate([]).then(result => {  window.open(data.json().url); });
+      
+      },
+      (error)=>{
+        console.log(error);
+      },   
+    );
+  }else{
+    this.http.post(this.url+'/api/PromoteBusiness/saveadlog',this.MainData,{headers:headers}).subscribe( (data)=> { 
+    
+      console.log(data.json())
+      sessionStorage.removeItem('selected_plan');
+            this.router.navigate([]).then(result => {  window.open(data.json().url); });
+      
+      },
+      (error)=>{
+        console.log(error);
+      },   
+    );
+  }
+
+  
 }
 
 titleGet(){

@@ -49,7 +49,7 @@ export class EventListComponent implements OnInit {
   model: NgbDateStruct;
   // Range datepicker start
   hoveredDate: NgbDateStruct;
-
+  customDay
   fromDate: NgbDateStruct;
   toDate: NgbDateStruct;
 

@@ -12,6 +12,9 @@ import { Router } from '@angular/router';
 })
 export class DiscountdealsComponent implements OnInit {
   url = apiPath.url;
+  create_start_date;
+  customDay;
+  isDisabled;
   selected = "all";
   editdeal_dailog = false;  
   dealservice = false;

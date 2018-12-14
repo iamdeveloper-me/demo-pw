@@ -32,6 +32,7 @@ export class DatepickerComponent implements OnInit {
   d: any;
   d2: any;
   d3: any;
+  customDay;
   model: NgbDateStruct;
   popupModel;
   date: {year: number, month: number};

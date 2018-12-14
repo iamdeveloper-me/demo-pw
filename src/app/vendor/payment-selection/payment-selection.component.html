@@ -9,13 +9,13 @@
 <div class="container-fluid">
 
 
-    <div class="row">
+      <div class="row  mobilefixedcontainer">
 
             <div class="col-sm-4" *ngIf="MainData.route_key == 0">
             <!-- {{WhichPlan | json}} -->
                     <div class="card">
                       <div class="card-header">
-                          <h1>Payment Detail</h1>
+                          <h1 class="headingpay">Payment Detail</h1>
                       </div>
                       <div class="col-sm-12" >
                         <table class="table table table-bordered table-striped">
@@ -23,36 +23,34 @@
                                 <th>Current Plan </th>
                                 <td> {{MainData.title}}</td>
                               </tr>
-                          <tr>
+                            <tr>
                               <th>Selected Plan  </th>
                               <td> {{WhichPlan.title}}</td>
-                          </tr>
-                          <tr>
+                            </tr>
+                            <tr>
                               <th>Plan Duration </th> 
                               <td *ngIf="MainData.payFrequency == 1"> 6 Month</td>
                               <td *ngIf="MainData.payFrequency == 2"> Annually</td>
-
-                          </tr>
-                          <tr>
+                            </tr>
+                            <tr>
                               <th>Total Amount</th>
                               <td>  {{totalAmount}}</td>
-                          </tr>
+                            </tr>
                         </table>
                       </div>
-                      
                     </div>
                 </div>
       <div class="col-sm-4" *ngIf="MainData.route_key == 1">
             <!-- {{MainData | json}} -->
           <div class="card">
             <div class="card-header">
-                <h1>Payment Detail</h1>
+                 <h1 class="headingpay">Payment Detail</h1>
             </div>
             <div class="col-sm-12">
               <table class="table table-striped">
-                  <tr>
-                      <th>Promotion :{{ MainData.title }}</th>
-                    </tr>
+                <tr>
+                  <th>Promotion :{{ MainData.title }}</th>
+                </tr>
                 <tr>
                   <th>Voucher Code :{{MainData.voucherCode}}</th>
                 </tr>
@@ -62,7 +60,7 @@
               </table>
             </div>
             <div class="col-sm-12">
-                <table class="table table-striped">
+              <table class="table table-striped">
                   <tbody>
                     <tr *ngFor="let dT of MainData.slotIds ">
                       <td> {{dT.week}}</td>
@@ -84,7 +82,9 @@
 
       <div class="col-sm-8">
           <div class="card">
-             
+             <div class="card-header">
+                          <h1 class="headingpay">Payment Process</h1>
+                      </div>
                <!-- {{MainData |json}}fff -->
           
             <!--  plan  <h1 *ngIf="MainData.pricingPlanId == 1 && MainData.payFrequency == 1">6month BASIC (FREE)</h1>
@@ -101,78 +101,81 @@
           
           
           
-                     <article class="card">
-                      <div class="card-body p-5">
-                         <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
+                     <article>
+                      <div class="col-sm-12">
+                         <ul class="nav nav-pills rounded nav-fill mb-3" role="tablist">
                             <li class="nav-item">
                                <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
-                               <i class="fa fa-credit-card"></i> Credit Card</a>
+                              Credit Card</a>
                             </li>
                             <li class="nav-item">
                                <a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
-                               <i class="fab fa-paypal"></i>  Paypal</a>
+                              Paypal Payment</a>
                             </li>
                             <li class="nav-item">
                                <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
-                               <i class="fa fa-university"></i>  Bank Transfer</a>
+                               Bank Transfer</a>
                             </li>
                          </ul>
                          <div class="tab-content">
                             <div class="tab-pane fade show active" id="nav-tab-card">
-                               <p class="alert alert-success">Some text success or error</p>
+                             <!--   <p class="alert alert-success">Some text success or error</p> -->
                                <form role="form">
-                                  <div class="form-group">
-                                     <label for="username">Full name (on the card)</label>
-                                     <input type="text" class="form-control" name="username" placeholder="" required="">
+                                  <div class="field">
+                                     <input type="text" id="username" name="username" placeholder="Full Name (on the card)" required="">
+                                      <label for="username">Full Name (on the card)</label>
                                   </div>
                                   <!-- form-group.// -->
-                                  <div class="form-group">
-                                     <label for="cardNumber">Card number</label>
-                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="cardNumber" placeholder="">
+                                  <div class="field">
+                                        <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="Card Number">
+                                        <label for="cardNumber">Card Number</label>
                                         <div class="input-group-append">
                                            <span class="input-group-text text-muted">
-                                           <i class="fab fa-cc-visa"></i>   <i class="fab fa-cc-amex"></i>   
-                                           <i class="fab fa-cc-mastercard"></i> 
+                                          <i class="material-icons">payment</i>
                                            </span>
                                         </div>
-                                     </div>
                                   </div>
+                                  <div class="clearfix"></div>
                                   <!-- form-group.// -->
                                   <div class="row">
-                                     <div class="col-sm-8">
-                                        <div class="form-group">
-                                           <label><span class="hidden-xs">Expiration</span> </label>
-                                           <div class="input-group">
-                                              <input type="number" class="form-control" placeholder="MM" name="">
-                                              <input type="number" class="form-control" placeholder="YY" name="">
-                                           </div>
+                                     <div class="col-sm-4">
+                                        <div class="field">
+                                              <input type="number" class="form-control" placeholder="Month" name="expmon" id="expmon">
+                                              <label for="Month"><span class="hidden-xs">Exp. Month</span> </label>
+                                        </div>
+                                     </div>
+                                      <div class="col-sm-4">
+                                        <div class="field">
+                                              <input type="number" class="form-control" placeholder="Month" name="expdate" id="expdate">
+                                              <label for="expdate"><span class="hidden-xs">Exp. Date</span> </label>
                                         </div>
                                      </div>
                                      <div class="col-sm-4">
-                                        <div class="form-group">
-                                           <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
-                                           <input type="number" class="form-control" required="">
+                                         <div class="field">
+                                          <input type="number" name="cvv" id="cvv" placeholder="CVV" class="form-control" required="">
+                                          <label for="" data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">
+                                            CVV <i class="fa fa-question-circle"></i>
+                                          </label>
                                         </div>
                                         <!-- form-group.// -->
                                      </div>
                                   </div>
                                   <!-- row.// -->
-                                  <button class="subscribe btn btn-primary btn-block" type="button"> Confirm  </button>
+                                  <button class="btn newbtn martop20px" type="button"> Confirm  </button>
                                </form>
                             </div>
                             <!-- tab-pane.// -->
                             <div class="tab-pane fade" id="nav-tab-paypal">
                                <p>Paypal is easiest way to pay online</p>
                                <p>
-                                  <button type="button" (click)="PayPalPayment()" class="btn btn-primary"> <i class="fab fa-paypal"></i> Log in my Paypal </button>
+                                  <button type="button" (click)="PayPalPayment()" class="btn newbtn"> Log in my Paypal </button>
                                </p>
                                <p><strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                                   tempor incididunt ut labore et dolore magna aliqua. 
                                </p>
                             </div>
                             <div class="tab-pane fade" id="nav-tab-bank">
-                               <p>Bank accaunt details</p>
+                               <p>Following are the Bank account details</p>
                                <dl class="param">
                                   <dt>BANK: </dt>
                                   <dd> THE WORLD BANK</dd>

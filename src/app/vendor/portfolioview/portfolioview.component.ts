@@ -190,6 +190,7 @@ export class PortfolioviewComponent implements OnInit {
                             this.PortgetArray =data.json() 
                             this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
                             this.uploadphoto_dailog = false;
+                            this.progress_bar = false;
             });
             },(error)=>{console.log(error)});
 
@@ -242,6 +243,7 @@ export class PortfolioviewComponent implements OnInit {
     }
     closeModel(){this.uploadphoto_dailog = false;
         this.uploader.queue =[];
+        // this.progress_bar = false;
 
     }
     setbackground(setId){

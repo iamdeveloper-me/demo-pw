@@ -17,6 +17,27 @@
                 </select>
                 <div class="clearfix"></div>
                 <div class="col-sm-12">
+                    {{row | json}}
+
+                  <!-- Hemant Review up -->
+                            <!--Paging dataTable starts-->
+                            <section id="paging" class="mb-3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="content-header">Paging</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <ngx-datatable class="bootstrap" [rows]="rows" [columns]="[{reviewId:'Name'},{name:'Gender'},{name:'Company'}]" [columnMode]="'force'"
+                                            [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+                                        </ngx-datatable>
+                                    </div>
+                                </div>
+                            </section>
+                            <!--Paging dataTable starts-->
+
+                  <!-- Hemant Review up -->
                   <div *ngFor="let category of countryArray.items" ngClass="{active: n == countryArray.page}">
                           <!--    <a (click)="search(n)" *ngIf="n != countryArray.page">{{n+1}}</a> -->
                               <span *ngIf="n == countryArray.page">{{n+1}}</span>

@@ -10,9 +10,24 @@ import { ToastrService } from 'ngx-toastr';
 export class InvoiceDetailComponent implements OnInit {
 
   constructor(public http: Http ,private router: Router, public toastr: ToastrService) { }
-
+ 
   dataArray:undefined[];
-  dataArray1:{paymentDate:'',paymentType: '' ,customerDetails:{emailaddress:'' ,firstName:''}};
+  dataArray1:{
+    paymentDate:'',
+    paymentType: '' ,
+    taxPer:'',
+    paymentId:'',
+    transactionID:'',
+    customerDetails:{
+      emailaddress:'' ,
+      firstName:'',
+      lastName:'',
+      street:'',
+     country:{ countryName:'', },
+     district:{ name:'', districtId:'',},
+     suburb:{ name:'',}
+    }
+  };
 
   invoice_length:number;
   private invoiceurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myinvoices'
@@ -57,8 +72,8 @@ invoice(data){
     startDate: data.value.startDate,
     endDate: data.value.endDate,
     userId: authId,
-    invoiceId: '',
-    invoiceType: ""
+    // invoiceId: '',
+    invoiceType: data.value.invoiceType
   }
   console.log(inc);
 
@@ -105,10 +120,11 @@ invoice(data){
        
 //   },error=>{console.log(error)});
 // }
-invoiceDataFunction(s_data){
-console.log(s_data);
-this.dataArray1 = (s_data)
-console.log(this.dataArray1)
-}
+
+  invoiceDataFunction(s_data){
+  console.log(s_data);
+  this.dataArray1 = (s_data)
+  console.log(this.dataArray1);
+  }
 }
 

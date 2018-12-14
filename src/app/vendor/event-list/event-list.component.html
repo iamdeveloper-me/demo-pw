@@ -15,8 +15,8 @@
             </div>
   
             <ul class="tabbingdesign">
-              <li class="card-title  Registertab" (click) = "past_upcomming_event(2)">Upcoming Event</li>
-              <li class="card-title selected Suppliertab " (click) = "past_upcomming_event(1)">Past Event</li>
+              <li class="card-title selected Registertab" (click) = "past_upcomming_event(2)">Upcoming Event</li>
+              <li class="card-title  Suppliertab " (click) = "past_upcomming_event(1)">Past Event</li>
             </ul>
           </div>
           <div class="clearfix"></div>
@@ -31,7 +31,7 @@
                       </button>
                     </form>    
                 </div>
-                <button class="btn btn-small btn-link" (click)="twitterDailog = true" >
+                <button class="btn btn-small btn-link" (click)="showhidetwitterDailog(0)" >
                     <i class="material-icons"> add </i> 
                     <span>
                          <strong> Create New Event</strong>
@@ -107,12 +107,12 @@
                                       <td valign="top" align="center" width="40px"><i class="material-icons">access_time </i></td>
                                        <td valign="top">
                                         <p  *ngFor="let name of data.eventsDates">
-                                          Event Start: &nbsp;{{name.startDate | date}},  {{name.startTime | date :
+                                          Event Start: &nbsp;{{name.startDate}},  {{name.startTime | date :
                                             "shortTime" }}
                                         </p>
                                        
                                         <p *ngFor="let name of data.eventsDates">
-                                          Event End: &nbsp;{{name.endDate | date}}, 
+                                          Event End: &nbsp;{{name.endDate}}, 
                                                {{name.endTime | date : "shortTime" }} 
                                         </p>
                                       </td>
@@ -237,23 +237,37 @@
                             </div>
                           </div>
                     </div>
-                    <div class="clearfix"></div>
                     
                    
                   </div>
                   <div class="col-sm-6">
-                    <div class="field">
-                            
-                                 
-                                  <!-- <input type="time" class="form-control"  [(ngModel)]="startTimee"  name="startTime" id="startTime"/> -->
-                                  
-                                  <select placeholder="Start Time" type="time" [(ngModel)]="startTimee"  id="startTime" name="startTime">
+
+                    <div class="inputheight">
+                                 <!-- <input type="time" class="form-control"  [(ngModel)]="startTimee"  name="startTime" id="startTime"/> -->
+<!--                                   
+                                  <select class="selectwet" placeholder="Start Time" type="time" [(ngModel)]="startTimee"  id="startTime" name="startTime">
                                     <option *ngFor='let s of select_time.timing;let i=index' [value]='s.startTime'>{{s.startTime}}</option>
                                   </select>
-                                  <label for="startTime">
-                                    start time
-                                  </label>
+                                  <input class="summary_eventType" type="text" name="inputtimestart" id="inputtimestart" placeholder="Start Time">
+                                 
                           
+                                  <label for="inputtimestart">
+
+                                    start time
+                                  </label> -->
+                          
+                                  <select class="form-control selectwet" placeholder="Start Time" type="time" [(ngModel)]="startTimee"  id="startTime" name="startTime">
+                                      <option *ngFor='let s of select_time.timing;let i=index' [value]='s.startTime'>{{s.startTime}}</option>
+                                    </select>
+                                   
+                            
+                                    <label class="selectlabel" for="startTime">
+                                      start time
+                                    </label> 
+
+
+
+
                       </div>
                   </div>
                   <div class="col-sm-6">
@@ -295,11 +309,12 @@
                        <small class="form-text text-muted danger" >{{endDate}}</small>
                   </div>
                   <div class="col-sm-6">
-                       <div class="field">
-                        <select class="form-control" type="time" [(ngModel)]="endtime"  id="endTime" name="endTime">
+                       <div class="inputheight">
+                        <select class="form-control selectwet1" type="time" [(ngModel)]="endtime"  id="endTime" name="endTime">
                           <option *ngFor='let s of select_time.timing' [value]='s.endTime'>{{s.endTime}}</option>
                         </select>
-                         <label for="endTime">
+                          
+                         <label class="selectlabel1" for="inputtimeend">
                           End Time
                         </label>
                         <!-- <input type="time"
@@ -311,6 +326,7 @@
                   
                       </div>
                   </div> 
+                  <div class="clearfix"></div>
                   <div class="col-sm-6">
                       <div class="field">
                             <input type="text" class="form-control" 
@@ -325,40 +341,42 @@
                   </div>
                  
                   <div class="col-sm-6">
-                    <div class="field">
-                        <select class="form-control" id="Country" [(ngModel)]="objevent.countryId" name="country_id" (change)="districtA()">
+                    <div class="inputheight">
+                        <select class="form-control selectwet2" id="Country" [(ngModel)]="objevent.countryId" name="country_id" (change)="districtA()">
                           <option *ngFor="let country of arra ;let c =index" [value]="country.countryId">
                             {{country.countryName }}
                           </option>
                         </select>
-                        <label for="Country">Country</label>
+                        <label class="selectlabel2" for="Country">Country</label>
                     </div>
                   </div> 
+                   <div class="clearfix"></div>
                   <div class="col-sm-6">
-                        <div class="field">
-                          <select name="district" class="form-control" [(ngModel)]="objevent.districtId" name="dist_id" (change)="subr()">
+                      <div class="inputheight">
+                          <select name="district" class="form-control selectwet3" [(ngModel)]="objevent.districtId" name="dist_id" (change)="subr()">
                             <option *ngFor="let dist of district ;let d =index" type="text" id="{{dist.name}}" checked name="dist"
                               placeholder="Country" [value]="dist.districtId" required>
                               {{dist.name }}
                             </option>
                           </select>
-                          <label for="dist_id">District</label>
+                          <label class="selectlabel3" for="dist_id">District</label>
                       </div>
                       <small class="form-text text-muted danger" >{{districtId_valid}}</small>
                   </div>
                   <div class="col-sm-6">
-                      <div class="field">
-                          <select class="form-control" [(ngModel)]="objevent.suburbId" id="sub_id" name="sub_id" (change)="subr()">
+                      <div class="inputheight">
+                          <select class="form-control selectwet4" [(ngModel)]="objevent.suburbId" id="sub_id" name="sub_id" (change)="subr()">
                             <!-- (change)="country($event)" -->
                             <option *ngFor="let sub of suburb ;let s =index" type="text" id="{{sub.name}}" checked name="sub"
                               placeholder="Suburb" [value]="sub.suburbId" required>
                               {{sub.name }}
                             </option>
                           </select>
-                          <label for="sub_id">Suburb</label>
+                          <label class="selectlabel4" for="sub_id">Suburb</label>
                       </div>
                       <small class="form-text text-muted danger" >{{suburbId_valid}}</small>
                   </div>
+                   <div class="clearfix"></div>
                   <div class="col-sm-6">
                       <div class="field">
                           <input type="text" class="form-control"
@@ -388,6 +406,7 @@
                           </div>
                           <small class="form-text text-muted danger" >{{capacity}}</small>
                   </div>
+                   <div class="clearfix"></div>
                   <div class="col-sm-12">
                     <div class="field">
                             <input type="text" class="form-control" 
@@ -401,18 +420,18 @@
                     </div>
                     <small class="form-text text-muted danger" >{{eventDescriptions}}</small> 
                   </div>
-                  <div class="col-sm-6 date_picker">
-                      <div class="field">
+                  <div class="col-sm-6">
+                      <div class="inputheight">
                             <select 
                             [(ngModel)]="objevent.entry" 
-                            class="effect-16 validate marbot0px"
+                            class="form-control selectwet5"
                              name="entry" 
                              id="entry"
                              (keypress)="entrys($event)" class="form-control" >
                               <option value='Paid'>Paid</option>
                               <option value='Free'>Free</option>
                             </select>
-                        <label for="entry">Event Type</label>
+                        <label class="selectlabel5" for="entry">Event Type</label>
                       </div>
                         <small class="form-text text-muted danger" >{{entry}}</small>
                   </div>
@@ -446,8 +465,8 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h4 class="modal-title">Edit Event {{modelfield.eventId}}</h4>
-                <button type="button" class="close btn_mar_padd" (click) = "closeModel(list)">
+                <h4 class="modal-title">Edit Event <!-- {{modelfield.eventId}} --></h4>
+                <button type="button" class="close btn_mar_padd" (click) = "closeModel(data)">
                   <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -484,20 +503,23 @@
                         <label style="width:100%;"> Start Date  </label> 
                           <input class="form-control"  type="date" name="startDate" id="eventdate" [ngModel]="startDates" style="width:100%;">
                     </div> -->
+
                     <div class="form-group">
-                        <label> Start Date  </label> 
-                      <div class="input-group">
+                       
+                      <div class="field">
+
                           <!-- <p>{{startDates}} </p> placeholder="{{startDates}}" -->
                         
-                             <input  class="form-control placetik" 
-                                placeholder="{{startDates | date: 'dd-MM-yyyy'}}"  
+                             <input  class="form-control " 
+                                placeholder=" Start Date "  
                                 name="startDate" 
+                                id="startDate"
                                 [(ngModel)]="startDates" 
                                 ngbDatepicker 
                                 [dayTemplate]="customDay"
                                 [markDisabled]="isDisabled" 
                                 #d3="ngbDatepicker">
-
+                                <label for="startDate"> Start Date  </label> 
                             <div class="input-group-append">
                               <div class="input-group-text" (click)="d3.toggle()">
                                 <i class="fa fa-calendar" style="cursor: pointer;"></i>
@@ -507,12 +529,12 @@
                     </div>
                   </div>  
                   <div class="col-sm-6">
-                      <div class="field martop0px">
-                        <select class="form-control" type="time" [(ngModel)]="startimee" #ele_startTime  id="startTime" name="startTime">
+                      <div class="inputheight">
+                        <select class="form-control selectwet" type="time" [(ngModel)]="startimee" #ele_startTime  id="startTime" name="startTime">
                           <option hidden [ngValue]="startimee">{{startimee}}</option>
                           <option *ngFor='let s of select_time.timing' [value]='s.startTime'  [ngValue]="startimee">{{s.startTime}}</option>
                         </select>
-                          <label for="startTime">
+                          <label class="selectlabel bottomtik" for="startTime">
                           Start Time
                         </label>
                       </div>
@@ -525,10 +547,10 @@
                     </div>  -->
 
                     <div class="form-group">
-                      <label>End Date</label> 
+                      <label>End Date </label> 
                         <div class="input-group">
                             <!-- <p>{{startDates}} </p> placeholder="{{startDates}}" -->
-                          <input class="form-control placetik" placeholder="{{endDates | date: 'dd-MM-yyyy'}}"  name="endDate" [(ngModel)]="endDates" ngbDatepicker [dayTemplate]="customDay"
+                          <input class="form-control " placeholder="End Date "  name="endDate" [(ngModel)]="endDates" ngbDatepicker [dayTemplate]="customDay"
                             [markDisabled]="isDisabled" #d3_eventdate="ngbDatepicker">
                               <div class="input-group-append">
                                 <div class="input-group-text" (click)="d3_eventdate.toggle()">
@@ -539,12 +561,12 @@
                       </div>
                   </div>  
                   <div class="col-sm-6">
-                      <div class="field martop0px">
-                        <select class="form-control" plaeholder="End Time"    type="time" [(ngModel)]="endtime" #ele_endTime  id="endTime" name="endTime">
-                            <option hidden [ngValue]="endtime">{{endtime}}</option>
+                      <div class="inputheight">
+                        <select class="form-control selectwet1" plaeholder="End Time"    type="time" [(ngModel)]="endtime" #ele_endTime  id="endTime" name="endTime">
+                          <option hidden [ngValue]="endtime">{{endtime}}</option>
                           <option *ngFor='let s of select_time.timing' [value]='s.endTime'  [ngValue]="endtime" aria-placeholder="sadas">{{s.endTime}}</option>
                         </select>
-                               <label for="endTime">
+                          <label for="endTime" class="selectlabel1 bottomtik">
                           End Time
                         </label>
                       </div>
@@ -566,7 +588,7 @@
                        <small class="form-text text-muted danger" *ngIf="venueName.errors?.required">required error</small>
                     </div> 
                   <div class="col-sm-6">
-                      <div class="field">
+                      <div class="inputheight">
                             <!-- <select class="effect-16 validate" id="Country" [(ngModel)]="objevent.countryId" name="country_id" (change)="country($event)">
                               <option *ngFor="let country of arra ;let c =index" type="text" id="{{country.countryName}}" checked name="countryName"
                                 placeholder="Country" [value]="country.countryId" required>
@@ -575,36 +597,36 @@
                               </option>
             
                             </select> -->
-                            <select  class="form-control"  id="country_id" [(ngModel)]="objevent.countryId" #ele_country  name="country_id" (change)="districtA()">
+                            <select  class="form-control selectwet2"  id="country_id" [(ngModel)]="objevent.countryId" #ele_country  name="country_id" (change)="districtA()">
                               <option *ngFor="let country of arra" [value]="country.countryId">
                                   {{country.countryName }}
                               </option>
                           </select>
 
-                        <label for="country_id">Country</label>
+                        <label class="selectlabel2 bottomtik" for="country_id">Country</label>
                       </div>
                   </div>
                     <div class="clearfix"></div>
                   <div class="col-sm-6">
-                    <div class="field">
+                    <div class="inputheight">
                      
-                        <select name="district" id="dist_id" class="form-control" #ele_distid [(ngModel)]="objevent.districtId" name="dist_id" (ngModelChange)="subr()">
+                        <select name="district" id="dist_id" class="form-control selectwet3 " #ele_distid [(ngModel)]="objevent.districtId" name="dist_id" (ngModelChange)="subr()">
                           <option *ngFor="let dist of district" [value]="dist.districtId">
                             {{dist.name }}
                           </option>
                         </select>
-                         <label for="dist_id">District</label>
+                         <label class="selectlabel3 bottomtik" for="dist_id">District</label>
                     </div>
                   </div>
                   <div class="col-sm-6">
-                    <div class="field">
-                        <select class="form-control" [(ngModel)]="objevent.suburbId" #ele_suburb name="sub_id" id="sub_id">
+                    <div class="inputheight">
+                        <select class="form-control selectwet4" [(ngModel)]="objevent.suburbId" #ele_suburb name="sub_id" id="sub_id">
                           <!-- (change)="country($event)" -->
                           <option *ngFor="let sub of suburb ;let s =index" [value]="sub.suburbId">
                             {{sub.name }}
                           </option>
                         </select>
-                      <label for="sub_id">Suburb</label>
+                      <label class="selectlabel4 bottomtik"  for="sub_id">Suburb</label>
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -652,7 +674,7 @@
                     <small class="form-text text-muted danger" *ngIf="eventDescription.errors?.required">required error</small>
                   </div> 
                   <div class="col-sm-6">
-                      <div class="field">
+                      <div class="inputheight">
                             <!-- <input type="text" class="effect-16 validate" required="required" 
                             [ngModel]="modelfield.entry" 
                             name="entry"
@@ -666,7 +688,7 @@
           
                             <span class="focus-border"></span>
                           </div> -->
-                              <select class="form-control"
+                              <select class="form-control selectwet5"
                               [(ngModel)]="modelfield.entry" 
                               name="entry" 
                               id="entry"
@@ -674,7 +696,7 @@
                                  <option value='Paid'>Paid</option>
                                 <option value='Free'>Free</option>
                               </select>
-                               <label for="entry">Entry Type</label>
+                               <label class="selectlabel5 bottomtik"  for="entry">Entry Type</label>
                       </div> 
                               <small class="form-text text-muted danger" >{{entry}}</small>
                     </div>
@@ -698,7 +720,7 @@
             <div class="modal-footer">
               <button type="submit" class="btn newbtn"  >Save</button>
   
-              <button type="button" class="btn  newbtn newcancelbtn" (click) = "closeModel(list)">Cancel</button>
+              <button type="button" class="btn  newbtn newcancelbtn" (click) = "closeModel(data)">Cancel</button>
             </div>
         </div>
       </div>
@@ -709,3 +731,6 @@
   <div *ngIf='showLoader' style='top:0px;width:100%;height:100vh;z-index: 99999;position: absolute;background-color:rgba(0, 0, 0, 0.5)'>
     <h4 style="text-align:center;color:#fff;">Event is being created. Do not refresh or close the page....</h4>
   </div>
+
+
+  

@@ -375,46 +375,43 @@
                      </div>
                     </div>
                     <div class="col-sm-12 bortop desktopnone nopadd paddtopbot10  clearfix">
+                       <div  class="col-sm-6 col-6 pull-left  text-center">
+                           <a class="font11px bluelink" target="_blank">
+                                       <i class="material-icons" routerLink="../PromoteBusiness">share</i> 
+                                       <br/>Share
+                                    </a>
+                       </div>
                        <div class="col-sm-6 col-6 pull-left text-center"> 
                           <a routerLink="../PromoteBusiness" class="font11px bluelink">
                           <i class="material-icons">assessment</i> <br/>
                           Promote Business
                           </a>
                        </div>
-                       <div  class="col-sm-6 col-6 pull-left  text-center">
-                          <a routerLink="../statistics" class="font11px bluelink">
-                          <i class="material-icons">equalizer</i> <br/>
-                          Business Insight
-                          </a>
-                       </div>
+                      
                     </div>
                     <div class="col-sm-12 bottop botsharelink padbot0px padtop0px text-center clearfix">
                            <div class="row">
-                              <div class="col-sm-4">
-                                    <a routerLink="../PromoteBusiness" class="text-muted mobilenone font11px sharelink">
-                                       <i class="material-icons">assessment</i> 
-                                       Promote Business
-                                    </a>
-                              </div>
-                              <div class="col-sm-4">
-                                    <a routerLink="../statistics" class="text-muted mobilenone font11px sharelink">
-                                       <i class="material-icons">equalizer</i> 
-                                       <span>Business Insight</span>
-                                    </a>
-  
-                              </div>
-                              <div class="col-sm-4">
+                            <div class="col-sm-6">
                                     <a class="text-muted mobilenone font11px sharelink" target="_blank">
                                        <i class="material-icons" routerLink="../PromoteBusiness">share</i> 
                                        Share
                                     </a>
                               </div>
+                              <div class="col-sm-6">
+                                    <a routerLink="../PromoteBusiness" class="text-muted mobilenone font11px sharelink">
+                                       <i class="material-icons">assessment</i> 
+                                       Promote Business
+                                    </a>
+                              </div>
+                             <!--  <div class="col-sm-4">
+                                    <a routerLink="../statistics" class="text-muted mobilenone font11px sharelink">
+                                       <i class="material-icons">equalizer</i> 
+                                       <span>Business Insight</span>
+                                    </a>
+  
+                              </div> -->
+                              
                            </div>
-                       
-                     
-
-                      
-
                        <div class="clearfix"></div>
                         <div class="col-8 pull-left desktopnone blacktext padbot5px text-left">
                           Membership Type : Free
@@ -500,7 +497,18 @@
      </div>
   </div>
 
-  
+  <div class="clearfix"></div>
+    <div class="col-12">
+    <div class="card">
+      <div  class="text-center">
+                          <a routerLink="../statistics" class="font11px bluelink">
+                          <i class="material-icons">equalizer</i> <br/>
+                          Business Insight
+                          </a>
+                       </div>
+    </div>
+    </div>
+    <div class="clearfix"></div>
   <div class="container-fluid Profile_com"  >
   
 
@@ -616,11 +624,7 @@
                       </div>
                      </ng-template> 
             </div>
-            <div class="modal-footer">
-                    <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">
-                      Close
-                    </button>
-            </div>
+          
         </div>  
     </div>    
   </div>

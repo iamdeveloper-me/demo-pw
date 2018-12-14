@@ -204,6 +204,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="mobdisplay"></div>
                             <div class="col-sm-4">
                                         <div class="card martop10px">
                                             <div class="text-center bg-form col-sm-12 addlocationbox">
@@ -858,27 +859,29 @@
                     </div>
                     <div class="modal-body">
                         <div class="container-fluid">
-                            <div class="tikform form-group ">
-                                    <label>Country</label>
-                                    <select  class="form-control" required="required"  id="Country" [(ngModel)]="address_modelfield.countryId"  name="country_id" (change)="districtA()">
+                            <div class="tikform field">
+                                    
+                                    <select  class="form-control" required="required" placeholder="Country"  id="Country" [(ngModel)]="address_modelfield.countryId"  name="country_id" (change)="districtA()">
                                         <option *ngFor="let country of arra ;let c =index" [value]="country.countryId">
                                                 {{country.countryName }}
                                             </option>
                                         </select>
+                                        <label for="Country">Country</label>
                             </div>
-                            <div class="tikform form-group"> 
-                                    <label>District</label>
-                                        <select name="district" required="required" #ele_dist class="form-control"  [(ngModel)]="dist_id"  name="dist_id" (change)="subr()"  > 
+                            <div class="tikform field"> 
+                                 
+                                        <select required="required" #ele_dist class="form-control"  [(ngModel)]="dist_id"  
+                                        name="dist_id" id="dist_id" placeholder="District" (change)="subr()"  > 
                                             <option value="-1">--Select Dist--</option>
                                             <option   *ngFor="let dist of district ;let d =index" [value]="dist.districtId"
                                                >
                                                 {{dist.name }}
                                             </option>
                                         </select>
+                                           <label for="dist_id">District</label>
                                     </div>
-                                    <div class="tikform form-group"> 
-                                        <label>Suburb</label>
-                                        <select  required="required" #ele_suburb  class="form-control" [(ngModel)] = "sub_id"  name="sub_id"> 
+                                    <div class="tikform field"> 
+                                        <select  required="required" #ele_suburb  class="form-control" [(ngModel)] = "sub_id" id="sub_id"  name="sub_id" placeholder="Suburb"> 
                                             <option value='-1'>--Select Suburb--</option>
                                             <option   *ngFor="let sub of suburb ;let s =index" 
                                                 [value]="sub.suburbId"
@@ -886,10 +889,11 @@
                                                 {{sub.name }}
                                             </option>
                                         </select>
+                                          <label for="sub_id">Suburb</label>
                                      </div>
 
-                                     <div class="tikform form-group">
-                                            <label>Street Address</label>
+                                     <div class="tikform field">
+                                            
                                         <!-- <input class="effect-16 validate" placeholder="Street Address" type='text'   [(ngModel)]='location.address_level_1'> -->
                                         <input type="hidden"  name = "vendorLocationId" [(ngModel)]='address_modelfield.vendorLocationId' />
                                         <input type="hidden"  name = "mobile" [(ngModel)]='address_modelfield.mobile' />
@@ -931,15 +935,17 @@
                                         <input 
                                             class="form-control" 
                                             name = "Address"  
+                                            id="Address"
                                             placeholder="Street Address"
                                             type='text'  
                                             required  
                                             [(ngModel)]='address_modelfield.address'
                                         >
+                                        <label for="Address">Street Address</label>
                             </div>
-                            <div class="tikform form-group">
-                                    <label>Postal Code</label>
-                                        <input class="form-control" type='text' name = "Postal_code" placeholder="Postal / Zip code"    [(ngModel)]='address_modelfield.postalCode '>        
+                            <div class="tikform field">
+                                        <input class="form-control" type='text' id="Postal_code" name = "Postal_code" placeholder="Postal / Zip code" [(ngModel)]='address_modelfield.postalCode '>  
+                                        <label for="Postal_code">Postal Code</label>      
                             </div>    
                         </div>        
                     </div>

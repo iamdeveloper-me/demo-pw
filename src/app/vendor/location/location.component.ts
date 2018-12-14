@@ -44,6 +44,21 @@ interface Location {
 })
 
 export class LocationComponent implements OnInit {
+
+
+    // $(window).load(function () {
+    //     $(".selectwet").each(function () {
+    //       $(this).change(function () {
+    //       createSummary();
+    //     });
+    // });
+    // function createSummary() {
+    //   var eventType = $("#ctl00_Search1_ddlCategory option:selected").text()
+    //   $(".summary_eventType").html(eventType);
+    //   addWidth();
+    //   }
+    // });
+
   @ViewChild('f') floatingLabelForm: NgForm;
   @ViewChild('vform') validationForm: FormGroup;
   @ViewChild("search") public searchElementRef: ElementRef;
@@ -415,7 +430,7 @@ export class LocationComponent implements OnInit {
       type: 'info',
       showCancelButton: true,
       confirmButtonClass: 'btn-default',
-      confirmButtonText: 'Yes, Upgrade Now!',
+      confirmButtonText: 'Yes, Upgrade!',
       cancelButtonText: "Remind Me Later!",
       }).then(res=>{
         if(res.value==true){

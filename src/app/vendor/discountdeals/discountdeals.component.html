@@ -27,9 +27,6 @@
                             <h4>{{disTitle}}
                                 <img *ngIf="noDiscount" src="../../../assets/img/noDiscount.png">
                             </h4>
-                            
-                            
-                             
                             <div class="button11" *ngIf="basicplan == 1 ;else dd" >       
                                     <button class="select-btn" style="display:none" (click)="dealservice = true" [disabled]="true">Select Discount</button> 
                                     <button class="select-btn" (click)="noDealSwal()" >Select Discount</button> 
@@ -69,7 +66,7 @@
                             <ng-template #cc>
                                     <div class="button11">
                                             <button (click)="createdeal_dailog = true " class="select-btn">Create Deal
-                                                </button>
+                                            </button>
                                     </div>    
                         </ng-template>
                         </div>   
@@ -156,8 +153,7 @@
                               <div class="card-body">
                                   <div class="col-md-12">
                                   <div class="funkyradio" *ngFor = 'let dis of discount '>
-                                      <div class="funkyradio-success">
-                                            
+                                      <div class="funkyradio-success">    
                                       <input 
                                       type="radio" 
                                       name="select" 
@@ -165,7 +161,6 @@
                                       id="{{dis.discountId}}"  
                                       ngModel/>
                                       <label for="{{dis.discountId}}">{{dis.title}}</label>
-                                           
                                       </div>
                                   </div>
                                   </div>
@@ -247,7 +242,7 @@
                         <div class="col-md-12 row">
                             <div class="col-md-6">
                                 <div class="field">
-                                        <label for="Start_date">Start Date {{create_start_date}}</label>
+                                        
                                 <!-- <div class="form-group md-form">
                                     
                                     <input 
@@ -261,30 +256,29 @@
                                     >
                                     <small class="form-text text-muted danger" *ngIf="Start_date.errors?.required">required error</small>
                                 </div> -->
-                                <div class="input-group">
                                         <input class="form-control" 
                                         placeholder="yyyy-mm-dd" 
                                         name="Start_date" 
+                                        id="Start_date"
                                         [(ngModel)]="create_start_date"
-                                         
                                         ngbDatepicker 
                                          [dayTemplate]="customDay"
                                             [markDisabled]="isDisabled" #d3_Start_date="ngbDatepicker"   #Start_date="ngModel" 
                                             required >
+                                            <label for="Start_date">Start Date {{create_start_date}}</label>
                                             <div class="input-group-append">
                                                 <div class="input-group-text" (click)="d3_Start_date.toggle()">
                                                 <i class="fa fa-calendar" style="cursor: pointer;"></i>
                                                 </div>
                                             </div>
-                                            <small class="form-text text-muted danger" *ngIf="Start_date.errors?.required">required error</small>
-                                </div>
+                               
                                 </div> 
-                        
+                              <small class="form-text text-muted danger" *ngIf="Start_date.errors?.required">required error</small>
                             </div> 
                         
                         <div class="col-md-6"  *ngIf = "createdeal.neverExpire == false ">
                             <div class="field">
-                                    <label for="End_date">End Date {{create_end_date}}</label>
+                                   
                                 <!-- <div class="form-group md-form ">
                             
                                     <input
@@ -300,18 +294,19 @@
 
                                     <small class="form-text text-muted danger" *ngIf="End_date.errors?.required">required error</small>
                                 </div> -->
-                                <div class="input-group" >
+                              
                                     <input class="form-control" placeholder="yyyy-mm-dd" name="End_date" [(ngModel)]="create_end_date" ngbDatepicker [dayTemplate]="customDay"
                                     [markDisabled]="isDisabled" #d3_End_date="ngbDatepicker" #End_date="ngModel" 
                                     required >
+                                    <label for="End_date">End Date {{create_end_date}}</label>
                                     <div class="input-group-append">
                                         <div class="input-group-text" (click)="d3_End_date.toggle()">
                                         <i class="fa fa-calendar" style="cursor: pointer;"></i>
                                         </div>
-                                    </div>
-                                    <small class="form-text text-muted danger" *ngIf="End_date.errors?.required">required error</small>
-                                </div>
+                                    </div>   
                             </div>
+                              <small class="form-text text-muted danger" *ngIf="End_date.errors?.required">required error</small>
+                          
                         </div> 
                         </div> 
                         <div class="col-md-12">
@@ -418,8 +413,8 @@
                                 <div class="col-md-12 row">
                                     <div class="col-md-6">
                                     <div class="field">
-                                        <div class="form-group md-form">
-                                            <label for="Start_date">Start Date</label>
+                                      
+                                           
                                             <!-- <input 
                                             type="date" 
                                             name= "Start_date"
@@ -429,25 +424,24 @@
                                             required 
                                             placeholder="Start Date"
                                             > -->
-                                            <div class="input-group">
+                                           
                                                     <input class="form-control" placeholder="yyyy-mm-dd" name="Start_date" [(ngModel)]="update_start_date" ngbDatepicker [dayTemplate]="customDay"
                                                       [markDisabled]="isDisabled" #d4_Start_date="ngbDatepicker"  #Start_date="ngModel" 
                                                       required s>
+                                                       <label for="Start_date">Start Date</label>
                                                         <div class="input-group-append">
                                                           <div class="input-group-text" (click)="d4_Start_date.toggle()">
                                                             <i class="fa fa-calendar" style="cursor: pointer;"></i>
                                                           </div>
                                                         </div>
-                                                  </div>
-                                            <small class="form-text text-muted danger" *ngIf="Start_date.errors?.required">required error</small>
                                         </div>
-                                        </div>
+                                          <small class="form-text text-muted danger" *ngIf="Start_date.errors?.required">required error</small>
                                     </div> 
                                 
                                 <div class="col-md-6" *ngIf = "updatemydeal.neverExpire == false">
                                     <div class="field">
-                                        <div class="form-group md-form ">
-                                        <label for="End_date">End Date</label>
+                                      
+                                        
                                             <!-- <input
                                                 class="effect-16 validate" 
                                                 type="date" 
@@ -458,10 +452,10 @@
                                                 required 
                                                 placeholder="End Date"
                                                 > -->
-                                                <div class="input-group">
                                                         <input class="form-control" placeholder="yyyy-mm-dd" name="End_date" [(ngModel)]="update_end_date" ngbDatepicker [dayTemplate]="customDay"
                                                           [markDisabled]="isDisabled" #d5_End_date="ngbDatepicker"   #End_date="ngModel" 
                                                           required >
+                                                          <label for="End_date">End Date</label>
                                                             <div class="input-group-append">
                                                               <div class="input-group-text" (click)="d5_End_date.toggle()">
                                                                 <i class="fa fa-calendar" style="cursor: pointer;"></i>
@@ -470,9 +464,7 @@
                                                       </div>
                                             <small class="form-text text-muted danger" *ngIf="End_date.errors?.required">required error</small>
             
-                                        </div>
                                     </div>
-                                </div> 
                                 </div>                                      
                                 <div class="col-md-12">
                                     <div class="field">

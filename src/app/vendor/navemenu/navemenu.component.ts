@@ -124,6 +124,9 @@ export class NavemenuComponent implements OnChanges,OnInit   {
       } else if(window.location.href.indexOf('/vendor/Message')>-1) {
         this.data = 'MESSAGES'; 
       }
+      else if(window.location.href.indexOf('/vendor/payment-selection')>-1) {
+        this.data = 'Payment Methods'; 
+      }
       else if(window.location.href.indexOf('/Admin/dashboard')>-1) {
         this.data = 'Dashboard'; 
       }

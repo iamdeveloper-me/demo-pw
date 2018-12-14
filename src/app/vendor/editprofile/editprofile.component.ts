@@ -37,16 +37,28 @@ changePassword_form = false;
   changepass : any = {};
 
  private membershipurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mymembership'
-  membershipdetail : any = {
-    startDateString:'',
-    endDateString:'',
-    createdOnString:'',
-    pricingPlan: {
-      title: '',
-      dateAddedOnString:'',
-    },
-  };
+  // membershipdetail : any = {
+  //   startDateString:'',
+  //   endDateString:'',
+  //   createdOnString:'',
+  //   pricingPlan: {
+  //     title: '',
+  //     dateAddedOnString:'',
+  //   },
+  // };
 
+
+  myplans:any = {}; 
+  pricing:any = [];
+  palnvoucher:any;
+  vo = {Voucher: ""}
+  statdate;
+  endDateString;
+  pricingPlantitle;
+  account_create_date;
+  pricingPlanId:number;
+  payFrequency:number;
+  
   private subscriptionurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/subscriptionsettings'
   mysub : any = {};
 
@@ -78,7 +90,14 @@ changePassword_form = false;
     this.http.get(this.membershipurl,{headers:headers}).subscribe(
       data =>{  
                console.log(data.json());
-              this.membershipdetail = data.json();
+              // this.membershipdetail = data.json();
+              this.myplans = data.json();
+              this.statdate = data.json().startDateString;
+              this.endDateString   = data.json().endDateString; 
+              this.pricingPlantitle   = data.json().pricingPlan.title;
+              this.pricingPlanId   = data.json().pricingPlanId;
+              this.payFrequency = data.json().payFrequency;
+              this.account_create_date = data.json().dateAddedOn;
       });
     
     //Subscriptions

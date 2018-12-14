@@ -27,7 +27,8 @@ c;
   }
   // code by v
   page_number : number = 0;
-  collection: any[];  
+  collection: any[]; 
+  row: any[] 
   options = [{key : 'Highest Rating', value : 1}, {key : 'Lowest Rating', value : 2}, {key : 'Most Recent', value : 3}, {key : 'Earliest', value : 4}, {key : 'Not Replied', value : 5}, {key : 'Replied', value : 6}, {key : 'Pinned', value : 7}, {key : 'Unread', value : 8}]
 
   optionSelected = 3;
@@ -72,7 +73,9 @@ c;
     this.http.post(this.base_url + "/myreviews", data, { headers: this.header() }).subscribe(
         data =>{
           this.countryArray = data.json()
-
+          this.row = data.json()['items']
+          console.log(this.row)
+          alert(this.row)
           console.log(  this.countryArray);
           this.c=   data.json().count;
           this.collection = this.countryArray

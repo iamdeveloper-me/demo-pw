@@ -1,3 +1,4 @@
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgModule} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RatingModule} from "ngx-rating";
@@ -399,7 +400,7 @@ export function getAuthServiceConfigs() {
   ],
     imports: [
         ProgressHttpModule
-,
+,NgxDatatableModule,
        // NgProgressModule,
         ReactiveFormsModule,
         CustomFormsModule,

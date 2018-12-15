@@ -543,9 +543,9 @@ export class EventListComponent implements OnInit {
           this.toastr.success("created  event sucessfully");
           this.showLoader = false;
           this.objevent = new EventsCreateUpdateVM();
-         // this.past_upcomming_event(0)
+          this.past_upcomming_event(0)
           this.twitterDailog = false;
-          list.reset()
+          //list.reset()
         }, error => {
           console.log(error)
          // console.log(error.json().capacity[0])
@@ -605,23 +605,27 @@ export class EventListComponent implements OnInit {
     this.startimee = v.eventsDates[0].startTimeString;
     this.endtime = v.eventsDates[0].endTimeString;
     //this.startDates = v.eventsDates[0].startDate.split('T')[0];
-  
+ 
+   if(v.eventsDates[0].startDate.includes('T') == true){
     v.eventsDates[0].startDate =  { "year": parseInt(v.eventsDates[0].startDate.split('T')[0].split('-')[0])   , 
-                                    "month": parseInt(v.eventsDates[0].startDate.split('T')[0].split('-')[1])  ,
-                                    "day": parseInt( v.eventsDates[0].startDate.split('T')[0].split('-')[2])}
+    "month": parseInt(v.eventsDates[0].startDate.split('T')[0].split('-')[1])  ,
+    "day": parseInt( v.eventsDates[0].startDate.split('T')[0].split('-')[2])}
 
-     v.eventsDates[0].endDate   =  {"year": parseInt(v.eventsDates[0].endDate.split('T')[0].split('-')[0])   , 
-                                    "month": parseInt(v.eventsDates[0].endDate.split('T')[0].split('-')[1])  ,
-                                    "day": parseInt( v.eventsDates[0].endDate.split('T')[0].split('-')[2])}                    
-    this.startDates =  v.eventsDates[0].startDate;
+    v.eventsDates[0].endDate   =  {"year": parseInt(v.eventsDates[0].endDate.split('T')[0].split('-')[0])   , 
+    "month": parseInt(v.eventsDates[0].endDate.split('T')[0].split('-')[1])  ,
+    "day": parseInt( v.eventsDates[0].endDate.split('T')[0].split('-')[2])}                    
+
+   }else{
+    v.eventsDates[0].endDate = v.eventsDates[0].endDate
+    
+    v.eventsDates[0].startDate =  v.eventsDates[0].startDate 
+   }
+
+      this.startDates =  v.eventsDates[0].startDate;
   
     this.endDates = v.eventsDates[0].endDate  ;
     this.modelfield = v;
     this.objevent = v;
-    //console.log(this.objevent);
-    // this.ele_country.nativeElement.value=v.countryId;
-    // this.ele_distid.nativeElement.value=v.districtId;
-    // this.ele_suburb.nativeElement.value=v.sub_id;
     this.eventupdaterDailog = true;
 
   }
@@ -698,7 +702,7 @@ export class EventListComponent implements OnInit {
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
-    //  this.eventArray.unshift(this.objevent);
+    this.eventArray.unshift(this.objevent);
     this.http.post(this.myevent_Post_url, { Filter: past }, { headers: headers }).subscribe(data => {
       this.eventArray = data.json();
      // console.log(JSON.stringify(this.eventArray));
@@ -706,7 +710,7 @@ export class EventListComponent implements OnInit {
         this.event_Detail(entry.eventId)
       }
     }, error => { 
-     // console.log(error);
+      console.log(error);
      })
   }
 
@@ -775,7 +779,7 @@ export class EventListComponent implements OnInit {
       this.eventArray.push(data.json())
 
     }, error => { 
-      //console.log(error); 
+      console.log(error); 
     })
   }
   country(): void {

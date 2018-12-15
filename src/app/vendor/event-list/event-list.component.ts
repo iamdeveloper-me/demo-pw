@@ -596,6 +596,7 @@ export class EventListComponent implements OnInit {
 
   editevent(v) {
     console.log(v);
+    alert("dvfdv");
     this.objevent.districtId = v.districtId;
     this.objevent.suburbId = v.suburbId;
     this.objevent.countryId = v.countryId;
@@ -604,30 +605,30 @@ export class EventListComponent implements OnInit {
     this.subr();
     this.startimee = v.eventsDates[0].startTimeString;
     this.endtime = v.eventsDates[0].endTimeString;
-    //this.startDates = v.eventsDates[0].startDate.split('T')[0];
+    if(v.eventsDates[0].startDate.includes('T') == true){
+      alert("true")
+     v.eventsDates[0].startDate =  { "year": parseInt(v.eventsDates[0].startDate.split('T')[0].split('-')[0])   , 
+     "month": parseInt(v.eventsDates[0].startDate.split('T')[0].split('-')[1])  ,
+     "day": parseInt( v.eventsDates[0].startDate.split('T')[0].split('-')[2])}
  
-   if(v.eventsDates[0].startDate.includes('T') == true){
-    v.eventsDates[0].startDate =  { "year": parseInt(v.eventsDates[0].startDate.split('T')[0].split('-')[0])   , 
-    "month": parseInt(v.eventsDates[0].startDate.split('T')[0].split('-')[1])  ,
-    "day": parseInt( v.eventsDates[0].startDate.split('T')[0].split('-')[2])}
-
-    v.eventsDates[0].endDate   =  {"year": parseInt(v.eventsDates[0].endDate.split('T')[0].split('-')[0])   , 
-    "month": parseInt(v.eventsDates[0].endDate.split('T')[0].split('-')[1])  ,
-    "day": parseInt( v.eventsDates[0].endDate.split('T')[0].split('-')[2])}                    
-
-   }else{
-    v.eventsDates[0].endDate = v.eventsDates[0].endDate
-    
-    v.eventsDates[0].startDate =  v.eventsDates[0].startDate 
-   }
-
-      this.startDates =  v.eventsDates[0].startDate;
-  
-    this.endDates = v.eventsDates[0].endDate  ;
-    this.modelfield = v;
-    this.objevent = v;
-    this.eventupdaterDailog = true;
-
+     v.eventsDates[0].endDate   =  {"year": parseInt(v.eventsDates[0].endDate.split('T')[0].split('-')[0])   , 
+     "month": parseInt(v.eventsDates[0].endDate.split('T')[0].split('-')[1])  ,
+     "day": parseInt( v.eventsDates[0].endDate.split('T')[0].split('-')[2])}                    
+ 
+    }else{
+     alert("false")
+    // v.eventsDates[0].endDate = v.eventsDates[0].endDate
+     console.log(v.eventsDates[0].endDate)
+     console.log(v.eventsDates[0].startDate)
+     //v.eventsDates[0].startDate =  v.eventsDates[0].startDate 
+    }
+ 
+       this.startDates =  v.eventsDates[0].startDate;
+   
+     this.endDates = v.eventsDates[0].endDate  ;
+     this.modelfield = v;
+     this.objevent = v;
+     this.eventupdaterDailog = true;
   }
 
   editsave(data: any) {

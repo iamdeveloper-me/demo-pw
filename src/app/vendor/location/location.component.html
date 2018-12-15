@@ -33,11 +33,11 @@
                                                 <ui-switch 
                                                 [(ngModel)]="data.isActive" 
                                                 id="{{i}} " 
-                                                name="isActive" 
-                                                (change) = "data.fbAvailable  = !data.fbAvailable" 
-                                                (click) = "isActive(data.fbAvailable,data)"></ui-switch>
+                                                name="isActive"
+                                                (click) = "isActive(data.isActive,data)"></ui-switch>
                                                 <span class="font10px">Vacation Mode</span>
                                             </div>
+                                            <!--(change) = "data.fbAvailable  = !data.fbAvailable"  -->
                                             
                                         </div>
                                         <div class="card-body">

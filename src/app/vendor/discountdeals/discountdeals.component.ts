@@ -54,6 +54,26 @@ export class DiscountdealsComponent implements OnInit {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
 
+     $('.selectwet').on("focus", function(){
+        $(".selectlabel").addClass("bottomtik");
+      });
+
+      $('.selectwet').on("focusout", function(){
+        if($(this).val() === null){
+          $(".selectlabel").removeClass("bottomtik");
+        }
+      });
+      
+
+      $('.selectwet1').on("focus", function(){
+        $(".selectlabel1").addClass("bottomtik");
+      });
+
+      $('.selectwet1').on("focusout", function(){
+        if($(this).val() === null){
+          $(".selectlabel1").removeClass("bottomtik");
+        }
+      });
 
 
     $(".close").click(function(){

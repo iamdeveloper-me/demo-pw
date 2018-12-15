@@ -363,29 +363,28 @@
                           <!--Body-->
                           <form role="form" action="" method="post" id="id7" (ngSubmit)="userlogin()" #f="ngForm" >
                               <div class="modal-body mb-1 align_left">
-                                  <div class="input-effect  md-form mt-3">
+                                  <div class="field">
 
-                                       <input class="effect-16"  
+                                       <input
                                        type="email"
                                         [(ngModel)] = "user.username" 
                                         name="username" 
                                         id="username2"
                                         autocomplete="username"
                                          required
-                                         placeholder="">
-                                      <label>Your Email</label>
-                                      <span class="focus-border"></span>
+                                         placeholder="Your Email">
+                                      <label for="username2">Your Email</label>
                                   </div> 
-                                  <div class="input-effect  md-form mt-3">
-                                          <input class="effect-16"   
+                                  <div class="field">
+                                          <input 
                                           type="password" 
                                           [(ngModel)] = "user.password" 
                                           name="password" 
+                                          id="password"
                                           autocomplete="current-password"
                                           required
-                                          placeholder="">
-                                      <label>Password</label>
-                                      <span class="focus-border"></span>
+                                          placeholder="Password">
+                                      <label for="password">Password</label>
                                   </div>   
                                   <div class="text-center mt-2" >
                                           <p class="pt-1 text-right">
@@ -416,30 +415,25 @@
                               <form role="form" action="" method="post" id="id8" (ngSubmit)="userSubmit()" #f="ngForm">
                                   <div class="modal-body mb-1 align_left">               
                                       
-                                      <div class="input-effect form-group md-form mt-3">
-                                          <input class="effect-16"  type="email"  autocomplete="username" required="required" [(ngModel)] = "userSingUp.email" name="email" placeholder="">
-                                          <label>Your Email</label>
-                                          <span class="focus-border"></span>
+                                      <div class="field">
+                                          <input type="email"  autocomplete="username" required="required" [(ngModel)] = "userSingUp.email" id="email" name="email" placeholder="Your Email">
+                                          <label for="email">Your Email</label>
                                       </div>   
-                                      <div class="input-effect form-group md-form mt-3">
-                                          <input class="effect-16"  type="password"  autocomplete="current-password" required="required" [(ngModel)] = "userSingUp.password" name="password" placeholder="">
-                                          <label>Password</label>
-                                          <span class="focus-border"></span>
+                                      <div class="field">
+                                          <input type="password"  autocomplete="current-password" required="required" [(ngModel)] = "userSingUp.password" id="password" name="password" placeholder="Password">
+                                          <label for="password">Password</label>
                                       </div>  
-                                      <div class="input-effect form-group md-form mt-3">
-                                          <input class="effect-16"  type="password" autocomplete="new-password" required="required" [(ngModel)] = "userSingUp.confirmpass" name="confirmpass"  placeholder="">
-                                          <label>Confirm Password</label>
-                                          <span class="focus-border"></span>
+                                     <div class="field">
+                                          <input type="password" autocomplete="new-password" required="required" [(ngModel)] = "userSingUp.confirmpass" name="confirmpass" id="confirmpass"  placeholder="Confirm Password">
+                                          <label for="confirmpass">Confirm Password</label>
                                       </div>
-                                      <div class="input-effect form-group md-form mt-3">
-                                          <input class="effect-16"  type="text" autocomplete="new-password" required="required" [(ngModel)] = "userSingUp.firstName" name="firstName"  placeholder="">
-                                          <label>First Name</label>
-                                          <span class="focus-border"></span>
+                                     <div class="field">
+                                          <input type="text" autocomplete="new-password" required="required" [(ngModel)] = "userSingUp.firstName" name="firstName" id="firstName"  placeholder="First Name">
+                                          <label for="firstName">First Name</label>
                                       </div>
-                                      <div class="input-effect form-group md-form mt-3">
-                                          <input class="effect-16"  type="text" autocomplete="new-password" required="required" [(ngModel)] = "userSingUp.lastName" name="lastName"  placeholder="">
-                                          <label>Last Name</label>
-                                          <span class="focus-border"></span>
+                                       <div class="field">
+                                          <input type="text" autocomplete="new-password" required="required" [(ngModel)] = "userSingUp.lastName" name="lastName" id="lastName"  placeholder="Last Name">
+                                          <label for="lastName">Last Name</label>
                                       </div> 
                                       <div class="text-center form-sm mt-2">
                                       <button class="btn btn-info">SIGN UP</button> 
@@ -461,16 +455,11 @@
                           
                       <form role="form" action="" method="post" (ngSubmit)="onSubmit()" #f="ngForm">
                           <div class="modal-body mb-1 align_left">
-                              <div class="input-effect form-group md-form mt-3">
-                                  <input class="effect-16"  
-                                  type="email"
+                               <div class="field">
+                                  <input type="email"
                                    [(ngModel)] = "usercouple.username" 
-                                   name="username" 
-                                   id="username"
-                                    required
-                                    placeholder="">
-                                  <label>Your Email</label>
-                                  <span class="focus-border"></span>
+                                   name="username" id="username" placeholder="Your Email" required>
+                                  <label for="username">Your Email</label>
                               </div>  
                               <!-- <div class="input-effect">
                                   <input class="effect-16"   
@@ -481,16 +470,16 @@
                                    <label>Password</label>
                                   <span class="focus-border"></span>                                     
                               </div>    -->
-                              <div class="input-effect">
-                                  <input class="effect-16"   
+                              <div class="field">
+                                  <input 
                                   type="password" 
                                   [(ngModel)] = "usercouple.password" 
                                   name="password" 
+                                  id="password" 
                                   autocomplete="current-password"
                                   required
-                                  placeholder="">
-                                  <label>Password</label>
-                                  <span class="focus-border"></span>
+                                  placeholder="Password">
+                                  <label for="password">Password</label>
                               </div>   
                               <div class="text-center mt-2">
                                   <p class="pt-1 text-right">
@@ -517,16 +506,15 @@
                           <img src="../../assets/img/lockpink.png" class="forgotlock" /></div>
                         <h1 class="forgothead">Forgot Your Password? Don't Worry!</h1>
                           <div class="modal-body mb-1 align_left">
-                              <div class="input-effect form-group md-form mt-3">
-                                  <input class="effect-16"  
+                               <div class="field">
+                                  <input 
                                   type="email"
                                    [(ngModel)] = "usercouple.username" 
                                    name="username" 
                                    id="username"
                                     required
-                                    placeholder="">
-                                  <label>Your Email</label>
-                                  <span class="focus-border"></span>
+                                    placeholder="Your Email">
+                                  <label for="username">Your Email</label>
                               </div>  
                              
                                 
@@ -551,16 +539,15 @@
                           <img src="../../assets/img/lockblue.png" class="forgotlock" /></div>
                         <h1 class="forgothead">Forgot Your Password? Don't Worry!</h1>
                           <div class="modal-body mb-1 align_left">
-                              <div class="input-effect form-group md-form mt-3">
-                                  <input class="effect-16"  
+                               <div class="field">
+                                  <input 
                                   type="email"
                                    [(ngModel)] = "usercouple.username" 
                                    name="username" 
                                    id="username"
                                     required
-                                    placeholder="">
-                                  <label>Your Email</label>
-                                  <span class="focus-border"></span>
+                                    placeholder="Your Email">
+                                  <label for="username">Your Email</label>
                               </div>  
                              
                                 

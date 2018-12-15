@@ -4,6 +4,8 @@ import { Component, OnInit  ,ChangeDetectionStrategy } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import swal from 'sweetalert2';
+import { ProgressHttp } from 'angular-progress-http';
+
 
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 @Component({
@@ -22,6 +24,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   myalbumimages=[];
   lodar = false;
   total;
+  progress_bar:boolean = false;
   private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
   eventArray:any = [];
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
@@ -38,6 +41,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   albumname:any;
   id:any;
   tags:any;
+  progressPercentage:number = 0
   colourtags:any;
   uploader: FileUploader = new FileUploader({
     url: URL,
@@ -54,7 +58,9 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   fileOverAnother(e: any): void {
     this.hasAnotherDropZoneOver = e;
   }
-  constructor(private http: Http ,  private route: ActivatedRoute,public toastr: ToastrService) { 
+  constructor(private http: Http ,  private route: ActivatedRoute,public toastr: ToastrService,private _http: ProgressHttp
+
+  ) { 
     
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
@@ -113,7 +119,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   headers.append('Content-Type', 'application/json');
   headers.append("Authorization",'Bearer '+authToken);
 
-  this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/BackgroundImage",{headers:headers})
+  this.http.get(this.url+"api/Albums/BackgroundImage",{headers:headers})
   .subscribe(data => {console.log(data.json())},error=>{console.log(error)});
     $(".gearicon").click(function(){
     
@@ -386,41 +392,82 @@ $(document)
     console.log(formData);
    
     this.uploader.queue = [];
-    this.http.post(this.uploadimage,formData,{headers:headers})
-      .subscribe(data =>{console.log(data.json());
-        this.uploadphoto_dailog = false;
-        this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
-        .subscribe(data =>{
-         this.totalImage =  data.json();
+    // this.http.post(this.uploadimage,formData,{headers:headers})
+    //   .subscribe(data =>{console.log(data.json());
+    //     this.uploadphoto_dailog = false;
+    //     this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
+    //     .subscribe(data =>{
+    //      this.totalImage =  data.json();
       
-         console.log(this.albumid.id); 
-         console.log(data.json()); 
+    //      console.log(this.albumid.id); 
+    //      console.log(data.json()); 
         
-         for (var item of  this.totalImage ) {
-            if(this.albumid.id == item.albumsId)
-              {
-                  this.albumImagesModify =  item.albumImages;
-                  console.log(  this.albumImagesModify ); 
+    //      for (var item of  this.totalImage ) {
+    //         if(this.albumid.id == item.albumsId)
+    //           {
+    //               this.albumImagesModify =  item.albumImages;
+    //               console.log(  this.albumImagesModify ); 
                  
-              }
-          }
+    //           }
+    //       }
 
 
-          // $(function() {
-          //   var current_progress = 0;
-          //   var interval = setInterval(function() {
-          //       current_progress += 10;
-          //       $("#dynamic")
-          //       .css("width", current_progress + "%")
-          //       .attr("aria-valuenow", current_progress)
-          //       .text(current_progress + "% Complete");
-          //       if (current_progress >= 100)
-          //           clearInterval(interval);
-          //   }, 1000);
-          // });
-          this.lodar = false;
+    //       // $(function() {
+    //       //   var current_progress = 0;
+    //       //   var interval = setInterval(function() {
+    //       //       current_progress += 10;
+    //       //       $("#dynamic")
+    //       //       .css("width", current_progress + "%")
+    //       //       .attr("aria-valuenow", current_progress)
+    //       //       .text(current_progress + "% Complete");
+    //       //       if (current_progress >= 100)
+    //       //           clearInterval(interval);
+    //       //   }, 1000);
+    //       // });
+    //       this.lodar = false;
          
-        });  this.toastr.success(data.json().message);},(error)=>{console.log(error)});
+    //     });  this.toastr.success(data.json().message);},(error)=>{console.log(error)});
+
+        this._http.withUploadProgressListener(progress => {this.progress_bar = true; console.log(`Uploading ${progress.percentage}%`);this.closeModel(); this.progressPercentage = progress.percentage})
+        .withDownloadProgressListener(progress => { console.log(`Downloading ${progress.percentage}%`); })
+        .post(this.url+'api/ImageUploader/PortfolioUploader', formData,{headers: headers})
+        .subscribe(data =>{
+          this.totalImage =  data.json();
+       
+          // console.log(this.albumid.id); 
+          // console.log(data.json()); 
+         
+          for (var item of  this.totalImage ) {
+             if(this.albumid.id == item.albumsId)
+               {
+                   this.albumImagesModify =  item.albumImages;
+                   console.log(  this.albumImagesModify ); 
+                  
+               }
+           }
+ 
+ 
+           // $(function() {
+           //   var current_progress = 0;
+           //   var interval = setInterval(function() {
+           //       current_progress += 10;
+           //       $("#dynamic")
+           //       .css("width", current_progress + "%")
+           //       .attr("aria-valuenow", current_progress)
+           //       .text(current_progress + "% Complete");
+           //       if (current_progress >= 100)
+           //           clearInterval(interval);
+           //   }, 1000);
+           // });
+           this.lodar = false;
+           this.toastr.success(data.json().message);
+           this.progress_bar =  false
+          
+         }
+        ,error=>{
+          console.log(error)
+        }); 
+        
        
   }
 

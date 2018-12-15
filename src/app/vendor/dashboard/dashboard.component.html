@@ -319,7 +319,10 @@
                               <br/>
                               <div class="clearfix"></div>
                               <div class="membershipbox">
-                               Membership Type: {{vendor.pricingPlan?.title}} 
+                               <!-- Membership Type: {{vendor.pricingPlan?.title}}  -->
+                               <p *ngIf="myplans?.payFrequency == 1 && myplans.pricingPlanId == 3">Plan Name: <b>{{myplans?.pricingPlan.title}}</b>  (12 Months)</p>
+                               <p *ngIf="myplans?.payFrequency == 1 && myplans.pricingPlanId == 1">Plan Name: <b>{{myplans?.pricingPlan.title}}</b>  (6 Months)</p>
+                               <p *ngIf="myplans?.payFrequency == 0 && myplans.pricingPlanId == 2">Plan Name: <b>{{myplans?.pricingPlan.title}}</b>  (6 Months)</p>
                                <a routerLink="../membership" class="viewallbutton">Change Your Plan
                                </a>
                              </div>

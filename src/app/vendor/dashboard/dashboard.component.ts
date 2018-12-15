@@ -31,12 +31,23 @@ export class DashboardComponent implements OnInit {
   }
 
   private membershipurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mymembership'
-  membershipdetail : any = {
-    startDateString:'',
-    endDateString:'',
-    pricingPlan: {title: ''},
-  };
+  // membershipdetail : any = {
+  //   startDateString:'',
+  //   endDateString:'',
+  //   pricingPlan: {title: ''},
+  // };
 //membership api
+myplans:any = {}; 
+  pricing:any = [];
+  palnvoucher:any;
+  vo = {Voucher: ""}
+  statdate;
+  endDateString;
+  pricingPlantitle;
+  account_create_date;
+  // pricingPlanId:number;
+  payFrequency:number;
+
 
   x: any;
   greeting = {};
@@ -118,6 +129,19 @@ export class DashboardComponent implements OnInit {
           // console.log(data.json());
           });
 
+              //membership api
+    this.http.get(this.membershipurl,{headers:headers}).subscribe(
+      data =>{  
+               console.log(data.json());
+              // this.membershipdetail = data.json();
+              this.myplans = data.json();
+              this.statdate = data.json().startDateString;
+              this.endDateString   = data.json().endDateString; 
+              this.pricingPlantitle   = data.json().pricingPlan.title;
+              this.pricingPlanId   = data.json().pricingPlanId;
+              this.payFrequency = data.json().payFrequency;
+              this.account_create_date = data.json().dateAddedOn;
+      });
 
         if(!authToken) 
        {  this.router.navigate(['../home']);
@@ -402,18 +426,18 @@ export class DashboardComponent implements OnInit {
                                               localStorage.setItem('profile','2');
                                            
                                             swal({
-                                              title: "Choose a different subscription plan",
+                                              title: "Profile Completed",
                                           // text: "Choose a different subscription plan",
                                           type: "warning",
                                           showCancelButton: true,
                                           confirmButtonClass: "btn-default",
-                                          confirmButtonText: "View Plans",
-                                          cancelButtonText: "Remind Me Later!",  
+                                          confirmButtonText: "OK",
+                                          cancelButtonText: "Cancel!",  
 
-                                      }).then((res)=>{
-                                                      if(res.value===true){
-                                                        this.router.navigate(['../vendor/membership']);
-                                                     }
+                                      // }).then((res)=>{
+                                      //                 if(res.value===true){
+                                      //                   this.router.navigate(['../vendor/membership']);
+                                      //                }
 
                                           }).then((res)=>{
                                             $(".profile").hide();

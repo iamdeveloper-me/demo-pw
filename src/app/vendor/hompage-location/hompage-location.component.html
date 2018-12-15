@@ -38,7 +38,7 @@
    
               <div class="form-group">
                       <div class="input-effect form-group md-form">
-                      <select  class="effect-16 validate"  id="Country" [(ngModel)]="country.countryId"  name="country_id" (change)="country($event)">
+                      <select required class="effect-16 validate"  id="Country" [(ngModel)]="country.countryId"  name="country_id" (change)="country($event)">
                               <option *ngFor="let country of arra ;let c =index" [value]="country.countryId">
                                   {{country.countryName }}
                               </option>
@@ -90,7 +90,7 @@
      
             <div class="codecontainer">
                 <input class="vouchercodeinput" name="voucherCode" placeholder="Voucher Code" [(ngModel)]="code.voucherCode"  type="text">
-                <input   name="adTypeId" [(ngModel)]="data.adTypeId"  type="hidden">
+                <input   name="adTypeId" [(ngModel)]="data.adTypeId"  type="hidden" required>
                 <button class="btn btnbluecode" type="submit" >Enterme</button>
             </div>
             <div class="clearfix"></div>
@@ -117,9 +117,10 @@
                   </tbody>
               </table>
                 <div class="clearfix"></div>
-              <a routerLink="../../vendor/payment-selection" class="btn inblock textwhite btn-success" >
-                Proceed to Payment
-              </a>
+            <!-- routerLink="../../vendor/payment-selection" -->
+              <button  class="btn inblock textwhite btn-success" [disabled]="!btnFalse" (click)="route()">
+                <a style="color:white" routerLink="../../vendor/payment-selection">Proceed to Payment </a>
+              </button>
                
                  
                

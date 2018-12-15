@@ -20,7 +20,9 @@ export class GalleryComponent implements OnInit {
   iterations = [1,2];
   data:any;
   portArray:any = [];
+  portArray_length
   albumArray:any = [];
+  albumArray_length;
   private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
 private getportfolio: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myportfolio'
 
@@ -66,6 +68,7 @@ private getportfolio: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasti
           this.apiService.getData(this.getportfolio).subscribe(res =>{
             this.portfolio = res;
             this.portArray = res;
+            this.portArray_length = this.portArray.length 
             },
             error => { console.log('aaaaaaaaaaa',error)
           }
@@ -84,6 +87,7 @@ private getportfolio: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasti
                       
                       this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
                       this.albumArray = data.json() ;
+                      this.albumArray_length = this.albumArray.length
                     })
                  }
 detectFiles(event) {

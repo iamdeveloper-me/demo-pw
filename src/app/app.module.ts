@@ -1,3 +1,4 @@
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgModule} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RatingModule} from "ngx-rating";
@@ -216,6 +217,7 @@ import { apiService } from './shared/service/api.service';
 import { PaymentSelectionComponent } from './vendor/payment-selection/payment-selection.component';
 import { HompageLocationComponent } from './vendor/hompage-location/hompage-location.component';
 import { Gallery0Component } from './vendor/gallery0/gallery0.component';
+import { PagerService } from './_services';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -399,7 +401,7 @@ export function getAuthServiceConfigs() {
   ],
     imports: [
         ProgressHttpModule
-,
+,NgxDatatableModule,
        // NgProgressModule,
         ReactiveFormsModule,
         CustomFormsModule,
@@ -451,6 +453,7 @@ export function getAuthServiceConfigs() {
     ],
 
     providers: [
+            PagerService,
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         AuthService,
         GoogleMapsAPIWrapper,

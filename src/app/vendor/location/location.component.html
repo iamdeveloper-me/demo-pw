@@ -219,16 +219,12 @@
                 <div id="menu1" class="tab-pane fade">
                     <section id="user-profile" class="">
                     <div class="col-sm-12 nopadd mobilefixedcontainer">
-
-                      
-
                         <div class="custom-form col-sm-4" *ngFor="let data of location_Array;let i=index" >
                             <div *ngIf='i>0'>
                                 <div class="card martop10px" >
                                     <div class="col-sm-12">
                                         <h4 class="mainhead" *ngIf="data.isPrimary == false"  > Secondary </h4>
                                         <h4 class="mainhead" *ngIf="data.isPrimary == true"  > Main Branch  </h4>
-                                    
                                         <div class="switbtn" title="A little break from work? Enable this option to turn off your profile visibility temporarily to users.">
                                             <ui-switch 
                                             [(ngModel)]="data.isActive" 
@@ -238,7 +234,6 @@
                                             (click) = "isActive(data.fbAvailable,data)"></ui-switch>
                                             <span class="font10px">Vacation Mode</span>
                                         </div>
-                                        
                                     </div>
                                     <div class="card-body">
                                         <div class="text-center bg-form col-sm-12" (click)="openModel(data)"> 
@@ -432,8 +427,7 @@
     </div>
 </div>
 <router-outlet></router-outlet>
-<form (ngSubmit)="update__googlemap(info,address_modelfield)" #info="ngForm">   
-  
+<form (ngSubmit)="update__googlemap(info,address_modelfield)" #info="ngForm">     
     <div class="modal fade" [ngClass] = "{'show' : mapDailog}" id="googlemap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

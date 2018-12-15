@@ -5,9 +5,8 @@ import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import {DatePipe} from '@angular/common';
 import { ImageCropperModule } from 'ng2-img-cropper';
-
 import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.component';
-
+import { FullCalendarModule } from 'ng-fullcalendar';
 
 //import { NgProgressModule } from 'ngx-progressbar';
 
@@ -215,6 +214,7 @@ import { apiService } from './shared/service/api.service';
 import { PaymentSelectionComponent } from './vendor/payment-selection/payment-selection.component';
 import { HompageLocationComponent } from './vendor/hompage-location/hompage-location.component';
 import { Gallery0Component } from './vendor/gallery0/gallery0.component';
+import { EventcelandarComponent } from './eventcelandar/eventcelandar.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -388,7 +388,9 @@ export function getAuthServiceConfigs() {
 
         HompageLocationComponent,
 
-        Gallery0Component
+        Gallery0Component,
+
+        EventcelandarComponent
         
         
 
@@ -401,7 +403,7 @@ export function getAuthServiceConfigs() {
         ReactiveFormsModule,
         CustomFormsModule,
         MatchHeightModule,
-        
+        FullCalendarModule,
         FileUploadModule,
         ImageCropperModule,
         BrowserAnimationsModule,

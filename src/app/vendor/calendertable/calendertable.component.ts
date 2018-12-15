@@ -9,7 +9,9 @@ import {ViewChild,TemplateRef} from '@angular/core';
 import { TimeSlot } from '../location/location.component';
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+/// New Calendar Dependancy
+import { CalendarComponent } from 'ng-fullcalendar';
+import { Options } from 'fullcalendar';
 @Component({
   selector: 'app-calendertable',
   templateUrl: './calendertable.component.html',
@@ -28,19 +30,10 @@ export class CalendertableComponent implements OnInit {
     upcomming =2;
     past = 1
     vendorJobsId = 0;
-    edit_job_form = {
-                      vendorJobsId: 0,
-                      clientName: "string",
-                      clientNumber: "string",
-                      eventTitle: "string",
-                      eventLocation: "string",
-                      startDate: "2018-11-23T07:28:05.224Z",
-                      endDate: "2018-11-23T07:28:05.224Z",
-                      startTime: "2018-12-05T09:54:26.407Z",
-                      endTime: "2018-12-05T09:54:26.407Z",
-                      noOfGuests: 0,
-                      userId: "string",
-                      vendorId: 0
+    edit_job_form = {vendorJobsId: 0,clientName: "string",clientNumber: "string",
+                      eventTitle: "string",eventLocation: "string",startDate: "2018-11-23T07:28:05.224Z",
+                      endDate: "2018-11-23T07:28:05.224Z",startTime: "2018-12-05T09:54:26.407Z",
+                      endTime: "2018-12-05T09:54:26.407Z",noOfGuests: 0,userId: "string",vendorId: 0
                     };
   
     jobdate = false;
@@ -74,6 +67,15 @@ export class CalendertableComponent implements OnInit {
           $event.preventDefault();
         }
       };
+        /// New Calander Code Here ///
+  showModal: boolean;
+  title = 'ngularfullcalendarbootstrap';
+  name: string;
+  date: string;
+  calendarOptions: Options;
+  eventDetails:any;
+  /// End Of New Calander Code Here ///
+
     constructor(private toastr: ToastrService,private modal: NgbModal,public http: Http,private datePipe: DatePipe) { 
      this.test = this.datePipe.transform(this.myDate, 'yyyy-mm-dd');
      this.select_time = new TimeSlot();
@@ -137,6 +139,8 @@ export class CalendertableComponent implements OnInit {
                   }
               });
           } 
+          // New Calendar funciton Called
+          this.initNewCalander();
     }
             @ViewChild('create') validationForm: FormGroup;
             @ViewChild('modalContent') modalContent: TemplateRef<any>;
@@ -164,6 +168,7 @@ export class CalendertableComponent implements OnInit {
                                         
                                           this.toastr.success(data.json().message );
                                           this.jobview(3);
+                                          this.showModal=false;
                                           // this.jobview.reset();
                                           }),error => {  console.log(error)};
 
@@ -171,7 +176,8 @@ export class CalendertableComponent implements OnInit {
             }
             edit_job_modle(a){
               console.log(a);
-              this.jobedit = true;
+             // this.jobedit = true;
+              this.showModal=true;
               this.edit_job_form = a;
               this.edit_job_form.startDate = a.startDate.split('T')[0].split('"')[0];
             //   a.endDate.split('T')[0];
@@ -486,7 +492,56 @@ export class CalendertableComponent implements OnInit {
 
           // Given data for events in JSON format
 
+            /// New Calendar Code Start
+          initNewCalander(){
+            this.calendarOptions = {
+              editable: true,
+              eventLimit: true,
+              displayEventEnd:true,
+              eventOverlap:true,
+              nowIndicator:true,
+              eventDurationEditable:true,
+              noEventsMessage:'No Event Found On This Day',
+              displayEventTime:true,
+              eventColor:'red',
+              eventTextColor:'white',
+              header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay,listMonth'
+              },
+              events: [{
+                title: 'Sales Meeting',
+                date: '2018-11-21'
+              }],
+          
+            };
+          }
+          eventClick(model: any) {
+            this.name = model.event.title;
+            this.date = model.event.start;
+            this.showModal = true;
+          }
+          hide()
+        {
+         // this.calendarOptions.events.push(this.eventObj);
+          this.showModal = false;
+        }
+        dayClick(){
+          this.showModal=true;
+        }
+        clickButton(details){
+          
+        }
+        /// New Calendar Code End
 
-
+}
+export class EventObj{
+  title:string;
+  start:string;
+  end:string;
+  client:string;
+  mobile:string;
+  location:string;
 
 }

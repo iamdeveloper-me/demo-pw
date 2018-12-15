@@ -18,7 +18,8 @@ import { Options } from 'fullcalendar';
   styleUrls: ['./calendertable.component.scss']
 })
 export class CalendertableComponent implements OnInit {
-
+    edit_startDate:{}
+    edit_endDate:{}
     customDay;
     isDisabled;
     endtime;
@@ -151,10 +152,10 @@ export class CalendertableComponent implements OnInit {
 
             job(jo){
             
-              this.end_date = jo.value['endDate']['year']+'-'+jo.value['endDate']['month']+'-'+jo.value['endDate']['day']
-              this.start_date = jo.value['startDate']['year']+'-'+jo.value['startDate']['month']+'-'+jo.value['startDate']['day']
-              jo.value.startDate = this.start_date
-              jo.value.endDate = this.end_date
+                      this.end_date = jo.value['endDate']['year']+'-'+jo.value['endDate']['month']+'-'+jo.value['endDate']['day']
+                      this.start_date = jo.value['startDate']['year']+'-'+jo.value['startDate']['month']+'-'+jo.value['startDate']['day']
+                      jo.value.startDate = this.start_date
+                      jo.value.endDate = this.end_date
 
                                 let headers = new Headers();
                                 var authToken = localStorage.getItem('userToken');
@@ -176,9 +177,24 @@ export class CalendertableComponent implements OnInit {
             }
             edit_job_modle(a){
               console.log(a);
+<<<<<<< HEAD
              // this.jobedit = true;
               this.showModal=true;
+=======
+              console.log(a.startDate);
+              console.log(a.endDate);
+              this.jobedit = true;
+>>>>>>> 45bc88f20c796233f2613ca0146449f922a625e6
               this.edit_job_form = a;
+              this.edit_startDate =  { "year": parseInt(a.startDate.split('T')[0].split('-')[0])   , 
+                                                "month": parseInt(a.startDate.split('T')[0].split('-')[1])  ,
+                                                 "day": parseInt(a.startDate.split('T')[0].split('-')[2])}
+
+              this.edit_endDate   =  {"year": parseInt(a.endDate.split('T')[0].split('-')[0])   , 
+                                               "month": parseInt(a.endDate.split('T')[0].split('-')[1])  ,
+                                               "day": parseInt(a.endDate.split('T')[0].split('-')[2])}                    
+                                               console.log(  this.edit_startDate);
+                                               console.log (this.edit_endDate  );
               this.edit_job_form.startDate = a.startDate.split('T')[0].split('"')[0];
             //   a.endDate.split('T')[0];
 

@@ -1,3 +1,4 @@
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgModule} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RatingModule} from "ngx-rating";
@@ -7,6 +8,8 @@ import {DatePipe} from '@angular/common';
 import { ImageCropperModule } from 'ng2-img-cropper';
 import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.component';
 import { FullCalendarModule } from 'ng-fullcalendar';
+import { ProgressHttpModule } from 'angular-progress-http';
+
 
 //import { NgProgressModule } from 'ngx-progressbar';
 
@@ -215,6 +218,7 @@ import { PaymentSelectionComponent } from './vendor/payment-selection/payment-se
 import { HompageLocationComponent } from './vendor/hompage-location/hompage-location.component';
 import { Gallery0Component } from './vendor/gallery0/gallery0.component';
 import { EventcelandarComponent } from './eventcelandar/eventcelandar.component';
+import { PagerService } from './_services';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -399,6 +403,8 @@ export function getAuthServiceConfigs() {
 
   ],
     imports: [
+        ProgressHttpModule
+,NgxDatatableModule,
        // NgProgressModule,
         ReactiveFormsModule,
         CustomFormsModule,
@@ -450,6 +456,7 @@ export function getAuthServiceConfigs() {
     ],
 
     providers: [
+            PagerService,
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         AuthService,
         GoogleMapsAPIWrapper,

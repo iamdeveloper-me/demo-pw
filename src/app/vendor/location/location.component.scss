@@ -15,8 +15,11 @@
     padding: 0px;
     overflow: hidden;
     margin: 20px auto;
-    width: 300px;
+    width: 253px;
     border-bottom: 0px!important;
+}
+.tab-content{
+  overflow:hidden;
 }
 .tabbingdesign li {
     list-style: none;
@@ -44,7 +47,7 @@
   border:0px!important;
   border-radius: 0px;
   cursor: pointer!important;
-  padding:5px 15px;
+  padding:10px 15px;
   color: #000!important;
 }
 .tabbingdesign li.active a{
@@ -120,7 +123,7 @@
 
 
 
-.tikform.form-group{
+.tikform.field{
     margin-bottom:10px!important;
     }
     .tikform.form-group label{margin-bottom:0px!important;}
@@ -540,7 +543,7 @@ float: left;
     padding: 0px;
     width: 30px;
     height: 32px;
-    margin-left:10px;
+    margin-left:7px;
 }
 .fristfieldremovebtnnone fieldset:first-child .remove{
     display:none;
@@ -677,6 +680,7 @@ float: left;
 #photo_ved .card-title{
     color: #000 !important;
 }
+
 #photo_ved .modal-content{
     text-align: left;
     padding: 10px;
@@ -857,6 +861,9 @@ overflow:hidden!important;
   border-radius: 0;
   padding: 0 0 10px 0;
   cursor: text;
+  background:transparent;
+  box-shadow: none;
+  z-index: 999;
 }
 .field select option{
   font-size: 16px;
@@ -924,11 +931,29 @@ overflow:hidden!important;
   transform: translate(0, 0) scale(1);
   cursor: pointer;
 }
+.mobdisplay{
+  display:none;
+}
 @media(max-width:767px){
-    .img-section iframe{
+.img-section iframe{
    width:100%;
    height:300px;
-   }
+}
+#photo_ved .modal-content{
+    max-width: 100%!important;
+}
+.swal2-popup .swal2-styled{
+  padding:5px!important;
+}
+.loca_hours{
+    margin-bottom: 10px;
+    overflow: hidden;
+    padding: 0px;
+}
+.mobdisplay{
+  clear:both;
+  display:block;
+}
    .edit_hide .col-11{float:right;}
    .phonepopuphead{
        margin-left:20px!important;
@@ -969,7 +994,7 @@ overflow:hidden!important;
    .loca_hours .col-sm-3{
       float:left;
       width:20%; 
-      padding-left:0px!important;
+      padding-right:0px!important;
    }
    .textopenclose{
        display:none;

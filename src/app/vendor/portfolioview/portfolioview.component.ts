@@ -1,6 +1,7 @@
 import { Component, OnInit,ViewChild ,ChangeDetectionStrategy, ElementRef} from '@angular/core';
 import { ViewEncapsulation, Input } from '@angular/core';
 import swal from 'sweetalert2';
+import { ProgressHttp } from 'angular-progress-http';
 
  
 import { Router } from '@angular/router';
@@ -28,6 +29,8 @@ export class PortfolioviewComponent implements OnInit {
     selected_Background;
     portfolioId;
     basicplane;
+    progress_bar:boolean = false
+    progressPercentage:number = 0
     free_limit;
     urlll = ''
     // Portpost1Array:any= {};
@@ -44,7 +47,7 @@ export class PortfolioviewComponent implements OnInit {
     list:any = {
         "filesId": 1
     }
-    constructor(public http: Http ,public toastr: ToastrService,   private router: Router ) { }
+    constructor(private _http: ProgressHttp,public http: Http ,public toastr: ToastrService,   private router: Router ) { }
     ngOnInit() {
 
         $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
@@ -168,19 +171,29 @@ export class PortfolioviewComponent implements OnInit {
                     let headers = new  Headers();
                     var authToken = localStorage.getItem('userToken');
                     headers.append("Authorization",'Bearer '+authToken);
-                    this.http.post(this.url+'api/ImageUploader/PortfolioUploader',formData,{headers:headers})
-                    .subscribe(data =>{ 
                     
-                                        this.toastr.success(data.json().message);
-                                        this.router.navigate(['../vendor/portfolioview'])
-                                        this.http.get(this.mygeturl,{headers:headers})
-                                        .subscribe(data =>{   
-                                                        console.log(data.json()); 
-                                                        this.PortgetArray =data.json() 
-                                                        this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
-                                                        this.uploadphoto_dailog = false;
-                                        });
-                                        },(error)=>{console.log(error)});
+
+
+                                       
+                                       
+                                       
+                                        this._http.withUploadProgressListener(progress => {this.progress_bar = true; console.log(`Uploading ${progress.percentage}%`);this.closeModel(); this.progressPercentage = progress.percentage})
+        .withDownloadProgressListener(progress => { console.log(`Downloading ${progress.percentage}%`); })
+        .post(this.url+'api/ImageUploader/PortfolioUploader', formData,{headers: headers})
+        .subscribe(data =>{ 
+                    
+            this.toastr.success(data.json().message);
+            this.router.navigate(['../vendor/portfolioview'])
+            this.http.get(this.mygeturl,{headers:headers})
+            .subscribe(data =>{   
+                            console.log(data.json()); 
+                            this.PortgetArray =data.json() 
+                            this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
+                            this.uploadphoto_dailog = false;
+                            this.progress_bar = false;
+            });
+            },(error)=>{console.log(error)});
+
                     // this.photoupload(formData);   
     }
     photoupload(formData){
@@ -230,6 +243,7 @@ export class PortfolioviewComponent implements OnInit {
     }
     closeModel(){this.uploadphoto_dailog = false;
         this.uploader.queue =[];
+        // this.progress_bar = false;
 
     }
     setbackground(setId){

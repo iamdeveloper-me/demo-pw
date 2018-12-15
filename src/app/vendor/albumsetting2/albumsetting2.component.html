@@ -153,9 +153,9 @@
               </div>
             </div>
             <div class="row">
-                  <div *ngFor='let c of colors' (click)='SelectColor(c)' class="btn btn-default col-md-2 col-md-offset-1" [style.background-color]='c.colorName' style="color:white">
+                  <div *ngFor='let c of colors' (click)='SelectColor(c)' class="colorbtn" [style.background-color]='c.colorName' style="color:white">
                     <i class="fa fa-check" *ngIf='c.isSelected'></i>
-                      {{c.colorName}}
+                      <span>{{c.colorName}}</span>
                   </div>
             </div>
 

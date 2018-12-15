@@ -32,8 +32,8 @@
 					</div>
 				
 		<div class="row boxcolumn">
-			<div class="col card gallery handcur">
-				<div class="roundedicon">
+			<div class="col card gallery handcur" *ngIf="Categoryid != 16">
+				<div class="roundedicon" (click)="clickData('not_six')">
 					<img src="https://s3.us-east-2.amazonaws.com/prefect-image/bell.png" class="img-responsive">
 				</div>
 				<h1>Homepage Featured</h1>
@@ -42,8 +42,8 @@
 				</a> -->
 			</div>
 
-			<div class="col card location handcur">
-				<div class="roundedicon">
+			<div class="col card location handcur" *ngIf="Categoryid == 16">
+				<div class="roundedicon" (click)="clickData('six')">
 					<img src="https://s3.us-east-2.amazonaws.com/prefect-image/bell.png" class="img-responsive">
 				</div>
 				<h1>Homepage Location</h1>
@@ -106,8 +106,7 @@ Attract visitors to your business profile from their first visit to our website
 					</div>
 				</div>
 			</div>
-
-			<div class="promotedetailbox homelocationbox">
+			<div class="promotedetailbox homelocationbox" [ngClass]="['bntStyle']" >
 				<div class="row">
 					<div class="col-sm-9">
 						<div class="ullitik">
@@ -138,8 +137,6 @@ Attract visitors to your business profile from their first visit to our website
 					</div>
 				</div>
 			</div>
-
-
 			<div class="promotedetailbox prioritybox">
 				<div class="row">
 					<div class="col-sm-9">

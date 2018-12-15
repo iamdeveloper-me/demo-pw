@@ -179,7 +179,8 @@ float:left;
     padding: 5px 20px !important;
   }
   .btn_button{
-    margin-top: 40px;
+    margin-bottom:20px;
+    overflow:hidden;
   }
 
 .gradient-pomegranate {
@@ -252,14 +253,25 @@ float:left;
     padding: 2px 10px !important;
 }
 .reply_mas{
-    padding-left: 100px;
- 
+    padding-left: 60px;
+}
+.replybtn{
+  float: left;
+    margin: 0px;
+    border-radius: 0px;
+    height: 54px;
 }
 .reply_mas .revie_name {
     color: rgb(101, 216, 245);
 }
+.replytextbox{
+  width:calc(100% - 110px);
+  float:left;
+   height: 54px;
+   margin-left: 2px;
+}
 .Reply_date{
-    padding-left: 60px;
+    padding-left: 50px;
 }
 .Reply_date .weeks_ago{
     color: #ccc;
@@ -279,6 +291,96 @@ display:none;
 }
 .lineheight50px{
   line-height:50px!important;
+}
+
+
+.field {
+  display: flex;
+  flex-flow: column-reverse;
+  margin-top:10px;
+  position: relative;
+}
+/**
+* Add a transition to the label and input.
+* I'm not even sure that touch-action: manipulation works on
+* inputs, but hey, it's new and cool and could remove the 
+* pesky delay.
+*/
+
+ .field label, .field textarea{
+  transition: all 0.2s;
+  touch-action: manipulation;
+}
+
+ .field  textarea, .field select{
+  font-size: 1.2em;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  font-family: inherit;
+  -webkit-appearance: none;
+  border-radius: 0;
+  padding: 0 0 10px 0;
+  cursor: text;
+}
+
+ .field textarea:focus,   .field select:focus {
+  outline: 0;
+  border-bottom: 1px solid #f0118c;
+}
+
+ .field label {
+  text-transform: uppercase;
+  margin-bottom: 0px;
+  letter-spacing: 0.05em;
+}
+/**
+* Translate down and scale the label up to cover the placeholder,
+* when following an input (with placeholder-shown support).
+* Also make sure the label is only on one row, at max 2/3rds of the
+* field—to make sure it scales properly and doesn't wrap.
+*/
+ .field textarea:placeholder-shown + label {
+  cursor: text;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: left bottom;
+  transform: translate(0, 2.125rem);
+  transition: .5s all;
+}
+/**
+* By default, the placeholder should be transparent. Also, it should 
+* inherit the transition.
+*/
+::-webkit-textarea-placeholder {
+  opacity: 0;
+  transition: inherit;
+   transition: .5s all;
+}
+/**
+* Show the placeholder when the input is focused.
+*/
+ .field textarea:focus::-webkit-input-placeholder,  .field select:focus::-webkit-input-placeholder {
+  opacity: 0;
+  color:#f0118c;
+}
+ .field textarea::placeholder{
+  color:#fff!important;
+ }
+/**
+* When the element is focused, remove the label transform.
+* Also, do this when the placeholder is not shown, i.e. when 
+* there's something in the input at all.
+*/
+ .field textarea:not(:placeholder-shown) + label,
+ .field textarea:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
+}
+
+.modal-body{
+    overflow: hidden!important;
 }
   @media(max-width:767px){
     
@@ -348,7 +450,7 @@ display:none;
 }
 @media(max-width: 767px){
 .btn-success{
-      margin-right: 20px !important;
+      margin-right: 60px !important;
     }
   .reply_mas{
     padding-left:0px;
@@ -360,9 +462,7 @@ display:none;
 .desktopnone{
 display:block!important;   
 }
-.reply_mas img{
-  display:none;
-}
+
 .mobilenone{
   display:none!important;
 }
@@ -378,9 +478,6 @@ display:block!important;
     .man_info {
       margin-bottom: 30px !important;
       text-align:center;
-    }
-    .btn_button {
-        text-align: center;
     }
     .badge-secondary{
         display: none !important;

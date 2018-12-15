@@ -18,7 +18,16 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <a class="btn-default msg_buttons" (click)="stared(3) && set(3)">Starred ({{stared_msg}})</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a *ngIf="deletIcon && selectLength == 0"(click)="delete() && set(3)"><span class="glyphicon glyphicon-trash"></span></a>
+                            <!-- {{deletIcon}} -->
+                            <a *ngIf="deletIcon"(click)="delete() && set(3)"><span class="glyphicon glyphicon-trash"></span></a>
+
+
+                            <!-- <ul ng-repeat="(key, value) in historyArr | groupBy: 'sendByUserId'">
+                              Group name: {{ key }}
+                              <li ng-repeat="player in value">
+                                player: {{ player.sendByFirstName }} 
+                              </li>
+                            </ul> -->
                         </div>
                           <form action="#" class="pull-right position">
                               <div class="input-append">
@@ -49,7 +58,7 @@
                         </div>
                         <ng-template #showMessage>
                                 <div class="cardmessagebox" [ngClass]="{
-                                    isreadbox: history.messageStatus == 1
+                                    isreadbox: history.messageStatus == 2
                                   }" *ngFor="let history of historyArr">
                             <div  >
                                 <input type="checkbox" name="radiogroup" 
@@ -57,12 +66,12 @@
                                 [value]="history.id" 
                                 (change)="onSelectionChange(history)"
                                 class="mail-checkbox">
-                                <a class="imgboxmessage" routerLink="../msg/{{history.messageId}}" >
+                                <a class="imgboxmessage" routerLink="../msg/{{history.messageId}}" (click)="changeRoute(history.messageId)">
                                     <img  class="userimg" *ngIf="history.senderProfilePic === ''" src="../../../assets/img/No_image_available.png"/>
                                     <img  class="userimg" *ngIf="history.senderProfilePic != ''" [src]="history.senderProfilePic"/>
 
                                 </a>
-                                <div class="textboxmessage"  (click)="changeRoute(history.messageId)">
+                                <div class="textboxmessage"  (click)="changeRoute(history)">
                                               <div>
                                                 <strong >
                                                   {{history.sendByFirstName}} {{history.sendByLastName}}
@@ -111,7 +120,7 @@
                             </div>
                             <ng-template #showMessage>
                                     <div class="cardmessagebox" [ngClass]="{
-                                        isreadbox: history.messageStatus == 1
+                                        isreadbox: history.messageStatus == 2
                                       }" *ngFor="let history of historyArr">
                                             <div >
                                     <input type="checkbox" name="radiogroup" 
@@ -119,11 +128,11 @@
                                     [value]="history.id" 
                                     (change)="onSelectionChange(history)"
                                     class="mail-checkbox">
-                                    <a class="imgboxmessage" routerLink="../msg/{{history.messageId}}" >
+                                    <a class="imgboxmessage" routerLink="../msg/{{history.messageId}}" (click)="changeRoute(history)">
                                       <img  class="userimg" *ngIf="history.senderProfilePic === ''" src="../../../assets/img/No_image_available.png"/>
                                       <img  class="userimg" *ngIf="history.senderProfilePic != ''" [src]="history.senderProfilePic"/>
                                     </a>
-                                    <div class="textboxmessage"  (click)="changeRoute(history.messageId)">
+                                    <div class="textboxmessage"  (click)="changeRoute(history)">
                                                   <div>
                                                     <strong >
                                                       {{history.sendByFirstName}} {{history.sendByLastName}}
@@ -170,7 +179,7 @@
                         </div>
                         <ng-template #showMessage>
                                 <div class="cardmessagebox" [ngClass]="{
-                                    isreadbox: history.messageStatus == 1
+                                    isreadbox: history.messageStatus == 2
                                   }" *ngFor="let history of historyArr">
                                         <div >
                                 <div >
@@ -179,12 +188,12 @@
                                 [value]="history.id" 
                                 (change)="onSelectionChange(history)"
                                 class="mail-checkbox">
-                                <a class="imgboxmessage" routerLink="../msg/{{history.messageId}}" >
+                                <a class="imgboxmessage" routerLink="../msg/{{history.messageId}}" (click)="changeRoute(history)">
                                   <img  class="userimg" *ngIf="history.senderProfilePic === ''" src="../../../assets/img/No_image_available.png"/>
                                   <img  class="userimg" *ngIf="history.senderProfilePic != ''" [src]="history.senderProfilePic"/>
                                 </a>
                                 </div>
-                                <div class="textboxmessage"  (click)="changeRoute(history.messageId)">
+                                <div class="textboxmessage"  (click)="changeRoute(history)">
                                               <div>
                                                 <strong >
                                                   {{history.sendByFirstName}} {{history.sendByLastName}}

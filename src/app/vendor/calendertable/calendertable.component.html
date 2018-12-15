@@ -36,7 +36,7 @@
 											</ul>
 										</div>
 										<div class="upcominglisthomepage"  *ngFor="let job of jobArray;let i=index ">
-											<div class="col-sm-5 col-8">
+											<div class="col-sm-5 col-12">
 												<!-- <i class="material-icons">date_range</i>  {{job.startDate |  date:'medium' }} <br/> -->
 												<ul class="jobli">
 													
@@ -59,10 +59,10 @@
 												{{job.clientPhoneNumber}} 
 												<button class="callbutton">Call</button>
 											</div>
-											<div class="col-sm-4 col-4 upcomingright">
-												<button type="button" class=" whitetext  btn btn-success" (click) = "edit_job_modle(job)" >Edit</button>
-												<div class="clearfix"></div>			
-												<button type="button" class="whitetext  btn btn-danger" (click) = "deletevent(job,index)" >
+											<div class="col-sm-4 col-8 upcomingright">
+												<button type="button" class=" mobilemarright whitetext  btn btn-success" (click) = "edit_job_modle(job)" >Edit</button>
+												<div class="clearfix dblock"></div>			
+												<button type="button" class="whitetext  btn btn-danger " (click) = "deletevent(job,index)" >
 													delete
 													 <!-- {{job.vendorJobsId}} -->
 												</button>
@@ -491,7 +491,6 @@
 
 						<div class="col-sm-6">
 							<div class="field">
-								
 									<input 
 									class="form-control" 
 									placeholder="yyyy-mm-dd"
@@ -503,14 +502,14 @@
 									  [dayTemplate]="customDay"
 									  [markDisabled]="isDisabled" #d4startDate="ngbDatepicker">
 									  <label for="startDate">Start Date</label>
-									
-							</div>
-							<div class="clearfix"></div>
-							<div class="input-group-append">
+									<div class="input-group-append">
 									  <div class="input-group-text" (click)="d4startDate.toggle()">
 										<i class="fa fa-calendar" style="cursor: pointer;"></i>
 									  </div>
 									</div>
+							</div>
+							<div class="clearfix"></div>
+							
 									<div *ngIf="cStartDate.invalid && (cStartDate.dirty || cStartDate.touched)" class="text-danger">
 											<div *ngIf="cStartDate.errors.required">
 													Start date is required.
@@ -588,14 +587,14 @@
 									 required 
 									  [markDisabled]="isDisabled" #d3="ngbDatepicker">
 									  <label for="endDate">End Date</label>
-									
-							</div>
-							<div class="clearfix"></div>
-							<div class="input-group-append">
+									<div class="input-group-append">
 									  <div class="input-group-text" (click)="d3.toggle()">
 										<i class="fa fa-calendar" style="cursor: pointer;"></i>
 									  </div>
 									</div>
+							</div>
+							<div class="clearfix"></div>
+							
 									<div *ngIf="cEndDate.invalid && (cEndDate.dirty || cEndDate.touched)" class="text-danger">
 											<div *ngIf="cEndDate.errors.required">
 													End Date is required.
@@ -727,7 +726,6 @@
 						<div class="row">
 							<div class="col-sm-6">
 									<div class="field">
-										
 									<input 
 										type="text" 
 										name="clientName" 
@@ -821,41 +819,7 @@
 													</div>
 											</div>
 							</div>
-							<div class="col-sm-6">
-
-								<div class="field">
-										
-
-									<!-- <input 
-									type="datetime-local" 
-									name="startTime"
-									class="effect-16"
-									[(ngModel)]="edit_job_form.startTime" 
-									id = "estartTime"
-									#ejStartTime="ngModel" 
-									required 
-									/> -->
-									<select 
-									class="form-control" 
-									type="time" 
-									[(ngModel)]="startTime"  
-									id="startTime" 
-									name="startTime"						
-									#ejStartTime="ngModel" 
-									required>
-									<option hidden [ngValue]="startTime">{{edit_job_form.startTime   | date:'shortTime'  }}</option>
-											<option *ngFor='let s of select_time.timing' [ngValue]="startTime" [value]='s.startTime'>{{s.startTime}}</option>
-									</select>
-									<label for="startTime"> Start Time : {{edit_job_form.startTime | date:'shortTime'}} </label>	
-									
-								</div>
-								<div class="clearfix"></div>
-								<div *ngIf="ejStartTime.invalid && (ejStartTime.dirty || ejStartTime.touched)" class="text-danger">
-											<div *ngIf="ejStartTime.errors?.required">
-													Start Time is required.
-											</div>
-								</div>
-							</div>
+							
 					    <!-- <div class="col-sm-6">
 								<div class="form-group">
 									<label>Start Date</label>		
@@ -877,70 +841,66 @@
 							</div> -->
 							
 							<div class="col-sm-6">
-
 								<div class="field">
-								
-
 									<input 
 									class="form-control placetik" 
-									placeholder="{{edit_job_form.startDate | date: 'dd-MM-yyyy'}}"  
+									placeholder=" dd-MM-yyyy"  
 									name="startDate" 
-									[(ngModel)]="edit_job_form.startDate"
+									[(ngModel)]="edit_startDate"
 									ngbDatepicker 
 									id = "estartDate"
 									#ejStartDate="ngModel" 
 									[dayTemplate]="customDay"
 									required
 									[markDisabled]="isDisabled" #d4="ngbDatepicker">
-									<label for="estartDate">Start Date{{edit_job_form.startDate | json}}</label>
-
-							</div>
-							<div class="clearfix"></div>
-							<div class="input-group-append">
+									<label for="estartDate">Start Date {{edit_startDate}}</label>
+									<div class="input-group-append">
 										<div class="input-group-text" (click)="d4.toggle()">
 											<i class="fa fa-calendar" style="cursor: pointer;"></i>
 										</div>
-									</div>
-									<div *ngIf="ejStartDate.invalid && (ejStartDate.dirty || ejStartDate.touched)" class="text-danger">
+								</div>
+								</div>
+								<div class="clearfix"></div>
+								
+								<div *ngIf="ejStartDate.invalid && (ejStartDate.dirty || ejStartDate.touched)" class="text-danger">
 										<div *ngIf="ejName.errors?.required">
 											Start Date is required.
 										</div>
-									</div>
-						</div>
+								</div>
+							</div>
 							<div class="col-sm-6">
 
 								<div class="field">
-												
-
-										<!-- <input 
-										type="datetime-local" 
-										name="endTime"
-										class="effect-16"	
-										[(ngModel)]="edit_job_form.endTime" 
-										id = "eendTime"
-											#ejEndTime="ngModel" 
-										required 
-										/> -->
-										<select 
-										class="form-control" 
-										type="time" 
-										[(ngModel)]="endTime"  
-										id="endTime" 
-										name="endTime"						
-										#ejEndTime="ngModel" 
-										required>
-										<option hidden [ngValue]="endTime">{{edit_job_form.endTime  | date:'shortTime'  }}</option>
-										<option *ngFor='let s of select_time.timing' [value]='s.endTime' [ngValue]="endTime">{{s.endTime}}</option>
-										</select>
-										<label for="endTime"> End Time : {{edit_job_form.endTime | date:'shortTime'}} </label>
-										
+									<!-- <input 
+									type="datetime-local" 
+									name="startTime"
+									class="effect-16"
+									[(ngModel)]="edit_job_form.startTime" 
+									id = "estartTime"
+									#ejStartTime="ngModel" 
+									required 
+									/> -->
+									<select 
+									type="time" 
+									[(ngModel)]="startTime"  
+									id="startTime" 
+									name="startTime"						
+									#ejStartTime="ngModel" 
+									required>
+									<option hidden [ngValue]="startTime">{{edit_job_form.startTime   | date:'shortTime'  }}</option>
+											<option *ngFor='let s of select_time.timing' [ngValue]="startTime" [value]='s.startTime'>{{s.startTime}}</option>
+									</select>
+									<label for="startTime"> Start Time </label>	
+									
 								</div>
-								<div *ngIf="ejEndTime.invalid && (ejEndTime.dirty || ejEndTime.touched)" class="text-danger">
-												<div *ngIf="ejEndTime.errors?.required">
-														End Time is required.
-												</div>
+								<div class="clearfix"></div>
+								<div *ngIf="ejStartTime.invalid && (ejStartTime.dirty || ejStartTime.touched)" class="text-danger">
+											<div *ngIf="ejStartTime.errors?.required">
+													Start Time is required.
+											</div>
 								</div>
 							</div>
+						
 							<!-- <div class="col-sm-6">
 									<div class="form-group">
 											<label> End Date :</label>		
@@ -961,41 +921,67 @@
 									</div>
 							</div> -->
 							
-							<div class="col-sm-6">
-
-								
+							
+						<div class="col-sm-6">
 								<div class="field">
-
 									<input 
 										class="form-control placetik" 
-										placeholder="{{edit_job_form.endDate | date: 'dd-MM-yyyy'}}"  
+										placeholder="dd-MM-yyyy"  
 										name="endDate" 
-										[(ngModel)]="edit_job_form.endDate"
+										[(ngModel)]="edit_endDate"
 										ngbDatepicker 
 										[dayTemplate]="customDay"
 										id = "eendDate"
 										#ejEndDate="ngModel" 
 										required
 										[markDisabled]="isDisabled" #eendDate="ngbDatepicker">
-										<label>End Date {{edit_job_form.endDate | json}}</label>
-									</div>
-									
-							</div>
-							<div class="clearfix"></div>
-							<div class="input-group-append">
+										<label for="eendDate">End Date</label>
+										<div class="input-group-append">
 										<div class="input-group-text" (click)="eendDate.toggle()">
 											<i class="fa fa-calendar" style="cursor: pointer;"></i>
 										</div>
+										</div>
 									</div>
+									<div class="clearfix"></div>
+									
 									<div *ngIf="ejEndDate.invalid && (ejEndDate.dirty || ejEndDate.touched)" class="text-danger">
 										<div *ngIf="ejEndDate.errors.required">
 												End Date is required.
 										</div>
 									</div>
-
+							</div>
 							<div class="col-sm-6">
 								<div class="field">
-									
+										<!-- <input 
+										type="datetime-local" 
+										name="endTime"
+										class="effect-16"	
+										[(ngModel)]="edit_job_form.endTime" 
+										id = "eendTime"
+											#ejEndTime="ngModel" 
+										required 
+										/> -->
+										<select 
+										type="time" 
+										[(ngModel)]="endTime"  
+										id="endTime" 
+										name="endTime"						
+										#ejEndTime="ngModel" 
+										required>
+										<option hidden [ngValue]="endTime">{{edit_job_form.endTime  | date:'shortTime'  }}</option>
+										<option *ngFor='let s of select_time.timing' [value]='s.endTime' [ngValue]="endTime">{{s.endTime}}</option>
+										</select>
+										<label for="endTime">End Time</label>	
+								</div>
+								<div *ngIf="ejEndTime.invalid && (ejEndTime.dirty || ejEndTime.touched)" class="text-danger">
+												<div *ngIf="ejEndTime.errors?.required">
+														End Time is required.
+												</div>
+								</div>
+							</div>
+							
+							<div class="col-sm-6">
+								<div class="field">
 									<input 
 									type="text" 
 									name="noOfGuests"

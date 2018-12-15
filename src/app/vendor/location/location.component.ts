@@ -44,6 +44,21 @@ interface Location {
 })
 
 export class LocationComponent implements OnInit {
+
+
+    // $(window).load(function () {
+    //     $(".selectwet").each(function () {
+    //       $(this).change(function () {
+    //       createSummary();
+    //     });
+    // });
+    // function createSummary() {
+    //   var eventType = $("#ctl00_Search1_ddlCategory option:selected").text()
+    //   $(".summary_eventType").html(eventType);
+    //   addWidth();
+    //   }
+    // });
+
   @ViewChild('f') floatingLabelForm: NgForm;
   @ViewChild('vform') validationForm: FormGroup;
   @ViewChild("search") public searchElementRef: ElementRef;
@@ -415,7 +430,7 @@ export class LocationComponent implements OnInit {
       type: 'info',
       showCancelButton: true,
       confirmButtonClass: 'btn-default',
-      confirmButtonText: 'Yes, Upgrade Now!',
+      confirmButtonText: 'Yes, Upgrade!',
       cancelButtonText: "Remind Me Later!",
       }).then(res=>{
         if(res.value==true){
@@ -719,19 +734,24 @@ export class LocationComponent implements OnInit {
   }
 
   isActive(b, e) {
+  console.log(b);
+  debugger;
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
-    this.http.post(this.urlpost, e, { headers: headers }).subscribe((data) => {
-      if (b == false) {
-        this.toastr.info('Vacation Mode is OFF');
-        this.vocationModeDisplayText='Vacation Mode';
+    
+    if (b == true) {
+        this.toastr.info('Vacation Mode is ON');
+       // this.vocationModeDisplayText='Vacation Mode';
       }else{ 
-        this.toastr.success("Vacation Mode is ON");
-        this.vocationModeDisplayText='A little break from work';
+        this.toastr.warning("Vacation Mode is OFF");
+       // this.vocationModeDisplayText='A little break from work';
        }
+    this.http.post(this.urlpost, e, { headers: headers }).subscribe((data) => {
+    console.log(data);
+      
     }
       , (error) => { console.log(error); });
   }

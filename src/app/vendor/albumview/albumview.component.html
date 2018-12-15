@@ -17,7 +17,7 @@
                     </div>
                     <div class="new_albums">
                         <button id="Google-function" (click)="createalbum_dailog = true" data-reactid="339"> + New
-                            Albums
+                            <span>Albums</span>
                         </button>
                     </div>
                 </div>
@@ -99,8 +99,11 @@
                 <div class="modal-body">
                     <div class="col-sm-12  text-center">
                         <div class="modal-body" style="background-color: white">
-                            <strong>Album Name</strong><br />
-                            <input type="text" [(ngModel)]="Album.albumName" name="albumName" id="albumName" class="borbotonly" /><br>
+                            <div class="field">
+                                  <input type="text" placeholder="Album Name" [(ngModel)]="Album.albumName" name="albumName" id="albumName" />
+                                  <label for="albumName">Album Name</label>
+                            </div>
+                          <br>
                             <div class="clearfix"></div>
                         </div>
                     </div>

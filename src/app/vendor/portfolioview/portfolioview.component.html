@@ -35,7 +35,7 @@
               </div>
               <div class="container photos_gallery">
                 <div class="row">
-                  <div class='list-group gallery row firt_row' >
+                  <div class='list-group gallery' >
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb hovereffect" *ngFor="let data of PortgetArray;let i=index">
                         <button class="deletebtn"  (click)="delete_portfolio(data,i)">&times;</button>
                         <a data-fancybox="gallery" class="thumbnail" href="{{data.files.path}}" >
@@ -124,16 +124,16 @@
                                     <td><strong>{{ item?.file?.name }}</strong></td>
                                     <td>   <img [src]="urlll" height="200" #item.progress id='item.progress'></td>
                                   
-                                    <td></td>
+                                   <!--  <td></td> -->
                                     <td >
-                                        <div class="progress" style="margin-bottom: 0;width: 205px;">
+                                       <!--  <div class="progress" style="margin-bottom: 0;width: 205px;">
                                             <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
-                                        </div>
-                                    </td>
+                                        </div> -->
+                                    
                                       <button type="button" class="btn btn-raised btn-danger btn-sm" (click)="item.remove()">
                                       &times;
                                     </button>
-                             
+                                  </td>
                                   </tr>
                                   <!-- <input type='file' (change)="previewFile($event)"> -->
                                  
@@ -208,3 +208,32 @@
             </div>  
         </div>    
     </div>  -->
+
+
+
+    <div class="modal fade" [ngClass] = "{'show' : progress_bar}" id="uploadphoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header text-center">
+                  <h4 class="modal-title">Add images</h4>
+              
+              </div>
+              <div class="modal-body">
+                <div class="progress "  >
+                  <div class="progress-bar" role="progressbar" [style.width.%]="progressPercentage" [attr.aria-valuenow]="progressPercentage" aria-valuemin="0" aria-valuemax="100">{{progressPercentage}}%</div>
+                </div> 
+                <p style="text-align:center;">Uploading images. Do not refresh or close</p>
+              </div>
+            <div class="modal-footer text-center">
+                
+              </div>
+          </div>  
+        </div>  
+      </div>
+  
+  
+  
+  
+  
+  
+  

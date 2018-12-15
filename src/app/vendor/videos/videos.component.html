@@ -6,14 +6,14 @@
   <div id="page-content-wrapper">    
         <div class="container-fluid nopadd">                    
                 <app-navemenu></app-navemenu>
-        <router-outlet></router-outlet> 
+                <router-outlet></router-outlet> 
 
-
-        <div class="container-fluid mobilefixedcontainer" *ngIf="video_total == 0; else total_not">
-           <div class="card photo_gallery">
+<div *ngIf="loader ; else loaderTrue">
+        <div class="container-fluid mobilefixedcontainer" [ngSwitch]="video_total" >
+            <div class="card photo_gallery">
             
 
- <div class="">
+              <div class="" *ngSwitchCase="0">
               <div class="row firt_row"> 
               <div class="col-sm-12" >
                   <div class="mob_bot_20px">
@@ -44,59 +44,78 @@
               </div>
 
               </div>
+              <div *ngSwitchDefault>
+                <div class="container-fluid ">
+                  <div class="container-fluid addvideo  text-center ">
+                    <div class=" my_video_bg">
+                      <h3> <strong> MY VIDEOS </strong> </h3>
+                      <P>Showcase videos that demonstrate your work to reach more clients</P>
+                       <a class="sett_icon pull-right" routerLink="../vediosetting">
+                      <i class="material-icons ">settings</i>
+                    </a>
+                      </div>
+                   </div>   
+                <div class="container-fluid addvideo1 "> 
+                  <div class="my_video_bg11 ">
+                <section class="p-0 container" id="portfolio">
+                     <div class="text-center">
+                        <div *ngIf="basicplan == 1 ;else cc" >       
+                            <button class="add_videobt" style="display:none" (click)="Addvediodetail_dailog = true" [disabled]="true">Add Video</button> 
+                            <button class="add_videobt" (click)="addVideo()" >Add Video</button> 
+                        </div>
+                        <ng-template #cc>
+                            <button class="add_videobt"  (click)="Addvediodetail_dailog = true" >Add Video</button> 
+                        </ng-template>
+                      </div>
+                         <div class="photos_gallery">
+                                <div class="row firt_row">
+                                  <div class="col-md-3 marbot15px" *ngFor="let single_video of video_all_data">
+                                   <div class="borderedbox">
+                                      <div>
+                                          <iframe  [src]="single_video.link  | safe" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                      </div>
+                                      <div>
+                                          <i class="material-icons">play_circle_outline</i>
+                                          <strong>{{single_video.title}}</strong>
+                                      </div>
+                                  </div>
+                                  </div>
+                                </div>
+                            </div>
+                      </section>
+                    </div>
+                
+                
+                  </div>        
+              </div>
+              </div>
 
 
 
-</div>
+            </div>
             
         </div>
-        <ng-template #total_not>
-          <div class="container-fluid ">
-            <div class="container-fluid addvideo  text-center ">
-              <div class=" my_video_bg">
-                <h3> <strong> MY VIDEOS </strong> </h3>
-                <P>Showcase videos that demonstrate your work to reach more clients</P>
-                 <a class="sett_icon pull-right" routerLink="../vediosetting">
-                <i class="material-icons ">settings</i>
-              </a>
-                </div>
-             </div>   
-          <div class="container-fluid addvideo1 ">
-            <div class="my_video_bg11 ">
-          <section class="p-0 container" id="portfolio">
-               <div class="text-center">
-                    <!--Disable Condition Start-->
-                  <div *ngIf="basicplan == 1 ;else cc" >       
-                      <button class="add_videobt" style="display:none" (click)="Addvediodetail_dailog = true" [disabled]="true">Add Video</button> 
-                      <button class="add_videobt" (click)="addVideo()" >Add Video</button> 
-                  </div>
-                  <ng-template #cc>
-                      <button class="add_videobt"  (click)="Addvediodetail_dailog = true" >Add Video</button> 
-                  </ng-template>
-                   <!--Disable Condition End-->
-                </div>
-                   <div class="photos_gallery">
-                          <div class="row firt_row">
-                            <div class="col-md-3 marbot15px" *ngFor="let single_video of video_all_data">
-                             <div class="borderedbox">
-                                <div>
-                                    <iframe  [src]="single_video.link  | safe" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                </div>
-                                <div>
-                                    <i class="material-icons">play_circle_outline</i>
-                                    <strong>{{single_video.title}}</strong>
-                                </div>
-                            </div>
-                            </div>
-                          </div>
-                      </div>
-                </section>
-              </div>
-          
-          
-            </div>       
-    </div> 
-        </ng-template>
+</div>    
+
+<ng-template #loaderTrue>
+  <div class="windows8">
+    <div class="wBall" id="wBall_1">
+      <div class="wInnerBall"></div>
+    </div>
+    <div class="wBall" id="wBall_2">
+      <div class="wInnerBall"></div>
+    </div>
+    <div class="wBall" id="wBall_3">
+      <div class="wInnerBall"></div>
+    </div>
+    <div class="wBall" id="wBall_4">
+      <div class="wInnerBall"></div>
+    </div>
+    <div class="wBall" id="wBall_5">
+      <div class="wInnerBall"></div>
+    </div>
+  </div>
+</ng-template>
 
 
        
@@ -280,8 +299,53 @@
       </div>
 
       
-<router-outlet></router-outlet> 
 
 
 
- 
+      <!-- <ng-template #total_not>
+        <div class="container-fluid ">
+         <div class="container-fluid addvideo  text-center ">
+           <div class=" my_video_bg">
+             <h3> <strong> MY VIDEOS </strong> </h3>
+             <P>Showcase videos that demonstrate your work to reach more clients</P>
+              <a class="sett_icon pull-right" routerLink="../vediosetting">
+             <i class="material-icons ">settings</i>
+           </a>
+             </div>
+          </div>   
+       <div class="container-fluid addvideo1 ">
+         <div class="my_video_bg11 ">
+       <section class="p-0 container" id="portfolio">
+            <div class="text-center"> -->
+                 <!--Disable Condition Start-->
+               <!-- <div *ngIf="basicplan == 1 ;else cc" >       
+                   <button class="add_videobt" style="display:none" (click)="Addvediodetail_dailog = true" [disabled]="true">Add Video</button> 
+                   <button class="add_videobt" (click)="addVideo()" >Add Video</button> 
+               </div>
+               <ng-template #cc>
+                   <button class="add_videobt"  (click)="Addvediodetail_dailog = true" >Add Video</button> 
+               </ng-template> -->
+                <!--Disable Condition End-->
+             <!-- </div>
+                <div class="photos_gallery">
+                       <div class="row firt_row">
+                         <div class="col-md-3 marbot15px" *ngFor="let single_video of video_all_data">
+                          <div class="borderedbox">
+                             <div>
+                                 <iframe  [src]="single_video.link  | safe" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                             </div>
+                             <div>
+                                 <i class="material-icons">play_circle_outline</i>
+                                 <strong>{{single_video.title}}</strong>
+                             </div>
+                         </div>
+                         </div>
+                       </div>
+                   </div>
+             </section>
+           </div>
+       
+       
+         </div>       
+        </div> 
+     </ng-template> -->

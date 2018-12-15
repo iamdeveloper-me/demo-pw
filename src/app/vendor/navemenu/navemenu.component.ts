@@ -58,76 +58,152 @@ export class NavemenuComponent implements OnChanges,OnInit   {
                                });
 
       if(window.location.href.indexOf("/vendor/dashboard")>-1){
-        // debugger
         this.data = 'Dashboard';
-        // setTimeout(()=>{
-          // $('#dashboard').addClass('overhidden');
-        // },3000) 
-        // debugger
-      }
-      else if(window.location.href.indexOf('/vendor/business')>-1 ){
-          this.data = 'Business information ';
+        setTimeout(()=>{
+          $('#dashboard').addClass('colour');
+        }, 300);
+      } else if(window.location.href.indexOf('/vendor/business')>-1 ){
+        this.data = 'Business information ';
+        setTimeout(()=>{
+          $('#business').addClass('colour');
+        }, 300);
       } else if(window.location.href.indexOf('/vendor/location')>-1) {
         this.data = ' Location Trading ';
+        setTimeout(()=>{
+          $('#location_on').addClass('colour');
+        }, 300);
       } else if(window.location.href.indexOf('/vendor/business-services')>-1) {
        this.data = 'Business Services ';
-      } else if(window.location.href.indexOf('/vendor/allpromotion')>-1) {
-       this.data = 'PROMOTE BUSINESS ';
+        setTimeout(()=>{
+          $('#Services').addClass('colour');
+        }, 3000);
       } else if(window.location.href.indexOf('/vendor/Message')>-1) {
         this.data = 'Messages ';
+        setTimeout(()=>{
+          $('#message').addClass('colour');
+        }, 300);
       } else if(window.location.href.indexOf('/vendor/gallery')>-1) {
-       this.data = 'Overview';  
-      } else if(window.location.href.indexOf('/vendor/Videos')>-1) {
-       this.data = 'Videos';
-      } else if(window.location.href.indexOf('/vendor/mylisting')>-1) {
-       this.data = 'Reviews ';
-      } else if(window.location.href.indexOf('/vendor/membership')>-1) {
-       this.data = 'Membership ';
-      } else if(window.location.href.indexOf('/vendor/PromoteBusiness')>-1) {
-        this.data = 'Promote Business ';
-      } else if(window.location.href.indexOf('/vendor/discountdeals')>-1) {
-        this.data = 'Discount & Deals ';
-      } else if(window.location.href.indexOf('/vendor/statistics')>-1) {
-        this.data = 'Statistics';
-      } else if(window.location.href.indexOf('/vendor/actionfront')>-1) {
-       this.data = 'Statistics ';
-      } else if(window.location.href.indexOf('/vendor/enquiry')>-1) {
-        this.data = 'Statistics ';
-      } else if(window.location.href.indexOf('/vendor/gallerybar')>-1) {
-        this.data = 'Statistics ';
-      } else if(window.location.href.indexOf('/vendor/reachbar')>-1) {
-       this.data = 'Statistics ';
-      } else if(window.location.href.indexOf('/vendor/storefront')>-1) {
-       this.data = 'Statistics ';
-      } else if(window.location.href.indexOf('/vendor/editprofile')>-1) {
-        this.data = 'My Account ';
-      } else if(window.location.href.indexOf('/vendor/calender')>-1) { 
-        this.data = 'Planner';
-      } else if(window.location.href.indexOf('/vendor/gallery')>-1) {
-       this.data = 'Overview';
-      } else if(window.location.href.indexOf('/vendor/portfolioview')>-1) {
+        this.data = 'Overview';
+         setTimeout(()=>{
+          $('#photo_album').addClass('colour');
+        }, 300);
+       } else if(window.location.href.indexOf('/vendor/portfolioview')>-1) {
         this.data = 'Portfolio';
+         setTimeout(()=>{
+          $('#photo_album').addClass('colour');
+        }, 300);
       } else if(window.location.href.indexOf('/vendor/settingalbum')>-1) {
         this.data = 'PORTFOLIO PHOTO SETTINGS';
+         setTimeout(()=>{
+          $('#photo_album').addClass('colour');
+        }, 300);
       } else if(window.location.href.indexOf('/vendor/albumview')>-1) {
        this.data = 'My Albums ';
+        setTimeout(()=>{
+          $('#photo_album').addClass('colour');
+        }, 300);
       } else if(window.location.href.indexOf('/vendor/albumviewphoto')>-1) {
        this.data = 'My Albums ';
+        setTimeout(()=>{
+          $('#photo_album').addClass('colour');
+        }, 300);
       } else if(window.location.href.indexOf('/vendor/albumdetailsetting')>-1) {
         this.data = 'PORTFOLIO PHOTO SETTINGS';
+         setTimeout(()=>{
+          $('#photo_album').addClass('colour');
+        }, 300);
+      } else if(window.location.href.indexOf('/vendor/Videos')>-1) {
+        this.data = 'Videos';
+        setTimeout(()=>{
+          $('#play_circle_outline').addClass('colour');
+        }, 300);
       } else if(window.location.href.indexOf('/vendor/vediosetting')>-1) {  
         this.data = 'Vedio Setting';
+         setTimeout(()=>{
+          $('#play_circle_outline').addClass('colour');
+        }, 300);
+      } else if(window.location.href.indexOf('/vendor/mylisting')>-1) {
+        this.data = 'Reviews ';
+        setTimeout(()=>{
+          $('#stars').addClass('colour');
+        }, 300);
       } else if(window.location.href.indexOf('/vendor/eventlist')>-1) {
         this.data = 'Events';
+         setTimeout(()=>{
+          $('#event_available').addClass('colour');
+        }, 300);
+      } else if(window.location.href.indexOf('/vendor/membership')>-1) {
+        this.data = 'Membership ';
+        setTimeout(()=>{
+          $('#card_membership').addClass('colour');
+        }, 300);
+      } else if(window.location.href.indexOf('/vendor/calender')>-1) { 
+        this.data = 'Planner';
+         setTimeout(()=>{
+          $('#Calender').addClass('colour');
+        }, 300);
+
+
+      } else if(window.location.href.indexOf('/vendor/PromoteBusiness')>-1) {
+        this.data = 'Promote Business ';
+         setTimeout(()=>{
+          $('#Promotions').addClass('colour');
+        }, 300);
       } else if(window.location.href.indexOf('/vendor/creatpromo')>-1) {
         this.data = 'Create Promotion';
-      } else if(window.location.href.indexOf('/vendor/Message')>-1) {
-        this.data = 'MESSAGES'; 
-      }
-      else if(window.location.href.indexOf('/vendor/payment-selection')>-1) {
+         setTimeout(()=>{
+          $('#Promotions').addClass('colour');
+        }, 300);
+      } else if(window.location.href.indexOf('/vendor/priority')>-1) {
+        this.data = 'Priority Listings';
+         setTimeout(()=>{
+          $('#Promotions').addClass('colour');
+        }, 300);
+      } else if(window.location.href.indexOf('/vendor/homepage')>-1) {
+        this.data = 'Home Page Banner';
+         setTimeout(()=>{
+          $('#Promotions').addClass('colour');
+        }, 300);
+      } else if(window.location.href.indexOf('/vendor/discountdeals')>-1) {
+        this.data = 'Discount & Deals ';
+         setTimeout(()=>{
+          $('#DiscountDeals').addClass('colour');
+        }, 300);
+      } else if(window.location.href.indexOf('/vendor/statistics')>-1) {
+        this.data = 'Statistics';
+         setTimeout(()=>{
+          $('#Statistics').addClass('colour');
+        }, 300);
+      } else if(window.location.href.indexOf('/vendor/actionfront')>-1) {
+       this.data = 'Statistics ';
+        setTimeout(()=>{
+          $('#Statistics').addClass('colour');
+        }, 300);
+      } else if(window.location.href.indexOf('/vendor/enquiry')>-1) {
+        this.data = 'Statistics ';
+         setTimeout(()=>{
+          $('#Statistics').addClass('colour');
+        }, 300);
+      } else if(window.location.href.indexOf('/vendor/gallerybar')>-1) {
+        this.data = 'Statistics ';
+         setTimeout(()=>{
+          $('#Statistics').addClass('colour');
+        }, 300);
+      } else if(window.location.href.indexOf('/vendor/reachbar')>-1) {
+       this.data = 'Statistics ';
+        setTimeout(()=>{
+          $('#Statistics').addClass('colour');
+        }, 300);
+      } else if(window.location.href.indexOf('/vendor/storefront')>-1) {
+       this.data = 'Statistics ';
+        setTimeout(()=>{
+          $('#Statistics').addClass('colour');
+        }, 300);
+      } else if(window.location.href.indexOf('/vendor/editprofile')>-1) {
+        this.data = 'My Account ';
+      } else if(window.location.href.indexOf('/vendor/payment-selection')>-1) {
         this.data = 'Payment Methods'; 
-      }
-      else if(window.location.href.indexOf('/Admin/dashboard')>-1) {
+      } else if(window.location.href.indexOf('/Admin/dashboard')>-1) {
         this.data = 'Dashboard'; 
       }
       else if(window.location.href.indexOf('/Admin/Customerbillings')>-1) {
@@ -163,12 +239,13 @@ export class NavemenuComponent implements OnChanges,OnInit   {
         $('#page-content-wrapper').toggleClass('overhidden');
       });
 
-        $('.sidebar-nav .sidebar-brand').on('click', function(){
+        $('.sidebar-nav .sidebar-brand').on('click', function(e){
+          e.preventDefault();
           $(this).addClass('colour')
-        //   _this = $(this)
+          // var id = $(this).attr('id')
         //  setTimeout(()=>{
-        //    _this.addClass('colour');
-        // },3000);
+        //    id.addClass('colour');
+        // },4000);
       });
 
 
@@ -180,14 +257,16 @@ export class NavemenuComponent implements OnChanges,OnInit   {
   }
     
   
-  
+
   
   
   
   typeLogout() {
     this.cservice.typeLogout();
 }
-ngOnChanges(){};
+ngOnChanges(){
+  alert("hi")
+};
 
   
 search(newObj){

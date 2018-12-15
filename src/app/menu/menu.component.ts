@@ -24,8 +24,8 @@ export class MenuComponent implements OnInit {
     vendor: any = {};
   
     constructor( private router: Router ,public http: Http,private cservice: LoginServiceService , private modalService: NgbModal, private uservice: SignupVendorService,) {}
-    user = {username:' ',password:' '}
-    usercouple = {username:' ',password:' '}
+    user = {username:'',password:''}
+    usercouple = {username:'',password:''}
     onSubmit(){ 
      // headers.append('Content-Type', 'application/json');
      this.cservice.login(this.usercouple).subscribe(

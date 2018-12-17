@@ -218,6 +218,10 @@ import { PaymentSelectionComponent } from './vendor/payment-selection/payment-se
 import { HompageLocationComponent } from './vendor/hompage-location/hompage-location.component';
 import { Gallery0Component } from './vendor/gallery0/gallery0.component';
 import { PagerService } from './_services';
+import { DealsComponent } from './deals/deals.component';
+import { DealDetailsComponent } from './deal-details/deal-details.component';
+import { HoneymoonComponent } from './honeymoon/honeymoon.component';
+import { HoneymoonDetailsComponent } from './honeymoon-details/honeymoon-details.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -391,7 +395,15 @@ export function getAuthServiceConfigs() {
 
         HompageLocationComponent,
 
-        Gallery0Component
+        Gallery0Component,
+
+        DealsComponent,
+
+        DealDetailsComponent,
+
+        HoneymoonComponent,
+
+        HoneymoonDetailsComponent
         
         
 

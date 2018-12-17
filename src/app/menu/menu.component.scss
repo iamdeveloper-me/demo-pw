@@ -123,6 +123,7 @@ background: transparent;
     text-transform: uppercase;
     height:30px;
     line-height:30px;
+    padding-right: 0px;
 }
 .loginhome i{
   float:left;
@@ -131,9 +132,9 @@ background: transparent;
 .loginhome span{
   float:left;
 }
-#navbarResponsive{
+/*#navbarResponsive{
   margin-left: 10% !important;
-}
+}*/
 .headernav {
     height:60px !important;
     -ms-transition:     all 0.3s ease-out;
@@ -878,31 +879,44 @@ width:100%;
   transform: translate(0, 0) scale(1);
   cursor: pointer;
 }
-
  .field select:not(:placeholder-shown) + label,
  .field select:focus + label {
   transform: translate(0, 0) scale(1);
   cursor: pointer;
 }
-
-
+ #mainNav .navbar-nav > li.nav-item > a.nav-link {
+  padding: 0.5rem 15px;
+  color: #fff;
+  font-size: .9rem;
+}
 
 @media only screen 
 and (min-device-width : 992px) 
 and (max-device-width : 1100px) {
-  #navbarResponsive{
+/*  #navbarResponsive{
     margin-left: 4% !important;
-  }
-
+  }*/
   .navbar-nav.right_listing > li{
-    width: inherit!important;
+  width: inherit!important;
   }
   .userhomemenu {
-      left: -110px !important;
+  left: -110px !important;
+  }
+   #mainNav .navbar-nav > li.nav-item > a.nav-link {
+  padding: 0 10px!important;
+  color: #fff;
+  font-size: 12px;
+  }
+  .container{
+  max-width: 100%!important;
+  }
+ .loginhome{
+  font-size: 12px;
   }
 }
 
 @media (min-width: 992px) {
+
         #mainNav {
           border-color: transparent;
           background-color: transparent;
@@ -910,15 +924,9 @@ and (max-device-width : 1100px) {
         #mainNav .navbar-brand {
           color: #fff;
           line-height: 40px;
+          margin-right: 0px;
         }
         #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-          color: #fff;
-        }
-        #mainNav .navbar-nav > li.nav-item > a.nav-link {
-          padding: 0.5rem 1rem;
-        }
-        #mainNav .navbar-nav > li.nav-item > a.nav-link,
-        #mainNav .navbar-nav > li.nav-item > a.nav-link:focus {
           color: #fff;
         }
         #mainNav .navbar-nav > li.nav-item > a.nav-link:hover,
@@ -944,9 +952,19 @@ and (max-device-width : 1100px) {
         #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus:hover {
           color: #F05F40;
         }
+      
 }
 
 @media (max-width:991px){
+ 
+  #mainNav .navbar-nav > li.nav-item > a.nav-link {
+    padding: 0.5rem 5px!important;
+  }
+  #mainNav .navbar-nav > li.nav-item > a.nav-link,
+  #mainNav .navbar-nav > li.nav-item > a.nav-link:focus {
+    color: #fff;
+    font-size: 14px;
+  }
   .right_listing{
     position: absolute;
     top: 16px;
@@ -1074,6 +1092,7 @@ and (max-device-width : 1100px) {
     position:absolute;
     width:40px;
     right:5px;
+    padding-right: 0px;
   }
   .loginhome.dropdown{
     right:40px;

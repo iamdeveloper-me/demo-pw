@@ -133,6 +133,10 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { Gallery0Component } from './vendor/gallery0/gallery0.component';
 
 import { AuthGuardService } from './services/auth-guard.service';
+import { DealsComponent } from './deals/deals.component';
+import { DealDetailsComponent } from './deal-details/deal-details.component';
+import { HoneymoonComponent } from './honeymoon/honeymoon.component';
+import { HoneymoonDetailsComponent } from './honeymoon-details/honeymoon-details.component';
 
 
 const appRoutes: Routes = [
@@ -164,6 +168,11 @@ const appRoutes: Routes = [
   { path: 'home/supplierbylocation', component:  SupplierbylocationComponent },
   { path: 'home/Photogallerydetail', component:  PhotogallerydetailComponent },
   { path: 'home/ResetPassword', component:  ResetPasswordComponent },
+
+  { path: 'home/Deals', component:  DealsComponent },
+  { path: 'home/Deal_Details', component:  DealDetailsComponent },
+  { path: 'home/Honeymoon', component:  HoneymoonComponent },
+  { path: 'home/Honeymoon_Details', component:  HoneymoonDetailsComponent },
 
   { path: 'vendor/creatpromo', component:  CreatePromotionComponent, canActivate:[AuthGuardService]  },
   { path: 'vendor/messagess', component:  ChatComponent, canActivate:[AuthGuardService]  },

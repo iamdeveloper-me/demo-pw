@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css">
+<style type="text/css">
+  .modal{background: rgba(0,0,0, .5);
+}
+</style>
+<div id="wrapper" class="toggled">
+  <div id="sidebar-wrapper">
+      <app-vendorsidebar></app-vendorsidebar>
+  </div>
+  <div id="page-content-wrapper">
+      <app-navemenu></app-navemenu>
+      <router-outlet></router-outlet>
+      <div class="col-sm-12 container-fluid mobilefixedcontainer">
+
+  <div *ngIf="calendarOptions" class="col-md-12">
+    <ng-fullcalendar #ucCalendar [options]="calendarOptions" (dayClick)='dayClick()' (eventClick)="eventClick($event.detail)" (eventDrop)="updateEvent($event.detail)"
+      (eventResize)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)">
+    </ng-fullcalendar>
+  </div>
+  
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">{{ name }}</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form>
+          <div class="col-md-6 col-offset-md-3">
+            <input type="text"  placeholder="Client Name">
+          </div>
+          <div class="col-md-6 col-offset-md-3">
+            <input type="text" placeholder="Event Title">
+          </div>
+          <div class="col-md-6 col-offset-md-3">
+            <input type="text" placeholder="Client Mobile">
+          </div>
+          <div class="col-md-6 col-offset-md-3">
+            <input type="text" placeholder="Event Location">
+          </div>
+          <div class="col-md-6 col-offset-md-3">
+            <input type="text"  placeholder="Event Start Date">
+          </div>
+          <div class="col-md-6 col-offset-md-3">
+            <input type="text"  placeholder="Event End Date">
+          </div>
+        </form>
+        Event Start From : {{ date }}
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="hide()">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+</div>

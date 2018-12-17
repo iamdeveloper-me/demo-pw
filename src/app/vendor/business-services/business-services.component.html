@@ -7,15 +7,11 @@
 			<app-navemenu></app-navemenu>
 			<router-outlet></router-outlet>
 			<div class="container-fluid mobilefixedcontainer ">
-
 				<section>
 					<div class="sliderholder">
 						<button class="prebtn" *ngIf='categoryIndex>0' (click)='navigateToCategory("l")'><i class="material-icons">arrow_back_ios</i></button>
 						<div class="servicecontainer" style="text-align:center">
 							{{selectedCategoryName}}
-							<!-- <div class="activehide" *ngFor='let c of selected_category' (click)='getServicesByCategory(c.categoryId)'>
-								<span style="text-align:center">{{c.categoryName}}</span>
-							</div> -->
 						</div>
 						<button class="nextbtn" *ngIf='categoryIndex<selected_category.length-1 && selected_category.length> 0' (click)='navigateToCategory("r")'> <i class="material-icons">arrow_forward_ios</i></button>
 					</div>
@@ -51,7 +47,7 @@
 														<!-- <input type="checkbox" [(checked)]='cf.isSelect' (change)='cf.isSelect?false:true' [value]='cf.isEnable' [(ngModel)]='cf.isSelect'  /> -->
 														<strong>{{cf.name}}</strong> <br />
 														<span>
-															 {{cf.SelectedOptionValue}} <!--<span *ngIf='cf.fieldType==6' (click)='getSelectOptions(cf)'>More...</span> -->
+															 {{cf.SelectedOptionValue}} 
 														</span>
 													</label>
 												</div>

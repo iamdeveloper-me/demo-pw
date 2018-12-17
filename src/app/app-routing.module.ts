@@ -133,6 +133,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { Gallery0Component } from './vendor/gallery0/gallery0.component';
 
 import { AuthGuardService } from './services/auth-guard.service';
+import { EventcelandarComponent } from './eventcelandar/eventcelandar.component';
 
 
 const appRoutes: Routes = [
@@ -193,6 +194,7 @@ const appRoutes: Routes = [
     { path: 'vendor/business-services', component:  BusinessServicesComponent,canActivate:[AuthGuardService]  },
     { path: 'vendor/membership', component:  MembershipComponent,canActivate:[AuthGuardService]  },
     { path: 'vendor/calender', component:  CalendertableComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/eventcalander', component: EventcelandarComponent,canActivate:[AuthGuardService]},
     { path: 'vendor/Message', component:  MessageComponent,canActivate:[AuthGuardService]},
     { path: 'vendor/videoview', component:    VedioviewComponent,canActivate:[AuthGuardService]},
     { path: 'vendor/PromoteBusiness', component:    PromoteBusinessComponent,canActivate:[AuthGuardService]},

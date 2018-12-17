@@ -133,10 +133,14 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { Gallery0Component } from './vendor/gallery0/gallery0.component';
 
 import { AuthGuardService } from './services/auth-guard.service';
+<<<<<<< HEAD
 import { DealsComponent } from './deals/deals.component';
 import { DealDetailsComponent } from './deal-details/deal-details.component';
 import { HoneymoonComponent } from './honeymoon/honeymoon.component';
 import { HoneymoonDetailsComponent } from './honeymoon-details/honeymoon-details.component';
+=======
+import { EventcelandarComponent } from './eventcelandar/eventcelandar.component';
+>>>>>>> ab2520634be913767d1efdc5bc9f9a27b0b37804
 
 
 const appRoutes: Routes = [
@@ -202,6 +206,7 @@ const appRoutes: Routes = [
     { path: 'vendor/business-services', component:  BusinessServicesComponent,canActivate:[AuthGuardService]  },
     { path: 'vendor/membership', component:  MembershipComponent,canActivate:[AuthGuardService]  },
     { path: 'vendor/calender', component:  CalendertableComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/eventcalander', component: EventcelandarComponent,canActivate:[AuthGuardService]},
     { path: 'vendor/Message', component:  MessageComponent,canActivate:[AuthGuardService]},
     { path: 'vendor/videoview', component:    VedioviewComponent,canActivate:[AuthGuardService]},
     { path: 'vendor/PromoteBusiness', component:    PromoteBusinessComponent,canActivate:[AuthGuardService]},

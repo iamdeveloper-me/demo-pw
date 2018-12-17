@@ -17,4 +17,5 @@ export class MasterserviceService {
    getAllLocation(){
      return this.apiservice.getData(this.apiservice.serverPath+'LookupMaster/alllocation');
    }
+   
 }

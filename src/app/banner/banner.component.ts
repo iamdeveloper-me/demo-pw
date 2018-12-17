@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { apiService } from '../shared/service/api.service';
+import { MasterserviceService } from '../ngservices/masterservice.service';
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
@@ -7,7 +7,7 @@ import { apiService } from '../shared/service/api.service';
 })
 export class BannerComponent implements OnInit {
 
-  constructor(private apiService: apiService) { }
+  constructor(private masterservice: MasterserviceService) { }
   Categories = [];
   locations = [];
   ngOnInit() {
@@ -30,13 +30,13 @@ export class BannerComponent implements OnInit {
 
 
   Categorie(){ 
-    this.apiService.getData(this.apiService.url_services +'Categories/allcategories').subscribe(data => {
+    this.masterservice.getAllCategories().subscribe(data => {
       console.log(data);
       this.Categories = data;
      },error => {  console.log(error) })
   }
   location(){ 
-    this.apiService.getData(this.apiService.url_services +'LookupMaster/alllocation').subscribe(data => {
+    this.masterservice.getAllLocation().subscribe(data => {
       console.log(data);
       this.locations = data;
      },error => {  console.log(error) })

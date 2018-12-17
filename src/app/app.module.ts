@@ -17,7 +17,7 @@ import { ProgressHttpModule } from 'angular-progress-http';
 
 
 
-
+import * as $ from 'jquery';
 //calender 
 
 import { CommonModule } from "@angular/common";
@@ -47,7 +47,7 @@ import { HttpModule } from '@angular/http';
 import { DragulaService } from 'ng2-dragula';
 import { AuthService } from './shared/auth/auth.service';
 import { AuthGuard } from './shared/auth/auth-guard.service';
-import * as $ from 'jquery';
+
 import { UiSwitchModule } from 'ngx-ui-switch';
  
 import {

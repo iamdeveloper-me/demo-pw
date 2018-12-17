@@ -17,5 +17,11 @@ export class MasterserviceService {
    getAllLocation(){
      return this.apiservice.getData(this.apiservice.serverPath+'LookupMaster/alllocation');
    }
+   getFilters(categoryId){
+     return this.apiservice.postData(this.apiservice.serverPath + 'PerfectWedding/searchfilters/',categoryId);
+   }
+   getFilterResult(obj){
+    return this.apiservice.postData(this.apiservice.serverPath + 'PerfectWedding/searchlisting',obj);
+   }
    
 }

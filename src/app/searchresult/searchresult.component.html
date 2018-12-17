@@ -382,58 +382,10 @@
 
 							<div class="cityscroll22">
                   <div class="funkyradio">
-                    <div class="funkyradio-info">
+                    <div class="funkyradio-info" *ngFor='let l of locations'>
                       <input type="checkbox" name="checkbox" id="Black" checked/>
                       <label for="Black"> 
-                        <i class="material-icons">location_on</i> Black River
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Grand"/>
-                      <label for="Grand"> 
-                        <i class="material-icons">location_on</i> Grand Port
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Flacq"/>
-                      <label for="Flacq"> 
-                        <i class="material-icons">location_on</i> Flacq
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Moka"/>
-                      <label for="Moka"> 
-                        <i class="material-icons">location_on</i> Moka
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Pamplemousses"/>
-                      <label for="Pamplemousses"> 
-                        <i class="material-icons">location_on</i> Pamplemousses
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Plaines"/>
-                      <label for="Plaines"> 
-                        <i class="material-icons">location_on</i> Plaines-Wilhems
-                      </label>
-                    </div>
-                     <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Riviere"/>
-                      <label for="Riviere"> 
-                        <i class="material-icons">location_on</i> Riviere du Rempart
-                      </label>
-                    </div>
-                     <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Savanne"/>
-                      <label for="Savanne"> 
-                        <i class="material-icons">location_on</i> Savanne
-                      </label>
-                    </div>
-                     <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Rodrigues"/>
-                      <label for="Rodrigues"> 
-                        <i class="material-icons">location_on</i> Rodrigues
+                        <i class="material-icons">location_on</i> {{l.name}}
                       </label>
                     </div>
                   </div>
@@ -461,18 +413,6 @@
                         < 50000
                       </label>
                     </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="check2" checked/>
-                      <label for="check2"> 
-                        < 100000
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="check3" checked/>
-                      <label for="check3"> 
-                        < 150000
-                      </label>
-                    </div>
                   </div>
   						</div>
             </div>
@@ -497,117 +437,96 @@
                     <!-- <div class="regular">All Categories</div> -->
                 <div class="cityscroll22"> 
                   <div class="funkyradio">  
-                    <div class="funkyradio-info">
-                     <input type="checkbox" name="checkbox" id="any" checked/>
+                    <div class="funkyradio-info" *ngFor='let c of categories'>
+                     <input type="checkbox" name="checkbox" id="any" [(ngModel)]='c.isselect'/>
                         <label for="any"> 
                          <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
-                        <b> All Categories </b>  
+                        <b> {{c.categoryName}} </b>  
                         </label>
-                    </div>
-                    <div class="funkyradio-info">
-                        <input type="checkbox" name="checkbox" id="Cakes" checked/>
-                        <label for="Cakes"> 
-                          <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Wedding_cake.svg"/></i>Cakes
-                        </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Decorators"/>
-                      <label for="Decorators"> 
-                      <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_decorator.svg"/></i> Decorators & Wedding Stylist
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Drinks"/>
-                      <label for="Drinks"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i> Drinks and Beverages
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Fashion"/>
-                      <label for="Fashion"> 
-                        <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Fashion&Clothing.svg"/></i> Fashion & Clothing
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="any"/>
-                        <label for="any"><i>
-                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/florist.svg"/></i> Florists, Bouquets and Centerpiece
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Food"/>
-                      <label for="Food"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_car.svg"/> </i> Food & Catering
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Footwear"/>
-                      <label for="Footwear"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Footwear.svg"/></i> Footwear
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Honeymoon"/>
-                      <label for="Honeymoon"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/honeymoon.svg"/></i> Honeymoon & Travel
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Invitation"/>
-                      <label for="Invitation"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/stationary.svg"/></i> Invitation Cards & Wedding Stationary
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Jewellery"/>
-                      <label for="Jewellery"> <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Jewellery.svg"/></i> Jewellery & Wedding Rings
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Makeup"/>
-                      <label for="Makeup"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/make_up.svg"/></i> Make Up, Hair & Mehendi
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Marriage"/>
-                      <label for="Marriage"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i> Marriage Celebrant
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Music"/>
-                      <label for="Music"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/music_dj.svg"/></i> Music, DJs & Entertainment
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Supplies"/>
-                      <label for="Supplies"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Wedding Planner.svg"/></i> Other wedding Supplies & Accessories
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Photography"/>
-                      <label for="Photography"> <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Photography.svg"/></i> Photography, Videography & Cinematography
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Venues"/>
-                      <label for="Venues"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Venues.svg" alt=""></i> Venues
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="WeddingCars"/>
-                      <label for="WeddingCars"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_car.svg"/></i> Wedding Cars & Transport
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Management"/>
-                      <label for="Management">  
-                      <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/> </i> Wedding Planner & Event Management
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Fitness"/>
-                      <label for="Fitness"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Shape&Fitness.svg" alt=""> </i> Shape & Fitness
-                      </label>
-                    </div>
+                   </div>
+     
   						</div>
             </div>
             </div>
-          </div></div>
+          </div>
+        <!--Services-->
+        <div class="categoryboxmobile">
+        <div class="panel-heading" >
+          <h4 class="panel-title">
+             <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
+              arrow_back_ios
+            </i>
+            <a data-toggle="collapse" href="#collapse33">
+              <i class="indicator fa fa-caret-down hidden-xs" aria-hidden="true"></i> Services
+            </a>
+          </h4>
+        </div>
+        <div id="collapse33" class="panel-collapse collapse" >
+          <div class="category-body">
+              <div class="searchmobtitlebar city_position">
+                <i class="material-icons">search</i>
+                <input class="cityinput" type="text" value="" id="search" placeholder="Type to Search Category">
+              </div>
+            <!-- <div class="regular">All Categories</div> -->
+        <div class="cityscroll22"> 
+          <div class="funkyradio">  
+            <div class="funkyradio-info" *ngFor='let f of filters.services'>
+             <input type="checkbox" name="checkbox" id="any"/>
+                <label for="any"> 
+                 <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
+                <b> {{f.serviceName}} </b>  
+                </label>
+           </div>
+
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+        <!--End Services filters-->
+      <!--Filters-->
+      <div class="categoryboxmobile">
+        <div class="panel-heading" >
+          <h4 class="panel-title">
+             <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
+              arrow_back_ios
+            </i>
+            <a data-toggle="collapse" href="#collapse44">
+              <i class="indicator fa fa-caret-down hidden-xs" aria-hidden="true"></i> Filters
+            </a>
+          </h4>
+        </div>
+        <div id="collapse44" class="panel-collapse collapse" >
+          <div class="category-body">
+              <!-- <div class="searchmobtitlebar city_position">
+                <i class="material-icons">search</i>
+                <input class="cityinput" type="text" value="" id="search" placeholder="Type to Search Category">
+              </div> -->
+            <!-- <div class="regular">All Categories</div> -->
+        <div class="cityscroll22"> 
+          <div class="funkyradio">  
+            <div class="funkyradio-info" style="border-bottom:1px;border-bottom-style:inset;border-bottom-color:gray" *ngFor='let ff of filters.filters'>
+             <!-- <input type="checkbox" name="checkbox" id="any"/> -->
+                <label for="any"> 
+                 <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
+                <b> {{ff.name}} </b>  
+                </label>
+                <div *ngFor='let fc of ff.customFieldOptionList'>
+                  
+                    <input type="checkbox" name="checkbox" value="true"/>{{fc.displayText}}
+                  
+                </div>
+               
+           </div>
+          <div class="clearfix"></div>
+
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+      <!--End Filters-->  
+        </div>
 						<!-- Customer Rating -->
             <div class="ratingboxmobile">
   						<div class="panel-heading" >
@@ -652,7 +571,7 @@
 		</div>
 		<div class="col-sm-9 listingtab">
       <div class="photo_cont">
-	    	<div id="products" class="row list-group" (click)="xyz()">
+	    	<div id="products" class="row list-group" (click)="goToPortfolioDetail()">
 	        	<div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
 	                <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">

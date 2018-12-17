@@ -25,10 +25,18 @@ export class HompageLocationComponent implements OnInit {
   selecteditem:any = [];
   sum = 0 ;
   sub = 0;
+  btnFalse:boolean = false
+  selecteditemlength:number
   PageData: undefined[]
   headers = new Headers();
   constructor(public http: Http,public toastr: ToastrService,private router: Router) {  }
   ngOnInit() {
+    sessionStorage.removeItem('selected_plan');
+    if (this.code.voucherCode == '') {
+      this.btnFalse = false
+    } else {
+      this.btnFalse = true
+    }
       this.loadCountries();
     $('.togglebtnmenu').on('click', function(){
      $('#wrapper').toggleClass('toggled');
@@ -66,8 +74,7 @@ export class HompageLocationComponent implements OnInit {
   }
   prmocode(code){
 
-   
-              const  promoData = {
+          const  promoData = {
                 adTypeId: code.value.adTypeId,
                 voucherCode: code.value.voucherCode,
                 countryId: code.value.country_id,
@@ -89,10 +96,13 @@ export class HompageLocationComponent implements OnInit {
   }
   
   package(list){
-    list.isSelected=true;   
+    list.isSelected=true;
+    this.btnFalse = true;
     this.selecteditem = this.HomePage[0].adAvailableSlots.filter(m=>m.isSelected===true);
        this.sum = 0;
        this.calculateSum(this.selecteditem);
+    const num = this.selecteditem.length
+    this.selecteditemlength = num
      }
   calculateSum(selecteditem){
     this.sum = 0;
@@ -103,6 +113,7 @@ export class HompageLocationComponent implements OnInit {
   }
   
   deletepackage(selecteditem ,a){
+    this.btnFalse = false
    selecteditem[a].isSelected = false;
   this.selecteditem = this.HomePage[0].adAvailableSlots.filter(m=>m.isSelected===true);
   this.calculateSum(this.selecteditem);
@@ -124,5 +135,9 @@ export class HompageLocationComponent implements OnInit {
         // this.country_name = country.countryName
         // this.district = country.districts
         
+  }
+  route(){
+    alert('ffffffffffff')
+    this.router.navigate['../../home']
   }
 }

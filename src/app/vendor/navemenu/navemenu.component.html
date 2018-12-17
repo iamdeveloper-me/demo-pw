@@ -95,7 +95,10 @@
                                             <span class="noti-wrapper">
                                                 <span class="noti-title line-height-1 d-block text-bold-400 info">{{data.sendByFirstName }}</span>
                                                 <span class="notifytext">{{data.message}}</span>
-                                                <span class="timestamp">{{data.sentDateString | date:'hh:mm'}}</span>
+                                                <span class="timestamp">
+                                                    <i class="material-icons">access_time</i>
+                                                {{data.sentDateString | date:'hh:mm'}}
+                                            </span>
                                                 
                                             </span>
                                     </a>
@@ -105,7 +108,7 @@
                                          <img src="https://image.flaticon.com/icons/svg/138/138690.svg" width="30px">
                                                        <p> No New Messages </p>
                                                    </div>
-                                    </div>
+                                </div>
                                 <a class="noti-footer primary text-center d-block border-top border-top-blue-grey border-top-lighten-4 text-bold-400 py-1" routerLink="../Message">Go to inbox</a>
                             </div>
                         </li>

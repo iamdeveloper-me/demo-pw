@@ -471,7 +471,7 @@
         <div class="cityscroll22"> 
           <div class="funkyradio">  
             <div class="funkyradio-info" *ngFor='let f of filters.services'>
-             <input type="checkbox" name="checkbox" id="any"/>
+             <input type="checkbox" (change)='addRemoveServiceId(f)' name="checkbox" id="any"/>
                 <label for="any"> 
                  <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
                 <b> {{f.serviceName}} </b>  

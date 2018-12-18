@@ -75,14 +75,42 @@ export class SearchresultComponent implements OnInit {
       console.log(this.filters);
     })
   }
-  getSearchFilterResult(customFieldId,optionId,paramType){
+  getSearchFilterResult(districtId,categoryId,serviceId, customFieldId,userValue,paramType){
     switch(paramType){
-      case '':
+      case 'cat':
+      this.objSearchlistvm.categoryId=categoryId;
+      break;
+      case 'serviceId':
+      this.objSearchlistvm.serviceId.push(serviceId);
+      break;
+      case 'customFieldId':
+      this.objSearchlistvm.customField.customFieldId=customFieldId;
+      break;
+      case 'userValue':
+      this.objSearchlistvm.customField.userValue=userValue
       break;
     }
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
       console.log(res);
     })
+  }
+  addRemoveDistId(){
+
+  }
+  addRemoveCategoryId(){
+    console.log();
+  }
+  addRemoveServiceId(s){
+    if(this.objSearchlistvm.serviceId.length>0){
+      let index= this.objSearchlistvm.serviceId.findIndex(s.serviceId);
+      this.objSearchlistvm.serviceId.splice(index,1);
+      
+    }else{
+      this.objSearchlistvm.serviceId.push(s.serviceId);
+    }
+    
+
+    console.log(s);
   }
    // Variable Declaration
    page2 = 4;
@@ -100,23 +128,16 @@ export class SearchListingVM{
   districtId:Array<number>;
   categoryId:Array<number>;
   serviceId:Array<number>;
-  customsFields: FieldSearchVM;
+  customsFields:Array<FieldSearchVM>;
+  customField:FieldSearchVM;
   constructor(){
     this.pageSize=10;
     this.page=0;
     this.districtId=[];
     this.categoryId=[];
     this.serviceId=[];
-    this.customsFields = new FieldSearchVM();
-  }
-  addRemoveDistId(){
-
-  }
-  addRemoveCategoryId(){
-
-  }
-  addRemoveServiceId(){
-
+    this.customsFields = new Array<FieldSearchVM>();
+    this.customField = new FieldSearchVM();
   }
   
 }

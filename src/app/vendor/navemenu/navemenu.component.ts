@@ -26,6 +26,7 @@ export class NavemenuComponent implements OnChanges,OnInit   {
    arrayLength:number;
    unread_msg:number;
    startedtab = false;
+   session_token;
    image_by_default:'..'
    // @Output() userImg = new EventEmitter<string>();
    // @Output('userImg') img:string;
@@ -38,6 +39,9 @@ export class NavemenuComponent implements OnChanges,OnInit   {
       var firstName = localStorage.getItem('firstName');
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
+   
+   this.session_token =   sessionStorage.getItem('userToken')
+   console.log(  this.session_token)
       headers.append('Accept', 'application/json')
       headers.append('Content-Type', 'application/json');
       headers.append("Authorization",'Bearer '+authToken);

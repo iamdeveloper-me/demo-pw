@@ -223,6 +223,7 @@ import { DealsComponent } from './deals/deals.component';
 import { DealDetailsComponent } from './deal-details/deal-details.component';
 import { HoneymoonComponent } from './honeymoon/honeymoon.component';
 import { HoneymoonDetailsComponent } from './honeymoon-details/honeymoon-details.component';
+
 import { EventcelandarComponent } from './eventcelandar/eventcelandar.component';
 
 

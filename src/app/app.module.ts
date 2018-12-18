@@ -225,6 +225,10 @@ import { HoneymoonComponent } from './honeymoon/honeymoon.component';
 import { HoneymoonDetailsComponent } from './honeymoon-details/honeymoon-details.component';
 
 import { EventcelandarComponent } from './eventcelandar/eventcelandar.component';
+import { StepSecondComponent } from './register/step-second/step-second.component';
+import { StepThirdComponent } from './register/step-third/step-third.component';
+import { StepForthComponent } from './register/step-forth/step-forth.component';
+import { StepFirstComponent } from './register/step-first/step-first.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -410,7 +414,15 @@ export function getAuthServiceConfigs() {
 
         HoneymoonDetailsComponent,
 
-        EventcelandarComponent
+        EventcelandarComponent,
+
+        StepSecondComponent,
+
+        StepThirdComponent,
+
+        StepForthComponent,
+
+        StepFirstComponent,
 
         
         

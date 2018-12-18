@@ -141,12 +141,19 @@ import { HoneymoonDetailsComponent } from './honeymoon-details/honeymoon-details
 
 import { EventcelandarComponent } from './eventcelandar/eventcelandar.component';
 
-
+import { StepFirstComponent } from './register/step-first/step-first.component';
+import { StepSecondComponent } from './register/step-second/step-second.component';
+import { StepThirdComponent } from './register/step-third/step-third.component';
+import { StepForthComponent } from './register/step-forth/step-forth.component';
 
 const appRoutes: Routes = [
 
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'register/step-first', component: StepFirstComponent },
+  { path: 'register/step-second', component: StepSecondComponent },
+  { path: 'register/step-third', component: StepThirdComponent },
+  { path: 'register/step-forth', component: StepForthComponent },
   { path: 'home/searchresult', component: SearchresultComponent },
   { path: 'home/tips_list', component: TipslistComponent },
   { path: 'home/event_list', component: EventlistComponent },

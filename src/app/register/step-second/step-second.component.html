@@ -1,0 +1,170 @@
+<app-menu></app-menu>
+<div class="sign_up_container container" id="up">
+        <h2 class="text-center font-bold pt-4 pb-5 mb-5"><strong> Vendor Registration </strong></h2>
+        <!-- Stepper -->
+        <div class="steps-form-2" (click)="loadScript()">
+           <div class="steps-row-2 setup-panel-2 d-flex justify-content-between">
+              <div class="steps-step-2">
+                 <a [routerLink]="['/register/step-first']" type="button" class="first_step btn  btn-blue-grey btn-circle-2 waves-effect ml-0" data-toggle="tooltip" data-placement="top" title="Your Business Category "><i class="fa fa-folder-open-o" aria-hidden="true"></i>
+                 </a>
+                 <div class="clearfix"></div>
+                 <p class="ml-yb">   Your Business Category  </p>
+              </div>
+              <div class="steps-step-2">
+                 <a [routerLink]="['/register/step-second']" routerLinkActive="router-link-active" type="button" class="btn btn-amber btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="General Information"><i class="fa fa-pencil" aria-hidden="true"></i>
+                 </a>
+                 <p> General Information  </p>
+              </div>
+              <div class="steps-step-2">
+                 <a  [routerLink]="['/register/step-third']" routerLinkActive="router-link-active" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Business Information"><i class="fa fa-photo" aria-hidden="true"></i>
+                 </a>
+                 <p> Business Information </p>
+              </div>
+              <div class="steps-step-2">
+                 <a  [routerLink]="['/register/step-forth']" routerLinkActive="router-link-active" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Payment"><i class="fa fa-check" aria-hidden="true"></i>
+                 </a>
+                 <p> Payment   </p>
+              </div>
+           </div>
+        </div>
+<!-- Second Step -->
+<form role="form" action="" method="post" class="mt-25 mtx-0" (ngSubmit)="onSubmit()" #f="ngForm">
+ <div class="row setup-content-2">
+  <div class="logininfobox">
+      <h3 class="pl-0 my-4 lc_head"> Account Information </h3>
+      <div class="field">
+          <input  
+              type="text" 
+              placeholder="First Name" 
+              id="firstName" 
+              ngModel #firstName="ngModel" 
+              [ngModelOptions]="{updateOn: 'blur'}"
+              [(ngModel)] = "user.logInInfo.firstName" 
+              name = "firstName" 
+              pattern="^[a-zA-Z]{1,}$"
+              required
+          />
+          <label for="firstName">First Name</label>
+          </div>
+          <div class="clearfix"></div>
+          <small class="form-text text-muted danger" *ngIf="!firstName.valid && (firstName.dirty || firstName.touched)">Firstname is required!</small>
+      
+      <div class="field">
+          <input  
+              type="text" 
+              placeholder="Last Name"  
+              [(ngModel)] = "user.logInInfo.lastName" 
+              name = "lastName" 
+              id="lastName" 
+              ngModel 
+              #lastName="ngModel" 
+              [ngModelOptions]="{updateOn: 'blur'}"
+              required 
+              pattern="^[a-zA-Z]{1,}$"
+          />
+          <label for="lastName">Last Name</label>
+      </div>
+      <div class="clearfix"></div>
+      <small class="form-text text-muted danger" *ngIf="!lastName.valid && (lastName.dirty || lastName.touched)">Lastname is required!</small>
+    
+      <div class="field">
+          <input 
+              type="text" 
+              placeholder="Email" 
+              id="email" 
+              name = "email" 
+              ngModel 
+              #email="ngModel" 
+              [ngModelOptions]="{updateOn: 'blur'}"
+              autocomplete="username"
+              [(ngModel)] = "user.contactInfo.email" 
+              required 
+              pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$"
+          />
+          <label for="email">Email</label>
+      </div>
+      <div class="clearfix"></div>
+      <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">Email is required!</small>
+
+      <div class="field">
+          <input 
+              type="password" 
+              placeholder="Password" 
+              [(ngModel)] = "user.logInInfo.password" 
+              name = "password" 
+              id = "password" 
+              ngModel 
+              #password="ngModel" 
+              autocomplete="new-password"  
+              [ngClass]="{ 'is-invalid': password.invalid }"
+              required 
+              minlength="6"
+              validateEqual="confirmPassword" reverse="true"
+          />
+          <label for="password">Password</label>
+      </div>
+      <div *ngIf="password.invalid && (password.dirty || password.touched)"  class="form-text text-muted danger" >
+                  <div  class="form-text text-muted danger"  *ngIf="password.errors.required">
+                         Password is required.
+                  </div>
+                  <div  class="form-text text-muted danger"  *ngIf="password.errors.minlength">
+                          Password must be at least 6 characters!
+                  </div>
+      </div>
+
+      <div class="field">
+          <input 
+              type="password" 
+              autocomplete="new-password"
+              id="confirmPassword" 
+              placeholder="Confirm Password" 
+              ngModel 
+              #confirmPassword="ngModel" 
+              [(ngModel)] = "user.logInInfo.confirmPassword" 
+              name = "confirmPassword" 
+              minlength="6" 
+              [ngClass]="{ 'is-invalid': confirmPassword.invalid }"
+              required
+              validateEqual="password" reverse="false"
+          />
+          <label for="confirmPassword">Confirm Password</label>
+      </div>
+      <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"  class="form-text text-muted danger" >
+                  <div  class="form-text text-muted danger"  *ngIf="confirmPassword.errors.required">
+                         Confirm Password is required.
+                  </div>
+                  <div  class="form-text text-muted danger"  *ngIf="confirmPassword.errors.minlength">
+                          Confirm Password must be at least 6 characters!
+                        </div>
+                  <small [hidden]="confirmPassword.valid || (confirmPassword.pristine && !f.submitted)" class="text-danger">
+                          Password mismatch
+                  </small>
+      </div>
+      <div class="field">
+          <input  
+              type="text"  
+              id="phone"  
+              placeholder="Phone" 
+              ngModel #phone="ngModel" 
+              [ngModelOptions]="{updateOn: 'blur'}"
+              [(ngModel)] = "user.contactInfo.phone" 
+              name = "phone" 
+              required
+              minlength="7" 
+              maxlength="10"
+          />
+          <label for="phone">Phone No</label>
+      </div>
+      <div class="clearfix"></div>
+       <small class="form-text text-muted danger" *ngIf="!phone.valid && (phone.dirty || phone.touched)">Phone is required!</small>
+  </div>
+  <div class="col-sm-12 btnholder">
+      <button class="btn btn-raised prevBtn-2 gradint_blue white signup_nextbtn btnborradius pull-left" type="button" [routerLink]="['/register/step-first']">Previous</button>
+      <button class="btn btn-raised gradint_blue white signup_nextbtn btnborradius nextBtn-2 pull-right" type="button" [routerLink]="['/register/step-third']">Next</button>
+  </div>
+</div>
+
+</form>
+</div>
+<app-foot></app-foot>
+<router-outlet></router-outlet>

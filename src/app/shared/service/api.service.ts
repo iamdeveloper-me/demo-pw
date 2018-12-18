@@ -5,7 +5,7 @@ import { Observable ,  Subscription } from 'rxjs';
 @Injectable()
 export class apiService {
   constructor(private http: HttpClient) { }
-
+  url_services = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/"
   getData(url) : Observable<any> {
     var authToken = localStorage.getItem('userToken');
 

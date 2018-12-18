@@ -424,6 +424,7 @@ export function getAuthServiceConfigs() {
         RatingModule,
         // VendorModule,
         //inbox
+        RatingModule,
         QuillModule,
         //calender
         CommonModule,

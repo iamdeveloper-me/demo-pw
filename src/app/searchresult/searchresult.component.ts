@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MasterserviceService } from 'app/ngservices/masterservice.service';
+import {RatingModule} from 'ngx-rating';
 @Component({
   selector: 'app-searchresult',
   templateUrl: './searchresult.component.html',
@@ -12,7 +13,10 @@ export class SearchresultComponent implements OnInit {
   locations:any;
   categories:any;
   filters: any;
+  count:number = 3
   objSearchlistvm: SearchListingVM;
+  objSearchResultItems:any;
+  
   constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService) {  
     this.objSearchFilter=new SearchFilterVm();
     this.objSearchlistvm = new SearchListingVM();
@@ -22,8 +26,11 @@ export class SearchresultComponent implements OnInit {
     this.getLocations();
     this.getCategories();
     this.getFilters();
-    this.objSearchlistvm.categoryId.push=this.objSearchFilter.categoryId[0];
-    
+    this.objSearchlistvm.categoryId.push(this.objSearchFilter.categoryId);
+    this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
+      this.objSearchResultItems = res;
+      console.log(JSON.stringify(res));
+    });
   }
  ngOnInit() {   
   //$.getScript('./assets/js/owljsor.js');
@@ -48,6 +55,9 @@ export class SearchresultComponent implements OnInit {
       if(this.objSearchFilter.locationId>0){
         if(this.objSearchFilter.locationId>0){
           this.locations=this.locations.filter(l=>l.id==this.objSearchFilter.locationId);
+          this.locations.forEach(element => {
+            element.isSelect=false;
+          });
         }
       }
       console.log(this.locations);
@@ -55,12 +65,13 @@ export class SearchresultComponent implements OnInit {
       
   }
   getCategories(){
-    this._masterservice.getAllCategories().subscribe(res=>{
+     this._masterservice.getAllCategories().subscribe(res=>{
       this.categories=res;
       if(this.objSearchFilter.categoryId>0){
         this.categories=this.categories.filter(c=>c.categoryId==this.objSearchFilter.categoryId);
         this.categories.forEach(element => {
-          element.isselect=false;
+          if(element.categoryId==this.objSearchFilter.categoryId){
+          element.isSelect=true;}else{element.isSelect=false;}
         });
        console.log(this.categories);
       }
@@ -72,46 +83,50 @@ export class SearchresultComponent implements OnInit {
     filter_paramArray.push(this.objSearchFilter.categoryId);
     this._masterservice.getFilters(filter_paramArray).subscribe(res=>{
       this.filters=res;
+      this.filters.services.forEach(element => {
+        element.isSelect=false;
+      });
       console.log(this.filters);
     })
   }
-  getSearchFilterResult(districtId,categoryId,serviceId, customFieldId,userValue,paramType){
-    switch(paramType){
-      case 'cat':
-      this.objSearchlistvm.categoryId=categoryId;
-      break;
-      case 'serviceId':
-      this.objSearchlistvm.serviceId.push(serviceId);
-      break;
-      case 'customFieldId':
-      this.objSearchlistvm.customField.customFieldId=customFieldId;
-      break;
-      case 'userValue':
-      this.objSearchlistvm.customField.userValue=userValue
-      break;
-    }
+  getSearchFilterResult(){
+    this.objSearchlistvm = new SearchListingVM();
+    this.filters.services.forEach(element => {
+      if(element.isSelect){
+        this.objSearchlistvm.serviceId.push(element.servicesId);
+      }
+    });
+    this.filters.filters.forEach(element => {
+      if(element.isSelect){
+      element.customFieldOptionList.forEach(cfo => {
+        this.objSearchlistvm.customField =new FieldSearchVM();
+        if(cfo.isSelect){
+          this.objSearchlistvm.customField.customFieldId=element.customFieldId;
+          this.objSearchlistvm.customField.userValue=cfo.key;
+          this.objSearchlistvm.customsFields.push(this.objSearchlistvm.customField);
+        }
+      });
+      
+    } 
+      this.objSearchlistvm.customField = new FieldSearchVM();
+      
+    });
+    this.categories.forEach(element => {
+      if(element.isSelect){
+        this.objSearchlistvm.categoryId.push(element.categoryId);
+      }
+    });
+    this.locations.forEach(element => {
+      if(element.isSelect){
+        this.objSearchlistvm.districtId.push(element.districtId)
+      }
+    });
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
-      console.log(res);
+      this.objSearchResultItems = res;
+      console.log(JSON.stringify(res));
     })
   }
-  addRemoveDistId(){
-
-  }
-  addRemoveCategoryId(){
-    console.log();
-  }
-  addRemoveServiceId(s){
-    if(this.objSearchlistvm.serviceId.length>0){
-      let index= this.objSearchlistvm.serviceId.findIndex(s.serviceId);
-      this.objSearchlistvm.serviceId.splice(index,1);
-      
-    }else{
-      this.objSearchlistvm.serviceId.push(s.serviceId);
-    }
-    
-
-    console.log(s);
-  }
+  
    // Variable Declaration
    page2 = 4;
 }

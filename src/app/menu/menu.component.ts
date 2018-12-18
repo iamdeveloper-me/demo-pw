@@ -107,7 +107,8 @@ export class MenuComponent implements OnInit {
  
  
   
- logout(){
+    logout(){
+    sessionStorage.clear();
     localStorage.clear();
     this.router.navigate(['../home']);
     $(".loginclick").show();
@@ -116,7 +117,7 @@ export class MenuComponent implements OnInit {
     $(".vendorlogindisplay").hide();
     
     this.typeLogout();
-   }
+    }
 
     ngOnInit() { 
         $("#sidebar-wrapper").hide();

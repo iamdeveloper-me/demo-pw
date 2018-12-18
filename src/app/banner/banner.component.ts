@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MasterserviceService } from '../ngservices/masterservice.service';
 import { apiService } from '../shared/service/api.service';
+
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
@@ -8,7 +11,9 @@ import { apiService } from '../shared/service/api.service';
 })
 export class BannerComponent implements OnInit {
 
-  constructor(private masterservice: MasterserviceService , private apiService: apiService) { }
+
+  constructor( private router: Router ,private masterservice: MasterserviceService , private apiService: apiService) { }
+
   Categories = [];
   locations = [];
   banner_data = []
@@ -16,7 +21,9 @@ export class BannerComponent implements OnInit {
     this.Categorie();
     this.location();
     this.banner();
-    this.search();
+
+    
+
                 $(".mobvendorebtn").click(function(){
                   $("#tiktik").show();
                 });
@@ -57,25 +64,14 @@ export class BannerComponent implements OnInit {
       }
     )
   }
-  search(){
-    const a ={
-      "page": 0,
-      "pageSize": 0,
-      "sortDir": "string",
-      "sortedBy": "string",
-      "searchQuery": "string",
-      "location": "string",
-      "eventType": "string",
-      "dates": "string"
-    }
-    this.apiService.postData(this.apiService.serverPath+'Home/searchevents',a).subscribe(data => {
-      console.log(data)
-    
-     
-    },
-      error => {
-       console.log(error)
-      }
-    )
+
+  search(e){
+    console.log(e.value.category);
+    console.log(e.value.category.categoryId);
+    console.log(e.value.category.categoryName);
+    alert("cvvfvfvfvf");
+    this.router.navigate(['../searchresult' + '/' + e.value.category.categoryId +'/'+ e.value.category.categoryName]);
+    //searchresult
   }
+
 }

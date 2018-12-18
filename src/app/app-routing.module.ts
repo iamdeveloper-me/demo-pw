@@ -140,7 +140,7 @@ const appRoutes: Routes = [
 
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'home/searchresult', component: SearchresultComponent },
+  { path: 'home/searchresult/:id', component: SearchresultComponent },
   { path: 'home/tips_list', component: TipslistComponent },
   { path: 'home/event_list', component: EventlistComponent },
   { path: 'home/detailprofile', component:  DetailpageComponent  },

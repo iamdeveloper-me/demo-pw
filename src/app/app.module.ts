@@ -443,6 +443,7 @@ export function getAuthServiceConfigs() {
 
         // VendorModule,
         //inbox
+        RatingModule,
         QuillModule,
         //calender
         CommonModule,

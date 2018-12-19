@@ -427,9 +427,9 @@ myplans:any = {};
                                            
                                             swal({
                                               title: "Profile Completed",
-                                          // text: "Choose a different subscription plan",
+                                          text: "Thankyou!",
                                           type: "warning",
-                                          showCancelButton: true,
+                                          showCancelButton: false,
                                           confirmButtonClass: "btn-default",
                                           confirmButtonText: "OK",
                                           cancelButtonText: "Cancel!",  
@@ -446,7 +446,6 @@ myplans:any = {};
                                               alert(JSON.stringify(error));
                                           })
                                             return;
-                                           
                                           } 
 
                                           if( profile == '2'){

@@ -227,6 +227,7 @@ import { HoneymoonDetailsComponent } from './honeymoon-details/honeymoon-details
 import { EventcelandarComponent } from './eventcelandar/eventcelandar.component';
 
 
+
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
     
@@ -439,8 +440,10 @@ export function getAuthServiceConfigs() {
         SocialLoginModule,
         HttpModule,
         RatingModule,
+
         // VendorModule,
         //inbox
+        RatingModule,
         QuillModule,
         //calender
         CommonModule,

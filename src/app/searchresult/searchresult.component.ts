@@ -24,8 +24,8 @@ export class SearchresultComponent implements OnInit {
   //$.getScript('./assets/register/js/jquery.bootstrap.js');
 
   $.getScript('./assets/jss/core/popper.min.js');
-  $.getScript('./assets/jss/core/bootstrap-material-design.min.js');;
-  $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js')
+  $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
+  $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');
   $.getScript('./assets/jss/plugins/chartist.min.js');
   $.getScript('./assets/jss/plugins/bootstrap-notify.js');
   $(".slider_use_anather_compo").hide();

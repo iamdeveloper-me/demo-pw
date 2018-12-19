@@ -277,10 +277,11 @@ export class MenuComponent implements OnInit {
        $(".registertab").removeClass( "active");
      });
 
-
+     
     
     //end
     $(".tik").click(function(){
+      alert("hi");
         $(".navbar-collapse").addClass("in");
         //$(".navbar-toggler").hide();
         $(".navbar-toggler").addClass("cross")

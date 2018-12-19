@@ -23,15 +23,21 @@ export class VendorcardComponent implements OnInit {
   ngOnInit() { 
     this.featured_supplier()
     this.Dream_Wedding()
+    $.getScript('./assets/register/js/jquery-2.2.4.min.js');
+    $.getScript('./assets/register/js/bootstrap.min.js');
+
     $.getScript('./assets/jss/core/popper.min.js');
     $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
     $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');
     $.getScript('./assets/jss/plugins/chartist.min.js');
     $.getScript('./assets/jss/plugins/bootstrap-notify.js');
     $.getScript('./assets/js/owljsor.js');
-    $.getScript('./assets/js/curosselfun.js');
- 
+    $.getScript('./assets/js/curosselfun.js');   
+
+
+
   }
+
   featured_supplier(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/featuredsuppliers').subscribe(data => {
       console.log(data.featuredWeddingSuppliers)

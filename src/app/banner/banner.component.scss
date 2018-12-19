@@ -37,49 +37,55 @@ h5,
 h6 {
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
-
 .bg-primary {
   background-color: gray !important;
 }
-
 .bg-dark {
   background-color: #212529 !important;
 }
-
 .text-faded {
   color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0px 0px 20px #000;
 }
-
 section {
   padding: 8rem 0;
 }
-
 .section-heading {
   margin-top: 0;
+  text-shadow: 0px 0px 20px #000;
 }
-
 ::-moz-selection {
   color: #fff;
   background: #212529;
   text-shadow: none;
 }
-
 ::selection {
   color: #fff;
   background: #212529;
   text-shadow: none;
 }
-
 img::selection {
   color: #fff;
   background: transparent;
 }
-
 img::-moz-selection {
   color: #fff;
   background: transparent;
 }
-
+.homebanner{
+  width:100%;
+  height:500px;
+  object-fit: cover;
+  object-position:bottom;
+}
+.hombannertext{
+  position: absolute;
+  height: 340px;
+  top:170px;
+  left: 0px;
+  right: 0px;
+  margin:0px auto;
+}
 #mainNav {
   border-bottom: 1px solid rgba(33, 37, 41, 0.1);
   background-color: #fff;
@@ -126,11 +132,14 @@ img::-moz-selection {
 .searchbar{
   max-width: 800px;
   position: absolute;
-    bottom: 30px;
-    left: 0;
-    right:0;
+  bottom: 30px;
+  left: 0;
+  right:0;
 }
-
+.searchbar .form-group{
+  padding: 0px!important;
+  margin: 0px!important;
+}
 @media (min-width: 992px) {
   #mainNav {
     border-color: transparent;
@@ -209,9 +218,6 @@ header.masthead p {
   display: block;
   max-width: 650px;
   margin: 0 auto;
-}
-.searchbar .form-group{
-  display:inline-block;
 }
 
 .searchbar select {
@@ -329,6 +335,7 @@ header.masthead p {
 }
 .mobvendorebtn{
   display:none;
+  cursor:pointer;
 }
 .home_search i{
   position: absolute;
@@ -360,7 +367,7 @@ header.masthead p {
 }
 .just_picture{
   position: absolute;
-  bottom: 10px;
+  bottom: -5px;
   left: 0px;
   margin: 0px auto;
   right:0px;
@@ -395,6 +402,9 @@ header.masthead p {
   }
 }
 @media (max-width: 767px){
+  .hombannertext{
+  height: 165px;
+}
   .form-group{
       padding-bottom: 0px; 
      margin: 0px 0 0 0;
@@ -595,7 +605,6 @@ height:100vh;
 }
 
      .section-heading{
-
        font-size: 15px;
        font-weight: 600;
      }

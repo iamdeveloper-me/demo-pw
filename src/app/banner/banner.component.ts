@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MasterserviceService } from '../ngservices/masterservice.service';
 import { apiService } from '../shared/service/api.service';
+
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
@@ -9,7 +11,9 @@ import { Router } from '@angular/router';
 })
 export class BannerComponent implements OnInit {
 
+
   constructor( private router: Router ,private masterservice: MasterserviceService , private apiService: apiService) { }
+
   Categories = [];
   locations = [];
   banner_data = []
@@ -17,7 +21,9 @@ export class BannerComponent implements OnInit {
     this.Categorie();
     this.location();
     this.banner();
+
     
+
                 $(".mobvendorebtn").click(function(){
                   $("#tiktik").show();
                 });
@@ -36,7 +42,7 @@ export class BannerComponent implements OnInit {
 
   Categorie(){ 
     this.masterservice.getAllCategories().subscribe(data => {
-      console.log(data);
+     // console.log(data);
       this.Categories = data;
      },error => {  console.log(error) })
   }
@@ -58,6 +64,7 @@ export class BannerComponent implements OnInit {
       }
     )
   }
+
   search(e){
     console.log(e.value.category);
     console.log(e.value.category.categoryId);

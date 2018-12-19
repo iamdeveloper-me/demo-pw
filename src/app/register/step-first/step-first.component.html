@@ -28,7 +28,7 @@
       </div>
    </div>
    <!-- First Step -->
-   <form role="form" method="post" class="mt-25 mtx-0" (ngSubmit)="onSubmit()" #f="ngForm">
+   <form role="form" method="post" class="mt-25 mtx-0" (ngSubmit)="onSubmit(f)" #f="ngForm">
       <div class="row setup-content-2" >
           <div class="col-md-12 cate_list">
               <div class="data">
@@ -42,10 +42,13 @@
                               id=" {{category.categoryId}} "
                               checked
                               [value]="category.categoryId"
-                              [(ngModel)]= "user.vendorCategories[0].categoryId"
+                              
+                              [(ngModel)]='objVendorDetails.categoryId'
                               #required="ngModel"
                               required
+
                           /> 
+                          <!-- [(ngModel)]= "user.vendorCategories[0].categoryId" -->
                           <label>{{category.categoryName}} </label> 
                         </li>
                       </ul>
@@ -56,7 +59,7 @@
           <div class="clearfix"></div>
           <div class="col-sm-12 btnholder">
                   <!-- [disabled]="!required.valid" -->
-              <button class="btn gradint_blue white signup_nextbtn btnborradius pull-right nextBtn-2" type="button" [routerLink]="['/register/step-second']"> Next </button>
+              <button class="btn gradint_blue white signup_nextbtn btnborradius pull-right nextBtn-2" type="button" (click)='goToNextStep()' > Next </button>
           </div>
       </div>
     </form>

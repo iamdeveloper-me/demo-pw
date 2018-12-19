@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SignupVendorService } from '../../shared/service/signup-vendor.service';
+import { SignupVendorService, VendorDetails } from '../../shared/service/signup-vendor.service';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
+
 import 'rxjs/Rx';
 
 @Component({
@@ -11,7 +12,7 @@ import 'rxjs/Rx';
 })
 export class StepFirstComponent implements OnInit {
   categoryArray:string[];
-
+  objVendorDetails: VendorDetails;
   public arra = new Array();
   user = 
   {
@@ -45,15 +46,23 @@ export class StepFirstComponent implements OnInit {
             //   });
 
   }
-    constructor( private cservice: SignupVendorService,private http: HttpClient , private router: Router ) {}
+    constructor( private cservice: SignupVendorService,private http: HttpClient , private router: Router ) {
+      this.objVendorDetails = new VendorDetails();
+    }
 
  loadScript(){
    this.ngOnInit;
   }
+  goToNextStep(){
+    localStorage.setItem('VednorDetails',JSON.stringify(this.user));
+    this.cservice.GoToNextStep('/register/step-second');
+  }
 
-    onSubmit1() {  
+    onSubmit(f) {  
+      console.log(f.value);
       // this.router.navigate(['/register/step-second']);  
- 
+      // localStorage.setItem('category', 'categoryId');yy
+
       console.log(this.user)
       this.cservice.signup(this.user).subscribe(( data )  =>  
       { console.log(data.json())

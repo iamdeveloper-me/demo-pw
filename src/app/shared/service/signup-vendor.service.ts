@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Headers , Http ,Response } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignupVendorService {
-
-  constructor(private http: Http,public toastr: ToastrService) { }
+  ObjVendorDetails:VendorDetails;
+  constructor(private http: Http,public toastr: ToastrService, public router: Router) {
+    this.ObjVendorDetails = new VendorDetails();
+   }
 
   signup(user)
   {
@@ -79,6 +82,51 @@ export class SignupVendorService {
       console.log("password and confirmpassword does not match");
   }
 
-
+GoToNextStep(path){
+this.router.navigateByUrl(path);
+}
 
 }
+export class logInInfo
+ {
+  firstName:string;
+  lastName: string;
+  password: string;
+  confirmPassword:string;
+}
+export class contactInfo {
+  email: string;
+  phone: string;
+  website: string;
+  phoneType: string;
+}
+export class businessInfo {
+  countryId: 0;
+  districtId: 0;
+  suburbId: 0;
+  city:string;
+  postalCode:string;
+  address:string;
+  lat: 0;
+  long: 0;
+  nameOfBusiness:string;
+  businessDetails: string;
+  pricingPlanId: 0;
+  payFrequency: 0;
+  website: string;
+}
+export class vendorCategories{
+  vendorCategories: Array<VendorCatrgoryAddVM>;
+  constructor(){
+    this.vendorCategories = new Array<VendorCatrgoryAddVM>();
+  }
+ }
+ export class VendorCatrgoryAddVM {
+  categoryId:number;
+ }
+ export class VendorDetails{
+  logInInfo: VendorLogInInfo;
+  contactInfo:	VendorContactInfo
+  businessInfo:	VendorBusinessInfo
+  vendorCategories:Array<VendorCatrgoryAddVM>
+ }

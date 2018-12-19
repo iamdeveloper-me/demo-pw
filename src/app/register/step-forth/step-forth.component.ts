@@ -69,7 +69,8 @@ export class StepForthComponent implements OnInit {
 
  loadScript(){this.ngOnInit;}
 
-    onSubmit4() {   
+    onSubmit() {   
+     
    console.log(this.country_id)
    this.arra.forEach((element,pos) => {
      if(pos == this.country_id){

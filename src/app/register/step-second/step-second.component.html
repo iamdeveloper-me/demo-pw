@@ -28,7 +28,7 @@
            </div>
         </div>
 <!-- Second Step -->
-<form role="form" action="" method="post" class="mt-25 mtx-0" (ngSubmit)="onSubmit()" #f="ngForm">
+<form role="form" action="" method="post" class="mt-25 mtx-0" (ngSubmit)="onSubmit(f)" #f="ngForm">
  <div class="row setup-content-2">
   <div class="logininfobox">
       <h3 class="pl-0 my-4 lc_head"> Account Information </h3>
@@ -160,7 +160,7 @@
   </div>
   <div class="col-sm-12 btnholder">
       <button class="btn btn-raised prevBtn-2 gradint_blue white signup_nextbtn btnborradius pull-left" type="button" [routerLink]="['/register/step-first']">Previous</button>
-      <button class="btn btn-raised gradint_blue white signup_nextbtn btnborradius nextBtn-2 pull-right" type="button" [routerLink]="['/register/step-third']">Next</button>
+      <button class="btn btn-raised gradint_blue white signup_nextbtn btnborradius nextBtn-2 pull-right" type="button" (click)='goToNextStep()'>Next</button>
   </div>
 </div>
 

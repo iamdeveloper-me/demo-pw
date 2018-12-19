@@ -155,6 +155,7 @@ const appRoutes: Routes = [
   { path: 'register/step-third', component: StepThirdComponent },
   { path: 'register/step-forth', component: StepForthComponent },
   { path: 'home/searchresult', component: SearchresultComponent },
+  { path: 'home/searchresult/:id', component: SearchresultComponent },
   { path: 'home/tips_list', component: TipslistComponent },
   { path: 'home/event_list', component: EventlistComponent },
   { path: 'home/detailprofile', component:  DetailpageComponent  },

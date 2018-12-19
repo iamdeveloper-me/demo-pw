@@ -231,6 +231,7 @@ import { StepForthComponent } from './register/step-forth/step-forth.component';
 import { StepFirstComponent } from './register/step-first/step-first.component';
 
 
+
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
     
@@ -451,8 +452,10 @@ export function getAuthServiceConfigs() {
         SocialLoginModule,
         HttpModule,
         RatingModule,
+
         // VendorModule,
         //inbox
+        RatingModule,
         QuillModule,
         //calender
         CommonModule,

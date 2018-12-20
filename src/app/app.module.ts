@@ -194,9 +194,14 @@ import { DealDetailsComponent } from './deal-details/deal-details.component';
 import { HoneymoonComponent } from './honeymoon/honeymoon.component';
 import { HoneymoonDetailsComponent } from './honeymoon-details/honeymoon-details.component';
 
-import { EventcelandarComponent } from './eventcelandar/eventcelandar.component';
+
 import { CustompipePipe } from './custompipe.pipe';
 import { CategoryPipePipe } from './category-pipe.pipe';
+
+import { EventcelandarComponent } from './eventcelandar/eventcelandar.component';
+import { DreamWeddingLocationsComponent } from './dream-wedding-locations/dream-wedding-locations.component';
+import { FeaturedWeddingSuppliersComponent } from './featured-wedding-suppliers/featured-wedding-suppliers.component';
+
 
 
 
@@ -387,9 +392,15 @@ export function getAuthServiceConfigs() {
 
         EventcelandarComponent,
 
+
         CustompipePipe,
 
-        CategoryPipePipe
+        CategoryPipePipe,
+
+        DreamWeddingLocationsComponent,
+
+        FeaturedWeddingSuppliersComponent
+
 
         
         

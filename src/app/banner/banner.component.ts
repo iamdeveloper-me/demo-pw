@@ -23,8 +23,10 @@ export class BannerComponent implements OnInit {
     this.location();
     this.banner();
 
+
                 $(document).on('click', ".mobvendorebtn", function(){
                  // alert("tiktik");
+
 
 
 
@@ -68,6 +70,7 @@ export class BannerComponent implements OnInit {
   }
 
   search(e){
+
    // this.router.navigate(['../searchresult/', e.value.category.categoryId]);
     let catId=0;
     let CatName='';
@@ -76,7 +79,9 @@ export class BannerComponent implements OnInit {
       CatName=e.value.category.categoryName;
     }
     this.router.navigate(['home/searchresult',catId+'/'+CatName]);
+
     //searchresult
+    this.router.navigate(['/home/searchresult']);
   }
 
 }

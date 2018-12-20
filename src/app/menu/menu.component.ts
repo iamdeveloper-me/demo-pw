@@ -149,10 +149,12 @@ export class MenuComponent implements OnInit {
                         $(".tool_icons").hide();
                         } 
                 }
+
                 if(!this.session_token){
                  //   sessionStorage.clear();
                   //  this.router.navigate(['../home']);
                 }
+
 
 
                 //loginpage

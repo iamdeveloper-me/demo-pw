@@ -47,7 +47,7 @@
           <label for="nameOfBusiness">Name of your Bussiness</label>
       </div>
       <div class="clearfix"></div>
-      <small class="form-text text-muted danger" *ngIf="!objVendorDetails.businessInfo.nameOfBusiness.valid && (objVendorDetails.businessInfo.nameOfBusiness.dirty || objVendorDetails.businessInfo.nameOfBusiness.touched)">Name is required!</small>
+      <small class="form-text text-muted danger" *ngIf="!nameOfBusiness.valid && (nameOfBusiness.dirty || nameOfBusiness.touched)">Name is required!</small>
 
       <div class="field">
           <select name="country" [(ngModel)] = "objVendorDetails.businessInfo.countryId " name="country_id" (change)="country()">

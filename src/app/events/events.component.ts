@@ -19,8 +19,11 @@ export class EventsComponent implements OnInit {
   // array of all items to be paged
   private allItems: any[];
   pager: any = {};
+  searchQuery: ""
+    
+      eventType: "Free"
+      dates: "All"
 
-  // paged items
   pagedItems: any[];
   ngOnInit() {
 

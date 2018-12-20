@@ -1,4 +1,4 @@
-<div id="wrappervendor" class="" >
+  <div id="wrappervendor" class="" >
   <app-menu></app-menu>
   <app-tool></app-tool>
   <div id="wrappervendorsidbar">
@@ -141,15 +141,16 @@
 						  </div>
 						  <div id="collapse0" class="panel-collapse collapse ">
 
-							<div class="city_position">
-                <input type="text" class="cityinput" placeholder="Type the city"/>
-                <i class="material-icons">search</i>
+							<div>
+                <input type="text" [(ngModel)]='locationFilterParam' placeholder="Type the city"/>
+                {{locationFilterParam}}
+                <!-- <i class="material-icons">search</i> -->
               </div>
 
 							<div class="cityscroll22">
                   <div class="funkyradio">
-                    <div class="funkyradio-info" *ngFor='let l of locations'>
-                      <input type="checkbox" name="checkbox" id="Black" (change)='getSearchFilterResult()' [(ngModel)]='l.isSelect'/>
+                    <div class="funkyradio-info" *ngFor='let l of locations| custompipe:locationFilterParam'>
+                      <input type="checkbox" (change)='getSearchFilterResult()' [(ngModel)]='l.isSelect'/>
                         <i class="material-icons">location_on</i> {{l.name}}
                     </div>
                   </div>
@@ -194,12 +195,12 @@
                   <div class="category-body">
                       <div class="searchmobtitlebar city_position">
                         <i class="material-icons">search</i>
-                        <input class="cityinput" type="text" value="" id="search" placeholder="Type to Search Category">
+                        <input class="cityinput" type="text" [(ngModel)]='categoryFilterParam' placeholder="Type to Search Category">
                       </div>
                     <!-- <div class="regular">All Categories</div> -->
                 <div class="cityscroll22"> 
                   <div class="funkyradio">  
-                    <div class="funkyradio-info" *ngFor='let c of categories'>
+                    <div class="funkyradio-info" *ngFor='let c of categories| categoryPipe:categoryFilterParam'>
                      <input type="checkbox" name="checkbox" id="any" (change)='getSearchFilterResult()' [(ngModel)]='c.isSelect'/>
                          <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
                         <b> {{c.categoryName}} </b>  
@@ -327,10 +328,13 @@
                             {{i.albums[0].albumImages.length}}</span>
                             <span *ngIf='!i.albums[0]'>0</span>
                         </span>
+                        <span *ngIf='i.vendorVideos.length>0'>
+                            <img src="../../assets/img/video.png"/>{{i.vendorVideos[0].vendorVideos.length}}</span>
                         <span>
-                            <img src="../../assets/img/video.png"/>
-                            12
-                        </span>
+                          <img src="../../assets/img/video.png"/>
+                         <span *ngIf='i.vendorVideos.length==0'>0</span>
+                          
+                      </span>
                       </div>
                       <div class="caption card-body">
                         <div>
@@ -344,24 +348,15 @@
                           </p>
                           
                           <p class="statr_point">
+                            
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star"></span>
                             <span class="fa fa-star"></span>
+                            <!-- <ngb-rating [(rate)]="4"></ngb-rating> -->
                             <span *ngIf='i.reviews.length>0'>
                             {{i.reviews[0].rating}} {{i.reviews.length}} </span>
-                            <rating [(ngModel)]="count"
-        [max]="5"
-        iconClass="fa-star"
-        fullIcon="★"
-        emptyIcon="☆"
-        [readonly]="false"
-        [disabled]="false"
-        [required]="true"
-        [float]="true"
-        [titles]="['one', 'two', 'three', 'four', 'five']">
-</rating>
                           </p>
                         </div>
                        <div class="col-md-12 col-12 cardfoottext">

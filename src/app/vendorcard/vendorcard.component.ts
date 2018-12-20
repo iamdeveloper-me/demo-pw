@@ -12,6 +12,7 @@ export class VendorcardComponent implements OnInit {
   featured_supplier_data = []
   max = []
   dream_wedding_location = []
+  Popular_Wedding_array = []
   constructor(config: NgbCarouselConfig, private apiService: apiService) {
     // customize default values of carousels used by this component tree
     config.interval = 10000;
@@ -23,15 +24,20 @@ export class VendorcardComponent implements OnInit {
   ngOnInit() { 
     this.featured_supplier()
     this.Dream_Wedding()
+    this.Popular_Wedding()
+
     $.getScript('./assets/jss/core/popper.min.js');
     $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
     $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');
     $.getScript('./assets/jss/plugins/chartist.min.js');
     $.getScript('./assets/jss/plugins/bootstrap-notify.js');
     $.getScript('./assets/js/owljsor.js');
-    $.getScript('./assets/js/curosselfun.js');
- 
+    $.getScript('./assets/js/curosselfun.js');   
+
+
+
   }
+
   featured_supplier(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/featuredsuppliers').subscribe(data => {
       console.log(data.featuredWeddingSuppliers)
@@ -56,6 +62,23 @@ export class VendorcardComponent implements OnInit {
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/dreamweddinglocation').subscribe(data => {
       console.log(data.dreamWeddingLocations)
       this.dream_wedding_location =  data.dreamWeddingLocations;
+    },
+      error => {
+       console.log(error)
+      }
+    )
+  }
+  Popular_Wedding(){
+    this.apiService.getData(this.apiService.serverPath+'Categories/allcategories').subscribe(data => {
+      console.log(data)
+      for (let i of data) {
+        if(i.isPopular == true){
+          this.Popular_Wedding_array.push(i);
+        }
+        console.log( this.Popular_Wedding_array)
+      }
+      
+    
     },
       error => {
        console.log(error)

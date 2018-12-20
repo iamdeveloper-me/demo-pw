@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MasterserviceService } from 'app/ngservices/masterservice.service';
 import {RatingModule} from 'ngx-rating';
+import { CustompipePipe } from 'app/custompipe.pipe';
+import { CategoryPipePipe } from 'app/category-pipe.pipe';
 @Component({
   selector: 'app-searchresult',
   templateUrl: './searchresult.component.html',
   styleUrls: ['./searchresult.component.scss'],
+  providers: [CustompipePipe, CategoryPipePipe]
 })
 export class SearchresultComponent implements OnInit {
   collection = [];
@@ -16,12 +19,18 @@ export class SearchresultComponent implements OnInit {
   count:number = 3
   objSearchlistvm: SearchListingVM;
   objSearchResultItems:any;
+  locationFilterParam:string='';
+  categoryFilterParam:string='';
   
   constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService) {  
     this.objSearchFilter=new SearchFilterVm();
     this.objSearchlistvm = new SearchListingVM();
     if(this._activeRoute!=undefined){
-    //  this.objSearchFilter=JSON.parse(this._activeRoute.snapshot.params['']);   
+      this.objSearchFilter.categoryId = this._activeRoute.snapshot.params['id'].split('/')[0];
+     
+      this.objSearchlistvm.categoryId.push(this.objSearchFilter.categoryId);
+     console.log(this.objSearchlistvm.categoryId);
+     // this.objSearchFilter=JSON.parse(this._activeRoute.snapshot.params['id']);   
     }
     this.getLocations();
     this.getCategories();
@@ -40,8 +49,8 @@ export class SearchresultComponent implements OnInit {
   //$.getScript('./assets/register/js/jquery.bootstrap.js');
 
   $.getScript('./assets/jss/core/popper.min.js');
-  $.getScript('./assets/jss/core/bootstrap-material-design.min.js');;
-  $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js')
+  $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
+  $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');
   $.getScript('./assets/jss/plugins/chartist.min.js');
   $.getScript('./assets/jss/plugins/bootstrap-notify.js');
   $(".slider_use_anather_compo").hide();
@@ -91,6 +100,7 @@ export class SearchresultComponent implements OnInit {
   }
   getSearchFilterResult(){
     this.objSearchlistvm = new SearchListingVM();
+    if(this.filters.services!=null){
     this.filters.services.forEach(element => {
       if(element.isSelect){
         this.objSearchlistvm.serviceId.push(element.servicesId);
@@ -111,6 +121,7 @@ export class SearchresultComponent implements OnInit {
       this.objSearchlistvm.customField = new FieldSearchVM();
       
     });
+  }
     this.categories.forEach(element => {
       if(element.isSelect){
         this.objSearchlistvm.categoryId.push(element.categoryId);
@@ -125,6 +136,13 @@ export class SearchresultComponent implements OnInit {
       this.objSearchResultItems = res;
       console.log(JSON.stringify(res));
     })
+  }
+  filterLocations(ev){
+    let filterResult=this.locations.filter(n=>n.name.startwith(ev.value));
+    this.locations=filterResult;
+  }
+  findVendorRating(reviews,rating){
+    return reviews*rating
   }
   
    // Variable Declaration

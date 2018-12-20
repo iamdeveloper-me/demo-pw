@@ -8,18 +8,15 @@ import { Router } from '@angular/router';
 })
 export class PhotoComponent implements OnInit {
 
-  constructor( public _router:Router) { }
-
    ngOnInit() {
-  
    $.getScript('./assets/js/blocksit.min.js');
    $.getScript('./assets/js/lazy.js');
+   $.getScript('./assets/js/jquery.pinbox.js');
+   $.getScript('./assets/js/photo.js');
    }
 //  save(){
 //    this.ngOnInit();
 //    this._router.navigateByUrl('home/photo');
-//    location.reload(); 
+//    location.reload();
 //  }
- 
-
 }

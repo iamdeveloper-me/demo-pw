@@ -66,7 +66,7 @@ export class EventsComponent implements OnInit {
           this.searchevents = data ;
           // set items to json response
           this.allItems = data['items'];
-          debugger
+      
           // initialize to page 1
           this.setPage(1);
         });

@@ -152,11 +152,11 @@ export class MenuComponent implements OnInit {
                         $(".tool_icons").hide();
                         } 
                 }
-                if(!this.session_token){
-                    alert("fdsv");
-                    sessionStorage.clear();
-                    this.router.navigate(['../home']);
-                }
+                // if(!this.session_token){
+                //     alert("fdsv");
+                //     sessionStorage.clear();
+                //     this.router.navigate(['../home']);
+                // }
 
                 //loginpage
                 $("#id9").hide();

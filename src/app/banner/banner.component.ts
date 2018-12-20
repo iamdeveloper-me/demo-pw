@@ -22,7 +22,21 @@ export class BannerComponent implements OnInit {
     this.location();
     this.banner();
 
-    
+    $(document).on('click', ".mobvendorebtn", function(){
+      // alert("tiktik");
+      $("#tiktik").show();
+      });
+      
+      $(document).on('click', ".category-body .regular", function(){
+      $(".category-body").hide();
+      $(".city-body").show();
+      });
+      
+      $(document).on('click', ".icon-small", function(){
+      $("#tiktik").hide();
+      $(".category-body").show();
+      $(".city-body").hide();
+      });
 
                 $(".mobvendorebtn").click(function(){
                   $("#tiktik").show();
@@ -66,12 +80,13 @@ export class BannerComponent implements OnInit {
   }
 
   search(e){
-    console.log(e.value.category);
-    console.log(e.value.category.categoryId);
-    console.log(e.value.category.categoryName);
+    // console.log(e.value.category);
+    // console.log(e.value.category.categoryId);
+    // console.log(e.value.category.categoryName);
     alert("cvvfvfvfvf");
-    this.router.navigate(['../searchresult' + '/' + e.value.category.categoryId +'/'+ e.value.category.categoryName]);
+   /// this.router.navigate(['../searchresult' + '/' + e.value.category.categoryId +'/'+ e.value.category.categoryName]);
     //searchresult
+    this.router.navigate(['/home/searchresult']);
   }
 
 }

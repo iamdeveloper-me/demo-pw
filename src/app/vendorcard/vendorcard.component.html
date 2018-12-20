@@ -11,102 +11,25 @@
             </div>
             <div class="row no-gutters popup-gallery">
             
-              <div class="col-lg-4 col-sm-6 col-6  galleryview">
-                <a class="portfolio-box" href="https://s3.us-east-2.amazonaws.com/prefect-image/makeup.JPG">
-                  <img class="img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/bear.jpeg" class="img-responsive" alt="">
-                  <div class="portfolio-box-caption">
-                    <div class="portfolio-box-caption-content">
-                      <div class="text-faded">
-                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg">
-                      </div>
-                      <div class="project-name">
-                          Drinks
-                      </div>
-                    </div>
-                  </div>
-                </a>
+              <div class="col-lg-4 col-sm-6 col-6  galleryview" *ngFor='let Popular of Popular_Wedding_array'>
+                
+                  
+                      <a class="portfolio-box" href="Popular.imagePath" *ngIf = "Popular.isPopular == true">
+                          <img class="img-fluid" [src]="Popular.imagePath" class="img-responsive" alt="">
+                          <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                              <div class="text-faded">
+                                <img [src]="Popular.iconImageURL">
+                              </div>
+                              <div class="project-name">
+                               {{Popular.categoryName}}
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                 
+        
               </div>
-
-              <div class="col-lg-4 col-sm-6 col-6 galleryview">
-                  <a class="portfolio-box" href="https://s3.us-east-2.amazonaws.com/prefect-image/makeup.JPG">
-                    <img class="img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/makeup.JPG" class="img-responsive" alt="">
-                    <div class="portfolio-box-caption">
-                      <div class="portfolio-box-caption-content">
-                        <div class="text-faded">
-                          <img src="https://s3.us-east-2.amazonaws.com/prefect-image/make_up.svg">
-                        </div>
-                        <div class="project-name">
-                          Bridal Makeup
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-              </div>
-              
-              <div class="col-lg-4 col-sm-6 col-6 galleryview">
-                <a class="portfolio-box" href="https://s3.us-east-2.amazonaws.com/prefect-image/makeup.JPG">
-                  <img class="img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/couple.jpeg" class="img-responsive" alt="">
-                  <div class="portfolio-box-caption">
-                    <div class="portfolio-box-caption-content">
-                      <div class="text-faded">
-                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/Photography.svg">
-                      </div>
-                      <div class="project-name">
-                        Photographers
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-              <div class="col-lg-4 col-sm-6 col-6 galleryview">
-                <a class="portfolio-box" href="https://s3.us-east-2.amazonaws.com/prefect-image/makeup.JPG">
-                  <img class="img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="img-responsive" alt="">
-                  <div class="portfolio-box-caption">
-                    <div class="portfolio-box-caption-content">
-                      <div class="text-faded">
-                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/florist.svg">
-                      </div>
-                      <div class="project-name">
-                        Florists
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-              <div class="col-lg-4 col-sm-6 col-6 galleryview">
-                <a class="portfolio-box" href="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg">
-                  <img class="img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" class="img-responsive" alt="">
-                  <div class="portfolio-box-caption">
-                    <div class="portfolio-box-caption-content">
-                      <div class=" text-faded">
-                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/Wedding_cake.svg">
-                      </div>
-                      <div class="project-name">
-                        Cake
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-              <div class="col-lg-4 col-sm-6 col-6 galleryview">
-                <a class="portfolio-box" href="https://s3.us-east-2.amazonaws.com/prefect-image/makeup.JPG">
-                  <img class="img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/1.jpeg" class="img-responsive" alt="">
-                  <div class="portfolio-box-caption">
-                    <div class="portfolio-box-caption-content">
-                      <div class="text-faded">
-                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_decorator.svg">
-                      </div>
-                      <div class="project-name">
-                        Decorators 
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
             </div>
           </div>
         </section>
@@ -160,7 +83,7 @@
               <!--End Slides-->
           </div>
           <!--/.Carousel Wrapper-->
-          <p class="browse_cat"> <a routerLink="/home/category"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
+          <p class="browse_cat"> <a routerLink="/home/FeaturedWeddingSuppliers"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
     </div>
 
     <div class="container slider_use_anather_compo">
@@ -186,57 +109,10 @@
                       
                    
                 </div>
-                <!-- <div class="col-md-4 col-6 locationbox">
-                   
-                      <img src="https://s3.us-east-2.amazonaws.com/prefect-image/hotel2.jpg" class="img-responsive" alt="img06" />
-                     
-                        <h2>Crazy
-                          <span>Layla</span>
-                        </h2>
-                        
-                     
-                </div>
-                <div class="col-md-4 col-6 locationbox">
-                 
-                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/hotel3.jpg" class="img-responsive" alt="img03" />
-                   
-                      <h2>Event planner
-                        <span>Bhopal</span>
-                      </h2>
-                     
-                </div>
-           
-                <div class="col-md-4 col-6 locationbox">
-                 
-                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/hotel4.jpg" class="img-responsive" alt="img06" />
-                   
-                      <h2>Riana Jewellery
-                        <span>Indore</span>
-                      </h2>
-                      
-                  
-                </div>
-                <div class="col-md-4 col-6 locationbox">
-                   
-                      <img src="https://s3.us-east-2.amazonaws.com/prefect-image/hotel5.jpg" class="img-responsive" alt="img06" />
-                     
-                        <h2>Crazy
-                          <span>Layla</span>
-                        </h2>
-                    
-                </div>
-                <div class="col-md-4 col-6 locationbox">
-                 
-                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/hotel6.jpg" class="img-responsive" alt="img03" />
-                   
-                      <h2> Photographers
-                        <span>Chennai</span>
-                      </h2>
-                    
-                </div> -->
+               
               </div>
               <div class="clearfix"></div>
-              <p class="browse_cat"> <a routerLink="/home/category"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
+              <p class="browse_cat"> <a routerLink="/home/allDreamWedding"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
             </div>
           </div>
         </div>

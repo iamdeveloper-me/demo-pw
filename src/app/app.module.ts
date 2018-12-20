@@ -225,6 +225,8 @@ import { HoneymoonComponent } from './honeymoon/honeymoon.component';
 import { HoneymoonDetailsComponent } from './honeymoon-details/honeymoon-details.component';
 
 import { EventcelandarComponent } from './eventcelandar/eventcelandar.component';
+import { DreamWeddingLocationsComponent } from './dream-wedding-locations/dream-wedding-locations.component';
+import { FeaturedWeddingSuppliersComponent } from './featured-wedding-suppliers/featured-wedding-suppliers.component';
 
 
 
@@ -411,7 +413,11 @@ export function getAuthServiceConfigs() {
 
         HoneymoonDetailsComponent,
 
-        EventcelandarComponent
+        EventcelandarComponent,
+
+        DreamWeddingLocationsComponent,
+
+        FeaturedWeddingSuppliersComponent
 
         
         

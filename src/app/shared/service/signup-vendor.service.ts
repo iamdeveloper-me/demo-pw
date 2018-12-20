@@ -14,42 +14,42 @@ export class SignupVendorService {
 
   signup(user)
   {
-    console.log(user);
-    var firstname = user.logInInfo.firstName;
-    var lastname = user.logInInfo.lastName;
-    var upassword = user.logInInfo.password;
-    var cpassword = user.logInInfo.confirmPassword;
+//     console.log(user);
+//     var firstname = user.logInInfo.firstName;
+//     var lastname = user.logInInfo.lastName;
+//     var upassword = user.logInInfo.password;
+//     var cpassword = user.logInInfo.confirmPassword;
 
-    var contactPerson = user.contactInfo.contactPerson;
+//     var contactPerson = user.contactInfo.contactPerson;
 
-    var email = user.contactInfo.email;
-     var phone = user.contactInfo.phone;
-    var website = user.contactInfo.website;
-    var city = user.businessInfo.city;
-
-
-    var countryId = user.businessInfo.countryId;
-    var districtId = user.businessInfo.districtId;
-    var suburbId = user.businessInfo.suburbId;
+//     var email = user.contactInfo.email;
+//      var phone = user.contactInfo.phone;
+//     var website = user.contactInfo.website;
+//     var city = user.businessInfo.city;
 
 
+//     var countryId = user.businessInfo.countryId;
+//     var districtId = user.businessInfo.districtId;
+//     var suburbId = user.businessInfo.suburbId;
 
-    var postalcode = user.businessInfo.postalCode;
-    var address =user.businessInfo.address ;
-    var nameOfBusiness = user.businessInfo.nameOfBusiness;
-    var planId = user.businessInfo;
-    console.log(planId);
-    var categoryId = user.vendorCategories[0].categoryId;
-    const header = new Headers({'Content-Type': 'application/json'});
- const a =    { logInInfo: {  firstName: firstname,lastName:lastname, password:upassword,confirmPassword: cpassword},
 
- contactInfo: { contactPerson: contactPerson, email: email, phone: phone, website: website},
- businessInfo: {countryId:countryId,districtId:districtId ,suburbId:suburbId,city: city, postalCode: postalcode,address: address, nameOfBusiness: nameOfBusiness, 
-                pricingPlanId:planId.pricingPlanId ,payFrequency: parseInt(planId.payFrequency) },
- vendorCategories: [ { categoryId: categoryId }]
- }
- console.log(a)
-    return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/register',a
+
+//     var postalcode = user.businessInfo.postalCode;
+//     var address =user.businessInfo.address ;
+//     var nameOfBusiness = user.businessInfo.nameOfBusiness;
+//     var planId = user.businessInfo;
+//     console.log(planId);
+//     var categoryId = user.vendorCategories[0].categoryId;
+     const header = new Headers({'Content-Type': 'application/json'});
+//  const a =    { logInInfo: {  firstName: firstname,lastName:lastname, password:upassword,confirmPassword: cpassword},
+
+//  contactInfo: { contactPerson: contactPerson, email: email, phone: phone, website: website},
+//  businessInfo: {countryId:countryId,districtId:districtId ,suburbId:suburbId,city: city, postalCode: postalcode,address: address, nameOfBusiness: nameOfBusiness, 
+//                 pricingPlanId:planId.pricingPlanId ,payFrequency: parseInt(planId.payFrequency) },
+//  vendorCategories: [ { categoryId: categoryId }]
+//  }
+// console.log(a)
+    return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/register',user
     ,{headers: header});
 
 
@@ -101,19 +101,28 @@ export class contactInfo {
   phoneType: string;
 }
 export class businessInfo {
-  countryId: 0;
-  districtId: 0;
-  suburbId: 0;
+  countryId: number;
+  districtId: number;
+  suburbId: number;
   city:string;
   postalCode:string;
   address:string;
-  lat: 0;
-  long: 0;
+  lat: number;
+  long: number;
   nameOfBusiness:string;
   businessDetails: string;
-  pricingPlanId: 0;
-  payFrequency: 0;
+  pricingPlanId: number;
+  payFrequency: number;;
   website: string;
+  constructor(){
+    this.lat=0;
+    this.long=0;
+    this.businessDetails='';
+    this.payFrequency=2;
+    this.city="";
+    this.website="";
+    this.nameOfBusiness="";
+  }
 }
 export class vendorCategories{
   vendorCategories: Array<VendorCatrgoryAddVM>;
@@ -125,8 +134,15 @@ export class vendorCategories{
   categoryId:number;
  }
  export class VendorDetails{
-  logInInfo: VendorLogInInfo;
-  contactInfo:	VendorContactInfo;
-  businessInfo:	VendorBusinessInfo;
+   logInInfo: logInInfo;
+   contactInfo:	contactInfo;
+   businessInfo:	businessInfo;
   vendorCategories:Array<VendorCatrgoryAddVM>;
+  constructor(){
+    this.logInInfo = new logInInfo();
+    this.contactInfo = new contactInfo();
+    this.businessInfo = new businessInfo();
+    this.vendorCategories = new Array<VendorCatrgoryAddVM>();
+
+  }
  }

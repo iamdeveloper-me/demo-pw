@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SignupVendorService, VendorDetails } from '../../shared/service/signup-vendor.service';
+import { SignupVendorService, VendorDetails, vendorCategories, VendorCatrgoryAddVM } from '../../shared/service/signup-vendor.service';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import 'rxjs/Rx';
+import { CategoryVm } from 'app/vendor/business-services/business-services.component';
 
 @Component({
   selector: 'app-step-first',
@@ -14,6 +15,7 @@ export class StepFirstComponent implements OnInit {
   categoryArray:string[];
   objVendorDetails: VendorDetails;
   public arra = new Array();
+  num_CategoryId:0;
   user = 
   {
    vendorCategories: [ { categoryId: "" } ] 
@@ -54,8 +56,13 @@ export class StepFirstComponent implements OnInit {
    this.ngOnInit;
   }
   goToNextStep(){
-    localStorage.setItem('VednorDetails',JSON.stringify(this.user));
+    let VC= new VendorCatrgoryAddVM();
+    VC.categoryId = this.num_CategoryId;
+    this.objVendorDetails.vendorCategories.push(VC);
+    console.log(this.objVendorDetails);
+    localStorage.setItem('VednorDetails',JSON.stringify(this.objVendorDetails));
     this.cservice.GoToNextStep('/register/step-second');
+
   }
 
     onSubmit(f) {  

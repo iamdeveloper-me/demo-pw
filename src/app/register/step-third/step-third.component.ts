@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SignupVendorService } from '../../shared/service/signup-vendor.service';
+import { SignupVendorService, VendorDetails } from '../../shared/service/signup-vendor.service';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 import 'rxjs/Rx';
@@ -16,6 +16,7 @@ export class StepThirdComponent implements OnInit {
   country_id:any;
   city_id:any;
   sub_id:any;
+  objVendorDetails: VendorDetails;
   countryArray:string[];
   public arra = new Array();public district = new Array();public suburb = new Array();
   user = 
@@ -66,7 +67,14 @@ export class StepThirdComponent implements OnInit {
             //   });
 
   }
-    constructor( private cservice: SignupVendorService,private http: HttpClient , private router: Router ) {}
+    constructor( private cservice: SignupVendorService,private http: HttpClient , private router: Router ) {
+      this.objVendorDetails = new VendorDetails();
+      this.objVendorDetails.contactInfo.website  
+      if(localStorage.getItem('VednorDetails')){
+      this.objVendorDetails= JSON.parse(localStorage.getItem('VednorDetails'));
+      console.log(this.objVendorDetails);
+      }
+    }
 
  loadScript(){this.ngOnInit;}
 
@@ -130,9 +138,12 @@ annualPrice(users){
 
     }
 
-    country(event): void {  
-      const newVal = event.target.value;
-      this.district = this.arra[newVal].districts
+    country(): void {  
+      
+     // const newVal = event.target.value;
+     console.log(this.countryArray);
+      this.district = this.arra.filter(c=>c.countryId==this.objVendorDetails.businessInfo.countryId)[0].districts;
+     console.log( this.district);
     }
     districtA(event): void {  
       const newVal = event.target.value;
@@ -142,7 +153,11 @@ annualPrice(users){
       const newVal = event.target.value;
       console.log(newVal)
     }
-
+    GoToNextStep(){
+      console.log(this.objVendorDetails);
+      localStorage.setItem('VednorDetails',JSON.stringify(this.objVendorDetails));
+      this.cservice.GoToNextStep('/register/step-forth');
+    }
 
     getDecimal(monthlyPrice,noOfMonthFeeOff){
       // {{((plan.monthlyPrice * (12 - plan.noOfMonthFeeOff))/12 | number:'1.0-2')}}

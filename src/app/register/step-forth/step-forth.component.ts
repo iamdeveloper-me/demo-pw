@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SignupVendorService } from '../../shared/service/signup-vendor.service';
+import { SignupVendorService, VendorDetails } from '../../shared/service/signup-vendor.service';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 import 'rxjs/Rx';
@@ -15,6 +15,7 @@ export class StepForthComponent implements OnInit {
   country_id:any;
   city_id:any;
   sub_id:any;
+  objVendorDetail: VendorDetails;
   countryArray:string[];
   public arra = new Array();public district = new Array();public suburb = new Array();
   user = 
@@ -65,34 +66,38 @@ export class StepForthComponent implements OnInit {
               });
 
   }
-    constructor( private cservice: SignupVendorService,private http: HttpClient , private router: Router ) {}
+    constructor( private cservice: SignupVendorService,private http: HttpClient , private router: Router ) {
+      this.objVendorDetail = new VendorDetails();
+      this.objVendorDetail= JSON.parse(localStorage.getItem('VednorDetails'));
+    }
 
  loadScript(){this.ngOnInit;}
 
     onSubmit() {   
      
-   console.log(this.country_id)
-   this.arra.forEach((element,pos) => {
-     if(pos == this.country_id){
-       this.user.businessInfo.countryId = Number(element.countryId);
-      //  this.user.businessInfo.countryName = element.countryName;
-     }
-    this.district.forEach((dist ,d_pos) => {
-      if(d_pos == this.city_id){
-        this.user.businessInfo.districtId = Number(dist.districtId);
-        this.user.businessInfo.city = dist.name;
-      } 
-    }); 
-    console.log(this.sub_id)
+//    console.log(this.country_id)
+//    this.arra.forEach((element,pos) => {
+//      if(pos == this.country_id){
+//        this.user.businessInfo.countryId = Number(element.countryId);
+//       //  this.user.businessInfo.countryName = element.countryName;
+//      }
+//     this.district.forEach((dist ,d_pos) => {
+//       if(d_pos == this.city_id){
+//         this.user.businessInfo.districtId = Number(dist.districtId);
+//         this.user.businessInfo.city = dist.name;
+//       } 
+//     }); 
+//     console.log(this.sub_id)
 
-    this.suburb.forEach((subr ,s_pos) => {
-      if(s_pos == this.sub_id){
-        this.user.businessInfo.suburbId = Number(subr.suburbId);
-      } 
-    }); 
-   });
- console.log(this.user)
-      this.cservice.signup(this.user).subscribe(( data )  =>  
+//     this.suburb.forEach((subr ,s_pos) => {
+//       if(s_pos == this.sub_id){
+//         this.user.businessInfo.suburbId = Number(subr.suburbId);
+//       } 
+//     }); 
+//    });
+  console.log(this.objVendorDetail);
+  this.objVendorDetail.businessInfo.website=this.objVendorDetail.contactInfo.website;
+      this.cservice.signup(this.objVendorDetail).subscribe(( data )  =>  
       { console.log(data.json())
         this.cservice.typeSuccess();
         this.router.navigate(['../home'])
@@ -116,11 +121,14 @@ export class StepForthComponent implements OnInit {
 
 idgenerate(users){
   console.log(users)
+  this.objVendorDetail.businessInfo.pricingPlanId=users.pricingPlanId;
    this.user.businessInfo.pricingPlanId = users.pricingPlanId;
    this.user.businessInfo.payFrequency = '1';
    console.log(this.user.businessInfo.payFrequency );
 }
 annualPrice(users){ 
+  this.objVendorDetail.businessInfo.pricingPlanId =users.pricingPlanId;
+  this.objVendorDetail.businessInfo.payFrequency = 2;
   this.user.businessInfo.pricingPlanId = users.pricingPlanId;
   this.user.businessInfo.payFrequency = '2';
   console.log(this.user.businessInfo.payFrequency );

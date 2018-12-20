@@ -38,35 +38,27 @@
               type="text" 
               placeholder="Name of your Bussiness" 
               id="nameOfBusiness"  
-              ngModel 
-              #nameOfBusiness="ngModel" 
               [ngModelOptions]="{updateOn: 'blur'}" 
-              [(ngModel)] = "user.businessInfo.nameOfBusiness" 
-              name = "nameOfBusiness" 
+              [(ngModel)] = "objVendorDetails.businessInfo.nameOfBusiness" 
+              name = "nameOfBusiness"
+              #nameOfBusiness 
               required
           />
           <label for="nameOfBusiness">Name of your Bussiness</label>
       </div>
       <div class="clearfix"></div>
-      <small class="form-text text-muted danger" *ngIf="!nameOfBusiness.valid && (nameOfBusiness.dirty || nameOfBusiness.touched)">Name is required!</small>
+      <small class="form-text text-muted danger" *ngIf="!objVendorDetails.businessInfo.nameOfBusiness.valid && (objVendorDetails.businessInfo.nameOfBusiness.dirty || objVendorDetails.businessInfo.nameOfBusiness.touched)">Name is required!</small>
 
       <div class="field">
-          <select name="country" [(ngModel)] = "country_id " name="country_id" (change)="country($event)">
-                  <option   *ngFor="let country of countryArray ;let c =index" 
-                      type="text"
-                      placeholder="Country"
-                      id="{{country.countryName}}"
-                      checked
-                      name = "countryName"  
-                      [value]="c"
-                      required>
+          <select name="country" [(ngModel)] = "objVendorDetails.businessInfo.countryId " name="country_id" (change)="country()">
+                  <option   *ngFor="let country of countryArray ;let c =index"  [value]="country.countryId">
                       {{country.countryName }}
                   </option>
           </select>
           <label for="country_id">Country</label>
       </div>
       <div class="field">
-          <select name="district"  [(ngModel)] = "city_id"  name="city_id"(change)="districtA($event)"  > 
+          <select name="district"  [(ngModel)] = "objVendorDetails.businessInfo.districtId"  name="city_id"(change)="districtA($event)"  > 
 
               <option *ngFor="let dist of district ;let d =index" 
                   type="text"
@@ -82,7 +74,7 @@
           <label for="city_id">District</label>
       </div>
       <div class="field">
-              <select [(ngModel)] = "sub_id"  name="sub_id" (change)="subr($event)" > 
+              <select [(ngModel)] = "objVendorDetails.businessInfo.suburbId"  name="sub_id" (change)="subr($event)" > 
                   <option *ngFor="let sub of suburb ;let s =index" 
                       type="text"
                       placeholder="Suburb"
@@ -101,10 +93,9 @@
                   placeholder="Postal Code" 
                   type="text" 
                   id="postalCode" 
-                  ngModel 
                   #postalCode="ngModel" 
                   [ngModelOptions]="{updateOn: 'blur'}" 
-                  [(ngModel)] = "user.businessInfo.postalCode" 
+                  [(ngModel)] = "objVendorDetails.businessInfo.postalCode" 
                   name = "postalCode" 
                   pattern="[0-9]{4,6}"
               />
@@ -117,7 +108,7 @@
               id="address" 
               ngModel #address="ngModel" 
               [ngModelOptions]="{updateOn: 'blur'}" 
-              [(ngModel)] = "user.businessInfo.address" 
+              [(ngModel)] = "objVendorDetails.businessInfo.address" 
               name = "address"
               required 
               minlength="3"
@@ -133,18 +124,16 @@
               placeholder="website" 
               type="text" 
               id="website" 
-              ngModel 
-              #website="ngModel" 
               [ngModelOptions]="{updateOn: 'blur'}"  
-              [(ngModel)] = "user.contactInfo.website"
-              name = "website" 
-              />
+              [(ngModel)] = "objVendorDetails.contactInfo.website"
+              name = "website" />
               <label for="website">Website</label>
           </div>
+          <input type="hidden" name="phoneType" id="phoneType" [(ngModel)]='objVendorDetails.contactInfo.phoneType'>
   </div>
   <div class="col-sm-12 btnholder">
       <button class="btn btn-raised gradint_blue white signup_nextbtn prevBtn-2 btnborradius pull-left" type="button" [routerLink]="['/register/step-second']">Previous</button>
-      <button class="btn btn-raised gradint_blue white signup_nextbtn nextBtn-2 btnborradius pull-right" [routerLink]="['/register/step-forth']" type="button">Next</button>
+      <button class="btn btn-raised gradint_blue white signup_nextbtn nextBtn-2 btnborradius pull-right" (click)='GoToNextStep()' type="button">Next</button>
   </div>
 </div>
 </form>

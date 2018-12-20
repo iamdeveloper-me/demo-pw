@@ -39,7 +39,7 @@
               id="firstName" 
               ngModel #firstName="ngModel" 
               [ngModelOptions]="{updateOn: 'blur'}"
-              [(ngModel)] = "user.logInInfo.firstName" 
+              [(ngModel)] = "objvendorDetails.logInInfo.firstName" 
               name = "firstName" 
               pattern="^[a-zA-Z]{1,}$"
               required
@@ -53,7 +53,7 @@
           <input  
               type="text" 
               placeholder="Last Name"  
-              [(ngModel)] = "user.logInInfo.lastName" 
+              [(ngModel)] = "objvendorDetails.logInInfo.lastName" 
               name = "lastName" 
               id="lastName" 
               ngModel 
@@ -77,7 +77,7 @@
               #email="ngModel" 
               [ngModelOptions]="{updateOn: 'blur'}"
               autocomplete="username"
-              [(ngModel)] = "user.contactInfo.email" 
+              [(ngModel)] = "objvendorDetails.contactInfo.email" 
               required 
               pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$"
           />
@@ -90,7 +90,7 @@
           <input 
               type="password" 
               placeholder="Password" 
-              [(ngModel)] = "user.logInInfo.password" 
+              [(ngModel)] = "objvendorDetails.logInInfo.password" 
               name = "password" 
               id = "password" 
               ngModel 
@@ -120,7 +120,7 @@
               placeholder="Confirm Password" 
               ngModel 
               #confirmPassword="ngModel" 
-              [(ngModel)] = "user.logInInfo.confirmPassword" 
+              [(ngModel)] = "objvendorDetails.logInInfo.confirmPassword" 
               name = "confirmPassword" 
               minlength="6" 
               [ngClass]="{ 'is-invalid': confirmPassword.invalid }"
@@ -147,7 +147,7 @@
               placeholder="Phone" 
               ngModel #phone="ngModel" 
               [ngModelOptions]="{updateOn: 'blur'}"
-              [(ngModel)] = "user.contactInfo.phone" 
+              [(ngModel)] = "objvendorDetails.contactInfo.phone" 
               name = "phone" 
               required
               minlength="7" 

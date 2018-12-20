@@ -126,7 +126,7 @@ export class vendorCategories{
  }
  export class VendorDetails{
   logInInfo: VendorLogInInfo;
-  contactInfo:	VendorContactInfo
-  businessInfo:	VendorBusinessInfo
-  vendorCategories:Array<VendorCatrgoryAddVM>
+  contactInfo:	VendorContactInfo;
+  businessInfo:	VendorBusinessInfo;
+  vendorCategories:Array<VendorCatrgoryAddVM>;
  }

@@ -140,6 +140,8 @@ import { HoneymoonComponent } from './honeymoon/honeymoon.component';
 import { HoneymoonDetailsComponent } from './honeymoon-details/honeymoon-details.component';
 
 import { EventcelandarComponent } from './eventcelandar/eventcelandar.component';
+import { DreamWeddingLocationsComponent } from './dream-wedding-locations/dream-wedding-locations.component';
+import { FeaturedWeddingSuppliersComponent } from './featured-wedding-suppliers/featured-wedding-suppliers.component';
 
 import { StepFirstComponent } from './register/step-first/step-first.component';
 import { StepSecondComponent } from './register/step-second/step-second.component';
@@ -180,6 +182,8 @@ const appRoutes: Routes = [
   { path: 'home/supplierbylocation', component:  SupplierbylocationComponent },
   { path: 'home/Photogallerydetail', component:  PhotogallerydetailComponent },
   { path: 'home/ResetPassword', component:  ResetPasswordComponent },
+  { path: 'home/allDreamWedding', component:  DreamWeddingLocationsComponent },
+  { path: 'home/FeaturedWeddingSuppliers', component:  FeaturedWeddingSuppliersComponent },
 
   { path: 'home/Deals', component:  DealsComponent },
   { path: 'home/Deal_Details', component:  DealDetailsComponent },

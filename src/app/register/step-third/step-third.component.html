@@ -1,0 +1,142 @@
+<app-menu></app-menu>
+<div class="sign_up_container container" id="up">
+        <h2 class="text-center font-bold pt-4 pb-5 mb-5"><strong> Vendor Registration </strong></h2>
+        <!-- Stepper -->
+        <div class="steps-form-2" (click)="loadScript()">
+           <div class="steps-row-2 setup-panel-2 d-flex justify-content-between">
+              <div class="steps-step-2">
+                 <a [routerLink]="['/register/step-first']" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Your Business Category "><i class="fa fa-folder-open-o" aria-hidden="true"></i>
+                 </a>
+                 <div class="clearfix"></div>
+                 <p class="ml-yb">   
+                     Your Business Category  </p>
+              </div>
+              <div class="steps-step-2">
+                 <a [routerLink]="['/register/step-second']"  type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="General Information"><i class="fa fa-pencil" aria-hidden="true"></i>
+                 </a>
+                 <p> General Information  </p>
+              </div>
+              <div class="steps-step-2">
+                 <a  [routerLink]="['/register/step-third']" type="button" class="btn btn-amber btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Business Information"><i class="fa fa-photo" aria-hidden="true"></i>
+                 </a>
+                 <p> Business Information </p>
+              </div>
+              <div class="steps-step-2">
+                 <a  [routerLink]="['/register/step-forth']" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Payment"><i class="fa fa-check" aria-hidden="true"></i>
+                 </a>
+                 <p> Payment </p>
+              </div>
+           </div>
+        </div>
+<!-- Third Step -->
+<form role="form" method="post" class="mt-25 mtx-0" (ngSubmit)="onSubmit()" #f="ngForm">
+<div class="row setup-content-2" >
+  <div class="logininfobox">
+      <h3 class="pl-0 my-4 lc_head"> Business Information </h3>
+      <div class="field">
+          <input 
+              type="text" 
+              placeholder="Name of your Bussiness" 
+              id="nameOfBusiness"  
+              [ngModelOptions]="{updateOn: 'blur'}" 
+              [(ngModel)] = "objVendorDetails.businessInfo.nameOfBusiness" 
+              name = "nameOfBusiness"
+              #nameOfBusiness 
+              required
+          />
+          <label for="nameOfBusiness">Name of your Bussiness</label>
+      </div>
+      <div class="clearfix"></div>
+      <small class="form-text text-muted danger" *ngIf="!objVendorDetails.businessInfo.nameOfBusiness.valid && (objVendorDetails.businessInfo.nameOfBusiness.dirty || objVendorDetails.businessInfo.nameOfBusiness.touched)">Name is required!</small>
+
+      <div class="field">
+          <select name="country" [(ngModel)] = "objVendorDetails.businessInfo.countryId " name="country_id" (change)="country()">
+                  <option   *ngFor="let country of countryArray ;let c =index"  [value]="country.countryId">
+                      {{country.countryName }}
+                  </option>
+          </select>
+          <label for="country_id">Country</label>
+      </div>
+      <div class="field">
+          <select name="district"  [(ngModel)] = "objVendorDetails.businessInfo.districtId"  name="city_id"(change)="districtA($event)"  > 
+
+              <option *ngFor="let dist of district ;let d =index" 
+                  type="text"
+                  id="{{dist.name}}"
+                  placeholder="District"
+                  checked
+                  name = "dist"  
+                  [value]="d"
+                  required >
+                  {{dist.name }}
+              </option>
+          </select>
+          <label for="city_id">District</label>
+      </div>
+      <div class="field">
+              <select [(ngModel)] = "objVendorDetails.businessInfo.suburbId"  name="sub_id" (change)="subr($event)" > 
+                  <option *ngFor="let sub of suburb ;let s =index" 
+                      type="text"
+                      placeholder="Suburb"
+                      id="{{sub.name}}"
+                      checked
+                      name = "sub"  
+                      [value]="s"
+                      required>
+                      {{sub.name }}
+                  </option>
+              </select>
+              <label for="sub_id">Suburb</label>
+      </div>
+      <div class="field">
+              <input 
+                  placeholder="Postal Code" 
+                  type="text" 
+                  id="postalCode" 
+                  #postalCode="ngModel" 
+                  [ngModelOptions]="{updateOn: 'blur'}" 
+                  [(ngModel)] = "objVendorDetails.businessInfo.postalCode" 
+                  name = "postalCode" 
+                  pattern="[0-9]{4,6}"
+              />
+              <label for="postalCode">Postal Code</label>
+             </div>
+       <div class="field">
+          <input  
+              placeholder="Street Address" 
+              type="text" 
+              id="address" 
+              ngModel #address="ngModel" 
+              [ngModelOptions]="{updateOn: 'blur'}" 
+              [(ngModel)] = "objVendorDetails.businessInfo.address" 
+              name = "address"
+              required 
+              minlength="3"
+          />
+          <label for="address">Street Address</label>
+      </div>
+      <div class="clearfix"></div>
+       <small class="form-text text-muted danger" *ngIf="!address.valid && (address.dirty || address.touched)">address is required!</small>
+
+
+           <div class="field">
+              <input 
+              placeholder="website" 
+              type="text" 
+              id="website" 
+              [ngModelOptions]="{updateOn: 'blur'}"  
+              [(ngModel)] = "objVendorDetails.contactInfo.website"
+              name = "website" />
+              <label for="website">Website</label>
+          </div>
+          <input type="hidden" name="phoneType" id="phoneType" [(ngModel)]='objVendorDetails.contactInfo.phoneType'>
+  </div>
+  <div class="col-sm-12 btnholder">
+      <button class="btn btn-raised gradint_blue white signup_nextbtn prevBtn-2 btnborradius pull-left" type="button" [routerLink]="['/register/step-second']">Previous</button>
+      <button class="btn btn-raised gradint_blue white signup_nextbtn nextBtn-2 btnborradius pull-right" (click)='GoToNextStep()' type="button">Next</button>
+  </div>
+</div>
+</form>
+</div>
+<app-foot></app-foot>
+<router-outlet></router-outlet>

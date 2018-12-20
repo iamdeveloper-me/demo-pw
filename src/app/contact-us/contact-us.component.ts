@@ -9,6 +9,12 @@ export class ContactUsComponent implements OnInit {
 
   constructor(private apiService: apiService) { }
   messageType =1
+  name: "string"
+  email: "string"
+  subject: "string"
+  phoneNumber: "string"
+  message: "string"
+
   ngOnInit() {
     //this.contactus(c)
   }

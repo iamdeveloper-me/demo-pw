@@ -89,6 +89,7 @@ export class StepThirdComponent implements OnInit {
       if(d_pos == this.city_id){
         this.user.businessInfo.districtId = Number(dist.districtId);
         this.user.businessInfo.city = dist.name;
+        this.objVendorDetails.businessInfo.city=dist.name;
       } 
     }); 
     console.log(this.sub_id)

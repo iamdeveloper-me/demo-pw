@@ -26,6 +26,8 @@ export class BannerComponent implements OnInit {
                 $(document).on('click', ".mobvendorebtn", function(){
                  // alert("tiktik");
 
+
+
                   $("#tiktik").show();
                 });
 
@@ -66,11 +68,14 @@ export class BannerComponent implements OnInit {
   }
 
   search(e){
-    console.log(e.value.category);
-    console.log(e.value.category.categoryId);
-    console.log(e.value.category.categoryName);
-    alert("cvvfvfvfvf");
-    this.router.navigate(['../searchresult' + '/' + e.value.category.categoryId +'/'+ e.value.category.categoryName]);
+   // this.router.navigate(['../searchresult/', e.value.category.categoryId]);
+    let catId=0;
+    let CatName='';
+    if(e.value.category!=undefined){
+      catId=e.value.category.categoryId;
+      CatName=e.value.category.categoryName;
+    }
+    this.router.navigate(['home/searchresult',catId+'/'+CatName]);
     //searchresult
   }
 

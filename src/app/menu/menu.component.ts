@@ -64,12 +64,10 @@ export class MenuComponent implements OnInit {
 
     userlogin(){ 
      // headers.append('Content-Type', 'application/json');
-      debugger;
      this.cservice.login(this.user).subscribe(
           (data)=> {
               console.log(data.json());
           if (data.statusText == "OK"  && data.json().role =="Users") {
-              alert(data.json().auth_token);
             localStorage.setItem('userToken',data.json().auth_token);
             this.typeSuccess();
             this.router.navigate(['../User/vendor'])
@@ -117,7 +115,6 @@ export class MenuComponent implements OnInit {
 
                 var vendorid = localStorage.getItem('vendorid')
                 this.session_token =   sessionStorage.getItem('userToken')
-                console.log(  this.session_token)
                 if(this.session_token)
                 {  
                     var firstName = localStorage.getItem('firstName');
@@ -129,8 +126,7 @@ export class MenuComponent implements OnInit {
                     this.http.get(this.url,{headers:headers}).subscribe(
                         data =>{ this.vendor = data.json();
                                 console.log(this.vendor);
-
-                                if(!this.vendor.profileImage )
+                                 if(!this.vendor.profileImage )
                                 {
                                 console.log(this.vendor.profileImage);
                                 this.vendor.profileImage = "https://cdn4.iconfinder.com/data/icons/gray-user-management/512/rounded-512.pngg"
@@ -154,9 +150,8 @@ export class MenuComponent implements OnInit {
                         } 
                 }
                 if(!this.session_token){
-                    alert("fdsv");
-                    sessionStorage.clear();
-                    this.router.navigate(['../home']);
+                 //   sessionStorage.clear();
+                  //  this.router.navigate(['../home']);
                 }
 
 

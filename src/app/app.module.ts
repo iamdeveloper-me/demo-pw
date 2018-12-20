@@ -55,6 +55,11 @@ import { BannerComponent } from './banner/banner.component';
 import { FootComponent } from './foot/foot.component';
 import { VendorcardComponent } from './vendorcard/vendorcard.component';
 import { RegisterComponent } from './register/register.component';
+import { StepFirstComponent } from './register/step-first/step-first.component';
+import { StepSecondComponent } from './register/step-second/step-second.component';
+import { StepThirdComponent } from './register/step-third/step-third.component';
+import { StepForthComponent } from './register/step-forth/step-forth.component';
+
 import { EqualValidator } from './register/equal-validator.directive';
 import { SearchresultComponent } from './searchresult/searchresult.component';
 import { PhotoComponent } from './photo/photo.component';
@@ -265,6 +270,10 @@ export function getAuthServiceConfigs() {
         BannerComponent,
         FootComponent,
         RegisterComponent,
+        StepFirstComponent,
+        StepSecondComponent,
+        StepThirdComponent,
+        StepForthComponent,
         VendorcardComponent,
         NavemenuComponent,
         VendorprofileComponent,

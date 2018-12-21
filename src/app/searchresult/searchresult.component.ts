@@ -21,7 +21,7 @@ export class SearchresultComponent implements OnInit {
   objSearchResultItems:any;
   locationFilterParam:string='';
   categoryFilterParam:string='';
-  
+  page;
   constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService) {  
     this.objSearchFilter=new SearchFilterVm();
     this.objSearchlistvm = new SearchListingVM();

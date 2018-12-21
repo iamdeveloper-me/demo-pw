@@ -9,7 +9,7 @@
 <div class="container">
     <!--Slides-->
     <div id="supplierscarousel" class="owl-carousel">
-              <div *ngFor='let i of objSearchResultItems.items' class="item bordre_rad">
+              <div *ngFor='let i of objSearchResultItems?.items' class="item bordre_rad">
 
                 <div class="card mb-2 bordre_rad1 ">
                     <div class="procard"> </div>
@@ -20,10 +20,10 @@
                        <h6> <strong>{{i.nameOfBusiness}} </strong> </h6>
                         <button class="wedding_btn">{{i.businessDetails}} </button>
                         <P class="locat_icon"><i class="material-icons">location_on</i> 
-                          <i class="material-icons">location_on</i> {{i.vendorLocations[0].suburb.name}},
-                          {{i.vendorLocations[0].districts.name}},
-                          {{i.vendorLocations[0].country.name}},
-                          {{i.vendorLocations.postalCode}}
+                          <i class="material-icons">location_on</i> {{i.vendorLocations[0]?.suburb.name}},
+                          {{i.vendorLocations[0]?.districts.name}},
+                          {{i.vendorLocations[0]?.country.name}},
+                          {{i.vendorLocations?.postalCode}}
                         </P>
                         <p class="statr_point">
                           <span class="fa fa-star checked"></span>
@@ -231,7 +231,7 @@
             <!-- <div class="regular">All Categories</div> -->
         <div class="cityscroll22"> 
           <div class="funkyradio">  
-            <div class="funkyradio-info" *ngFor='let f of filters.services'>
+            <div class="funkyradio-info" *ngFor='let f of filters?.services'>
              <input type="checkbox" (change)='getSearchFilterResult()' [(ngModel)]='f.isSelect' name="checkbox" id="any"/>
                  <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
                 <b> {{f.serviceName}} </b>  
@@ -259,7 +259,7 @@
           <div class="category-body">
         <div class="cityscroll22"> 
           <div class="funkyradio">  
-            <div class="funkyradio-info" style="border-bottom:1px;border-bottom-style:inset;border-bottom-color:gray" *ngFor='let ff of filters.filters'>
+            <div class="funkyradio-info" style="border-bottom:1px;border-bottom-style:inset;border-bottom-color:gray" *ngFor='let ff of filters?.filters'>
               <input type="checkbox" name="checkbox" id="any" [(ngModel)]='ff.isSelect'/> 
                  <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
                 <b> {{ff.name}} </b>  
@@ -314,7 +314,7 @@
 		<div class="col-sm-9 listingtab">
       <div class="photo_cont">
 	    	<div id="products" class="row list-group" (click)="goToPortfolioDetail()">
-	        	<div *ngFor='let i of objSearchResultItems.items' class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
+	        	<div *ngFor='let i of objSearchResultItems?.items' class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
 	                <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
                       <img class="group list-group-image" [src]="i.profileImage" alt="Card image cap">
@@ -341,9 +341,9 @@
                           <h6><strong>{{i.nameOfBusiness}}</strong></h6>
                           <button class="wedding_btn">{{i.nameOfBusiness}} </button>
                           <p class="locat_icon">
-                            <i class="material-icons">location_on</i> {{i.vendorLocations[0].suburb.name}},
-                            {{i.vendorLocations[0].districts.name}},
-                            {{i.vendorLocations[0].country.name}},
+                            <i class="material-icons">location_on</i> {{i.vendorLocations[0]?.suburb.name}},
+                            {{i.vendorLocations[0]?.districts.name}},
+                            {{i.vendorLocations[0]?.country.name}},
                             {{i.vendorLocations.postalCode}}
                           </p>
                           
@@ -380,7 +380,7 @@
 
           <div class="page-nation">
            
-                  <ngb-pagination [collectionSize]="objSearchResultItems.totalCount" [(page)]="objSearchResultItems.page" [boundaryLinks]="true"></ngb-pagination>
+                  <ngb-pagination [collectionSize]="objSearchResultItems?.totalCount" [(page)]="objSearchResultItems.page" [boundaryLinks]="true"></ngb-pagination>
 
                   <span class="totalpage">{{objSearchResultItems.totalPages}} (Page)s</span>
           </div>        

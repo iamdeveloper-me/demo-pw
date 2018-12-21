@@ -59,7 +59,7 @@
             </form>
         </div>
 
-       <div class="col-md-6 cont_bg">
+          <div class="col-md-6 cont_bg">
             <div>
               <h4>CONTACT FORM</h4>
             </div>
@@ -69,10 +69,15 @@
                 <input  type="text" [(ngModel)] = "name" class="form-control" name="name" required="" placeholder="Name*" data-form-field="Name">
               </div>
               <div class="form-group">
-                <input type="email" class="form-control" [(ngModel)] = "email" name="email" required="" placeholder="Email*" data-form-field="Email">
+                <input type="email"   pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$" class="form-control" [(ngModel)] = "email" name="email"   required  placeholder="Email*" data-form-field="Email">
+                <div class="clearfix"></div>
+                <!-- <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">Email is required!</small> -->
+          
+             
               </div>
               <div class="form-group">
-                  <input type="text" class="form-control" [(ngModel)] = "phoneNumber" name="phoneNumber" required="" placeholder="phone Number*" data-form-field="Email">
+                  <input type="text" class="form-control"   (keypress)="keyPress($event)" [(ngModel)] = "phoneNumber" name="phoneNumber" required="" placeholder="phone Number*" data-form-field="Email">
+                  <small class="form-text text-muted danger" >{{Phone_no}}</small>
                 </div>
               <div class="form-group">
                 <input type="tel" class="form-control" [(ngModel)] = "subject" name="subject" placeholder="Subject" data-form-field="subject">

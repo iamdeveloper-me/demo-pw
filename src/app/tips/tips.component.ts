@@ -1,6 +1,8 @@
 
+
 import { Component, OnInit } from '@angular/core';
 import { apiService } from '../shared/service/api.service';
+
 @Component({
   selector: 'app-tips',
   templateUrl: './tips.component.html',
@@ -8,7 +10,28 @@ import { apiService } from '../shared/service/api.service';
 })
 export class TipsComponent  {
 
-   page = 4;
+  private searchblog : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/searchblogs';
+    searchData : any = {
+      page: 0,
+      pageSize: 0,
+      sortDir: "",
+      sortedBy: "",
+      searchQuery: "",
+      blogTopicId: 0,
+    }
+
+  private topicurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/blogtopics';
+  tipsData  : any = 
+    [
+      {
+        blogTopicId: 0,
+        topic: "",
+      }
+    ];
+
+    tipsArray:string[];
+
+  page = 4;
    page1 = 4;
    page2 = 4;
    page3 = 4;
@@ -31,6 +54,7 @@ export class TipsComponent  {
     }).subscribe(data => {
       console.log(data)
 
+
       //this.max = [];
     },
       error => {
@@ -38,5 +62,6 @@ export class TipsComponent  {
       }
     )
   }
+
 
 }

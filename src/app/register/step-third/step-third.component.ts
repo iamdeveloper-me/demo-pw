@@ -22,7 +22,17 @@ export class StepThirdComponent implements OnInit {
   user = 
   {logInInfo: { firstName: "", lastName: "", password: "", confirmPassword: "" },
   contactInfo: { contactPerson: "", email: "", phone: "", website: ""},
-   businessInfo: { countryId: 0, districtId: 0,suburbId: 0 ,city: "" ,postalCode: "", address: "" ,nameOfBusiness: "",pricingPlanId: "" ,payFrequency:""}, 
+   businessInfo: { 
+    countryId: 0, 
+    districtId: 0,
+    suburbId: 0 ,
+    city: "" ,
+    postalCode: "", 
+    address: "" ,
+    nameOfBusiness: "",
+    pricingPlanId: "" ,
+    payFrequency:""
+  }, 
    
    vendorCategories: [ { categoryId: "" } ] }
 
@@ -155,7 +165,7 @@ annualPrice(users){
       console.log(newVal)
     }
     GoToNextStep(){
-      console.log(this.objVendorDetails);
+      console.log(JSON.stringify(this.objVendorDetails));
       localStorage.setItem('VednorDetails',JSON.stringify(this.objVendorDetails));
       this.cservice.GoToNextStep('/register/step-forth');
     }

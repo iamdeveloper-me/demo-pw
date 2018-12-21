@@ -165,6 +165,7 @@ annualPrice(users){
       console.log(newVal)
     }
     GoToNextStep(){
+      
       console.log(JSON.stringify(this.objVendorDetails));
       localStorage.setItem('VednorDetails',JSON.stringify(this.objVendorDetails));
       this.cservice.GoToNextStep('/register/step-forth');

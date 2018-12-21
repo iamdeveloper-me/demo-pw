@@ -46,7 +46,7 @@ export class StepSecondComponent implements OnInit {
  loadScript(){this.ngOnInit;}
 
  goToNextStep(){
-    this.objvendorDetails.contactInfo.phoneType="";
+   // this.objvendorDetails.contactInfo.phoneType="";
     console.log(this.objvendorDetails);
   localStorage.setItem('VednorDetails',JSON.stringify(this.objvendorDetails));
   this.cservice.GoToNextStep('/register/step-third');

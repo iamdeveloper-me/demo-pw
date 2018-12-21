@@ -96,6 +96,8 @@ export class SearchresultComponent implements OnInit {
         element.isSelect=false;
       });
       console.log(this.filters);
+    },error=>{
+      console.log(error);
     })
   }
   getSearchFilterResult(){

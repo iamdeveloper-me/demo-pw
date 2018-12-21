@@ -8,7 +8,7 @@
       <!--Carousel Wrapper-->
 <div class="container">
     <!--Slides-->
-    <div id="supplierscarousel" class="owl-carousel">
+    <div id="supplierscarousel" class="owl-carousel" *ngIf='objSearchResultItems.items'>
               <div *ngFor='let i of objSearchResultItems.items' class="item bordre_rad">
 
                 <div class="card mb-2 bordre_rad1 ">
@@ -354,7 +354,6 @@
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star"></span>
                             <span class="fa fa-star"></span>
-                            <ngb-rating [(rate)]="4"></ngb-rating>
                             <span *ngIf='i.reviews.length>0'>
                             {{i.reviews[0].rating}} {{i.reviews.length}} </span>
                           </p>

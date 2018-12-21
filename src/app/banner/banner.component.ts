@@ -22,14 +22,7 @@ export class BannerComponent implements OnInit {
     this.Categorie();
     this.location();
     this.banner();
-
-
                 $(document).on('click', ".mobvendorebtn", function(){
-                 // alert("tiktik");
-
-
-
-
                   $("#tiktik").show();
                 });
 
@@ -81,7 +74,9 @@ export class BannerComponent implements OnInit {
     this.router.navigate(['home/searchresult',catId+'/'+CatName]);
 
     //searchresult
- //   this.router.navigate(['/home/searchresult']);
+
+   // this.router.navigate(['/home/searchresult']);
+
   }
 
 }

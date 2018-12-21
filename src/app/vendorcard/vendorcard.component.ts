@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 import { apiService } from '../shared/service/api.service';
 import { find } from 'rxjs-compat/operator/find';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-vendorcard',
   templateUrl: './vendorcard.component.html',
@@ -12,8 +13,9 @@ export class VendorcardComponent implements OnInit {
   featured_supplier_data = []
   max = []
   dream_wedding_location = []
+  all_category = []
   Popular_Wedding_array = []
-  constructor(config: NgbCarouselConfig, private apiService: apiService) {
+  constructor( private router: Router ,config: NgbCarouselConfig, private apiService: apiService) {
     // customize default values of carousels used by this component tree
     config.interval = 10000;
     config.wrap = false;
@@ -69,13 +71,13 @@ export class VendorcardComponent implements OnInit {
     )
   }
   Popular_Wedding(){
-    this.apiService.getData(this.apiService.serverPath+'Categories/allcategories').subscribe(data => {
+    this.apiService.getData(this.apiService.serverPath+'Categories/categorieswithlistingcount').subscribe(data => {
       console.log(data)
       for (let i of data) {
         if(i.isPopular == true){
           this.Popular_Wedding_array.push(i);
         }
-        console.log( this.Popular_Wedding_array)
+        //console.log( this.Popular_Wedding_array)
       }
       
     
@@ -84,5 +86,29 @@ export class VendorcardComponent implements OnInit {
        console.log(error)
       }
     )
+  }
+
+  Categories_each(c){
+  
+    let catId= c.categoryId;
+    let CatName= c.categoryName;
+    console.log(c)
+    this.router.navigate(['home/searchresult',catId+'/'+CatName]);
+  }
+
+  supplier_all(c){
+   
+    let catId= c.categoryId;
+    let CatName= c.categoryName;
+    console.log(c)
+    this.router.navigate(['home/searchresult',catId+'/'+CatName]);
+  }
+
+  location_all(c){
+   
+    let catId= c.categoryId;
+    let CatName= c.categoryName;
+    console.log(c)
+   //this.router.navigate(['home/searchresult',catId+'/'+CatName]);
   }
 }

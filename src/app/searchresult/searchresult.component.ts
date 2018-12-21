@@ -22,8 +22,10 @@ export class SearchresultComponent implements OnInit {
   objSearchResultItems:any;
   locationFilterParam:string='';
   categoryFilterParam:string='';
+
   
   constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService, private api: apiService) {  
+
     this.objSearchFilter=new SearchFilterVm();
     this.objSearchlistvm = new SearchListingVM();
     if(this._activeRoute!=undefined){

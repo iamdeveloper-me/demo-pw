@@ -1,4 +1,4 @@
-<div id="wrappervendor" class="" >
+  <div id="wrappervendor" class="" >
   <app-menu></app-menu>
   <app-tool></app-tool>
   <div id="wrappervendorsidbar">
@@ -8,7 +8,7 @@
       <!--Carousel Wrapper-->
 <div class="container">
     <!--Slides-->
-    <div id="supplierscarousel" class="owl-carousel" *ngIf='objSearchResultItems.items'>
+    <div id="supplierscarousel" class="owl-carousel" *ngIf='objSearchResultItems'>
               <div *ngFor='let i of objSearchResultItems.items' class="item bordre_rad">
 
                 <div class="card mb-2 bordre_rad1 ">
@@ -20,10 +20,11 @@
                        <h6> <strong>{{i.nameOfBusiness}} </strong> </h6>
                         <button class="wedding_btn">{{i.businessDetails}} </button>
                         <P class="locat_icon"><i class="material-icons">location_on</i> 
-                          <i class="material-icons">location_on</i> {{i.vendorLocations[0].suburb.name}},
-                          {{i.vendorLocations[0].districts.name}},
-                          {{i.vendorLocations[0].country.name}},
-                          {{i.vendorLocations.postalCode}}
+                          <i class="material-icons">location_on</i> 
+                          <span *ngIf='i.vendorLocations[0]'> {{i.vendorLocations[0].suburb.name}},</span>
+                         <span *ngIf='i.vendorLocations[0]'>  {{i.vendorLocations[0].districts.name}},</span>
+                         <span *ngIf='i.vendorLocations[0]'>{{i.vendorLocations[0].country.name}},</span> 
+                         <span *ngIf='i.vendorLocations[0]'> {{i.vendorLocations[0].postalCode}}</span>
                         </P>
                         <p class="statr_point">
                           <span class="fa fa-star checked"></span>
@@ -87,7 +88,7 @@
             {{objSearchResultItems.totalCount}} Results
           </span>
          
-          <select (change)='getSearchFilterResult()' [(ngModel)]='objSearchlistvm.pageSize'>
+          <select (change)='getSearchFilterResult()' style="display:none" [(ngModel)]='objSearchlistvm.pageSize'>
             <option value='25' selected>25 Result/Page</option>
             <option value='50'>50 Result/Page</option>
             <option value='100'>100 Result/Page</option>
@@ -230,7 +231,7 @@
               </div>
             <!-- <div class="regular">All Categories</div> -->
         <div class="cityscroll22"> 
-          <div class="funkyradio">  
+          <div class="funkyradio" *ngIf='filters'>  
             <div class="funkyradio-info" *ngFor='let f of filters.services'>
              <input type="checkbox" (change)='getSearchFilterResult()' [(ngModel)]='f.isSelect' name="checkbox" id="any"/>
                  <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
@@ -258,7 +259,7 @@
         <div id="collapse44" class="panel-collapse collapse" >
           <div class="category-body">
         <div class="cityscroll22"> 
-          <div class="funkyradio">  
+          <div class="funkyradio" *ngIf='filters.filters'>  
             <div class="funkyradio-info" style="border-bottom:1px;border-bottom-style:inset;border-bottom-color:gray" *ngFor='let ff of filters.filters'>
               <input type="checkbox" name="checkbox" id="any" [(ngModel)]='ff.isSelect'/> 
                  <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
@@ -313,8 +314,8 @@
 		</div>
 		<div class="col-sm-9 listingtab">
       <div class="photo_cont">
-	    	<div id="products" class="row list-group" (click)="goToPortfolioDetail()">
-	        	<div *ngFor='let i of objSearchResultItems.items' class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
+	    	<div id="products" class="row list-group">
+	        	<div *ngFor='let i of objSearchResultItems.items' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
 	                <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
                       <img class="group list-group-image" [src]="i.profileImage" alt="Card image cap">
@@ -340,7 +341,7 @@
                         <div>
                           <h6><strong>{{i.nameOfBusiness}}</strong></h6>
                           <button class="wedding_btn">{{i.nameOfBusiness}} </button>
-                          <p class="locat_icon">
+                          <p class="locat_icon" *ngIf='i.vendorLocations.length>0'>
                             <i class="material-icons">location_on</i> {{i.vendorLocations[0].suburb.name}},
                             {{i.vendorLocations[0].districts.name}},
                             {{i.vendorLocations[0].country.name}},
@@ -354,6 +355,7 @@
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star"></span>
                             <span class="fa fa-star"></span>
+                            <!-- <ngb-rating [(rate)]="4"></ngb-rating> -->
                             <span *ngIf='i.reviews.length>0'>
                             {{i.reviews[0].rating}} {{i.reviews.length}} </span>
                           </p>

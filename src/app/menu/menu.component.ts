@@ -112,6 +112,7 @@ export class MenuComponent implements OnInit {
                 $("#sidebar-wrapper").hide();
                 $(".userlogindisplay").hide();
                 $(".vendorlogindisplay").hide();
+
                 var vendorid = localStorage.getItem('vendorid')
                 this.session_token =   sessionStorage.getItem('userToken')
                 if(this.session_token)
@@ -148,10 +149,13 @@ export class MenuComponent implements OnInit {
                         $(".tool_icons").hide();
                         } 
                 }
+
                 if(!this.session_token){
                  //   sessionStorage.clear();
                   //  this.router.navigate(['../home']);
                 }
+
+
 
                 //loginpage
                 $("#id9").hide();

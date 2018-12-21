@@ -18,29 +18,32 @@ export class BannerComponent implements OnInit {
   locations = [];
   banner_data = []
   ngOnInit() {
+    // alert("tiktik");
     this.Categorie();
     this.location();
     this.banner();
 
-    
 
-                $(".mobvendorebtn").click(function(){
-                  alert('abc');
+                $(document).on('click', ".mobvendorebtn", function(){
+                 // alert("tiktik");
+
+
+
+
                   $("#tiktik").show();
                 });
-                $(".category-body .regular").click(function(){
+
+                $(document).on('click', ".category-body .regular", function(){
                   $(".category-body").hide();
                   $(".city-body").show();
                 });
-                $(".icon-small").click(function(){
+
+                $(document).on('click', ".icon-small", function(){
                   $("#tiktik").hide();
                   $(".category-body").show();
                   $(".city-body").hide();
                 });	 
   }
-
-
-
   Categorie(){ 
     this.masterservice.getAllCategories().subscribe(data => {
      // console.log(data);
@@ -67,6 +70,7 @@ export class BannerComponent implements OnInit {
   }
 
   search(e){
+
    // this.router.navigate(['../searchresult/', e.value.category.categoryId]);
     let catId=0;
     let CatName='';
@@ -75,7 +79,9 @@ export class BannerComponent implements OnInit {
       CatName=e.value.category.categoryName;
     }
     this.router.navigate(['home/searchresult',catId+'/'+CatName]);
+
     //searchresult
+ //   this.router.navigate(['/home/searchresult']);
   }
 
 }

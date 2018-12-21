@@ -4,6 +4,7 @@ import { MasterserviceService } from 'app/ngservices/masterservice.service';
 import {RatingModule} from 'ngx-rating';
 import { CustompipePipe } from 'app/custompipe.pipe';
 import { CategoryPipePipe } from 'app/category-pipe.pipe';
+import { apiService } from 'app/shared/service/api.service';
 @Component({
   selector: 'app-searchresult',
   templateUrl: './searchresult.component.html',
@@ -22,15 +23,12 @@ export class SearchresultComponent implements OnInit {
   locationFilterParam:string='';
   categoryFilterParam:string='';
   
-  constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService) {  
+  constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService, private api: apiService) {  
     this.objSearchFilter=new SearchFilterVm();
     this.objSearchlistvm = new SearchListingVM();
     if(this._activeRoute!=undefined){
       this.objSearchFilter.categoryId = this._activeRoute.snapshot.params['id'].split('/')[0];
-     
       this.objSearchlistvm.categoryId.push(this.objSearchFilter.categoryId);
-     console.log(this.objSearchlistvm.categoryId);
-     // this.objSearchFilter=JSON.parse(this._activeRoute.snapshot.params['id']);   
     }
     this.getLocations();
     this.getCategories();
@@ -38,7 +36,6 @@ export class SearchresultComponent implements OnInit {
     this.objSearchlistvm.categoryId.push(this.objSearchFilter.categoryId);
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
       this.objSearchResultItems = res;
-      console.log(JSON.stringify(res));
     });
   }
  ngOnInit() {   
@@ -49,15 +46,19 @@ export class SearchresultComponent implements OnInit {
   //$.getScript('./assets/register/js/jquery.bootstrap.js');
 
   $.getScript('./assets/jss/core/popper.min.js');
-  $.getScript('./assets/jss/core/bootstrap-material-design.min.js');;
-  $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js')
+  $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
+  $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');
   $.getScript('./assets/jss/plugins/chartist.min.js');
   $.getScript('./assets/jss/plugins/bootstrap-notify.js');
   $(".slider_use_anather_compo").hide();
   }
-  goToPortfolioDetail(){
+  goToPortfolioDetail(vendor){
+    let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails/';
+    this.api.getData(url+'?='+vendor.vendorUniqueId).subscribe(res=>{
+      sessionStorage.setItem('vendorDetails',JSON.stringify(res));
     this._route.navigate(['home/detailprofile']);
-  }
+  });
+}
   getLocations(){
     this._masterservice.getAllLocation().subscribe(res=>{
       this.locations=res;
@@ -69,7 +70,6 @@ export class SearchresultComponent implements OnInit {
           });
         }
       }
-      console.log(this.locations);
     });
       
   }
@@ -82,7 +82,6 @@ export class SearchresultComponent implements OnInit {
           if(element.categoryId==this.objSearchFilter.categoryId){
           element.isSelect=true;}else{element.isSelect=false;}
         });
-       console.log(this.categories);
       }
     })
     
@@ -95,7 +94,6 @@ export class SearchresultComponent implements OnInit {
       this.filters.services.forEach(element => {
         element.isSelect=false;
       });
-      console.log(this.filters);
     },error=>{
       console.log(error);
     })
@@ -136,7 +134,6 @@ export class SearchresultComponent implements OnInit {
     });
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
       this.objSearchResultItems = res;
-      console.log(JSON.stringify(res));
     })
   }
   filterLocations(ev){

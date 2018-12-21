@@ -140,13 +140,23 @@ import { HoneymoonComponent } from './honeymoon/honeymoon.component';
 import { HoneymoonDetailsComponent } from './honeymoon-details/honeymoon-details.component';
 
 import { EventcelandarComponent } from './eventcelandar/eventcelandar.component';
+import { DreamWeddingLocationsComponent } from './dream-wedding-locations/dream-wedding-locations.component';
+import { FeaturedWeddingSuppliersComponent } from './featured-wedding-suppliers/featured-wedding-suppliers.component';
 
-
+import { StepFirstComponent } from './register/step-first/step-first.component';
+import { StepSecondComponent } from './register/step-second/step-second.component';
+import { StepThirdComponent } from './register/step-third/step-third.component';
+import { StepForthComponent } from './register/step-forth/step-forth.component';
 
 const appRoutes: Routes = [
 
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'register/step-first', component: StepFirstComponent },
+  { path: 'register/step-second', component: StepSecondComponent },
+  { path: 'register/step-third', component: StepThirdComponent },
+  { path: 'register/step-forth', component: StepForthComponent },
+  { path: 'home/searchresult', component: SearchresultComponent },
   { path: 'home/searchresult/:id', component: SearchresultComponent },
   { path: 'home/tips_list', component: TipslistComponent },
   { path: 'home/event_list', component: EventlistComponent },
@@ -172,6 +182,8 @@ const appRoutes: Routes = [
   { path: 'home/supplierbylocation', component:  SupplierbylocationComponent },
   { path: 'home/Photogallerydetail', component:  PhotogallerydetailComponent },
   { path: 'home/ResetPassword', component:  ResetPasswordComponent },
+  { path: 'home/allDreamWedding', component:  DreamWeddingLocationsComponent },
+  { path: 'home/FeaturedWeddingSuppliers', component:  FeaturedWeddingSuppliersComponent },
 
   { path: 'home/Deals', component:  DealsComponent },
   { path: 'home/Deal_Details', component:  DealDetailsComponent },

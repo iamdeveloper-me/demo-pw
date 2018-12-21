@@ -96,7 +96,7 @@ export class StepForthComponent implements OnInit {
 //     }); 
 //    });
   console.log(this.objVendorDetail);
-  this.objVendorDetail.businessInfo.website=this.objVendorDetail.contactInfo.website;
+  // this.objVendorDetail.businessInfo.website=this.objVendorDetail.contactInfo.website;
       this.cservice.signup(this.objVendorDetail).subscribe(( data )  =>  
       { console.log(data.json())
         this.cservice.typeSuccess();

@@ -5,23 +5,23 @@
         <div class="steps-form-2" (click)="loadScript()">
            <div class="steps-row-2 setup-panel-2 d-flex justify-content-between">
               <div class="steps-step-2">
-                 <a [routerLink]="['/register/step-first']" type="button" class="first_step btn  btn-blue-grey btn-circle-2 waves-effect ml-0" data-toggle="tooltip" data-placement="top" title="Your Business Category "><i class="fa fa-folder-open-o" aria-hidden="true"></i>
+                 <a type="button" class="first_step btn  btn-blue-grey btn-circle-2 waves-effect ml-0" data-toggle="tooltip" data-placement="top" title="Your Business Category "><i class="fa fa-folder-open-o" aria-hidden="true"></i>
                  </a>
                  <div class="clearfix"></div>
                  <p class="ml-yb">   Your Business Category  </p>
               </div>
               <div class="steps-step-2">
-                 <a [routerLink]="['/register/step-second']" routerLinkActive="router-link-active" type="button" class="btn btn-amber btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="General Information"><i class="fa fa-pencil" aria-hidden="true"></i>
+                 <a  routerLinkActive="router-link-active" type="button" class="btn btn-amber btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="General Information"><i class="fa fa-pencil" aria-hidden="true"></i>
                  </a>
                  <p> General Information  </p>
               </div>
               <div class="steps-step-2">
-                 <a  [routerLink]="['/register/step-third']" routerLinkActive="router-link-active" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Business Information"><i class="fa fa-photo" aria-hidden="true"></i>
+                 <a  routerLinkActive="router-link-active" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Business Information"><i class="fa fa-photo" aria-hidden="true"></i>
                  </a>
                  <p> Business Information </p>
               </div>
               <div class="steps-step-2">
-                 <a  [routerLink]="['/register/step-forth']" routerLinkActive="router-link-active" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Payment"><i class="fa fa-check" aria-hidden="true"></i>
+                 <a   routerLinkActive="router-link-active" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Payment"><i class="fa fa-check" aria-hidden="true"></i>
                  </a>
                  <p> Payment   </p>
               </div>
@@ -160,7 +160,7 @@
   </div>
   <div class="col-sm-12 btnholder">
       <button class="btn btn-raised prevBtn-2 gradint_blue white signup_nextbtn btnborradius pull-left" type="button" [routerLink]="['/register/step-first']">Previous</button>
-      <button class="btn btn-raised gradint_blue white signup_nextbtn btnborradius nextBtn-2 pull-right" type="button" (click)='goToNextStep()'>Next</button>
+      <button class="btn btn-raised gradint_blue white signup_nextbtn btnborradius nextBtn-2 pull-right" type="button" (click)='goToNextStep()' [disabled]="!f.valid">Next</button>
   </div>
 </div>
 

@@ -95,10 +95,11 @@ export class logInInfo
   confirmPassword:string;
 }
 export class contactInfo {
+  // contactPerson:string;
   email: string;
   phone: string;
   website: string;
-  phoneType: string;
+  // phoneType: string;
 }
 export class businessInfo {
   countryId: number;
@@ -107,21 +108,21 @@ export class businessInfo {
   city:string;
   postalCode:string;
   address:string;
-  lat: number;
-  long: number;
   nameOfBusiness:string;
-  businessDetails: string;
   pricingPlanId: number;
-  payFrequency: number;;
-  website: string;
+  payFrequency: number;
+  // businessDetails: string;
+  // lat: number;
+  // long: number;
+  // website: string;
   constructor(){
-    this.lat=0;
-    this.long=0;
-    this.businessDetails='';
-    this.payFrequency=2;
+    // this.payFrequency=2;
     this.city="";
-    this.website="";
     this.nameOfBusiness="";
+    // this.lat=0;
+    // this.long=0;
+    // this.businessDetails='';
+    // this.website="";
   }
 }
 export class vendorCategories{

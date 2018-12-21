@@ -8,7 +8,7 @@
 <div class="container mob_parallax mob_padd0">
 
 <div class="col-md-3 col-6 box_img"  *ngFor='let Popular of Popular_Wedding_array'>
-  <a href="#" class="zoom_in">
+  <a (click) = "Categories_each(Popular)" class="zoom_in">
     <img [src]="Popular.imagePath">
     <div class="cakes_hover">
         <img _ngcontent-c1="" class="red_bg" [src]="Popular.iconImageURL">

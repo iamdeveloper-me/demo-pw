@@ -27,31 +27,12 @@ export class EventsComponent implements OnInit {
   pagedItems: any[];
   ngOnInit() {
 
-    
+    this.event(this);
     this.location();
   }
   page2 = 4;
   event(list){
     console.log(list.value);
-    // this.apiService.postData(this.apiService.serverPath+'Home/searchevents',{
-    //   page: 0,
-    //   pageSize: 1,
-    //   sortDir: "",
-    //   sortedBy: "asc",
-    //   searchQuery: "",
-    //   location: "",
-    //   eventType: "Free",
-    //   dates: "All"
-    // }).subscribe(data => {
-    //   //console.log(data)
-    //   this.searchevents = data ;
-    //   console.log(this.searchevents)
-    //   this.page = data.json().items
-    // },
-    //   error => {
-    //    console.log(error)
-    //   }
-    // )
     this.apiService.postData(this.apiService.serverPath+'Home/searchevents',{
       page: 0,
       pageSize: 1,

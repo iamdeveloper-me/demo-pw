@@ -39,7 +39,7 @@ export class StepForthComponent implements OnInit {
             let country = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries");
             country.subscribe(data => { 
               this.countryArray = data as string[];  
-              console.log(this.countryArray);
+              // console.log(this.countryArray);
               this.arra = this.countryArray
             });
          
@@ -47,7 +47,7 @@ export class StepForthComponent implements OnInit {
             let obj = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/pricingplans");
             obj.subscribe(data => {
               this.planArray = data as string[]; 
-              console.log(this.planArray);
+              // console.log(this.planArray);
             });
 
             $(".Suppliertab").click(function(){
@@ -95,7 +95,7 @@ export class StepForthComponent implements OnInit {
 //       } 
 //     }); 
 //    });
-  console.log(this.objVendorDetail);
+  console.log(JSON.stringify(this.objVendorDetail));
   // this.objVendorDetail.businessInfo.website=this.objVendorDetail.contactInfo.website;
       this.cservice.signup(this.objVendorDetail).subscribe(( data )  =>  
       { console.log(data.json())
@@ -120,7 +120,7 @@ export class StepForthComponent implements OnInit {
     // });}
 
 idgenerate(users){
-  console.log(users)
+  // console.log(users)
   this.objVendorDetail.businessInfo.pricingPlanId=users.pricingPlanId;
    this.user.businessInfo.pricingPlanId = users.pricingPlanId;
    this.user.businessInfo.payFrequency = '1';

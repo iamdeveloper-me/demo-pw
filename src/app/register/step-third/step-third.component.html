@@ -50,7 +50,7 @@
       <small class="form-text text-muted danger" *ngIf="!nameOfBusiness.valid && (nameOfBusiness.dirty || nameOfBusiness.touched)">Name is required!</small>
 
       <div class="field">
-          <select name="country" [(ngModel)] = "objVendorDetails.businessInfo.countryId " name="country_id" (change)="country()">
+          <select [(ngModel)] = "objVendorDetails.businessInfo.countryId " name="country_id" (change)="country()">
                   <option   *ngFor="let country of countryArray ;let c =index"  [value]="country.countryId">
                       {{country.countryName }}
                   </option>
@@ -58,31 +58,37 @@
           <label for="country_id">Country</label>
       </div>
       <div class="field">
-          <select name="district"  [(ngModel)] = "objVendorDetails.businessInfo.city"  name="city_id"(change)="districtA($event)"  > 
+          <select name="district"  [(ngModel)] = "objVendorDetails.businessInfo.districtId" (change)="districtA($event)"> 
 
               <option *ngFor="let dist of district ;let d =index" 
-                  type="text"
-                  id="{{dist.name}}"
-                  placeholder="District"
                   checked
-                  name = "dist"  
-                  [value]="d"
+                  [value]="dist.districtId"
                   required >
-                  {{dist.name }}
+                  {{dist.name}}
               </option>
           </select>
+          <!-- {{objVendorDetails.businessInfo.districtId}} -->
           <label for="city_id">District</label>
       </div>
+      <!-- <div class="field" >
+            <select name="district"  [(ngModel)] = "objVendorDetails.businessInfo.districtId" (change)="districtA($event)"> 
+                    <option *ngFor="let dist of district ;let d =index" 
+                        type="text"
+                        id="{{dist.districtId}}"
+                        placeholder="District ID"
+                        checked
+                        name = "dist"  
+                        [value]="d"
+                        required >
+                        {{dist.districtId}}
+                    </option>
+                </select>
+            <label for="city_id">District Id</label>
+      </div> -->
       <div class="field">
-              <select [(ngModel)] = "objVendorDetails.businessInfo.suburbId"  name="sub_id" (change)="subr($event)" > 
+              <select [(ngModel)] = "objVendorDetails.businessInfo.suburbId"  name="sub_id" (change)="subr($event)"> 
                   <option *ngFor="let sub of suburb ;let s =index" 
-                      type="text"
-                      placeholder="Suburb"
-                      id="{{sub.name}}"
-                      checked
-                      name = "sub"  
-                      [value]="s"
-                      required>
+                      checked [value]="sub.suburbId" >
                       {{sub.name }}
                   </option>
               </select>

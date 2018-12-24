@@ -153,10 +153,15 @@ annualPrice(users){
       
      // const newVal = event.target.value;
      console.log(this.countryArray);
+     
       this.district = this.arra.filter(c=>c.countryId==this.objVendorDetails.businessInfo.countryId)[0].districts;
      console.log( this.district);
     }
     districtA(event): void {  
+//      let district=event.target;
+// debugger;
+      this.objVendorDetails.businessInfo.city=this.district.filter(d=>d.districtId==this.objVendorDetails.businessInfo.districtId)[0].name;
+     // this.objVendorDetails.businessInfo.districtId=district.districtId;
       const newVal = event.target.value;
       this.suburb = this.district[newVal].suburb
     }
@@ -166,7 +171,8 @@ annualPrice(users){
     }
     GoToNextStep(){
       
-      console.log(JSON.stringify(this.objVendorDetails));
+      // console.log(JSON.stringify(this.objVendorDetails));
+      console.log(this.objVendorDetails);
       localStorage.setItem('VednorDetails',JSON.stringify(this.objVendorDetails));
       this.cservice.GoToNextStep('/register/step-forth');
     }

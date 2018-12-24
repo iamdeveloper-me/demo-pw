@@ -12,102 +12,21 @@
 	    </div>
 	    <div class="boxLightStyles">
 	   		<div class="container row martop15px">
-		        <div class="col-6 col-sm-3">
+		        <div class="col-6 col-sm-3" *ngFor='let vd of albums; let i=index'>
+					<div *ngFor='let filepath of vd.albumImages'>
 		        	<a routerLink="../Photogallerydetail">
 		              <div class="thumbnail text-center">
-		              	<img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
+		              	<img [src]='filepath.path' alt="...">
 		               <div>
 		                  My Portfolio 
 		                  <br/> 
-		                  (152 Images)
+		                  ({{i}} Images)
 		               </div>
 		              </div>
-		          	</a>
+					  </a>
+					</div>
 		        </div>
-		        <div class="col-6 col-sm-3" >
-		        	<a routerLink="../Photogallerydetail">
-		              <div class="thumbnail text-center">
-		               <img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
-		               <div>
-		                  Akheel & Salima
-		                  <br/> 
-		                  (27 Images)
-		               </div>
-		             </div>
-		         </a>
-		        </div>
-		        <div class="col-6 col-sm-3">
-		        	<a routerLink="../Photogallerydetail">
-		              <div class="thumbnail text-center">
-		               <img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
-		               <div>
-		                  Praveen & Shalini
-		                  <br/> 
-		                  (42 Images)
-		               </div>
-		             </div>
-		         </a>
-		        </div>
-		        <div class="col-6 col-sm-3">
-		        	<a routerLink="../Photogallerydetail">
-		              <div class="thumbnail text-center">
-		               <img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
-		               <div>
-		                  Johnny & Anna
-		                  <br/> 
-		                  (52 Images)
-		               </div>
-		             </div>
-		         </a>
-		        </div>
-		        <div class="col-6 col-sm-3" >
-		        	<a routerLink="../Photogallerydetail">
-		              <div class="thumbnail text-center">
-		               <img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
-		               <div>
-		                  My Portfolio 
-		                  <br/> 
-		                  (152 Images)
-		               </div>
-		             </div>
-		         </a>
-		        </div>
-		        <div class="col-6 col-sm-3">
-		        	<a routerLink="../Photogallerydetail">
-		              <div class="thumbnail text-center">
-		               <img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
-		               <div>
-		                  Akheel & Salima
-		                  <br/> 
-		                  (27 Images)
-		               </div>
-		             </div>
-		         </a>
-		        </div>
-		        <div class="col-6 col-sm-3">
-		        	<a routerLink="../Photogallerydetail">
-		              <div class="thumbnail text-center">
-		               <img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
-		               <div>
-		                  Praveen & Shalini
-		                  <br/> 
-		                  (42 Images)
-		               </div>
-		             </div>
-		         </a>
-		        </div>
-		        <div class="col-6 col-sm-3">
-		        	<a routerLink="../Photogallerydetail">
-		              <div class="thumbnail text-center">
-		               <img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
-		               <div>
-		                  Johnny & Anna
-		                  <br/> 
-		                  (52 Images)
-		               </div>
-		             </div>
-		         </a>
-		        </div>
+		        
 		        <div class="col-6 col-sm-3" data-target="#albumgallarypopup" data-toggle="modal">
 		              <div class="thumbnail text-center">
 		               <img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">

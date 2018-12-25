@@ -88,8 +88,8 @@ export class StepThirdComponent implements OnInit {
 
  loadScript(){this.ngOnInit;}
 
-    onSubmit() {   
-   console.log(this.country_id)
+    onSubmit(f) {   
+   console.log(this.country_id);
    this.arra.forEach((element,pos) => {
      if(pos == this.country_id){
        this.user.businessInfo.countryId = Number(element.countryId);
@@ -119,7 +119,7 @@ export class StepThirdComponent implements OnInit {
       ,error => {console.log(error);
      this.cservice.typeWarning(error);
     })
-
+    f.form.reset();
   }
     //   this.cservice.signup(this.user).subscribe(( data )  =>  {
     //     console.log(data.json())
@@ -153,10 +153,15 @@ annualPrice(users){
       
      // const newVal = event.target.value;
      console.log(this.countryArray);
+     
       this.district = this.arra.filter(c=>c.countryId==this.objVendorDetails.businessInfo.countryId)[0].districts;
      console.log( this.district);
     }
     districtA(event): void {  
+//      let district=event.target;
+// debugger;
+      this.objVendorDetails.businessInfo.city=this.district.filter(d=>d.districtId==this.objVendorDetails.businessInfo.districtId)[0].name;
+     // this.objVendorDetails.businessInfo.districtId=district.districtId;
       const newVal = event.target.value;
       this.suburb = this.district[newVal].suburb
     }
@@ -166,7 +171,8 @@ annualPrice(users){
     }
     GoToNextStep(){
       
-      console.log(JSON.stringify(this.objVendorDetails));
+      // console.log(JSON.stringify(this.objVendorDetails));
+      console.log(this.objVendorDetails);
       localStorage.setItem('VednorDetails',JSON.stringify(this.objVendorDetails));
       this.cservice.GoToNextStep('/register/step-forth');
     }

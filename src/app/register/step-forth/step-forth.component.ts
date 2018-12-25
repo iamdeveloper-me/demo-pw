@@ -39,7 +39,7 @@ export class StepForthComponent implements OnInit {
             let country = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries");
             country.subscribe(data => { 
               this.countryArray = data as string[];  
-              console.log(this.countryArray);
+              // console.log(this.countryArray);
               this.arra = this.countryArray
             });
          
@@ -95,7 +95,7 @@ export class StepForthComponent implements OnInit {
 //       } 
 //     }); 
 //    });
-  console.log(this.objVendorDetail);
+  console.log(JSON.stringify(this.objVendorDetail));
   // this.objVendorDetail.businessInfo.website=this.objVendorDetail.contactInfo.website;
       this.cservice.signup(this.objVendorDetail).subscribe(( data )  =>  
       { console.log(data.json())

@@ -116,9 +116,11 @@ export class businessInfo {
   // long: number;
   // website: string;
   constructor(){
-    // this.payFrequency=2;
+    this.payFrequency=2;
     this.city="";
-    this.nameOfBusiness="";
+    this.districtId=0;
+    // this.districtId=0;
+    // this.nameOfBusiness="";
     // this.lat=0;
     // this.long=0;
     // this.businessDetails='';

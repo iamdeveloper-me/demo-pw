@@ -84,7 +84,7 @@ export class StepSecondComponent implements OnInit {
       ,error => {console.log(error);
      this.cservice.typeWarning(error);
     })
-
+    f.form.reset();
   }
 
 

@@ -29,7 +29,11 @@ export class SearchresultComponent implements OnInit {
     this.objSearchFilter=new SearchFilterVm();
     this.objSearchlistvm = new SearchListingVM();
     if(this._activeRoute!=undefined){
+      let query=this._activeRoute.snapshot.params['id'].split('/');
       this.objSearchFilter.categoryId = this._activeRoute.snapshot.params['id'].split('/')[0];
+      this.objSearchFilter.searchInDreamLocation=this._activeRoute.snapshot.params['id'].split('/')[3];
+      this.objSearchFilter.searchInFeaturedLocation  = this._activeRoute.snapshot.params['id'].split('/')[2];
+
       this.objSearchlistvm.categoryId.push(this.objSearchFilter.categoryId);
     }
     this.getLocations();
@@ -38,6 +42,7 @@ export class SearchresultComponent implements OnInit {
     this.objSearchlistvm.categoryId.push(this.objSearchFilter.categoryId);
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
       this.objSearchResultItems = res;
+      console.log( this.objSearchResultItems )
     });
   }
  ngOnInit() {   
@@ -152,6 +157,8 @@ export class SearchresultComponent implements OnInit {
 export class SearchFilterVm{
   categoryId:number=1;
   locationId:number=0;
+  searchInFeaturedLocation:boolean=true;
+  searchInDreamLocation:boolean=true;
 }
 export class SearchListingVM{
   page: number;

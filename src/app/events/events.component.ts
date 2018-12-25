@@ -63,7 +63,7 @@ export class EventsComponent implements OnInit {
     console.log(page)
     this.page_sizzze = page
     this.pager = this.pagerService.getPager(a, page);
-    //console.log(this.pager)
+    console.log(a)
     // get current page of items
     this.pagedItems = a.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }

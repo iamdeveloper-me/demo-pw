@@ -11,7 +11,7 @@
             </div>
             <div class="row no-gutters popup-gallery">
               <div class="col-lg-4 col-sm-6 col-6  galleryview" *ngFor='let Popular of Popular_Wedding_array'>
-                <a class="portfolio-box" (click) = "Categories_each(Popular)"  *ngIf = "Popular.isPopular == true">
+                <a class="portfolio-box" (click) = "Categories_each(Popular,'false','false')"  *ngIf = "Popular.isPopular == true">
                   <img class="img-fluid" [src]="Popular.imagePath" class="img-responsive" alt="">
                   <div class="portfolio-box-caption">
                     <div class="portfolio-box-caption-content">
@@ -80,7 +80,7 @@
               <!--End Slides-->
           </div>
           <!--/.Carousel Wrapper-->
-          <p class="browse_cat"> <a (click) = "supplier_all(Popular_Wedding_array)"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
+          <p class="browse_cat"> <a (click) = "Categories_each(Popular,'true','false')"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
     </div>
 
     <div class="container slider_use_anather_compo">
@@ -109,7 +109,7 @@
                
               </div>
               <div class="clearfix"></div>
-              <p class="browse_cat"> <a (click) = "location_all(Popular_Wedding_array)"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
+              <p class="browse_cat"> <a (click) = "Categories_each(Popular,'false','true')"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
             </div>
           </div>
         </div>

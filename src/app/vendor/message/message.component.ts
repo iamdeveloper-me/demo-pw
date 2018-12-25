@@ -126,47 +126,51 @@ if(this.num == 0){
     $.getScript('./assets/js/vendorsidebar.js');
     
 
-    setTimeout(() => {
-      this.stared(3)
-      this.unread(2)
-      this.initDatatable(1)
-      this.selectLength =   this.result.length
-      this.initDatatable(1)
-      this.arrayLength = 1;  
-    }, 200);
-    // this.hservice.marksread().subscribe(( data )  =>  
-    //   { 
-    //     console.log(data.json());
-    //     console.log("jjjjjjjj");
-    //     this.mreadArr = data.json() as string[] ; 
-    //   },error => 
-   
-    // )
-  
-
-    //   this.hservice.markstared().subscribe(( data )  =>  
-    //   { 
-    //     console.log(data.json());
-    //     console.log("tttttttttttttt");
-    //     this.markred = data.json() as string[] ; 
-    //   },error => 
-   
-    // )
-
-   
-    $(function() {
-      // $("a").on("click", function() {
+    if(window.location.href.indexOf('searchresult') == -1 ){
+      setTimeout(() => {
+        this.stared(3)
+        this.unread(2)
+        this.initDatatable(1)
+        this.selectLength =   this.result.length
+        this.initDatatable(1)
+        this.arrayLength = 1;  
+      }, 200);
+      // this.hservice.marksread().subscribe(( data )  =>  
+      //   { 
+      //     console.log(data.json());
+      //     console.log("jjjjjjjj");
+      //     this.mreadArr = data.json() as string[] ; 
+      //   },error => 
+     
+      // )
     
-      //     $(".btn-default.active").removeClass("active");
-      //     $(this).find(".btn-default").addClass("active");
-      // });
+  
+      //   this.hservice.markstared().subscribe(( data )  =>  
+      //   { 
+      //     console.log(data.json());
+      //     console.log("tttttttttttttt");
+      //     this.markred = data.json() as string[] ; 
+      //   },error => 
+     
+      // )
+  
+     
+      $(function() {
+        // $("a").on("click", function() {
+      
+        //     $(".btn-default.active").removeClass("active");
+        //     $(this).find(".btn-default").addClass("active");
+        // });
+  
+        $(".msg_buttons").on("click", function(){
+         
+          $(".msg_buttons").removeClass("active");
+          $(this).addClass("active");
+        });
+    });
+    }
 
-      $(".msg_buttons").on("click", function(){
-       
-        $(".msg_buttons").removeClass("active");
-        $(this).addClass("active");
-      });
-  });
+    
   
   }
   search(newObj){
@@ -187,7 +191,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
             this.unread_msg = this.historyArr.length;
             console.log(this.historyArr)
           },error => 
-          console.log(error) // error path
+          console.log(error) 
         )
 
   }
@@ -245,7 +249,7 @@ this.deletIcon = false
             console.log(this.historyArr)
             this.loader = true
           },error => 
-          console.log(error) // error path
+          console.log(error) 
         )
   }
   unread(filter_id){

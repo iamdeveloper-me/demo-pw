@@ -269,7 +269,7 @@
           <div class="funkyradio" *ngIf='filters.filters'>  
             <div class="funkyradio-info" style="border-bottom:1px;border-bottom-style:inset;border-bottom-color:gray" *ngFor='let ff of filters.filters'>
 
-              <input type="checkbox" name="checkbox" id="any" [(ngModel)]='ff.isSelect'/> 
+              <input type="checkbox" name="checkbox" id="any" (change)='getSearchFilterResult()' [(ngModel)]='ff.isSelect'/> 
                  <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
                 <b> {{ff.name}} </b>  
                 
@@ -324,7 +324,7 @@
       <div class="photo_cont">
 
 	    	<div id="products" class="row list-group">
-	        	<div *ngFor='let i of objSearchResultItems.items' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
+	        	<div *ngFor='let i of collection' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
 
 	                <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
@@ -391,14 +391,11 @@
 	     	</div>
         <div>
 
-          <div class="page-nation">
-           
-                  <ngb-pagination [collectionSize]="objSearchResultItems?.totalCount" [(page)]="objSearchResultItems.page" [boundaryLinks]="true"></ngb-pagination>
-
-                  <span class="totalpage">{{objSearchResultItems.totalPages}} (Page)s</span>
-          </div>        
+           <div class="btn btn-success" style="color:white" *ngIf='!disableLoadingButton' (click)='paginate(pageSize)'>Load More........</div>
+                  <!-- <ngb-pagination [collectionSize]="objSearchResultItems?.totalCount" [(page)]="objSearchResultItems.page" [boundaryLinks]="true"></ngb-pagination>
+             <span class="totalpage">{{objSearchResultItems.totalPages}} (Page)s</span> -->
         </div>
-		  </div>
+      </div>
     </div>
 </div>
 </div>

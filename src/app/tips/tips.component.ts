@@ -9,6 +9,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./tips.component.scss']
 })
 export class TipsComponent  {
+  searchquery= ''
+  onSearch=''
   private similarblog : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/similarblogs';
     getBlog : any = [
       {

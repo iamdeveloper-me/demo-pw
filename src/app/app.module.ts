@@ -64,7 +64,7 @@ import { EqualValidator } from './register/equal-validator.directive';
 import { SearchresultComponent } from './searchresult/searchresult.component';
 import { PhotoComponent } from './photo/photo.component';
 import { TipsComponent } from './tips/tips.component';
-import { DetailpageComponent } from './detailpage/detailpage.component';
+// import { DetailpageComponent } from './detailpage/detailpage.component';
 import { EventsComponent } from './events/events.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { FaquestionComponent } from './faquestion/faquestion.component';
@@ -206,6 +206,7 @@ import { CategoryPipePipe } from './category-pipe.pipe';
 import { EventcelandarComponent } from './eventcelandar/eventcelandar.component';
 import { DreamWeddingLocationsComponent } from './dream-wedding-locations/dream-wedding-locations.component';
 import { FeaturedWeddingSuppliersComponent } from './featured-wedding-suppliers/featured-wedding-suppliers.component';
+import { DetailpageComponent } from './detailpage/detailpage.component';
 
 
 

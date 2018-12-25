@@ -40,7 +40,6 @@ export class PhotoComponent implements OnInit {
     }).map((response: Response) => response)
    .subscribe(data => {
      console.log(data)
-     this.ALL_categories = data;
         // set items to json response
         this.allItems = data['items'];
     
@@ -83,7 +82,7 @@ export class PhotoComponent implements OnInit {
    setPage(page: number) {
     // get pager object from service
     console.log(this.allItems.length);
-    this.pager = this.pagerService.getPager(this.allItems.length, page);
+    this.pager = this.pagerService.getPagerPhotos(this.allItems.length, page);
 
     // get current page of items
     this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);

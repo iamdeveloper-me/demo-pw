@@ -15,6 +15,7 @@ export class VendorcardComponent implements OnInit {
   dream_wedding_location = []
   all_category = []
   Popular_Wedding_array = []
+  Popular=''
   constructor( private router: Router ,config: NgbCarouselConfig, private apiService: apiService) {
     // customize default values of carousels used by this component tree
     config.interval = 10000;

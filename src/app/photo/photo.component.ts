@@ -13,7 +13,8 @@ export class PhotoComponent implements OnInit {
    ALL_categories:any = [];
    pho_data:any = {}
 
-
+   categoryId=''
+   searchQuery=''
     // array of all items to be paged
     private allItems:any = [];
  

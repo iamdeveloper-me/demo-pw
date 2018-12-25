@@ -88,8 +88,8 @@ export class StepThirdComponent implements OnInit {
 
  loadScript(){this.ngOnInit;}
 
-    onSubmit() {   
-   console.log(this.country_id)
+    onSubmit(f) {   
+   console.log(this.country_id);
    this.arra.forEach((element,pos) => {
      if(pos == this.country_id){
        this.user.businessInfo.countryId = Number(element.countryId);
@@ -119,7 +119,7 @@ export class StepThirdComponent implements OnInit {
       ,error => {console.log(error);
      this.cservice.typeWarning(error);
     })
-
+    f.form.reset();
   }
     //   this.cservice.signup(this.user).subscribe(( data )  =>  {
     //     console.log(data.json())

@@ -99,11 +99,12 @@
                                                     <li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPromoteProfile">check_circle</i><i *ngIf="!plan.isPromoteProfile" class="material-icons redtext">cancel</i> Promote Profile</li>
                                                     <li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPublishEvents">check_circle</i><i *ngIf="!plan.isPublishEvents" class="material-icons redtext">cancel</i> Publish Events</li>
                                                     <li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isReviewManagement">check_circle</i><i *ngIf="!plan.isReviewManagement" class="material-icons redtext">cancel</i> Review Management</li>
-                                                    <li class="list-group-item"><i class="material-icons greentext" *ngIf="!plan.isdealsAndDiscount">check_circle</i><i *ngIf="plan.isdealsAndDiscount" class="material-icons redtext">cancel</i> Deals & Discounts</li>
+                                                    <li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.dealsAndDiscount">check_circle</i><i *ngIf="!plan.dealsAndDiscount" class="material-icons redtext">cancel</i> Deals & Discounts</li>
     
                                                     <li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.pinnedReviews">check_circle</i><i *ngIf="!plan.pinnedReviews" class="material-icons redtext">cancel</i> Pinned reviews</li>
                                                     <li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedPhotos">check_circle</i><i *ngIf="!plan.unlimitedPhotos" class="material-icons redtext">cancel</i> Limited Photos</li>
-                                                    <li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimmited Album</li>
+                                                    <li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimited Album</li>
+                                                    
                                                     <li class="list-group-item" *ngIf="plan.performanceAnalytics == 0 "><i class="material-icons bluetext">report</i>  No Performance Analytics</li>
                                                     <li class="list-group-item" *ngIf="plan.performanceAnalytics == 1 "><i class="material-icons bluetext">report</i>  Basic Performance Analytics</li>
                                                     <li class="list-group-item" *ngIf="plan.performanceAnalytics == 2 "><i class="material-icons bluetext">report</i>  Advanced Performance Analytics</li>
@@ -116,12 +117,25 @@
                                                     <!-- Low Priority -->
     
                                         </ul>
-                                                <div class="panel-footer text-center">
+                                        <div class="panel-footer text-center" *ngIf="user.businessInfo.pricingPlanId == plan.pricingPlanId && user.businessInfo.payFrequency == 1 ; else semi">
+                                                <button class="btn btnchoosetik disabled" type="button" (click) = "idgenerate(plan)">SELECTED
+                                                </button>
+        
+                                            </div>
+                                            
+                                            <ng-template #semi>
+                                                    <div class="panel-footer text-center">
+                                                <button class="btn btnchoosetik" type="button" (click)="idgenerate(plan)">Select
+                                                </button>
+                                                </div>
+                                            </ng-template>
+                                        
+                                                <!-- <div class="panel-footer text-center">
                                                     <a class="btn btnchoosetik" type="button" 
                                                     (click)= 
                                                     "idgenerate(plan)">Select
                                                     </a>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
                                     </div>
@@ -162,11 +176,12 @@
                                                     <li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPromoteProfile">check_circle</i><i *ngIf="!plan.isPromoteProfile" class="material-icons redtext">cancel</i> Promote Profile</li>
                                                     <li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPublishEvents">check_circle</i><i *ngIf="!plan.isPublishEvents" class="material-icons redtext">cancel</i> Publish Events</li>
                                                     <li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isReviewManagement">check_circle</i><i *ngIf="!plan.isReviewManagement" class="material-icons redtext">cancel</i> Review Management</li>
-                                                    <li class="list-group-item"><i class="material-icons greentext" *ngIf="!plan.isdealsAndDiscount">check_circle</i><i *ngIf="plan.isdealsAndDiscount" class="material-icons redtext">cancel</i> Deals & Discounts</li>
-    
+
+                                                    <li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.dealsAndDiscount">check_circle</i><i *ngIf="!plan.dealsAndDiscount" class="material-icons redtext">cancel</i> Deals & Discounts</li>
                                                     <li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.pinnedReviews">check_circle</i><i *ngIf="!plan.pinnedReviews" class="material-icons redtext">cancel</i> Pinned reviews</li>
                                                     <li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedPhotos">check_circle</i><i *ngIf="!plan.unlimitedPhotos" class="material-icons redtext">cancel</i> Limited Photos</li>
-                                                    <li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimmited Album</li>
+                                                    <li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimited Album</li>
+
                                                     <li class="list-group-item" *ngIf="plan.performanceAnalytics == 0 "><i class="material-icons bluetext">report</i>  No Performance Analytics</li>
                                                     <li class="list-group-item" *ngIf="plan.performanceAnalytics == 1 "><i class="material-icons bluetext">report</i>  Basic Performance Analytics</li>
                                                     <li class="list-group-item" *ngIf="plan.performanceAnalytics == 2 "><i class="material-icons bluetext">report</i>  Advanced Performance Analytics</li>
@@ -179,10 +194,24 @@
                                                     <!-- Low Priority -->
     
                                         </ul>
-                                                <div class="panel-footer text-center">
+    
+                                            <div class="panel-footer text-center" *ngIf="user.businessInfo.pricingPlanId == plan.pricingPlanId && user.businessInfo.payFrequency == 2 ; else annual">
+                                                <button class="btn btnchoosetik disabled" type="button" (click)= "annualPrice(plan)">SELECTED
+                                                </button>
+        
+                                            </div>
+                                            
+                                            <ng-template #annual>
+                                                    <div class="panel-footer text-center">
+                                                <button class="btn btnchoosetik" type="button" (click)= "annualPrice(plan)">Select
+                                                </button>
+                                                </div>
+                                            </ng-template>
+
+                                                <!-- <div class="panel-footer text-center">
                                                     <a class="btn btnchoosetik" type="button" (click)= "annualPrice(plan)">Select
                                                     </a>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
                                     </div>

@@ -50,7 +50,9 @@
       <small class="form-text text-muted danger" *ngIf="!nameOfBusiness.valid && (nameOfBusiness.dirty || nameOfBusiness.touched)">Name is required!</small>
 
       <div class="field">
-          <select [(ngModel)] = "objVendorDetails.businessInfo.countryId " name="country_id" (change)="country()">
+          <select [(ngModel)] = "objVendorDetails.businessInfo.countryId" name="country_id"  (change)="country()">
+                  <!-- <option disabled selected>Please Select</option> -->
+                  <option selected>Choose a state</option>
                   <option   *ngFor="let country of countryArray ;let c =index"  [value]="country.countryId">
                       {{country.countryName }}
                   </option>
@@ -59,7 +61,7 @@
       </div>
       <div class="field">
           <select name="district"  [(ngModel)] = "objVendorDetails.businessInfo.districtId" (change)="districtA($event)"> 
-
+                <!-- <option disabled selected>Please Select</option> -->
               <option *ngFor="let dist of district ;let d =index" 
                   checked
                   [value]="dist.districtId"
@@ -87,7 +89,8 @@
       </div> -->
       <div class="field">
               <select [(ngModel)] = "objVendorDetails.businessInfo.suburbId"  name="sub_id" (change)="subr($event)"> 
-                  <option *ngFor="let sub of suburb ;let s =index" 
+         -->
+                <option *ngFor="let sub of suburb ;let s =index" 
                       checked [value]="sub.suburbId" >
                       {{sub.name }}
                   </option>

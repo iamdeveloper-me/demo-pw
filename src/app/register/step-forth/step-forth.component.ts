@@ -47,7 +47,7 @@ export class StepForthComponent implements OnInit {
             let obj = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/pricingplans");
             obj.subscribe(data => {
               this.planArray = data as string[]; 
-              // console.log(this.planArray);
+              console.log(this.planArray);
             });
 
             $(".Suppliertab").click(function(){
@@ -120,7 +120,7 @@ export class StepForthComponent implements OnInit {
     // });}
 
 idgenerate(users){
-  // console.log(users)
+  console.log(users)
   this.objVendorDetail.businessInfo.pricingPlanId=users.pricingPlanId;
    this.user.businessInfo.pricingPlanId = users.pricingPlanId;
    this.user.businessInfo.payFrequency = '1';

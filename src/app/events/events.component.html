@@ -37,58 +37,64 @@
 									<option>All Today</option>
 								</select>
 							</div>
-
+                            <div class="col-sm-2  col-6">
+									<select class="form-control"  name="pageSize"  [(ngModel)]="pageSize"  id="pageSize">
+										<option [value]="1">10 - 20</option>
+										<option [value]="2">20 - 30</option>
+										<option [value]="3">30 - 40</option>
+										<option [value]="5">40 - 50</option>
+										<option [value]="60">50 - 60</option>
+									</select>
+								</div>
 						</div>
 						<button type="submit"> search </button>
 					</form>
 
 			</div>
 			<div class="row eventlisting">
-				
-
-
 				<div class="container">
 					<div class="text-center">
 			
 						<!-- items being paged -->
-						<div class="col-sm-4 " *ngFor="let item of pagedItems">
-										<div class="card cardshadow" >
-											<img class="card-img-top img-fluid" [src]="item.files.path">
-											<div class="ribbon ribbon-top-right"><span>{{item.entry}}</span></div>
-											<div class="card-block text-center">
-												<div class="eventbtnholder">
-													<button class="purple-gradient borradius50per">
-														<i class="material-icons">share</i>
-													</button>
-													<button class="purple-gradient borradius50per">
-														<i class="material-icons">
-															bookmark_border
-														</i>
-													</button>
-												</div>
-												<div class="eventdate col-sm-2"  *ngFor='let Date of item.eventsDates' >
-													<span>{{Date.startDateString | date}}</span>
-													<span class="date"></span>
-												</div>
-												<div class="col-sm-10 heightadjust">
+						<div class="col-sm-4 " *ngFor="let item of searchevents.items">
 					
-													<div class="eventtitle">
-														<a routerLink="../event_list">{{item.eventTitle}}</a>
-													</div>
-													<div class="eventvenue">
-														Location is  {{item.location}}, {{item.venueName}}
-													</div>
-												</div>
-												<div class="col-sm-12 footericon">
-													<span>
-														<i class="material-icons">bookmark</i> 0
-													</span>
-													<span>
-														<i class="material-icons">visibility</i> 85
-													</span>
-												</div>
+							<div class="card cardshadow" >
+								<img class="card-img-top img-fluid" [src]="item.files.path">
+								<div class="ribbon ribbon-top-right"><span>{{item.entry}}</span></div>
+								<div class="card-block text-center">
+									<div class="eventbtnholder">
+										<button class="purple-gradient borradius50per">
+											<i class="material-icons">share</i>
+										</button>
+										<button class="purple-gradient borradius50per">
+											<i class="material-icons">
+												bookmark_border
+											</i>
+										</button>
+									</div>
+									<div class="eventdate col-sm-2"  *ngFor='let Date of item.eventsDates' >
+										<span>{{Date.startDateString | date}}</span>
+										<span class="date"></span>
+									</div>
+									<div class="col-sm-10 heightadjust">
+		
+										<div class="eventtitle">
+											<a routerLink="../event_list">{{item.eventTitle}}</a>
+										</div>
+										<div class="eventvenue">
+											Location is  {{item.location}}, {{item.venueName}}
 										</div>
 									</div>
+									<div class="col-sm-12 footericon">
+										<span>
+											<i class="material-icons">bookmark</i> 0
+										</span>
+										<span>
+											<i class="material-icons">visibility</i> 85
+										</span>
+									</div>
+								</div>
+							</div>
 						</div>
 			
 						<!-- pager -->
@@ -111,16 +117,16 @@
 						</ul>
 					</div>
 				</div>
-				<hr />
+				<hr/>
 			</div>
-			<div class="card row">
+			<!-- <div class="card row">
 				<div class="page-nation">
-					<!-- <ngb-pagination [collectionSize]="70" [(page)]="page2" [boundaryLinks]="true" class="abc123"></ngb-pagination> -->
+					<ngb-pagination [collectionSize]="70" [(page)]="page2" [boundaryLinks]="true" class="abc123"></ngb-pagination>
 					<span class="totalpage">24 Pages</span>
-					<!-- <hr>
-                  <p>Current page: {{page2}}</p> -->
+					<hr>
+                  <p>Current page: {{page2}}</p>
 				</div>
-			</div>
+			</div> -->
 		</div>
 
 		<div>

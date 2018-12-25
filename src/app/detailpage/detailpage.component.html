@@ -1,6 +1,5 @@
 <div id="wrappervendor" class="">
   <app-menu></app-menu>
-
   <div class="container mobnopadd ipad100">
 
     <div class="col-sm-12 detail_page">
@@ -16,7 +15,6 @@
     </div>
     <div class="col-sm-9 mobnopadd imgbannerboxcontainer">
       <!-- carosel slider -->
-
       <div class="boxLightStyles martop0px imgbannerbox">
         <button class="closepopup"><i class="material-icons">clear</i></button>
         <div id="detailpagecarousel" class="owl-carousel detailpagecarousel owl-loaded owl-drag">
@@ -189,51 +187,27 @@
             <div class="clearfix"></div>
             <div class="text-center showdetail">Show More</div>
             <div class="text-center showless" style="display: none;">Show less</div>
-
           </div>
         </div>
         <div class="vp_services_txt">
           <div class="servicecontainer_0 servicecontainer">
             <div class="servicerow">
               <span class="vp_services_txt_span marriager_text_without_underline">
-                {{vendorDetails.vendorCategories[0].categories.categoryName}} </span>
+                Speciality, Costs of Services $ Experienced </span>
             </div>
-            <div class="servicerow">
-              <span class="vp_services_txt_title headerWithoutTopBorder-0 large_subtext "> Type Of Establishment</span>
-            </div>
-            <div class="vp_services_txt_description vp_services_txt_description_0_0">
-              <span class="inline-stuff vp_services_txt_tic_cross" style="background-size: 15px;"> <i class="fa fa-check banq_icon"
-                  aria-hidden="true"></i> Banquet Hall </span>
-
-              <span class="inline-stuff vp_services_txt_tic_cross" style="background-size: 15px;"> <i class="fa fa-check"
-                  aria-hidden="true"></i> Restaurant / Lounge Bar </span>
-            </div>
-            <div class="servicerow">
-              <span class="vp_services_txt_title headerWithoutTopBorder-1 large_subtext ">
-                Amenities
-              </span>
-              <div class="vp_services_txt_description vp_services_txt_description_0_0">
-                <span class="inline-stuff vp_services_txt_tic_cross" style="background-size: 15px;"> <i class="fa fa-check"
-                    aria-hidden="true"></i> Internet available </span>
-
-                <span class="inline-stuff vp_services_txt_tic_cross" style="background-size: 15px;"> <i class="fa fa-check"
-                    aria-hidden="true"></i> Handicap Accessible </span>
-
-                <span class="inline-stuff vp_services_txt_tic_cross" style="background-size: 15px;"> <i class="fa fa-check"
-                    aria-hidden="true"></i> Onsite Parking </span>
+            <div class="row servicerow" *ngFor='let service of  vendorDetails.businessServices'>
+              <div class=" vp_services_txt_title headerWithoutTopBorder-0 large_subtext col-md-3"> 
+                {{service.serviceName}} ({{service.categoryName}})
               </div>
-              <div class="vp_services_txt_description vp_services_txt_description_0_0">
-                <span class="inline-stuff vp_services_txt_tic_cross" style="background-size: 15px;"> <i class="fa fa-check"
-                    aria-hidden="true"></i> Valet Parking </span>
-                <span class="inline-stuff vp_services_txt_tic_cross" style="background-size: 15px;"> <i class="fa fa-check"
-                    aria-hidden="true"></i> Service Staff Available </span>
-                <div class="vp_services_txt_seeMore marriager_text "> <a href="#"> See More </a></div>
+              <div class="col-md-3">
+                  Starting Price {{service.customFields[0].fieldValue}}
               </div>
+              
             </div>
           </div>
         </div>
       </div>
-      <div class="boxLightStyles hideShowMeNow vp_venues box_section_light r_s_pre">
+      <div style="display:none" class="boxLightStyles hideShowMeNow vp_venues box_section_light r_s_pre">
 
         <div class="heading vp_venues_txt_title large_subtext">Venues</div>
         <div class="vp_venues_txt table-responsive" style="display: block;">
@@ -570,23 +544,23 @@
                 <div class="clearfix">
 
                   <div class="owl-item">
-                    <div class="col-md-3 col-sm-3 mobpadd0">
+                    <div *ngFor='let simi_vendor of similarVendors' class="col-md-3 col-sm-3 mobpadd0">
                       <div class="mob_bot_mar">
                         <div class="item hover_effect">
-                          <img src="https://s3.us-east-2.amazonaws.com/prefect-image/detail_slide4.jpg" class="lazyOwl carousel_img tag_vendor_841 img-responsive">
+                          <img [src]='simi_vendor.profileImage' class="lazyOwl carousel_img tag_vendor_841 img-responsive">
 
                           <div class="carousel_content">
                             <div class="carousel_cat_body">
                               <span class="carousel_cat">
-                                {{vendorDetails.vendorCategories[0].categories.categoryName}}
+                                {{simi_vendor.vendorCategories[0].categories.categoryName}}
                               </span>
                             </div>
 
-                            <div class="carousel_title">
-                              Hotel Shayaji
+                            <div class="carousel_title" *ngIf='simi_vendor.vendorLocations'>
+                              {{simi_vendor.vendorLocations[0].districts.name}}
                             </div>
-                            <div class="carousel_city">
-                              <i class="fa fa-map-marker" aria-hidden="true"></i> {{vendorDetails.suburb.name}}
+                            <div class="carousel_city" *ngIf='simi_vendor.suburb'>
+                              <i class="fa fa-map-marker" aria-hidden="true"></i> {{simi_vendor.suburb.name}}
                             </div>
                             <div class="carousel_rating">
                               <span class="fa fa-star checked star_mar1"></span>
@@ -597,93 +571,6 @@
 
                             </div>
 
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="col-md-3 col-sm-3 mobpadd0 ">
-                      <div class="mob_bot_mar">
-                        <div class="item hover_effect">
-                          <img src="https://s3.us-east-2.amazonaws.com/prefect-image/detail_slide4.jpg" class="lazyOwl carousel_img tag_vendor_841 img-responsive">
-
-                          <div class="carousel_content">
-                            <div class="carousel_cat_body">
-                              <span class="carousel_cat">
-                                {{vendorDetails.vendorCategories[0].categories.categoryName}}
-                              </span>
-                            </div>
-                            <div class="carousel_title">
-                              Hotel Shayaji
-                            </div>
-                            <div class="carousel_city">
-                              <i class="fa fa-map-marker" aria-hidden="true"></i> {{vendorDetails.suburb.name}}
-                            </div>
-                            <div class="carousel_rating">
-                              <span class="fa fa-star checked star_mar1"></span>
-                              <span class="fa fa-star checked"></span>
-                              <span class="fa fa-star checked"></span>
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star"></span> 5.0
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-3 col-sm-3 mobpadd0 ">
-                      <div class="mob_bot_mar">
-                        <div class="item hover_effect">
-                          <img src="https://s3.us-east-2.amazonaws.com/prefect-image/detail_slide4.jpg" class="lazyOwl carousel_img tag_vendor_841 img-responsive">
-                          <div class="carousel_content">
-                            <div class="carousel_cat_body">
-                              <span class="carousel_cat">
-                                {{vendorDetails.vendorCategories[0].categories.categoryName}}
-                              </span>
-                            </div>
-                            <div class="carousel_title">
-                              Hotel Shayaji
-                            </div>
-                            <div class="carousel_city">
-                              <i class="fa fa-map-marker" aria-hidden="true"></i> {{vendorDetails.suburb.name}}
-                            </div>
-                            <div class="carousel_rating">
-                              <span class="fa fa-star checked star_mar1"></span>
-                              <span class="fa fa-star checked"></span>
-                              <span class="fa fa-star checked"></span>
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star"></span> 5.0
-
-                            </div>
-
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-3 mobpadd0 ">
-                      <div class="mob_bot_mar">
-                        <div class="item hover_effect">
-                          <img [src]='vendorDetails.profileImage' class="lazyOwl carousel_img tag_vendor_841 img-responsive">
-                          <div class="carousel_content">
-                            <div class="carousel_cat_body">
-                              <span class="carousel_cat" *ngIf='vendorDetails.businessServices.length>0'>
-                                {{vendorDetails.businessServices[0].serviceName}}
-                              </span>
-                            </div>
-                            <div class="carousel_title">
-                              {{vendorDetails.vendorLocations[0]}}
-                            </div>
-                            <div class="carousel_city">
-                              <i class="fa fa-map-marker" aria-hidden="true"></i> {{vendorDetails.suburb.name}}
-                            </div>
-                            <div class="carousel_rating">
-                              <span class="fa fa-star checked star_mar1"></span>
-                              <span class="fa fa-star checked"></span>
-                              <span class="fa fa-star checked"></span>
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star"></span> 5.0
-                            </div>
                           </div>
                         </div>
                       </div>

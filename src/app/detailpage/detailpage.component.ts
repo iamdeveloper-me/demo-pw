@@ -3,6 +3,7 @@ import { Http, Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { apiService } from 'app/shared/service/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MasterserviceService } from 'app/ngservices/masterservice.service';
 @Component({
   selector: 'app-detailpage',
   templateUrl: './detailpage.component.html',
@@ -17,10 +18,14 @@ export class DetailpageComponent implements OnInit {
   vendorId: number;
   vendorDetails: any;
   portfolioAndAlbumImagesTotal: number = 0;
+  similarVendors:any;
   @ViewChild('albumgallarypopup') albumgallarypopup: ElementRef;
   portfolioImages = [];
   lightBoxImages=[];
-  constructor(public http: Http, public toastr: ToastrService, private api: apiService, private activeroute: ActivatedRoute, private router: Router) { }
+  constructor(public http: Http, public toastr: ToastrService, private api: apiService,
+     private activeroute: ActivatedRoute, private router: Router, private masterservice: MasterserviceService) { 
+
+  }
   ngOnInit() {
     $.getScript('./assets/js/prism.min.js');
     $.getScript('./assets/js/owljsor.js');
@@ -30,7 +35,9 @@ export class DetailpageComponent implements OnInit {
       $("#Vediogallarypopup iframe").attr("src", $("#Vediogallarypopup iframe").attr("src"));
     });
     this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
+    this.getSimilarVendors();
     this.vendorDetails.vendorLocations.reverse();
+
     console.log(JSON.stringify(this.vendorDetails));
     this.vendorDetails.albums.forEach(element => {
       element.albumImages.forEach(img => {
@@ -44,7 +51,7 @@ export class DetailpageComponent implements OnInit {
     this.vendorDetails.portfolio.forEach(element => {
       this.portfolioImages.push(element.files.path);
     });
-
+    
     console.log(JSON.stringify(this.vendorDetails));
   }
   review = { rating: '', comments: "", rateVendorID: 'a96129c3-8861-43aa-8bc9-1c155f1ffd79' }
@@ -88,5 +95,21 @@ export class DetailpageComponent implements OnInit {
     sessionStorage.setItem('Vendorimages',JSON.stringify(this.vendorDetails.albums));
     this.router.navigateByUrl('/home/Photogallary');
     
+  }
+  getSimilarVendors(){
+    let CatId=[];
+    this.vendorDetails.vendorCategories.forEach(element => {
+      CatId.push(element.categoryId);
+    });
+   let obj={
+     vendoreId: this.vendorDetails.vendorId,
+     categoryId:CatId}
+     debugger;
+     
+   this.masterservice.getSimilarVendors(obj).subscribe(res=>{
+     this.similarVendors=res;
+     
+     console.log(JSON.stringify(this.similarVendors));
+   })
   }
 }

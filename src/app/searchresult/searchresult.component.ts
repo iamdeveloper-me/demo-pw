@@ -22,8 +22,10 @@ export class SearchresultComponent implements OnInit {
   objSearchResultItems:any;
   locationFilterParam:string='';
   categoryFilterParam:string='';
+  pageNumber=0;
+  pageSize:number=3;
+  disableLoadingButton=true;
 
-  
   constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService, private api: apiService) {  
 
     this.objSearchFilter=new SearchFilterVm();
@@ -84,7 +86,7 @@ export class SearchresultComponent implements OnInit {
      this._masterservice.getAllCategories().subscribe(res=>{
       this.categories=res;
       if(this.objSearchFilter.categoryId>0){
-        this.categories=this.categories.filter(c=>c.categoryId==this.objSearchFilter.categoryId);
+       // this.categories=this.categories.filter(c=>c.categoryId==this.objSearchFilter.categoryId);
         this.categories.forEach(element => {
           if(element.categoryId==this.objSearchFilter.categoryId){
           element.isSelect=true;}else{element.isSelect=false;}
@@ -141,6 +143,7 @@ export class SearchresultComponent implements OnInit {
     });
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
       this.objSearchResultItems = res;
+      this.paginate(this.pageSize);
     })
   }
   filterLocations(ev){
@@ -149,6 +152,17 @@ export class SearchresultComponent implements OnInit {
   }
   findVendorRating(reviews,rating){
     return reviews*rating
+  }
+   paginate (pageSize) {
+     this.disableLoadingButton=false;
+   let c=this.objSearchResultItems.items.slice(this.pageNumber * pageSize, (this.pageNumber + 1) * pageSize);
+   if(c.length<this.pageSize){
+    this.disableLoadingButton=true;
+   }
+    c.forEach(element => {
+    this.collection.push(element); 
+   });
+   this.pageNumber+=1;
   }
   
    // Variable Declaration

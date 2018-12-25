@@ -23,5 +23,8 @@ export class MasterserviceService {
    getFilterResult(obj){
     return this.apiservice.postData(this.apiservice.serverPath + 'PerfectWedding/searchlisting',obj);
    }
+   getSimilarVendors(obj){
+  return this.apiservice.postData(this.apiservice.serverPath + 'PerfectWedding/similarvendors',obj);     
+   }
    
 }

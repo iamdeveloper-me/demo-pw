@@ -3,6 +3,9 @@ import { apiService } from '../shared/service/api.service';
 import { MasterserviceService } from '../ngservices/masterservice.service';
 import { PagerService } from '../_services';
 import 'rxjs/add/operator/map'
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
@@ -10,8 +13,18 @@ import 'rxjs/add/operator/map'
 })
 export class EventsComponent implements OnInit {
 
-  constructor( private pagerService: PagerService,private apiService: apiService,private masterservice: MasterserviceService ) { }
+  constructor( public http:Http, private pagerService: PagerService,private apiService: apiService,private masterservice: MasterserviceService ) { }
   locations = [];
+  private allItems: any[];
+  location:string = 'all'
+  eventType:string = 'All'
+  dates:string =  "All"
+
+    // pager object
+    pager: any = {};
+
+    // paged items
+    pagedItems: any[];
   searchevents:any = {};
   page = []
   pagesSelected = 10000
@@ -21,56 +34,71 @@ export class EventsComponent implements OnInit {
  // private allItems: any[];
   total_item_page
   page_sizzze  = 1;
-  pager: any = {};
   searchQuery: ""
     
-      eventType: "Free"
-      dates: "All"
 
-  pagedItems: any[];
   ngOnInit() {
 
-    this.event(this);
-    this.location();
+    this.locationD();
+    this.http.post(this.apiService.serverPath+'Home/searchevents',{
+      "page": 0,
+      "pageSize": 100000,
+      "sortDir": "",
+      "sortedBy": "asc",
+      "searchQuery": "",
+      "location": "",
+      "eventType": "all",
+      "dates": "all"
+    })
+    .map((response: Response) => response.json())
+    .subscribe(data => {
+        // set items to json response
+        debugger
+        this.allItems = data['items']
+
+        // initialize to page 1
+        this.setPage(1);
+    });
+    
   }
   page2 = 4;
   event(list){
-    console.log(list.value);
-  
+  console.log(list.value)
 
-    this.apiService.postData(this.apiService.serverPath+'Home/searchevents',{
+    this.http.post(this.apiService.serverPath+'Home/searchevents',{
       page: 0,
-      pageSize: this.pagesSelected,
+      pageSize: 1000000,
       sortDir: "",
       sortedBy: "asc",
-      searchQuery: "",
-      location: "",
-      eventType: "Free",
-      dates: "All"
-    }).subscribe(data => {
-          
-          this.searchevents = data
-          console.log( this.searchevents)
+      searchQuery: list.value.searchQuery,
+      location: list.value.location,
+      eventType: list.value.eventType,
+      dates: list.value.dates
+    })
+    .map((response: Response) => response.json())
+    .subscribe(data => {
+        // set items to json response
+        debugger
+        this.allItems = data['items']
 
-          this.setPage(1 ,this.searchevents.totalPages);
-        });
-    this.location();
+        // initialize to page 1
+        this.setPage(1);
+    });
+    this.locationD()
   }
 
 
-  setPage(page: number,a) {
+  setPage(page: number) {
     // get pager object from service
-    console.log(page)
-    this.page_sizzze = page
-    this.pager = this.pagerService.getPager(a, page);
-    //console.log(this.pager)
+    this.pager = this.pagerService.getPagerEvent(this.allItems.length, page);
+
     // get current page of items
-    this.pagedItems = a.slice(this.pager.startIndex, this.pager.endIndex + 1);
-  }
+    this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
+}
   
 
 
-  location(){ 
+  locationD(){ 
     this.masterservice.getAllLocation().subscribe(data => {
      console.log(data);
      this.locations = data;

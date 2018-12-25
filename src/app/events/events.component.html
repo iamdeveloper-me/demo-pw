@@ -10,44 +10,47 @@
 				<h1>Find your next experience</h1>
 				    <form (ngSubmit)="event(list)" #list="ngForm">
 						<div class="form-group row">
-							<div class="col-sm-4">
+							<div class="col-sm-3">
 								<input [(ngModel)]="searchQuery"  type="text" name="searchQuery" class="form-control" placeholder="Search Events">
 							</div>
 							<div class="col-sm-3">
 								<select class="form-control" name="location"  [(ngModel)]="location"  id="location">
-									<option > All Location</option>
+									<option selected>All Location</option>
 									<option *ngFor='let list_locations of locations'> {{list_locations.name}}</option>
 								</select>
 							</div>
 
-							<div class="col-sm-3 col-6">
+							<div class="col-sm-2 col-6">
 								<select class="form-control" name="eventType"  [(ngModel)]="eventType"  id="eventType">
-									<option>Event Type</option>
-									<option>All</option>
+								
+									<option value="All" selected>All Events</option>
 									<option>Free</option>
 									<option>Paid</option>
 								</select>
 							</div>
 							<div class="col-sm-2  col-6">
 								<select class="form-control"  name="dates"  [(ngModel)]="dates"  id="dates">
-									<option>All Dates</option>
-									<option>Next Month</option>
-									<option>This Week</option>
-									<option>Tomorrow</option>
-									<option>All Today</option>
+									<option   value="All" selected>All Dates</option>
+									<option >NextMonth</option>
+									<option >ThisWeek</option>
+									<option >Tomorrow</option>
+									<option >Today</option>
 								</select>
 							</div>
-                            <div class="col-sm-2  col-6">
+                            <!-- <div class="col-sm-2  col-6">
 									<select class="form-control"  name="pageSize"  [(ngModel)]="pageSize"  id="pageSize">
-										<option [value]="1">10 - 20</option>
+										<option selected [value]="1">10 - 20</option>
 										<option [value]="2">20 - 30</option>
 										<option [value]="3">30 - 40</option>
 										<option [value]="5">40 - 50</option>
 										<option [value]="60">50 - 60</option>
 									</select>
+								</div> -->
+								<div class="col-sm-2  col-6">
+										<button type="submit" class="eventsearchbtn"> search </button>
 								</div>
 						</div>
-						<button type="submit"> search </button>
+						
 					</form>
 
 			</div>
@@ -56,10 +59,11 @@
 					<div class="text-center">
 			
 						<!-- items being paged -->
-						<div class="col-sm-4 " *ngFor="let item of searchevents.items">
-					
+						<!-- {{pagedItems?.length}} -->
+						<div class="col-sm-4 " *ngFor="let item of pagedItems">
+
 							<div class="card cardshadow" >
-								<img class="card-img-top img-fluid" [src]="item.files.path">
+								<img class="card-img-top img-fluid eventimg" [src]="item.files.path">
 								<div class="ribbon ribbon-top-right"><span>{{item.entry}}</span></div>
 								<div class="card-block text-center">
 									<div class="eventbtnholder">
@@ -94,9 +98,9 @@
 										</span>
 									</div>
 								</div>
-							</div>
+							</div> 
 						</div>
-			
+			<div class="clearfix"></div>
 						<!-- pager -->
 						<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
 							<li [ngClass]="{disabled:pager.currentPage === 1}">

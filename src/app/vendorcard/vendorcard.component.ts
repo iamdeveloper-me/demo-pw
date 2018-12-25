@@ -88,27 +88,32 @@ export class VendorcardComponent implements OnInit {
     )
   }
 
-  Categories_each(c){
-  
-    let catId= c.categoryId;
-    let CatName= c.categoryName;
+  Categories_each(c,isAllSupplier,isDreamLocation){
+    let catId=0;
+    let CatName='';
+    if(c){
+     catId= c.categoryId;
+     CatName= c.categoryName;
+  }
     console.log(c)
-    this.router.navigate(['home/searchresult',catId+'/'+CatName]);
+    this.router.navigate(['home/searchresult',catId+'/'+CatName+'/'+isAllSupplier+'/'+isDreamLocation]);
   }
 
-  supplier_all(c){
+  // supplier_all(c){
    
-    let catId= c.categoryId;
-    let CatName= c.categoryName;
-    console.log(c)
-    this.router.navigate(['home/searchresult',catId+'/'+CatName]);
-  }
+  //   let catId= c.categoryId;
+  //   let CatName= c.categoryName;
+  //   alert("fdgdfg");
+  //   console.log(c)
+  //   this.router.navigate(['home/searchresult',true]);
+  // }
 
-  location_all(c){
+  // location_all(c){
    
-    let catId= c.categoryId;
-    let CatName= c.categoryName;
-    console.log(c)
-   //this.router.navigate(['home/searchresult',catId+'/'+CatName]);
-  }
+  //   let catId= c.categoryId;
+  //   let CatName= c.categoryName;
+  //   alert("location")
+  //   console.log(c)
+  //   this.router.navigate(['home/searchresult',true]);
+  // }
 }

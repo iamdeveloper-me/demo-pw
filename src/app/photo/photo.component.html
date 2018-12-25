@@ -23,113 +23,87 @@
 
 </section>
 <div class="container-fluid">
-    <section id="wrapper">
+
+    <div>
         <div class="container">
-            <!-- <div class="imgholder"> 
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyeBgPnINh34-bI-14ewJjHNuvHKm9p2ggieArxgy3xWpcaI7bKg" />
-             
-                <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-            </div>
-            <div class="imgholder  hideme"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2KOaW9EgVltieFa_HjNco2qFlK6nOTC98L_eDRz5d65c_XXFNug" />
-        <div class="meta">
-                <p>hui hu</p>
-                <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-            </div> 
-            </div> -->
-            <!-- <div style="position:relative;min-height:100vh;" id="categoryProductContainer">
-                <div class="span2 pcon prodcont actioninside new" data-toggle="modal" data-target="#myModal">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2KOaW9EgVltieFa_HjNco2qFlK6nOTC98L_eDRz5d65c_XXFNug" />
-                    <div class="clearfix"></div>
-                    <div class="photodetail">
-                        <p class="detaildiv">
-                            <span>Business Name</span>
-                            <span><i class="fa fa-map-marker"></i>Location</span>
-                        </p>
-                        <div class="linkdiv">
-                                <i class="material-icons">favorite_border</i>
-                                &nbsp;<i class="material-icons">share</i>
-                                <div class="clearfix"></div>
-                                <span class="colortag" style="background:#ff0000;"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="span2 pcon prodcont actioninside new" >
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIRwqE8_ew99BGr2SSaCrSGj3vzVnoPudfbhgxbiTc-aFHDXyu" />
-                    <div class="clearfix"></div>
-                    <div class="photodetail">
-                        <p class="detaildiv">
-                            <span>Business Name</span>
-                            <span><i class="fa fa-map-marker"></i>Location</span>
-                        </p>
-                        <div class="linkdiv">
-                                <i class="material-icons">favorite_border</i>
-                                &nbsp;<i class="material-icons">share</i>
-                                <div class="clearfix"></div>
-                                <span class="colortag" style="background:#ff0000;"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="span2 pcon prodcont actioninside new" >
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-8AI7ALMwWB3Dy1LvsTOefjhkcDY2fejKRiNxK0w1VYlDFpLqhw" />
-                    <div class="clearfix"></div>
-                    <div class="photodetail">
-                        <p class="detaildiv">
-                            <span>Business Name</span>
-                            <span><i class="fa fa-map-marker"></i>Location</span>
-                        </p>
-                        <div class="linkdiv">
-                                <i class="material-icons">favorite_border</i>
-                                &nbsp;<i class="material-icons">share</i>
-                                <div class="clearfix"></div>
-                                <span class="colortag" style="background:#ff0000;"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="span2 pcon prodcont actioninside new" >
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2KOaW9EgVltieFa_HjNco2qFlK6nOTC98L_eDRz5d65c_XXFNug" />
-                    <div class="clearfix"></div>
-                    <div class="photodetail">
-                        <p class="detaildiv">
-                            <span>Business Name</span>
-                            <span><i class="fa fa-map-marker"></i>Location</span>
-                        </p>
-                        <div class="linkdiv">
-                                <i class="material-icons">favorite_border</i>
-                                &nbsp;<i class="material-icons">share</i>
-                                <div class="clearfix"></div>
-                                <span class="colortag" style="background:#ff0000;"></span>
-                        </div>
-                    </div>
-                </div>
-             
-            </div> -->
-            <div style="position:relative;min-height:100vh;" id="categoryProductContainer"  >
-                <div class="span2 pcon prodcont actioninside new" *ngFor='let listall_categories of ALL_categories.items ' data-toggle="modal" data-target="#myModal">
-                    <div (click) = "popup(listall_categories)">
-                        <img [src]="listall_categories.imageURL" />
-                        <div class="clearfix"></div>
-                        <div class="photodetail">
-                            <p class="detaildiv">
-                                <span>Business Name</span>
-                                <span><i class="fa fa-map-marker"></i>Location</span>
-                            </p>
-                            <div class="linkdiv">
-                                    <i class="material-icons">favorite_border</i>
-                                    &nbsp;<i class="material-icons">share</i>
+            <div class="text-center">
+                <h1>Angular 2 - Pagination Example with logic like Google</h1>
+     
+                <!-- items being paged -->
+                <!-- <div *ngFor="let item of pagedItems">{{item.id}}</div> -->
+                <section id="wrapper">
+                    <div class="container">
+                        <div style="position:relative;min-height:100vh;" id="categoryProductContainer"  >
+                            <div class="span2 pcon prodcont actioninside new" *ngFor="let item of pagedItems" data-toggle="modal" data-target="#myModal">
+                                <div (click) = "popup(listall_categories)">
+                                    <img [src]="item.imageURL" />
                                     <div class="clearfix"></div>
-                                    <span class="colortag" style="background:#ff0000;"></span>
+                                    <div class="photodetail">
+                                        <p class="detaildiv">
+                                            <span>Business Name {{item.nameOfBusiness}}</span>
+                                            <span><i class="fa fa-map-marker"></i>Location {{item.district}}</span>
+                                        </p>
+                                        <div class="linkdiv">
+                                                <i class="material-icons">favorite_border</i>
+                                                &nbsp;<i class="material-icons">share</i>
+                                                <div class="clearfix"></div>
+                                                <span class="colortag" style="background:#ff0000;">{{item?.colorTags}}</span>
+                                        </div>
+                                    </div>
+                                </div>   
                             </div>
                         </div>
-                    </div>   
+                    </div>
+                </section>
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                
+                          <!-- Modal content--><a href="#" class="close" data-dismiss="modal"> </a>
+                        <img class="popupimg" [src]="pho_data.imageURL">
+                            <div class="modal-footer" style="background-color: white;">
+                                <div class="popupdetail">
+                                    <div class="col-sm-6 text-left">
+                                            <h4>{{pho_data.nameOfBusiness}} </h4>
+                                            <p>
+                                                <span><i class="fa fa-map-marker"></i> {{pho_data.district}}</span>
+                                            </p>
+                                    </div>
+                                <div class="col-sm-6 text-right">
+                                        <i class="material-icons setlink">favorite_border</i>
+                                        &nbsp;
+                                        <i class="material-icons setlink">share</i>
+                                        <div class="clearfix"></div>
+                                        <span class="colortag" style="background:#ff0000;"></span>
+                                        <span class="colortag" style="background:#001aff;"></span>
+                                        <span class="colortag" style="background:#88ff00;"></span>
+                                  
+                                </div>
+                                </div>
+                            </div>
+                    </div>
                 </div>
+                <!-- pager -->
+                <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                    <li [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a (click)="setPage(1)">First</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                    </li>
+                    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a (click)="setPage(page)">{{page}}</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a (click)="setPage(pager.totalPages)">Last</a>
+                    </li>
+                </ul>
             </div>
-        
         </div>
-    </section>
-
+    </div>
+    
 </div>   
 
 <div class="clearfix"></div>
@@ -139,33 +113,7 @@
 
 
 
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
 
-          <!-- Modal content--><a href="#" class="close" data-dismiss="modal"> </a>
-        <img class="popupimg" [src]="pho_data.imageURL">
-            <div class="modal-footer" style="background-color: white;">
-                <div class="popupdetail">
-                    <div class="col-sm-6 text-left">
-                            <h4>{{pho_data.nameOfBusiness}} </h4>
-                            <p>
-                                <span><i class="fa fa-map-marker"></i> {{pho_data.district}}</span>
-                            </p>
-                    </div>
-                <div class="col-sm-6 text-right">
-                        <i class="material-icons setlink">favorite_border</i>
-                        &nbsp;
-                        <i class="material-icons setlink">share</i>
-                        <div class="clearfix"></div>
-                        <span class="colortag" style="background:#ff0000;"></span>
-                        <span class="colortag" style="background:#001aff;"></span>
-                        <span class="colortag" style="background:#88ff00;"></span>
-                  
-                </div>
-                </div>
-            </div>
-    </div>
-</div>
 
 
 

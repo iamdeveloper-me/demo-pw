@@ -4,13 +4,12 @@
       <div class="container search-div">
          <div class="select">
             <div class="searchtopbar">
-               <form (ngSubmit)="search_tips(f)" #f="ngForm">
+               <!-- <form (ngSubmit)="search_tips(f)" #f="ngForm">
                      <div class="row">
-                        <!-- <form> -->
                            <div class="col-md-2 col-sm-4 col-4">
-                              <!-- <select name="" id=""> -->
+                              <select name="" id="">
                               <select class="cityinput2" ngModel name="blogTopicId" #Category="ngModel">
-                              <!-- <option value="default">All Category</option> -->
+                              <option value="default">All Category</option>
                               <option   *ngFor="let tips of tipsArray" [value] = "tips.blogTopicId">{{tips?.topic}}</option>
                           
                               </select>
@@ -18,11 +17,26 @@
                            <div class="col-md-10 Search_img col-sm-8 col-8 Search_img">
                               <input type="text" [(ngModel)] = "searchquery" name="searchquery" placeholder="Search Category" class="searchinput">
                               <input type="submit" class="search-button" (click)="onSearch(f)">
-                              <!-- <input type="text" placeholder="Search.." name="search">
-                           <button type="submit"><i class="fa fa-search"></i></button> -->
+                              <input type="text" placeholder="Search.." name="search">
+                           <button type="submit"><i class="fa fa-search"></i></button>
                            </div>
                      </div>
-            </form>
+            </form> -->
+
+            <!-- <form (ngSubmit)="search_tips(f)" #f="ngForm">
+               <div class="row">
+                     <div class="col-md-2 col-sm-4 col-4">
+                        <select class="cityinput2" ngModel name="blogTopicId" #Category="ngModel">
+                        <option   *ngFor="let tips of tipsArray" [value] = "tips.blogTopicId">{{tips?.topic}}</option>
+                    
+                        </select>
+                     </div>
+                     <div class="col-md-10 Search_img col-sm-8 col-8 Search_img">
+                        <input type="text" [(ngModel)] = "searchquery" name="searchquery" placeholder="Search Category" class="searchinput">
+                        <input type="submit" class="search-button" (click)="onSearch(f)">
+                     </div>
+               </div>
+      </form> -->
             </div>
 
          </div>

@@ -15,16 +15,14 @@
                           
                               </select>
                            </div>
-                        
+                           <div class="col-md-10 Search_img col-sm-8 col-8 Search_img">
+                              <input type="text" [(ngModel)] = "searchquery" name="searchquery" placeholder="Search Category" class="searchinput">
+                              <input type="submit" class="search-button" (click)="onSearch(f)">
+                              <!-- <input type="text" placeholder="Search.." name="search">
+                           <button type="submit"><i class="fa fa-search"></i></button> -->
+                           </div>
                      </div>
-<div class="col-md-10 Search_img col-sm-8 col-8 Search_img">
-                        <!-- <input type="text" name="" placeholder="Search Category" class="searchinput"> -->
-                        <input type="submit" class="search-button">
-                        <!-- <input type="text" placeholder="Search.." name="search">
-         <button type="submit"><i class="fa fa-search"></i></button> -->
-                     </div>
-                  </form>
-               </div>
+            </form>
             </div>
 
          </div>

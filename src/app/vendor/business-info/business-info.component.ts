@@ -388,14 +388,13 @@ export class BusinessInfoComponent implements OnInit {
     upForm(e,data){
           console.log(e.value);
           console.log(data);
-           
          this.vendor.businessDetails = this.businessDetails.nativeElement.value;
          this.vendor.nameOfBusiness = this.nameOfBusiness.nativeElement.value;
          
          if(this.modelfield.fbAvailable){
           this.vendor.facebookURL = this.fburl.nativeElement.value;
          }else{
-           e.value.facebookURL='None';
+           e.value.facebookURL='http://facebook.com';
         }
          if(this.modelfield.twitterAvailable){
           this.vendor.twitterURL = this.twurl.nativeElement.value;
@@ -560,146 +559,154 @@ export class BusinessInfoComponent implements OnInit {
                     this.pageInitialize();
     } 
     
-    // switch_fbAvailable(e){
-    //   if(e==true){
-    //     this.modelfield.facebookURL="";
-    //     this.disabletxtFburl=false;
-    //   }else{
-    //     this.modelfield.facebookURL="None";
-    //     this.disabletxtFburl=true;
-    //   }
-    //     this.isValidUrl(this.modelfield.facebookURL,'Fb');
-    //   }
-
     switch_fbAvailable(e){
-    if(e==true){
 
-      if(this.modelfield.facebookURL=this.modelfield.facebookURL){
-        this.modelfield.facebookURL;
-       }else{
-        this.modelfield.facebookURL="None";
-       }
-     // this.modelfield.facebookURL="";
-      this.disabletxtFburl=false;
-    }else{
-      // this.modelfield.facebookURL="None";
-      this.disabletxtFburl=true;
-    }
-      this.isValidUrl(this.modelfield.facebookURL,'Fb');
-    }
-
-      //     switch_twitterAvailable(e){
-      // if(e==true){
-      //   this.modelfield.twitterURL="";
-      //   this.disabletxtTwurl=false;
-      // }else{
-      //   this.modelfield.twitterURL="None";
-      //   this.disabletxtTwurl=true;
-      // }
-      //  this.isValidUrl(this.modelfield.twitterURL,'Tw');
-      // }
-
-    switch_twitterAvailable(e){
-    if(e==true){
-
-      if(this.modelfield.twitterURL=this.modelfield.twitterURL){
-        this.modelfield.twitterURL;
-       }else{
-        this.modelfield.twitterURL="None";
-       }
-     // this.modelfield.twitterURL="";
-      this.disabletxtTwurl=false;
-    }else{
-      // this.modelfield.twitterURL="None";
-      this.disabletxtTwurl=true;
-    }
-      this.isValidUrl(this.modelfield.twitterURL,'Tw');
-    }
-
-      //     switch_googleAvailable(e){
-      // if(e==true){
-      //   this.modelfield.googleURL="";
-      //   this.disabletxtGoogeurl=false;
-      // }else{
-      //   this.modelfield.googleURL="None";
-      //   this.disabletxtGoogeurl=true;
-      // }
-      // this.isValidUrl(this.modelfield.googleURL,'Google');
-      // }
-
-
-    switch_googleAvailable(e){
       if(e==true){
-        if(this.modelfield.googleURL=this.modelfield.googleURL){
-          this.modelfield.googleURL;
-         }else{
-          this.modelfield.googleURL="None";
-         }
-      // this.modelfield.googleURL="";
-      this.disabletxtGoogeurl=false;
+           debugger;
+        this.modelfield.facebookURL="";
+        this.disabletxtFburl=false;
       }else{
+        this.modelfield.facebookURL="None";
+        this.disabletxtFburl=true;
+      }
+        this.isValidUrl(this.modelfield.facebookURL,'Fb');
+      }
 
-        // this.modelfield.googleURL="None";
+    // switch_fbAvailable(e){
+    // if(e==true){
+
+    //   if(this.modelfield.facebookURL=this.modelfield.facebookURL){
+    //     this.modelfield.facebookURL;
+    //     this.disabletxtTwurl=false;
+    //    }else{
+    //     this.modelfield.facebookURL="None";
+    //    }
+    //  // this.modelfield.facebookURL="";
+    //   this.disabletxtFburl=false;
+    // }else{
+    //   // this.modelfield.facebookURL="None";
+    //   this.disabletxtFburl=true;
+    // }
+    //   this.isValidUrl(this.modelfield.facebookURL,'Fb');
+    // }
+
+          switch_twitterAvailable(e){
+      if(e==true){
+        this.modelfield.twitterURL="";
+        this.disabletxtTwurl=false;
+      }else{
+        this.modelfield.twitterURL="None";
+        this.disabletxtTwurl=true;
+      }
+       this.isValidUrl(this.modelfield.twitterURL,'Tw');
+      }
+
+    // switch_twitterAvailable(e){
+    // if(e==true){
+
+    //   if(this.modelfield.twitterURL=this.modelfield.twitterURL){
+    //     this.modelfield.twitterURL;
+    //     this.disabletxtTwurl=false;
+    //    }else{
+    //     this.modelfield.twitterURL="None";
+    //    }
+    //  // this.modelfield.twitterURL="";
+    //   this.disabletxtTwurl=false;
+    // }else{
+    //   // this.modelfield.twitterURL="None";
+    //   this.disabletxtTwurl=true;
+    // }
+    //   this.isValidUrl(this.modelfield.twitterURL,'Tw');
+    // }
+
+          switch_googleAvailable(e){
+      if(e==true){
+        this.modelfield.googleURL="";
+        this.disabletxtGoogeurl=false;
+      }else{
+        this.modelfield.googleURL="None";
         this.disabletxtGoogeurl=true;
       }
       this.isValidUrl(this.modelfield.googleURL,'Google');
-    }
+      }
 
-    //       switch_instaAvailable(e){
+
+    // switch_googleAvailable(e){
     //   if(e==true){
-    //     this.modelfield.instalURL="";
-    //     this.disabletxtInstaUrl=false;
+    //     if(this.modelfield.googleURL=this.modelfield.googleURL){
+    //       this.modelfield.googleURL;
+    //       this.disabletxtTwurl=false;
+    //      }else{
+    //       this.modelfield.googleURL="None";
+    //      }
+    //   // this.modelfield.googleURL="";
+    //   this.disabletxtGoogeurl=false;
     //   }else{
-    //     this.modelfield.instalURL="None";
-    //     this.disabletxtInstaUrl=true;
-    //   }
-    //  this.isValidUrl(this.modelfield.instalURL,'Insta');
-    //   }
 
+    //     // this.modelfield.googleURL="None";
+    //     this.disabletxtGoogeurl=true;
+    //   }
+    //   this.isValidUrl(this.modelfield.googleURL,'Google');
+    // }
 
-    switch_instaAvailable(e){
+          switch_instaAvailable(e){
       if(e==true){
-        if(this.modelfield.instalURL=this.modelfield.instalURL){
-          this.modelfield.instalURL;
-         }else{
-          this.modelfield.instalURL="None";
-         }
-        // this.modelfield.instalURL="";
-      this.disabletxtInstaUrl=false;
+        this.modelfield.instalURL="";
+        this.disabletxtInstaUrl=false;
       }else{
-        // this.modelfield.instalURL="None";
+        this.modelfield.instalURL="None";
         this.disabletxtInstaUrl=true;
       }
-      this.isValidUrl(this.modelfield.instalURL,'Insta');
-    }
-
-      //     switch_perfectWeddingAvailable(e){
-      // if(e==true){
-      //   this.modelfield.perfectWeddingURL="";
-      //   this.disabletxtOtherUrl=false;
-      // }else{
-      //   this.modelfield.perfectWeddingURL="None";
-      //   this.disabletxtOtherUrl=true;
-      // }
-      // this.isValidUrl(this.modelfield.perfectWeddingURL,'Other');
-      // }
+     this.isValidUrl(this.modelfield.instalURL,'Insta');
+      }
 
 
-    switch_perfectWeddingAvailable(e){
+    // switch_instaAvailable(e){
+    //   if(e==true){
+    //     if(this.modelfield.instalURL=this.modelfield.instalURL){
+    //       this.modelfield.instalURL;
+    //       this.disabletxtTwurl=false;
+    //       this.disabletxtFburl=false;
+    //      }else{
+    //       this.modelfield.instalURL="None";
+    //      }
+    //     // this.modelfield.instalURL="";
+    //   this.disabletxtInstaUrl=false;
+    //   }else{
+    //     // this.modelfield.instalURL="None";
+    //     this.disabletxtInstaUrl=true;
+    //   }
+    //   this.isValidUrl(this.modelfield.instalURL,'Insta');
+    // }
+
+          switch_perfectWeddingAvailable(e){
       if(e==true){
-        if(this.modelfield.perfectWeddingURL=this.modelfield.perfectWeddingURL){
-          this.modelfield.perfectWeddingURL;
-         }else{
-          this.modelfield.perfectWeddingURL="None";
-         }
-        // this.modelfield.perfectWeddingURL="";
-      this.disabletxtOtherUrl=false;
+        this.modelfield.perfectWeddingURL="";
+        this.disabletxtOtherUrl=false;
       }else{
-        // this.modelfield.perfectWeddingURL="None";
+        this.modelfield.perfectWeddingURL="None";
         this.disabletxtOtherUrl=true;
       }
       this.isValidUrl(this.modelfield.perfectWeddingURL,'Other');
-    }
+      }
+
+
+    // switch_perfectWeddingAvailable(e){
+    //   if(e==true){
+    //     if(this.modelfield.perfectWeddingURL=this.modelfield.perfectWeddingURL){
+    //       this.modelfield.perfectWeddingURL;
+    //       this.disabletxtTwurl=false;
+    //      }else{
+    //       this.modelfield.perfectWeddingURL="None";
+    //      }
+    //     // this.modelfield.perfectWeddingURL="";
+    //   this.disabletxtOtherUrl=false;
+    //   }else{
+    //     // this.modelfield.perfectWeddingURL="None";
+    //     this.disabletxtOtherUrl=true;
+    //   }
+    //   this.isValidUrl(this.modelfield.perfectWeddingURL,'Other');
+    // }
 
 isValidUrl(url, urlType): boolean{
   let matcher = /^(?:\w+:)?\/\/([^\s\.]+\.\S{2}|localhost[\:?\d]*)\S*$/;

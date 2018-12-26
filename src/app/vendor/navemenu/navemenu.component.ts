@@ -268,9 +268,9 @@ export class NavemenuComponent implements OnChanges,OnInit   {
   typeLogout() {
     this.cservice.typeLogout();
 }
-ngOnChanges(){
-  alert("hi")
-};
+// ngOnChanges(){
+//   alert("hi")
+// };
 
   
 search(newObj){

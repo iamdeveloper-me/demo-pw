@@ -165,7 +165,8 @@ background: #e72e77;
     display: block;
     max-width: 100%;
     width:inherit;
-    max-height: 175px;
+    height: 175px;
+    object-fit:cover;
 }
 .item.list-group-item:before, .item.list-group-item:after
 {
@@ -220,6 +221,18 @@ margin-top:-35px;
 }
 .imgnum span i{
   float:left;
+}
+.imgnum span span{
+  background: transparent;
+  overflow: hidden;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  border-radius: 0px;
+  box-shadow: none;
+  float: right;
+  line-height: 24px;
+  margin-left: 5px;
 }
 #products .list-group-item .card .thumbnail .imgnum{
   max-width:260px!important;
@@ -399,7 +412,7 @@ display: block;
   font-weight: bold;
 }
 .cityscroll22{
-  padding:10px;
+  padding:10px 0px;
 }
 .cityscroll22 .material-icons{
   font-size: 20px;
@@ -803,9 +816,10 @@ margin-bottom:30px;
 
 
   .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
-    max-height: 175px;
+   height: 175px;
     width: 100%;
     border-radius: 0px;
+    object-fit:cover;
   }
   .badge{
     width: 20px;
@@ -1073,6 +1087,9 @@ margin-bottom:30px;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 14px;
+}
+.funkyradio-info{
+font-size:14px;
 }
 .funkyradio-info i img{
   max-width: 20px;

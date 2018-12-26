@@ -89,7 +89,7 @@
       <div class="container-fluid nopadd">
         <div class="badgecontainer">
           <span class="badge badge-primary badge-labeled">
-            {{objSearchResultItems.totalCount}} Results
+            {{objSearchResultItems.totalCount?objSearchResultItems.totalCount:0}} Results
           </span>
          
           <select (change)='getSearchFilterResult()' style="display:none" [(ngModel)]='objSearchlistvm.pageSize'>
@@ -99,11 +99,11 @@
           </select>
         </div>
         <div class="clearfix"></div>
-          <ol class="breadcrumb breadcrumbcontainer ">
+          <!-- <ol class="breadcrumb breadcrumbcontainer ">
             <li><a href="#">Home</a></li>
             <li><a href="#">Wedding Suppliers</a></li>
             <li class="active">Photography, Videography</li>
-          </ol>
+          </ol> -->
 
            <div class="btn-group">
             <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
@@ -147,16 +147,17 @@
 						  <div id="collapse0" class="panel-collapse collapse ">
 
 							<div>
-                <input type="text" [(ngModel)]='locationFilterParam' placeholder="Type the city"/>
-                {{locationFilterParam}}
+                <input type="text" [(ngModel)]='locationFilterParam' placeholder="Type the city" class="cityinput"/>
+                <!-- {{locationFilterParam}} -->
+                
                 <!-- <i class="material-icons">search</i> -->
               </div>
 
 							<div class="cityscroll22">
                   <div class="funkyradio">
                     <div class="funkyradio-info" *ngFor='let l of locations| custompipe:locationFilterParam'>
-                      <input type="checkbox" (change)='getSearchFilterResult()' [(ngModel)]='l.isSelect'/>
-                        <i class="material-icons">location_on</i> {{l.name}}
+                      <input type="checkbox" id='{{l.name}}' (change)='getSearchFilterResult()' [(ngModel)]='l.isSelect'/>
+                        <label for='{{l.name}}'><i class="material-icons">location_on</i> {{l.name}}</label>
                     </div>
                   </div>
 							</div>			
@@ -179,7 +180,7 @@
                   <div class="funkyradio">
                     <div class="funkyradio-info">
                       <input type="checkbox" name="checkbox" (change)='getSearchFilterResult()' id="check1"/>
-                        < 50000
+                      <label>< 50000</label>  
                     </div>
                   </div>
   						</div>
@@ -206,11 +207,11 @@
                 <div class="cityscroll22"> 
                   <div class="funkyradio">  
                     <div class="funkyradio-info" *ngFor='let c of categories| categoryPipe:categoryFilterParam'>
-                     <input type="checkbox" name="checkbox" id="any" (change)='getSearchFilterResult()' [(ngModel)]='c.isSelect'/>
-                         <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
-                        <b> {{c.categoryName}} </b>  
+                     <input type="checkbox" name="checkbox" id="{{c.categoryName}}" (change)='getSearchFilterResult()' [(ngModel)]='c.isSelect'/>
+                         <label for='{{c.categoryName}}'><i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
+                            {{c.categoryName}}  
+                        </label>
                      </div>
-     
   						</div>
             </div>
             </div>
@@ -239,9 +240,10 @@
           <div class="funkyradio" *ngIf='filters'>  
             <div class="funkyradio-info" *ngFor='let f of filters.services'>
 
-             <input type="checkbox" (change)='getSearchFilterResult()' [(ngModel)]='f.isSelect' name="checkbox" id="any"/>
-                 <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
-                <b> {{f.serviceName}} </b>  
+             <input type="checkbox" (change)='getSearchFilterResult()' [(ngModel)]='f.isSelect' name="checkbox"  id="{{f.serviceName}}"/>
+                <label for="{{f.serviceName}}"> <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
+                <b>{{f.serviceName}} </b>  
+              </label>
            </div>
 
       </div>
@@ -265,21 +267,25 @@
         <div id="collapse44" class="panel-collapse collapse" >
           <div class="category-body">
         <div class="cityscroll22"> 
-
+          <div *ngIf='filters'>
           <div class="funkyradio" *ngIf='filters.filters'>  
             <div class="funkyradio-info" style="border-bottom:1px;border-bottom-style:inset;border-bottom-color:gray" *ngFor='let ff of filters.filters'>
-
-              <input type="checkbox" name="checkbox" id="any" (change)='getSearchFilterResult()' [(ngModel)]='ff.isSelect'/> 
-                 <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
-                <b> {{ff.name}} </b>  
-                
+              <input type="checkbox" name="checkbox" id="{{ff.name}}" (change)='getSearchFilterResult()' [(ngModel)]='ff.isSelect'/> 
+                <label for="{{ff.name}}">
+                   <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
+                  {{ff.name}} 
+                </label>
                 <div *ngFor='let fc of ff.customFieldOptionList'>
-                    <input type="checkbox" *ngIf='ff.isSelect' name="checkbox" [(ngModel)]='fc.isSelect'(change)='getSearchFilterResult()'/>{{fc.displayText}}
+                  <div *ngIf='ff.isSelect'>
+                  <input type="checkbox" class="tikmik" name="checkbox" [(ngModel)]='fc.isSelect'(change)='getSearchFilterResult()'/>
+                    {{fc.displayText}}
+                  </div>  
                 </div>
            </div>
           <div class="clearfix"></div>
 
       </div>
+    </div>
     </div>
     </div>
   </div>
@@ -299,20 +305,22 @@
   						<div id="collapse3" class="panel-collapse collapse">
                  <div class="funkyradio">
                     <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="any" (change)='getSearchFilterResult()'/>
+                      <label>
+                        <input type="checkbox" name="checkbox" id="any" (change)='getSearchFilterResult()'/>
                         Any
+                    </label>
                     </div>
                     <div class="funkyradio-info">
                       <input type="checkbox" name="checkbox" id="star2" (change)='getSearchFilterResult()'/>
-                        2.0+
+                    <label>2.0+</label>
                     </div>
                     <div class="funkyradio-info">
                       <input type="checkbox" name="checkbox" id="star3" (change)='getSearchFilterResult()'/>
-                        3.0+
+                    <label> 3.0+</label>
                     </div>
                     <div class="funkyradio-info">
                       <input type="checkbox" name="checkbox" id="star4" (change)='getSearchFilterResult()'/>
-                        4.0+
+                    <label> 4.0+</label>
                     </div>
                   </div>
   						</div>

@@ -27,9 +27,9 @@ export class PhotoComponent implements OnInit {
 
    ngOnInit() {
    $.getScript('./assets/js/blocksit.min.js');
- //  $.getScript('./assets/js/lazy.js');
+   $.getScript('./assets/js/lazy.js');
    $.getScript('./assets/js/jquery.pinbox.js');
-  // $.getScript('./assets/js/photo.js');
+   $.getScript('./assets/js/photo.js');
 
    this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',{
     page: 0,

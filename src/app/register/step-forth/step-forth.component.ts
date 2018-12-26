@@ -95,6 +95,13 @@ export class StepForthComponent implements OnInit {
 //       } 
 //     }); 
 //    });
+
+
+debugger
+
+if(this.user.businessInfo.pricingPlanId == '1'){
+
+  alert('free')
   console.log(JSON.stringify(this.objVendorDetail));
   // this.objVendorDetail.businessInfo.website=this.objVendorDetail.contactInfo.website;
       this.cservice.signup(this.objVendorDetail).subscribe(( data )  =>  
@@ -105,6 +112,24 @@ export class StepForthComponent implements OnInit {
       ,error => {console.log(error);
      this.cservice.typeWarning(error);
     })
+}else{
+  alert('payment page')
+
+debugger
+  const plan = 
+{
+  pricingPlanId: this.user.businessInfo.pricingPlanId,
+  payFrequency: this.user.businessInfo.payFrequency
+  ,
+  // voucherCode: palnvoucher,
+  route_key: 3,
+  hem:'Hemant'
+}
+sessionStorage.setItem('selected_plan',JSON.stringify(plan))
+this.router.navigate(['../payment-selection'])
+  // this.router.navigate(['../payment-selection'])
+}
+  
 
   }
     //   this.cservice.signup(this.user).subscribe(( data )  =>  {
@@ -121,12 +146,16 @@ export class StepForthComponent implements OnInit {
 
 idgenerate(users){
   console.log(users)
+ 
+  
   this.objVendorDetail.businessInfo.pricingPlanId=users.pricingPlanId;
    this.user.businessInfo.pricingPlanId = users.pricingPlanId;
    this.user.businessInfo.payFrequency = '1';
    console.log(this.user.businessInfo.payFrequency );
 }
 annualPrice(users){ 
+  alert('sdsd')
+  sessionStorage.setItem('which_plan' ,JSON.stringify(users))
   this.objVendorDetail.businessInfo.pricingPlanId =users.pricingPlanId;
   this.objVendorDetail.businessInfo.payFrequency = 2;
   this.user.businessInfo.pricingPlanId = users.pricingPlanId;

@@ -89,7 +89,7 @@
       <div class="container-fluid nopadd">
         <div class="badgecontainer">
           <span class="badge badge-primary badge-labeled">
-            {{objSearchResultItems.totalCount}} Results
+            {{objSearchResultItems.totalCount?objSearchResultItems.totalCount:0}} Results
           </span>
          
           <select (change)='getSearchFilterResult()' style="display:none" [(ngModel)]='objSearchlistvm.pageSize'>
@@ -99,11 +99,11 @@
           </select>
         </div>
         <div class="clearfix"></div>
-          <ol class="breadcrumb breadcrumbcontainer ">
+          <!-- <ol class="breadcrumb breadcrumbcontainer ">
             <li><a href="#">Home</a></li>
             <li><a href="#">Wedding Suppliers</a></li>
             <li class="active">Photography, Videography</li>
-          </ol>
+          </ol> -->
 
            <div class="btn-group">
             <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
@@ -265,10 +265,9 @@
         <div id="collapse44" class="panel-collapse collapse" >
           <div class="category-body">
         <div class="cityscroll22"> 
-
+          <div *ngIf='filters'>
           <div class="funkyradio" *ngIf='filters.filters'>  
             <div class="funkyradio-info" style="border-bottom:1px;border-bottom-style:inset;border-bottom-color:gray" *ngFor='let ff of filters.filters'>
-
               <input type="checkbox" name="checkbox" id="any" (change)='getSearchFilterResult()' [(ngModel)]='ff.isSelect'/> 
                  <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
                 <b> {{ff.name}} </b>  
@@ -280,6 +279,7 @@
           <div class="clearfix"></div>
 
       </div>
+    </div>
     </div>
     </div>
   </div>

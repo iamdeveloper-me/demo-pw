@@ -27,6 +27,7 @@ export class SearchresultComponent implements OnInit {
   pageNumber=0;
   pageSize:number=3;
   disableLoadingButton=true;
+  blankImg='../../assets/img/noImg.png';
 
   constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService, private api: apiService) {  
 
@@ -37,7 +38,6 @@ export class SearchresultComponent implements OnInit {
       this.objSearchFilter.categoryId = this._activeRoute.snapshot.params['id'].split('/')[0];
       this.objSearchFilter.searchInDreamLocation=this._activeRoute.snapshot.params['id'].split('/')[3];
       this.objSearchFilter.searchInFeaturedLocation  = this._activeRoute.snapshot.params['id'].split('/')[2];
-
       this.objSearchlistvm.categoryId.push(this.objSearchFilter.categoryId);
     }
     this.getLocations();
@@ -46,7 +46,10 @@ export class SearchresultComponent implements OnInit {
     this.objSearchlistvm.categoryId.push(this.objSearchFilter.categoryId);
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
       this.objSearchResultItems = res;
-      console.log( this.objSearchResultItems )
+      this.getSearchFilterResult();
+      console.log(JSON.stringify(this.objSearchResultItems));
+    },error=>{
+      console.log(JSON.stringify(error));
     });
   }
  ngOnInit() {   
@@ -105,12 +108,14 @@ export class SearchresultComponent implements OnInit {
       this.filters.services.forEach(element => {
         element.isSelect=false;
       });
+      console.log(this.filters);
     },error=>{
       console.log(error);
     })
   }
   getSearchFilterResult(){
     this.objSearchlistvm = new SearchListingVM();
+    if(this.filters){
     if(this.filters.services!=null){
     this.filters.services.forEach(element => {
       if(element.isSelect){
@@ -133,18 +138,22 @@ export class SearchresultComponent implements OnInit {
       
     });
   }
+  if(this.categories){
     this.categories.forEach(element => {
       if(element.isSelect){
         this.objSearchlistvm.categoryId.push(element.categoryId);
       }
     });
+  }
     this.locations.forEach(element => {
       if(element.isSelect){
         this.objSearchlistvm.districtId.push(element.districtId)
       }
     });
+  }
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
       this.objSearchResultItems = res;
+      console.log(this.objSearchResultItems);
       this.paginate(this.pageSize);
     })
   }
@@ -162,6 +171,9 @@ export class SearchresultComponent implements OnInit {
     this.disableLoadingButton=true;
    }
     c.forEach(element => {
+      if(element.profileImage==null){
+        element.profileImage=this.blankImg;
+      }
     this.collection.push(element); 
    });
    this.pageNumber+=1;

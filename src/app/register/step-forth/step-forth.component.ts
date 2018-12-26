@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SignupVendorService, VendorDetails } from '../../shared/service/signup-vendor.service';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 import 'rxjs/Rx';
-
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-step-forth',
   templateUrl: './step-forth.component.html',
@@ -24,7 +24,7 @@ export class StepForthComponent implements OnInit {
    businessInfo: { countryId: 0, districtId: 0,suburbId: 0 ,city: "" ,postalCode: "", address: "" ,nameOfBusiness: "",pricingPlanId: "" ,payFrequency:""}, 
    
    vendorCategories: [ { categoryId: "" } ] }
-
+ 
   ngOnInit() {
             // $(".loginnav").hide(); 
             // $.getScript('./assets/js/register.js');  
@@ -70,7 +70,7 @@ export class StepForthComponent implements OnInit {
       this.objVendorDetail = new VendorDetails();
       this.objVendorDetail= JSON.parse(localStorage.getItem('VednorDetails'));
     }
-
+    @ViewChild('x') public tooltip: NgbTooltip;
  loadScript(){this.ngOnInit;}
 
     onSubmit() {   

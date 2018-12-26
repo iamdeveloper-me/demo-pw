@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SignupVendorService, VendorDetails, vendorCategories, VendorCatrgoryAddVM } from '../../shared/service/signup-vendor.service';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
-
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import 'rxjs/Rx';
 import { CategoryVm } from 'app/vendor/business-services/business-services.component';
 
@@ -20,7 +20,7 @@ export class StepFirstComponent implements OnInit {
   {
    vendorCategories: [ { categoryId: "" } ] 
   }
-
+   @ViewChild('x') public tooltip: NgbTooltip;
   ngOnInit() {
             // $(".loginnav").hide(); 
             // $.getScript('./assets/js/register.js');  

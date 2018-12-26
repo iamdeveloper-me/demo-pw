@@ -11,7 +11,7 @@
             </div>
             <div class="row no-gutters popup-gallery">
               <div class="col-lg-4 col-sm-6 col-6  galleryview" *ngFor='let Popular of Popular_Wedding_array'>
-                <a class="portfolio-box" (click) = "Categories_each(Popular,'false','false')"  *ngIf = "Popular.isPopular == true">
+                <a class="portfolio-box" (click) = "supplier_all(Popular,false,false)"  *ngIf = "Popular.isPopular == true">
                   <img class="img-fluid" [src]="Popular.imagePath" class="img-responsive" alt="">
                   <div class="portfolio-box-caption">
                     <div class="portfolio-box-caption-content">
@@ -30,7 +30,7 @@
             </div>
           </div>
         </section>
-        <p class="browse_cat"> <a routerLink="/home/category"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
+        <p class="browse_cat"> <a routerLink="/home/category"  > <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
       </div>
 
     </div>
@@ -57,9 +57,8 @@
                                <ngb-rating [rate]="list_star"></ngb-rating> 
                               
                               {{list_star}} </p>
-                            </div>
-                      
-                            <div class="col-md-12 col-12 mobnopadd">
+                          </div>
+                          <div class="col-md-12 col-12 mobnopadd">
                               <div class="col-md-8 col-7 pad_left_0 pad_left_5px">
                                 <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
                                   <span>Price from</span>
@@ -70,9 +69,8 @@
                               <span>Deals</span>
                               <span>1</span>
                               </div>
-                            </div>
-
                           </div>
+                        </div>
                   </div>
                 </div>
 
@@ -80,7 +78,7 @@
               <!--End Slides-->
           </div>
           <!--/.Carousel Wrapper-->
-          <p class="browse_cat"> <a (click) = "Categories_each(Popular,'true','false')"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
+          <p class="browse_cat"> <a (click) = "supplier_all(Popular,'true','false')"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
     </div>
 
     <div class="container slider_use_anather_compo">
@@ -97,19 +95,15 @@
             <div class="grid-hover">
               <div class="row">
                 <div class="col-md-4 col-6 locationbox" *ngFor='let list_dream of dream_wedding_location' >
-                
                     <img [src]="list_dream.profileImage" class="img-responsive" alt="img06" />
-                    
                       <h2>{{list_dream.nameOfBusiness}}
                         <span>{{list_dream.country.countryName}}</span>
                       </h2>
-                      
-                   
                 </div>
                
               </div>
               <div class="clearfix"></div>
-              <p class="browse_cat"> <a (click) = "Categories_each(Popular,'false','true')"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
+              <p class="browse_cat"> <a (click) = "supplier_all(Popular,'false','true')"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
             </div>
           </div>
         </div>
@@ -121,7 +115,6 @@
 
     </div>
     <div class="container-fluid vendors_tools slider_use_anather_compo">
-    
         <div class="container">
             <div class="vender_headin text-center">
                 <h2> Your Planning  <strong style="color: #e72e77;">Tools </strong>  </h2>
@@ -129,29 +122,29 @@
 
              <div class="col-md-12 mobile_div_left">
                 <div class="col-md-3 col-6 col-sm-6">
-                    <a routerLink="/home/cuplefoot"><div class="homeTools__item pure-u-1-5 app-link" data-href="/tools/Info?page=MyVendors">
-                      <span class="homeTools__itemIcon homeTools__itemIcon--myvendors"></span>
-                      <p class="homeTools__itemIconText">Find your venue and vendors</p>
-                  </div>
-                </a>
+                    <a routerLink="/home/cuplefoot">
+                      <div class="homeTools__item pure-u-1-5 app-link" data-href="/tools/Info?page=MyVendors">
+                        <span class="homeTools__itemIcon homeTools__itemIcon--myvendors"></span>
+                        <p class="homeTools__itemIconText">Find your venue and vendors</p>
+                      </div>
+                    </a>
                 </div>
                 <div class="col-md-3 col-6 col-sm-6">
-                    <a routerLink="/home/cuplefoot">
+                  <a routerLink="/home/cuplefoot">
                       <div class=" homeTools__item pure-u-1-5 app-link" data-href="/tools/Info?page=Guests">
-                      <span class="homeTools__itemIcon1 homeTools__itemIcon--guests"></span>
-                      <p class="homeTools__itemIconText">Manage your guest list and RSVPs</p>
-                  </div>
-                </a>
-                  </div>
-                  <div class="col-md-3 col-6 col-sm-6">
+                        <span class="homeTools__itemIcon1 homeTools__itemIcon--guests"></span>
+                        <p class="homeTools__itemIconText">Manage your guest list and RSVPs</p>
+                      </div>
+                  </a>
+                </div>
+                <div class="col-md-3 col-6 col-sm-6">
                       <a routerLink="/home/cuplefoot">
                         <div class="homeTools__item pure-u-1-5 app-link" data-href="/tools/Info?page=CheckList">
                         <span class="homeTools__itemIcon2 homeTools__itemIcon--checklist"></span>
                         <p class="homeTools__itemIconText">Complete items on your Checklist</p>
                     </div>
                   </a>
-                    </div>
-
+                </div>
                 <div class="col-md-3 col-6 col-sm-6">
                     <a routerLink="/home/cuplefoot">
                       <div class=" homeTools__item pure-u-1-5 app-link" data-href="/tools/Info?page=Budget">
@@ -173,6 +166,5 @@
             
 
         </div>
-
     </div> 
   </div>

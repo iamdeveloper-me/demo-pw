@@ -50,15 +50,8 @@ export class NavemenuComponent implements OnChanges,OnInit   {
 
       this.http.get(this.url,{headers:headers}).subscribe(
         data =>{ this.vendor = data.json();
-               //  console.log(this.vendor);
+                 console.log(this.vendor);
                this.userImg = data.json().profileImage;
-
-                
-                if(!this.userImg )
-                {
-                
-                this.userImg = "https://openclipart.org/download/247324/abstract-user-flat-1.svg"
-               }
                                });
 
       if(window.location.href.indexOf("/vendor/dashboard")>-1){
@@ -268,9 +261,11 @@ export class NavemenuComponent implements OnChanges,OnInit   {
   typeLogout() {
     this.cservice.typeLogout();
 }
-// ngOnChanges(){
-//   alert("hi")
-// };
+
+ngOnChanges(){
+
+};
+
 
   
 search(newObj){

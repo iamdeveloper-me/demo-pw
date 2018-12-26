@@ -145,8 +145,9 @@ this.router.navigate(['../payment-selection'])
     // });}
 
 idgenerate(users){
-  console.log(users)
- 
+  console.log(users);
+  alert('which plan from idgenerate');
+  sessionStorage.setItem('which_plan' ,JSON.stringify(users));
   
   this.objVendorDetail.businessInfo.pricingPlanId=users.pricingPlanId;
    this.user.businessInfo.pricingPlanId = users.pricingPlanId;
@@ -154,8 +155,8 @@ idgenerate(users){
    console.log(this.user.businessInfo.payFrequency );
 }
 annualPrice(users){ 
-  alert('sdsd')
-  sessionStorage.setItem('which_plan' ,JSON.stringify(users))
+  alert('which plan from annual');
+  sessionStorage.setItem('which_plan' ,JSON.stringify(users));
   this.objVendorDetail.businessInfo.pricingPlanId =users.pricingPlanId;
   this.objVendorDetail.businessInfo.payFrequency = 2;
   this.user.businessInfo.pricingPlanId = users.pricingPlanId;

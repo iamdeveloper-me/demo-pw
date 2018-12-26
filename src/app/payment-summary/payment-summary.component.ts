@@ -26,16 +26,16 @@ export class PaymentSummaryComponent implements OnInit {
     this.MainData   =    JSON.parse(sessionStorage.getItem('selected_plan'));
     console.log(this.MainData)
 
-    if(this.MainData.route_key == 0){
+    if(this.MainData.route_key == 3){
     
       this.WhichPlan =   JSON.parse(sessionStorage.getItem('which_plan'))
       console.log(this.WhichPlan)
       if(this.MainData.payFrequency == 1){
-        this.titleGet();
+        // this.titleGet();
         this.totalAmount = this.WhichPlan['monthlyPrice'] * 6
       }
       if(this.MainData.payFrequency == 2){
-        this.titleGet();
+        // this.titleGet();
 
         this.totalAmount = (this.WhichPlan['monthlyPrice'] * 12) - (this.WhichPlan['noOfMonthFeeOff'] * 2) 
       }
@@ -62,7 +62,7 @@ PayPalPayment(){
   headers.append("Authorization",'Bearer '+authToken);
 
   
-  if(this.MainData['route_key'] == 0){
+  if(this.MainData['route_key'] == 3){
     this.http.post(this.url+'api/Supplier/upgrademembership',this.MainData,{headers:headers}).subscribe( (data)=> { 
     
       console.log(data.json())

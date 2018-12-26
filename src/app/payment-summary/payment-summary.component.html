@@ -1,17 +1,8 @@
-
-<div id="wrapper" class="toggled">
-	<div id="sidebar-wrapper">
-			<app-vendorsidebar></app-vendorsidebar>
-	</div>
-	<div id="page-content-wrapper">    
-		<app-navemenu></app-navemenu>
-<router-outlet></router-outlet> 
-<div class="container-fluid">
-
-
+<div id="wrappervendor" class="" >
+<app-menu></app-menu>
+<div class="container  martop60px">
       <div class="row  mobilefixedcontainer">
-
-    
+   
       <div class="col-sm-4" *ngIf="MainData.route_key == 3">
         <!-- {{MainData | json}} -->
       <div class="card">
@@ -19,17 +10,18 @@
              <h1 class="headingpay">Payment Detail</h1>
         </div>
         <div class="col-sm-12">
-            {{MainData| json}}
           <table class="table table-striped">
               <tr>
-                  <th *ngIf="MainData.title != ''" >Promotion :{{ MainData.title }}</th>
+                  <th *ngIf="MainData.title != ''" >Current Plan :{{ WhichPlan.title }}</th>
                 </tr>
             
-            <tr>
+            <!-- <tr>
               <th *ngIf="MainData.voucherCode != ''">Voucher Code :{{MainData.voucherCode}}</th>
-            </tr>
+            </tr> -->
             <tr>
-              <th>Country :Mauritius</th>
+              <th *ngIf="MainData.payFrequency == '1'">Period : 6 Month</th>
+              <th *ngIf="MainData.payFrequency == 2">Period : Annually</th>
+
             </tr>
           </table>
         </div>
@@ -182,12 +174,9 @@
 
 
 </div>
-<!-- <app-foot></app-foot> -->
+<app-foot></app-foot>
+</div>
 <router-outlet></router-outlet>
-</div>
-
-</div>
-
 
 
 

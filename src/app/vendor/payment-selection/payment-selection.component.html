@@ -45,34 +45,39 @@
             <!-- {{MainData | json}} -->
           <div class="card">
             <div class="card-header">
-                 <h1 class="headingpay">Payment Detail</h1>
+                 <h1 class="headingpay">You have selected the following</h1>
             </div>
             <div class="col-sm-12">
               <table class="table table-striped">
                   <tr>
-                      <th *ngIf="MainData.title != ''" >Promotion :{{ MainData.title }}</th>
+                      <th *ngIf="MainData.title != ''" >Promotion Type :</th>
+                      <td>{{ MainData.title }}</td>
                     </tr>
-                
+                    <tr>
+
+                     <th>Country :</th>
+                     <td>Mauritius</td>
+                   </tr>
                 <tr>
-                  <th *ngIf="MainData.voucherCode != ''">Voucher Code :{{MainData.voucherCode}}</th>
+                     <th>Voucher Code :</th>
+                  <td *ngIf="MainData.voucherCode != ''">{{MainData.voucherCode}}</td>
+                </tr>
+                <tr *ngFor="let dT of MainData.slotIds ">
+                  <th>{{dT.week}} :</th>
+                  <td>INR {{dT.cost}}</td>
                 </tr>
                 <tr>
-                  <th>Country :Mauritius</th>
-                </tr>
+                  <th>Total :</th>
+                  <th>INR {{totalAmount}}</th>
+              </tr>
               </table>
             </div>
             <div class="col-sm-12">
               <table class="table table-striped">
                   <tbody>
-                    <tr *ngFor="let dT of MainData.slotIds ">
-                      <td> {{dT.week}}</td>
-                      <td>$ {{dT.cost}}</td>
-                    </tr>
+                 
                     
-                    <tr>
-                        <th>Total</th>
-                        <td>$ {{totalAmount}}</td>
-                    </tr>
+                   
                   </tbody>
               </table>
             </div>

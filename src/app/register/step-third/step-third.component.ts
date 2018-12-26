@@ -44,6 +44,34 @@ export class StepThirdComponent implements OnInit {
             // $(".show").hide();
 
             // $("div").removeClass( "modal-backdrop");
+            $('.selectwet').on("focus", function(){
+              $(".selectlabel").addClass("bottomtik");
+            });
+          
+            $('.selectwet').on("focusout", function(){
+              if($(this).val() === null){
+                $(".selectlabel").removeClass("bottomtik");
+              }
+            });
+            $('.selectwet1').on("focus", function(){
+              $(".selectlabel1").addClass("bottomtik");
+            });
+          
+            $('.selectwet1').on("focusout", function(){
+              if($(this).val() === null){
+                $(".selectlabel1").removeClass("bottomtik");
+              }
+            });
+            $('.selectwet2').on("focus", function(){
+              $(".selectlabel1").addClass("bottomtik");
+            });
+          
+            $('.selectwet2').on("focusout", function(){
+              if($(this).val() === null){
+                $(".selectlabel1").removeClass("bottomtik");
+              }
+            });
+
             let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories/allcategories");
             obs.subscribe(data => { this.categoryArray = data as string[];  
             });

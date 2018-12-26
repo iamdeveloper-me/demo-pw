@@ -269,7 +269,7 @@ export class NavemenuComponent implements OnChanges,OnInit   {
     this.cservice.typeLogout();
 }
 ngOnChanges(){
-  alert("hi")
+  
 };
 
   

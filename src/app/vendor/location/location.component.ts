@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, ViewChild, NgZone, ElementRef, } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-//import { } from 'googlemaps';
 import { MapsAPILoader, AgmMap } from '@agm/core';
 import { GoogleMapsAPIWrapper } from '@agm/core/services';
 import { ToastrService } from 'ngx-toastr';
@@ -44,21 +43,6 @@ interface Location {
 })
 
 export class LocationComponent implements OnInit {
-
-
-    // $(window).load(function () {
-    //     $(".selectwet").each(function () {
-    //       $(this).change(function () {
-    //       createSummary();
-    //     });
-    // });
-    // function createSummary() {
-    //   var eventType = $("#ctl00_Search1_ddlCategory option:selected").text()
-    //   $(".summary_eventType").html(eventType);
-    //   addWidth();
-    //   }
-    // });
-
   @ViewChild('f') floatingLabelForm: NgForm;
   @ViewChild('vform') validationForm: FormGroup;
   @ViewChild("search") public searchElementRef: ElementRef;
@@ -278,7 +262,6 @@ export class LocationComponent implements OnInit {
               let rsltAdrComponent = result.address_components;
               let resultLength = rsltAdrComponent.length;
               if (result != null) {
-                console.log('xxxxxxxxxxxxxxxxx', position, results);
                 this.mapDialogObj.mapAddress = results[0].formatted_address;
                 this.address = results[0].formatted_address;
                 this.mapDialogObj.lat = position.coords.latitude
@@ -295,8 +278,7 @@ export class LocationComponent implements OnInit {
           console.log('Geolocation error: ' + error);
         });
     } else {
-      console.log('Geolocation not supported in this browser');
-
+   
     }
   }
 
@@ -367,7 +349,6 @@ export class LocationComponent implements OnInit {
     this.http.get(this.urlget, { headers: headers }).subscribe((data) => {
       this.location_Array = data.json();
       this.location_Array_length = this.location_Array.length;
-      //alert( this.location_Array_length );
       this.location_Array.sort(p=>p.isPrimary).reverse();
       this.location_Array[0].locationPhones.reverse();
       this.location_Array.forEach(element => {
@@ -377,7 +358,6 @@ export class LocationComponent implements OnInit {
         element.str_businessPhone=element.str_businessPhone?element.str_businessPhone:'No Business Phone';
 
       });
-      console.log(JSON.stringify(this.location_Array));
     })
     this.loadCountries();
   }
@@ -392,9 +372,6 @@ export class LocationComponent implements OnInit {
   openModel(b) {
     this.loadCountries();
     this.dist_id=b.districtId;
-   // this.district = this.arra.filter(c => c.countryId == b.countryId)[0].districts;
-   // this.dist_id = b.districtId;
-   // this.suburb = this.district[0].suburb;
     this.sub_id = b.suburbId;
     this.address_modelfield = b;
 
@@ -474,8 +451,9 @@ export class LocationComponent implements OnInit {
         }
       }
     }
+    debugger;
     this.apiService.postData(this.post_phone_number, reqObj).subscribe(data => {
-      this.toastr.success(data.statusText);
+      this.toastr.success(data.message);
       this.phone_dailog = false;
       this.create_phone = [];
       this.phoneData.locationPhones = reqObj
@@ -513,8 +491,6 @@ export class LocationComponent implements OnInit {
           "phoneNumber": phoneObj.value.number?phoneObj.value.number:'0',
           "isPrimary": phoneObj.value.isprime
         }
-        console.log(obj);
-       
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         headers.append('Accept', 'application/json')
@@ -526,7 +502,6 @@ export class LocationComponent implements OnInit {
             let control = <FormArray>this.formPhone.controls['phoneArry'];
             control.removeAt(index);
           }, (error) => {
-            console.log(error);
             let control = <FormArray>this.formPhone.controls['phoneArry'];
             control.removeAt(index);
           });
@@ -648,27 +623,22 @@ export class LocationComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
     this.http.post(this.urlpost, loc_add, { headers: headers }).subscribe((data) => {
-      console.log(data);
       this.mapDailog = false;
       this.toastr.success(data.statusText);
       this.http.get(this.urlget, { headers: headers }).subscribe((data) => {
         this.location_Array = data.json();
       })
     }, (error) => {
-      console.log(error);
       this.toastr.success(error.statusText);
     });
   }
   update__week(e) {
-   // this.week_dailog = false;
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
     let isvalidTIme = this.validateTradingTime();
-   // let Pincode=e.value.postalCode?e.value.postalCode:'No Postal Code';
-
     if (isvalidTIme == 1) {
       let jsonPost={
         vendorLocationId: this.modelfield.vendorLocationId,
@@ -678,14 +648,6 @@ export class LocationComponent implements OnInit {
         postalCode: this.modelfield.postalCode?this.modelfield.postalCode:'Postal Code Not Available !',
         districtId: this.modelfield.districtId,
         addedOn:new Date().getDate(),
-        // districts: {
-        //   districtId: e.value.districtId,
-        //   name: this.modelfield.districts.name
-        // },
-        // suburb: {
-        //   name: e.value.suburb.name,
-        //   suburbId: e.value.suburb.suburbId
-        // },
         suburbId: this.modelfield.suburbId,
         address: this.modelfield.address,
         mapAddress: this.modelfield.address,
@@ -721,11 +683,9 @@ export class LocationComponent implements OnInit {
       this.http.post(this.urlpost, {
         jsonPost
       }, { headers: headers }).subscribe((data) => {
-        console.log(data)
         this.toastr.success(data.statusText);
       },
         (error) => {
-          console.log(error);
           this.toastr.error(error.statusText);
         });
     }else{
@@ -734,7 +694,6 @@ export class LocationComponent implements OnInit {
   }
 
   isActive(b, e) {
-  console.log(b);
   debugger;
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
@@ -744,13 +703,10 @@ export class LocationComponent implements OnInit {
     
     if (b == true) {
         this.toastr.info('Vacation Mode is ON');
-       // this.vocationModeDisplayText='Vacation Mode';
       }else{ 
         this.toastr.warning("Vacation Mode is OFF");
-       // this.vocationModeDisplayText='A little break from work';
        }
     this.http.post(this.urlpost, e, { headers: headers }).subscribe((data) => {
-    console.log(data);
       
     }
       , (error) => { console.log(error); });
@@ -915,17 +871,11 @@ export class LocationComponent implements OnInit {
     }
       , { headers: headers }).subscribe(
         (data) => {
-          console.log(data.json())
           this.toastr.success(data.json().message);
         }, (err) => {
-          console.log(err);
           this.toastr.error(err._body);
         });
   }
-
-
-
-
   Update_Address(e) {
     if(this.ele_dist.nativeElement.value=='-1'){
       this.toastr.error('Invalid District Selected !');
@@ -974,7 +924,6 @@ export class LocationComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
     this.http.post(this.urlpost, datapanel, { headers: headers }).subscribe((responce) => {
-      console.log(responce);
       this.toastr.success(responce.statusText);
       if (responce.status == 200) {
         this.photo_ved_dailog = false;
@@ -982,7 +931,6 @@ export class LocationComponent implements OnInit {
       }
 
     }, (error) => {
-      console.log(error);
       this.toastr.error(error._body);
       this.toastr.error(error.json().text());
     });
@@ -1025,9 +973,7 @@ export class LocationComponent implements OnInit {
     let country = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries");
     country.subscribe(data => {
       this.countryArray = data.json();
-      console.log(this.countryArray);
       this.arra = this.countryArray
-     // this.district=this.arra.filter(c=>c.countryId==this.address_modelfield.countryId)[0].district;
       this.districtA();
       this.subr();
     })
@@ -1038,19 +984,16 @@ export class LocationComponent implements OnInit {
   }
   hideClosingTime(day, openingTime) {
     if (openingTime == '24 Hours') {
-
       day.isvisible = false;
     }
   }
   arrayToCsv(inputArray:Array<any>): string {
     let csv='';
     inputArray.forEach(element => {
-      console.log(element);
       csv+=element.phoneNumber+',';
     });
    csv= csv.substr(0,csv.length-1);
     return csv;
-    
   }
 
 }
@@ -1059,15 +1002,6 @@ export class TimeSlot {
   public timing: Array<any>;
   constructor() {
     this.timing = [];
-    // this.days = []
-    // this.days.push({ id: 1, name: 'Sunday', 'IsOpen': false });
-    // this.days.push({ id: 1, name: 'Monday', 'IsOpen': false });
-    // this.days.push({ id: 1, name: 'Tuesday', 'IsOpen': false });
-    // this.days.push({ id: 1, name: 'Wednesay', 'IsOpen': false });
-    // this.days.push({ id: 1, name: 'Thurseday', 'IsOpen': false });
-    // this.days.push({ id: 1, name: 'Friday', 'IsOpen': false });
-    // this.days.push({ id: 1, name: 'Saturday', 'IsOpen': false });
-
     this.timing.push({ startTime: '24 Hours', endTime: '00:00 am' });
     this.timing.push({ startTime: '00:00 am', endTime: '00:30 am' });
     this.timing.push({ startTime: '00:30 am', endTime: '01:00 am' });

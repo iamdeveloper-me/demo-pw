@@ -122,6 +122,7 @@ export class BusinessServicesComponent implements OnInit {
     this.customFieldSelectOptions = [];
   }
   navigateToCategory(arrow) {
+
     if (arrow == 'r' && this.categoryserveice.length > this.categoryIndex) {
       this.categoryIndex += 1;
       var active = $('.nextbtn').siblings('.servicecontainer').find('.activedisplay');
@@ -150,6 +151,8 @@ export class BusinessServicesComponent implements OnInit {
     this.selectedCategoryName = this.selected_category[this.categoryIndex].categoryName;
     this.objVenderServiceVm.categoryId = this.selected_category[this.categoryIndex].categoryId;
     let service = this.selected_category[this.categoryIndex].services.filter(s => s.isSelect == true)[0];
+    this.businessServiceEntity.categoryId=this.selected_category[this.categoryIndex].categoryId;
+    
     if (service != undefined) {
       this.name_d = service.serviceName;
       this.objVenderServiceVm.serviceName = service.serviceName;

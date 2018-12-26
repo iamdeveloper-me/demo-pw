@@ -283,6 +283,7 @@ search(newObj){
     "filter" : this.filter_id,
     "search" : this.find_name
   }
+  debugger
   this.hservice.vendorMessages(json).subscribe(( data )  =>  
             { 
               this.uiLoading = false;
@@ -306,21 +307,25 @@ unread(filter_id){
 
   const json ={
     "filter" : filter_id
-  }      
-        this.hservice.vendorMessages(json).subscribe(( data )  =>  
-        { 
-          this.uiLoading = false;
-          this.historyArray = data.json()  ; 
-          this.historyArray.forEach(element => {
-            element['checked'] = false;
-          });
-          this.unread_msg = this.historyArray.length;
-          this.arrayLength =  this.historyArray.length
+  }  
+  debugger  
+  if(localStorage.getItem('userToken') != null){
+    this.hservice.vendorMessages(json).subscribe(( data )  =>  
+    { 
+      this.uiLoading = false;
+      this.historyArray = data.json()  ; 
+      this.historyArray.forEach(element => {
+        element['checked'] = false;
+      });
+      this.unread_msg = this.historyArray.length;
+      this.arrayLength =  this.historyArray.length
 
-          //console.log(this.historyArray)
-        },error => 
-        console.log(error) // error path
-      )
+      //console.log(this.historyArray)
+    },error => 
+    console.log(error) // error path
+  )
+  }  
+        
 }
 
   logout(){

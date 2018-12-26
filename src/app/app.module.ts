@@ -210,6 +210,7 @@ import { EventcelandarComponent } from './eventcelandar/eventcelandar.component'
 import { DreamWeddingLocationsComponent } from './dream-wedding-locations/dream-wedding-locations.component';
 import { FeaturedWeddingSuppliersComponent } from './featured-wedding-suppliers/featured-wedding-suppliers.component';
 import { DetailpageComponent } from './detailpage/detailpage.component';
+import { PaymentSummaryComponent } from './payment-summary/payment-summary.component';
 
 
 
@@ -418,6 +419,8 @@ export function getAuthServiceConfigs() {
         DreamWeddingLocationsComponent,
 
         FeaturedWeddingSuppliersComponent,
+
+        PaymentSummaryComponent,
 
 
         

@@ -147,6 +147,7 @@ import { StepFirstComponent } from './register/step-first/step-first.component';
 import { StepSecondComponent } from './register/step-second/step-second.component';
 import { StepThirdComponent } from './register/step-third/step-third.component';
 import { StepForthComponent } from './register/step-forth/step-forth.component';
+import { PaymentSummaryComponent } from './payment-summary/payment-summary.component';
 
 const appRoutes: Routes = [
 
@@ -244,7 +245,7 @@ const appRoutes: Routes = [
     { path: 'vendor/Success', component:  SuccessComponent},
     { path: 'vendor/Failure', component:  FailureComponent},
     { path: 'vendor/payment-selection', component:  PaymentSelectionComponent  },
-    
+    { path: 'payment-selection', component:  PaymentSummaryComponent  },
   
 
 

@@ -1,89 +1,47 @@
-
-<div id="wrapper" class="toggled">
-	<div id="sidebar-wrapper">
-			<app-vendorsidebar></app-vendorsidebar>
-	</div>
-	<div id="page-content-wrapper">    
-		<app-navemenu></app-navemenu>
-<router-outlet></router-outlet> 
-<div class="container-fluid">
-
-
+<div id="wrappervendor" class="" >
+<app-menu></app-menu>
+<div class="container  martop60px">
       <div class="row  mobilefixedcontainer">
-
-            <div class="col-sm-4" *ngIf="MainData.route_key == 0">
-            <!-- {{WhichPlan | json}} -->
-                    <div class="card">
-                      <div class="card-header">
-                          <h1 class="headingpay">Payment Detail</h1>
-                      </div>
-                      <div class="col-sm-12" >
-                        <table class="table table table-bordered table-striped">
-                            <tr>
-                                <th>Current Plan </th>
-                                <td *ngIf="MainData.title != ''"> {{MainData.title}}</td>
-                              </tr>
-                            <tr>
-                              <th>Selected Plan  </th>
-                              <td *ngIf="WhichPlan.title != ''"> {{WhichPlan.title}}</td>
-                          </tr>
-                     
-                            <tr>
-                              <th>Plan Duration </th> 
-                              <td *ngIf="MainData.payFrequency == 1"> 6 Month</td>
-                              <td *ngIf="MainData.payFrequency == 2"> Annually</td>
-                            </tr>
-                            <tr>
-                              <th>Total Amount</th>
-                              <td>  {{totalAmount}}</td>
-                            </tr>
-                        </table>
-                      </div>
-                    </div>
-                </div>
-      <div class="col-sm-4" *ngIf="MainData.route_key == 1">
-            <!-- {{MainData | json}} -->
-          <div class="card">
-            <div class="card-header">
-                 <h1 class="headingpay">You have selected the following</h1>
-            </div>
-            <div class="col-sm-12">
-              <table class="table table-striped">
-                  <tr>
-                      <th *ngIf="MainData.title != ''" >Promotion Type :</th>
-                      <td>{{ MainData.title }}</td>
-                    </tr>
-                    <tr>
-
-                     <th>Country :</th>
-                     <td>Mauritius</td>
-                   </tr>
-                <tr>
-                     <th>Voucher Code :</th>
-                  <td *ngIf="MainData.voucherCode != ''">{{MainData.voucherCode}}</td>
+   
+      <div class="col-sm-4" *ngIf="MainData.route_key == 3">
+        <!-- {{MainData | json}} -->
+      <div class="card">
+        <div class="card-header">
+             <h1 class="headingpay">Payment Detail</h1>
+        </div>
+        <div class="col-sm-12">
+          <table class="table table-striped">
+              <tr>
+                  <th *ngIf="MainData.title != ''" >Current Plan :{{ WhichPlan.title }}</th>
                 </tr>
+            
+            <!-- <tr>
+              <th *ngIf="MainData.voucherCode != ''">Voucher Code :{{MainData.voucherCode}}</th>
+            </tr> -->
+            <tr>
+              <th *ngIf="MainData.payFrequency == '1'">Period : 6 Month</th>
+              <th *ngIf="MainData.payFrequency == 2">Period : Annually</th>
+
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm-12">
+          <table class="table table-striped">
+              <tbody>
                 <tr *ngFor="let dT of MainData.slotIds ">
-                  <th>{{dT.week}} :</th>
-                  <td>INR {{dT.cost}}</td>
+                  <td> {{dT.week}}</td>
+                  <td>$ {{dT.cost}}</td>
                 </tr>
+                
                 <tr>
-                  <th>Total :</th>
-                  <th>INR {{totalAmount}}</th>
-              </tr>
-              </table>
-            </div>
-            <div class="col-sm-12">
-              <table class="table table-striped">
-                  <tbody>
-                 
-                    
-                   
-                  </tbody>
-              </table>
-            </div>
-          </div>
+                    <th>Total</th>
+                    <td>$ {{totalAmount}}</td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
       </div>
-
+  </div>
     
 
 
@@ -216,12 +174,9 @@
 
 
 </div>
-<!-- <app-foot></app-foot> -->
+<app-foot></app-foot>
+</div>
 <router-outlet></router-outlet>
-</div>
-
-</div>
-
 
 
 

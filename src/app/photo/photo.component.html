@@ -6,7 +6,7 @@
                 <form (ngSubmit)="find_photo(list)" #list="ngForm">
                     <div class="col-md-2 col-xs-6 mar_left_75">
                         <select class="cityinput2" name="categoryId"   [(ngModel)]="categoryId"  id="categoryId" >
-                            <option  [value]="All" selected >All Category</option>
+                            <option  value="All" selected >All Category</option>
                             <option *ngFor='let list_categories of categories' [value] = "list_categories.categoryId" >
                                 {{list_categories.categoryName}}
                             </option>

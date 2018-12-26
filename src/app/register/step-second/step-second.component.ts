@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SignupVendorService, VendorDetails } from '../../shared/service/signup-vendor.service';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 import 'rxjs/Rx';
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-step-second',
   templateUrl: './step-second.component.html',
@@ -17,7 +18,7 @@ export class StepSecondComponent implements OnInit {
   countryArray:string[];
 
   objvendorDetails:VendorDetails;
-
+  @ViewChild('x') public tooltip: NgbTooltip;
   public arra = new Array();public district = new Array();public suburb = new Array();
   user = 
   {logInInfo: { firstName: "", lastName: "", password: "", confirmPassword: "" },

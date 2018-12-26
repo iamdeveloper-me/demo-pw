@@ -66,7 +66,7 @@ export class SignupVendorService {
       this.toastr.error('Account Not Created', 'Error !!');
   }
   typeWarning(error) {
-    this.toastr.warning(error);
+    this.toastr.warning(error._body);
   }
   usignup(userSingUp){
     var email = userSingUp.email;

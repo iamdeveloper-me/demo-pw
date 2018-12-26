@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SignupVendorService, VendorDetails } from '../../shared/service/signup-vendor.service';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 import 'rxjs/Rx';
-
+import { ToastrService } from 'ngx-toastr';
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-step-third',
   templateUrl: './step-third.component.html',
@@ -35,7 +36,7 @@ export class StepThirdComponent implements OnInit {
   }, 
    
    vendorCategories: [ { categoryId: "" } ] }
-
+   @ViewChild('x') public tooltip: NgbTooltip;
   ngOnInit() {
             // $(".loginnav").hide(); 
             // $.getScript('./assets/js/register.js');  
@@ -77,7 +78,7 @@ export class StepThirdComponent implements OnInit {
             //   });
 
   }
-    constructor( private cservice: SignupVendorService,private http: HttpClient , private router: Router ) {
+    constructor( private cservice: SignupVendorService,private http: HttpClient , private router: Router,public toastr: ToastrService, ) {
       this.objVendorDetails = new VendorDetails();
       this.objVendorDetails.contactInfo.website  
       if(localStorage.getItem('VednorDetails')){
@@ -118,6 +119,7 @@ export class StepThirdComponent implements OnInit {
        }
       ,error => {console.log(error);
      this.cservice.typeWarning(error);
+    //  this.toastr.warning(error._body);
     })
     f.form.reset();
   }
@@ -176,6 +178,7 @@ annualPrice(users){
       localStorage.setItem('VednorDetails',JSON.stringify(this.objVendorDetails));
       this.cservice.GoToNextStep('/register/step-forth');
     }
+    
 
     getDecimal(monthlyPrice,noOfMonthFeeOff){
       // {{((plan.monthlyPrice * (12 - plan.noOfMonthFeeOff))/12 | number:'1.0-2')}}

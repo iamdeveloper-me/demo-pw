@@ -55,6 +55,9 @@ import { BannerComponent } from './banner/banner.component';
 import { FootComponent } from './foot/foot.component';
 import { VendorcardComponent } from './vendorcard/vendorcard.component';
 import { RegisterComponent } from './register/register.component';
+
+// import { Step1Component } from './register/step1/step1.component';
+
 import { StepFirstComponent } from './register/step-first/step-first.component';
 import { StepSecondComponent } from './register/step-second/step-second.component';
 import { StepThirdComponent } from './register/step-third/step-third.component';
@@ -211,6 +214,7 @@ import { DetailpageComponent } from './detailpage/detailpage.component';
 
 
 
+
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
     
@@ -271,10 +275,14 @@ export function getAuthServiceConfigs() {
         BannerComponent,
         FootComponent,
         RegisterComponent,
+
+        //Register Steps
         StepFirstComponent,
         StepSecondComponent,
         StepThirdComponent,
         StepForthComponent,
+        
+        
         VendorcardComponent,
         NavemenuComponent,
         VendorprofileComponent,
@@ -409,7 +417,7 @@ export function getAuthServiceConfigs() {
 
         DreamWeddingLocationsComponent,
 
-        FeaturedWeddingSuppliersComponent
+        FeaturedWeddingSuppliersComponent,
 
 
         

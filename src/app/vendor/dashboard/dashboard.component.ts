@@ -149,20 +149,10 @@ myplans:any = {};
 
         this.http.get(this.url,{headers:headers}).subscribe(
           data =>{ this.vendor = data.json();
-          this.bussiness_name = data.json().nameOfBusiness,
-                   console.log(this.vendor.pricingPlan);
-                   this.pricingPlanId = this.vendor.pricingPlan;
-                   if(!this.vendor.profileImage )
-                   {
-                  
-                   this.vendor.profileImage = "https://openclipart.org/download/247324/abstract-user-flat-1.svg"
-                  
-                  }
-
+                  this.bussiness_name = data.json().nameOfBusiness,
+                  this.pricingPlanId = this.vendor.pricingPlan;
                   this.priceplantitle = this.vendor.pricingPlan.title
-
-
-                   this.add = this.vendor.vendorLocations[0].mapAddress;
+                  this.add = this.vendor.vendorLocations[0].mapAddress;
                   this.noPhone = this.vendor.vendorLocations[0].locationPhones[0].phoneNumber.length;
                   //  console.log(this.vendor.vendorLocations[0].locationPhones[0].phoneNumber);
                  
@@ -216,7 +206,7 @@ myplans:any = {};
                                 //  this.venderDash = data.json() as string[]; 
                                 this.VendorDashboard_data = data.json();
                                 this.VendorDashboard_data_image = data.json().portfolioImage;
-                                this.banner_image = "../../../assets/img/store_noimg.jpg"
+                               
                         });
 
 
@@ -394,7 +384,8 @@ myplans:any = {};
                         text: "Choose a different subscription plan",
                         type: "warning",
                         showCancelButton: true,
-                      
+                        confirmButtonClass: "btn-default",
+                        confirmButtonText: "View Plans",
                         }).then((res)=>{
                           if(res.value===true){
                             this.router.navigate(['../vendor/membership'])

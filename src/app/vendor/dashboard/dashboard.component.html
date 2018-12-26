@@ -74,7 +74,7 @@
                                     <a routerLink="../business-services" *ngIf="businessService == test" class="done">
                                       <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
     
-                                      <strong class="blacktext" >Service</strong>
+                                      <strong class="blacktext" >Type of Services</strong>
                                       <span class="editbtn">
                                           <i class="material-icons">arrow_backward</i>
                                         </span>
@@ -207,10 +207,8 @@
                 <div class="col-sm-5 nopadd maxheight335px">
                    <div class="infoimgbox">
                     <!-- <img [src] = "VendorDashboard_data_image "  alt="Profile picture" > -->
-                      <div *ngIf = "!VendorDashboard_data_image"> 
-                          <img [src] = "banner_image" alt="Profile picture" >
-                      </div>
-                      <div *ngIf = "VendorDashboard_data_image != ''"> 
+                    
+                      <div> 
                           <img [src] = "VendorDashboard_data_image" alt="Profile picture" >
                       </div>
                     </div>
@@ -222,15 +220,13 @@
                 <div class="col-sm-7 nopadd maxheight335px mobileheightauto ">
                     <div class="martop15px"></div> 
                     <div class="col-sm-2 col-3 mobpadd10 edithovering">
-                        <div *ngIf = "!vendor.profileImage"> 
-                          <img [src] = "vendor.profileImage" class="oviewviewimgcircle" alt="Profile picture" >
-                        </div>
-                        <div *ngIf = "vendor.profileImage != ''"> 
+                      
+                        <div > 
                           <img [src] = "vendor.profileImage" class="oviewviewimgcircle" alt="Profile picture" >
                         </div>
                       
                        
-                       <button class="photoedit" data-target="#camera" data-toggle="modal" type="button"><i class="material-icons">camera</i></button>
+                       <!-- <button class="photoedit" data-target="#camera" data-toggle="modal" type="button"><i class="material-icons">camera</i></button> -->
                     </div>
                     <div class="col-sm-10 col-9 blacktext nopadd pull-left">
                        <h2 class="titlehead"><strong>{{vendor.nameOfBusiness}}</strong></h2>
@@ -357,27 +353,16 @@
                        <div class="col-xs-4 text-center" *ngIf = "pricingPlanId.pricingPlanId > '1'">
                           <a routerLink="../albumview" class="blacktext">
                              <i class="material-icons">library_books</i>
-
-
                              <strong>{{VendorDashboard_data.albumImageCount}}</strong>
-
-                             <!-- <strong>{{VendorDashboard.albumImageCount}}</strong> -->
-
-
                              <div class="clearfix"></div>
                              Albums ({{VendorDashboard_data.albumCount}})
                           </a>
                        </div>
-                       <div class="col-xs-4 text-center" *ngIf = "pricingPlanId.pricingPlanId == '1'">
+                       <div class="col-xs-4 text-center">
+                          <!-- *ngIf = "pricingPlanId.pricingPlanId == '1'" -->
                         <a  class="blacktext" (click) = "freeuser()">
                            <i class="material-icons">library_books</i>
-
-
                            <strong>{{VendorDashboard_data.albumImageCount}}</strong>
-
-                           <!-- <strong>{{VendorDashboard.albumImageCount}}</strong> -->
-
-
                            <div class="clearfix"></div>
                            Albums ({{VendorDashboard_data.albumCount}})
                         </a>
@@ -385,9 +370,10 @@
                     </div>
                     <div class="col-sm-12 bortop desktopnone nopadd paddtopbot10  clearfix">
                        <div  class="col-sm-6 col-6 pull-left  text-center">
-                           <a class="font11px bluelink" target="_blank">
-                                       <i class="material-icons" routerLink="../PromoteBusiness">share</i> 
-                                       <br/>Share
+
+                           <a class="font11px bluelink" target="_blank" routerlink="../../home/detailprofile">
+                                       <i class="material-icons">Share </i> 
+                                       <br/>Share Profile
                                     </a>
                        </div>
                        <div class="col-sm-6 col-6 pull-left text-center"> 
@@ -401,9 +387,10 @@
                     <div class="col-sm-12 bottop botsharelink padbot0px padtop0px text-center clearfix">
                            <div class="row">
                             <div class="col-sm-6">
-                                    <a class="text-muted mobilenone font11px sharelink" target="_blank">
-                                       <i class="material-icons" routerLink="../PromoteBusiness">share</i> 
-                                       Share
+                              
+                                    <a class="text-muted mobilenone font11px sharelink" target="_blank" routerlink="../../home/detailprofile">
+                                       <i class="material-icons">share</i> 
+                                       Share Profile
                                     </a>
                               </div>
                               <div class="col-sm-6">
@@ -508,19 +495,17 @@
 
   <div class="clearfix"></div>
     <div class="col-12">
-    <div class="card">
-      <div  class="text-center">
-                          <a routerLink="../statistics" class="font11px bluelink">
-                          <i class="material-icons">equalizer</i> <br/>
-                          Business Insight
-                          </a>
-                       </div>
-    </div>
+      <div class="card">
+        <div  class="text-center">
+                            <a routerLink="../statistics" class="font11px bluelink">
+                            <i class="material-icons">equalizer</i> <br/>
+                            Business Insight
+                            </a>
+        </div>
+      </div>
     </div>
     <div class="clearfix"></div>
   <div class="container-fluid Profile_com"  >
-  
-
      <div class="col-sm-6 mobnopadd padleft0px">
         <div class="col-md-12 card mobnopadd padleft0px height360px">
             <div class="card card-stats ">
@@ -616,7 +601,9 @@
             </div>
             <div class="modal-body">
                     <div *ngIf="image_data==0; else pp">
-                        <h3>No image available in Portfolio or Album</h3> 
+                        <h3>No image available in your Portfolio or Albums</h3> 
+                        <button type="submit" class="btn newbtn" (click)="closeModel()" >Close</button>&nbsp;
+           
                     </div>
                     <ng-template #pp>
                       <div class="row popupscrollfit">

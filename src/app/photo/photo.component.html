@@ -21,7 +21,6 @@
         </div>
 </section>
 <div class="container-fluid">
-
     <div>
         <div class="container">
             <div class="text-center">
@@ -34,7 +33,7 @@
                             <div class="span2 pcon prodcont actioninside" *ngFor="let item of pagedItems" data-toggle="modal" data-target="#myModal">
                                 <!-- <div class="span2 pcon prodcont actioninside" *ngFor="let item of pagedItems"> -->
 
-                                <div (click) = "popup(listall_categories)">
+                                <div (click) = "popup(item)">
                                     <img [src]="item.imageURL" />
                                     <div class="clearfix"></div>
                                     <div class="photodetail">
@@ -75,14 +74,14 @@
                 </ul>
             </div>
         </div>
-    </div>
-    
+    </div>   
 </div>   
 
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
 
-          <!-- Modal content--><a href="#" class="close" data-dismiss="modal"> </a>
+          <!-- Modal content-->
+        <a href="#" class="close" data-dismiss="modal"> </a>
         <img class="popupimg" [src]="pho_data.imageURL">
             <div class="modal-footer" style="background-color: white;">
                 <div class="popupdetail">

@@ -72,28 +72,25 @@ export class TipsComponent  {
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
 
-    this.http.get(this.topicurl,{headers:headers}).subscribe(
-      data =>{ 
-        this.tipsArray = data.json(); 
-               console.log(data.json());
-               alert("ffghgh");
+    // this.http.get(this.topicurl,{headers:headers}).subscribe(
+    //   data =>{ 
+    //     this.tipsArray = data.json(); 
+    //            console.log(data.json());
+    //            alert("ffghgh");
 
         
-      });error =>{
-        console.log(error);
-      };
+    //   });error =>{
+    //     console.log(error);
+    //   };
 
       this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchblogs',{
-     
         page: 0,
-        pageSize: 1100000,
-        sortDir: "string",
-        sortedBy: "asc",
-        searchQuery:  '',
-        blogTopicId: 0,
-  
-     
-      }).subscribe(data => {
+        pageSize: 25,
+        sortDir: "",
+        sortedBy: "Any", 
+        searchQuery: '',
+        blogTopicId: 0
+        }).subscribe(data => {
         // console.log(JSON.stringify(data));
         console.log(data);
         this.tipsArrays_items = data.items; 

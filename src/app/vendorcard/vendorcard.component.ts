@@ -16,11 +16,13 @@ export class VendorcardComponent implements OnInit {
   all_category = []
   Popular_Wedding_array = []
   Popular=''
+  objFilterParam: filterParam;
   constructor( private router: Router ,config: NgbCarouselConfig, private apiService: apiService) {
     // customize default values of carousels used by this component tree
     config.interval = 10000;
     config.wrap = false;
     config.keyboard = false;
+    this.objFilterParam = new filterParam();
 
   }
 
@@ -90,24 +92,29 @@ export class VendorcardComponent implements OnInit {
   }
 
   Categories_each(c,isAllSupplier,isDreamLocation){
-    let catId=0;
-    let CatName='';
     if(c){
-     catId= c.categoryId;
-     CatName= c.categoryName;
+   this.objFilterParam.catId  = c.categoryId;
+   this.objFilterParam.categoryName= c.categoryName;
+   this.objFilterParam.isDreamLocation=isDreamLocation;
+   this.objFilterParam.isAllSupplier=isAllSupplier;
   }
-    console.log(c)
-    this.router.navigate(['home/searchresult',catId+'/'+CatName+'/'+isAllSupplier+'/'+isDreamLocation]);
+    localStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+    this.router.navigate(['home/searchresult',this.objFilterParam.categoryName]);
   }
 
-  // supplier_all(c){
+  supplier_all(c,isAllSupplier,isDreamLocation){
+    if(c){
+      this.objFilterParam.catId  = c.categoryId;
+      this.objFilterParam.categoryName= c.categoryName;
+      this.objFilterParam.isDreamLocation=isDreamLocation;
+      this.objFilterParam.isAllSupplier=isAllSupplier;
+  }
+    console.log(c)
    
-  //   let catId= c.categoryId;
-  //   let CatName= c.categoryName;
-  //   alert("fdgdfg");
-  //   console.log(c)
-  //   this.router.navigate(['home/searchresult',true]);
-  // }
+    console.log(this.objFilterParam.categoryName.replace(" ", ""));
+    this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace("   ", "").trim()]);
+   // console.log(this.objFilterParam.categoryName);
+  }
 
   // location_all(c){
    
@@ -117,4 +124,12 @@ export class VendorcardComponent implements OnInit {
   //   console.log(c)
   //   this.router.navigate(['home/searchresult',true]);
   // }
+}
+
+export class filterParam{
+  catId:number=0;
+  categoryName:string='';
+  isAllSupplier:boolean=false;
+  isDreamLocation:boolean=false;
+  
 }

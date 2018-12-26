@@ -87,11 +87,13 @@
                             <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="notification-dropdown">
                                 <div class="noti-list" *ngIf = "unread_msg > 0 ">
                                     <a *ngFor="let data of historyArray | slice:0:3 ;let i=index " class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
-                                            <div class="notifyimgbox">
-                                                <img  class="userimg" *ngIf="data.senderProfilePic === ''" src="../../../assets/img/No_image_available.png"/>
-                                                <img  class="userimg" *ngIf="data.senderProfilePic != ''" [src]="data.senderProfilePic"/>       
+                                            <div class="notifyimgbox" *ngIf="data.senderProfilePic === ''">
+                                                <img  class="userimg"  src="../../../assets/img/No_image_available.png"/>
+                                               
                                             </div>
-                                            
+                                            <div class="notifyimgbox"  *ngIf="data.senderProfilePic != ''">
+                                                    <img  class="userimg" [src]="data.senderProfilePic"/>       
+                                            </div>    
                                             <span class="noti-wrapper">
                                                 <span class="noti-title line-height-1 d-block text-bold-400 info">{{data.sendByFirstName }}</span>
                                                 <span class="notifytext">{{data.message}}</span>
@@ -116,29 +118,25 @@
                                 <a class="nav-link afternone navuserlink position-relative" id="dropdownBasic3" ngbDropdownToggle>
                                         <!-- <i class="material-icons">account_circle</i> -->
                                         <!-- <img [src] = "userImg" class="userimgtop" > -->
-                                        <div *ngIf = "!userImg"  > 
+                                        <!-- <div *ngIf = "!userImg"  > 
                                             <img  [src] = "userImg" class="userimgtop " alt="Profile picture" >
-
-                                            </div>
-                                        
-                                            <div *ngIf = "userImg != ''"> 
+                                        </div> -->
+                                        <div> 
                                             <img   [src] = "userImg" class="userimgtop" alt="Profile picture" >
-                                            </div>
-                                        
-
-
+                                        </div>
                                     <p class="d-none">User Settings {{vendor.profileImage}}</p>
                                 </a>
                                 <div class="blackoverlaymainuser">
-                                <div ngbDropdownMenu aria-labelledby="dropdownBasic3">       <div class="vendorpicsec">
-                                <div class="imgsection">
-                                    <!-- <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png"/> -->
-                                    <img [(src)] = "userImg" class="userimgtop" >
-                                </div>
-                                <div class="detailsection">
-                                Hi {{vendor.firstName}}!
-                                </div>
-                            </div>                    
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic3">       
+                                <div class="vendorpicsec">
+                                    <div class="imgsection">
+                                        <!-- <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png"/> -->
+                                        <img [(src)] = "userImg" class="userimgtop" >
+                                    </div>
+                                    <div class="detailsection">
+                                        Hi {{vendor.firstName}}!
+                                    </div>
+                                </div>                    
                                     <a class="dropdown-item py-1" routerLink="../dashboard">
                                         <i class="ft-edit mr-2"></i>
                                         <span>Business Dashboard</span>

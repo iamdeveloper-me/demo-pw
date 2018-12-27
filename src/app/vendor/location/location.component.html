@@ -504,13 +504,15 @@
                         <div class="col-sm-7" *ngIf='modelfield.isMondayOpen'>
                                 <div class="col-sm-6 field">
                                     <select placeholder="Opening Hour" type="time" [(ngModel)]="modelfield.mondayOpen" [disabled] = "!modelfield.isMondayOpen"  id="mondayOpen" #mondayOpen name="mondayOpen">
-                                            <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
+                                            <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                     </select>
                                     <!-- <label for="mondayOpen">Opening Hour</label> -->
                                 </div>
                                 <div class="col-sm-6 field">
                                     <select  placeholder="Closing Hour"  type="time" *ngIf='modelfield.mondayOpen!=="24 Hours"' [(ngModel)]="modelfield.mondayClose" [disabled] = "!modelfield.isMondayOpen" id="mondayClose" #mondayClose name="mondayClose">
-                                            <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
+                                            <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                     </select>
                                      <!-- <label for="mondayClose">Closing Hour</label> -->
                                 </div>
@@ -535,13 +537,15 @@
                         <div class="col-sm-7" *ngIf='modelfield.isTuesdayOpen'>
                                 <div class="col-sm-6 field">
                                     <select placeholder="Opening Hour" type="time"  [disabled] = "!modelfield.isTuesdayOpen" [(ngModel)]="modelfield.tuesdayOpen" id="tuesdayOpen" #tuesdayOpen name="tuesdayOpen">
-                                            <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
+                                            <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                     </select>
                                     <!-- <label for="tuesdayOpen">Opening Hour</label> -->
                                 </div>
                                 <div class="col-sm-6 field">
                                     <select placeholder="Closing Hour" type="time" *ngIf='modelfield.tuesdayOpen!=="24 Hours"' [disabled] = "!modelfield.isTuesdayOpen" [(ngModel)]="modelfield.tuesdayClose" id="tuesdayClose" #tuesdayClose name="tuesdayClose">
-                                            <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
+                                            <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                     </select>
                                     <!-- <label for="tuesdayClose">Closing Hour</label> -->
                                 </div>
@@ -566,13 +570,15 @@
                         <div class="col-sm-7" *ngIf='modelfield.isWednesdayOpen'>
                                 <div class="col-sm-6 field">
                                     <select placeholder="Opening Hour" type="time"  [disabled] = "!modelfield.isWednesdayOpen" [(ngModel)]="modelfield.wednesdayOpen" id="wednesdayOpen" #wednesdayOpen name="wednesdayOpen">
-                                            <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
+                                            <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                     </select>
                                     <!-- <label for="wednesdayOpen">Opening Hour</label> -->
                                 </div>
                                 <div class="col-sm-6 field">
                                     <select placeholder="Closing Hour" type="time" *ngIf='modelfield.wednesdayOpen!=="24 Hours"'  [disabled] = "!modelfield.isWednesdayOpen" [(ngModel)]="modelfield.wednesdayClose" id="wednesdayClose" #wednesdayClose name="wednesdayClose">
-                                            <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
+                                            <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                     </select>
                                     <!-- <label for="wednesdayClose">Closing Hour</label> -->
                                 </div>
@@ -598,13 +604,15 @@
                             <div class="form-group">
                                 <div class="col-sm-6 field">
                                     <select placeholder="Opening Hour" type="time"  [disabled] = "!modelfield.isThursdayOpen" [(ngModel)]="modelfield.thursdayOpen" id="thursdayOpen" #thursdayOpen name="thursdayOpen">
-                                            <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
+                                            <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                     </select>
                                     <!-- <label for="thursdayOpen">Opening Hour</label> -->
                                 </div>
                                 <div class="col-sm-6 field">
                                     <select type="time" placeholder="Closing Hour"  *ngIf='modelfield.thursdayOpen!=="24 Hours"' [disabled] = "!modelfield.isThursdayOpen" [(ngModel)]="modelfield.thursdayClose" id="thursdayClose" #thursdayClose name="thursdayClose">
-                                            <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
+                                            <option [ngValue]="null" disabled [selected]="true"> Please Select </option>  
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                     </select>
                                     <!-- <label for="thursdayClose">Closing Hour</label> -->
                                 </div>
@@ -629,13 +637,15 @@
                         <div class="col-sm-7" *ngIf = "modelfield.isFridayOpen">
                                 <div class="col-sm-6 field">
                                     <select placeholder="Opening Hour" type="time"  [disabled] = "!modelfield.isFridayOpen" [(ngModel)]="modelfield.fridayOpen" id="fridayOpen" #fridayOpen name="fridayOpen">
-                                            <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
+                                            <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                     </select>
                                     <!-- <label for="fridayOpen">Opening Hour</label> -->
                                 </div>
                                 <div class="col-sm-6 field" *ngIf='modelfield.fridayOpen!=="24 Hours"'>
                                     <select placeholder="Closing Hour" type="time"  [disabled] = "!modelfield.isFridayOpen" [(ngModel)]="modelfield.fridayClose" id="fridayClose" #fridayClose name="fridayClose">
-                                            <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
+                                            <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                     </select>
                                      <!-- <label for="fridayClose">Closing Hour</label> -->
                                 </div>
@@ -660,13 +670,15 @@
                         <div class="col-sm-7" *ngIf = "modelfield.isSaturdayOpen">
                                 <div class="col-sm-6 field">
                                     <select placeholder="Opening Hour" type="time" [disabled] = "!modelfield.isSaturdayOpen" [(ngModel)]="modelfield.saturdayOpen" id="saturdayOpen" #saturdayOpen name="saturdayOpen">
-                                            <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
+                                            <option [ngValue]="null" disabled [selected]="true"> Please Select </option> 
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                     </select>
                                     <!-- <label for="saturdayOpen">Opening Hour</label> -->
                                 </div>
                                 <div class="col-sm-6 field" *ngIf='modelfield.saturdayOpen!=="24 Hours"'>
                                     <select placeholder="Closing Hour" [disabled] = "!modelfield.isSaturdayOpen" [(ngModel)]="modelfield.saturdayClose" id="saturdayClose" #saturdayClose name="saturdayClose">
-                                            <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
+                                            <option [ngValue]="null" disabled [selected]="true"> Please Select </option>
+                                        <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                     </select>
                                     <!-- <label for="saturdayClose">Closing Hour</label> -->
                                     <input type="hidden" [(ngModel)]="modelfield.vendorLocationId" id="vendorLocationId" name="vendorLocationId">
@@ -714,7 +726,8 @@
                                             name="sundayOpen"
                                             #sundayOpen
                                             >
-                                                    <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
+                                            <option [ngValue]="null" disabled [selected]="true"> Please Select </option>
+                                            <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                                 </select>
                                                 <!-- <label for="sundayOpen">Opening Hour</label> -->
                                     </div>
@@ -726,7 +739,8 @@
                                             #sundayClose 
                                             name="sundayClose" *ngIf='modelfield.sundayOpen!=="24 Hours"'
                                             >
-                                                    <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
+                                            <option [ngValue]="null" disabled [selected]="true"> Please Select </option>  
+                                            <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                                 </select>
                                                 <!-- <label for="sundayClose">Closing Hour</label> -->
                                     </div>

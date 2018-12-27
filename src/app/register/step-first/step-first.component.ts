@@ -61,7 +61,7 @@ export class StepFirstComponent implements OnInit {
     this.objVendorDetails.vendorCategories.push(VC);
     console.log(this.objVendorDetails);
     localStorage.setItem('VednorDetails',JSON.stringify(this.objVendorDetails));
-    this.cservice.GoToNextStep('/register/step-second');
+    this.cservice.GoToNextStep('/register/step2');
 
   }
 

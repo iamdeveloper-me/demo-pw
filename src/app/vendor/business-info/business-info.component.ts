@@ -24,7 +24,6 @@ import { viewClassName } from '@angular/compiler';
 })
 
 export class BusinessInfoComponent implements OnInit {
-  
   @Output() valueChange = new EventEmitter();
   @ViewChild('businessDetails') businessDetails: ElementRef;
   @ViewChild('nameOfBusiness') nameOfBusiness: ElementRef;

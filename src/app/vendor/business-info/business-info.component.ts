@@ -24,7 +24,6 @@ import { viewClassName } from '@angular/compiler';
 })
 
 export class BusinessInfoComponent implements OnInit {
-  
   @Output() valueChange = new EventEmitter();
   @ViewChild('businessDetails') businessDetails: ElementRef;
   @ViewChild('nameOfBusiness') nameOfBusiness: ElementRef;
@@ -241,13 +240,15 @@ export class BusinessInfoComponent implements OnInit {
                 }
               
 // Hemant
-        this.http.post(this.uploadimage,formData,{headers:headers}).subscribe( (data)=>{
-          
+        this._http.withUploadProgressListener(progress => {this.progress_bar = true; console.log(`Uploading ${progress.percentage}%`); this.closeModel('DescriptionDailog');this.progressPercentage = progress.percentage})
+        .withDownloadProgressListener(progress => { console.log(`Downloading ${progress.percentage}%`); })
+        .post(this.uploadimage, formData,{headers: headers})
+        
+        .subscribe( (data)=>{
+          this.progress_bar = false
           this.fileid = data.json().filesId;
-
           this.total = 10*10;
-          
-          console.log(this.fileid)
+         
           let data3=    {   
             nameOfBusiness: v.nameOfBusiness,
             businessDetails: v.businessDetails,
@@ -269,7 +270,6 @@ export class BusinessInfoComponent implements OnInit {
              
              updatebusinessinfo.subscribe((data)=>{
                this.toastr.success(data.json().message);
-              //  infoo.form.reset();
                let headers = new  Headers();
                var authToken = localStorage.getItem('userToken');
                headers.append('Accept', 'application/json')
@@ -289,7 +289,6 @@ export class BusinessInfoComponent implements OnInit {
                    this.imagee = 'https://openclipart.org/download/247324/abstract-user-flat-1.svg'}
                  else{ 
                    this.imagee = data.json().files.path ;
-                //  let objnavmenu = new NavemenuComponent(this.translate,this.http,this.cservice,this.router);
                     this.updateHeaderImg();
                   }
 
@@ -297,38 +296,7 @@ export class BusinessInfoComponent implements OnInit {
            
               });
 
-              this._http.withUploadProgressListener(progress => {this.progress_bar = true; console.log(`Uploading ${progress.percentage}%`); this.closeModel('DescriptionDailog');this.progressPercentage = progress.percentage})
-              .withDownloadProgressListener(progress => { console.log(`Downloading ${progress.percentage}%`); })
-              .post(this.url+'api/ImageUploader/PortfolioUploader', formData,{headers: headers})
-              .subscribe((data)=>{
-                this.toastr.success(data.json().message);
-               //  infoo.form.reset();
-                let headers = new  Headers();
-                var authToken = localStorage.getItem('userToken');
-                headers.append('Accept', 'application/json')
-                headers.append('Content-Type', 'application/json');
-                headers.append("Authorization",'Bearer '+authToken);
-                this.http.get(this.url,{headers:headers}).subscribe(data =>{            
-                 
-                 
-                  this.imagee = data.json().files.path ;
- 
- 
-                  setTimeout(() => {
-                   this.imagecropDailog = false;
-                   }, 2000);
-                  if(!data.json().files)
-                  { 
-                    this.imagee = 'https://openclipart.org/download/247324/abstract-user-flat-1.svg'}
-                  else{ 
-                    this.imagee = data.json().files.path ;
-                 //  let objnavmenu = new NavemenuComponent(this.translate,this.http,this.cservice,this.router);
-                     this.updateHeaderImg();
-                   }
- 
-                });
-            
-               });
+             
  
 
 

@@ -59,6 +59,11 @@ export class NavemenuComponent implements OnChanges,OnInit   {
         setTimeout(()=>{
           $('#dashboard').addClass('colour');
         }, 300);
+      } else if(window.location.href.indexOf('/vendor/business-services')>-1) {
+       this.data = 'Business Services ';
+        setTimeout(()=>{
+          $('#Services').addClass('colour');
+        }, 3000);
       } else if(window.location.href.indexOf('/vendor/business')>-1 ){
         this.data = 'Business information ';
         setTimeout(()=>{
@@ -69,11 +74,7 @@ export class NavemenuComponent implements OnChanges,OnInit   {
         setTimeout(()=>{
           $('#location_on').addClass('colour');
         }, 300);
-      } else if(window.location.href.indexOf('/vendor/business-services')>-1) {
-       this.data = 'Business Services ';
-        setTimeout(()=>{
-          $('#Services').addClass('colour');
-        }, 3000);
+      
       } else if(window.location.href.indexOf('/vendor/Message')>-1) {
         this.data = 'Messages ';
         setTimeout(()=>{
@@ -236,14 +237,14 @@ export class NavemenuComponent implements OnChanges,OnInit   {
         $('#page-content-wrapper').toggleClass('overhidden');
       });
 
-        $('.sidebar-nav .sidebar-brand').on('click', function(e){
-          e.preventDefault();
-          $(this).addClass('colour')
-          // var id = $(this).attr('id')
-        //  setTimeout(()=>{
-        //    id.addClass('colour');
-        // },4000);
-      });
+      //   $('.sidebar-nav .sidebar-brand').on('click', function(e){
+      //     e.preventDefault();
+      //     $(this).addClass('colour')
+      //     // var id = $(this).attr('id')
+      //   //  setTimeout(()=>{
+      //   //    id.addClass('colour');
+      //   // },4000);
+      // });
 
 
 
@@ -278,7 +279,7 @@ search(newObj){
     "filter" : this.filter_id,
     "search" : this.find_name
   }
-  debugger
+ 
   this.hservice.vendorMessages(json).subscribe(( data )  =>  
             { 
               this.uiLoading = false;
@@ -302,8 +303,7 @@ unread(filter_id){
 
   const json ={
     "filter" : filter_id
-  }  
-  debugger  
+  }
   if(localStorage.getItem('userToken') != null){
     this.hservice.vendorMessages(json).subscribe(( data )  =>  
     { 

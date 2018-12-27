@@ -50,7 +50,7 @@ export class StepSecondComponent implements OnInit {
    // this.objvendorDetails.contactInfo.phoneType="";
     console.log(this.objvendorDetails);
   localStorage.setItem('VednorDetails',JSON.stringify(this.objvendorDetails));
-  this.cservice.GoToNextStep('/register/step-third');
+  this.cservice.GoToNextStep('/register/step3');
 }
 
     onSubmit(f) { 

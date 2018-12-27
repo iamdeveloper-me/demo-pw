@@ -63,12 +63,12 @@ export class StepThirdComponent implements OnInit {
               }
             });
             $('.selectwet2').on("focus", function(){
-              $(".selectlabel1").addClass("bottomtik");
+              $(".selectlabel2").addClass("bottomtik");
             });
           
             $('.selectwet2').on("focusout", function(){
               if($(this).val() === null){
-                $(".selectlabel1").removeClass("bottomtik");
+                $(".selectlabel2").removeClass("bottomtik");
               }
             });
 
@@ -204,7 +204,7 @@ annualPrice(users){
       // console.log(JSON.stringify(this.objVendorDetails));
       console.log(this.objVendorDetails);
       localStorage.setItem('VednorDetails',JSON.stringify(this.objVendorDetails));
-      this.cservice.GoToNextStep('/register/step-forth');
+      this.cservice.GoToNextStep('/register/step4');
     }
     
 

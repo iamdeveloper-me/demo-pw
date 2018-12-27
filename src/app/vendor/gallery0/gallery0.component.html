@@ -85,7 +85,6 @@
                       <div class="row">
                         <div class="col-md-12">
                           <section id="file-upload">
-                           
                             <div class="card martop0px">
                               <div class="card-block">
                                 <div class="row">
@@ -93,45 +92,35 @@
                                     <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader"
                                       class="mb-3 text-center font-medium-5 text-uppercase grey ">
                                       Add Image <!-- ! {{bar}} -->
-                                    </div>
-                                   
-                                     <div class="btnholdertik">
+                                    </div>                                   
+                                    <div class="btnholdertik">
                                       <input type="file" class="form-control uploadbtnhidden" ng2FileSelect [uploader]="uploader"  multiple  >
                                       <button class="newbtn Choosefilebtn">Choose File</button>
                                     </div>
-
-                                  </div>
-                            
+                                  </div>                           
                                 </div>
                                 <div class="row">
-                               
-                          
-                                  <div class="col-md-12 imagescroll"><br/>
-                                  
-                          
-                                    <table class="table">
-                                     
-                                      <tbody>
-                                        <tr *ngFor="let item of uploader.queue">
-                                           
-                                          <td><strong>{{ item?.file?.name }}</strong></td>
-                                        <!--   <td >
-                                              <div class="progress" style="margin-bottom: 0;width: 205px;">
-                                                  <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
-                                              </div>
-                                          </td> -->
-                                          <td nowrap>
-                                         
-                                            <button type="button" class="btn btn-raised btn-danger btn-sm" (click)="item.remove()">
-                                            &times;
-                                          </button>
-                                          </td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                          
-                                    <div>
-                                 
+                                          <div class="col-md-12 imagescroll"><br/>
+                                      <table class="table">
+                                        <tbody>
+                                          <tr *ngFor="let item of uploader.queue">
+                                            
+                                            <td><strong>{{ item?.file?.name }}</strong></td>
+                                          <!--   <td >
+                                                <div class="progress" style="margin-bottom: 0;width: 205px;">
+                                                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                                                </div>
+                                            </td> -->
+                                            <td nowrap>
+                                          
+                                              <button type="button" class="btn btn-raised btn-danger btn-sm" (click)="item.remove()">
+                                              &times;
+                                            </button>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                  <div>
                                     </div>
                                   </div>
                                 </div>
@@ -140,14 +129,12 @@
                           </section>
                         </div>
                       </div>
-                    
                       <div class="clearfix"></div>
                     </form>
-                    
                   </div>
                 </div>    
             </div>
-          <div class="modal-footer text-center">
+            <div class="modal-footer text-center">
                 <button type="submit" class="btn newbtn"  (click)="uploadAll() " [disabled]="!uploader.getNotUploadedItems().length" >Save</button>&nbsp; 
                 <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
             </div>
@@ -191,7 +178,7 @@
         <div class="modal-content">
             <div class="modal-header text-center">
                 <h4 class="modal-title">Add images</h4>
-            
+                <button type="button" class="close btn_mar_padd" (click)="closeprogress()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
               <div class="progress "  >
@@ -200,7 +187,7 @@
               <p style="text-align:center;">Uploading images. Do not refresh or close</p>
             </div>
           <div class="modal-footer text-center">
-              
+            <button type="button" class="btn newbtn newcancelbtn" (click)="closeprogress()">CANCEL</button>
             </div>
         </div>  
       </div>  

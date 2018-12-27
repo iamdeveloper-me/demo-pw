@@ -273,7 +273,8 @@ export class CalendertableComponent implements OnInit {
          // this.calendarOptions.events.push(this.eventObj);
           this.showModal = false;
         }
-        dayClick(){
+        dayClick(calendarOptions){
+          console.log(calendarOptions.details.date);
           this.showModal=true;
         }
         clickButton(details){

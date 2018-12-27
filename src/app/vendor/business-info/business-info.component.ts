@@ -222,7 +222,7 @@ export class BusinessInfoComponent implements OnInit {
   @ViewChild("fileInput") fileInput;
 
     addFile(infoo,v): void {
-       this.progress = true ;
+      //  this.progress = true ;
        this.cropperupload = false;
         console.log(v)
         let fi = this.fileInput.nativeElement;
@@ -244,9 +244,9 @@ export class BusinessInfoComponent implements OnInit {
         this.http.post(this.uploadimage,formData,{headers:headers}).subscribe( (data)=>{
           
           this.fileid = data.json().filesId;
-
+debugger
           this.total = 10*10;
-          
+          // this.progress = false;
           console.log(this.fileid)
           let data3=    {   
             nameOfBusiness: v.nameOfBusiness,
@@ -303,6 +303,7 @@ export class BusinessInfoComponent implements OnInit {
               .subscribe((data)=>{
                 this.toastr.success(data.json().message);
                //  infoo.form.reset();
+               this.progress_bar =  false
                 let headers = new  Headers();
                 var authToken = localStorage.getItem('userToken');
                 headers.append('Accept', 'application/json')

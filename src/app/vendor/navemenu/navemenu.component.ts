@@ -278,7 +278,7 @@ search(newObj){
     "filter" : this.filter_id,
     "search" : this.find_name
   }
-  debugger
+ 
   this.hservice.vendorMessages(json).subscribe(( data )  =>  
             { 
               this.uiLoading = false;
@@ -303,7 +303,7 @@ unread(filter_id){
   const json ={
     "filter" : filter_id
   }  
-  debugger  
+    
   if(localStorage.getItem('userToken') != null){
     this.hservice.vendorMessages(json).subscribe(( data )  =>  
     { 

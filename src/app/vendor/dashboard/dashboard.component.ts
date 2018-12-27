@@ -105,7 +105,7 @@ myplans:any = {};
  // supArray:string[];  
       ngOnInit()  {
         
-
+       
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         
@@ -186,10 +186,6 @@ myplans:any = {};
                    localStorage.setItem('vendorid',data.json().vendorId);
                    localStorage.setItem('basic-plan',data.json().pricingPlan.pricingPlanId);
                  
-                   
-                 
-           
-    
                  });
                 
                    this.vendor_board()
@@ -379,22 +375,31 @@ myplans:any = {};
             });
         }
         freeuser(){
-                     swal({
-                            title: "Want to unlock this feature?",
-                        text: "Choose a different subscription plan",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonClass: "btn-default",
-                        confirmButtonText: "View Plans",
-                        }).then((res)=>{
-                          if(res.value===true){
-                            this.router.navigate(['../vendor/membership'])
-                        }
+          this.pricingPlanId
+         
+          if(this.pricingPlanId.pricingPlanId == '1' ){
+            swal({
+              title: "Want to unlock this feature?",
+          text: "Choose a different subscription plan",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonClass: "btn-default",
+          confirmButtonText: "View Plans",
+          }).then((res)=>{
+            if(res.value===true){
+              this.router.navigate(['../vendor/membership'])
+          }
 
-                          },error=>{
-                            alert(JSON.stringify(error));
-                        })
-                          return;                   
+            },error=>{
+              alert(JSON.stringify(error));
+          })
+            return;    
+          
+          }
+          else{
+            this.router.navigate(['../vendor/albumview'])
+           
+          }                   
         } 
          
          vendor_board(){
@@ -453,6 +458,29 @@ myplans:any = {};
                                       } , error=>{console.log(error)});
 
                       }
+                      goToLink(){
 
+                        if( this.total ==100){
+                          let url ="../../home/detailprofile"
+                          window.open(url, "_blank");
+                        }else{
+                          swal({
+                            title: "Profile Not Completed",
+                        text: "Thankyou!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn-default",
+                        confirmButtonText: "OK",
+                        cancelButtonText: "Cancel!",  
+                        }).then((res)=>{
+                          
+                          },error=>{
+                            //alert(JSON.stringify(error));
+                        })
+                          return;
+                        }
+                        }
+                        
+                    
 }
 

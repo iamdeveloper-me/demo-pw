@@ -241,10 +241,15 @@ export class PortfolioviewComponent implements OnInit {
     },(error)=>{         this.toastr.error(error.json());
                 });
     }
-    closeModel(){this.uploadphoto_dailog = false;
+    closeModel(){
+        this.uploadphoto_dailog = false;
         this.uploader.queue =[];
-        // this.progress_bar = false;
+      //  this.progress_bar = false;
 
+    }
+    popup_closeModel(){
+        alert("false");
+        this.progress_bar = false;
     }
     setbackground(setId){
         let headers = new Headers();

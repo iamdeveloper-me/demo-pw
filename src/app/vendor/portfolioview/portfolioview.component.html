@@ -216,7 +216,7 @@
           <div class="modal-content">
               <div class="modal-header text-center">
                   <h4 class="modal-title">Add images</h4>
-              
+                  <button type="button" class="close btn_mar_padd" (click)="popup_closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
                 <div class="progress "  >
@@ -225,7 +225,7 @@
                 <p style="text-align:center;">Uploading images. Do not refresh or close</p>
               </div>
             <div class="modal-footer text-center">
-                
+                <button type="button" class="btn newbtn newcancelbtn" (click)="popup_closeModel()">CANCEL</button>
               </div>
           </div>  
         </div>  

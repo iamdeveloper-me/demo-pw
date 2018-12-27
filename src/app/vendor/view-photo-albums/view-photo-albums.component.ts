@@ -532,4 +532,7 @@ $(document)
   closeModel(){this.uploadphoto_dailog = false;
     this.lodar= false;
   }
+  popup_closeModel(){
+    this.progress_bar= false;
+  }
 }

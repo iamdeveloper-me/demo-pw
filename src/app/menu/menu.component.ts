@@ -109,6 +109,7 @@ export class MenuComponent implements OnInit {
     this.typeLogout();
     }
     ngOnInit() { 
+     //   $('div').removeClass('modal-backdrop fade in show')
                 $("#sidebar-wrapper").hide();
                 $(".userlogindisplay").hide();
                 $(".vendorlogindisplay").hide();

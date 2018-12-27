@@ -207,13 +207,15 @@
                 <div class="col-sm-5 nopadd maxheight335px">
                    <div class="infoimgbox">
                     <!-- <img [src] = "VendorDashboard_data_image "  alt="Profile picture" > -->
-                    
-                      <div> 
+                      <!-- <div *ngIf = "!VendorDashboard_data_image"> 
+                          <img src = "../../assets/img/store_noimg.jpg" alt="Profile picture" >
+                      </div> -->
+                      <div > 
                           <img [src] = "VendorDashboard_data_image" alt="Profile picture" >
                       </div>
                     </div>
                     <div class="viewstore">
-                         <a routerLink="../../home/detailprofile">View Storefront</a> &nbsp;&nbsp;
+                         <a (click) = "goToLink()">View Storefront</a> &nbsp;&nbsp;
                          <a (click) = "images_dialog = true">Change Business Cover</a>
                     </div>
                 </div>
@@ -347,26 +349,19 @@
                              <i class="material-icons">video_library</i>
                              <strong>{{VendorDashboard_data.videoCount}}</strong>
                              <div class="clearfix"></div>
-                             Videos
+                             Videos // {{pricingPlanId.pricingPlanId}}
                           </a>
                        </div>
-                       <div class="col-xs-4 text-center" *ngIf = "pricingPlanId.pricingPlanId > '1'">
-                          <a routerLink="../albumview" class="blacktext">
+                       <div class="col-xs-4 text-center" >
+                          <a  class="blacktext"  (click) = "freeuser()">
                              <i class="material-icons">library_books</i>
                              <strong>{{VendorDashboard_data.albumImageCount}}</strong>
                              <div class="clearfix"></div>
                              Albums ({{VendorDashboard_data.albumCount}})
                           </a>
                        </div>
-                       <div class="col-xs-4 text-center">
-                          <!-- *ngIf = "pricingPlanId.pricingPlanId == '1'" -->
-                        <a  class="blacktext" (click) = "freeuser()">
-                           <i class="material-icons">library_books</i>
-                           <strong>{{VendorDashboard_data.albumImageCount}}</strong>
-                           <div class="clearfix"></div>
-                           Albums ({{VendorDashboard_data.albumCount}})
-                        </a>
-                     </div>
+                      
+                       
                     </div>
                     <div class="col-sm-12 bortop desktopnone nopadd paddtopbot10  clearfix">
                        <div  class="col-sm-6 col-6 pull-left  text-center">

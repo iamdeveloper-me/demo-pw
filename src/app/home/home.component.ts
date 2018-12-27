@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-
+   
   if(window.location.pathname == '/home' )
   { $("body").removeClass( "modal-open");
    

@@ -3,7 +3,7 @@ import { NgModule} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RatingModule} from "ngx-rating";
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import {DatePipe} from '@angular/common';
 import { ImageCropperModule } from 'ng2-img-cropper';
 import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.component';
@@ -487,7 +487,7 @@ export function getAuthServiceConfigs() {
 
     providers: [
             PagerService,
-        {provide: LocationStrategy, useClass: HashLocationStrategy},
+        {provide: LocationStrategy, useClass: PathLocationStrategy},
         AuthService,
         GoogleMapsAPIWrapper,
         AuthGuard,

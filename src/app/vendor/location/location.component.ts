@@ -238,16 +238,9 @@ export class LocationComponent implements OnInit {
   }
 
   geocoder: any;
-  public location: Location = {
-    lat: 51.678418,
-    lng: 7.809007,
-    marker: {
-      lat: 51.678418,
-      lng: 7.809007,
-      draggable: true
-    },
-    zoom: 25
-  };
+  public location: Location = {lat: 51.678418,lng: 7.809007,
+    marker: {lat: 51.678418,lng: 7.809007,draggable: true},
+    zoom: 25};
 
   Find_current_location() {
     if (navigator.geolocation) {
@@ -314,9 +307,7 @@ export class LocationComponent implements OnInit {
   ngOnInit(): void {
     $.getScript('./assets/js/vendorsidebar.js');
     this.formPhone = this._fb.group({
-      phoneArry: new FormArray([
-
-      ])
+      phoneArry: new FormArray([])
     });
     this.mapsApiLoader.load().then(() => {
       this.geocoder = new google.maps.Geocoder();
@@ -324,7 +315,6 @@ export class LocationComponent implements OnInit {
         types: ["address"]
       });
       autocomplete.addListener("place_changed", () => {
-
         this.zone.run(() => {
           let place = autocomplete.getPlace();
           if (place.geometry === undefined || place.geometry === null) {
@@ -345,13 +335,12 @@ export class LocationComponent implements OnInit {
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
-
     this.http.get(this.urlget, { headers: headers }).subscribe((data) => {
       this.location_Array = data.json();
-      console.log(JSON.stringify(this.location_Array));
       this.location_Array_length = this.location_Array.length;
       this.location_Array.sort(p=>p.isPrimary).reverse();
       this.location_Array[0].locationPhones.reverse();
+      console.log(JSON.stringify(this.location_Array));
       this.location_Array.forEach(element => {
         element.str_businessPhone=this.arrayToCsv(element.locationPhones.filter(p=>p.phoneType=='Phone'));
         element.str_businessMobile=this.arrayToCsv(element.locationPhones.filter(p=>p.phoneType=='Mobile'));
@@ -574,6 +563,10 @@ export class LocationComponent implements OnInit {
   }
 
   update__googlemap(e, a) {
+     this.location_Array[0].lat=this.mapDialogObj.lat;
+    this.location_Array[0].long=this.mapDialogObj.lng;
+    this.modelfield.lat=this.mapDialogObj.lat;
+    this.modelfield.long = this.mapDialogObj.lng;
     const loc_add = {
       mapAddress: this.address,
       vendorId: a.vendorId,
@@ -628,9 +621,11 @@ export class LocationComponent implements OnInit {
     this.http.post(this.urlpost, loc_add, { headers: headers }).subscribe((data) => {
       this.mapDailog = false;
       this.toastr.success(data.statusText);
-      this.http.get(this.urlget, { headers: headers }).subscribe((data) => {
-        this.location_Array = data.json();
-      })
+//      this.ngOnInit();
+    //  this.http.get(this.urlget, { headers: headers }).subscribe((data) => {
+     //   this.location_Array = data.json();
+     //   console.log(this.location_Array);
+     // })
     }, (error) => {
       this.toastr.success(error.statusText);
     });

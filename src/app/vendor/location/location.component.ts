@@ -348,6 +348,7 @@ export class LocationComponent implements OnInit {
 
     this.http.get(this.urlget, { headers: headers }).subscribe((data) => {
       this.location_Array = data.json();
+      console.log(JSON.stringify(this.location_Array));
       this.location_Array_length = this.location_Array.length;
       this.location_Array.sort(p=>p.isPrimary).reverse();
       this.location_Array[0].locationPhones.reverse();
@@ -516,6 +517,8 @@ export class LocationComponent implements OnInit {
     return;
   }
   openweek(b) {
+
+    console.log(b);
     this.modelfield = b;
     this.week_dailog = true;
   }
@@ -644,10 +647,10 @@ export class LocationComponent implements OnInit {
         vendorLocationId: this.modelfield.vendorLocationId,
         countryId: this.modelfield.country.countryId,
         vendorId: this.modelfield.vendorId,
-        country: this.modelfield.country.countryName,
+       // country: this.modelfield.country.countryName,
         postalCode: this.modelfield.postalCode?this.modelfield.postalCode:'Postal Code Not Available !',
         districtId: this.modelfield.districtId,
-        addedOn:new Date().getDate(),
+       // addedOn:new Date().getDate(),
         suburbId: this.modelfield.suburbId,
         address: this.modelfield.address,
         mapAddress: this.modelfield.address,
@@ -677,15 +680,14 @@ export class LocationComponent implements OnInit {
         saturdayOpen: e.value.saturdayOpen==undefined?0:e.value.saturdayOpen,
         saturdayClose: e.value.saturdayClose==undefined?0:e.value.saturdayClose,
         isSaturdayOpen: e.value.isSaturdayOpen==undefined?0:e.value.isSaturdayOpen,
-       locationPhones: this.col
+       // locationPhones: this.col
       }
       console.log(JSON.stringify(jsonPost));
-      this.http.post(this.urlpost, {
-        jsonPost
-      }, { headers: headers }).subscribe((data) => {
-        this.toastr.success(data.statusText);
+      this.http.post(this.urlpost,jsonPost, { headers: headers }).subscribe((data) => {
+        this.toastr.success(data.json().message);
       },
         (error) => {
+          console.log(error);
           this.toastr.error(error.statusText);
         });
     }else{

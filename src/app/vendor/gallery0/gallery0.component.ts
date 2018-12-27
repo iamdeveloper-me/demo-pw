@@ -179,15 +179,21 @@ export class Gallery0Component implements OnInit {
     //                      }
     //                     );
 
-    this._http.withUploadProgressListener(progress => {this.progress_bar = true; console.log(`Uploading ${progress.percentage}%`);this.closeModel(); this.progressPercentage = progress.percentage})
+    this._http.withUploadProgressListener(progress => {this.progress_bar = true; console.log(`Uploading ${progress.percentage}%`);
+    this.closeModel(); 
+ 
+    this.progressPercentage = progress.percentage
+    })
         .withDownloadProgressListener(progress => { console.log(`Downloading ${progress.percentage}%`); })
         .post(this.url+'api/ImageUploader/PortfolioUploader', formData,{headers: headers})
         .subscribe((response) => {
-          this.progress_bar = false;
+        
           this.toastr.success(response.json().message);
                                //  this.uploadphoto_dailog = false; 
+                               this.progress_bar = false;
                                  this.router.navigate(['../vendor/portfolioview'])
-                                  
+                               
+
                                }
                                ,(error)=>{
                                  console.log(error);
@@ -249,6 +255,8 @@ export class Gallery0Component implements OnInit {
     this.uploadphoto_dailog = false;
     this.createalbum_dailog = false;
     this.uploader.queue =[];
-  
+   // alert("progress_bar")
+    
   }
+  closeprogress(){this.progress_bar = false;}
 }

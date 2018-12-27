@@ -279,7 +279,7 @@ export class BusinessServicesComponent implements OnInit {
     this.bs_service.SaveIntoDb(this.businessServiceEntity).subscribe(res => {
       if (res.status == 200) {
         this.showLoader = false;
-        this.toastr.success(res.json().message);
+        this.toastr.success(res.json().message,null,{timeOut:1000});
         this.objVenderServiceVm.serviceFields = [];
         if (fieldType == '5') {
           this.showLoader = false;
@@ -301,7 +301,7 @@ export class BusinessServicesComponent implements OnInit {
     this.services.filter(s => s.isSelect = true)[0].isSelect = false;
     this.services.filter(s => s.servicesId == this.objVenderServiceVm.servicesId)[0].isSelect = true;
     this.bs_service.SaveIntoDb(this.businessServiceEntity).subscribe((response) => {
-      this.toastr.success(response.json().message);
+      this.toastr.success(response.json().message,null,{timeOut:1000});
       this.serviceDialog = false;
       this.showLoader = false;
     }, error => {

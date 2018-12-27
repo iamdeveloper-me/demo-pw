@@ -487,7 +487,7 @@ export function getAuthServiceConfigs() {
 
     providers: [
             PagerService,
-        {provide: LocationStrategy, useClass: PathLocationStrategy},
+        {provide: LocationStrategy, useClass: HashLocationStrategy},
         AuthService,
         GoogleMapsAPIWrapper,
         AuthGuard,

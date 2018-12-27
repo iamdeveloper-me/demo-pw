@@ -56,17 +56,19 @@
                       {{country.countryName }}
                   </option>
           </select>
-          <label  class="selectlabel" for="country_id">Country</label>
+          <label for="country_id">Country</label>
+          <!-- class="selectlabel" -->
       </div>
       <div class="field">
           <select class="form-control selectwet1" [(ngModel)] = "objVendorDetails.businessInfo.districtId" id="city_id" name="district" (change)="districtA($event)"> 
-            <option [value]="undefined" disabled>Please Select</option>
+            <option [value]="0" disabled>Please Select</option>
             <option *ngFor="let dist of district ;let d =index" [value]="dist.districtId" >
                   {{dist.name}}
             </option>
         </select>
           <!-- {{objVendorDetails.businessInfo.districtId}} -->
-          <label  class="selectlabel1" for="city_id">District</label>
+          <label for="city_id">District</label>
+          <!-- class="selectlabel1" -->
       </div>
       <!-- <div class="field" >
             <select name="district"  [(ngModel)] = "objVendorDetails.businessInfo.districtId" (change)="districtA($event)"> 
@@ -91,7 +93,8 @@
                   </option>
                   <!-- checked -->
               </select>
-              <label class="selectlabel2" for="sub_id">Suburb</label>
+              <label for="sub_id">Suburb</label>
+              <!-- class="selectlabel2"  -->
       </div>
       <div class="field">
               <input 

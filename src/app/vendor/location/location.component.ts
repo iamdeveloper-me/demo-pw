@@ -514,8 +514,10 @@ export class LocationComponent implements OnInit {
 
   mapDialogObj: any;
   OpenmapDailog(locationObj) {
+    console.log(this.location_Array[0].mapAddress);
     this.mapDialogObj = locationObj
-    this.address = this.mapDialogObj.mapAddress
+    this.modelfield.address=this.location_Array[0].mapAddress;
+   // this.address = this.location_Array[0].mapAddress;
     this.mapDailog = true;
   }
   findLocation(address) {
@@ -649,8 +651,8 @@ export class LocationComponent implements OnInit {
         suburbId: this.modelfield.suburbId,
         address: this.modelfield.address,
         mapAddress: this.modelfield.address,
-        lat: 0, //e.value.lat,
-        long: 0, //e.value.long,
+        lat: this.modelfield.lat, //e.value.lat,
+        long: this.modelfield.long, //e.value.long,
         phone:this.modelfield.phone, //e.value.phone,
         mobile:this.modelfield.mobile, // e.value.mobile,
         isActive:this.modelfield.isActive,  //e.value.isActive,

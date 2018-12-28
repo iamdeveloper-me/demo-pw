@@ -22,6 +22,7 @@ export class CalendertableComponent implements OnInit {
     edit_startDate:{};edit_endDate:{};customDay;isDisabled;endtime;select_time: TimeSlot;jobArray: any = [];
     http_header:Headers;
     objVendorJob:VendorJobsVM;
+    startDatevvvv:string;
     all = 3;end_date:string;start_date:string;upcomming =2;past = 1;vendorJobsId = 0;
     edit_job_form = {vendorJobsId: 0,clientName: '',clientNumber: '',
                       eventTitle: "string",eventLocation: '',startDate: "2018-11-23T07:28:05.224Z",
@@ -62,6 +63,7 @@ export class CalendertableComponent implements OnInit {
      this.test = this.datePipe.transform(this.myDate, 'yyyy-mm-dd');
      this.select_time = new TimeSlot();
      this.objVendorJob=new VendorJobsVM();
+     this.objVendorJob.startDate='abc123';
     }
     ngOnInit() {
                   $.getScript('./assets/js/vendorsidebar.js');
@@ -163,18 +165,11 @@ export class CalendertableComponent implements OnInit {
                                                console.log(  this.edit_startDate);
                                                console.log (this.edit_endDate  );
               this.edit_job_form.startDate = a.startDate.split('T')[0].split('"')[0];
-            //   a.endDate.split('T')[0];
-            // { "YEAR": 2018, "MONTH": 12, "DAY": 22 }
               this.edit_job_form.endDate  = a.endDate.split('T')[0]
            
             }
             edit_job(b){
               console.log(b.value);
-            //  this.end_date = b.value['endDate']['year']+'-'+b.value['endDate']['month']+'-'+b.value['endDate']['day']
-             // this.start_date = b.value['startDate']['year']+'-'+b.value['startDate']['month']+'-'+b.value['startDate']['day']
-             // b.value.startDate = this.start_date
-            //  b.value.endDate = this.end_date
-             // console.log(b.value);            
               let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
               headers.append('Accept', 'application/json')
@@ -250,6 +245,8 @@ export class CalendertableComponent implements OnInit {
             this.calendarOptions = {
               editable: true,
               eventLimit: true,
+              dayClick :(date, jsEvent, view)=>{
+             },
               displayEventEnd:true,
               eventOverlap:true,
               nowIndicator:true,
@@ -269,12 +266,25 @@ export class CalendertableComponent implements OnInit {
             this.date = model.event.start;
             this.showModal = true;
           }
+          clickDay(date, jsEvent, view) {
+            
+            const clickedDate = new Date(date).toLocaleString('en-US', {timeZone: 'UTC'}).split(', ');
+            console.log(clickedDate[0]);
+            // this.showScheduleModal = true;
+          //  this.dayClickDate = clickedDate;
+           // console.log('this.dayClickDate: ', this.dayClickDate);
+          }
+        
           hide(){
          // this.calendarOptions.events.push(this.eventObj);
           this.showModal = false;
         }
         dayClick(calendarOptions){
-          console.log(calendarOptions.details.date);
+          const datePipe = new DatePipe('en-US');
+           const myFormattedDate = datePipe.transform(calendarOptions["detail"]["date"]["_i"], 'yyyy-MM-dd');
+          //const myFormattedDate = datePipe.transform(calendarOptions.timeStamp, 'yy-MM-dd');
+          this.objVendorJob.startDate = myFormattedDate
+          this.startDate=this.objVendorJob.startDate;
           this.showModal=true;
         }
         clickButton(details){

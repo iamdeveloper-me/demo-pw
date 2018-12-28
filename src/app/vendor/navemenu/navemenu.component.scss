@@ -16,9 +16,33 @@
     padding: 0px 10px;
     margin: 0px;
 }
+.navbar{
+  z-index:999!important;
+}
 .togglebtnmenu.cross{
   left:0px!important;
 }
+.notifytext {
+    white-space: nowrap!important;
+    width: 190px!important;
+    display:inline-block;
+    overflow: hidden!important;
+    text-overflow: ellipsis!important;
+}
+.noti-list{
+  max-height:290px!important;
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+.timestamp{
+  position:absolute;
+  display:inline-block;
+  font-size:11px;
+  line-height:15px;
+  right:5px;
+  color:#999;
+}
+.timestamp i{font-size:16px!important;margin-right:3px;}
 .vendorpicsec{
   padding:10px 5px;
   background: #fff;
@@ -88,7 +112,11 @@ max-width: inherit!important;
 .nopadd{
     padding: 0px;
 }
-
+.dropdown-toggle::after{
+  position:absolute!important;
+  right:-3px;
+  top:18px;
+}
 .navbar-brand {
     font-weight: 600;
     font-size: 24px;
@@ -152,8 +180,9 @@ a:hover.navbar-brand {
 .togglebtnmenu .navbar-brand{color:#000!important;}
 .right_listing{position: relative; top: 6px;}
 
-.noti-footer{
-    border-top: none !important;
+.nomsgbox{
+  text-align:center;
+  padding: 15px 0px 0px 0px;
 }
 .navbar .navbar-nav {
     margin-right: 0;
@@ -191,6 +220,10 @@ a:hover.navbar-brand {
     top: 50px !important;
     left: -308px !important;
  }
+ .notification-dropdown.dropdown-menu{
+   top:50px!important;
+   left:-230px!important;
+}
  .navbar-brandm{
  line-height:60px;
  }

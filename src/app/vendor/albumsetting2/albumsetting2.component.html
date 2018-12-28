@@ -33,14 +33,15 @@
                     </td>
                     <td valign="top"> 
                       <div class="tagcontainer">
-                        <span *ngFor="let ag of data.tags;let i=index">
-                            <div *ngIf = "ag != ''"> 
-                                  <span class="tagstik"> 
-                                      {{ag}}    
+                        {{tags_two}}
+                        <span *ngFor="let ag of data.tags_two;let i=index">
+                            <div *ngIf = "ag != ''"> </div> 
+                                  <span *ngIf = "ag != ''" class="tagstik"> 
+                                      {{ag}}   
                                   </span>
-                            </div>      
+                                 
                         </span>
-                    </div>
+                      </div>
                     </td>
                    <td valign="top"> 
                       <div class="tagcontainer">
@@ -52,7 +53,7 @@
                             <span *ngIf = "g == 'red'">
                                 <span class="colortags redbg"></span>
                             </span>
-                            <span *ngIf = "g == 'blue'">
+                            <span *ngIf = "g == 'Blue'">
                                 <span class="colortags bluebg"></span>
                             </span>
                             <span *ngIf = "g == 'yellow'">
@@ -82,8 +83,8 @@
                         </span>
                     </div>
                     </td>
-                    <td class="text-center" (click) = openModel(data) >
-                        <button class="btn btn-success editbtn"  id="prompt-function"   data-reactid="333" (click)="description_dailog = true ">Edit</button><br/>
+                    <td class="text-center" >
+                        <button class="btn btn-success editbtn"  id="prompt-function"   data-reactid="333" (click)="openModel(data) || description_dailog = true ">Edit</button><br/>
                         <button class="btn btn-warining deletebtn"  (click)="delete_portfolio(data,i)">Delete</button>
                     </td>
                 </tr>
@@ -101,17 +102,18 @@
   
   <div class="modal fade" [ngClass] = "{'show' : description_dailog}" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-      <form (ngSubmit)="editSettting(portEdit)" #portEdit="ngForm">
+     
+       <form (ngSubmit)="editSettting(portEdit)" #portEdit="ngForm">
         <div class="modal-content">
           <div class="modal-header text-center">
             <h4 class="modal-title"> Photo Settings</h4>
             <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
-
+          <!-- {{formdata | json}} -->
           <div class="modal-body" style="background-color: white">
             <div class="row" >
               <div class="col-md-12 padtop20px">
-                <div class="form-group">
+                 <div class="form-group">
                     <div class="input-effect form-group md-form ">
                     
                       <input class="effect-16 validate" 
@@ -133,155 +135,39 @@
                       <span class="focus-border"></span>
                     </div>
                     <ul class="list_inline">
-                      <li  *ngFor="let g of tai;let i=index">
-                        <div *ngIf = " g != ''"> 
-                          <span class="tagstik"> 
+                    
+                      <li  *ngFor="let g of formdata.tags;let i=index">
+                   
+                          <span class="tagstik" *ngIf="g != ''"> 
                               {{g}}
-                              <i class="material-icons" (click) = "remove_tag_picker(i)">clears</i>
+                              <i class="material-icons" (click) = "remove_tag_picker(g)">clears</i>
                             </span>  
-                        </div>    
+                     
                       </li>
                     </ul>  
-                    <a class="btn-sm btn btn-success editbtn" (click) = "tags_bage(taggg)">ADD Tag</a>
-                    <!--   {{tai.length}} -->
+                    <a class="btn-sm btn btn-success editbtn" (click) = "tags_edit(taggg)">ADD Tag</a>
                     <hr>
                     <small class="form-text text-muted danger" *ngIf="tai.length == 0"> {{colour_tag_error}}</small>
-                    <!-- <ul  class="list_inline">        
-                      <li *ngFor="let g of a;let i=index">
-                          <span class="tagstik"> 
-                              {{g}}
-                              <i class="material-icons" (click) = "remove_colour_picker(i)">clears</i>
-                            </span>  
-                      </li>
-                    </ul> -->
-                </div>
+  
+                </div> 
               </div>
             </div>
             <div class="row">
-                  <div *ngFor='let c of colors' (click)='SelectColor(c)' class="btn btn-default col-md-2 col-md-offset-1" [style.background-color]='c.colorName' style="color:white">
+                  <div *ngFor='let c of colors' (click)='SelectColor(c)' class="colorbtn" [style.background-color]='c.colorName' style="color:white">
                     <i class="fa fa-check" *ngIf='c.isSelected'></i>
-                      {{c.colorName}}
+                      <span>{{c.colorName}}</span>
                   </div>
             </div>
-            <!-- <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label>Color Tags</label>
-                    <div class="cityscroll22">
-                      <div class="funkyradio">    
-                        <div class="funkyradio-info" >
-                          <input 
-                          type="checkbox" 
-                        
-                          id="pink" 
-                          (click) = "colour_picker(colour_pink)"
-                          />
-                          <label for="pink" class="pinkinput"> 
-                              Pink
-                          </label>
-                        </div>
-                        <div class="funkyradio-info">
-                          <input 
-                          type="checkbox" 
-                        
-                          (click) = "colour_picker(colour_red)"
-                          id="red" 
-                        />
-                          <label for="red" class="redinput"> 
-                              Red
-                          </label>
-                        </div>
-                        <div class="funkyradio-info">
 
-                          <input 
-                          type="checkbox" 
-                          id="orange" 
-                        
-                          (click) = "colour_picker(colour_orange)"/>
-
-                          <label for="orange" class="orangeinput"> 
-                              Orange
-                          </label>
-                        </div>
-                        <div class="funkyradio-info">
-                          <input type="checkbox"  id="yellow" 
-                          
-                          (click) = "colour_picker(colour_yellow)"/>
-                          <label for="yellow" class="yellowinput"> 
-                              Yellow
-                          </label>
-                        </div>
-                        <div class="funkyradio-info">
-
-                          <input 
-                          type="checkbox"  
-                          id="green" 
-                          
-                          (click) = "colour_picker(colour_green)" />
-                          <label for="green" class="greeninput">
-                              Green
-                          </label>
-                        </div>
-                        <div class="funkyradio-info">
-                          <input 
-                          type="checkbox"   
-                          id="Blue"  
-                          
-                          (click) = "colour_picker(colour_Blue)"/>
-                          <label for="Blue" class="tealinput"> 
-                              Blue
-                          </label>
-                        </div>
-                        
-                          <div class="funkyradio-info">
-                          <input type="checkbox"  id="purple"  
-                          (click) = "colour_picker(colour_purple)" />
-                          <label for="purple" class="purpleinput"> 
-                              Purple
-                          </label>
-                        </div>
-                          <div class="funkyradio-info">
-                          <input type="checkbox"   id="brown"  
-                          (click) = "colour_picker(colour_brown)" />
-                          <label for="brown" class="browninput" > 
-                              Brown
-                          </label>
-                        </div>
-                        <div class="funkyradio-info">
-                          <input type="checkbox"  id="black" 
-                          (click) = "colour_picker(colour_black)"/>
-                          <label for="black" class="blackinput">
-                              Black
-                          </label>
-                        </div>
-                        <div class="funkyradio-info">
-                          <input type="checkbox"  id="grey"  
-                          (click) = "colour_picker(colour_grey)" />
-                          <label for="grey" class="greyinput"> 
-                              Grey
-                          </label>
-                        </div>
-                        <div class="funkyradio-info">
-                          <input type="checkbox"   id="white" 
-                          (click) = "colour_picker(colour_white)" />
-                          <label for="white" class="whiteinput">
-                              White
-                          </label>
-                        </div> 
-                      </div>
-                    </div>
-                </div>
-              </div>
-            </div> -->
             <div class="clearfix"></div>
           </div>
 
           <div class="modal-footer text-center">
-            <button type="submit" class="btn newbtn" [disabled]="tai.length == 0">Save </button>&nbsp;
+            <button type="submit" class="btn newbtn" >Save </button>&nbsp;
             <button type="button" class="btn  newbtn newcancelbtn" (click)="closeModel()">Cancel</button>
           </div>
 
         </div>
-      </form>            
+      </form>             
     </div>
   </div>

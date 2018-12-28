@@ -14,9 +14,18 @@
 					<img class="img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/gift.jpeg"/>
 			</div>
 			<div class="col-sm-9 col-12 cardtextbox">
-					<p>Member since: {{statdate}}</p>
-					<p>Plan Type: {{pricingPlantitle}}</p>
-					<p>Expiry: {{endDateString}} <span class="greentext">(Active)</span></p>
+					<p>Member since: {{myplans.createdOnString}}</p>
+					<p *ngIf="myplans.payFrequency == 1 && myplans.pricingPlanId == 1">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (6 Months)</p>
+					<p *ngIf="myplans.payFrequency == 2 && myplans.pricingPlanId == 1">Plan Name: <b>{{myplans?.pricingPlan.title}}</b> (12 Months)</p>
+						<!--Free Basic-->
+					<p *ngIf="myplans.payFrequency == 0 && myplans.pricingPlanId == 2">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (6 Months)</p>
+					<p *ngIf="myplans.payFrequency == 1 && myplans.pricingPlanId == 2">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (12 Months)</p>
+						<!--Premium-->
+					<p *ngIf="myplans.payFrequency == 0 && myplans.pricingPlanId == 3">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (12 Months)</p>
+					<p *ngIf="myplans.payFrequency == 1 && myplans.pricingPlanId == 3">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (6 Months)</p>
+						<!--Ultimate-->	
+					<p>Plan Begin Date: {{myplans.startDateString}}</p>
+					<p>Expiry: {{myplans.endDateString}} <span class="greentext">(Active)</span></p>
 			</div>
 		</div>
 	</div>
@@ -99,12 +108,26 @@
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPromoteProfile">check_circle</i><i *ngIf="!plan.isPromoteProfile" class="material-icons redtext">cancel</i> Promote Profile</li>
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPublishEvents">check_circle</i><i *ngIf="!plan.isPublishEvents" class="material-icons redtext">cancel</i> Publish Events</li>
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isReviewManagement">check_circle</i><i *ngIf="!plan.isReviewManagement" class="material-icons redtext">cancel</i> Review Management</li>
+												<!-- <li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isdealsAndDiscount && plan.monthlyPrice != 0">check_circle</i><i *ngIf="!plan.isdealsAndDiscount && plan.monthlyPrice == 0" class="material-icons redtext">cancel</i> Deals & Discounts</li> -->
+
+												<li class="list-group-item" *ngIf="!plan.monthlyPrice == 0 && !plan.isdealsAndDiscount;else old"><i class="material-icons greentext" >check_circle</i> Deals & Discounts</li>
+												<ng-template #old>
+													<li class="list-group-item"><i class="material-icons redtext" >cancel</i> Deals & Discounts</li>
+												</ng-template>
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.pinnedReviews">check_circle</i><i *ngIf="!plan.pinnedReviews" class="material-icons redtext">cancel</i> Pinned reviews</li>
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedPhotos">check_circle</i><i *ngIf="!plan.unlimitedPhotos" class="material-icons redtext">cancel</i> Limited Photos</li>
-												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimmited Album</li>
-												<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.performanceAnalytics}} Performance analytics</li>
-												<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.noOfLocationAllowed}} location</li>
-												<li class="list-group-item"><i class="material-icons bluetext" >report</i> Low Priority in Search Results {{plan.priorityInSearch}}</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimited Album</li>
+												<li class="list-group-item" *ngIf="plan.performanceAnalytics == 0 "><i class="material-icons bluetext">report</i>  No Performance Analytics</li>
+												<li class="list-group-item" *ngIf="plan.performanceAnalytics == 1 "><i class="material-icons bluetext">report</i>  Basic Performance Analytics</li>
+												<li class="list-group-item" *ngIf="plan.performanceAnalytics == 2 "><i class="material-icons bluetext">report</i>  Advanced Performance Analytics</li>
+												<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.noOfLocationAllowed}} locations</li>
+
+												<!-- Low Priority -->
+												<li class="list-group-item" *ngIf="plan.priorityInSearch == 0"><i class="material-icons bluetext" >report</i> Low Priority in Search Results </li>
+												<li class="list-group-item" *ngIf="plan.priorityInSearch == 1"><i class="material-icons bluetext" >report</i> Medium Priority in Search Results </li>
+												<li class="list-group-item" *ngIf="plan.priorityInSearch == 2"><i class="material-icons bluetext" >report</i> High Priority in Search Results </li>
+												<!-- Low Priority -->
+
 									</ul>
 									<div class="panel-footer text-center" *ngIf="plan.pricingPlanId == pricingPlanId  && payFrequency == 0 ; else opo">
 										<button class="btn btnchoosetik disabled"   type="submit" (click) = "monthlyPrice(plan)" [disabled]="true">SELECTED PLAN
@@ -115,7 +138,7 @@
 									
 									<ng-template #opo>
 											<div class="panel-footer text-center">
-										<button class="btn btnchoosetik"   type="submit" (click) = "monthlyPrice(plan)" [disabled]="false">chosse PLAN
+										<button class="btn btnchoosetik"   type="submit" (click) = "monthlyPrice(plan)" [disabled]="false">Choose Plan
 										</button>
 										</div>
 									</ng-template>
@@ -147,8 +170,7 @@
 													<td>
 															<div class="pricebig">{{(plan.monthlyPrice * (12 - plan.noOfMonthFeeOff))/12 | number: '1.0-0'}} </div></td>
 													<td class="text-left lineheight16px" > <p class="nomar" [innerHtml]="getDecimal(plan.monthlyPrice,plan.noOfMonthFeeOff)"></p>/Monthly</td>
-                                                    <!-- <td class="text-left lineheight16px" > {{getDecimal(plan.monthlyPrice , plan.noOfMonthFeeOff)}}<br/>/Monthly</td> -->
-													<!-- | number:'4.5-5':'fr' -->
+                                                
 												</tr>
 											</table>
 										</div>
@@ -162,12 +184,19 @@
 											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPromoteProfile">check_circle</i><i *ngIf="!plan.isPromoteProfile" class="material-icons redtext">cancel</i> Promote Profile</li>
 											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPublishEvents">check_circle</i><i *ngIf="!plan.isPublishEvents" class="material-icons redtext">cancel</i> Publish Events</li>
 											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isReviewManagement">check_circle</i><i *ngIf="!plan.isReviewManagement" class="material-icons redtext">cancel</i> Review Management</li>
+											<li class="list-group-item"><i class="material-icons greentext" *ngIf="!plan.isdealsAndDiscount">check_circle</i><i *ngIf="plan.isdealsAndDiscount" class="material-icons redtext">cancel</i> Deals & Discounts</li>
 											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.pinnedReviews">check_circle</i><i *ngIf="!plan.pinnedReviews" class="material-icons redtext">cancel</i> Pinned reviews</li>
 											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedPhotos">check_circle</i><i *ngIf="!plan.unlimitedPhotos" class="material-icons redtext">cancel</i> Limited Photos</li>
-											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimmited Album</li>
-											<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.performanceAnalytics}} Performance analytics</li>
-											<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.noOfLocationAllowed}} location</li>
-											<li class="list-group-item"><i class="material-icons bluetext" >report</i> Low Priority in Search Results {{plan.priorityInSearch}}</li>
+											<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimited Album</li>
+											<li class="list-group-item" *ngIf="plan.performanceAnalytics == 0 "><i class="material-icons bluetext">report</i>  No Performance Analytics</li>
+											<li class="list-group-item" *ngIf="plan.performanceAnalytics == 1 "><i class="material-icons bluetext">report</i>  Basic Performance Analytics</li>
+											<li class="list-group-item" *ngIf="plan.performanceAnalytics == 2 "><i class="material-icons bluetext">report</i>  Advanced Performance Analytics</li>
+											
+											
+											<li class="list-group-item"><i class="material-icons bluetext">report</i> {{plan.noOfLocationAllowed}} locations</li>
+											<li class="list-group-item" *ngIf="plan.priorityInSearch == 0"><i class="material-icons bluetext" >report</i> Low Priority in Search Results </li>
+											<li class="list-group-item" *ngIf="plan.priorityInSearch == 1"><i class="material-icons bluetext" >report</i> Medium Priority in Search Results </li>
+											<li class="list-group-item" *ngIf="plan.priorityInSearch == 2"><i class="material-icons bluetext" >report</i> High Priority in Search Results </li>
 								</ul>
 									<div *ngIf="plan.pricingPlanId == pricingPlanId  && payFrequency == 1 ; else ooo">
 										<!-- btnchoosetik -->

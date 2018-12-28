@@ -1,114 +1,119 @@
 <div id="wrapper" class="toggled">
-  <div id="sidebar-wrapper" >
-      <app-vendorsidebar></app-vendorsidebar>
-  </div>
-  <div id="page-content-wrapper">
-   <app-navemenu></app-navemenu>    
-	<router-outlet></router-outlet> 
-    <div class="col-sm-12 container-fluid mobilefixedcontainer">
-	    <div class="photo_gallery">
-            <div class="allport_row">
-                <a routerLink= "../gallery" class="leftarrowbacklink"><i class="material-icons"> arrow_back_ios </i> 
-                    <span class="mob_none"> Albums</span>  
-                </a>  
-                <div class="createmyalbum">
-                    <h2>MY ALBUMS</h2>
-                    <span>Create, lable and group your work with albums</span>
-                </div>
-                <div class="new_albums"> 
-                    <button id="Google-function" (click)="createalbum_dailog = true" data-reactid="339">  + New Albums  
-                    </button>  
-                </div>
-            </div>        
-            <div class="clearfix"> </div>
-            <section class="p-0 container" id="portfolio">
-                <div class="container photos_gallery">
-                    <div class="row">
-                        <div class="col-md-3  col-xs-6 marbot15px" *ngFor='let album of eventArray;let i=index '>
-                                <button class="deletebtn" (click)= "albumdelete(album,i)">&times;</button>
-                            <a routerLink="../albumviewphoto/{{album.albumsId}} " class="" rel="ligthbox">
-
-                                <div class="image-div"  >
-
-                                    <div >
-                                        <div *ngIf="album.albumImages?.length ==  0"  class="imgcontainer">
-                                            <img class="img-thumbnail "  alt="Another alt text"  [src]="noimage" />
-                                            <img class="img-thumbnail imghalf"  alt="Another alt text"  [src]="noimage" />
-                                            <img class="img-thumbnail imghalf"  alt="Another alt text"  [src]="noimage" />
-                                        </div>
-                                    </div>    
-                                    <div *ngFor='let ar of  album.albumImages '>
-                            
-                                            <div *ngIf="album.albumImages?.length ==  2"  class=" imghalffull">
-                                            <img class="img-thumbnail  imghalffull" 
-                                            alt="Another alt text"
-                                            [src] = "ar.path" />
-                                            </div>
-                                    </div>
-            
-                                    <div *ngFor='let ar of  album.albumImages '>
-                            
-            
-                                            <div *ngIf="album.albumImages?.length ==  1"  class=" imgfull">
-                                            <img class="img-thumbnail" 
-                                            alt="Another alt text"
-                                            [src] = "ar.path" />
-                                        </div>
-                                    </div>
-                                    <div *ngFor='let ar of  album.albumImages  | slice:0:3 ;let i=index'>
-                            
-                                            <div *ngIf="album.albumImages?.length >=  3"  class=" imghalffull">
-                                            <img *ngIf="i==0"class="img-thumbnail  imgfull " 
-                                            alt="Another alt text"
-                                            [src] = "ar.path" />
-                                            <img *ngIf="i>0" class="img-thumbnail  imghalf  " 
-                                            alt="Another alt text"
-                                            [src] = "ar.path" />
-                                            </div>
-                                    </div>
-            
-                                  
-                                </div>
-                            </a>   
-                                <div class="over_like">
-                                <div class="text-center">
-                                    <span><strong>{{album.albumName}}</strong></span>
-                                </div>
-                                </div>
-                                        
-                        </div> 
-                    </div> <!-- list-group / end -->
-                </div> <!-- row / end -->
-            </section> 
-        </div>    	
+    <div id="sidebar-wrapper">
+        <app-vendorsidebar></app-vendorsidebar>
     </div>
-  </div>	 
-</div> 
-<form (ngSubmit)="createAlbum(Album)" #Album="ngForm"> 
-        <div class="modal fade" [ngClass] = "{'show' : createalbum_dailog}" id="createalbum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header text-center">
-                  <h4 class="modal-title">Create  Album </h4>
-                      <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                
-              </div>
-              <div class="modal-body">
-                  <div class="col-sm-12  text-center">
-                    <div class="modal-body" style="background-color: white">
-                      <strong>Album Name</strong><br/>
-                      <input type="text" [(ngModel)]="Album.albumName" name="albumName" id="albumName" class="borbotonly" /><br>
-                      <div class="clearfix"></div>
+    <div id="page-content-wrapper">
+        <app-navemenu></app-navemenu>
+        <router-outlet></router-outlet>
+        <div class="col-sm-12 container-fluid mobilefixedcontainer">
+            <div class="photo_gallery">
+                <div class="allport_row" *ngIf = "basicplane > 1">
+                    <a routerLink="../gallery" class="leftarrowbacklink"><i class="material-icons"> arrow_back_ios </i>
+                        <span class="mob_none"> Albums</span>
+                    </a>
+                    <div class="createmyalbum">
+                        <h2>MY ALBUMS</h2>
+                        <span>Create, lable and group your work with albums</span>
                     </div>
-                  </div>    
-              </div>
-              <div class="modal-footer text-center">
-                  <button type="submit" class="btn newbtn">Save</button>&nbsp;
-                  <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
-              </div>
-            </div>  
-          </div>  
-  
+                    <div class="new_albums">
+                        <button id="Google-function" (click)="createalbum_dailog = true" data-reactid="339"> + New
+                            <span>Albums</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="allport_row" *ngIf = "basicplane == 1">
+                     <h1 class="text-center">Free membership should not have had access to create the album at all!</h1>   
+                </div>
+                <div class="clearfix"> </div>
+                <section class="p-0 container" id="portfolio">
+                    <div class="container photos_gallery">
+                        <div class="row">
+                            <div class="col-md-3  col-xs-6 marbot15px" *ngFor='let album of eventArray;let i=index '>
+                                <button class="deletebtn" (click)="albumdelete(album,i)">&times;</button>
+                                <a routerLink="../albumviewphoto/{{album.albumsId}} " class="" rel="ligthbox">
+
+                                    <div class="image-div">
+
+
+                                        <div *ngIf="album.albumImages?.length ==  0" class="imgcontainer">
+                                            <img class="img-thumbnail imgfull" alt="Another alt text" src="../../../assets/img/noImg.png" />
+                                            <img class="img-thumbnail imghalf" alt="Another alt text" src="../../../assets/img/noImg.png" />
+                                            <img class="img-thumbnail imghalf" alt="Another alt text" src="../../../assets/img/noImg.png" />
+                                        </div>
+
+
+
+
+                                        <div *ngFor='let ar of  album.albumImages  | slice:0:3 ;let i=index'>
+
+                                            <div *ngIf="album.albumImages?.length ==  2" class=" imghalffull">
+                                                <img *ngIf="i==0" class="img-thumbnail  imgfull" alt="Another alt text"
+                                                    [src]="ar.path" />
+                                                <img *ngIf="i>0" class="img-thumbnail  imghalf  " alt="Another alt text"
+                                                    [src]="ar.path" />
+                                                <img *ngIf="i>0" class="img-thumbnail imghalf" alt="Another alt text"
+                                                    src="../../../assets/img/noImg.png" />
+
+
+                                            </div>
+
+
+
+                                            <div *ngIf="album.albumImages?.length >=  3" class=" imghalffull">
+                                                <img *ngIf="i==0" class="img-thumbnail  imgfull " alt="Another alt text"
+                                                    [src]="ar.path" />
+                                                <img *ngIf="i>0" class="img-thumbnail  imghalf  " alt="Another alt text"
+                                                    [src]="ar.path" />
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </a>
+                                <div class="over_like">
+                                    <div class="text-center">
+                                        <span><strong>{{album.albumName}}</strong></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div> <!-- list-group / end -->
+                    </div> <!-- row / end -->
+                </section>
+            </div>
         </div>
-</form>  
+    </div>
+</div>
+<form (ngSubmit)="createAlbum(Album)" #Album="ngForm">
+    <div class="modal fade" [ngClass]="{'show' : createalbum_dailog}" id="createalbum" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel">
+
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title">Create Album </h4>
+                    <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-12  text-center">
+                        <div class="modal-body" style="background-color: white">
+                            <div class="field">
+                                  <input type="text" placeholder="Album Name" [(ngModel)]="Album.albumName" name="albumName" id="albumName" />
+                                  <label for="albumName">Album Name</label>
+                            </div>
+                          <br>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="submit" class="btn newbtn">Save</button>&nbsp;
+                    <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>

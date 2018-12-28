@@ -8,269 +8,134 @@
 		<div class="container-fluid nopadd">
 			<div class="eventsearchbox">
 				<h1>Find your next experience</h1>
-				<div class="form-group row">
-					<div class="col-sm-4">
-						<input type="text" name="" class="form-control" placeholder="Search Events">
-					</div>
-					<div class="col-sm-3">
-						<select class="form-control">
-							<option>All Location</option>
-						</select>
-					</div>
-					<div class="col-sm-3 col-6">
-						<select class="form-control">
-							<option>Event Type</option>
-						</select>
-					</div>
-					<div class="col-sm-2  col-6">
-						<select class="form-control">
-							<option>All Dates</option>
-						</select>
-					</div>
+				    <form (ngSubmit)="event(list)" #list="ngForm">
+						<div class="form-group row">
+							<div class="col-sm-3">
+								<input [(ngModel)]="searchQuery"  type="text" name="searchQuery" class="form-control" placeholder="Search Events">
+							</div>
+							<div class="col-sm-3">
+								<select class="form-control" name="location"  [(ngModel)]="location"  id="location">
+									<option selected>All Location</option>
+									<option *ngFor='let list_locations of locations'> {{list_locations.name}}</option>
+								</select>
+							</div>
 
-				</div>
+							<div class="col-sm-2 col-6">
+								<select class="form-control" name="eventType"  [(ngModel)]="eventType"  id="eventType">
+								
+									<option value="All" selected>All Events</option>
+									<option>Free</option>
+									<option>Paid</option>
+								</select>
+							</div>
+							<div class="col-sm-2  col-6">
+								<select class="form-control"  name="dates"  [(ngModel)]="dates"  id="dates">
+									<option   value="All" selected>All Dates</option>
+									<option >NextMonth</option>
+									<option >ThisWeek</option>
+									<option >Tomorrow</option>
+									<option >Today</option>
+								</select>
+							</div>
+                            <!-- <div class="col-sm-2  col-6">
+									<select class="form-control"  name="pageSize"  [(ngModel)]="pageSize"  id="pageSize">
+										<option selected [value]="1">10 - 20</option>
+										<option [value]="2">20 - 30</option>
+										<option [value]="3">30 - 40</option>
+										<option [value]="5">40 - 50</option>
+										<option [value]="60">50 - 60</option>
+									</select>
+								</div> -->
+								<div class="col-sm-2  col-6">
+										<button type="submit" class="eventsearchbtn"> search </button>
+								</div>
+						</div>
+						
+					</form>
+
 			</div>
 			<div class="row eventlisting">
-				<div class="col-sm-4">
-					<div class="card cardshadow">
-						<img class="card-img-top img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/detail_slide4.jpg">
-						<div class="ribbon ribbon-top-right"><span>FREE</span></div>
-						<div class="card-block text-center">
-							<div class="eventbtnholder">
-								<button class="purple-gradient borradius50per">
-									<i class="material-icons">share</i>
-								</button>
-								<button class="purple-gradient borradius50per">
-									<i class="material-icons">
-										bookmark_border
-									</i>
-								</button>
-							</div>
-							<div class="eventdate col-sm-2">
-								<span>Nov</span>
-								<span class="date">09</span>
-							</div>
-							<div class="col-sm-10 heightadjust">
+				<div class="container">
+					<div class="text-center">
+			
+						<!-- items being paged -->
+						<!-- {{pagedItems?.length}} -->
+						<div class="col-sm-4 " *ngFor="let item of pagedItems">
 
-								<div class="eventtitle">
-									<a routerLink="../event_list">Free Modelling Workshop - Be a Model.</a>
+							<div class="card cardshadow" >
+								<img class="card-img-top img-fluid eventimg" [src]="item.files.path">
+								<div class="ribbon ribbon-top-right"><span>{{item.entry}}</span></div>
+								<div class="card-block text-center">
+									<div class="eventbtnholder">
+										<button class="purple-gradient borradius50per">
+											<i class="material-icons">share</i>
+										</button>
+										<button class="purple-gradient borradius50per">
+											<i class="material-icons">
+												bookmark_border
+											</i>
+										</button>
+									</div>
+									<div class="eventdate col-sm-2"  *ngFor='let Date of item.eventsDates' >
+										<span>{{Date.startDateString | date}}</span>
+										<span class="date"></span>
+									</div>
+									<div class="col-sm-10 heightadjust">
+		
+										<div class="eventtitle">
+											<a routerLink="../event_list">{{item.eventTitle}}</a>
+										</div>
+										<div class="eventvenue">
+											Location is  {{item.location}}, {{item.venueName}}
+										</div>
+									</div>
+									<div class="col-sm-12 footericon">
+										<span>
+											<i class="material-icons">bookmark</i> 0
+										</span>
+										<span>
+											<i class="material-icons">visibility</i> 85
+										</span>
+									</div>
 								</div>
-								<div class="eventvenue">
-									Wed, Nov 09 in Indore Marriott Hotel, Indore
-								</div>
-							</div>
-							<div class="col-sm-12 footericon">
-								<span>
-									<i class="material-icons">bookmark</i> 0
-								</span>
-								<span>
-									<i class="material-icons">visibility</i> 85
-								</span>
-							</div>
+							</div> 
 						</div>
+			<div class="clearfix"></div>
+						<!-- pager -->
+						<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+							<li [ngClass]="{disabled:pager.currentPage === 1}">
+								<a (click)="setPage(1)">First</a>
+							</li>
+							<li [ngClass]="{disabled:pager.currentPage === 1}">
+								<a (click)="setPage(pager.currentPage - 1)">Previous</a>
+							</li>
+							<li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+								<a (click)="setPage(page)">{{page}}</a>
+							</li>
+							<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+								<a (click)="setPage(pager.currentPage + 1)">Next</a>
+							</li>
+							<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+								<a (click)="setPage(pager.totalPages)">Last</a>
+							</li>
+						</ul>
 					</div>
 				</div>
-				<div class="col-sm-4">
-					<div class="card cardshadow">
-						<img class="card-img-top img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/detail_slide4.jpg">
-						<div class="ribbon ribbon-top-right"><span>FREE</span></div>
-						<div class="card-block text-center">
-							<div class="eventbtnholder">
-								<button class="purple-gradient borradius50per">
-									<i class="material-icons">share</i>
-								</button>
-								<button class="purple-gradient borradius50per">
-									<i class="material-icons">
-										bookmark_border
-									</i>
-								</button>
-							</div>
-							<div class="eventdate col-sm-2">
-								<span>Nov</span>
-								<span class="date">09</span>
-							</div>
-							<div class="col-sm-10 heightadjust">
-								<div class="eventtitle">
-									<a routerLink="../event_list">Free Modelling Workshop - Be a Model.</a>
-								</div>
-								<div class="eventvenue">
-									Wed, Nov 09 in Indore Marriott Hotel, Indore
-								</div>
-							</div>
-							<div class="col-sm-12 footericon">
-								<span>
-									<i class="material-icons">bookmark</i> 0
-								</span>
-								<span>
-									<i class="material-icons">visibility</i> 85
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4">
-
-					<div class="card cardshadow">
-						<img class="card-img-top img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/detail_slide4.jpg">
-						<div class="ribbon ribbon-top-right"><span>FREE</span></div>
-						<div class="card-block text-center">
-							<div class="eventbtnholder">
-								<button class="purple-gradient borradius50per">
-									<i class="material-icons">share</i>
-								</button>
-								<button class="purple-gradient borradius50per">
-									<i class="material-icons">
-										bookmark_border
-									</i>
-								</button>
-							</div>
-							<div class="eventdate col-sm-2">
-								<span>Nov</span>
-								<span class="date">09</span>
-							</div>
-							<div class="col-sm-10 heightadjust">
-								<div class="eventtitle">
-									<a routerLink="../event_list">Free Modelling Workshop - Be a Model.</a>
-								</div>
-								<div class="eventvenue">
-									Wed, Nov 09 in Indore Marriott Hotel, Indore
-								</div>
-							</div>
-							<div class="col-sm-12 footericon">
-								<span>
-									<i class="material-icons">bookmark</i> 0
-								</span>
-								<span>
-									<i class="material-icons">visibility</i> 85
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="card cardshadow">
-						<img class="card-img-top img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/detail_slide4.jpg">
-						<div class="ribbon ribbon-top-right"><span>FREE</span></div>
-						<div class="card-block text-center">
-							<div class="eventbtnholder">
-								<button class="purple-gradient borradius50per">
-									<i class="material-icons">share</i>
-								</button>
-								<button class="purple-gradient borradius50per">
-									<i class="material-icons">
-										bookmark_border
-									</i>
-								</button>
-							</div>
-							<div class="eventdate col-sm-2">
-								<span>Nov</span>
-								<span class="date">09</span>
-							</div>
-							<div class="col-sm-10 heightadjust">
-								<div class="eventtitle">
-									<a routerLink="../event_list">Free Modelling Workshop - Be a Model.</a>
-								</div>
-								<div class="eventvenue">
-									Wed, Nov 09 in Indore Marriott Hotel, Indore
-								</div>
-							</div>
-							<div class="col-sm-12 footericon">
-								<span>
-									<i class="material-icons">bookmark</i> 0
-								</span>
-								<span>
-									<i class="material-icons">visibility</i> 85
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="card cardshadow">
-						<img class="card-img-top img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/detail_slide4.jpg">
-						<div class="ribbon ribbon-top-right"><span>FREE</span></div>
-						<div class="card-block text-center">
-							<div class="eventbtnholder">
-								<button class="purple-gradient borradius50per">
-									<i class="material-icons">share</i>
-								</button>
-								<button class="purple-gradient borradius50per">
-									<i class="material-icons">
-										bookmark_border
-									</i>
-								</button>
-							</div>
-							<div class="eventdate col-sm-2">
-								<span>Nov</span>
-								<span class="date">09</span>
-							</div>
-							<div class="col-sm-10 heightadjust">
-								<div class="eventtitle">
-									<a routerLink="../event_list">Free Modelling Workshop - Be a Model.</a>
-								</div>
-								<div class="eventvenue">
-									Wed, Nov 09 in Indore Marriott Hotel, Indore
-								</div>
-							</div>
-							<div class="col-sm-12 footericon">
-								<span>
-									<i class="material-icons">bookmark</i> 0
-								</span>
-								<span>
-									<i class="material-icons">visibility</i> 85
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="card cardshadow">
-						<img class="card-img-top img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/detail_slide4.jpg">
-						<div class="ribbon ribbon-top-right"><span>FREE</span></div>
-						<div class="card-block text-center">
-							<div class="eventbtnholder">
-								<button class="purple-gradient borradius50per">
-									<i class="material-icons">share</i>
-								</button>
-								<button class="purple-gradient borradius50per">
-									<i class="material-icons">
-										bookmark_border
-									</i>
-								</button>
-							</div>
-							<div class="eventdate col-sm-2">
-								<span>Nov</span>
-								<span class="date">09</span>
-							</div>
-							<div class="col-sm-10 heightadjust">
-								<div class="eventtitle">
-									<a routerLink="../event_list">Free Modelling Workshop - Be a Model.</a>
-								</div>
-								<div class="eventvenue">
-									Wed, Nov 09 in Indore Marriott Hotel, Indore
-								</div>
-
-							</div>
-							<div class="col-sm-12 footericon">
-								<span>
-									<i class="material-icons">bookmark</i> 0
-								</span>
-								<span>
-									<i class="material-icons">visibility</i> 85
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
+				<hr/>
 			</div>
-			<div class="card row">
+			<!-- <div class="card row">
 				<div class="page-nation">
 					<ngb-pagination [collectionSize]="70" [(page)]="page2" [boundaryLinks]="true" class="abc123"></ngb-pagination>
 					<span class="totalpage">24 Pages</span>
-					<!-- <hr>
-                  <p>Current page: {{page2}}</p> -->
+					<hr>
+                  <p>Current page: {{page2}}</p>
 				</div>
-			</div>
+			</div> -->
+		</div>
+
+		<div>
+			
+		
 		</div>
 
 

@@ -1,7 +1,10 @@
-import { Component, OnInit,ViewChild ,ChangeDetectionStrategy} from '@angular/core';
+import { Component, OnInit,ViewChild ,ChangeDetectionStrategy, ElementRef} from '@angular/core';
 import { ViewEncapsulation, Input } from '@angular/core';
 import swal from 'sweetalert2';
+import { ProgressHttp } from 'angular-progress-http';
 
+ 
+import { Router } from '@angular/router';
 import { Http,Headers } from '@angular/http';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
@@ -16,14 +19,23 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
   
 })
 export class PortfolioviewComponent implements OnInit {
+    @ViewChild('previewimg') previewimg: ElementRef;
     fileToUpload:any;
     PortgetArray:any= [];
     PortpostArray:any= {};
     Set_as_background:any = [];
     uploadphoto_dailog = false;
+    //lodar =false;
     selected_Background;
     portfolioId;
+    basicplane;
+    progress_bar:boolean = false
+    progressPercentage:number = 0
+    free_limit;
+    urlll = ''
     // Portpost1Array:any= {};
+      private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/';
+
     private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader'
     private addportfolio: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/addportfolio'
     private mygeturl: string  = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myportfolio"
@@ -35,19 +47,38 @@ export class PortfolioviewComponent implements OnInit {
     list:any = {
         "filesId": 1
     }
+    constructor(private _http: ProgressHttp,public http: Http ,public toastr: ToastrService,   private router: Router ) { }
     ngOnInit() {
 
         $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
                     $.getScript('./assets/js/vendorsidebar.js');
+                    this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
                     let headers = new Headers();
                     var authToken = localStorage.getItem('userToken');
                     headers.append('Accept', 'application/json')
                     headers.append('Content-Type', 'application/json');
                     headers.append("Authorization",'Bearer '+authToken);
                     this.http.get(this.mygeturl,{headers:headers}).subscribe(data =>{
-                    this.PortgetArray = data.json() as string[];
+                    this.PortgetArray = data.json() ;
+                   // var basicplan = localStorage.getItem('basic-plan');
+          
                     //console.log(data.json());
                     })
+
+                 
+                    $(function() {
+                      var current_progress = 0;
+                      var interval = setInterval(function() {
+                          current_progress += 10;
+                          $("#dynamic")
+                          .css("width", current_progress + "%")
+                          .attr("aria-valuenow", current_progress)
+                          .text(current_progress + "% Complete");
+                          if (current_progress >= 100)
+                              clearInterval(interval);
+                      }, 1000);
+                    });
+                   
                     this.http.get(this.Get_backgroundImage,{headers:headers}).subscribe(data =>{
                         console.log(data.json());
                         if(data.json().setAsBackgroud == true){
@@ -58,11 +89,12 @@ export class PortfolioviewComponent implements OnInit {
                     },error=>{ console.log(error)
                            })
 
+                          
                }
  
 
     @ViewChild("fileInput") fileInput;
-    constructor( public http: Http ,public toastr: ToastrService) { }
+  
     uploader: FileUploader = new FileUploader({
         url: URL,
         isHTML5: true
@@ -77,46 +109,147 @@ export class PortfolioviewComponent implements OnInit {
     fileOverAnother(e: any): void {
         this.hasAnotherDropZoneOver = e;
     }
-    uploadAll(){
-        this.uploadphoto_dailog = false;
-        const formData = new FormData();
-        for(let file of this.uploader.queue){
-             formData.append(file['some'].name,file['some'])
-        }        
-    
-        let headers = new  Headers();
-        var authToken = localStorage.getItem('userToken');
-        headers.append("Authorization",'Bearer '+authToken);
+    popup(){
 
-        this.http.post(this.uploadimage,formData,{headers:headers})
-        .subscribe(data =>{ 
-            //console.log(data.json().filesId);
-            const data2 = {
-                portfolioId: 0,
-                filesId: data.json().filesId,
-                tags: "",
-                colorTags: "",
-                setAsBackgroud: false
-            }
+     
+        this.free_limit =this.PortgetArray.length
 
-            //console.log(data2);
-           
-            this.http.post(this.addportfolio,data2,{headers:headers})
-        .subscribe(data =>{ 
-                            //console.log(data.json());
-                            this.uploader.queue = [];
-                            this.http.get(this.mygeturl,{headers:headers})
-                            .subscribe(data =>{   
-                            //console.log(data.json()); 
-                            this.PortgetArray =data.json() });
-                        
-                        },(error)=>{  //console.log(error)
-                                });
-        
-        },(error)=>{   //console.log(error)
-                  });
+
+        if( parseInt(this.basicplane) == 1 && this.PortgetArray.length == 5 ){ 
+            this.uploadphoto_dailog = false;
+            swal({
+                    title: "Account is limited to only 5images.",
+                  text: "upgrade your plan",
+                  type: "warning",
+                  showCancelButton: true,
+                  confirmButtonClass: "btn-default",
+                  confirmButtonText: "change plan",
+                  cancelButtonText: "No",
+                  }).then((res)=>{
+                    console.log(res);
+                    if(res.value===true){
+                        this.router.navigate(['../vendor/membership'])
+                    }
+                
+                   },error=>{
+                     alert(JSON.stringify(error));
+                  })
+                    return;
+                  
+              }else{
+                this.basicplane = 0
+                this.uploadphoto_dailog = true;
+             }
+
     }
-    closeModel(){this.uploadphoto_dailog = false;
+    previewFile(event) {
+        var preview = this.previewimg.nativeElement;
+        var file    = event.target.files[0];
+        var reader  = new FileReader();
+       
+        reader.readAsDataURL(event.target.files[0]); // read file as data url
+        reader.addEventListener("load", function () {
+            preview.src = reader.result;
+        }, false);
+        
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+    uploadAll(){
+                    //
+
+                    //this.lodar = true
+                    console.log(this.uploader.queue)
+                    const formData = new FormData();
+                    for(let file of this.uploader.queue){
+                            formData.append(file['some'].name,file['some'])
+                            file.upload()
+                    
+                    }        
+
+                    let headers = new  Headers();
+                    var authToken = localStorage.getItem('userToken');
+                    headers.append("Authorization",'Bearer '+authToken);
+                    
+
+
+                                       
+                                       
+                                       
+                                        this._http.withUploadProgressListener(progress => {this.progress_bar = true; console.log(`Uploading ${progress.percentage}%`);this.closeModel(); this.progressPercentage = progress.percentage})
+        .withDownloadProgressListener(progress => { console.log(`Downloading ${progress.percentage}%`); })
+        .post(this.url+'api/ImageUploader/PortfolioUploader', formData,{headers: headers})
+        .subscribe(data =>{ 
+                    
+            this.toastr.success(data.json().message);
+            this.router.navigate(['../vendor/portfolioview'])
+            this.http.get(this.mygeturl,{headers:headers})
+            .subscribe(data =>{   
+                            console.log(data.json()); 
+                            this.PortgetArray =data.json() 
+                            this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
+                            this.uploadphoto_dailog = false;
+                            this.progress_bar = false;
+            });
+            },(error)=>{console.log(error)});
+
+                    // this.photoupload(formData);   
+    }
+    photoupload(formData){
+
+
+    let headers = new  Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append("Authorization",'Bearer '+authToken);
+
+    this.http.post(this.uploadimage,formData,{headers:headers})
+    .subscribe(data =>{ 
+        //console.log(data.json().filesId);
+        const data2 = {
+            portfolioId: 0,
+            filesId: data.json().filesId,
+            tags: "",
+            colorTags: "",
+            setAsBackgroud: false
+        }
+
+        //console.log(data2);
+        
+        this.http.post(this.addportfolio,data2,{headers:headers})
+    .subscribe(data =>{ 
+                        //console.log(data.json());
+                        this.uploader.queue = [];
+                        this.http.get(this.mygeturl,{headers:headers})
+                        .subscribe(data =>{   
+                        console.log(data.json()); 
+                        this.PortgetArray =data.json() 
+                        this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
+                        
+                        // console.log(parseInt(basicplan) );
+                
+                        
+                        });
+                    
+                    
+                        console.log(data.json());
+                        this.toastr.success(data.json());
+                    
+                    },(error)=>{        this.toastr.error(error.json());
+                            });
+                            
+    },(error)=>{         this.toastr.error(error.json());
+                });
+    }
+    closeModel(){
+        this.uploadphoto_dailog = false;
+        this.uploader.queue =[];
+      //  this.progress_bar = false;
+
+    }
+    popup_closeModel(){
+        alert("false");
+        this.progress_bar = false;
     }
     setbackground(setId){
         let headers = new Headers();
@@ -131,7 +264,7 @@ export class PortfolioviewComponent implements OnInit {
        this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/setasstorefrontimage?PortfolioId'+ '=' + setId,{headers:headers}).subscribe(data =>{
             this.Set_as_background = data.json() as string[];
             console.log( this.Set_as_background );
-            this.toastr.success(data.json().message);
+            this.toastr.success("Image set as Business Cover");
             this.http.get(this.Get_backgroundImage,{headers:headers}).subscribe(data =>{
                 console.log(data.json());
                 if(data.json().setAsBackgroud == true){
@@ -140,57 +273,47 @@ export class PortfolioviewComponent implements OnInit {
 
                 }
             },error=>{ console.log(error)
+                this.toastr.error(error.json());
                    })
         },error=>{// console.log(error)
+            this.toastr.error(error.json());
                 })
     //console.log(setId)
     }
-
     delete_portfolio(e,index){
 
-swal({
-    title: "Are you sure?",
-  text: "You will not be able to recover this imaginary file!",
-  type: "warning",
-  showCancelButton: true,
-  confirmButtonClass: "btn-default",
-  confirmButtonText: "Yes, delete it!",
-  cancelButtonText: "No, cancel plx!",
-  }).then((res)=>{
-    console.log(res);
-    if(res.value===true){
-     // alert('delete Process !');
-    //  let con = confirm('Are you sure you want to delete this?')
-    //  if (con) {
-             
-         //console.log(e);
-         var id = e.portfolioId;
-         //console.log(id);
-         this.PortgetArray.splice(index, 1);
-         let headers = new Headers();
-         var authToken = localStorage.getItem('userToken');
-         headers.append('Accept', 'application/json')
-         headers.append('Content-Type', 'application/json');
-         headers.append("Authorization", 'Bearer ' + authToken);
-        // console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/removeportfolio?portfolioId'+ '=' + id);
-         this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/removeportfolio',{portfolioId: id}, { headers: headers }).subscribe(data => {
-     
-        // console.log(data.json());
-         this.toastr.success(data.json().message);
-         }, error => { 
-             //console.log(error) 
-         });
-    //  }
-    }else{
-     // alert('Cancel Process !');
-
-    }
-   },error=>{
-     alert(JSON.stringify(error));
-  })
-    return;
+                swal({
+                    title: "Are you sure?",
+                text: "You will not be able to recover this image!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-default",
+                confirmButtonText: "Yes",
+                cancelButtonText: "No",
+                }).then((res)=>{
+                    console.log(res);
+                    if(res.value===true){
+                        var id = e.portfolioId;
+                        this.PortgetArray.splice(index, 1);
+                    
+                        let headers = new Headers();
+                        var authToken = localStorage.getItem('userToken');
+                        headers.append('Accept', 'application/json')
+                        headers.append('Content-Type', 'application/json');
+                        headers.append("Authorization", 'Bearer ' + authToken);       
+                        this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/removeportfolio',{portfolioId: id}, { headers: headers }).subscribe(data => {
+                        this.toastr.success(data.json().message);
+                        }, error => { 
+                            this.toastr.error(error.json());
+                        });
+                    }else{
+                    }
+                },error=>{
+                    alert(JSON.stringify(error));
+                })
+                    return;
     
-  }
+    }
 
 }
 

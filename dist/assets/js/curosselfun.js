@@ -23,6 +23,10 @@ $(document).ready(function () {
           items: 1,
           stagePadding: 40
         },
+        768: {
+          items: 2,
+          stagePadding: 40
+        },
     
         1024: {
           items: 4
@@ -68,6 +72,43 @@ $(document).ready(function () {
         }
       }
     });
+
+
+ $("#albumcarousel").owlCarousel({
+
+      autoplay: true,
+      lazyLoad: true,
+      loop: true,
+      margin: 20,
+       /*
+      animateOut: 'fadeOut',
+      animateIn: 'fadeIn',
+      */
+      responsiveClass: true,
+      autoHeight: true,
+      //autoplayTimeout: 7000,
+      smartSpeed: 800,
+      nav: true,
+      responsive: {
+        0: {
+          items: 1
+        },
+    
+        600: {
+          items: 1
+        },
+    
+        1024: {
+          items: 1
+        },
+    
+        1366: {
+          items: 1
+        }
+      }
+    });
+
+    
 });
 
  $(window).scroll(function(){
@@ -149,38 +190,57 @@ $(".tradinghours .showless").click(function() {
 });
 
 // tab desktop
+$(".dealbox").click(function() {
+    $('html,body').animate({scrollTop: $("#deals").offset().top-150},'slow');
+    $('.reviewbox').removeClass('activebuttontab');
+    $('.aboutbox').removeClass('activebuttontab');
+    $('.overviewbox').removeClass('activebuttontab');
+    $('.gallerybox').removeClass('activebuttontab');
+    $('.dealbox').addClass('activebuttontab');
+});
 
 $(".reviewbox").click(function() {
     $('html,body').animate({scrollTop: $("#review").offset().top-150},'slow');
     $('.reviewbox').addClass('activebuttontab');
-
     $('.aboutbox').removeClass('activebuttontab');
     $('.overviewbox').removeClass('activebuttontab');
     $('.gallerybox').removeClass('activebuttontab');
+    $('.dealbox').removeClass('activebuttontab');
 });
 $(".aboutbox").click(function() {
     $('html,body').animate({scrollTop: $("#about").offset().top-150},'slow');
     $('.aboutbox').addClass('activebuttontab');
-
     $('.reviewbox').removeClass('activebuttontab');
     $('.overviewbox').removeClass('activebuttontab');
     $('.gallerybox').removeClass('activebuttontab');
+    $('.dealbox').removeClass('activebuttontab');
 });
+
+$(".mobileabout").click(function() {
+    $('html,body').animate({scrollTop: $("#aboutmobile").offset().top-150},'slow');
+    $('.mobileabout').addClass('activebuttontab');
+    $('.reviewbox').removeClass('activebuttontab');
+    $('.overviewbox').removeClass('activebuttontab');
+    $('.gallerybox').removeClass('activebuttontab');
+    $('.dealbox').removeClass('activebuttontab');
+});
+
 $(".overviewbox").click(function() {
     $('html,body').animate({scrollTop: $(".weddingvenue").offset().top-150},'slow');
     $('.overviewbox').addClass('activebuttontab');
-
-     $('.reviewbox').removeClass('activebuttontab');
+    $('.reviewbox').removeClass('activebuttontab');
     $('.aboutbox').removeClass('activebuttontab');
     $('.gallerybox').removeClass('activebuttontab');
+    $('.dealbox').removeClass('activebuttontab');
 });
+
 $(".gallerybox").click(function() {
     $('html,body').animate({scrollTop: $(".gallery").offset().top-150},'slow');
     $('.gallerybox').addClass('activebuttontab');
-
     $('.reviewbox').removeClass('activebuttontab');
     $('.aboutbox').removeClass('activebuttontab');
     $('.overviewbox').removeClass('activebuttontab');
+    $('.dealbox').removeClass('activebuttontab');
 });
 
 // tab Mobile
@@ -203,6 +263,17 @@ $(".aboutbtn").click(function() {
 $(".reviewbtn").click(function() {
     $('html,body').animate({scrollTop: $(".reviewsection").offset().top-100},'slow');
     $('.reviewbtn').addClass('btnactive');
+});
+
+$(".callbtn").click(function() {
+     $('.callinfo').show();
+     $('.callbtn').hide();
+     $('.callbtnhide').show();
+});
+$(".callbtnhide").click(function() {
+      $('.callinfo').hide();
+     $('.callbtn').show();
+     $('.callbtnhide').hide();
 });
 
 $(document).ready(function() {
@@ -232,11 +303,142 @@ $(document).ready(function() {
 });
 
 
-$(document).ready(function(){
-    //FANCYBOX
-    //https://github.com/fancyapps/fancyBox
-    $(".fancybox").fancybox({
-        openEffect: "none",
-        closeEffect: "none"
-    });
+
+
+
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+    if(scroll >= 450)  {
+        $(".overviewbox").addClass("activebuttontab");
+        $(".aboutbox").removeClass("activebuttontab");
+        $(".gallerybox").removeClass("activebuttontab");
+        $(".reviewbox").removeClass("activebuttontab");
+        $(".dealbox").removeClass("activebuttontab");  
+    } 
 });
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+    if(scroll >= 1160) {
+        $(".aboutbox").removeClass("activebuttontab");
+        $(".overviewbox").removeClass("activebuttontab");
+        $(".gallerybox").addClass("activebuttontab");
+        $(".reviewbox").removeClass("activebuttontab");
+        $(".dealbox").removeClass("activebuttontab");  
+    } 
+});
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+    if(scroll >= 1560) {
+      $(".gallerybox").removeClass("activebuttontab");
+      $(".aboutbox").addClass("activebuttontab");
+      $(".overviewbox").removeClass("activebuttontab");
+      $(".reviewbox").removeClass("activebuttontab");
+      $(".dealbox").removeClass("activebuttontab");  
+    } 
+}); 
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+    if(scroll >= 1820) {
+      $(".reviewbox").addClass("activebuttontab");
+      $(".gallerybox").removeClass("activebuttontab");
+      $(".aboutbox").removeClass("activebuttontab");
+      $(".overviewbox").removeClass("activebuttontab");
+      $(".dealbox").removeClass("activebuttontab");  
+    } 
+});   
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+    if(scroll >= 2000) {
+      $(".reviewbox").removeClass("activebuttontab");
+      $(".gallerybox").removeClass("activebuttontab");
+      $(".aboutbox").removeClass("activebuttontab");
+      $(".overviewbox").removeClass("activebuttontab");
+      $(".dealbox").addClass("activebuttontab");  
+    } 
+});  
+$(window).scroll(function(){
+      if ($(this).scrollTop() > 270) {
+          $('.icon-div').addClass('fixedpostioneddesktop');
+      } else  {
+         $('.icon-div').removeClass('fixedpostioneddesktop');
+      }
+});
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+    if(scroll >= 300) {
+    $('.wedding-icon1').addClass('btnactive');
+    $('.wedding-icon2').removeClass('btnactive');
+    $('.wedding-icon3').removeClass('btnactive');
+    $('.wedding-icon4').removeClass('btnactive');
+    } 
+}); 
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+    if(scroll >= 740) {
+    $('.wedding-icon3').addClass('btnactive');
+    $('.wedding-icon1').removeClass('btnactive');
+    $('.wedding-icon2').removeClass('btnactive');
+    $('.wedding-icon4').removeClass('btnactive');
+    } 
+});
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+    if(scroll >= 1200) {
+    $('.wedding-icon2').addClass('btnactive');
+    $('.wedding-icon1').removeClass('btnactive');
+    $('.wedding-icon3').removeClass('btnactive');
+    $('.wedding-icon4').removeClass('btnactive');
+    } 
+});
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+    if(scroll >= 1670) {
+    $('.wedding-icon4').addClass('btnactive');
+    $('.wedding-icon1').removeClass('btnactive');
+    $('.wedding-icon2').removeClass('btnactive');
+    $('.wedding-icon3').removeClass('btnactive');
+    } 
+});
+$(".wedding-icon1").click(function() {
+    $('.wedding-icon1').addClass('btnactive');
+    $('.wedding-icon2').removeClass('btnactive');
+    $('.wedding-icon3').removeClass('btnactive');
+    $('.wedding-icon4').removeClass('btnactive');
+});
+
+$(".wedding-icon2").click(function() {
+    $('.wedding-icon2').addClass('btnactive');
+    $('.wedding-icon1').removeClass('btnactive');
+    $('.wedding-icon3').removeClass('btnactive');
+    $('.wedding-icon4').removeClass('btnactive');
+});
+$(".wedding-icon3").click(function() {
+    $('.wedding-icon3').addClass('btnactive');
+    $('.wedding-icon1').removeClass('btnactive');
+    $('.wedding-icon2').removeClass('btnactive');
+    $('.wedding-icon4').removeClass('btnactive');
+});
+$(".wedding-icon4").click(function() {
+    $('.wedding-icon4').addClass('btnactive');
+    $('.wedding-icon1').removeClass('btnactive');
+    $('.wedding-icon2').removeClass('btnactive');
+    $('.wedding-icon3').removeClass('btnactive');
+});
+window.onload = function(){
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+               document.querySelector('.img-preview').setAttribute('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    var imageInput = document.querySelector('#logo-id');
+    imageInput.onchange=changeEventHandler;
+    
+    function changeEventHandler(event) {
+        readURL(this);
+    }
+};

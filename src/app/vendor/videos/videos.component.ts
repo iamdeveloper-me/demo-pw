@@ -3,7 +3,8 @@ import { Http ,Headers} from '@angular/http';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, ViewEncapsulation, ViewChild, ElementRef, PipeTransform, Pipe, OnInit } from '@angular/core';
-
+import swal from 'sweetalert2';
+import { Router } from '@angular/router'
 import {   Input } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
@@ -25,11 +26,11 @@ export class SafePipeP implements PipeTransform {
     encapsulation: ViewEncapsulation.None,
 })
 export class VideosComponent implements OnInit {
-    
 
   video: string = "https://www.youtube.com/embed/CD-E-LDc384"
-
+  basicplan:number;
     Addvediodetail_dailog = false;
+    loader = false;
     
     videoForm: FormGroup;
 
@@ -38,8 +39,9 @@ export class VideosComponent implements OnInit {
     video_total:number;
     form: FormGroup;
 
-    constructor( private fb: FormBuilder,public http: Http) {
-      
+    constructor( private fb: FormBuilder,public http: Http, private router: Router) {
+      this.basicplan = JSON.parse(localStorage.getItem('basic-plan'));
+         
      }
      createForm() {
       const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
@@ -54,9 +56,19 @@ export class VideosComponent implements OnInit {
     }
     get title() { return this.form.get('title') };
     get link() { return this.form.get('link') };
+    //Validation
+    submitted = false;
+    get f() { return this.form.controls; }
 
   // On submit
   addDetails() {
+
+    //Validation
+    this.submitted = true;
+    if (this.form.invalid) {
+        return;
+    }
+    //Validation End!
     console.log(this.form.value) 
     const data = {
       "videosId": 0,
@@ -79,8 +91,8 @@ export class VideosComponent implements OnInit {
                         // this.t.success('Project created successfully');
                         // this.ui.laddaSave = false;
                         // this.initForm();
-                        console.log(resp)
-                        this.video_all_data.push(data)
+                        console.log(resp);
+                        this.video_all_data.push(data);
                         this.ngOnInit();
                     },
                     e => {
@@ -95,6 +107,30 @@ export class VideosComponent implements OnInit {
                 // })
 
   }
+
+  //VideoPopup
+  addVideo(){
+    swal({
+      // title: "Are you sure to change membership plan?",
+      title: "Limited Video Plan",
+      text: "Please Upgrade Your Plan For Unlimited Video !",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-default",
+      confirmButtonText: "Upgrade Now!",
+      cancelButtonText: "Remind Me Later!",
+  }).then((res)=>{
+                  if(res.value===true){
+                    this.router.navigate(['../vendor/membership'])
+                 } else{
+                     console.log('Cancel Process !');
+                  }
+},error=>{
+    alert(JSON.stringify(error));
+  })
+  return;
+}
+
     uploader: FileUploader = new FileUploader({
         url: URL,
         isHTML5: true
@@ -172,6 +208,8 @@ export class VideosComponent implements OnInit {
                 console.log(res.json())
                 this.video_all_data = res.json();
                 this.video_total =  this.video_all_data.length
+
+                this.loader =  true
                 
           })
   //   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');

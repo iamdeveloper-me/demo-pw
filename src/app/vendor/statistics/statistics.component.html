@@ -6,123 +6,130 @@
         <app-navemenu></app-navemenu>
 
         <!-- Line Chart Starts -->
-
+        <div class="card">
             <div class="col-md-12 mobilefixedcontainer">
                 <div class="col-sm-12 text-center">
                     <p class="text-center">
-                        <i class="material-icons font48px" style="position:absolute; top:-25px;">trending_up</i> 
+                        <i class="material-icons font48px">trending_up</i> 
                         <i class="material-icons font48px">bar_chart</i>
                         <br/>
                         Your Business Performance, It’s all in the numbers! </p>
                     <p class="text-center">Are you a Perfect Wedding Premium or Ultimate Partner? Contact us for support and free training. </p>
                 </div>
             </div>
+            <div *ngIf = "free_user > 1">
+                   <div class="col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Enquiries Vs Leads</h4>
+                                        <p>July 15 - July 21</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="card-block">
+                                            <div id="bar-bar1" class="height-400 maxwidth850px">
+                                                <canvas baseChart class="chart" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColors" [legend]="barChartLegend"
+                                                    [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="overlay" routerLink="../enquiry">
+                                            <div class="text">ANALYSE DATA</div>
+                                        </div>
+                                </div>
+                    </div>
+                            
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Storefront Views</h4>
+                                <p>July 15 - July 21</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-block">
+                                    <div id="area-chart1" class="height-400">
+                                        <ngx-charts-area-chart [scheme]="areaChartColorScheme" [results]="areaChartMulti" [gradient]="areaChartGradient" [xAxis]="areaChartShowXAxis"
+                                            [yAxis]="areaChartShowYAxis" [legend]="areaChartShowLegend" [showXAxisLabel]="areaChartShowXAxisLabel"
+                                            [showYAxisLabel]="areaChartShowYAxisLabel" [xAxisLabel]="areaChartXAxisLabel" [yAxisLabel]="areaChartYAxisLabel"
+                                            [autoScale]="areaChartAutoScale" [curve]="areaChartLineInterpolation" (select)="onSelect($event)">
+                                        </ngx-charts-area-chart>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="overlay" routerLink="../storefront">
+                                    <div class="text">ANALYSE DATA</div>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Enquiries Vs Leads</h4>
-                        <p>July 15 - July 21</p>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-block">
-                            <div id="bar-bar1" class="height-400 maxwidth850px">
-                                <canvas baseChart class="chart" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColors" [legend]="barChartLegend"
-                                    [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                    <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Actions on Storefront</h4>
+                            <p>July 15 - July 21</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-block">
+                                <div class="height-400 maxwidth850px">
+                                    <canvas height="400" baseChart class="chart" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"
+                                    [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" ></canvas>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="overlay" routerLink="../enquiry">
+                        <div class="overlay" routerLink="../actionfront">
                             <div class="text">ANALYSE DATA</div>
                         </div>
-                </div>
-            </div>
-            
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Storefront Views</h4>
-                        <p>July 15 - July 21</p>
                     </div>
-                    <div class="card-body">
-                        <div class="card-block">
-                            <div id="area-chart1" class="height-400">
-                                <ngx-charts-area-chart [scheme]="areaChartColorScheme" [results]="areaChartMulti" [gradient]="areaChartGradient" [xAxis]="areaChartShowXAxis"
-                                    [yAxis]="areaChartShowYAxis" [legend]="areaChartShowLegend" [showXAxisLabel]="areaChartShowXAxisLabel"
-                                    [showYAxisLabel]="areaChartShowYAxisLabel" [xAxisLabel]="areaChartXAxisLabel" [yAxisLabel]="areaChartYAxisLabel"
-                                    [autoScale]="areaChartAutoScale" [curve]="areaChartLineInterpolation" (select)="onSelect($event)">
-                                </ngx-charts-area-chart>
+                    </div>
+                
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"> Reach (Normal + Promoted/Boosted)</h4>
+                                <p>July 15 - July 21</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="overlay" routerLink="../storefront">
-                            <div class="text">ANALYSE DATA</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Actions on Storefront</h4>
-                    <p>July 15 - July 21</p>
-                </div>
-                <div class="card-body">
-                    <div class="card-block">
-                        <div class="height-400 maxwidth850px">
-                            <canvas height="400" baseChart class="chart" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"
-                            [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" ></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="overlay" routerLink="../actionfront">
-                    <div class="text">ANALYSE DATA</div>
-                </div>
-            </div>
-            </div>
-        
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title"> Reach (Normal + Promoted/Boosted)</h4>
-                        <p>July 15 - July 21</p>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-block">
-                            <div id="line-chart2" class="height-400">
-                                <ngx-charts-line-chart  [scheme]="lineChartColorScheme" [results]="lineChartMulti" [gradient]="lineChartGradient"
-                                    [xAxis]="lineChartShowXAxis" [yAxis]="lineChartShowYAxis" [legend]="lineChartShowLegend" [showXAxisLabel]="lineChartShowXAxisLabel"
-                                    [showYAxisLabel]="lineChartShowYAxisLabel" [xAxisLabel]="lineChartXAxisLabel" [yAxisLabel]="lineChartYAxisLabel"
-                                    [autoScale]="lineChartAutoScale" (select)="onSelect($event)">
-                                </ngx-charts-line-chart>
+                            <div class="card-body">
+                                <div class="card-block">
+                                    <div id="line-chart2" class="height-400">
+                                        <ngx-charts-line-chart  [scheme]="lineChartColorScheme" [results]="lineChartMulti" [gradient]="lineChartGradient"
+                                            [xAxis]="lineChartShowXAxis" [yAxis]="lineChartShowYAxis" [legend]="lineChartShowLegend" [showXAxisLabel]="lineChartShowXAxisLabel"
+                                            [showYAxisLabel]="lineChartShowYAxisLabel" [xAxisLabel]="lineChartXAxisLabel" [yAxisLabel]="lineChartYAxisLabel"
+                                            [autoScale]="lineChartAutoScale" (select)="onSelect($event)">
+                                        </ngx-charts-line-chart>
+                                    </div>
+                                </div>
                             </div>
+                                <div class="overlay" routerLink="../reachbar">
+                                    <div class="text">ANALYSE DATA</div>
+                                </div>
                         </div>
                     </div>
-                        <div class="overlay" routerLink="../reachbar">
-                            <div class="text">ANALYSE DATA</div>
-                        </div>
-                </div>
-            </div>
-        
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">My Gallery Views</h4>
-                        <p>July 15 - July 21</p>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-block">
-                            <div id="bar-bar1" class="height-400 maxwidth850px">
-                                <canvas baseChart class="chart" [datasets]="gallerybarChartData" [labels]="gallerybarChartLabels" [options]="gallerybarChartOptions" [colors]="gallerybarChartColors" [legend]="gallerybarChartLegend"
-                                    [chartType]="gallerybarChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">My Gallery Views</h4>
+                                <p>July 15 - July 21</p>
                             </div>
+                            <div class="card-body">
+                                <div class="card-block">
+                                    <div id="bar-bar1" class="height-400 maxwidth850px">
+                                        <canvas baseChart class="chart" [datasets]="gallerybarChartData" [labels]="gallerybarChartLabels" [options]="gallerybarChartOptions" [colors]="gallerybarChartColors" [legend]="gallerybarChartLegend"
+                                            [chartType]="gallerybarChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="overlay" routerLink="../gallerybar">
+                                    <div class="text">ANALYSE DATA</div>
+                                </div>
                         </div>
                     </div>
-                    <div class="overlay" routerLink="../gallerybar">
-                            <div class="text">ANALYSE DATA</div>
-                        </div>
-                </div>
             </div>
+            <div *ngIf = "free_user == 1" class="text-center">
+                <img src = "../../../assets/img/nochart.png" alt="Profile picture" >
+                <p>You Are Free user </p>
+                <button routerLink="../membership" class="btn btn-warning whitetext">Change Plan</button>
+            </div>  
+        </div>           
     </div>
 </div>
 <router-outlet></router-outlet>

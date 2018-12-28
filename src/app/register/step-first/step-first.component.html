@@ -1,0 +1,69 @@
+<app-menu></app-menu>
+<div class="sign_up_container container" id="up">
+   <h2 class="text-center font-bold pt-4 pb-5 mb-5"><strong> Vendor Registration </strong></h2>
+   <!-- Stepper -->
+   <div class="steps-form-2" (click)="loadScript()">
+      <div class="steps-row-2 setup-panel-2 d-flex justify-content-between">
+         <div class="steps-step-2">
+            <a  type="button" class="first_step btn btn-amber btn-circle-2 waves-effect ml-0" data-toggle="tooltip" data-placement="top" ngbTooltip="Your Business Category "><i class="fa fa-folder-open-o" aria-hidden="true"></i>
+            </a>
+            <!-- [routerLink]="['/register/step-first']" -->
+            <div class="clearfix"></div>
+            <p class="ml-yb">  Wedding Category  </p>
+         </div>
+         <div class="steps-step-2">
+            <a type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" ngbTooltip="General Information"><i class="fa fa-pencil" aria-hidden="true"></i>
+            </a>
+            <p> Account information  </p>
+         </div>
+         <div class="steps-step-2">
+            <a type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" ngbTooltip="Business Information"><i class="fa fa-photo" aria-hidden="true"></i>
+            </a>
+            <p> Business Details </p>
+         </div>
+         <div class="steps-step-2">
+            <a  type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" ngbTooltip="Payment"><i class="fa fa-check" aria-hidden="true"></i>
+            </a>
+            <p> Membership Plan   </p>
+         </div>
+      </div>
+   </div>
+   <!-- First Step -->
+   <form role="form" method="post" class="mt-25 mtx-0" (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="row setup-content-2" >
+          <div class="col-md-12 cate_list">
+              <div class="data">
+                  <div  class="show" >
+                  <div class="col-md-12 nopadd">
+                      <ul class="unstyled centered">
+                          <li class="col-md-4 col-sm-4" *ngFor="let category of categoryArray">
+                          <input                 
+                              type="radio" 
+                              name="category"               
+                              id=" {{category.categoryId}} "
+                              checked
+                              [value]="category.categoryId"
+                              
+                              [(ngModel)]='num_CategoryId'
+                              #required="ngModel"
+                              required
+
+                          /> 
+                          <!-- [(ngModel)]= "user.vendorCategories[0].categoryId" -->
+                          <label>{{category.categoryName}} </label> 
+                        </li>
+                      </ul>
+                  </div>
+                  </div>
+              </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="col-sm-12 btnholder">
+                  <!-- [disabled]="!required.valid" -->
+              <button class="btn gradint_blue white signup_nextbtn btnborradius pull-right nextBtn-2" type="button" (click)='goToNextStep()' [disabled]="!f.valid" > Next </button>
+          </div>
+      </div>
+    </form>
+  </div>
+  <app-foot></app-foot>
+  <router-outlet></router-outlet>

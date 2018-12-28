@@ -1,0 +1,23 @@
+<app-menu></app-menu>
+  <section class="all_category" id="portfolio">
+    <div class="container text-center mob_dis_none">
+      <h3 class="brows_head"> <strong> Find Vendors by <span class="bate_bg"> Suppliers </span>  </strong> </h3>
+    </div>
+    <div class="container mob_parallax mob_padd0">
+      <div class="col-md-3 col-6 box_img" *ngFor='let list_featured_supplier of featured_supplier_data'>
+      <a href="#" class="zoom_in">
+        <img style="height: 222px;"    [src]="list_featured_supplier.profileImage">
+        <div class="cakes_hover">
+            <!-- <img _ngcontent-c1="" style="    height: 222px;
+            " class="red_bg" [src]="dream_wedding.iconImageURL"> -->
+              <div class="tranparentlayer">
+            <h5><strong>{{list_featured_supplier.nameOfBusiness}} </strong></h5> 
+            <p>20 listing </p>
+          </div>
+        </div>
+      </a>
+      </div>
+    </div>
+  </section>
+<app-foot></app-foot>
+<router-outlet></router-outlet>

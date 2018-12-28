@@ -4,6 +4,8 @@ import { Component, OnInit  ,ChangeDetectionStrategy } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import swal from 'sweetalert2';
+import { ProgressHttp } from 'angular-progress-http';
+
 
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 @Component({
@@ -22,6 +24,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   myalbumimages=[];
   lodar = false;
   total;
+  progress_bar:boolean = false;
   private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
   eventArray:any = [];
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
@@ -38,6 +41,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   albumname:any;
   id:any;
   tags:any;
+  progressPercentage:number = 0
   colourtags:any;
   uploader: FileUploader = new FileUploader({
     url: URL,
@@ -54,7 +58,9 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   fileOverAnother(e: any): void {
     this.hasAnotherDropZoneOver = e;
   }
-  constructor(private http: Http ,  private route: ActivatedRoute,public toastr: ToastrService) { 
+  constructor(private http: Http ,  private route: ActivatedRoute,public toastr: ToastrService,private _http: ProgressHttp
+
+  ) { 
     
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
@@ -74,7 +80,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
                         
                         if(this.albumid.id == item.albumsId)
                           {
-                          //    alert("dsf"); 
+                          
                           console.log(item);
                           // console.log(item.tags);
                           this.albumname = item.albumName;
@@ -93,6 +99,18 @@ export class ViewPhotoAlbumsComponent implements OnInit {
     console.log(params) ;
         this.albumid = params;
   });
+  $(function() {
+    var current_progress = 0;
+    var interval = setInterval(function() {
+        current_progress += 10;
+        $(".dynamic")
+        .css("width", current_progress + "%")
+        .attr("aria-valuenow", current_progress)
+        .text(current_progress + "% Complete");
+        if (current_progress >= 100)
+            clearInterval(interval);
+    }, 2000);
+  });
 
 
   let headers = new Headers();
@@ -101,10 +119,10 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   headers.append('Content-Type', 'application/json');
   headers.append("Authorization",'Bearer '+authToken);
 
-  this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/BackgroundImage",{headers:headers})
+  this.http.get(this.url+"api/Albums/BackgroundImage",{headers:headers})
   .subscribe(data => {console.log(data.json())},error=>{console.log(error)});
     $(".gearicon").click(function(){
-    //  alert();
+    
       $( this ).toggleClass( "open" );
   });
 
@@ -116,9 +134,9 @@ export class ViewPhotoAlbumsComponent implements OnInit {
         //         if(item.albumImages.length == 0)
         //         {  
         //             this.image.path = 'https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
-        //             alert("empty array"); 
+        //          
         //         }else{  
-        //             alert("not empty array");
+        //            
                    
         //               }
             
@@ -146,7 +164,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
    
    if(this.albumid.id == item.albumsId)
     {
-    //    alert("dsf"); 
+   
      console.log(item);
     // console.log(item.tags);
     this.albumname = item.albumName;
@@ -283,12 +301,12 @@ $(document)
 
     swal({
       title: "Are you sure?",
-    text: "You will not be able to recover this imaginary file!",
+    text: "You will not be able to recover this image!",
     type: "warning",
     showCancelButton: true,
     confirmButtonClass: "btn-default",
-    confirmButtonText: "Yes, delete it!",
-    cancelButtonText: "No, cancel plx!",
+    confirmButtonText: "Yes",
+    cancelButtonText: "No",
     }).then((res)=>{
       console.log(res);
       if(res.value===true){
@@ -328,7 +346,7 @@ $(document)
     // }
 
   }else{
-    // alert('Cancel Process !');
+      console.log('Cancel Process !');
    }
   },error=>{
     alert(JSON.stringify(error));
@@ -336,13 +354,29 @@ $(document)
    return;
 
   }
+  // fileChangeListener($event) {
+  //   console.log($event)
+  //   var image: any = new Image();
+  //   var file: File = $event.target.files[0];
+  //   var myReader: FileReader = new FileReader();
+  //   console.log(myReader)
+  //   var that = this;
+  //   myReader.onloadend = function (loadEvent: any) {
+  //     image.src = loadEvent.target.result;
+  
+  //     //that.cropper.setImage(image);
 
+  //   };
 
+  //   myReader.readAsDataURL(file);
+  // }
 
   uploadAll(){
-   this.total = 80;
-   this.uploadphoto_dailog = false;
-   this.lodar = true;
+   
+
+  
+ 
+    this.lodar = true;
     const formData = new FormData();
     for(let file of this.uploader.queue){
     formData.append(file['some'].name,file['some'])
@@ -356,25 +390,85 @@ $(document)
     
     //Post Album 2 photos
     console.log(formData);
+   
     this.uploader.queue = [];
-    this.http.post(this.uploadimage,formData,{headers:headers})
-      .subscribe(data =>{console.log(data.json());
-        this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
-        .subscribe(data =>{
-         this.totalImage =  data.json();
-         console.log(data.json()); 
-         console.log(this.albumid.id); 
-         console.log(data.json()); 
-         this.lodar = false;
-         for (var item of  this.totalImage ) {
-            if(this.albumid.id == item.albumsId)
-              {
-                  this.albumImagesModify =  item.albumImages;
-                  console.log(  this.albumImagesModify ); 
+    // this.http.post(this.uploadimage,formData,{headers:headers})
+    //   .subscribe(data =>{console.log(data.json());
+    //     this.uploadphoto_dailog = false;
+    //     this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
+    //     .subscribe(data =>{
+    //      this.totalImage =  data.json();
+      
+    //      console.log(this.albumid.id); 
+    //      console.log(data.json()); 
+        
+    //      for (var item of  this.totalImage ) {
+    //         if(this.albumid.id == item.albumsId)
+    //           {
+    //               this.albumImagesModify =  item.albumImages;
+    //               console.log(  this.albumImagesModify ); 
                  
-              }
-          }
-        });},(error)=>{console.log(error)});
+    //           }
+    //       }
+
+
+    //       // $(function() {
+    //       //   var current_progress = 0;
+    //       //   var interval = setInterval(function() {
+    //       //       current_progress += 10;
+    //       //       $("#dynamic")
+    //       //       .css("width", current_progress + "%")
+    //       //       .attr("aria-valuenow", current_progress)
+    //       //       .text(current_progress + "% Complete");
+    //       //       if (current_progress >= 100)
+    //       //           clearInterval(interval);
+    //       //   }, 1000);
+    //       // });
+    //       this.lodar = false;
+         
+    //     });  this.toastr.success(data.json().message);},(error)=>{console.log(error)});
+
+        this._http.withUploadProgressListener(progress => {this.progress_bar = true; console.log(`Uploading ${progress.percentage}%`);this.closeModel(); this.progressPercentage = progress.percentage})
+        .withDownloadProgressListener(progress => { console.log(`Downloading ${progress.percentage}%`); })
+        .post(this.url+'api/ImageUploader/PortfolioUploader', formData,{headers: headers})
+        .subscribe(data =>{
+          this.totalImage =  data.json();
+       
+          // console.log(this.albumid.id); 
+          // console.log(data.json()); 
+         
+          for (var item of  this.totalImage ) {
+             if(this.albumid.id == item.albumsId)
+               {
+                   this.albumImagesModify =  item.albumImages;
+                   console.log(  this.albumImagesModify ); 
+                  
+               }
+           }
+ 
+ 
+           // $(function() {
+           //   var current_progress = 0;
+           //   var interval = setInterval(function() {
+           //       current_progress += 10;
+           //       $("#dynamic")
+           //       .css("width", current_progress + "%")
+           //       .attr("aria-valuenow", current_progress)
+           //       .text(current_progress + "% Complete");
+           //       if (current_progress >= 100)
+           //           clearInterval(interval);
+           //   }, 1000);
+           // });
+           this.lodar = false;
+           this.toastr.success(data.json().message);
+           this.progress_bar =  false
+          
+         }
+        ,error=>{
+          console.log(error)
+        }); 
+        
+       
   }
 
   albumcoverimage(albumId){
@@ -397,7 +491,14 @@ $(document)
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
-    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/setasstorefrontimage?AlbumImageId' + '=' + a,{headers:headers}).subscribe(data =>{
+
+    // this.http.get(this.urll+'/api/albums/setasstorefrontimage?AlbumImageId'+'='+image.id,{headers:headers}).subscribe(data =>{
+          
+    //   console.log(data.json());
+    //   this.getstoreimage();
+    
+    //  });
+    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/albums/setasstorefrontimage?AlbumImageId' + '=' + a,{headers:headers}).subscribe(data =>{
       console.log(data.json())
       this.toastr.success(data.json().message);
 
@@ -430,5 +531,8 @@ $(document)
 
   closeModel(){this.uploadphoto_dailog = false;
     this.lodar= false;
+  }
+  popup_closeModel(){
+    this.progress_bar= false;
   }
 }

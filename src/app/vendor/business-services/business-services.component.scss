@@ -17,6 +17,29 @@ input:checked + label { color: green; }
     top: 0px;
     cursor: pointer;
 }
+.loadingdiv{
+    top: 0px;
+    padding-top:6%;
+    width: 100%;
+    height: 100vh;
+    z-index: 99999;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+}
+.loadingdiv h1{
+position: relative;
+    top: -100px;
+    font-size: 16px;
+    font-weight: bold;
+    width: 237px;
+    margin: 0px auto;
+    background: #000!important;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px #ccc;
+}
 .marbot20px{
   margin-bottom:20px!important;
 }
@@ -125,19 +148,33 @@ position: absolute;
     padding: 10px;
     padding-left: 30px;
 }
+#servicename{
+    margin-bottom: 10px;
+}
+.marbot15px{
+    margin-bottom:15px!important;
+}
 .selectboxservice h5{
     font-weight:bold;
     font-size:16px;
     margin-bottom:15px;
-   
 }
 .selectboxservice h3{
     margin-bottom: 16px;
 }
+.paddfix{
+  padding:10px!important;
+  width:100%!important;
+  max-width: 112px;
+}
+.notset{
+  font-style: italic;
+  color: #666;
+}
 .selectboxservice{
     cursor: pointer;
     margin-top: 30px;
-    padding-bottom: 0px;
+    padding-bottom: 30px;
 }
 .inputareacenter{
   width:30%;
@@ -504,7 +541,8 @@ margin-top: 10px!important;
   }
   .sliderholder .prebtn, .sliderholder .prebtn:hover{
 position: absolute;
-left:0px;
+left:-10px;
+top: 8PX!important;
 background: transparent!important;
 box-shadow: none;
 border: 0px;
@@ -518,8 +556,8 @@ outline: none!important;
   }
   .sliderholder .nextbtn,  .sliderholder .nextbtn:hover{
     position: absolute!important;
-    right:0px!important;
-    top: 0PX!important;
+    right:-10px!important;
+    top: 8PX!important;
     background: transparent!important;
     box-shadow: none;
     border: 0px;
@@ -681,9 +719,7 @@ outline: none!important;
     margin-right:auto;
   }
   
-.labelclick {
-  margin-bottom:30px;
-}
+
 // / Hide the browser's default radio button /
 .containerselectbox input {
     position: absolute;
@@ -1072,6 +1108,7 @@ nav.tab-pager ul li.tab-pager--right a:after {
 }
 .activedisplay{
     display: block;
+    text-align: center;
 }
 .servicecontainer button{
   padding: 0px!important;

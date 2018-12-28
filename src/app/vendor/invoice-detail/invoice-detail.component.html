@@ -1,235 +1,225 @@
-<div id="wrapper" class="toggled">      
-  <div id="sidebar-wrapper">
-      <app-vendorsidebar></app-vendorsidebar>
-  </div>
-  <div id="page-content-wrapper">
-    <div class="container-fluid nopadd">                    
-        <app-navemenu></app-navemenu>
-        <router-outlet></router-outlet>
-        <div class="col-sm-12 nopadd mobilefixedcontainer">
-            <div class="container">
-                <form #f="ngForm">
-               <div class="col-sm-12 row searchform">
-                                            <div class="col-sm-3 col-6">
-                                                <label>Start Date</label>
-                                                <input type="date" ngModel id="startDate" #startDate="ngModel" name="startDate">
-                                            </div>
-                                            <div class="col-sm-3  col-6">
-                                                <label>End Date</label>
-                                                <input type="date" ngModel id="endDate" #endDate="ngModel" name="endDate">
-                                            </div>
-                                            <div class="col-sm-2  col-6">
-                                                <label>Invoice Number</label>
-                                                <input type="text" ngModel id="invoiceId" #invoiceId="ngModel"  name="invoiceId" >
-                                            </div>
-                                            <!-- <div class="col-sm-2 col-6">
-                                                <label>Invoice Type</label>
-                                                <input type="text" name="enddate">
-                                            </div> -->
 
-                                            <div class=" col-sm-2 col-6 dropdown">
-                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Invoice Type
-                                                    <!-- <span class="caret"></span> -->
-                                                </button>
-                                                    <ul class="dropdown-menu">
-                                                      <li><a href="">All</a></li>
-                                                      <li><a href="">Business Pormotion</a></li>
-                                                      <li><a href="">Membership Plan</a></li>
-                                                    </ul>
-                                                  </div>
+<div id="wrapper" class="toggled">
+    <div id="sidebar-wrapper">
+        <app-vendorsidebar></app-vendorsidebar>
+    </div>
+    <div id="page-content-wrapper">
+        <div class="container-fluid nopadd">
+            <app-navemenu></app-navemenu>
+            <router-outlet></router-outlet>
+            <div class="col-sm-12 nopadd mobilefixedcontainer">
+                <div class="container">
+                    <form #f="ngForm">
+                        <div class="col-sm-12 row searchform">
+                            <div class="col-sm-3 col-6">
+                                <label>Start Date</label>
+                                <input type="date" ngModel id="startDate" #startDate="ngModel" name="startDate">
+                            </div>
+                            <div class="col-sm-3  col-6">
+                                <label>End Date</label>
+                                <input type="date" ngModel id="endDate" #endDate="ngModel" name="endDate">
+                            </div>
+                            <!-- <div class="col-sm-2  col-6">
+                                <label>Invoice Number</label>
+                                <input type="text" ngModel id="invoiceId" #invoiceId="ngModel" name="invoiceId">
+                            </div> -->
 
-                                            <div class="col-sm-2">
-                                                <button (click)="postData(f)">Search</button>
-                                            </div>
+                            <input type="hidden" ngModel name="userId" id="userId" #userId="ngModel">
+
+                            <div class=" col-sm-2 col-6 dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Invoice Type
+                                    <!-- <span class="caret"></span> -->
+                                    <ul class="dropdown-menu">
+                                            <li><a >All
+                                                    <input type="hidden" ngModel id="invoiceType"  [value]="all" #invoiceType="ngModel" name="invoiceType" >
+                                                    
+                                                </a>
+                                            </li>
+                                            <li><a >Business Pormotion
+                                                    <input type="hidden" ngModel id="invoiceType"  [value]="BusinessPromotion" #invoiceType="ngModel" name="invoiceType" >
+                                                </a>
+                                            </li>
+                                            <!-- <li><a (click)="type(c)">Membership Plan -->
+                                            <li><a >Membership Plan
+                                                    <input type="hidden" ngModel id="invoiceType"  [value]="MembershipPlan" #invoiceType="ngModel" name="invoiceType" >
+                                                </a></li>
+                                        </ul>
+                                </button>
+                             
+                            </div>
+
+                            <div class="col-sm-2">
+                                <button (click)="invoice(f)">Search</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </form>
-            </div>    
-            <div class="container">   
-                
-                                    <div class="col-md-12 nopadd">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h3 class="panel-title"><strong>Order summary</strong></h3>
-                                            </div>
-                                            <div class="panel-body">
-                                                <div class="table-responsive listtable">
-                                        <table class="table table-condensed table-bordered table-stripped">
-                                            <thead>
-                                                <tr>
+                <div class="container">
+
+                    <div class="col-md-12 nopadd" >
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><strong>Order summary</strong></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive listtable">
+                                    <table class="table table-condensed table-bordered table-stripped">
+                                        <thead>
+                                            <tr>
+
                                                 <th>Date</th>
                                                 <th>Invoice Type</th>
                                                 <th>Invoice Number</th>
                                                 <th>Payment Type</th>
                                                 <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                               <tr>
-                                                    <td>25 Aug 2018</td>
-                                                    <td>Promotion Membership</td>
-                                                    <td>123456789</td>
-                                                    <td>Paypal</td>
-                                                    <td>
-                                                        <button data-toggle="modal" data-target="#invoicedetail">View Invoice</button>
-                                                        <button>Save PDF</button>
-                                                    </td>
-                                               </tr>
-                                               <tr>
-                                                    <td>25 Aug 2018</td>
-                                                    <td>Promotion Membership</td>
-                                                    <td>123456789</td>
-                                                    <td>Paypal</td>
-                                                    <td>
-                                                        <button data-toggle="modal" data-target="#invoicedetail">View Invoice</button>
-                                                        <button>Save PDF</button>
-                                                    </td>
-                                               </tr>
-                                               <tr>
-                                                    <td>25 Aug 2018</td>
-                                                    <td>Promotion Membership</td>
-                                                    <td>123456789</td>
-                                                    <td>Paypal</td>
-                                                    <td>
-                                                        <button data-toggle="modal" data-target="#invoicedetail">View Invoice</button>
-                                                        <button>Save PDF</button>
-                                                    </td>
-                                               </tr>
-                                               <tr>
-                                                    <td>25 Aug 2018</td>
-                                                    <td>Promotion Membership</td>
-                                                    <td>123456789</td>
-                                                    <td>Paypal</td>
-                                                    <td>
-                                                    <button data-toggle="modal" data-target="#invoicedetail">View Invoice</button>
-                                                        <button>Save PDF</button>
-                                                    </td>
-                                               </tr>
-                                              
-                                            </tbody>
-                                        </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-            </div>
-            
-        </div>
-    </div>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngIf="invoice_length > 0;else other">
+                                            <tr *ngFor="let data of dataArray">
+                                                <td>{{data.paymentDate | date:'mediumDate'}}</td>
+                                                <td>{{data.purposeCode}}</td>
+                                                <!-- <td>{{data.invoiceId}}</td> -->
+                                                <td>{{data.transactionID}}</td>
+                                                <td>{{data.paymentType}}</td>
+                                                <!-- <td>Paypal</td> -->
+                                                <td>
+                                                    <button data-toggle="modal" data-target="#invoicedetail" (click)="invoiceDataFunction(data)">View
+                                                        Invoice</button>
+                                                    <button>Save PDF</button>
+                                                </td>
+                                            </tr>                                       
 
-     <app-foot></app-foot>
+                                        </tbody>
+                                        <ng-template #other> 
+                                                No data found..............
+                                        </ng-template>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- <app-foot></app-foot> -->
         <router-outlet></router-outlet>
-  </div>
+    </div>
 </div>
 
 <div class="modal fade" id="invoicedetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Invoice Details
-                         <span class="pull-right">Order # 12345</span>
-                    </h4>
-                   
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                   
-                  <div class="modal-body">
-                    <div class="col-sm-12 nopadd">
-                            <div class="container">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+             <div class="modal-header">
+                <h4 class="modal-title">Invoice Details
+                    <span class="pull-right">Order #{{dataArray1?.paymentId}}</span>
+                </h4>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div> 
+
+            <div class="modal-body" >
+                <div class="col-sm-12 nopadd">
+                    <div class="container" >
+                        <div class="row">
+                            <div class="col-xs-12">
                                 <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <address>
-                                        <strong>Customer Detail</strong><br>
-                                        Customer Id : (# 12345678) <br>
-                                                    John Smith<br>
-                                                    1234 Main, Apt. 4B<br>
-                                                    Springfield, ST 54321
-                                                </address>
-                                            </div>
-                                             <div class="col-xs-6 text-right">
-                                                <address>
-                                                    <strong>Payment Method:</strong><br>
-                                                    Visa ending **** 4242<br>
-                                                    jsmith@email.com<br/>
-                                                </address>
-                                            </div>
-                                        </div>
-                                        
+                                    <div class="col-xs-6">
+                                        <address>
+                                            <strong>Customer Detail</strong><br>
+                                            {{dataArray1?.transactionID}}<br> 
+                                            {{dataArray1?.paymentDate | date:'mediumDate'}} <br>
+                                            {{dataArray1?.customerDetails.firstName}} {{dataArray1?.customerDetails.lastName}} <br>
+                                            <!-- {{dataArray1?.customerDetails.street}},<br>  -->
+                                            {{dataArray1?.customerDetails.district.name}},<br> {{dataArray1?.customerDetails.suburb.name}},<br> {{dataArray1?.customerDetails.country.countryName}}<br> 
+                                            <!-- {{dataArray1["customerDetails"]["firstName"]}}<br> -->
+                                             <!-- {{dataArray1?.fromFax}} -->
+                                        </address>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <address>
+                                            <strong>Payment Method:</strong><br>
+                                          {{dataArray1?.paymentType}}<br>
+                                          {{dataArray1?.customerDetails.emailaddress}}<br>
+                                        </address>
                                     </div>
                                 </div>
-                                
-                                <div class="row">
-                                <div class="col-md-12">
+
+                            </div>
+                        </div>
+-
+                        <div class="row">
+                            <div class="col-md-12">
                                 <div class="panel panel-default">
-                                <div class="panel-heading">
-                                <h3 class="panel-title"><strong>Order summary</strong>
-                                <span class="pull-right"><strong>Date: Mar 7, 2014</strong></span>
-                                </h3>
-                                </div>
-                                <div class="panel-body">
-                                <div class="table-responsive">
-                                <table class="table table-condensed">
-                                <thead>
-                                <tr>
-                                <td><strong>Item</strong></td>
-                                <td class="text-center"><strong>Price</strong></td>
-                                <td class="text-center"><strong>Quantity</strong></td>
-                                <td class="text-right"><strong>Totals</strong></td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <!-- foreach ($order->lineItems as $line) or some such thing here -->
-                                <tr>
-                                <td>BS-200</td>
-                                <td class="text-center">$10.99</td>
-                                <td class="text-center">1</td>
-                                <td class="text-right">$10.99</td>
-                                </tr>
-                                <tr>
-                                <td>BS-400</td>
-                                <td class="text-center">$20.00</td>
-                                <td class="text-center">3</td>
-                                <td class="text-right">$60.00</td>
-                                </tr>
-                                <tr>
-                                <td>BS-1000</td>
-                                <td class="text-center">$600.00</td>
-                                <td class="text-center">1</td>
-                                <td class="text-right">$600.00</td>
-                                </tr>
-                                <tr>
-                                <td class="thick-line"></td>
-                                <td class="thick-line"></td>
-                                <td class="thick-line text-center"><strong>Subtotal</strong></td>
-                                <td class="thick-line text-right">$670.99</td>
-                                </tr>
-                                <tr>
-                                <td class="no-line"></td>
-                                <td class="no-line"></td>
-                                <td class="no-line text-center"><strong>Shipping</strong></td>
-                                <td class="no-line text-right">$15</td>
-                                </tr>
-                                <tr class="litegraybg">
-                                <td class="no-line"></td>
-                                <td class="no-line"></td>
-                                <td class="no-line text-center"><strong>Total</strong></td>
-                                <td class="no-line text-right">$685.99</td>
-                                </tr>
-                                </tbody>
-                                </table>
-                                </div>
-                                </div>
-                                </div>
-                                </div>
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><strong>Order summary</strong>
+                                            <span class="pull-right"><strong>Date: {{dataArray1?.paymentDate | date:'mediumDate'}}</strong></span>
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-condensed">
+                                                <thead>
+                                                    <tr>
+                                                        <!-- <td><strong>Item</strong></td> -->
+                                                        <td class="text-center"><strong>Price</strong></td>
+                                                        <td class="text-center"><strong>Quantity</strong></td>
+                                                        <td class="text-right"><strong>Totals</strong></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <!-- <td>BS-200</td>
+                                                        <td class="text-center">$10.99</td> -->
+                                                        <td class="text-right">${{dataArray1?.taxPer}}</td>
+                                                        <td class="text-center">1</td>
+                                                        <td class="text-right">${{dataArray1?.taxPer}}</td>
+                                                    </tr>
+                                                    <!-- <tr>
+                                                        <td>BS-400</td>
+                                                        <td class="text-center">$20.00</td>
+                                                        <td class="text-center">3</td>
+                                                        <td class="text-right">$60.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>BS-1000</td>
+                                                        <td class="text-center">$600.00</td>
+                                                        <td class="text-center">1</td>
+                                                        <td class="text-right">$600.00</td>
+                                                    </tr> -->
+                                                    <!-- <tr>
+                                                        <td class="thick-line"></td>
+                                                        <td class="thick-line"></td>
+                                                        <td class="thick-line text-center"><strong>Subtotal</strong></td>
+                                                        <td class="thick-line text-right">$670.99</td>
+                                                    </tr> -->
+                                                    <!-- <tr>
+                                                        <td class="no-line"></td>
+                                                        <td class="no-line"></td>
+                                                        <td class="no-line text-center"><strong>Shipping</strong></td>
+                                                        <td class="no-line text-right">$15</td>
+                                                    </tr> -->
+                                                    <tr class="litegraybg">
+                                                        <td class="no-line"></td>
+                                                        <td class="no-line"></td>
+                                                        <td class="no-line text-center"><strong>Total</strong></td>
+                                                        <td class="no-line text-right">${{dataArray1?.taxPer}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                       
+                        </div>
                     </div>
-                </div>
-        
 
-                       
-              </div>
+                </div>
             </div>
+
+<!-- {{dataArray1 | json}} -->
+
+        </div>
+    </div>
 </div>

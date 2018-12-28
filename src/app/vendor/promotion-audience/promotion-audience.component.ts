@@ -12,7 +12,7 @@ export class PromotionAudienceComponent implements OnInit {
   ngOnInit() {
 
     $('.togglebtnmenu').on('click', function(){
-     //alert("h1");
+     
     //$(this).toggleClass('cross');
       //$('.blackoverlaymobile').toggleClass('blockmobile');
     //$('#page-content-wrapper').toggleClass('overhidden');
@@ -22,7 +22,7 @@ export class PromotionAudienceComponent implements OnInit {
   
 
      $('.mobilefixedcart').on('click', function(){
-     //alert("hi  ");
+    
      $('.mobilefixedcart').toggleClass('bottom0px');
       //$('.mobilebtncart').addClass('nonevisi');
     });

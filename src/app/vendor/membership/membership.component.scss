@@ -45,18 +45,21 @@ Pricing table
     margin: 0px auto;
     width: 300px;
 }
-.panel.card{
-  width: calc(100% / 3);
-  float: left;
-  box-shadow: 0 0 20px rgba(0,0,0,.2)!important;
-  margin: 0px 20px;
-  max-width: 29%; 
-}
-.owl-carousel .owl-item .panel.card{
-   width:inherit!important;
-   margin:inherit!important;
-   max-width:inherit!important; 
-}
+.owl-carousel .panel.card{
+    width: calc(100% / 3);
+    float: left;
+    box-shadow: 0 0 20px rgba(0,0,0,.2)!important;
+    margin: 0px 20px;
+    max-width: 29%; 
+  }
+  .owl-carousel .owl-stage .owl-item{
+  padding:15px!important;
+  }
+  .owl-carousel .owl-stage .owl-item .panel.card{
+     width:100%!important;
+     margin:inherit!important;
+     max-width:inherit!important; 
+  }
 .tabbingdesign li{
     list-style: none;
     display: inline-block;

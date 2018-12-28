@@ -21,15 +21,12 @@ export class MembershipComponent implements OnInit {
   statdate;
   endDateString;
   pricingPlantitle;
+  account_create_date;
   pricingPlanId:number;
   payFrequency:number;
   ngOnInit() {
 
-    //  Code formatting script
-   // $.getScript('./assets/js/prism.min.js');
-    //$.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
-    //$.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
-    $.getScript('./assets/js/vendorsidebar.js');  
+  //  $.getScript('./assets/js/vendorsidebar.js');  
     $.getScript('./assets/js/membershipslider.js'); 
 
     $(".Suppliertab").click(function(){
@@ -63,22 +60,23 @@ export class MembershipComponent implements OnInit {
            this.endDateString   = data.json().endDateString; 
            this.pricingPlantitle   = data.json().pricingPlan.title;
            this.pricingPlanId   = data.json().pricingPlanId;
-           this.payFrequency = data.json().payFrequency
+           this.payFrequency = data.json().payFrequency;
+           this.account_create_date = data.json().dateAddedOn;
 
            },error => {console.log(error)});
 
 
-           this.http.get(this.pricingplans,{headers:headers}).subscribe(
-            data =>{ console.log(data.json());
+  this.http.get(this.pricingplans,{headers:headers}).subscribe(
+    data =>{ console.log(data.json());
                      this.pricing = data.json();
                      console.log('Pricing', this.pricing)
-                   },error => {console.log(error)});
+            },error => {console.log(error)});
   }
-ngAfterViewChecked(): void {
+  ngAfterViewChecked(): void {
   //Called after every check of the component's view. Applies to components only.
   //Add 'implements AfterViewChecked' to the class.
-  
-}
+
+  }
   
   constructor(config: NgbCarouselConfig,public http: Http,private router: Router) {
     // customize default values of carousels used by this component tree
@@ -94,17 +92,26 @@ ngAfterViewChecked(): void {
   }
   monthlyPrice(plan){
     console.log(plan)
+    sessionStorage.setItem('which_plan',JSON.stringify(plan))
     var planid = plan.pricingPlanId;
     var  payFrequency = '1';
      this.updatemembership(planid,payFrequency);
   }
   annualPrice(plan){ 
     var planid = plan.pricingPlanId;
-    var  payFrequency = '0';
+    var  payFrequency = '2';
     this.updatemembership(planid,payFrequency);
-   }
-   updatemembership(planid,payFrequency){
-    alert("dfcdr");
+  }
+  updatemembership(planid,payFrequency){
+
+
+    // this.router.navigate([]).then(result => {  window.open('http://localhost:4200/#/vendor/payment-selection/'+planid+'-'+payFrequency, '_blank'); });
+
+
+
+
+
+    //alert("dfcdr");
     console.log(planid);
     console.log(payFrequency);
     let headers = new Headers();
@@ -115,29 +122,38 @@ ngAfterViewChecked(): void {
    
     var palnvoucher = this.palnvoucher;
 
+const plan = 
+{
+  pricingPlanId: planid,
+  payFrequency: payFrequency,
+  voucherCode: palnvoucher,
+  route_key: 0
+}
+sessionStorage.setItem('selected_plan',JSON.stringify(plan))
+this.router.navigate(['../vendor/payment-selection'])
 
-    this.http.post(this.updatemember,
+console.log(plan)
+//     this.http.post(this.updatemember,
      
-      {
-        pricingPlanId: planid,
-        payFrequency: payFrequency,
-        voucherCode: palnvoucher
-      }
-    ,{headers:headers}).subscribe( (data)=> { console.log(data.json())
+//       {
+//         pricingPlanId: planid,
+//         payFrequency: payFrequency,
+//         voucherCode: palnvoucher
+//       }
+//     ,{headers:headers}).subscribe( (data)=> { console.log(data.json())
     
      
-      this.router.navigate([]).then(result => {  window.open(data.json().url, '_blank'); });
+//       this.router.navigate([]).then(result => {  window.open(data.json().url, '_blank'); });
     
-    },(error)=>{console.log(error);}
-,    );
-   }
-  
-getDecimal(monthlyPrice,noOfMonthFeeOff){
+//     },(error)=>{console.log(error);}
+// ,    );
+  }
+  getDecimal(monthlyPrice,noOfMonthFeeOff){
   // {{((plan.monthlyPrice * (12 - plan.noOfMonthFeeOff))/12 | number:'1.0-2')}}
 var number = (monthlyPrice * (12 - noOfMonthFeeOff))/12
 var a = (monthlyPrice * (12 - noOfMonthFeeOff))/ 12 | number
 return number.toFixed(2).split(".")[1]
-}
+  }
 }
 
 

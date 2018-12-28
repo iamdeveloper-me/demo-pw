@@ -17,13 +17,18 @@ export class EditprofileComponent implements OnInit {
     lastName: '',
     phoneNumber:'',
     // email : '',
-    vendorContactInfo:{ email:''}
+    vendorContactInfo:{ 
+      phone:'',      
+      email:''
+    }
 };
+objevent;
+event;
 fbAvailable = false;
 personal_data_update = false;
 changePassword_form = false;
- private geturl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mypersonalinfo'
-  getaccount : any = {};
+//  private geturl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mypersonalinfo'
+//   getaccount : any = {};
 
  private updateurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatepersonalinfo' 
   updateaccount : any = {};
@@ -32,14 +37,34 @@ changePassword_form = false;
   changepass : any = {};
 
  private membershipurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mymembership'
-  membershipdetail : any = {
-    startDateString:'',
-    endDateString:'',
-    pricingPlan: {title: ''},
-  };
+  // membershipdetail : any = {
+  //   startDateString:'',
+  //   endDateString:'',
+  //   createdOnString:'',
+  //   pricingPlan: {
+  //     title: '',
+  //     dateAddedOnString:'',
+  //   },
+  // };
 
-  private subscriptionurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Supplier/subscriptionsettings'
+
+  myplans:any = {}; 
+  pricing:any = [];
+  palnvoucher:any;
+  vo = {Voucher: ""}
+  statdate;
+  endDateString;
+  pricingPlantitle;
+  account_create_date;
+  pricingPlanId:number;
+  payFrequency:number;
+  
+  private subscriptionurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/subscriptionsettings'
   mysub : any = {};
+
+  private subupdateurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatesubscriptionsettings'
+  myupdatesub : any = {};
+  
 
   ngOnInit() {   
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
@@ -58,14 +83,21 @@ changePassword_form = false;
     this.http.get(this.url,{headers:headers}).subscribe(
       data =>{ this.vendor = data.json();
                console.log(this.vendor);
+               console.log(this.vendor.vendorContactInfo);
       });
 
     //membership api
     this.http.get(this.membershipurl,{headers:headers}).subscribe(
       data =>{  
-              // console.log("zxdfdsf");
                console.log(data.json());
-              this.membershipdetail = data.json();
+              // this.membershipdetail = data.json();
+              this.myplans = data.json();
+              this.statdate = data.json().startDateString;
+              this.endDateString   = data.json().endDateString; 
+              this.pricingPlantitle   = data.json().pricingPlan.title;
+              this.pricingPlanId   = data.json().pricingPlanId;
+              this.payFrequency = data.json().payFrequency;
+              this.account_create_date = data.json().dateAddedOn;
       });
     
     //Subscriptions
@@ -78,63 +110,65 @@ changePassword_form = false;
   }
 
   //Subscription Api
-  // getSub(data){
-  //   this.mysub = data;
-  //   let headers = new Headers();
-  //   var authToken = localStorage.getItem('userToken');
-  //   headers.append('Accept', 'application/json')
-  //   headers.append('Content-Type', 'application/json');
-  //   headers.append("Authorization",'Bearer '+authToken);
 
-  //   this.http.get(this.subscriptionurl,{headers:headers}).subscribe(
-  //     data =>{ this.mysub = data.json();
-  //              console.log(this.mysub);
-  //     });
-  // }
+  getSub(data){
+    this.mysub = data;
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
+
+    this.http.get(this.subscriptionurl,{headers:headers}).subscribe(
+      data =>{ this.mysub = data.json();
+               console.log(this.mysub);
+      });
+  }
+
 
   updatesub(f2){
-   
+  //  this.myupdatesub = data;
     console.log(f2);
-  //   let headers = new Headers();
-  //   var authToken = localStorage.getItem('userToken');
-  //   headers.append('Accept', 'application/json')
-  //   headers.append('Content-Type', 'application/json');
-  //   headers.append("Authorization",'Bearer '+authToken);
+    let headers = new Headers();
+    var authToken = localStorage.getItem('userToken');
+    headers.append('Accept', 'application/json')
+    headers.append('Content-Type', 'application/json');
+    headers.append("Authorization",'Bearer '+authToken);
 
-  //   const sub =  
-  //   {
-  //     marketingEmails: true,
-  //     notifications: true,
-  //     appUpdates: true
-  //   }
+    const sub =  
+    {
+      marketingEmails: true,
+      notifications: true,
+      appUpdates: true
+    }
 
-  //   console.log(sub);
-  //   this.http.post(this.subscriptionurl,sub,{headers:headers}).subscribe(
-  //     data =>{ 
-  //       this.mysub = data.json();
-  //        alert("Profile Updated!");
-  //       this.toastr.success("subscription update sucessfully");
-  //   },error=>{console.log(error)});
+    console.log(sub);
+    this.http.post(this.subupdateurl,sub,{headers:headers}).subscribe(
+      data =>{ 
+        this.mysub = data.json();
+     
+        this.toastr.success("subscription update sucessfully");
+    },error=>{console.log(error)});
    }
 
-  //getData
+  //getData Profile
+
   getData(data){
-    this.getaccount = data;
+    this.vendor = data;
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('  Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
 
-    this.http.get(this.geturl,{headers:headers}).subscribe(
+    this.http.get(this.vendor,{headers:headers}).subscribe(
       data =>{ this.vendor = data.json();
                console.log(this.vendor);
       });
 }
 
-  //update Data
+  //update Data Profile
   updateData(data){
-
     // this.updateaccount = data;
     console.log(data);
     let headers = new Headers();
@@ -154,15 +188,18 @@ changePassword_form = false;
     this.personal_data_update = false;
     this.http.post(this.updateurl,update,{headers:headers}).subscribe(
       data =>{ 
-        this.vendor = data.json();
-         alert("Profile Updated!");
-        this.toastr.success("profile update sucessfully");
-        this.personal_data_update = false;
-    },error=>{console.log(error)});
+        this.toastr.success(data.json()["message"]
+);
+       
+         this.ngOnInit();
+    },error=>{
+      console.log(error); 
+      this.toastr.error("Profile Not Update!");
+    });
   }
 
   changePassword(f){
-  //  console.log(f.value);
+   console.log(f.value);
     const cp = {
       OldPassword : f.value.OldPassword,
       NewPassword :  f.value.NewPassword,
@@ -170,7 +207,7 @@ changePassword_form = false;
     }
     console.log(cp);
     if(f.value.NewPassword == f.value.ConfirmPassword){
-      // alert("Password Match!");
+    
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
       headers.append('Accept', 'application/json')
@@ -179,12 +216,14 @@ changePassword_form = false;
       this.http.post(this.changepassurl,cp,{headers:headers}).subscribe(
         data =>{
                  console.log(data.json());
-                 alert("password reset sucessfully!");
-                 this.toastr.success("your password reset sucessfully");
+                 this.toastr.success("Your Password Reset Sucessfully");
                  this.changePassword_form =false;
-        },error=>{console.log(error)});
+        },error=>{console.log(error);
+          this.toastr.error("Password Mismatch!");
+        });
     }
   }
+
 
 closeModel(){
   this.personal_data_update = false;

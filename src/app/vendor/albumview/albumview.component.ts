@@ -4,7 +4,7 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
 import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import swal from 'sweetalert2';
-
+import { Router } from '@angular/router';
 export class NgbdgalleryModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) { }
@@ -19,7 +19,7 @@ export class NgbdgalleryModalContent {
 })
 export class AlbumviewComponent implements OnInit {
     private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/';
-    
+    basicplane 
     createalbum_dailog = false;
 
     private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
@@ -28,6 +28,9 @@ export class AlbumviewComponent implements OnInit {
     noimage;
     defaultImage: string = "https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
   ngOnInit() {
+    this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
+    console.log( this.basicplane)
+    if(this.basicplane == '1' ){ this.router.navigate(['../vendor/gallery'])}
     this.noimage = 'https://vignette.wikia.nocookie.net/roblox-phantom-forces/images/7/7c/Noimage.png/revision/latest?cb=20171115203949';
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
@@ -57,7 +60,7 @@ export class AlbumviewComponent implements OnInit {
 
   closeResult: string;
 
-  constructor(private modalService: NgbModal,public http: Http,public toastr: ToastrService) { }
+  constructor(private router: Router,private modalService: NgbModal,public http: Http,public toastr: ToastrService) { }
 
   // Open default modal
   open(content) {
@@ -123,29 +126,24 @@ createAlbum(Album){
     console.log(album)
   
     this.http.post(this.url+'api/Albums/createupdatealbum',album,{headers:headers})
-      .subscribe(data =>{console.log(data.json()); 
-        console.log(this.eventArray); 
-        
-        //  this.eventArray.unshift({  albumsId: data.json().id,
-        //                             albumName:  Album.value.albumName,
-        //                             albumType:0,
-        //                             colorTags:"string",
-        //                             dateAddedOn:"2018-09-25T10:50:14.6795084",
-        //                             tags:"string",
-        //                             updatedOn:"2018-10-02T11:09:56.5713857",
-        //                           });
-        
+      .subscribe(data =>{
+                          
+                          console.log(this.eventArray); 
+                          this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
+                            this.eventArray = data.json()
+                            this.noimage = 'https://vignette.wikia.nocookie.net/roblox-phantom-forces/images/7/7c/Noimage.png/revision/latest?cb=20171115203949';
+                            console.log(this.eventArray);
+                          })
+                          console.log(data.json()); 
+                          this.toastr.success(data.json().message);
+                        },(error)=>{
+                                    console.log(error._body);
+                                  
+                                    this.typeWarning(error._body.split('[')[1].split(']')[0]);
+                                    }
+                );
 
-    this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
-      this.eventArray = data.json()
-      this.noimage = 'https://vignette.wikia.nocookie.net/roblox-phantom-forces/images/7/7c/Noimage.png/revision/latest?cb=20171115203949';
-      console.log(this.eventArray);
-     })
-   
-        
-        },(error)=>{console.log(error._body);
-      this.typeWarning(error._body);
-  });
+
   }
   typeWarning(a) {
     this.toastr.warning(a);
@@ -162,12 +160,12 @@ closeModel(){
   albumdelete(image,index){
     swal({
       title: "Are you sure?",
-    text: "You will not be able to recover this imaginary file!",
+    text: "You will not be able to recover this image!",
     type: "warning",
     showCancelButton: true,
     confirmButtonClass: "btn-default",
-    confirmButtonText: "Yes, delete it!",
-    cancelButtonText: "No, cancel plx!",
+    confirmButtonText: "Yes",
+    cancelButtonText: "No",
     }).then((res)=>{
       console.log(res);
       if(res.value===true){
@@ -195,7 +193,7 @@ closeModel(){
     // }
 
   }else{
-    // alert('Cancel Process !');
+    
    }
   },error=>{
     alert(JSON.stringify(error));
@@ -205,3 +203,4 @@ closeModel(){
   }
 
 }
+

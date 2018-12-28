@@ -3,8 +3,21 @@ $("#menu-toggle").click(function(e) {
     $("#wrapper").toggleClass("toggled");
 });
 
+
+
+$("#myidea").click(function(e) {
+    alert("dfv");
+    debugger
+  $('#Description').modal('hide');
+debugger
+});
+
+
 $(document).ready(function () {
-   
+
+
+  
+
     $("#carousel").owlCarousel({
 
       autoplay: true,
@@ -39,72 +52,43 @@ $(document).ready(function () {
       }
     });
 
-    $("#membership").owlCarousel({
 
-        autoplay: true,
-        lazyLoad: true,
-        loop: true,
-        margin: 20,
-         /*
-        animateOut: 'fadeOut',
-        animateIn: 'fadeIn',
-        */
-        responsiveClass: true,
-        autoHeight: true,
-        autoplayTimeout: 7000,
-        smartSpeed: 800,
-        nav: true,
-        responsive: {
-          0: {
-            items: 1
-          },
-      
-          600: {
-            items: 1
-          },
-      
-          1024: {
-            items: 1
-          },
-      
-          1366: {
-            items: 1
-          }
+    $("#businessservices").owlCarousel({
+      autoplay: true,
+      lazyLoad: true,
+      loop: true,
+      margin: 20,
+       /*
+      animateOut: 'fadeOut',
+      animateIn: 'fadeIn',
+      */
+      responsiveClass: true,
+      autoHeight: true,
+      //autoplayTimeout: 7000,
+      smartSpeed: 800,
+      nav: true,
+      responsive: {
+        0: {
+          items: 1
+        },
+    
+        600: {
+          items: 1
+        },
+    
+        1024: {
+          items: 1
+        },
+    
+        1366: {
+          items: 1
         }
-      });
-      $("#membership2").owlCarousel({
+      }
+    });
 
-        autoplay: true,
-        lazyLoad: true,
-        loop: true,
-        margin: 20,
-         /*
-        animateOut: 'fadeOut',
-        animateIn: 'fadeIn',
-        */
-        responsiveClass: true,
-        autoHeight: true,
-        autoplayTimeout: 7000,
-        smartSpeed: 800,
-        nav: true,
-        responsive: {
-          0: {
-            items: 1
-          },
-      
-          600: {
-            items: 1
-          },
-      
-          1024: {
-            items: 1
-          },
-      
-          1366: {
-            items: 1
-          }
-        }
-      });
+
+
+
 
 
      });
@@ -185,7 +169,7 @@ if(window.location.pathname == '/vendor/dashboard' ) {
     $("#dashboard").removeClass("colour");
 } else if(window.location.pathname == '/vendor/gallery') {
     $("#photo_album").addClass("colour");
-    $("#location_on").removeClass("colour");
+    $("#location_on").removeClass("colour");hhhh
     $("#Services").removeClass("colour");
     $("#message").removeClass("colour");
     $("#play_circle_outline").removeClass("colour");
@@ -349,3 +333,118 @@ function readImage() {
       console.log('Browser not support');
   }
 }
+
+
+
+  $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+  })
+
+
+
+  $(document).on('click' ,".newbtn", function() {
+    //alert("dfdf");
+    // $('.ulbox_text').show();
+    $(this).parent().find("ul").addClass('showdiv');
+    $(this).removeClass('labelclick');
+    $(this).addClass('showtik');
+  });
+
+  $(document).on('click' ,".showtik", function() {
+    //alert("dfdf");
+    // $('.ulbox_text').show();
+    $(this).parent().find("ul").removeClass('showdiv');
+    $(this).addClass('labelclick');
+    $(this).removeClass('showtik');
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // function showDropDown() {
+  //   jQuery(this).parents("li").find("ul").toggleClass('showdiv');
+  // }
+
+
+$(document).ready(function () {
+  $("#membershipcarousel").owlCarousel({
+      autoplay: false,
+      lazyLoad: false,
+      loop: false,
+      // animateOut: 'fadeOut',
+      // animateIn: 'fadeIn',
+      autoHeight: true,
+      autoplayTimeout: 7000,
+      smartSpeed: 800,
+      nav: true,
+      responsiveClass: true,
+      responsive: {
+        0: {
+          items: 1,
+          Padding: 40
+        },
+    
+        600: {
+          items: 1,
+        },
+        768: {
+          items: 3,
+        },
+    
+        1024: {
+          items: 3
+        },
+    
+        1366: {
+          items: 3
+        }
+      }
+    
+    });
+});
+
+$(document).ready(function () {
+  $("#membershipcarouselann").owlCarousel({
+      autoplay: false,
+      lazyLoad: false,
+      loop: false,
+      // animateOut: 'fadeOut',
+      // animateIn: 'fadeIn',
+      autoHeight: true,
+      autoplayTimeout: 7000,
+      smartSpeed: 800,
+      nav: true,
+      responsiveClass: true,
+      responsive: {
+        0: {
+          items: 1,
+          Padding: 40
+        },
+    
+        600: {
+          items: 1,
+        },
+        768: {
+          items: 3,
+        },
+    
+        1024: {
+          items: 3
+        },
+    
+        1366: {
+          items: 3
+        }
+      }
+    
+    });
+});

@@ -5,48 +5,32 @@ import { DatePipe } from '@angular/common';
 import {  FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import swal from 'sweetalert2';
-import {
- // ChangeDetectionStrategy,
-  ViewChild,
-  TemplateRef
-} from '@angular/core';
-
+import {ViewChild,TemplateRef} from '@angular/core';
+import { TimeSlot } from '../location/location.component';
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+/// New Calendar Dependancy
+import { CalendarComponent } from 'ng-fullcalendar';
+import { Options } from 'fullcalendar';
 @Component({
   selector: 'app-calendertable',
- // changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './calendertable.component.html',
   styleUrls: ['./calendertable.component.scss']
 })
 export class CalendertableComponent implements OnInit {
-    jobArray:string[];
-    all = 3;
-    upcomming =2;
-    past = 1
-    vendorJobsId = 0;
-    edit_job_form = {
-                      vendorJobsId: 0,
-                      clientName: "string",
-                      clientNumber: "string",
-                      eventTitle: "string",
-                      eventLocation: "string",
-                      startDate: "2018-11-23T07:28:05.224Z",
-                      endDate: "2018-11-23T07:28:05.224Z",
-                      userId: "string",
-                      vendorId: 0
+    edit_startDate:{};edit_endDate:{};customDay;isDisabled;endtime;select_time: TimeSlot;jobArray: any = [];
+    http_header:Headers;
+    objVendorJob:VendorJobsVM;
+    all = 3;end_date:string;start_date:string;upcomming =2;past = 1;vendorJobsId = 0;
+    edit_job_form = {vendorJobsId: 0,clientName: '',clientNumber: '',
+                      eventTitle: "string",eventLocation: '',startDate: "2018-11-23T07:28:05.224Z",
+                      endDate: "2018-11-23T07:28:05.224Z",startTime: "2018-12-05T09:54:26.407Z",
+                      endTime: "2018-12-05T09:54:26.407Z",noOfGuests: 0,userId: '',vendorId: 0
                     };
-  
-   jobdate = false;
-   jobedit = false;
-   final_List = [];
-   clientName;
-   eventTitle;
-   clientNumber;
-   eventLocation;
-   startDate;
-    endDate;
+    jobdate = false;jobedit = false;final_List = [];clientName;eventTitle;clientNumber;eventLocation;
+    startDate;endDate;startTime;endTime;noOfGuests;
+   
     private creat_job_url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/createupdatejobs';
     private geturl: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/myjobs';
     vendor: any = [];
@@ -56,82 +40,72 @@ export class CalendertableComponent implements OnInit {
     myDate = new Date(); 
     userId;
     vendorid;
-    event_data= { "events": []};
+    event_data = { "events": []};
     t: any;
     currentJustify = 'start';
     currentOrientation = 'horizontal';
-  public beforeChange($event: NgbTabChangeEvent) {
-    if ($event.nextId === 'bar') {
-      $event.preventDefault();
-    }
-  };
+      public beforeChange($event: NgbTabChangeEvent) {
+        if ($event.nextId === 'bar') {
+          $event.preventDefault();
+        }
+      };
+        /// New Calander Code Here ///
+  showModal: boolean;
+  title = 'ngularfullcalendarbootstrap';
+  name: string;
+  date: string;
+  calendarOptions: Options;
+  eventDetails:any;
+  /// End Of New Calander Code Here ///
+
     constructor(private toastr: ToastrService,private modal: NgbModal,public http: Http,private datePipe: DatePipe) { 
-     this.test = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+     this.test = this.datePipe.transform(this.myDate, 'yyyy-mm-dd');
+     this.select_time = new TimeSlot();
+     this.objVendorJob=new VendorJobsVM();
     }
     ngOnInit() {
-   
-    $.getScript('./assets/js/vendorsidebar.js');
-   // $.getScript('./assets/js/calendar.js');
-  
+                  $.getScript('./assets/js/vendorsidebar.js');
+                  this.http_header = new Headers();
+                  var authToken = localStorage.getItem('userToken');
+                  this.userId = localStorage.getItem('userId');
+                  this.vendorid = localStorage.getItem('vendorid');
+                  this.http_header.append('Accept', 'application/json')
+                  this.http_header.append('Content-Type', 'application/json');
+                  this.http_header.append("Authorization",'Bearer '+authToken);
+                  
+                  //all
+                  this.http.post(this.geturl,{filter: 3},{headers:this.http_header}).subscribe(data =>{             
+                    this.jobArray = data.json();
+                    console.log(this.jobArray );
+                    // this.final_List.forEach(function (value) { this.event_data.events.push(value); });
+                  },error => { console.log(error)});
 
-        let headers = new Headers();
-        var authToken = localStorage.getItem('userToken');
-        this.userId = localStorage.getItem('userId');
-        this.vendorid = localStorage.getItem('vendorid');
-        headers.append('Accept', 'application/json')
-        headers.append('Content-Type', 'application/json');
-        headers.append("Authorization",'Bearer '+authToken);
-     //all
-        this.http.post(this.geturl,{
-          filter: 3
-        },{headers:headers}).subscribe(data =>{
-          
-          this.final_List = data.json(); 
-         
-          this.event_data = {
-            "events": this.final_List
-          };
-          console.log( this.event_data);
-        },error => {  console.log(error)});
+                    $(".weddingjobstab").click(function(){
+                      $("#weddingjobs").show();
+                      $("#calendartabing").hide();  
+                      $(".weddingjobstab").addClass("selected"); 
+                      $(".calendartab").removeClass("selected");   
+                    });
 
-          $(".weddingjobstab").click(function(){
-            $("#weddingjobs").show();
-            $("#calendartabing").hide();  
-            $(".weddingjobstab").addClass("selected"); 
-            $(".calendartab").removeClass("selected");   
-          });
-
-          $(".calendartab").click(function(){
-            $("#weddingjobs").hide();
-            $("#calendartabing").show();
-            $(".weddingjobstab").removeClass("selected"); 
-            $(".calendartab").addClass("selected");   
-          });
-
-        
-  
-          // setTimeout(function(){ document.getElementById("last_li").click(); setTimeout(function(){ document.getElementById("last_li").click(); }, 200); }, 200);
-          // jQuery('#last_li').click();
-
-         $(function() {
-          $(".nav-link").on("click", function(){
-            // debugger
-            $(".nav-link").removeClass("active");
-            $(this).addClass("active");
-          });
-         });
-
+                    $(".calendartab").click(function(){
+                      $("#weddingjobs").hide();
+                      $("#calendartabing").show();
+                      $(".weddingjobstab").removeClass("selected"); 
+                      $(".calendartab").addClass("selected");   
+                    });
+                    $(function() {
+                        $(".nav-link").on("click", function(){
+                        $(".nav-link").removeClass("active");
+                        $(this).addClass("active");
+                      });
+                    });
           //accordian my wedding job 
           var acc = document.getElementsByClassName("accordion");
           var i;
 
           for (i = 0; i < acc.length; i++) {
               acc[i].addEventListener("click", function() {
-                  /* Toggle between adding and removing the "active" class,
-                  to highlight the button that controls the panel */
                   this.classList.toggle("active");
-
-                  /* Toggle between hiding and showing the active panel */
                   var panel = this.nextElementSibling;
                   if (panel.style.display === "block") {
                       panel.style.display = "none";
@@ -139,21 +113,9 @@ export class CalendertableComponent implements OnInit {
                       panel.style.display = "block";
                   }
               });
-          }
-
-          //calendeer
-          var date = new Date();
-          var today = date.getDate();
-          // Set click handlers for DOM elements
-          $(".right-button").click({date: date}, this.next_year);
-          $(".left-button").click({date: date}, this.prev_year);
-          $(".month").click({date: date}, this.month_click);
-          $("#add-button").click({date: date}, this.new_event);
-          // Set current month as active
-          $(".months-row").children().eq(date.getMonth()).addClass("active-month");
-          this.init_calendar(date);
-          var events = this.check_events(today, date.getMonth()+1, date.getFullYear());
-          this.show_events(events, this.months[date.getMonth()], today);
+          } 
+          // New Calendar funciton Called
+          this.initNewCalander();
     }
             @ViewChild('create') validationForm: FormGroup;
             @ViewChild('modalContent') modalContent: TemplateRef<any>;
@@ -161,323 +123,180 @@ export class CalendertableComponent implements OnInit {
             viewDate: Date = new Date();
             refresh: Subject<any> = new Subject();
             activeDayIsOpen: boolean = true;
-    job(jo){
-                        let headers = new Headers();
-                        var authToken = localStorage.getItem('userToken');
-                        headers.append('Accept', 'application/json')
-                        headers.append('Content-Type', 'application/json');
-                        headers.append("Authorization",'Bearer '+authToken);
-                        this.jobdate = false;
-                        this.http.post(this.creat_job_url,jo.value,{headers:headers}).subscribe(
-                          data =>{ 
-                                  console.log( data.json() );
-                                  this.toastr.success(data.json().message );
-                                  this.jobview(3);
-                                  }),error => {  console.log(error)};
-    
-    }
-    edit_job_modle(a){
-      console.log(a);
-      this.jobedit = true;
-      this.edit_job_form = a;
-    }
-    edit_job(b){
-      console.log(b.value);
-      let headers = new Headers();
-      var authToken = localStorage.getItem('userToken');
-      headers.append('Accept', 'application/json')
-      headers.append('Content-Type', 'application/json');
-      headers.append("Authorization",'Bearer '+authToken);
-      this.jobedit = false;
-      this.http.post(this.creat_job_url,b.value,{headers:headers}).subscribe(
-        data =>{ 
-                console.log( data.json() );
-                this.toastr.success(data.json().message );
+
+            job(jo){
+              console.log(jo);
             
-                }),error => {  console.log(error)};
-    
-    }
-    deletevent(job,index){
-      this.jobArray.splice(index, 1);
+                      this.end_date = jo.value['endDate']['year']+'-'+jo.value['endDate']['month']+'-'+jo.value['endDate']['day']
+                      this.start_date = jo.value['startDate']['year']+'-'+jo.value['startDate']['month']+'-'+jo.value['startDate']['day']
+                      jo.value.startDate = this.start_date
+                      jo.value.endDate = this.end_date
+                                let headers = new Headers();
+                                var authToken = localStorage.getItem('userToken');
+                                headers.append('Accept', 'application/json')
+                                headers.append('Content-Type', 'application/json');
+                                headers.append("Authorization",'Bearer '+authToken);
+                                this.jobdate = false;
+                                this.http.post(this.creat_job_url,jo.value,{headers:headers}).subscribe(
+                                  data =>{ 
+                                          console.log( data.json() );
+                                          this.toastr.success(data.json().message );
+                                          this.jobview(3);
+                                          this.showModal=false;
+                                          // this.jobview.reset();
+                                          }),error => {  console.log(error)};
+            
+            }
+            edit_job_modle(a){
+              console.log(a);
+              console.log(a.startDate);
+              console.log(a.endDate);
+              this.jobedit = true;
+              this.edit_job_form = a;
+              this.edit_startDate =  { "year": parseInt(a.startDate.split('T')[0].split('-')[0])   , 
+                                                "month": parseInt(a.startDate.split('T')[0].split('-')[1])  ,
+                                                 "day": parseInt(a.startDate.split('T')[0].split('-')[2])}
 
-      swal({
-        title: "Are you sure?",
-      text: "You will not be able to recover this imaginary file!",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonClass: "btn-default",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "No, cancel plx!",
-      }).then((res)=>{
-        if(res.value===true){
-          console.log(job);
-        
-        
-          var deleteid = job.vendorJobsId ;
-          let headers = new Headers();
-          var authToken = localStorage.getItem('userToken');
-          headers.append('Accept', 'application/json')
-          headers.append('Content-Type', 'application/json');
-          headers.append("Authorization",'Bearer '+authToken);
-      
-          this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob?VendorJobId'+'='+deleteid,{headers:headers}).subscribe(
-            data =>{
-          console.log(data.json());
-          this.toastr.success(data.json().message );
+              this.edit_endDate   =  {"year": parseInt(a.endDate.split('T')[0].split('-')[0])   , 
+                                               "month": parseInt(a.endDate.split('T')[0].split('-')[1])  ,
+                                               "day": parseInt(a.endDate.split('T')[0].split('-')[2])}                    
+                                               console.log(  this.edit_startDate);
+                                               console.log (this.edit_endDate  );
+              this.edit_job_form.startDate = a.startDate.split('T')[0].split('"')[0];
+            //   a.endDate.split('T')[0];
+            // { "YEAR": 2018, "MONTH": 12, "DAY": 22 }
+              this.edit_job_form.endDate  = a.endDate.split('T')[0]
+           
+            }
+            edit_job(b){
+              console.log(b.value);
+            //  this.end_date = b.value['endDate']['year']+'-'+b.value['endDate']['month']+'-'+b.value['endDate']['day']
+             // this.start_date = b.value['startDate']['year']+'-'+b.value['startDate']['month']+'-'+b.value['startDate']['day']
+             // b.value.startDate = this.start_date
+            //  b.value.endDate = this.end_date
+             // console.log(b.value);            
+              let headers = new Headers();
+              var authToken = localStorage.getItem('userToken');
+              headers.append('Accept', 'application/json')
+              headers.append('Content-Type', 'application/json');
+              headers.append("Authorization",'Bearer '+authToken);
+              this.jobedit = false;
+              console.log(this.objVendorJob);
+              this.http.post(this.creat_job_url,this.objVendorJob,{headers:headers}).subscribe(
+                data =>{ 
+                        console.log( data.json() );
+                        this.ngOnInit()
+                        this.toastr.success(data.json().message );
+                        }),error => {  console.log(error)};
+            
+            }
+            deletevent(job,index){
+              this.jobArray.splice(index, 1);
+                swal({
+                    title: "Are you sure?",
+                text: "You will not be able to recover event!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-default",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel plx!",
+                }).then((res)=>{
+                    if(res.value===true){
+                    console.log(job);
                     
-          },error =>{ console.log(error)});
-        }else{
-        }
-        },error=>{
-        alert(JSON.stringify(error));
-        })
-        return;
-          // alert(id)
-    
-    }
-    close()
-  {
-    this.jobdate =false;
-    this.jobedit = false;
-    }
-    jobview(a){
-      let headers = new Headers();
-      var authToken = localStorage.getItem('userToken');
-      headers.append('Accept', 'application/json')
-      headers.append('Content-Type', 'application/json');
-      headers.append("Authorization",'Bearer '+authToken);
-      //upcomming
-      this.http.post(this.geturl,{
-        filter: a
-      },{headers:headers}).subscribe(data =>{
-        console.log( data.json() );
-        this.jobArray = data.json() as string[]; 
-    
-      },error => {  console.log(error)});
-    }
- 
-
-    ///calender
-    // Initialize the calendar by appending the HTML dates
-  
-   
-     months = [ 
-      "January", 
-      "February", 
-      "March", 
-      "April", 
-      "May", 
-      "June", 
-      "July", 
-      "August", 
-      "September", 
-      "October", 
-      "November", 
-      "December" 
-  ];
- init_calendar(date) {
-  $(".tbody").empty();
-  $(".events-container").empty();
-  var calendar_days = $(".tbody");
-  var month = date.getMonth();
-  var year = date.getFullYear();
-  var day_count = this.days_in_month(month, year);
-  var row = $("<tr class='table-row'></tr>");
-  var today = date.getDate();
-  // Set date to 1 to find the first day of the month
-  date.setDate(1);
-  var first_day = date.getDay();
-  // 35+firstDay is the number of date elements to be added to the dates table
-  // 35 is from (7 days in a week) * (up to 5 rows of dates in a month)
-  for(var i=0; i<35+first_day; i++) {
-      // Since some of the elements will be blank, 
-      // need to calculate actual date from index
-      var day = i-first_day+1;
-      // If it is a sunday, make a new row
-      if(i%7===0) {
-          calendar_days.append(row);
-          row = $("<tr class='table-row'></tr>");
-      }
-      // if current index isn't a day in this month, make it blank
-      if(i < first_day || day > day_count) {
-          var curr_date = $("<td class='table-date nil'>"+"</td>");
-          row.append(curr_date);
-      }   
-      else {
-          var curr_date = $("<td class='table-date'>"+day+"</td>");
-          var events = this.check_events(day, month+1, year);
-          if(today===day && $(".active-date").length===0) {
-              curr_date.addClass("active-date");
-              this.show_events(events, this.months[month], day);
-          }
-          // If this date has any events, style it with .event-date
-          if(events.length!==0) {
-              curr_date.addClass("event-date");
-          }
-          // Set onClick handler for clicking a date
-          curr_date.click({events: events, month: this.months[month], day:day}, this.date_click);
-          row.append(curr_date);
-      }
-  }
-  // Append the last row and set the current year
-  calendar_days.append(row);
-  $(".year").text(year);
-}
-
-// Get the number of days in a given month/year
-days_in_month(month, year) {
-  var monthStart:any = new Date(year, month, 1);
-  var monthEnd:any = new Date(year, month + 1, 1);
-  return (monthEnd - monthStart) / (1000 * 60 * 60 * 24);    
-}
-
-// Event handler for when a date is clicked
- date_click(event) {
-  $(".events-container").show(250);
-  $("#dialog").hide(250);
-  $(".active-date").removeClass("active-date");
-  $(this).addClass("active-date");
-  this.show_events(event.data.events, event.data.month, event.data.day);
-}
-
-// Event handler for when a month is clicked
- month_click(event) {
-  $(".events-container").show(250);
-  $("#dialog").hide(250);
-  var date = event.data.date;
-  $(".active-month").removeClass("active-month");
-  $(this).addClass("active-month");
-  var new_month = $(".month").index('this');
-  date.setMonth(new_month);
-  this.init_calendar(date);
-}
-
-// Event handler for when the year right-button is clicked
- next_year(event) {
-  $("#dialog").hide(250);
-  var date = event.data.date;
-  var new_year = date.getFullYear()+1;
-  $("year").html(new_year);
-  date.setFullYear(new_year);
-  this.init_calendar(date);
-}
-
-// Event handler for when the year left-button is clicked
- prev_year(event) {
-  $("#dialog").hide(250);
-  var date = event.data.date;
-  var new_year:any = date.getFullYear()-1;
-  $("year").html(new_year);
-  date.setFullYear(new_year);
-  this.init_calendar(date);
-}
-
-// Event handler for clicking the new event button
- new_event(event) {
-  // if a date isn't selected then do nothing
-  if($(".active-date").length===0)
-      return;
-  // remove red error input on click
-  $("input").click(function(){
-      $(this).removeClass("error-input");
-  });
-  // empty inputs and hide events
-  $("#dialog input[type=text]").val('');
-  $("#dialog input[type=number]").val('');
-  $(".events-container").hide(250);
-  $("#dialog").show(250);
-  // Event handler for cancel button
-  $("#cancel-button").click(function() {
-      $("#name").removeClass("error-input");
-      $("#count").removeClass("error-input");
-      $("#dialog").hide(250);
-      $(".events-container").show(250);
-  });
-  // Event handler for ok button
-  $("#ok-button").unbind().click({date: event.data.date}, function() {
-      var date = event.data.date;
-     // var name= $("#name").val().trim();
-     
-     // var count = parseInt($("#count").val().trim());
-    
-      var day = parseInt($(".active-date").html());
-      // Basic form validation
-      // if(name.length === 0) {
-      //     $("#name").addClass("error-input");
-      // }
-      // else if(isNaN(count)) {
-      //     $("#count").addClass("error-input");
-      // }
-      // else {
-      //     $("#dialog").hide(250);
-      //     console.log("new event");
-      //   //  this.new_event_json(name, count, date, day);
-      //     date.setDate(day);
-      //   ///  this.init_calendar(date);
-      // }
-  });
-}
-
-// Adds a json event to event_data
- new_event_json(name, count, date, day) {
-  var event = {
-      "occasion": name,
-      "invited_count": count,
-      "year": date.getFullYear(),
-      "month": date.getMonth()+1,
-      "day": day
-  };
-  this.event_data.events.push(event);
-}
-
-// Display all events of the selected date in card views
- show_events(events, month, day) {
-            // Clear the dates container
-            $(".events-container").empty();
-            $(".events-container").show(250);
-            console.log(this.event_data);
-            // If there are no events for this date, notify the user
-            if(events.length===0) {
-                var event_card = $("<div class='event-card'></div>");
-                var event_name = $("<div class='event-name'>There are no events planned for "+month+" "+day+".</div>");
-                $(event_card).css({ "border-left": "10px solid #FF1744" });
-                $(event_card).append(event_name);
-                $(".events-container").append(event_card);
-            }
-            else {
-                // Go through and add each event as a card to the events container
-                for(var i=0; i<events.length; i++) {
-                    var event_card = $("<div class='event-card'></div>");
-                    var event_name = $("<div class='event-name'>"+events[i]["occasion"]+":</div>");
-                    var event_count = $("<div class='event-count'>"+events[i]["invited_count"]+" Invited</div>");
-                    if(events[i]["cancelled"]===true) {
-                        $(event_card).css({
-                            "border-left": "10px solid #FF1744"
-                        });
-                        event_count = $("<div class='event-cancelled'>Cancelled</div>");
+                    var deleteid = job.vendorJobsId ;
+                    let headers = new Headers();
+                    var authToken = localStorage.getItem('userToken');
+                    headers.append('Accept', 'application/json')
+                    headers.append('Content-Type', 'application/json');
+                    headers.append("Authorization",'Bearer '+authToken);
+                
+                    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob?VendorJobId'+'='+deleteid,{headers:headers}).subscribe(
+                        data =>{
+                    console.log(data.json());
+                    this.toastr.success(data.json().message );
+                                
+                    },error =>{ console.log(error)});
+                    }else{
                     }
-                    $(event_card).append(event_name).append(event_count);
-                    $(".events-container").append(event_card);
-                }
+                    },error=>{
+                    alert(JSON.stringify(error));
+                    })
+                    return;
+                
+            
             }
-}
 
-// Checks if a specific date has any events
-check_events(day, month, year) {
-        var events = [];
-        for(var i=0; i<this.event_data["events"].length; i++) {
-            var event = this.event_data["events"][i];
-            if(event["day"]===day &&
-                event["month"]===month &&
-                event["year"]===year) {
-                    events.push(event);
-                }
+            close(){this.jobdate =false;this.jobedit = false;}
+            jobview(a){
+            
+              let headers = new Headers();
+              var authToken = localStorage.getItem('userToken');
+              headers.append('Accept', 'application/json')
+              headers.append('Content-Type', 'application/json');
+              headers.append("Authorization",'Bearer '+authToken);
+             // upcomming
+              
+              this.http.post(this.geturl,{
+                filter: a
+              },{headers:headers}).subscribe(data =>{
+                console.log( data.json() );
+              
+                this.jobArray = data.json() as string[]; 
+              },error => {  console.log(error)});
+            }
+           /// New Calendar Code Start
+          initNewCalander(){
+            this.calendarOptions = {
+              editable: true,
+              eventLimit: true,
+              displayEventEnd:true,
+              eventOverlap:true,
+              nowIndicator:true,
+              eventDurationEditable:true,
+              noEventsMessage:'No Event Found On This Day',
+              displayEventTime:true,
+              eventColor:'red',
+              eventTextColor:'white',
+              //header: {left: 'prev,next today',center: 'title',right: 'month,agendaWeek,agendaDay,listMonth'},
+              header: {left: 'prev,next ',center: 'title',right: ''},
+              events: [{title: 'Sales Meeting',date: '2018-11-21'}],
+          
+            };
+          }
+          eventClick(model: any) {
+            this.name = model.event.title;
+            this.date = model.event.start;
+            this.showModal = true;
+          }
+          hide(){
+         // this.calendarOptions.events.push(this.eventObj);
+          this.showModal = false;
         }
-        return events;
+        dayClick(calendarOptions){
+          console.log(calendarOptions.details.date);
+          this.showModal=true;
+        }
+        clickButton(details){
+          
+        }
+        showJobDialog(){
+
+        }
+        /// New Calendar Code End
+
 }
-
-// Given data for events in JSON format
-
-
-
+export class VendorJobsVM{
+    vendorJobsId:	number;
+    clientName:string;
+    clientNumber:string;
+    eventTitle:string;
+    eventLocation:string;
+    startDate:string;
+    endDate:string;
+    startTime:string;
+    endTime:string;
+    noOfGuests:number;
+    userId:string;
+    vendorId:number;
 }

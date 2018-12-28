@@ -7,84 +7,34 @@
     <div class="container-fluid nopadd">                    
       <app-navemenu></app-navemenu>
       <div class="container-fluid mobilefixedcontainer">  
-
+          <app-gallery0></app-gallery0>
           <div  class="photo_gallery">   
               <div class="row firt_row ">   
-                  <div *ngIf="this.portfolio.length==0" class="col-sm-12 mar_bot_30px card martop0px portfolio" >    
-                      <div class="text-center headin_gally">
-                        <h5>MY PORTFOLIO </h5> 
-                        <P> Collection of the best photo and work to highlight your profile</P>               
-                      </div>
-                      <div class="mainalbumbtn">
-                            <p class="oops">
-                              <i class="material-icons" style="font-size:80px;">camera_alt</i>
-                              <br/>
-                                <span>Oops!</span> You have 0 image in your portfolio
-                            </p>
-                          
-                              <p class="upload_bt text-center" >   
-                                  <button  id="Google-function"  (click)="uploadphoto_dailog = true" data-reactid="339" >
-                                    Add photos
-                                  </button> 
-                              </p>
+                  <div  class="container-fluid nopadd portfolio_images" *ngIf = "portArray_length > 0" >
+                      <div class="card">
+                        <div  class=" text-center headin_gally col-sm-12 bordernone">
+                            <h5 ><i class="material-icons">camera_alt</i> MY PORTFOLIO </h5>
+                            <p >Collection of the best photo and work to highlight your profile</p>
+                        </div>
+        
+                     
+                        <div class="port_row"> 
+                          <div class="col-lg-3 col-md-4 col-6 thumb" *ngFor='let obj of portArray | slice:0:4' >
                         
+                              <img class="img-thumbnail img-responsive" alt="{{obj.files.path}}" [src] = "obj.files.path"  >   
                           
-                            <p class="upload_bt text-center"> 
-                              <p class="text-center uplod_para">
-                                <a> 
-                                  Want to grow your Portfolio collection? Get UNLIMITED photos with a Premium Account. Upgrade
-                                </a> 
-                              </p>
+                          </div>
+                       
+                          <div class="clearfix"></div>
+                          <div class="text-center viev_all"> 
+                            <a  class="btn" routerLink="../portfolioview" >View All</a> 
+                          </div>
+                        </div>
                       </div>
-                  </div>
-                  <div class="col-sm-12 card album" >
-                    <div class="" >
-                      <div class="text-center headin_gally">
-                        <h5 >MY ALBUM </h5>
-                      
-                        <P>Create, label and group your work with albums </P>
-                      </div>  
-                      <div class="mainalbumbtn">
-                          <p class="oops">
-                            <i class="material-icons" style="font-size:100px;">photo_library</i>
-                            <br/>
-                              <span>Oops!</span> You have no Photo Albums 
-                          </p>
-                            <p class="upload_bt text-center" >
-                          
-                              <button  id="Google-function" (click)="createalbum_dailog = true" data-reactid="339" >Create</button>  </p>
-                            <p class="text-center uplod_para"> <a href="">Get organised with UNLIMITED albums. Upgrade to Premium Account </a>  </p>
-                      </div>
-                      <div class="overlay">
-                      
-                      </div>
-                    </div>
-                  </div>     
+                  </div>   
               </div>
           </div>
-          <div  class="container-fluid nopadd album2">
-              <div class="card">
-                <div  class=" text-center headin_gally col-sm-12 bordernone">
-                    <h5 ><i class="material-icons">camera_alt</i> MY PORTFOLIO </h5>
-                    <p >Collection of the best photo and work to highlight your profile</p>
-                </div>
-
-             
-                <div class="port_row"> 
-                  <div class="col-lg-3 col-md-4 col-6 thumb" *ngFor='let obj of portArray | slice:0:4' >
-                
-                      <img class="img-thumbnail img-responsive" alt="{{obj.files.path}}" [src] = "obj.files.path"  >   
-                  
-                  </div>
-               
-                  <div class="clearfix"></div>
-                  <div class="text-center viev_all"> 
-                    <a  class="btn" routerLink="../portfolioview" >View All</a> 
-                  </div>
-                </div>
-              </div>
-          </div> 
-          <div *ngIf="this.portfolio.length!=0" class="container-fluid nopadd albumlist portfolio2"  >
+           <div   *ngIf = "albumArray.length > 0"  class="container-fluid nopadd albumlist album_containing_images"  >
               <div class="card">
                 <div  class="text-center headin_gally col-sm-12 bordernone">
                   <h5 ><i class="material-icons">photo_library</i> MY ALBUM  </h5>
@@ -93,35 +43,63 @@
                 <div class="">
                   <div class="col-md-3 " *ngFor='let album of albumArray | slice:0:4'>
                     <div class="image-div" >
-                      <div *ngFor='let ar of  album.albumImages '>
+                      <!-- <div *ngFor='let ar of  album.albumImages '>
                               <div  routerLink="../albumviewphoto/{{album.albumsId}} "  *ngIf="album.albumImages?.length ==  2"  class="imgcontainer imghalffull">
                                 <img class="img-thumbnail  imghalffull" 
                                 alt="Another alt text"
                                 [src] = "ar.path" />
                               </div>
-                      </div>
+                      </div> -->
 
-                      <div *ngFor='let ar of  album.albumImages '>
+                      <!-- <div *ngFor='let ar of  album.albumImages '>
                               <div *ngIf="album.albumImages?.length ==  1"  class="imgcontainer imgfull">
                                 <img class="img-thumbnail" 
                                 alt="Another alt text"
                                 [src] = "ar.path" />
                             </div>
-                      </div>
-                      <div *ngFor='let ar of  album.albumImages  | slice:0:3 ;let i=index'>
-                              <div *ngIf="album.albumImages?.length >=  3"  class="imgcontainer imghalffull">
+                      </div> -->
+                      <div routerLink="../albumviewphoto/{{album.albumsId}} " *ngFor='let ar of  album.albumImages  | slice:0:3 ;let i=index'>
+                          
+
+                        
+                    
+
+                        <div   *ngIf="album.albumImages?.length ==  2"  class="imgcontainer imghalffull">
+                          <img *ngIf="i==0"class="img-thumbnail  imgfull " 
+                          alt="Another alt text"
+                          [src] = "ar.path" />
+                          <img *ngIf="i>0" class="img-thumbnail  imghalf  " 
+                          alt="Another alt text"
+                          [src] = "ar.path" />
+
+
+                          <img *ngIf="i>0" class="img-thumbnail  imghalf  " 
+                          alt="Another alt text"
+                          src="../../../assets/img/noImg.png"/>
+
+                          </div>
+                        
+                        <div *ngIf="album.albumImages?.length >=  3"  class="imgcontainer imghalffull">
                                 <img *ngIf="i==0"class="img-thumbnail  imgfull " 
                                 alt="Another alt text"
                                 [src] = "ar.path" />
                                 <img *ngIf="i>0" class="img-thumbnail  imghalf  " 
                                 alt="Another alt text"
                                 [src] = "ar.path" />
-                              </div>
+                        </div>
+
+                      
+
                       </div>
 
-                      <div *ngIf="album.albumImages?.length ==  0"  class="imgcontainer">
-                          <img class="img-thumbnail "  alt="Another alt text"  src="../../../assets/img/noImg.png" />   
+                      <div routerLink="../albumviewphoto/{{album.albumsId}} " *ngIf="album.albumImages?.length ==  0"  class="imgcontainer imghalffull tiktik">
+                          <img class="img-thumbnail imgfull"  alt="Another alt text"  src="../../../assets/img/noImg.png"  />
+                          <img class="img-thumbnail imghalf"  alt="Another alt text"   src="../../../assets/img/noImg.png"  />
+                          <img class="img-thumbnail imghalf"  alt="Another alt text"   src="../../../assets/img/noImg.png"  />
                       </div>
+                     
+                 
+
                     </div>
                      
                     <div class="over_like">
@@ -147,149 +125,6 @@
 
 <router-outlet></router-outlet> 
 
-    <div class="clearfix"></div>
-    <div class="modal fade" [ngClass] = "{'show' : uploadphoto_dailog}" id="uploadphoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-                <h4 class="modal-title">Add Portfolio</h4>
-                <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>       
-              <div class="clearfix"></div>
-            </div>
-            <div class="modal-body">
-                <div class="col-sm-12  text-center">
-                  <div class="modal-body" style="background-color: white">
-                    <form>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <section id="file-upload">
-                           
-                            <div class="card martop0px">
-                              <div class="card-block">
-                                <div class="row">
-                                  <div class="col-md-12 col-lg-12 my-drop-zone">
-                                    <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader"
-                                      class="mb-3 text-center font-medium-5 text-uppercase grey ">
-                                      Drop Image Here..!
-                                    </div>
-
-                                     <div class="btnholdertik">
-                                      <input type="file" class="form-control uploadbtnhidden" ng2FileSelect [uploader]="uploader" multiple >
-                                      <button class="newbtn Choosefilebtn">Choose File</button>
-                                    </div>
-
-                                  </div>
-                            
-                                </div>
-                                <div class="row">
-                               
-                          
-                                  <div class="col-md-12"><br/>
-                                   <!--  <h4>Upload queue</h4>
-                                    <p>Queue length: {{ uploader?.queue?.length }}</p> -->
-                          
-                                    <table class="table">
-                                      <!-- <thead>
-                                        <tr>
-                                          <th width="50%">Name</th>
-                                          <th>Size</th>
-                                          <th>Progress</th>
-                                          <th>Status</th>
-                                          <th>Actions</th>
-                                        </tr>
-                                      </thead> -->
-                                      <tbody>
-                                        <tr *ngFor="let item of uploader.queue">
-                                          <td><strong>{{ item?.file?.name }}</strong></td>
-                                         <!--  <td *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
-                                          <td *ngIf="uploader.isHTML5">
-                                            <div class="progress" style="margin-bottom: 0;">
-                                              <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
-                                            </div>
-                                          </td>
-                                          <td class="text-center">
-                                            <span *ngIf="item.isSuccess"><i class="fa fa-ok"></i></span>
-                                            <span *ngIf="item.isCancel"><i class="fa fa-ban"></i></span>
-                                            <span *ngIf="item.isError"><i class="fa fa-remove"></i></span>
-                                          </td> -->
-                                          <td nowrap>
-                                           <!--  <button type="button" class="btn btn-raised btn-success btn-sm" (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
-                                            <span class="fa fa-upload"></span> Upload
-                                          </button>
-                                            <button type="button" class="btn btn-raised btn-warning btn-sm" (click)="item.cancel()" [disabled]="!item.isUploading">
-                                            <span class="fa fa-ban"></span> Cancel
-                                          </button> -->
-                                            <button type="button" class="btn btn-raised btn-danger btn-sm" (click)="item.remove()">
-                                            &times;
-                                          </button>
-                                          </td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                          
-                                    <div>
-                                     <!--  <p>Queue progress:
-                                        <ngb-progressbar type="primary" [value]="uploader.progress"></ngb-progressbar>
-                                      </p> -->
-                                     <!--  <button type="button" class="btn btn-raised btn-success">
-                                        <span class="fa fa-upload"></span> Upload all
-                                      </button> -->
-                                     <!--  <button type="button" class="btn btn-raised btn-warning" (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
-                                        <span class="fa fa-ban"></span> Cancel all
-                                      </button>
-                                      <button type="button" class="btn btn-raised btn-danger" (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
-                                        <span class="fa fa-trash"></span> Remove all
-                                      </button> -->
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </section>
-                        </div>
-                      </div>
-                    
-                      <div class="clearfix"></div>
-                    </form>
-                    
-                  </div>
-                </div>    
-            </div>
-          <div class="modal-footer text-center">
-                <button type="submit" class="btn newbtn"  (click)="uploadAll()" [disabled]="!uploader.getNotUploadedItems().length" >Save</button>&nbsp; 
-                <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
-            </div>
-        </div>  
-      </div>  
-    </div>
-    <form (ngSubmit)="createAlbum(Album)" #Album="ngForm"> 
-      <div class="modal fade" [ngClass] = "{'show' : createalbum_dailog}"  id="createalbum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header text-center">
-                <h4 class="modal-title">Create  Album </h4>
-                    <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              
-            </div>
-            <div class="modal-body">
-                <div class="col-sm-12  text-center">
-                  <div class="modal-body" style="background-color: white">
-                    Album name :
-                    <input type="text" [(ngModel)]="Album.albumName" name="albumName" id="albumName"/><br>
-                    <div class="clearfix"></div>
-                  </div>
-                </div>    
-            </div>
-           <div class="modal-footer text-center">
-                <button type="submit" class="btn newbtn">Save</button>&nbsp;
-                <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
-            </div>
-          </div>  
-        </div>  
-
-      </div>
-    </form>  
 
 
-
+    

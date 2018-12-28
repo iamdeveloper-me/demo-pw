@@ -15,8 +15,8 @@ export class AdminadvertisingComponent implements OnInit {
     $(".Banner").hide();  
     $(".Result").hide();  
     $(".Carrers").hide();    
-  $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
-  $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
+ // $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
+ // $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
   $.getScript('./assets/js/vendorsidebar.js');
   $("#Location").click(function(){
     $(".Location").show();

@@ -30,19 +30,14 @@ export class VendorcardComponent implements OnInit {
     this.featured_supplier()
     this.Dream_Wedding()
     this.Popular_Wedding()
-
     $.getScript('./assets/jss/core/popper.min.js');
     $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
     $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');
     $.getScript('./assets/jss/plugins/chartist.min.js');
     $.getScript('./assets/jss/plugins/bootstrap-notify.js');
     $.getScript('./assets/js/owljsor.js');
-    $.getScript('./assets/js/curosselfun.js');   
-
-
-
+    $.getScript('./assets/js/curosselfun.js');  
   }
-
   featured_supplier(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/featuredsuppliers').subscribe(data => {
       console.log(data.featuredWeddingSuppliers)
@@ -62,7 +57,6 @@ export class VendorcardComponent implements OnInit {
       }
     )
   }
-
   Dream_Wedding(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/dreamweddinglocation').subscribe(data => {
       console.log(data.dreamWeddingLocations)
@@ -90,32 +84,47 @@ export class VendorcardComponent implements OnInit {
       }
     )
   }
-
   Categories_each(c,isAllSupplier,isDreamLocation){
+    alert("sdvf")
+    console.log(c)
+    console.log(isAllSupplier)
+    console.log(isDreamLocation)
     if(c){
    this.objFilterParam.catId  = c.categoryId;
    this.objFilterParam.categoryName= c.categoryName;
    this.objFilterParam.isDreamLocation=isDreamLocation;
    this.objFilterParam.isAllSupplier=isAllSupplier;
+   this.objFilterParam.page = 0;
+   this.objFilterParam.pageSize = 25;
+   this.objFilterParam.sortDir = "";
+   this.objFilterParam.sortedBy ="";
+   this.objFilterParam.searchQuery ="";
+
   }
     localStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
     this.router.navigate(['home/searchresult',this.objFilterParam.categoryName]);
   }
-
   supplier_all(c,isAllSupplier,isDreamLocation){
+   // alert("dfsvf")
+   console.log(c)
     if(c){
+      alert(c)
       this.objFilterParam.catId  = c.categoryId;
-      this.objFilterParam.categoryName= c.categoryName;
+      this.objFilterParam.categoryName= '';
       this.objFilterParam.isDreamLocation=isDreamLocation;
       this.objFilterParam.isAllSupplier=isAllSupplier;
+      this.objFilterParam.page = 0;
+      this.objFilterParam.pageSize = 25;
+      this.objFilterParam.sortDir = "";
+      this.objFilterParam.sortedBy ="";
+      this.objFilterParam.searchQuery ="";
   }
-    console.log(c)
+    console.log(this.objFilterParam.categoryName)
    
-    console.log(this.objFilterParam.categoryName.replace(" ", ""));
-    this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace("   ", "").trim()]);
+    localStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+    this.router.navigate(['home/searchresult',this.objFilterParam.categoryName]);
    // console.log(this.objFilterParam.categoryName);
   }
-
   // location_all(c){
    
   //   let catId= c.categoryId;
@@ -131,5 +140,9 @@ export class filterParam{
   categoryName:string='';
   isAllSupplier:boolean=false;
   isDreamLocation:boolean=false;
-  
+  page: 0;
+  pageSize: 25;
+  sortDir: "";
+  sortedBy: "";
+  searchQuery: "";
 }

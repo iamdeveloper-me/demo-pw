@@ -459,7 +459,18 @@ myplans:any = {};
 
         }
         goToLink(){
-           
+         
+          alert("Boom!");
+          this.apiService.getData(this.apiService.serverPath+'PerfectWedding/storefrontview').subscribe(data => {
+            console.log(data)
+            this.vendorUniqueId = data.vendorUniqueId;
+            console.log(this.vendorUniqueId)
+          
+          },
+            error => {
+             console.log(error)
+            }
+          )
           this.apiService.getData(this.apiService.serverPath+'PerfectWedding/storefrontview').subscribe(data => {
             console.log(data)
             this.vendorUniqueId = data.vendorUniqueId;
@@ -471,9 +482,8 @@ myplans:any = {};
             }
           )
 
-
           setTimeout(function(){
-            alert("Boom!");
+            console.log(this.total)
             if( this.total ==100){
               alert("sdfgvsdf");
              
@@ -483,20 +493,20 @@ myplans:any = {};
             window.open(url, "_blank");
            
             }else{
-              swal({
-                title: "Profile Not Completed",
-            text: "Thankyou!",
-            type: "warning",
-            showCancelButton: false,
-            confirmButtonClass: "btn-default",
-            confirmButtonText: "OK",
-            cancelButtonText: "Cancel!",  
-            }).then((res)=>{
+            //   swal({
+            //     title: "Profile Not Completed",
+            // text: "Thankyou!",
+            // type: "warning",
+            // showCancelButton: false,
+            // confirmButtonClass: "btn-default",
+            // confirmButtonText: "OK",
+            // cancelButtonText: "Cancel!",  
+            // }).then((res)=>{
               
-              },error=>{
-                //alert(JSON.stringify(error));
-            })
-              return;
+            //   },error=>{
+               
+            // })
+            //   return;
             }
           }, 2000);
       

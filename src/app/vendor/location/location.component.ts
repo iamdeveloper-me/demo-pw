@@ -295,7 +295,7 @@ export class LocationComponent implements OnInit {
       'street':new FormControl(),
       'pincode': new FormControl()
     })
-    this.objDashboard= new DashboardComponent(this.config,this.http,this.router);
+    this.objDashboard= new DashboardComponent(this.apiService, this.config,this.http,this.router);
     this.mapsApiLoader = mapsApiLoader;
     this.zone = zone;
     this.wrapper = wrapper;

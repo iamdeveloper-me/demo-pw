@@ -72,6 +72,7 @@
                             <div class="col-md-3 marbot15px" *ngFor="let single_video of video_all_data">
                               <iframe  [src]="single_video.link  | safe" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                             </div>
+                            <strong>{{single_data.title}}</strong>
                           </div>
                       </div>
                 </section>

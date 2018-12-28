@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MasterserviceService } from '../ngservices/masterservice.service';
 import { apiService } from '../shared/service/api.service';
-
+import{filterParam} from '../vendorcard/vendorcard.component'
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,8 +11,10 @@ import { Router } from '@angular/router';
 })
 export class BannerComponent implements OnInit {
 
-
-  constructor( private router: Router ,private masterservice: MasterserviceService , private apiService: apiService) { }
+  objFilterParam: filterParam;
+  constructor( private router: Router ,private masterservice: MasterserviceService , private apiService: apiService) { 
+    this.objFilterParam = new filterParam();
+  }
 
   Categories = [];
   locations = [];
@@ -62,16 +64,31 @@ export class BannerComponent implements OnInit {
     )
   }
 
-  search(e){
-
+  search(e,isAllSupplier,isDreamLocation){
+  
+    if(e){
+      this.objFilterParam.catId  = e.value.category.categoryId;
+      this.objFilterParam.categoryName= e.value.category.categoryName ;
+      this.objFilterParam.isDreamLocation=isDreamLocation;
+      this.objFilterParam.isAllSupplier=isAllSupplier;
+      this.objFilterParam.page = 0;
+      this.objFilterParam.pageSize = 25;
+      this.objFilterParam.sortDir = "";
+      this.objFilterParam.sortedBy ="";
+      this.objFilterParam.searchQuery ="";
+     
+     }
+       localStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+       this.router.navigate(['home/searchresult',this.objFilterParam.categoryName]);
+   
    // this.router.navigate(['../searchresult/', e.value.category.categoryId]);
-    let catId=0;
-    let CatName='';
-    if(e.value.category!=undefined){
-      catId=e.value.category.categoryId;
-      CatName=e.value.category.categoryName;
-    }
-    this.router.navigate(['home/searchresult',catId+'/'+CatName]);
+    // let catId=0;
+    // let CatName='';
+    // if(e.value.category!=undefined){
+    //   catId=e.value.category.categoryId;
+    //   CatName=e.value.category.categoryName;
+    // }
+    // this.router.navigate(['home/searchresult',catId+'/'+CatName]);
 
     //searchresult
 

@@ -159,7 +159,7 @@
        <small class="form-text text-muted danger" *ngIf="!phone.valid && (phone.dirty || phone.touched)">Phone is required!</small>
   </div>
   <div class="col-sm-12 btnholder">
-      <button class="btn btn-raised prevBtn-2 gradint_blue white signup_nextbtn btnborradius pull-left" type="button" [routerLink]="['/register/step-first']">Previous</button>
+      <button class="btn btn-raised prevBtn-2 gradint_blue white signup_nextbtn btnborradius pull-left" type="button" [routerLink]="['/register/step1']">Previous</button>
       <button class="btn btn-raised gradint_blue white signup_nextbtn btnborradius nextBtn-2 pull-right" type="button" (click)='goToNextStep()' [disabled]="!f.valid">Next</button>
   </div>
 </div>

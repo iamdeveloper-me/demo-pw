@@ -697,13 +697,14 @@ export class EventListComponent implements OnInit {
   }
 
   past_upcomming_event(past) {
-   // console.log(past);
+   console.log(past);
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
     this.eventArray.unshift(this.objevent);
+    this.eventArray = [];
     this.http.post(this.myevent_Post_url, { Filter: past }, { headers: headers }).subscribe(data => {
       this.eventArray = data.json();
      // console.log(JSON.stringify(this.eventArray));
@@ -777,7 +778,8 @@ export class EventListComponent implements OnInit {
     headers.append("Authorization", 'Bearer ' + authToken);
     this.eventArray = [];
     this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/eventdetails?id' + '=' + id, { headers: headers }).subscribe(data => {
-      this.eventArray.push(data.json())
+      this.eventArray.push(data.json());
+      console.log(data.json());
 
     }, error => { 
       console.log(error); 

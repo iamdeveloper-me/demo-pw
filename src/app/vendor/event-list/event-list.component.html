@@ -41,6 +41,12 @@
               </div>
 
               <div class="clearfix"></div>
+
+              <div class="text-center" *ngIf="eventArray.length == 0; else elseBlock">
+                <h3>No Events Planned Yet!</h3>
+              </div>
+
+               <ng-template #elseBlock>            
               <section>
               
                 <div class="col-sm-12 nopadd" *ngFor="let data of eventArray;let i=index ">
@@ -107,13 +113,15 @@
                                       <td valign="top" align="center" width="40px"><i class="material-icons">access_time </i></td>
                                        <td valign="top">
                                         <p  *ngFor="let name of data.eventsDates">
-                                          Event Start: &nbsp;{{name.startDate}},  {{name.startTime | date :
-                                            "shortTime" }}
+                                          Event Start: &nbsp;
+                                          {{name.startDate | date }},  
+                                          {{name.startTime | date : "shortTime" }}
                                         </p>
                                        
                                         <p *ngFor="let name of data.eventsDates">
-                                          Event End: &nbsp;{{name.endDate}}, 
-                                               {{name.endTime | date : "shortTime" }} 
+                                          Event End: &nbsp;
+                                          {{name.endDate | date }}, 
+                                          {{name.endTime | date : "shortTime" }} 
                                         </p>
                                       </td>
                                     </tr>
@@ -153,6 +161,7 @@
                   </div>
                 </div>
               </section>
+          </ng-template>
             </div>
           </div>
         </div>
@@ -212,10 +221,7 @@
                             (keypress)="startDatess($event)" 
                             style="width:100%;">
                           <small class="form-text text-muted danger" >{{districtId_valid}}</small>
-                   
-
                     </div> -->
-
                     <div class="field">
                         <!-- <p>{{startDates}} </p> placeholder="{{startDates}}" -->
                         <input type="text" 
@@ -232,16 +238,14 @@
                           >
                           <label for="startDate"> Start Date</label> 
                            <div class="input-group-append">
-                            <div class="input-group-text" (click)="d1_startDate.toggle()">
-                              <i class="fa fa-calendar" style="cursor: pointer;"></i>
-                            </div>
+                              <div class="input-group-text" (click)="d1_startDate.toggle()">
+                                <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                              </div>
                           </div>
                     </div>
-                    
-                   
                   </div>
-                  <div class="col-sm-6">
 
+                  <div class="col-sm-6">
                     <div class="inputheight">
                                  <!-- <input type="time" class="form-control"  [(ngModel)]="startTimee"  name="startTime" id="startTime"/> -->
 <!--                                   
@@ -255,21 +259,13 @@
 
                                     start time
                                   </label> -->
-                          
-                                  <select class="form-control selectwet" placeholder="Start Time" type="time" [(ngModel)]="startTimee"  id="startTime" name="startTime">
-                                      <option *ngFor='let s of select_time.timing;let i=index' [value]='s.startTime'>{{s.startTime}}</option>
-                                    </select>
-                                   
-                            
-                                    <label class="selectlabel" for="startTime">
-                                      start time
-                                    </label> 
-
-
-
-
+                        <select class="form-control selectwet" placeholder="Start Time" type="time" [(ngModel)]="startTimee"  id="startTime" name="startTime">
+                              <option *ngFor='let s of select_time.timing;let i=index' [value]='s.startTime'>{{s.startTime}}</option>
+                        </select>  
+                        <label class="selectlabel" for="startTime"> start time </label> 
                       </div>
                   </div>
+          <div class="clearfix"></div>
                   <div class="col-sm-6">
                       <!-- <div class="form-group">
                           <label>End  Date</label> 
@@ -286,8 +282,7 @@
                       </div> -->
 
                       <div class="field">
-                       
-                         
+
                         <input class="form-control" 
                           placeholder="dd-MM-yyyy"   
                           name="endDate"
@@ -314,9 +309,7 @@
                           <option *ngFor='let s of select_time.timing' [value]='s.endTime'>{{s.endTime}}</option>
                         </select>
                           
-                         <label class="selectlabel1" for="inputtimeend">
-                          End Time
-                        </label>
+                         <label class="selectlabel1" for="inputtimeend"> End Time </label>
                         <!-- <input type="time"
                         class="form-control"  
                         name="endTime" 
@@ -327,6 +320,7 @@
                       </div>
                   </div> 
                   <div class="clearfix"></div>
+
                   <div class="col-sm-6">
                       <div class="field">
                             <input type="text" class="form-control" 

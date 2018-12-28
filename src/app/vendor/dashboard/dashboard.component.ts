@@ -4,7 +4,7 @@ import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
-
+import { apiService } from '../../shared/service/api.service';
 // Add the RxJS Observable operators we need in this app.
 
 
@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
     private urll: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/';
     angularLogo = 'https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg';
     
-    constructor(config: NgbCarouselConfig ,public http: Http ,private router: Router) {
+    constructor( private apiService: apiService,config: NgbCarouselConfig ,public http: Http ,private router: Router) {
       
     //config.interval = 10000;
    // config.wrap = false;
@@ -80,7 +80,7 @@ myplans:any = {};
   VendorDashboard_data = {portfolioImage : '',portfolioCount: '',albumImageCount:'',
   videoCount : '',albumCount: '',impression: '',enquiries: '',loveCount: '',reviews: ''};
   //VendorDashboard
-  
+  vendorUniqueId
   baseUrl = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
   // Context and manual triggers section
   @ViewChild('x') public tooltip: NgbTooltip;
@@ -105,7 +105,7 @@ myplans:any = {};
  // supArray:string[];  
       ngOnInit()  {
         
-
+       
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         
@@ -186,10 +186,6 @@ myplans:any = {};
                    localStorage.setItem('vendorid',data.json().vendorId);
                    localStorage.setItem('basic-plan',data.json().pricingPlan.pricingPlanId);
                  
-                   
-                 
-           
-    
                  });
                 
                    this.vendor_board()
@@ -379,25 +375,34 @@ myplans:any = {};
             });
         }
         freeuser(){
-                     swal({
-                            title: "Want to unlock this feature?",
-                        text: "Choose a different subscription plan",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonClass: "btn-default",
-                        confirmButtonText: "View Plans",
-                        }).then((res)=>{
-                          if(res.value===true){
-                            this.router.navigate(['../vendor/membership'])
-                        }
+          this.pricingPlanId
+         
+          if(this.pricingPlanId.pricingPlanId == '1' ){
+            swal({
+              title: "Want to unlock this feature?",
+          text: "Choose a different subscription plan",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonClass: "btn-default",
+          confirmButtonText: "View Plans",
+          }).then((res)=>{
+            if(res.value===true){
+              this.router.navigate(['../vendor/membership'])
+          }
 
-                          },error=>{
-                            alert(JSON.stringify(error));
-                        })
-                          return;                   
+            },error=>{
+              alert(JSON.stringify(error));
+          })
+            return;    
+          
+          }
+          else{
+            this.router.navigate(['../vendor/albumview'])
+           
+          }                   
         } 
          
-         vendor_board(){
+        vendor_board(){
                              let headers = new Headers();
                             var authToken = localStorage.getItem('userToken');
                             headers.append('Accept', 'application/json')
@@ -452,7 +457,63 @@ myplans:any = {};
                                             this.tradingName = data.json().profileCompletion.tradingName;
                                       } , error=>{console.log(error)});
 
-                      }
+        }
+        goToLink(){
+         
+          alert("Boom!");
+          this.apiService.getData(this.apiService.serverPath+'PerfectWedding/storefrontview').subscribe(data => {
+            console.log(data)
+            this.vendorUniqueId = data.vendorUniqueId;
+            console.log(this.vendorUniqueId)
+          
+          },
+            error => {
+             console.log(error)
+            }
+          )
+          this.apiService.getData(this.apiService.serverPath+'PerfectWedding/storefrontview').subscribe(data => {
+            console.log(data)
+            this.vendorUniqueId = data.vendorUniqueId;
+            console.log(this.vendorUniqueId)
+          
+          },
+            error => {
+             console.log(error)
+            }
+          )
 
+          setTimeout(function(){
+            console.log(this.total)
+            if( this.total ==100){
+              alert("sdfgvsdf");
+             
+            console.log(this.vendorUniqueId)
+            let url ="../../#/home/detailprofile/"+this.vendorUniqueId
+            console.log(url)
+            window.open(url, "_blank");
+           
+            }else{
+            //   swal({
+            //     title: "Profile Not Completed",
+            // text: "Thankyou!",
+            // type: "warning",
+            // showCancelButton: false,
+            // confirmButtonClass: "btn-default",
+            // confirmButtonText: "OK",
+            // cancelButtonText: "Cancel!",  
+            // }).then((res)=>{
+              
+            //   },error=>{
+               
+            // })
+            //   return;
+            }
+          }, 2000);
+      
+       
+
+        }
+                        
+                    
 }
 

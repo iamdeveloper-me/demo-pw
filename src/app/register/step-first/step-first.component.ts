@@ -22,7 +22,8 @@ export class StepFirstComponent implements OnInit {
   }
    @ViewChild('x') public tooltip: NgbTooltip;
   ngOnInit() {
-            // $(".loginnav").hide(); 
+    $('div').removeClass('modal-backdrop fade in show')
+    // $(".loginnav").hide(); 
             // $.getScript('./assets/js/register.js');  
             // $.getScript('./assets/js/membershipslider.js');            
             // $(".show").hide();
@@ -61,7 +62,7 @@ export class StepFirstComponent implements OnInit {
     this.objVendorDetails.vendorCategories.push(VC);
     console.log(this.objVendorDetails);
     localStorage.setItem('VednorDetails',JSON.stringify(this.objVendorDetails));
-    this.cservice.GoToNextStep('/register/step-second');
+    this.cservice.GoToNextStep('/register/step2');
 
   }
 

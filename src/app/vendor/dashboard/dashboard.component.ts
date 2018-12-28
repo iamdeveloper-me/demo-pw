@@ -465,50 +465,52 @@ myplans:any = {};
             console.log(data)
             this.vendorUniqueId = data.vendorUniqueId;
             console.log(this.vendorUniqueId)
-          
-          },
-            error => {
-             console.log(error)
-            }
-          )
-          this.apiService.getData(this.apiService.serverPath+'PerfectWedding/storefrontview').subscribe(data => {
-            console.log(data)
-            this.vendorUniqueId = data.vendorUniqueId;
-            console.log(this.vendorUniqueId)
-          
-          },
-            error => {
-             console.log(error)
-            }
-          )
-
-          setTimeout(function(){
-            console.log(this.total)
-            if( this.total ==100){
-              alert("sdfgvsdf");
-             
-            console.log(this.vendorUniqueId)
-            let url ="../../#/home/detailprofile/"+this.vendorUniqueId
-            console.log(url)
-            window.open(url, "_blank");
-           
-            }else{
-            //   swal({
-            //     title: "Profile Not Completed",
-            // text: "Thankyou!",
-            // type: "warning",
-            // showCancelButton: false,
-            // confirmButtonClass: "btn-default",
-            // confirmButtonText: "OK",
-            // cancelButtonText: "Cancel!",  
-            // }).then((res)=>{
-              
-            //   },error=>{
+            this.apiService.getData(this.apiService.serverPath+'VendorDashboard/Home').subscribe(data => {
+              console.log(data)
+              this.total = data.profileCompletion.total;
+                                          
+              console.log(  this.total)
+              if( this.total ==100){
+                alert("sdfgvsdf");
                
-            // })
-            //   return;
+              console.log(this.vendorUniqueId)
+              let url ="../../home/detailprofile/"+this.vendorUniqueId
+              console.log(url)
+              //window.open(url, "_blank");
+              this.router.navigate([url])
+              }else{
+                swal({
+                  title: "Profile Not Completed",
+              text: "Thankyou!",
+              type: "warning",
+              showCancelButton: false,
+              confirmButtonClass: "btn-default",
+              confirmButtonText: "OK",
+              cancelButtonText: "Cancel!",  
+              }).then((res)=>{
+                this.router.navigate(['../vendor/membership'])
+                },error=>{
+                 
+              })
+                return;
+              }
+            },
+              error => {
+               console.log(error)
+              }
+            )
+          },
+            error => {
+             console.log(error)
             }
-          }, 2000);
+          )
+     
+
+          // setTimeout(function(){
+           
+         
+            
+          // }, 2000);
       
        
 

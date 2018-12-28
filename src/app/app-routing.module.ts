@@ -161,7 +161,7 @@ const appRoutes: Routes = [
   { path: 'home/searchresult/:id', component: SearchresultComponent },
   { path: 'home/tips_list', component: TipslistComponent },
   { path: 'home/event_list', component: EventlistComponent },
-  { path: 'home/detailprofile', component:  DetailpageComponent  },
+  { path: 'home/detailprofile/:id', component:  DetailpageComponent  },
   { path: 'home/gallery', component:  GalleryComponent  },
   //{ path: 'home/vendor', component:  VendorComponent  },
   { path: 'home/photo', component: PhotoComponent },

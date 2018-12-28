@@ -102,11 +102,14 @@ constructor( public http: Http,public toastr: ToastrService ) {
                 headers.append("Authorization",'Bearer '+authToken);
                     this.http.get(this.mygeturl,{headers:headers}).subscribe(data =>{
                       console.log(data.json())
+                      debugger
                       this.albumImagesModify = data.json()
                       this.albumImagesModify.forEach(el=>{
                         if(el['tags'] != ''){
                           el['tags_two'] = el['tags'].split(',')
                      
+                        }else{
+                          el['tags_two'] = [] 
                         }  
                       })
                       this.albumImagesModify.forEach(ele=>{
@@ -170,6 +173,8 @@ constructor( public http: Http,public toastr: ToastrService ) {
             }) 
           });
 
+        }else{
+          this.colors = this.colors
         }
           
           
@@ -188,7 +193,7 @@ constructor( public http: Http,public toastr: ToastrService ) {
       // this.taggg = ''
      }
     editSettting(e){
-        
+      debugger
       console.log(e.value.tags)
       console.log(this.colors)
       this.colors.forEach(element=>{
@@ -199,13 +204,14 @@ constructor( public http: Http,public toastr: ToastrService ) {
       const fire = {
        portfolioId: e.value.portfolioId,
        filesId: e.value.filesId,
-       tags:  this.formdata['tags'].join(','),
+       tags:  this.formdata['tags']== '' ? ',' :this.formdata['tags'].join(','),
        colorTags: this.arr.join(','),
        setAsBackgroud: false
       }
       console.log(fire)
       this.postapi_tag(fire)        
 this.arr  = []
+debugger
     }
 
 

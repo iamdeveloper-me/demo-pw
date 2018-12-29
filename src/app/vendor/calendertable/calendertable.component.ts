@@ -118,6 +118,8 @@ export class CalendertableComponent implements OnInit {
               });
           } 
           // New Calendar funciton Called
+        this.BindEventCalender()
+          // console.log(this.eventData)
           this.initNewCalander();
     }
             @ViewChild('create') validationForm: FormGroup;
@@ -156,6 +158,7 @@ export class CalendertableComponent implements OnInit {
               console.log(a.endDate);
               this.jobedit = true;
               this.edit_job_form = a;
+              debugger
               this.edit_startDate =  { "year": parseInt(a.startDate.split('T')[0].split('-')[0])   , 
                                                 "month": parseInt(a.startDate.split('T')[0].split('-')[1])  ,
                                                  "day": parseInt(a.startDate.split('T')[0].split('-')[2])}
@@ -176,7 +179,10 @@ export class CalendertableComponent implements OnInit {
               headers.append('Accept', 'application/json')
               headers.append('Content-Type', 'application/json');
               headers.append("Authorization",'Bearer '+authToken);
-              this.jobedit = false;
+                         this.jobedit = false;
+              this.objVendorJob.startDate = this.apiService.dateJsonTodashed(this.objVendorJob.startDate)
+              this.objVendorJob.endDate = this.apiService.dateJsonTodashed(this.objVendorJob.endDate)
+
               console.log(this.objVendorJob);
               this.http.post(this.creat_job_url,this.objVendorJob,{headers:headers}).subscribe(
                 data =>{ 
@@ -243,6 +249,7 @@ export class CalendertableComponent implements OnInit {
             }
            /// New Calendar Code Start
           initNewCalander(){
+            
             this.calendarOptions = {
               editable: true,
               eventLimit: true,
@@ -258,10 +265,38 @@ export class CalendertableComponent implements OnInit {
               eventTextColor:'white',
               //header: {left: 'prev,next today',center: 'title',right: 'month,agendaWeek,agendaDay,listMonth'},
               header: {left: 'prev,next ',center: 'title',right: ''},
-              events: [{title: 'Sales Meeting',date: '2018-11-21'}],
+              
+
+
+                      
           
             };
+            
+
           }
+          BindEventCalender(){
+            this.http_header = new Headers();
+            var authToken = localStorage.getItem('userToken');
+            this.userId = localStorage.getItem('userId');
+            this.vendorid = localStorage.getItem('vendorid');
+            this.http_header.append('Accept', 'application/json')
+            this.http_header.append('Content-Type', 'application/json');
+            this.http_header.append("Authorization",'Bearer '+authToken);
+            
+            //all
+            this.http.post(this.geturl,{filter: 3},{headers:this.http_header}).subscribe(data =>{             
+             
+              data.json().forEach(element => {
+                debugger
+               element['title'] =  element['eventTitle']
+               element['date'] =  element['startDate']
+
+              });
+              this.calendarOptions['events'] = data.json()
+              // this.final_List.forEach(function (value) { this.event_data.events.push(value); });
+            },error => { console.log(error)});
+           
+          } 
           eventClick(model: any) {
             this.name = model.event.title;
             this.date = model.event.start;

@@ -35,4 +35,16 @@ export class apiService {
     return this.http.post(url,reqObj,httpOptions);
   }
 
+
+
+
+  // Calender Date 12-12-2019 to {year:2019,month:12,day:12}
+
+  returnJsonDate(dashed_date){
+   const date =  { "year": parseInt(dashed_date.split('-')[0])   , 
+     "month": parseInt(dashed_date.split('-')[1])  ,
+     "day": parseInt( dashed_date.split('-')[2])}
+    return date;
+  }
+
 }

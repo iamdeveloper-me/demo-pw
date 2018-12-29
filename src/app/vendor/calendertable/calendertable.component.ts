@@ -24,6 +24,8 @@ export class CalendertableComponent implements OnInit {
     http_header:Headers;
     objVendorJob:VendorJobsVM;
     startDatevvvv:string;
+    eventData = []
+    mainData = []
     all = 3;end_date:string;start_date:string;upcomming =2;past = 1;vendorJobsId = 0;
     edit_job_form = {vendorJobsId: 0,clientName: '',clientNumber: '',
                       eventTitle: "string",eventLocation: '',startDate: "2018-11-23T07:28:05.224Z",
@@ -118,9 +120,12 @@ export class CalendertableComponent implements OnInit {
               });
           } 
           // New Calendar funciton Called
-        this.BindEventCalender()
+          this.BindEventCalender();
           // console.log(this.eventData)
-          this.initNewCalander();
+          setTimeout(() => {
+            this.initNewCalander();
+            
+          }, 300);
     }
             @ViewChild('create') validationForm: FormGroup;
             @ViewChild('modalContent') modalContent: TemplateRef<any>;
@@ -266,7 +271,7 @@ export class CalendertableComponent implements OnInit {
               //header: {left: 'prev,next today',center: 'title',right: 'month,agendaWeek,agendaDay,listMonth'},
               header: {left: 'prev,next ',center: 'title',right: ''},
               
-
+              
 
                       
           
@@ -285,14 +290,24 @@ export class CalendertableComponent implements OnInit {
             
             //all
             this.http.post(this.geturl,{filter: 3},{headers:this.http_header}).subscribe(data =>{             
-             
-              data.json().forEach(element => {
-                debugger
-               element['title'] =  element['eventTitle']
-               element['date'] =  element['startDate']
+             this.eventData = data.json()
+             this.eventData.forEach(elem => {
+              let length = parseInt(elem['endDate'].split('T')[0].split('-')[2]) - parseInt(elem['startDate'].split('T')[0].split('-')[2])
+              for(var i=0;i<=length;i++){
+                elem['title'] =  elem['eventTitle']
+                var r = parseInt(elem['startDate'].split('T')[0].split('-')[2]) + i
+                // debugger
+                elem['date'] =  elem['startDate'].split('T')[0].split('-')[0] + '-' + elem['startDate'].split('T')[0].split('-')[1] + '-' + r
+                 debugger
+               this.mainData.push(elem) 
+              }
+               
 
               });
-              this.calendarOptions['events'] = data.json()
+              console.log(JSON.stringify(this.mainData))
+              this.calendarOptions['events'] = [{"vendorJobsId":110,"clientName":"mahima","clientNumber":"2343243","eventTitle":"Hackintosh","eventLocation":"Indore","startDate":"2018-12-07T00:00:00","endDate":"2018-12-14T00:00:00","startTime":"2018-12-12T01:00:00","endTime":"2018-12-12T07:00:00","noOfGuests":1,"userId":"669e6f88-624d-4e33-8ff8-a55f5b0d531c","vendorId":23,"title":"Hackintosh","date":"2018-12-14"},{"vendorJobsId":110,"clientName":"mahima","clientNumber":"2343243","eventTitle":"Hackintosh","eventLocation":"Indore","startDate":"2018-12-07T00:00:00","endDate":"2018-12-14T00:00:00","startTime":"2018-12-12T01:00:00","endTime":"2018-12-12T07:00:00","noOfGuests":1,"userId":"669e6f88-624d-4e33-8ff8-a55f5b0d531c","vendorId":23,"title":"Hackintosh","date":"2018-12-14"},{"vendorJobsId":110,"clientName":"mahima","clientNumber":"2343243","eventTitle":"Hackintosh","eventLocation":"Indore","startDate":"2018-12-07T00:00:00","endDate":"2018-12-14T00:00:00","startTime":"2018-12-12T01:00:00","endTime":"2018-12-12T07:00:00","noOfGuests":1,"userId":"669e6f88-624d-4e33-8ff8-a55f5b0d531c","vendorId":23,"title":"Hackintosh","date":"2018-12-14"},{"vendorJobsId":110,"clientName":"mahima","clientNumber":"2343243","eventTitle":"Hackintosh","eventLocation":"Indore","startDate":"2018-12-07T00:00:00","endDate":"2018-12-14T00:00:00","startTime":"2018-12-12T01:00:00","endTime":"2018-12-12T07:00:00","noOfGuests":1,"userId":"669e6f88-624d-4e33-8ff8-a55f5b0d531c","vendorId":23,"title":"Hackintosh","date":"2018-12-14"}]
+              debugger
+              console.log(this.calendarOptions)
               // this.final_List.forEach(function (value) { this.event_data.events.push(value); });
             },error => { console.log(error)});
            

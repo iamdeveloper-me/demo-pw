@@ -26,15 +26,15 @@
                   <div class="form-group col-sm-5 padd_bottom">
                       <span class="home_search"><i class="material-icons">camera_alt</i></span>
                       <select class="form-control round_first" [(ngModel)]="category" name="category" >
-                          <option > All Categories </option>
+                          <option value='0'> All Categories </option>
                           <option *ngFor='let list_Categories of Categories' [ngValue]="list_Categories" > {{list_Categories.categoryName}} </option>
                       </select>
                   </div>
                   <div class="form-group col-sm-5">
                       <span class="home_search"><i class="material-icons">location_on</i></span>
-                      <select class="form-control">
-                          <option > All Location</option>
-                          <option *ngFor='let list_locations of locations'> {{list_locations.name}}</option>
+                      <select class="form-control" name='location' [(ngModel)]='locationId'>
+                          <option value='0'> All Location</option>
+                          <option *ngFor='let list_locations of locations' [value]='list_locations.districtId'> {{list_locations.name}}</option>
                       </select>
                   </div>   
                   <div class="form-group col-sm-2 posi_rela_100px">

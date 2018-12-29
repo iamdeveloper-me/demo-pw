@@ -184,7 +184,7 @@ export class CalendertableComponent implements OnInit {
               headers.append('Accept', 'application/json')
               headers.append('Content-Type', 'application/json');
               headers.append("Authorization",'Bearer '+authToken);
-                         this.jobedit = false;
+              this.jobedit = false;
               this.objVendorJob.startDate = this.apiService.dateJsonTodashed(this.objVendorJob.startDate)
               this.objVendorJob.endDate = this.apiService.dateJsonTodashed(this.objVendorJob.endDate)
 

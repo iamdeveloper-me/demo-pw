@@ -11,7 +11,7 @@ import { CropperSettings, ImageCropperComponent } from 'ng2-img-cropper';
 import { HttpEventType, HttpResponse, } from '@angular/common/http';
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 @Component({
-  selector: 'app-gallery0',
+  selector: 'app-gallery-app',
   templateUrl: './gallery0.component.html',
   styleUrls: ['./gallery0.component.scss']
 })

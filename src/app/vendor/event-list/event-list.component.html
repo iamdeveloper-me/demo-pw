@@ -41,6 +41,9 @@
               </div>
 
               <div class="clearfix"></div>
+              <div class="text-center" *ngIf="eventArray == 0">
+                <h3>No Events Planned Yet!</h3>
+              </div>
               <section>
               
                 <div class="col-sm-12 nopadd" *ngFor="let data of eventArray;let i=index ">

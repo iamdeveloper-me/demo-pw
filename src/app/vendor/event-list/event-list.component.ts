@@ -775,8 +775,9 @@ export class EventListComponent implements OnInit {
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
-    this.eventArray = [];
+    // this.eventArray = [];
     this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/eventdetails?id' + '=' + id, { headers: headers }).subscribe(data => {
+      this.eventArray = [];
       this.eventArray.push(data.json())
 
     }, error => { 

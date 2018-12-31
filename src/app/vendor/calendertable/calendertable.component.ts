@@ -13,6 +13,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 /// New Calendar Dependancy
 import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
+import { apiService } from 'app/shared/service/api.service';
 @Component({
   selector: 'app-calendertable',
   templateUrl: './calendertable.component.html',
@@ -59,7 +60,7 @@ export class CalendertableComponent implements OnInit {
   eventDetails:any;
   /// End Of New Calander Code Here ///
 
-    constructor(private toastr: ToastrService,private modal: NgbModal,public http: Http,private datePipe: DatePipe) { 
+    constructor(public apiService :apiService ,private toastr: ToastrService,private modal: NgbModal,public http: Http,private datePipe: DatePipe) { 
      this.test = this.datePipe.transform(this.myDate, 'yyyy-mm-dd');
      this.select_time = new TimeSlot();
      this.objVendorJob=new VendorJobsVM();
@@ -283,8 +284,8 @@ export class CalendertableComponent implements OnInit {
           const datePipe = new DatePipe('en-US');
            const myFormattedDate = datePipe.transform(calendarOptions["detail"]["date"]["_i"], 'yyyy-MM-dd');
           //const myFormattedDate = datePipe.transform(calendarOptions.timeStamp, 'yy-MM-dd');
-          this.objVendorJob.startDate = myFormattedDate
-          this.startDate=this.objVendorJob.startDate;
+          this.objVendorJob.startDate = this.apiService.returnJsonDate(myFormattedDate);
+
           this.showModal=true;
         }
         clickButton(details){
@@ -302,8 +303,8 @@ export class VendorJobsVM{
     clientNumber:string;
     eventTitle:string;
     eventLocation:string;
-    startDate:string;
-    endDate:string;
+    startDate:any;
+    endDate:any;
     startTime:string;
     endTime:string;
     noOfGuests:number;

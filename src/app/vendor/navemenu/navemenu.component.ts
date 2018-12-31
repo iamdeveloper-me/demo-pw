@@ -4,6 +4,14 @@ import { Router } from '@angular/router';
 import { Http,Headers } from '@angular/http';
 import { LoginServiceService } from '../../shared/service/login-service.service';
 import { MessageService } from '../../shared/service/vendor/message.service';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
+
+export class NgbdModalContent {
+  @Input() name;
+  constructor(public activeModal: NgbActiveModal) { }
+}
+
 
 @Component({
   selector: 'app-navemenu',
@@ -237,6 +245,62 @@ export class NavemenuComponent implements OnChanges,OnInit   {
         $('#page-content-wrapper').toggleClass('overhidden');
       });
 
+
+      
+                    $(".sendfeedback").hide();
+                    $(".telluslike").hide();
+                    $(".tellusunlike").hide();
+                    $(".tellusidea").hide();
+
+                    $(".sendfeedbackbtn").click(function(){ 
+                            $(".feedbackrate").hide();
+                            $(".telluslike").hide();
+                            $(".tellusunlike").hide();
+                            $(".tellusidea").hide();
+                            $(".sendfeedback").show();
+                        });
+
+                    $(".likebtn").click(function(){ 
+                    //alert("hi")
+                            $(".feedbackrate").hide();
+                            $(".tellusunlike").hide();
+                            $(".tellusidea").hide();
+                            $(".sendfeedback").hide();
+                            $(".telluslike").show();
+                        });
+
+                    $(".unlikebtn").click(function(){ 
+                            $(".feedbackrate").hide();
+                            $(".telluslike").hide();
+                            $(".tellusunlike").show();
+                            $(".tellusidea").hide();
+                            $(".sendfeedback").hide();
+                        });
+
+                    $(".ideabtn").click(function(){ 
+                            $(".feedbackrate").hide();
+                            $(".telluslike").hide();
+                            $(".tellusunlike").hide();
+                            $(".tellusidea").show();
+                            $(".sendfeedback").hide();
+                        });
+
+                    $(".backbtn1").click(function(){ 
+                            $(".feedbackrate").show();
+                            $(".telluslike").hide();
+                            $(".tellusunlike").hide();
+                            $(".tellusidea").hide();
+                            $(".sendfeedback").hide();
+                        });
+
+                    $(".backbtn2").click(function(){ 
+                            $(".feedbackrate").hide();
+                            $(".telluslike").hide();
+                            $(".tellusunlike").hide();
+                            $(".tellusidea").hide();
+                            $(".sendfeedback").show();
+                        });
+  
       //   $('.sidebar-nav .sidebar-brand').on('click', function(e){
       //     e.preventDefault();
       //     $(this).addClass('colour')

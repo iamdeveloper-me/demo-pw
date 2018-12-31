@@ -23,11 +23,12 @@ export class GalleryComponent implements OnInit {
   portArray_length
   albumArray:any = [];
   albumArray_length;
+ showLoader = false;
   private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
   private getportfolio: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myportfolio'
   constructor(public http: Http,private apiService : apiService) { }
       ngOnInit() {
-      
+        this.showLoader= true;
         $.getScript('./assets/js/vendorsidebar.js');
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
@@ -47,6 +48,7 @@ export class GalleryComponent implements OnInit {
         this.showport();
 
         this.showalbum();
+      
       }
       showport(){            
         //poryfolio get
@@ -54,6 +56,7 @@ export class GalleryComponent implements OnInit {
           this.portfolio = res;
           this.portArray = res;
           this.portArray_length = this.portArray.length 
+          this.showLoader = false;
           },
           error => { console.log('aaaaaaaaaaa',error)
         }
@@ -71,6 +74,7 @@ export class GalleryComponent implements OnInit {
                     
                     this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
                     this.albumArray = data.json() ;
+                    this.showLoader = false;
                     this.albumArray_length = this.albumArray.length
                   })
       }

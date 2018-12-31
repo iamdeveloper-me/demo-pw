@@ -16,6 +16,224 @@
               <a class="backicon" (click)="navigateTo()">
                 <i _ngcontent-c6="" class="material-icons"> arrow_back_ios </i>
               </a>
+
+              <section id="user-profile">
+                  <div class="container-fluid nopadd">
+                    <div class="card col-sm-12">
+                      <div class="card-header padleft0px">
+                        <h4 class="card-title">Choose Promotion Type</h4>
+                        <h6>Click on the Promotion type to select the most appropriate advertising method for your business.</h6>
+                      </div>
+                    
+                      <div class="row boxcolumn">
+                        <div class="col card gallery handcur" *ngIf="Categoryid != 16">
+                          <div class="roundedicon" (click)="clickData('not_six')">
+                            <img src="https://s3.us-east-2.amazonaws.com/prefect-image/bell.png" class="img-responsive">
+                          </div>
+                          <h1>Homepage Featured</h1>
+                          <!-- <a class="btn gradint_blue borderradius promotebtn gallery">
+                          Detail
+                          </a> -->
+                        </div>
+        
+                        <div class="col card location handcur" *ngIf="Categoryid == 16">
+                          <div class="roundedicon" (click)="clickData('six')">
+                            <img src="https://s3.us-east-2.amazonaws.com/prefect-image/bell.png" class="img-responsive">
+                          </div>
+                          <h1>Homepage Location</h1>
+                          <!-- <a class="btn gradint_blue borderradius promotebtn gallery">
+                          Detail
+                          </a> -->
+                        </div>
+                        
+                      
+                      
+                        <div class="col card homebanner handcur">
+                          <div class="roundedicon">
+                            <img src="https://s3.us-east-2.amazonaws.com/prefect-image/horn.png" class="img-responsive">      
+                          </div>
+                          <h1>Homepage Banner</h1>
+                          <!-- <a class="btn gradint_blue borderradius promotebtn homebanner">
+                          Detail
+                          </a> -->
+                        </div>
+                      </div>
+              
+                      <div class="clearfix"></div>
+                      <div class="promotedetailbox homegallerybox">
+                        <div class="row">
+                          <div class="col-sm-9">
+                            <div class="ullitik">
+                              <span class="acchead">
+                                <i class="material-icons greentext"> done </i> 
+                                Make your business visible in the homepage gallery 
+                              </span>
+                            </div>
+                            <div class="ullitik">
+                              <span class="acchead">
+                                <i class="material-icons greentext"> done </i> 
+                                
+                Attract visitors to your business profile from their first visit to our website
+                              </span>
+                            </div>
+        
+                  <div class="ullitik">
+                              <span class="acchead">
+                                <i class="material-icons greentext"> done </i> 
+                                
+                2x times exposure							</span>
+                            </div>
+        
+        
+                          </div>
+                          <div class="col-sm-3 text-center">
+                            <a routerLink="../creatpromo" class="btn inblock btn-info textwhite"><i _ngcontent-c6="" class="ft-check"></i> Pick Promotion </a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="promotedetailbox homelocationbox" [ngClass]="['bntStyle']" >
+                        <div class="row">
+                          <div class="col-sm-9">
+                            <div class="ullitik">
+                              <span class="acchead">
+                                <i class="material-icons greentext"> done </i> 
+                                Make your business visible in the homepage gallery 
+                              </span>
+                            </div>
+                            <div class="ullitik">
+                              <span class="acchead">
+                                <i class="material-icons greentext"> done </i> 
+                                
+                Attract visitors to your business profile from their first visit to our website
+                              </span>
+                            </div>
+        
+                  <div class="ullitik">
+                              <span class="acchead">
+                                <i class="material-icons greentext"> done </i> 
+                                
+                2x times exposure							</span>
+                            </div>
+        
+        
+                          </div>
+                          <div class="col-sm-3 text-center">
+                            <a routerLink="../homepage-location" class="btn inblock btn-info textwhite"><i _ngcontent-c6="" class="ft-check"></i> Pick Promotion </a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="promotedetailbox prioritybox">
+                        <div class="row">
+                          <div class="col-sm-9">
+                            <div class="ullitik">
+                              <span class="acchead">
+                                <i class="material-icons greentext"> done </i> 
+                                Bump your listing to the top section of the search results of your business category
+                              </span>
+                            </div>
+                  <div class="ullitik">
+                              <span class="acchead">
+                                <i class="material-icons greentext"> done </i> 
+                                2x more exposure
+                              </span>
+                            </div>
+        
+        
+                          </div>
+                          <div class="col-sm-3 text-center">
+                            <a routerLink="../priority" class="btn inblock btn-info textwhite"><i _ngcontent-c6="" class="ft-check"></i> Pick Promotion </a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="promotedetailbox audiencebox">
+                        <div class="row">
+                          <div class="col-sm-9">
+                            <div class="ullitik">
+                              <span class="acchead">
+                                <i class="material-icons greentext"> done </i> 
+                                Exclusive Perfect Weddings discount to attract potential audience (5%, 10%, 15%, 20%)
+                              </span>
+                            </div>
+                            <div class="ullitik">
+                              <span class="acchead">
+                                <i class="material-icons greentext"> done </i> 
+                                Receive 10% OFF your next paid subscription when this feature is used for at least 60 days.
+                              </span>
+                            </div>
+                          </div>
+                          <div class="col-sm-3 text-center">
+                            <a routerLink="../audience" class="btn inblock btn-info textwhite"><i _ngcontent-c6="" class="ft-check"></i> Enquire </a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="promotedetailbox dealsbox">
+                        <div class="row">
+                          <div class="col-sm-9">
+                            <div class="ullitik">
+                              <span class="acchead">
+                                <i class="material-icons greentext"> done </i> 
+                                Create Personalised & Unique offers
+                              </span>
+                            </div>
+                            <div class="ullitik">
+                              <span class="acchead">
+                                <i class="material-icons greentext"> done </i> 
+                                Apply to all locations or one location only (Multi Select).
+                              </span>
+                            </div>
+                          </div>
+                          <div class="col-sm-3 text-center">
+                            <a routerLink="../deals" class="btn inblock btn-info textwhite"><i _ngcontent-c6="" class="ft-check"></i> Pick Goal </a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="promotedetailbox homebannerbox">
+                        <div class="row">
+                          <div class="col-sm-9">
+                            <div class="ullitik">
+                              <span class="acchead">
+                                <i class="material-icons greentext"> done </i> 
+                              Banner Advertising to highlight your business profile
+                              </span>
+                            </div>
+                              <div class="ullitik">
+                              <span class="acchead">
+                                <i class="material-icons greentext"> done </i> 
+                              Maximum Exposure
+                              </span>
+                            </div>
+                <div class="ullitik">
+                              <span class="acchead">
+                                <i class="material-icons greentext"> done </i> 
+                              Limited Monthly Spots. Send an enquiry today.
+                              </span>
+                            </div>
+                            
+        
+                          </div>
+                          <div class="col-sm-3 text-center">
+                            <a routerLink="../homepage" class="btn inblock btn-info textwhite"><i _ngcontent-c6="" class="ft-check"></i> Enquiry</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
               <h1>{{page_title}}</h1>
 
               <div class="row">
@@ -121,8 +339,9 @@
                   </table>
                   <div class="clearfix"></div>
                   <!-- routerLink="../../vendor/payment-selection" -->
-                  <button class="btn inblock textwhite btn-success" [disabled]="!btnFalse" (click)="route()">
-                    <a style="color:white" routerLink="../../vendor/payment-selection">Proceed to Payment </a>
+                  <button class="btn inblock textwhite btn-success" type = "submit"  [disabled]="!btnFalse">
+                    <a style="color:white" >Proceed to Payment  </a>
+                    <!-- (click)="route()" routerLink="../../vendor/payment-selection"-->
                   </button>
 
 

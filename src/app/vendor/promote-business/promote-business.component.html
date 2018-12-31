@@ -1,430 +1,408 @@
 <div id="wrapper" class="toggled">
-		<div id="sidebar-wrapper" >
-				<app-vendorsidebar></app-vendorsidebar>
-		</div>
-		<div id="page-content-wrapper">    
-	<div class="container-fluid nopadd">
-		<app-navemenu></app-navemenu> 
-		<router-outlet></router-outlet>
-		<div class="container-fluid mobilefixedcontainer">
-	<div class="content"></div>
-		<section id="user-profile">
-			<!-- <div class="col-12 nopadd">
-				<div role="alert" id="3" class="alert alert-secondary alert-dismissible whitebg" style="overflow: hidden;">
-					<button aria-label="Close" class="close ng-star-inserted" type="button">
-						<span aria-hidden="true">×</span>
-					</button>
-					<div class="col-sm-3 nopadd"><img src="https://s3.us-east-2.amazonaws.com/prefect-image/overview_banner.jpg
-					" class="img-responsive img-border"/></div>
-					<div class="col-sm-9 contant-div"><p><strong>Welcome Vega,</strong></p>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-					<a href="#" class="btn inblock btn-success textwhite">More Information</a>&nbsp;
-					<a  routerLink="../creatpromo" class="btn inblock btn-info textwhite">Create Promotion</a>
-					</div>
-				</div>
-			</div> -->
-	
-			<div class="container-fluid nopadd">
-				<div class="card col-sm-12">
-					<div class="card-header padleft0px">
-						<h4 class="card-title">Choose Promotion Type</h4>
-						<h6>Click on the Promotion type to select the most appropriate advertising method for your business.</h6>
-					</div>
-				
-		<div class="row boxcolumn">
-			<div class="col card gallery handcur" *ngIf="Categoryid != 16">
-				<div class="roundedicon" (click)="clickData('not_six')">
-					<img src="https://s3.us-east-2.amazonaws.com/prefect-image/bell.png" class="img-responsive">
-				</div>
-				<h1>Homepage Featured</h1>
-				<!-- <a class="btn gradint_blue borderradius promotebtn gallery">
-				 Detail
-				</a> -->
-			</div>
+	<div id="sidebar-wrapper" >
+			<app-vendorsidebar></app-vendorsidebar>
+	</div>
+	<div id="page-content-wrapper">    
+		<div class="container-fluid nopadd">
+			<app-navemenu></app-navemenu> 
+			<router-outlet></router-outlet>
+			<div class="container-fluid mobilefixedcontainer">
+				<div class="content"></div>
+				<section id="user-profile">
+					<div class="container-fluid nopadd">
+						<div class="card col-sm-12">
+							<div class="card-header padleft0px">
+								<h4 class="card-title">Choose Promotion Type</h4>
+								<h6>Click on the Promotion type to select the most appropriate advertising method for your business.</h6>
+							</div>
+						
+							<div class="row boxcolumn">
+								<div class="col card gallery handcur" *ngIf="Categoryid != 16">
+									<div class="roundedicon" (click)="clickData('not_six')">
+										<img src="https://s3.us-east-2.amazonaws.com/prefect-image/bell.png" class="img-responsive">
+									</div>
+									<h1>Homepage Featured</h1>
+									<!-- <a class="btn gradint_blue borderradius promotebtn gallery">
+									Detail
+									</a> -->
+								</div>
 
-			<div class="col card location handcur" *ngIf="Categoryid == 16">
-				<div class="roundedicon" (click)="clickData('six')">
-					<img src="https://s3.us-east-2.amazonaws.com/prefect-image/bell.png" class="img-responsive">
-				</div>
-				<h1>Homepage Location</h1>
-				<!-- <a class="btn gradint_blue borderradius promotebtn gallery">
-				 Detail
-				</a> -->
-			</div>
+								<div class="col card location handcur" *ngIf="Categoryid == 16">
+									<div class="roundedicon" (click)="clickData('six')">
+										<img src="https://s3.us-east-2.amazonaws.com/prefect-image/bell.png" class="img-responsive">
+									</div>
+									<h1>Homepage Location</h1>
+									<!-- <a class="btn gradint_blue borderradius promotebtn gallery">
+									Detail
+									</a> -->
+								</div>
+								
+								<div class="col card priority handcur">
+									<div class="roundedicon"> 
+											<img src="https://s3.us-east-2.amazonaws.com/prefect-image/home1.png" class="img-responsive">
+									</div>
+									<h1>Priority Listings</h1>
+									<!-- <a class="btn gradint_blue borderradius promotebtn priority">
+									Detail
+									</a> -->
+								</div>
+							
+							
+								<div class="col card homebanner handcur">
+									<div class="roundedicon">
+										<img src="https://s3.us-east-2.amazonaws.com/prefect-image/horn.png" class="img-responsive">      
+									</div>
+									<h1>Homepage Banner</h1>
+									<!-- <a class="btn gradint_blue borderradius promotebtn homebanner">
+									Detail
+									</a> -->
+								</div>
+							</div>
 			
-			<div class="col card priority handcur">
-				<div class="roundedicon"> 
-						<img src="https://s3.us-east-2.amazonaws.com/prefect-image/home1.png" class="img-responsive">
-				</div>
-				<h1>Priority Listings</h1>
-				<!-- <a class="btn gradint_blue borderradius promotebtn priority">
-				 Detail
-				</a> -->
+							<div class="clearfix"></div>
+							<div class="promotedetailbox homegallerybox">
+								<div class="row">
+									<div class="col-sm-9">
+										<div class="ullitik">
+											<span class="acchead">
+												<i class="material-icons greentext"> done </i> 
+												Make your business visible in the homepage gallery 
+											</span>
+										</div>
+										<div class="ullitik">
+											<span class="acchead">
+												<i class="material-icons greentext"> done </i> 
+												
+				Attract visitors to your business profile from their first visit to our website
+											</span>
+										</div>
+
+					<div class="ullitik">
+											<span class="acchead">
+												<i class="material-icons greentext"> done </i> 
+												
+				2x times exposure							</span>
+										</div>
+
+
+									</div>
+									<div class="col-sm-3 text-center">
+										<a routerLink="../creatpromo" class="btn inblock btn-info textwhite"><i _ngcontent-c6="" class="ft-check"></i> Pick Promotion </a>
+									</div>
+								</div>
+							</div>
+							<div class="promotedetailbox homelocationbox" [ngClass]="['bntStyle']" >
+								<div class="row">
+									<div class="col-sm-9">
+										<div class="ullitik">
+											<span class="acchead">
+												<i class="material-icons greentext"> done </i> 
+												Make your business visible in the homepage gallery 
+											</span>
+										</div>
+										<div class="ullitik">
+											<span class="acchead">
+												<i class="material-icons greentext"> done </i> 
+												
+				Attract visitors to your business profile from their first visit to our website
+											</span>
+										</div>
+
+					<div class="ullitik">
+											<span class="acchead">
+												<i class="material-icons greentext"> done </i> 
+												
+				2x times exposure							</span>
+										</div>
+
+
+									</div>
+									<div class="col-sm-3 text-center">
+										<a routerLink="../homepage-location" class="btn inblock btn-info textwhite"><i _ngcontent-c6="" class="ft-check"></i> Pick Promotion </a>
+									</div>
+								</div>
+							</div>
+							<div class="promotedetailbox prioritybox">
+								<div class="row">
+									<div class="col-sm-9">
+										<div class="ullitik">
+											<span class="acchead">
+												<i class="material-icons greentext"> done </i> 
+												Bump your listing to the top section of the search results of your business category
+											</span>
+										</div>
+					<div class="ullitik">
+											<span class="acchead">
+												<i class="material-icons greentext"> done </i> 
+												2x more exposure
+											</span>
+										</div>
+
+
+									</div>
+									<div class="col-sm-3 text-center">
+										<a routerLink="../priority" class="btn inblock btn-info textwhite"><i _ngcontent-c6="" class="ft-check"></i> Pick Promotion </a>
+									</div>
+								</div>
+							</div>
+							<div class="promotedetailbox audiencebox">
+								<div class="row">
+									<div class="col-sm-9">
+										<div class="ullitik">
+											<span class="acchead">
+												<i class="material-icons greentext"> done </i> 
+												Exclusive Perfect Weddings discount to attract potential audience (5%, 10%, 15%, 20%)
+											</span>
+										</div>
+										<div class="ullitik">
+											<span class="acchead">
+												<i class="material-icons greentext"> done </i> 
+												Receive 10% OFF your next paid subscription when this feature is used for at least 60 days.
+											</span>
+										</div>
+									</div>
+									<div class="col-sm-3 text-center">
+										<a routerLink="../audience" class="btn inblock btn-info textwhite"><i _ngcontent-c6="" class="ft-check"></i> Enquire </a>
+									</div>
+								</div>
+							</div>
+							<div class="promotedetailbox dealsbox">
+								<div class="row">
+									<div class="col-sm-9">
+										<div class="ullitik">
+											<span class="acchead">
+												<i class="material-icons greentext"> done </i> 
+												Create Personalised & Unique offers
+											</span>
+										</div>
+										<div class="ullitik">
+											<span class="acchead">
+												<i class="material-icons greentext"> done </i> 
+												Apply to all locations or one location only (Multi Select).
+											</span>
+										</div>
+									</div>
+									<div class="col-sm-3 text-center">
+										<a routerLink="../deals" class="btn inblock btn-info textwhite"><i _ngcontent-c6="" class="ft-check"></i> Pick Goal </a>
+									</div>
+								</div>
+							</div>
+							<div class="promotedetailbox homebannerbox">
+								<div class="row">
+									<div class="col-sm-9">
+										<div class="ullitik">
+											<span class="acchead">
+												<i class="material-icons greentext"> done </i> 
+											Banner Advertising to highlight your business profile
+											</span>
+										</div>
+											<div class="ullitik">
+											<span class="acchead">
+												<i class="material-icons greentext"> done </i> 
+											Maximum Exposure
+											</span>
+										</div>
+				<div class="ullitik">
+											<span class="acchead">
+												<i class="material-icons greentext"> done </i> 
+											Limited Monthly Spots. Send an enquiry today.
+											</span>
+										</div>
+										
+
+									</div>
+									<div class="col-sm-3 text-center">
+										<a routerLink="../homepage" class="btn inblock btn-info textwhite"><i _ngcontent-c6="" class="ft-check"></i> Enquiry</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 nopadd">
+						<div _ngcontent-c0="" class="card">
+							<div _ngcontent-c0="" class="card-header">
+								<h4 _ngcontent-c0="" class="card-title">Advertising Summary for {{bussiness_name}}</h4>
+							</div>
+							<div _ngcontent-c0="" class="card-body">
+								<div _ngcontent-c5="" class="col-sm-6 col-6 link_click">
+									<div _ngcontent-c5="" class="card bg-warning" style="height:230px;">
+										<div _ngcontent-c5="" class="card-body">
+											<div _ngcontent-c5="" class="px-3 py-3">
+												<div _ngcontent-c5="" class="media">
+													<div _ngcontent-c5="" class="media-body white text-left"><h3 _ngcontent-c5="">5159</h3>
+														<span _ngcontent-c5="">People Reached</span>
+													</div>
+													<div _ngcontent-c5="" class="media-right align-self-center">
+														<i _ngcontent-c5="" class="icon-user white font-large-2 float-right"></i>
+													</div>
+												</div>
+												<div class="clearfix"></div>
+												<div _ngcontent-c5="" class="media bortop textwhite">
+													<p>Reaching more people helps  you build brand awareness</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+			
+								<div _ngcontent-c5="" class="col-sm-6 col-6 link_click">
+									<div _ngcontent-c5="" class="card bg-success" style="height:230px;">
+										<div _ngcontent-c5="" class="card-body">
+											<div _ngcontent-c5="" class="px-3 py-3">
+												<div _ngcontent-c5="" class="media">
+													<div _ngcontent-c5="" class="media-body white text-left">
+														<h3 _ngcontent-c5="">156</h3>
+														<span _ngcontent-c5="">Link Clicks</span>
+													</div>
+													<div _ngcontent-c5="" class="media-right align-self-center">
+														<i _ngcontent-c5="" class="icon-rocket white font-large-2 float-right"></i>
+													</div>
+												</div>
+												<div class="clearfix"></div>
+												<div _ngcontent-c5="" class="media bortop textwhite">
+													<p>When promotion are relevant to people who see them.</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+			
+								
+							</div>
+						</div>
+					</div>
+					<div class="col-12 nopadd">
+						<div _ngcontent-c0="" class="card">
+							<div _ngcontent-c0="" class="card-header">
+								<h4 _ngcontent-c0="" class="card-title">Recent  Ads for {{bussiness_name}}</h4>
+							</div>
+							<div _ngcontent-c0="" class="card-body"
+							>
+								<div class="col-sm-12 table-responsive">
+									<table class="table table-striped table-bordered">
+										<tr *ngFor="let data of promotion | slice:0:2;let i=index "  > 
+											<td><img src="https://s3.us-east-2.amazonaws.com/prefect-image/ads.jpg" class="imgfix50"/></td>
+											<td>
+												<strong>{{data.typeOfAd	}}</strong><br/>
+												<span class="graytext">Promoted by Oliver Ramoojee on {{data.promotedDate}}</span>
+												<br/>
+												<span class="greentext">Finishes in 4 days</span>
+											</td>
+											<td>
+												<strong>{{data.peopleReached}}</strong><br/>
+												<span class="graytext">Reach</span>
+											</td>
+											<td>
+												<strong>{{data.impression}}</strong><br/>
+												<span class="graytext">Impressions</span>
+											</td>
+											<td>
+												<a (click)="open(content)" class="btn btn-raised btn-secondary">
+													View Result
+												</a>
+											</td>
+										</tr>
+										
+											
+									</table>
+							<div class="text-center" *ngIf = "promotion_length >0">
+								<a routerLink="../allpromotion" class="btn btn-flat btn-link">See All > </a>
+							</div>
+							<div class="text-center" *ngIf = "promotion_length == 0">
+									<img src = "../../../assets/img/nopromo.png" alt="Profile picture" >
+								<p>NO PROMOTIONS has been created. </p>
+							</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
 			</div>
+			<ng-template #content let-c="close" let-d="dismiss">
+			
+				<!-- <div class="modal-header" style="background-color: white">
 		
-		 
-			<div class="col card homebanner handcur">
-				<div class="roundedicon">
-					<img src="https://s3.us-east-2.amazonaws.com/prefect-image/horn.png" class="img-responsive">      
-				</div>
-				<h1>Homepage Banner</h1>
-				<!-- <a class="btn gradint_blue borderradius promotebtn homebanner">
-				 Detail
-				</a> -->
-			</div>
-		</div>
-	
-		<div class="clearfix"></div>
-			<div class="promotedetailbox homegallerybox">
-				<div class="row">
-					<div class="col-sm-9">
-						<div class="ullitik">
-							<span class="acchead">
-								<i class="material-icons greentext"> done </i> 
-								Make your business visible in the homepage gallery 
-							</span>
-						</div>
-						<div class="ullitik">
-							<span class="acchead">
-								<i class="material-icons greentext"> done </i> 
-								
-Attract visitors to your business profile from their first visit to our website
-							</span>
-						</div>
-
-	<div class="ullitik">
-							<span class="acchead">
-								<i class="material-icons greentext"> done </i> 
-								
-2x times exposure							</span>
-						</div>
-
-
-					</div>
-					<div class="col-sm-3 text-center">
-						<a routerLink="../creatpromo" class="btn inblock btn-info textwhite"><i _ngcontent-c6="" class="ft-check"></i> Pick Promotion </a>
-					</div>
-				</div>
-			</div>
-			<div class="promotedetailbox homelocationbox" [ngClass]="['bntStyle']" >
-				<div class="row">
-					<div class="col-sm-9">
-						<div class="ullitik">
-							<span class="acchead">
-								<i class="material-icons greentext"> done </i> 
-								Make your business visible in the homepage gallery 
-							</span>
-						</div>
-						<div class="ullitik">
-							<span class="acchead">
-								<i class="material-icons greentext"> done </i> 
-								
-Attract visitors to your business profile from their first visit to our website
-							</span>
-						</div>
-
-	<div class="ullitik">
-							<span class="acchead">
-								<i class="material-icons greentext"> done </i> 
-								
-2x times exposure							</span>
-						</div>
-
-
-					</div>
-					<div class="col-sm-3 text-center">
-						<a routerLink="../homepage-location" class="btn inblock btn-info textwhite"><i _ngcontent-c6="" class="ft-check"></i> Pick Promotion </a>
-					</div>
-				</div>
-			</div>
-			<div class="promotedetailbox prioritybox">
-				<div class="row">
-					<div class="col-sm-9">
-						<div class="ullitik">
-							<span class="acchead">
-								<i class="material-icons greentext"> done </i> 
-								Bump your listing to the top section of the search results of your business category
-							</span>
-						</div>
-	<div class="ullitik">
-							<span class="acchead">
-								<i class="material-icons greentext"> done </i> 
-								2x more exposure
-							</span>
-						</div>
-
-
-					</div>
-					<div class="col-sm-3 text-center">
-						<a routerLink="../priority" class="btn inblock btn-info textwhite"><i _ngcontent-c6="" class="ft-check"></i> Pick Promotion </a>
-					</div>
-				</div>
-			</div>
-			<div class="promotedetailbox audiencebox">
-				<div class="row">
-					<div class="col-sm-9">
-						<div class="ullitik">
-							<span class="acchead">
-								<i class="material-icons greentext"> done </i> 
-								Exclusive Perfect Weddings discount to attract potential audience (5%, 10%, 15%, 20%)
-							</span>
-						</div>
-						<div class="ullitik">
-							<span class="acchead">
-								<i class="material-icons greentext"> done </i> 
-								Receive 10% OFF your next paid subscription when this feature is used for at least 60 days.
-							</span>
-						</div>
-					</div>
-					<div class="col-sm-3 text-center">
-						<a routerLink="../audience" class="btn inblock btn-info textwhite"><i _ngcontent-c6="" class="ft-check"></i> Enquire </a>
-					</div>
-				</div>
-			</div>
-			<div class="promotedetailbox dealsbox">
-				<div class="row">
-					<div class="col-sm-9">
-						<div class="ullitik">
-							<span class="acchead">
-								<i class="material-icons greentext"> done </i> 
-								Create Personalised & Unique offers
-							</span>
-						</div>
-						<div class="ullitik">
-							<span class="acchead">
-								<i class="material-icons greentext"> done </i> 
-								Apply to all locations or one location only (Multi Select).
-							</span>
-						</div>
-					</div>
-					<div class="col-sm-3 text-center">
-						<a routerLink="../deals" class="btn inblock btn-info textwhite"><i _ngcontent-c6="" class="ft-check"></i> Pick Goal </a>
-					</div>
-				</div>
-			</div>
-			<div class="promotedetailbox homebannerbox">
-				<div class="row">
-					<div class="col-sm-9">
-						<div class="ullitik">
-							<span class="acchead">
-								<i class="material-icons greentext"> done </i> 
-							Banner Advertising to highlight your business profile
-							</span>
-						</div>
-							<div class="ullitik">
-							<span class="acchead">
-								<i class="material-icons greentext"> done </i> 
-							Maximum Exposure
-							</span>
-						</div>
-<div class="ullitik">
-							<span class="acchead">
-								<i class="material-icons greentext"> done </i> 
-							Limited Monthly Spots. Send an enquiry today.
-							</span>
-						</div>
-						
-
-					</div>
-					<div class="col-sm-3 text-center">
-						<a routerLink="../homepage" class="btn inblock btn-info textwhite"><i _ngcontent-c6="" class="ft-check"></i> Enquiry</a>
-					</div>
-				</div>
-			</div>
-	</div>
-	</div>
-	
-			<div class="col-12 nopadd">
-				<div _ngcontent-c0="" class="card">
-					<div _ngcontent-c0="" class="card-header">
-						<h4 _ngcontent-c0="" class="card-title">Advertising Summary for {{bussiness_name}}</h4>
-					</div>
-					<div _ngcontent-c0="" class="card-body">
-						<div _ngcontent-c5="" class="col-sm-6 col-6 link_click">
-							<div _ngcontent-c5="" class="card bg-warning" style="height:230px;">
-								<div _ngcontent-c5="" class="card-body">
-									<div _ngcontent-c5="" class="px-3 py-3">
-										<div _ngcontent-c5="" class="media">
-											<div _ngcontent-c5="" class="media-body white text-left"><h3 _ngcontent-c5="">5159</h3>
-												<span _ngcontent-c5="">People Reached</span>
-											</div>
-											<div _ngcontent-c5="" class="media-right align-self-center">
-												<i _ngcontent-c5="" class="icon-user white font-large-2 float-right"></i>
-											</div>
-										</div>
-										<div class="clearfix"></div>
-										<div _ngcontent-c5="" class="media bortop textwhite">
-											<p>Reaching more people helps  you build brand awareness</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-	
-						<div _ngcontent-c5="" class="col-sm-6 col-6 link_click">
-							<div _ngcontent-c5="" class="card bg-success" style="height:230px;">
-								<div _ngcontent-c5="" class="card-body">
-									<div _ngcontent-c5="" class="px-3 py-3">
-										<div _ngcontent-c5="" class="media">
-											<div _ngcontent-c5="" class="media-body white text-left">
-												<h3 _ngcontent-c5="">156</h3>
-												<span _ngcontent-c5="">Link Clicks</span>
-											</div>
-											<div _ngcontent-c5="" class="media-right align-self-center">
-												<i _ngcontent-c5="" class="icon-rocket white font-large-2 float-right"></i>
-											</div>
-										</div>
-										<div class="clearfix"></div>
-										<div _ngcontent-c5="" class="media bortop textwhite">
-											<p>When promotion are relevant to people who see them.</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-	
-						
-					</div>
-				</div>
-			</div>
-			<div class="col-12 nopadd">
-				<div _ngcontent-c0="" class="card">
-					<div _ngcontent-c0="" class="card-header">
-						<h4 _ngcontent-c0="" class="card-title">Recent  Ads for {{bussiness_name}}</h4>
-					</div>
-					<div _ngcontent-c0="" class="card-body"
-					  >
-						<div class="col-sm-12 table-responsive">
-							<table class="table table-striped table-bordered">
-								<tr *ngFor="let data of promotion | slice:0:2;let i=index "  > 
-									<td><img src="https://s3.us-east-2.amazonaws.com/prefect-image/ads.jpg" class="imgfix50"/></td>
-									<td>
-										<strong>{{data.typeOfAd	}}</strong><br/>
-										<span class="graytext">Promoted by Oliver Ramoojee on {{data.promotedDate}}</span>
-										<br/>
-										<span class="greentext">Finishes in 4 days</span>
-									</td>
-									<td>
-										<strong>{{data.peopleReached}}</strong><br/>
-										<span class="graytext">Reach</span>
-									</td>
-									<td>
-										<strong>{{data.impression}}</strong><br/>
-										<span class="graytext">Impressions</span>
-									</td>
-									<td>
-										<a (click)="open(content)" class="btn btn-raised btn-secondary">
-											View Result
-										</a>
-									</td>
-								</tr>
-								
-									
-							</table>
-					<div class="text-center" *ngIf = "promotion_length >0">
-						<a routerLink="../allpromotion" class="btn btn-flat btn-link">See All > </a>
-					</div>
-					<div class="text-center" *ngIf = "promotion_length == 0">
-						    <img src = "../../../assets/img/nopromo.png" alt="Profile picture" >
-						<p>NO PROMOTIONS has been created. </p>
-					</div>
-						</div>
-					</div>
-				</div>
-			</div>
+					<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div> -->
 			
-		</section>
-	
-		 </div>
-	
-	
-		 <ng-template #content let-c="close" let-d="dismiss">
-		 
-			<!-- <div class="modal-header" style="background-color: white">
-	
-				<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-				<span aria-hidden="true">&times;</span>
-				</button>
-			</div> -->
-		 
-				<div class="container-fluid pop_head border_top_none" style="background-color: white">
-					 <div class="">
-						<div class="col-md-4">
-							 <strong> 5,157</strong>
-	
-							 <p>People Reached</p>
+					<div class="container-fluid pop_head border_top_none" style="background-color: white">
+						<div class="">
+							<div class="col-md-4">
+								<strong> 5,157</strong>
+		
+								<p>People Reached</p>
+							</div>
+							<div class="col-md-4">
+							<span class="text-center"> <strong> 2</strong>  </span> 
+								<p>Impressions</p>
 						</div>
 						<div class="col-md-4">
-						 <span class="text-center"> <strong> 2</strong>  </span> 
-							<p>Impressions</p>
-					 </div>
-					 <div class="col-md-4">
-						<strong>22.58</strong>
-						<p>Total Spend</p>
-				 </div>
-				 </div>
-				</div>
-	
-				<div class="container-fluid pop_head bord_top">
-				<div class="watch_latr">
-					<span><i class="material-icons">watch_later </i> </span>    
-					<span class="promo_span">This promotion will run for <strong>14 days </strong> .</span>
-				</div>
-				<div>
-					<span><i class="material-icons">attach_money </i> </span>    
-				<span class="promo_span">Your total budget for this promotion is <strong>30.00 PLN </strong> .</span>
-				</div>
+							<strong>22.58</strong>
+							<p>Total Spend</p>
+					</div>
+					</div>
+					</div>
+		
+					<div class="container-fluid pop_head bord_top">
+					<div class="watch_latr">
+						<span><i class="material-icons">watch_later </i> </span>    
+						<span class="promo_span">This promotion will run for <strong>14 days </strong> .</span>
+					</div>
+					<div>
+						<span><i class="material-icons">attach_money </i> </span>    
+					<span class="promo_span">Your total budget for this promotion is <strong>30.00 PLN </strong> .</span>
+					</div>
+					
+					</div>
 				
-				 </div>
-			 
-				 <div class="container-fluid pop_head bord_top1" style="background-color: white">
-				<div class="progres_bar">
-					<span class="phot_clic"> <strong>Photo Clicks </strong>  </span>
-						<div class="progress-bar progress progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="70" style="width:100%">   
-						</div> <span class="number_clics"><strong> 54 </strong> </span> 
-	
-				</div>
-	
-				<div class="progres_bar">
-					<span class="phot_clic"> <strong>Link Clicks </strong>  </span>
-						<div class="progress-bar progress progress-bar-green" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="70" style="width:100%">   
-						</div> <span class="number_clics"><strong> 1 </strong> </span> 
-	
-				</div>
-	
-				<div class="progres_bar">
-					<span class="phot_clic"> <strong> Page likes </strong>  </span>
-						<div class="progress-bar progress progress-bar-voilet" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="70" style="width:100%">   
-						</div> <span class="number_clics"><strong> 25 </strong> </span> 
-	
-				</div>
-	
-				<div class="progres_bar">
-					<span class="phot_clic"> <strong>  Phost likes  </strong> </span>
-						<div class="progress-bar progress progress-bar-orang" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="70" style="width:100%">   
-						</div> <span class="number_clics"> <strong> 2 </strong>  </span> 
-	
-				</div>
-	
-	
-				 
-	
-				 </div>
-	
-				 <div class="container-fluid pop_head Finish ">
-					<h4>Finishes in 4 days </h4> 
+					<div class="container-fluid pop_head bord_top1" style="background-color: white">
+					<div class="progres_bar">
+						<span class="phot_clic"> <strong>Photo Clicks </strong>  </span>
+							<div class="progress-bar progress progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="70" style="width:100%">   
+							</div> <span class="number_clics"><strong> 54 </strong> </span> 
+		
+					</div>
+		
+					<div class="progres_bar">
+						<span class="phot_clic"> <strong>Link Clicks </strong>  </span>
+							<div class="progress-bar progress progress-bar-green" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="70" style="width:100%">   
+							</div> <span class="number_clics"><strong> 1 </strong> </span> 
+		
+					</div>
+		
+					<div class="progres_bar">
+						<span class="phot_clic"> <strong> Page likes </strong>  </span>
+							<div class="progress-bar progress progress-bar-voilet" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="70" style="width:100%">   
+							</div> <span class="number_clics"><strong> 25 </strong> </span> 
+		
+					</div>
+		
+					<div class="progres_bar">
+						<span class="phot_clic"> <strong>  Phost likes  </strong> </span>
+							<div class="progress-bar progress progress-bar-orang" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="70" style="width:100%">   
+							</div> <span class="number_clics"> <strong> 2 </strong>  </span> 
+		
+					</div>
+		
+		
+					
+		
+					</div>
+		
+					<div class="container-fluid pop_head Finish ">
+						<h4>Finishes in 4 days </h4> 
+					
+					</div>
+		
+		
 				
-				 </div>
-	
-	
-			 
-				 
-			 
-	
-	</ng-template>
-
-	
+					
+				
+		
+			</ng-template>
+		</div>
 	</div>
-	</div>
-	</div>
+</div>
 	

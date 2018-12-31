@@ -21,13 +21,13 @@ export class PaymentSelectionComponent implements OnInit {
   ngOnInit() {
     $.getScript('./assets/js/membershipslider.js'); 
 
-    
+    sessionStorage.getItem('selected_plan');
+   
     // console.log(JSON.parse(sessionStorage.getItem('selected_plan')))
     this.MainData   =    JSON.parse(sessionStorage.getItem('selected_plan'));
     console.log(this.MainData)
-
-    if(this.MainData.route_key == 0){
-    
+     if(this.MainData){ if(this.MainData.route_key == 0){
+          
       this.WhichPlan =   JSON.parse(sessionStorage.getItem('which_plan'))
       console.log(this.WhichPlan)
       if(this.MainData.payFrequency == 1){
@@ -45,13 +45,16 @@ export class PaymentSelectionComponent implements OnInit {
     if(this.MainData.route_key == 1){
       this.MainData.slotIds.forEach(ele=>{
         this.totalAmount =  this.totalAmount + ele.cost;
-       }) 
-    }
-    
+      }) 
+    }}
+         
+          
   
 
 }
-
+navigateTo() {
+  this.router.navigateByUrl('/vendor/PromoteBusiness');
+}
 PayPalPayment(){
 
 

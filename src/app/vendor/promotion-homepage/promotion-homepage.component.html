@@ -37,78 +37,46 @@
       <p>Please fill up the form and we'll be in touch soon.</p>
       <div class="row myform">
          <div class="col-md-12">
-            <form name="myform" role="form" novalidate>
+            <form (ngSubmit)="contactus(list)" #list="ngForm">
               <div class="row">
-                  
-                  <div class="col-md-12">
-                     <div class="form-group">
-                        <input required type="text" name="addr" id="addr" class="form-control" placeholder="*Your name"/>
-                     </div>
-                  </div>
-                
+                <div class="col-md-12">
+                    <div class="form-group">
+                      <input required type="text" [(ngModel)]="name" name="name" id="addr" class="form-control" placeholder="*Your name"/>
+                    </div>
+                </div>
               </div>    
-              <div class="row">
-                 
+              <div class="row">               
                   <div class="col-md-6">
-                     <div class="form-group">
-                        <input required type="text" name="addr" id="addr" class="form-control" placeholder="*Email-ID"/>
-                     </div>
+                      <div class="form-group">
+                        <input required type="email"  [(ngModel)]="email"  name="email" id="addr" class="form-control" placeholder="*Email-ID"/>
+                      </div>
                   </div>   
                   <div class="col-md-6">
-                     <div class="form-group">
-                        <input required type="text" name="addr" id="addr" class="form-control" placeholder="*Contact Number"/>
-                     </div>
-                  </div>
-                 
-              </div>      
-              <div class="row">
-                 
-                  <div class="col-md-12">
-                     <div class="form-group">
-  
-                        <input required type="text" name="subject" id="subject" class="form-control" placeholder="Subject"/>
-                   
-  
-                        <!-- <select class="form-control" id="exampleFormControlSelect1">
-                          <option>*Business</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                        </select> -->
+                      <div class="form-group">
+                        <input required type="phone" [(ngModel)]="phoneNumber"  name="phoneNumber" id="addr" class="form-control" placeholder="*Contact Number"/>
                       </div>
-                  </div>
-                  
+                  </div> 
+              </div>      
+              <div class="row">            
+                <div class="col-md-12">
+                    <div class="form-group">
+                      <input required type="text" [(ngModel)]="subject" name="subject" id="subject" class="form-control" placeholder="Subject"/>
+                    </div>
+                </div>
               </div>    
               <div class="row">
-               
-                  <div class="col-md-12">
-                     <div class="form-group">
-                      <textarea class="form-control" rows="4" id="comment" placeholder="*Your Message"></textarea>
-                        
-                     </div>
-                  </div>
-                
-              </div> 
-              <div class="row">
-                 
                 <div class="col-md-12">
-                    
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                      <label class="form-check-label" for="exampleCheck1">
-                         Agree to Terms & Conditions and Privacy Policy</label>
-                  
-  
-                </div>
-                
-              </div>   
+                    <div class="form-group">
+                        <textarea class="form-control"   [(ngModel)]="message" type="text" name="message" rows="4" id="comment" placeholder="*Your Message"></textarea>
+                    </div>
+                </div>  
+              </div> 
+             
               <div class="row">
-                  <div class="col-md-12">
-                   
-                      <button type="submit" class="btn btnbluecode martop20px btnradius20px">Send</button>
-                
-                  </div>
-                </div> 
+                <div class="col-md-12">   
+                    <button type="submit" class="btn btnbluecode martop20px btnradius20px">Send</button>           
+                </div>
+              </div> 
             </form>
          </div>
       </div>

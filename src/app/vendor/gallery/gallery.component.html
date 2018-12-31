@@ -7,7 +7,7 @@
     <div class="container-fluid nopadd">                    
       <app-navemenu></app-navemenu>
       <div class="container-fluid mobilefixedcontainer">  
-          <app-gallery0></app-gallery0>
+        
           <div  class="photo_gallery">   
               <div class="row firt_row ">   
                   <div  class="container-fluid nopadd portfolio_images" *ngIf = "portArray_length > 0" >
@@ -34,6 +34,7 @@
                   </div>   
               </div>
           </div>
+          <app-gallery0></app-gallery0>
            <div   *ngIf = "albumArray.length > 0"  class="container-fluid nopadd albumlist album_containing_images"  >
               <div class="card">
                 <div  class="text-center headin_gally col-sm-12 bordernone">
@@ -43,21 +44,7 @@
                 <div class="">
                   <div class="col-md-3 " *ngFor='let album of albumArray | slice:0:4'>
                     <div class="image-div" >
-                      <!-- <div *ngFor='let ar of  album.albumImages '>
-                              <div  routerLink="../albumviewphoto/{{album.albumsId}} "  *ngIf="album.albumImages?.length ==  2"  class="imgcontainer imghalffull">
-                                <img class="img-thumbnail  imghalffull" 
-                                alt="Another alt text"
-                                [src] = "ar.path" />
-                              </div>
-                      </div> -->
 
-                      <!-- <div *ngFor='let ar of  album.albumImages '>
-                              <div *ngIf="album.albumImages?.length ==  1"  class="imgcontainer imgfull">
-                                <img class="img-thumbnail" 
-                                alt="Another alt text"
-                                [src] = "ar.path" />
-                            </div>
-                      </div> -->
                       <div routerLink="../albumviewphoto/{{album.albumsId}} " *ngFor='let ar of  album.albumImages  | slice:0:3 ;let i=index'>
                           
 
@@ -113,7 +100,7 @@
                 <div class="text-center viev_all"> <a class="btn" routerLink="../albumview">View All</a> </div>
               </div> 
           </div> 
-
+          
          
       </div>
 
@@ -126,5 +113,22 @@
 <router-outlet></router-outlet> 
 
 
+                      <!-- <div *ngFor='let ar of  album.albumImages '>
+                              <div  routerLink="../albumviewphoto/{{album.albumsId}} "  *ngIf="album.albumImages?.length ==  2"  class="imgcontainer imghalffull">
+                                <img class="img-thumbnail  imghalffull" 
+                                alt="Another alt text"
+                                [src] = "ar.path" />
+                              </div>
+                      </div> -->
 
-    
+                      <!-- <div *ngFor='let ar of  album.albumImages '>
+                              <div *ngIf="album.albumImages?.length ==  1"  class="imgcontainer imgfull">
+                                <img class="img-thumbnail" 
+                                alt="Another alt text"
+                                [src] = "ar.path" />
+                            </div>
+                      </div> -->
+                      <div *ngIf='showLoader' class="loadingdiv">
+                        <img src="./assets/img/loading-wedding-animation.gif"/>
+                        <h1>Loading Please Wait...</h1>
+                    </div>

@@ -24,6 +24,8 @@ export class CalendertableComponent implements OnInit {
     http_header:Headers;
     objVendorJob:VendorJobsVM;
     startDatevvvv:string;
+    eventData = []
+    mainData = []
     all = 3;end_date:string;start_date:string;upcomming =2;past = 1;vendorJobsId = 0;
     edit_job_form = {vendorJobsId: 0,clientName: '',clientNumber: '',
                       eventTitle: "string",eventLocation: '',startDate: "2018-11-23T07:28:05.224Z",
@@ -53,7 +55,7 @@ export class CalendertableComponent implements OnInit {
       };
         /// New Calander Code Here ///
   showModal: boolean;
-  title = 'ngularfullcalendarbootstrap';
+  title = '';
   name: string;
   date: string;
   calendarOptions: Options;
@@ -118,7 +120,12 @@ export class CalendertableComponent implements OnInit {
               });
           } 
           // New Calendar funciton Called
-          this.initNewCalander();
+          this.BindEventCalender();
+          // console.log(this.eventData)
+          setTimeout(() => {
+            this.initNewCalander();
+            
+          }, 3000);
     }
             @ViewChild('create') validationForm: FormGroup;
             @ViewChild('modalContent') modalContent: TemplateRef<any>;
@@ -156,6 +163,7 @@ export class CalendertableComponent implements OnInit {
               console.log(a.endDate);
               this.jobedit = true;
               this.edit_job_form = a;
+              debugger
               this.edit_startDate =  { "year": parseInt(a.startDate.split('T')[0].split('-')[0])   , 
                                                 "month": parseInt(a.startDate.split('T')[0].split('-')[1])  ,
                                                  "day": parseInt(a.startDate.split('T')[0].split('-')[2])}
@@ -177,6 +185,8 @@ export class CalendertableComponent implements OnInit {
               headers.append('Content-Type', 'application/json');
               headers.append("Authorization",'Bearer '+authToken);
               this.jobedit = false;
+              this.objVendorJob.startDate = this.apiService.dateJsonTodashed(this.objVendorJob.startDate)
+              this.objVendorJob.endDate = this.apiService.dateJsonTodashed(this.objVendorJob.endDate)
               console.log(this.objVendorJob);
               this.http.post(this.creat_job_url,this.objVendorJob,{headers:headers}).subscribe(
                 data =>{ 
@@ -199,7 +209,6 @@ export class CalendertableComponent implements OnInit {
                 }).then((res)=>{
                     if(res.value===true){
                     console.log(job);
-                    
                     var deleteid = job.vendorJobsId ;
                     let headers = new Headers();
                     var authToken = localStorage.getItem('userToken');
@@ -219,30 +228,26 @@ export class CalendertableComponent implements OnInit {
                     alert(JSON.stringify(error));
                     })
                     return;
-                
-            
             }
 
             close(){this.jobdate =false;this.jobedit = false;}
             jobview(a){
-            
               let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
               headers.append('Accept', 'application/json')
               headers.append('Content-Type', 'application/json');
               headers.append("Authorization",'Bearer '+authToken);
              // upcomming
-              
               this.http.post(this.geturl,{
                 filter: a
               },{headers:headers}).subscribe(data =>{
                 console.log( data.json() );
-              
                 this.jobArray = data.json() as string[]; 
               },error => {  console.log(error)});
             }
            /// New Calendar Code Start
           initNewCalander(){
+            this.BindEventCalender();
             this.calendarOptions = {
               editable: true,
               eventLimit: true,
@@ -258,10 +263,41 @@ export class CalendertableComponent implements OnInit {
               eventTextColor:'white',
               //header: {left: 'prev,next today',center: 'title',right: 'month,agendaWeek,agendaDay,listMonth'},
               header: {left: 'prev,next ',center: 'title',right: ''},
-              events: [{title: 'Sales Meeting',date: '2018-11-21'}],
-          
+              events: this.mainData
             };
+
           }
+          BindEventCalender(){
+            this.http_header = new Headers();
+            var authToken = localStorage.getItem('userToken');
+            this.userId = localStorage.getItem('userId');
+            this.vendorid = localStorage.getItem('vendorid');
+            this.http_header.append('Accept', 'application/json')
+            this.http_header.append('Content-Type', 'application/json');
+            this.http_header.append("Authorization",'Bearer '+authToken);
+            
+            //all
+            this.http.post(this.geturl,{filter: 3},{headers:this.http_header}).subscribe(data =>{             
+             this.eventData = data.json()
+             this.eventData.forEach(elem => {
+              let length = parseInt(elem['endDate'].split('T')[0].split('-')[2]) - parseInt(elem['startDate'].split('T')[0].split('-')[2])
+              for(var i=0;i<=length;i++){
+                elem['title'] =  elem['eventTitle']
+                var r = parseInt(elem['startDate'].split('T')[0].split('-')[2]) + i
+                // debugger
+                elem['date'] =  elem['startDate'].split('T')[0].split('-')[0] + '-' + elem['startDate'].split('T')[0].split('-')[1] + '-' + r
+               this.mainData.push(elem) 
+              }
+             // this.initNewCalander();
+
+              });
+              console.log(JSON.stringify(this.mainData))
+              this.calendarOptions['events'] = [{"vendorJobsId":110,"clientName":"mahima","clientNumber":"2343243","eventTitle":"Hackintosh","eventLocation":"Indore","startDate":"2018-12-07T00:00:00","endDate":"2018-12-14T00:00:00","startTime":"2018-12-12T01:00:00","endTime":"2018-12-12T07:00:00","noOfGuests":1,"userId":"669e6f88-624d-4e33-8ff8-a55f5b0d531c","vendorId":23,"title":"Hackintosh","date":"2018-12-14"},{"vendorJobsId":110,"clientName":"mahima","clientNumber":"2343243","eventTitle":"Hackintosh","eventLocation":"Indore","startDate":"2018-12-07T00:00:00","endDate":"2018-12-14T00:00:00","startTime":"2018-12-12T01:00:00","endTime":"2018-12-12T07:00:00","noOfGuests":1,"userId":"669e6f88-624d-4e33-8ff8-a55f5b0d531c","vendorId":23,"title":"Hackintosh","date":"2018-12-14"},{"vendorJobsId":110,"clientName":"mahima","clientNumber":"2343243","eventTitle":"Hackintosh","eventLocation":"Indore","startDate":"2018-12-07T00:00:00","endDate":"2018-12-14T00:00:00","startTime":"2018-12-12T01:00:00","endTime":"2018-12-12T07:00:00","noOfGuests":1,"userId":"669e6f88-624d-4e33-8ff8-a55f5b0d531c","vendorId":23,"title":"Hackintosh","date":"2018-12-14"},{"vendorJobsId":110,"clientName":"mahima","clientNumber":"2343243","eventTitle":"Hackintosh","eventLocation":"Indore","startDate":"2018-12-07T00:00:00","endDate":"2018-12-14T00:00:00","startTime":"2018-12-12T01:00:00","endTime":"2018-12-12T07:00:00","noOfGuests":1,"userId":"669e6f88-624d-4e33-8ff8-a55f5b0d531c","vendorId":23,"title":"Hackintosh","date":"2018-12-14"}]
+              console.log(this.calendarOptions)
+              // this.final_List.forEach(function (value) { this.event_data.events.push(value); });
+            },error => { console.log(error)});
+           
+          } 
           eventClick(model: any) {
             this.name = model.event.title;
             this.date = model.event.start;

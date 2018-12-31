@@ -127,7 +127,7 @@
 										<button class="button" id="add-button">Add Event</button>
 									</div>
 									<div *ngIf="calendarOptions" class="col-md-12">
-										<ng-fullcalendar #ucCalendar [options]="calendarOptions" (dayClick)='dayClick($event)' (eventClick)="eventClick($event.detail)"
+										<ng-fullcalendar #ucCalendar [options]="calendarOptions" [(eventsModel)]="mainData" (dayClick)='dayClick($event)' (eventClick)="eventClick($event.detail)"
 										 (eventDrop)="updateEvent($event.detail)" (eventResize)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)">
 										</ng-fullcalendar>
 									</div>

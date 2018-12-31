@@ -24,25 +24,10 @@
 
                         </div>
                         <div class="name_info">
-                            <p>
-                                <strong>First Name</strong> :
-                                {{vendor.firstName}}</p>
-                            <p>
-                                <strong>Last Name</strong> :
-                                {{vendor.lastName}}
-                            </p>
-                            <p>
-                                <strong>Phone Number</strong> :
-                                {{vendor.vendorContactInfo.phone}}
-                            </p>
-                            <p>
-                                <strong>Email</strong> :
-                                {{vendor.vendorContactInfo.email}}
-                            </p>
-                            <!-- <p class="abouttext"> 
-                                <strong>About Me</strong> : 
-                                {{vendor.businessDetails}}
-                            </p> -->
+                            <p><strong>First Name</strong>:   {{vendor.firstName}}</p>
+                            <p><strong>Last Name</strong> :   {{vendor.lastName}}</p>
+                            <p><strong>Phone Number</strong>: {{vendor.vendorContactInfo.phone}} </p>
+                            <p><strong>Email</strong>: {{vendor.vendorContactInfo.email}}</p>
                         </div>
                         <div class="updatebt text-center">
                             <button (click)=" personal_data_update = true">Update Profile

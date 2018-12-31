@@ -11,17 +11,16 @@ import { ToastrService } from 'ngx-toastr';
 export class EditprofileComponent implements OnInit {
 
  constructor(private router: Router,public http: Http ,public toastr: ToastrService) { }
- private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
- vendor: any = {
+  private url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
+
+  vendor:any = {
     firstName: '',
-    lastName: '',
-    phoneNumber:'',
-    // email : '',
-    vendorContactInfo:{ 
-      phone:'',      
+    lastName:'',
+    vendorContactInfo:{
+      phone: '',
       email:''
     }
-};
+  }
 objevent;
 event;
 fbAvailable = false;
@@ -80,11 +79,13 @@ changePassword_form = false;
     if(!authToken) 
    {  this.router.navigate(['../home']);
     }
-    this.http.get(this.url,{headers:headers}).subscribe(
-      data =>{ this.vendor = data.json();
-               console.log(this.vendor);
-               console.log(this.vendor.vendorContactInfo);
-      });
+
+
+  this.http.get(this.url , {headers:headers}).subscribe(
+     data =>{ this.vendor = data.json();
+             console.log(this.vendor);
+             console.log(this.vendor.vendorContactInfo); 
+     });
 
     //membership api
     this.http.get(this.membershipurl,{headers:headers}).subscribe(

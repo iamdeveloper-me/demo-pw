@@ -107,7 +107,7 @@
                                 <div class="btnholdertik">
                                   <!-- <input type='file' (change)="previewFile($event)" >  -->
                                 <!--   <img [src]="urlll" height="200" #previewimg id='previewimg'>  -->
-                                  <input (change)="previewFile($event)" type='file' class="uploadbtnhidden" ng2FileSelect  [uploader]="uploader"  multiple title=""  >
+                                  <input (change)="previewFile($event)" type='file'  multiple title="">
                                
                                   <button class="newbtn Choosefilebtn"  >Choose File</button>
                                 </div>
@@ -116,13 +116,13 @@
                           <div class="row">
                             <div class="col-md-12 imagescroll"><br/>
                        
-                              <table class="table">
+                              <table class="table table-responsive">
                               
                                 <tbody>
-                                  <tr *ngFor="let item of uploader.queue;let i=index" >
+                                  <tr *ngFor="let item of previewImages;let i=index" >
                                 
-                                    <td><strong>{{ item?.file?.name }}</strong></td>
-                                    <td>   <img [src]="urlll" height="200" #item.progress id='item.progress'></td>
+                                    <td><strong>{{ fileNames[i] }}</strong></td>
+                                    <td><img [src]="item" height="200" class="img img-responsive"></td>
                                   
                                    <!--  <td></td> -->
                                     <td >
@@ -130,8 +130,8 @@
                                             <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
                                         </div> -->
                                     
-                                      <button type="button" class="btn btn-raised btn-danger btn-sm" (click)="item.remove()">
-                                      &times;
+                                      <button type="button" class="btn btn-raised btn-danger btn-sm" (click)="removePreviewImg(i)">
+                                      Remove
                                     </button>
                                   </td>
                                   </tr>
@@ -161,8 +161,6 @@
                                   </tr> -->
                                 </tbody>
                               </table>
-                    
-                             
                             </div>
                           </div>
                         </div>
@@ -178,7 +176,8 @@
             </div>    
         </div>
        <div class="modal-footer text-center">
-                <button type="submit" class="btn newbtn" (click)="uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Save</button>&nbsp;
+          <!-- [disabled]="!uploader.getNotUploadedItems().length" -->
+                <button type="submit" class="btn newbtn" (click)="uploadAll()">Save</button>&nbsp;
         
             <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
         </div>

@@ -15,6 +15,7 @@ import { viewClassName } from '@angular/compiler';
 import { MOMENT } from 'angular-calendar';
 import * as moment from 'moment'
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { apiService } from 'app/shared/service/api.service';
 const now = new Date();
 const I18N_VALUES = {
   en: {
@@ -120,7 +121,7 @@ export class EventListComponent implements OnInit {
   private myevent_Post_url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/myevents'
   private event_detail_get_url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/eventdetails'
   private removeeventgeturl: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent'
-  constructor(public toastr: ToastrService, private modalService: NgbModal, public http: Http, private datePipe: DatePipe) {
+  constructor(public apiService:apiService,public toastr: ToastrService, private modalService: NgbModal, public http: Http, private datePipe: DatePipe) {
     this.test = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
     this.objevent = new EventsCreateUpdateVM();
     //  this.past_upcomming_event(2);
@@ -607,13 +608,9 @@ export class EventListComponent implements OnInit {
     this.endtime = v.eventsDates[0].endTimeString;
     if(v.eventsDates[0].startDate.includes('T') == true){
       alert("true")
-     v.eventsDates[0].startDate =  { "year": parseInt(v.eventsDates[0].startDate.split('T')[0].split('-')[0])   , 
-     "month": parseInt(v.eventsDates[0].startDate.split('T')[0].split('-')[1])  ,
-     "day": parseInt( v.eventsDates[0].startDate.split('T')[0].split('-')[2])}
- 
-     v.eventsDates[0].endDate   =  {"year": parseInt(v.eventsDates[0].endDate.split('T')[0].split('-')[0])   , 
-     "month": parseInt(v.eventsDates[0].endDate.split('T')[0].split('-')[1])  ,
-     "day": parseInt( v.eventsDates[0].endDate.split('T')[0].split('-')[2])}                    
+      v.eventsDates[0].startDate = this.apiService.dateTFormatToJson(v.eventsDates[0].startDate)
+      v.eventsDates[0].endDate   =  this.apiService.dateTFormatToJson(v.eventsDates[0].endDate)
+        
  
     }else{
      alert("false")
@@ -775,8 +772,9 @@ export class EventListComponent implements OnInit {
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
-    this.eventArray = [];
+    // this.eventArray = [];
     this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/eventdetails?id' + '=' + id, { headers: headers }).subscribe(data => {
+      this.eventArray = [];
       this.eventArray.push(data.json())
 
     }, error => { 

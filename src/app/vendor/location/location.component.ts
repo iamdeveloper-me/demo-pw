@@ -14,6 +14,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { forEach } from '@angular/router/src/utils/collection';
+import { utilities } from 'app/utilitymodel';
 declare var google: any;
 
 interface Marker {
@@ -243,11 +244,16 @@ export class LocationComponent implements OnInit {
     zoom: 25};
 
   Find_current_location() {
+
     if (navigator.geolocation) {
+
+     // this.reverseGeocoding(navigator.geolocation.latitude,navigator.geolocation.longitude);
       navigator.geolocation.getCurrentPosition(
         (position) => {
+          debugger
+          this.reverseGeocoding(position.coords.latitude,position.coords.longitude);
           let geocoder = new google.maps.Geocoder();
-          let latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+          let latlng = new google.maps.LatLng(56.77,55.777);
           let request = { latLng: latlng };
           geocoder.geocode(request, (results, status) => {
             if (status === google.maps.GeocoderStatus.OK) {
@@ -264,8 +270,6 @@ export class LocationComponent implements OnInit {
               }
             }
           });
-
-
         }, (error) => {
 
           console.log('Geolocation error: ' + error);
@@ -514,10 +518,12 @@ export class LocationComponent implements OnInit {
 
   mapDialogObj: any;
   OpenmapDailog(locationObj) {
+    debugger
+    
     console.log(this.location_Array[0].mapAddress);
     this.mapDialogObj = locationObj
     this.modelfield.address=this.location_Array[0].mapAddress;
-   // this.address = this.location_Array[0].mapAddress;
+    this.address = this.location_Array[0].mapAddress;
     this.mapDailog = true;
   }
   findLocation(address) {
@@ -876,6 +882,7 @@ export class LocationComponent implements OnInit {
         });
   }
   Update_Address(e) {
+    
     if(this.ele_dist.nativeElement.value=='-1'){
       this.toastr.error('Invalid District Selected !');
     }else if(this.ele_suburb.nativeElement.value=='-1'|| this.ele_suburb.nativeElement.value==''){
@@ -993,6 +1000,15 @@ export class LocationComponent implements OnInit {
     });
    csv= csv.substr(0,csv.length-1);
     return csv;
+  }
+  reverseGeocoding(lat,long){
+   let objutility =new utilities();
+    
+    let url='https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+long+'&key=AIzaSyAZ1gsa9BUjNuL-WmCOLhelB2-jQ2jWlxo';
+    this.http.get(url).subscribe(res=>{
+      this.modelfield.address = res.json().results[0].formatted_address;
+      console.log(res.json().results);
+    })
   }
 
 }

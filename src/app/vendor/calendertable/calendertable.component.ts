@@ -81,6 +81,7 @@ export class CalendertableComponent implements OnInit {
                   //all
                   this.http.post(this.geturl,{filter: 3},{headers:this.http_header}).subscribe(data =>{             
                     this.jobArray = data.json();
+                    debugger;
                     console.log(this.jobArray );
                     // this.final_List.forEach(function (value) { this.event_data.events.push(value); });
                   },error => { console.log(error)});
@@ -179,6 +180,7 @@ export class CalendertableComponent implements OnInit {
             }
             edit_job(b){
               console.log(b.value);
+              debugger;
               let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
               headers.append('Accept', 'application/json')
@@ -193,6 +195,7 @@ export class CalendertableComponent implements OnInit {
                         console.log( data.json() );
                         this.ngOnInit()
                         this.toastr.success(data.json().message );
+                        this.showModal=false;
                         }),error => {  console.log(error)};
             
             }
@@ -328,7 +331,7 @@ export class CalendertableComponent implements OnInit {
           
         }
         showJobDialog(){
-
+          this.showModal=true;
         }
         /// New Calendar Code End
 

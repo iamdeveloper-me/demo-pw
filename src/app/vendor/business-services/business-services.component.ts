@@ -202,7 +202,6 @@ export class BusinessServicesComponent implements OnInit {
     }
   }
   saveServiceWithoutOptions() {
-    debugger;
     this.customFields = [];
     let customFields = this.categoryserveice.filter(c => c.categoryId == this.objVenderServiceVm.categoryId)[0].services.filter(s => s.servicesId == this.objVenderServiceVm.servicesId)[0].customFields;
     if (customFields != undefined) {
@@ -248,7 +247,6 @@ export class BusinessServicesComponent implements OnInit {
   }
   seveCustomField(cfo, fieldType) {
     cfo.isSelected = true;
-    debugger;
     let smv = new ServiceFieldValuesVM();
     smv.FieldValue = cfo.key;
     smv.customFieldId = cfo.customFieldId;

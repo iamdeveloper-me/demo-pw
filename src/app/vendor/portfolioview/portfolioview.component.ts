@@ -6,7 +6,7 @@ import { ProgressHttp } from 'angular-progress-http';
  
 import { Router } from '@angular/router';
 import { Http,Headers } from '@angular/http';
-import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
+import { FileUploader, FileItem } from 'ng2-file-upload/ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
@@ -33,6 +33,8 @@ export class PortfolioviewComponent implements OnInit {
     progressPercentage:number = 0
     free_limit;
     urlll = ''
+    fileNames=[];
+    previewImages = [];
     // Portpost1Array:any= {};
       private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/';
 
@@ -143,22 +145,33 @@ export class PortfolioviewComponent implements OnInit {
 
     }
     previewFile(event) {
-        var preview = this.previewimg.nativeElement;
-        var file    = event.target.files[0];
-        var reader  = new FileReader();
-       
-        reader.readAsDataURL(event.target.files[0]); // read file as data url
-        reader.addEventListener("load", function () {
-            preview.src = reader.result;
-        }, false);
+       // var preview = this.previewimg.nativeElement;
+    let files = event.target.files;
+    if (files) {
         
-        if (file) {
-            reader.readAsDataURL(file);
+      for (let file of files) {
+          let FI  = new FileItem(this.uploader,file,null);
+        this.uploader.queue.push(FI);  
+        this.fileNames.push(file.name);
+       console.log(file);   
+        this.previewImages = [];
+        let reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.previewImages.push(e.target.result);
+          console.log(this.previewImages);
         }
+        reader.readAsDataURL(file);
+      }
     }
+ }
+ removePreviewImg(index){
+this.previewImages.splice(index,1);
+this.fileNames.splice(index,1);
+this.uploader.queue.splice(index,1);
+ }
     uploadAll(){
                     //
-
+debugger;
                     //this.lodar = true
                     console.log(this.uploader.queue)
                     const formData = new FormData();
@@ -171,17 +184,12 @@ export class PortfolioviewComponent implements OnInit {
                     let headers = new  Headers();
                     var authToken = localStorage.getItem('userToken');
                     headers.append("Authorization",'Bearer '+authToken);
-                    
-
-
-                                       
-                                       
-                                       
-                                        this._http.withUploadProgressListener(progress => {this.progress_bar = true; console.log(`Uploading ${progress.percentage}%`);this.closeModel(); this.progressPercentage = progress.percentage})
+                    this._http.withUploadProgressListener(progress => {
+                        this.progress_bar = true; console.log(`Uploading ${progress.percentage}%`);
+                        this.closeModel(); this.progressPercentage = progress.percentage})
         .withDownloadProgressListener(progress => { console.log(`Downloading ${progress.percentage}%`); })
         .post(this.url+'api/ImageUploader/PortfolioUploader', formData,{headers: headers})
         .subscribe(data =>{ 
-                    
             this.toastr.success(data.json().message);
             this.router.navigate(['../vendor/portfolioview'])
             this.http.get(this.mygeturl,{headers:headers})
@@ -193,12 +201,8 @@ export class PortfolioviewComponent implements OnInit {
                             this.progress_bar = false;
             });
             },(error)=>{console.log(error)});
-
-                    // this.photoupload(formData);   
-    }
+ }
     photoupload(formData){
-
-
     let headers = new  Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append("Authorization",'Bearer '+authToken);
@@ -225,14 +229,8 @@ export class PortfolioviewComponent implements OnInit {
                         console.log(data.json()); 
                         this.PortgetArray =data.json() 
                         this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
-                        
-                        // console.log(parseInt(basicplan) );
-                
-                        
                         });
-                    
-                    
-                        console.log(data.json());
+                      console.log(data.json());
                         this.toastr.success(data.json());
                     
                     },(error)=>{        this.toastr.error(error.json());

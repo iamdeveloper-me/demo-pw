@@ -496,6 +496,7 @@
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
                                         <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="mondayOpen">Opening Hour</label> -->
                                 </div>
                                 <div class="col-sm-6 field">
@@ -503,6 +504,7 @@
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
                                         <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                      <!-- <label for="mondayClose">Closing Hour</label> -->
                                 </div>
                         </div>
@@ -529,6 +531,7 @@
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
                                         <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="tuesdayOpen">Opening Hour</label> -->
                                 </div>
                                 <div class="col-sm-6 field">
@@ -536,6 +539,7 @@
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
                                         <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="tuesdayClose">Closing Hour</label> -->
                                 </div>
                         </div>
@@ -562,6 +566,7 @@
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
                                         <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="wednesdayOpen">Opening Hour</label> -->
                                 </div>
                                 <div class="col-sm-6 field">
@@ -569,6 +574,7 @@
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
                                         <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="wednesdayClose">Closing Hour</label> -->
                                 </div>
                         </div>
@@ -596,6 +602,7 @@
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
                                         <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="thursdayOpen">Opening Hour</label> -->
                                 </div>
                                 <div class="col-sm-6 field">
@@ -603,6 +610,7 @@
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>  
                                         <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="thursdayClose">Closing Hour</label> -->
                                 </div>
                             </div>
@@ -629,6 +637,7 @@
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
                                         <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="fridayOpen">Opening Hour</label> -->
                                 </div>
                                 <div class="col-sm-6 field" *ngIf='modelfield.fridayOpen!=="24 Hours"'>
@@ -636,6 +645,7 @@
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
                                         <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                      <!-- <label for="fridayClose">Closing Hour</label> -->
                                 </div>
                         </div>
@@ -662,6 +672,7 @@
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option> 
                                         <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="saturdayOpen">Opening Hour</label> -->
                                 </div>
                                 <div class="col-sm-6 field" *ngIf='modelfield.saturdayOpen!=="24 Hours"'>
@@ -669,6 +680,7 @@
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>
                                         <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="saturdayClose">Closing Hour</label> -->
                                     <input type="hidden" [(ngModel)]="modelfield.vendorLocationId" id="vendorLocationId" name="vendorLocationId">
                                     <input type="hidden"  [(ngModel)]="modelfield.country" id="country" name="country">
@@ -718,6 +730,7 @@
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>
                                             <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                                 </select>
+                                                <span class="caret"></span>
                                                 <!-- <label for="sundayOpen">Opening Hour</label> -->
                                     </div>
                                     <div class="col-sm-6 field">
@@ -731,6 +744,7 @@
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>  
                                             <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                                 </select>
+                                                <span class="caret"></span>
                                                 <!-- <label for="sundayClose">Closing Hour</label> -->
                                     </div>
                             </div>

@@ -5,6 +5,7 @@ import {RatingModule} from 'ngx-rating';
 import { CustompipePipe } from 'app/custompipe.pipe';
 import { CategoryPipePipe } from 'app/category-pipe.pipe';
 import { apiService } from 'app/shared/service/api.service';
+import { filterParam } from 'app/vendorcard/vendorcard.component';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { apiService } from 'app/shared/service/api.service';
 })
 export class SearchresultComponent implements OnInit {
   collection = [];
-  objSearchFilter: SearchFilterVm
+  objSearchFilter: filterParam
   locations:any;
   categories:any;
   filters: any;
@@ -25,25 +26,29 @@ export class SearchresultComponent implements OnInit {
   locationFilterParam:string='';
   categoryFilterParam:string='';
   pageNumber=0;
-  pageSize:number=3;
+//  pageSize:number=3;
   disableLoadingButton=true;
   blankImg='../../assets/img/noImg.png';
 
   constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService, private api: apiService) {  
 
-    this.objSearchFilter=new SearchFilterVm();
+    this.objSearchFilter=new filterParam();
     this.objSearchlistvm = new SearchListingVM();
     if(this._activeRoute!=undefined){
-      let query=this._activeRoute.snapshot.params['id'].split('/');
-      this.objSearchFilter.categoryId = this._activeRoute.snapshot.params['id'].split('/')[0];
-      this.objSearchFilter.searchInDreamLocation=this._activeRoute.snapshot.params['id'].split('/')[3];
-      this.objSearchFilter.searchInFeaturedLocation  = this._activeRoute.snapshot.params['id'].split('/')[2];
-      this.objSearchlistvm.categoryId.push(this.objSearchFilter.categoryId);
+
+      this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
+      console.log(this.objSearchFilter);
+      // let query=this._activeRoute.snapshot.params['id'].split('/');
+      // this.objSearchFilter.categoryId = this._activeRoute.snapshot.params['id'].split('/')[0];
+      // this.objSearchFilter.searchInDreamLocation=this._activeRoute.snapshot.params['id'].split('/')[3];
+      // this.objSearchFilter.searchInFeaturedLocation  = this._activeRoute.snapshot.params['id'].split('/')[2];
+      this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
+      this.objSearchlistvm.districtId.push(this.objSearchFilter.locationId);
     }
     this.getLocations();
     this.getCategories();
     this.getFilters();
-    this.objSearchlistvm.categoryId.push(this.objSearchFilter.categoryId);
+    this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
       this.objSearchResultItems = res;
       this.getSearchFilterResult();
@@ -90,10 +95,10 @@ export class SearchresultComponent implements OnInit {
   getCategories(){
      this._masterservice.getAllCategories().subscribe(res=>{
       this.categories=res;
-      if(this.objSearchFilter.categoryId>0){
+      if(this.objSearchFilter.catId>0){
        // this.categories=this.categories.filter(c=>c.categoryId==this.objSearchFilter.categoryId);
         this.categories.forEach(element => {
-          if(element.categoryId==this.objSearchFilter.categoryId){
+          if(element.categoryId==this.objSearchFilter.catId){
           element.isSelect=true;}else{element.isSelect=false;}
         });
       }
@@ -102,13 +107,13 @@ export class SearchresultComponent implements OnInit {
   }
   getFilters(){
     let filter_paramArray=[];
-    filter_paramArray.push(this.objSearchFilter.categoryId);
+    filter_paramArray.push(this.objSearchFilter.catId);
     this._masterservice.getFilters(filter_paramArray).subscribe(res=>{
       this.filters=res;
       this.filters.services.forEach(element => {
         element.isSelect=false;
       });
-      console.log(this.filters);
+  
     },error=>{
       console.log(error);
     })
@@ -132,10 +137,8 @@ export class SearchresultComponent implements OnInit {
           this.objSearchlistvm.customsFields.push(this.objSearchlistvm.customField);
         }
       });
-      
     } 
       this.objSearchlistvm.customField = new FieldSearchVM();
-      
     });
   }
   if(this.categories){
@@ -153,8 +156,7 @@ export class SearchresultComponent implements OnInit {
   }
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
       this.objSearchResultItems = res;
-      console.log(this.objSearchResultItems);
-      this.paginate(this.pageSize);
+      this.paginate(this.objSearchFilter.pageSize);
     })
   }
   filterLocations(ev){
@@ -167,7 +169,7 @@ export class SearchresultComponent implements OnInit {
    paginate (pageSize) {
      this.disableLoadingButton=false;
    let c=this.objSearchResultItems.items.slice(this.pageNumber * pageSize, (this.pageNumber + 1) * pageSize);
-   if(c.length<this.pageSize){
+   if(c.length<this.objSearchFilter.pageSize){
     this.disableLoadingButton=true;
    }
     c.forEach(element => {

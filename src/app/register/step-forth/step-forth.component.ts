@@ -101,7 +101,7 @@ debugger
 
 if(this.user.businessInfo.pricingPlanId == '1'){
 
-  alert('free')
+  // alert('free')
   console.log(JSON.stringify(this.objVendorDetail));
   // this.objVendorDetail.businessInfo.website=this.objVendorDetail.contactInfo.website;
       this.cservice.signup(this.objVendorDetail).subscribe(( data )  =>  
@@ -113,9 +113,9 @@ if(this.user.businessInfo.pricingPlanId == '1'){
      this.cservice.typeWarning(error);
     })
 }else{
-  alert('payment page')
+  // alert('payment page')
 
-debugger
+// debugger
   const plan = 
 {
   pricingPlanId: this.user.businessInfo.pricingPlanId,
@@ -146,7 +146,7 @@ this.router.navigate(['../payment-selection'])
 
 idgenerate(users){
   console.log(users);
-  alert('which plan from idgenerate');
+  // alert('which plan from idgenerate');
   sessionStorage.setItem('which_plan' ,JSON.stringify(users));
   
   this.objVendorDetail.businessInfo.pricingPlanId=users.pricingPlanId;
@@ -155,7 +155,7 @@ idgenerate(users){
    console.log(this.user.businessInfo.payFrequency );
 }
 annualPrice(users){ 
-  alert('which plan from annual');
+  // alert('which plan from annual');
   sessionStorage.setItem('which_plan' ,JSON.stringify(users));
   this.objVendorDetail.businessInfo.pricingPlanId =users.pricingPlanId;
   this.objVendorDetail.businessInfo.payFrequency = 2;

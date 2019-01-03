@@ -143,113 +143,84 @@
             <div class="modal-header text-center">
                 <h4 class="modal-title">Add Image</h4>
                 <button type="button" class="close btn_mar_padd" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-           
                <div class="clearfix"></div>
             </div>
             <div class="modal-body" style="background-color: white">
-                <form>
+              <form>
                 <div class="row">
                   <div class="col-md-12">
-                    <section id="file-upload">
-                      
+                    <section id="file-upload">  
                       <div class="col-sm-12 martop0px">
                         <div class="card-block">
                           <div class="row">
                             <div class="col-md-12 col-lg-12 my-drop-zone">
-                              <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader"
-                                class="mb-3 text-center font-medium-5 text-uppercase grey ">
-                                 Add image
+                                <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader"
+                                  class="mb-3 text-center font-medium-5 text-uppercase grey ">
+                                  Add image
                                 </div>
-
                                 <div class="btnholdertik">
-                                  <input 
+                                  <!-- <input 
                                     type="file" 
                                     class="uploadbtnhidden" 
                                     ng2FileSelect 
                                   
                                     [uploader]="uploader" 
-                                    multiple >
+                                    multiple > -->
+
+                                    <input (change)="previewFile($event)" type='file'  multiple title="">
                                   <button class="newbtn Choosefilebtn">Choose File</button>
                                   <!-- (change)="fileChangeListener($event)" -->
                                 </div>
                             </div>
                           </div>
                           <div class="row">
-                            <div class="col-md-12 imagescroll"><br/>
-                             <!--  <p>Queue length: {{ uploader?.queue?.length }}</p> -->
-                              <table class="table">
-                               <!--  <thead>
-                                  <tr>
-                                    <th width="50%">Name</th>
-                                    <th>Size</th>
-                                    <th>Progress</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                  </tr>
-                                </thead> -->
-                                <tbody>
-                                  <tr *ngFor="let item of uploader.queue; let i= index">
-                                    <td><strong>{{ item?.file?.name }}</strong> </td>
-                                    <td>
-                                        <div class="progress" style="margin-bottom: 0;width: 205px;">
-                                            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
-                                        </div>
-                                    </td>
-                                  <!--   <td *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
-                                    <td *ngIf="uploader.isHTML5">
-                                      <div class="progress" style="margin-bottom: 0;">
-                                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
-                                      </div>
-                                    </td>
-                                    <td class="text-center">
-                                      <span *ngIf="item.isSuccess"><i class="fa fa-ok"></i></span>
-                                      <span *ngIf="item.isCancel"><i class="fa fa-ban"></i></span>
-                                      <span *ngIf="item.isError"><i class="fa fa-remove"></i></span>
-                                    </td> -->
-                                    <td nowrap>
-                                     <!--  <button type="button" class="btn btn-raised btn-success btn-sm" (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
-                                      <span class="fa fa-upload"></span> Upload
-                                    </button>
-                                      <button type="button" class="btn btn-raised btn-warning btn-sm" (click)="item.cancel()" [disabled]="!item.isUploading">
-                                      <span class="fa fa-ban"></span> Cancel
-                                    </button> -->
-                                      <button type="button" class="btn btn-raised btn-danger btn-sm" (click)="item.remove()">
-                                      &times;
-                                    </button>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                    
+                              <div class="col-md-12 imagescroll">
+                                <br/>
+                                <!-- <table class="table">
+                                  <tbody>
+                                    <tr *ngFor="let item of uploader.queue; let i= index">
+                                      <td><strong>{{ item?.file?.name }}</strong> </td>
+                                      <td>
+                                          <div class="progress" style="margin-bottom: 0;width: 205px;">
+                                              <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                                          </div>
+                                      </td>
+                                      <td nowrap>
+                                        <button type="button" class="btn btn-raised btn-danger btn-sm" (click)="item.remove()">
+                                        &times;
+                                      </button>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table> -->
+                                <table class="table table-responsive">  
+                                    <tbody>
+                                      <tr *ngFor="let item of previewImages;let i=index" >
+                                        <td><strong>{{ fileNames[i] }}</strong></td>
+                                        <td><img [src]="item" height="200" class="img img-responsive"></td>
+                                        <td>
+                                          <button type="button" class="btn btn-raised btn-danger btn-sm" (click)="removePreviewImg(i)">
+                                              Remove
+                                          </button>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
                               <div>
-                               <!--  <p>Queue progress:
-                                  <ngb-progressbar type="primary" [value]="uploader.progress"></ngb-progressbar>
-                                </p> -->
-                               <!--  <button type="button" class="btn btn-raised btn-success" >
-                                  <span class="fa fa-upload"></span> Upload all
-                                </button> -->
-                               <!--  <button type="button" class="btn btn-raised btn-warning" (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
-                                  <span class="fa fa-ban"></span> Cancel all
-                                </button>
-                                <button type="button" class="btn btn-raised btn-danger" (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
-                                  <span class="fa fa-trash"></span> Remove all
-                                </button> -->
+                          </div>
                               </div>
-                            </div>
                           </div>
                         </div>
                       </div>
                     </section>
                   </div>
                 </div>
-               
                 <div class="clearfix"></div>
-                </form>
-                
-              </div>
-           <div class="modal-footer text-center">
-              <button type="submit" class="btn newbtn" (click)="uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Save</button>&nbsp;
-            
+              </form>
+            </div>
+            <div class="modal-footer text-center">
+                <!-- [disabled]="!uploader.getNotUploadedItems().length" -->
+              <button type="submit" class="btn newbtn" (click)="uploadAll()" >Save</button>&nbsp;
               <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">CANCEL</button>
             </div>
         </div>  

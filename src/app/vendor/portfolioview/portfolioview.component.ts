@@ -36,8 +36,7 @@ export class PortfolioviewComponent implements OnInit {
     fileNames=[];
     previewImages = [];
     // Portpost1Array:any= {};
-      private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/';
-
+    private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/';
     private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader'
     private addportfolio: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/addportfolio'
     private mygeturl: string  = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myportfolio"
@@ -52,7 +51,7 @@ export class PortfolioviewComponent implements OnInit {
     constructor(private _http: ProgressHttp,public http: Http ,public toastr: ToastrService,   private router: Router ) { }
     ngOnInit() {
 
-        $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
+                    $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
                     $.getScript('./assets/js/vendorsidebar.js');
                     this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
                     let headers = new Headers();
@@ -88,8 +87,7 @@ export class PortfolioviewComponent implements OnInit {
                            this.portfolioId = data.json().portfolioId;
 
                         }
-                    },error=>{ console.log(error)
-                           })
+                    },error=>{ console.log(error)})
 
                           
                }
@@ -103,7 +101,7 @@ export class PortfolioviewComponent implements OnInit {
     });
     hasBaseDropZoneOver = false;
     hasAnotherDropZoneOver = false;
-  // Angular2 File Upload
+    // Angular2 File Upload
 
     fileOverBase(e: any): void {
         this.hasBaseDropZoneOver = e;
@@ -146,33 +144,30 @@ export class PortfolioviewComponent implements OnInit {
     }
     previewFile(event) {
        // var preview = this.previewimg.nativeElement;
-    let files = event.target.files;
-    if (files) {
-        
-      for (let file of files) {
-          let FI  = new FileItem(this.uploader,file,null);
-        this.uploader.queue.push(FI);  
-        this.fileNames.push(file.name);
-       console.log(file);   
-        this.previewImages = [];
-        let reader = new FileReader();
-        reader.onload = (e: any) => {
-          this.previewImages.push(e.target.result);
-          console.log(this.previewImages);
+        let files = event.target.files;
+        if (files) {
+            for (let file of files) {
+                let FI  = new FileItem(this.uploader,file,null);
+                this.uploader.queue.push(FI);  
+                this.fileNames.push(file.name);
+                console.log(file);   
+                this.previewImages = [];
+                let reader = new FileReader();
+                reader.onload = (e: any) => {
+                this.previewImages.push(e.target.result);
+                console.log(this.previewImages);
+                }
+                reader.readAsDataURL(file);
+            }
         }
-        reader.readAsDataURL(file);
-      }
     }
- }
- removePreviewImg(index){
-this.previewImages.splice(index,1);
-this.fileNames.splice(index,1);
-this.uploader.queue.splice(index,1);
- }
+    removePreviewImg(index){
+        this.previewImages.splice(index,1);
+        this.fileNames.splice(index,1);
+        this.uploader.queue.splice(index,1);
+    }
     uploadAll(){
-                    //
-debugger;
-                    //this.lodar = true
+
                     console.log(this.uploader.queue)
                     const formData = new FormData();
                     for(let file of this.uploader.queue){
@@ -201,7 +196,7 @@ debugger;
                             this.progress_bar = false;
             });
             },(error)=>{console.log(error)});
- }
+    }
     photoupload(formData){
     let headers = new  Headers();
     var authToken = localStorage.getItem('userToken');

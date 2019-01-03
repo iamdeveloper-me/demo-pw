@@ -100,9 +100,7 @@ export class StepForthComponent implements OnInit {
 debugger
 
 if(this.user.businessInfo.pricingPlanId == '1'){
-
-  alert('free')
-  console.log(JSON.stringify(this.objVendorDetail));
+    console.log(JSON.stringify(this.objVendorDetail));
   // this.objVendorDetail.businessInfo.website=this.objVendorDetail.contactInfo.website;
       this.cservice.signup(this.objVendorDetail).subscribe(( data )  =>  
       { console.log(data.json())
@@ -113,9 +111,6 @@ if(this.user.businessInfo.pricingPlanId == '1'){
      this.cservice.typeWarning(error);
     })
 }else{
-  alert('payment page')
-
-debugger
   const plan = 
 {
   pricingPlanId: this.user.businessInfo.pricingPlanId,
@@ -126,7 +121,7 @@ debugger
   hem:'Hemant'
 }
 sessionStorage.setItem('selected_plan',JSON.stringify(plan))
-this.router.navigate(['../payment-selection'])
+this.router.navigate(['../register/step5'])
   // this.router.navigate(['../payment-selection'])
 }
   
@@ -146,7 +141,7 @@ this.router.navigate(['../payment-selection'])
 
 idgenerate(users){
   console.log(users);
-  alert('which plan from idgenerate');
+  // alert('which plan from idgenerate');
   sessionStorage.setItem('which_plan' ,JSON.stringify(users));
   
   this.objVendorDetail.businessInfo.pricingPlanId=users.pricingPlanId;
@@ -155,7 +150,7 @@ idgenerate(users){
    console.log(this.user.businessInfo.payFrequency );
 }
 annualPrice(users){ 
-  alert('which plan from annual');
+  // alert('which plan from annual');
   sessionStorage.setItem('which_plan' ,JSON.stringify(users));
   this.objVendorDetail.businessInfo.pricingPlanId =users.pricingPlanId;
   this.objVendorDetail.businessInfo.payFrequency = 2;

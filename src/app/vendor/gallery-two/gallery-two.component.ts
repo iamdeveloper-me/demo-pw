@@ -10,15 +10,20 @@ import { CropperSettings, ImageCropperComponent } from 'ng2-img-cropper';
 
 import { HttpEventType, HttpResponse, } from '@angular/common/http';
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
+
 @Component({
-  selector: 'app-gallery-app',
-  templateUrl: './gallery0.component.html',
-  styleUrls: ['./gallery0.component.scss']
+  selector: 'app-gallery-two',
+  templateUrl: './gallery-two.component.html',
+  styleUrls: ['./gallery-two.component.scss']
 })
 @Directive({
   selector: 'img[thumbnail]'
 })
-export class Gallery0Component implements OnInit {
+export class GalleryTwoComponent implements OnInit {
+
+
+
+
   fileNames=[];
   previewImages = [];
   cropperSettings: CropperSettings;

@@ -31,11 +31,10 @@ export class SearchresultComponent implements OnInit {
   blankImg='../../assets/img/noImg.png';
 
   constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService, private api: apiService) {  
-
+    debugger;
     this.objSearchFilter=new filterParam();
     this.objSearchlistvm = new SearchListingVM();
     if(this._activeRoute!=undefined){
-
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
       console.log(this.objSearchFilter);
       // let query=this._activeRoute.snapshot.params['id'].split('/');
@@ -52,10 +51,12 @@ export class SearchresultComponent implements OnInit {
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
       this.objSearchResultItems = res;
       this.getSearchFilterResult();
+      
       console.log(JSON.stringify(this.objSearchResultItems));
     },error=>{
       console.log(JSON.stringify(error));
     });
+//     this.paginate(25);
   }
  ngOnInit() {   
   //$.getScript('./assets/js/owljsor.js');
@@ -94,6 +95,9 @@ export class SearchresultComponent implements OnInit {
   }
   getCategories(){
      this._masterservice.getAllCategories().subscribe(res=>{
+       res.forEach(element => {
+         element['pageSize'] = 25
+       });
       this.categories=res;
       if(this.objSearchFilter.catId>0){
        // this.categories=this.categories.filter(c=>c.categoryId==this.objSearchFilter.categoryId);
@@ -167,6 +171,7 @@ export class SearchresultComponent implements OnInit {
     return reviews*rating
   }
    paginate (pageSize) {
+     debugger
      this.disableLoadingButton=false;
    let c=this.objSearchResultItems.items.slice(this.pageNumber * pageSize, (this.pageNumber + 1) * pageSize);
    if(c.length<this.objSearchFilter.pageSize){
@@ -175,8 +180,10 @@ export class SearchresultComponent implements OnInit {
     c.forEach(element => {
       if(element.profileImage==null){
         element.profileImage=this.blankImg;
+
       }
-    this.collection.push(element); 
+      this.collection.push(element); 
+
    });
    this.pageNumber+=1;
   }

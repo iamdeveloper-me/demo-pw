@@ -15,7 +15,7 @@ export class StepFirstComponent implements OnInit {
   categoryArray:string[];
   objVendorDetails: VendorDetails;
   public arra = new Array();
-  num_CategoryId:0;
+  num_CategoryId:number;
   user = 
   {
    vendorCategories: [ { categoryId: "" } ] 
@@ -51,6 +51,11 @@ export class StepFirstComponent implements OnInit {
   }
     constructor( private cservice: SignupVendorService,private http: HttpClient , private router: Router ) {
       this.objVendorDetails = new VendorDetails();
+      if(localStorage.getItem('VednorDetails') != undefined){
+        this.num_CategoryId =       parseInt(JSON.parse(localStorage.getItem('VednorDetails'))['vendorCategories'][0]['categoryId'])
+
+      }
+
     }
 
  loadScript(){

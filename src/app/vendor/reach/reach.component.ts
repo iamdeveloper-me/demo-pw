@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { reachlineChartMulti , reachweeklylineChartMulti, reachmonthlylineChartMulti} from '../../shared/data/ngxChart';
 import * as chartsData from '../../shared/configs/ngx-charts.config';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-reach',
   templateUrl: './reach.component.html',
@@ -9,9 +9,12 @@ import * as chartsData from '../../shared/configs/ngx-charts.config';
 })
 export class ReachComponent implements OnInit {
 
-  constructor() {   Object.assign(this, {  reachlineChartMulti , reachweeklylineChartMulti, reachmonthlylineChartMulti }) }
-
+  constructor(private router: Router) {   Object.assign(this, {  reachlineChartMulti , reachweeklylineChartMulti, reachmonthlylineChartMulti }) }
+  basicplane;
   ngOnInit() {
+    this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
+    if(this.basicplane == '1' )
+    { this.router.navigate(['../vendor/dashboard'])}
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');

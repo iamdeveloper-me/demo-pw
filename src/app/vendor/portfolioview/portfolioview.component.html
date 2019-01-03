@@ -105,26 +105,25 @@
                                       Add image! {{uploader.queue}}
                                 </div>
                                 <div class="btnholdertik">
-                                  <input (change)="previewFile($event)" type='file'  multiple title="">
-                                  <!-- <button class="newbtn Choosefilebtn"  >Choose File</button> -->
+                                  <input (change)="previewFile($event)" type='file' class="filehidden"  multiple title="">
+                                  <button class="newbtn Choosefilebtn"  >Choose File</button>
                                 </div>
                             </div>
                           </div>
                           <div class="row">
                             <div class="col-md-12 imagescroll"><br/>
-                              <table class="table table-responsive">  
-                                <tbody>
-                                  <tr *ngFor="let item of previewImages;let i=index" >
-                                    <td><strong>{{ fileNames[i] }}</strong></td>
-                                    <td><img [src]="item" height="200" class="img img-responsive"></td>
-                                    <td>
-                                      <button type="button" class="btn btn-raised btn-danger btn-sm" (click)="removePreviewImg(i)">
+                           
+                                  <div *ngFor="let item of previewImages;let i=index" >
+                                   
+                                    <div class=col-sm-3 >
+                                      <img [src]="item" height="200" class="uploadimg img-responsive">
+                                      <br/><button type="button" class="btn btn-raised btn-danger btn-sm" (click)="removePreviewImg(i)">
                                           Remove
                                       </button>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
+                                    </div>
+                                   
+                                  </div>
+                               
                             </div>
                           </div>
                         </div>

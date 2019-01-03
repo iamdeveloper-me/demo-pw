@@ -101,6 +101,7 @@ export class MenuComponent implements OnInit {
     }
     //----------------userpanellogout
     logout(){
+        debugger;
         sessionStorage.clear();
         localStorage.clear();
         this.router.navigate(['../home']);

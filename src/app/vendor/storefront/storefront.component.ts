@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  areaChartMulti,weeklyChartMulti ,monthlyChartMulti } from '../../shared/data/ngxChart';
 import * as chart from './ngx-charts.config';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-storefront',
   templateUrl: './storefront.component.html',
@@ -9,8 +9,11 @@ import * as chart from './ngx-charts.config';
 })
 export class StorefrontComponent implements OnInit {
 
-
+  basicplane;
   ngOnInit() {
+    this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
+    if(this.basicplane == '1' )
+    { this.router.navigate(['../vendor/dashboard'])}
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
@@ -35,7 +38,7 @@ export class StorefrontComponent implements OnInit {
       $(".monthlyreport").hide();
     });
   }
-  constructor() {
+  constructor(private router: Router) {
     Object.assign(this, { areaChartMulti ,weeklyChartMulti , monthlyChartMulti} )
     
 

@@ -332,6 +332,7 @@
       <div class="photo_cont">
 
 	    	<div id="products" class="row list-group">
+          {{collection | json}}
 	        	<div *ngFor='let i of collection' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
 
 	                <div class="card mb-2 bordre_rad1 hover_effect">

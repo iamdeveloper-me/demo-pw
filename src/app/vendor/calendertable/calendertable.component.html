@@ -20,6 +20,8 @@
 								<div class="col-md-12 ">
 									<p class="card-category upcominghead"> <b> My Jobs </b>
 										<!-- <button class="float_righ" (click)=dayClick()>Create New Job</button></p> -->
+											<button class="float_righ" (click)= "jobdate = true ">Create New Job</button></p>
+										
 								</div>
 							</div>
 							<div class="card">
@@ -252,8 +254,8 @@
 	<div class="clearfix"></div>
 </div>
 
-<!-- <form (ngSubmit)="job(create)" #create="ngForm">
-	<div class="modal fade" [ngClass]="{'show' : showModal}" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<form (ngSubmit)="job(create)" #create="ngForm">
+	<div class="modal fade" [ngClass]="{'show' : jobdate}" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="card-block" style="background: #fff;">
@@ -427,7 +429,8 @@
 						</div>
 					</div>
 					<div class="modal-footer btn_center">
-						<button type="submit" class="btn newbtn" [disabled]="!create.valid">SAVE</button>
+						<button type="submit" class="btn newbtn" >SAVE</button>
+						<!-- [disabled]="!create.valid" -->
 						<button type="button" class="btn newbtn newcancelbtn" (click)="hide()">CANCEL</button>
 					</div>
 
@@ -435,7 +438,9 @@
 			</div>
 		</div>
 	</div>
-</form> -->
+</form>
+
+
 <div class="modal fade" [ngClass]="{'show' : showModal}" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -508,7 +513,7 @@
 							<div class="col-sm-6">
 								<div class="field">
 									
-									<input type="text" class="form-control" name='startDate' placeholder=" dd-MM-yyyy" [(ngModel)]="objVendorJob.startDate" 
+									<input type="text" class="form-control" name='startDate' placeholder=" dd-MM-yyyy" [(ngModel)]="edit_startDate" 
 									 ngbDatepicker id="estartDate" #ejStartDate [dayTemplate]="customDay" required [markDisabled]="isDisabled"
 									 #d4="ngbDatepicker">
 									<label for="estartDate">Start Date</label>
@@ -527,13 +532,12 @@
 								</div>
 							</div>
 							<div class="col-sm-6">
-								<input type="text" name='strdate' [(ngModel)]='objVendorJob.startDate' class="form-control">
 								<div class="field">
-									<select type="time" [(ngModel)]="objVendorJob.startTime" id="startTime" name="startTime" #ejStartTime="ngModel" required>
-										<option hidden [ngValue]="startTime">{{edit_job_form.startTime | date:'shortTime' }}</option>
+									<select type="time" [(ngModel)]="edit_job_form.startTime" id="startTime" name="startTime" #ejStartTime="ngModel" required>
+										<option hidden [ngValue]="edit_job_form.startTime" >{{edit_job_form.startTime | date:'shortTime' }}</option>
 										<option *ngFor='let s of select_time.timing' [ngValue]="startTime" [value]='s.startTime'>{{s.startTime}}</option>
 									</select>
-									<label for="startTime"> Start Time </label>
+									<label for="startTime"> Start Time {{edit_job_form.startTime | date:'shortTime' }}</label>
 
 								</div>
 								<div class="clearfix"></div>
@@ -545,7 +549,7 @@
 							</div>
 							<div class="col-sm-6">
 								<div class="field">
-									<input class="form-control placetik" placeholder="dd-MM-yyyy" name="endDate" [(ngModel)]="objVendorJob.endDate"
+									<input class="form-control placetik" placeholder="dd-MM-yyyy" name="endDate" [(ngModel)]="edit_endDate"
 									 ngbDatepicker [dayTemplate]="customDay" id="eendDate" #ejEndDate="ngModel" required [markDisabled]="isDisabled"
 									 #eendDate="ngbDatepicker">
 									<label for="eendDate">End Date</label>
@@ -565,11 +569,11 @@
 							</div>
 							<div class="col-sm-6">
 								<div class="field">
-									<select type="time" [(ngModel)]="objVendorJob.endTime" id="endTime" name="endTime" #ejEndTime="ngModel" required>
-										<option hidden [ngValue]="endTime">{{edit_job_form.endTime | date:'shortTime' }}</option>
+									<select type="time" [(ngModel)]="edit_job_form.endTime" id="endTime" name="endTime" #ejEndTime="ngModel" required>
+										<option hidden [ngValue]="edit_job_form.endTime">{{edit_job_form.endTime | date:'shortTime' }}</option>
 										<option *ngFor='let s of select_time.timing' [value]='s.endTime' [ngValue]="endTime">{{s.endTime}}</option>
 									</select>
-									<label for="endTime">End Time</label>
+									<label for="endTime">End Time {{edit_job_form.endTime | date:'shortTime' }}</label>
 								</div>
 								<div *ngIf="ejEndTime.invalid && (ejEndTime.dirty || ejEndTime.touched)" class="text-danger">
 									<div *ngIf="ejEndTime.errors?.required">
@@ -598,7 +602,6 @@
 							<input type="hidden" name="vendorJobsId" [(ngModel)]="edit_job_form.vendorJobsId" />
 							<input type="hidden" name="vendorId" [(ngModel)]="vendorid" />
 
-							<!-- </div> -->
 						</div>
 					</div>
 					<div class="modal-footer btn_center">

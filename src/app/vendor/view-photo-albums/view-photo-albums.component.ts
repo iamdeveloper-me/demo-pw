@@ -100,18 +100,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
     console.log(params) ;
         this.albumid = params;
   });
-  $(function() {
-    var current_progress = 0;
-    var interval = setInterval(function() {
-        current_progress += 10;
-        $(".dynamic")
-        .css("width", current_progress + "%")
-        .attr("aria-valuenow", current_progress)
-        .text(current_progress + "% Complete");
-        if (current_progress >= 100)
-            clearInterval(interval);
-    }, 2000);
-  });
+
 
 
   let headers = new Headers();
@@ -432,42 +421,100 @@ $(document)
 
   
 
+
 uploadAll(){
+ 
+  this.lodar = true;
+  var i = 0;
+const formData = new FormData();
+  for (let file of this.uploader.queue)
+  {
+      formData.append(file['some'].name, file['some']);
+      
+  }
 
-  console.log(this.uploader.queue)
-  const formData = new FormData();
-  for(let file of this.uploader.queue){
-          formData.append(file['some'].name,file['some'])
-          file.upload()
-  
-  }        
+formData.append('AlbumId', this.albumid.id)
 
-  let headers = new  Headers();
-  var authToken = localStorage.getItem('userToken');
-  headers.append("Authorization",'Bearer '+authToken);
-  this._http.withUploadProgressListener(progress => {
-      this.progress_bar = true; 
+// Headers
+let headers = new  Headers();
+var authToken = localStorage.getItem('userToken');
+headers.append("Authorization",'Bearer '+authToken);
+
+//Post Album 2 photos
+console.log(formData);
+
+this.uploader.queue = [];
+
+
+    this._http.withUploadProgressListener(progress => {this.progress_bar = true; 
       // console.log(`Uploading ${progress.percentage}%`);
       this.closeModel(); this.progressPercentage = progress.percentage})
-.withDownloadProgressListener(progress => { 
-  // console.log(`Downloading ${progress.percentage}%`);
- })
-.post(this.url+'api/ImageUploader/AlbumImageUpload', formData,{headers: headers})
-.subscribe(data =>{ 
-this.toastr.success(data.json().message);
-//this.router.navigate(['../vendor/portfolioview'])
-this.http.get(this.albumget,{headers:headers})
-.subscribe(data =>{   
-          console.log(data.json()); 
-          this.albumImagesModify =data.json() 
+    .withDownloadProgressListener(progress => { 
+      // console.log(`Downloading ${progress.percentage}%`);
+     })
+        .post(this.url +'api/ImageUploader/AlbumImageUpload', formData,{headers: headers})
+    .subscribe(data =>{
+      this.albumImagesModify = [];
   
-});
-},(error)=>{console.log(error)});
+            console.log(  data.json()); 
+           
+            this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
+            .subscribe(data =>{
+            this.totalImage =  data.json();
+            console.log(data.json()); 
+            console.log(this.albumid.id); 
+            for (var item of  this.totalImage ) {
+              if(this.albumid.id == item.albumsId)
+                {
+                    console.log(item);
+                    // console.log(item.tags);
+                    this.albumname = item.albumName;
+                    this.tags = item.tags;
+                    this.colourtags = item.colorTags;
+                    this.myalbumimages =  item.albumImages;
+                
+                    for (var albumtag of  this.myalbumimages ) {
+                      if(albumtag.tags != null && albumtag.colorTags != null){
+                        albumtag['tags'] = albumtag['tags'].split(',');
+                        albumtag['colorTags'] = albumtag['colorTags'].split(',');
+                      }
+                      
+                      this.albumImagesModify.push(albumtag);
+                      console.log(this.albumImagesModify)
+                    
+                    }
+                }
+              }
+            
+              for (var image of  this.albumImagesModify ) 
+              {  
+                for (var g of  image.colorTags ) 
+                  {
+                    this.colour_table.push(g)
+                    this.colour_table = this.colour_table.filter((el, i, a) => i === a.indexOf(el))
+          
+                  }
+              }
+              console.log(this.colour_table)
+            });
+
+            this.previewImages =[];
+            this.lodar = false;
+            this.toastr.success(data.json().message);
+            this.progress_bar =  false
+      
+     }
+    ,error=>{
+      console.log(error)
+    }); 
+    
+   
 }
 
-
-  closeModel(){this.uploadphoto_dailog = false;
+  closeModel(){
+    this.uploadphoto_dailog = false;
     this.lodar= false;
+    this.previewImages =[];
   }
   popup_closeModel(){
     this.progress_bar= false;

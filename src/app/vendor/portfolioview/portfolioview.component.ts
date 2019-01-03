@@ -175,7 +175,7 @@ export class PortfolioviewComponent implements OnInit {
                             file.upload()
                     
                     }        
-
+                    this.previewImages = [];
                     let headers = new  Headers();
                     var authToken = localStorage.getItem('userToken');
                     headers.append("Authorization",'Bearer '+authToken);
@@ -194,7 +194,10 @@ export class PortfolioviewComponent implements OnInit {
                             this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
                             this.uploadphoto_dailog = false;
                             this.progress_bar = false;
+                           
             });
+
+         
             },(error)=>{console.log(error)});
     }
     photoupload(formData){
@@ -241,7 +244,6 @@ export class PortfolioviewComponent implements OnInit {
 
     }
     popup_closeModel(){
-        alert("false");
         this.progress_bar = false;
     }
     setbackground(setId){

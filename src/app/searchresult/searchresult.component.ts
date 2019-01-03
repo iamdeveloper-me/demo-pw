@@ -94,6 +94,9 @@ export class SearchresultComponent implements OnInit {
   }
   getCategories(){
      this._masterservice.getAllCategories().subscribe(res=>{
+       res.forEach(element => {
+         element['pageSize'] = 25
+       });
       this.categories=res;
       if(this.objSearchFilter.catId>0){
        // this.categories=this.categories.filter(c=>c.categoryId==this.objSearchFilter.categoryId);
@@ -167,6 +170,7 @@ export class SearchresultComponent implements OnInit {
     return reviews*rating
   }
    paginate (pageSize) {
+     debugger
      this.disableLoadingButton=false;
    let c=this.objSearchResultItems.items.slice(this.pageNumber * pageSize, (this.pageNumber + 1) * pageSize);
    if(c.length<this.objSearchFilter.pageSize){
@@ -175,8 +179,10 @@ export class SearchresultComponent implements OnInit {
     c.forEach(element => {
       if(element.profileImage==null){
         element.profileImage=this.blankImg;
+
       }
-    this.collection.push(element); 
+      this.collection.push(element); 
+
    });
    this.pageNumber+=1;
   }

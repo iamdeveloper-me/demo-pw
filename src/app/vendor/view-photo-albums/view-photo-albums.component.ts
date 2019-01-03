@@ -430,7 +430,7 @@ $(document)
 
         this._http.withUploadProgressListener(progress => {this.progress_bar = true; console.log(`Uploading ${progress.percentage}%`);this.closeModel(); this.progressPercentage = progress.percentage})
         .withDownloadProgressListener(progress => { console.log(`Downloading ${progress.percentage}%`); })
-        .post(this.url+'api/ImageUploader/PortfolioUploader', formData,{headers: headers})
+        .post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ImageUploader/AlbumImageUpload', formData,{headers: headers})
         .subscribe(data =>{
           this.totalImage =  data.json();
        

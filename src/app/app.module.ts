@@ -10,6 +10,7 @@ import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.com
 import { FullCalendarModule } from 'ng-fullcalendar';
 import { ProgressHttpModule } from 'angular-progress-http';
 
+import { OwlModule } from 'ngx-owl-carousel';
 
 //import { NgProgressModule } from 'ngx-progressbar';
 
@@ -211,6 +212,7 @@ import { FeaturedWeddingSuppliersComponent } from './featured-wedding-suppliers/
 import { DetailpageComponent } from './detailpage/detailpage.component';
 import { PaymentSummaryComponent } from './payment-summary/payment-summary.component';
 import { Gallery0Component } from './vendor/gallery0/gallery0.component';
+import { GalleryTwoComponent } from './vendor/gallery-two/gallery-two.component';
 
 
 
@@ -421,6 +423,8 @@ export function getAuthServiceConfigs() {
 
         PaymentSummaryComponent,
 
+        GalleryTwoComponent,
+
 
         
         
@@ -430,6 +434,7 @@ export function getAuthServiceConfigs() {
 
   ],
     imports: [
+        OwlModule,
         ProgressHttpModule
 ,NgxDatatableModule,
        // NgProgressModule,

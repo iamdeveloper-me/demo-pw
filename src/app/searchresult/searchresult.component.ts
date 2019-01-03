@@ -31,11 +31,10 @@ export class SearchresultComponent implements OnInit {
   blankImg='../../assets/img/noImg.png';
 
   constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService, private api: apiService) {  
-
+    debugger;
     this.objSearchFilter=new filterParam();
     this.objSearchlistvm = new SearchListingVM();
     if(this._activeRoute!=undefined){
-
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
       console.log(this.objSearchFilter);
       // let query=this._activeRoute.snapshot.params['id'].split('/');
@@ -52,10 +51,12 @@ export class SearchresultComponent implements OnInit {
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
       this.objSearchResultItems = res;
       this.getSearchFilterResult();
+      
       console.log(JSON.stringify(this.objSearchResultItems));
     },error=>{
       console.log(JSON.stringify(error));
     });
+//     this.paginate(25);
   }
  ngOnInit() {   
   //$.getScript('./assets/js/owljsor.js');

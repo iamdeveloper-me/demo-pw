@@ -336,7 +336,8 @@
 
 	                <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
-                      <img class="group list-group-image" [src]="i.profileImage" alt="Card image cap">
+                      <img class="group list-group-image" [src]='i.storeFrontImage' alt="Card image cap">
+                      {{i.storeFrontImage}}
                       <span class="book_mark">
                         <i class="material-icons">bookmark_border</i>
                       </span>
@@ -377,7 +378,7 @@
                             <span class="fa fa-star"></span>
                             <!-- <ngb-rating [(rate)]="4"></ngb-rating> -->
                             <span *ngIf='i.reviews.length>0'>
-                            {{i.reviews[0].rating}} {{i.reviews.length}} </span>
+                            {{i.averageRating}} {{i.reviews.length}} </span>
                           </p>
                         </div>
                        <div class="col-md-12 col-12 cardfoottext">
@@ -389,7 +390,7 @@
                           <div class="col-md-4 col-4 span_positin">
                            <img src="../../assets/img/tag.svg"  alt=""> 
                           <span>Deals</span>
-                          <span *ngIf='i.deals'>{{i.deals.length}}</span>
+                          <span *ngIf='i.deals'>{{i.dealsCount}}</span>
                           </div>
                         </div>
                       </div>
@@ -399,7 +400,7 @@
 	     	</div>
         <div>
 
-           <div class="btn btn-success" style="color:white" *ngIf='!disableLoadingButton' (click)='paginate(objSearchFilter.pageSize)'>Load More........</div>
+           <div class="btn btn-success" style="color:white" *ngIf='!disableLoadingButton' (click)='paginate(25)'>Load More........</div>
                   <!-- <ngb-pagination [collectionSize]="objSearchResultItems?.totalCount" [(page)]="objSearchResultItems.page" [boundaryLinks]="true"></ngb-pagination>
              <span class="totalpage">{{objSearchResultItems.totalPages}} (Page)s</span> -->
         </div>

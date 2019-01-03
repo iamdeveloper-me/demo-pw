@@ -136,8 +136,8 @@ export class CalendertableComponent implements OnInit {
             activeDayIsOpen: boolean = true;
 
             job(jo){
+              debugger;
               console.log(jo);
-            
                       this.end_date = jo.value['endDate']['year']+'-'+jo.value['endDate']['month']+'-'+jo.value['endDate']['day']
                       this.start_date = jo.value['startDate']['year']+'-'+jo.value['startDate']['month']+'-'+jo.value['startDate']['day']
                       jo.value.startDate = this.start_date

@@ -597,7 +597,7 @@ export class EventListComponent implements OnInit {
 
   editevent(v) {
     console.log(v);
-    alert("dvfdv");
+    // alert("dvfdv");
     this.objevent.districtId = v.districtId;
     this.objevent.suburbId = v.suburbId;
     this.objevent.countryId = v.countryId;
@@ -607,13 +607,13 @@ export class EventListComponent implements OnInit {
     this.startimee = v.eventsDates[0].startTimeString;
     this.endtime = v.eventsDates[0].endTimeString;
     if(v.eventsDates[0].startDate.includes('T') == true){
-      alert("true")
+      // alert("true");
       v.eventsDates[0].startDate = this.apiService.dateTFormatToJson(v.eventsDates[0].startDate)
       v.eventsDates[0].endDate   =  this.apiService.dateTFormatToJson(v.eventsDates[0].endDate)
         
  
     }else{
-     alert("false")
+    //  alert("false");
     // v.eventsDates[0].endDate = v.eventsDates[0].endDate
      console.log(v.eventsDates[0].endDate)
      console.log(v.eventsDates[0].startDate)
@@ -694,13 +694,14 @@ export class EventListComponent implements OnInit {
   }
 
   past_upcomming_event(past) {
-   // console.log(past);
+   console.log(past);
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
     this.eventArray.unshift(this.objevent);
+    this.eventArray = [];
     this.http.post(this.myevent_Post_url, { Filter: past }, { headers: headers }).subscribe(data => {
       this.eventArray = data.json();
      // console.log(JSON.stringify(this.eventArray));
@@ -774,8 +775,8 @@ export class EventListComponent implements OnInit {
     headers.append("Authorization", 'Bearer ' + authToken);
     // this.eventArray = [];
     this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/eventdetails?id' + '=' + id, { headers: headers }).subscribe(data => {
-      this.eventArray = [];
-      this.eventArray.push(data.json())
+      this.eventArray.push(data.json());
+      console.log(data.json());
 
     }, error => { 
       console.log(error); 

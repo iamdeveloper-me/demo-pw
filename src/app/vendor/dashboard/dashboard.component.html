@@ -59,7 +59,7 @@
                                         </span>
                                   </a>
                                 <a routerLink="../business"  *ngIf="businessProfilePic == test1" >
-                                    <i class="material-icons graytext" ngbTooltip="Business Profile Picture">error_outline</i> 
+                                    <i class="material-icons graytext" ngbTooltip="Business Logo">error_outline</i> 
                                     <strong class="blacktext">Logo/Representative </strong>  
                                     <span class="editbtn">
                                           <i class="material-icons">arrow_backward</i>
@@ -72,7 +72,7 @@
                               <ul>
                                   <li>
                                     <a routerLink="../business-services" *ngIf="businessService == test" class="done">
-                                      <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
+                                      <i class="material-icons" ngbTooltip="Type of Services">check_circle</i>
     
                                       <strong class="blacktext" >Type of Services</strong>
                                       <span class="editbtn">
@@ -80,7 +80,7 @@
                                         </span>
                                     </a>
                                   <a routerLink="../business-services"  *ngIf="businessService == test1" >
-                                      <i class="material-icons graytext" ngbTooltip="Service">error_outline</i> 
+                                      <i class="material-icons graytext" ngbTooltip="Type of Services">error_outline</i> 
                                       <strong class="blacktext">Type of Services</strong>  
                                       <span class="editbtn">
                                           <i class="material-icons">arrow_backward</i>
@@ -90,7 +90,7 @@
 
                                  <li>
                                     <a routerLink="../location" *ngIf="mapSettings == test" class="done">
-                                      <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
+                                      <i class="material-icons" ngbTooltip="location">check_circle</i>
     
                                       <strong class="blacktext" >location (map)</strong>
                                       <span class="editbtn">
@@ -112,7 +112,7 @@
                                     <li> 
                            
                                        <a routerLink="../business" *ngIf="description == test" class="done">
-                                         <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
+                                         <i class="material-icons" ngbTooltip="Description">check_circle</i>
        
                                          <strong class="blacktext" >Description</strong>
                                          <span class="editbtn">
@@ -130,7 +130,7 @@
                                     <li> 
                                
                                        <a routerLink="../gallery" *ngIf="photos == test" class="done">
-                                         <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
+                                         <i class="material-icons" ngbTooltip="Photos">check_circle</i>
        
                                          <strong class="blacktext" >Photos</strong>
                                          <span class="editbtn">
@@ -241,8 +241,9 @@
                           
                             <!-- *ngIf = "vendor.vendorLocations > 0" -->
                              <!-- <p data-target="#currentLocation" data-toggle="modal">{{currentLocation}}<br/>2 More Branches </p> -->
-                             <div  *ngFor='let c of vendor.vendorLocations | slice:0:1 ;let p=index'>
-                                <div >
+                             <!-- <div  *ngFor='let c of vendor.vendorLocations | slice:0:1 ;let p=index'> -->
+                              <div *ngFor="let data of location_Array | slice:0:1;let i=index">
+                              <!-- <div >
                                   <a routerLink="../location"  >
                                   {{vendor.address}},
                                   {{vendor.suburb.name}},
@@ -250,8 +251,17 @@
                                   {{vendor.country.countryName }}
                                   </a>
                                   <a *ngIf = "ct > 0"> {{ct}} more Location</a>
+                                </div>   -->
+                                 <div >
+                                  <a routerLink="../location"  >
+                                  {{data.address}},
+                                  {{data.suburb.name}},
+                                  {{data.districts.name}},
+                                  {{data.country.countryName }}
+                                  </a>
+                                  <a *ngIf = "ct > 0"> {{ct}} more Location</a>
                                 </div>  
-                      
+                                <!-- {{location_Array | json}} -->
                               </div>
                              <span  class="editbtn" routerLink="../location"> 
                               <span class="editbtn">
@@ -310,9 +320,9 @@
                                 <a *ngFor='let c of vendor.vendorCategories| slice:0:1'>
                                     {{c.categories.categoryName }}
                                 </a>
-                                <a  *ngIf = "total_business_Services > 0" routerLink="../location" >
+                                <!-- <a  *ngIf = "total_business_Services > 0" routerLink="../location" >
                                  , {{total_business_Services}} more Categories                               
-                                 </a>
+                                 </a> -->
                               </span>
                               <br/>
                               <div class="clearfix"></div>
@@ -349,7 +359,7 @@
                              <i class="material-icons">video_library</i>
                              <strong>{{VendorDashboard_data.videoCount}}</strong>
                              <div class="clearfix"></div>
-                             Videos // {{pricingPlanId.pricingPlanId}}
+                             Videos
                           </a>
                        </div>
                        <div class="col-xs-4 text-center" >

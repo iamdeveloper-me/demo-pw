@@ -245,7 +245,7 @@ const appRoutes: Routes = [
     { path: 'vendor/Success', component:  SuccessComponent},
     { path: 'vendor/Failure', component:  FailureComponent},
     { path: 'vendor/payment-selection', component:  PaymentSelectionComponent  },
-    { path: 'payment-selection', component:  PaymentSummaryComponent  },
+    { path: 'register/step5', component:  PaymentSummaryComponent  },
   
 
 

@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
     // PhoneEdit = '5555555' ;
     private urll: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/';
     angularLogo = 'https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg';
-    
+    private urlget: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mylocations'
     constructor( private apiService: apiService,config: NgbCarouselConfig ,public http: Http ,private router: Router) {
       
     //config.interval = 10000;
@@ -48,7 +48,8 @@ myplans:any = {};
   // pricingPlanId:number;
   payFrequency:number;
 
-
+  location_Array: Array<any>;
+  location_Array_length;
   x: any;
   greeting = {};
   name = 'World';
@@ -206,7 +207,7 @@ myplans:any = {};
                         });
 
 
-
+ 
 
 
 
@@ -309,7 +310,14 @@ myplans:any = {};
                   }
               });
           }
-    
+          
+          this.http.get(this.urlget, { headers: headers }).subscribe((data) => {
+            this.location_Array = data.json();
+            this.location_Array_length = this.location_Array.length;
+            this.location_Array.sort(p=>p.isPrimary).reverse();
+            this.location_Array[0].locationPhones.reverse();
+            console.log(JSON.stringify(this.location_Array));
+          });
         
         }
 

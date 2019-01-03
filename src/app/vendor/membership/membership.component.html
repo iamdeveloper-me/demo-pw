@@ -79,8 +79,8 @@
 					<div class="col-sm-12">
 						<div class="card martop0px">
 							<div id="membershipcarousel" class="owl-carousel">
-								<div class="panel card item"  *ngFor="let plan of pricing">
-									<div class="panel-heading arrow_box text-center">
+								<div class="panel card item"  *ngFor="let plan of pricing" [ngClass]="{'classno2': plan.pricingPlanId == pricingPlanId  && payFrequency == 0}">
+									<div class="panel-heading arrow_box text-center" >
 
 												<span class="mostpopulartext" *ngIf="plan.monthlyPrice == 0">Free</span>
 												<span class="mostpopulartext" *ngIf="plan.title == 'Premium'">Most Popular</span>

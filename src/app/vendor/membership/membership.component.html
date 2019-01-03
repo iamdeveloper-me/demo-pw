@@ -157,7 +157,7 @@
 					<div class="col-sm-12">
 						<div class="card martop0px">
 							<div id="membershipcarouselann" class="owl-carousel">
-								<div class="panel card item" *ngFor="let plan of pricing">
+								<div class="panel card item" *ngFor="let plan of pricing" [ngClass]="{'classno2': plan.pricingPlanId == pricingPlanId  && payFrequency == 1}">
 									<div class="panel-heading arrow_box text-center">
 										<span class="mostpopulartext" *ngIf="plan.monthlyPrice == 0">Free</span>
 										<span class="mostpopulartext" *ngIf="plan.title == 'Premium'">Most Popular</span>
@@ -198,7 +198,7 @@
 											<li class="list-group-item" *ngIf="plan.priorityInSearch == 1"><i class="material-icons bluetext" >report</i> Medium Priority in Search Results </li>
 											<li class="list-group-item" *ngIf="plan.priorityInSearch == 2"><i class="material-icons bluetext" >report</i> High Priority in Search Results </li>
 								    </ul>
-									<div *ngIf="plan.pricingPlanId == pricingPlanId  && payFrequency == 1 ; else ooo">
+									<div class="panel-footer text-center" *ngIf="plan.pricingPlanId == pricingPlanId  && payFrequency == 1 ; else ooo">
 										<!-- btnchoosetik -->
 										<!-- {{payFrequency}} -->
 										<button  class="btn btnchoosetik disabled" type="submit" (click) = "annualPrice(plan)" [disabled]="true">SELECTED PLAN

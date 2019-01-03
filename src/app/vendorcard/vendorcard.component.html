@@ -50,8 +50,8 @@
                         <div class="card-body ">
                           <div class="text-center"> 
                             <h6> <strong>{{list_featured_supplier.nameOfBusiness}}  </strong> </h6>
-                            <button class="wedding_btn">{{list_featured_supplier.nameOfBusiness}} </button>
-                            <P class="locat_icon"><i class="material-icons">location_on</i> {{list_featured_supplier.country.countryName}} </P>
+                            <button class="wedding_btn">{{list_featured_supplier?.nameOfBusiness}} </button>
+                            <P class="locat_icon"><i class="material-icons">location_on</i> {{list_featured_supplier.country?.countryName}} </P>
                             <p class="statr_point" *ngFor='let list_star of max | slice:0:1'>
                              
                                <ngb-rating [rate]="list_star"></ngb-rating> 
@@ -96,8 +96,8 @@
               <div class="row">
                 <div class="col-md-4 col-6 locationbox" *ngFor='let list_dream of dream_wedding_location' >
                     <img [src]="list_dream.profileImage" class="img-responsive" alt="img06" />
-                      <h2>{{list_dream.nameOfBusiness}}
-                        <span>{{list_dream.country.countryName}}</span>
+                      <h2>{{list_dream?.nameOfBusiness}}
+                        <span>{{list_dream.country?.countryName}}</span>
                       </h2>
                 </div>
                

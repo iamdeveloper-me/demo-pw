@@ -102,7 +102,7 @@ constructor( public http: Http,public toastr: ToastrService ) {
                 headers.append("Authorization",'Bearer '+authToken);
                     this.http.get(this.mygeturl,{headers:headers}).subscribe(data =>{
                       console.log(data.json())
-                      debugger
+                      
                       this.albumImagesModify = data.json()
                       this.albumImagesModify.forEach(el=>{
                         if(el['tags'] != ''){
@@ -164,7 +164,7 @@ constructor( public http: Http,public toastr: ToastrService ) {
           this.createColorPanel();
           console.log(this.colors)
         if(this.formdata['colorTags'] != ''){
-          debugger;
+
           this.formdata['colorTags'].forEach(element => {
             this.colors.forEach(el=>{
               if(element == el['colorName']){
@@ -193,7 +193,7 @@ constructor( public http: Http,public toastr: ToastrService ) {
       // this.taggg = ''
      }
     editSettting(e){
-      debugger
+     
       console.log(e.value.tags)
       console.log(this.colors)
       this.colors.forEach(element=>{
@@ -211,7 +211,7 @@ constructor( public http: Http,public toastr: ToastrService ) {
       console.log(fire)
       this.postapi_tag(fire)        
 this.arr  = []
-debugger
+
     }
 
 

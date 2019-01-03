@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as chartsData from '../../shared/data/chartjs';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-actions',
   templateUrl: './actions.component.html',
@@ -8,8 +8,11 @@ import * as chartsData from '../../shared/data/chartjs';
 })
 export class ActionsComponent implements OnInit {
 
-
+  basicplane
   ngOnInit() {
+    this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
+    if(this.basicplane == '1' )
+    { this.router.navigate(['../vendor/dashboard'])}
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
@@ -34,7 +37,7 @@ export class ActionsComponent implements OnInit {
       $(".monthlyreport").hide();
     });
   }
-
+  constructor(  private router: Router) { }
   // lineChart
   public lineChartData = chartsData.lineChartData;
   public lineChartLabels = chartsData.lineChartLabels;

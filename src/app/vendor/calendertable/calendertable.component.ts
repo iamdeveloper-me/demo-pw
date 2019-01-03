@@ -69,6 +69,7 @@ export class CalendertableComponent implements OnInit {
      this.objVendorJob.startDate='abc123';
     }
     ngOnInit() {
+      
                   $.getScript('./assets/js/vendorsidebar.js');
                   this.http_header = new Headers();
                   var authToken = localStorage.getItem('userToken');
@@ -158,12 +159,12 @@ export class CalendertableComponent implements OnInit {
             
             }
             edit_job_modle(a){
-              console.log(a);
-              console.log(a.startDate);
-              console.log(a.endDate);
-              this.jobedit = true;
+             ;
+              this.showModal = true;
               this.edit_job_form = a;
-              debugger
+              console.log(this.edit_job_form)
+              this.objVendorJob=a;  
+              
               this.edit_startDate =  { "year": parseInt(a.startDate.split('T')[0].split('-')[0])   , 
                                                 "month": parseInt(a.startDate.split('T')[0].split('-')[1])  ,
                                                  "day": parseInt(a.startDate.split('T')[0].split('-')[2])}
@@ -184,16 +185,22 @@ export class CalendertableComponent implements OnInit {
               headers.append('Accept', 'application/json')
               headers.append('Content-Type', 'application/json');
               headers.append("Authorization",'Bearer '+authToken);
-              this.jobedit = false;
-              this.objVendorJob.startDate = this.apiService.dateJsonTodashed(this.objVendorJob.startDate)
-              this.objVendorJob.endDate = this.apiService.dateJsonTodashed(this.objVendorJob.endDate)
-              console.log(this.objVendorJob);
+         
+             
+              
+              this.objVendorJob.startDate =  b.value.startDate["year"]+'-'+b.value.startDate["month"]+'-'+  b.value.startDate["day"]
+ 
+              this.objVendorJob.endDate =  b.value.endDate["year"]+'-'+  b.value.endDate["month"]+'-'+ b.value.endDate["day"]
+              console.log(this.objVendorJob); 
               this.http.post(this.creat_job_url,this.objVendorJob,{headers:headers}).subscribe(
                 data =>{ 
                         console.log( data.json() );
-                        this.ngOnInit()
+                        //this.ngOnInit()
+                        this.showModal = false;
                         this.toastr.success(data.json().message );
-                        }),error => {  console.log(error)};
+                        }),error => {  console.log(error.json())
+                                       this.toastr.error(error.json().message );
+                                    };
             
             }
             deletevent(job,index){
@@ -284,7 +291,6 @@ export class CalendertableComponent implements OnInit {
               for(var i=0;i<=length;i++){
                 elem['title'] =  elem['eventTitle']
                 var r = parseInt(elem['startDate'].split('T')[0].split('-')[2]) + i
-                // debugger
                 elem['date'] =  elem['startDate'].split('T')[0].split('-')[0] + '-' + elem['startDate'].split('T')[0].split('-')[1] + '-' + r
                this.mainData.push(elem) 
               }
@@ -315,6 +321,7 @@ export class CalendertableComponent implements OnInit {
           hide(){
          // this.calendarOptions.events.push(this.eventObj);
           this.showModal = false;
+          this.jobedit = false;
         }
         dayClick(calendarOptions){
           const datePipe = new DatePipe('en-US');

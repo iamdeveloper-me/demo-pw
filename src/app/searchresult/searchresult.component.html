@@ -88,7 +88,7 @@
     <div class="col-sm-9 ipad100">
       <div class="container-fluid nopadd">
         <div class="badgecontainer">
-          <span class="badge badge-primary badge-labeled">
+          <span *ngIf='objSearchResultItems' class="badge badge-primary badge-labeled">
             {{objSearchResultItems.totalCount?objSearchResultItems.totalCount:0}} Results
           </span>
          
@@ -330,17 +330,18 @@
 		</div>
 		<div class="col-sm-9 listingtab">
       <div class="photo_cont">
-
+        {{collection | json}}
 	    	<div id="products" class="row list-group">
+          ccc
 	        	<div *ngFor='let i of collection' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
 
 	                <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
-                      <img class="group list-group-image" [src]="i.profileImage" alt="Card image cap">
+                      <img class="group list-group-image" src="{{i.profileImage}}" alt="Card image cap">
                       <span class="book_mark">
                         <i class="material-icons">bookmark_border</i>
                       </span>
-                      <div class="imgnum">
+                      <!-- <div class="imgnum">
                         <span>
                            <img src="../../assets/img/picture.png"/>
                            <span *ngIf='i.albums[0]'>
@@ -354,7 +355,7 @@
                          <span *ngIf='i.vendorVideos.length==0'>0</span>
                           
                       </span>
-                      </div>
+                      </div> -->
                       <div class="caption card-body">
                         <div>
                           <h6><strong>{{i.nameOfBusiness}}</strong></h6>
@@ -399,7 +400,7 @@
 	     	</div>
         <div>
 
-           <div class="btn btn-success" style="color:white" *ngIf='!disableLoadingButton' (click)='paginate(pageSize)'>Load More........</div>
+           <div class="btn btn-success" style="color:white" *ngIf='!disableLoadingButton' (click)='paginate(objSearchFilter.pageSize)'>Load More........</div>
                   <!-- <ngb-pagination [collectionSize]="objSearchResultItems?.totalCount" [(page)]="objSearchResultItems.page" [boundaryLinks]="true"></ngb-pagination>
              <span class="totalpage">{{objSearchResultItems.totalPages}} (Page)s</span> -->
         </div>

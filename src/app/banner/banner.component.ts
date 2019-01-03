@@ -10,14 +10,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./banner.component.scss']
 })
 export class BannerComponent implements OnInit {
-
   objFilterParam: filterParam;
   constructor( private router: Router ,private masterservice: MasterserviceService , private apiService: apiService) { 
     this.objFilterParam = new filterParam();
   }
-
   Categories = [];
   locations = [];
+  locationId:number=0;
   banner_data = []
   ngOnInit() {
     // alert("tiktik");
@@ -47,17 +46,14 @@ export class BannerComponent implements OnInit {
   }
   location(){ 
     this.masterservice.getAllLocation().subscribe(data => {
-    //  console.log(data);
+      console.log(data);
       this.locations = data;
      },error => {  console.log(error) })
   }
   banner(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/banners').subscribe(data => {
-      console.log("banner_Api")
-    
       this.banner_data = data
-      console.log( this.banner_data)
-    },
+      },
       error => {
        console.log(error)
       }
@@ -65,7 +61,7 @@ export class BannerComponent implements OnInit {
   }
 
   search(e,isAllSupplier,isDreamLocation){
-  
+    console.log(e.value);
     if(e){
       this.objFilterParam.catId  = e.value.category.categoryId;
       this.objFilterParam.categoryName= e.value.category.categoryName ;
@@ -76,24 +72,10 @@ export class BannerComponent implements OnInit {
       this.objFilterParam.sortDir = "";
       this.objFilterParam.sortedBy ="";
       this.objFilterParam.searchQuery ="";
-     
+      this.objFilterParam.locationId = this.locationId;
      }
-       localStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
-       this.router.navigate(['home/searchresult',this.objFilterParam.categoryName]);
-   
-   // this.router.navigate(['../searchresult/', e.value.category.categoryId]);
-    // let catId=0;
-    // let CatName='';
-    // if(e.value.category!=undefined){
-    //   catId=e.value.category.categoryId;
-    //   CatName=e.value.category.categoryName;
-    // }
-    // this.router.navigate(['home/searchresult',catId+'/'+CatName]);
-
-    //searchresult
-
-   // this.router.navigate(['/home/searchresult']);
-
+     sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+       this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   }
 
 }

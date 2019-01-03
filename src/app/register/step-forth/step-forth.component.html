@@ -203,7 +203,7 @@
                                             
                                             <ng-template #annual>
                                                     <div class="panel-footer text-center">
-                                                <button class="btn btnchoosetik" type="button" (click)= "annualPrice(plan)">Select
+                                                <button class="btn btnchoosetik" type="button" (click)= "annualPrice(plan)" [disabled]="plan.pricingPlanId == 1">Select
                                                 </button>
                                                 </div>
                                             </ng-template>

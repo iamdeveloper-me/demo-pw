@@ -11,17 +11,17 @@
                  <p class="ml-yb">   Wedding Category  </p>
               </div>
               <div class="steps-step-2">
-                 <a  routerLinkActive="router-link-active" type="button" class="btn btn-amber btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" ngbTooltip="General Information"><i class="fa fa-pencil" aria-hidden="true"></i>
+                 <a type="button" class="btn btn-amber btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" ngbTooltip="General Information"><i class="fa fa-pencil" aria-hidden="true"></i>
                  </a>
                  <p> Account information  </p>
               </div>
               <div class="steps-step-2">
-                 <a  routerLinkActive="router-link-active" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" ngbTooltip="Business Information"><i class="fa fa-photo" aria-hidden="true"></i>
+                 <a type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" ngbTooltip="Business Information"><i class="fa fa-photo" aria-hidden="true"></i>
                  </a>
                  <p> Business Details </p>
               </div>
               <div class="steps-step-2">
-                 <a   routerLinkActive="router-link-active" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" ngbTooltip="Payment"><i class="fa fa-check" aria-hidden="true"></i>
+                 <a type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" ngbTooltip="Payment"><i class="fa fa-check" aria-hidden="true"></i>
                  </a>
                  <p> Membership Plan   </p>
               </div>
@@ -159,7 +159,7 @@
        <small class="form-text text-muted danger" *ngIf="!phone.valid && (phone.dirty || phone.touched)">Phone is required!</small>
   </div>
   <div class="col-sm-12 btnholder">
-      <button class="btn btn-raised prevBtn-2 gradint_blue white signup_nextbtn btnborradius pull-left" type="button" [routerLink]="['/register/step-first']">Previous</button>
+      <button class="btn btn-raised prevBtn-2 gradint_blue white signup_nextbtn btnborradius pull-left" type="button" [routerLink]="['/register/step1']">Previous</button>
       <button class="btn btn-raised gradint_blue white signup_nextbtn btnborradius nextBtn-2 pull-right" type="button" (click)='goToNextStep()' [disabled]="!f.valid">Next</button>
   </div>
 </div>

@@ -10,6 +10,7 @@ import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.com
 import { FullCalendarModule } from 'ng-fullcalendar';
 import { ProgressHttpModule } from 'angular-progress-http';
 
+import { OwlModule } from 'ngx-owl-carousel';
 
 //import { NgProgressModule } from 'ngx-progressbar';
 
@@ -194,7 +195,6 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { apiService } from './shared/service/api.service';
 import { PaymentSelectionComponent } from './vendor/payment-selection/payment-selection.component';
 import { HompageLocationComponent } from './vendor/hompage-location/hompage-location.component';
-import { Gallery0Component } from './vendor/gallery0/gallery0.component';
 
 import { PagerService } from './_services';
 import { DealsComponent } from './deals/deals.component';
@@ -211,6 +211,8 @@ import { DreamWeddingLocationsComponent } from './dream-wedding-locations/dream-
 import { FeaturedWeddingSuppliersComponent } from './featured-wedding-suppliers/featured-wedding-suppliers.component';
 import { DetailpageComponent } from './detailpage/detailpage.component';
 import { PaymentSummaryComponent } from './payment-summary/payment-summary.component';
+import { Gallery0Component } from './vendor/gallery0/gallery0.component';
+import { GalleryTwoComponent } from './vendor/gallery-two/gallery-two.component';
 
 
 
@@ -276,7 +278,7 @@ export function getAuthServiceConfigs() {
         BannerComponent,
         FootComponent,
         RegisterComponent,
-
+        Gallery0Component,
         //Register Steps
         StepFirstComponent,
         StepSecondComponent,
@@ -398,7 +400,6 @@ export function getAuthServiceConfigs() {
 
         HompageLocationComponent,
 
-        Gallery0Component,
 
 
         DealsComponent,
@@ -422,6 +423,8 @@ export function getAuthServiceConfigs() {
 
         PaymentSummaryComponent,
 
+        GalleryTwoComponent,
+
 
         
         
@@ -431,6 +434,7 @@ export function getAuthServiceConfigs() {
 
   ],
     imports: [
+        OwlModule,
         ProgressHttpModule
 ,NgxDatatableModule,
        // NgProgressModule,

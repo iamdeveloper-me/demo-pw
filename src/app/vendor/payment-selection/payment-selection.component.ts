@@ -21,13 +21,13 @@ export class PaymentSelectionComponent implements OnInit {
   ngOnInit() {
     $.getScript('./assets/js/membershipslider.js'); 
 
-    
+    sessionStorage.getItem('selected_plan');
+   
     // console.log(JSON.parse(sessionStorage.getItem('selected_plan')))
     this.MainData   =    JSON.parse(sessionStorage.getItem('selected_plan'));
     console.log(this.MainData)
-
-    if(this.MainData.route_key == 0){
-    
+     if(this.MainData){ if(this.MainData.route_key == 0){
+          
       this.WhichPlan =   JSON.parse(sessionStorage.getItem('which_plan'))
       console.log(this.WhichPlan)
       if(this.MainData.payFrequency == 1){
@@ -45,13 +45,16 @@ export class PaymentSelectionComponent implements OnInit {
     if(this.MainData.route_key == 1){
       this.MainData.slotIds.forEach(ele=>{
         this.totalAmount =  this.totalAmount + ele.cost;
-       }) 
-    }
-    
+      }) 
+    }}
+         
+          
   
 
 }
-
+navigateTo() {
+  this.router.navigateByUrl('/vendor/PromoteBusiness');
+}
 PayPalPayment(){
 
 
@@ -76,17 +79,33 @@ PayPalPayment(){
       },   
     );
   }else{
-    this.http.post(this.url+'/api/PromoteBusiness/saveadlog',this.MainData,{headers:headers}).subscribe( (data)=> { 
-    
-      console.log(data.json())
-      sessionStorage.removeItem('selected_plan');
-            this.router.navigate([]).then(result => {  window.open(data.json().url); });
+    if(this.MainData['route_key'] == 1){
+      this.http.post(this.url+'api/Supplier/upgrademembership',this.MainData,{headers:headers}).subscribe( (data)=> { 
       
-      },
-      (error)=>{
-        console.log(error);
-      },   
-    );
+        console.log(data.json())
+        sessionStorage.removeItem('selected_plan');
+  
+        this.router.navigate([]).then(result => {  window.open(data.json().url); });
+        
+        },
+        (error)=>{
+          console.log(error);
+        },   
+      );}
+      else{
+        this.http.post(this.url+'/api/PromoteBusiness/saveadlog',this.MainData,{headers:headers}).subscribe( (data)=> { 
+    
+          console.log(data.json())
+          sessionStorage.removeItem('selected_plan');
+                this.router.navigate([]).then(result => {  window.open(data.json().url); });
+          
+          },
+          (error)=>{
+            console.log(error);
+          },   
+        );
+      }
+   
   }
 
   

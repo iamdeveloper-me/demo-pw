@@ -66,9 +66,12 @@ export class MenuComponent implements OnInit {
      // headers.append('Content-Type', 'application/json');
      this.cservice.login(this.user).subscribe(
           (data)=> {
+              debugger
               console.log(data.json());
           if (data.statusText == "OK"  && data.json().role =="Users") {
-            localStorage.setItem('userToken',data.json().auth_token);
+              
+            sessionStorage.setItem('userToken',data.json().auth_token);
+
             this.typeSuccess();
             this.router.navigate(['../User/vendor'])
             $("div").removeClass( "modal-backdrop fade show");

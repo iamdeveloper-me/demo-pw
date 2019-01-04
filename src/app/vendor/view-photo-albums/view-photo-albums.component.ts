@@ -334,6 +334,7 @@ $(document)
   }
 
 
+
   albumcoverimage(albumId){
     console.log(albumId)
     let headers = new Headers();

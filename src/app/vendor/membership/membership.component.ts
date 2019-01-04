@@ -11,6 +11,16 @@ import { Router ,ActivatedRoute} from '@angular/router';
 })
 export class MembershipComponent implements OnInit {
 
+   showStyle: false;
+     getStyle() {
+    if(this.showStyle) {
+      return "yellow";
+    } else {
+      return "";
+    }
+  }
+
+
   private mymembership: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mymembership'
   private updatemember: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/upgrademembership'
   private pricingplans: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/pricingplans'
@@ -25,9 +35,12 @@ export class MembershipComponent implements OnInit {
   pricingPlanId:number;
   payFrequency:number;
   ngOnInit() {
-
   //  $.getScript('./assets/js/vendorsidebar.js');  
     $.getScript('./assets/js/membershipslider.js'); 
+
+    $(document).ready(function(){
+      $(".panel-footer").find("button.disabled").css({"color": "red", "border": "2px solid red"});
+    });
 
     $(".Suppliertab").click(function(){
     $("#filter").show();

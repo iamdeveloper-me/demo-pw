@@ -1,5 +1,5 @@
 import { Component, OnInit,ViewChild ,Input,ElementRef,Renderer,Directive,OnChanges, SimpleChanges } from '@angular/core';
-import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
+import { FileUploader, FileItem } from 'ng2-file-upload/ng2-file-upload';
 import { apiService } from '../../shared/service/api.service';
 import { Headers, Http } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
@@ -10,6 +10,7 @@ import { CropperSettings, ImageCropperComponent } from 'ng2-img-cropper';
 
 import { HttpEventType, HttpResponse, } from '@angular/common/http';
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
+
 @Component({
   selector: 'app-gallery-two',
   templateUrl: './gallery-two.component.html',
@@ -20,6 +21,11 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 })
 export class GalleryTwoComponent implements OnInit {
 
+
+
+
+  fileNames=[];
+  previewImages = [];
   cropperSettings: CropperSettings;
   @Input() public image: any;
   @ViewChild('cropper', undefined)
@@ -72,6 +78,7 @@ export class GalleryTwoComponent implements OnInit {
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
+    console.log(this.basicplane)
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
@@ -172,38 +179,41 @@ export class GalleryTwoComponent implements OnInit {
     }
 
   }
-
+  previewFile(event) {
+    // var preview = this.previewimg.nativeElement;
+     let files = event.target.files;
+     if (files) {
+         for (let file of files) {
+             let FI  = new FileItem(this.uploader,file,null);
+             this.uploader.queue.push(FI);  
+             this.fileNames.push(file.name);
+             console.log(file);   
+             this.previewImages = [];
+             let reader = new FileReader();
+             reader.onload = (e: any) => {
+             this.previewImages.push(e.target.result);
+             console.log(this.previewImages);
+             }
+             reader.readAsDataURL(file);
+         }
+     }
+ }
+ removePreviewImg(index){
+     this.previewImages.splice(index,1);
+     this.fileNames.splice(index,1);
+     this.uploader.queue.splice(index,1);
+ }
   uploadAll(){
      const formData = new FormData();
      for(let file of this.uploader.queue){
         formData.append(file['some'].name,file['some'])
-        console.log(file['some'])
+        //console.log(file['some'])
      }         
-   
-     //console.log(event)
-     // Headers
-     let headers = new  Headers();
-     var authToken = localStorage.getItem('userToken');
-     headers.append("Authorization",'Bearer '+authToken);
-    this._http.withUploadProgressListener(progress => {
-      this.progress_bar = true; 
-      console.log(`Uploading ${progress.percentage}%`);
-      this.closeModel(); 
-      this.progressPercentage = progress.percentage
-    })
-        .withDownloadProgressListener(progress => { console.log(`Downloading ${progress.percentage}%`); })
-        .post(this.url+'api/ImageUploader/PortfolioUploader', formData,{headers: headers})
-        .subscribe((response) => {
-        
-        this.toastr.success(response.json().message);
-            //  this.uploadphoto_dailog = false; 
-            this.progress_bar = false;
-              this.router.navigate(['../vendor/portfolioview'])
-            }
-            ,(error)=>{
-              console.log(error);
-              swal({
-                title:  error._body.split('[')[1].split(']')[0],
+     console.log(this.uploader.queue.length)
+
+     if( this.basicplane == '1' && this.uploader.queue.length > 5){
+            swal({
+              title: " ur free planner",
               text: "can upload only 5",
               type: "warning",
               showCancelButton: true,
@@ -216,15 +226,47 @@ export class GalleryTwoComponent implements OnInit {
                 
                     this.router.navigate(['../vendor/membership'])
                 }else{ this.router.navigate(['../vendor/portfolioview'])}
-            
-              },error=>{
-                alert(JSON.stringify(error));
-              })
-                return;
-                                
-        });
-                      
-    
+              },error=>{ alert(JSON.stringify(error));})
+              return;
+     }else{
+            let headers = new  Headers();
+            var authToken = localStorage.getItem('userToken');
+            headers.append("Authorization",'Bearer '+authToken);
+            this._http.withUploadProgressListener(progress => {
+                this.progress_bar = true; 
+                console.log(`Uploading ${progress.percentage}%`);
+                this.closeModel(); 
+                this.progressPercentage = progress.percentage
+            })
+          .withDownloadProgressListener(progress => { console.log(`Downloading ${progress.percentage}%`); })
+          .post(this.url+'api/ImageUploader/PortfolioUploader', formData,{headers: headers})
+          .subscribe((response) => {   
+                                      this.toastr.success(response.json().message);
+                                      this.progress_bar = false;
+                                      this.router.navigate(['../vendor/portfolioview'])
+                                    },(error)=>{console.log(error);
+                                                swal({
+                                                  title:  error._body.split('[')[1].split(']')[0],
+                                                text: "can upload only 5",
+                                                type: "warning",
+                                                showCancelButton: true,
+                                                confirmButtonClass: "btn-default",
+                                                confirmButtonText: "Yes",
+                                                cancelButtonText: "No",
+                                                }).then((res)=>{
+                                                  console.log(res);
+                                                  if(res.value===true){
+                                                  
+                                                      this.router.navigate(['../vendor/membership'])
+                                                  }else{ this.router.navigate(['../vendor/portfolioview'])}
+                                              
+                                                },error=>{
+                                                  alert(JSON.stringify(error));
+                                                })
+                                                  return;
+                                                                  
+                                               });
+                                      }
   }
   upgrade(){
     this.basicplane = parseInt(localStorage.getItem('basic-plan')) 

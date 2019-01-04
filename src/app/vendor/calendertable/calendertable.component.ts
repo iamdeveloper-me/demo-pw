@@ -82,6 +82,7 @@ export class CalendertableComponent implements OnInit {
                   //all
                   this.http.post(this.geturl,{filter: 3},{headers:this.http_header}).subscribe(data =>{             
                     this.jobArray = data.json();
+                    debugger;
                     console.log(this.jobArray );
                     // this.final_List.forEach(function (value) { this.event_data.events.push(value); });
                   },error => { console.log(error)});
@@ -136,8 +137,8 @@ export class CalendertableComponent implements OnInit {
             activeDayIsOpen: boolean = true;
 
             job(jo){
+              debugger;
               console.log(jo);
-            
                       this.end_date = jo.value['endDate']['year']+'-'+jo.value['endDate']['month']+'-'+jo.value['endDate']['day']
                       this.start_date = jo.value['startDate']['year']+'-'+jo.value['startDate']['month']+'-'+jo.value['startDate']['day']
                       jo.value.startDate = this.start_date
@@ -180,6 +181,7 @@ export class CalendertableComponent implements OnInit {
             }
             edit_job(b){
               console.log(b.value);
+              debugger;
               let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
               headers.append('Accept', 'application/json')
@@ -198,9 +200,11 @@ export class CalendertableComponent implements OnInit {
                         //this.ngOnInit()
                         this.showModal = false;
                         this.toastr.success(data.json().message );
+
                         }),error => {  console.log(error.json())
                                        this.toastr.error(error.json().message );
                                     };
+
             
             }
             deletevent(job,index){
@@ -335,7 +339,7 @@ export class CalendertableComponent implements OnInit {
           
         }
         showJobDialog(){
-
+          this.showModal=true;
         }
         /// New Calendar Code End
 

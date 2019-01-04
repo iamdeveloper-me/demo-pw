@@ -1,5 +1,5 @@
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { NgModule} from '@angular/core';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RatingModule} from "ngx-rating";
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
@@ -9,7 +9,7 @@ import { ImageCropperModule } from 'ng2-img-cropper';
 import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.component';
 import { FullCalendarModule } from 'ng-fullcalendar';
 import { ProgressHttpModule } from 'angular-progress-http';
-
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { OwlModule } from 'ngx-owl-carousel';
 
 //import { NgProgressModule } from 'ngx-progressbar';
@@ -481,7 +481,6 @@ export function getAuthServiceConfigs() {
               }
         }),
         AgmCoreModule.forRoot({
-           // apiKey: 'AIzaSyBr5_picK8YJK7fFR2CPzTVMj6GG1TtRGo',
             apiKey: 'AIzaSyAZ1gsa9BUjNuL-WmCOLhelB2-jQ2jWlxo',
             libraries: ["places"]
         }),
@@ -507,6 +506,9 @@ export function getAuthServiceConfigs() {
     ],
     bootstrap: [AppComponent, MylistingComponent],
     entryComponents: [NgbdModalContent],
+    schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+    ],
    
 })
 export class AppModule {

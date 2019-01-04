@@ -87,11 +87,13 @@
                             <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="notification-dropdown">
                                 <div class="noti-list" *ngIf = "unread_msg > 0 ">
                                     <a *ngFor="let data of historyArray | slice:0:3 ;let i=index " class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
-                                            <div class="notifyimgbox">
-                                                <img  class="userimg" *ngIf="data.senderProfilePic === ''" src="../../../assets/img/No_image_available.png"/>
-                                                <img  class="userimg" *ngIf="data.senderProfilePic != ''" [src]="data.senderProfilePic"/>       
+                                            <div class="notifyimgbox" *ngIf="data.senderProfilePic === ''">
+                                                <img  class="userimg"  src="../../../assets/img/No_image_available.png"/>
+                                               
                                             </div>
-                                            
+                                            <div class="notifyimgbox"  *ngIf="data.senderProfilePic != ''">
+                                                    <img  class="userimg" [src]="data.senderProfilePic"/>       
+                                            </div>    
                                             <span class="noti-wrapper">
                                                 <span class="noti-title line-height-1 d-block text-bold-400 info">{{data.sendByFirstName }}</span>
                                                 <span class="notifytext">{{data.message}}</span>
@@ -116,29 +118,25 @@
                                 <a class="nav-link afternone navuserlink position-relative" id="dropdownBasic3" ngbDropdownToggle>
                                         <!-- <i class="material-icons">account_circle</i> -->
                                         <!-- <img [src] = "userImg" class="userimgtop" > -->
-                                        <div *ngIf = "!userImg"  > 
+                                        <!-- <div *ngIf = "!userImg"  > 
                                             <img  [src] = "userImg" class="userimgtop " alt="Profile picture" >
-
-                                            </div>
-                                        
-                                            <div *ngIf = "userImg != ''"> 
+                                        </div> -->
+                                        <div> 
                                             <img   [src] = "userImg" class="userimgtop" alt="Profile picture" >
-                                            </div>
-                                        
-
-
+                                        </div>
                                     <p class="d-none">User Settings {{vendor.profileImage}}</p>
                                 </a>
                                 <div class="blackoverlaymainuser">
-                                <div ngbDropdownMenu aria-labelledby="dropdownBasic3">       <div class="vendorpicsec">
-                                <div class="imgsection">
-                                    <!-- <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png"/> -->
-                                    <img [(src)] = "userImg" class="userimgtop" >
-                                </div>
-                                <div class="detailsection">
-                                Hi {{vendor.firstName}}!
-                                </div>
-                            </div>                    
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic3">       
+                                <div class="vendorpicsec">
+                                    <div class="imgsection">
+                                        <!-- <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png"/> -->
+                                        <img [(src)] = "userImg" class="userimgtop" >
+                                    </div>
+                                    <div class="detailsection">
+                                        Hi {{vendor.firstName}}!
+                                    </div>
+                                </div>                    
                                     <a class="dropdown-item py-1" routerLink="../dashboard">
                                         <i class="ft-edit mr-2"></i>
                                         <span>Business Dashboard</span>
@@ -152,6 +150,10 @@
                                             <i class="ft-mail mr-2"></i>
                                         <span>Inbox</span>
                                     </a>
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#basicModalvendor">
+                                        <img src="../../assets/img/feedback.png">
+                                        <span>Feedback</span>
+                                     </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" (click)="logout()">
                                         <i class="ft-power mr-2"></i>
@@ -176,3 +178,155 @@
     </nav>
 <!-- Navbar (Header) Ends -->
 </div>
+
+
+
+
+
+
+<!--basic-modal-->
+<div class="modal fade" id="basicModalvendor" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <!-- feedback -->
+    <div class="modal-content feedbackrate">
+          <div class="modal-header chartmainhead">
+            <h4>We hope you like using PerfectWedding.mu</h4>
+          </div>
+          <div class="modal-body text-center">
+            <p class="chartpara">Please remember to rate it. And send us feedback - we want to hear from you</p>
+            <div class="clearfix"></div>
+            <img src="../../assets/img/popup-image1.jpg">
+                <div class="clearfix"></div>
+            <ul class="starhead">
+                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+            </ul>
+
+              <div class="clearfix"></div>
+              <div class="feedbackfooter">
+                <button type="button" class="btn btn-success">Rate</button>
+                 &nbsp;&nbsp;<button type="button" class="btn btn-warning sendfeedbackbtn">Send Feedback</button>
+              </div>
+
+          </div>
+          <div class="modal-footer feedbackfooter">
+            <button type="button" class="btn btn-secoundary" data-dismiss="modal">Remind Me Later</button>
+          </div>
+    </div>
+    <!-- Send Feedback -->
+    <div class="modal-content sendfeedback">
+          <div class="modal-header chartmainhead">
+            <h4><i class="material-icons backbtn1">arrow_back</i> Send Feedback</h4>
+          </div>
+          <div class="modal-body">
+            <p class="chartpara">Thanks for helping us improve your experience</p>
+            <div class="clearfix"></div>
+
+              <div class="feedbackbtncontainer">
+                <button type="button" class="btn btn100per likebtn">
+                  <img src="../../../assets/img/smile_icon.png"/>
+                  <span>I Like Something</span>
+                  <i class="material-icons">arrow_forward_ios</i>
+                </button>
+
+                 <button type="button" class="btn btn100per unlikebtn">
+                  <img src="../../../assets/img/sad.png"/>
+                  <span>I don't Like Something</span>
+                  <i class="material-icons">arrow_forward_ios</i>
+                 </button>
+
+
+                 <button type="button" class="btn btn100per ideabtn">
+                  <img src="../../../assets/img/bulb.png"/>
+                  <span>I have an idea</span>
+                  <i class="material-icons">arrow_forward_ios</i>
+                 </button>
+
+
+              </div>
+
+          </div>
+    </div>
+    <!-- Tell Us More like -->
+    <div class="modal-content telluslike">
+          <div class="modal-header chartmainhead">
+            <h4><i class="material-icons backbtn2">arrow_back</i> Tell us More</h4>
+          </div>
+          <div class="modal-body">
+          <div class="form-group">
+          <textarea class="form-control" placeholder="What did you like?"></textarea>
+          </div>
+          <div class="form-group text-left">
+          <input type="checkbox" name=""> Include screenshot
+          </div>
+          <div class="form-group text-left">
+            <input id="logo-id" name="logo" type="file" class="form-control">
+          </div>
+          <div class="clearfix"></div>
+          <div class="modal-footer feedbackfooter">
+            <button type="button" class="btn btn-secoundary" data-dismiss="modal">Submit</button>
+          </div>
+
+
+          
+
+          </div>
+    </div>
+    <!-- Tell Us More unlike -->
+    <div class="modal-content tellusunlike">
+          <div class="modal-header chartmainhead">
+            <h4><i class="material-icons backbtn2">arrow_back</i> Tell us More</h4>
+          </div>
+          <div class="modal-body">
+          <div class="form-group">
+          <textarea class="form-control"  placeholder="How can we improve?"></textarea>
+          </div>
+          <div class="form-group text-left">
+          <input type="checkbox" name=""> Include screenshot
+          </div>
+             <div class="fileUpload btn fake-shadow">
+                <span>Add Image</span>
+                <input id="logo-id" name="logo" type="file" class="attachment_upload  form-control">
+              </div>
+          <div class="clearfix"></div>
+          <div class="modal-footer feedbackfooter">
+            <button type="button" class="btn btn-secoundary" data-dismiss="modal">Submit</button>
+          </div>
+
+
+          
+
+          </div>
+    </div>
+    <!-- Tell Us More idea -->
+    <div class="modal-content tellusidea">
+          <div class="modal-header chartmainhead">
+            <h4><i class="material-icons backbtn2">arrow_back</i> Tell us More</h4>
+          </div>
+          <div class="modal-body">
+          <div class="form-group">
+          <textarea class="form-control" placeholder="Share your Ideas"></textarea>
+          </div>
+          <div class="form-group text-left" >
+          <input type="checkbox" name=""> Include screenshot
+          </div>
+          <div class="fileUpload btn fake-shadow">
+               <span>Add Image</span>
+                <input id="logo-id" name="logo" type="file" class="attachment_upload  form-control">
+              </div>
+          <div class="clearfix"></div>
+          <div class="modal-footer feedbackfooter">
+            <button type="button" class="btn btn-secoundary" data-dismiss="modal">Submit</button>
+          </div>
+
+
+          
+
+          </div>
+    </div>
+  </div>
+</div>
+<!--basic-modal-end-->

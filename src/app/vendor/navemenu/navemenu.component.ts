@@ -4,6 +4,14 @@ import { Router } from '@angular/router';
 import { Http,Headers } from '@angular/http';
 import { LoginServiceService } from '../../shared/service/login-service.service';
 import { MessageService } from '../../shared/service/vendor/message.service';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
+
+export class NgbdModalContent {
+  @Input() name;
+  constructor(public activeModal: NgbActiveModal) { }
+}
+
 
 @Component({
   selector: 'app-navemenu',
@@ -26,6 +34,7 @@ export class NavemenuComponent implements OnChanges,OnInit   {
    arrayLength:number;
    unread_msg:number;
    startedtab = false;
+   session_token;
    image_by_default:'..'
    // @Output() userImg = new EventEmitter<string>();
    // @Output('userImg') img:string;
@@ -38,6 +47,9 @@ export class NavemenuComponent implements OnChanges,OnInit   {
       var firstName = localStorage.getItem('firstName');
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
+   
+   this.session_token =   sessionStorage.getItem('userToken')
+   console.log(  this.session_token)
       headers.append('Accept', 'application/json')
       headers.append('Content-Type', 'application/json');
       headers.append("Authorization",'Bearer '+authToken);
@@ -46,15 +58,8 @@ export class NavemenuComponent implements OnChanges,OnInit   {
 
       this.http.get(this.url,{headers:headers}).subscribe(
         data =>{ this.vendor = data.json();
-               //  console.log(this.vendor);
+                 console.log(this.vendor);
                this.userImg = data.json().profileImage;
-
-                
-                if(!this.userImg )
-                {
-                
-                this.userImg = "https://openclipart.org/download/247324/abstract-user-flat-1.svg"
-               }
                                });
 
       if(window.location.href.indexOf("/vendor/dashboard")>-1){
@@ -62,6 +67,11 @@ export class NavemenuComponent implements OnChanges,OnInit   {
         setTimeout(()=>{
           $('#dashboard').addClass('colour');
         }, 300);
+      } else if(window.location.href.indexOf('/vendor/business-services')>-1) {
+       this.data = 'Business Services ';
+        setTimeout(()=>{
+          $('#Services').addClass('colour');
+        }, 3000);
       } else if(window.location.href.indexOf('/vendor/business')>-1 ){
         this.data = 'Business information ';
         setTimeout(()=>{
@@ -72,11 +82,7 @@ export class NavemenuComponent implements OnChanges,OnInit   {
         setTimeout(()=>{
           $('#location_on').addClass('colour');
         }, 300);
-      } else if(window.location.href.indexOf('/vendor/business-services')>-1) {
-       this.data = 'Business Services ';
-        setTimeout(()=>{
-          $('#Services').addClass('colour');
-        }, 3000);
+      
       } else if(window.location.href.indexOf('/vendor/Message')>-1) {
         this.data = 'Messages ';
         setTimeout(()=>{
@@ -239,14 +245,70 @@ export class NavemenuComponent implements OnChanges,OnInit   {
         $('#page-content-wrapper').toggleClass('overhidden');
       });
 
-        $('.sidebar-nav .sidebar-brand').on('click', function(e){
-          e.preventDefault();
-          $(this).addClass('colour')
-          // var id = $(this).attr('id')
-        //  setTimeout(()=>{
-        //    id.addClass('colour');
-        // },4000);
-      });
+
+      
+                    $(".sendfeedback").hide();
+                    $(".telluslike").hide();
+                    $(".tellusunlike").hide();
+                    $(".tellusidea").hide();
+
+                    $(".sendfeedbackbtn").click(function(){ 
+                            $(".feedbackrate").hide();
+                            $(".telluslike").hide();
+                            $(".tellusunlike").hide();
+                            $(".tellusidea").hide();
+                            $(".sendfeedback").show();
+                        });
+
+                    $(".likebtn").click(function(){ 
+                    //alert("hi")
+                            $(".feedbackrate").hide();
+                            $(".tellusunlike").hide();
+                            $(".tellusidea").hide();
+                            $(".sendfeedback").hide();
+                            $(".telluslike").show();
+                        });
+
+                    $(".unlikebtn").click(function(){ 
+                            $(".feedbackrate").hide();
+                            $(".telluslike").hide();
+                            $(".tellusunlike").show();
+                            $(".tellusidea").hide();
+                            $(".sendfeedback").hide();
+                        });
+
+                    $(".ideabtn").click(function(){ 
+                            $(".feedbackrate").hide();
+                            $(".telluslike").hide();
+                            $(".tellusunlike").hide();
+                            $(".tellusidea").show();
+                            $(".sendfeedback").hide();
+                        });
+
+                    $(".backbtn1").click(function(){ 
+                            $(".feedbackrate").show();
+                            $(".telluslike").hide();
+                            $(".tellusunlike").hide();
+                            $(".tellusidea").hide();
+                            $(".sendfeedback").hide();
+                        });
+
+                    $(".backbtn2").click(function(){ 
+                            $(".feedbackrate").hide();
+                            $(".telluslike").hide();
+                            $(".tellusunlike").hide();
+                            $(".tellusidea").hide();
+                            $(".sendfeedback").show();
+                        });
+  
+      //   $('.sidebar-nav .sidebar-brand').on('click', function(e){
+      //     e.preventDefault();
+      //     $(this).addClass('colour')
+      //     // var id = $(this).attr('id')
+      //   //  setTimeout(()=>{
+      //   //    id.addClass('colour');
+      //   // },4000);
+      // });
 
 
 
@@ -264,9 +326,11 @@ export class NavemenuComponent implements OnChanges,OnInit   {
   typeLogout() {
     this.cservice.typeLogout();
 }
+
 ngOnChanges(){
-  alert("hi")
+
 };
+
 
   
 search(newObj){
@@ -279,6 +343,7 @@ search(newObj){
     "filter" : this.filter_id,
     "search" : this.find_name
   }
+ 
   this.hservice.vendorMessages(json).subscribe(( data )  =>  
             { 
               this.uiLoading = false;
@@ -302,21 +367,24 @@ unread(filter_id){
 
   const json ={
     "filter" : filter_id
-  }      
-        this.hservice.vendorMessages(json).subscribe(( data )  =>  
-        { 
-          this.uiLoading = false;
-          this.historyArray = data.json()  ; 
-          this.historyArray.forEach(element => {
-            element['checked'] = false;
-          });
-          this.unread_msg = this.historyArray.length;
-          this.arrayLength =  this.historyArray.length
+  }
+  if(localStorage.getItem('userToken') != null){
+    this.hservice.vendorMessages(json).subscribe(( data )  =>  
+    { 
+      this.uiLoading = false;
+      this.historyArray = data.json()  ; 
+      this.historyArray.forEach(element => {
+        element['checked'] = false;
+      });
+      this.unread_msg = this.historyArray.length;
+      this.arrayLength =  this.historyArray.length
 
-          //console.log(this.historyArray)
-        },error => 
-        console.log(error) // error path
-      )
+      //console.log(this.historyArray)
+    },error => 
+    console.log(error) // error path
+  )
+  }  
+        
 }
 
   logout(){

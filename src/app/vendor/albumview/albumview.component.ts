@@ -4,7 +4,7 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
 import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import swal from 'sweetalert2';
-
+import { Router } from '@angular/router';
 export class NgbdgalleryModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) { }
@@ -29,6 +29,8 @@ export class AlbumviewComponent implements OnInit {
     defaultImage: string = "https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
   ngOnInit() {
     this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
+    console.log( this.basicplane)
+    if(this.basicplane == '1' ){ this.router.navigate(['../vendor/gallery'])}
     this.noimage = 'https://vignette.wikia.nocookie.net/roblox-phantom-forces/images/7/7c/Noimage.png/revision/latest?cb=20171115203949';
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
@@ -58,7 +60,7 @@ export class AlbumviewComponent implements OnInit {
 
   closeResult: string;
 
-  constructor(private modalService: NgbModal,public http: Http,public toastr: ToastrService) { }
+  constructor(private router: Router,private modalService: NgbModal,public http: Http,public toastr: ToastrService) { }
 
   // Open default modal
   open(content) {

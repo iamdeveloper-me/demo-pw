@@ -90,7 +90,7 @@ export class RegisterComponent  {
       } 
     }); 
    });
- console.log(this.user)
+ console.log(JSON.stringify(this.user));
       this.cservice.signup(this.user).subscribe(( data )  =>  
       { console.log(data.json())
         this.cservice.typeSuccess();

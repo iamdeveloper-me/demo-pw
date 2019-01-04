@@ -7,15 +7,11 @@
 			<app-navemenu></app-navemenu>
 			<router-outlet></router-outlet>
 			<div class="container-fluid mobilefixedcontainer ">
-
 				<section>
 					<div class="sliderholder">
 						<button class="prebtn" *ngIf='categoryIndex>0' (click)='navigateToCategory("l")'><i class="material-icons">arrow_back_ios</i></button>
 						<div class="servicecontainer" style="text-align:center">
 							{{selectedCategoryName}}
-							<!-- <div class="activehide" *ngFor='let c of selected_category' (click)='getServicesByCategory(c.categoryId)'>
-								<span style="text-align:center">{{c.categoryName}}</span>
-							</div> -->
 						</div>
 						<button class="nextbtn" *ngIf='categoryIndex<selected_category.length-1 && selected_category.length> 0' (click)='navigateToCategory("r")'> <i class="material-icons">arrow_forward_ios</i></button>
 					</div>
@@ -30,7 +26,7 @@
 										<div class="col-sm-12" id='servicename'>
 												{{name_d}}
 							</div>
-										<div class="col-sm-12"><button class="btn newbtn" (click)='showServiceDialog()'>Select</button></div>
+										<div class="col-sm-12"><button class="btn newbtn paddfix" (click)='showServiceDialog()'>Select</button></div>
 									</div>
 								</div>
 							</div>
@@ -46,18 +42,21 @@
 									<div class="row">
 										<div class="col-md-12">
 											<div class="col-md-6 marbot15px" *ngFor='let cf of customFields'>
-												<div class="col-md-12">
+												<div class="col-xs-9">
 													<label>
 														<!-- <input type="checkbox" [(checked)]='cf.isSelect' (change)='cf.isSelect?false:true' [value]='cf.isEnable' [(ngModel)]='cf.isSelect'  /> -->
 														<strong>{{cf.name}}</strong> <br />
-														<span>
-															 {{cf.SelectedOptionValue}} <!--<span *ngIf='cf.fieldType==6' (click)='getSelectOptions(cf)'>More...</span> -->
+														<span *ngIf='cf.SelectedOptionValue!="NA"'>
+															 {{cf.SelectedOptionValue}} 
 														</span>
+														<span class="notset" *ngIf='cf.SelectedOptionValue=="NA"'>Not Set</span>
 													</label>
 												</div>
-												<button class="btn newbtn" (click)='getSelectOptions(cf)'>
+												<div class="col-xs-3 nopadd">
+												<button class="btn newbtn paddfix" (click)='getSelectOptions(cf)'>
 													Select
 												</button>
+												</div>
 											</div>
 										
 										</div>
@@ -96,7 +95,7 @@
 										</div>
 									</div>
 									<div class="modal-footer text-center">
-										<div class="btn newbtn" style="display:none">Save</div>
+										<div class="btn newbtn">Save</div>
 										<div class="btn newbtn newcancelbtn" (click)='closeModel("customDialog")'>Close</div>
 									</div>
 								</div>
@@ -108,8 +107,9 @@
 		</div>
 	</div>
 </div>
-<div *ngIf='showLoader' style='top:0px;width:100%;height:100vh;z-index: 99999;position: absolute;background-color:rgba(0, 0, 0, 0.5)'>
-	<h4 style="text-align:center;color:#fff;">Page Load, Please don't refresh....</h4>
+<div *ngIf='showLoader' class="loadingdiv">
+		<img src="./assets/img/loading-wedding-animation.gif"/>
+		<h1>Loading Please Wait...</h1>
 </div>
 <div class="modal fade" id="serviceselect" [ngClass]="{'show' : serviceDialog}" *ngIf='serviceDialog' tabindex="-1"
  role="dialog" aria-labelledby="myModalLabel">

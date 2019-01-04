@@ -16,12 +16,14 @@
 			<div class="col-sm-9 col-12 cardtextbox">
 					<p>Member since: {{myplans.createdOnString}}</p>
 					<p *ngIf="myplans.payFrequency == 1 && myplans.pricingPlanId == 1">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (6 Months)</p>
+					<p *ngIf="myplans.payFrequency == 2 && myplans.pricingPlanId == 1">Plan Name: <b>{{myplans?.pricingPlan.title}}</b> (12 Months)</p>
+						<!--Free Basic-->
 					<p *ngIf="myplans.payFrequency == 0 && myplans.pricingPlanId == 2">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (6 Months)</p>
-					<p *ngIf="myplans.payFrequency == 1 && myplans.pricingPlanId == 3">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (12 Months)</p>
-
-					<!-- <p *ngIf="myplans.payFrequency == 0 && myplans.pricingPlanId == 1">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (6 Months)</p>
-					<p *ngIf="myplans.payFrequency == 1 && myplans.pricingPlanId == 2">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (Semi Annually)</p>
-					<p *ngIf="myplans.payFrequency == 0 && myplans.pricingPlanId == 3">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (Annually)</p> -->
+					<p *ngIf="myplans.payFrequency == 1 && myplans.pricingPlanId == 2">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (12 Months)</p>
+						<!--Premium-->
+					<p *ngIf="myplans.payFrequency == 0 && myplans.pricingPlanId == 3">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (12 Months)</p>
+					<p *ngIf="myplans.payFrequency == 1 && myplans.pricingPlanId == 3">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (6 Months)</p>
+						<!--Ultimate-->	
 					<p>Plan Begin Date: {{myplans.startDateString}}</p>
 					<p>Expiry: {{myplans.endDateString}} <span class="greentext">(Active)</span></p>
 			</div>
@@ -106,11 +108,15 @@
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPromoteProfile">check_circle</i><i *ngIf="!plan.isPromoteProfile" class="material-icons redtext">cancel</i> Promote Profile</li>
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isPublishEvents">check_circle</i><i *ngIf="!plan.isPublishEvents" class="material-icons redtext">cancel</i> Publish Events</li>
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isReviewManagement">check_circle</i><i *ngIf="!plan.isReviewManagement" class="material-icons redtext">cancel</i> Review Management</li>
-												<li class="list-group-item"><i class="material-icons greentext" *ngIf="!plan.isdealsAndDiscount">check_circle</i><i *ngIf="plan.isdealsAndDiscount" class="material-icons redtext">cancel</i> Deals & Discounts</li>
+												<!-- <li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.isdealsAndDiscount && plan.monthlyPrice != 0">check_circle</i><i *ngIf="!plan.isdealsAndDiscount && plan.monthlyPrice == 0" class="material-icons redtext">cancel</i> Deals & Discounts</li> -->
 
+												<li class="list-group-item" *ngIf="!plan.monthlyPrice == 0 && !plan.isdealsAndDiscount;else old"><i class="material-icons greentext" >check_circle</i> Deals & Discounts</li>
+												<ng-template #old>
+													<li class="list-group-item"><i class="material-icons redtext" >cancel</i> Deals & Discounts</li>
+												</ng-template>
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.pinnedReviews">check_circle</i><i *ngIf="!plan.pinnedReviews" class="material-icons redtext">cancel</i> Pinned reviews</li>
 												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedPhotos">check_circle</i><i *ngIf="!plan.unlimitedPhotos" class="material-icons redtext">cancel</i> Limited Photos</li>
-												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimmited Album</li>
+												<li class="list-group-item"><i class="material-icons greentext" *ngIf="plan.unlimitedAlbums">check_circle</i><i *ngIf="!plan.unlimitedAlbums" class="material-icons redtext">cancel</i> Unlimited Album</li>
 												<li class="list-group-item" *ngIf="plan.performanceAnalytics == 0 "><i class="material-icons bluetext">report</i>  No Performance Analytics</li>
 												<li class="list-group-item" *ngIf="plan.performanceAnalytics == 1 "><i class="material-icons bluetext">report</i>  Basic Performance Analytics</li>
 												<li class="list-group-item" *ngIf="plan.performanceAnalytics == 2 "><i class="material-icons bluetext">report</i>  Advanced Performance Analytics</li>

@@ -1,188 +1,133 @@
 <div>
-<header class="masthead text-center text-white d-flex">
-  <div class="container my-auto">
-    <div class="row heading_mob_mar">
-        <div class="col-lg-8 mx-auto text-center">
-            <h2 class="section-heading text-white">Everything you need to plan your perfect day</h2>
-            <p class="text-faded mb-4">Find Photographers, Venues, and more wedding vendors </p>
-             <div class="mobvendorebtn"> 
+    <div class="profile-image"></div>`.
+  <div  *ngFor='let list_banner_data of banner_data'>
+      <div  *ngFor='let list_banner_Images of list_banner_data.bannerImages'>
+         <!-- <h1>{{list_banner_Images.files.path}}</h1> [ngStyle]="{ 'background-image': 'url(' + list_banner_Images.files.path + ')'}" -->
+        <header class="masthead text-center text-white d-flex">
+          <img alt="close" class="homebanner" [src]="list_banner_Images.files.path">
+         <!--  <img alt="close" class="homebanner" src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg"> -->
 
-              <i class="large material-icons firsticon">search</i>
-              Find Vendor
-              <span class="arrow">
-                <span></span>
-              </span></div>
-           </div>
-          
+          <div class="container my-auto hombannertext">
+            <div class="row heading_mob_mar">
 
-           <div class="col-sm-10 mx-auto no-gutters searchbar mob_dis_none">
-              <div class="form-group col-sm-5 padd_bottom">
-                  <span class="home_search"><i class="material-icons">camera_alt</i></span>
-                  <select class="form-control round_first">
-                      <option> All Categories </option>
-                      <option>Select Vendor Type</option>
-                      <option>Select Vendor Type</option>
-                      <option>Select Vendor Type</option>
-                      <option>Select Vendor Type</option>
-                    </select>
+              <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-heading text-white">{{list_banner_data.title}}</h2>
+                <p class="text-faded mb-4">Find Photographers, Venues, and more wedding vendors </p>
+                <div class="mobvendorebtn"> 
+                      <i class="large material-icons firsticon">search</i>
+                      Find Vendor
+                      <span class="arrow">
+                        <span></span>
+                      </span>
+                </div>
               </div>
-              <div class="form-group col-sm-5">
-                  <span class="home_search"><i class="material-icons">location_on</i></span>
-                  <select class="form-control">
-                      <option> All Locations </option>
-                      <option>Select Vendor Type</option>
-                      <option>Select Vendor Type</option>
-                      <option>Select Vendor Type</option>
-                      <option>Select Vendor Type</option>
-                    </select>
-              </div>   
-              <div class="form-group col-sm-2 posi_rela_100px">
-                  <button class="form-control search_btn_pink" routerLink="searchresult">
-                      <i class="material-icons">
-                          search
-                          </i>
-                    </button>
+              <form (ngSubmit)="search(e,true,false)" #e="ngForm">
+                <div class="col-sm-10 mx-auto no-gutters searchbar mob_dis_none">
+                  <div class="form-group col-sm-5 padd_bottom">
+                      <span class="home_search"><i class="material-icons">camera_alt</i></span>
+                      <select class="form-control round_first" [(ngModel)]="category" name="category" >
+                          <option > All Categories </option>
+                          <option *ngFor='let list_Categories of Categories' [ngValue]="list_Categories" > {{list_Categories.categoryName}} </option>
+                      </select>
+                  </div>
+                  <div class="form-group col-sm-5">
+                      <span class="home_search"><i class="material-icons">location_on</i></span>
+                      <select class="form-control">
+                          <option > All Location</option>
+                          <option *ngFor='let list_locations of locations'> {{list_locations.name}}</option>
+                      </select>
+                  </div>   
+                  <div class="form-group col-sm-2 posi_rela_100px">
+                      <button type = "submit" class="form-control search_btn_pink"  >
+                          <i class="material-icons">
+                              search
+                              </i>
+                        </button>
+                      
+                  </div>     
+                </div>
+              </form>    
+                <div class="text-center just_picture">
+                          <span><i class="material-icons">camera_alt</i>Knot just Pictures </span>
+                </div> 
                   
-              </div>   
-             
+                <div id="tiktik" class="FilterDialog" style="display: none;">
+
+                  <div class="category-body">
+                      <div class="searchmobtitlebar">
+                        <img alt="close" class="icon-small margin-r-10" src="https://s3.us-east-2.amazonaws.com/prefect-image/cross-grey.png">
+                        <input type="text" value="" id="search1" placeholder="Type to Search Category">
+                      </div>
+                  
+                    <div class="regular">
+                      <i>
+                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/Wedding_cake.svg"/> 
+                      </i>Cakes
+                    </div>
+                    <div class="regular">
+                      <i>
+                         <img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_decorator.svg"/>
+                      </i> Decorators & Wedding Stylist
+                    </div>
+                    <div class="regular">
+                        <i>
+                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/>
+                      </i> Drinks and Beverages
+                    </div>
+                    <div class="regular">
+                        <i>
+                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/Fashion&Clothing.svg"/></i> Fashion & Clothing
+                    </div>
+                    <div class="regular">
+                        <i>
+                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/florist.svg"/></i> Florists, Bouquets and Centerpiece
+                    </div>
+                    <div class="regular"><i>
+                      <img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_car.svg"/> </i> Food & Catering</div>
+                    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Footwear.svg"/></i> Footwear</div>
+                    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/honeymoon.svg"/></i> Honeymoon & Travel</div>
+                    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/stationary.svg"/></i> Invitation Cards & Wedding Stationary</div>
+                    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Jewellery.svg"/></i> Jewellery & Wedding Rings</div>
+                    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/make_up.svg"/></i> Make Up, Hair & Mehendi</div>
+                    <div class="regular">  <i>No</i> Marriage Celebrant</div>
+                    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/music_dj.svg"/></i> Music, DJs & Entertainment</div>
+                    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Wedding Planner.svg"/></i> Other wedding Supplies & Accessories</div>
+                    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Photography.svg"/></i> Photography, Videography & Cinematography</div>
+                    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Venues.svg" alt=""> </i> Venues</div>
+                    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_car.svg"/></i> Wedding Cars & Transport</div>
+                    <div class="regular"> <i>No</i> Wedding Planner & Event Management</div>
+                    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Shape&Fitness.svg" alt=""> </i> Shape & Fitness</div>
+                  </div>
+                  <div class="city-body" style="display: none;">
+                      <div class="searchm  obtitlebar">
+                    <img alt="close" class="icon-small margin-r-10" src="https://s3.us-east-2.amazonaws.com/prefect-image/cross-grey.png">
+                    
+                        <input type="text" value="" id="search2" placeholder="Type to Search">
+                    
+                  </div>
+                    <div class="regular" routerLink="searchresult">
+                      <i class="material-icons">location_on</i>
+                      All Location
+                    </div>
+                    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Black River</div>
+                    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Flacq</div>
+                    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Grand Port</div>
+                    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Moka</div>
+                    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Pamplemousses</div>
+                    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Plaines-Wilhems</div>
+                    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Port-Louis</div>
+                    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Riviere du Rempart</div>
+                    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Savanne</div>
+                    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Rodrigues</div>
+                  </div>
+
+                    </div>
+
             </div>
-          
-            <div class="text-center just_picture">
-                <span><i class="material-icons">camera_alt</i>Knot just Pictures </span>
-             </div>   
-          
-          
-
-<div id="tiktik" class="FilterDialog" style="display: none;">
-
-  <div class="category-body">
-      <div class="searchmobtitlebar">
-    <img alt="close" class="icon-small margin-r-10" src="https://s3.us-east-2.amazonaws.com/prefect-image/cross-grey.png">
-    
-        <input type="text" value="" id="search1" placeholder="Type to Search Category">
-    
-  </div>
-    <!-- <div class="regular">All Categories</div> -->
-    <div class="regular">
-      <i>
-        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/Wedding_cake.svg"/> 
-      </i>Cakes
-    </div>
-    <div class="regular">
-      <i>
-      <img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_decorator.svg"/>
-    </i> Decorators & Wedding Stylist</div>
-    <div class="regular">
-        <i>
-        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/>
-      </i> Drinks and Beverages</div>
-    <div class="regular">
-        <i>
-        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/Fashion&Clothing.svg"/></i> Fashion & Clothing</div>
-    <div class="regular">
-        <i>
-        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/florist.svg"/></i> Florists, Bouquets and Centerpiece</div>
-    <div class="regular"><i>
-      <img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_car.svg"/> </i> Food & Catering</div>
-    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Footwear.svg"/></i> Footwear</div>
-    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/honeymoon.svg"/></i> Honeymoon & Travel</div>
-    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/stationary.svg"/></i> Invitation Cards & Wedding Stationary</div>
-    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Jewellery.svg"/></i> Jewellery & Wedding Rings</div>
-    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/make_up.svg"/></i> Make Up, Hair & Mehendi</div>
-    <div class="regular">  <i>No</i> Marriage Celebrant</div>
-    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/music_dj.svg"/></i> Music, DJs & Entertainment</div>
-    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Wedding Planner.svg"/></i> Other wedding Supplies & Accessories</div>
-    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Photography.svg"/></i> Photography, Videography & Cinematography</div>
-    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Venues.svg" alt=""> </i> Venues</div>
-    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_car.svg"/></i> Wedding Cars & Transport</div>
-    <div class="regular"> <i>No</i> Wedding Planner & Event Management</div>
-    <div class="regular">  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Shape&Fitness.svg" alt=""> </i> Shape & Fitness</div>
-  </div>
-
-  <div class="city-body" style="display: none;">
-      <div class="searchmobtitlebar">
-    <img alt="close" class="icon-small margin-r-10" src="https://s3.us-east-2.amazonaws.com/prefect-image/cross-grey.png">
-    
-        <input type="text" value="" id="search2" placeholder="Type to Search">
-    
-  </div>
-    <div class="regular" routerLink="searchresult">
-      <i class="material-icons">location_on</i>
-      All Location
-    </div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Black River</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Flacq</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Grand Port</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Moka</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Pamplemousses</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Plaines-Wilhems</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Port-Louis</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Riviere du Rempart</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Savanne</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Rodrigues</div>
-   <!--  <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Ahmedabad</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Agra</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Ambala</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Amritsar</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Aurangabad</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Bhopal</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Bhubaneswar</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Coimbatore</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Dehradun</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Guwahati</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Indore</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Jaisalmer</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Jalandhar</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Jodhpur</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Kerala</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Lonavala</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Lucknow</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Ludhiana</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Madurai</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Mangalore</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Mussoorie</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Mysore</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Nagpur</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Nashik</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Patiala</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Pushkar</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Raipur</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Ranchi</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Shimla</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Siliguri</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Silvassa</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Srinagar</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Surat</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Udaipur</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Vadodara</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Varanasi</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Visakhapatnam</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Arizona, USA</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Australia</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Canada</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Dubai</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> HongKong</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Indonesia</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Italy</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Mauritius</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Netherlands</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Pakistan</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Singapore</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> South Africa</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Thailand</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> UK</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> USA</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Washington , USA</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Oman</div>
-    <div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Puri</div> -->
-  </div>
-</div>
-    </div>
-  </div>
-</header>
+          </div>
 
 
-
-
-
+        </header>
+      </div> 
+  </div> 
 </div>

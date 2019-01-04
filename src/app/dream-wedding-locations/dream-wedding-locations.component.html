@@ -1,0 +1,23 @@
+<app-menu></app-menu>
+  <section class="all_category" id="portfolio">
+    <div class="container text-center mob_dis_none">
+      <h3 class="brows_head"> <strong> Find Vendors by <span class="bate_bg"> Location </span>  </strong> </h3>
+    </div>
+    <div class="container mob_parallax mob_padd0">
+      <div class="col-md-3 col-6 box_img"  *ngFor='let dream_wedding of dream_wedding_location'>
+      <a href="#" class="zoom_in">
+        <img style="height: 222px;"    [src]="dream_wedding.profileImage">
+        <div class="cakes_hover">
+            <!-- <img _ngcontent-c1="" style="    height: 222px;
+            " class="red_bg" [src]="dream_wedding.iconImageURL"> -->
+              <div class="tranparentlayer">
+            <h5><strong>{{dream_wedding.country.countryName}} </strong></h5> 
+            <p>20 listing </p>
+          </div>
+        </div>
+      </a>
+      </div>
+    </div>
+  </section>
+<app-foot></app-foot>
+<router-outlet></router-outlet>

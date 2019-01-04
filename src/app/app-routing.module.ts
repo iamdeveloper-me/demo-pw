@@ -134,15 +134,34 @@ import { Gallery0Component } from './vendor/gallery0/gallery0.component';
 
 import { AuthGuardService } from './services/auth-guard.service';
 
+import { DealsComponent } from './deals/deals.component';
+import { DealDetailsComponent } from './deal-details/deal-details.component';
+import { HoneymoonComponent } from './honeymoon/honeymoon.component';
+import { HoneymoonDetailsComponent } from './honeymoon-details/honeymoon-details.component';
+
+import { EventcelandarComponent } from './eventcelandar/eventcelandar.component';
+import { DreamWeddingLocationsComponent } from './dream-wedding-locations/dream-wedding-locations.component';
+import { FeaturedWeddingSuppliersComponent } from './featured-wedding-suppliers/featured-wedding-suppliers.component';
+
+import { StepFirstComponent } from './register/step-first/step-first.component';
+import { StepSecondComponent } from './register/step-second/step-second.component';
+import { StepThirdComponent } from './register/step-third/step-third.component';
+import { StepForthComponent } from './register/step-forth/step-forth.component';
+import { PaymentSummaryComponent } from './payment-summary/payment-summary.component';
 
 const appRoutes: Routes = [
 
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'register/step1', component: StepFirstComponent },
+  { path: 'register/step2', component: StepSecondComponent },
+  { path: 'register/step3', component: StepThirdComponent },
+  { path: 'register/step4', component: StepForthComponent },
   { path: 'home/searchresult', component: SearchresultComponent },
+  { path: 'home/searchresult/:id', component: SearchresultComponent },
   { path: 'home/tips_list', component: TipslistComponent },
   { path: 'home/event_list', component: EventlistComponent },
-  { path: 'home/detailprofile', component:  DetailpageComponent  },
+  { path: 'home/detailprofile/:id', component:  DetailpageComponent  },
   { path: 'home/gallery', component:  GalleryComponent  },
   //{ path: 'home/vendor', component:  VendorComponent  },
   { path: 'home/photo', component: PhotoComponent },
@@ -164,6 +183,13 @@ const appRoutes: Routes = [
   { path: 'home/supplierbylocation', component:  SupplierbylocationComponent },
   { path: 'home/Photogallerydetail', component:  PhotogallerydetailComponent },
   { path: 'home/ResetPassword', component:  ResetPasswordComponent },
+  { path: 'home/allDreamWedding', component:  DreamWeddingLocationsComponent },
+  { path: 'home/FeaturedWeddingSuppliers', component:  FeaturedWeddingSuppliersComponent },
+
+  { path: 'home/Deals', component:  DealsComponent },
+  { path: 'home/Deal_Details', component:  DealDetailsComponent },
+  { path: 'home/Honeymoon', component:  HoneymoonComponent },
+  { path: 'home/Honeymoon_Details', component:  HoneymoonDetailsComponent },
 
   { path: 'vendor/creatpromo', component:  CreatePromotionComponent, canActivate:[AuthGuardService]  },
   { path: 'vendor/messagess', component:  ChatComponent, canActivate:[AuthGuardService]  },
@@ -193,6 +219,7 @@ const appRoutes: Routes = [
     { path: 'vendor/business-services', component:  BusinessServicesComponent,canActivate:[AuthGuardService]  },
     { path: 'vendor/membership', component:  MembershipComponent,canActivate:[AuthGuardService]  },
     { path: 'vendor/calender', component:  CalendertableComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/eventcalander', component: EventcelandarComponent,canActivate:[AuthGuardService]},
     { path: 'vendor/Message', component:  MessageComponent,canActivate:[AuthGuardService]},
     { path: 'vendor/videoview', component:    VedioviewComponent,canActivate:[AuthGuardService]},
     { path: 'vendor/PromoteBusiness', component:    PromoteBusinessComponent,canActivate:[AuthGuardService]},
@@ -218,7 +245,7 @@ const appRoutes: Routes = [
     { path: 'vendor/Success', component:  SuccessComponent},
     { path: 'vendor/Failure', component:  FailureComponent},
     { path: 'vendor/payment-selection', component:  PaymentSelectionComponent  },
-    
+    { path: 'payment-selection', component:  PaymentSummaryComponent  },
   
 
 

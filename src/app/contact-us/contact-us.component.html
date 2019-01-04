@@ -37,24 +37,6 @@
 
               
            </legend>
-            <!-- <legend> <a href=""><i class="fa fa-mobile" aria-hidden="true"></i> 
-
-               <ul>
-                  <li>Phone</li>
-                  <li> 1234567889</li>
-               </ul>
-
-
-             </a></legend>
-             <legend><a href="">  <i class="fa fa-fax" aria-hidden="true"></i>
-
-              <ul>
-                  <li>Fax</li>
-                  <li> 1234567889</li>
-               </ul>
-
-             </a>  
-            </legend> -->
               <legend> <i class="fa fa-globe" aria-hidden="true"></i>
 
                  <ul>
@@ -77,23 +59,33 @@
             </form>
         </div>
 
-       <div class="col-md-6 cont_bg">
+          <div class="col-md-6 cont_bg">
             <div>
               <h4>CONTACT FORM</h4>
             </div>
-            <form method="post" data-form-title="CONTACT US">
+            <form (ngSubmit)="contactus(list)" #list="ngForm">
               <input type="hidden" data-form-email="true">
               <div class="form-group">
-                <input  type="text" class="form-control" name="name" required="" placeholder="Name*" data-form-field="Name">
+                <input  type="text" [(ngModel)] = "name" class="form-control" name="name" required="" placeholder="Name*" data-form-field="Name">
               </div>
               <div class="form-group">
-                <input type="email" class="form-control" name="email" required="" placeholder="Email*" data-form-field="Email">
+                <input type="email"   pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$" class="form-control" [(ngModel)] = "email" name="email"   required  placeholder="Email*" data-form-field="Email">
+                <div class="clearfix"></div>
+                <!-- <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">Email is required!</small> -->
+          
+             
               </div>
               <div class="form-group">
-                <input type="tel" class="form-control" name="subject" placeholder="Subject" data-form-field="subject">
+                  <input type="text" class="form-control"   (keypress)="keyPress($event)" [(ngModel)] = "phoneNumber" name="phoneNumber" required="" placeholder="phone Number*" data-form-field="Email">
+                  <small class="form-text text-muted danger" >{{Phone_no}}</small>
+                </div>
+              <div class="form-group">
+                <input type="tel" class="form-control" [(ngModel)] = "subject" name="subject" placeholder="Subject" data-form-field="subject">
+                <input type="hidden" class="form-control" [(ngModel)] = "messageType" value = "messageType" name="messageType" placeholder="messageType" data-form-field="subject">
+                
               </div>
               <div class="form-group">
-                <textarea class="form-control" name="message" placeholder="Message" rows="3" data-form-field="Message"></textarea>
+                <textarea class="form-control" name="message" [(ngModel)] = "message" placeholder="Message"  rows="3" data-form-field="Message"></textarea>
               </div>
               <div>
                 <button type="submit" class="btn btn-lg btn-danger">Submit Message</button>

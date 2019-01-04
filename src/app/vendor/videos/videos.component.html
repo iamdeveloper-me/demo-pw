@@ -95,6 +95,38 @@
             </div>
             
         </div>
+        <ng-template #total_not>
+          <div class="container-fluid ">
+            <div class="container-fluid addvideo  text-center ">
+              <div class=" my_video_bg">
+                <h3> <strong> MY VIDEOS </strong> </h3>
+                <P>Showcase videos that demonstrate your work to reach more clients</P>
+                 <a class="sett_icon pull-right" routerLink="../vediosetting">
+                <i class="material-icons ">settings</i>
+              </a>
+                </div>
+             </div>   
+          <div class="container-fluid addvideo1 ">
+            <div class="my_video_bg11 ">
+          <section class="p-0 container" id="portfolio">
+               <div class="text-center">
+                 <button class="add_videobt"  (click)="Addvediodetail_dailog = true" >Add Video</button> 
+                </div>
+                   <div class="photos_gallery">
+                          <div class="row firt_row">
+                            <div class="col-md-3 marbot15px" *ngFor="let single_video of video_all_data">
+                              <iframe  [src]="single_video.link  | safe" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                            <strong>{{single_data.title}}</strong>
+                          </div>
+                      </div>
+                </section>
+              </div>
+          
+          
+            </div>       
+    </div> 
+        </ng-template>
 </div>    
 
 <ng-template #loaderTrue>

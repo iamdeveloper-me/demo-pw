@@ -488,7 +488,7 @@ myplans:any = {};
               this.router.navigate([url])
               }else{
                 swal({
-                  title: "Profile Not Completed",
+                  title: "Profile Not Completed add Listing is not active",
               text: "Thankyou!",
               type: "warning",
               showCancelButton: false,

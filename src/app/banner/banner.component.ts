@@ -74,6 +74,18 @@ export class BannerComponent implements OnInit {
       this.objFilterParam.searchQuery ="";
       this.objFilterParam.locationId = this.locationId;
      }
+     if(e.value.category == 0){
+      this.objFilterParam.catId  = 0;
+      this.objFilterParam.categoryName= '';
+      this.objFilterParam.isDreamLocation=isDreamLocation;
+      this.objFilterParam.isAllSupplier=isAllSupplier;
+      this.objFilterParam.page = 0;
+      this.objFilterParam.pageSize = 25;
+      this.objFilterParam.sortDir = "";
+      this.objFilterParam.sortedBy ="";
+      this.objFilterParam.searchQuery ="";
+      this.objFilterParam.locationId = 0;
+     }
      sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
        this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   }

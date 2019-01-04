@@ -81,12 +81,12 @@ ngOnInit(){
       this.myalbumimages =  item.albumImages;
       for (var albumtag of  this.myalbumimages ) {
         if(albumtag.tags != null){
-          albumtag['tags_two'] = albumtag['tags'].split(',');
+          albumtag['tags_two'] = albumtag['tags'][0].split(',');
          
         }
         if(albumtag.tags != null){
           // albumtag['tags_two'] = albumtag['tags'].split(',');
-          albumtag['tags'] = albumtag['tags'].split(',');
+          albumtag['tags'] = albumtag['tags'][0].split(',');
          
         }
         if(albumtag.colorTags !=null){
@@ -105,13 +105,13 @@ openModel(e){
     this.description_dailog = true
     this.formdata = e;
     console.log(e);
-    if(e.tags.length != 0){
+    if(e.tags != null){
       this.tag_array = e.tags;
 
     }
    console.log(this.albumsetting2.colors)
   
-  
+
    if(this.formdata['colorTags'] != ''){
     this.formdata['colorTags'].forEach(element => {
       this.albumsetting2.colors.forEach(el=>{
@@ -120,7 +120,6 @@ openModel(e){
         }
       }) 
     });
-
   }
   
   
@@ -182,7 +181,7 @@ editSetting(f){
  
                   this.description_dailog = false;
                   this.tag_array = this.tag_array.filter(element => element !== "")
-                
+                debugger
                 if(this.tag_array.length == 0 ){
                 
                   this.tag_array2 =  null
@@ -206,7 +205,8 @@ editSetting(f){
                                   ColorTags:  this.albumsetting2.csvColors,
                                   SetAsBackground: false
                                 }
-                                               
+                                          
+                                debugger
                   this.post_tag_edit(fire)
    }
   

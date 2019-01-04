@@ -79,17 +79,33 @@ PayPalPayment(){
       },   
     );
   }else{
-    this.http.post(this.url+'/api/PromoteBusiness/saveadlog',this.MainData,{headers:headers}).subscribe( (data)=> { 
-    
-      console.log(data.json())
-      sessionStorage.removeItem('selected_plan');
-            this.router.navigate([]).then(result => {  window.open(data.json().url); });
+    if(this.MainData['route_key'] == 1){
+      this.http.post(this.url+'api/Supplier/upgrademembership',this.MainData,{headers:headers}).subscribe( (data)=> { 
       
-      },
-      (error)=>{
-        console.log(error);
-      },   
-    );
+        console.log(data.json())
+        sessionStorage.removeItem('selected_plan');
+  
+        this.router.navigate([]).then(result => {  window.open(data.json().url); });
+        
+        },
+        (error)=>{
+          console.log(error);
+        },   
+      );}
+      else{
+        this.http.post(this.url+'/api/PromoteBusiness/saveadlog',this.MainData,{headers:headers}).subscribe( (data)=> { 
+    
+          console.log(data.json())
+          sessionStorage.removeItem('selected_plan');
+                this.router.navigate([]).then(result => {  window.open(data.json().url); });
+          
+          },
+          (error)=>{
+            console.log(error);
+          },   
+        );
+      }
+   
   }
 
   

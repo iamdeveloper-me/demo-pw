@@ -5,7 +5,10 @@ import { Router } from '@angular/router';
 import { Http,Headers } from '@angular/http';
 import { SignupVendorService } from '../shared/service/signup-vendor.service';
 import 'rxjs/Rx';
- 
+import { MasterserviceService } from '../ngservices/masterservice.service';
+import { apiService } from '../shared/service/api.service';
+import{filterParam} from '../vendorcard/vendorcard.component'
+
 export class NgbdModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) { }
@@ -23,10 +26,49 @@ export class MenuComponent implements OnInit {
     session_token
     private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
     vendor: any = {};
-  
-    constructor( private router: Router ,public http: Http,private cservice: LoginServiceService , private modalService: NgbModal, private uservice: SignupVendorService,) {}
+    objFilterParam: filterParam;
+    constructor(private router: Router ,private masterservice: MasterserviceService , private apiService: apiService,public http: Http,private cservice: LoginServiceService , private modalService: NgbModal, private uservice: SignupVendorService,) {
+        this.objFilterParam = new filterParam();
+    }
     user = {username:'',password:''}
     usercouple = {username:'',password:''}
+    Categories = [];
+
+    locations = [];
+    locationId:number=0;
+    Categorie(){ 
+        this.masterservice.getAllCategories().subscribe(data => {
+         console.log(data);
+          this.Categories = data;
+         },error => {  console.log(error) })
+      }
+      location(){ 
+        this.masterservice.getAllLocation().subscribe(data => {
+          console.log(data);
+          this.locations = data;
+         },error => {  console.log(error) })
+      }
+      search(e,isAllSupplier,isDreamLocation){
+        console.log(e.value);
+        // debugger;
+        if(e){
+          this.objFilterParam.catId  = e.value.category?e.value.category.categoryId:0;
+          this.objFilterParam.categoryName= e.value.category?e.value.category.categoryName: '' ;
+        //   this.objFilterParam.isDreamLocation=isDreamLocation;
+          this.objFilterParam.isAllSupplier=isAllSupplier;
+          this.objFilterParam.page = 1;
+          this.objFilterParam.pageSize = 25;
+          this.objFilterParam.sortDir = "";
+          this.objFilterParam.sortedBy ="";
+          this.objFilterParam.searchQuery ="";
+        //   this.objFilterParam.locationId = this.locationId;
+         }
+         sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+           this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
+      }
+
+
+
     onSubmit(){ 
      // headers.append('Content-Type', 'application/json');
      this.cservice.login(this.usercouple).subscribe(
@@ -112,7 +154,12 @@ export class MenuComponent implements OnInit {
     
     this.typeLogout();
     }
-    ngOnInit() { 
+    ngOnInit() {
+        
+        this.Categorie();
+        this.location();
+        this.search;
+
      //   $('div').removeClass('modal-backdrop fade in show')
                 $("#sidebar-wrapper").hide();
                 $(".userlogindisplay").hide();

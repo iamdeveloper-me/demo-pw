@@ -5,15 +5,15 @@
             <div class="searchtopbar">
                 <form (ngSubmit)="find_photo(list)" #list="ngForm">
                     <div class="col-md-2 col-xs-6 mar_left_75">
-                        <select class="cityinput2" name="categoryId"   [(ngModel)]="categoryId"  id="categoryId" >
-                            <option  value="All" selected >All Category</option>
+                        <select class="cityinput2" name="categoryId" placeholder = "All Category"  [(ngModel)]="categoryId"  id="categoryId" >
+                            <option [selected]  [value]="0"  >All Category</option>
                             <option *ngFor='let list_categories of categories' [value] = "list_categories.categoryId" >
                                 {{list_categories.categoryName}}
                             </option>
                         </select>
                     </div>
                     <div class="col-md-8 col-xs-6 Search_img">
-                        <input type="text"  [(ngModel)]="searchQuery"  type="text" name="searchQuery"  placeholder="Search Category" class="searchinput">
+                        <input type="text"  [(ngModel)]="searchQuery"  type="text" name="searchQuery"  placeholder="Search " class="searchinput">
                         <input type="submit" value="" class="search-button">
                     </div>
                 </form>
@@ -30,6 +30,7 @@
                 <section id="wrapper">
                     <div class="container">
                         <div style="position:relative;min-height:100vh;" id="categoryProductContainer"  >
+                            <h1>{{error_1}}</h1>
                             <div class="span2 pcon prodcont actioninside" *ngFor="let item of pagedItems" data-toggle="modal" data-target="#myModal">
                                 <!-- <div class="span2 pcon prodcont actioninside" *ngFor="let item of pagedItems"> -->
 
@@ -45,7 +46,43 @@
                                                 <i class="material-icons">favorite_border</i>
                                                 &nbsp;<i class="material-icons">share</i>
                                                 <div class="clearfix"></div>
-                                                <span class="colortag" style="background:#ff0000;">{{item?.colorTags}}</span>
+                                                <!-- <span class="colortag" style="background:#ff0000;">{{item?.colorTags}}</span> -->
+                                                <div *ngFor="let g of item?.colorTags">
+                                                    <span *ngIf = "g == 'pink'">
+                                                        <span class="colortag pinkbg"></span>
+                                                    </span>
+                                                    <span *ngIf = "g == 'red'">
+                                                        <span class="colortag redbg"></span>
+                                                    </span>
+                                                    <span *ngIf = "g == 'Blue'">
+                                                        <span class="colortag bluebg"></span>
+                                                    </span>
+                                                    <span *ngIf = "g == 'yellow'">
+                                                        <span class="colortag yellowbg"></span>
+                                                    </span>
+                                                    <span *ngIf = "g == 'green'">
+                                                        <span class="colortag greenbg"></span>
+                                                    </span>
+                                                    <span *ngIf = "g == 'purple'">
+                                                        <span class="colortag purplebg"></span>
+                                                    </span>
+                                                    <span *ngIf = "g == 'white'">
+                                                        <span class="colortag whitebg"></span>
+                                                    </span>
+                                                    <span *ngIf = "g == 'black'">
+                                                        <span class="colortag blackbg"></span>
+                                                    </span>
+                                                    <span *ngIf = "g == 'grey'">
+                                                        <span class="colortag greybg"></span>
+                                                    </span>
+                                                    <span *ngIf = "g == 'orange'">
+                                                        <span class="colortag orangebg"></span>
+                                                    </span>
+                                                    <span *ngIf = "g == 'brown'">
+                                                        <span class="colortag brownbg"></span>
+                                                    </span>
+                                                      <!-- {{c}} -->
+                                                </div>
                                         </div>
                                     </div>
                                 </div>   

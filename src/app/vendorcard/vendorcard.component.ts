@@ -42,12 +42,14 @@ export class VendorcardComponent implements OnInit {
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/featuredsuppliers').subscribe(data => {
       console.log(data.featuredWeddingSuppliers)
       this.featured_supplier_data = data.featuredWeddingSuppliers;
+
       this.featured_supplier_data.forEach(element => {
         element.reviews.forEach(element => {           
           this.max.push(element.rating) 
           this.max.sort((a,b) => 0 - (a > b ? 1 : -1))
         });
       });
+
       //this.max = [];
     },
       error => {

@@ -331,8 +331,8 @@
 		<div class="col-sm-9 listingtab">
       <div class="photo_cont">
        	<div id="products" class="row list-group">
-          
-	        	<div *ngFor='let i of objSearchResultItems.items' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
+          <div *ngIf='objSearchResultItems'>
+	        	<div *ngFor='let i of collection' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
 
 	                <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
@@ -380,7 +380,7 @@
                             <span *ngIf='i.reviews>0'>
                             {{i.averageRating}} {{i.reviews}} </span>
                           </p>
-                          <p>
+                          <p *ngIf='i.vendorCategories[0].categories'>
                             {{i.vendorCategories[0].categories.categoryName}}
                           </p>
                         </div>
@@ -400,10 +400,11 @@
                     </div>
 	       		      </div>
             </div>
+          </div>
 	     	</div>
         <div>
 
-           <div class="btn btn-success" style="color:white"  (click)='paginate(objSearchlistvm.pageSize)'>Load More........</div>
+           <div class="loadmorebtn" (click)='paginate(objSearchlistvm.pageSize)'>Load More...</div>
                   <!-- <ngb-pagination [collectionSize]="objSearchResultItems?.totalCount" [(page)]="objSearchResultItems.page" [boundaryLinks]="true"></ngb-pagination>
              <span class="totalpage">{{objSearchResultItems.totalPages}} (Page)s</span> -->
         </div>
@@ -411,35 +412,33 @@
     </div>
 </div>
 </div>
-
-
 <div class="filterselectbox">
 
   <div class="col-sm-12">
-    <button class="clearbtn">Clear</button>
+    <button class="clearbtn" (click)='clearFilters()'>Clear</button>
     <button class="applybtn">Apply</button>
 
 <div class="clearfix"></div>
 
-<p class="text-center">Filters (4)</p>
+<p class="text-center">Filters (0)</p>
 
 <div class="filterrow categoryfilter">
-  <h1>Category <i class="material-icons">arrow_right</i></h1>
+  <h1>Category  {{objSearchlistvm.categoryId.length}}<i class="material-icons">arrow_right</i></h1>
   <div>
-    <span class="badge">
-     Cakes <i class="material-icons">clear</i>
+    <span class="badge" *ngFor='let c of categories'>
+      <div *ngIf='c.isSelect'>{{c.categoryName}}</div>
     </span>
   </div>
 </div>
 <div class="filterrow locationfilter">
-  <h1>Location (2) <i class="material-icons">arrow_right</i></h1>
+  <h1>Location {{objSearchlistvm.districtId.length}} <i class="material-icons">arrow_right</i></h1>
   <div>
-    <span class="badge">
-     Black River <i class="material-icons">clear</i>
+    <span class="badge" *ngFor='let l of locations'>
+      <div *ngIf='l.isSelect'>{{l.name}} </div>
     </span>
-     <span class="badge">
+     <!-- <span class="badge">
      Grand Port <i class="material-icons">clear</i>
-    </span>
+    </span> -->
   </div>
 </div>
 <div class="filterrow pricefilter">

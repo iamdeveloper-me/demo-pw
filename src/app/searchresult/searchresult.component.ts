@@ -21,6 +21,7 @@ export class SearchresultComponent implements OnInit {
   categories:any;
   filters: any;
   count:number = 3
+  selectedLocationsCount = 0;
   objSearchlistvm: SearchListingVM;
   objSearchResultItems:any;
   locationFilterParam:string='';
@@ -31,7 +32,6 @@ export class SearchresultComponent implements OnInit {
   blankImg='../../assets/img/noImg.png';
 
   constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService, private api: apiService) {  
-    debugger;
     this.objSearchFilter=new filterParam();
     this.objSearchlistvm = new SearchListingVM();
     if(this._activeRoute!=undefined){
@@ -47,7 +47,7 @@ export class SearchresultComponent implements OnInit {
     this.getLocations();
     this.getCategories();
     this.getFilters();
-    this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
+   // this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
       this.objSearchResultItems = res;
       this.getSearchFilterResult();
@@ -56,7 +56,7 @@ export class SearchresultComponent implements OnInit {
     },error=>{
       console.log(JSON.stringify(error));
     });
-//     this.paginate(25);
+ //   this.paginate(this.objSearchFilter.pageSize);
   }
  ngOnInit() {   
   //$.getScript('./assets/js/owljsor.js');
@@ -73,8 +73,9 @@ export class SearchresultComponent implements OnInit {
   $(".slider_use_anather_compo").hide();
   }
   goToPortfolioDetail(vendor){
-    let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails/';
-    this.api.getData(url+'?='+vendor.vendorUniqueId).subscribe(res=>{
+    debugger;
+    let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
+    this.api.getData(url+'?id='+vendor.vendorId).subscribe(res=>{
       sessionStorage.setItem('vendorDetails',JSON.stringify(res));
     this._route.navigate(['home/detailprofile']);
   });
@@ -93,11 +94,12 @@ export class SearchresultComponent implements OnInit {
     });
       
   }
+
   getCategories(){
      this._masterservice.getAllCategories().subscribe(res=>{
-       res.forEach(element => {
-         element['pageSize'] = 25
-       });
+   //    res.forEach(element => {
+     //    element['pageSize'] = this.objSearchlistvm.pageSize
+     //  });
       this.categories=res;
       if(this.objSearchFilter.catId>0){
        // this.categories=this.categories.filter(c=>c.categoryId==this.objSearchFilter.categoryId);
@@ -114,10 +116,11 @@ export class SearchresultComponent implements OnInit {
     filter_paramArray.push(this.objSearchFilter.catId);
     this._masterservice.getFilters(filter_paramArray).subscribe(res=>{
       this.filters=res;
+      if(this.filters.length>0){
       this.filters.services.forEach(element => {
         element.isSelect=false;
       });
-  
+    }
     },error=>{
       console.log(error);
     })
@@ -155,41 +158,55 @@ export class SearchresultComponent implements OnInit {
     this.locations.forEach(element => {
       if(element.isSelect){
         this.objSearchlistvm.districtId.push(element.districtId)
+      }else{
+        element.isSelect=false;
       }
     });
   }
+  
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
+      
       this.objSearchResultItems = res;
-      this.paginate(this.objSearchFilter.pageSize);
-    })
+      this.setBlankImg();
+      this.addToCollection();
+      console.log(JSON.stringify(this.collection)) ;
+    });
+     
+   // this.paginate(this.objSearchFilter.pageSize);
+  }
+  clearFilters(){
+    this.locations.forEach(element => { element.isSelect=false; });
+    this.objSearchlistvm.districtId = [];
+    this.categories.forEach(element => { element.isSelect=false; });
+    this.objSearchlistvm.categoryId = [];
+  }
+  addToCollection(){
+    this.objSearchResultItems.items.forEach(element => {
+      this.collection.push(element);
+    });
   }
   filterLocations(ev){
     let filterResult=this.locations.filter(n=>n.name.startwith(ev.value));
     this.locations=filterResult;
   }
-  findVendorRating(reviews,rating){
-    return reviews*rating
+  setBlankImg(){
+    if(this.objSearchResultItems){
+      this.objSearchResultItems.items.forEach(element => {
+          if(element.profileImage==null){
+            element.profileImage=this.blankImg;
+       }
+       });
+      }
   }
    paginate (pageSize) {
-     debugger
-     this.disableLoadingButton=false;
-   let c=this.objSearchResultItems.items.slice(this.pageNumber * pageSize, (this.pageNumber + 1) * pageSize);
-   if(c.length<this.objSearchFilter.pageSize){
-    this.disableLoadingButton=true;
-   }
-    c.forEach(element => {
-      if(element.profileImage==null){
-        element.profileImage=this.blankImg;
-
-      }
-      this.collection.push(element); 
-
-   });
+  this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
+    this.objSearchResultItems = res;
+    this.setBlankImg();
+    this.addToCollection();
+  });   
+  this.disableLoadingButton=false;
    this.pageNumber+=1;
-  }
-  
-   // Variable Declaration
-   page2 = 4;
+ }
 }
 export class SearchFilterVm{
   categoryId:number=1;
@@ -209,8 +226,8 @@ export class SearchListingVM{
   customsFields:Array<FieldSearchVM>;
   customField:FieldSearchVM;
   constructor(){
-    this.pageSize=10;
-    this.page=0;
+    this.pageSize=25;
+    this.page=1;
     this.districtId=[];
     this.categoryId=[];
     this.serviceId=[];

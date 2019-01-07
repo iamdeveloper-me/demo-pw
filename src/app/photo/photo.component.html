@@ -5,16 +5,16 @@
             <div class="searchtopbar">
                 <form (ngSubmit)="find_photo(list)" #list="ngForm">
                     <div class="col-md-2 col-xs-6 mar_left_75">
-                        <select class="cityinput2" name="categoryId"   [(ngModel)]="categoryId"  id="categoryId" >
-                            <option  value="All" selected >All Category</option>
+                        <select class="cityinput2" name="categoryId" placeholder = "All Category"  [(ngModel)]="categoryId"  id="categoryId" >
+                            <option selected  [value]="0"  >All Category</option>
                             <option *ngFor='let list_categories of categories' [value] = "list_categories.categoryId" >
                                 {{list_categories.categoryName}}
                             </option>
                         </select>
                     </div>
-                    <div class="col-md-8 col-xs-6 Search_img">
-                        <input type="text"  [(ngModel)]="searchQuery"  type="text" name="searchQuery"  placeholder="Search Category" class="searchinput">
-                        <input type="submit" value="" class="search-button">
+                    <div class="col-md-8 col-xs-6 Search_img" (click)="tag_colour = true" >
+                        <input type="text"  [(ngModel)]="searchQuery"  type="text" name="searchQuery"  placeholder="Search with tags and colour tags only" class="searchinput">
+                        <input type="submit"  value=""  class="search-button">
                     </div>
                 </form>
             </div>
@@ -28,8 +28,23 @@
                 <!-- items being paged -->
                 <!-- <div *ngFor="let item of pagedItems">{{item.id}}</div> -->
                 <section id="wrapper">
-                    <div class="container">
+                     <div class="container">    
+                        <span class="colortag" *ngIf='showTag' [style.background-color]='searchQuery'></span>
+                        <!-- <span class="tagstik" *ngIf='showTag2' > -->
+                            <!-- {{pagedItems| json}} -->
+                            <div  *ngIf='showTag2'>
+                                <div class="tagnamediv"   *ngFor="let item of pagedItems">
+                                            <span *ngFor="let tag of item?.tags | slice:1:2 ;let i=index " >
+                                                <span class="tagstik" *ngIf = "tag != '' " > 
+                                                    {{tag}}    
+                                                </span> 
+                                            </span>
+                                </div> 
+                            </div>
+                          
+                        <!-- </span> -->
                         <div style="position:relative;min-height:100vh;" id="categoryProductContainer"  >
+                            <h1>{{error_1}}</h1>
                             <div class="span2 pcon prodcont actioninside" *ngFor="let item of pagedItems" data-toggle="modal" data-target="#myModal">
                                 <!-- <div class="span2 pcon prodcont actioninside" *ngFor="let item of pagedItems"> -->
 
@@ -38,16 +53,35 @@
                                     <div class="clearfix"></div>
                                     <div class="photodetail">
                                         <p class="detaildiv">
-                                            <span>{{item.nameOfBusiness}}</span>
+                                            <span>{{item.nameOfBusiness}}//{{item.id}}</span>
                                             <span><i class="fa fa-map-marker"></i>{{item.district}}</span>
                                         </p>
+                                        <!-- <p class="detaildiv">
+                                            <span>{{item.tags}}</span>
+                                        </p> -->
+                                          
                                         <div class="linkdiv">
                                                 <i class="material-icons">favorite_border</i>
                                                 &nbsp;<i class="material-icons">share</i>
                                                 <div class="clearfix"></div>
-                                                <span class="colortag" style="background:#ff0000;">{{item?.colorTags}}</span>
+                                                <!-- <span class="colortag" style="background:#ff0000;">{{item?.colorTags}}</span> -->
+                                               
                                         </div>
                                     </div>
+                                    <div class="clearfix"></div>
+                                 
+                                    <div class="clearfix"></div>
+                                    <div class="tagnamediv ">
+                                            <span *ngFor="let tag of item?.tags;let i=index">
+                                              <span class="tagstik" *ngIf = "tag != '' " > 
+                                                  {{tag}}    
+                                              </span> 
+                                            </span>
+                                        </div> 
+
+
+
+
                                 </div>   
                             </div>
                         </div>
@@ -109,6 +143,8 @@
 <app-foot></app-foot>
 </div>
 <router-outlet></router-outlet> 
+
+
 
 
 

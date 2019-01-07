@@ -102,12 +102,9 @@ export class VendorcardComponent implements OnInit {
     this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   }
   supplier_all(c,isAllSupplier,isDreamLocation){
-   // alert("dfsvf")
-   console.log(c)
-    if(c){
-      alert(c)
-      this.objFilterParam.catId  = c.categoryId;
-      this.objFilterParam.categoryName= '';
+debugger
+      this.objFilterParam.catId  = c?c.categoryId:0;
+      this.objFilterParam.categoryName= c?c.categoryName:'';
       this.objFilterParam.isDreamLocation=isDreamLocation;
       this.objFilterParam.isAllSupplier=isAllSupplier;
       this.objFilterParam.page = 0;
@@ -115,8 +112,8 @@ export class VendorcardComponent implements OnInit {
       this.objFilterParam.sortDir = "";
       this.objFilterParam.sortedBy ="";
       this.objFilterParam.searchQuery ="";
-  }
-    localStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+  
+    sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
     this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
    // console.log(this.objFilterParam.categoryName);
   }

@@ -8,12 +8,18 @@ import { PagerService } from '../_services'
   styleUrls: ['./photo.component.scss']
 })
 export class PhotoComponent implements OnInit {
+  
   constructor(private pagerService: PagerService,private apiService: apiService ) { }
    categories:any = [];
    pho_data:any = {}
    categoryId=''
    searchQuery=''
    userId;
+   find_color_tag ='pink';
+   
+   tag_colour = false
+   showTag =  false;
+   showTag2= false;
     // array of all items to be paged
     private allItems:any = [];
     // pager object
@@ -35,19 +41,20 @@ export class PhotoComponent implements OnInit {
     sortedBy: "asc",
     searchQuery: "",
     categoryId: 0
-    }).map((response: Response) => response).subscribe(data => {
-        console.log(data)
-        // set items to json response
-        this.allItems = data['items'];
-        // initialize to page 1
-
-        // for (var pagedItem of  this.allItems  ) {
-        //   if(pagedItem['colorTags']!= ''){
-        //     pagedItem['colorTags'] =  pagedItem['colorTags'].split(',');
-        //     this.allItems =[]
-        //     this.allItems.push(pagedItem);
-        //   }else{  this.allItems.push(pagedItem);}
-        //   }
+    }).subscribe(data => {
+      //console.log(data.items)
+        for (var pagedItem of  data.items ) {
+           if(pagedItem['colorTags'] == null || pagedItem['tags'] == null){
+            this.allItems.push(pagedItem);
+           }else{
+            pagedItem['colorTags'] =  pagedItem['colorTags'].split(',');
+            pagedItem['tags'] =  pagedItem['tags'].split(',');
+            this.allItems.push(pagedItem);
+            
+           }
+           
+          }
+         // this.allItems = data['items'];
            console.log(this.allItems)
         this.setPage(1);
    },error => {  console.log(error)});
@@ -60,8 +67,12 @@ export class PhotoComponent implements OnInit {
    },error => {  console.log(error)});
    
    }
+   setMyStyles() {
+    let styles = {'background-color':'red'};
+    return styles;
+  }
    find_photo(f){
-
+this.find_color_tag= f.value.searchQuery
             if(f.value.categoryId == '0'){
                     const a = {
                       page: 0,
@@ -86,7 +97,7 @@ export class PhotoComponent implements OnInit {
                     console.log(a)
                     this.search_api(a)
             }
-          
+            
        
    }
    search_api(a){
@@ -94,13 +105,24 @@ export class PhotoComponent implements OnInit {
     this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',a)
      .subscribe(data => {
        console.log(data.items)
-     
        this.pagedItems = [];
        for (var pagedItem of   data.items  ) {
-       pagedItem['colorTags'] =  pagedItem['colorTags'].split(',');
-      
-       this.pagedItems.push(pagedItem);
-      
+      //  pagedItem['colorTags'] =  pagedItem['colorTags'].split(',');
+      //  this.showTag = true;
+      //  this.showTag2 = true ;
+      //  this.pagedItems.push(pagedItem);
+       //this.tag_colour = true
+
+       if(pagedItem['colorTags'] == null || pagedItem['tags'] == null){
+        this.pagedItems.push(pagedItem);
+       }else{
+        pagedItem['colorTags'] =  pagedItem['colorTags'].split(',');
+        pagedItem['tags'] =  pagedItem['tags'].split(',');
+        this.showTag = true;
+        this.showTag2 = true ;
+        this.pagedItems.push(pagedItem);
+        
+       }
        }
         console.log(this.pagedItems)
        if( this.pagedItems.length == 0 ){

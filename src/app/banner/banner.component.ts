@@ -62,29 +62,18 @@ export class BannerComponent implements OnInit {
 
   search(e,isAllSupplier,isDreamLocation){
     console.log(e.value);
+    debugger;
     if(e){
-      this.objFilterParam.catId  = e.value.category.categoryId;
-      this.objFilterParam.categoryName= e.value.category.categoryName ;
+      this.objFilterParam.catId  = e.value.category?e.value.category.categoryId:0;
+      this.objFilterParam.categoryName= e.value.category?e.value.category.categoryName: '' ;
       this.objFilterParam.isDreamLocation=isDreamLocation;
       this.objFilterParam.isAllSupplier=isAllSupplier;
-      this.objFilterParam.page = 0;
+      this.objFilterParam.page = 1;
       this.objFilterParam.pageSize = 25;
       this.objFilterParam.sortDir = "";
       this.objFilterParam.sortedBy ="";
       this.objFilterParam.searchQuery ="";
       this.objFilterParam.locationId = this.locationId;
-     }
-     if(e.value.category == 0){
-      this.objFilterParam.catId  = 0;
-      this.objFilterParam.categoryName= '';
-      this.objFilterParam.isDreamLocation=isDreamLocation;
-      this.objFilterParam.isAllSupplier=isAllSupplier;
-      this.objFilterParam.page = 0;
-      this.objFilterParam.pageSize = 25;
-      this.objFilterParam.sortDir = "";
-      this.objFilterParam.sortedBy ="";
-      this.objFilterParam.searchQuery ="";
-      this.objFilterParam.locationId = 0;
      }
      sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
        this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);

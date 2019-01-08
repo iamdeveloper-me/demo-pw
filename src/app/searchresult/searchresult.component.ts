@@ -1,4 +1,8 @@
-import { OnInit, Component ,Pipe, PipeTransform} from '@angular/core';
+
+import { Pipe, PipeTransform} from '@angular/core';
+
+import { OnInit, Component, HostListener } from '@angular/core';
+
 import { Router, ActivatedRoute } from '@angular/router';
 import { MasterserviceService } from 'app/ngservices/masterservice.service';
 import {RatingModule} from 'ngx-rating';
@@ -78,6 +82,7 @@ export class SearchresultComponent implements OnInit {
   categories:any;
   filters: any;
   count:number = 3
+  loading=false;
   selectedLocationsCount = 0;
   objSearchlistvm: SearchListingVM;
   objSearchResultItems:any;
@@ -144,7 +149,7 @@ export class SearchresultComponent implements OnInit {
     let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
     this.api.getData(url+'?id='+vendor.vendorId).subscribe(res=>{
       sessionStorage.setItem('vendorDetails',JSON.stringify(res));
-    this._route.navigate(['home/detailprofile']);
+    this._route.navigate(['home/detailprofile',0]);
   });
 }
   getLocations(){
@@ -230,13 +235,15 @@ export class SearchresultComponent implements OnInit {
       }
     });
   }
-  
+  this.loading=true;
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
-      
+      this.loading=false;  
       this.objSearchResultItems = res;
       this.setBlankImg();
       this.addToCollection();
       console.log(JSON.stringify(this.collection)) ;
+    },error=>{
+      this.loading=false; 
     });
      
    // this.paginate(this.objSearchFilter.pageSize);
@@ -266,13 +273,24 @@ export class SearchresultComponent implements OnInit {
       }
   }
    paginate (pageSize) {
+    this.loading=true; 
   this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
     this.setBlankImg();
     this.addToCollection();
+    this.loading=false; 
+  },error=>{
+    this.loading = false;
   });   
   this.disableLoadingButton=false;
    this.pageNumber+=1;
+ }
+ @HostListener("window:scroll", [])
+ scrollToBottom(){
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    // you're at the bottom of the page
+    this.paginate(this.objSearchFilter.pageSize);
+}
  }
 }
 export class SearchFilterVm{

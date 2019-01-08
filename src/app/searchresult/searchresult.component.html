@@ -91,7 +91,7 @@
           <span *ngIf='objSearchResultItems' class="badge badge-primary badge-labeled">
             {{objSearchResultItems.totalCount?objSearchResultItems.totalCount:0}} Results
           </span>
-         
+       
           <select (change)='getSearchFilterResult()' style="display:none" [(ngModel)]='objSearchlistvm.pageSize'>
             <option value='25' selected>25 Result/Page</option>
             <option value='50'>50 Result/Page</option>
@@ -330,17 +330,14 @@
 		</div>
 		<div class="col-sm-9 listingtab">
       <div class="photo_cont">
-        {{collection | json}}
-	    	<div id="products" class="row list-group">
-          ccc
-	        	<div *ngFor='let i of collection' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
+       	<div id="products" class="row list-group">
+          
+	        	<div *ngFor='let i of objSearchResultItems.items' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
 
 	                <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
 
                       <img class="group list-group-image" [src]='i.storeFrontImage' alt="Card image cap">
-                      {{i.storeFrontImage}}
-
                       <span class="book_mark">
                         <i class="material-icons">bookmark_border</i>
                       </span>
@@ -380,8 +377,11 @@
                             <span class="fa fa-star"></span>
                             <span class="fa fa-star"></span>
                             <!-- <ngb-rating [(rate)]="4"></ngb-rating> -->
-                            <span *ngIf='i.reviews.length>0'>
-                            {{i.averageRating}} {{i.reviews.length}} </span>
+                            <span *ngIf='i.reviews>0'>
+                            {{i.averageRating}} {{i.reviews}} </span>
+                          </p>
+                          <p>
+                            {{i.vendorCategories[0].categories.categoryName}}
                           </p>
                         </div>
                        <div class="col-md-12 col-12 cardfoottext">
@@ -403,7 +403,7 @@
 	     	</div>
         <div>
 
-           <div class="btn btn-success" style="color:white" *ngIf='!disableLoadingButton' (click)='paginate(25)'>Load More........</div>
+           <div class="btn btn-success" style="color:white"  (click)='paginate(objSearchlistvm.pageSize)'>Load More........</div>
                   <!-- <ngb-pagination [collectionSize]="objSearchResultItems?.totalCount" [(page)]="objSearchResultItems.page" [boundaryLinks]="true"></ngb-pagination>
              <span class="totalpage">{{objSearchResultItems.totalPages}} (Page)s</span> -->
         </div>

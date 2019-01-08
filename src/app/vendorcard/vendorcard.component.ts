@@ -119,10 +119,9 @@ export class VendorcardComponent implements OnInit {
         element.reviews.forEach(element => {           
           this.max.push(element.rating) 
           this.max.sort((a,b) => 0 - (a > b ? 1 : -1))
-          
         });
       });
-console.log(this.slidesStore)
+     console.log(this.slidesStore)
       //this.max = [];
     },
       error => {
@@ -175,12 +174,9 @@ console.log(this.slidesStore)
     this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   }
   supplier_all(c,isAllSupplier,isDreamLocation){
-   // alert("dfsvf")
-   console.log(c)
-    if(c){
-      alert(c)
-      this.objFilterParam.catId  = c.categoryId;
-      this.objFilterParam.categoryName= '';
+debugger
+      this.objFilterParam.catId  = c?c.categoryId:0;
+      this.objFilterParam.categoryName= c?c.categoryName:'';
       this.objFilterParam.isDreamLocation=isDreamLocation;
       this.objFilterParam.isAllSupplier=isAllSupplier;
       this.objFilterParam.page = 0;
@@ -188,8 +184,8 @@ console.log(this.slidesStore)
       this.objFilterParam.sortDir = "";
       this.objFilterParam.sortedBy ="";
       this.objFilterParam.searchQuery ="";
-  }
-    localStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+  
+    sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
     this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
    // console.log(this.objFilterParam.categoryName);
   }
@@ -208,8 +204,8 @@ export class filterParam{
   categoryName:string='';
   isAllSupplier:boolean=false;
   isDreamLocation:boolean=false;
-  page: 0;
-  pageSize: 25;
+  page:number=1;
+  pageSize: number=3;
   sortDir: "";
   sortedBy: "";
   searchQuery: "";

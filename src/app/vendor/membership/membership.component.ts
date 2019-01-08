@@ -3,6 +3,7 @@ import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
 import { Router ,ActivatedRoute} from '@angular/router';
+import { SlidesOutputData } from 'ngx-owl-carousel-o';
 @Component({
   selector: 'app-membership',
   templateUrl: './membership.component.html',
@@ -10,6 +11,76 @@ import { Router ,ActivatedRoute} from '@angular/router';
    providers: [NgbCarouselConfig] // add NgbCarouselConfig to the component providers
 })
 export class MembershipComponent implements OnInit {
+  customOptions: any = {
+    margin: 20,
+    loop: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    autoplay: true,
+    navSpeed: 700,
+    nav: false,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 1
+      },
+      767: {
+        items: 3
+      },
+      1024: {
+        items: 3
+      }
+    },
+    //autoplaySpeed:1
+  }
+  customOptionsB: any = {
+    margin: 20,
+    loop: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    autoplay: true,
+    navSpeed: 700,
+    nav: false,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 1
+      },
+      767: {
+        items: 3
+      },
+      1024: {
+        items: 3
+      }
+    },
+    //autoplaySpeed:1
+  }
+
+  activeSlides: SlidesOutputData;
+  activeSlidesB: SlidesOutputData;
+
+  slidesStore: any[];
+  slidesStoreB: any[];
+
+   showStyle: false;
+     getStyle() {
+    if(this.showStyle) {
+      return "yellow";
+    } else {
+      return "";
+    }
+  }
+
 
   private mymembership: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mymembership'
   private updatemember: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/upgrademembership'
@@ -25,9 +96,12 @@ export class MembershipComponent implements OnInit {
   pricingPlanId:number;
   payFrequency:number;
   ngOnInit() {
-
   //  $.getScript('./assets/js/vendorsidebar.js');  
     $.getScript('./assets/js/membershipslider.js'); 
+
+    $(document).ready(function(){
+      $(".panel-footer").find("button.disabled").css({"color": "red", "border": "2px solid red"});
+    });
 
     $(".Suppliertab").click(function(){
     $("#filter").show();
@@ -69,6 +143,8 @@ export class MembershipComponent implements OnInit {
   this.http.get(this.pricingplans,{headers:headers}).subscribe(
     data =>{ console.log(data.json());
                      this.pricing = data.json();
+                     this.slidesStore = this.pricing
+                     console.log(JSON.stringify(this.slidesStore))
                      console.log('Pricing', this.pricing)
             },error => {console.log(error)});
   }
@@ -83,9 +159,29 @@ export class MembershipComponent implements OnInit {
     config.interval = 10000;
     config.wrap = false;
     config.keyboard = false;
-    
-  }
+    this.slidesStore = [
+      {
+        src: "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      },
+      {
+        src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
 
+      },
+      {
+        src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+
+      },
+     
+    ]
+  }
+  getData(data: SlidesOutputData) {
+    this.activeSlides = data;
+    console.log(this.activeSlides);
+  }
+  getDataB(data: SlidesOutputData) {
+    this.activeSlidesB = data;
+    console.log(this.activeSlidesB);
+  }
   Voucher(vo){
     console.log(vo.value.Voucher);
     this.palnvoucher = vo.value.Voucher;

@@ -8,73 +8,159 @@ import { PagerService } from '../_services'
   styleUrls: ['./photo.component.scss']
 })
 export class PhotoComponent implements OnInit {
+  colors: Array<ColorPicker>;
   constructor(private pagerService: PagerService,private apiService: apiService ) { }
    categories:any = [];
-   ALL_categories:any = [];
    pho_data:any = {}
-
+   category
    categoryId=''
    searchQuery=''
+   userId;
+   find_color_tag ='pink';
+   tag_colour = false
+   showTag =  false;
+   showTag2= false;
     // array of all items to be paged
     private allItems:any = [];
- 
     // pager object
     pager: any = {};
- 
     // paged items
     pagedItems: any[];
-
-
+    default_colour_tags = true
+    error_1 = '';
+    createColorPanel(){
+      this.colors= Array<ColorPicker>();
+      this.colors.push({colorName:'pink'});
+      this.colors.push({colorName:'red'});
+      this.colors.push({colorName:'orange'});
+      this.colors.push({colorName:'yellow'});
+      this.colors.push({colorName:'green'});
+      this.colors.push({colorName:'Blue'});
+      this.colors.push({colorName:'purple'});
+      this.colors.push({colorName:'brown'});
+      this.colors.push({colorName:'black'});
+      this.colors.push({colorName:'grey'});
+     }
    ngOnInit() {
-   $.getScript('./assets/js/blocksit.min.js');
-   $.getScript('./assets/js/lazy.js');
-   $.getScript('./assets/js/jquery.pinbox.js');
-   $.getScript('./assets/js/photo.js');
-
+  // $.getScript('./assets/js/blocksit.min.js');
+  // $.getScript('./assets/js/lazy.js');
+   //$.getScript('./assets/js/jquery.pinbox.js');
+   //$.getScript('./assets/js/photo.js');
+   this.showTag2= false
+   this.createColorPanel()
+   this.userId = localStorage.getItem('userId');
+   console.log(this.userId)
    this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',{
     page: 0,
     pageSize: 10000,
     sortDir: "",
-    sortedBy: "",
+    sortedBy: "asc",
     searchQuery: "",
     categoryId: 0
-    }).map((response: Response) => response)
-   .subscribe(data => {
-     console.log(data)
-        // set items to json response
-        this.allItems = data['items'];
-    
-        // initialize to page 1
+    }).subscribe(data => {
+      //console.log(data.items)
+        for (var pagedItem of  data.items ) {
+           if(pagedItem['colorTags'] == null || pagedItem['tags'] == null){
+            this.allItems.push(pagedItem);
+           }else{
+            pagedItem['colorTags'] =  pagedItem['colorTags'].split(',');
+            pagedItem['tags'] =  pagedItem['tags'].split(',');
+            this.allItems.push(pagedItem);
+            
+           }
+           
+          }
+         // this.allItems = data['items'];
+           console.log(this.allItems)
         this.setPage(1);
    },error => {  console.log(error)});
    
 
    this.apiService.getData(this.apiService.serverPath+'Categories/allcategories').map((response: Response) => response)
    .subscribe(data => {
-     console.log(data)
+     //console.log(data)
      this.categories = data
    },error => {  console.log(error)});
    
    }
+   setMyStyles() {
+    let styles = {'background-color':'red'};
+    return styles;
+  }
    find_photo(f){
    
-      const a = {
-        page: 0,
-        pageSize: 30,
-        sortDir: "asc",
-        sortedBy: "",
-        searchQuery: f.value.searchQuery,
-        categoryId: f.value.categoryId
-        }
-        console.log(a)
-    this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',a).map((response: Response) => response)
+    console.log( this.colors.filter(c=>c.colorName==f.value.searchQuery));
+ 
+      if( this.colors.filter(c=>c.colorName==f.value.searchQuery).length == 0){
+       
+        this.showTag2 = true ;
+        this.showTag = false;
+      }else{
+        this.showTag = true;
+        this.showTag2 = false;
+      }
+     
+   
+           this.find_color_tag= f.value.searchQuery
+           console.log(f.value.categoryId)
+           if(f.value.categoryId == 'undefined'){
+             f.value.categoryId = 0 
+           }
+           if(this.find_color_tag == ""){
+            this.default_colour_tags = true
+           }else{
+            this.default_colour_tags = false
+           }
+            const a = {
+              page: 0,
+              pageSize: 30,
+              sortDir: "",
+              sortedBy: "asc",
+              searchQuery: f.value.searchQuery,
+              categoryId: f.value.categoryId,
+              UserId : this.userId
+          }
+          console.log(a)
+          this.search_api(a)
+   }
+   search_api(a){
+     
+    this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',a)
      .subscribe(data => {
-       console.log(data)
-       alert(data)
-       this.ALL_categories = data
+       console.log(data.items)
+       this.pagedItems = [];
+       this.allItems = []
+       for (var pagedItem of   data.items  ) {
+            //  pagedItem['colorTags'] =  pagedItem['colorTags'].split(',');
+            //  this.showTag = true;
+          
+            //  this.pagedItems.push(pagedItem);
+            //this.tag_colour = true
+
+            if(pagedItem['colorTags'] == null || pagedItem['tags'] == null){
+             // this.pagedItems.push(pagedItem);
+              this.allItems.push(pagedItem);
+            // this.setPage(1);
+            }else{
+              pagedItem['colorTags'] =  pagedItem['colorTags'].split(',');
+              pagedItem['tags'] =  pagedItem['tags'].split(',');
+              
+              
+             
+             // this.pagedItems.push(pagedItem);
+              this.allItems.push(pagedItem);
+            // this.setPage(1);
+            }
+       }
+       this.setPage(1);
+       console.log(this.pagedItems)
+       if( this.pagedItems.length == 0 ){
+           this.error_1 = "no data found"
+       }else{
+        this.error_1 = " "
+       }
      },error => {  console.log(error)});
    }
-
    popup(listall_categories){
      console.log(listall_categories)
      this.pho_data = listall_categories
@@ -82,10 +168,14 @@ export class PhotoComponent implements OnInit {
 
    setPage(page: number) {
     // get pager object from service
-    console.log(this.allItems.length);
+    //console.log(this.allItems.length);
     this.pager = this.pagerService.getPagerPhotos(this.allItems.length, page);
 
     // get current page of items
     this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
+   }
 }
+export class ColorPicker{
+  public colorName: string;
+  
 }

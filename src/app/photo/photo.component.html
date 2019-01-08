@@ -1,59 +1,87 @@
 <div id="wrappervendor" class="">
-  <app-menu></app-menu>
-<section class="container-fluid tips fixedtik">
+    <app-menu></app-menu>
+    <section class="container-fluid tips fixedtik">
         <div class="select">
             <div class="searchtopbar">
                 <form (ngSubmit)="find_photo(list)" #list="ngForm">
                     <div class="col-md-2 col-xs-6 mar_left_75">
-                        <select class="cityinput2" name="categoryId"   [(ngModel)]="categoryId"  id="categoryId" >
-                            <option  value="All" selected >All Category</option>
+                        <!-- <select class="cityinput2" name="categoryId" placeholder = "All Category"  [(ngModel)]="categoryId"  id="categoryId" >
+                            <option   [value]="0"  >All Category</option>
                             <option *ngFor='let list_categories of categories' [value] = "list_categories.categoryId" >
                                 {{list_categories.categoryName}}
                             </option>
+                        </select> -->
+                        <select class="form-control round_first" [(ngModel)]="category" name="categoryId" >
+                            <option value='undefined'> All Categories </option>
+                            <option *ngFor='let list_Categories of categories' [value]="list_Categories.categoryId" > 
+                                {{list_Categories.categoryName}}
+                            </option>
                         </select>
                     </div>
-                    <div class="col-md-8 col-xs-6 Search_img">
-                        <input type="text"  [(ngModel)]="searchQuery"  type="text" name="searchQuery"  placeholder="Search Category" class="searchinput">
-                        <input type="submit" value="" class="search-button">
+                    <div class="col-md-8 col-xs-6 Search_img" (click)="tag_colour = true" >
+                        <input type="text"  [(ngModel)]="searchQuery"  type="text" name="searchQuery"  placeholder="Search with tags and colour tags only" class="searchinput">
+                        <input type="submit"  value=""  class="search-button">
                     </div>
                 </form>
             </div>
         </div>
-</section>
-<div class="container-fluid">
-    <div>
+    </section>
+    <div class="container-fluid">
         <div class="container">
             <div class="text-center">
-     
-                <!-- items being paged -->
-                <!-- <div *ngFor="let item of pagedItems">{{item.id}}</div> -->
                 <section id="wrapper">
-                    <div class="container">
+                    <div class="container">    
+                        <span class="colortag" *ngIf='showTag' [style.background-color]='searchQuery'>                           
+                        </span>
+                        <div  *ngIf='showTag2'>
+                            <div class="tagnamediv"   *ngFor="let item of pagedItems | slice:0:1 ;let i=index ">
+                                <div *ngFor="let tag of item?.tags | slice:0:1 ;let i=index " >  
+                                    <span class="tagstik" *ngIf = "tag != '' " > 
+                                        {{tag}}    
+                                    </span> 
+                                   
+                                </div>
+                            </div> 
+                        </div>
                         <div style="position:relative;min-height:100vh;" id="categoryProductContainer"  >
+                            <h1>{{error_1}}</h1>
                             <div class="span2 pcon prodcont actioninside" *ngFor="let item of pagedItems" data-toggle="modal" data-target="#myModal">
-                                <!-- <div class="span2 pcon prodcont actioninside" *ngFor="let item of pagedItems"> -->
-
                                 <div (click) = "popup(item)">
                                     <img [src]="item.imageURL" />
                                     <div class="clearfix"></div>
                                     <div class="photodetail">
                                         <p class="detaildiv">
-                                            <span>{{item.nameOfBusiness}}</span>
+                                            <span>{{item.nameOfBusiness}}//{{item.id}}</span>
                                             <span><i class="fa fa-map-marker"></i>{{item.district}}</span>
-                                        </p>
+                                        </p>   
+                                        <!-- <div *ngIf= "default_colour_tags">
+                                            <div *ngFor='let colour of item?.colorTags'>
+                                                <div *ngIf = "colour != ''">
+                                                    <span class="colortag"  [style.background-color]='colour'>                           
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       -->
                                         <div class="linkdiv">
                                                 <i class="material-icons">favorite_border</i>
                                                 &nbsp;<i class="material-icons">share</i>
                                                 <div class="clearfix"></div>
-                                                <span class="colortag" style="background:#ff0000;">{{item?.colorTags}}</span>
                                         </div>
                                     </div>
+                                    <div class="clearfix"></div>
+                                    <div class="tagnamediv ">
+                                        <div *ngFor="let tag of item?.tags;let i=index">
+                                            <span class="tagstik" *ngIf = "tag != '' " > 
+                                                    {{tag}}    
+                                            </span> 
+                                        </div>
+                                    </div> 
                                 </div>   
                             </div>
                         </div>
                     </div>
                 </section>
-               
                 <!-- pager -->
                 <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
                     <li [ngClass]="{disabled:pager.currentPage === 1}">
@@ -75,40 +103,48 @@
             </div>
         </div>
     </div>   
-</div>   
-
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-
-          <!-- Modal content-->
-        <a href="#" class="close" data-dismiss="modal"> </a>
-        <img class="popupimg" [src]="pho_data.imageURL">
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <a href="#" class="close" data-dismiss="modal"> </a>
+            <img class="popupimg" [src]="pho_data.imageURL">
             <div class="modal-footer" style="background-color: white;">
                 <div class="popupdetail">
                     <div class="col-sm-6 text-left">
-                            <h4>{{pho_data.nameOfBusiness}} </h4>
-                            <p>
-                                <span><i class="fa fa-map-marker"></i> {{pho_data.district}}</span>
-                            </p>
+                        <h4>{{pho_data.nameOfBusiness}} </h4>
+                        <p>
+                            <span><i class="fa fa-map-marker"></i> {{pho_data.district}}</span>
+                        </p>
                     </div>
-                <div class="col-sm-6 text-right">
+                    <div class="col-sm-6 text-right">
                         <i class="material-icons setlink">favorite_border</i>
                         &nbsp;
                         <i class="material-icons setlink">share</i>
                         <div class="clearfix"></div>
-                        <span class="colortag" style="background:#ff0000;"></span>
+                      
+                                <div *ngFor='let colour of pho_data.colorTags' >
+                                    <div *ngIf = "colour != ''">
+                                        <span class="colortag"  [style.background-color]='colour'>                           
+                                        </span>
+                                    </div>
+                                </div>
+                        
+                        
+                            
+                        <!-- <span class="colortag" style="background:#ff0000;"></span>
                         <span class="colortag" style="background:#001aff;"></span>
-                        <span class="colortag" style="background:#88ff00;"></span>
-                </div>
+                        <span class="colortag" style="background:#88ff00;"></span> -->
+                    </div>
                 </div>
             </div>
+        </div>
     </div>
-</div>
-
-<div class="clearfix"></div>
-<app-foot></app-foot>
+    <div class="clearfix"></div>
+    <app-foot></app-foot>
 </div>
 <router-outlet></router-outlet> 
+
+
 
 
 

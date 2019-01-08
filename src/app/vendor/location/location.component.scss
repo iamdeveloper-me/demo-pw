@@ -15,11 +15,17 @@
     padding: 0px;
     overflow: hidden;
     margin: 20px auto;
-    width: 253px;
+    width: 260px;
     border-bottom: 0px!important;
 }
+
 .tab-content{
   overflow:hidden;
+}
+.field .caret{
+    position: absolute!important;
+    right: 2px!important;
+    top: 10px!important;
 }
 .tabbingdesign li {
     list-style: none;
@@ -528,7 +534,9 @@ float: left;
 .inputbottombor{
     border:0px solid #fff;
     border-bottom:1px solid #999!important;
-}
+    max-width: 100px;
+    float: left;
+}   
 .martop30px{
     margin-top: 30px;
 }
@@ -544,6 +552,7 @@ float: left;
     width: 30px;
     height: 32px;
     margin-left:7px;
+    float:left;
 }
 .fristfieldremovebtnnone fieldset:first-child .remove{
     display:none;
@@ -934,7 +943,18 @@ overflow:hidden!important;
 .mobdisplay{
   display:none;
 }
-@media(max-width:767px){
+@media(min-width:767px){
+    .tikmki{
+        width:84px!important;
+        float:left;
+    }
+}
+    @media(max-width:767px){
+        .tikmki{
+            width:84px!important;
+            float:left;
+            padding:0px 5px;
+        }
 .img-section iframe{
    width:100%;
    height:300px;
@@ -1068,8 +1088,8 @@ overflow:hidden!important;
        }
        .new_location .col-xs-4{
            width: 30%;
-       }
-   
+       }                 
+       
    }
 
 //modal
@@ -1086,3 +1106,5 @@ overflow:hidden!important;
 .sebm-google-map-container {
     height: 300px;
   }
+
+  

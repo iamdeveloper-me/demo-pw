@@ -34,7 +34,8 @@
                   </div>   
               </div>
           </div>
-          <!-- <app-gallery-app></app-gallery-app> -->
+
+         
            <div   *ngIf = "albumArray.length > 0"  class="container-fluid nopadd albumlist album_containing_images"  >
               <div class="card">
                 <div  class="text-center headin_gally col-sm-12 bordernone">
@@ -100,8 +101,8 @@
                 <div class="text-center viev_all"> <a class="btn" routerLink="../albumview">View All</a> </div>
               </div> 
           </div> 
-          
-         
+          <app-gallery-two></app-gallery-two>
+        
       </div>
 
     </div>
@@ -109,8 +110,7 @@
   </div>
 </div>
 
-
-<router-outlet></router-outlet> 
+<router-outlet></router-outlet>  
 
 
                       <!-- <div *ngFor='let ar of  album.albumImages '>

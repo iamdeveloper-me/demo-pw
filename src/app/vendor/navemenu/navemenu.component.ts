@@ -388,7 +388,7 @@ unread(filter_id){
 }
 
   logout(){
-         sessionStorage.clear();
+           sessionStorage.clear();
          localStorage.clear();
          this.router.navigate(['../home']);
          this.typeLogout();

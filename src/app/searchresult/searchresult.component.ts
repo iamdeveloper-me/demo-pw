@@ -1,4 +1,8 @@
-import { OnInit, Component } from '@angular/core';
+
+import { Pipe, PipeTransform} from '@angular/core';
+
+import { OnInit, Component, HostListener } from '@angular/core';
+
 import { Router, ActivatedRoute } from '@angular/router';
 import { MasterserviceService } from 'app/ngservices/masterservice.service';
 import {RatingModule} from 'ngx-rating';
@@ -6,7 +10,34 @@ import { CustompipePipe } from 'app/custompipe.pipe';
 import { CategoryPipePipe } from 'app/category-pipe.pipe';
 import { apiService } from 'app/shared/service/api.service';
 import { filterParam } from 'app/vendorcard/vendorcard.component';
+import { SlidesOutputData } from 'ngx-owl-carousel-o';
 
+
+@Pipe({ name: 'defaultImage' })
+export class PP implements PipeTransform {
+  transform(
+    value: string,
+    fallback: string,
+    forceHttps: boolean = false
+  ): string {
+    let image = "";
+    if (value != "../../assets/img/noImg.png") {
+      
+      image = value;
+    } else {
+      image = fallback;
+    }
+
+    if (forceHttps) {
+      if (image.indexOf("https") == -1) {
+        image = image.replace("http", "https");
+      }
+    }
+
+    return image;
+  }
+  
+}
 
 @Component({
   selector: 'app-searchresult',
@@ -15,12 +46,44 @@ import { filterParam } from 'app/vendorcard/vendorcard.component';
   providers: [CustompipePipe, CategoryPipePipe]
 })
 export class SearchresultComponent implements OnInit {
+  customOptions: any = {
+    loop: false,
+    margin: 20,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    nav: false,
+    autoplay: true,
+    navSpeed: 700,
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    //autoplaySpeed:1
+  }
+
+  activeSlides: SlidesOutputData;
+
+  slidesStore: any[];
   collection = [];
   objSearchFilter: filterParam
   locations:any;
   categories:any;
   filters: any;
   count:number = 3
+  loading=false;
+  selectedLocationsCount = 0;
   objSearchlistvm: SearchListingVM;
   objSearchResultItems:any;
   locationFilterParam:string='';
@@ -32,30 +95,40 @@ export class SearchresultComponent implements OnInit {
 
   constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService, private api: apiService) {  
 
+
+
     this.objSearchFilter=new filterParam();
+
     this.objSearchlistvm = new SearchListingVM();
     if(this._activeRoute!=undefined){
-
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
       console.log(this.objSearchFilter);
       // let query=this._activeRoute.snapshot.params['id'].split('/');
       // this.objSearchFilter.categoryId = this._activeRoute.snapshot.params['id'].split('/')[0];
       // this.objSearchFilter.searchInDreamLocation=this._activeRoute.snapshot.params['id'].split('/')[3];
       // this.objSearchFilter.searchInFeaturedLocation  = this._activeRoute.snapshot.params['id'].split('/')[2];
+    // debugger
       this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
       this.objSearchlistvm.districtId.push(this.objSearchFilter.locationId);
     }
     this.getLocations();
     this.getCategories();
     this.getFilters();
-    this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
+   // this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
       this.objSearchResultItems = res;
+      this.slidesStore =  this.objSearchResultItems['items']
       this.getSearchFilterResult();
+      
       console.log(JSON.stringify(this.objSearchResultItems));
     },error=>{
       console.log(JSON.stringify(error));
     });
+ //   this.paginate(this.objSearchFilter.pageSize);
+  }
+  getData(data: SlidesOutputData) {
+    this.activeSlides = data;
+    console.log(this.activeSlides);
   }
  ngOnInit() {   
   //$.getScript('./assets/js/owljsor.js');
@@ -72,10 +145,11 @@ export class SearchresultComponent implements OnInit {
   $(".slider_use_anather_compo").hide();
   }
   goToPortfolioDetail(vendor){
-    let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails/';
-    this.api.getData(url+'?='+vendor.vendorUniqueId).subscribe(res=>{
+    // debugger;
+    let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
+    this.api.getData(url+'?id='+vendor.vendorId).subscribe(res=>{
       sessionStorage.setItem('vendorDetails',JSON.stringify(res));
-    this._route.navigate(['home/detailprofile']);
+    this._route.navigate(['home/detailprofile',0]);
   });
 }
   getLocations(){
@@ -92,11 +166,12 @@ export class SearchresultComponent implements OnInit {
     });
       
   }
+
   getCategories(){
      this._masterservice.getAllCategories().subscribe(res=>{
-       res.forEach(element => {
-         element['pageSize'] = 25
-       });
+   //    res.forEach(element => {
+     //    element['pageSize'] = this.objSearchlistvm.pageSize
+     //  });
       this.categories=res;
       if(this.objSearchFilter.catId>0){
        // this.categories=this.categories.filter(c=>c.categoryId==this.objSearchFilter.categoryId);
@@ -113,10 +188,11 @@ export class SearchresultComponent implements OnInit {
     filter_paramArray.push(this.objSearchFilter.catId);
     this._masterservice.getFilters(filter_paramArray).subscribe(res=>{
       this.filters=res;
+      if(this.filters.length>0){
       this.filters.services.forEach(element => {
         element.isSelect=false;
       });
-  
+    }
     },error=>{
       console.log(error);
     })
@@ -154,41 +230,68 @@ export class SearchresultComponent implements OnInit {
     this.locations.forEach(element => {
       if(element.isSelect){
         this.objSearchlistvm.districtId.push(element.districtId)
+      }else{
+        element.isSelect=false;
       }
     });
   }
+  this.loading=true;
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
+      this.loading=false;  
       this.objSearchResultItems = res;
-      this.paginate(this.objSearchFilter.pageSize);
-    })
+      this.setBlankImg();
+      this.addToCollection();
+      console.log(JSON.stringify(this.collection)) ;
+    },error=>{
+      this.loading=false; 
+    });
+     
+   // this.paginate(this.objSearchFilter.pageSize);
+  }
+  clearFilters(){
+    this.locations.forEach(element => { element.isSelect=false; });
+    this.objSearchlistvm.districtId = [];
+    this.categories.forEach(element => { element.isSelect=false; });
+    this.objSearchlistvm.categoryId = [];
+  }
+  addToCollection(){
+    this.objSearchResultItems.items.forEach(element => {
+      this.collection.push(element);
+    });
   }
   filterLocations(ev){
     let filterResult=this.locations.filter(n=>n.name.startwith(ev.value));
     this.locations=filterResult;
   }
-  findVendorRating(reviews,rating){
-    return reviews*rating
+  setBlankImg(){
+    if(this.objSearchResultItems){
+      this.objSearchResultItems.items.forEach(element => {
+          if(element.profileImage==null){
+            element.profileImage=this.blankImg;
+       }
+       });
+      }
   }
    paginate (pageSize) {
-     debugger
-     this.disableLoadingButton=false;
-   let c=this.objSearchResultItems.items.slice(this.pageNumber * pageSize, (this.pageNumber + 1) * pageSize);
-   if(c.length<this.objSearchFilter.pageSize){
-    this.disableLoadingButton=true;
-   }
-    c.forEach(element => {
-      if(element.profileImage==null){
-        element.profileImage=this.blankImg;
-
-      }
-      this.collection.push(element); 
-
-   });
+    this.loading=true; 
+  this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
+    this.objSearchResultItems = res;
+    this.setBlankImg();
+    this.addToCollection();
+    this.loading=false; 
+  },error=>{
+    this.loading = false;
+  });   
+  this.disableLoadingButton=false;
    this.pageNumber+=1;
-  }
-  
-   // Variable Declaration
-   page2 = 4;
+ }
+ @HostListener("window:scroll", [])
+ scrollToBottom(){
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    // you're at the bottom of the page
+    this.paginate(this.objSearchFilter.pageSize);
+}
+ }
 }
 export class SearchFilterVm{
   categoryId:number=1;
@@ -208,8 +311,8 @@ export class SearchListingVM{
   customsFields:Array<FieldSearchVM>;
   customField:FieldSearchVM;
   constructor(){
-    this.pageSize=10;
-    this.page=0;
+    this.pageSize=25;
+    this.page=1;
     this.districtId=[];
     this.categoryId=[];
     this.serviceId=[];

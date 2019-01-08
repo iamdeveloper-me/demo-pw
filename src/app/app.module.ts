@@ -2,7 +2,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import {RatingModule} from "ngx-rating";
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import {DatePipe} from '@angular/common';
 import { ImageCropperModule } from 'ng2-img-cropper';
 import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.component';

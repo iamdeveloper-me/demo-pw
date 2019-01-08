@@ -390,8 +390,8 @@
                           </div>
                           <div class="col-md-4 col-4 span_positin">
                            <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span *ngIf='i.deals'>{{i.dealsCount}}</span>
+                          <span *ngIf='i.dealsCount>0'>Deals</span>
+                          <span *ngIf='i.dealsCount>0'>{{i.dealsCount}}</span>
                           </div>
                         </div>
                       </div>
@@ -402,7 +402,7 @@
 	     	</div>
         <div>
 
-           <div class="loadmorebtn" (click)='paginate(objSearchlistvm.pageSize)'>Load More...</div>
+          <img *ngIf='loading' src="https://www.walgreens-hearing.com/img/loader.gif" style="bottom:35%;position: fixed;z-index:99999;margin-left:40%">
                   <!-- <ngb-pagination [collectionSize]="objSearchResultItems?.totalCount" [(page)]="objSearchResultItems.page" [boundaryLinks]="true"></ngb-pagination>
              <span class="totalpage">{{objSearchResultItems.totalPages}} (Page)s</span> -->
         </div>
@@ -486,6 +486,7 @@
   </div>
 
 </div>
+
 <app-foot> </app-foot>
 </div>
 <router-outlet></router-outlet>

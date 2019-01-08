@@ -28,10 +28,6 @@ export class VendorcardComponent implements OnInit {
         items: 1,
         stagePadding: 40
       },
-      600: {
-        items: 1,
-        stagePadding: 40
-      },
       768: {
         items: 2,
         stagePadding: 40

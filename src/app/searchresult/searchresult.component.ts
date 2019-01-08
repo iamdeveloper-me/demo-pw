@@ -32,6 +32,7 @@ export class SearchresultComponent implements OnInit {
   blankImg='../../assets/img/noImg.png';
 
   constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService, private api: apiService) {  
+    // debugger;
     this.objSearchFilter=new filterParam();
     this.objSearchlistvm = new SearchListingVM();
     if(this._activeRoute!=undefined){
@@ -41,6 +42,7 @@ export class SearchresultComponent implements OnInit {
       // this.objSearchFilter.categoryId = this._activeRoute.snapshot.params['id'].split('/')[0];
       // this.objSearchFilter.searchInDreamLocation=this._activeRoute.snapshot.params['id'].split('/')[3];
       // this.objSearchFilter.searchInFeaturedLocation  = this._activeRoute.snapshot.params['id'].split('/')[2];
+    // debugger
       this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
       this.objSearchlistvm.districtId.push(this.objSearchFilter.locationId);
     }
@@ -73,7 +75,7 @@ export class SearchresultComponent implements OnInit {
   $(".slider_use_anather_compo").hide();
   }
   goToPortfolioDetail(vendor){
-    debugger;
+    // debugger;
     let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
     this.api.getData(url+'?id='+vendor.vendorId).subscribe(res=>{
       sessionStorage.setItem('vendorDetails',JSON.stringify(res));

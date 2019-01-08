@@ -62,7 +62,7 @@ export class BannerComponent implements OnInit {
 
   search(e,isAllSupplier,isDreamLocation){
     console.log(e.value);
-    debugger;
+    // debugger;
     if(e){
       this.objFilterParam.catId  = e.value.category?e.value.category.categoryId:0;
       this.objFilterParam.categoryName= e.value.category?e.value.category.categoryName: '' ;

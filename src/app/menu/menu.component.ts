@@ -67,7 +67,27 @@ export class MenuComponent implements OnInit {
            this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
       }
 
-
+      searchCat(e,isAllSupplier,isDreamLocation){
+           console.log(e);
+        //   console.log(e.value);
+        //   debugger;
+          if(e){
+            this.objFilterParam.catId  = e?e.categoryId:0;
+            this.objFilterParam.categoryName= e?e.categoryName: '' ;
+            this.objFilterParam.isDreamLocation=isDreamLocation;
+            this.objFilterParam.isAllSupplier=isAllSupplier;
+            this.objFilterParam.page = 1;
+            this.objFilterParam.pageSize = 25;
+            this.objFilterParam.sortDir = "";
+            this.objFilterParam.sortedBy ="";
+            this.objFilterParam.searchQuery ="";
+            this.objFilterParam.locationId = this.locationId;
+           }
+           sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+             this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
+        
+      
+      }
 
     onSubmit(){ 
      // headers.append('Content-Type', 'application/json');
@@ -108,7 +128,7 @@ export class MenuComponent implements OnInit {
      // headers.append('Content-Type', 'application/json');
      this.cservice.login(this.user).subscribe(
           (data)=> {
-              debugger
+            //   debugger
               console.log(data.json());
           if (data.statusText == "OK"  && data.json().role =="Users") {
               
@@ -143,7 +163,7 @@ export class MenuComponent implements OnInit {
     }
     //----------------userpanellogout
     logout(){
-        debugger;
+        // debugger;
         sessionStorage.clear();
         localStorage.clear();
         this.router.navigate(['../home']);

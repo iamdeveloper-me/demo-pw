@@ -14,6 +14,7 @@ export class BannerComponent implements OnInit {
   constructor( private router: Router ,private masterservice: MasterserviceService , private apiService: apiService) { 
     this.objFilterParam = new filterParam();
   }
+  
   Categories = [];
   locations = [];
   locationId:number=0;

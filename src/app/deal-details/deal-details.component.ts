@@ -57,7 +57,10 @@ slidesStore: any[];
     
     ] 
 }
-
+getData(data: SlidesOutputData) {
+  this.activeSlides = data;
+  console.log(this.activeSlides);
+}
   ngOnInit() {
   }
 

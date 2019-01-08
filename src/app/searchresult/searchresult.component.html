@@ -1,116 +1,62 @@
-  <div id="wrappervendor" class="" >
+  <div id="wrappervendor" class="">
   <app-menu></app-menu>
   <app-tool></app-tool>
-  <div id="wrappervendorsidbar">
-    <!-- <app-vendorsidebar></app-vendorsidebar> -->
-  </div>
 <div class="container-fluid recomslider">
       <!--Carousel Wrapper-->
-<div class="container">
-    <!--Slides-->
-    <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
- 
-        <ng-container *ngFor="let slide of slidesStore">
-          <ng-template carouselSlide="1" >
-              <div class="procard"> </div>
-              <img [src]="slide.profileImage | defaultImage:'https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg':true"/>
+  <div class="container">
+      <!--Slides-->
+        <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
+          <ng-container *ngFor="let slide of slidesStore">
+            <ng-template carouselSlide="1" >
+              <div class="boxtikslide">
+                <div class="procard"> </div>
+                <img class="card-img-top" [src]="slide.profileImage | defaultImage:'https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg':true"/>
+                <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
+                <div class="card-body ">
+                  <div class="text-center"> 
+                   <h6><strong>{{slide.nameOfBusiness}} </strong> </h6>
+                    <button class="wedding_btn">{{ slide.businessDetails}} </button>
+                      <p class="locat_icon"><i class="material-icons">location_on</i> 
 
-            <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-            <div class="card-body ">
-                <div class="text-center"> 
-                 <h6> <strong>{{slide.nameOfBusiness}} </strong> </h6>
-                  <button class="wedding_btn">{{ slide.businessDetails}} </button>
-                  <P class="locat_icon"><i class="material-icons">location_on</i> 
-
-                    <i class="material-icons">location_on</i> 
-                    <span *ngIf='slide.vendorLocations[0]'> {{ slide.vendorLocations[0].suburb.name}},</span>
-                   <span *ngIf='slide.vendorLocations[0]'>  {{ slide.vendorLocations[0].districts.name}},</span>
-                   <span *ngIf='slide.vendorLocations[0]'>{{ slide.vendorLocations[0].country.name}},</span> 
-                   <span *ngIf='slide.vendorLocations[0]'> {{ slide.vendorLocations[0].postalCode}}</span>
-
-                  </P>
-                  <p class="statr_point">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span> 5.0 (47) </p>
-                  </div>
-            
-                  <div class="col-md-12 col-12">
-                    <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                      <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                        <span>Price from</span>
-                        <span class="pric_200">200 $</span>
+                      <i class="material-icons">location_on</i> 
+                     <span *ngIf='slide.vendorLocations[0]'> {{ slide.vendorLocations[0].suburb.name}},</span>
+                     <span *ngIf='slide.vendorLocations[0]'>  {{ slide.vendorLocations[0].districts.name}},</span>
+                     <span *ngIf='slide.vendorLocations[0]'>{{ slide.vendorLocations[0].country.name}},</span> 
+                     <span *ngIf='slide.vendorLocations[0]'> {{ slide.vendorLocations[0].postalCode}}</span>
+                      </p>
+                      <p class="statr_point">
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span> 5.0 (47) </p>
                     </div>
-                    <div class="col-md-4 col-4 span_positin">
-                     <img src="../../assets/img/tag.svg"  alt=""> 
-                    <span>Deals</span>
-                    <span>1</span>
-                    </div>
-                  </div>
-                </div>
-          </ng-template>
-        </ng-container>
-      
-      </owl-carousel-o>
-      <!-- {{slidesStore | json}} -->
-    <div id="supplierscarousel" class="owl-carousel" *ngIf='objSearchResultItems'>
-              <div *ngFor='let i of slidesStore' class="item bordre_rad">
-
-
-                <div class="card mb-2 bordre_rad1 ">
-                    <div class="procard"> </div>
-                    <img class="card-img-top img-responsive" [src]="i.profileImage" alt="Card image cap">
-                    <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                    <div class="card-body ">
-                      <div class="text-center"> 
-                       <h6> <strong>{{i.nameOfBusiness}} </strong> </h6>
-                        <button class="wedding_btn">{{i.businessDetails}} </button>
-                        <P class="locat_icon"><i class="material-icons">location_on</i> 
-
-                          <i class="material-icons">location_on</i> 
-                          <span *ngIf='i.vendorLocations[0]'> {{i.vendorLocations[0].suburb.name}},</span>
-                         <span *ngIf='i.vendorLocations[0]'>  {{i.vendorLocations[0].districts.name}},</span>
-                         <span *ngIf='i.vendorLocations[0]'>{{i.vendorLocations[0].country.name}},</span> 
-                         <span *ngIf='i.vendorLocations[0]'> {{i.vendorLocations[0].postalCode}}</span>
-
-                        </P>
-                        <p class="statr_point">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span class="fa fa-star"></span> 5.0 (47) </p>
-                        </div>
-                  
-                        <div class="col-md-12 col-12">
-                          <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-                          </div>
-                        </div>
+              
+                    <div class="col-md-12 col-12">
+                      <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
+                        <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
+                          <span>Price from</span>
+                          <span class="pric_200">200 $</span>
                       </div>
+                      <div class="col-md-4 col-4 span_positin">
+                       <img src="../../assets/img/tag.svg"  alt=""> 
+                      <span>Deals</span>
+                      <span>1</span>
+                      </div>
+                    </div>
                 </div>
-            </div> 
-           
-      </div>
-
-
-
-    
+              </div>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+        <!-- {{slidesStore | json}} -->    
+  </div>  
     <!--End Slides-->
 </div>
 
 <!--/.Carousel Wrapper-->
 
-</div>
+
 
 
 

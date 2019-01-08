@@ -405,7 +405,7 @@
                       <div class="caption card-body">
                         <div>
                           <h6><strong>{{i.nameOfBusiness}}</strong></h6>
-                          <button class="wedding_btn">{{i.nameOfBusiness}} </button>
+                          <button *ngIf='i.vendorCategories[0].categories' class="wedding_btn">{{i.vendorCategories[0].categories.categoryName}} </button>
 
                           <p class="locat_icon" *ngIf='i.vendorLocations.length>0'>
                             <i class="material-icons">location_on</i> {{i.vendorLocations[0].suburb.name}},
@@ -426,9 +426,7 @@
                             <span *ngIf='i.reviews>0'>
                             {{i.averageRating}} {{i.reviews}} </span>
                           </p>
-                          <p *ngIf='i.vendorCategories[0].categories'>
-                            {{i.vendorCategories[0].categories.categoryName}}
-                          </p>
+                         
                         </div>
                        <div class="col-md-12 col-12 cardfoottext">
                           <div class="col-md-8 col-8 pad_left_0 pad_left_5px">

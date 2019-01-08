@@ -48,6 +48,7 @@ export class VendorcardComponent implements OnInit {
   featured_supplier_data = []
   max = []
   dream_wedding_location = []
+  dream_wedding_location_length;
   all_category = []
   Popular_Wedding_array = []
   Popular=''
@@ -106,8 +107,9 @@ export class VendorcardComponent implements OnInit {
   }
   featured_supplier(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/featuredsuppliers').subscribe(data => {
-      console.log(data.featuredWeddingSuppliers)
+      
       this.featured_supplier_data = data.featuredWeddingSuppliers;
+
 
       this.slidesStore = this.featured_supplier_data
 
@@ -118,7 +120,16 @@ export class VendorcardComponent implements OnInit {
         });
       });
      console.log(this.slidesStore)
+
+      // this.featured_supplier_data.forEach(element => {
+      //   element.reviews.forEach(element => {           
+      //     this.max.push(element.rating) 
+      //     this.max.sort((a,b) => 0 - (a > b ? 1 : -1))
+      //   });
+      // });
+
       //this.max = [];
+      console.log(data.featuredWeddingSuppliers)
     },
       error => {
        console.log(error)
@@ -129,6 +140,7 @@ export class VendorcardComponent implements OnInit {
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/dreamweddinglocation').subscribe(data => {
       console.log(data.dreamWeddingLocations)
       this.dream_wedding_location =  data.dreamWeddingLocations;
+      this.dream_wedding_location_length = this.dream_wedding_location.length
     },
       error => {
        console.log(error)
@@ -142,7 +154,7 @@ export class VendorcardComponent implements OnInit {
         if(i.isPopular == true){
           this.Popular_Wedding_array.push(i);
         }
-        //console.log( this.Popular_Wedding_array)
+        console.log( this.Popular_Wedding_array)
       }
       
     

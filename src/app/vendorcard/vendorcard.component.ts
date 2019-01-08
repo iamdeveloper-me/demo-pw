@@ -52,6 +52,7 @@ export class VendorcardComponent implements OnInit {
   featured_supplier_data = []
   max = []
   dream_wedding_location = []
+  dream_wedding_location_length;
   all_category = []
   Popular_Wedding_array = []
   Popular=''
@@ -143,6 +144,7 @@ export class VendorcardComponent implements OnInit {
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/dreamweddinglocation').subscribe(data => {
       console.log(data.dreamWeddingLocations)
       this.dream_wedding_location =  data.dreamWeddingLocations;
+      this.dream_wedding_location_length = this.dream_wedding_location.length
     },
       error => {
        console.log(error)

@@ -12,6 +12,7 @@ export class PhotoComponent implements OnInit {
   constructor(private pagerService: PagerService,private apiService: apiService ) { }
    categories:any = [];
    pho_data:any = {}
+   category
    categoryId=''
    searchQuery=''
    userId;

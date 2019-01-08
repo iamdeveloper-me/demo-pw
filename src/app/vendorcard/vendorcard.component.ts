@@ -3,6 +3,8 @@ import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 import { apiService } from '../shared/service/api.service';
 import { find } from 'rxjs-compat/operator/find';
 import { Router } from '@angular/router';
+import { SlidesOutputData } from 'ngx-owl-carousel-o';
+
 @Component({
   selector: 'app-vendorcard',
   templateUrl: './vendorcard.component.html',
@@ -10,6 +12,43 @@ import { Router } from '@angular/router';
   providers: [NgbCarouselConfig] // add NgbCarouselConfig to the component providers
 })
 export class VendorcardComponent implements OnInit {
+
+  customOptions: any = {
+    margin: 20,
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    autoplay: true,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1,
+        stagePadding: 40
+      },
+      600: {
+        items: 1,
+        stagePadding: 40
+      },
+      768: {
+        items: 2,
+        stagePadding: 40
+      },
+      1024: {
+        items: 4
+      },
+      1366: {
+        items: 4
+      }
+    },
+    nav: true,
+    //autoplaySpeed:1
+  }
+
+  
+
   featured_supplier_data = []
   max = []
   dream_wedding_location = []
@@ -17,16 +56,47 @@ export class VendorcardComponent implements OnInit {
   Popular_Wedding_array = []
   Popular=''
   objFilterParam: filterParam;
+  activeSlides: SlidesOutputData;
+
+  slidesStore: any[];
   constructor( private router: Router ,config: NgbCarouselConfig, private apiService: apiService) {
     // customize default values of carousels used by this component tree
     config.interval = 10000;
     config.wrap = false;
     config.keyboard = false;
     this.objFilterParam = new filterParam();
+    // this.slidesStore = [
+    //   {
+    //     src: "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+    //   },
+    //   {
+    //     src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
 
+    //   },
+    //   {
+    //     src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+
+    //   },
+    //   {
+    //     src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+
+    //   },
+    //   {
+    //     src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+
+    //   }
+    // ] 
+    
   }
+  
 
-  ngOnInit() { 
+
+  getData(data: SlidesOutputData) {
+    this.activeSlides = data;
+    console.log(this.activeSlides);
+  }
+  ngOnInit() {
+    
     this.featured_supplier()
     this.Dream_Wedding()
     this.Popular_Wedding()
@@ -42,14 +112,17 @@ export class VendorcardComponent implements OnInit {
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/featuredsuppliers').subscribe(data => {
       console.log(data.featuredWeddingSuppliers)
       this.featured_supplier_data = data.featuredWeddingSuppliers;
+
+      this.slidesStore = this.featured_supplier_data
+
       this.featured_supplier_data.forEach(element => {
         element.reviews.forEach(element => {           
           this.max.push(element.rating) 
           this.max.sort((a,b) => 0 - (a > b ? 1 : -1))
           
         });
-       
       });
+console.log(this.slidesStore)
       //this.max = [];
     },
       error => {

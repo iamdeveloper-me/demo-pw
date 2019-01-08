@@ -8,7 +8,7 @@ import 'rxjs/Rx';
 import { MasterserviceService } from '../ngservices/masterservice.service';
 import { apiService } from '../shared/service/api.service';
 import{filterParam} from '../vendorcard/vendorcard.component'
-
+import { ToastrService } from 'ngx-toastr';
 export class NgbdModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) { }
@@ -27,7 +27,7 @@ export class MenuComponent implements OnInit {
     private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
     vendor: any = {};
     objFilterParam: filterParam;
-    constructor(private router: Router ,private masterservice: MasterserviceService , private apiService: apiService,public http: Http,private cservice: LoginServiceService , private modalService: NgbModal, private uservice: SignupVendorService,) {
+    constructor(private router: Router ,public toastr: ToastrService,private masterservice: MasterserviceService , private apiService: apiService,public http: Http,private cservice: LoginServiceService , private modalService: NgbModal, private uservice: SignupVendorService,) {
         this.objFilterParam = new filterParam();
     }
     user = {username:'',password:''}
@@ -67,7 +67,27 @@ export class MenuComponent implements OnInit {
            this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
       }
 
-
+      searchCat(e,isAllSupplier,isDreamLocation){
+           console.log(e);
+        //   console.log(e.value);
+        //   debugger;
+          if(e){
+            this.objFilterParam.catId  = e?e.categoryId:0;
+            this.objFilterParam.categoryName= e?e.categoryName: '' ;
+            this.objFilterParam.isDreamLocation=isDreamLocation;
+            this.objFilterParam.isAllSupplier=isAllSupplier;
+            this.objFilterParam.page = 1;
+            this.objFilterParam.pageSize = 25;
+            this.objFilterParam.sortDir = "";
+            this.objFilterParam.sortedBy ="";
+            this.objFilterParam.searchQuery ="";
+            this.objFilterParam.locationId = this.locationId;
+           }
+           sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+             this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
+        
+      
+      }
 
     onSubmit(){ 
      // headers.append('Content-Type', 'application/json');
@@ -83,10 +103,11 @@ export class MenuComponent implements OnInit {
             $("div").removeClass( "modal-backdrop"); 
           }
         
-        },(ERROR)=>{     
+        },(ERROR)=>{  
+            // alert("Login Vendor")  
             if (ERROR.statusText == "Bad Request" ) {
                 this.error  = ERROR.json().login_failure[0];
-            
+                // this.toastr.warning(ERROR._body);
               this.typeWarning();
             }});
        
@@ -94,13 +115,17 @@ export class MenuComponent implements OnInit {
     
     typeSuccess() {
         this.cservice.typeSuccess();
+        // this.toastr.success('Login successfully', 'Success!');
     }
     typeWarning() {
         this.cservice.typeWarning();
+        // this.toastr.warning('Invalid Username or Password');
     }
     typeLogout() {
         this.cservice.typeLogout();
+        // this.toastr.success('Logout successfully', 'Success!');
     }
+
 
     //--------------------------------user login 
 
@@ -108,7 +133,7 @@ export class MenuComponent implements OnInit {
      // headers.append('Content-Type', 'application/json');
      this.cservice.login(this.user).subscribe(
           (data)=> {
-              debugger
+            //   debugger
               console.log(data.json());
           if (data.statusText == "OK"  && data.json().role =="Users") {
               
@@ -126,9 +151,10 @@ export class MenuComponent implements OnInit {
           }
         
         },(ERROR)=>{     
+            // alert("Login Couples");
             if (ERROR.statusText == "Bad Request" ) {
                 this.error  = ERROR.json().login_failure[0];
-            
+                // this.toastr.warning(ERROR._body);
               this.typeWarning();
             }});
        
@@ -137,13 +163,17 @@ export class MenuComponent implements OnInit {
     userSubmit(){
       this.uservice.usignup(this.userSingUp).subscribe(( data )  =>  {
             console.log(data);
+              // this.toastr.warning(ERROR._body);
             // console.log(data.password)
+    },(error)=>{
+        this.toastr.warning(error._body);
+        // this.typeWarning();
     });
     
     }
     //----------------userpanellogout
     logout(){
-        debugger;
+        // debugger;
         sessionStorage.clear();
         localStorage.clear();
         this.router.navigate(['../home']);

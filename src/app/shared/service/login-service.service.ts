@@ -25,7 +25,7 @@ typeSuccess() {
 }
 
 typeWarning() {
-  this.toastr.warning('Field required ');
+  this.toastr.warning('Invalid Username or Password');
 }
 
 typeLogout() {

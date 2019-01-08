@@ -480,9 +480,12 @@
   }
   .textboxevent{font-size:14px;}
   .tabbingdesign{
-      padding: 0px;
-      margin: 0px auto;
-      width: 300px;
+    padding: 0px;
+    margin: 0px auto 10px auto;
+    width: 300px;
+    background: #e5e5e5;
+    overflow: hidden;
+    border-radius: 30px;
   }
   .tabbingdesign li{
       list-style: none;
@@ -494,15 +497,16 @@
       width: 50%;
       text-align: center;
       background: #e5e5e5;
-      border-radius: 0px 30PX 30PX 0PX;
+      border-radius: 30PX;
       margin: 0px;
   }
-  .tabbingdesign li:first-child{
-  border-radius:30px 0px 0px 30px;
-  margin-right:0px;
+  .tabcontainermain{
+    position: relative;
+    max-width: 300px;
+    margin: 0px auto;
   }
   .tabbingdesign li:last-child{
-  border-radius:0px 30px 30px 0px;
+  border-radius:30px;
   margin-left:0px;
   }
   .tabbingdesign li.selected{
@@ -510,9 +514,9 @@
       color: #fff;
   }
   .tabarrow{
-      float: right;
-      margin-right: -30px;
-      margin-top: 20px;
+    position: absolute;
+    left:310px;
+    top:5px;
   }
   .panel.card{
     box-shadow:0px 0px 20px rgba(0, 0, 0, 0.2)!important;
@@ -670,7 +674,7 @@
       box-shadow: 0px 0px 0px;
       padding: 0px 10px;
       height: 34px;
-      margin: -6px 15px 0px -1px;
+      margin: -3px 15px 0px -1px;
       background:#36cbf0;
       color:#fff!important;
       outline:none;
@@ -810,6 +814,15 @@
   
         /*radio button*/
         @media screen and (max-width: 768px) {
+          .vouchercodeinput[_ngcontent-c1] {
+            height: 34px;
+            padding: 0px 5px;
+            float: left;
+            width: 209px;
+        }
+        .btnbluecode{
+          margin-top: 0px!important;
+        }
           .steps-form-2{width: 100%;}
           .steps-form-2 .steps-row-2 .steps-step-2 p{ font-size: 13px;     margin-top: 0;
               line-height: 17px;}

@@ -205,6 +205,10 @@ background: #e72e77;
 padding: 3px 18px!important;
 font-size: 11px!important;
 margin: 3px 0px!important;
+white-space: nowrap; 
+overflow: hidden;
+text-overflow: ellipsis;
+width:230px;
 }
 .cardfoottext{
   font-size:12px!important;
@@ -440,7 +444,7 @@ display: block;
   top: 7px;
   color: #e72e77
 }
-.collapse.show{
+.collapse.in.show{
   display: block!important;
 }
 .filterbox h4.panel-title a{
@@ -565,9 +569,26 @@ img.lazyOwl{
     padding-left: 5px;
 
 }
-.owl-item{
-     width: 215px !important;
+.owl-item {
+  margin-right: 15px;
+  max-width:255px!important;
 }
+.boxtikslide{
+    border: 0px solid #fff !important;
+    border-radius: 1px;
+    font-size: 14px;
+    position: relative;
+    box-shadow: 0px 0px 20px #e5e5e5 !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+    overflow: hidden;
+    max-width: 255px!important;
+}
+.card-img-top{
+  height:175px;
+  object-fit: cover;
+}
+
 .mar_bottom{
    margin-bottom: 20px;
 }
@@ -984,7 +1005,7 @@ margin-bottom:30px;
 }
 
 
-.collapse.show{
+.collapse.in.show{
   display: block!important;
   }
 
@@ -1052,7 +1073,9 @@ margin-bottom:30px;
 .collapse.show.in{
   display: block!important;
   }
-
+.collapse.show{
+   display: none!important;
+}
 .blink {
   animation: blink-animation 1s steps(5, start) infinite;
   -webkit-animation: blink-animation 1s steps(5, start) infinite;

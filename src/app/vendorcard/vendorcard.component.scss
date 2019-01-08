@@ -229,25 +229,23 @@ text-transform:uppercase;
   
   top: 25%;
 }
-#supplierscarousel .item{
-  max-width: 262.5px;
-  float: left;
+
+.owl-item {
   margin-right: 15px;
+  max-width:255px!important;
 }
-.bordre_rad1{
-  border: 0px solid #fff!important;
-  border-radius: 1px;
-  font-size: 14px;
-  position: relative;
-  box-shadow:0px 0px 20px #e5e5e5!important;
-  margin-top:20px!important;
-  margin-bottom:20px!important;
+.boxtikslide{
+    border: 0px solid #fff !important;
+    border-radius: 1px;
+    font-size: 14px;
+    position: relative;
+    box-shadow: 0px 0px 20px #e5e5e5 !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+    overflow: hidden;
+    max-width: 255px!important;
 }
-.bordre_rad1 img.card-img-top{
-  height:175px;
-  object-fit: cover;
-}
-.bordre_rad img.card-img-top{
+.card-img-top{
   height:175px;
   object-fit: cover;
 }
@@ -654,7 +652,9 @@ li{line-height:1.5rem !important;}
 .mob300pxwidth{
   width:300px!important;
 }
-
+.boxtikslide{
+  max-width: inherit!important;
+}
 .mobnopadd{
   padding:0px!important;
 }
@@ -747,6 +747,7 @@ li{line-height:1.5rem !important;}
   .locationbox h2{
 font-size: 12px;
 color: #fff;
+left:10px;
   }
   .locationbox h2 span{
     font-size: 12px;

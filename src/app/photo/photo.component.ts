@@ -8,15 +8,15 @@ import { PagerService } from '../_services'
   styleUrls: ['./photo.component.scss']
 })
 export class PhotoComponent implements OnInit {
-  
+  colors: Array<ColorPicker>;
   constructor(private pagerService: PagerService,private apiService: apiService ) { }
    categories:any = [];
    pho_data:any = {}
+   category
    categoryId=''
    searchQuery=''
    userId;
    find_color_tag ='pink';
-   
    tag_colour = false
    showTag =  false;
    showTag2= false;
@@ -26,12 +26,28 @@ export class PhotoComponent implements OnInit {
     pager: any = {};
     // paged items
     pagedItems: any[];
+    default_colour_tags = true
     error_1 = '';
+    createColorPanel(){
+      this.colors= Array<ColorPicker>();
+      this.colors.push({colorName:'pink'});
+      this.colors.push({colorName:'red'});
+      this.colors.push({colorName:'orange'});
+      this.colors.push({colorName:'yellow'});
+      this.colors.push({colorName:'green'});
+      this.colors.push({colorName:'Blue'});
+      this.colors.push({colorName:'purple'});
+      this.colors.push({colorName:'brown'});
+      this.colors.push({colorName:'black'});
+      this.colors.push({colorName:'grey'});
+     }
    ngOnInit() {
   // $.getScript('./assets/js/blocksit.min.js');
   // $.getScript('./assets/js/lazy.js');
    //$.getScript('./assets/js/jquery.pinbox.js');
    //$.getScript('./assets/js/photo.js');
+   this.showTag2= false
+   this.createColorPanel()
    this.userId = localStorage.getItem('userId');
    console.log(this.userId)
    this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',{
@@ -72,33 +88,40 @@ export class PhotoComponent implements OnInit {
     return styles;
   }
    find_photo(f){
-this.find_color_tag= f.value.searchQuery
-            if(f.value.categoryId == '0'){
-                    const a = {
-                      page: 0,
-                      pageSize: 30,
-                      sortDir: "",
-                      sortedBy: "asc",
-                      searchQuery: f.value.searchQuery,
-                      categoryId: f.value.categoryId,
-                      UserId : this.userId
-                    }
-                    this.search_api(a) 
-            }else{   
-                    const a = {
-                        page: 0,
-                        pageSize: 30,
-                        sortDir: "",
-                        sortedBy: "asc",
-                        searchQuery: f.value.searchQuery,
-                        categoryId: f.value.categoryId,
-                        UserId : this.userId
-                    }
-                    console.log(a)
-                    this.search_api(a)
-            }
-            
+   
+    console.log( this.colors.filter(c=>c.colorName==f.value.searchQuery));
+ 
+      if( this.colors.filter(c=>c.colorName==f.value.searchQuery).length == 0){
        
+        this.showTag2 = true ;
+        this.showTag = false;
+      }else{
+        this.showTag = true;
+        this.showTag2 = false;
+      }
+     
+   
+           this.find_color_tag= f.value.searchQuery
+           console.log(f.value.categoryId)
+           if(f.value.categoryId == 'undefined'){
+             f.value.categoryId = 0 
+           }
+           if(this.find_color_tag == ""){
+            this.default_colour_tags = true
+           }else{
+            this.default_colour_tags = false
+           }
+            const a = {
+              page: 0,
+              pageSize: 30,
+              sortDir: "",
+              sortedBy: "asc",
+              searchQuery: f.value.searchQuery,
+              categoryId: f.value.categoryId,
+              UserId : this.userId
+          }
+          console.log(a)
+          this.search_api(a)
    }
    search_api(a){
      
@@ -106,25 +129,31 @@ this.find_color_tag= f.value.searchQuery
      .subscribe(data => {
        console.log(data.items)
        this.pagedItems = [];
+       this.allItems = []
        for (var pagedItem of   data.items  ) {
-      //  pagedItem['colorTags'] =  pagedItem['colorTags'].split(',');
-      //  this.showTag = true;
-      //  this.showTag2 = true ;
-      //  this.pagedItems.push(pagedItem);
-       //this.tag_colour = true
+            //  pagedItem['colorTags'] =  pagedItem['colorTags'].split(',');
+            //  this.showTag = true;
+          
+            //  this.pagedItems.push(pagedItem);
+            //this.tag_colour = true
 
-       if(pagedItem['colorTags'] == null || pagedItem['tags'] == null){
-        this.pagedItems.push(pagedItem);
-       }else{
-        pagedItem['colorTags'] =  pagedItem['colorTags'].split(',');
-        pagedItem['tags'] =  pagedItem['tags'].split(',');
-        this.showTag = true;
-        this.showTag2 = true ;
-        this.pagedItems.push(pagedItem);
-        
+            if(pagedItem['colorTags'] == null || pagedItem['tags'] == null){
+             // this.pagedItems.push(pagedItem);
+              this.allItems.push(pagedItem);
+            // this.setPage(1);
+            }else{
+              pagedItem['colorTags'] =  pagedItem['colorTags'].split(',');
+              pagedItem['tags'] =  pagedItem['tags'].split(',');
+              
+              
+             
+             // this.pagedItems.push(pagedItem);
+              this.allItems.push(pagedItem);
+            // this.setPage(1);
+            }
        }
-       }
-        console.log(this.pagedItems)
+       this.setPage(1);
+       console.log(this.pagedItems)
        if( this.pagedItems.length == 0 ){
            this.error_1 = "no data found"
        }else{
@@ -133,7 +162,7 @@ this.find_color_tag= f.value.searchQuery
      },error => {  console.log(error)});
    }
    popup(listall_categories){
-     //console.log(listall_categories)
+     console.log(listall_categories)
      this.pho_data = listall_categories
    }
 
@@ -145,4 +174,8 @@ this.find_color_tag= f.value.searchQuery
     // get current page of items
     this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
    }
+}
+export class ColorPicker{
+  public colorName: string;
+  
 }

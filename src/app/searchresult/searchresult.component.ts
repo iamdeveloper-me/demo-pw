@@ -78,6 +78,7 @@ export class SearchresultComponent implements OnInit {
   categories:any;
   filters: any;
   count:number = 3
+  selectedLocationsCount = 0;
   objSearchlistvm: SearchListingVM;
   objSearchResultItems:any;
   locationFilterParam:string='';
@@ -88,28 +89,9 @@ export class SearchresultComponent implements OnInit {
   blankImg='../../assets/img/noImg.png';
 
   constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService, private api: apiService) {  
-    this.slidesStore = [
-      {
-        src: "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-      },
-      {
-        src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
 
-      },
-      {
-        src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+    this.objSearchFilter=new filterParam();
 
-      },
-      {
-        src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-
-      },
-      {
-        src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-
-      }
-    ]
-        this.objSearchFilter=new filterParam();
     this.objSearchlistvm = new SearchListingVM();
     if(this._activeRoute!=undefined){
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
@@ -118,7 +100,6 @@ export class SearchresultComponent implements OnInit {
       // this.objSearchFilter.categoryId = this._activeRoute.snapshot.params['id'].split('/')[0];
       // this.objSearchFilter.searchInDreamLocation=this._activeRoute.snapshot.params['id'].split('/')[3];
       // this.objSearchFilter.searchInFeaturedLocation  = this._activeRoute.snapshot.params['id'].split('/')[2];
-    debugger
       this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
       this.objSearchlistvm.districtId.push(this.objSearchFilter.locationId);
     }
@@ -177,6 +158,7 @@ export class SearchresultComponent implements OnInit {
     });
       
   }
+
   getCategories(){
      this._masterservice.getAllCategories().subscribe(res=>{
    //    res.forEach(element => {
@@ -240,15 +222,32 @@ export class SearchresultComponent implements OnInit {
     this.locations.forEach(element => {
       if(element.isSelect){
         this.objSearchlistvm.districtId.push(element.districtId)
+      }else{
+        element.isSelect=false;
       }
     });
   }
+  
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
       
       this.objSearchResultItems = res;
-     });
-     this.setBlankImg();
+      this.setBlankImg();
+      this.addToCollection();
+      console.log(JSON.stringify(this.collection)) ;
+    });
+     
    // this.paginate(this.objSearchFilter.pageSize);
+  }
+  clearFilters(){
+    this.locations.forEach(element => { element.isSelect=false; });
+    this.objSearchlistvm.districtId = [];
+    this.categories.forEach(element => { element.isSelect=false; });
+    this.objSearchlistvm.categoryId = [];
+  }
+  addToCollection(){
+    this.objSearchResultItems.items.forEach(element => {
+      this.collection.push(element);
+    });
   }
   filterLocations(ev){
     let filterResult=this.locations.filter(n=>n.name.startwith(ev.value));
@@ -267,6 +266,7 @@ export class SearchresultComponent implements OnInit {
   this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
     this.setBlankImg();
+    this.addToCollection();
   });   
   this.disableLoadingButton=false;
    this.pageNumber+=1;

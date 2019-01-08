@@ -8,7 +8,7 @@ import 'rxjs/Rx';
 import { MasterserviceService } from '../ngservices/masterservice.service';
 import { apiService } from '../shared/service/api.service';
 import{filterParam} from '../vendorcard/vendorcard.component'
-
+import { ToastrService } from 'ngx-toastr';
 export class NgbdModalContent {
   @Input() name;
   constructor(public activeModal: NgbActiveModal) { }
@@ -27,7 +27,7 @@ export class MenuComponent implements OnInit {
     private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
     vendor: any = {};
     objFilterParam: filterParam;
-    constructor(private router: Router ,private masterservice: MasterserviceService , private apiService: apiService,public http: Http,private cservice: LoginServiceService , private modalService: NgbModal, private uservice: SignupVendorService,) {
+    constructor(private router: Router ,public toastr: ToastrService,private masterservice: MasterserviceService , private apiService: apiService,public http: Http,private cservice: LoginServiceService , private modalService: NgbModal, private uservice: SignupVendorService,) {
         this.objFilterParam = new filterParam();
     }
     user = {username:'',password:''}
@@ -103,10 +103,11 @@ export class MenuComponent implements OnInit {
             $("div").removeClass( "modal-backdrop"); 
           }
         
-        },(ERROR)=>{     
+        },(ERROR)=>{  
+            // alert("Login Vendor")  
             if (ERROR.statusText == "Bad Request" ) {
                 this.error  = ERROR.json().login_failure[0];
-            
+                // this.toastr.warning(ERROR._body);
               this.typeWarning();
             }});
        
@@ -114,13 +115,17 @@ export class MenuComponent implements OnInit {
     
     typeSuccess() {
         this.cservice.typeSuccess();
+        // this.toastr.success('Login successfully', 'Success!');
     }
     typeWarning() {
         this.cservice.typeWarning();
+        // this.toastr.warning('Invalid Username or Password');
     }
     typeLogout() {
         this.cservice.typeLogout();
+        // this.toastr.success('Logout successfully', 'Success!');
     }
+
 
     //--------------------------------user login 
 
@@ -146,9 +151,10 @@ export class MenuComponent implements OnInit {
           }
         
         },(ERROR)=>{     
+            // alert("Login Couples");
             if (ERROR.statusText == "Bad Request" ) {
                 this.error  = ERROR.json().login_failure[0];
-            
+                // this.toastr.warning(ERROR._body);
               this.typeWarning();
             }});
        
@@ -157,7 +163,11 @@ export class MenuComponent implements OnInit {
     userSubmit(){
       this.uservice.usignup(this.userSingUp).subscribe(( data )  =>  {
             console.log(data);
+              // this.toastr.warning(ERROR._body);
             // console.log(data.password)
+    },(error)=>{
+        this.toastr.warning(error._body);
+        // this.typeWarning();
     });
     
     }

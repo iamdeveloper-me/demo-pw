@@ -486,9 +486,11 @@
                                   <div class="modal-body mb-1 align_left">               
                                       
                                       <div class="field">
-                                          <input type="email"  autocomplete="username" required="required" [(ngModel)] = "userSingUp.email" id="email" name="email" placeholder="Your Email">
+                                          <input type="email"  autocomplete="username" required="required" #emailError="ngModel"
+                                          [(ngModel)] = "userSingUp.email" id="email" name="email" placeholder="Your Email">
                                           <label for="email">Your Email</label>
-                                      </div>   
+                                      </div> 
+                                     <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="emailError.touched && emailError.errors?.required">Eamil is required!</small> -->
                                       <div class="field">
                                           <input type="password"  autocomplete="current-password" required="required" [(ngModel)] = "userSingUp.password" id="password" name="password" placeholder="Password">
                                           <label for="password">Password</label>
@@ -564,7 +566,7 @@
                           </div>
                       </form>
                       <div class="footer_span1 text-center">
-                               <p>Not a member? <a routerLink="../register/step1" class="signuplink">Sign Up </a></p>
+                               <p>Not a member? <a routerLink="/register/step1" class="signuplink">Sign Up </a></p>
                                <!--Signup Routing ../register-->
                               </div>
                   </div>

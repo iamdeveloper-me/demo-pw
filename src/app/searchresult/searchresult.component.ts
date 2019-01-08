@@ -1,4 +1,4 @@
-import { OnInit, Component } from '@angular/core';
+import { OnInit, Component ,Pipe, PipeTransform} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MasterserviceService } from 'app/ngservices/masterservice.service';
 import {RatingModule} from 'ngx-rating';
@@ -6,7 +6,34 @@ import { CustompipePipe } from 'app/custompipe.pipe';
 import { CategoryPipePipe } from 'app/category-pipe.pipe';
 import { apiService } from 'app/shared/service/api.service';
 import { filterParam } from 'app/vendorcard/vendorcard.component';
+import { SlidesOutputData } from 'ngx-owl-carousel-o';
 
+
+@Pipe({ name: 'defaultImage' })
+export class PP implements PipeTransform {
+  transform(
+    value: string,
+    fallback: string,
+    forceHttps: boolean = false
+  ): string {
+    let image = "";
+    if (value != "../../assets/img/noImg.png") {
+      
+      image = value;
+    } else {
+      image = fallback;
+    }
+
+    if (forceHttps) {
+      if (image.indexOf("https") == -1) {
+        image = image.replace("http", "https");
+      }
+    }
+
+    return image;
+  }
+  
+}
 
 @Component({
   selector: 'app-searchresult',
@@ -15,6 +42,36 @@ import { filterParam } from 'app/vendorcard/vendorcard.component';
   providers: [CustompipePipe, CategoryPipePipe]
 })
 export class SearchresultComponent implements OnInit {
+  customOptions: any = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    autoplay: true,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: true,
+    //autoplaySpeed:1
+  }
+
+  activeSlides: SlidesOutputData;
+
+  slidesStore: any[];
   collection = [];
   objSearchFilter: filterParam
   locations:any;
@@ -32,7 +89,9 @@ export class SearchresultComponent implements OnInit {
   blankImg='../../assets/img/noImg.png';
 
   constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService, private api: apiService) {  
+
     this.objSearchFilter=new filterParam();
+
     this.objSearchlistvm = new SearchListingVM();
     if(this._activeRoute!=undefined){
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
@@ -50,6 +109,7 @@ export class SearchresultComponent implements OnInit {
    // this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
       this.objSearchResultItems = res;
+      this.slidesStore =  this.objSearchResultItems['items']
       this.getSearchFilterResult();
       
       console.log(JSON.stringify(this.objSearchResultItems));
@@ -57,6 +117,10 @@ export class SearchresultComponent implements OnInit {
       console.log(JSON.stringify(error));
     });
  //   this.paginate(this.objSearchFilter.pageSize);
+  }
+  getData(data: SlidesOutputData) {
+    this.activeSlides = data;
+    console.log(this.activeSlides);
   }
  ngOnInit() {   
   //$.getScript('./assets/js/owljsor.js');

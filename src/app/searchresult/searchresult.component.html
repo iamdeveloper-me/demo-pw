@@ -1,116 +1,62 @@
-  <div id="wrappervendor" class="" >
+  <div id="wrappervendor" class="">
   <app-menu></app-menu>
   <app-tool></app-tool>
-  <div id="wrappervendorsidbar">
-    <!-- <app-vendorsidebar></app-vendorsidebar> -->
-  </div>
 <div class="container-fluid recomslider">
       <!--Carousel Wrapper-->
-<div class="container">
-    <!--Slides-->
-    <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
- 
-        <ng-container *ngFor="let slide of slidesStore">
-          <ng-template carouselSlide="1" >
-              <div class="procard"> </div>
-              <img [src]="slide.profileImage | defaultImage:'https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg':true"/>
+  <div class="container">
+      <!--Slides-->
+        <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
+          <ng-container *ngFor="let slide of slidesStore">
+            <ng-template carouselSlide="1" >
+              <div class="boxtikslide">
+                <div class="procard"> </div>
+                <img class="card-img-top" [src]="slide.profileImage | defaultImage:'https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg':true"/>
+                <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
+                <div class="card-body ">
+                  <div class="text-center"> 
+                   <h6><strong>{{slide.nameOfBusiness}} </strong> </h6>
+                    <button class="wedding_btn">{{ slide.businessDetails}} </button>
+                      <p class="locat_icon"><i class="material-icons">location_on</i> 
 
-            <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-            <div class="card-body ">
-                <div class="text-center"> 
-                 <h6> <strong>{{slide.nameOfBusiness}} </strong> </h6>
-                  <button class="wedding_btn">{{ slide.businessDetails}} </button>
-                  <P class="locat_icon"><i class="material-icons">location_on</i> 
-
-                    <i class="material-icons">location_on</i> 
-                    <span *ngIf='slide.vendorLocations[0]'> {{ slide.vendorLocations[0].suburb.name}},</span>
-                   <span *ngIf='slide.vendorLocations[0]'>  {{ slide.vendorLocations[0].districts.name}},</span>
-                   <span *ngIf='slide.vendorLocations[0]'>{{ slide.vendorLocations[0].country.name}},</span> 
-                   <span *ngIf='slide.vendorLocations[0]'> {{ slide.vendorLocations[0].postalCode}}</span>
-
-                  </P>
-                  <p class="statr_point">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span> 5.0 (47) </p>
-                  </div>
-            
-                  <div class="col-md-12 col-12">
-                    <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                      <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                        <span>Price from</span>
-                        <span class="pric_200">200 $</span>
+                      <i class="material-icons">location_on</i> 
+                     <span *ngIf='slide.vendorLocations[0]'> {{ slide.vendorLocations[0].suburb.name}},</span>
+                     <span *ngIf='slide.vendorLocations[0]'>  {{ slide.vendorLocations[0].districts.name}},</span>
+                     <span *ngIf='slide.vendorLocations[0]'>{{ slide.vendorLocations[0].country.name}},</span> 
+                     <span *ngIf='slide.vendorLocations[0]'> {{ slide.vendorLocations[0].postalCode}}</span>
+                      </p>
+                      <p class="statr_point">
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span> 5.0 (47) </p>
                     </div>
-                    <div class="col-md-4 col-4 span_positin">
-                     <img src="../../assets/img/tag.svg"  alt=""> 
-                    <span>Deals</span>
-                    <span>1</span>
-                    </div>
-                  </div>
-                </div>
-          </ng-template>
-        </ng-container>
-      
-      </owl-carousel-o>
-      <!-- {{slidesStore | json}} -->
-    <div id="supplierscarousel" class="owl-carousel" *ngIf='objSearchResultItems'>
-              <div *ngFor='let i of slidesStore' class="item bordre_rad">
-
-
-                <div class="card mb-2 bordre_rad1 ">
-                    <div class="procard"> </div>
-                    <img class="card-img-top img-responsive" [src]="i.profileImage" alt="Card image cap">
-                    <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                    <div class="card-body ">
-                      <div class="text-center"> 
-                       <h6> <strong>{{i.nameOfBusiness}} </strong> </h6>
-                        <button class="wedding_btn">{{i.businessDetails}} </button>
-                        <P class="locat_icon"><i class="material-icons">location_on</i> 
-
-                          <i class="material-icons">location_on</i> 
-                          <span *ngIf='i.vendorLocations[0]'> {{i.vendorLocations[0].suburb.name}},</span>
-                         <span *ngIf='i.vendorLocations[0]'>  {{i.vendorLocations[0].districts.name}},</span>
-                         <span *ngIf='i.vendorLocations[0]'>{{i.vendorLocations[0].country.name}},</span> 
-                         <span *ngIf='i.vendorLocations[0]'> {{i.vendorLocations[0].postalCode}}</span>
-
-                        </P>
-                        <p class="statr_point">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span class="fa fa-star"></span> 5.0 (47) </p>
-                        </div>
-                  
-                        <div class="col-md-12 col-12">
-                          <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-                          </div>
-                        </div>
+              
+                    <div class="col-md-12 col-12">
+                      <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
+                        <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
+                          <span>Price from</span>
+                          <span class="pric_200">200 $</span>
                       </div>
+                      <div class="col-md-4 col-4 span_positin">
+                       <img src="../../assets/img/tag.svg"  alt=""> 
+                      <span>Deals</span>
+                      <span>1</span>
+                      </div>
+                    </div>
                 </div>
-            </div> 
-           
-      </div>
-
-
-
-    
+              </div>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+        <!-- {{slidesStore | json}} -->    
+  </div>  
     <!--End Slides-->
 </div>
 
 <!--/.Carousel Wrapper-->
 
-</div>
+
 
 
 
@@ -377,8 +323,8 @@
 		<div class="col-sm-9 listingtab">
       <div class="photo_cont">
        	<div id="products" class="row list-group">
-          
-	        	<div *ngFor='let i of objSearchResultItems.items' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
+          <div *ngIf='objSearchResultItems'>
+	        	<div *ngFor='let i of collection' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
 
 	                <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
@@ -405,7 +351,7 @@
                       <div class="caption card-body">
                         <div>
                           <h6><strong>{{i.nameOfBusiness}}</strong></h6>
-                          <button class="wedding_btn">{{i.nameOfBusiness}} </button>
+                          <button *ngIf='i.vendorCategories[0].categories' class="wedding_btn">{{i.vendorCategories[0].categories.categoryName}} </button>
 
                           <p class="locat_icon" *ngIf='i.vendorLocations.length>0'>
                             <i class="material-icons">location_on</i> {{i.vendorLocations[0].suburb.name}},
@@ -426,9 +372,7 @@
                             <span *ngIf='i.reviews>0'>
                             {{i.averageRating}} {{i.reviews}} </span>
                           </p>
-                          <p>
-                            {{i.vendorCategories[0].categories.categoryName}}
-                          </p>
+                         
                         </div>
                        <div class="col-md-12 col-12 cardfoottext">
                           <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
@@ -438,18 +382,19 @@
                           </div>
                           <div class="col-md-4 col-4 span_positin">
                            <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span *ngIf='i.deals'>{{i.dealsCount}}</span>
+                          <span *ngIf='i.dealsCount>0'>Deals</span>
+                          <span *ngIf='i.dealsCount>0'>{{i.dealsCount}}</span>
                           </div>
                         </div>
                       </div>
                     </div>
 	       		      </div>
             </div>
+          </div>
 	     	</div>
         <div>
 
-           <div class="btn btn-success" style="color:white"  (click)='paginate(objSearchlistvm.pageSize)'>Load More........</div>
+          <img *ngIf='loading' src="https://www.walgreens-hearing.com/img/loader.gif" style="bottom:35%;position: fixed;z-index:99999;margin-left:40%">
                   <!-- <ngb-pagination [collectionSize]="objSearchResultItems?.totalCount" [(page)]="objSearchResultItems.page" [boundaryLinks]="true"></ngb-pagination>
              <span class="totalpage">{{objSearchResultItems.totalPages}} (Page)s</span> -->
         </div>
@@ -457,35 +402,33 @@
     </div>
 </div>
 </div>
-
-
 <div class="filterselectbox">
 
   <div class="col-sm-12">
-    <button class="clearbtn">Clear</button>
+    <button class="clearbtn" (click)='clearFilters()'>Clear</button>
     <button class="applybtn">Apply</button>
 
 <div class="clearfix"></div>
 
-<p class="text-center">Filters (4)</p>
+<p class="text-center">Filters (0)</p>
 
 <div class="filterrow categoryfilter">
-  <h1>Category <i class="material-icons">arrow_right</i></h1>
+  <h1>Category  {{objSearchlistvm.categoryId.length}}<i class="material-icons">arrow_right</i></h1>
   <div>
-    <span class="badge">
-     Cakes <i class="material-icons">clear</i>
+    <span class="badge" *ngFor='let c of categories'>
+      <div *ngIf='c.isSelect'>{{c.categoryName}}</div>
     </span>
   </div>
 </div>
 <div class="filterrow locationfilter">
-  <h1>Location (2) <i class="material-icons">arrow_right</i></h1>
+  <h1>Location {{objSearchlistvm.districtId.length}} <i class="material-icons">arrow_right</i></h1>
   <div>
-    <span class="badge">
-     Black River <i class="material-icons">clear</i>
+    <span class="badge" *ngFor='let l of locations'>
+      <div *ngIf='l.isSelect'>{{l.name}} </div>
     </span>
-     <span class="badge">
+     <!-- <span class="badge">
      Grand Port <i class="material-icons">clear</i>
-    </span>
+    </span> -->
   </div>
 </div>
 <div class="filterrow pricefilter">
@@ -535,6 +478,7 @@
   </div>
 
 </div>
+
 <app-foot> </app-foot>
 </div>
 <router-outlet></router-outlet>

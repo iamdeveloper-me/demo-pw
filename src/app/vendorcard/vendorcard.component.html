@@ -1,6 +1,6 @@
   <div class="vendor">
     <div class="container mob_margin_top_100">
-      <div class="container p-0">
+      <div class="container p-0" *ngIf='Popular_Wedding_array.length>0'>
         <section class="p-0 container" id="portfolio">
           <div class="container-fluid p-0">
             <div class="container text-center mob300pxwidth">
@@ -34,7 +34,7 @@
       </div>
 
     </div>
-    <div class="container-fluid mob_padd_30px" >
+    <div class="container-fluid mob_padd_30px" *ngIf='featured_supplier_data.length>0'>
           <!--Carousel Wrapper-->
           <!-- {{slidesStore | json}} -->
           <div class="caroosel_headin text-center">
@@ -85,7 +85,9 @@
           <p class="browse_cat"> <a (click) = "supplier_all(Popular,'true','false')"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
     </div>
 
-    <div class="container slider_use_anather_compo">
+
+    <div class="container slider_use_anather_compo" *ngIf='dream_wedding_location_length>0'>
+
       <!--Gallery Hover Effect Starts-->
       <div class="row" id="headcss">
           <div class="col-sm-12" >

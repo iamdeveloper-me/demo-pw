@@ -14,6 +14,7 @@ export class BannerComponent implements OnInit {
   constructor( private router: Router ,private masterservice: MasterserviceService , private apiService: apiService) { 
     this.objFilterParam = new filterParam();
   }
+  
   Categories = [];
   locations = [];
   locationId:number=0;
@@ -65,7 +66,9 @@ export class BannerComponent implements OnInit {
   search(e,isAllSupplier,isDreamLocation,var_data){
    if(var_data == null){
      this.objFilterParam.catId  = e.value.category?e.value.category.categoryId:0;
+
       this.objFilterParam.categoryName= e.value.category?e.value.category.categoryName: '' ;
+      this.objFilterParam.categoryName=this.objFilterParam.categoryName==undefined?'All Categories':this.objFilterParam.categoryName;
       this.objFilterParam.isDreamLocation=isDreamLocation;
       this.objFilterParam.isAllSupplier=isAllSupplier;
       this.objFilterParam.page = 1;

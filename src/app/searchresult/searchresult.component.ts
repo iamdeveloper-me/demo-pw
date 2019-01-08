@@ -21,7 +21,7 @@ export class PP implements PipeTransform {
     forceHttps: boolean = false
   ): string {
     let image = "";
-    if (value != "../../assets/img/noImg.png") {
+    if (value) {
       
       image = value;
     } else {

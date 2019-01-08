@@ -111,6 +111,7 @@ export class VendorcardComponent implements OnInit {
       this.featured_supplier_data = data.featuredWeddingSuppliers;
 
 
+
       this.slidesStore = this.featured_supplier_data
 
       this.featured_supplier_data.forEach(element => {
@@ -121,12 +122,15 @@ export class VendorcardComponent implements OnInit {
       });
      console.log(this.slidesStore)
 
+
       // this.featured_supplier_data.forEach(element => {
       //   element.reviews.forEach(element => {           
       //     this.max.push(element.rating) 
       //     this.max.sort((a,b) => 0 - (a > b ? 1 : -1))
       //   });
       // });
+
+
 
       //this.max = [];
       console.log(data.featuredWeddingSuppliers)
@@ -182,7 +186,7 @@ export class VendorcardComponent implements OnInit {
     this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   }
   supplier_all(c,isAllSupplier,isDreamLocation){
-debugger
+// debugger
       this.objFilterParam.catId  = c?c.categoryId:0;
       this.objFilterParam.categoryName= c?c.categoryName:'';
       this.objFilterParam.isDreamLocation=isDreamLocation;

@@ -40,17 +40,16 @@ export class VendorcardComponent implements OnInit {
   }
   featured_supplier(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/featuredsuppliers').subscribe(data => {
-      console.log(data.featuredWeddingSuppliers)
+      
       this.featured_supplier_data = data.featuredWeddingSuppliers;
-
-      this.featured_supplier_data.forEach(element => {
-        element.reviews.forEach(element => {           
-          this.max.push(element.rating) 
-          this.max.sort((a,b) => 0 - (a > b ? 1 : -1))
-        });
-      });
-
+      // this.featured_supplier_data.forEach(element => {
+      //   element.reviews.forEach(element => {           
+      //     this.max.push(element.rating) 
+      //     this.max.sort((a,b) => 0 - (a > b ? 1 : -1))
+      //   });
+      // });
       //this.max = [];
+      console.log(data.featuredWeddingSuppliers)
     },
       error => {
        console.log(error)
@@ -74,7 +73,7 @@ export class VendorcardComponent implements OnInit {
         if(i.isPopular == true){
           this.Popular_Wedding_array.push(i);
         }
-        //console.log( this.Popular_Wedding_array)
+        console.log( this.Popular_Wedding_array)
       }
       
     

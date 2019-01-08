@@ -43,14 +43,15 @@ export class PP implements PipeTransform {
 })
 export class SearchresultComponent implements OnInit {
   customOptions: any = {
-    loop: true,
+    loop: false,
+    margin: 20,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
     dots: true,
+    nav: false,
     autoplay: true,
     navSpeed: 700,
-    navText: ['', ''],
     responsive: {
       0: {
         items: 1
@@ -65,7 +66,6 @@ export class SearchresultComponent implements OnInit {
         items: 4
       }
     },
-    nav: true,
     //autoplaySpeed:1
   }
 

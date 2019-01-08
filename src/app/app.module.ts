@@ -65,7 +65,7 @@ import { StepThirdComponent } from './register/step-third/step-third.component';
 import { StepForthComponent } from './register/step-forth/step-forth.component';
 
 import { EqualValidator } from './register/equal-validator.directive';
-import { SearchresultComponent } from './searchresult/searchresult.component';
+import { SearchresultComponent, PP } from './searchresult/searchresult.component';
 import { PhotoComponent } from './photo/photo.component';
 import { TipsComponent } from './tips/tips.component';
 // import { DetailpageComponent } from './detailpage/detailpage.component';
@@ -246,6 +246,7 @@ export function getAuthServiceConfigs() {
     declarations: [
         SafePipeP,
         SafePipe,
+        PP,
         CustompipePipe,
         CategoryPipePipe,
         ReversePipe  ,

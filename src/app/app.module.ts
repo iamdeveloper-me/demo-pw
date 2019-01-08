@@ -216,6 +216,7 @@ import { PaymentSummaryComponent } from './payment-summary/payment-summary.compo
 import { Gallery0Component } from './vendor/gallery0/gallery0.component';
 import { GalleryTwoComponent } from './vendor/gallery-two/gallery-two.component';
 import { CalenderComComponent } from './vendor/calender-com/calender-com.component';
+import { SectionBComponent } from './vendor/membership/section-b/section-b.component';
 
 
 
@@ -430,6 +431,8 @@ export function getAuthServiceConfigs() {
         GalleryTwoComponent,
 
         CalenderComComponent,
+
+        SectionBComponent,
 
 
         

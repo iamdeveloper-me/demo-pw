@@ -1,6 +1,5 @@
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RatingModule} from "ngx-rating";
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -15,6 +14,8 @@ import { OwlModule } from 'ngx-owl-carousel';
 //import { NgProgressModule } from 'ngx-progressbar';
 
 ///import { NgProgressModule } from 'ngx-progressbar';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule } from 'angular-calendar';
 
 
 
@@ -23,7 +24,6 @@ import * as $ from 'jquery';
 
 import { CommonModule } from "@angular/common";
 import { NgbModalModule, NgbDatepickerModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
-import { CalendarModule, CalendarDateFormatter } from 'angular-calendar';
 // import { DateTimePickerComponent } from './vendor/calendertable/date-time-picker.component';
 
 //indox of vendor
@@ -202,7 +202,9 @@ import { DealDetailsComponent } from './deal-details/deal-details.component';
 import { HoneymoonComponent } from './honeymoon/honeymoon.component';
 import { HoneymoonDetailsComponent } from './honeymoon-details/honeymoon-details.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { CarouselModule } from 'ngx-owl-carousel-o';
 import { CustompipePipe } from './custompipe.pipe';
 import { CategoryPipePipe } from './category-pipe.pipe';
 
@@ -213,6 +215,7 @@ import { DetailpageComponent } from './detailpage/detailpage.component';
 import { PaymentSummaryComponent } from './payment-summary/payment-summary.component';
 import { Gallery0Component } from './vendor/gallery0/gallery0.component';
 import { GalleryTwoComponent } from './vendor/gallery-two/gallery-two.component';
+import { CalenderComComponent } from './vendor/calender-com/calender-com.component';
 
 
 
@@ -425,6 +428,8 @@ export function getAuthServiceConfigs() {
 
         GalleryTwoComponent,
 
+        CalenderComComponent,
+
 
         
         
@@ -434,6 +439,16 @@ export function getAuthServiceConfigs() {
 
   ],
     imports: [
+        CarouselModule,
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        // calender start
+        NgbModalModule,
+        FlatpickrModule.forRoot(),
+        CalendarModule.forRoot(),
+        // calender End
+
         OwlModule,
         ProgressHttpModule
 ,NgxDatatableModule,
@@ -444,7 +459,6 @@ export function getAuthServiceConfigs() {
         FullCalendarModule,
         FileUploadModule,
         ImageCropperModule,
-        BrowserAnimationsModule,
         StoreModule.forRoot({}),
         AppRoutingModule,
         FormsModule,
@@ -466,7 +480,7 @@ export function getAuthServiceConfigs() {
         Ng2SmartTableModule,
         ChartistModule,
         NgxChartsModule,
-        CalendarModule.forRoot(),
+        // CalendarModule.forRoot(),
         NgbModalModule.forRoot(),
         NgbDatepickerModule.forRoot(),
         NgbTimepickerModule.forRoot(),

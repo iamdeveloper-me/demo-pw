@@ -41,6 +41,8 @@ export class RegisterComponent  {
               console.log(this.countryArray);
               this.arra = this.countryArray
             });
+         
+
             let obj = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/pricingplans");
             obj.subscribe(data => {
               this.planArray = data as string[]; 
@@ -88,7 +90,7 @@ export class RegisterComponent  {
       } 
     }); 
    });
- console.log(this.user)
+ console.log(JSON.stringify(this.user));
       this.cservice.signup(this.user).subscribe(( data )  =>  
       { console.log(data.json())
         this.cservice.typeSuccess();
@@ -139,6 +141,14 @@ annualPrice(users){
       const newVal = event.target.value;
       console.log(newVal)
     }
+
+
+    getDecimal(monthlyPrice,noOfMonthFeeOff){
+      // {{((plan.monthlyPrice * (12 - plan.noOfMonthFeeOff))/12 | number:'1.0-2')}}
+    var number = (monthlyPrice * (12 - noOfMonthFeeOff))/12
+    var a = (monthlyPrice * (12 - noOfMonthFeeOff))/ 12 | number
+    return number.toFixed(2).split(".")[1]
+      }
 
 }
 

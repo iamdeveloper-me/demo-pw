@@ -82,10 +82,15 @@
   }
   
   .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
-    font-size: 18px;
-    line-height:50px;
-    color:#000;
-    font-weight:600;
+    font-size: 15px;
+    line-height: 50px;
+    color: #000;
+    font-weight: 600;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 50px;
   }
     .locationbox {
       margin:15px 0px;
@@ -224,16 +229,26 @@ text-transform:uppercase;
   
   top: 25%;
 }
-.bordre_rad1{
-  border: 0px solid #fff!important;
-  border-radius: 1px;
-  font-size: 14px;
-  position: relative;
-  box-shadow:0px 0px 20px #e5e5e5!important;
-  margin-top:20px!important;
-  margin-bottom:20px!important;
-}
 
+.owl-item {
+  margin-right: 15px;
+  max-width:255px!important;
+}
+.boxtikslide{
+    border: 0px solid #fff !important;
+    border-radius: 1px;
+    font-size: 14px;
+    position: relative;
+    box-shadow: 0px 0px 20px #e5e5e5 !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+    overflow: hidden;
+    max-width: 255px!important;
+}
+.card-img-top{
+  height:175px;
+  object-fit: cover;
+}
 .card-body a{
   color: #444;
 }
@@ -628,13 +643,18 @@ li{line-height:1.5rem !important;}
 .book_mark i:hover{  background: rgba(220,0,112,0.8);  
   color: #ffffff; 
 }
-
+.locationbox img{
+  height:223px;
+  object-fit: cover;
+  }
 
 @media(max-width: 767px) {
 .mob300pxwidth{
   width:300px!important;
 }
-
+.boxtikslide{
+  max-width: inherit!important;
+}
 .mobnopadd{
   padding:0px!important;
 }
@@ -727,6 +747,7 @@ li{line-height:1.5rem !important;}
   .locationbox h2{
 font-size: 12px;
 color: #fff;
+left:10px;
   }
   .locationbox h2 span{
     font-size: 12px;

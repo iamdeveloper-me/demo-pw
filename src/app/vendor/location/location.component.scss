@@ -1,4 +1,4 @@
-  .nopadd{
+.nopadd{
     padding:0px!important;
   }
   .mainhead{float: left;}
@@ -10,6 +10,74 @@
   font-size:10px!important;
   display:block;
   line-height:10px;
+  }
+  .tabbingdesign{
+    padding: 0px;
+    overflow: hidden;
+    margin: 20px auto;
+    width: 260px;
+    border-bottom: 0px!important;
+}
+
+.tab-content{
+  overflow:hidden;
+}
+.field .caret{
+    position: absolute!important;
+    right: 2px!important;
+    top: 10px!important;
+}
+.tabbingdesign li {
+    list-style: none;
+    display: inline-block;
+    float: left;
+    margin: 0px 0px 10px 0px;
+    padding:0;
+    cursor: pointer;
+    text-align: center;
+    background: #e5e5e5;
+    border-radius: 0px 30px 30px 0px;
+    margin: 0px;
+}
+
+.tabbingdesign li:first-child {
+    border-radius: 30px 0px 0px 30px;
+    margin-right: 0px;
+}
+.tabbingdesign li.active {
+    background-color: #36cbf0 !important;
+    color: #fff;
+}
+.tabbingdesign li a {
+  background:transparent!important;
+  border:0px!important;
+  border-radius: 0px;
+  cursor: pointer!important;
+  padding:10px 15px;
+  color: #000!important;
+}
+.tabbingdesign li.active a{
+    color: #fff!important;
+}
+  .branchhead{
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 10px 0px 0px 0px;
+  }
+  .phonebox{
+      min-height:35px;
+      margin-bottom:10px;
+      overflow: hidden;
+      width:100%;
+  }
+
+  .font14px{
+    font-size:14px;
+  }
+  .minheight30px{
+      min-height: 30px!important;
+      overflow: hidden;
   }
   .list-group .list-group-item:first-child {
       -webkit-border-top-left-radius: 0.125rem;
@@ -57,6 +125,25 @@
 .imgCircle{border-radius: 50%;}
 .form-control{padding: 10px 50px;}
 .form-input{height:50px;border-radius: 0px;margin-top: 7px;}
+
+
+
+
+.tikform.field{
+    margin-bottom:10px!important;
+    }
+    .tikform.form-group label{margin-bottom:0px!important;}
+    .tikform.form-group .form-control {
+    padding: 5px 0px;
+    width: 100%;
+    font-size: 1rem;
+    border:0px!important;
+    border-radius:0px!important;
+    outline:none!important;
+    border-bottom:1px solid #e5e5e5!important;
+    box-shadow:none!important;
+    }
+
 .Profile-input-file{
     height: 300px;
     width: 100%;
@@ -447,7 +534,9 @@ float: left;
 .inputbottombor{
     border:0px solid #fff;
     border-bottom:1px solid #999!important;
-}
+    max-width: 100px;
+    float: left;
+}   
 .martop30px{
     margin-top: 30px;
 }
@@ -462,7 +551,8 @@ float: left;
     padding: 0px;
     width: 30px;
     height: 32px;
-    margin-left:10px;
+    margin-left:7px;
+    float:left;
 }
 .fristfieldremovebtnnone fieldset:first-child .remove{
     display:none;
@@ -599,6 +689,7 @@ float: left;
 #photo_ved .card-title{
     color: #000 !important;
 }
+
 #photo_ved .modal-content{
     text-align: left;
     padding: 10px;
@@ -740,13 +831,149 @@ overflow:hidden!important;
 }
 
 /* Custom Radio Button End*/
+#home .custom-form{
+  display: none;
+}
+#home .custom-form:first-child{
+  display: inherit!important;
+}
+#menu1 .custom-form{
+  display: inherit;
+}
+#menu1 .custom-form:first-child{
+  display: none!important;
+}
 
+.field {
+  display: flex;
+  flex-flow: column-reverse;
+  margin-top:0px;
+}
+/**
+* Add a transition to the label and input.
+* I'm not even sure that touch-action: manipulation works on
+* inputs, but hey, it's new and cool and could remove the 
+* pesky delay.
+*/
 
-@media(max-width:767px){
-    .img-section iframe{
+ .field label, .field input, .field select {
+  transition: all 0.2s;
+  touch-action: manipulation;
+}
+
+ .field  input, .field select{
+  font-size: 16px;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  font-family: inherit;
+  -webkit-appearance: none;
+  border-radius: 0;
+  padding: 0 0 10px 0;
+  cursor: text;
+  background:transparent;
+  box-shadow: none;
+  z-index: 999;
+}
+.field select option{
+  font-size: 16px;
+  padding: 0px 5px;
+}
+
+ .field input:focus,   .field select:focus {
+  outline: 0;
+  border-bottom: 1px solid #f0118c;
+}
+
+ .field label {
+  text-transform: uppercase;
+  margin-bottom: 0px;
+  letter-spacing: 0.05em;
+}
+/**
+* Translate down and scale the label up to cover the placeholder,
+* when following an input (with placeholder-shown support).
+* Also make sure the label is only on one row, at max 2/3rds of the
+* field—to make sure it scales properly and doesn't wrap.
+*/
+ .field input:placeholder-shown + label, .field select:placeholder-shown + label {
+  cursor: text;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: left bottom;
+  transform: translate(0, 2.125rem);
+  transition: .5s all;
+}
+/**
+* By default, the placeholder should be transparent. Also, it should 
+* inherit the transition.
+*/
+::-webkit-input-placeholder {
+  opacity: 0;
+  transition: inherit;
+   transition: .5s all;
+}
+/**
+* Show the placeholder when the input is focused.
+*/
+ .field input:focus::-webkit-input-placeholder,  .field select:focus::-webkit-input-placeholder {
+  opacity: 0;
+  color:#f0118c;
+}
+ .field input::placeholder{
+  color:#fff!important;
+ }
+/**
+* When the element is focused, remove the label transform.
+* Also, do this when the placeholder is not shown, i.e. when 
+* there's something in the input at all.
+*/
+ .field input:not(:placeholder-shown) + label,
+ .field input:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
+}
+
+ .field select:not(:placeholder-shown) + label,
+ .field select:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
+}
+.mobdisplay{
+  display:none;
+}
+@media(min-width:767px){
+    .tikmki{
+        width:84px!important;
+        float:left;
+    }
+}
+    @media(max-width:767px){
+        .tikmki{
+            width:84px!important;
+            float:left;
+            padding:0px 5px;
+        }
+.img-section iframe{
    width:100%;
    height:300px;
-   }
+}
+#photo_ved .modal-content{
+    max-width: 100%!important;
+}
+.swal2-popup .swal2-styled{
+  padding:5px!important;
+}
+.loca_hours{
+    margin-bottom: 10px;
+    overflow: hidden;
+    padding: 0px;
+}
+.mobdisplay{
+  clear:both;
+  display:block;
+}
    .edit_hide .col-11{float:right;}
    .phonepopuphead{
        margin-left:20px!important;
@@ -787,7 +1014,7 @@ overflow:hidden!important;
    .loca_hours .col-sm-3{
       float:left;
       width:20%; 
-      padding-left:0px!important;
+      padding-right:0px!important;
    }
    .textopenclose{
        display:none;
@@ -861,8 +1088,8 @@ overflow:hidden!important;
        }
        .new_location .col-xs-4{
            width: 30%;
-       }
-   
+       }                 
+       
    }
 
 //modal
@@ -879,3 +1106,5 @@ overflow:hidden!important;
 .sebm-google-map-container {
     height: 300px;
   }
+
+  

@@ -33,8 +33,17 @@ export class NgbdpromotbusinessModalContent {
 export class PromoteBusinessComponent implements OnInit {
   private allpromo: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PromoteBusiness/allPromotion';
   promotion = [];
+  bntStyle: string;
+
+  // page_title = 'Priority Listings'
+  promotion_length;
 //accordian
  acc: any;
+ bussiness_name ;
+  Categoryid: number;
+  showData:boolean =false
+  handcur:boolean = false
+ private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
   // Prevent panel toggle code
   public beforeChange($event: NgbPanelChangeEvent) {
     if ($event.panelId === '2') {
@@ -57,11 +66,24 @@ export class PromoteBusinessComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
 
+    var categoryid = localStorage.getItem('categoryid');
+    this.Categoryid = parseInt(categoryid) 
+
+
+
     this.http.get(this.allpromo,{headers:headers}).subscribe(data =>{ data.json();
       console.log(data.json());
       this.promotion = data.json();
+      this.promotion_length =   this.promotion.length;
     },error => { console.log(error)});
 
+
+
+ this.http.get(this.url,{headers:headers}).subscribe(
+          data =>{ 
+                   this.bussiness_name = data.json().nameOfBusiness
+          console.log(data.json().nameOfBusiness)
+          })
     $(".close").click(function(){
         $(".alert").hide();
      });
@@ -72,13 +94,27 @@ export class PromoteBusinessComponent implements OnInit {
         $(".audiencebox").hide();
         $(".dealsbox").hide();
         $(".homebannerbox").hide();
+        $(".homelocationbox").hide();
      });
+
+     $(".location").click(function(){
+       alert("hi");
+      $(".homegallerybox").hide();
+      $(".homelocationbox").show();
+      $(".prioritybox").hide();
+      $(".audiencebox").hide();
+      $(".dealsbox").hide();
+      $(".homebannerbox").hide();
+   });
+
+
       $(".priority").click(function(){
         $(".homegallerybox").hide();
         $(".prioritybox").show();
         $(".audiencebox").hide();
         $(".dealsbox").hide();
         $(".homebannerbox").hide();
+        $(".homelocationbox").hide();
      });
       $(".audience").click(function(){
         $(".homegallerybox").hide();
@@ -86,6 +122,7 @@ export class PromoteBusinessComponent implements OnInit {
         $(".audiencebox").show();
         $(".dealsbox").hide();
         $(".homebannerbox").hide();
+        $(".homelocationbox").hide();
      });
       $(".deals").click(function(){
         $(".homegallerybox").hide();
@@ -93,6 +130,7 @@ export class PromoteBusinessComponent implements OnInit {
         $(".audiencebox").hide();
         $(".dealsbox").show();
         $(".homebannerbox").hide();
+        $(".homelocationbox").hide();
      });
       $(".homebanner").click(function(){
         $(".homegallerybox").hide();
@@ -100,9 +138,28 @@ export class PromoteBusinessComponent implements OnInit {
         $(".audiencebox").hide();
         $(".dealsbox").hide();
         $(".homebannerbox").show();
+        $(".homelocationbox").hide();
      });
 
 
+  }
+  clickData(str: string){
+    if (str === 'not_six'){
+      $(".homegallerybox").show();
+      $(".prioritybox").hide();
+      $(".audiencebox").hide();
+      $(".dealsbox").hide();
+      $(".homebannerbox").hide();
+      $(".homelocationbox").hide();
+    }else{
+      $(".homegallerybox").hide();
+      $(".homelocationbox").show();
+      $(".prioritybox").hide();
+      $(".audiencebox").hide();
+      $(".dealsbox").hide();
+      $(".homebannerbox").hide();
+    }
+    
   }
 
   closeResult: string;
@@ -117,6 +174,14 @@ open(content) {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
 }
+
+
+  show(nama: string){
+    if (nama == 'handcur'){
+      this.handcur = true
+    }
+
+  }
 
 // This function is used in open
 private getDismissReason(reason: any): string {

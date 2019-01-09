@@ -1,4 +1,4 @@
-import { DateTimePickerComponent } from './../calendertable/date-time-picker.component';
+//import { DateTimePickerComponent } from './../calendertable/date-time-picker.component';
 import { TimeFormatter } from './../../components/extra/nouislider/nouislider.component';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -53,6 +53,8 @@ date_true:boolean = true;
    this.messageId = parseInt(this.activatedRoute.snapshot.paramMap.get('id'))
    this.userId = localStorage.getItem('userId');
 
+
+   
       this.msg.messageHistory(this.messageId).subscribe(( data )  =>  
       { console.log(data.json())
         this.total_message = data.json()
@@ -73,11 +75,13 @@ date_true:boolean = true;
           });
 
 
-
+// setInterval(() => {
+//   this.ngOnInit();
+// }, 10000);
 
 //          if(msg.messages.sendToUserId == this.userId){
 //           this.profile_name = msg.messages.sendByFirstName+' '+msg.messages.sendByLastName
-// debugger
+
 // this.vendorMsg['sendToUserId'] = msg.messages.sendByUserId
 
 //          }else{
@@ -88,7 +92,7 @@ date_true:boolean = true;
  
         })
       },error => 
-      alert(error) // error path
+      console.log(error) // error path
     )
 
     // setTimeout(() => {
@@ -130,7 +134,7 @@ console.log(this.vendorMsg)
         }, 200);
         this.vendorMsg['message'] = ''
       },error => 
-      alert(error) // error path
+      console.log(error) // error path
     )
     this.dScrool()
     

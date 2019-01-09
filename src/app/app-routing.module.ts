@@ -1,3 +1,5 @@
+import { HompageLocationComponent } from './vendor/hompage-location/hompage-location.component';
+import { PaymentSelectionComponent } from './vendor/payment-selection/payment-selection.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 
@@ -78,16 +80,8 @@ import { TicketsComponent } from './admin/tickets/tickets.component';
 import { MessageschatComponent } from './admin/messageschat/messageschat.component';
 import { AdminadvertisingComponent } from './admin/adminadvertising/adminadvertising.component';
 import { TaskboardComponent } from './admin/taskboard/taskboard.component';
-
 import { SiteFeedbackComponent } from './admin/site-feedback/site-feedback.component';
-
-
-
 import { AdminexpensesComponent } from './admin/adminexpenses/adminexpenses.component';
-
-
-
-
 
 import { SocialfeedComponent } from './admin/socialfeed/socialfeed.component';
 import { EventsandarticlesComponent } from './admin/eventsandarticles/eventsandarticles.component';
@@ -136,15 +130,38 @@ import { UseraccountComponent } from './userpannel/userboard/useraccount/useracc
 //import { VendorComponent } from './dashboard/vendor/vendor.component';
 
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { Gallery0Component } from './vendor/gallery0/gallery0.component';
+
+import { AuthGuardService } from './services/auth-guard.service';
+
+import { DealsComponent } from './deals/deals.component';
+import { DealDetailsComponent } from './deal-details/deal-details.component';
+import { HoneymoonComponent } from './honeymoon/honeymoon.component';
+import { HoneymoonDetailsComponent } from './honeymoon-details/honeymoon-details.component';
+
+import { EventcelandarComponent } from './eventcelandar/eventcelandar.component';
+import { DreamWeddingLocationsComponent } from './dream-wedding-locations/dream-wedding-locations.component';
+import { FeaturedWeddingSuppliersComponent } from './featured-wedding-suppliers/featured-wedding-suppliers.component';
+
+import { StepFirstComponent } from './register/step-first/step-first.component';
+import { StepSecondComponent } from './register/step-second/step-second.component';
+import { StepThirdComponent } from './register/step-third/step-third.component';
+import { StepForthComponent } from './register/step-forth/step-forth.component';
+import { PaymentSummaryComponent } from './payment-summary/payment-summary.component';
 
 const appRoutes: Routes = [
 
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'register/step1', component: StepFirstComponent },
+  { path: 'register/step2', component: StepSecondComponent },
+  { path: 'register/step3', component: StepThirdComponent },
+  { path: 'register/step4', component: StepForthComponent },
   { path: 'home/searchresult', component: SearchresultComponent },
+  { path: 'home/searchresult/:id', component: SearchresultComponent },
   { path: 'home/tips_list', component: TipslistComponent },
   { path: 'home/event_list', component: EventlistComponent },
-  { path: 'home/detailprofile', component:  DetailpageComponent  },
+  { path: 'home/detailprofile/:id', component:  DetailpageComponent  },
   { path: 'home/gallery', component:  GalleryComponent  },
   //{ path: 'home/vendor', component:  VendorComponent  },
   { path: 'home/photo', component: PhotoComponent },
@@ -163,107 +180,120 @@ const appRoutes: Routes = [
   { path: 'home/cuplefoot', component:  FootCupleComponent },
   { path: 'home/Photogallary', component:  PhotogallaryComponent },
   { path: 'home/Vediogallary', component:  VediogallaryComponent },
-
   { path: 'home/supplierbylocation', component:  SupplierbylocationComponent },
- 
-   { path: 'home/Photogallerydetail', component:  PhotogallerydetailComponent },
-{ path: 'home/ResetPassword', component:  ResetPasswordComponent },
-{ path: 'vendor/creatpromo', component:  CreatePromotionComponent  },
-    { path: 'vendor/messagess', component:  ChatComponent  },
-    { path: 'vendor/dashboard', component:  DashboardComponent  },
-    { path: 'vendor/albumview', component:  AlbumviewComponent  },
-    { path: 'vendor/albumviewphoto/:id', component:  ViewPhotoAlbumsComponent  },
-    { path: 'vendor/portfolioview', component:  PortfolioviewComponent  },
-    { path: 'vendor/settingalbum/:id', component:  AlbumsettingComponent  },
-    { path: 'vendor/eventlist', component:  EventListComponent  },
-    { path: 'vendor/invoice', component:  InvoiceDetailComponent  },
-    { path: 'vendor/business', component:  BusinessInfoComponent  },
-    { path: 'vendor/location', component:  LocationComponent  },
-    { path: 'vendor/gallery', component: GalleryComponent  },
-    { path: 'vendor/allpromotion', component: AllPromotionPageComponent  },
-    { path: 'vendor/profile', component:  VendorprofileComponent  },
+  { path: 'home/Photogallerydetail', component:  PhotogallerydetailComponent },
+  { path: 'home/ResetPassword', component:  ResetPasswordComponent },
+  { path: 'home/allDreamWedding', component:  DreamWeddingLocationsComponent },
+  { path: 'home/FeaturedWeddingSuppliers', component:  FeaturedWeddingSuppliersComponent },
 
-     { path: 'vendor/discountdeals', component:  DiscountdealsComponent  },
+  { path: 'home/Deals', component:  DealsComponent },
+  { path: 'home/Deal_Details', component:  DealDetailsComponent },
+  { path: 'home/Honeymoon', component:  HoneymoonComponent },
+  { path: 'home/Honeymoon_Details', component:  HoneymoonDetailsComponent },
+
+  { path: 'vendor/creatpromo', component:  CreatePromotionComponent, canActivate:[AuthGuardService]  },
+  { path: 'vendor/messagess', component:  ChatComponent, canActivate:[AuthGuardService]  },
+  { path: 'vendor/dashboard', component:  DashboardComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/albumview', component:  AlbumviewComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/albumviewphoto/:id', component:  ViewPhotoAlbumsComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/portfolioview', component:  PortfolioviewComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/settingalbum/:id', component:  AlbumsettingComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/eventlist', component:  EventListComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/invoice', component:  InvoiceDetailComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/business', component:  BusinessInfoComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/location', component:  LocationComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/gallery', component: GalleryComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/allpromotion', component: AllPromotionPageComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/profile', component:  VendorprofileComponent,canActivate:[AuthGuardService]  },
+  { path: 'vendor/discountdeals', component:  DiscountdealsComponent,canActivate:[AuthGuardService]  },
     // {
     //   path: 'vendor/chat',
     //   loadChildren: './chat/chat.module#ChatModule',
     //   component:  ChatComponent
     // },
-    { path: 'vendor/event', component:  CreateEventComponent },
-    { path: 'vendor/Videos', component:    VideosComponent},
-    { path: 'vendor/editprofile', component:   EditprofileComponent },
-    { path: 'vendor/mylisting', component:   MylistingComponent },
-    { path: 'vendor/business-services', component:  BusinessServicesComponent  },
-    { path: 'vendor/membership', component:  MembershipComponent  },
-    { path: 'vendor/calender', component:  CalendertableComponent},
-    { path: 'vendor/Message', component:  MessageComponent},
-    { path: 'vendor/videoview', component:    VedioviewComponent},
-    { path: 'vendor/PromoteBusiness', component:    PromoteBusinessComponent},
-    { path: 'vendor/statistics', component:  StatisticsComponent},
-    { path: 'vendor/albumdetailsetting', component:   Albumsetting2Component  },
-    { path: 'vendor/msg/:id', component:  MailsearchComponent},
-    { path: 'vendor/enquiry', component:  EnquiriesComponent},
-    { path: 'vendor/storefront', component:  StorefrontComponent},
-    { path: 'vendor/actionfront', component:  ActionsComponent},
-    { path: 'vendor/reachbar', component:  ReachComponent},
-    { path: 'vendor/gallerybar', component:  GallerybarComponent},
-    { path: 'vendor/vediosetting', component:  VediosettingComponent},
-    { path: 'vendor/priority', component:  PromotionPriorityComponent},
-    { path: 'vendor/audience', component:  PromotionAudienceComponent},
-    { path: 'vendor/deals', component:  PromotionDealsComponent},
-    { path: 'vendor/homepage', component:  PromotionHomepageComponent},
+
+    { path: 'vendor/event', component:  CreateEventComponent,canActivate:[AuthGuardService] },
+    { path: 'vendor/Videos', component:    VideosComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/editprofile', component:   EditprofileComponent,canActivate:[AuthGuardService] },
+    { path: 'vendor/mylisting', component:   MylistingComponent,canActivate:[AuthGuardService] },
+    { path: 'vendor/business-services', component:  BusinessServicesComponent,canActivate:[AuthGuardService]  },
+    { path: 'vendor/membership', component:  MembershipComponent,canActivate:[AuthGuardService]  },
+    { path: 'vendor/calender', component:  CalendertableComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/eventcalander', component: EventcelandarComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/Message', component:  MessageComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/videoview', component:    VedioviewComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/PromoteBusiness', component:    PromoteBusinessComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/statistics', component:  StatisticsComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/albumdetailsetting', component:   Albumsetting2Component,canActivate:[AuthGuardService]  },
+    { path: 'vendor/msg/:id', component:  MailsearchComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/enquiry', component:  EnquiriesComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/homepage-location', component:  HompageLocationComponent,canActivate:[AuthGuardService]},
+
+    
+    { path: 'vendor/storefront', component:  StorefrontComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/actionfront', component:  ActionsComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/reachbar', component:  ReachComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/gallerybar', component:  GallerybarComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/vediosetting', component:  VediosettingComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/priority', component:  PromotionPriorityComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/audience', component:  PromotionAudienceComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/deals', component:  PromotionDealsComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/homepage', component:  PromotionHomepageComponent,canActivate:[AuthGuardService]},
+    { path: 'vendor/gallery0', component:  Gallery0Component,canActivate:[AuthGuardService]},
+
 
     { path: 'vendor/Success', component:  SuccessComponent},
     { path: 'vendor/Failure', component:  FailureComponent},
-
+    { path: 'vendor/payment-selection', component:  PaymentSelectionComponent  },
+    { path: 'register/step5', component:  PaymentSummaryComponent  },
   
 
 
   { path: 'User/vendor', component: VendorlistComponent },  
 
-  { path: 'User/Timeline', component: TimelineComponent },
-  { path: 'User/Message', component: UsermessageComponent },
-  { path: 'User/mailsearch', component: UsermailsearchComponent },
-  { path: 'User/vendor', component: VendorlistComponent },  
+  { path: 'User/Timeline', component: TimelineComponent,canActivate:[AuthGuardService] },
+  { path: 'User/Message', component: UsermessageComponent,canActivate:[AuthGuardService] },
+  { path: 'User/mailsearch', component: UsermailsearchComponent,canActivate:[AuthGuardService] },
+  { path: 'User/vendor', component: VendorlistComponent,canActivate:[AuthGuardService] },  
 
-  { path: 'User/Bookmarks', component: BookmarkComponent },
-  { path: 'User/GuestList', component: GuestComponent },
-  { path: 'User/Budget', component: BudgetComponent },
-  { path: 'User/Inspirations', component: InspirationsComponent },
-  { path: 'User/UserReviews', component: UserReviewsComponent },
-  { path: 'User/myaccount', component: UseraccountComponent },
-  { path: 'Admin/dashboard', component:  AdmindashboardComponent },  
+  { path: 'User/Bookmarks', component: BookmarkComponent,canActivate:[AuthGuardService] },
+  { path: 'User/GuestList', component: GuestComponent,canActivate:[AuthGuardService] },
+  { path: 'User/Budget', component: BudgetComponent,canActivate:[AuthGuardService] },
+  { path: 'User/Inspirations', component: InspirationsComponent,canActivate:[AuthGuardService] },
+  { path: 'User/UserReviews', component: UserReviewsComponent,canActivate:[AuthGuardService] },
+  { path: 'User/myaccount', component: UseraccountComponent,canActivate:[AuthGuardService] },
+  { path: 'Admin/dashboard', component:  AdmindashboardComponent,canActivate:[AuthGuardService] },  
   { path: 'Admin/login', component:  AdminComponent },  
-  { path: 'Admin/Useraccountlist', component:  UseraccountlistComponent },  
-  { path: 'Admin/Customerbillings', component:  CustomerbillingsComponent  },  
-  { path: 'Admin/Calenderandnotes', component: CalenderandnotesComponent },  
-  { path: 'Admin/Email', component: EmailComponent },  
-  { path: 'Admin/Tickets', component:  TicketsComponent  },  
-  { path: 'Admin/Messageschat', component:   MessageschatComponent   },    
-  { path: 'Admin/Events', component:  EventsandarticlesComponent},  
-  { path: 'Admin/tipsandartical', component: SocialfeedComponent  },  
-  { path: 'Admin/Sitestats', component: SitestatsandreportsComponent }, 
-  { path: 'Admin/adminexpenses', component: AdminexpensesComponent },  
+  { path: 'Admin/Useraccountlist', component:  UseraccountlistComponent,canActivate:[AuthGuardService] },  
+  { path: 'Admin/Customerbillings', component:  CustomerbillingsComponent,canActivate:[AuthGuardService]  },  
+  { path: 'Admin/Calenderandnotes', component: CalenderandnotesComponent,canActivate:[AuthGuardService] },  
+  { path: 'Admin/Email', component: EmailComponent,canActivate:[AuthGuardService] },  
+  { path: 'Admin/Tickets', component:  TicketsComponent,canActivate:[AuthGuardService]  },  
+  { path: 'Admin/Messageschat', component:   MessageschatComponent,canActivate:[AuthGuardService]   },    
+  { path: 'Admin/Events', component:  EventsandarticlesComponent,canActivate:[AuthGuardService]},  
+  { path: 'Admin/tipsandartical', component: SocialfeedComponent,canActivate:[AuthGuardService]  },  
+  { path: 'Admin/Sitestats', component: SitestatsandreportsComponent,canActivate:[AuthGuardService] }, 
+  { path: 'Admin/adminexpenses', component: AdminexpensesComponent,canActivate:[AuthGuardService] },  
  
-  { path: 'Admin/Adminusers', component: AdminusersComponent },  
-  { path: 'Admin/Reviewandfeedback', component: ReviewandfeedbackComponent },  
-  { path: 'Admin/advertising', component:   AdminadvertisingComponent  },  
+  { path: 'Admin/Adminusers', component: AdminusersComponent,canActivate:[AuthGuardService] },  
+  { path: 'Admin/Reviewandfeedback', component: ReviewandfeedbackComponent,canActivate:[AuthGuardService] },  
+  { path: 'Admin/advertising', component:   AdminadvertisingComponent,canActivate:[AuthGuardService]  },  
   
-  { path: 'Admin/taskboard', component:   TaskboardComponent  },
-  { path: 'Admin/site-feedback', component:   SiteFeedbackComponent  },
+  { path: 'Admin/taskboard', component:   TaskboardComponent,canActivate:[AuthGuardService]  },
+  { path: 'Admin/site-feedback', component:   SiteFeedbackComponent,canActivate:[AuthGuardService]  },
 
-  { path: 'Admin/userdetails', component:   UserdetailsComponent  },
-
-
-  { path: 'Admin/visitor-detail-stats', component:   DetailstatsComponent  },
+  { path: 'Admin/userdetails', component:   UserdetailsComponent,canActivate:[AuthGuardService]  },
 
 
-  { path: 'Admin/Sales-stats', component:   SalesstatsComponent  },
-  { path: 'Admin/CRM-stats', component:   CRMstatsComponent  },
-  { path: 'Admin/Network-stats', component:   NetworkstatsComponent  },
-  { path: 'Admin/Category-stats', component:   CategorystatsComponent  },
-  { path: 'Admin/Vendor-stats', component:   VendorstatsComponent  },
- { path: 'Admin/adminaccount', component:   AdminuseraccountComponent  },
+  { path: 'Admin/visitor-detail-stats', component:   DetailstatsComponent,canActivate:[AuthGuardService]  },
+
+
+  { path: 'Admin/Sales-stats', component:   SalesstatsComponent,canActivate:[AuthGuardService]  },
+  { path: 'Admin/CRM-stats', component:   CRMstatsComponent,canActivate:[AuthGuardService]  },
+  { path: 'Admin/Network-stats', component:   NetworkstatsComponent,canActivate:[AuthGuardService]  },
+  { path: 'Admin/Category-stats', component:   CategorystatsComponent,canActivate:[AuthGuardService]  },
+  { path: 'Admin/Vendor-stats', component:   VendorstatsComponent,canActivate:[AuthGuardService]  },
+ { path: 'Admin/adminaccount', component:   AdminuseraccountComponent,canActivate:[AuthGuardService]  },
 
   { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES, canActivate: [AuthGuard] },
   { path: '', component: ContentLayoutComponent, data: { title: 'content Views' }, children: CONTENT_ROUTES, canActivate: [AuthGuard] },

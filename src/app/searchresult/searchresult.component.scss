@@ -17,6 +17,19 @@ background-image: url('https://s3.us-east-2.amazonaws.com/prefect-image/inner_he
   color: #ffffff;
   padding-top:115px!important;
 }
+.loadmorebtn{
+  margin: 10px auto !important;
+  border-radius: 30px;
+  text-align: center;
+  font-weight: bold;
+  max-width: 200px;
+  padding: 5px;
+  cursor: pointer;
+  color: #fff !important;
+  background: linear-gradient(40deg, #e60060, #f09) !important;
+  border: 0px solid #fff;
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
 .filterbtnmobile{
   display:none;
 }
@@ -165,7 +178,8 @@ background: #e72e77;
     display: block;
     max-width: 100%;
     width:inherit;
-    max-height: 175px;
+    height: 175px;
+    object-fit:cover;
 }
 .item.list-group-item:before, .item.list-group-item:after
 {
@@ -191,6 +205,10 @@ background: #e72e77;
 padding: 3px 18px!important;
 font-size: 11px!important;
 margin: 3px 0px!important;
+white-space: nowrap; 
+overflow: hidden;
+text-overflow: ellipsis;
+width:230px;
 }
 .cardfoottext{
   font-size:12px!important;
@@ -220,6 +238,18 @@ margin-top:-35px;
 }
 .imgnum span i{
   float:left;
+}
+.imgnum span span{
+  background: transparent;
+  overflow: hidden;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  border-radius: 0px;
+  box-shadow: none;
+  float: right;
+  line-height: 24px;
+  margin-left: 5px;
 }
 #products .list-group-item .card .thumbnail .imgnum{
   max-width:260px!important;
@@ -399,7 +429,7 @@ display: block;
   font-weight: bold;
 }
 .cityscroll22{
-  padding:10px;
+  padding:10px 0px;
 }
 .cityscroll22 .material-icons{
   font-size: 20px;
@@ -414,7 +444,7 @@ display: block;
   top: 7px;
   color: #e72e77
 }
-.collapse.show{
+.collapse.in.show{
   display: block!important;
 }
 .filterbox h4.panel-title a{
@@ -539,9 +569,26 @@ img.lazyOwl{
     padding-left: 5px;
 
 }
-.owl-item{
-     width: 215px !important;
+.owl-item {
+  margin-right: 15px;
+  max-width:255px!important;
 }
+.boxtikslide{
+    border: 0px solid #fff !important;
+    border-radius: 1px;
+    font-size: 14px;
+    position: relative;
+    box-shadow: 0px 0px 20px #e5e5e5 !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+    overflow: hidden;
+    max-width: 255px!important;
+}
+.card-img-top{
+  height:175px;
+  object-fit: cover;
+}
+
 .mar_bottom{
    margin-bottom: 20px;
 }
@@ -803,9 +850,10 @@ margin-bottom:30px;
 
 
   .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
-    max-height: 175px;
+   height: 175px;
     width: 100%;
     border-radius: 0px;
+    object-fit:cover;
   }
   .badge{
     width: 20px;
@@ -925,6 +973,7 @@ margin-bottom:30px;
 .pric_200 {
   margin-top: -8px;
   color: #e72e77;
+  height: 24px;
 }
 
 .span_positin{
@@ -956,7 +1005,7 @@ margin-bottom:30px;
 }
 
 
-.collapse.show{
+.collapse.in.show{
   display: block!important;
   }
 
@@ -1024,7 +1073,9 @@ margin-bottom:30px;
 .collapse.show.in{
   display: block!important;
   }
-
+.collapse.show{
+   display: none!important;
+}
 .blink {
   animation: blink-animation 1s steps(5, start) infinite;
   -webkit-animation: blink-animation 1s steps(5, start) infinite;
@@ -1054,8 +1105,11 @@ margin-bottom:30px;
 .funkyradio input[type="radio"]:empty,
 .funkyradio input[type="checkbox"]:empty {
   display: none;
+  // radio show
 }
-
+.tikmik{
+  display: inline!important;
+}
 .funkyradio input[type="radio"]:empty ~ label,
 .funkyradio input[type="checkbox"]:empty ~ label {
   position: relative;
@@ -1072,6 +1126,9 @@ margin-bottom:30px;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 14px;
+}
+.funkyradio-info{
+font-size:14px;
 }
 .funkyradio-info i img{
   max-width: 20px;
@@ -1176,6 +1233,9 @@ margin-bottom:30px;
    display:block;
    margin-top:-7px;
    margin-bottom:20px;
+   }
+   .tik4.col-6{
+     float:left;
    }
    .panel-heading{
      margin-bottom: 15px!important;
@@ -1406,6 +1466,7 @@ margin-bottom:30px;
  }
  .grid-group-item .imgfloatleft, .grid-group-item .span_positin img{
    max-width: 20px!important;
+   margin-right:3px;
  }
  .grid-group-item .cardfoottext{
    font-size: 11px;
@@ -1435,6 +1496,12 @@ margin-bottom:30px;
      position: relative;
      height: 100vh;
  }
+.cityscroll22{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: relative;
+  height: 100vh;
+}
  .ipadnone,.searchfilterbox{
   display: none;
 }

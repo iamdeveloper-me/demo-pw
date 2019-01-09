@@ -1,299 +1,63 @@
-<div id="wrappervendor" class="" >
+  <div id="wrappervendor" class="">
   <app-menu></app-menu>
   <app-tool></app-tool>
-  <div id="wrappervendorsidbar">
-    <app-vendorsidebar></app-vendorsidebar>
-  </div>
 <div class="container-fluid recomslider">
       <!--Carousel Wrapper-->
-<div class="container">
-    <!--Slides-->
-    <div id="supplierscarousel" class="owl-carousel">
-            <div class="item bordre_rad">
+  <div class="container">
+      <!--Slides-->
+        <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
+          <ng-container *ngFor="let slide of slidesStore">
+            <ng-template carouselSlide="1" >
+              <div class="boxtikslide">
+                <div class="procard"> </div>
+                <!-- {{slide.profileImage }} -->
+                <img class="card-img-top" [src]="slide.profileImage | defaultImage:'https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg':true"/>
+                <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
+                <div class="card-body ">
+                  <div class="text-center"> 
+                   <h6><strong>{{slide.nameOfBusiness}} </strong> </h6>
+                    <button class="wedding_btn">{{ slide.businessDetails}} </button>
+                      <p class="locat_icon"><i class="material-icons">location_on</i> 
 
-                <div class="card mb-2 bordre_rad1 ">
-                    <div class="procard"> </div>
-                    <img class="card-img-top img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
-                    <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                    <div class="card-body ">
-                      <div class="text-center"> 
-                       <h6> <strong>Hotel Shayaji </strong> </h6>
-                        <button class="wedding_btn">WEDDING VANUE </button>
-                        <P class="locat_icon"><i class="material-icons">location_on</i> Indore </P>
-                        <p class="statr_point">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span class="fa fa-star"></span> 5.0 (47) </p>
-                        </div>
-                  
-                        <div class="col-md-12 col-12">
-                          <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-                          </div>
-                        </div>
+                      <i class="material-icons">location_on</i> 
+                     <span *ngIf='slide.vendorLocations[0]'> {{ slide.vendorLocations[0].suburb.name}},</span>
+                     <span *ngIf='slide.vendorLocations[0]'>  {{ slide.vendorLocations[0].districts.name}},</span>
+                     <span *ngIf='slide.vendorLocations[0]'>{{ slide.vendorLocations[0].country.name}},</span> 
+                     <span *ngIf='slide.vendorLocations[0]'> {{ slide.vendorLocations[0].postalCode}}</span>
+                      </p>
+                      <p class="statr_point">
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span> 5.0 (47) </p>
+                    </div>
+              
+                    <div class="col-md-12 col-12">
+                      <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
+                        <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
+                          <span>Price from</span>
+                          <span class="pric_200">200 $</span>
                       </div>
-                </div>
-            </div>
-            <div class="item bordre_rad">
-                <div class="card mb-2 bordre_rad1 ">
-                    <div class="procard"> </div>
-                    <img class="card-img-top img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="Card image cap">
-                    <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                    <div class="card-body ">
-                      <div class="text-center"> 
-                       <h6> <strong>Hotel Shayaji </strong> </h6>
-                        <button class="wedding_btn">WEDDING VANUE </button>
-                        <P class="locat_icon"><i class="material-icons">location_on</i> Indore </P>
-                        <p class="statr_point">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span class="fa fa-star"></span> 5.0 (47) </p>
-                        </div>
-                  
-                        <div class="col-md-12 col-12">
-                          <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-
-                          </div>
-                        </div>
+                      <div class="col-md-4 col-4 span_positin">
+                       <img src="../../assets/img/tag.svg"  alt=""> 
+                      <span>Deals</span>
+                      <span>1</span>
                       </div>
+                    </div>
                 </div>
-            </div>
-            <div class="item bordre_rad">
-                <div class="card mb-2 bordre_rad1 ">
-                    <div class="procard"> </div>
-                    <img class="card-img-top img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="Card image cap">
-                    <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                    <div class="card-body ">
-                      <div class="text-center"> 
-                       <h6> <strong>Hotel Shayaji </strong> </h6>
-                        <button class="wedding_btn">WEDDING VANUE </button>
-                        <P class="locat_icon"><i class="material-icons">location_on</i> Indore </P>
-                        <p class="statr_point">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span class="fa fa-star"></span> 5.0 (47) </p>
-                        </div>
-                  
-                        <div class="col-md-12 col-12">
-                          <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-                          </div>
-                        </div>
-                      </div>
-                </div>
-            </div>
-            <div class="item bordre_rad">
-                <div class="card mb-2 bordre_rad1 ">
-                    <div class="procard"> </div>
-                    <img class="card-img-top img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="Card image cap">
-                    <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                    <div class="card-body ">
-                      <div class="text-center"> 
-                       <h6> <strong>Hotel Shayaji </strong> </h6>
-                        <button class="wedding_btn">WEDDING VANUE </button>
-                        <P class="locat_icon"><i class="material-icons">location_on</i> Indore </P>
-                        <p class="statr_point">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span class="fa fa-star"></span> 5.0 (47) </p>
-
-                        </div>
-                  
-                        <div class="col-md-12 col-12">
-                          <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-
-                          </div>
-                        </div>
-                      </div>
-                </div>
-            </div>
-             <div class="item bordre_rad">
-                <div class="card mb-2 bordre_rad1 ">
-                    <div class="procard"> </div>
-                    <img class="card-img-top img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="Card image cap">
-                    <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                    <div class="card-body ">
-                      <div class="text-center"> 
-                       <h6> <strong>Hotel Shayaji </strong> </h6>
-                        <button class="wedding_btn">WEDDING VANUE </button>
-                        <P class="locat_icon"><i class="material-icons">location_on</i> Indore </P>
-                        <p class="statr_point">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span class="fa fa-star"></span> 5.0 (47) </p>
-
-                        </div>
-                  
-                        <div class="col-md-12 col-12">
-                           <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-                          </div>
-                        </div>
-                      </div>
-                </div>
-            </div>
-             <div class="item bordre_rad">
-                <div class="card mb-2 bordre_rad1 ">
-                    <div class="procard"> </div>
-                    <img class="card-img-top img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="Card image cap">
-                    <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                    <div class="card-body">
-                      <div class="text-center"> 
-                       <h6> <strong>Hotel Shayaji </strong> </h6>
-                        <button class="wedding_btn">WEDDING VANUE </button>
-                        <P class="locat_icon"><i class="material-icons">location_on</i> Indore </P>
-                        <p class="statr_point">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span class="fa fa-star"></span> 5.0 (47) </p>
-
-                        </div>
-                  
-                        <div class="col-md-12 col-12">
-                           <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-
-                          </div>
-                        </div>
-                      </div>
-                </div>
-            </div>
-             <div class="item bordre_rad">
-                <div class="card mb-2 bordre_rad1 ">
-                    <div class="procard"> </div>
-                    <img class="card-img-top img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="Card image cap">
-                    <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                    <div class="card-body ">
-                      <div class="text-center"> 
-                       <h6> <strong>Hotel Shayaji </strong> </h6>
-                        <button class="wedding_btn">WEDDING VANUE </button>
-                        <P class="locat_icon"><i class="material-icons">location_on</i> Indore </P>
-                        <p class="statr_point">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span class="fa fa-star"></span> 5.0 (47) </p>
-                        </div>
-                  
-                        <div class="col-md-12 col-12">
-                           <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-                          </div>
-                        </div>
-                      </div>
-                </div>
-            </div>
-             <div class="item bordre_rad">
-                <div class="card mb-2 bordre_rad1 ">
-                    <div class="procard"> </div>
-                    <img class="card-img-top img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="Card image cap">
-                    <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                    <div class="card-body ">
-                      <div class="text-center"> 
-                       <h6> <strong>Hotel Shayaji </strong> </h6>
-                        <button class="wedding_btn">WEDDING VANUE </button>
-                        <P class="locat_icon"><i class="material-icons">location_on</i> Indore </P>
-                        <p class="statr_point">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span class="fa fa-star"></span> 5.0 (47) </p>
-                        </div>
-                  
-                        <div class="col-md-12 col-12">
-                           <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-
-                          </div>
-                        </div>
-                      </div>
-                </div>
-            </div>
-      </div>
-
-
-
-    
+              </div>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+        <!-- {{slidesStore | json}} -->    
+  </div>  
     <!--End Slides-->
 </div>
 
 <!--/.Carousel Wrapper-->
 
-</div>
+
 
 
 
@@ -317,22 +81,22 @@
     <div class="col-sm-9 ipad100">
       <div class="container-fluid nopadd">
         <div class="badgecontainer">
-          <span class="badge badge-primary badge-labeled">
-            Photography in Indore(81 Result)
+          <span *ngIf='objSearchResultItems' class="badge badge-primary badge-labeled">
+            {{objSearchResultItems.totalCount?objSearchResultItems.totalCount:0}} Results
           </span>
-         
-          <select>
-            <option>25 Result/Page</option>
-            <option>50 Result/Page</option>
-            <option>100 Result/Page</option>
+       
+          <select (change)='getSearchFilterResult()' style="display:none" [(ngModel)]='objSearchlistvm.pageSize'>
+            <option value='25' selected>25 Result/Page</option>
+            <option value='50'>50 Result/Page</option>
+            <option value='100'>100 Result/Page</option>
           </select>
         </div>
         <div class="clearfix"></div>
-          <ol class="breadcrumb breadcrumbcontainer ">
+          <!-- <ol class="breadcrumb breadcrumbcontainer ">
             <li><a href="#">Home</a></li>
             <li><a href="#">Wedding Suppliers</a></li>
             <li class="active">Photography, Videography</li>
-          </ol>
+          </ol> -->
 
            <div class="btn-group">
             <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
@@ -375,66 +139,18 @@
 						  </div>
 						  <div id="collapse0" class="panel-collapse collapse ">
 
-							<div class="city_position">
-                <input type="text" class="cityinput" placeholder="Type the city"/>
-                <i class="material-icons">search</i>
+							<div>
+                <input type="text" [(ngModel)]='locationFilterParam' placeholder="Type the city" class="cityinput"/>
+                <!-- {{locationFilterParam}} -->
+                
+                <!-- <i class="material-icons">search</i> -->
               </div>
 
 							<div class="cityscroll22">
                   <div class="funkyradio">
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Black" checked/>
-                      <label for="Black"> 
-                        <i class="material-icons">location_on</i> Black River
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Grand"/>
-                      <label for="Grand"> 
-                        <i class="material-icons">location_on</i> Grand Port
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Flacq"/>
-                      <label for="Flacq"> 
-                        <i class="material-icons">location_on</i> Flacq
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Moka"/>
-                      <label for="Moka"> 
-                        <i class="material-icons">location_on</i> Moka
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Pamplemousses"/>
-                      <label for="Pamplemousses"> 
-                        <i class="material-icons">location_on</i> Pamplemousses
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Plaines"/>
-                      <label for="Plaines"> 
-                        <i class="material-icons">location_on</i> Plaines-Wilhems
-                      </label>
-                    </div>
-                     <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Riviere"/>
-                      <label for="Riviere"> 
-                        <i class="material-icons">location_on</i> Riviere du Rempart
-                      </label>
-                    </div>
-                     <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Savanne"/>
-                      <label for="Savanne"> 
-                        <i class="material-icons">location_on</i> Savanne
-                      </label>
-                    </div>
-                     <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Rodrigues"/>
-                      <label for="Rodrigues"> 
-                        <i class="material-icons">location_on</i> Rodrigues
-                      </label>
+                    <div class="funkyradio-info" *ngFor='let l of locations| custompipe:locationFilterParam'>
+                      <input type="checkbox" id='{{l.name}}' (change)='getSearchFilterResult()' [(ngModel)]='l.isSelect'/>
+                        <label for='{{l.name}}'><i class="material-icons">location_on</i> {{l.name}}</label>
                     </div>
                   </div>
 							</div>			
@@ -456,22 +172,8 @@
                  
                   <div class="funkyradio">
                     <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="check1" checked/>
-                      <label for="check1"> 
-                        < 50000
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="check2" checked/>
-                      <label for="check2"> 
-                        < 100000
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="check3" checked/>
-                      <label for="check3"> 
-                        < 150000
-                      </label>
+                      <input type="checkbox" name="checkbox" (change)='getSearchFilterResult()' id="check1"/>
+                      <label>< 50000</label>  
                     </div>
                   </div>
   						</div>
@@ -492,122 +194,97 @@
                   <div class="category-body">
                       <div class="searchmobtitlebar city_position">
                         <i class="material-icons">search</i>
-                        <input class="cityinput" type="text" value="" id="search" placeholder="Type to Search Category">
+                        <input class="cityinput" type="text" [(ngModel)]='categoryFilterParam' placeholder="Type to Search Category">
                       </div>
                     <!-- <div class="regular">All Categories</div> -->
                 <div class="cityscroll22"> 
                   <div class="funkyradio">  
-                    <div class="funkyradio-info">
-                     <input type="checkbox" name="checkbox" id="any" checked/>
-                        <label for="any"> 
-                         <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
-                        <b> All Categories </b>  
+                    <div class="funkyradio-info" *ngFor='let c of categories| categoryPipe:categoryFilterParam'>
+                     <input type="checkbox" name="checkbox" id="{{c.categoryName}}" (change)='getSearchFilterResult()' [(ngModel)]='c.isSelect'/>
+                         <label for='{{c.categoryName}}'><i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
+                            {{c.categoryName}}  
                         </label>
-                    </div>
-                    <div class="funkyradio-info">
-                        <input type="checkbox" name="checkbox" id="Cakes" checked/>
-                        <label for="Cakes"> 
-                          <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Wedding_cake.svg"/></i>Cakes
-                        </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Decorators"/>
-                      <label for="Decorators"> 
-                      <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_decorator.svg"/></i> Decorators & Wedding Stylist
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Drinks"/>
-                      <label for="Drinks"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i> Drinks and Beverages
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Fashion"/>
-                      <label for="Fashion"> 
-                        <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Fashion&Clothing.svg"/></i> Fashion & Clothing
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="any"/>
-                        <label for="any"><i>
-                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/florist.svg"/></i> Florists, Bouquets and Centerpiece
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Food"/>
-                      <label for="Food"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_car.svg"/> </i> Food & Catering
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Footwear"/>
-                      <label for="Footwear"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Footwear.svg"/></i> Footwear
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Honeymoon"/>
-                      <label for="Honeymoon"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/honeymoon.svg"/></i> Honeymoon & Travel
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Invitation"/>
-                      <label for="Invitation"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/stationary.svg"/></i> Invitation Cards & Wedding Stationary
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Jewellery"/>
-                      <label for="Jewellery"> <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Jewellery.svg"/></i> Jewellery & Wedding Rings
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Makeup"/>
-                      <label for="Makeup"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/make_up.svg"/></i> Make Up, Hair & Mehendi
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Marriage"/>
-                      <label for="Marriage"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i> Marriage Celebrant
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Music"/>
-                      <label for="Music"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/music_dj.svg"/></i> Music, DJs & Entertainment
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Supplies"/>
-                      <label for="Supplies"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Wedding Planner.svg"/></i> Other wedding Supplies & Accessories
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Photography"/>
-                      <label for="Photography"> <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Photography.svg"/></i> Photography, Videography & Cinematography
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Venues"/>
-                      <label for="Venues"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Venues.svg" alt=""></i> Venues
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="WeddingCars"/>
-                      <label for="WeddingCars"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_car.svg"/></i> Wedding Cars & Transport
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Management"/>
-                      <label for="Management">  
-                      <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/> </i> Wedding Planner & Event Management
-                      </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="Fitness"/>
-                      <label for="Fitness"><i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Shape&Fitness.svg" alt=""> </i> Shape & Fitness
-                      </label>
-                    </div>
+                     </div>
   						</div>
             </div>
             </div>
-          </div></div>
+          </div>
+        <!--Services-->
+        <div class="categoryboxmobile">
+        <div class="panel-heading" >
+          <h4 class="panel-title">
+             <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
+              arrow_back_ios
+            </i>
+            <a data-toggle="collapse" href="#collapse33">
+              <i class="indicator fa fa-caret-down hidden-xs" aria-hidden="true"></i> Services
+            </a>
+          </h4>
+        </div>
+        <div id="collapse33" class="panel-collapse collapse" >
+          <div class="category-body">
+              <div class="searchmobtitlebar city_position">
+                <i class="material-icons">search</i>
+                <input class="cityinput" type="text" value="" id="search" placeholder="Type to Search Category">
+              </div>
+            <!-- <div class="regular">All Categories</div> -->
+        <div class="cityscroll22"> 
+
+          <div class="funkyradio" *ngIf='filters'>  
+            <div class="funkyradio-info" *ngFor='let f of filters.services'>
+
+             <input type="checkbox" (change)='getSearchFilterResult()' [(ngModel)]='f.isSelect' name="checkbox"  id="{{f.serviceName}}"/>
+                <label for="{{f.serviceName}}"> <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
+                <b>{{f.serviceName}} </b>  
+              </label>
+           </div>
+
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+        <!--End Services filters-->
+      <!--Filters-->
+      <div class="categoryboxmobile">
+        <div class="panel-heading" >
+          <h4 class="panel-title">
+             <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
+              arrow_back_ios
+            </i>
+            <a data-toggle="collapse" href="#collapse44">
+              <i class="indicator fa fa-caret-down hidden-xs" aria-hidden="true"></i> Filters
+            </a>
+          </h4>
+        </div>
+        <div id="collapse44" class="panel-collapse collapse" >
+          <div class="category-body">
+        <div class="cityscroll22"> 
+          <div *ngIf='filters'>
+          <div class="funkyradio" *ngIf='filters.filters'>  
+            <div class="funkyradio-info" style="border-bottom:1px;border-bottom-style:inset;border-bottom-color:gray" *ngFor='let ff of filters.filters'>
+              <input type="checkbox" name="checkbox" id="{{ff.name}}" (change)='getSearchFilterResult()' [(ngModel)]='ff.isSelect'/> 
+                <label for="{{ff.name}}">
+                   <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
+                  {{ff.name}} 
+                </label>
+                <div *ngFor='let fc of ff.customFieldOptionList'>
+                  <div *ngIf='ff.isSelect'>
+                  <input type="checkbox" class="tikmik" name="checkbox" [(ngModel)]='fc.isSelect'(change)='getSearchFilterResult()'/>
+                    {{fc.displayText}}
+                  </div>  
+                </div>
+           </div>
+          <div class="clearfix"></div>
+
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+</div>
+      <!--End Filters-->  
+        </div>
 						<!-- Customer Rating -->
             <div class="ratingboxmobile">
   						<div class="panel-heading" >
@@ -621,28 +298,22 @@
   						<div id="collapse3" class="panel-collapse collapse">
                  <div class="funkyradio">
                     <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="any" checked/>
-                      <label for="any"> 
+                      <label>
+                        <input type="checkbox" name="checkbox" id="any" (change)='getSearchFilterResult()'/>
                         Any
-                      </label>
+                    </label>
                     </div>
                     <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="star2" checked/>
-                      <label for="star2"> 
-                        2.0+
-                      </label>
+                      <input type="checkbox" name="checkbox" id="star2" (change)='getSearchFilterResult()'/>
+                    <label>2.0+</label>
                     </div>
                     <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="star3" checked/>
-                      <label for="star3"> 
-                        3.0+
-                      </label>
+                      <input type="checkbox" name="checkbox" id="star3" (change)='getSearchFilterResult()'/>
+                    <label> 3.0+</label>
                     </div>
                     <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="star4" checked/>
-                      <label for="star4"> 
-                        4.0+
-                      </label>
+                      <input type="checkbox" name="checkbox" id="star4" (change)='getSearchFilterResult()'/>
+                    <label> 4.0+</label>
                     </div>
                   </div>
   						</div>
@@ -652,642 +323,113 @@
 		</div>
 		<div class="col-sm-9 listingtab">
       <div class="photo_cont">
-	    	<div id="products" class="row list-group" (click)="xyz()">
-	        	<div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
+       	<div id="products" class="row list-group">
+          <div *ngIf='objSearchResultItems'>
+	        	<div *ngFor='let i of collection' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
+
 	                <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
-                      <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
+
+                      <img class="group list-group-image" [src]='i.storeFrontImage' alt="Card image cap">
                       <span class="book_mark">
                         <i class="material-icons">bookmark_border</i>
                       </span>
-                      <div class="imgnum">
+                      <!-- <div class="imgnum">
                         <span>
                            <img src="../../assets/img/picture.png"/>
-                            12
+                           <span *ngIf='i.albums[0]'>
+                            {{i.albums[0].albumImages.length}}</span>
+                            <span *ngIf='!i.albums[0]'>0</span>
                         </span>
+                        <span *ngIf='i.vendorVideos.length>0'>
+                            <img src="../../assets/img/video.png"/>{{i.vendorVideos[0].vendorVideos.length}}</span>
                         <span>
-                            <img src="../../assets/img/video.png"/>
-                            12
-                        </span>
-                      </div>
+                          <img src="../../assets/img/video.png"/>
+                         <span *ngIf='i.vendorVideos.length==0'>0</span>
+                          
+                      </span>
+                      </div> -->
                       <div class="caption card-body">
                         <div>
-                          <h6><strong>Hotel Shayaji</strong></h6>
-                          <button class="wedding_btn">WEDDING VANUE </button>
-                          <p class="locat_icon">
-                            <i class="material-icons">location_on</i> Indore 
+                          <h6><strong>{{i.nameOfBusiness}}</strong></h6>
+                          <button *ngIf='i.vendorCategories[0].categories' class="wedding_btn">{{i.vendorCategories[0].categories.categoryName}} </button>
+
+                          <p class="locat_icon" *ngIf='i.vendorLocations.length>0'>
+                            <i class="material-icons">location_on</i> {{i.vendorLocations[0].suburb.name}},
+                            {{i.vendorLocations[0].districts.name}},
+                            {{i.vendorLocations[0].country.name}},
+
+                            {{i.vendorLocations.postalCode}}
                           </p>
                           
                           <p class="statr_point">
+                            
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span> 5.0 (47) 
+                            <span class="fa fa-star"></span>
+                            <!-- <ngb-rating [(rate)]="4"></ngb-rating> -->
+                            <span *ngIf='i.reviews>0'>
+                            {{i.averageRating}} {{i.reviews}} </span>
                           </p>
+                         
                         </div>
                        <div class="col-md-12 col-12 cardfoottext">
                           <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
                             <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
                               <span>Price from</span>
-                              <span class="pric_200">200 $</span>
+                              <span class="pric_200">{{i.priceTag}}</span>
                           </div>
                           <div class="col-md-4 col-4 span_positin">
                            <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
+                          <span *ngIf='i.dealsCount>0'>Deals</span>
+                          <span *ngIf='i.dealsCount>0'>{{i.dealsCount}}</span>
                           </div>
                         </div>
                       </div>
                     </div>
 	       		      </div>
             </div>
-	        	  <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
-                  <div class="card mb-2 bordre_rad1 hover_effect">
-                    <div class="thumbnail">
-                      <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
-                      <span class="book_mark">
-                        <i class="material-icons">bookmark_border</i>
-                      </span>
-                       <div class="imgnum">
-                        <span>
-                           <img src="../../assets/img/picture.png"/>
-                            12
-                        </span>
-                        <span>
-                            <img src="../../assets/img/video.png"/>
-                            12
-                        </span>
-                      </div>
-                      <div class="caption card-body">
-                        <div>
-                          <h6><strong>Hotel Shayaji</strong></h6>
-                          <button class="wedding_btn">WEDDING VANUE </button>
-                          <p class="locat_icon">
-                            <i class="material-icons">location_on</i> Indore 
-                          </p>
-                          
-                          <p class="statr_point">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span> 5.0 (47) 
-                          </p>
-                        </div>
-                       <div class="col-md-12 col-12 cardfoottext">
-                          <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
-                  <div class="card mb-2 bordre_rad1 hover_effect">
-                    <div class="thumbnail">
-                      <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
-                      <span class="book_mark">
-                        <i class="material-icons">bookmark_border</i>
-                      </span>
-                       <div class="imgnum">
-                        <span>
-                           <img src="../../assets/img/picture.png"/>
-                            12
-                        </span>
-                        <span>
-                            <img src="../../assets/img/video.png"/>
-                            12
-                        </span>
-                      </div>
-                      <div class="caption card-body">
-                        <div>
-                          <h6><strong>Hotel Shayaji</strong></h6>
-                          <button class="wedding_btn">WEDDING VANUE </button>
-                          <p class="locat_icon">
-                            <i class="material-icons">location_on</i> Indore 
-                          </p>
-                          
-                          <p class="statr_point">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span> 5.0 (47) 
-                          </p>
-                        </div>
-                       <div class="col-md-12 col-12 cardfoottext">
-                          <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
-                  <div class="card mb-2 bordre_rad1 hover_effect">
-                    <div class="thumbnail">
-                      <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
-                      <span class="book_mark">
-                        <i class="material-icons">bookmark_border</i>
-                      </span>
-                       <div class="imgnum">
-                        <span>
-                           <img src="../../assets/img/picture.png"/>
-                            12
-                        </span>
-                        <span>
-                            <img src="../../assets/img/video.png"/>
-                            12
-                        </span>
-                      </div>
-                      <div class="caption card-body">
-                        <div>
-                          <h6><strong>Hotel Shayaji</strong></h6>
-                          <button class="wedding_btn">WEDDING VANUE </button>
-                          <p class="locat_icon">
-                            <i class="material-icons">location_on</i> Indore 
-                          </p>
-                          
-                          <p class="statr_point">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span> 5.0 (47) 
-                          </p>
-                        </div>
-                       <div class="col-md-12 col-12 cardfoottext">
-                          <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
-                  <div class="card mb-2 bordre_rad1 hover_effect">
-                    <div class="thumbnail">
-                      <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
-                      <span class="book_mark">
-                        <i class="material-icons">bookmark_border</i>
-                      </span>
-                       <div class="imgnum">
-                        <span>
-                           <img src="../../assets/img/picture.png"/>
-                            12
-                        </span>
-                        <span>
-                            <img src="../../assets/img/video.png"/>
-                            12
-                        </span>
-                      </div>
-                      <div class="caption card-body">
-                        <div>
-                          <h6><strong>Hotel Shayaji</strong></h6>
-                          <button class="wedding_btn">WEDDING VANUE </button>
-                          <p class="locat_icon">
-                            <i class="material-icons">location_on</i> Indore 
-                          </p>
-                          
-                          <p class="statr_point">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span> 5.0 (47) 
-                          </p>
-                        </div>
-                       <div class="col-md-12 col-12 cardfoottext">
-                          <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
-                  <div class="card mb-2 bordre_rad1 hover_effect">
-                    <div class="thumbnail">
-                      <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
-                      <span class="book_mark">
-                        <i class="material-icons">bookmark_border</i>
-                      </span>
-                      <div class="imgnum">
-                        <span>
-                           <img src="../../assets/img/picture.png"/>
-                            12
-                        </span>
-                        <span>
-                            <img src="../../assets/img/video.png"/>
-                            12
-                        </span>
-                      </div>
-                      <div class="caption card-body">
-                        <div>
-                          <h6><strong>Hotel Shayaji</strong></h6>
-                          <button class="wedding_btn">WEDDING VANUE </button>
-                          <p class="locat_icon">
-                            <i class="material-icons">location_on</i> Indore 
-                          </p>
-                          
-                          <p class="statr_point">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span> 5.0 (47) 
-                          </p>
-                        </div>
-                       <div class="col-md-12 col-12 cardfoottext">
-                          <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
-                  <div class="card mb-2 bordre_rad1 hover_effect">
-                    <div class="thumbnail">
-                      <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
-                      <span class="book_mark">
-                        <i class="material-icons">bookmark_border</i>
-                      </span>
-                       <div class="imgnum">
-                        <span>
-                           <img src="../../assets/img/picture.png"/>
-                            12
-                        </span>
-                        <span>
-                            <img src="../../assets/img/video.png"/>
-                            12
-                        </span>
-                      </div>
-                      <div class="caption card-body">
-                        <div>
-                          <h6><strong>Hotel Shayaji</strong></h6>
-                          <button class="wedding_btn">WEDDING VANUE </button>
-                          <p class="locat_icon">
-                            <i class="material-icons">location_on</i> Indore 
-                          </p>
-                          
-                          <p class="statr_point">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span> 5.0 (47) 
-                          </p>
-                        </div>
-                       <div class="col-md-12 col-12 cardfoottext">
-                          <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
-                  <div class="card mb-2 bordre_rad1 hover_effect">
-                    <div class="thumbnail">
-                      <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
-                      <span class="book_mark">
-                        <i class="material-icons">bookmark_border</i>
-                      </span>
-                       <div class="imgnum">
-                        <span>
-                           <img src="../../assets/img/picture.png"/>
-                            12
-                        </span>
-                        <span>
-                            <img src="../../assets/img/video.png"/>
-                            12
-                        </span>
-                      </div>
-                      <div class="caption card-body">
-                        <div>
-                          <h6><strong>Hotel Shayaji</strong></h6>
-                          <button class="wedding_btn">WEDDING VANUE </button>
-                          <p class="locat_icon">
-                            <i class="material-icons">location_on</i> Indore 
-                          </p>
-                          
-                          <p class="statr_point">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span> 5.0 (47) 
-                          </p>
-                        </div>
-                       <div class="col-md-12 col-12 cardfoottext">
-                          <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
-                  <div class="card mb-2 bordre_rad1 hover_effect">
-                    <div class="thumbnail">
-                      <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
-                      <span class="book_mark">
-                        <i class="material-icons">bookmark_border</i>
-                      </span>
-                       <div class="imgnum">
-                        <span>
-                           <img src="../../assets/img/picture.png"/>
-                            12
-                        </span>
-                        <span>
-                            <img src="../../assets/img/video.png"/>
-                            12
-                        </span>
-                      </div>
-                      <div class="caption card-body">
-                        <div>
-                          <h6><strong>Hotel Shayaji</strong></h6>
-                          <button class="wedding_btn">WEDDING VANUE </button>
-                          <p class="locat_icon">
-                            <i class="material-icons">location_on</i> Indore 
-                          </p>
-                          
-                          <p class="statr_point">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span> 5.0 (47) 
-                          </p>
-                        </div>
-                       <div class="col-md-12 col-12 cardfoottext">
-                          <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
-                  <div class="card mb-2 bordre_rad1 hover_effect">
-                    <div class="thumbnail">
-                      <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
-                      <span class="book_mark">
-                        <i class="material-icons">bookmark_border</i>
-                      </span>
-                       <div class="imgnum">
-                        <span>
-                           <img src="../../assets/img/picture.png"/>
-                            12
-                        </span>
-                        <span>
-                            <img src="../../assets/img/video.png"/>
-                            12
-                        </span>
-                      </div>
-                      <div class="caption card-body">
-                        <div>
-                          <h6><strong>Hotel Shayaji</strong></h6>
-                          <button class="wedding_btn">WEDDING VANUE </button>
-                          <p class="locat_icon">
-                            <i class="material-icons">location_on</i> Indore 
-                          </p>
-                          
-                          <p class="statr_point">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span> 5.0 (47) 
-                          </p>
-                        </div>
-                       <div class="col-md-12 col-12 cardfoottext">
-                          <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
-                  <div class="card mb-2 bordre_rad1 hover_effect">
-                    <div class="thumbnail">
-                      <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
-                      <span class="book_mark">
-                        <i class="material-icons">bookmark_border</i>
-                      </span>
-                       <div class="imgnum">
-                        <span>
-                           <img src="../../assets/img/picture.png"/>
-                            12
-                        </span>
-                        <span>
-                            <img src="../../assets/img/video.png"/>
-                            12
-                        </span>
-                      </div>
-                      <div class="caption card-body">
-                        <div>
-                          <h6><strong>Hotel Shayaji</strong></h6>
-                          <button class="wedding_btn">WEDDING VANUE </button>
-                          <p class="locat_icon">
-                            <i class="material-icons">location_on</i> Indore 
-                          </p>
-                          
-                          <p class="statr_point">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span> 5.0 (47) 
-                          </p>
-                        </div>
-                       <div class="col-md-12 col-12 cardfoottext">
-                          <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-              <div class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
-                  <div class="card mb-2 bordre_rad1 hover_effect">
-                    <div class="thumbnail">
-                      <img class="group list-group-image" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" alt="Card image cap">
-                      <span class="book_mark">
-                        <i class="material-icons">bookmark_border</i>
-                      </span>
-                       <div class="imgnum">
-                        <span>
-                           <img src="../../assets/img/picture.png"/>
-                            12
-                        </span>
-                        <span>
-                            <img src="../../assets/img/video.png"/>
-                            12
-                        </span>
-                      </div>
-                      <div class="caption card-body">
-                        <div>
-                          <h6><strong>Hotel Shayaji</strong></h6>
-                          <button class="wedding_btn">WEDDING VANUE </button>
-                          <p class="locat_icon">
-                            <i class="material-icons">location_on</i> Indore 
-                          </p>
-                          
-                          <p class="statr_point">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span> 5.0 (47) 
-                          </p>
-                        </div>
-                       <div class="col-md-12 col-12 cardfoottext">
-                          <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-4 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-	    	</div>
+          </div>
+	     	</div>
         <div>
 
-          <div class="page-nation">
-           
-                  <ngb-pagination [collectionSize]="70" [(page)]="page2" [boundaryLinks]="true"></ngb-pagination>
-
-                  <span class="totalpage">24 Pages</span>
-                  <!-- <hr>
-                  <p>Current page: {{page2}}</p> -->
-             
-
-          </div>        
+          <img *ngIf='loading' src="https://www.walgreens-hearing.com/img/loader.gif" style="bottom:35%;position: fixed;z-index:99999;margin-left:40%">
+                  <!-- <ngb-pagination [collectionSize]="objSearchResultItems?.totalCount" [(page)]="objSearchResultItems.page" [boundaryLinks]="true"></ngb-pagination>
+             <span class="totalpage">{{objSearchResultItems.totalPages}} (Page)s</span> -->
         </div>
-		  </div>
+      </div>
     </div>
 </div>
 </div>
-
-
 <div class="filterselectbox">
 
   <div class="col-sm-12">
-    <button class="clearbtn">Clear</button>
+    <button class="clearbtn" (click)='clearFilters()'>Clear</button>
     <button class="applybtn">Apply</button>
 
 <div class="clearfix"></div>
 
-<p class="text-center">Filters (4)</p>
+<p class="text-center">Filters (0)</p>
 
 <div class="filterrow categoryfilter">
-  <h1>Category <i class="material-icons">arrow_right</i></h1>
+  <h1>Category  {{objSearchlistvm.categoryId.length}}<i class="material-icons">arrow_right</i></h1>
   <div>
-    <span class="badge">
-     Cakes <i class="material-icons">clear</i>
+    <span class="badge" *ngFor='let c of categories'>
+      <div *ngIf='c.isSelect'>{{c.categoryName}}</div>
     </span>
   </div>
 </div>
 <div class="filterrow locationfilter">
-  <h1>Location (2) <i class="material-icons">arrow_right</i></h1>
+  <h1>Location {{objSearchlistvm.districtId.length}} <i class="material-icons">arrow_right</i></h1>
   <div>
-    <span class="badge">
-     Black River <i class="material-icons">clear</i>
+    <span class="badge" *ngFor='let l of locations'>
+      <div *ngIf='l.isSelect'>{{l.name}} </div>
     </span>
-     <span class="badge">
+     <!-- <span class="badge">
      Grand Port <i class="material-icons">clear</i>
-    </span>
+    </span> -->
   </div>
 </div>
 <div class="filterrow pricefilter">
@@ -1337,6 +479,7 @@
   </div>
 
 </div>
+
 <app-foot> </app-foot>
 </div>
 <router-outlet></router-outlet>

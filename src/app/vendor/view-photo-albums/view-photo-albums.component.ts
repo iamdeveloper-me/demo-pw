@@ -2,8 +2,10 @@ import { Http ,Headers } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit  ,ChangeDetectionStrategy } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
+import { FileUploader ,FileItem} from 'ng2-file-upload/ng2-file-upload';
 import swal from 'sweetalert2';
+import { ProgressHttp } from 'angular-progress-http';
+
 
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 @Component({
@@ -20,8 +22,11 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   albumImagesModify =[];
   totalImage=[];
   myalbumimages=[];
+  previewImages = [];
+  fileNames=[];
   lodar = false;
   total;
+  progress_bar:boolean = false;
   private albumget: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/myalbums'
   eventArray:any = [];
   private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/'
@@ -38,6 +43,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   albumname:any;
   id:any;
   tags:any;
+  progressPercentage:number = 0
   colourtags:any;
   uploader: FileUploader = new FileUploader({
     url: URL,
@@ -54,7 +60,9 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   fileOverAnother(e: any): void {
     this.hasAnotherDropZoneOver = e;
   }
-  constructor(private http: Http ,  private route: ActivatedRoute,public toastr: ToastrService) { 
+  constructor(private http: Http ,  private route: ActivatedRoute,public toastr: ToastrService,private _http: ProgressHttp
+
+  ) { 
     
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
@@ -67,14 +75,13 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
   .subscribe(data =>{
                         this.totalImage =  data.json();
-                        console.log(data.json()); 
-                        console.log(this.albumid.id); 
+                       // console.log(data.json()); 
+                       // console.log(this.albumid.id); 
                         console.log(data.json()); 
                         for (var item of  this.totalImage ) {
                         
                         if(this.albumid.id == item.albumsId)
                           {
-                          //    alert("dsf"); 
                           console.log(item);
                           // console.log(item.tags);
                           this.albumname = item.albumName;
@@ -95,34 +102,23 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   });
 
 
+
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
   headers.append('Accept', 'application/json')
   headers.append('Content-Type', 'application/json');
   headers.append("Authorization",'Bearer '+authToken);
 
-  this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/BackgroundImage",{headers:headers})
+  this.http.get(this.url+"api/Albums/BackgroundImage",{headers:headers})
   .subscribe(data => {console.log(data.json())},error=>{console.log(error)});
     $(".gearicon").click(function(){
-    //  alert();
+    
       $( this ).toggleClass( "open" );
   });
 
     this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
         this.eventArray = data.json()
-    
         console.log(this.eventArray);
-        // for (var item of  this.eventArray ) {
-        //         if(item.albumImages.length == 0)
-        //         {  
-        //             this.image.path = 'https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
-        //             alert("empty array"); 
-        //         }else{  
-        //             alert("not empty array");
-                   
-        //               }
-            
-        // }
        })
 
 
@@ -146,7 +142,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
    
    if(this.albumid.id == item.albumsId)
     {
-    //    alert("dsf"); 
+   
      console.log(item);
     // console.log(item.tags);
     this.albumname = item.albumName;
@@ -283,12 +279,12 @@ $(document)
 
     swal({
       title: "Are you sure?",
-    text: "You will not be able to recover this imaginary file!",
+    text: "You will not be able to recover this image!",
     type: "warning",
     showCancelButton: true,
     confirmButtonClass: "btn-default",
-    confirmButtonText: "Yes, delete it!",
-    cancelButtonText: "No, cancel plx!",
+    confirmButtonText: "Yes",
+    cancelButtonText: "No",
     }).then((res)=>{
       console.log(res);
       if(res.value===true){
@@ -328,7 +324,7 @@ $(document)
     // }
 
   }else{
-    // alert('Cancel Process !');
+      console.log('Cancel Process !');
    }
   },error=>{
     alert(JSON.stringify(error));
@@ -338,44 +334,6 @@ $(document)
   }
 
 
-
-  uploadAll(){
-   this.total = 80;
-   this.uploadphoto_dailog = false;
-   this.lodar = true;
-    const formData = new FormData();
-    for(let file of this.uploader.queue){
-    formData.append(file['some'].name,file['some'])
-    }
-    formData.append('AlbumId', this.albumid.id)
-    
-    // Headers
-    let headers = new  Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append("Authorization",'Bearer '+authToken);
-    
-    //Post Album 2 photos
-    console.log(formData);
-    this.uploader.queue = [];
-    this.http.post(this.uploadimage,formData,{headers:headers})
-      .subscribe(data =>{console.log(data.json());
-        this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
-        .subscribe(data =>{
-         this.totalImage =  data.json();
-         console.log(data.json()); 
-         console.log(this.albumid.id); 
-         console.log(data.json()); 
-         this.lodar = false;
-         for (var item of  this.totalImage ) {
-            if(this.albumid.id == item.albumsId)
-              {
-                  this.albumImagesModify =  item.albumImages;
-                  console.log(  this.albumImagesModify ); 
-                 
-              }
-          }
-        });},(error)=>{console.log(error)});
-  }
 
   albumcoverimage(albumId){
     console.log(albumId)
@@ -397,7 +355,14 @@ $(document)
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
-    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/setasstorefrontimage?AlbumImageId' + '=' + a,{headers:headers}).subscribe(data =>{
+
+    // this.http.get(this.urll+'/api/albums/setasstorefrontimage?AlbumImageId'+'='+image.id,{headers:headers}).subscribe(data =>{
+          
+    //   console.log(data.json());
+    //   this.getstoreimage();
+    
+    //  });
+    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/albums/setasstorefrontimage?AlbumImageId' + '=' + a,{headers:headers}).subscribe(data =>{
       console.log(data.json())
       this.toastr.success(data.json().message);
 
@@ -427,8 +392,132 @@ $(document)
         },error=>{console.log(error)})
       console.log(setId)
   }
+  previewFile(event) {
+    // var preview = this.previewimg.nativeElement;
+     let files = event.target.files;
+     if (files) {
+         for (let file of files) {
+             let FI  = new FileItem(this.uploader,file,null);
+             this.uploader.queue.push(FI);  
+             this.fileNames.push(file.name);
+           //  console.log(file);   
+           //  this.previewImages = [];
+             let reader = new FileReader();
+             reader.onload = (e: any) => {
+             this.previewImages.push(e.target.result);
+           //  this.uploadAll()
+            // this.albumImagesModify = this.previewImages 
+            // console.log(this.previewImages);
+             }
+             reader.readAsDataURL(file);
+         }
+     }
+     //console.log(this.uploader.queue);
+ }
+ removePreviewImg(index){
+  this.previewImages.splice(index,1);
+  this.fileNames.splice(index,1);
+  this.uploader.queue.splice(index,1);
+ }
 
-  closeModel(){this.uploadphoto_dailog = false;
+  
+
+
+uploadAll(){
+ 
+  this.lodar = true;
+  var i = 0;
+const formData = new FormData();
+  for (let file of this.uploader.queue)
+  {
+      formData.append(file['some'].name, file['some']);
+      
+  }
+
+formData.append('AlbumId', this.albumid.id)
+
+// Headers
+let headers = new  Headers();
+var authToken = localStorage.getItem('userToken');
+headers.append("Authorization",'Bearer '+authToken);
+
+//Post Album 2 photos
+console.log(formData);
+
+this.uploader.queue = [];
+
+
+    this._http.withUploadProgressListener(progress => {this.progress_bar = true; 
+      // console.log(`Uploading ${progress.percentage}%`);
+      this.closeModel(); this.progressPercentage = progress.percentage})
+    .withDownloadProgressListener(progress => { 
+      // console.log(`Downloading ${progress.percentage}%`);
+     })
+        .post(this.url +'api/ImageUploader/AlbumImageUpload', formData,{headers: headers})
+    .subscribe(data =>{
+      this.albumImagesModify = [];
+  
+            console.log(  data.json()); 
+           
+            this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
+            .subscribe(data =>{
+            this.totalImage =  data.json();
+            console.log(data.json()); 
+            console.log(this.albumid.id); 
+            for (var item of  this.totalImage ) {
+              if(this.albumid.id == item.albumsId)
+                {
+                    console.log(item);
+                    // console.log(item.tags);
+                    this.albumname = item.albumName;
+                    this.tags = item.tags;
+                    this.colourtags = item.colorTags;
+                    this.myalbumimages =  item.albumImages;
+                
+                    for (var albumtag of  this.myalbumimages ) {
+                      if(albumtag.tags != null && albumtag.colorTags != null){
+                        albumtag['tags'] = albumtag['tags'].split(',');
+                        albumtag['colorTags'] = albumtag['colorTags'].split(',');
+                      }
+                      
+                      this.albumImagesModify.push(albumtag);
+                      console.log(this.albumImagesModify)
+                    
+                    }
+                }
+              }
+            
+              for (var image of  this.albumImagesModify ) 
+              {  
+                for (var g of  image.colorTags ) 
+                  {
+                    this.colour_table.push(g)
+                    this.colour_table = this.colour_table.filter((el, i, a) => i === a.indexOf(el))
+          
+                  }
+              }
+              console.log(this.colour_table)
+            });
+
+            this.previewImages =[];
+            this.lodar = false;
+            this.toastr.success(data.json().message);
+            this.progress_bar =  false
+      
+     }
+    ,error=>{
+      console.log(error)
+    }); 
+    
+   
+}
+
+  closeModel(){
+    this.uploadphoto_dailog = false;
     this.lodar= false;
+    this.previewImages =[];
+  }
+  popup_closeModel(){
+    this.progress_bar= false;
   }
 }

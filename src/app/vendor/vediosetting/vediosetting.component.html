@@ -121,41 +121,33 @@
                    <div class="modal-body">
                       <input type="hidden"  class="effect-16 validate" [(ngModel)]='objVideo.videosId' formControlName='videosId' value="{{objVideo.videosId}}" />
                                      
-                                  <div class="form-group">
-                                  <div class="input-effect md-form">
-                                    <input type="text"  class="effect-16 validate" [(ngModel)]='objVideo.title' formControlName='title' placeholder="title" value="{{objVideo.title}}"required/>
-                                    <div *ngIf="title.invalid && (title.dirty || title.touched)"
+                                  <div class="field">
+                                      <input type="text" name="title" id="title" placeholder="Enter Video Title" [(ngModel)]='objVideo.title' formControlName='title' value="{{objVideo.title}}"required/>
+                                      <label for="title">Enter Video Title</label>
+                                  </div>
+                                   <div *ngIf="title.invalid && (title.dirty || title.touched)"
                                     class=" redtext">
                                     {{objVideo.title}}
-                                  <div *ngIf="title.errors.required">
-                                    title is required.
-                                  </div>
-                                 
+                                      <div *ngIf="title.errors.required">
+                                        title is required.
+                                      </div>
+                                    </div>
+                                  <div class="field">
+                                      <input  type="text" [(ngModel)]='objVideo.link' placeholder="Enter Video Link" formControlName='link' name="link" id="link"   required
+                                      pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
+                                      />
+                                      <label for="link">Enter Video Link</label>
                                 </div>
-                                  </div>
-                                  </div>
-                                  <div class="form-group">
-                                  <div class="input-effect md-form">
-                                    <input  class="effect-16 validate" type="text" [(ngModel)]='objVideo.link' formControlName='link' placeholder="link" required/>
-                                    <div *ngIf="link.invalid && (link.dirty || link.touched)"
-                                    class="redtext">
-                                
-                                  <div *ngIf="link.errors.required">
-                                    link is required.
-                                  </div>
-                                  <div *ngIf="link.errors.pattern">
-                                    link is required . 
-                                  </div>
-                                 
-                                </div>
-                                  </div>
-
-                                </div>
+                                <div *ngIf="link.invalid && (link.dirty || link.touched)"  class="form-text text-muted danger" >
+                                        <div  class="form-text text-muted danger"  *ngIf="link.errors.required">
+                                          link is required.
+                                        </div>
+                                        <div  class="form-text text-muted danger"  *ngIf="link.errors.pattern">
+                                          link is not valid!. 
+                                        </div>
+                                    </div>
                             
-                                 
-                          
-                     
-                     
+
                        
                    </div>
                    <div class="modal-footer text-center">

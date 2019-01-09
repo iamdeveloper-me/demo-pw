@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
@@ -28,15 +29,18 @@ colour_grey = 'grey';
 colour_white = 'white';
 colour_picker1 = [];
 tags_picker1 = [];
-taggg = '';
+tag_array2:string;
+taggg:any;
 t='';
-tai:any = [];
+tai = [];
 choose:any ;
 a:any = [];
 description_dailog = false;
 tag_error ;
 colour_tag_error;
 albumImagesModify = [];
+albumImages = [];
+arr = []
 private mygeturl: string  = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myportfolio"
 private update_portfolio: string  = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updateportfolio"
 
@@ -70,29 +74,15 @@ constructor( public http: Http,public toastr: ToastrService ) {
     this.colour_picker1.push(selectedColors[i].colorName);
   }
  }
-    tags_bage(e){
-      
-                  if(typeof(e) == 'undefined' )
-                  {
-                    this.tag_error = "empty tag not added tags"
-                  }else{
-                  this.tai.push(e);
-                  console.log(this.tai);
-                  this.taggg = '';
-                  }
-    }
-    // colour_picker(d){
-    //         console.log(d)
-    //         this.colour = d;
-    //         this.a.push(this.colour );
-          
-    //         this.a = this.a.filter((el, i, a) => i === a.indexOf(el));
-            
-    //         console.log( this.a);
-    // }
+
+
+  
     remove_tag_picker(g){
       console.log(g); 
-      this.tai.splice(g, 1);
+      // console.log('dff',this.tai.split(','))
+      
+    
+      this.formdata['tags'].splice(g, 1);
       console.log(this.tai); 
       if(this.tai.length == 0 )
       { 
@@ -100,102 +90,178 @@ constructor( public http: Http,public toastr: ToastrService ) {
           this.tag_error = "required tags"
       }
     }
-    // remove_colour_picker(g){
-    //   console.log(g);
-    //   this.a.splice(g, 1);
-    //   console.log(g); 
-    //   if(this.a.length == 0 )
-    //   {
-      
-    //       this.colour_tag_error = "required colour tags"
-    //   }
-      
-    // }
+  
     ngOnInit() {
     $.getScript('./assets/js/vendorsidebar.js');
 
                 let headers = new Headers();
-              //     if(this.a.length == 0 )
-              // {
-              
-              //    this.colour_tag_error = "required colour tags"
-              // }
-              //  if(this.tai.length == 0 )
-              // { 
-               
-              //    this.tag_error = "required tags"
-              // }
+       
                 var authToken = localStorage.getItem('userToken');
                 headers.append('Accept', 'application/json')
                 headers.append('Content-Type', 'application/json');
                 headers.append("Authorization",'Bearer '+authToken);
                     this.http.get(this.mygeturl,{headers:headers}).subscribe(data =>{
-                            for (var item of  data.json()) {
-                              this.tags = item.tags;
-                              this.colourtags = item.colorTags;
-                                if(item.tags != null && item.colorTags != null){
-                                  item['tags'] = item['tags'].split(',');
-                                  item['colorTags'] = item['colorTags'].split(',');
-                                }
-                                this.albumImagesModify.push(item);
-                            } 
+                      console.log(data.json())
+                      
+                      this.albumImagesModify = data.json()
+                      this.albumImagesModify.forEach(el=>{
+                        if(el['tags'] != ''){
+                          el['tags_two'] = el['tags'].split(',')
+                     
+                        }else{
+                          el['tags_two'] = [] 
+                        }  
+                      })
+                      this.albumImagesModify.forEach(ele=>{
+                        if(ele['tags'] != ''){
+                          ele['tags'] = ele['tags'].split(',')
+                          
+
+                          ele['colorTags'] = ele['colorTags'].split(',')
+                          this.albumImages.push(ele)
+                          console.log(this.albumImages)
+                        }else{
+                          
+                          this.albumImages.push(ele)
+                        }
+                      })
+                      console.log('albumImages',this.albumImages)
+                            // for (var item of  data.json()) {
+                            //   this.tags = item.tags;
+                            //   this.colourtags = item.colorTags;
+                            //     if(item.tags != null){
+                            //       item['tags'] = item['tags'].split(',');
+                            //       item['colorTags'] = item['colorTags'].split(',');
+                            //     }else{
+                            //     this.albumImagesModify.push(item)
+                            //     }
+                            //   
+                            //     this.albumImagesModify.push(item);
+                            // } 
+                          
                       })
     }
     openModel(e)
     {
       this.formdata = e;
-          this.tai = this.formdata.tags;
-          this.a = this.formdata.colorTags;
+      if(this.formdata['tags'] == ''){
+        this.formdata['tags'] = ['']
+      }
+      if(this.formdata['colorTags'] == ''){
+        this.formdata['colorTags'] = ['']
+      }
+      console.log(this.formdata)
+      if(this.formdata['tags'] != ''){
+        this.tai = this.formdata['tags'].join(',')
+
+      }
+          
+
+        //  this.tai = this.tai.filter(element => element !== "")
+        //  this.tai = this.tai.filter(element => element !== ',')
+      //     console.log( this.tai )
+          // this.a = this.formdata.colorTags;
           this.createColorPanel();
-          for (let i = 0; i < e.colorTags.length; i++) {
-            let c= this.colors.filter(cn=>cn.colorName==e.colorTags[i])[0].isSelected=true;
-          }
+          console.log(this.colors)
+        if(this.formdata['colorTags'] != ''){
+
+          this.formdata['colorTags'].forEach(element => {
+            this.colors.forEach(el=>{
+              if(element == el['colorName']){
+               el['isSelected'] = true;
+              }
+            }) 
+          });
+
+        }else{
+          this.colors = this.colors
+        }
+          
+          
+      //     for (let i = 0; i < e.colorTags.length; i++) {
+      //       let c= this.colors.filter(cn=>cn.colorName==e.colorTags[i])[0].isSelected=true;
+      //     }
     }
+
+    tags_edit(e){
+      this.taggg = ''
+     
+     console.log(e)
+      this.formdata['tags'].push(e)
+      // this.formdata['tags'] = this.tai.filter(element => element !== "")         
+      // console.log(this.formdata); 
+      // this.taggg = ''
+     }
     editSettting(e){
-                const fire = {
-                  portfolioId: e.value.portfolioId,
-                  filesId: e.value.filesId,
-                  tags:  this.tai.join(','),
-                  colorTags: this.csvColors,
-                  setAsBackgroud: false
-                }
-                let headers = new Headers();
-                var authToken = localStorage.getItem('userToken');
-                headers.append('Accept', 'application/json')
-                headers.append('Content-Type', 'application/json');
-                headers.append("Authorization",'Bearer '+authToken);
-                this.http.post(this.update_portfolio,fire,{headers:headers}).subscribe(data =>{
-                    this.toastr.success(data.json().message);
-                    this.albumImagesModify = [];
-                    this.http.get(this.mygeturl,{headers:headers})
-                    .subscribe(data =>{
-                                      for (var item of  data.json()) {
-                                        this.tags = item.tags;
-                                        this.colourtags = item.colorTags;
-                                          if(item.tags != null && item.colorTags != null){
-                                            item['tags'] = item['tags'].split(',');
-                                            item['colorTags'] = item['colorTags'].split(',');
-                                          }
-                                          this.albumImagesModify.push(item);
-                                      } 
-                                    });
-                
-                  },error => {console.log(error)})
-                this.description_dailog = false;
+     
+      console.log(e.value.tags)
+      console.log(this.colors)
+      this.colors.forEach(element=>{
+        if(element['isSelected']){
+          this.arr.push(element['colorName'])
+        }
+      })
+      const fire = {
+       portfolioId: e.value.portfolioId,
+       filesId: e.value.filesId,
+       tags:  this.formdata['tags']== '' ? ',' :this.formdata['tags'].join(','),
+       colorTags: this.arr.join(','),
+       setAsBackgroud: false
+      }
+      console.log(fire)
+      this.postapi_tag(fire)        
+this.arr  = []
+
+    }
+
+
+
+    postapi_tag(fire){
+
+
+      let headers = new Headers();
+      var authToken = localStorage.getItem('userToken');
+      headers.append('Accept', 'application/json')
+      headers.append('Content-Type', 'application/json');
+      headers.append("Authorization",'Bearer '+authToken);
+      this.albumImagesModify = [];
+      this.http.post(this.update_portfolio,fire,{headers:headers}).subscribe(data =>{
+          this.toastr.success(data.json().message);
+     
+          this.http.get(this.mygeturl,{headers:headers})
+          .subscribe(data =>{
+                            for (var item of  data.json()) {
+                              this.tags = item.tags;
+                              this.colourtags = item.colorTags;
+                                if(item.tags != null){
+                                  item['tags'] = item['tags'].split(',');
+                                  item['colorTags'] = item['colorTags'].split(',');
+                               
+                                }
+                                this.albumImagesModify.push(item);
+                                console.log( this.albumImagesModify)
+                                this.ngOnInit()
+                            } 
+                          });
+      
+        },error => {console.log(error)})
+      this.description_dailog = false;
     }
     closeModel(){   
-  this.description_dailog = false;
+       this.description_dailog = false;
+       this.ngOnInit()
+       
     }
     delete_portfolio(e,index){
 
       swal({
         title: "Are you sure?",
-      text: "You will not be able to recover this imaginary file!",
+      text: "You will not be able to recover this file!",
       type: "warning",
       showCancelButton: true,
       confirmButtonClass: "btn-default",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "No, cancel plx!",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
       }).then((res)=>{
         if(res.value===true){
       var id = e.portfolioId;

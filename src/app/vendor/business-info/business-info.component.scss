@@ -488,6 +488,31 @@ width: 55px;
 .margin_top_20{
     margin-top: 20px !important;
 }
+.posrelative{
+    position: relative;
+    width:100%;
+    height:100px;
+}
+.helpicon{
+    cursor: default;
+    position: relative;
+    left: 350px;
+    top: 0px;
+    right: 5px;
+}
+.nonedisplay{
+    color:#666;
+    font-style: italic;
+}
+.copyinput{
+    margin-bottom: 10px;
+}
+.copyinput input{
+    width:calc(100% - 65px);
+    border:1px solid #ccc;
+    margin-right:5px;
+    padding:5px;
+}
 .busines_img img{
     width: 100px;
     height: 100px;
@@ -495,6 +520,12 @@ width: 55px;
     position: relative;
     cursor: pointer;
     object-fit: cover;
+}
+.busines_img i{
+    display:none;
+}
+.busines_img:hover i{
+    display:inherit;
 }
 .social i.fa{
     margin-right:15px!important;
@@ -1299,6 +1330,9 @@ width: 55px;
     text-align: center;
     width: 100px;
     height:100px;
+    position:absolute;
+    left:0px;
+    right: 0px;
     border-radius:50%;
     padding: 0px;
     margin:0px auto;
@@ -1558,10 +1592,18 @@ margin-left:0px;
   background-color: #36cbf0 !important;
     color: #fff;
 }
-
+.modelContent{
+    height: 435px;
+}
 @media(max-width:767px){
 .tabbingdesign{
     padding-top:20px;
+}
+.helpicon{
+display:none;
+}
+.modal-content{
+    max-width:inherit!important;
 }
 .mobminheight{
     min-height: 535px;
@@ -1716,6 +1758,7 @@ margin-left:0px;
         .busines_img{
            width: 100%;
            margin-top: -50px;
+           max-width:100px;
         }
        
         .social i.fa-2x  {
@@ -1893,3 +1936,15 @@ margin-left:0px;
     }
 }
 
+.progress {
+    margin: 10px;
+  }
+  .tooltip-inner {
+      max-width:inherit!important;
+ }
+ .tooltip.show{
+     width:300px!important;
+ }
+ .tooltip.show{
+    width:300px!important;
+}

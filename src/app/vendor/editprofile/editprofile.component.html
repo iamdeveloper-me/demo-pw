@@ -2,9 +2,9 @@
     <div id="sidebar-wrapper">
         <app-vendorsidebar></app-vendorsidebar>
     </div>
-    <div id="page-content-wrapper">    
+    <div id="page-content-wrapper">
         <app-navemenu></app-navemenu>
-        <router-outlet></router-outlet> 
+        <router-outlet></router-outlet>
 
         <section class="my_acount container-fluid mobilefixedcontainer">
             <div class=" col-md-12 mobpadd">
@@ -13,30 +13,30 @@
                         <div class="aco_info text-center">
 
                             <h5> <strong>MY ACCOUNT INFORMATION</strong> </h5>
-                            
-                           <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png">
+
+                            <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png">
 
                             <button data-toggle="modal" data-target="#setting" class="settingbtnabsolute">
                                 <i class="material-icons ">settings</i>
                             </button>
-                                
 
-                                
+
+
                         </div>
                         <div class="name_info">
                             <p>
-                                <strong>First Name</strong> :  
-                             {{vendor.firstName}}</p>
-                            <p> 
-                                <strong>Last Name</strong> : 
+                                <strong>First Name</strong> :
+                                {{vendor.firstName}}</p>
+                            <p>
+                                <strong>Last Name</strong> :
                                 {{vendor.lastName}}
                             </p>
                             <p>
-                                <strong>Phone Number</strong> : 
-                                {{vendor.phone}}
+                                <strong>Phone Number</strong> :
+                                {{vendor.vendorContactInfo.phone}}
                             </p>
                             <p>
-                                <strong>Email</strong> : 
+                                <strong>Email</strong> :
                                 {{vendor.vendorContactInfo.email}}
                             </p>
                             <!-- <p class="abouttext"> 
@@ -45,49 +45,63 @@
                             </p> -->
                         </div>
                         <div class="updatebt text-center">
-                            <button  (click) = " personal_data_update = true" >Update Profile
+                            <button (click)=" personal_data_update = true">Update Profile
                             </button>
                         </div>
                     </div>
                 </div>
 
-               
+
                 <div class="col-md-6 mobpadd">
                     <div class="col-md-12 mem_detail">
                         <div class="col-md-4 col-xs-12 co-sm-12">
                             <img src="https://s3.us-east-2.amazonaws.com/prefect-image/card_icon.png">
                         </div>
                         <div class="col-md-8">
-                            <div class="member_name"> <h5><strong> MEMBERSHIP</strong> </h5>  </div>
-                            <p>Member since : {{membershipdetail.startDateString}}</p>
-                            <p class="col_green">Expiry : {{membershipdetail.endDateString}} </p> 
-                         
-                            <p>Plan type: <span>{{membershipdetail.pricingPlan.title}}</span> 
-                            <span class="upgrade"><a routerLink = "../membership"> Upgrade now </a> </span> 
-                        </p>
+                            <div class="member_name">
+                                <h5><strong> MEMBERSHIP</strong> </h5>
+                            </div>
+
+                            <!-- <p>Member since : {{membershipdetail?.createdOnString}}</p> -->
+                            <p>Member since: {{myplans.createdOnString}}</p>
+
+                            <p *ngIf="myplans.payFrequency == 1 && myplans.pricingPlanId == 1">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (6 Months)</p>
+                            <p *ngIf="myplans.payFrequency == 2 && myplans.pricingPlanId == 1">Plan Name: <b>{{myplans?.pricingPlan.title}}</b> (6 Months)</p>
+                                <!--Free Basic-->
+                            <p *ngIf="myplans.payFrequency == 0 && myplans.pricingPlanId == 2">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (6 Months)</p>
+                            <p *ngIf="myplans.payFrequency == 1 && myplans.pricingPlanId == 2">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (12 Months)</p>
+                                <!--Premium-->
+                            <p *ngIf="myplans.payFrequency == 0 && myplans.pricingPlanId == 3">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (12 Months)</p>
+                            <p *ngIf="myplans.payFrequency == 1 && myplans.pricingPlanId == 3">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (6 Months)</p>
+                                <!--Ultimate-->
+                            <p>Plan Begin Date: {{myplans.startDateString}}</p>
+                            <p class="col_green">Expiry: {{myplans.endDateString}} </p>
+                            <p><a routerLink="../membership" class="borbtn"> Go to Planner </a></p>
                         </div>
-                    </div>
-                    <div class="col-md-12 mem_detail">
-                            <div class="col-md-4">
-                                 <img src="https://s3.us-east-2.amazonaws.com/prefect-image/password_icon.png">
-                            </div>
-                            <div class="col-md-8">
-                                <div class=""> <h5><strong> ACCOUNT PASSWORD</strong>  </h5> 
-                                    <div class="updatebt mar_top_20px">
-                                        <button (click) = "changePassword_form = true">Change Password</button>
-                                    </div>
-                                </div>
-                            </div>
                     </div>
                     <div class="col-md-12 mem_detail">
                         <div class="col-md-4">
-                            <img  class="img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/invoice_icon.png">
+                            <img src="https://s3.us-east-2.amazonaws.com/prefect-image/password_icon.png">
                         </div>
                         <div class="col-md-8">
-                            <div class=""> <h5> <strong>BILLING & INVOICES</strong> </h5> 
+                            <div class="">
+                                <h5><strong> ACCOUNT PASSWORD</strong> </h5>
                                 <div class="updatebt mar_top_20px">
-                                    <a routerLink="../invoice"  class="linkbutton">View</a>
-                              
+                                    <button (click)="changePassword_form = true">Change Password</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mem_detail">
+                        <div class="col-md-4">
+                            <img class="img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/invoice_icon.png">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="">
+                                <h5> <strong>BILLING & INVOICES</strong> </h5>
+                                <div class="updatebt mar_top_20px">
+                                    <a routerLink="../invoice" class="linkbutton">View</a>
+
                                 </div>
                             </div>
                         </div>
@@ -96,142 +110,257 @@
             </div>
         </section>
         <div class="clearfix"></div>
-        <app-foot></app-foot>
+        <!-- <app-foot></app-foot> -->
         <router-outlet></router-outlet>
     </div>
 </div>
 
-<form (ngSubmit)="updateData(f1)"  #f1="ngForm">
-    <div class="modal fade" id="photo_ved"  [ngClass] = "{'show' : personal_data_update}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!--Form F1 Profile-->
+<form (ngSubmit)="f1.form.valid && updateData(f1)" #f1="ngForm" novalidate>
+    <div class="modal fade" id="photo_ved" [ngClass]="{'show' : personal_data_update}" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                        <h4 class="card-title">Personal Details</h4>
-                    <button type="button" class="close"  (click) = "closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="card-title">Personal Details</h4>
+                    <button type="button" class="close" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <div class="modal-body">   
-                    <div class="card">         
+                <div class="modal-body">
+                    <div class="card">
                         <div class="card-body">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <div class="input-effect form-group md-form ">
-                                        <input class="effect-16 validate" type="text"  #firstName="ngModel" id="firstName" name="firstName" [(ngModel)]="vendor.firstName" placeholder="" required>
                                         <label>First Name</label>
-                                        <span class="focus-border"></span>
-                                        <small class="form-text text-muted danger" *ngIf="!firstName.valid && (firstName.dirty || firstName.touched)">Please enter a valid firstname!</small>
-                                    </div>
-                                </div>
-                            </div>  
-                            <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="input-effect form-group md-form ">
-                                            <input class="effect-16 validate" type="text" #lastName="ngModel" id="lastName" name="lastName" [(ngModel)]="vendor.lastName" placeholder="" required>
-                                            <label>Last Name</label>
-                                            <span class="focus-border"></span>
-                                            <small class="form-text text-muted danger" *ngIf="!lastName.valid && (lastName.dirty || lastName.touched)">Please enter a valid lastName!</small>
+                                        <input 
+                                            class="form-control" 
+                                            type="text" 
+                                            #firstName="ngModel"
+                                            id="firstName" 
+                                            name="firstName" 
+                                            ngModel 
+                                            [(ngModel)]="vendor.firstName"
+                                            [ngClass]="{ 'is-invalid': f1.submitted && firstName.invalid }" 
+                                            required 
+                                        />
+                                        <!-- <small class="form-text text-muted danger" *ngIf="!firstName.valid && (firstName.dirty || firstName.touched)">Please
+                                            enter a valid firstname!</small> -->
+                                        <div *ngIf="f1.submitted && firstName.invalid" class="invalid-feedback form-submit">
+                                            <small class="form-text text-muted danger" *ngIf="firstName.errors.required">
+                                                First Name is required
+                                            </small>
                                         </div>
                                     </div>
-                            </div>                                      
+                            </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <div class="input-effect form-group md-form ">
-                                        <input class="effect-16 validate" type="number" maxlength="10" pattern="^[0-9]{10}" type="text" #phoneNumber="ngModel" id="phoneNumber" name="phoneNumber"  [(ngModel)]="vendor.phoneNumber" placeholder="" required>
-                                        <label>Phone Number</label>
-                                        <span class="focus-border"></span>
-                                        <small class="form-text text-muted danger" *ngIf="!phoneNumber.valid && (phoneNumber.dirty || phoneNumber.touched)">Please enter a valid phone number!</small> 
+                                        <label>Last Name</label>
+                                        <input 
+                                            class="form-control" 
+                                            type="text"
+                                            [(ngModel)]="vendor.lastName"
+                                            #lastName="ngModel" 
+                                            id="lastName" 
+                                            name="lastName" 
+                                            ngModel 
+                                            [ngClass]="{ 'is-invalid': f1.submitted && lastName.invalid }"
+                                            required
+                                        />
+                                        <!-- <small class="form-text text-muted danger" *ngIf="!lastName.valid && (lastName.dirty || lastName.touched)">Please
+                                            enter a valid lastName!</small> -->
+                                        <div *ngIf="f1.submitted && lastName.invalid" class="invalid-feedback form-submit">
+                                            <small class="form-text text-muted danger" *ngIf="lastName.errors.required">
+                                                Last Name is required
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>                     
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <div class="input-effect form-group md-form ">
-                                        <input class="effect-16 validate" type="email" #email="ngModel" id="email" name="email"  [(ngModel)]="vendor.vendorContactInfo.email" placeholder="" required>
-                                        <label>Email</label>
-                                        <span class="focus-border"></span>
-                                        <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">Please enter a valid email!</small> 
+                                        <label>Phone Number</label>
+                                       
+                                        <input class="form-control" 
+                                            type="tel"
+                                            [ngClass]="{ 'is-invalid': f1.submitted && phoneNumber.invalid }"
+                                            ngModel 
+                                            #phoneNumber="ngModel" 
+                                            id="phoneNumber" 
+                                            name="phoneNumber"
+                                            [(ngModel)]="vendor.vendorContactInfo.phone" 
+                                            minlength="7" 
+                                            maxlength="10" 
+                                            required
+                                        />
+                                        <!-- <small class="form-text text-muted danger" *ngIf="!phoneNumber.valid && (phoneNumber.dirty || phoneNumber.touched)">Please
+                                            enter a valid phone number!</small> -->
+                                        <div *ngIf="f1.submitted && phoneNumber.invalid" class="invalid-feedback form-submit">
+                                            <small class="form-text text-muted danger" *ngIf="phoneNumber.errors.required">
+                                                Phone Number is required
+                                            </small>
+                                            <!-- <small class="form-text text-muted danger" *ngIf="phoneNumber.errors.minlength">
+                                                    Phone Number is minimum 7 digit required!
+                                            </small> -->
+                                        </div>
+                                        <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"  class="form-text text-muted danger" >
+                                                <div  class="form-text text-muted danger"  *ngIf="phoneNumber.errors.minlength">
+                                                        Phone Number is minimum 7 digit required!
+                                                      </div>
+                                            </div>
                                     </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                        <label>Email</label>
+                                        <input class="form-control disablefield" 
+                                            type="email" 
+                                            ngModel 
+                                            #email="ngModel"
+                                            id="email" 
+                                            name="email" 
+                                            [(ngModel)]="vendor.vendorContactInfo.email"
+                                            [disabled]="email" 
+                                            pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$" 
+                                            [ngClass]="{ 'is-invalid': f1.submitted && email.invalid }"
+                                            required
+                                        />
+                                         <!-- <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">Please
+                                            enter a valid email!</small> -->
+                                        <div *ngIf="f1.submitted && email.invalid" class="invalid-feedback form-submit">
+                                            <small class="form-text text-muted danger" *ngIf="email.errors.required">
+                                                Email is required
+                                            </small>
+                                            <small class="form-text text-muted danger" *ngIf="email.errors.email">
+                                                Email must be a valid email address
+                                            </small>
+                                        </div>
                                 </div>
                             </div>
-        
-
-                        </div> 
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                        <button type="submit" class="btn btn-secondary" [disabled]="!f1.valid" >Save</button>
-                    <button type="button" class="btn btn-secondary" (click) = "closeModel()">Close</button>
+
+                    <button type="submit" class="btn newbtn" [disabled]="!f1.valid" >Save</button>
+
+                    <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 </form>
-<!--Form 1 End-->
+<!--Form F1 Profile End-->
 
-<form (ngSubmit)="changePassword(f)" #f="ngForm">
-    <div class="modal fade" id="cPassword" [ngClass] = "{'show' : changePassword_form}"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!--Form F Change Password-->
+
+<form (ngSubmit)="f.form.valid && changePassword(f)" #f="ngForm" novalidate >
+        <div class="modal fade" id="cPassword" [ngClass]="{'show' : changePassword_form}" tabindex="-1" role="dialog"
+            aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Change Password</h4>
-                        <button type="button" class="close" (click) = "closeModel()"  ><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close" (click)="closeModel()"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
-                        <div class="card">         
+                        <div class="card">
                             <div class="card-body">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <div class="input-effect form-group md-form ">
-                                            <input class="effect-16 validate" [(ngModel)]='f.OldPassword' #opassword="ngModel" id="opassword" name="OldPassword" type="password" placeholder="" required>
                                             <label>Old Password</label>
-                                            <span class="focus-border"></span>
-                                            <!-- <small class="form-text text-muted danger" *ngIf="!opassword.valid && (opassword.dirty || opassword.touched)">Please enter a valid old password!</small> -->
-                                        </div>
+                                            <input 
+                                                class="form-control"
+                                                ngModel 
+                                                [(ngModel)]='f.OldPassword' 
+                                                #OldPassword="ngModel"
+                                                id="OldPassword" 
+                                                name="OldPassword" 
+                                                type="password" 
+                                                minlength="6"
+                                                [ngClass]="{ 'is-invalid': f.submitted && OldPassword.invalid }"
+                                                required
+                                            />
+                                                <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="!OldPassword.valid && (OldPassword.dirty || OldPassword.touched)">Please
+                                                enter a valid old password!</small> -->
+                                                <div *ngIf="f.submitted && OldPassword.invalid" class="invalid-feedback  form-submit">
+                                                        <small class="form-text text-muted danger" *ngIf="OldPassword.errors.required">Old Password is required</small>
+                                                        <!-- <small class="form-text text-muted danger"  *ngIf="OldPassword.errors.minlength">Old Password must be at least 6 characters</small> -->
+                                                </div>
                                     </div>
-                                </div>  
-                                <div class="col-md-12">
-                                        <div class="form-group">
-                                            <div class="input-effect form-group md-form ">
-                                                <input class="effect-16 validate" [(ngModel)]='f.NewPassword' #npassword="ngModel" id="npassword" name="NewPassword" type="password"  placeholder="" required>
-                                                <label>New Password</label>
-                                                <span class="focus-border"></span>
-                                                <!-- <small class="form-text text-muted danger" *ngIf="!npassword.valid && (npassword.dirty || npassword.touched)">Please enter a valid new password!</small> -->
-                                            </div>
-                                        </div>
-                                </div>                                      
+                                </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <div class="input-effect form-group md-form ">
-                                            <input class="effect-16 validate"  [(ngModel)]='f.ConfirmPassword' #cpassword="ngModel" id="cpassword" name="ConfirmPassword" type="password"  placeholder="" required>
+                                            <label>New Password</label>
+                                            <input 
+                                                class="form-control"
+                                                ngModel 
+                                                [(ngModel)]='f.NewPassword' 
+                                                #NewPassword="ngModel"
+                                                id="NewPassword" 
+                                                name="NewPassword" 
+                                                type="password"
+                                                minlength="6"
+                                                [ngClass]="{ 'is-invalid': f.submitted && NewPassword.invalid }" 
+                                                required
+                                                validateEqual="ConfirmPassword" reverse="true"
+                                            />
+                                                <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="!NewPassword.valid && (NewPassword.dirty || NewPassword.touched)">Please
+                                                enter a valid new password!</small>  -->
+                                                <div *ngIf="f.submitted && NewPassword.invalid" class="invalid-feedback form-submit">
+                                                        <small class="form-text text-muted danger"  *ngIf="NewPassword.errors.required">New Password is required</small>
+                                                        <small class="form-text text-muted danger"  *ngIf="NewPassword.errors.minlength">New Password must be at least 6 characters</small>
+                                                        <!-- <small class="form-text text-muted danger"  *ngIf="ConfirmPassword.errors.pattern">Minimum 6 characters,1 uppercase,1 lowercase,1 number,1 special character!</small> -->
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                             <label>Confirm Password</label>
-                                            <span class="focus-border"></span>
-                                            <!-- <small class="form-text text-muted danger" *ngIf="!ConfirmPassword.valid && (ConfirmPassword.dirty || cpassword.touched)">Please enter a valid confirm password!</small> -->
-                                        </div>
+                                            <input 
+                                                class="form-control" 
+                                                ngModel
+                                                [(ngModel)]='f.ConfirmPassword'
+                                                #ConfirmPassword="ngModel" 
+                                                id="ConfirmPassword" 
+                                                name="ConfirmPassword" 
+                                                type="password"
+                                                minlength="6"
+                                                [ngClass]="{ 'is-invalid': f.submitted && ConfirmPassword.invalid }" 
+                                                required
+                                                validateEqual="NewPassword" reverse="false"
+                                            /> 
+                                            <!-- pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$"                                         -->
+                                            
+                                                <div *ngIf="f.submitted && ConfirmPassword.invalid" class="invalid-feedback form-submit">
+                                                        <small class="form-text text-muted danger"  *ngIf="ConfirmPassword.errors.required">Confirm Password is required</small>
+                                                        <small class="form-text text-muted danger"  *ngIf="ConfirmPassword.errors.minlength">Confirm Password must be at least 6 characters</small>
+                                                        <!-- <small class="form-text text-muted danger"  *ngIf="ConfirmPassword.errors.pattern">Minimum 6 characters,1 uppercase,1 lowercase,1 number,1 special character!</small> -->
+                                                </div>
+                                                <div *ngIf="ConfirmPassword.invalid && (ConfirmPassword.dirty || ConfirmPassword.touched)"  class="form-text text-muted danger" >
+                                                    <small [hidden]="ConfirmPassword.valid || (ConfirmPassword.pristine && !f.submitted)" class="text-danger">
+                                                            Password mismatch
+                                                    </small>
+                                                </div>
                                     </div>
-                                </div> 
-                                <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="f.NewPassword == f.ConfirmPassword"> password match </small> -->
-                                <small class="form-text text-muted danger validationErrorMsg" *ngIf="!f.NewPassword == f.ConfirmPassword"> password not match </small>
 
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        Premium members only. 
-                                        <a href="../membership">Upgrade</a>
-                                    </div>
-                                </div> 
+                                <!-- </div> -->
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-secondary" >Save</button>
-                        <!-- [disabled]="!f.valid" -->
+                        <button type="submit" class="btn newbtn" [disabled]="!f.valid" >Save</button>
                         &nbsp;&nbsp;
-                        <button type="button" class="btn btn-secondary" (click) = "closeModel()" >Close</button>
+                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
                     </div>
                 </div>
             </div>
-    </div>   
-</form> 
-  <!--Form 2 End-->  
-<div class="modal fade" id="setting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        </div>
+    </form>
+<!--Form F Change Password End-->
+
+
+<!--  -->
+<form #s="ngForm">
+    <div class="modal fade" id="setting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -240,42 +369,53 @@
                 </div>
                 <div class="modal-body">
                     <div class="col-sm-12 nopadd">
-                            <div class="container">
-                               
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                            <div class="switbtn">
-                                                <ui-switch  id="receiveUpdates" name="receiveUpdates">
-                                                    
-                                                </ui-switch>
-                                                <span class="texthead">Receive Updates</span>
-                                            </div>
-                                            
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="switbtn">
+                                        <ui-switch id="appUpdates" ngModel name="appUpdates" #appUpdates="ngModel">
+                                        </ui-switch>
+                                        <!-- <ui-switch 
+                                            [(ngModel)]="fbAvailable"
+                                            id="fbAvailable" 
+                                            name = "switchfb"
+                                            #switchfb="ngModel"
+                                            (change)="fbAvailable  = !fbAvailable "
+                                            class="pull-left"
+                                            ></ui-switch>
+                                            {{fbAvailable}} -->
+
+                                        <span class="texthead">App Updates</span>
                                     </div>
-                                    <div class="col-xs-12">
-                                        <div class="switbtn">
-                                                <ui-switch  id="marketingMails" name="marketingMails">
-                                                    
-                                                </ui-switch>
-                                                <span class="texthead">Marketing Mails</span>
-                                            </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="switbtn">
+                                        <ui-switch id="marketingEmails" ngModel name="marketingEmails" #marketingEmails="ngModel">
+                                        </ui-switch>
+                                        <span class="texthead">Marketing Emails</span>
                                     </div>
-                                    <div class="col-xs-12">
-                                        <div class="switbtn">
-                                                <ui-switch  id="notifications" name="notifications"></ui-switch>
-                                                <span class="texthead">Notifications</span>
-                                            </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="switbtn">
+                                        <ui-switch id="notifications" ngModel name="notifications" #notifications="ngModel">
+
+                                        </ui-switch>
+                                        <span class="texthead">Notifications</span>
                                     </div>
-                                </div>  
+                                </div>
                             </div>
+                        </div>
                     </div>
                 </div>
-               <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
-                      &nbsp;&nbsp;
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <div class="modal-footer">
+                    <button type="submit" class="btn newbtn" data-dismiss="modal" (click)="updatesub(s)">Save</button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn newbtn newcancelbtn" data-dismiss="modal" (click)="closeModel()">Close</button>
                 </div>
             </div>
         </div>
-</div>    
-    <!--mail popup -->
+    </div>
+</form>
+<!--Form 3 End-->
+<!--mail popup -->
+

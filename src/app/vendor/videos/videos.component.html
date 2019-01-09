@@ -6,14 +6,14 @@
   <div id="page-content-wrapper">    
         <div class="container-fluid nopadd">                    
                 <app-navemenu></app-navemenu>
-        <router-outlet></router-outlet> 
+                <router-outlet></router-outlet> 
 
-
-        <div class="container-fluid mobilefixedcontainer" *ngIf="video_total == 0; else total_not">
-           <div class="card photo_gallery">
+<div *ngIf="loader ; else loaderTrue">
+        <div class="container-fluid mobilefixedcontainer" [ngSwitch]="video_total" >
+            <div class="card photo_gallery">
             
 
- <div class="">
+              <div class="" *ngSwitchCase="0">
               <div class="row firt_row"> 
               <div class="col-sm-12" >
                   <div class="mob_bot_20px">
@@ -44,10 +44,55 @@
               </div>
 
               </div>
+              <div *ngSwitchDefault>
+                <div class="container-fluid ">
+                  <div class="container-fluid addvideo  text-center ">
+                    <div class=" my_video_bg">
+                      <h3> <strong> MY VIDEOS </strong> </h3>
+                      <P>Showcase videos that demonstrate your work to reach more clients</P>
+                       <a class="sett_icon pull-right" routerLink="../vediosetting">
+                      <i class="material-icons ">settings</i>
+                    </a>
+                      </div>
+                   </div>   
+                <div class="container-fluid addvideo1 "> 
+                  <div class="my_video_bg11 ">
+                <section class="p-0 container" id="portfolio">
+                     <div class="text-center">
+                        <div *ngIf="basicplan == 1 ;else cc" >       
+                            <button class="add_videobt" style="display:none" (click)="Addvediodetail_dailog = true" [disabled]="true">Add Video</button> 
+                            <button class="add_videobt" (click)="addVideo()" >Add Video</button> 
+                        </div>
+                        <ng-template #cc>
+                            <button class="add_videobt"  (click)="Addvediodetail_dailog = true" >Add Video</button> 
+                        </ng-template>
+                      </div>
+                         <div class="photos_gallery">
+                                <div class="row firt_row">
+                                  <div class="col-md-3 marbot15px" *ngFor="let single_video of video_all_data">
+                                   <div class="borderedbox">
+                                      <div>
+                                          <iframe  [src]="single_video.link  | safe" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                      </div>
+                                      <div>
+                                          <i class="material-icons">play_circle_outline</i>
+                                          <strong>{{single_video.title}}</strong>
+                                      </div>
+                                  </div>
+                                  </div>
+                                </div>
+                            </div>
+                      </section>
+                    </div>
+                
+                
+                  </div>        
+              </div>
+              </div>
 
 
 
-</div>
+            </div>
             
         </div>
         <ng-template #total_not>
@@ -72,6 +117,7 @@
                             <div class="col-md-3 marbot15px" *ngFor="let single_video of video_all_data">
                               <iframe  [src]="single_video.link  | safe" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                             </div>
+                            <strong>{{single_data.title}}</strong>
                           </div>
                       </div>
                 </section>
@@ -81,6 +127,27 @@
             </div>       
     </div> 
         </ng-template>
+</div>    
+
+<ng-template #loaderTrue>
+  <div class="windows8">
+    <div class="wBall" id="wBall_1">
+      <div class="wInnerBall"></div>
+    </div>
+    <div class="wBall" id="wBall_2">
+      <div class="wInnerBall"></div>
+    </div>
+    <div class="wBall" id="wBall_3">
+      <div class="wInnerBall"></div>
+    </div>
+    <div class="wBall" id="wBall_4">
+      <div class="wInnerBall"></div>
+    </div>
+    <div class="wBall" id="wBall_5">
+      <div class="wInnerBall"></div>
+    </div>
+  </div>
+</ng-template>
 
 
        
@@ -92,7 +159,7 @@
 </div>
 
 
- <ng-template #addvideo let-c="close" let-d="dismiss">
+<!--  <ng-template #addvideo let-c="close" let-d="dismiss">
                           <div class="card-block">
                               <div class="modal-header text-center" style="background-color: white">
                                 <h4 class="modal-title ">New Video</h4>
@@ -118,7 +185,7 @@
                                 <div class="form-group">
                                     <div class="input-effect form-group md-form ">
                                         <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                        <label>Paste your YouTube or Vimeo Link here</label>
+                                        <label>Paste your YouTube or Video Link here</label>
                                         <span class="focus-border"></span>
                                     </div>
                                 </div>
@@ -137,11 +204,11 @@
                               </div>
                               
                            </div>
-</ng-template>
+</ng-template> -->
 
 
 
-  <ng-template #newlink let-c="close" let-d="dismiss">
+<!--   <ng-template #newlink let-c="close" let-d="dismiss">
     <div class="card-block">
         <div class="modal-header text-center" style="background-color: white">
           <h4 class="modal-title ">New Video </h4>
@@ -197,7 +264,7 @@
         </div>
         
       </div>
-  </ng-template>
+  </ng-template> -->
               
 
 
@@ -205,50 +272,54 @@
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                    <div class="modal-header">
-                    <h4 class="modal-title">Add Vedio</h4>
+                    <h4 class="modal-title">Add Video</h4>
                     <button type="button" class="close posiTop20px"  (click)="closeModel()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <form [formGroup]="form" (ngSubmit)="addDetails()">
                    <div class="modal-body">
-                      
+                        <div class="field">
+                            <input type="text" id="title" required="required" placeholder="Enter Video Title" formControlName="title" name="title"
+                            [ngClass]="{ 'is-invalid': submitted && f.title.errors }" />
+                            <label for="title">Enter Video Title</label>
+                        </div>
+                        <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                              <div *ngIf="f.title.errors.required">
+                                  Title is required
+                              </div>
+                        </div>
+                          <!-- <div *ngIf="title.invalid && (title.dirty || title.touched)"  class="form-text text-muted danger" >
+                              <div  class="form-text text-muted danger"  *ngIf="title.errors.required">
+                                  title is required.
+                              </div>
+                          </div> -->
+                      <div class="field">
+                          <input type="url" name="link" id="link" required="required" placeholder="Enter Video Link" formControlName="link" 
+                          pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
+                          [ngClass]="{ 'is-invalid': submitted && f.link.errors }"
+                          /><!-- <div *ngIf="link.invalid && (link.dirty || link.touched)"  class="form-text text-muted danger" >
+                                <div  class="form-text text-muted danger"  *ngIf="link.errors.required">
+                                  link is required.
+                                </div>
+                                <div  class="form-text text-muted danger"  *ngIf="link.errors.pattern">
+                                  link is not valid!. 
+                                </div>
+                            </div> -->
+                            <label for="link">Enter Video Link</label>
+                      </div>
+                      <div *ngIf="submitted && f.link.errors" class="invalid-feedback">
+                                <div   class="form-text text-muted danger"  *ngIf="f.link.errors.required">
+                                  Link is required
+                                </div>
+                                <div  class="form-text text-muted danger"  *ngIf="link.errors.pattern">
+                                  Link is not valid!. 
+                                </div>
+                      </div>
 
-                      <div class="form-group">
-                        <div class="input-effect form-group md-form ">
-                          <input class="effect-16 validate" type="text" id="title" required="required" formControlName="title" >
-                          <label>Enter Vedio Title</label>
-                          <span class="focus-border"></span>
-                        </div>
-                        <!-- <label for="title">Title:</label>
-                        <br>
-                        <input style="width:80%" type="text" id="title" formControlName="title" /> -->
-                        <div style="color:red" *ngIf="  title.value && title.invalid">
-                          Please provide valid tite
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="input-effect form-group md-form ">
-                          <input class="effect-16 validate" type="url" id="link" required="required" formControlName="link" >
-                          <label>Enter Vedio Url</label>
-                          <span class="focus-border"></span>
-                        </div>
-                        <div style="color:red" *ngIf="link.value && link.invalid">
-                          Please provide valid url
-                        </div>
-                        <!-- <label for="link">URL:</label>
-                        <br>
-                        <input style="width:80%" type="text" id="link" formControlName="link" />
-                        <div style="color:red" *ngIf="link.value && link.invalid">
-                          Please provide valid url
-                        </div> -->
-                      </div>
-                      <!-- <br>
-                      <button type="submit">Submit</button>
-                      <br> -->
                    </div>
                    <div class="modal-footer text-center">
-                    <button  [disabled]="form.invalid" type="submit"  class="btn newbtn " >SAVE</button> &nbsp; 
+                    <button type="submit" class="btn newbtn " >SAVE</button> &nbsp; 
                     <button type="button" class="btn newbtn newcancelbtn" 
                     (click)="closeModel()"> Close</button>
                   </div>
@@ -260,8 +331,53 @@
       </div>
 
       
-<router-outlet></router-outlet> 
 
 
 
- 
+      <!-- <ng-template #total_not>
+        <div class="container-fluid ">
+         <div class="container-fluid addvideo  text-center ">
+           <div class=" my_video_bg">
+             <h3> <strong> MY VIDEOS </strong> </h3>
+             <P>Showcase videos that demonstrate your work to reach more clients</P>
+              <a class="sett_icon pull-right" routerLink="../vediosetting">
+             <i class="material-icons ">settings</i>
+           </a>
+             </div>
+          </div>   
+       <div class="container-fluid addvideo1 ">
+         <div class="my_video_bg11 ">
+       <section class="p-0 container" id="portfolio">
+            <div class="text-center"> -->
+                 <!--Disable Condition Start-->
+               <!-- <div *ngIf="basicplan == 1 ;else cc" >       
+                   <button class="add_videobt" style="display:none" (click)="Addvediodetail_dailog = true" [disabled]="true">Add Video</button> 
+                   <button class="add_videobt" (click)="addVideo()" >Add Video</button> 
+               </div>
+               <ng-template #cc>
+                   <button class="add_videobt"  (click)="Addvediodetail_dailog = true" >Add Video</button> 
+               </ng-template> -->
+                <!--Disable Condition End-->
+             <!-- </div>
+                <div class="photos_gallery">
+                       <div class="row firt_row">
+                         <div class="col-md-3 marbot15px" *ngFor="let single_video of video_all_data">
+                          <div class="borderedbox">
+                             <div>
+                                 <iframe  [src]="single_video.link  | safe" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                             </div>
+                             <div>
+                                 <i class="material-icons">play_circle_outline</i>
+                                 <strong>{{single_video.title}}</strong>
+                             </div>
+                         </div>
+                         </div>
+                       </div>
+                   </div>
+             </section>
+           </div>
+       
+       
+         </div>       
+        </div> 
+     </ng-template> -->

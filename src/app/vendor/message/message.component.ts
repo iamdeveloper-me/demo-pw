@@ -6,13 +6,33 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { InboxService } from './inbox.service';
 import { Mail, Message } from './inbox.model';
+
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss'],
   providers: [InboxService]
 })
+
 export class MessageComponent implements OnInit {
+   afuConfig = {
+    multiple: true,
+    formatsAllowed: ".jpg,.png",
+    maxSize: "1",
+    uploadAPI:  {
+      url:"http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ImageUploader/PortfolioUploader",
+      headers: {
+        "Accept"    : 'application/json, text/plain, */*',
+     "Content-Type" : "application/json; charset=utf-8",
+     "Authorization" : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqYXZlZEBtYWlsaW5hdG9yLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlZlbmRvcnMiLCJqdGkiOiIxNjMyNDNmNC05OWUyLTQ0NzAtODRjMi1hMGU1NTE0YjIyNDEiLCJpYXQiOjE1NDQ0MzYwNzUsInJvbCI6ImFwaV9hY2Nlc3MiLCJpZCI6ImUxMDQ5MGM3LWUyZjItNDg3ZS04NTZmLTQ2YTAzNWVlMTU2MiIsIm5iZiI6MTU0NDQzNjA3NSwiZXhwIjoxNTQ0NTIyNDc1LCJpc3MiOiJ3ZWJBcGkiLCJhdWQiOiJodHRwOi8vdGVzdGFwcC1lbnYudHlhZDNuNjNzYS5hcC1zb3V0aC0xLmVsYXN0aWNiZWFuc3RhbGsuY29tLyJ9.Vv49jgWmx1QOFWMleRfIiFT0tFV0_HMdIqq_-VWyiOE`
+      }
+    },
+    theme: "dragNDrop",
+    hideProgressBar: false,
+    hideResetBtn: true,
+    hideSelectBtn: false
+  };
+  loader= true
   alltab = true;
   unreadtab = false;
   startedtab = false;
@@ -39,24 +59,49 @@ export class MessageComponent implements OnInit {
   result = []
   selectLength = 0
   arrayLength:number;
+  by_default_img: '../../../assets/img/logo_icon.png'
+  num:number = 0
   constructor(private formBuilder: FormBuilder,public toastr: ToastrService ,public route: Router,private elRef: ElementRef, private modalService: NgbModal, private inboxService: InboxService, private hservice: MessageService) {
     this.mail = this.inboxService.inbox.filter((mail: Mail) => mail.mailType === 'Inbox');
     this.message = this.inboxService.message.filter((message: Message) => message.mailId === 4)[0];
   
   
   }
-
+  
+  imgmail = "https://image.flaticon.com/icons/svg/138/138690.svg";
   
   onSelectionChange(entry_id) {
     
-    if(entry_id['checked']){
-      this.deletIcon = false
-      entry_id['checked'] = false;
-    }else{
-      this.deletIcon = true
-      entry_id['checked'] = true;
+
+
+
+
+if(entry_id['checked']){
+  entry_id['checked'] = false;
+  this.num = this.num - 1
+
+}else{
+  entry_id['checked'] = true;
+  this.deletIcon = true;
+  this.num = this.num + 1
+  if(this.num == 0){
+    this.deletIcon = false
+  
+  }
 }
 
+this.historyArr.forEach(ele=>{
+  if(ele['checked'] == true){
+   if(this.num == 0){
+     this.deletIcon = false
+   }
+  }
+  
+})
+
+if(this.num == 0){
+  this.deletIcon = false
+}
     // this.selectDelete.push(entry_id);
     
 
@@ -74,53 +119,58 @@ export class MessageComponent implements OnInit {
     // console.log(this.selectDelete)
 }
   ngOnInit() {
+    this.deletIcon = false
     $.getScript('./assets/js/inbox.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
     
 
-    setTimeout(() => {
-      this.stared(3)
-      this.unread(2)
-      this.initDatatable(1)
-      this.selectLength =   this.result.length
-      this.initDatatable(1)
-      this.arrayLength = 1;  
-    }, 200);
-    // this.hservice.marksread().subscribe(( data )  =>  
-    //   { 
-    //     console.log(data.json());
-    //     console.log("jjjjjjjj");
-    //     this.mreadArr = data.json() as string[] ; 
-    //   },error => 
-    //   alert(error) // error path
-    // )
+    if(window.location.href.indexOf('searchresult') == -1 ){
+      setTimeout(() => {
+        this.stared(3)
+        this.unread(2)
+        this.initDatatable(1)
+        this.selectLength =   this.result.length
+        this.initDatatable(1)
+        this.arrayLength = 1;  
+      }, 200);
+      // this.hservice.marksread().subscribe(( data )  =>  
+      //   { 
+      //     console.log(data.json());
+      //     console.log("jjjjjjjj");
+      //     this.mreadArr = data.json() as string[] ; 
+      //   },error => 
+     
+      // )
+    
   
+      //   this.hservice.markstared().subscribe(( data )  =>  
+      //   { 
+      //     console.log(data.json());
+      //     console.log("tttttttttttttt");
+      //     this.markred = data.json() as string[] ; 
+      //   },error => 
+     
+      // )
+  
+     
+      $(function() {
+        // $("a").on("click", function() {
+      
+        //     $(".btn-default.active").removeClass("active");
+        //     $(this).find(".btn-default").addClass("active");
+        // });
+  
+        $(".msg_buttons").on("click", function(){
+         
+          $(".msg_buttons").removeClass("active");
+          $(this).addClass("active");
+        });
+    });
+    }
 
-    //   this.hservice.markstared().subscribe(( data )  =>  
-    //   { 
-    //     console.log(data.json());
-    //     console.log("tttttttttttttt");
-    //     this.markred = data.json() as string[] ; 
-    //   },error => 
-    //   alert(error) // error path
-    // )
-
-   
-    $(function() {
-      // $("a").on("click", function() {
-      //   alert('gfgfgdf')
-      //     $(".btn-default.active").removeClass("active");
-      //     $(this).find(".btn-default").addClass("active");
-      // });
-
-      $(".msg_buttons").on("click", function(){
-        // debugger
-        $(".msg_buttons").removeClass("active");
-        $(this).addClass("active");
-      });
-  });
+    
   
   }
   search(newObj){
@@ -141,10 +191,15 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
             this.unread_msg = this.historyArr.length;
             console.log(this.historyArr)
           },error => 
-          alert(error) // error path
+          console.log(error) 
         )
 
   }
+
+
+
+
+  
   onBlurMethod(){
     if(this.myModel != ""){
       const json ={
@@ -160,7 +215,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
 
                   console.log(this.historyArr)
                 },error => 
-                alert(error) // error path
+                console.log(error) // error path
               )
       
     }else{
@@ -185,13 +240,16 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
             this.historyArr = data.json()  ; 
             this.historyArr.forEach(element => {
               element['checked'] = false;
+
             });
             this.all_msg = this.historyArr.length;
             this.arrayLength =  this.historyArr.length
+this.deletIcon = false
 
             console.log(this.historyArr)
+            this.loader = true
           },error => 
-          alert(error) // error path
+          console.log(error) 
         )
   }
   unread(filter_id){
@@ -215,10 +273,14 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
             });
             this.unread_msg = this.historyArr.length;
             this.arrayLength =  this.historyArr.length
+            this.deletIcon = false
+
 
             console.log(this.historyArr)
+            this.loader = false
+
           },error => 
-          alert(error) // error path
+          console.log(error) // error path
         )
   }
   stared(filter_id){
@@ -239,12 +301,18 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
             this.historyArr = data.json()  ; 
             this.historyArr.forEach(element => {
               element['checked'] = false;
+
             });
             this.stared_msg = this.historyArr.length;
             this.arrayLength = this.historyArr.length;
+            this.deletIcon = false
+
+
             console.log(this.historyArr)
+            this.loader = false
+
           },error => 
-          alert(error) // error path
+          console.log(error) // error path
         )
   }
  
@@ -254,9 +322,8 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
       {this.toastr.success(data.json().message)
         this.filter_id = 1
         this.stared(3)
-        debugger
       },error => 
-      alert(error) // error path
+      console.log(error) // error path
     )
     }else{
       this.hservice.markStar(id).subscribe(( data )  =>  
@@ -265,7 +332,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
       this.ngOnInit()
 
     },error => 
-    alert(error) // error path
+    console.log(error) // error path
   )
     }
     
@@ -276,17 +343,17 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
       {this.toastr.success(data.json().message)
         this.filter_id = 1
         this.unread(2)
-        debugger
       },error => 
-      alert(error) // error path
+      console.log(error) // error path
     )
     }else{
       this.hservice.readMark(id).subscribe(( data )  =>  
-      {this.toastr.success(data.json().message)
+      {
+        // this.toastr.success(data.json().message)
         this.filter_id = 1
         this.ngOnInit()
       },error => 
-      alert(error) // error path
+      console.log(error) // error path
     ) 
     }
   }
@@ -375,9 +442,11 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
    if(this.result.length != 0){
     this.hservice.delete(this.result).subscribe(( data )  =>  
     {this.toastr.success(data.json().message)
-      this.ngOnInit();
+      this.deletIcon = false
+        this.ngOnInit();
+        
     },error => 
-    alert(error) // error path
+    console.log(error) // error path
    )
   }
    }
@@ -385,8 +454,15 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
 
 
   //  Change Route for name click
-  changeRoute(id){
-this.route.navigate(['vendor/msg',id])
+  changeRoute(msg_bundle){
+    if(msg_bundle['replyTo'] == 0){
+      this.markRead(msg_bundle['messageId']) 
+      this.route.navigate(['vendor/msg',msg_bundle['messageId']])
+
+    }else{
+      this.markRead(msg_bundle['replyTo']) 
+      this.route.navigate(['vendor/msg',msg_bundle['replyTo']]) 
+    }
   }
   
 }

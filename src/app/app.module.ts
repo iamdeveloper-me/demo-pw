@@ -1,28 +1,35 @@
-import { NgModule} from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
 import {RatingModule} from "ngx-rating";
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import {DatePipe} from '@angular/common';
 import { ImageCropperModule } from 'ng2-img-cropper';
-
 import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.component';
+import { FullCalendarModule } from 'ng-fullcalendar';
+import { ProgressHttpModule } from 'angular-progress-http';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { OwlModule } from 'ngx-owl-carousel';
+
+//import { NgProgressModule } from 'ngx-progressbar';
+
+///import { NgProgressModule } from 'ngx-progressbar';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule } from 'angular-calendar';
 
 
 
-
+import * as $ from 'jquery';
 //calender 
 
 import { CommonModule } from "@angular/common";
 import { NgbModalModule, NgbDatepickerModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
-import { CalendarModule, CalendarDateFormatter } from 'angular-calendar';
-import { DateTimePickerComponent } from './vendor/calendertable/date-time-picker.component';
+// import { DateTimePickerComponent } from './vendor/calendertable/date-time-picker.component';
 
 //indox of vendor
 import { QuillModule } from 'ngx-quill'
 //vendorcharts
 import { PortfolioviewphotoComponent } from './vendor/portfolioviewphoto/portfolioviewphoto.component';
-
 import { ChartsModule } from 'ng2-charts';
 import { ChartistModule} from 'ng-chartist';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -41,30 +48,27 @@ import { HttpModule } from '@angular/http';
 import { DragulaService } from 'ng2-dragula';
 import { AuthService } from './shared/auth/auth.service';
 import { AuthGuard } from './shared/auth/auth-guard.service';
-import * as $ from 'jquery';
-import { UiSwitchModule } from 'ngx-ui-switch';
- 
-import {
-    SocialLoginModule,
-    AuthServiceConfig,
-    GoogleLoginProvider,
-    FacebookLoginProvider,
-} from "angular5-social-login";
-
-
-
-
+import { UiSwitchModule } from 'ngx-ui-switch'; 
+import {SocialLoginModule,AuthServiceConfig,GoogleLoginProvider,FacebookLoginProvider,} from "angular5-social-login";
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { BannerComponent } from './banner/banner.component';
 import { FootComponent } from './foot/foot.component';
-
 import { VendorcardComponent } from './vendorcard/vendorcard.component';
 import { RegisterComponent } from './register/register.component';
-import { SearchresultComponent } from './searchresult/searchresult.component';
+
+// import { Step1Component } from './register/step1/step1.component';
+
+import { StepFirstComponent } from './register/step-first/step-first.component';
+import { StepSecondComponent } from './register/step-second/step-second.component';
+import { StepThirdComponent } from './register/step-third/step-third.component';
+import { StepForthComponent } from './register/step-forth/step-forth.component';
+
+import { EqualValidator } from './register/equal-validator.directive';
+import { SearchresultComponent, PP } from './searchresult/searchresult.component';
 import { PhotoComponent } from './photo/photo.component';
 import { TipsComponent } from './tips/tips.component';
-import { DetailpageComponent } from './detailpage/detailpage.component';
+// import { DetailpageComponent } from './detailpage/detailpage.component';
 import { EventsComponent } from './events/events.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { FaquestionComponent } from './faquestion/faquestion.component';
@@ -116,14 +120,7 @@ import { VendorprofileComponent } from './vendor/vendorprofile/vendorprofile.com
 import { EditprofileComponent } from './vendor/editprofile/editprofile.component';
 import { ReviewsComponent } from './vendor/reviews/reviews.component';
 import { MembershipComponent } from './vendor/membership/membership.component';
-
-
 import { CreatePromotionComponent } from './vendor/create-promotion/create-promotion.component'; 
-
-
-
-
-
 import {  AdminComponent } from "./admin/admin.component";
 import { AdminsidebarComponent } from './admin/adminsidebar/adminsidebar.component';
 import { AdminnavbarComponent } from './admin/adminnavbar/adminnavbar.component';
@@ -154,12 +151,9 @@ import { StorefrontComponent } from './vendor/storefront/storefront.component';
 import { ActionsComponent } from './vendor/actions/actions.component';
 import { ReachComponent } from './vendor/reach/reach.component';
 import { GallerybarComponent } from './vendor/gallerybar/gallerybar.component';
-
 import { EventComponent } from './vendor/event/event.component';
 import { ReviewComponent } from './vendor/review/review.component';
 import { VediosettingComponent,SafePipe } from './vendor/vediosetting/vediosetting.component';
-
-
 import { PromotionPriorityComponent } from './vendor/promotion-priority/promotion-priority.component';
 import { PromotionAudienceComponent } from './vendor/promotion-audience/promotion-audience.component';
 import { PromotionDealsComponent } from './vendor/promotion-deals/promotion-deals.component';
@@ -169,9 +163,7 @@ import { EventlistComponent } from './eventlist/eventlist.component';
 import { InvoiceDetailComponent } from './vendor/invoice-detail/invoice-detail.component';
 import { FootCupleComponent } from './foot-cuple/foot-cuple.component';
 import { TaskboardComponent } from './admin/taskboard/taskboard.component';
-
 import { UserdetailsComponent } from './admin/userdetails/userdetails.component';
-
 import { SiteFeedbackComponent } from './admin/site-feedback/site-feedback.component';
 import { DetailstatsComponent } from './admin/detailstats/detailstats.component';
 import { SalesstatsComponent } from './admin/salesstats/salesstats.component';
@@ -183,23 +175,17 @@ import { VendorstatsComponent } from './admin/vendorstats/vendorstats.component'
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation';
 import { MatchHeightModule } from "./shared/directives/match-height.directive";
-
 import { MyaccountComponent } from './vendor/myaccount/myaccount.component';
-
 import { UseraccountComponent } from './userpannel/userboard/useraccount/useraccount.component';
 import { ErrorComponent } from './error/error.component';
-
 import { AdminexpensesComponent } from './admin/adminexpenses/adminexpenses.component';
 import { SupplierbylocationComponent } from './supplierbylocation/supplierbylocation.component';
 import { PhotogallaryComponent } from './photogallary/photogallary.component';
 import { VediogallaryComponent } from './vediogallary/vediogallary.component';
 import { SuccessComponent } from './vendor/success/success.component';
 import { FailureComponent } from './vendor/failure/failure.component';
-
-
 import { PhotogallerydetailComponent } from './photogallerydetail/photogallerydetail.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-
 // code by v
 import {BrowserModule} from '@angular/platform-browser';
 import {NgxPaginationModule} from 'ngx-pagination';
@@ -207,6 +193,34 @@ import {NgxPaginationModule} from 'ngx-pagination';
 //import { VendorComponent } from './dashboard/vendor/vendor.component';
 
 import { apiService } from './shared/service/api.service';
+import { PaymentSelectionComponent } from './vendor/payment-selection/payment-selection.component';
+import { HompageLocationComponent } from './vendor/hompage-location/hompage-location.component';
+
+import { PagerService } from './_services';
+import { DealsComponent } from './deals/deals.component';
+import { DealDetailsComponent } from './deal-details/deal-details.component';
+import { HoneymoonComponent } from './honeymoon/honeymoon.component';
+import { HoneymoonDetailsComponent } from './honeymoon-details/honeymoon-details.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { CustompipePipe } from './custompipe.pipe';
+import { CategoryPipePipe } from './category-pipe.pipe';
+
+import { EventcelandarComponent } from './eventcelandar/eventcelandar.component';
+import { DreamWeddingLocationsComponent } from './dream-wedding-locations/dream-wedding-locations.component';
+import { FeaturedWeddingSuppliersComponent } from './featured-wedding-suppliers/featured-wedding-suppliers.component';
+import { DetailpageComponent } from './detailpage/detailpage.component';
+import { PaymentSummaryComponent } from './payment-summary/payment-summary.component';
+import { Gallery0Component } from './vendor/gallery0/gallery0.component';
+import { GalleryTwoComponent } from './vendor/gallery-two/gallery-two.component';
+import { CalenderComComponent } from './vendor/calender-com/calender-com.component';
+import { SectionBComponent } from './vendor/membership/section-b/section-b.component';
+
+
+
+
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -233,6 +247,9 @@ export function getAuthServiceConfigs() {
     declarations: [
         SafePipeP,
         SafePipe,
+        PP,
+        CustompipePipe,
+        CategoryPipePipe,
         ReversePipe  ,
         AppComponent,
         InvoiceDetailComponent,
@@ -266,6 +283,14 @@ export function getAuthServiceConfigs() {
         BannerComponent,
         FootComponent,
         RegisterComponent,
+        Gallery0Component,
+        //Register Steps
+        StepFirstComponent,
+        StepSecondComponent,
+        StepThirdComponent,
+        StepForthComponent,
+        
+        
         VendorcardComponent,
         NavemenuComponent,
         VendorprofileComponent,
@@ -319,7 +344,7 @@ export function getAuthServiceConfigs() {
         NgbdpromotbusinessModalContent,
 
         VedioviewComponent,
-        DateTimePickerComponent,
+        // DateTimePickerComponent,
         MessageComponent,
         StatisticsComponent,
         UserReviewsComponent,
@@ -374,7 +399,42 @@ export function getAuthServiceConfigs() {
         FailureComponent,
         ResetPasswordComponent,
 
-       
+        EqualValidator,
+
+        PaymentSelectionComponent,
+
+        HompageLocationComponent,
+
+
+
+        DealsComponent,
+
+        DealDetailsComponent,
+
+        HoneymoonComponent,
+
+        HoneymoonDetailsComponent,
+
+        EventcelandarComponent,
+
+
+        CustompipePipe,
+
+        CategoryPipePipe,
+
+        DreamWeddingLocationsComponent,
+
+        FeaturedWeddingSuppliersComponent,
+
+        PaymentSummaryComponent,
+
+        GalleryTwoComponent,
+
+        CalenderComComponent,
+
+        SectionBComponent,
+
+
         
         
 
@@ -383,14 +443,26 @@ export function getAuthServiceConfigs() {
 
   ],
     imports: [
+        CarouselModule,
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        // calender start
+        NgbModalModule,
+        FlatpickrModule.forRoot(),
+        CalendarModule.forRoot(),
+        // calender End
 
+        OwlModule,
+        ProgressHttpModule
+,NgxDatatableModule,
+       // NgProgressModule,
         ReactiveFormsModule,
         CustomFormsModule,
         MatchHeightModule,
-        
+        FullCalendarModule,
         FileUploadModule,
         ImageCropperModule,
-        BrowserAnimationsModule,
         StoreModule.forRoot({}),
         AppRoutingModule,
         FormsModule,
@@ -400,8 +472,10 @@ export function getAuthServiceConfigs() {
         SocialLoginModule,
         HttpModule,
         RatingModule,
+
         // VendorModule,
         //inbox
+        RatingModule,
         QuillModule,
         //calender
         CommonModule,
@@ -410,7 +484,7 @@ export function getAuthServiceConfigs() {
         Ng2SmartTableModule,
         ChartistModule,
         NgxChartsModule,
-        CalendarModule.forRoot(),
+        // CalendarModule.forRoot(),
         NgbModalModule.forRoot(),
         NgbDatepickerModule.forRoot(),
         NgbTimepickerModule.forRoot(),
@@ -425,7 +499,7 @@ export function getAuthServiceConfigs() {
               }
         }),
         AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyBr5_picK8YJK7fFR2CPzTVMj6GG1TtRGo',
+            apiKey: 'AIzaSyAZ1gsa9BUjNuL-WmCOLhelB2-jQ2jWlxo',
             libraries: ["places"]
         }),
         // code by v
@@ -433,6 +507,7 @@ export function getAuthServiceConfigs() {
     ],
 
     providers: [
+            PagerService,
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         AuthService,
         GoogleMapsAPIWrapper,
@@ -449,6 +524,9 @@ export function getAuthServiceConfigs() {
     ],
     bootstrap: [AppComponent, MylistingComponent],
     entryComponents: [NgbdModalContent],
+    schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+    ],
    
 })
 export class AppModule {

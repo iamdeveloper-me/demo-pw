@@ -1,0 +1,204 @@
+<div id="wrappervendor" class="" >
+<app-menu></app-menu>
+<div class="container  martop60px">
+      <div class="row  mobilefixedcontainer">
+   
+      <div class="col-sm-4" *ngIf="MainData.route_key == 3">
+        <!-- {{MainData | json}} -->
+      <div class="card">
+        <div class="card-header">
+             <h1 class="headingpay">Payment Detail</h1>
+        </div>
+        <div class="col-sm-12">
+          <table class="table table-striped">
+              <tr>
+                  <th *ngIf="MainData.title != ''" >Current Plan :{{ WhichPlan.title }}</th>
+                </tr>
+            
+            <!-- <tr>
+              <th *ngIf="MainData.voucherCode != ''">Voucher Code :{{MainData.voucherCode}}</th>
+            </tr> -->
+            <tr>
+              <th *ngIf="MainData.payFrequency == '1'">Period : 6 Month</th>
+              <th *ngIf="MainData.payFrequency == 2">Period : Annually</th>
+
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm-12">
+          <table class="table table-striped">
+              <tbody>
+                <tr *ngFor="let dT of MainData.slotIds ">
+                  <td> {{dT.week}}</td>
+                  <td>$ {{dT.cost}}</td>
+                </tr>
+                
+                <tr>
+                    <th>Total</th>
+                    <td>$ {{totalAmount}}</td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+    
+
+
+      <div class="col-sm-8">
+          <div class="card">
+             <div class="card-header">
+                          <h1 class="headingpay">Payment Process</h1>
+                      </div>
+               <!-- {{MainData |json}}fff -->
+          
+            <!--  plan  <h1 *ngIf="MainData.pricingPlanId == 1 && MainData.payFrequency == 1">6month BASIC (FREE)</h1>
+                    <h1 *ngIf="MainData.pricingPlanId == 2 && MainData.payFrequency == 1">6month PREMIUM</h1>
+                    <h1 *ngIf="MainData.pricingPlanId == 3 && MainData.payFrequency == 1">6month ULTIMATE</h1>
+          
+                    <h1 *ngIf="MainData.pricingPlanId == 1 && MainData.payFrequency == 2">Annualy BASIC (FREE)
+                    </h1>
+                    <h1 *ngIf="MainData.pricingPlanId == 2 && MainData.payFrequency == 2">Annualy PREMIUM</h1>
+                    <h1 *ngIf="MainData.pricingPlanId == 3 && MainData.payFrequency == 2">Annualy    </h1>
+                     -->
+          
+          
+          
+          
+          
+                     <article>
+                      <div class="col-sm-12">
+                         <ul class="nav nav-pills rounded nav-fill mb-3" role="tablist">
+                            <li class="nav-item">
+                               <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
+                              Credit Card</a>
+                            </li>
+                            <li class="nav-item">
+                               <a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
+                              Paypal Payment</a>
+                            </li>
+                            <li class="nav-item">
+                               <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
+                               Bank Transfer</a>
+                            </li>
+                         </ul>
+                         <div class="tab-content">
+                            <div class="tab-pane fade show active" id="nav-tab-card">
+                             <!--   <p class="alert alert-success">Some text success or error</p> -->
+                               <form role="form">
+                                  <div class="field">
+                                     <input type="text" id="username" name="username" placeholder="Full Name (on the card)" required="">
+                                      <label for="username">Full Name (on the card)</label>
+                                  </div>
+                                  <!-- form-group.// -->
+                                  <div class="field">
+                                        <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="Card Number">
+                                        <label for="cardNumber">Card Number</label>
+                                        <div class="input-group-append">
+                                           <span class="input-group-text text-muted">
+                                          <i class="material-icons">payment</i>
+                                           </span>
+                                        </div>
+                                  </div>
+                                  <div class="clearfix"></div>
+                                  <!-- form-group.// -->
+                                  <div class="row">
+                                     <div class="col-sm-4">
+                                        <div class="field">
+                                              <input type="number" class="form-control" placeholder="Month" name="expmon" id="expmon">
+                                              <label for="Month"><span class="hidden-xs">Exp. Month</span> </label>
+                                        </div>
+                                     </div>
+                                      <div class="col-sm-4">
+                                        <div class="field">
+                                              <input type="number" class="form-control" placeholder="Month" name="expdate" id="expdate">
+                                              <label for="expdate"><span class="hidden-xs">Exp. Date</span> </label>
+                                        </div>
+                                     </div>
+                                     <div class="col-sm-4">
+                                         <div class="field">
+                                          <input type="number" name="cvv" id="cvv" placeholder="CVV" class="form-control" required="">
+                                          <label for="" data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">
+                                            CVV <i class="fa fa-question-circle"></i>
+                                          </label>
+                                        </div>
+                                        <!-- form-group.// -->
+                                     </div>
+                                  </div>
+                                  <!-- row.// -->
+                                  <button class="btn newbtn martop20px" type="button"> Confirm  </button>
+                               </form>
+                            </div>
+                            <!-- tab-pane.// -->
+                            <div class="tab-pane fade" id="nav-tab-paypal">
+                               <p>Paypal is easiest way to pay online</p>
+                               <p>
+                                  <button type="button" (click)="PayPalPayment()" class="btn newbtn"> Log in my Paypal </button>
+                               </p>
+                               <p><strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                  tempor incididunt ut labore et dolore magna aliqua. 
+                               </p>
+                            </div>
+                            <div class="tab-pane fade" id="nav-tab-bank">
+                               <p>Following are the Bank account details</p>
+                               <dl class="param">
+                                  <dt>BANK: </dt>
+                                  <dd> THE WORLD BANK</dd>
+                               </dl>
+                               <dl class="param">
+                                  <dt>Accaunt number: </dt>
+                                  <dd> 12345678912345</dd>
+                               </dl>
+                               <dl class="param">
+                                  <dt>IBAN: </dt>
+                                  <dd> 123456789</dd>
+                               </dl>
+                               <p><strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                  tempor incididunt ut labore et dolore magna aliqua. 
+                               </p>
+                            </div>
+                            <!-- tab-pane.// -->
+                         </div>
+                         <!-- tab-content .// -->
+                      </div>
+                      <!-- card-body.// -->
+                   </article>
+                   <!-- card.// -->
+            </div>
+      </div>
+    </div>
+
+
+
+
+
+
+</div>
+<app-foot></app-foot>
+</div>
+<router-outlet></router-outlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- plan_id_and_frequency -->

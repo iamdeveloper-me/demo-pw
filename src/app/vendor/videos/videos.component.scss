@@ -27,6 +27,11 @@
 .btnheadvendor:hover{
     background: #ffffff;
 }
+
+.form-group input{
+    outline:none!important;
+}
+
 .oops{
 text-align:center;
 }
@@ -205,11 +210,14 @@ border-radius:10px;
 .input-effect .effect-16{
     border: 0;
     padding: 4px 0;
+    border: 0px;
     border-bottom: 1px solid #ccc;
     background-color: transparent;
     z-index: 2;
     position: relative;
     width: 100%;
+    border-radius:0px;
+    box-shadow: none;
 }
 .input-effect .effect-16 ~ label {
     position: absolute;
@@ -362,8 +370,14 @@ margin-top: 30px;
   transform: scale(1.1); 
 }
 
-
-
+.borderedbox{
+    border:1px solid #e5e5e5;
+    padding-bottom: 10px;
+}
+.borderedbox i{
+    float: left;
+    margin: 0px 10px 0px 5px;
+}
 
 
 
@@ -655,4 +669,165 @@ button{
 #wrapper {
     padding-left: 0;
 }
+}
+
+
+
+%label-movement {
+  // Move up, colorize and shrink
+  font-size: 0.75em;
+  color: #8e44ad;
+  top: -2.25rem;
+  transition: all 0.125s cubic-bezier(0.2, 0, 0.03, 1);
+}
+
+.styled-input {
+  float: left;
+  width: 33.3333%;
+  margin: 2rem 0 1rem;
+  position: relative;
+  label {
+    color: #999;
+    padding: 1rem;
+    position: absolute;
+    top: 0;    
+    left: 0;
+    transition: all 0.25s cubic-bezier(0.2, 0, 0.03, 1);
+    pointer-events: none;
+  }
+  &.wide {
+    // Full width textarea fields
+    width: 100%;
+  }
+}
+
+input, textarea {
+  padding: 1rem 1rem;
+  border: 0; 
+  width: 100%;
+  font-size: 1rem;
+  ~ span {
+    // Border Effect
+    display: block;
+    width: 0;
+    height: 3px;
+    background: #8e44ad;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: all 0.125s cubic-bezier(0.2, 0, 0.03, 1);
+  }
+  &:focus {
+    // Trigger the effects
+    outline: 0;
+      ~ label {
+      // Move Label
+      @extend %label-movement;
+    }
+    ~ span {
+      // Expand across
+      width: 100%;
+      transition: all 0.125s cubic-bezier(0.2, 0, 0.03, 1);
+    }
+    }
+  &:valid ~ label/*, &.not-empty ~ label*/ {
+    // Keep label above field after its filled out
+    @extend %label-movement;
+  }
+}
+
+textarea {
+  // Mods needed for multiline inputs
+  width: 100%;
+  min-height: 15em;
+}
+/* form starting stylings ------------------------------- */
+.field {
+  display: flex;
+  flex-flow: column-reverse;
+  margin-top:10px;
+}
+/**
+* Add a transition to the label and input.
+* I'm not even sure that touch-action: manipulation works on
+* inputs, but hey, it's new and cool and could remove the 
+* pesky delay.
+*/
+
+ .field label, .field input, .field select {
+  transition: all 0.2s;
+  touch-action: manipulation;
+}
+
+ .field  input, .field select{
+  font-size: 1.2em;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  font-family: inherit;
+  -webkit-appearance: none;
+  border-radius: 0;
+  padding: 0 0 10px 0;
+  cursor: text;
+}
+
+ .field input:focus,   .field select:focus {
+  outline: 0;
+  border-bottom: 1px solid #f0118c;
+}
+
+ .field label {
+  text-transform: uppercase;
+  margin-bottom: 0px;
+  letter-spacing: 0.05em;
+}
+/**
+* Translate down and scale the label up to cover the placeholder,
+* when following an input (with placeholder-shown support).
+* Also make sure the label is only on one row, at max 2/3rds of the
+* field—to make sure it scales properly and doesn't wrap.
+*/
+ .field input:placeholder-shown + label, .field select:placeholder-shown + label {
+  cursor: text;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: left bottom;
+  transform: translate(0, 2.125rem);
+  transition: .5s all;
+}
+/**
+* By default, the placeholder should be transparent. Also, it should 
+* inherit the transition.
+*/
+::-webkit-input-placeholder {
+  opacity: 0;
+  transition: inherit;
+   transition: .5s all;
+}
+/**
+* Show the placeholder when the input is focused.
+*/
+ .field input:focus::-webkit-input-placeholder,  .field select:focus::-webkit-input-placeholder {
+  opacity: 0;
+  color:#f0118c;
+}
+ .field input::placeholder{
+  color:#fff!important;
+ }
+/**
+* When the element is focused, remove the label transform.
+* Also, do this when the placeholder is _not_ shown, i.e. when 
+* there's something in the input at all.
+*/
+ .field input:not(:placeholder-shown) + label,
+ .field input:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
+}
+
+ .field select:not(:placeholder-shown) + label,
+ .field select:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
 }

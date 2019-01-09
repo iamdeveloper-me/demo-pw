@@ -1,390 +1,153 @@
 <div id="wrappervendor" class="">
-  <app-menu></app-menu>
-<section class="container-fluid tips fixedtik">
+    <app-menu></app-menu>
+    <section class="container-fluid tips fixedtik">
         <div class="select">
             <div class="searchtopbar">
-              
-              <div class="col-md-2 col-xs-6 mar_left_75">
-                <select class="cityinput2">
-                    <option>All Category</option>
-                    <option>Venue </option>
-                    <option>Decorators</option>
-                    <option>Food</option>
-                    <option>Travels</option>
-                    <option>Cake</option>
-                </select>
-              </div>
-      
-              
-           
-              <div class="col-md-8 col-xs-6 Search_img">
-                <input type="text" name="" placeholder="Search Category" class="searchinput">
-                <input type="submit" value="" class="search-button">
-              </div>
-      
+                <form (ngSubmit)="find_photo(list)" #list="ngForm">
+                    <div class="col-md-2 col-xs-6 mar_left_75">
+                        <!-- <select class="cityinput2" name="categoryId" placeholder = "All Category"  [(ngModel)]="categoryId"  id="categoryId" >
+                            <option   [value]="0"  >All Category</option>
+                            <option *ngFor='let list_categories of categories' [value] = "list_categories.categoryId" >
+                                {{list_categories.categoryName}}
+                            </option>
+                        </select> -->
+                        <select class="form-control round_first" [(ngModel)]="category" name="categoryId" >
+                            <option value='undefined'> All Categories </option>
+                            <option *ngFor='let list_Categories of categories' [value]="list_Categories.categoryId" > 
+                                {{list_Categories.categoryName}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-8 col-xs-6 Search_img" (click)="tag_colour = true" >
+                        <input type="text"  [(ngModel)]="searchQuery"  type="text" name="searchQuery"  placeholder="Search with tags and colour tags only" class="searchinput">
+                        <input type="submit"  value=""  class="search-button">
+                    </div>
+                </form>
             </div>
-      
         </div>
-
-</section>
-<div class="container-fluid fixedtik">
-    <section id="wrapper" class="photoframewrapper">
-    <div id="container" class="photoframe">
-    
-            <div class="imgholder"> 
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyeBgPnINh34-bI-14ewJjHNuvHKm9p2ggieArxgy3xWpcaI7bKg" />
-             
-                <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-            </div>
-           
-            <div class="imgholder"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIRwqE8_ew99BGr2SSaCrSGj3vzVnoPudfbhgxbiTc-aFHDXyu" /> 
-                <div class="meta">
-                        <p>hui hu</p>
-                        <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                    </div> 
-            </div>
-
-           
-            <div class="imgholder"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-8AI7ALMwWB3Dy1LvsTOefjhkcDY2fejKRiNxK0w1VYlDFpLqhw" /> 
-                <div class="meta">
-                        <p>hui hu</p>
-                        <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                    </div> 
-            </div>
-            
-            <div class="imgholder"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNnEhrZN6t8dA1jASWL0-Qk0pt4M0yJaVQdLorSSKpyO86d-HYdw" /> 
-                <div class="meta">
-                        <p>hui hu</p>
-                        <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                    </div> 
-            </div>
-       
-            <div class="imgholder"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbnhvdekCXl7dEjJJVLjIOITfz-xUKPT90xJl4GaKKh-e88PAg" /> 
-                <div class="meta">
-                        <p>hui hu</p>
-                        <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                    </div>  
-            </div>
-         
-            <div class="imgholder"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5d_AgclBoXpmVfYvgjNPCimN_QBoNT7WUvHd2txExGxD5P9UwyQ" /> 
-                <div class="meta">
-                        <p>hui hu</p>
-                        <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                    </div> 
-            </div>
-        
-            <div class="imgholder"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFuiNFduc3v_VqjkBtAt3PmrbLvSuUUpsqql7IIOJFQTup8Kl2" />
-                <div class="meta">
-                        <p>hui hu</p>
-                        <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                    </div> 
-            </div>
-          
-            <div class="imgholder"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDUMK7S_JseV00X2up0KjToE-XGu8yUlj6OoszjRxp7irSW4O2" /> 
-                <div class="meta">
-                        <p>hui hu</p>
-                        <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                    </div> 
-            </div>
-            
-        
-       
-        <div class="imgholder  hideme"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2KOaW9EgVltieFa_HjNco2qFlK6nOTC98L_eDRz5d65c_XXFNug" />
-            <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-        </div>
-    
-        <div class="imgholder  hideme"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqPaKgJiKtK2SrWLNxlmnZMsx2w5hiqz078BzjWM5nA3M-0L9l" /> 
-            <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-        </div>
-       
-       
-        <div class="imgholder  hideme"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4TCIqpl7uV0duDIMOIErHl_gUA2F8pBCExAQ386bgr0HxYrPBww" />
-            <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-        </div>
-        
- 
-        <div class="imgholder  hideme"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2KOaW9EgVltieFa_HjNco2qFlK6nOTC98L_eDRz5d65c_XXFNug" />
-            <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-        </div>
-       
-       
-        <div class="imgholder  hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img5.jpg" />
-            <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-        </div>
-       
-      
-        <div class="imgholder  hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img25.jpg" />
-            <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-        </div>
-       
-       
-        <div class="imgholder  hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img20.jpg" /> 
-            <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-        </div>
-       
-      
-            <div class="imgholder  hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img27.jpg" /> 
-                <div class="meta">
-                        <p>hui hu</p>
-                        <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                    </div> 
-            </div>
-           
-       
-            <div class="imgholder hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img21.jpg" />
-                <div class="meta">
-                        <p>hui hu</p>
-                        <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                    </div> 
-            </div>
-      
-       
-           
-    <!----> 
-
-      
-       
-    <div class="imgholder  hideme"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2KOaW9EgVltieFa_HjNco2qFlK6nOTC98L_eDRz5d65c_XXFNug" />
-        <div class="meta">
-                <p>hui hu</p>
-                <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-            </div> 
-    </div>
-
-    <div class="imgholder  hideme"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqPaKgJiKtK2SrWLNxlmnZMsx2w5hiqz078BzjWM5nA3M-0L9l" /> 
-        <div class="meta">
-                <p>hui hu</p>
-                <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-            </div> 
-    </div>
-   
-   
-    <div class="imgholder  hideme"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4TCIqpl7uV0duDIMOIErHl_gUA2F8pBCExAQ386bgr0HxYrPBww" />
-        <div class="meta">
-                <p>hui hu</p>
-                <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-            </div> 
-    </div>
-    
-
-    <div class="imgholder  hideme"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2KOaW9EgVltieFa_HjNco2qFlK6nOTC98L_eDRz5d65c_XXFNug" />
-        <div class="meta">
-                <p>hui hu</p>
-                <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-            </div> 
-    </div>
-   
-   
-    <div class="imgholder  hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img5.jpg" />
-        <div class="meta">
-                <p>hui hu</p>
-                <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-            </div> 
-    </div>
-   
-  
-    <div class="imgholder  hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img25.jpg" />
-        <div class="meta">
-                <p>hui hu</p>
-                <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-            </div> 
-    </div>
-   
-   
-    <div class="imgholder  hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img20.jpg" /> 
-        <div class="meta">
-                <p>hui hu</p>
-                <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-            </div> 
-    </div>
-   
-  
-        <div class="imgholder  hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img27.jpg" /> 
-            <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-        </div>
-       
-   
-        <div class="imgholder hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img21.jpg" />
-            <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-        </div>
-              
-    <div class="imgholder  hideme"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2KOaW9EgVltieFa_HjNco2qFlK6nOTC98L_eDRz5d65c_XXFNug" />
-        <div class="meta">
-                <p>hui hu</p>
-                <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-            </div> 
-    </div>
-
-    <div class="imgholder  hideme"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqPaKgJiKtK2SrWLNxlmnZMsx2w5hiqz078BzjWM5nA3M-0L9l" /> 
-        <div class="meta">
-                <p>hui hu</p>
-                <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-            </div> 
-    </div>
-   
-   
-    <div class="imgholder  hideme"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4TCIqpl7uV0duDIMOIErHl_gUA2F8pBCExAQ386bgr0HxYrPBww" />
-        <div class="meta">
-                <p>hui hu</p>
-                <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-            </div> 
-    </div>
-    
-
-    <div class="imgholder  hideme"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2KOaW9EgVltieFa_HjNco2qFlK6nOTC98L_eDRz5d65c_XXFNug" />
-        <div class="meta">
-                <p>hui hu</p>
-                <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-            </div> 
-    </div>
-   
-   
-    <div class="imgholder  hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img5.jpg" />
-        <div class="meta">
-                <p>hui hu</p>
-                <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-            </div> 
-    </div>
-   
-  
-    <div class="imgholder  hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img25.jpg" />
-        <div class="meta">
-                <p>hui hu</p>
-                <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-            </div> 
-    </div>
-   
-   
-    <div class="imgholder  hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img20.jpg" /> 
-        <div class="meta">
-                <p>hui hu</p>
-                <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-            </div> 
-    </div>
-   
-  
-        <div class="imgholder  hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img27.jpg" /> 
-            <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-        </div>
-       
-   
-        <div class="imgholder hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img21.jpg" />
-            <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-        </div>      
-        <div class="imgholder  hideme"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2KOaW9EgVltieFa_HjNco2qFlK6nOTC98L_eDRz5d65c_XXFNug" />
-            <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-        </div>
-    
-        <div class="imgholder  hideme"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqPaKgJiKtK2SrWLNxlmnZMsx2w5hiqz078BzjWM5nA3M-0L9l" /> 
-            <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-        </div>
-       
-       
-        <div class="imgholder  hideme"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4TCIqpl7uV0duDIMOIErHl_gUA2F8pBCExAQ386bgr0HxYrPBww" />
-            <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-        </div>
-        
-    
-        <div class="imgholder  hideme"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2KOaW9EgVltieFa_HjNco2qFlK6nOTC98L_eDRz5d65c_XXFNug" />
-            <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-        </div>
-       
-       
-        <div class="imgholder  hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img5.jpg" />
-            <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-        </div>
-       
-      
-        <div class="imgholder  hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img25.jpg" />
-            <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-        </div>
-       
-       
-        <div class="imgholder  hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img20.jpg" /> 
-            <div class="meta">
-                    <p>hui hu</p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                </div> 
-        </div>
-       
-      
-            <div class="imgholder  hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img27.jpg" /> 
-                <div class="meta">
-                        <p>hui hu</p>
-                        <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                    </div> 
-            </div>
-           
-       
-            <div class="imgholder hideme"> <img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img21.jpg" />
-                <div class="meta">
-                        <p>hui hu</p>
-                        <i class="fa fa-map-marker" aria-hidden="true"></i> Indore
-                    </div> 
-            </div>
-    </div>
     </section>
-
-</div>   
-
-<div class="clearfix"></div>
-<app-foot></app-foot>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="text-center">
+                <section id="wrapper">
+                    <div class="container">    
+                        <span class="colortag" *ngIf='showTag' [style.background-color]='searchQuery'>                           
+                        </span>
+                        <div  *ngIf='showTag2'>
+                            <div class="tagnamediv"   *ngFor="let item of pagedItems | slice:0:1 ;let i=index ">
+                                <div *ngFor="let tag of item?.tags | slice:0:1 ;let i=index " >  
+                                    <span class="tagstik" *ngIf = "tag != '' " > 
+                                        {{tag}}    
+                                    </span> 
+                                   
+                                </div>
+                            </div> 
+                        </div>
+                        <div style="position:relative;min-height:100vh;" id="categoryProductContainer"  >
+                            <h1>{{error_1}}</h1>
+                            <div class="span2 pcon prodcont actioninside" *ngFor="let item of pagedItems" data-toggle="modal" data-target="#myModal">
+                                <div (click) = "popup(item)">
+                                    <img [src]="item.imageURL" />
+                                    <div class="clearfix"></div>
+                                    <div class="photodetail">
+                                        <p class="detaildiv">
+                                            <span>{{item.nameOfBusiness}}//{{item.id}}</span>
+                                            <span><i class="fa fa-map-marker"></i>{{item.district}}</span>
+                                        </p>   
+                                        <!-- <div *ngIf= "default_colour_tags">
+                                            <div *ngFor='let colour of item?.colorTags'>
+                                                <div *ngIf = "colour != ''">
+                                                    <span class="colortag"  [style.background-color]='colour'>                           
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       -->
+                                        <div class="linkdiv">
+                                                <i class="material-icons">favorite_border</i>
+                                                &nbsp;<i class="material-icons">share</i>
+                                                <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="tagnamediv ">
+                                        <div *ngFor="let tag of item?.tags;let i=index">
+                                            <span class="tagstik" *ngIf = "tag != '' " > 
+                                                    {{tag}}    
+                                            </span> 
+                                        </div>
+                                    </div> 
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- pager -->
+                <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                    <li [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a (click)="setPage(1)">First</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                    </li>
+                    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a (click)="setPage(page)">{{page}}</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a (click)="setPage(pager.totalPages)">Last</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>   
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <a href="#" class="close" data-dismiss="modal"> </a>
+            <img class="popupimg" [src]="pho_data.imageURL">
+            <div class="modal-footer" style="background-color: white;">
+                <div class="popupdetail">
+                    <div class="col-sm-6 text-left">
+                        <h4>{{pho_data.nameOfBusiness}} </h4>
+                        <p>
+                            <span><i class="fa fa-map-marker"></i> {{pho_data.district}}</span>
+                        </p>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <i class="material-icons setlink">favorite_border</i>
+                        &nbsp;
+                        <i class="material-icons setlink">share</i>
+                        <div class="clearfix"></div>
+                      
+                                <div *ngFor='let colour of pho_data.colorTags' >
+                                    <div *ngIf = "colour != ''">
+                                        <span class="colortag"  [style.background-color]='colour'>                           
+                                        </span>
+                                    </div>
+                                </div>
+                        
+                        
+                            
+                        <!-- <span class="colortag" style="background:#ff0000;"></span>
+                        <span class="colortag" style="background:#001aff;"></span>
+                        <span class="colortag" style="background:#88ff00;"></span> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <app-foot></app-foot>
 </div>
 <router-outlet></router-outlet> 
+
+
+
+
+
 
 
 

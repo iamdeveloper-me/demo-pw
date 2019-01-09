@@ -1,30 +1,33 @@
+import { apiPath } from './../../shareApi/apiPath';
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-discountdeals',
   templateUrl: './discountdeals.component.html',
   styleUrls: ['./discountdeals.component.scss']
 })
 export class DiscountdealsComponent implements OnInit {
+  url = apiPath.url;
+  create_start_date;
+  customDay;
+  isDisabled;
   selected = "all";
   editdeal_dailog = false;  
   dealservice = false;
   createdeal_dailog = false;
-  private discountGet: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/discounts'
   discount:any = [];
   update_end_date;
   update_start_date;
-  private updatediscountPost: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatediscount'
   updiscount:any = [];
-
-  private SupplierdiscountGet: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/discount'
+  noDiscount:boolean =  false;
+  upgradeMsg=''
+  upgradeMembership:boolean = false;
   Supplierdiscount:any = [];
 
-  private deal: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/createupdatedeals'
   title;
   disTitle;
   createdial = false;
@@ -37,14 +40,13 @@ export class DiscountdealsComponent implements OnInit {
     endDate: "",
     neverExpire: true
   };
-  private mydeal: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mydeals'
   recentmydeal:any = [];
   readioSelected_serv:boolean;
+  ram:boolean =false
+  basicplan:number
+  constructor(public http: Http,public toastr: ToastrService, private router: Router  ) {
+    this.basicplan = JSON.parse(localStorage.getItem('basic-plan'));
 
-  private deletedeal : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/deletedeal'
-
-  constructor(public http: Http,public toastr: ToastrService) {
-   
    }
 
   ngOnInit() {
@@ -52,6 +54,26 @@ export class DiscountdealsComponent implements OnInit {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
 
+     $('.selectwet').on("focus", function(){
+        $(".selectlabel").addClass("bottomtik");
+      });
+
+      $('.selectwet').on("focusout", function(){
+        if($(this).val() === null){
+          $(".selectlabel").removeClass("bottomtik");
+        }
+      });
+      
+
+      $('.selectwet1').on("focus", function(){
+        $(".selectlabel1").addClass("bottomtik");
+      });
+
+      $('.selectwet1').on("focusout", function(){
+        if($(this).val() === null){
+          $(".selectlabel1").removeClass("bottomtik");
+        }
+      });
 
 
     $(".close").click(function(){
@@ -100,20 +122,28 @@ export class DiscountdealsComponent implements OnInit {
      headers.append('Accept', 'application/json')
      headers.append('Content-Type', 'application/json');
      headers.append("Authorization",'Bearer '+authToken);
-     this.http.get(this.discountGet,{headers:headers}).subscribe(data =>{  
+     this.http.get(this.url+'api/LookupMaster/discounts',{headers:headers}).subscribe(data =>{  
        console.log(data.json());
        this.discount = data.json();
      })
-     this.http.get(this.SupplierdiscountGet,{headers:headers}).subscribe(data =>{  
+     this.http.get(this.url+'api/Supplier/discount',{headers:headers}).subscribe(data =>{  
       console.log(data.json());
      this.Supplierdiscount = data.json();
      this.disTitle =   this.Supplierdiscount.title ;
      if(this.Supplierdiscount.length == 0 ){
-       alert("dcds");
+     
       this.Supplierdiscount.title = "No Discounts Applied" ;
+      
+     }
+    },
+    e=>{
+      
+     if(e.status == 400){
+      // this.toastr.error(JSON.parse(e._body)['no_discount'][0])
+      this.noDiscount = true;
      }
     })
-    this.http.get(this.mydeal,{headers:headers}).subscribe(data =>{  
+    this.http.get(this.url+'api/Supplier/mydeals',{headers:headers}).subscribe(data =>{  
      
      this.recentmydeal = data.json();
      console.log( this.recentmydeal);
@@ -126,10 +156,14 @@ open(c){
        
 }
 updatedis(service){
+  
+
+
+
   this.dealservice = false;
   console.log(service.value.select);
   console.log(service.value.select.title);
- this.disTitle = service.value.select.title;
+//  this.disTitle = service.value.select.title;
 
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
@@ -147,44 +181,118 @@ this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/ap
    a,{headers:headers}).subscribe(
     data =>{  
     console.log(data.json());
+    this.noDiscount = false;
+    this.disTitle = service.value.select.title;
+
    this.toastr.success("Discount updated successfully."); 
     this.dealservice = false;
    this.updiscount = data.json();
   },error => {console.log(error);
-      this.toastr.warning(error);
+    this.noDiscount = true;
+    
+    if(error.status == 400){
+      
+      this.upgradeMsg = JSON.parse(error._body)["upgrade_membership"][0] 
+      this.upgradeMembership = true;
+
+
+      swal({
+        // title: "Are you sure to change membership plan?",
+        title: "Free Plan",
+        text: this.upgradeMsg,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-default",
+        confirmButtonText: "Yes, Upgrade Now!",
+        cancelButtonText: "Remind Me Later!",
+    }).then((res)=>{
+     
+                    if(res.value===true){
+                      this.router.navigate(['../vendor/membership'])
+                   }else{
+                    
+                          this.toastr.warning(JSON.parse(error._body)["upgrade_membership"][0]);
+                    }
+    },error=>{
+      alert(JSON.stringify(error));
+    })
+    return;
+        
+    
+    }
+    this.toastr.warning(error);
   })
+ 
 } 
 createdeals(createdeal){
+  this.ram = true
+ 
+  console.log(createdeal.value.neverExpire);
+  console.log( createdeal.value.neverExpire == true );
 
+ 
+   if(createdeal.value.neverExpire == true){
+    alert("true");
+
+    createdeal.value.Start_date =  createdeal.value.Start_date["year"]+'-'+createdeal.value.Start_date["month"]+'-'+createdeal.value.Start_date["day"]
+
+    const a = {
+      dealId: 0,
+      title: createdeal.value.title,
+      conditions: createdeal.value.Condition ,
+      startDate: createdeal.value.Start_date ,
+      endDate:   "2018-12-13T13:14:59.522Z" ,
+      neverExpire: createdeal.value.neverExpire
+  
+    }
+
+    this.create_deal_api(a)
+    createdeal.reset();
+   }else{
+    createdeal.value.Start_date =  createdeal.value.Start_date["year"]+'-'+createdeal.value.Start_date["month"]+'-'+createdeal.value.Start_date["day"]
+    createdeal.value.End_date =  createdeal.value.End_date["year"]+'-'+createdeal.value.End_date["month"]+'-'+createdeal.value.End_date["day"]
+    
+    const a = {
+      dealId: 0,
+      title: createdeal.value.title,
+      conditions: createdeal.value.Condition ,
+      startDate: createdeal.value.Start_date ,
+      endDate: createdeal.value.End_date ,
+      neverExpire: createdeal.value.neverExpire
+  
+    }
+
+    this.create_deal_api(a);
+    createdeal.reset();
+   }
+
+
+  
+
+  
+ 
+}
+
+
+create_deal_api(a){
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
- 
   headers.append('Accept', 'application/json')
   headers.append('Content-Type', 'application/json');
   headers.append("Authorization",'Bearer '+authToken);
-  const a = {
-    dealId: 0,
-    title: createdeal.value.title,
-    conditions: createdeal.value.Condition ,
-    startDate: createdeal.value.startdate ,
-    endDate: createdeal.value.EndDate ,
-    neverExpire: createdeal.value.neverExpire
-
-  }
-
-  console.log(a);
-  this.http.post(this.deal,a,{headers:headers}).subscribe(
+  this.http.post(this.url+'api/Supplier/createupdatedeals',a,{headers:headers}).subscribe(
     data =>{  
       
       if(data.status == 200)      {        
         this.createdeal_dailog = false;       
-        console.log("saved");      
+        console.log("saved");  
+        this.ram =false    
     }
 
 
       console.log(data.json());   
-createdeal.reset();
-      this.http.get(this.mydeal,{headers:headers}).subscribe(data =>{  
+//
+      this.http.get(this.url+'api/Supplier/mydeals',{headers:headers}).subscribe(data =>{  
      
         this.recentmydeal = data.json();
         console.log( this.recentmydeal);
@@ -192,17 +300,35 @@ createdeal.reset();
 
       this.toastr.success(" New Deal is created");
       console.log( this.recentmydeal); 
-    },error => {console.log(error);  this.toastr.warning(error);})
- 
+    },error => {console.log(error); 
+      this.toastr.warning(error._body.split('[')[1].split(']')[0])
+                    
+      
+      })
 }
 openupdatedeal(data){
   
   console.log(data);
 
   this.updatemydeal = data ;
-  this.update_end_date = data.endDate.split('T')[0];
-   this.update_start_date =data.startDate.split('T')[0];
+  if(data.endDate != null){
+    this.update_end_date = data.endDate.split('T')[0];
+
+    this.update_end_date =  { "year": parseInt(data.endDate.split('T')[0].split('-')[0])   , 
+                                    "month": parseInt(data.endDate.split('T')[0].split('-')[1])  ,
+                                    "day": parseInt(data.endDate.split('T')[0].split('-')[2])}
+
+  }
+  if(data.startDate != null){
+    this.update_start_date =data.startDate.split('T')[0];
+
+    this.update_start_date =  { "year": parseInt(data.startDate.split('T')[0].split('-')[0])   , 
+                                    "month": parseInt(data.startDate.split('T')[0].split('-')[1])  ,
+                                    "day": parseInt(data.startDate.split('T')[0].split('-')[2])}
+
+  }
  
+  
 }
 updatedeal(info){
                    
@@ -213,7 +339,9 @@ updatedeal(info){
                     headers.append('Accept', 'application/json')
                     headers.append('Content-Type', 'application/json');
                     headers.append("Authorization",'Bearer '+authToken);
-                    
+                    info.value.Start_date =  info.value.Start_date["year"]+'-'+info.value.Start_date["month"]+'-'+info.value.Start_date["day"]
+                    info.value.End_date =  info.value.End_date["year"]+'-'+info.value.End_date["month"]+'-'+info.value.End_date["day"]
+                 
                     const upc = {
                       dealId: info.value.dealId,
                       title: info.value.update_title ,
@@ -223,12 +351,12 @@ updatedeal(info){
                       neverExpire: info.value.optradio
                     }
                     console.log(upc);
-                    this.http.post(this.deal,upc,{headers:headers}).subscribe(
+                    this.http.post(this.url+'api/Supplier/createupdatedeals',upc,{headers:headers}).subscribe(
                       data =>{  
                       console.log(data.json());
                       this.toastr.success(" Your deal is  updated successfully.");
 
-                      this.http.get(this.mydeal,{headers:headers}).subscribe(data =>{  
+                      this.http.get(this.url+'api/Supplier/mydeals',{headers:headers}).subscribe(data =>{  
      
                         this.recentmydeal = data.json();
                         console.log( this.recentmydeal);
@@ -253,7 +381,7 @@ deletedeals(a ,index){
               }).then((res)=>{
                                 console.log(res);
                                 if(res.value===true){
-                                                        // alert('delete Process !');
+                                                       
                                                         console.log(a);
                                                       let headers = new Headers();
                                                       var authToken = localStorage.getItem('userToken');
@@ -270,27 +398,80 @@ deletedeals(a ,index){
                                                          }
                                                     console.log(aaa);
                                                     this.recentmydeal.splice(index,1);
-                                                    this.http.post(this.deletedeal,aaa,{headers:headers}).subscribe(
+                                                    this.http.post(this.url+'api/Supplier/deletedeal',aaa,{headers:headers}).subscribe(
                                                       data =>{  
                                                       console.log(data.json());
                                                       this.toastr.success(" Your deal is  delete successfully.");
                                                     }, error => { console.log(error) });
                                                     alert(JSON.stringify(res));
                                 }else{
-                                  // alert('Cancel Process !');
+                               
                                 }
                                 },error=>{
                                   alert(JSON.stringify(error));
               })
               return;
 }
-closeModel(){         
+closeModel(){  
+  this.ram  = false       
     this.editdeal_dailog = false;  
     this.createdeal_dailog = false;
     this.dealservice = false;
 }
 
   
+changePlan(){
+  if(this.noDiscount){
+    swal({
+      // title: "Are you sure to change membership plan?",
+      title: "Free Plan",
+      text: this.upgradeMsg,
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-default",
+      confirmButtonText: "Yes, Upgrade Now!",
+      cancelButtonText: "Remind Me Later!",
+  }).then((res)=>{
+   
+                  if(res.value===true){
+                    this.router.navigate(['../vendor/membership'])
+                 }else{
+                   
+                        this.toastr.warning(this.upgradeMsg);
+                  }
+  },error=>{
+    alert(JSON.stringify(error));
+  })
+  return;
+      
+  
+  } 
+  }
+  
+  
+noDealSwal(){
+  swal({
+    // title: "Are you sure to change membership plan?",
+    title: "Free Plan",
+    text:'Free Membership cannot create Deals and Discount',
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonClass: "btn-default",
+    confirmButtonText: "Yes, Upgrade Now!",
+    cancelButtonText: "Remind Me Later!",
+}).then((res)=>{
+
+                if(res.value===true){
+                  this.router.navigate(['../vendor/membership'])
+               }else{
+                  
+                      // this.toastr.warning('Free Membership cannot create Deals and Discount');
+                }
+},error=>{
+  alert(JSON.stringify(error));
+})
+return; 
+}  
 }
 
 

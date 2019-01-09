@@ -1,6 +1,7 @@
 import { Input, Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
+import { Router } from '@angular/router';
 @Component({
   selector: 'ngbd-modal-content',
   template: `
@@ -57,7 +58,7 @@ export class AllPromotionPageComponent implements OnInit {
 
 closeResult: string;
 
-constructor(private modalService: NgbModal,public http: Http) { }
+constructor(private modalService: NgbModal,public http: Http,public router: Router) { }
 
 // Open default modal
 open(content,data) {
@@ -91,4 +92,8 @@ openContent() {
     const modalRef = this.modalService.open(NgbdModalContent);
     modalRef.componentInstance.name = 'World';
 }
+
+navigateTo() {
+    this.router.navigateByUrl('/vendor/PromoteBusiness');
+  }
 }

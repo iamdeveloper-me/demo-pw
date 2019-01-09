@@ -1,429 +1,93 @@
- <div class="vendor">
-<div class="container mob_margin_top_100">
-    <div class="container p-0">
+  <div class="vendor">
+    <div class="container mob_margin_top_100">
+      <div class="container p-0" *ngIf='Popular_Wedding_array.length>0'>
         <section class="p-0 container" id="portfolio">
           <div class="container-fluid p-0">
-  
-              <div class="container text-center mob300pxwidth">
+            <div class="container text-center mob300pxwidth">
                   <h3 class="h4"> Popular Wedding  <strong><span style="color: #e72e77">Categories </span> </strong>  </h3>
                   <p class="subheadertext">
                     Cake, Florists, Photographer, Venues & more to plan your big day!
                   </p>  
-              </div>
+            </div>
             <div class="row no-gutters popup-gallery">
-            
-              <div class="col-lg-4 col-sm-6 col-6  galleryview">
-                <a class="portfolio-box" href="https://s3.us-east-2.amazonaws.com/prefect-image/makeup.JPG">
-                  <img class="img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/bear.jpeg" class="img-responsive" alt="">
+              <div class="col-lg-4 col-sm-6 col-6  galleryview" *ngFor='let Popular of Popular_Wedding_array'>
+                <a class="portfolio-box" (click) = "Categories_each(Popular,false,false)"  *ngIf = "Popular.isPopular == true">
+                  <img class="img-fluid" [src]="Popular.imagePath" class="img-responsive" alt="">
                   <div class="portfolio-box-caption">
                     <div class="portfolio-box-caption-content">
                       <div class="text-faded">
-                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg">
+                        <img [src]="Popular.iconImageURL">
                       </div>
                       <div class="project-name">
-                         Drinks
+                        {{Popular.categoryName}}
+                        <!-- {{Popular.listingCount}} Listing -->
                       </div>
+                  
                     </div>
                   </div>
                 </a>
               </div>
-  
-              <div class="col-lg-4 col-sm-6 col-6 galleryview">
-                  <a class="portfolio-box" href="https://s3.us-east-2.amazonaws.com/prefect-image/makeup.JPG">
-                    <img class="img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/makeup.JPG" class="img-responsive" alt="">
-                    <div class="portfolio-box-caption">
-                      <div class="portfolio-box-caption-content">
-                        <div class="text-faded">
-                          <img src="https://s3.us-east-2.amazonaws.com/prefect-image/make_up.svg">
-                        </div>
-                        <div class="project-name">
-                         Bridal Makeup
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-              </div>
-              
-              <div class="col-lg-4 col-sm-6 col-6 galleryview">
-                <a class="portfolio-box" href="https://s3.us-east-2.amazonaws.com/prefect-image/makeup.JPG">
-                  <img class="img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/couple.jpeg" class="img-responsive" alt="">
-                  <div class="portfolio-box-caption">
-                    <div class="portfolio-box-caption-content">
-                      <div class="text-faded">
-                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/Photography.svg">
-                      </div>
-                      <div class="project-name">
-                        Photographers
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-              <div class="col-lg-4 col-sm-6 col-6 galleryview">
-                <a class="portfolio-box" href="https://s3.us-east-2.amazonaws.com/prefect-image/makeup.JPG">
-                  <img class="img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="img-responsive" alt="">
-                  <div class="portfolio-box-caption">
-                    <div class="portfolio-box-caption-content">
-                      <div class="text-faded">
-                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/florist.svg">
-                      </div>
-                      <div class="project-name">
-                        Florists
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-              <div class="col-lg-4 col-sm-6 col-6 galleryview">
-                <a class="portfolio-box" href="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg">
-                  <img class="img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" class="img-responsive" alt="">
-                  <div class="portfolio-box-caption">
-                    <div class="portfolio-box-caption-content">
-                      <div class=" text-faded">
-                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/Wedding_cake.svg">
-                      </div>
-                      <div class="project-name">
-                        Cake
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-              <div class="col-lg-4 col-sm-6 col-6 galleryview">
-                <a class="portfolio-box" href="https://s3.us-east-2.amazonaws.com/prefect-image/makeup.JPG">
-                  <img class="img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/1.jpeg" class="img-responsive" alt="">
-                  <div class="portfolio-box-caption">
-                    <div class="portfolio-box-caption-content">
-                      <div class="text-faded">
-                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_decorator.svg">
-                      </div>
-                      <div class="project-name">
-                        Decorators 
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
             </div>
           </div>
-
-
         </section>
-    <p class="browse_cat"> <a routerLink="/home/category"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
+        <p class="browse_cat"> <a routerLink="/home/category"  > <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
+      </div>
 
     </div>
-  </div>
-   
-<div class="container-fluid mob_padd_30px" >
-      <!--Carousel Wrapper-->
+    <div class="container-fluid mob_padd_30px" *ngIf='featured_supplier_data.length>0'>
+          <!--Carousel Wrapper-->
+          <!-- {{slidesStore | json}} -->
+          <div class="caroosel_headin text-center">
+            <h3>Featured Wedding  <strong style="color: #e72e77;">Suppliers </strong>  </h3>
+          </div>
+         
+          <div class="container" style="padding: 13px;">
+              <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
+ 
+                  <ng-container *ngFor="let slide of slidesStore">
+                    <ng-template carouselSlide="1" >
+                      <div class="boxtikslide">
+                        <div class="procard"> </div>
 
-      <div class="caroosel_headin text-center">
-         <h3>Featured Wedding  <strong style="color: #e72e77;">Suppliers </strong>  </h3>
-      </div>
-<div class="container">
-
-
-    <!--Slides-->
-
-
-    <div id="supplierscarousel" class="owl-carousel">
-        <div class="item bordre_rad">
-
-                <div class="card mb-2 bordre_rad1">
-                    <div class="procard"> </div>
-                    <img class="card-img-top img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="Card image cap">
-                    <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                    <div class="card-body ">
-                      <div class="text-center"> 
-                       <h6> <strong>Hotel Shayaji </strong> </h6>
-                        <button class="wedding_btn">WEDDING VENUE </button>
-                        <P class="locat_icon"><i class="material-icons">location_on</i> Indore </P>
-                        <p class="statr_point">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span class="fa fa-star"></span> 5.0 (47) </p>
-                        </div>
-                  
-                        <div class="col-md-12 col-12 mobnopadd">
-                          <div class="col-md-8 col-7 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
+                      <img class="card-img-top" [src]="slide.profileImage" >
+                      <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
+                      <div class="card-body ">
+                          <div class="text-center"> 
+                             <h6> <strong>{{slide.nameOfBusiness}}  </strong> </h6>
+                           <button class="wedding_btn">{{slide?.nameOfBusiness}} </button>
+                            <P class="locat_icon"><i class="material-icons">location_on</i> {{slide.country?.countryName}} </P>
+                             <p class="statr_point" *ngFor='let list_star of max | slice:0:1'>
+                             
+                               <ngb-rating [rate]="list_star"></ngb-rating> 
+                              
+                              {{list_star}} </p>
                           </div>
-                          <div class="col-md-4 col-5 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
+                          <div class="col-md-12 col-12 mobnopadd">
+                              <div class="col-md-8 col-7 pad_left_0 pad_left_5px">
+                                <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
+                                  <span>Price from</span>
+                                  <span class="pric_200">200 $</span>
+                              </div>
+                              <div class="col-md-4 col-5 span_positin">
+                                <img src="../../assets/img/tag.svg"  alt=""> 
+                              <span>Deals</span>
+                              <span>1</span>
+                              </div>
                           </div>
                         </div>
                       </div>
-                </div>
-            </div>
-
-            <div class="item bordre_rad">
-                <div class="card mb-2 bordre_rad1 ">
-                    <div class="procard"> </div>
-                    <img class="card-img-top img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="Card image cap">
-                    <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                    <div class="card-body ">
-                      <div class="text-center"> 
-                       <h6> <strong>Hotel Shayaji </strong> </h6>
-                        <button class="wedding_btn">WEDDING VENUE </button>
-                        <P class="locat_icon"><i class="material-icons">location_on</i> Indore </P>
-                        <p class="statr_point">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span class="fa fa-star"></span> 5.0 (47) </p>
-                        </div>
-                  
-                        <div class="col-md-12 col-12 mobnopadd">
-                          <div class="col-md-8 col-7 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-5 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-
-                          </div>
-                        </div>
-                      </div>
-                </div>
-            </div>
-
-            <div class="item bordre_rad">
-                <div class="card mb-2 bordre_rad1">
-                    <div class="procard"> </div>
-                    <img class="card-img-top img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="Card image cap">
-                    <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                    <div class="card-body ">
-                      <div class="text-center"> 
-                       <h6> <strong>Hotel Shayaji </strong> </h6>
-                        <button class="wedding_btn">WEDDING VENUE </button>
-                        <P class="locat_icon"><i class="material-icons">location_on</i> Indore </P>
-                        <p class="statr_point">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span class="fa fa-star"></span> 5.0 (47) </p>
-                        </div>
-                  
-                        <div class="col-md-12 col-12 mobnopadd">
-                          <div class="col-md-8 col-7 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-5 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-                          </div>
-                        </div>
-                      </div>
-                </div>
-            </div>
-
-            <div class="item bordre_rad">
-                <div class="card mb-2 bordre_rad1 ">
-                    <div class="procard"> </div>
-                    <img class="card-img-top img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="Card image cap">
-                    <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                    <div class="card-body ">
-                      <div class="text-center"> 
-                       <h6> <strong>Hotel Shayaji </strong> </h6>
-                        <button class="wedding_btn">WEDDING VENUE </button>
-                        <P class="locat_icon"><i class="material-icons">location_on</i> Indore </P>
-                        <p class="statr_point">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span class="fa fa-star"></span> 5.0 (47) </p>
-
-                        </div>
-                  
-                        <div class="col-md-12 col-12 mobnopadd">
-                          <div class="col-md-8 col-7 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-5 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-
-                          </div>
-                        </div>
-                      </div>
-                </div>
-            </div>
-             <div class="item bordre_rad">
-                <div class="card mb-2 bordre_rad1">
-                    <div class="procard"> </div>
-                    <img class="card-img-top img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="Card image cap">
-                    <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                    <div class="card-body ">
-                      <div class="text-center"> 
-                       <h6> <strong>Hotel Shayaji </strong> </h6>
-                        <button class="wedding_btn">WEDDING VENUE </button>
-                        <P class="locat_icon"><i class="material-icons">location_on</i> Indore </P>
-                        <p class="statr_point">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span class="fa fa-star"></span> 5.0 (47) </p>
-
-                        </div>
-                  
-                        <div class="col-md-12 col-12 mobnopadd">
-                           <div class="col-md-8 col-7 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-
-                          <div class="col-md-4 col-5 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-
-                          </div>
-                        </div>
-                      </div>
-                </div>
-            </div>
-             <div class="item bordre_rad">
-                <div class="card mb-2 bordre_rad1">
-                    <div class="procard"> </div>
-                    <img class="card-img-top img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="Card image cap">
-                    <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                    <div class="card-body">
-
-                      <div class="text-center"> 
-                       <h6> <strong>Hotel Shayaji </strong> </h6>
-                        <button class="wedding_btn">WEDDING VENUE </button>
-                        <P class="locat_icon"><i class="material-icons">location_on</i> Indore </P>
-                        <p class="statr_point">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span class="fa fa-star"></span> 5.0 (47) </p>
-
-                        </div>
-                  
-                        <div class="col-md-12 col-12 mobnopadd">
-                           <div class="col-md-8 col-7 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-
-                          <div class="col-md-4 col-5 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-
-                          </div>
-                        </div>
-                      </div>
-                </div>
-            </div>
-             <div class="item bordre_rad">
-                <div class="card mb-2 bordre_rad1 ">
-                    <div class="procard"> </div>
-                    <img class="card-img-top img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="Card image cap">
-                    <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                    <div class="card-body">
-                      <div class="text-center"> 
-                       <h6> <strong>Hotel Shayaji </strong> </h6>
-                        <button class="wedding_btn">WEDDING VENUE </button>
-                        <P class="locat_icon"><i class="material-icons">location_on</i> Indore </P>
-                        <p class="statr_point">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span class="fa fa-star"></span> 5.0 (47) </p>
-                        </div>
-                  
-                        <div class="col-md-12 col-12 mobnopadd">
-                           <div class="col-md-8 col-7 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-5 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-                          </div>
-                        </div>
-                      </div>
-                </div>
-            </div>
-             <div class="item bordre_rad">
-                <div class="card mb-2 bordre_rad1">
-                    <div class="procard"> </div>
-                    <img class="card-img-top img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="Card image cap">
-                    <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                    <div class="card-body ">
-                      <div class="text-center"> 
-                       <h6> <strong>Hotel Shayaji </strong> </h6>
-                        <button class="wedding_btn">WEDDING VANUE </button>
-                        <P class="locat_icon"><i class="material-icons">location_on</i> Indore </P>
-                        <p class="statr_point">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span class="fa fa-star"></span> 5.0 (47) </p>
-                        </div>
-                  
-                        <div class="col-md-12 col-12 mobnopadd">
-                           <div class="col-md-8 col-7 pad_left_0 pad_left_5px">
-                            <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
-                              <span>Price from</span>
-                              <span class="pric_200">200 $</span>
-                          </div>
-                          <div class="col-md-4 col-5 span_positin">
-                           <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span>Deals</span>
-                          <span>1</span>
-
-                          </div>
-                        </div>
-                      </div>
-                </div>
-            </div>
-      </div>
+                    </ng-template>
+                  </ng-container>
+                
+                </owl-carousel-o>
+          </div> 
+          <!--/.Carousel Wrapper-->
+          <p class="browse_cat"> <a (click) = "supplier_all(Popular,'true','false')"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
+    </div>
 
 
+    <div class="container slider_use_anather_compo" *ngIf='dream_wedding_location_length>0'>
 
-    
-    <!--End Slides-->
-
-</div>
-<!--/.Carousel Wrapper-->
- <p class="browse_cat"> <a routerLink="/home/category"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
-</div>
-
-
-    <div class="container slider_use_anather_compo">
       <!--Gallery Hover Effect Starts-->
       <div class="row" id="headcss">
           <div class="col-sm-12" >
@@ -436,67 +100,16 @@
           <div class="card-block my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
             <div class="grid-hover">
               <div class="row">
-                <div class="col-md-4 col-6 locationbox">
-                
-                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/hotel1.jpg" class="img-responsive" alt="img06" />
-                    
-                      <h2>radiance-hotel
-                        <span>Delhi</span>
+                <div class="col-md-4 col-6 locationbox" *ngFor='let list_dream of dream_wedding_location' >
+                    <img [src]="list_dream.profileImage" class="img-responsive" alt="img06" />
+                      <h2>{{list_dream?.nameOfBusiness}}
+                        <span>{{list_dream.country?.countryName}}</span>
                       </h2>
-                      
-                   
                 </div>
-                <div class="col-md-4 col-6 locationbox">
-                   
-                      <img src="https://s3.us-east-2.amazonaws.com/prefect-image/hotel2.jpg" class="img-responsive" alt="img06" />
-                     
-                        <h2>Crazy
-                          <span>Layla</span>
-                        </h2>
-                        
-                     
-                  </div>
-                <div class="col-md-4 col-6 locationbox">
-                 
-                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/hotel3.jpg" class="img-responsive" alt="img03" />
-                   
-                      <h2>Event planner
-                        <span>Bhopal</span>
-                      </h2>
-                     
-                </div>
-           
-                <div class="col-md-4 col-6 locationbox">
-                 
-                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/hotel4.jpg" class="img-responsive" alt="img06" />
-                   
-                      <h2>Riana Jewellery
-                        <span>Indore</span>
-                      </h2>
-                      
-                  
-                </div>
-                <div class="col-md-4 col-6 locationbox">
-                   
-                      <img src="https://s3.us-east-2.amazonaws.com/prefect-image/hotel5.jpg" class="img-responsive" alt="img06" />
-                     
-                        <h2>Crazy
-                          <span>Layla</span>
-                        </h2>
-                    
-                  </div>
-                <div class="col-md-4 col-6 locationbox">
-                 
-                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/hotel6.jpg" class="img-responsive" alt="img03" />
-                   
-                      <h2> Photographers
-                        <span>Chennai</span>
-                      </h2>
-                    
-                </div>
+               
               </div>
               <div class="clearfix"></div>
-              <p class="browse_cat"> <a routerLink="/home/category"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
+              <p class="browse_cat"> <a (click) = "supplier_all(Popular,'false','true')"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
             </div>
           </div>
         </div>
@@ -508,7 +121,6 @@
 
     </div>
     <div class="container-fluid vendors_tools slider_use_anather_compo">
-    
         <div class="container">
             <div class="vender_headin text-center">
                 <h2> Your Planning  <strong style="color: #e72e77;">Tools </strong>  </h2>
@@ -516,29 +128,29 @@
 
              <div class="col-md-12 mobile_div_left">
                 <div class="col-md-3 col-6 col-sm-6">
-                    <a routerLink="/home/cuplefoot"><div class="homeTools__item pure-u-1-5 app-link" data-href="/tools/Info?page=MyVendors">
-                      <span class="homeTools__itemIcon homeTools__itemIcon--myvendors"></span>
-                      <p class="homeTools__itemIconText">Find your venue and vendors</p>
-                  </div>
-                </a>
+                    <a routerLink="/home/cuplefoot">
+                      <div class="homeTools__item pure-u-1-5 app-link" data-href="/tools/Info?page=MyVendors">
+                        <span class="homeTools__itemIcon homeTools__itemIcon--myvendors"></span>
+                        <p class="homeTools__itemIconText">Find your venue and vendors</p>
+                      </div>
+                    </a>
                 </div>
                 <div class="col-md-3 col-6 col-sm-6">
-                    <a routerLink="/home/cuplefoot">
+                  <a routerLink="/home/cuplefoot">
                       <div class=" homeTools__item pure-u-1-5 app-link" data-href="/tools/Info?page=Guests">
-                      <span class="homeTools__itemIcon1 homeTools__itemIcon--guests"></span>
-                      <p class="homeTools__itemIconText">Manage your guest list and RSVPs</p>
-                  </div>
-                </a>
-                  </div>
-                  <div class="col-md-3 col-6 col-sm-6">
+                        <span class="homeTools__itemIcon1 homeTools__itemIcon--guests"></span>
+                        <p class="homeTools__itemIconText">Manage your guest list and RSVPs</p>
+                      </div>
+                  </a>
+                </div>
+                <div class="col-md-3 col-6 col-sm-6">
                       <a routerLink="/home/cuplefoot">
                         <div class="homeTools__item pure-u-1-5 app-link" data-href="/tools/Info?page=CheckList">
                         <span class="homeTools__itemIcon2 homeTools__itemIcon--checklist"></span>
                         <p class="homeTools__itemIconText">Complete items on your Checklist</p>
                     </div>
                   </a>
-                    </div>
-
+                </div>
                 <div class="col-md-3 col-6 col-sm-6">
                     <a routerLink="/home/cuplefoot">
                       <div class=" homeTools__item pure-u-1-5 app-link" data-href="/tools/Info?page=Budget">
@@ -560,7 +172,5 @@
             
 
         </div>
-
-    </div>
-   
-</div>
+    </div> 
+  </div>

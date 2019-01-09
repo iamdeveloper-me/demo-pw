@@ -70,7 +70,7 @@ export class MenuComponent implements OnInit {
       searchCat(e,isAllSupplier,isDreamLocation){
            console.log(e);
         //   console.log(e.value);
-        //   debugger;
+           debugger;
           if(e){
             this.objFilterParam.catId  = e?e.categoryId:0;
             this.objFilterParam.categoryName= e?e.categoryName: '' ;
@@ -84,6 +84,7 @@ export class MenuComponent implements OnInit {
             this.objFilterParam.locationId = this.locationId;
            }
            sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+          //  window.location.reload();
              this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
         
       

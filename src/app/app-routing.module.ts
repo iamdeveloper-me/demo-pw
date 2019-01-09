@@ -157,8 +157,8 @@ const appRoutes: Routes = [
   { path: 'register/step2', component: StepSecondComponent },
   { path: 'register/step3', component: StepThirdComponent },
   { path: 'register/step4', component: StepForthComponent },
-  { path: 'home/searchresult', component: SearchresultComponent },
-  { path: 'home/searchresult/:id', component: SearchresultComponent },
+  { path: 'home/searchresult', component: SearchresultComponent, },
+  { path: 'home/searchresult/:id', component: SearchresultComponent,runGuardsAndResolvers: 'always', },
   { path: 'home/tips_list', component: TipslistComponent },
   { path: 'home/event_list', component: EventlistComponent },
   { path: 'home/detailprofile/:id', component:  DetailpageComponent  },
@@ -302,7 +302,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes, { useHash: true })],
+  imports: [RouterModule.forRoot(appRoutes, { useHash: true})],
   exports: [RouterModule]
 })
 

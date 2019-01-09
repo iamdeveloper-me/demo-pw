@@ -5,6 +5,8 @@
       <!--Carousel Wrapper-->
   <div class="container">
       <!--Slides-->
+
+    
         <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
           <ng-container *ngFor="let slide of slidesStore">
             <ng-template carouselSlide="1" >
@@ -15,15 +17,18 @@
                 <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
                 <div class="card-body ">
                   <div class="text-center"> 
-                   <h6><strong>{{slide.nameOfBusiness}} </strong> </h6>
+                   <h6><strong>{{slide.nameOfBusiness}}</strong> </h6>
                     <button class="wedding_btn">{{ slide.businessDetails}} </button>
-                      <p class="locat_icon"><i class="material-icons">location_on</i> 
-
+                      <p class="locat_icon">
                       <i class="material-icons">location_on</i> 
-                     <span *ngIf='slide.vendorLocations[0]'> {{ slide.vendorLocations[0].suburb.name}},</span>
-                     <span *ngIf='slide.vendorLocations[0]'>  {{ slide.vendorLocations[0].districts.name}},</span>
-                     <span *ngIf='slide.vendorLocations[0]'>{{ slide.vendorLocations[0].country.name}},</span> 
-                     <span *ngIf='slide.vendorLocations[0]'> {{ slide.vendorLocations[0].postalCode}}</span>
+
+              
+                     <!-- <span *ngIf='slide.vendorLocations[0]'> {{ slide.vendorLocations[0].suburb.name}},</span> -->
+                     <span *ngIf='slide.vendorLocations[0]'>  {{ slide.vendorLocations[0]?.districts.name}}</span>
+                     <span *ngIf='!slide.vendorLocations[0]'>No District Available</span>
+                    
+                     <!-- <span *ngIf='slide.vendorLocations[0]'>{{ slide.vendorLocations[0].country.name}},</span> 
+                     <span *ngIf='slide.vendorLocations[0]'> {{ slide.vendorLocations[0].postalCode}}</span> -->
                       </p>
                       <p class="statr_point">
                       <span class="fa fa-star checked"></span>
@@ -330,7 +335,7 @@
 	                <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
 
-                      <img class="group list-group-image" [src]='i.storeFrontImage' alt="Card image cap">
+                      <img class="group list-group-image" [src]='i.profileImage' alt="Card image cap">
                       <span class="book_mark">
                         <i class="material-icons">bookmark_border</i>
                       </span>
@@ -352,14 +357,20 @@
                       <div class="caption card-body">
                         <div>
                           <h6><strong>{{i.nameOfBusiness}}</strong></h6>
-                          <button *ngIf='i.vendorCategories[0].categories' class="wedding_btn">{{i.vendorCategories[0].categories.categoryName}} </button>
+                          <button *ngIf='i.vendorCategories[0].categories' class="wedding_btn">
+                            {{i.vendorCategories[0].categories.categoryName}} </button>
 
-                          <p class="locat_icon" *ngIf='i.vendorLocations.length>0'>
-                            <i class="material-icons">location_on</i> {{i.vendorLocations[0].suburb.name}},
-                            {{i.vendorLocations[0].districts.name}},
-                            {{i.vendorLocations[0].country.name}},
+                          <!-- <p class="locat_icon" *ngIf='i.vendorLocations.length>0'> -->
+                          <p class="locat_icon">   
+                            <i class="material-icons">location_on</i> 
+                            <!-- {{i.vendorLocations[0].suburb.name}}, -->
+                            <!-- {{i.vendorLocations[0]?.districts.name}} -->
+                            <span *ngIf='!i.vendorLocations[0]'>No District Available</span>
+                            <span *ngIf='i.vendorLocations[0]'>  {{ i.vendorLocations[0]?.districts.name}}</span>
+                        
 
-                            {{i.vendorLocations.postalCode}}
+                            <!-- {{i.vendorLocations[0].country.name}},
+                            {{i.vendorLocations.postalCode}} -->
                           </p>
                           
                           <p class="statr_point">

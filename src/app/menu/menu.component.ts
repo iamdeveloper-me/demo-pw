@@ -70,7 +70,7 @@ export class MenuComponent implements OnInit {
       searchCat(e,isAllSupplier,isDreamLocation){
            console.log(e);
         //   console.log(e.value);
-        //   debugger;
+          
           if(e){
             this.objFilterParam.catId  = e?e.categoryId:0;
             this.objFilterParam.categoryName= e?e.categoryName: '' ;
@@ -85,7 +85,7 @@ export class MenuComponent implements OnInit {
            }
            sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
              this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
-        
+      
       
       }
 

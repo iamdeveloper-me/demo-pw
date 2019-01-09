@@ -5,18 +5,29 @@
             <div class="searchtopbar">
                 <form (ngSubmit)="find_photo(list)" #list="ngForm">
                     <div class="col-md-2 col-xs-6 mar_left_75">
-                        <!-- <select class="cityinput2" name="categoryId" placeholder = "All Category"  [(ngModel)]="categoryId"  id="categoryId" >
-                            <option   [value]="0"  >All Category</option>
-                            <option *ngFor='let list_categories of categories' [value] = "list_categories.categoryId" >
-                                {{list_categories.categoryName}}
-                            </option>
-                        </select> -->
                         <select class="form-control round_first" [(ngModel)]="category" name="categoryId" >
                             <option value='undefined'> All Categories </option>
                             <option *ngFor='let list_Categories of categories' [value]="list_Categories.categoryId" > 
                                 {{list_Categories.categoryName}}
                             </option>
                         </select>
+                    
+                            <div   *ngFor='let c of colors;let i=index' (click)="tag_colour = true" >
+                             <input type="checkbox" (click)="colourArray(c.colorName)"  [value]="c.colorName" id="c.colorName" name="c.colorName">
+                               
+                                <span class="colortag"  [style.background-color]='c.colorName'>                           
+                                </span>
+                            </div>
+                            <!-- <div *ngFor='let c of colors' (click)='colourArray(c)' class="colorbtn" [style.background-color]='c.colorName' style="color:white">
+                                    <i class="fa fa-check" *ngIf='c.isSelected'></i>
+                                      <span>{{c.colorName}}</span>
+                                  </div> -->
+                            <!-- <div *ngFor='let c of colors' (click)='colourArray(c)' [style.background-color]='c.colorName' style="color:white">
+                                    <i class="fa fa-check" *ngIf='c.isSelected'></i>
+                                    <span class="colortag"  [style.background-color]='c.colorName'>                           
+                                        </span>
+                                  </div> -->
+ 
                     </div>
                     <div class="col-md-8 col-xs-6 Search_img" (click)="tag_colour = true" >
                         <input type="text"  [(ngModel)]="searchQuery"  type="text" name="searchQuery"  placeholder="Search with tags and colour tags only" class="searchinput">

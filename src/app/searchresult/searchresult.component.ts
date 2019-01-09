@@ -82,7 +82,7 @@ export class SearchresultComponent implements OnInit {
   locations:any;
   categories:any;
   filters: any;
-  count:number = 3
+ // count:number = 3
   loading=false;
   selectedLocationsCount = 0;
   objSearchlistvm: SearchListingVM;

@@ -96,7 +96,7 @@ export class SearchresultComponent implements OnInit {
   constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService, private api: apiService) {  
 
 
-
+  
     this.objSearchFilter=new filterParam();
 
     this.objSearchlistvm = new SearchListingVM();

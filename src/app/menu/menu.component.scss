@@ -250,7 +250,7 @@ position:relative;
 #navbarResponsive ul .nav-item a{
 line-height:60px!important;
 padding-bottom:0px!important;
-padding-top:0px!important;
+padding-top:5px!important;
 }
 #navbarResponsive ul .nav-item:after, #navbarResponsive .nav-item:before {
  content: "";
@@ -1167,7 +1167,7 @@ and (max-device-width : 1100px) {
         #navbarResponsive{
         margin-left: 0% !important;
         position: absolute;
-          top: 80px;
+        top: 80px;
       }
       .dropdown-toggle::after{display:none !important;}
       .headernav.head_small{
@@ -1249,7 +1249,7 @@ and (max-device-width : 1100px) {
 
 @media only screen 
   and (min-device-width : 420px) 
-  and (max-device-width : 823px) {
+  and (max-device-width : 900px) {
   .modal-dialog{
     max-width: 300px!important;
   }
@@ -1264,6 +1264,10 @@ and (max-device-width : 1100px) {
   #basicModal .modal-header {
       padding: 10px 5px;
   }
+  .navbar .navbar-nav {
+    display: block;
+    margin-right: -30px!important;
+}
   .chartmainhead h4{
       font-size: 15px!important;
       line-height: 20px;
@@ -1283,7 +1287,7 @@ and (max-device-width : 1100px) {
   #navbarResponsive{
     height:100vh!important;
     overflow-x:hidden!important;
-    overflow:scroll!important;
+    overflow-y:scroll!important;
   }
   .right_listing{
     top: 15px;
@@ -1330,8 +1334,8 @@ and (max-device-width : 1100px) {
     z-index: 999;
 }
 .mobileshowwebnav {
-    top:-41px!important;
-    left:-308px!important;
+    top:-45px!important;
+    /*left:-308px!important;*/
     width:293px!important;
   }
   .locationbox h2 {

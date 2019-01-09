@@ -3,7 +3,7 @@
     <div class="container martop60px">
         <ol _ngcontent-c11="" class="breadcrumb breadcrumbcontainer">
           <li><a routerLink="/home">Home</a></li>
-          <li class="active">All Categories</li>
+          <li class="active">All Wedding Categories</li>
         </ol>
       </div>
 
@@ -17,14 +17,14 @@
 <div class="container mob_parallax mob_padd0">
 
 <div class="col-md-3 col-6 box_img"  *ngFor='let Popular of Popular_Wedding_array'>
-  <a (click) = "Categories_each(Popular)" class="zoom_in">
-    <img [src]="Popular.imagePath">
-    <div class="cakes_hover">
+  <a (click) = "Categories_each(Popular)">
+    <img [src]="Popular.imagePath"  class="zoom_in">
+   <!--  <div class="cakes_hover">
         <img _ngcontent-c1="" class="red_bg" [src]="Popular.iconImageURL">
         
-    </div>
+    </div> -->
     <div class="tranparentlayer">
-      <h5><strong>{{Popular.categoryName}} </strong></h5> 
+      <h5>{{Popular.categoryName}}</h5> 
       <p>{{Popular.listingCount}} listing </p>
     </div>
   </a>

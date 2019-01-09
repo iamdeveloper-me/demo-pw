@@ -16,10 +16,12 @@ export class PhotoComponent implements OnInit {
    categoryId=''
    searchQuery=''
    userId;
-   find_color_tag ='pink';
+   find_color_tag ='';
+   multy_colour_search = []
    tag_colour = false
    showTag =  false;
    showTag2= false;
+   csvColors:string;
     // array of all items to be paged
     private allItems:any = [];
     // pager object
@@ -30,16 +32,16 @@ export class PhotoComponent implements OnInit {
     error_1 = '';
     createColorPanel(){
       this.colors= Array<ColorPicker>();
-      this.colors.push({colorName:'pink'});
-      this.colors.push({colorName:'red'});
-      this.colors.push({colorName:'orange'});
-      this.colors.push({colorName:'yellow'});
-      this.colors.push({colorName:'green'});
-      this.colors.push({colorName:'Blue'});
-      this.colors.push({colorName:'purple'});
-      this.colors.push({colorName:'brown'});
-      this.colors.push({colorName:'black'});
-      this.colors.push({colorName:'grey'});
+      this.colors.push({colorName:'pink', isSelected:false});
+      this.colors.push({colorName:'red', isSelected:false});
+      this.colors.push({colorName:'orange', isSelected:false});
+      this.colors.push({colorName:'yellow', isSelected:false});
+      this.colors.push({colorName:'green', isSelected:false});
+      this.colors.push({colorName:'Blue', isSelected:false});
+      this.colors.push({colorName:'purple', isSelected:false});
+      this.colors.push({colorName:'brown', isSelected:false});
+      this.colors.push({colorName:'black', isSelected:false});
+      this.colors.push({colorName:'grey', isSelected:false});
      }
    ngOnInit() {
   // $.getScript('./assets/js/blocksit.min.js');
@@ -50,6 +52,7 @@ export class PhotoComponent implements OnInit {
    this.createColorPanel()
    this.userId = localStorage.getItem('userId');
    console.log(this.userId)
+   console.log( this.colors)
    this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',{
     page: 0,
     pageSize: 10000,
@@ -87,21 +90,42 @@ export class PhotoComponent implements OnInit {
     let styles = {'background-color':'red'};
     return styles;
   }
+  colourArray(a)
+  {
+    console.log(a)
+    
+    this.multy_colour_search.push(a)
+    this.multy_colour_search = this.multy_colour_search.filter((el, i, a) => i === a.indexOf(el))
+    
+    console.log(  this.multy_colour_search)
+    this.find_color_tag =  this.multy_colour_search.join(",")
+    console.log(this.find_color_tag )
+    // if(c.isSelected){
+    //   c.isSelected = false;
+    // } else{
+    //   c.isSelected =true;
+    // }
+    // let selectedColors = this.colors.filter(c=>c.isSelected==true);
+    //  this.csvColors='';
+    // // this.colour_picker1=[];
+    // for (let i = 0; i < selectedColors.length; i++) {
+    //  this.csvColors+= selectedColors[i].colorName+',';
+    //   this.multy_colour_search .push(selectedColors[i].colorName);
+    // }
+    // console.log(  this.multy_colour_search)
+    // this.find_color_tag =  this.multy_colour_search.join(",")
+    //  console.log(this.find_color_tag )
+  }
    find_photo(f){
-   
-    console.log( this.colors.filter(c=>c.colorName==f.value.searchQuery));
- 
-      if( this.colors.filter(c=>c.colorName==f.value.searchQuery).length == 0){
-       
-        this.showTag2 = true ;
-        this.showTag = false;
-      }else{
-        this.showTag = true;
-        this.showTag2 = false;
-      }
-     
-   
-           this.find_color_tag= f.value.searchQuery
+          console.log( this.colors.filter(c=>c.colorName==f.value.searchQuery));
+          if( this.colors.filter(c=>c.colorName==f.value.searchQuery).length == 0){
+            this.showTag2 = true ;
+            this.showTag = false;
+          }else{
+            this.showTag = true;
+            this.showTag2 = false;
+          }
+          // this.find_color_tag= f.value.searchQuery
            console.log(f.value.categoryId)
            if(f.value.categoryId == 'undefined'){
              f.value.categoryId = 0 
@@ -116,7 +140,7 @@ export class PhotoComponent implements OnInit {
               pageSize: 30,
               sortDir: "",
               sortedBy: "asc",
-              searchQuery: f.value.searchQuery,
+              searchQuery:this.find_color_tag?this.find_color_tag:f.value.searchQuery ,
               categoryId: f.value.categoryId,
               UserId : this.userId
           }
@@ -124,42 +148,28 @@ export class PhotoComponent implements OnInit {
           this.search_api(a)
    }
    search_api(a){
-     
-    this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',a)
-     .subscribe(data => {
-       console.log(data.items)
-       this.pagedItems = [];
-       this.allItems = []
-       for (var pagedItem of   data.items  ) {
-            //  pagedItem['colorTags'] =  pagedItem['colorTags'].split(',');
-            //  this.showTag = true;
-          
-            //  this.pagedItems.push(pagedItem);
-            //this.tag_colour = true
-
+      this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',a)
+      .subscribe(data => {
+        console.log(data.items)
+        this.pagedItems = [];
+        this.allItems = []
+        for (var pagedItem of   data.items  ) {
             if(pagedItem['colorTags'] == null || pagedItem['tags'] == null){
-             // this.pagedItems.push(pagedItem);
               this.allItems.push(pagedItem);
-            // this.setPage(1);
             }else{
               pagedItem['colorTags'] =  pagedItem['colorTags'].split(',');
               pagedItem['tags'] =  pagedItem['tags'].split(',');
-              
-              
-             
-             // this.pagedItems.push(pagedItem);
               this.allItems.push(pagedItem);
-            // this.setPage(1);
             }
-       }
-       this.setPage(1);
-       console.log(this.pagedItems)
-       if( this.pagedItems.length == 0 ){
-           this.error_1 = "no data found"
-       }else{
-        this.error_1 = " "
-       }
-     },error => {  console.log(error)});
+        }
+        this.setPage(1);
+        console.log(this.pagedItems)
+        if( this.pagedItems.length == 0 ){
+            this.error_1 = "no data found"
+        }else{
+          this.error_1 = " "
+        }
+      },error => {  console.log(error)});
    }
    popup(listall_categories){
      console.log(listall_categories)
@@ -177,5 +187,5 @@ export class PhotoComponent implements OnInit {
 }
 export class ColorPicker{
   public colorName: string;
-  
+   public isSelected:boolean;
 }

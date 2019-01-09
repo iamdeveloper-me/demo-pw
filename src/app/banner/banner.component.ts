@@ -4,17 +4,23 @@ import { apiService } from '../shared/service/api.service';
 import{filterParam} from '../vendorcard/vendorcard.component'
 import { Router } from '@angular/router';
 
+import { CustompipePipe } from 'app/custompipe.pipe';
+import { CategoryPipePipe } from 'app/category-pipe.pipe';
+
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
-  styleUrls: ['./banner.component.scss']
+  styleUrls: ['./banner.component.scss'],
+  providers: [CustompipePipe, CategoryPipePipe]
+
 })
 export class BannerComponent implements OnInit {
   objFilterParam: filterParam;
   constructor( private router: Router ,private masterservice: MasterserviceService , private apiService: apiService) { 
     this.objFilterParam = new filterParam();
   }
-  
+  locationFilterParam:string='';
+  categoryFilterParam:string=''
   Categories = [];
   locations = [];
   locationId:number=0;
@@ -78,7 +84,7 @@ export class BannerComponent implements OnInit {
       this.objFilterParam.searchQuery ="";
       this.objFilterParam.locationId = this.locationId;
    }else{
-      this.objFilterParam.catId  = var_data['category']?var_data['category']['categoryId']:0;
+      this.objFilterParam.catId  = var_data['category'] != 0 ?var_data['category']['categoryId']:0;
       this.objFilterParam.categoryName= var_data['category']?var_data['category']['categoryName']: '' ;
       this.objFilterParam.isDreamLocation=isDreamLocation;
       this.objFilterParam.isAllSupplier=isAllSupplier;
@@ -103,7 +109,14 @@ export class BannerComponent implements OnInit {
   // Mobile size click to forword serch result page 
 
   categoryClick(data){
-     this.categoryClickData = data;
+    if(data == 0 ){
+           
+       this.categoryClickData = 0;
+
+    }else{
+      this.categoryClickData = data;
+ 
+    }
   }
 
   locationClick(data){

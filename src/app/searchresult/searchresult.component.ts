@@ -96,10 +96,11 @@ export class SearchresultComponent implements OnInit {
   constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService, private api: apiService) {  
 
 
-
+  
     this.objSearchFilter=new filterParam();
 
     this.objSearchlistvm = new SearchListingVM();
+   
     if(this._activeRoute!=undefined){
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
       console.log(this.objSearchFilter);
@@ -107,7 +108,7 @@ export class SearchresultComponent implements OnInit {
       // this.objSearchFilter.categoryId = this._activeRoute.snapshot.params['id'].split('/')[0];
       // this.objSearchFilter.searchInDreamLocation=this._activeRoute.snapshot.params['id'].split('/')[3];
       // this.objSearchFilter.searchInFeaturedLocation  = this._activeRoute.snapshot.params['id'].split('/')[2];
-    // debugger
+   
       this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
       this.objSearchlistvm.districtId.push(this.objSearchFilter.locationId);
     }
@@ -117,10 +118,11 @@ export class SearchresultComponent implements OnInit {
    // this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
       this.objSearchResultItems = res;
+      this.slidesStore = []//mahima
       this.slidesStore =  this.objSearchResultItems['items']
       this.getSearchFilterResult();
-      
-      console.log(JSON.stringify(this.objSearchResultItems));
+      console.log(this.objSearchResultItems)
+      //console.log(JSON.stringify(this.objSearchResultItems));
     },error=>{
       console.log(JSON.stringify(error));
     });
@@ -144,6 +146,9 @@ export class SearchresultComponent implements OnInit {
   $.getScript('./assets/jss/plugins/bootstrap-notify.js');
   $(".slider_use_anather_compo").hide();
   }
+
+
+
   goToPortfolioDetail(vendor){
     // debugger;
     let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
@@ -241,7 +246,8 @@ export class SearchresultComponent implements OnInit {
       this.objSearchResultItems = res;
       this.setBlankImg();
       this.addToCollection();
-      console.log(JSON.stringify(this.collection)) ;
+      //console.log(JSON.stringify(this.collection)) ;
+      console.log(this.collection)
     },error=>{
       this.loading=false; 
     });

@@ -131,6 +131,11 @@
   list-style: none;
   border-radius: 0;
 }
+.breadcrumb>li+li:before{
+    padding: 0 5px;
+    color: #333;
+    content: ">"!important;
+}
 .cakes_hover h5{
   margin-top: 50px;
   margin-bottom: 0;
@@ -140,6 +145,7 @@
   width:150px;
 }
 
+
 .box_img a{
 display:block;overflow: hidden;border-radius:5px;
 background-position: center 0px;
@@ -147,8 +153,11 @@ background-size:100%;
 height:165px;
 transition: all 0.3s;
 }
-.box_img:hover a{
-background-size:120%;
+.box_img .zoom_in{
+  transition: all .5s;
+}
+.box_img:hover .zoom_in{
+  transform: scale(1.2);
 }
 .cakebg{
   background-image:url("https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg");

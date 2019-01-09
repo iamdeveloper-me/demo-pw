@@ -78,7 +78,7 @@ export class BannerComponent implements OnInit {
       this.objFilterParam.searchQuery ="";
       this.objFilterParam.locationId = this.locationId;
    }else{
-      this.objFilterParam.catId  = var_data['category']?var_data['category']['categoryId']:0;
+      this.objFilterParam.catId  = var_data['category'] != 0 ?var_data['category']['categoryId']:0;
       this.objFilterParam.categoryName= var_data['category']?var_data['category']['categoryName']: '' ;
       this.objFilterParam.isDreamLocation=isDreamLocation;
       this.objFilterParam.isAllSupplier=isAllSupplier;
@@ -103,7 +103,14 @@ export class BannerComponent implements OnInit {
   // Mobile size click to forword serch result page 
 
   categoryClick(data){
-     this.categoryClickData = data;
+    if(data == 0 ){
+           
+       this.categoryClickData = 0;
+
+    }else{
+      this.categoryClickData = data;
+ 
+    }
   }
 
   locationClick(data){

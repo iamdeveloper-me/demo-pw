@@ -4,17 +4,23 @@ import { apiService } from '../shared/service/api.service';
 import{filterParam} from '../vendorcard/vendorcard.component'
 import { Router } from '@angular/router';
 
+import { CustompipePipe } from 'app/custompipe.pipe';
+import { CategoryPipePipe } from 'app/category-pipe.pipe';
+
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
-  styleUrls: ['./banner.component.scss']
+  styleUrls: ['./banner.component.scss'],
+  providers: [CustompipePipe, CategoryPipePipe]
+
 })
 export class BannerComponent implements OnInit {
   objFilterParam: filterParam;
   constructor( private router: Router ,private masterservice: MasterserviceService , private apiService: apiService) { 
     this.objFilterParam = new filterParam();
   }
-  
+  locationFilterParam:string='';
+  categoryFilterParam:string=''
   Categories = [];
   locations = [];
   locationId:number=0;

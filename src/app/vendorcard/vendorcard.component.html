@@ -45,6 +45,7 @@
               <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
  
                   <ng-container *ngFor="let slide of slidesStore">
+
                     <ng-template carouselSlide="1" >
                       <div class="boxtikslide">
                         <div class="procard"> </div>
@@ -75,8 +76,10 @@
                            </ng-template>
                           </span>
                         </div>
+
                       <div class="card-body ">
                           <div class="text-center"> 
+                            <!--  {{slidesStore | json}} -->
                              <h6> <strong>{{slide.nameOfBusiness}}  </strong> </h6>
                            <!-- <button class="wedding_btn">{{slide?.nameOfBusiness}} </button> -->
                             <button class="wedding_btn" *ngIf="slide?.vendorCategories.length == 0; else vcat"> N/A  </button>
@@ -97,10 +100,11 @@
                              <p class="statr_point" *ngFor='let list_star of max | slice:0:1'>
                                 <ngb-rating [rate]="list_star"></ngb-rating>
                                 {{list_star}}  
+
                             </p>
                           </div>
-                          <div class="col-md-12 col-12 mobnopadd">
-                              <div class="col-md-8 col-7 pad_left_0 pad_left_5px">
+                          <div class="col-md-12 col-12 mobnopadd ">
+                              <div class="col-md-8 col-7 pad_left_0 pad_left_5px pribox">
                                 <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
                                   <span>Price from</span>
                                   <span class="pric_200">200 $</span>

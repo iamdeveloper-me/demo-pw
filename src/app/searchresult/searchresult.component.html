@@ -1,6 +1,6 @@
   <div id="wrappervendor" class="">
   <app-menu></app-menu>
-  <app-tool></app-tool>
+  <app-tool *ngIf=""></app-tool>
 <div class="container-fluid recomslider">
       <!--Carousel Wrapper-->
   <div class="container">
@@ -223,7 +223,7 @@
         </div>
         <div id="collapse33" class="panel-collapse collapse" >
           <div class="category-body">
-              <div class="searchmobtitlebar city_position">
+              <div class="searchmobtitlebar city_position ">
                 <i class="material-icons">search</i>
                 <input class="cityinput" type="text" value="" id="search" placeholder="Type to Search Category">
               </div>
@@ -334,7 +334,7 @@
                       <span class="book_mark">
                         <i class="material-icons">bookmark_border</i>
                       </span>
-                      <!-- <div class="imgnum">
+                      <div class="imgnum">
                         <span>
                            <img src="../../assets/img/picture.png"/>
                            <span *ngIf='i.albums[0]'>
@@ -348,18 +348,19 @@
                          <span *ngIf='i.vendorVideos.length==0'>0</span>
                           
                       </span>
-                      </div> -->
+                      </div>
                       <div class="caption card-body">
                         <div>
                           <h6><strong>{{i.nameOfBusiness}}</strong></h6>
                           <button *ngIf='i.vendorCategories[0].categories' class="wedding_btn">{{i.vendorCategories[0].categories.categoryName}} </button>
 
                           <p class="locat_icon" *ngIf='i.vendorLocations.length>0'>
-                            <i class="material-icons">location_on</i> {{i.vendorLocations[0].suburb.name}},
-                            {{i.vendorLocations[0].districts.name}},
-                            {{i.vendorLocations[0].country.name}},
-
-                            {{i.vendorLocations.postalCode}}
+                            <i class="material-icons">location_on</i>
+                            {{i.vendorLocations[0].districts.name?i.vendorLocations[0].districts.name:'N/A'}}
+                          </p>
+                          <p class="locat_icon" *ngIf='i.vendorLocations.length==0'>
+                            <i class="material-icons">location_on</i>
+                            N/A
                           </p>
                           
                           <p class="statr_point">
@@ -386,6 +387,10 @@
                           <span *ngIf='i.dealsCount>0'>Deals</span>
                           <span *ngIf='i.dealsCount>0'>{{i.dealsCount}}</span>
                           </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="descrip">
+                          {{i.businessDetails?i.businessDetails:'N/A'}}
                         </div>
                       </div>
                     </div>

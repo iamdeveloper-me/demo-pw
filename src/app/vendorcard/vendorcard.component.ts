@@ -168,6 +168,11 @@ export class VendorcardComponent implements OnInit {
       }
     )
   }
+  goToVendordetails(slide) {
+    console.log(slide);
+    this.router.navigate(['home/detailprofile/',slide.vendorId])
+  }
+  
   Categories_each(c,isAllSupplier,isDreamLocation){
     if(c){
       console.log(this.objFilterParam);
@@ -182,6 +187,7 @@ export class VendorcardComponent implements OnInit {
    this.objFilterParam.searchQuery ="";
 
   }
+
    sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
     this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   }

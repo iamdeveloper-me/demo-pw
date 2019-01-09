@@ -15,7 +15,7 @@ export class VendorcardComponent implements OnInit {
 
   customOptions: any = {
     margin: 20,
-    loop: true,
+    loop: false,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,

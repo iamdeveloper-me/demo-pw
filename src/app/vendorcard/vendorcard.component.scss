@@ -4,6 +4,13 @@
     display: block;
     max-width: 650px;
     margin: 0 auto;
+    overflow:hidden;
+  }
+.portfolio-box img.img-responsive{
+transition: all .5s;
+  }
+.portfolio-box:hover img.img-responsive{
+transform: scale(1.2);
   }
 .imgfloatleft{
   float:left;
@@ -652,6 +659,9 @@ li{line-height:1.5rem !important;}
 .mob300pxwidth{
   width:300px!important;
 }
+.text-faded{
+  display:none;
+}
 .boxtikslide{
   max-width: inherit!important;
 }
@@ -752,6 +762,18 @@ left:10px;
   .locationbox h2 span{
     font-size: 12px;
   }
+
+  .locationbox img{
+  max-height:110px;
+  }
+  .pribox{
+  max-width:45%;
+  float:left;
+  }
+  .span_positin {
+    padding-right: 7px !important;
+    max-width: 76px;
+}
 }
 p.homeTools__itemIconText {
         color: #000;
@@ -797,10 +819,9 @@ p.homeTools__itemIconText {
     .locationbox h2{
     font-size:15px !important;
 }
-
 }
 @media only screen and (max-width: 320px) {
-    .locationbox[_ngcontent-c3] h2[_ngcontent-c3] {
+    .locationbox h2 {
     font-size: 12px !important;
 }
 }

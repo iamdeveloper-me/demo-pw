@@ -9,17 +9,18 @@ import { ToastrService } from 'ngx-toastr';
 export class ContactUsComponent implements OnInit {
  
   constructor(private apiService: apiService, public toastr: ToastrService) { }
-  messageType =1
-  name: "string"
-  email: "string"
-  subject: "string"
-  phoneNumber: "string"
-  message: "string"
-  Phone_no ;
+
+    name: "string";
+    email: "string";
+    subject: "string";
+    phoneNumber: "string";
+    message: "string";
+    messageType = 1;
+    Phone_no ;
   ngOnInit() {
     //this.contactus(c)
   }
-  contactus(list){
+  contact(list){
     console.log(list.value)
     this.apiService.postData(this.apiService.serverPath+'Home/contactus',list.value).subscribe(data => {
       console.log(data)
@@ -37,7 +38,19 @@ export class ContactUsComponent implements OnInit {
     let inputChar = String.fromCharCode(event.charCode);
     if (event.keyCode != 8 && !pattern.test(inputChar)) {
       event.preventDefault();
-      this.Phone_no = "not a number";
+      this.Phone_no = "Not a Number";
     }else{  this.Phone_no = " "}
   }
 }
+
+
+
+  // messageType =1
+  // name: "string"
+  // email: "string"
+  // subject: "string"
+  // phoneNumber: "string"
+  // message: "string"
+  // Phone_no ;
+
+  

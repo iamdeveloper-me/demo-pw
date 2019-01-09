@@ -45,25 +45,45 @@
               <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
  
                   <ng-container *ngFor="let slide of slidesStore">
+
                     <ng-template carouselSlide="1" >
                       <div class="boxtikslide">
                         <div class="procard"> </div>
 
                       <img class="card-img-top" [src]="slide.profileImage" >
                       <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
+
+                        <div class="imgnum">
+                          <span>
+                             <img src="../../assets/img/picture.png"/>
+                             <span>
+                              0
+                             </span>
+                          </span>
+                          <span>
+                            <img src="../../assets/img/video.png"/>
+                            <span>
+                            0
+                            </span>  
+                          </span>
+                        </div>
+
+
                       <div class="card-body ">
                           <div class="text-center"> 
+                            <!--  {{slidesStore | json}} -->
                              <h6> <strong>{{slide.nameOfBusiness}}  </strong> </h6>
-                           <button class="wedding_btn">{{slide?.nameOfBusiness}} </button>
+                           <button class="wedding_btn">{{slide.vendorCategories}} </button>
                             <P class="locat_icon"><i class="material-icons">location_on</i> {{slide.country?.countryName}} </P>
                              <p class="statr_point" *ngFor='let list_star of max | slice:0:1'>
                              
                                <ngb-rating [rate]="list_star"></ngb-rating> 
                               
-                              {{list_star}} </p>
+                              {{list_star}} 
+                            </p>
                           </div>
-                          <div class="col-md-12 col-12 mobnopadd">
-                              <div class="col-md-8 col-7 pad_left_0 pad_left_5px">
+                          <div class="col-md-12 col-12 mobnopadd ">
+                              <div class="col-md-8 col-7 pad_left_0 pad_left_5px pribox">
                                 <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
                                   <span>Price from</span>
                                   <span class="pric_200">200 $</span>

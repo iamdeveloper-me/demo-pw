@@ -11,6 +11,7 @@ import { CategoryPipePipe } from 'app/category-pipe.pipe';
 import { apiService } from 'app/shared/service/api.service';
 import { filterParam } from 'app/vendorcard/vendorcard.component';
 import { SlidesOutputData } from 'ngx-owl-carousel-o';
+import { toBase64String } from '@angular/compiler/src/output/source_map';
 
 
 @Pipe({ name: 'defaultImage' })
@@ -81,7 +82,7 @@ export class SearchresultComponent implements OnInit {
   locations:any;
   categories:any;
   filters: any;
-  count:number = 3
+ // count:number = 3
   loading=false;
   selectedLocationsCount = 0;
   objSearchlistvm: SearchListingVM;
@@ -97,8 +98,13 @@ export class SearchresultComponent implements OnInit {
 
 
   
+    // this._route.routeReuseStrategy.shouldReuseRoute.call(this.paginate(this.objSearchFilter.pageSize));
+    this._activeRoute.params.subscribe(res=>{
+      this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
+      this.collection=[];
+      this.paginate(this.objSearchFilter.pageSize)
+    })
     this.objSearchFilter=new filterParam();
-
     this.objSearchlistvm = new SearchListingVM();
    
     if(this._activeRoute!=undefined){
@@ -241,17 +247,10 @@ export class SearchresultComponent implements OnInit {
     });
   }
   this.loading=true;
-    this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
-      this.loading=false;  
-      this.objSearchResultItems = res;
-      this.setBlankImg();
-      this.addToCollection();
-      //console.log(JSON.stringify(this.collection)) ;
-      console.log(this.collection)
-    },error=>{
-      this.loading=false; 
-    });
-     
+
+   
+     this.paginate(this.objSearchFilter.pageSize);
+
    // this.paginate(this.objSearchFilter.pageSize);
   }
   clearFilters(){
@@ -279,22 +278,26 @@ export class SearchresultComponent implements OnInit {
       }
   }
    paginate (pageSize) {
+     debugger;
     this.loading=true; 
   this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
     this.setBlankImg();
     this.addToCollection();
     this.loading=false; 
+  console.log(this.objSearchResultItems) ; 
   },error=>{
     this.loading = false;
   });   
   this.disableLoadingButton=false;
-   this.pageNumber+=1;
+   
  }
  @HostListener("window:scroll", [])
  scrollToBottom(){
+   debugger;
   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
     // you're at the bottom of the page
+    this.pageNumber+=1;
     this.paginate(this.objSearchFilter.pageSize);
 }
  }

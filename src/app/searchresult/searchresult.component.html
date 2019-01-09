@@ -87,21 +87,21 @@
       <div class="container-fluid nopadd">
         <div class="badgecontainer">
           <span *ngIf='objSearchResultItems' class="badge badge-primary badge-labeled">
-            {{objSearchResultItems.totalCount?objSearchResultItems.totalCount:0}} Results
+            {{collection?collection.length:0}} Results
           </span>
        
-          <select (change)='getSearchFilterResult()' style="display:none" [(ngModel)]='objSearchlistvm.pageSize'>
+          <!-- <select (change)='getSearchFilterResult()' style="display:none" [(ngModel)]='objSearchlistvm.pageSize'>
             <option value='25' selected>25 Result/Page</option>
             <option value='50'>50 Result/Page</option>
             <option value='100'>100 Result/Page</option>
-          </select>
+          </select> -->
         </div>
         <div class="clearfix"></div>
-          <!-- <ol class="breadcrumb breadcrumbcontainer ">
+          <ol class="breadcrumb breadcrumbcontainer ">
             <li><a href="#">Home</a></li>
             <li><a href="#">Wedding Suppliers</a></li>
             <li class="active">Photography, Videography</li>
-          </ol> -->
+          </ol>
 
            <div class="btn-group">
             <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">

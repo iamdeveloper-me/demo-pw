@@ -11,26 +11,14 @@
                                 {{list_Categories.categoryName}}
                             </option>
                         </select>
-                    
-                            <!-- <div   *ngFor='let c of colors;let i=index' (click)="tag_colour = true" >
-                             <input type="checkbox" (click)="colourArray(c.colorName)"  [value]="c.colorName" id="c.colorName" name="c.colorName">
-                               
-                                <span class="colortag"  [style.background-color]='c.colorName'>                           
-                                </span>
-                            </div> -->
-                            <!-- <div *ngFor='let c of colors' (click)='colourArray(c)' class="colorbtn" [style.background-color]='c.colorName' style="color:white">
-                                    <i class="fa fa-check" *ngIf='c.isSelected'></i>
-                                      <span>{{c.colorName}}</span>
-                                  </div> -->
-                            <div *ngFor='let c of colors'  (click)='colourArray(c)'  style="color:black">
-                                    <i class="fa fa-check" *ngIf='c.isSelected'></i>
-                                    <span class="colortag"  [style.background-color]='c.colorName'>                           
-                                        </span>
-                                  </div>
- 
+                        <div *ngFor='let c of colors'  (click)='colourArray(c)'  style="color:black">
+                            <i class="fa fa-check" *ngIf='c.isSelected'></i>
+                            <span class="colortag"  [style.background-color]='c.colorName'>                           
+                            </span>
+                        </div> 
                     </div>
-                    <div class="col-md-8 col-xs-6 Search_img" (click)="tag_colour = true" >
-                        <input type="text"  [(ngModel)]="searchQuery"  type="text" name="searchQuery"  placeholder="Search with tags and colour tags only" class="searchinput">
+                    <div class="col-md-8 col-xs-6 Search_img"  >
+                        <input type="text"  [(ngModel)]="searchQuery"  type="text" name="searchQuery"  placeholder="Search  tags only" class="searchinput">
                         <input type="submit"  value=""  class="search-button">
                     </div>
                 </form>
@@ -42,15 +30,16 @@
             <div class="text-center">
                 <section id="wrapper">
                     <div class="container">    
-                        <span class="colortag" *ngIf='showTag' [style.background-color]='searchQuery'>                           
-                        </span>
+                        <div *ngFor="let colour_tag of colour_showTag " >
+                            <span class="colortag" *ngIf='showTag' [style.background-color]='colour_tag'>                           
+                            </span>
+                        </div>
                         <div  *ngIf='showTag2'>
                             <div class="tagnamediv"   *ngFor="let item of pagedItems | slice:0:1 ;let i=index ">
                                 <div *ngFor="let tag of item?.tags | slice:0:1 ;let i=index " >  
                                     <span class="tagstik" *ngIf = "tag != '' " > 
                                         {{tag}}    
-                                    </span> 
-                                   
+                                    </span>   
                                 </div>
                             </div> 
                         </div>
@@ -65,26 +54,17 @@
                                             <span>{{item.nameOfBusiness}}//{{item.id}}</span>
                                             <span><i class="fa fa-map-marker"></i>{{item.district}}</span>
                                         </p>   
-                                        <!-- <div *ngIf= "default_colour_tags">
-                                            <div *ngFor='let colour of item?.colorTags'>
-                                                <div *ngIf = "colour != ''">
-                                                    <span class="colortag"  [style.background-color]='colour'>                           
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                       -->
                                         <div class="linkdiv">
-                                                <i class="material-icons">favorite_border</i>
-                                                &nbsp;<i class="material-icons">share</i>
-                                                <div class="clearfix"></div>
+                                            <i class="material-icons">favorite_border</i>
+                                            &nbsp;<i class="material-icons">share</i>
+                                            <div class="clearfix"></div>
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="tagnamediv ">
                                         <div *ngFor="let tag of item?.tags;let i=index">
                                             <span class="tagstik" *ngIf = "tag != '' " > 
-                                                    {{tag}}    
+                                                {{tag}}    
                                             </span> 
                                         </div>
                                     </div> 
@@ -94,7 +74,7 @@
                     </div>
                 </section>
                 <!-- pager -->
-                <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                <!-- <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
                     <li [ngClass]="{disabled:pager.currentPage === 1}">
                         <a (click)="setPage(1)">First</a>
                     </li>
@@ -110,7 +90,7 @@
                     <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
                         <a (click)="setPage(pager.totalPages)">Last</a>
                     </li>
-                </ul>
+                </ul> -->
             </div>
         </div>
     </div>   
@@ -132,24 +112,18 @@
                         &nbsp;
                         <i class="material-icons setlink">share</i>
                         <div class="clearfix"></div>
-                      
-                                <div *ngFor='let colour of pho_data.colorTags' >
-                                    <div *ngIf = "colour != ''">
-                                        <span class="colortag"  [style.background-color]='colour'>                           
-                                        </span>
-                                    </div>
-                                </div>
-                        
-                        
-                            
-                        <!-- <span class="colortag" style="background:#ff0000;"></span>
-                        <span class="colortag" style="background:#001aff;"></span>
-                        <span class="colortag" style="background:#88ff00;"></span> -->
+                        <div *ngFor='let colour of pho_data.colorTags' >
+                            <div *ngIf = "colour != ''">
+                                <span class="colortag"  [style.background-color]='colour'>                           
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <img *ngIf='loading' src="https://www.walgreens-hearing.com/img/loader.gif" style="bottom:35%;position: fixed;z-index:99999;margin-left:40%">
     <div class="clearfix"></div>
     <app-foot></app-foot>
 </div>

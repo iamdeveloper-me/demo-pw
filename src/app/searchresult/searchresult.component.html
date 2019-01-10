@@ -1,12 +1,12 @@
   <div id="wrappervendor" class="">
   <app-menu></app-menu>
-  <app-tool *ngIf=""></app-tool>
-<div class="container-fluid recomslider">
+  <app-tool *ngIf="basicPlan == 3"></app-tool>
+  <div class="container-fluid recomslider">
       <!--Carousel Wrapper-->
   <div class="container">
       <!--Slides-->
 
-    
+      <!-- {{slidesStore }} -->
         <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
           <ng-container *ngFor="let slide of slidesStore">
             <ng-template carouselSlide="1" >
@@ -21,8 +21,6 @@
                     <button class="wedding_btn">{{ slide.businessDetails}} </button>
                       <p class="locat_icon">
                       <i class="material-icons">location_on</i> 
-
-              
                      <!-- <span *ngIf='slide.vendorLocations[0]'> {{ slide.vendorLocations[0].suburb.name}},</span> -->
                      <span *ngIf='slide.vendorLocations[0]'>  {{ slide.vendorLocations[0]?.districts.name}}</span>
                      <span *ngIf='!slide.vendorLocations[0]'>No District Available</span>
@@ -100,7 +98,7 @@
           <ol class="breadcrumb breadcrumbcontainer ">
             <li><a href="#">Home</a></li>
             <li><a href="#">Wedding Suppliers</a></li>
-            <li class="active">Photography, Videography</li>
+            <li class="active">{{_activeRoute.snapshot.params['id']?this._activeRoute.snapshot.params['id']:'All Category'}}</li>
           </ol>
 
            <div class="btn-group">
@@ -359,7 +357,7 @@
                           <h6><strong>{{i.nameOfBusiness}}</strong></h6>
 
                           <button *ngIf='i.vendorCategories[0].categories' class="wedding_btn">
-                            {{i.vendorCategories[0].categories.categoryName}} </button>
+                            {{getCategoryName(i)}}  </button>
 
                           <!-- <p class="locat_icon" *ngIf='i.vendorLocations.length>0'> -->
                           <p class="locat_icon">   

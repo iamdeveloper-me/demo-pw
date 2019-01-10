@@ -23,22 +23,7 @@ export class VendorcardComponent implements OnInit {
     autoplay: true,
     navSpeed: 700,
     navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1,
-        stagePadding: 40
-      },
-      768: {
-        items: 2,
-        stagePadding: 40
-      },
-      1024: {
-        items: 4
-      },
-      1366: {
-        items: 4
-      }
-    },
+    responsive: { 0: { items: 1, stagePadding: 40 }, 768: { items: 2, stagePadding: 40 }, 1024: { items: 4 }, 1366: { items: 4 } },
     nav: true,
     //autoplaySpeed:1
   }
@@ -62,28 +47,6 @@ export class VendorcardComponent implements OnInit {
     config.wrap = false;
     config.keyboard = false;
     this.objFilterParam = new filterParam();
-    // this.slidesStore = [
-    //   {
-    //     src: "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-    //   },
-    //   {
-    //     src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-
-    //   },
-    //   {
-    //     src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-
-    //   },
-    //   {
-    //     src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-
-    //   },
-    //   {
-    //     src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-
-    //   }
-    // ] 
-    
   }
   
 
@@ -113,13 +76,14 @@ export class VendorcardComponent implements OnInit {
 
 
       this.slidesStore = this.featured_supplier_data
-
+if(this.featured_supplier_data!=null){
       this.featured_supplier_data.forEach(element => {
         element.reviews.forEach(element => {           
           this.max.push(element.rating) 
           this.max.sort((a,b) => 0 - (a > b ? 1 : -1))
         });
       });
+    }
      console.log(this.slidesStore)
 
 
@@ -177,7 +141,7 @@ export class VendorcardComponent implements OnInit {
     if(c){
       console.log(this.objFilterParam);
    this.objFilterParam.catId  = c.categoryId;
-   this.objFilterParam.categoryName= c.categoryName;
+   this.objFilterParam.categoryName= c?c.categoryName:'AllCategories';
    this.objFilterParam.isDreamLocation=isDreamLocation;
    this.objFilterParam.isAllSupplier=isAllSupplier;
    this.objFilterParam.page = 0;
@@ -192,9 +156,9 @@ export class VendorcardComponent implements OnInit {
     this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   }
   supplier_all(c,isAllSupplier,isDreamLocation){
-// debugger
+
       this.objFilterParam.catId  = c?c.categoryId:0;
-      this.objFilterParam.categoryName= c?c.categoryName:'';
+      this.objFilterParam.categoryName= c?c.categoryName:'AllCategories';
       this.objFilterParam.isDreamLocation=isDreamLocation;
       this.objFilterParam.isAllSupplier=isAllSupplier;
       this.objFilterParam.page = 0;

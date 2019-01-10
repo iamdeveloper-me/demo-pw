@@ -22,6 +22,7 @@ export class EventsComponent implements OnInit {
   pager: any = {};
   pagedItems: any[];
   searchevents:any = {};
+  upperSearchQuery;
   page = []
   pagesSelected = 10000
   pageSize:number = 10000
@@ -46,10 +47,10 @@ export class EventsComponent implements OnInit {
                   });  
   }
   page2 = 4;
+
   event(list){
 
-   
-    this.http.post(this.apiService.serverPath+'Home/searchevents',{
+    const q = {
       page: 0,
       pageSize: 1000000,
       sortDir: "",
@@ -58,8 +59,10 @@ export class EventsComponent implements OnInit {
       location: list.value.location,
       eventType: list.value.eventType,
       dates: list.value.dates
-    }).map((response: Response) => response.json()).subscribe(data => {
+    }
+    this.http.post(this.apiService.serverPath+'Home/searchevents',q).map((response: Response) => response.json()).subscribe(data => {
         this.allItems = data['items']
+        console.log(data);
         this.setPage(1);
     });
     this.locationD()

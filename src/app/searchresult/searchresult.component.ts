@@ -1,8 +1,6 @@
 
-import { Pipe, PipeTransform} from '@angular/core';
-
-import { OnInit, Component, HostListener } from '@angular/core';
-
+import { Pipe, PipeTransform , OnInit, Component, HostListener } from '@angular/core';
+import {} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MasterserviceService } from 'app/ngservices/masterservice.service';
 import {RatingModule} from 'ngx-rating';
@@ -11,6 +9,7 @@ import { CategoryPipePipe } from 'app/category-pipe.pipe';
 import { apiService } from 'app/shared/service/api.service';
 import { filterParam } from 'app/vendorcard/vendorcard.component';
 import { SlidesOutputData } from 'ngx-owl-carousel-o';
+
 import { toBase64String } from '@angular/compiler/src/output/source_map';
 
 
@@ -39,7 +38,6 @@ export class PP implements PipeTransform {
   }
   
 }
-
 @Component({
   selector: 'app-searchresult',
   templateUrl: './searchresult.component.html',
@@ -73,9 +71,7 @@ export class SearchresultComponent implements OnInit {
     },
     //autoplaySpeed:1
   }
-
   activeSlides: SlidesOutputData;
-
   slidesStore: any[];
   collection = [];
   objSearchFilter: filterParam
@@ -90,7 +86,7 @@ export class SearchresultComponent implements OnInit {
   locationFilterParam:string='';
   categoryFilterParam:string='';
   pageNumber=0;
-//  pageSize:number=3;
+  //  pageSize:number=3;
   disableLoadingButton=true;
   blankImg='../../assets/img/noImg.png';
 
@@ -138,7 +134,7 @@ export class SearchresultComponent implements OnInit {
     this.activeSlides = data;
     console.log(this.activeSlides);
   }
- ngOnInit() {   
+  ngOnInit() {   
   //$.getScript('./assets/js/owljsor.js');
   $.getScript('./assets/js/searchresult.js'); 
   $.getScript('./assets/register/js/jquery-2.2.4.min.js');
@@ -152,9 +148,6 @@ export class SearchresultComponent implements OnInit {
   $.getScript('./assets/jss/plugins/bootstrap-notify.js');
   $(".slider_use_anather_compo").hide();
   }
-
-
-
   goToPortfolioDetail(vendor){
     // debugger;
     let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
@@ -162,7 +155,7 @@ export class SearchresultComponent implements OnInit {
       sessionStorage.setItem('vendorDetails',JSON.stringify(res));
     this._route.navigate(['home/detailprofile',0]);
   });
-}
+  }
   getLocations(){
     this._masterservice.getAllLocation().subscribe(res=>{
       this.locations=res;
@@ -177,7 +170,6 @@ export class SearchresultComponent implements OnInit {
     });
       
   }
-
   getCategories(){
      this._masterservice.getAllCategories().subscribe(res=>{
    //    res.forEach(element => {
@@ -246,10 +238,12 @@ export class SearchresultComponent implements OnInit {
       }
     });
   }
+
   this.loading=true;
 
    
      this.paginate(this.objSearchFilter.pageSize);
+
 
    // this.paginate(this.objSearchFilter.pageSize);
   }
@@ -277,6 +271,7 @@ export class SearchresultComponent implements OnInit {
        });
       }
   }
+
    paginate (pageSize) {
      debugger;
     this.loading=true; 
@@ -300,6 +295,7 @@ export class SearchresultComponent implements OnInit {
     this.pageNumber+=1;
     this.paginate(this.objSearchFilter.pageSize);
 }
+
  }
 }
 export class SearchFilterVm{

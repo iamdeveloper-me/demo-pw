@@ -25,7 +25,8 @@
               <div class="col-sm-10 mx-auto no-gutters searchbar mob_dis_none">
                 <div class="form-group col-sm-5 padd_bottom">
                     <span class="home_search"><i class="material-icons">camera_alt</i></span>
-                    <select class="form-control round_first" [(ngModel)]="category" name="category" >
+                    <select class="form-control round_first" [(ngModel)]="category" name="category" 
+                    >
                         <option value='undefined'> All Categories </option>
                         <option *ngFor='let list_Categories of Categories' [ngValue]="list_Categories" > {{list_Categories.categoryName}} </option>
                     </select>

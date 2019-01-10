@@ -349,9 +349,19 @@
 body{
   padding-right: 0px!important;
 }
-.owl-dots{
-  display:none!important;
+#dealcarousel .owl-dots{
+  position: absolute!important;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
 }
+
+#dealcarousel .owl-item img{
+  height:400px!important;
+  max-height:400px!important;
+  object-fit: cover;
+}
+
 .tooltip-inner{max-width:inherit!important;width:300px!important;}
 .nopadd{
   padding: 0px;
@@ -369,6 +379,8 @@ body{
     background: #fff;
     position: absolute;
     top:45%;
+    color: #333;
+    content: ">"!important;
    }
   .borbotonly{
     border:0px solid #fff;
@@ -467,6 +479,8 @@ body{
     background: #fff;
     position: absolute;
     top:45%;
+    color: #333;
+    content: "<"!important;
    }
  .owl-nav .owl-prev:hover{
  box-shadow: 0px 0px 10px #e5e5e5;
@@ -1089,6 +1103,17 @@ padding-left: 11px!important;
 @media(max-width:768px) {
 .navbar {
   position: fixed;
+}
+.owl-nav .owl-next{
+    right: -15px!important;
+   }
+.owl-nav .owl-prev{
+    left: -15px!important;
+   }
+#dealcarousel .owl-item img{
+  height:200px!important;
+  max-height:200px!important;
+  object-fit: cover;
 }
 .modal-content{
     max-width: 95%!important;

@@ -24,6 +24,11 @@
 	padding: 10px;
 	margin:15px auto!important;
 }
+.breadcrumb>li+li:before{
+    padding: 0 5px;
+    color: #333;
+    content: ">"!important;
+}
 .dealdetailhead{
 	text-align: left;
 	font-size:34px;
@@ -32,18 +37,15 @@
 	font-size:20px;
 	display: block;
 }
-.owl-carousel .owl-item img{
-	height:486px!important;
-	object-fit: cover;
-}
+
 .dealsbanner{
 	box-shadow: 0px 0px 10px #ccc;
-    margin: 0px 0px 30px 0px;
-    padding: 15px 0px;
+    margin: 0px 0px 0px 0px;
+    padding: 20px 20px 0px 20px;
 }
 .dealbanner{
 	width:100%;
-	max-height: 486px;
+	height: 400px;
 }
 .iconbox{
 	right: 15px;
@@ -67,9 +69,6 @@
 }
 .iconbox span{
 	margin: 0px 5px;
-}
-.dealsbanner{
-	padding: 20px 20px 0px 20px;
 }
 .locationtext{
 	color: #999;
@@ -185,4 +184,17 @@ a.profilebtn{
 }
 .pullleft{
 	float: left;
+}
+@media(max-width: 767px){
+	.dealsbanner{
+    margin: 0 15px;
+    padding:20px;
+}
+ #dealcarousel{
+ margin: 0 15px;
+ overflow: hidden;
+}
+.breadcrumb  a{
+	font-size: 14px!important;
+}
 }

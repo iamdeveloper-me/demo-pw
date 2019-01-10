@@ -44,8 +44,8 @@ export class PhotoComponent implements OnInit {
       this.colors.push({colorName:'grey', isSelected:false});
      }
    ngOnInit() {
-  // $.getScript('./assets/js/blocksit.min.js');
-  // $.getScript('./assets/js/lazy.js');
+   // $.getScript('./assets/js/blocksit.min.js');
+   // $.getScript('./assets/js/lazy.js');
    //$.getScript('./assets/js/jquery.pinbox.js');
    //$.getScript('./assets/js/photo.js');
    this.showTag2= false
@@ -94,27 +94,27 @@ export class PhotoComponent implements OnInit {
   {
     console.log(a)
     
-    this.multy_colour_search.push(a)
-    this.multy_colour_search = this.multy_colour_search.filter((el, i, a) => i === a.indexOf(el))
+    // this.multy_colour_search.push(a)
+    // this.multy_colour_search = this.multy_colour_search.filter((el, i, a) => i === a.indexOf(el))
     
-    console.log(  this.multy_colour_search)
-    this.find_color_tag =  this.multy_colour_search.join(",")
-    console.log(this.find_color_tag )
-    // if(c.isSelected){
-    //   c.isSelected = false;
-    // } else{
-    //   c.isSelected =true;
-    // }
-    // let selectedColors = this.colors.filter(c=>c.isSelected==true);
-    //  this.csvColors='';
-    // // this.colour_picker1=[];
-    // for (let i = 0; i < selectedColors.length; i++) {
-    //  this.csvColors+= selectedColors[i].colorName+',';
-    //   this.multy_colour_search .push(selectedColors[i].colorName);
-    // }
     // console.log(  this.multy_colour_search)
     // this.find_color_tag =  this.multy_colour_search.join(",")
-    //  console.log(this.find_color_tag )
+    // console.log(this.find_color_tag )
+    if(a.isSelected){
+      a.isSelected = false;
+    } else{
+      a.isSelected =true;
+    }
+    let selectedColors = this.colors.filter(c=>c.isSelected==true);
+     this.csvColors='';
+     this.multy_colour_search=[];
+    for (let i = 0; i < selectedColors.length; i++) {
+     this.csvColors+= selectedColors[i].colorName+',';
+      this.multy_colour_search.push(selectedColors[i].colorName);
+    }
+    console.log(  this.multy_colour_search)
+    this.find_color_tag =  this.multy_colour_search.join(",")
+     console.log(this.find_color_tag )
   }
    find_photo(f){
           console.log( this.colors.filter(c=>c.colorName==f.value.searchQuery));

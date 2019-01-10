@@ -1,8 +1,6 @@
 
-import { Pipe, PipeTransform} from '@angular/core';
-
-import { OnInit, Component, HostListener } from '@angular/core';
-
+import { Pipe, PipeTransform , OnInit, Component, HostListener } from '@angular/core';
+import {} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MasterserviceService } from 'app/ngservices/masterservice.service';
 import {RatingModule} from 'ngx-rating';
@@ -11,6 +9,7 @@ import { CategoryPipePipe } from 'app/category-pipe.pipe';
 import { apiService } from 'app/shared/service/api.service';
 import { filterParam } from 'app/vendorcard/vendorcard.component';
 import { SlidesOutputData } from 'ngx-owl-carousel-o';
+
 import { toBase64String } from '@angular/compiler/src/output/source_map';
 
 
@@ -30,7 +29,6 @@ export class PP implements PipeTransform {
   }
   
 }
-
 @Component({
   selector: 'app-searchresult',
   templateUrl: './searchresult.component.html',
@@ -58,6 +56,8 @@ export class SearchresultComponent implements OnInit {
   locationFilterParam:string='';
   categoryFilterParam:string='';
   pageNumber=0;
+  //  pageSize:number=3;
+  disableLoadingButton=true;
   blankImg='../../assets/img/noImg.png';
   basicPlan:number;
   constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService, private api: apiService) {  
@@ -109,7 +109,7 @@ export class SearchresultComponent implements OnInit {
     return i.vendorCategories.filter(c=>c.isPrimary==true)[0].categories.categoryName;
     }
   }
- ngOnInit() {   
+  ngOnInit() {   
   //$.getScript('./assets/js/owljsor.js');
   $.getScript('./assets/js/searchresult.js'); 
   $.getScript('./assets/register/js/jquery-2.2.4.min.js');
@@ -129,7 +129,7 @@ export class SearchresultComponent implements OnInit {
       sessionStorage.setItem('vendorDetails',JSON.stringify(res));
     this._route.navigate(['home/detailprofile',0]);
   });
-}
+  }
   getLocations(){
     this._masterservice.getAllLocation().subscribe(res=>{
       this.locations=res;
@@ -206,6 +206,7 @@ export class SearchresultComponent implements OnInit {
       }
     });
   }
+
   this.loading=true;
   this.collection=[];
   this.pageNumber=0;
@@ -237,6 +238,7 @@ export class SearchresultComponent implements OnInit {
        });
       }
   }
+
    paginate (pageSize) {
     this.loading=true; 
     if(this.objSearchlistvm.categoryId.length==1 && this.objSearchlistvm.categoryId[0]==0){
@@ -261,6 +263,7 @@ export class SearchresultComponent implements OnInit {
     this.pageNumber+=1;
     this.paginate(this.objSearchFilter.pageSize);
 }
+
  }
 }
 export class SearchFilterVm{

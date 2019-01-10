@@ -179,23 +179,30 @@ annualPrice(users){
 
     }
 
-    country(): void {  
+    country(a): void {  
       
      // const newVal = event.target.value;
-     console.log(this.countryArray);
-     
+     console.log(this.countryArray,);
+     console.log(a);
+ 
       this.district = this.arra.filter(c=>c.countryId==this.objVendorDetails.businessInfo.countryId)[0].districts;
+     console.log( this.objVendorDetails.businessInfo.countryId[0].districts);
      console.log( this.district);
+ 
     }
-    districtA(event): void {  
+    districtA(event,b): void {  
 //      let district=event.target;
+      console.log(b);
 // debugger;
       this.objVendorDetails.businessInfo.city=this.district.filter(d=>d.districtId==this.objVendorDetails.businessInfo.districtId)[0].name;
      // this.objVendorDetails.businessInfo.districtId=district.districtId;
-      const newVal = event.target.value;
-      this.suburb = this.district[newVal].suburb
+      const newVal = event.target.value  ;
+      console.log(newVal)
+      this.suburb =   this.district.filter(d=>d.districtId==b && d.countryId == this.objVendorDetails.businessInfo.countryId)[0].suburb
+     
     }
-    subr(event): void {  
+    subr(event,c): void {  
+      console.log(c);
       const newVal = event.target.value;
       console.log(newVal)
     }

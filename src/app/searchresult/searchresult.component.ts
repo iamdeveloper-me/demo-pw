@@ -103,7 +103,8 @@ export class SearchresultComponent implements OnInit {
     console.log(this.activeSlides);
   }
   getCategoryName(i):string{
-    if(this._activeRoute.snapshot.params['id']!=undefined){
+    debugger
+    if(this._activeRoute.snapshot.params['id']!=""){
       return this._activeRoute.snapshot.params['id'];
     }else{
     return i.vendorCategories.filter(c=>c.isPrimary==true)[0].categories.categoryName;

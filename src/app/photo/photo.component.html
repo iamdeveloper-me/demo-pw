@@ -12,21 +12,21 @@
                             </option>
                         </select>
                     
-                            <div   *ngFor='let c of colors;let i=index' (click)="tag_colour = true" >
+                            <!-- <div   *ngFor='let c of colors;let i=index' (click)="tag_colour = true" >
                              <input type="checkbox" (click)="colourArray(c.colorName)"  [value]="c.colorName" id="c.colorName" name="c.colorName">
                                
                                 <span class="colortag"  [style.background-color]='c.colorName'>                           
                                 </span>
-                            </div>
+                            </div> -->
                             <!-- <div *ngFor='let c of colors' (click)='colourArray(c)' class="colorbtn" [style.background-color]='c.colorName' style="color:white">
                                     <i class="fa fa-check" *ngIf='c.isSelected'></i>
                                       <span>{{c.colorName}}</span>
                                   </div> -->
-                            <!-- <div *ngFor='let c of colors' (click)='colourArray(c)' [style.background-color]='c.colorName' style="color:white">
+                            <div *ngFor='let c of colors'  (click)='colourArray(c)'  style="color:black">
                                     <i class="fa fa-check" *ngIf='c.isSelected'></i>
                                     <span class="colortag"  [style.background-color]='c.colorName'>                           
                                         </span>
-                                  </div> -->
+                                  </div>
  
                     </div>
                     <div class="col-md-8 col-xs-6 Search_img" (click)="tag_colour = true" >

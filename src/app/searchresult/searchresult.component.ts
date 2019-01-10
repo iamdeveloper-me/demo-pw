@@ -16,18 +16,9 @@ import { toBase64String } from '@angular/compiler/src/output/source_map';
 
 @Pipe({ name: 'defaultImage' })
 export class PP implements PipeTransform {
-  transform(
-    value: string,
-    fallback: string,
-    forceHttps: boolean = false
-  ): string {
+  transform(value: string, fallback: string, forceHttps: boolean = false ): string {
     let image = "";
-    if (value) {
-      
-      image = value;
-    } else {
-      image = fallback;
-    }
+    if (value) { image = value; } else { image = fallback; }
 
     if (forceHttps) {
       if (image.indexOf("https") == -1) {
@@ -47,35 +38,12 @@ export class PP implements PipeTransform {
   providers: [CustompipePipe, CategoryPipePipe]
 })
 export class SearchresultComponent implements OnInit {
-  customOptions: any = {
-    loop: false,
-    margin: 20,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
-    dots: true,
-    nav: false,
-    autoplay: true,
-    navSpeed: 700,
-    responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 2
-      },
-      740: {
-        items: 3
-      },
-      940: {
-        items: 4
-      }
-    },
+  customOptions: any = { loop: false, margin: 20, mouseDrag: true, touchDrag: true, pullDrag: true, dots: true,
+    nav: false, autoplay: true, navSpeed: 700, responsive: { 0: { items: 1 }, 400: { items: 2 }, 740: { items: 3 }, 
+    940: { items: 4 } },
     //autoplaySpeed:1
   }
-
   activeSlides: SlidesOutputData;
-
   slidesStore: any[];
   collection = [];
   objSearchFilter: filterParam
@@ -90,53 +58,56 @@ export class SearchresultComponent implements OnInit {
   locationFilterParam:string='';
   categoryFilterParam:string='';
   pageNumber=0;
-//  pageSize:number=3;
-  disableLoadingButton=true;
   blankImg='../../assets/img/noImg.png';
-
+  basicPlan:number;
   constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService, private api: apiService) {  
-
-
-  
-    // this._route.routeReuseStrategy.shouldReuseRoute.call(this.paginate(this.objSearchFilter.pageSize));
+    this.basicPlan = parseInt(localStorage.getItem('basic-plan'))
     this._activeRoute.params.subscribe(res=>{
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
       this.collection=[];
+      
+      this.objSearchlistvm = new SearchListingVM();
+      this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
+      this.objSearchlistvm.districtId.push(this.objSearchFilter.locationId);
       this.paginate(this.objSearchFilter.pageSize)
     })
     this.objSearchFilter=new filterParam();
-    this.objSearchlistvm = new SearchListingVM();
+  //  this.objSearchlistvm = new SearchListingVM();
    
     if(this._activeRoute!=undefined){
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
       console.log(this.objSearchFilter);
-      // let query=this._activeRoute.snapshot.params['id'].split('/');
-      // this.objSearchFilter.categoryId = this._activeRoute.snapshot.params['id'].split('/')[0];
-      // this.objSearchFilter.searchInDreamLocation=this._activeRoute.snapshot.params['id'].split('/')[3];
-      // this.objSearchFilter.searchInFeaturedLocation  = this._activeRoute.snapshot.params['id'].split('/')[2];
-   
-      this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
-      this.objSearchlistvm.districtId.push(this.objSearchFilter.locationId);
+      // this._activeRoute.snapshot.params['id'].split('/')[2];
+    //  this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
+    ///  this.objSearchlistvm.districtId.push(this.objSearchFilter.locationId);
     }
     this.getLocations();
     this.getCategories();
     this.getFilters();
-   // this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
-    this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
-      this.objSearchResultItems = res;
-      this.slidesStore = []//mahima
-      this.slidesStore =  this.objSearchResultItems['items']
-      this.getSearchFilterResult();
-      console.log(this.objSearchResultItems)
-      //console.log(JSON.stringify(this.objSearchResultItems));
-    },error=>{
-      console.log(JSON.stringify(error));
-    });
+    this.getSearchFilterResult();
+ //  this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
+    // this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
+    //   this.objSearchResultItems = res;
+    //   this.slidesStore = []//mahima
+    //   this.slidesStore =  this.objSearchResultItems['items']
+      
+    //   console.log(this.objSearchResultItems)
+    //   //console.log(JSON.stringify(this.objSearchResultItems));
+    // },error=>{
+    //   console.log(JSON.stringify(error));
+    // });
  //   this.paginate(this.objSearchFilter.pageSize);
   }
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
     console.log(this.activeSlides);
+  }
+  getCategoryName(i):string{
+    if(this._activeRoute.snapshot.params['id']!=undefined){
+      return this._activeRoute.snapshot.params['id'];
+    }else{
+    return i.vendorCategories.filter(c=>c.isPrimary==true)[0].categories.categoryName;
+    }
   }
  ngOnInit() {   
   //$.getScript('./assets/js/owljsor.js');
@@ -152,11 +123,7 @@ export class SearchresultComponent implements OnInit {
   $.getScript('./assets/jss/plugins/bootstrap-notify.js');
   $(".slider_use_anather_compo").hide();
   }
-
-
-
   goToPortfolioDetail(vendor){
-    // debugger;
     let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
     this.api.getData(url+'?id='+vendor.vendorId).subscribe(res=>{
       sessionStorage.setItem('vendorDetails',JSON.stringify(res));
@@ -175,24 +142,17 @@ export class SearchresultComponent implements OnInit {
         }
       }
     });
-      
   }
-
   getCategories(){
      this._masterservice.getAllCategories().subscribe(res=>{
-   //    res.forEach(element => {
-     //    element['pageSize'] = this.objSearchlistvm.pageSize
-     //  });
       this.categories=res;
       if(this.objSearchFilter.catId>0){
-       // this.categories=this.categories.filter(c=>c.categoryId==this.objSearchFilter.categoryId);
         this.categories.forEach(element => {
           if(element.categoryId==this.objSearchFilter.catId){
           element.isSelect=true;}else{element.isSelect=false;}
         });
       }
-    })
-    
+    })    
   }
   getFilters(){
     let filter_paramArray=[];
@@ -209,7 +169,7 @@ export class SearchresultComponent implements OnInit {
     })
   }
   getSearchFilterResult(){
-    this.objSearchlistvm = new SearchListingVM();
+   // this.objSearchlistvm = new SearchListingVM();
     if(this.filters){
     if(this.filters.services!=null){
     this.filters.services.forEach(element => {
@@ -227,7 +187,7 @@ export class SearchresultComponent implements OnInit {
           this.objSearchlistvm.customsFields.push(this.objSearchlistvm.customField);
         }
       });
-    } 
+    }
       this.objSearchlistvm.customField = new FieldSearchVM();
     });
   }
@@ -247,11 +207,10 @@ export class SearchresultComponent implements OnInit {
     });
   }
   this.loading=true;
-
+  this.collection=[];
+  this.pageNumber=0;
+ // this.paginate(this.objSearchFilter.pageSize);
    
-     this.paginate(this.objSearchFilter.pageSize);
-
-   // this.paginate(this.objSearchFilter.pageSize);
   }
   clearFilters(){
     this.locations.forEach(element => { element.isSelect=false; });
@@ -262,6 +221,7 @@ export class SearchresultComponent implements OnInit {
   addToCollection(){
     this.objSearchResultItems.items.forEach(element => {
       this.collection.push(element);
+      this.slidesStore = this.collection
     });
   }
   filterLocations(ev){
@@ -278,23 +238,24 @@ export class SearchresultComponent implements OnInit {
       }
   }
    paginate (pageSize) {
-     debugger;
     this.loading=true; 
-  this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
+    if(this.objSearchlistvm.categoryId.length==1 && this.objSearchlistvm.categoryId[0]==0){
+      this.objSearchlistvm.categoryId=[];
+    }
+    this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
     this.setBlankImg();
     this.addToCollection();
     this.loading=false; 
-  console.log(this.objSearchResultItems) ; 
+    console.log(JSON.stringify(this.objSearchResultItems)) ; 
   },error=>{
     this.loading = false;
   });   
-  this.disableLoadingButton=false;
+  
    
  }
  @HostListener("window:scroll", [])
  scrollToBottom(){
-   debugger;
   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
     // you're at the bottom of the page
     this.pageNumber+=1;
@@ -321,7 +282,7 @@ export class SearchListingVM{
   customField:FieldSearchVM;
   constructor(){
     this.pageSize=25;
-    this.page=1;
+    this.page=0;
     this.districtId=[];
     this.categoryId=[];
     this.serviceId=[];

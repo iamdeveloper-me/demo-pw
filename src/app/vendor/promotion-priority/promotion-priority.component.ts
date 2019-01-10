@@ -141,7 +141,7 @@ export class PromotionPriorityComponent implements OnInit {
     // this.xyz=promoData;
     console.log(promoData)
     sessionStorage.setItem('selected_plan', JSON.stringify(promoData));
-   // debugger
+   // 
    // alert("gfb");
     this.router.navigate(['/vendor/payment-selection'])
     // this.route();

@@ -81,7 +81,7 @@ c;
         this.page = data.json().page
 
           // this.rows = JSON.parse(data.json().items)
-          debugger
+    
         //    this.rows = [
         //     {
         //         "name": "Ethel Price",

@@ -156,7 +156,7 @@ if(this.featured_supplier_data!=null){
     this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   }
   supplier_all(c,isAllSupplier,isDreamLocation){
-// debugger
+
       this.objFilterParam.catId  = c?c.categoryId:0;
       this.objFilterParam.categoryName= c?c.categoryName:'AllCategories';
       this.objFilterParam.isDreamLocation=isDreamLocation;

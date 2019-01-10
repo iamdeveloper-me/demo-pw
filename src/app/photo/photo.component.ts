@@ -9,6 +9,7 @@ import { PagerService } from '../_services'
 export class PhotoComponent implements OnInit {
     colors: Array<ColorPicker>;
     categories:any = [];
+    category:any
     pho_data:any = {}
     loading = false;
     categoryId=''

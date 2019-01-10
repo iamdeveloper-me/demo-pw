@@ -60,7 +60,7 @@ export class SearchresultComponent implements OnInit {
   disableLoadingButton=true;
   blankImg='../../assets/img/noImg.png';
   basicPlan:number;
-  constructor(public _route:Router, private _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService, private api: apiService) {  
+  constructor(public _route:Router, public _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService, private api: apiService) {  
     this.basicPlan = parseInt(localStorage.getItem('basic-plan'))
     this._activeRoute.params.subscribe(res=>{
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
@@ -104,7 +104,7 @@ export class SearchresultComponent implements OnInit {
   }
   getCategoryName(i):string{
     debugger
-    if(this._activeRoute.snapshot.params['id']!=""){
+    if(this._activeRoute.snapshot.params['id']!= ""){
       return this._activeRoute.snapshot.params['id'];
     }else{
     return i.vendorCategories.filter(c=>c.isPrimary==true)[0].categories.categoryName;

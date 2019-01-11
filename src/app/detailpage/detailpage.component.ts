@@ -11,17 +11,15 @@ import { MasterserviceService } from 'app/ngservices/masterservice.service';
   providers: [apiService],
 })
 export class DetailpageComponent implements OnInit {
-  // private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Reviews/postreview'
-
   private url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails/'
   sliderImgaes: any = [];
   vendorId: number;
   vendorDetails: any;
   portfolioAndAlbumImagesTotal: number = 0;
   similarVendors:any;
-  @ViewChild('albumgallarypopup') albumgallarypopup: ElementRef;
   portfolioImages = [];
   lightBoxImages=[];
+  @ViewChild('albumgallarypopup') albumgallarypopup: ElementRef;
   constructor(public http: Http, public toastr: ToastrService, private api: apiService,
      private activeroute: ActivatedRoute, private router: Router, private masterservice: MasterserviceService) { 
 
@@ -37,8 +35,6 @@ export class DetailpageComponent implements OnInit {
     this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
     this.getSimilarVendors();
     this.vendorDetails.vendorLocations.reverse();
-
-    console.log(JSON.stringify(this.vendorDetails));
     this.vendorDetails.albums.forEach(element => {
       element.albumImages.forEach(img => {
         this.sliderImgaes.push(img.path);
@@ -52,7 +48,7 @@ export class DetailpageComponent implements OnInit {
       this.portfolioImages.push(element.files.path);
     });
     
-    console.log(JSON.stringify(this.vendorDetails));
+
   }
   review = { rating: '', comments: "", rateVendorID: 'a96129c3-8861-43aa-8bc9-1c155f1ffd79' }
   putReview(review) {
@@ -67,23 +63,15 @@ export class DetailpageComponent implements OnInit {
       this.toastr.error('Login To Give Your Review', 'Inconceivable!');
     }
 
-    console.log(review);
     var rating1 = review.rating;
     var comments1 = review.comments;
-
-    console.log(comments1);
-    console.log(rating1);
-
     this.http.post(this.url, {
       rating: rating1, comments:
         comments1, rateVendorID: this.vendorDetails.vendorUniqueId
     },
       { headers: headers }).subscribe(data => {
-        console.log(data.json());
       }, error => { console.log(error) }
       );
-
-    console.log("dcxzs");
   }
   setLightboxImages(pi,ev){
     this.lightBoxImages=[];
@@ -108,8 +96,6 @@ export class DetailpageComponent implements OnInit {
      
    this.masterservice.getSimilarVendors(obj).subscribe(res=>{
      this.similarVendors=res;
-     
-     console.log(JSON.stringify(this.similarVendors));
    })
   }
 }

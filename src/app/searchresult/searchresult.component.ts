@@ -39,7 +39,6 @@ export class SearchresultComponent implements OnInit {
   customOptions: any = { loop: false, margin: 20, mouseDrag: true, touchDrag: true, pullDrag: true, dots: true,
     nav: false, autoplay: true, navSpeed: 700, responsive: { 0: { items: 1 }, 400: { items: 2 }, 740: { items: 3 }, 
     940: { items: 4 } },
-    //autoplaySpeed:1
   }
   activeSlides: SlidesOutputData;
   slidesStore: any[];
@@ -48,7 +47,7 @@ export class SearchresultComponent implements OnInit {
   locations:any;
   categories:any;
   filters: any;
- // count:number = 3
+
   loading=false;
   selectedLocationsCount = 0;
   objSearchlistvm: SearchListingVM;
@@ -56,7 +55,7 @@ export class SearchresultComponent implements OnInit {
   locationFilterParam:string='';
   categoryFilterParam:string='';
   pageNumber=0;
-  //  pageSize:number=3;
+
   disableLoadingButton=true;
   blankImg='../../assets/img/noImg.png';
   basicPlan:number;
@@ -71,36 +70,17 @@ export class SearchresultComponent implements OnInit {
       this.objSearchlistvm.districtId.push(this.objSearchFilter.locationId);
       this.paginate(this.objSearchFilter.pageSize)
     })
-    this.objSearchFilter=new filterParam();
-  //  this.objSearchlistvm = new SearchListingVM();
-   
+    this.objSearchFilter=new filterParam();  
     if(this._activeRoute!=undefined){
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
-      console.log(this.objSearchFilter);
-      // this._activeRoute.snapshot.params['id'].split('/')[2];
-    //  this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
-    ///  this.objSearchlistvm.districtId.push(this.objSearchFilter.locationId);
     }
     this.getLocations();
     this.getCategories();
     this.getFilters();
     this.getSearchFilterResult();
- //  this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
-    // this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
-    //   this.objSearchResultItems = res;
-    //   this.slidesStore = []//mahima
-    //   this.slidesStore =  this.objSearchResultItems['items']
-      
-    //   console.log(this.objSearchResultItems)
-    //   //console.log(JSON.stringify(this.objSearchResultItems));
-    // },error=>{
-    //   console.log(JSON.stringify(error));
-    // });
- //   this.paginate(this.objSearchFilter.pageSize);
   }
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
-    console.log(this.activeSlides);
   }
   getCategoryName(i):string{
     debugger
@@ -111,12 +91,10 @@ export class SearchresultComponent implements OnInit {
     }
   }
   ngOnInit() {   
-  //$.getScript('./assets/js/owljsor.js');
+ 
   $.getScript('./assets/js/searchresult.js'); 
   $.getScript('./assets/register/js/jquery-2.2.4.min.js');
   $.getScript('./assets/register/js/bootstrap.min.js');
-  //$.getScript('./assets/register/js/jquery.bootstrap.js');
-
   $.getScript('./assets/jss/core/popper.min.js');
   $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
   $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');
@@ -250,7 +228,6 @@ export class SearchresultComponent implements OnInit {
     this.setBlankImg();
     this.addToCollection();
     this.loading=false; 
-    console.log(JSON.stringify(this.objSearchResultItems)) ; 
   },error=>{
     this.loading = false;
   });   

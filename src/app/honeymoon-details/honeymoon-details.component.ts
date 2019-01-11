@@ -69,7 +69,6 @@ export class HoneymoonDetailsComponent  {
 
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
-    console.log(this.activeSlides);
   }
   getSliderData(){
     const data = {
@@ -78,7 +77,6 @@ export class HoneymoonDetailsComponent  {
     }
     this._masterservice.getFilterResult(data).subscribe(res =>{
       this.slidesStore =  res['items']  
-      console.log(this.slidesStore)
     },error=>{
       console.log(JSON.stringify(error));
     });

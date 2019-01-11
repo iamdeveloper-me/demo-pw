@@ -18,16 +18,14 @@
                                 <ul>
                                     <li *ngFor='let c of colors'  (click)='colourArray(c)'  style="color:black">
                                         <i class="fa fa-check ticklist" *ngIf='c.isSelected'></i>
-                                        <span class="colortag"  [style.background-color]='c.colorName'>
-                                           
-                                        </span>
+                                        <span class="colortag"  [style.background-color]='c.colorName'></span>
                                          {{c.colorName}}
                                     </li>
                                 </ul>
                             </div>
                     </div>
                     <div class="col-md-8 col-xs-4 Search_img"  >
-                        <input type="text"  [(ngModel)]="searchQuery"  type="text" name="searchQuery"  placeholder="Search  tags only" class="searchinput">
+                        <input type="text"  [(ngModel)]="photo_search_param.searchQuery"  type="text" name="searchQuery"  placeholder="Search  tags only" class="searchinput">
                         <input type="submit"  value=""  class="search-button">
                     </div>
                 </form>
@@ -39,14 +37,17 @@
             <div class="text-center">
                 <section id="wrapper">
                     <div class="container">    
-                        <span *ngFor="let colour_tag of colour_showTag " >
-                            <span class="colortag" *ngIf='showTag' [style.background-color]='colour_tag'> </span>
-                        </span>
-                        <div  *ngIf='showTag2'>
+                        <div *ngFor="let item of pagedItems  ">
+                            <span *ngFor="let colour_tag of item.colorTags" >
+                                    <span  *ngIf = "colout_tag && colour_tag != ''  " class="colortag"  [style.background-color]='colour_tag'> </span>
+                            </span>
+                        </div>
+                     
+                        <div *ngIf = "showTag2">
                             <div class="tagnamediv"   *ngFor="let item of pagedItems | slice:0:1 ;let i=index ">
                                 <div *ngFor="let tag of item?.tags | slice:0:1 ;let i=index " >  
                                     <span class="tagstik" *ngIf = "tag != '' " > 
-                                        {{tag}}    
+                                        {{tag}}
                                     </span>   
                                 </div>
                             </div> 

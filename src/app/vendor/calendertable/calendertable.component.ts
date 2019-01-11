@@ -82,9 +82,7 @@ export class CalendertableComponent implements OnInit {
                   //all
                   this.http.post(this.geturl,{filter: 3},{headers:this.http_header}).subscribe(data =>{             
                     this.jobArray = data.json();
-                    
-                    console.log(this.jobArray );
-                    // this.final_List.forEach(function (value) { this.event_data.events.push(value); });
+        
                   },error => { console.log(error)});
 
                     $(".weddingjobstab").click(function(){
@@ -123,7 +121,6 @@ export class CalendertableComponent implements OnInit {
           } 
           // New Calendar funciton Called
           this.BindEventCalender();
-          // console.log(this.eventData)
           setTimeout(() => {
             this.initNewCalander();
             
@@ -137,8 +134,6 @@ export class CalendertableComponent implements OnInit {
             activeDayIsOpen: boolean = true;
 
             job(jo){
-       
-              console.log(jo);
                       this.end_date = jo.value['endDate']['year']+'-'+jo.value['endDate']['month']+'-'+jo.value['endDate']['day']
                       this.start_date = jo.value['startDate']['year']+'-'+jo.value['startDate']['month']+'-'+jo.value['startDate']['day']
                       jo.value.startDate = this.start_date
@@ -151,11 +146,11 @@ export class CalendertableComponent implements OnInit {
                                 this.jobdate = false;
                                 this.http.post(this.creat_job_url,jo.value,{headers:headers}).subscribe(
                                   data =>{ 
-                                          console.log( data.json() );
+                                        
                                           this.toastr.success(data.json().message );
                                           this.jobview(3);
                                           this.showModal=false;
-                                          // this.jobview.reset();
+                                          
                                           }),error => {  console.log(error)};
             
             }
@@ -163,7 +158,7 @@ export class CalendertableComponent implements OnInit {
              ;
               this.showModal = true;
               this.edit_job_form = a;
-              console.log(this.edit_job_form)
+            
               this.objVendorJob=a;  
               
               this.edit_startDate =  { "year": parseInt(a.startDate.split('T')[0].split('-')[0])   , 
@@ -173,15 +168,13 @@ export class CalendertableComponent implements OnInit {
               this.edit_endDate   =  {"year": parseInt(a.endDate.split('T')[0].split('-')[0])   , 
                                                "month": parseInt(a.endDate.split('T')[0].split('-')[1])  ,
                                                "day": parseInt(a.endDate.split('T')[0].split('-')[2])}                    
-                                               console.log(  this.edit_startDate);
-                                               console.log (this.edit_endDate  );
+                                              
               this.edit_job_form.startDate = a.startDate.split('T')[0].split('"')[0];
               this.edit_job_form.endDate  = a.endDate.split('T')[0]
            
             }
             edit_job(b){
-              console.log(b.value);
-           
+             
               let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
               headers.append('Accept', 'application/json')
@@ -193,15 +186,14 @@ export class CalendertableComponent implements OnInit {
               this.objVendorJob.startDate =  b.value.startDate["year"]+'-'+b.value.startDate["month"]+'-'+  b.value.startDate["day"]
  
               this.objVendorJob.endDate =  b.value.endDate["year"]+'-'+  b.value.endDate["month"]+'-'+ b.value.endDate["day"]
-              console.log(this.objVendorJob); 
+            
               this.http.post(this.creat_job_url,this.objVendorJob,{headers:headers}).subscribe(
                 data =>{ 
-                        console.log( data.json() );
-                        //this.ngOnInit()
+                      
                         this.showModal = false;
                         this.toastr.success(data.json().message );
 
-                        }),error => {  console.log(error.json())
+                        }),error => { 
                                        this.toastr.error(error.json().message );
                                     };
 
@@ -219,7 +211,7 @@ export class CalendertableComponent implements OnInit {
                 cancelButtonText: "No, cancel plx!",
                 }).then((res)=>{
                     if(res.value===true){
-                    console.log(job);
+                   
                     var deleteid = job.vendorJobsId ;
                     let headers = new Headers();
                     var authToken = localStorage.getItem('userToken');
@@ -229,7 +221,7 @@ export class CalendertableComponent implements OnInit {
                 
                     this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/VendorJobs/removejob?VendorJobId'+'='+deleteid,{headers:headers}).subscribe(
                         data =>{
-                    console.log(data.json());
+                  
                     this.toastr.success(data.json().message );
                                 
                     },error =>{ console.log(error)});
@@ -252,7 +244,7 @@ export class CalendertableComponent implements OnInit {
               this.http.post(this.geturl,{
                 filter: a
               },{headers:headers}).subscribe(data =>{
-                console.log( data.json() );
+            
                 this.jobArray = data.json() as string[]; 
               },error => {  console.log(error)});
             }
@@ -298,13 +290,12 @@ export class CalendertableComponent implements OnInit {
                 elem['date'] =  elem['startDate'].split('T')[0].split('-')[0] + '-' + elem['startDate'].split('T')[0].split('-')[1] + '-' + r
                this.mainData.push(elem) 
               }
-             // this.initNewCalander();
+            
 
               });
-              console.log(JSON.stringify(this.mainData))
+            
               this.calendarOptions['events'] = [{"vendorJobsId":110,"clientName":"mahima","clientNumber":"2343243","eventTitle":"Hackintosh","eventLocation":"Indore","startDate":"2018-12-07T00:00:00","endDate":"2018-12-14T00:00:00","startTime":"2018-12-12T01:00:00","endTime":"2018-12-12T07:00:00","noOfGuests":1,"userId":"669e6f88-624d-4e33-8ff8-a55f5b0d531c","vendorId":23,"title":"Hackintosh","date":"2018-12-14"},{"vendorJobsId":110,"clientName":"mahima","clientNumber":"2343243","eventTitle":"Hackintosh","eventLocation":"Indore","startDate":"2018-12-07T00:00:00","endDate":"2018-12-14T00:00:00","startTime":"2018-12-12T01:00:00","endTime":"2018-12-12T07:00:00","noOfGuests":1,"userId":"669e6f88-624d-4e33-8ff8-a55f5b0d531c","vendorId":23,"title":"Hackintosh","date":"2018-12-14"},{"vendorJobsId":110,"clientName":"mahima","clientNumber":"2343243","eventTitle":"Hackintosh","eventLocation":"Indore","startDate":"2018-12-07T00:00:00","endDate":"2018-12-14T00:00:00","startTime":"2018-12-12T01:00:00","endTime":"2018-12-12T07:00:00","noOfGuests":1,"userId":"669e6f88-624d-4e33-8ff8-a55f5b0d531c","vendorId":23,"title":"Hackintosh","date":"2018-12-14"},{"vendorJobsId":110,"clientName":"mahima","clientNumber":"2343243","eventTitle":"Hackintosh","eventLocation":"Indore","startDate":"2018-12-07T00:00:00","endDate":"2018-12-14T00:00:00","startTime":"2018-12-12T01:00:00","endTime":"2018-12-12T07:00:00","noOfGuests":1,"userId":"669e6f88-624d-4e33-8ff8-a55f5b0d531c","vendorId":23,"title":"Hackintosh","date":"2018-12-14"}]
-              console.log(this.calendarOptions)
-              // this.final_List.forEach(function (value) { this.event_data.events.push(value); });
+                         
             },error => { console.log(error)});
            
           } 
@@ -316,21 +307,18 @@ export class CalendertableComponent implements OnInit {
           clickDay(date, jsEvent, view) {
             
             const clickedDate = new Date(date).toLocaleString('en-US', {timeZone: 'UTC'}).split(', ');
-            console.log(clickedDate[0]);
-            // this.showScheduleModal = true;
-          //  this.dayClickDate = clickedDate;
-           // console.log('this.dayClickDate: ', this.dayClickDate);
+          
           }
         
           hide(){
-         // this.calendarOptions.events.push(this.eventObj);
+        
           this.showModal = false;
           this.jobedit = false;
         }
         dayClick(calendarOptions){
           const datePipe = new DatePipe('en-US');
            const myFormattedDate = datePipe.transform(calendarOptions["detail"]["date"]["_i"], 'yyyy-MM-dd');
-          //const myFormattedDate = datePipe.transform(calendarOptions.timeStamp, 'yy-MM-dd');
+         
           this.objVendorJob.startDate = this.apiService.returnJsonDate(myFormattedDate);
 
           this.showModal=true;

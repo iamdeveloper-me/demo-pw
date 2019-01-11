@@ -57,7 +57,7 @@ export class BusinessServicesComponent implements OnInit {
     this.showLoader = true;
     this.http.get(this.api + 'api/Supplier/mybusinessservices', { headers: headers }).subscribe(data => {
       this.categoryserveice = data.json() as string[];
-      console.log(JSON.stringify(this.categoryserveice));
+     
       this.selected_category = this.categoryserveice.filter(c => c.isSelect == true);
       if (this.selected_category.length == 0) {
         this.selected_category = this.categoryserveice;
@@ -178,10 +178,9 @@ export class BusinessServicesComponent implements OnInit {
     this.businessServiceEntity.servicesId = id;
     this.name_d = name;
     let isServiceExist = this.selected_category.filter(c => c.categoryId == this.objVenderServiceVm.categoryId)[0].services.filter(s => s.isSelect == true)[0];
-    console.log(isServiceExist);
+  
     if (isServiceExist != undefined) {
-      //  this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.isSelect==true)[0].isSelect=false;
-      //  this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.servicesId==id)[0].isSelect=true;
+    
       this.customFields = isServiceExist.customFields;
       let display_text = '';
       this.customFields.forEach(element => {
@@ -199,7 +198,7 @@ export class BusinessServicesComponent implements OnInit {
             element.SelectedOptionValue = SelectedCustomFieldOption.displayText;
           }
         }
-        console.log(this.customFields);
+       
       });
     }
   }
@@ -228,10 +227,10 @@ export class BusinessServicesComponent implements OnInit {
     })
   }
   getSelectOptions(customField) {
-    console.log(JSON.stringify(customField));
+  
     this.customFieldSelectOptions = this.categoryserveice.filter(c => c.categoryId == this.objVenderServiceVm.categoryId)[0].services.filter(s => s.servicesId == this.objVenderServiceVm.servicesId)[0].customFields.filter(cf => cf.customFieldId == customField.customFieldId)[0].customFieldOptionList;
     this.customFieldSelectOptions.forEach(element => {
-      // element.isSelected=false;
+     
       element.fieldType = customField.fieldType;
     });
     this.customDialog = true;
@@ -249,44 +248,23 @@ export class BusinessServicesComponent implements OnInit {
   }
   seveCustomField(cfo, fieldType) {
   
-   // cfo.isSelected = true;
-   // let smv = new ServiceFieldValuesVM();
-   // smv.FieldValue = cfo.key;
-   // smv.customFieldId = cfo.customFieldId;
-   // this.customFields.filter(c => c.customFieldId == cfo.customFieldId)[0].SelectedOptionId = smv.id;
-    if (cfo.fieldType ==6) {
+     if (cfo.fieldType ==6) {
       if(cfo.isSelect==false){
-    //  this.businessServiceEntity.remove=true;
+  
     this.businessServiceEntity.serviceFields.push({customFieldId:cfo.customFieldId, fieldValue:cfo.key,remove:true}) 
       }
       else{
-      //  this.businessServiceEntity.remove=false;
       this.businessServiceEntity.serviceFields.push({customFieldId:cfo.customFieldId, fieldValue:cfo.key,remove:false})  
       }
-     // let CheckboxSelectedValues = this.customFields.filter(c => c.customFieldId == cfo.customFieldId)[0].customFieldOptionList.filter(o => o.isSelect == true);
-     // this.str_csv_selectedvalues = '';
-     // CheckboxSelectedValues.forEach(element => {
-      //  this.str_csv_selectedvalues += element.key + ',';
-     // });
-     // this.customFields.filter(c => c.customFieldId == cfo.customFieldId)[0].SelectedOptionValue = this.str_csv_selectedvalues.substring(0, this.str_csv_selectedvalues.length - 1);
-    }
+       }
     else {
-//      this.customFields.filter(c => c.customFieldId == cfo.customFieldId)[0].SelectedOptionValue = smv.FieldValue;
       this.businessServiceEntity.serviceFields.push({customFieldId:cfo.customFieldId, fieldValue:cfo.key,remove:false})
     }
-   // let options = this.customFields.filter(c => c.customFieldId == cfo.customFieldId)[0].customFieldOptionList;
-  //  let CustomfieldType = this.customFields.filter(c => c.customFieldId == cfo.customFieldId)[0].fieldType;
-   
-   //   this.businessServiceEntity.customFieldId = cfo.customFieldId;
-  //  this.businessServiceEntity.fieldValue = cfo.key;
-    
-    console.log(this.businessServiceEntity);
+
     this.showLoader = false;
   }
   SaveBusinessService2(){
-    console.log(this.businessServiceEntity.serviceFields);
-    console.log(this.customFields);
-
+  
     for (var i = 0; i < this.businessServiceEntity.serviceFields.length; i++) {
       let CheckboxSelectedValues = this.customFields.filter(c => c.customFieldId == this.businessServiceEntity.serviceFields[i].customFieldId)[0].customFieldOptionList.filter(o => o.isSelect == true);
        CheckboxSelectedValues.forEach(element => {

@@ -48,25 +48,17 @@ export class SitestatsandreportsComponent implements OnInit {
   public vendordoughnutChartType = chartsData.vendordoughnutChartType;
   public vendordoughnutChartColors = chartsData.vendordoughnutChartColors;
   public vendordoughnutChartOptions = chartsData.vendordoughnutChartOptions;
-
-hide(donut){ donut = false;}
-
-  
   public chartClicked(e: any): void {
     //your code here
   }
-
   public chartHovered(e: any): void {
     //your code here
   }
   constructor() { }
-  
   ngOnInit() {   
-    let donut = true;
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
-  $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
-  $.getScript('./assets/js/vendorsidebar.js');
-  }
- 
-  open(a){console.log(a);}
+    $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
+    $.getScript('./assets/js/vendorsidebar.js');
+    }
+
 }

@@ -52,18 +52,9 @@ export class InvoiceDetailComponent implements OnInit {
 
       
     }     
-    //NgOnInit End
-    
-// a= "all";
-// b="Business Pormotion";
-// c="Membership Plan";
-// type(e){
-//   console.log(e);
-//   return e;
-// }
   
 invoice(data){
-  console.log(data);
+  
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
   var authId = localStorage.getItem('userId');
@@ -72,59 +63,26 @@ invoice(data){
     startDate: data.value.startDate,
     endDate: data.value.endDate,
     userId: authId,
-    // invoiceId: '',
+  
     invoiceType: data.value.invoiceType
   }
-  console.log(inc);
+ 
 
   headers.append('Accept', 'application/json')
   headers.append('Content-Type', 'application/json');
   headers.append("Authorization",'Bearer '+authToken);
-  // this.invoiceData = data.json() as string[]; 
   this.http.post(this.invoiceurl,inc,{headers:headers}).subscribe(
     data =>{
       this.dataArray = data.json(); 
       this.invoice_length = this.dataArray.length
-             console.log(this.dataArray);
-            //  console.log(data.json());
              this.toastr.success("Search sucessfully");
     },error=>{console.log(error)});
 
 }
 
 
-  
-    //NgOnInit End
-
-// postData(f){
-//   console.log(f);
-//   let headers = new Headers();
-//   var authToken = localStorage.getItem('userToken');
-//   headers.append('Accept', 'application/json')
-//   headers.append('Content-Type', 'application/json');
-//   headers.append("Authorization",'Bearer '+authToken);
-//   const update =
-//     {
-//       startDate: f.value.startDate,
-//       endDate: f.value.endDate,
-//       invoiceId: f.value.invoiceId,
-//       userId: f.value.userId
-//     }
-
-//   console.log(update);
-//   this.http.post(this.invoiceurl,update,{headers:headers}).subscribe(
-//     data =>{ 
-//       // this.vendor = data.json();
-//    
-//       this.toastr.success("Update sucessfully");
-       
-//   },error=>{console.log(error)});
-// }
-
   invoiceDataFunction(s_data){
-  console.log(s_data);
   this.dataArray1 = (s_data)
-  console.log(this.dataArray1);
   }
 }
 

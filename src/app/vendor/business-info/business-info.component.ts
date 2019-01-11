@@ -196,7 +196,6 @@ export class BusinessInfoComponent implements OnInit {
 
    this.http.get(this.profileurl,{headers:headers}).subscribe(
      data =>{ this.vendor = data.json();
-              console.log(this.vendor);
      });
 
 //Progress Bar Icon
@@ -223,7 +222,6 @@ export class BusinessInfoComponent implements OnInit {
     addFile(infoo,v): void {
        this.progress = true ;
        this.cropperupload = false;
-        console.log(v)
         let fi = this.fileInput.nativeElement;
         if (fi.files && fi.files[0]) {
                 
@@ -240,8 +238,12 @@ export class BusinessInfoComponent implements OnInit {
                 }
               
 // Hemant
-        this._http.withUploadProgressListener(progress => {this.progress_bar = true; console.log(`Uploading ${progress.percentage}%`); this.closeModel('DescriptionDailog');this.progressPercentage = progress.percentage})
-        .withDownloadProgressListener(progress => { console.log(`Downloading ${progress.percentage}%`); })
+        this._http.withUploadProgressListener(progress => {this.progress_bar = true; 
+       
+           this.closeModel('DescriptionDailog');this.progressPercentage = progress.percentage})
+        .withDownloadProgressListener(progress => { 
+  
+        })
         .post(this.uploadimage, formData,{headers: headers})
         
         .subscribe( (data)=>{
@@ -306,7 +308,7 @@ export class BusinessInfoComponent implements OnInit {
 
     openModel(b){
       this.modelfield = b; 
-      console.log(this.modelfield);
+     
     }
     passToHeader(){
       
@@ -354,8 +356,7 @@ export class BusinessInfoComponent implements OnInit {
     }
 
     upForm(e,data){
-          console.log(e.value);
-          console.log(data);
+        
          this.vendor.businessDetails = this.businessDetails.nativeElement.value;
          this.vendor.nameOfBusiness = this.nameOfBusiness.nativeElement.value;
          
@@ -407,13 +408,13 @@ export class BusinessInfoComponent implements OnInit {
               
                 this.toastr.error("Can not save empty field")
                 this.http.get(this.url,{headers:headers}).subscribe(data =>{
-                  console.log(this.vendor );
+              
                   this.modelfield.nameOfBusiness =data.json().nameOfBusiness;
                   this.modelfield.businessDetails = data.json().businessDetails;
                   if(data.json().fbAvailable ==  false)
                   {
                     this.modelfield.facebookURL = '';
-                    // this.modelfield.facebookURL = 'Dont have any URL';
+                   
                   }else{ this.modelfield.facebookURL= data.json().facebookURL;}
                   
                   if(data.json().twitterAvailable ==  false)
@@ -444,7 +445,7 @@ export class BusinessInfoComponent implements OnInit {
                       this.vendor,{headers:headers});  
 
                         updatebusinessinfo.subscribe((responce)=>{ 
-                          console.log(responce.status);
+                       
                           this.toastr.success(responce.json().message);
                         if(responce.status == 200)
                         {
@@ -709,16 +710,16 @@ pageInitialize(){
   this.httpHeader=headers;
   this.http.get(this.url,{headers:headers}).subscribe(data =>{
   this.vendor = data.json();
-  console.log(this.vendor)
+
   if(!this.vendor.fileId)
                  {
                   
-                   console.log(this.vendor.files );
+                 
                    this.imagee = "https://openclipart.org/download/247324/abstract-user-flat-1.svg";
-                   console.log( this.imagee);
+                  
                   }else{  
                     this.imagee = this.vendor.files.path ;
-                  console.log(this.imagee)}
+                 }
                   this.facebook = data.json().facebookURL ;
   this.twitter = data.json().twitterURL ;
   this.instagram = data.json().instalURL ;
@@ -726,7 +727,6 @@ pageInitialize(){
   this.Businesname = data.json().nameOfBusiness ;
   this.Description = data.json().businessDetails ;  
   this.perfectWedding = data.json().perfectWeddingURL  ;
-  console.log(data.json());
 
   })
 }

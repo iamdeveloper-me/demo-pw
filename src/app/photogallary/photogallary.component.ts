@@ -16,11 +16,7 @@ export class PhotogallaryComponent implements OnInit {
     $.getScript('./assets/js/jquery.fancybox.min.js');
     $.getScript('./assets/js/curosselfun.js');
     const Images=JSON.parse(sessionStorage.getItem('Vendorimages'));
-   // sessionStorage.removeItem('Vendorimages');
    this.albums=Images;
-
-    console.log(JSON.stringify(this.albums));
-   
 }
 
 }

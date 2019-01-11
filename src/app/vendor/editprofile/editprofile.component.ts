@@ -82,15 +82,11 @@ changePassword_form = false;
     }
     this.http.get(this.url,{headers:headers}).subscribe(
       data =>{ this.vendor = data.json();
-               console.log(this.vendor);
-               console.log(this.vendor.vendorContactInfo);
       });
 
     //membership api
     this.http.get(this.membershipurl,{headers:headers}).subscribe(
       data =>{  
-               console.log(data.json());
-              // this.membershipdetail = data.json();
               this.myplans = data.json();
               this.statdate = data.json().startDateString;
               this.endDateString   = data.json().endDateString; 
@@ -102,9 +98,7 @@ changePassword_form = false;
     
     //Subscriptions
      this.http.get(this.subscriptionurl,{headers:headers}).subscribe(
-        data =>{ this.mysub = data.json();
-                 console.log(this.mysub);
-
+        data =>{ this.mysub = data.json();  
         });
 
   }
@@ -121,14 +115,12 @@ changePassword_form = false;
 
     this.http.get(this.subscriptionurl,{headers:headers}).subscribe(
       data =>{ this.mysub = data.json();
-               console.log(this.mysub);
+              
       });
   }
 
 
   updatesub(f2){
-  //  this.myupdatesub = data;
-    console.log(f2);
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -142,7 +134,7 @@ changePassword_form = false;
       appUpdates: true
     }
 
-    console.log(sub);
+   
     this.http.post(this.subupdateurl,sub,{headers:headers}).subscribe(
       data =>{ 
         this.mysub = data.json();
@@ -163,14 +155,13 @@ changePassword_form = false;
 
     this.http.get(this.vendor,{headers:headers}).subscribe(
       data =>{ this.vendor = data.json();
-               console.log(this.vendor);
+             
       });
 }
 
   //update Data Profile
   updateData(data){
-    // this.updateaccount = data;
-    console.log(data);
+   
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -184,7 +175,7 @@ changePassword_form = false;
         email : data.value.email,
         phoneNumber : data.value.phoneNumber,
       }
-    console.log(update);
+   
     this.personal_data_update = false;
     this.http.post(this.updateurl,update,{headers:headers}).subscribe(
       data =>{ 
@@ -199,13 +190,13 @@ changePassword_form = false;
   }
 
   changePassword(f){
-   console.log(f.value);
+ 
     const cp = {
       OldPassword : f.value.OldPassword,
       NewPassword :  f.value.NewPassword,
       ConfirmPassword : f.value.ConfirmPassword
     }
-    console.log(cp);
+   
     if(f.value.NewPassword == f.value.ConfirmPassword){
     
       let headers = new Headers();
@@ -215,7 +206,7 @@ changePassword_form = false;
       headers.append("Authorization",'Bearer '+authToken);
       this.http.post(this.changepassurl,cp,{headers:headers}).subscribe(
         data =>{
-                 console.log(data.json());
+               
                  this.toastr.success("Your Password Reset Sucessfully");
                  this.changePassword_form =false;
         },error=>{console.log(error);

@@ -73,7 +73,6 @@ ngOnInit(){
     this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
     .subscribe(data =>{
      this.totalImage =  data.json();
-     console.log(this.totalImage);
      for (var item of  this.totalImage ) {
      if(this.albumid.id == item.albumsId)
       {
@@ -85,31 +84,26 @@ ngOnInit(){
          
         }
         if(albumtag.tags != null){
-          // albumtag['tags_two'] = albumtag['tags'].split(',');
           albumtag['tags'] = albumtag['tags'][0].split(',');
-         
         }
         if(albumtag.colorTags !=null){
-          //  albumtag['colorTags'] = albumtag['colorTags'].split(',');
           albumtag['colorTags'] = albumtag['colorTags'].split(',');
         }
         this.albumImagesModify.push(albumtag);
       }
        }
            }
-           console.log(this.albumImagesModify);
     });
 }
 openModel(e){
     this.albumsetting2.createColorPanel();
     this.description_dailog = true
     this.formdata = e;
-    console.log(e);
     if(e.tags != null){
       this.tag_array = e.tags;
 
     }
-   console.log(this.albumsetting2.colors)
+
   
 
    if(this.formdata['colorTags'] != ''){
@@ -120,17 +114,7 @@ openModel(e){
         }
       }) 
     });
-  }
-  
-  
-    // if(e.colorTags==undefined){e.colorTags=[];}
-    // this.a = e.colorTags;
-    
-    // for (let i = 0; i < e.colorTags.length; i++) {
-    //   let c = this.albumsetting2.colors.filter(cn=>cn.colorName==e.colorTags[i])[0].isSelected=true;
-    // console.log(c)
-    // }
-    
+  }  
 }
 tags_bage(e){
             
@@ -151,7 +135,6 @@ colour_picker(d){
       this.tag_error = '';
       this.a.push(d);
        this.a = this.a.filter((el, i, a) => i === a.indexOf(el));
-       console.log(this.a);
     }
      
           
@@ -159,7 +142,6 @@ colour_picker(d){
 }
 remove_tag_picker(g){
   this.tag_array.splice(g, 1);
-  console.log(this.tag_array);
   if(this.tag_array.length == 0 )
   { 
    
@@ -168,7 +150,6 @@ remove_tag_picker(g){
 }
 remove_colour_picker(g){
   this.a.splice(g, 1);
-  console.log(this.a);
   if(this.a.length == 0 )
   {
   
@@ -177,8 +158,6 @@ remove_colour_picker(g){
   
 }
 editSetting(f){
- console.log(f)
- 
                   this.description_dailog = false;
                   this.tag_array = this.tag_array.filter(element => element !== "")
                
@@ -196,8 +175,6 @@ editSetting(f){
                      
                   this.post_tag_edit(fire)
                 }else{
-               
-                  console.log(   this.albumsetting2.csvColors)
                   const fire  = {       
                                   AlbumImageId: f.value.AlbumImageId,
                                   AlbumsId: f.value.AlbumsId,
@@ -214,8 +191,6 @@ editSetting(f){
 
 }
 post_tag_edit(fire){
-        console.log(fire);      
-    
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         headers.append('Accept', 'application/json')
@@ -237,13 +212,7 @@ post_tag_edit(fire){
                   },error=> console.log(error))
           this.description_dailog = false;
 }
-err(e){
-  console.log(e)
-}
-onSelect(tags){
-  console.log(tags);
-  console.log('tag selected: value is ' + tags);
-}
+
   //Album Get
 
 closeModel(){
@@ -261,7 +230,6 @@ closeModel(){
     confirmButtonText: "Yes",
     cancelButtonText: "No",
     }).then((res)=>{
-      console.log(res);
       if(res.value===true){
       this.albumImagesModify.splice(index,1);
       let headers = new Headers();
@@ -271,7 +239,6 @@ closeModel(){
       headers.append("Authorization",'Bearer '+authToken);
       this.http.get(this.url+'api/Albums/removeimage?AlbumImageId'+'='+image.albumImageId,{headers:headers})
       .subscribe(data =>{
-        console.log(data.json());
         this.toastr.success(data.json().message);
           }); 
   }else{
@@ -281,9 +248,6 @@ closeModel(){
     alert(JSON.stringify(error));
  })
    return;
-  }
-  addtagss(e){
-    console.log(e);
   }
 }
 

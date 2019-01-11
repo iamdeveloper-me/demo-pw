@@ -72,7 +72,7 @@ export class PromoteBusinessComponent implements OnInit {
 
 
     this.http.get(this.allpromo,{headers:headers}).subscribe(data =>{ data.json();
-      console.log(data.json());
+    
       this.promotion = data.json();
       this.promotion_length =   this.promotion.length;
     },error => { console.log(error)});
@@ -82,7 +82,7 @@ export class PromoteBusinessComponent implements OnInit {
  this.http.get(this.url,{headers:headers}).subscribe(
           data =>{ 
                    this.bussiness_name = data.json().nameOfBusiness
-          console.log(data.json().nameOfBusiness)
+        
           })
     $(".close").click(function(){
         $(".alert").hide();

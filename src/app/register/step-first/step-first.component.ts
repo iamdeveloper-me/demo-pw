@@ -65,22 +65,15 @@ export class StepFirstComponent implements OnInit {
     let VC= new VendorCatrgoryAddVM();
     VC.categoryId = this.num_CategoryId;
     this.objVendorDetails.vendorCategories.push(VC);
-    console.log(this.objVendorDetails);
     localStorage.setItem('VednorDetails',JSON.stringify(this.objVendorDetails));
     this.cservice.GoToNextStep('/register/step2');
 
   }
 
     onSubmit(f) {  
-      console.log(f.value);
-      // this.router.navigate(['/register/step-second']);  
-      // localStorage.setItem('category', 'categoryId');yy
-
-      console.log(this.user)
       this.cservice.signup(this.user).subscribe(( data )  =>  
-      { console.log(data.json())
+      {
         this.cservice.typeSuccess();
-        // this.router.navigate(['../home'])
        }
       ,error => {console.log(error);
      this.cservice.typeWarning(error);

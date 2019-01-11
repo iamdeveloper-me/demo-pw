@@ -10,13 +10,7 @@ export class SuccessComponent implements OnInit {
   private success: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/ProcessPayment/completetransaction'
  
   constructor(private activatedRoute: ActivatedRoute,public http: Http) {   this.activatedRoute.queryParams.subscribe(params => {
-    //  let date = params['startdate'];
-      console.log(params); // Print the parameter to the console. 
-      console.log(params.PayerID ); 
-      console.log(params.guid ); 
-      console.log(params.paymentId ); 
-      console.log(params.token ); 
-
+    
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
       headers.append('Accept', 'application/json')
@@ -30,7 +24,9 @@ export class SuccessComponent implements OnInit {
           token: params.token 
         }
     ,
-    {headers:headers}).subscribe(data =>{console.log( data.json()) },error => {console.log(error)});
+    {headers:headers}).subscribe(data =>{
+ 
+     },error => {console.log(error)});
 
 
   });

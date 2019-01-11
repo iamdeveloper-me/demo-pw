@@ -69,7 +69,7 @@ export class VideosComponent implements OnInit {
         return;
     }
     //Validation End!
-    console.log(this.form.value) 
+  
     const data = {
       "videosId": 0,
       "title": this.form.value['title'],
@@ -79,7 +79,6 @@ export class VideosComponent implements OnInit {
     let headers = new Headers();
           var authToken = localStorage.getItem('userToken');
           var categoryid = localStorage.getItem('categoryid');
-          console.log(categoryid);
           headers.append('Accept', 'application/json')
           headers.append('Content-Type', 'application/json');
           headers.append("Authorization",'Bearer '+authToken);
@@ -88,30 +87,21 @@ export class VideosComponent implements OnInit {
                 .subscribe(
                     resp => {
                       this.Addvediodetail_dailog = false;
-                        // this.t.success('Project created successfully');
-                        // this.ui.laddaSave = false;
-                        // this.initForm();
-                        console.log(resp);
                         this.video_all_data.push(data);
                         this.ngOnInit();
                     },
                     e => {
-                        // this.ui.laddaSave = false;
-                        // this.l.error('Project error', e);
-                        // this.t.error(e.error.error.detail);
+                       console.log(e)
                     }
                 )
-                // // /api/Videos/myvideos
-                // this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Videos/myvideos',{headers:headers}).subscribe((res)=>{
-                // console.log(res)
-                // })
+
 
   }
 
   //VideoPopup
   addVideo(){
     swal({
-      // title: "Are you sure to change membership plan?",
+  
       title: "Limited Video Plan",
       text: "Please Upgrade Your Plan For Unlimited Video !",
       type: "warning",
@@ -149,28 +139,11 @@ export class VideosComponent implements OnInit {
     @Input() name;
    
     videosave() {
-      console.log('hhhh')
-      // if (this.videoForm.invalid) return;
-
-      console.log(this.videoForm.value)
-
-      // this.api.project.upsert(this.projectForm.value)
-      //           .subscribe(
-      //               resp => {
-      //                   this.t.success('Project created successfully');
-      //                   this.ui.laddaSave = false;
-      //                   this.initForm();
-      //               },
-      //               e => {
-      //                   this.ui.laddaSave = false;
-      //                   this.l.error('Project error', e);
-      //                   this.t.error(e.error.error.detail);
-      //               }
-      //           )
+  
       let headers = new Headers();
           var authToken = localStorage.getItem('userToken');
           var categoryid = localStorage.getItem('categoryid');
-          console.log(categoryid);
+        
           headers.append('Accept', 'application/json')
           headers.append('Content-Type', 'application/json');
           headers.append("Authorization",'Bearer '+authToken);
@@ -178,21 +151,15 @@ export class VideosComponent implements OnInit {
       this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Videos/createupdatevideos',this.videoForm.value,{headers:headers})
                 .subscribe(
                     resp => {
-                        // this.t.success('Project created successfully');
-                        // this.ui.laddaSave = false;
-                        // this.initForm();
-                        console.log(resp)
+                      
+                       
                     },
                     e => {
-                        // this.ui.laddaSave = false;
-                        // this.l.error('Project error', e);
-                        // this.t.error(e.error.error.detail);
+                      console.log(e)
+                     
                     }
                 )
-                // // /api/Videos/myvideos
-                // this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Videos/myvideos',{headers:headers}).subscribe((res)=>{
-                // console.log(res)
-                // })
+
 
     }
   ngOnInit() {
@@ -200,21 +167,19 @@ export class VideosComponent implements OnInit {
       let headers = new Headers();
           var authToken = localStorage.getItem('userToken');
           var categoryid = localStorage.getItem('categoryid');
-          console.log(categoryid);
+      
           headers.append('Accept', 'application/json')
           headers.append('Content-Type', 'application/json');
           headers.append("Authorization",'Bearer '+authToken);
  this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Videos/myvideos',{headers:headers}).subscribe((res)=>{
-                console.log(res.json())
+              
                 this.video_all_data = res.json();
                 this.video_total =  this.video_all_data.length
 
                 this.loader =  true
                 
           })
-  //   $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
-  // $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
-  $.getScript('./assets/js/vendorsidebar.js');
+ $.getScript('./assets/js/vendorsidebar.js');
   const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
   this.videoForm = this.fb.group(
     {   

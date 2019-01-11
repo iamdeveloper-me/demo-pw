@@ -173,7 +173,7 @@ export class EventListComponent implements OnInit {
 
     this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries").subscribe(data => {
       this.countryArray = data.json();
-      //console.log(this.countryArray);
+   
       this.arra = this.countryArray
       this.country();
       this.districtA();
@@ -181,33 +181,6 @@ export class EventListComponent implements OnInit {
     })
     this.past_upcomming_event(2);
     $.getScript('./assets/js/vendorsidebar.js');
-
-  
-      // $( window ).load(function() {
-        // $(".selectwet").each(function () {
-        //   $(this).change(function () {
-        //   createSummary();
-        //   });
-        //   });
-        //   function createSummary() {
-        //   var eventType = $("#startTime option:selected").text()
-        //   $(".summary_eventType").html(eventType);
-        //   }
-          
-      // });
-
-      // $('.selectwet').on("focus", function(){
-      //   $(".summary_eventType").focus();
-      // })
-      // $('.selectwet').on("change", function(){
-      //   $(".summary_eventType").val($(this).val());
-      // })
-      // $('.selectwet1').on("focus", function(){
-      //   $(".summary_eventType1").focus();
-      // })
-      // $('.selectwet1').on("change", function(){
-      //   $(".summary_eventType1").val($(this).val());
-      // })
       $('.selectwet').on("focus", function(){
         $(".selectlabel").addClass("bottomtik");
       });
@@ -311,10 +284,10 @@ export class EventListComponent implements OnInit {
       this.isImageLoading = false;
     }, error => {
       this.isImageLoading = false;
-      //console.log(error);
+     
     });
   }
-  // path = "https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg";
+  
   path = "https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg";
   data: any = [{ files: { path: "https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" } }]
   list: any = {
@@ -349,8 +322,7 @@ export class EventListComponent implements OnInit {
   }
 
   addFile(info): void {
-    //console.log(info);
-
+   
     let fi = this.fileInput.nativeElement;
     if (fi.files && fi.files[0]) {
 
@@ -364,26 +336,18 @@ export class EventListComponent implements OnInit {
       for (let image of fileToUpload) {
         formData.append(image.name, image)
       }
-
-
-     // console.log(fileToUpload);
-
       this.http.post(this.uploadimage, formData, { headers: headers })
         .subscribe(data => {
           this.fileIdfield = data.json()
-            //console.log(this.fileIdfield),
-
-            //console.log(data.json())
         },
 
           (error) => { 
-            //console.log(error) 
+            console.log(error) 
           });
     }
 
   }
   Titleee(event: any) {
- //   console.log(event);
     this.Titlee = ''
   }
   startDatess(event: any) { this.startDates = '' }
@@ -407,11 +371,11 @@ export class EventListComponent implements OnInit {
 
   event(list) {
    
-    //console.log(this.objevent.eventTitle);
+   
     if(this.imageToUpload==undefined){
       this.image_field = 'Please Select Event Image !';
   
-     // this.toastr.error('Please Select Event Image !');
+   
       return false;
     }
     if (typeof (this.objevent.eventTitle) == 'undefined') {
@@ -522,10 +486,10 @@ export class EventListComponent implements OnInit {
  
         this.objevent.endDate = endDate["year"]+'-'+endDate["month"]+'-'+endDate["day"]
 
-         console.log(this.objevent.startDate,this.objevent.endDate )
+      
          var startDate = this.objevent.startDate
        
-         console.log( this.objevent.endDate)
+      
         let events =
         {
           "eventsMoreDatesId": 0,
@@ -537,19 +501,18 @@ export class EventListComponent implements OnInit {
           "endTime": this.endtime
         }
         this.objevent.eventsDates.push(events);
-        console.log(this.objevent)
+     
         this.http.post(this.eventposturl, this.objevent, { headers: headers }).subscribe((data) => {
           let response = JSON.parse(data.text());
-          // alert(JSON.stringify(response.message));
+         
           this.toastr.success("created  event sucessfully");
           this.showLoader = false;
           this.objevent = new EventsCreateUpdateVM();
           this.past_upcomming_event(0)
           this.twitterDailog = false;
-          //list.reset()
+         
         }, error => {
-          console.log(error)
-         // console.log(error.json().capacity[0])
+       
           this.toastr.error(error.json().capacity);
           this.showLoader = false;
           list.reset()
@@ -557,7 +520,7 @@ export class EventListComponent implements OnInit {
       })
     }
     } else {
-    //  this.toastr.error("fill completly");
+      this.toastr.error("fill completly");
     }
 
 
@@ -596,8 +559,7 @@ export class EventListComponent implements OnInit {
   }
 
   editevent(v) {
-    console.log(v);
-    // alert("dvfdv");
+   
     this.objevent.districtId = v.districtId;
     this.objevent.suburbId = v.suburbId;
     this.objevent.countryId = v.countryId;
@@ -607,17 +569,13 @@ export class EventListComponent implements OnInit {
     this.startimee = v.eventsDates[0].startTimeString;
     this.endtime = v.eventsDates[0].endTimeString;
     if(v.eventsDates[0].startDate.includes('T') == true){
-      // alert("true");
+      
       v.eventsDates[0].startDate = this.apiService.dateTFormatToJson(v.eventsDates[0].startDate)
       v.eventsDates[0].endDate   =  this.apiService.dateTFormatToJson(v.eventsDates[0].endDate)
         
  
     }else{
-    //  alert("false");
-    // v.eventsDates[0].endDate = v.eventsDates[0].endDate
-     console.log(v.eventsDates[0].endDate)
-     console.log(v.eventsDates[0].startDate)
-     //v.eventsDates[0].startDate =  v.eventsDates[0].startDate 
+     console.log("false")
     }
  
        this.startDates =  v.eventsDates[0].startDate;
@@ -634,7 +592,6 @@ export class EventListComponent implements OnInit {
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
-    console.log(data.value);
     data.value.startDate =  data.value.startDate["year"]+'-'+ data.value.startDate["month"]+'-'+ data.value.startDate["day"]
  
     data.value.endDate =  data.value.endDate["year"]+'-'+ data.value.endDate["month"]+'-'+ data.value.endDate["day"]
@@ -681,20 +638,18 @@ export class EventListComponent implements OnInit {
     }
     else {
       this.http.post(this.eventposturl, editData, { headers: headers }).subscribe(data => {
-        //console.log(data.json());
+ 
         this.toastr.success("saved sucessfully");
         this.eventupdaterDailog = false;
         this.past_upcomming_event(0);
-        //data.reset();
+
       }, error => {
-        //console.log(error);
         this.toastr.error(error);
       })
     }
   }
 
   past_upcomming_event(past) {
-   console.log(past);
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -704,7 +659,7 @@ export class EventListComponent implements OnInit {
     this.eventArray = [];
     this.http.post(this.myevent_Post_url, { Filter: past }, { headers: headers }).subscribe(data => {
       this.eventArray = data.json();
-     // console.log(JSON.stringify(this.eventArray));
+    
       for (let entry of data.json()) {
         this.event_Detail(entry.eventId)
       }
@@ -726,21 +681,22 @@ export class EventListComponent implements OnInit {
     }).then((res) => {
       if (res.value === true) {
         var id = data.eventId;
-       // console.log(id);
+  
         this.eventArray.splice(index, 1);
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         headers.append('Accept', 'application/json')
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization", 'Bearer ' + authToken);
-        //console.log('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id' + '=' + id);
+      
         this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/removeevent?id' + '=' + id, { headers: headers }).subscribe(data => {
           this.toastr.success("delete sucessfully");
         }, error => { 
-         // console.log(error)
+          console.log(error)
          });
       } else {
-        // alert('Cancel Process !');
+       
+        console.log('Cancel Process !')
       }
     }, error => {
       alert(JSON.stringify(error));
@@ -776,8 +732,7 @@ export class EventListComponent implements OnInit {
     // this.eventArray = [];
     this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Events/eventdetails?id' + '=' + id, { headers: headers }).subscribe(data => {
       this.eventArray.push(data.json());
-      console.log(data.json());
-
+     
     }, error => { 
       console.log(error); 
     })

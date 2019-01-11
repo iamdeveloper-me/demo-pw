@@ -13,26 +13,10 @@ export class MessageService {
   message(vendor){
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
-    // var userId = localStorage.getItem('userId')
-    // var vendorId = localStorage.getItem('vendorId')
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
-    // var messageId = 0;
-    // var subject = "hello";
-    // var message = vendor.message;
-    // var sendToUserId = userId;
-    // var sendByUserId = vendorId;
-    // var replyTo = 0;
-    // // var sentDate = "2018-08-30T06:53:14.594Z";
-    // // var messageStatus = 0;
-    // var sendByFirstName = vendor.sendByFirstName;
-    // var sendByLastName = vendor.sendByLastName;
-    // var sendByEmail = vendor.sendByEmail;
-    
-    // alert("jhihuihuih");
-    // console.log(sendByFirstName);
-    // console.log(sendByLastName);
+
     return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Messages/Post',vendor,{headers: headers})
 
   }

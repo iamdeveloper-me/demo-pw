@@ -61,9 +61,7 @@ export class PortfolioviewComponent implements OnInit {
                     headers.append("Authorization",'Bearer '+authToken);
                     this.http.get(this.mygeturl,{headers:headers}).subscribe(data =>{
                     this.PortgetArray = data.json() ;
-                   // var basicplan = localStorage.getItem('basic-plan');
-          
-                    //console.log(data.json());
+
                     })
 
                  
@@ -81,7 +79,7 @@ export class PortfolioviewComponent implements OnInit {
                     });
                    
                     this.http.get(this.Get_backgroundImage,{headers:headers}).subscribe(data =>{
-                        console.log(data.json());
+              
                         if(data.json().setAsBackgroud == true){
                             this.selected_Background = data.json().setAsBackgroud;
                            this.portfolioId = data.json().portfolioId;
@@ -126,7 +124,7 @@ export class PortfolioviewComponent implements OnInit {
                   confirmButtonText: "change plan",
                   cancelButtonText: "No",
                   }).then((res)=>{
-                    console.log(res);
+
                     if(res.value===true){
                         this.router.navigate(['../vendor/membership'])
                     }
@@ -143,19 +141,19 @@ export class PortfolioviewComponent implements OnInit {
 
     }
     previewFile(event) {
-       // var preview = this.previewimg.nativeElement;
+
         let files = event.target.files;
         if (files) {
             for (let file of files) {
                 let FI  = new FileItem(this.uploader,file,null);
                 this.uploader.queue.push(FI);  
                 this.fileNames.push(file.name);
-                console.log(file);   
+  
                 this.previewImages = [];
                 let reader = new FileReader();
                 reader.onload = (e: any) => {
                 this.previewImages.push(e.target.result);
-                console.log(this.previewImages);
+ 
                 }
                 reader.readAsDataURL(file);
             }
@@ -168,7 +166,7 @@ export class PortfolioviewComponent implements OnInit {
     }
     uploadAll(){
 
-                    console.log(this.uploader.queue)
+    
                     const formData = new FormData();
                     for(let file of this.uploader.queue){
                             formData.append(file['some'].name,file['some'])
@@ -180,16 +178,19 @@ export class PortfolioviewComponent implements OnInit {
                     var authToken = localStorage.getItem('userToken');
                     headers.append("Authorization",'Bearer '+authToken);
                     this._http.withUploadProgressListener(progress => {
-                        this.progress_bar = true; console.log(`Uploading ${progress.percentage}%`);
+                        this.progress_bar = true;
+                      
                         this.closeModel(); this.progressPercentage = progress.percentage})
-        .withDownloadProgressListener(progress => { console.log(`Downloading ${progress.percentage}%`); })
+        .withDownloadProgressListener(progress => { 
+          
+         })
         .post(this.url+'api/ImageUploader/PortfolioUploader', formData,{headers: headers})
         .subscribe(data =>{ 
             this.toastr.success(data.json().message);
             this.router.navigate(['../vendor/portfolioview'])
             this.http.get(this.mygeturl,{headers:headers})
             .subscribe(data =>{   
-                            console.log(data.json()); 
+                         
                             this.PortgetArray =data.json() 
                             this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
                             this.uploadphoto_dailog = false;
@@ -198,7 +199,9 @@ export class PortfolioviewComponent implements OnInit {
             });
 
          
-            },(error)=>{console.log(error)});
+            },(error)=>{
+                console.log(error)
+            });
     }
     photoupload(formData){
     let headers = new  Headers();
@@ -207,7 +210,7 @@ export class PortfolioviewComponent implements OnInit {
 
     this.http.post(this.uploadimage,formData,{headers:headers})
     .subscribe(data =>{ 
-        //console.log(data.json().filesId);
+     
         const data2 = {
             // portfolioId: 0,
             // filesId: data.json().filesId,
@@ -221,19 +224,19 @@ export class PortfolioviewComponent implements OnInit {
             setAsBackgroud: true
         }
 
-        //console.log(data2);
+
         
         this.http.post(this.addportfolio,data2,{headers:headers})
     .subscribe(data =>{ 
-                        //console.log(data.json());
+                   
                         this.uploader.queue = [];
                         this.http.get(this.mygeturl,{headers:headers})
                         .subscribe(data =>{   
-                        console.log(data.json()); 
+                  
                         this.PortgetArray =data.json() 
                         this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
                         });
-                      console.log(data.json());
+                
                         this.toastr.success(data.json());
                     
                     },(error)=>{        this.toastr.error(error.json());
@@ -245,7 +248,7 @@ export class PortfolioviewComponent implements OnInit {
     closeModel(){
         this.uploadphoto_dailog = false;
         this.uploader.queue =[];
-      //  this.progress_bar = false;
+
 
     }
     popup_closeModel(){
@@ -253,7 +256,7 @@ export class PortfolioviewComponent implements OnInit {
     }
     setbackground(setId){
         let headers = new Headers();
-        console.log(setId)
+      
 
         var authToken = localStorage.getItem('userToken');
         headers.append('Accept', 'application/json')
@@ -263,10 +266,10 @@ export class PortfolioviewComponent implements OnInit {
     
        this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/setasstorefrontimage?PortfolioId'+ '=' + setId,{headers:headers}).subscribe(data =>{
             this.Set_as_background = data.json() as string[];
-            console.log( this.Set_as_background );
+          
             this.toastr.success("Image set as Business Cover");
             this.http.get(this.Get_backgroundImage,{headers:headers}).subscribe(data =>{
-                console.log(data.json());
+               
                 if(data.json().setAsBackgroud == true){
                     this.selected_Background = data.json().setAsBackgroud;
                    this.portfolioId = data.json().portfolioId;
@@ -275,10 +278,10 @@ export class PortfolioviewComponent implements OnInit {
             },error=>{ console.log(error)
                 this.toastr.error(error.json());
                    })
-        },error=>{// console.log(error)
+        },error=>{ console.log(error)
             this.toastr.error(error.json());
                 })
-    //console.log(setId)
+
     }
     delete_portfolio(e,index){
 
@@ -291,7 +294,7 @@ export class PortfolioviewComponent implements OnInit {
                 confirmButtonText: "Yes",
                 cancelButtonText: "No",
                 }).then((res)=>{
-                    console.log(res);
+             
                     if(res.value===true){
                         var id = e.portfolioId;
                         this.PortgetArray.splice(index, 1);

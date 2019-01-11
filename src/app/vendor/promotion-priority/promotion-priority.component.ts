@@ -138,18 +138,8 @@ export class PromotionPriorityComponent implements OnInit {
       route_key: 1,
       title: this.page_title
     }
-    // this.xyz=promoData;
-    console.log(promoData)
     sessionStorage.setItem('selected_plan', JSON.stringify(promoData));
-   // 
-   // alert("gfb");
     this.router.navigate(['/vendor/payment-selection'])
-    // this.route();
-    //   this.http.post(this.createpromo,promoData,{headers:this.headers}).subscribe(data =>{
-    //   console.log(data.json());
-    //   this.router.navigate([]).then(result => {  window.open(data.json().url, '_blank'); });
-    //   this.toastr.success( data.json().message);
-    //  })
   }
 
   package(list) {
@@ -180,18 +170,13 @@ export class PromotionPriorityComponent implements OnInit {
     let country = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries");
     country.subscribe(data => {
       this.countryArray = data.json();
-      console.log(this.countryArray);
+   
       this.arra = this.countryArray
     })
   }
   country(event): void {
     const newVal = event.target.value;
     let country = this.arra.filter(c => c.countryId == newVal)[0];
-    // this.c_id = this.arra.filter(c => c.countryId == newVal)[0].countryId;
-    // this.address_modelfield.country_id = country.countryId;
-    // this.country_name = country.countryName
-    // this.district = country.districts
-
   }
   route() {
     alert('ffffffffffff')

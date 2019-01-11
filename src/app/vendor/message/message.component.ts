@@ -102,21 +102,7 @@ this.historyArr.forEach(ele=>{
 if(this.num == 0){
   this.deletIcon = false
 }
-    // this.selectDelete.push(entry_id);
-    
 
-
-    // this.selectDelete.forEach(el=>{
-    //   if(el == entry_id){
-    //     this.selectDelete.unshift(entry_id);
-    
-    //    }else{
-    //     this.selectDelete.push(entry_id);
-    
-    //    }
-    // })
-    
-    // console.log(this.selectDelete)
 }
   ngOnInit() {
     this.deletIcon = false
@@ -135,32 +121,11 @@ if(this.num == 0){
         this.initDatatable(1)
         this.arrayLength = 1;  
       }, 200);
-      // this.hservice.marksread().subscribe(( data )  =>  
-      //   { 
-      //     console.log(data.json());
-      //     console.log("jjjjjjjj");
-      //     this.mreadArr = data.json() as string[] ; 
-      //   },error => 
-     
-      // )
-    
-  
-      //   this.hservice.markstared().subscribe(( data )  =>  
-      //   { 
-      //     console.log(data.json());
-      //     console.log("tttttttttttttt");
-      //     this.markred = data.json() as string[] ; 
-      //   },error => 
-     
-      // )
+
   
      
       $(function() {
-        // $("a").on("click", function() {
-      
-        //     $(".btn-default.active").removeClass("active");
-        //     $(this).find(".btn-default").addClass("active");
-        // });
+    
   
         $(".msg_buttons").on("click", function(){
          
@@ -174,11 +139,8 @@ if(this.num == 0){
   
   }
   search(newObj){
-console.log(this.find_name.toUpperCase())
 
-console.log(this.historyArr)
-// console.log(this.filter_id)
-// this.filter_id = 1
+
 const json ={
   "filter" : this.filter_id,
   "search" : this.find_name
@@ -189,7 +151,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
             this.historyArr = data.json()  ;
             this.arrayLength =  this.historyArr.length
             this.unread_msg = this.historyArr.length;
-            console.log(this.historyArr)
+     
           },error => 
           console.log(error) 
         )
@@ -213,7 +175,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
                   this.unread_msg = this.historyArr.length;
                   this.arrayLength =  this.historyArr.length
 
-                  console.log(this.historyArr)
+        
                 },error => 
                 console.log(error) // error path
               )
@@ -246,7 +208,7 @@ this.hservice.vendorMessages(json).subscribe(( data )  =>
             this.arrayLength =  this.historyArr.length
 this.deletIcon = false
 
-            console.log(this.historyArr)
+       
             this.loader = true
           },error => 
           console.log(error) 
@@ -275,8 +237,6 @@ this.deletIcon = false
             this.arrayLength =  this.historyArr.length
             this.deletIcon = false
 
-
-            console.log(this.historyArr)
             this.loader = false
 
           },error => 
@@ -307,8 +267,6 @@ this.deletIcon = false
             this.arrayLength = this.historyArr.length;
             this.deletIcon = false
 
-
-            console.log(this.historyArr)
             this.loader = false
 
           },error => 

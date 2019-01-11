@@ -45,7 +45,6 @@ export class AllPromotionPageComponent implements OnInit {
     headers.append("Authorization",'Bearer '+authToken);
 
     this.http.get(this.allpromo,{headers:headers}).subscribe(data =>{ data.json();
-      console.log(data.json());
       this.promotion = data.json();
     },error => { console.log(error)});
 
@@ -62,7 +61,6 @@ constructor(private modalService: NgbModal,public http: Http,public router: Rout
 
 // Open default modal
 open(content,data) {
-    console.log(data);
     this.promodetail = data; 
     this.modalService.open(content).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;

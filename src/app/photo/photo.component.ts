@@ -9,6 +9,7 @@ import { PagerService } from '../_services'
 export class PhotoComponent implements OnInit {
     colors: Array<ColorPicker>;
     categories:any = [];
+    category:any
     pho_data:any = {}
     loading = false;
     categoryId=''
@@ -43,9 +44,32 @@ export class PhotoComponent implements OnInit {
       // $.getScript('./assets/js/blocksit.min.js');
       // $.getScript('./assets/js/lazy.js');
       //$.getScript('./assets/js/jquery.pinbox.js');
-      //$.getScript('./assets/js/photo.js');     
+      //$.getScript('./assets/js/photo.js');    
+           
       this.onpageload();
+      $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
+
+      $(document).ready(function(){
+      $('.head').on('click', function(){
+          $('.colorlist').toggleClass('seelist');
+          });
+      $('.Search_img').on('click', function(){
+          $('.colorlist').removeClass('seelist');
+          });
+      $('.Search_img').on('click', function(){
+          $('.clearclass').removeClass('seelist');
+          });
+
+
+
+    
+
+    })
      
+
+
+
+
     }
     createColorPanel(){
       this.colors= Array<ColorPicker>();
@@ -61,6 +85,7 @@ export class PhotoComponent implements OnInit {
       this.colors.push({colorName:'grey', isSelected:false});
     }
     onpageload(){
+
       this.pagedItems = [];
       this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',{
         page: 0,

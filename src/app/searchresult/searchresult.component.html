@@ -1,12 +1,12 @@
   <div id="wrappervendor" class="">
   <app-menu></app-menu>
-  <app-tool *ngIf=""></app-tool>
-<div class="container-fluid recomslider">
+  <app-tool *ngIf="basicPlan == 3"></app-tool>
+  <div class="container-fluid recomslider">
       <!--Carousel Wrapper-->
   <div class="container">
       <!--Slides-->
 
-    
+      <!-- {{slidesStore }} -->
         <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
           <ng-container *ngFor="let slide of slidesStore">
             <ng-template carouselSlide="1" >
@@ -18,11 +18,10 @@
                 <div class="card-body ">
                   <div class="text-center"> 
                    <h6><strong>{{slide.nameOfBusiness}}</strong> </h6>
-                    <button class="wedding_btn">{{ slide.businessDetails}} </button>
-                      <p class="locat_icon">
+                   <button *ngIf='slide.vendorCategories[0].categories' class="wedding_btn">
+                    {{getCategoryName(slide)}}  </button>              
+                            <p class="locat_icon">
                       <i class="material-icons">location_on</i> 
-
-              
                      <!-- <span *ngIf='slide.vendorLocations[0]'> {{ slide.vendorLocations[0].suburb.name}},</span> -->
                      <span *ngIf='slide.vendorLocations[0]'>  {{ slide.vendorLocations[0]?.districts.name}}</span>
                      <span *ngIf='!slide.vendorLocations[0]'>No District Available</span>
@@ -87,21 +86,22 @@
       <div class="container-fluid nopadd">
         <div class="badgecontainer">
           <span *ngIf='objSearchResultItems' class="badge badge-primary badge-labeled">
-            {{objSearchResultItems.totalCount?objSearchResultItems.totalCount:0}} Results
+            {{collection?collection.length:0}} Results
           </span>
        
-          <select (change)='getSearchFilterResult()' style="display:none" [(ngModel)]='objSearchlistvm.pageSize'>
+          <!-- <select (change)='getSearchFilterResult()' style="display:none" [(ngModel)]='objSearchlistvm.pageSize'>
             <option value='25' selected>25 Result/Page</option>
             <option value='50'>50 Result/Page</option>
             <option value='100'>100 Result/Page</option>
-          </select>
+          </select> -->
         </div>
         <div class="clearfix"></div>
-          <!-- <ol class="breadcrumb breadcrumbcontainer ">
+          <ol class="breadcrumb breadcrumbcontainer ">
             <li><a href="#">Home</a></li>
             <li><a href="#">Wedding Suppliers</a></li>
-            <li class="active">Photography, Videography</li>
-          </ol> -->
+            <li><a href="#">All Categories</a></li>
+            <li class="active">{{_activeRoute.snapshot.params['id']?this._activeRoute.snapshot.params['id']:'All Category'}}</li>
+          </ol>
 
            <div class="btn-group">
             <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
@@ -359,7 +359,7 @@
                           <h6><strong>{{i.nameOfBusiness}}</strong></h6>
 
                           <button *ngIf='i.vendorCategories[0].categories' class="wedding_btn">
-                            {{i.vendorCategories[0].categories.categoryName}} </button>
+                            {{getCategoryName(i)}}  </button>
 
                           <!-- <p class="locat_icon" *ngIf='i.vendorLocations.length>0'> -->
                           <p class="locat_icon">   
@@ -394,10 +394,10 @@
                               <span>Price from</span>
                               <span class="pric_200">{{i.priceTag}}</span>
                           </div>
-                          <div class="col-md-4 col-4 span_positin">
+                          <div *ngIf='i.dealsCount>0' class="col-md-4 col-4 span_positin">
                            <img src="../../assets/img/tag.svg"  alt=""> 
-                          <span *ngIf='i.dealsCount>0'>Deals</span>
-                          <span *ngIf='i.dealsCount>0'>{{i.dealsCount}}</span>
+                          <span>Deals</span>
+                          <span>{{i.dealsCount}}</span>
                           </div>
                         </div>
                         <div class="clearfix"></div>

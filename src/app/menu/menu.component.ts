@@ -77,6 +77,7 @@ export class MenuComponent implements OnInit {
             this.objFilterParam.locationId = this.locationId;
            }
            sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+          //  window.location.reload();
              this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
       
       

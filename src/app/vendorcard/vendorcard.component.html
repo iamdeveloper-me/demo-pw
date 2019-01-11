@@ -45,9 +45,8 @@
               <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
  
                   <ng-container *ngFor="let slide of slidesStore">
-
-                    <ng-template carouselSlide="1" >
-                      <div class="boxtikslide">
+                    <ng-template carouselSlide="1">
+                      <div class="boxtikslide" (click)='goToVendordetails(slide)'>
                         <div class="procard"> </div>
 
                       <img class="card-img-top" [src]="slide.profileImage" >
@@ -127,7 +126,7 @@
     </div>
 
 
-    <div class="container slider_use_anather_compo" *ngIf="dream_wedding_location?.length > 0" >
+    <div class="container slider_use_anather_compo" *ngIf="dream_wedding_location?.length > 0">
 
       <!--Gallery Hover Effect Starts-->
       <div class="row" id="headcss" >
@@ -141,7 +140,8 @@
           <div class="card-block my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
             <div class="grid-hover">
               <div class="row" >
-                <div class="col-md-4 col-6 locationbox" *ngFor='let list_dream of dream_wedding_location' >
+                <div class="col-md-4 col-6 locationbox" *ngFor='let list_dream of dream_wedding_location' 
+                (click)='goToVendordetails(list_dream)' >
                     <img [src]="list_dream.profileImage" class="img-responsive" alt="img06" /> 
                     <h2>{{list_dream?.nameOfBusiness}}
                       <div *ngIf="list_dream?.district == null; else dwloc">

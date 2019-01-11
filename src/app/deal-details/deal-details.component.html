@@ -10,7 +10,7 @@
 		<div class="container">
 			
 			<div class="row">
-					<div class="col-sm-8">
+					<div class="col-sm-8 nopadd" id="dealcarousel">
 						<owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
 						  <ng-container *ngFor="let slide of slidesStore">
 						    <ng-template carouselSlide="1" >

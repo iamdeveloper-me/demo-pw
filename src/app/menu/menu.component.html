@@ -1,316 +1,106 @@
 <nav class="navbar navbar-expand-lg navbar-light  headernav" id="mainNav">
     <div class="container mrg_top_menu">
-       <a class="navbar-brand js-scroll-trigger logo_icon" routerLink="/home">Perfect Wedding</a>
-      <!-- Mobile Navigation button -->
-       <button class="navbar-toggler tik hidden-md  hidden-lg" type="button" data-toggle="slide-collapse">
-          <div class="line1"></div>
-          <div class="line2"></div>
-          <div class="line3"></div>
-       </button>
-       <button class="navbtntik hidden-md  hidden-lg" data-toggle="slide-collapse" type="button">
-          <div class="line11"></div>
-          <div class="line33"></div>
-       </button>
-      <!-- Mobile Navigation button -->
-      <!-- User app button -->
-       
-       <button class="hidden-md hidden-sm hidden-lg tikrightclose" data-toggle="slide-collapse" type="button" style="display:none;">
-          <div class="line11"></div>
-          <div class="line33"></div>
-       </button>
-      <!-- User app button -->
-      <!-- Application Navigation -->
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-           <ul class="navbar-nav ml-auto fmc-dropdown-perspective">
-            <li class="nav-item dropdown homemenu mobileshow">
-                <a class="nav-link js-scroll-trigger mobileshow" routerLink="/home" >Home</a>   
-            </li>
-            <li class="nav-item dropdown">
-                <a id="dropdownMenuButton" class="nav-link dropdown-toggle mobilenone" data-toggle="dropdown">Wedding Suppliers</a>
-                <a class="mobileslidewednav mobileshow" data-toggle="dropdown">Wedding Suppliers
-                    <i class="material-icons iconright">arrow_forward_ios</i>
-                </a>
+        <a class="navbar-brand js-scroll-trigger logo_icon" routerLink="/home">Perfect Wedding</a>
+        <!-- Mobile Navigation button -->
+        <button class="navbar-toggler tik hidden-md  hidden-lg" type="button" data-toggle="slide-collapse">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </button>
+        <button class="navbtntik hidden-md  hidden-lg" data-toggle="slide-collapse" type="button">
+            <div class="line11"></div>
+            <div class="line33"></div>
+        </button>
+        <!-- Mobile Navigation button -->
 
-                <div class="col-md-12 homedropdown dropdown-menu mobileshowwebnav fmc-dropdown-content-perspective" aria-labelledby="dropdownMenuButton">
-                    
+        <!-- User app button -->
+        <button class="hidden-md hidden-sm hidden-lg tikrightclose" data-toggle="slide-collapse" type="button" style="display:none;">
+            <div class="line11"></div>
+            <div class="line33"></div>
+        </button>
+        <!-- User app button -->
+
+        <!-- Application Navigation -->
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto fmc-dropdown-perspective">
+                <li class="nav-item dropdown homemenu mobileshow">
+                    <a class="nav-link js-scroll-trigger mobileshow" routerLink="/home">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a id="dropdownMenuButton" class="nav-link dropdown-toggle mobilenone" data-toggle="dropdown">Wedding
+                        Suppliers</a>
+                    <a class="mobileslidewednav mobileshow" data-toggle="dropdown">Wedding Suppliers
+                        <i class="material-icons iconright">arrow_forward_ios</i>
+                    </a>
+
+                    <div class="col-md-12 homedropdown dropdown-menu mobileshowwebnav fmc-dropdown-content-perspective"
+                        aria-labelledby="dropdownMenuButton">
+
                         <ul class="weddingicon">
                             <li class="backsilde mobileshow">
                                 <i class="material-icons">arrow_back_ios</i>
-                                Wedding Suppliers 
+                                Wedding Suppliers
                             </li>
-                            <!-- <li><a href="#" class="dropdown-item">
-                                <i class="cake" aria-hidden="true">
-                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/Wedding_cake.svg"/> 
-                                </i>Cakes</a></li>
-                            
-                            <li><a href="#" class="dropdown-item">
-                                <i class="cake" aria-hidden="true">
-                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_decorator.svg"/>
-                                </i> Decorators & Wedding Stylist</a></li>
-                          
-                                <li><a href="#" class="dropdown-item">
-                                <i class="cake" aria-hidden="true">
-                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/>
-                                </i> Drinks and Beverages</a></li>
 
-                            <li><a href="#" class="dropdown-item">
-                                <i class="cake" aria-hidden="true">
-                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/Fashion&Clothing.svg"/>
-                                </i> Fashion & Clothing</a></li>
+                            <div *ngFor='let list_Categories of Categories'>
+                                <li><a class="dropdown-item" (click)="searchCat(list_Categories,true,false)">
+                                        <i class="cake" aria-hidden="true">
+                                            <img [src]="list_Categories.iconImageURL" />
+                                        </i>{{list_Categories.categoryName}}</a>
+                                </li>
+                            </div>
 
-                            <li><a href="#" class="dropdown-item">
-                                <i class="cake" aria-hidden="true">
-                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/florist.svg"/>
-                                </i> Florists, Bouquets and Centerpiece</a></li>
-                          
-                            <li><a href="#" class="dropdown-item">
-                                <i class="cake" aria-hidden="true"> 
-                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_car.svg"/> 
-                                </i> Food & Catering</a></li>
-                           
-                            <li><a href="#" class="dropdown-item">
-                                <i class="cake" aria-hidden="true">
-                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/Footwear.svg"/>
-                                </i> Footwear</a></li>
-                            
-                            <li><a href="#" class="dropdown-item">
-                                <i class="cake" aria-hidden="true">
-                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/honeymoon.svg"/>
-                                </i> Honeymoon & Travel</a></li>
-                            
-                            <li><a href="#" class="dropdown-item">
-                                <i class="cake" aria-hidden="true">
-                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/stationary.svg"/>
-                                </i> Invitation Cards & Wedding Stationary</a></li>
-                            
-                            <li><a href="#" class="dropdown-item">
-                                <i class="cake" aria-hidden="true">
-                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/Jewellery.svg"/>
-                                </i> Jewellery & Wedding Rings</a></li>
-                           
-                            <li><a href="#" class="dropdown-item">
-                                <i class="cake" aria-hidden="true">
-                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/make_up.svg"/>
-                                </i> Make Up, Hair & Mehendi</a></li>  
-                            
-                            <li><a href="#" class="dropdown-item">
-                                <i class="cake" aria-hidden="true">No</i> Marriage Celebrant</a></li>
-                           
-                            <li><a href="#" class="dropdown-item">
-                                <i class="cake" aria-hidden="true">
-                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/music_dj.svg"/>
-                                </i> Music, DJs & Entertainment</a></li>
-                            
-                            <li><a href="#" class="dropdown-item">
-                                <i class="cake" aria-hidden="true">
-                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/Wedding Planner.svg"/>
-                                </i> Other wedding Supplies & Accessories</a></li>
-                            
-                            <li><a href="#" class="dropdown-item">
-                                <i class="cake" aria-hidden="true">
-                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/Photography.svg"/>
-                                </i> Photography, Videography & Cinematography</a></li>
-                                
-                            <li><a href="#" class="dropdown-item">
-                                <i class="cake" aria-hidden="true">
-                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/Venues.svg" alt=""> 
-                                </i> Venues</a></li>
-                            
-                            <li><a href="#" class="dropdown-item">
-                                <i class="cake" aria-hidden="true">
-                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_car.svg"/>
-                                </i> Wedding Cars & Transport</a></li>
-
-                            <li><a href="#" class="dropdown-item">
-                                <i class="cake" aria-hidden="true">No</i> Wedding Planner & Event Management</a></li>
-                           
-                            <li><a href="#" class="dropdown-item">
-                                <i class="cake" aria-hidden="true">
-                                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/Shape&Fitness.svg" alt=""> 
-                                </i> Shape & Fitness</a></li> 
-
-                            <li><a href="#" class="dropdown-item">  
-                                <i class="cake" aria-hidden="true">No</i>  Pamper Packages</a></li>  -->
-
-                                      <div  *ngFor='let list_Categories of Categories'>
-                                        <li><a class="dropdown-item" (click)="searchCat(list_Categories,true,false)">
-                                                <i class="cake" aria-hidden="true">
-                                                    <img [src]="list_Categories.iconImageURL"/> 
-                                        </i>{{list_Categories.categoryName}}</a></li>
-                                    </div>
-                                 
                         </ul>
-                    <div class="clearfix"> </div>
-                    <div class="are_you">
-                    <div class="col-md-6 col-xs-12">
-                        <p class="vendo">Are you a vendor?</p>
+                        <div class="clearfix"> </div>
+                        <div class="are_you">
+                            <div class="col-md-6 col-xs-12">
+                                <p class="vendo">Are you a vendor?</p>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <p class="regi"> <a [routerLink]="['/register/step1']"> Register Now</a> </p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-6 col-xs-12">
-                        <p class="regi"> <a [routerLink]="['/register/step1']"> Register Now</a>  </p>
-                    </div>
-                    </div>
-                </div>
-            </li>
-            <li class="nav-item homemenu">
-                <a class="nav-link js-scroll-trigger" routerLink="/home/photo">Photos</a><!--(click)="save()" --> 
-            </li>
-            <li class="nav-item homemenu">
-                <a class="nav-link js-scroll-trigger" routerLink="/home/tips">Tips & Articles</a>
-            </li>
-            <li class="nav-item homemenu">
-                <a class="nav-link js-scroll-trigger" routerLink="/home/events">Events</a>
-            </li>
-            <li class="nav-item homemenu">
-                <a class="nav-link js-scroll-trigger" routerLink="/home/Deals">Deals</a>
-            </li>
-            <li class="nav-item homemenu">
-                <a class="nav-link js-scroll-trigger" routerLink="/home/Honeymoon">Honeymoons</a>
-            </li>
-            <li class="nav-item homemenu mobileshow ">
-                  <a class="nav-link js-scroll-trigger mobileshow" routerLink="/home/Advertise" >Perfect Wedding For Business</a>
-            </li>
-            <li class="nav-item homemenu mobileshow">
-                <a class="nav-link js-scroll-trigger mobileshow" routerLink="/home" >About Us</a>   
-            </li>
-            <li class="nav-item homemenu mobileshow">
-                <a class="nav-link js-scroll-trigger mobileshow" routerLink="/home/Careers" >Careers</a>
-            </li>
-            <li class="nav-item homemenu mobileshow">
-                <a class="nav-link js-scroll-trigger mobileshow" routerLink="/home/FAQ" >FAQ</a>
-            </li>
-            <li class="nav-item homemenu mobileshow">
-                <a class="nav-link js-scroll-trigger mobileshow" routerLink="/home/contact" >Contact Us</a>
-            </li>
-           
-           </ul>
+                </li>
+                <li class="nav-item homemenu">
+                    <a class="nav-link js-scroll-trigger" routerLink="/home/photo">Photos</a>
+                    <!--(click)="save()" -->
+                </li>
+                <li class="nav-item homemenu">
+                    <a class="nav-link js-scroll-trigger" routerLink="/home/tips">Tips & Articles</a>
+                </li>
+                <li class="nav-item homemenu">
+                    <a class="nav-link js-scroll-trigger" routerLink="/home/events">Events</a>
+                </li>
+                <li class="nav-item homemenu">
+                    <a class="nav-link js-scroll-trigger" routerLink="/home/Deals">Deals</a>
+                </li>
+                <li class="nav-item homemenu">
+                    <a class="nav-link js-scroll-trigger" routerLink="/home/Honeymoon">Honeymoons</a>
+                </li>
+                <li class="nav-item homemenu mobileshow ">
+                    <a class="nav-link js-scroll-trigger mobileshow" routerLink="/home/Advertise">Perfect Wedding For
+                        Business</a>
+                </li>
+                <li class="nav-item homemenu mobileshow">
+                    <a class="nav-link js-scroll-trigger mobileshow" routerLink="/home">About Us</a>
+                </li>
+                <li class="nav-item homemenu mobileshow">
+                    <a class="nav-link js-scroll-trigger mobileshow" routerLink="/home/Careers">Careers</a>
+                </li>
+                <li class="nav-item homemenu mobileshow">
+                    <a class="nav-link js-scroll-trigger mobileshow" routerLink="/home/FAQ">FAQ</a>
+                </li>
+                <li class="nav-item homemenu mobileshow">
+                    <a class="nav-link js-scroll-trigger mobileshow" routerLink="/home/contact">Contact Us</a>
+                </li>
+            </ul>
         </div>
 
-
-        <ul class="navbar-nav right_listing userlogindisplay"> 
-          <li class="nav-item notilink" ngbDropdown placement="bottom-right">
-            <a class="nav-link position-relative afternone" id="dropdownBasic2" ngbDropdownToggle>
-                    <i class="material-icons">email</i>
-                <!-- <i class="ft-bell font-medium-3 blue-grey darken-4"></i> -->
-                <span class="notification badge badge-pill badge-danger">4</span>
-                <p class="d-none">Notifications</p>
-            </a>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="notification-dropdown">
-                <div class="noti-list">
-                    <a class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
-                        <div class="notifyimgbox">
-                            <img alt="" src="../../assets/img/photo.jpg">
-                        </div>
-                    
-                        <span class="noti-wrapper">
-                            <span class="noti-title line-height-1 d-block text-bold-400 info">Hotel Sayaji</span>
-                            <span class="noti-text">Lorem ipsum dolor sit ametitaque in, et!</span>
-                        </span>
-                    </a>
-                    <a class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
-                        <div class="notifyimgbox">
-                            <img alt="" src="../../assets/img/photo.jpg">
-                        </div>
-                        <span class="noti-wrapper">
-                            <span class="noti-title line-height-1 d-block text-bold-400 warning">Mayfair Banquets</span>
-                            <span class="noti-text">Lorem ipsum dolor sit ametitaque in </span>
-                        </span>
-                    </a>
-                    <a class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
-                        <div class="notifyimgbox">
-                            <img alt="" src="../../assets/img/photo.jpg">
-                        </div>
-                        <span class="noti-wrapper">
-                            <span class="noti-title line-height-1 d-block text-bold-400 danger">Vision Photography</span>
-                            <span class="noti-text">Lorem ipsum dolor sit ametest?</span>
-                        </span>
-                    </a>
-                    <a class="dropdown-item noti-container py-3">
-                    <div class="notifyimgbox">
-                            <img alt="" src="../../assets/img/photo.jpg">
-                        </div>
-                        <span class="noti-wrapper">
-                            <span class="noti-title line-height-1 d-block text-bold-400 success">New User Registered</span>
-                            <span class="noti-text">Lorem ipsum dolor sit ametnatus aut.</span>
-                        </span>
-                    </a>
-                </div>
-                <a class="noti-footer primary text-center d-block border-top border-top-blue-grey border-top-lighten-4 text-bold-400 py-1">Go to inbox</a>
-            </div>
-          </li>
-          <li class="nav-item usernavmenu" ngbDropdown placement="bottom-right">
-              <a class="nav-link afternone navuserlink position-relative" id="dropdownBasic3" ngbDropdownToggle>
-                <i class="material-icons">account_circle</i>
-                <p class="d-none">User Settings</p>
-              </a>
-              <div class="blackoverlaymainuser">
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic3" class="userhomemenu">
-                   <div class="vendorpicsec">
-                      <div class="imgsection">
-                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/4b956443-3252-414b-a1f7-d369d469ebe1wed.jpeg" class="userimgtop"  />
-                      </div>
-                      <div class="detailsection">
-                      Hi User!
-                      </div>
-                   </div>
-                  <a class="dropdown-item hidden-sm hidden-md hidden-lg"  routerLink="/User/Timeline">
-                    <img src="../../assets/img/wedding-ring.png">
-                    <span>My Wedding</span>
-                  </a>
-                 <a class="dropdown-item hidden-sm hidden-md hidden-lg"  routerLink="/User/Inspirations">
-                      <img src="../../assets/img/lightbulb (1).png">
-                      <span>My Inspirations</span>
-                 </a>
-                 <a class="dropdown-item hidden-sm hidden-md hidden-lg"  routerLink="/User/Bookmarks">
-                      <img src="../../assets/img/checklist.png">
-                      <span>Checklist</span>
-                 </a>
-                 <a class="dropdown-item hidden-sm hidden-md hidden-lg"  routerLink="/User/vendor">
-                      <img src="../../assets/img/oil.png">
-                      <span>My Suppliers</span>
-                 </a>
-                 <a class="dropdown-item hidden-sm hidden-md hidden-lg"  routerLink="/User/GuestList">
-                      <img src="../../assets/img/wedding.png">
-                      <span>Guest List</span>
-                 </a>
-                 <a class="dropdown-item hidden-sm hidden-md hidden-lg"  routerLink="/User/Budget">
-                      <img src="../../assets/img/budget.png">
-                      <span>Budget Planner</span>
-                 </a>
-                 <a routerLink="/User/UserReviews" class="dropdown-item hidden-sm hidden-md hidden-lg">
-                      <img src="../../assets/img/review.png">
-
-                      <span>My Reveiws</span>
-                 </a>
-                 <a class="dropdown-item hidden-xs" routerLink="/User/Timeline">
-                       <img src="../../assets/img/dashboard.png">
-                      <span>User Dashboard</span>
-                 </a>
-                 <a class="dropdown-item" routerLink="/User/myaccount">
-                      <img src="../../assets/img/settings.png">
-                      <span>My Accounts</span>
-                 </a>
-                 <a class="dropdown-item" routerLink="/User/Message">
-                       <img src="../../assets/img/mail.png">
-                       <span>Inbox</span>
-                 </a>
-                 <a class="dropdown-item" data-toggle="modal" data-target="#basicModal">
-                       <img src="../../assets/img/feedback.png">
-                       <span>Feedback</span>
-                 </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" (click)="logout()">
-                  <i class="ft-power mr-2"></i>
-                  <span>Logout</span>
-                  </a>
-                </div>
-               
-              </div>
-          </li>  
-        </ul>
-        <ul class="navbar-nav right_listing vendorlogindisplay" > 
+        <ul class="navbar-nav right_listing userlogindisplay">
             <li class="nav-item notilink" ngbDropdown placement="bottom-right">
                 <a class="nav-link position-relative afternone" id="dropdownBasic2" ngbDropdownToggle>
-                        <i class="material-icons">email</i>
+                    <i class="material-icons">email</i>
                     <!-- <i class="ft-bell font-medium-3 blue-grey darken-4"></i> -->
                     <span class="notification badge badge-pill badge-danger">4</span>
                     <p class="d-none">Notifications</p>
@@ -319,9 +109,9 @@
                     <div class="noti-list">
                         <a class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
                             <div class="notifyimgbox">
-                                 <img alt="" src="../../assets/img/photo.jpg">
+                                <img alt="" src="../../assets/img/photo.jpg">
                             </div>
-                           
+
                             <span class="noti-wrapper">
                                 <span class="noti-title line-height-1 d-block text-bold-400 info">Hotel Sayaji</span>
                                 <span class="noti-text">Lorem ipsum dolor sit ametitaque in, et!</span>
@@ -329,7 +119,7 @@
                         </a>
                         <a class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
                             <div class="notifyimgbox">
-                                 <img alt="" src="../../assets/img/photo.jpg">
+                                <img alt="" src="../../assets/img/photo.jpg">
                             </div>
                             <span class="noti-wrapper">
                                 <span class="noti-title line-height-1 d-block text-bold-400 warning">Mayfair Banquets</span>
@@ -338,202 +128,312 @@
                         </a>
                         <a class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
                             <div class="notifyimgbox">
-                                 <img alt="" src="../../assets/img/photo.jpg">
+                                <img alt="" src="../../assets/img/photo.jpg">
                             </div>
                             <span class="noti-wrapper">
                                 <span class="noti-title line-height-1 d-block text-bold-400 danger">Vision Photography</span>
                                 <span class="noti-text">Lorem ipsum dolor sit ametest?</span>
                             </span>
                         </a>
-                       
+                        <a class="dropdown-item noti-container py-3">
+                            <div class="notifyimgbox">
+                                <img alt="" src="../../assets/img/photo.jpg">
+                            </div>
+                            <span class="noti-wrapper">
+                                <span class="noti-title line-height-1 d-block text-bold-400 success">New User
+                                    Registered</span>
+                                <span class="noti-text">Lorem ipsum dolor sit ametnatus aut.</span>
+                            </span>
+                        </a>
                     </div>
-                    <a class="noti-footer primary text-center d-block border-top border-top-blue-grey border-top-lighten-4 text-bold-400 py-1">Read All Notifications</a>
+                    <a class="noti-footer primary text-center d-block border-top border-top-blue-grey border-top-lighten-4 text-bold-400 py-1">Go
+                        to inbox</a>
                 </div>
             </li>
             <li class="nav-item usernavmenu" ngbDropdown placement="bottom-right">
-              <a class="nav-link afternone navvendorlink position-relative" id="dropdownBasic3" ngbDropdownToggle>
-                <i class="material-icons">account_circle</i>
-                <p class="d-none">User Settings</p>
-              </a>
-              <div class="blackoverlaymainuser">
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic3" class="userhomemenu">
-                  <div class="vendorpicsec">
-                    <div class="imgsection">
-                      <!-- <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png"/> -->
-                      <img [src] = "vendor.profileImage" class="userimgtop" >
-                    </div>
-                    <div class="detailsection">
-                    Hi {{vendor.firstName}}!
-                    </div>
-                  </div>
-                   <a class="dropdown-item py-1" routerLink="../vendor/dashboard">
-                        <i class="ft-edit mr-2"></i>
-                        <span>Business Dashboard</span>
-                    </a>
+                <a class="nav-link afternone navuserlink position-relative" id="dropdownBasic3" ngbDropdownToggle>
+                    <i class="material-icons">account_circle</i>
+                    <p class="d-none">User Settings</p>
+                </a>
+                <div class="blackoverlaymainuser">
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic3" class="userhomemenu">
+                        <div class="vendorpicsec">
+                            <div class="imgsection">
+                                <img src="https://s3.us-east-2.amazonaws.com/prefect-image/4b956443-3252-414b-a1f7-d369d469ebe1wed.jpeg"
+                                    class="userimgtop" />
+                            </div>
+                            <div class="detailsection">
+                                Hi User!
+                            </div>
+                        </div>
+                        <a class="dropdown-item hidden-sm hidden-md hidden-lg" routerLink="/User/Timeline">
+                            <img src="../../assets/img/wedding-ring.png">
+                            <span>My Wedding</span>
+                        </a>
+                        <a class="dropdown-item hidden-sm hidden-md hidden-lg" routerLink="/User/Inspirations">
+                            <img src="../../assets/img/lightbulb (1).png">
+                            <span>My Inspirations</span>
+                        </a>
+                        <a class="dropdown-item hidden-sm hidden-md hidden-lg" routerLink="/User/Bookmarks">
+                            <img src="../../assets/img/checklist.png">
+                            <span>Checklist</span>
+                        </a>
+                        <a class="dropdown-item hidden-sm hidden-md hidden-lg" routerLink="/User/vendor">
+                            <img src="../../assets/img/oil.png">
+                            <span>My Suppliers</span>
+                        </a>
+                        <a class="dropdown-item hidden-sm hidden-md hidden-lg" routerLink="/User/GuestList">
+                            <img src="../../assets/img/wedding.png">
+                            <span>Guest List</span>
+                        </a>
+                        <a class="dropdown-item hidden-sm hidden-md hidden-lg" routerLink="/User/Budget">
+                            <img src="../../assets/img/budget.png">
+                            <span>Budget Planner</span>
+                        </a>
+                        <a routerLink="/User/UserReviews" class="dropdown-item hidden-sm hidden-md hidden-lg">
+                            <img src="../../assets/img/review.png">
 
-                    <a class="dropdown-item py-1" routerLink="../vendor/editprofile">
-                        <i class="ft-settings mr-2"></i>
-                        <span>My Account</span>
-                    </a>
-                    <a class="dropdown-item py-1" routerLink="vendor/Message">
-                            <i class="ft-mail mr-2"></i>
-                        <span>Inbox</span>
-                    </a>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#basicModalvendor">
-                       <img src="../../assets/img/feedback.png">
-                       <span>Feedback</span>
-                    </a>
+                            <span>My Reveiws</span>
+                        </a>
+                        <a class="dropdown-item hidden-xs" routerLink="/User/Timeline">
+                            <img src="../../assets/img/dashboard.png">
+                            <span>User Dashboard</span>
+                        </a>
+                        <a class="dropdown-item" routerLink="/User/myaccount">
+                            <img src="../../assets/img/settings.png">
+                            <span>My Accounts</span>
+                        </a>
+                        <a class="dropdown-item" routerLink="/User/Message">
+                            <img src="../../assets/img/mail.png">
+                            <span>Inbox</span>
+                        </a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#basicModal">
+                            <img src="../../assets/img/feedback.png">
+                            <span>Feedback</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" (click)="logout()">
+                            <i class="ft-power mr-2"></i>
+                            <span>Logout</span>
+                        </a>
+                    </div>
 
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" (click)="logout()">
-                  <i class="ft-power mr-2"></i>
-                  <span>Logout</span>
-                  </a>
                 </div>
-                
-              </div>
-            </li>  
+            </li>
+        </ul>
+        <ul class="navbar-nav right_listing vendorlogindisplay">
+            <li class="nav-item notilink" ngbDropdown placement="bottom-right">
+                <a class="nav-link position-relative afternone" id="dropdownBasic2" ngbDropdownToggle>
+                    <i class="material-icons">email</i>
+                    <!-- <i class="ft-bell font-medium-3 blue-grey darken-4"></i> -->
+                    <span class="notification badge badge-pill badge-danger">4</span>
+                    <p class="d-none">Notifications</p>
+                </a>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="notification-dropdown">
+                    <div class="noti-list">
+                        <a class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
+                            <div class="notifyimgbox">
+                                <img alt="" src="../../assets/img/photo.jpg">
+                            </div>
+
+                            <span class="noti-wrapper">
+                                <span class="noti-title line-height-1 d-block text-bold-400 info">Hotel Sayaji</span>
+                                <span class="noti-text">Lorem ipsum dolor sit ametitaque in, et!</span>
+                            </span>
+                        </a>
+                        <a class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
+                            <div class="notifyimgbox">
+                                <img alt="" src="../../assets/img/photo.jpg">
+                            </div>
+                            <span class="noti-wrapper">
+                                <span class="noti-title line-height-1 d-block text-bold-400 warning">Mayfair Banquets</span>
+                                <span class="noti-text">Lorem ipsum dolor sit ametitaque in </span>
+                            </span>
+                        </a>
+                        <a class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
+                            <div class="notifyimgbox">
+                                <img alt="" src="../../assets/img/photo.jpg">
+                            </div>
+                            <span class="noti-wrapper">
+                                <span class="noti-title line-height-1 d-block text-bold-400 danger">Vision Photography</span>
+                                <span class="noti-text">Lorem ipsum dolor sit ametest?</span>
+                            </span>
+                        </a>
+
+                    </div>
+                    <a class="noti-footer primary text-center d-block border-top border-top-blue-grey border-top-lighten-4 text-bold-400 py-1">Read
+                        All Notifications</a>
+                </div>
+            </li>
+            <li class="nav-item usernavmenu" ngbDropdown placement="bottom-right">
+                <a class="nav-link afternone navvendorlink position-relative" id="dropdownBasic3" ngbDropdownToggle>
+                    <i class="material-icons">account_circle</i>
+                    <p class="d-none">User Settings</p>
+                </a>
+                <div class="blackoverlaymainuser">
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic3" class="userhomemenu">
+                        <div class="vendorpicsec">
+                            <div class="imgsection">
+                                <img [src]="vendor.profileImage" class="userimgtop">
+                            </div>
+                            <div class="detailsection">
+                                Hi {{vendor.firstName}}!
+                            </div>
+                        </div>
+                        <a class="dropdown-item py-1" routerLink="/vendor/dashboard">
+                            <i class="ft-edit mr-2"></i>
+                            <span>Business Dashboard</span>
+                        </a>
+
+                        <a class="dropdown-item py-1" routerLink="/vendor/editprofile">
+                            <i class="ft-settings mr-2"></i>
+                            <span>My Account</span>
+                        </a>
+                        <a class="dropdown-item py-1" routerLink="/vendor/Message">
+                            <i class="ft-mail mr-2"></i>
+                            <span>Inbox</span>
+                        </a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#basicModalvendor">
+                            <img src="../../assets/img/feedback.png">
+                            <span>Feedback</span>
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" (click)="logout()">
+                            <i class="ft-power mr-2"></i>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+
+                </div>
+            </li>
         </ul>
 
-      <button id="login" class="loginhome loginclick" data-target="#MMM"  data-toggle="modal" (click)="remove()" >
-          <i class="material-icons">account_circle</i>
-          <span>LogIn/Sign up</span>
-      </button>
+        <button id="login" class="loginhome loginclick" data-target="#MMM" data-toggle="modal" (click)="remove()">
+            <i class="material-icons">account_circle</i>
+            <span>LogIn/Sign up</span>
+        </button>
 
-      
-      <!-- login logout button -->  
+        <!-- login logout button -->
     </div>
 </nav>
 <!-- Login box -->
 <div class="modal fade loginboxmodal " id="MMM" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog cascading-modal" role="document">
-      <!--Content-->
-      <div class="modal-content">
-          <!--Modal cascading tabs-->
-          <div class="modal-c-tabs text-right">
-              <!-- Nav tabs -->
-              <button type="button" class="btn waves-effect ml-auto closebtn" data-dismiss="modal">&times;</button>
-              <ul class="nav nav-tabs tabs-2 light-blue darken-3 customerlogin" role="tablist">
-              <li class="nav-item">
-                  <a class="nav-link active logintab" data-toggle="tab" href="#panel7" role="tab">
-                      <i class="fa fa-user mr-1"></i> Couples
-                  </a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link registertab" data-toggle="tab" href="#panel9" role="tab" >
-                      <i class="fa fa-user-plus mr-1"></i> Vendors
-                  </a>
-              </li>
-              </ul>
-          
-              <!-- Tab panels -->
-              <div class="tab-content">
-                  <!--Panel 7-->
-                    <div class="tab-pane fade in active" id="panel7" role="tabpanel">
-                          <!--Body-->
-                          <form role="form" action="" method="post" id="id7" (ngSubmit)="userlogin()" #f="ngForm" >
-                              <div class="modal-body mb-1 align_left">
-                                  <div class="field">
+    <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Modal cascading tabs-->
+            <div class="modal-c-tabs text-right">
+                <!-- Nav tabs -->
+                <button type="button" class="btn waves-effect ml-auto closebtn" data-dismiss="modal">&times;</button>
+                <ul class="nav nav-tabs tabs-2 light-blue darken-3 customerlogin" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active logintab" data-toggle="tab" href="#panel7" role="tab">
+                            <i class="fa fa-user mr-1"></i> Couples
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link registertab" data-toggle="tab" href="#panel9" role="tab">
+                            <i class="fa fa-user-plus mr-1"></i> Vendors
+                        </a>
+                    </li>
+                </ul>
 
-                                       <input
-                                       type="email"
-                                        [(ngModel)] = "user.username" 
-                                        name="username" 
-                                        id="username2"
-                                        autocomplete="username"
-                                         required
-                                         placeholder="Your Email">
-                                      <label for="username2">Your Email</label>
-                                  </div> 
-                                  <div class="field">
-                                          <input 
-                                          type="password" 
-                                          [(ngModel)] = "user.password" 
-                                          name="password" 
-                                          id="password"
-                                          autocomplete="current-password"
-                                          required
-                                          placeholder="Password">
-                                      <label for="password">Password</label>
-                                  </div>   
-                                  <div class="text-center mt-2" >
-                                          <p class="pt-1 text-right">
-                                                  <a (click)="forgotbox()" class="pink-text">Forgot Password</a>
-                                          </p>
-                                      <button class="btn btn-info" type="submit">SIGN IN
-                                          <!-- <i class="fa fa-sign-in ml-1"></i> -->
-                                      </button>
-                                     <!--  <button class="btn btn-info" >SIGN IN
-                                         -->  <!-- <i class="fa fa-sign-in ml-1"></i> -->
-                                      <!-- </button> -->
-                                      <p class="text-center">or Sign up with: </p>
-                                  </div>
-                              </div>
-                          </form>
-                          <!--Footer-->
-                          <div class="footer_span text-center">
-                          <a href=""> <span><i class="fa fa-facebook" aria-hidden="true"></i></span>  </a> 
-                          <a href=""> <span><i class="fa fa-twitter" aria-hidden="true"></i></span>  </a>  
-                          <a href=""><span><i class="fa fa-google-plus" aria-hidden="true"></i></span> </a>  
-                          <p>Already a member? <a (click)="loadScript()">Sign Up </a>  </p>
-                          </div>     
+                <!-- Tab panels -->
+                <div class="tab-content">
+                    <!--Panel 7-->
+                    <div class="tab-pane fade in active" id="panel7" role="tabpanel">
+                        <!--Body-->
+                        <form role="form" action="" method="post" id="id7" (ngSubmit)="userlogin()" #f="ngForm">
+                            <div class="modal-body mb-1 align_left">
+                                <div class="field">
+
+                                    <input type="email" [(ngModel)]="user.username" name="username" id="username2"
+                                        autocomplete="username" required placeholder="Your Email">
+                                    <label for="username2">Your Email</label>
+                                </div>
+                                <div class="field">
+                                    <input type="password" [(ngModel)]="user.password" name="password" id="password"
+                                        autocomplete="current-password" required placeholder="Password">
+                                    <label for="password">Password</label>
+                                </div>
+                                <div class="text-center mt-2">
+                                    <p class="pt-1 text-right">
+                                        <a (click)="forgotbox()" class="pink-text">Forgot Password</a>
+                                    </p>
+                                    <button class="btn btn-info" type="submit">SIGN IN
+                                        <!-- <i class="fa fa-sign-in ml-1"></i> -->
+                                    </button>
+                                    <p class="text-center">or Sign up with: </p>
+                                </div>
+                            </div>
+                        </form>
+                        <!--Footer-->
+                        <div class="footer_span text-center">
+                            <a href=""> <span><i class="fa fa-facebook" aria-hidden="true"></i></span> </a>
+                            <a href=""> <span><i class="fa fa-twitter" aria-hidden="true"></i></span> </a>
+                            <a href=""><span><i class="fa fa-google-plus" aria-hidden="true"></i></span> </a>
+                            <p>Already a member? <a (click)="loadScript()">Sign Up </a> </p>
+                        </div>
                     </div>
-                  <!--/.Panel 7-->
-                  <!--Panel 8-->
-                      <div class="tab-pane fade" id="panel8" role="tabpanel">
-                          <!--Body-->
-                              <form role="form" action="" method="post" id="id8" (ngSubmit)="userSubmit()" #f="ngForm">
-                                  <div class="modal-body mb-1 align_left">               
-                                      
-                                      <div class="field">
-                                          <input type="email"  autocomplete="username" required="required" #emailError="ngModel"
-                                          [(ngModel)] = "userSingUp.email" id="email" name="email" placeholder="Your Email">
-                                          <label for="email">Your Email</label>
-                                      </div> 
-                                     <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="emailError.touched && emailError.errors?.required">Eamil is required!</small> -->
-                                      <div class="field">
-                                          <input type="password"  autocomplete="current-password" required="required" [(ngModel)] = "userSingUp.password" id="password" name="password" placeholder="Password">
-                                          <label for="password">Password</label>
-                                      </div>  
-                                     <div class="field">
-                                          <input type="password" autocomplete="new-password" required="required" [(ngModel)] = "userSingUp.confirmpass" name="confirmpass" id="confirmpass"  placeholder="Confirm Password">
-                                          <label for="confirmpass">Confirm Password</label>
-                                      </div>
-                                     <div class="field">
-                                          <input type="text" autocomplete="new-password" required="required" [(ngModel)] = "userSingUp.firstName" name="firstName" id="firstName"  placeholder="First Name">
-                                          <label for="firstName">First Name</label>
-                                      </div>
-                                       <div class="field">
-                                          <input type="text" autocomplete="new-password" required="required" [(ngModel)] = "userSingUp.lastName" name="lastName" id="lastName"  placeholder="Last Name">
-                                          <label for="lastName">Last Name</label>
-                                      </div> 
-                                      <div class="text-center form-sm mt-2">
-                                      <button class="btn btn-info">SIGN UP</button> 
-                                      <p class="pt-1">or Sign up with:</p>
-                              <!-- <a data-toggle="tab" href="#panel7" role="tab" class="pink-text signin_click" >up with</a> -->
-                                      </div>
-                                  </div>
-                              </form>
-                              <div class="footer_span text-center">
-                                  <a href=""> <span><i class="fa fa-facebook" aria-hidden="true"></i></span>  </a> 
-                                  <a href=""> <span><i class="fa fa-twitter" aria-hidden="true"></i></span>  </a>  
-                                  <a href=""><span><i class="fa fa-google-plus" aria-hidden="true"></i></span> </a>  
-                                  <p>Already a member? <a (click)="loadScript()">Sign In </a>  </p>
-                              </div>  
-                      </div>
-                  <!--/.Panel 8-->
-                 <!--/.Panel 9-->
-                  <div class="tab-pane fade" id="panel9" role="tabpanel">
-                          
-                      <form role="form" action="" method="post" (ngSubmit)="onSubmit()" #f="ngForm">
-                          <div class="modal-body mb-1 align_left">
-                               <div class="field">
-                                  <input type="email"
-                                   [(ngModel)] = "usercouple.username" 
-                                   name="username" id="username" placeholder="Your Email" required>
-                                  <label for="username">Your Email</label>
-                              </div>  
-                              <!-- <div class="input-effect">
+                    <!--/.Panel 7-->
+                    <!--Panel 8-->
+                    <div class="tab-pane fade" id="panel8" role="tabpanel">
+                        <!--Body-->
+                        <form role="form" action="" method="post" id="id8" (ngSubmit)="userSubmit()" #f="ngForm">
+                            <div class="modal-body mb-1 align_left">
+
+                                <div class="field">
+                                    <input type="email" autocomplete="username" required="required" #emailError="ngModel"
+                                        [(ngModel)]="userSingUp.email" id="email" name="email" placeholder="Your Email">
+                                    <label for="email">Your Email</label>
+                                </div>
+                                <div class="field">
+                                    <input type="password" autocomplete="current-password" required="required"
+                                        [(ngModel)]="userSingUp.password" id="password" name="password" placeholder="Password">
+                                    <label for="password">Password</label>
+                                </div>
+                                <div class="field">
+                                    <input type="password" autocomplete="new-password" required="required" [(ngModel)]="userSingUp.confirmpass"
+                                        name="confirmpass" id="confirmpass" placeholder="Confirm Password">
+                                    <label for="confirmpass">Confirm Password</label>
+                                </div>
+                                <div class="field">
+                                    <input type="text" autocomplete="new-password" required="required" [(ngModel)]="userSingUp.firstName"
+                                        name="firstName" id="firstName" placeholder="First Name">
+                                    <label for="firstName">First Name</label>
+                                </div>
+                                <div class="field">
+                                    <input type="text" autocomplete="new-password" required="required" [(ngModel)]="userSingUp.lastName"
+                                        name="lastName" id="lastName" placeholder="Last Name">
+                                    <label for="lastName">Last Name</label>
+                                </div>
+                                <div class="text-center form-sm mt-2">
+                                    <button class="btn btn-info">SIGN UP</button>
+                                    <p class="pt-1">or Sign up with:</p>
+                                    <!-- <a data-toggle="tab" href="#panel7" role="tab" class="pink-text signin_click" >up with</a> -->
+                                </div>
+                            </div>
+                        </form>
+                        <div class="footer_span text-center">
+                            <a href=""> <span><i class="fa fa-facebook" aria-hidden="true"></i></span> </a>
+                            <a href=""> <span><i class="fa fa-twitter" aria-hidden="true"></i></span> </a>
+                            <a href=""><span><i class="fa fa-google-plus" aria-hidden="true"></i></span> </a>
+                            <p>Already a member? <a (click)="loadScript()">Sign In </a> </p>
+                        </div>
+                    </div>
+                    <!--/.Panel 8-->
+                    <!--/.Panel 9-->
+                    <div class="tab-pane fade" id="panel9" role="tabpanel">
+
+                        <form role="form" action="" method="post" (ngSubmit)="onSubmit()" #f="ngForm">
+                            <div class="modal-body mb-1 align_left">
+                                <div class="field">
+                                    <input type="email" [(ngModel)]="usercouple.username" name="username" id="username"
+                                        placeholder="Your Email" required>
+                                    <label for="username">Your Email</label>
+                                </div>
+                                <!-- <div class="input-effect">
                                   <input class="effect-16"   
                                   type="password"
                                   [(ngModel)] = "usercouple.password" 
@@ -542,412 +442,339 @@
                                    <label>Password</label>
                                   <span class="focus-border"></span>                                     
                               </div>    -->
-                              <div class="field">
-                                  <input 
-                                  type="password" 
-                                  [(ngModel)] = "usercouple.password" 
-                                  name="password" 
-                                  id="password" 
-                                  autocomplete="current-password"
-                                  required
-                                  placeholder="Password">
-                                  <label for="password">Password</label>
-                              </div>   
-                              <div class="text-center mt-2">
-                                  <p class="pt-1 text-right">
-                                      <a (click)="forgotvendor()" class="blue-text">Forgot Password</a>
-                                  </p>
-                                  <button class="btn btn-vendor vendor" 
-                                  type="submit" 
-                                  id="type-success" 
-                                  >SIGN IN 
-                                  </button>
-                              </div>    
-                          </div>
-                      </form>
-                      <div class="footer_span1 text-center">
-                               <p>Not a member? <a routerLink="/register/step1" class="signuplink">Sign Up </a></p>
-                               <!--Signup Routing ../register-->
-                              </div>
-                  </div>
-                 <!--/.Panel 9-->
-                 <!--/.Panel 10-->
-                  <div class="tab-pane fade" id="panel10" role="tabpanel">
-                          
-                      <form role="form" action="" method="post" (ngSubmit)="onSubmit()" #f="ngForm">
-                         <div class="text-center"> 
-                          <img src="../../assets/img/lockpink.png" class="forgotlock" /></div>
-                        <h1 class="forgothead">Forgot Your Password? Don't Worry!</h1>
-                          <div class="modal-body mb-1 align_left">
-                               <div class="field">
-                                  <input 
-                                  type="email"
-                                   [(ngModel)] = "usercouple.username" 
-                                   name="username" 
-                                   id="username"
-                                    required
-                                    placeholder="Your Email">
-                                  <label for="username">Your Email</label>
-                              </div>  
-                             
-                                
-                              <div class="text-center mt-2">
-                                  <button class="btn btn-info" 
-                                  type="submit" 
-                                  id="type-success" 
-                                  >Send link 
-                                  </button>
-                              </div>    
-                          </div>
-                      </form>
-                      <div class="footer_span1 text-center">
-                               <p><a (click)="userin()" class="pink-text"> Return To Sign In</a></p>
-                              </div>
-                  </div>
-                 <!--/.Panel 10-->
-            <div class="tab-pane fade" id="panel11" role="tabpanel">
-                          
-                      <form role="form" action="" method="post" (ngSubmit)="onSubmit()" #f="ngForm">
-                         <div class="text-center"> 
-                          <img src="../../assets/img/lockblue.png" class="forgotlock" /></div>
-                        <h1 class="forgothead">Forgot Your Password? Don't Worry!</h1>
-                          <div class="modal-body mb-1 align_left">
-                               <div class="field">
-                                  <input 
-                                  type="email"
-                                   [(ngModel)] = "usercouple.username" 
-                                   name="username" 
-                                   id="username"
-                                    required
-                                    placeholder="Your Email">
-                                  <label for="username">Your Email</label>
-                              </div>  
-                             
-                                
-                              <div class="text-center mt-2">
-                                  <button class="btn btn-vendor vendor" 
-                                  type="submit" 
-                                  id="type-success" 
-                                  >Send link 
-                                  </button>
-                              </div>    
-                          </div>
-                      </form>
-                      <div class="footer_span1 text-center">
-                               <p><a (click)="loadScript()" class="blue-text"> Return To Sign In</a></p>
-                              </div>
-                  </div>
+                                <div class="field">
+                                    <input type="password" [(ngModel)]="usercouple.password" name="password" id="password"
+                                        autocomplete="current-password" required placeholder="Password">
+                                    <label for="password">Password</label>
+                                </div>
+                                <div class="text-center mt-2">
+                                    <p class="pt-1 text-right">
+                                        <a (click)="forgotvendor()" class="blue-text">Forgot Password</a>
+                                    </p>
+                                    <button class="btn btn-vendor vendor" type="submit" id="type-success">SIGN IN
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="footer_span1 text-center">
+                            <p>Not a member? <a routerLink="/register/step1" class="signuplink">Sign Up </a></p>
+                        </div>
+                    </div>
+                    <!--/.Panel 9-->
+                    <!--/.Panel 10-->
+                    <div class="tab-pane fade" id="panel10" role="tabpanel">
 
+                        <form role="form" action="" method="post" (ngSubmit)="onSubmit()" #f="ngForm">
+                            <div class="text-center">
+                                <img src="../../assets/img/lockpink.png" class="forgotlock" /></div>
+                            <h1 class="forgothead">Forgot Your Password? Don't Worry!</h1>
+                            <div class="modal-body mb-1 align_left">
+                                <div class="field">
+                                    <input type="email" [(ngModel)]="usercouple.username" name="username" id="username"
+                                        required placeholder="Your Email">
+                                    <label for="username">Your Email</label>
+                                </div>
 
+                                <div class="text-center mt-2">
+                                    <button class="btn btn-info" type="submit" id="type-success">Send link
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="footer_span1 text-center">
+                            <p><a (click)="userin()" class="pink-text"> Return To Sign In</a></p>
+                        </div>
+                    </div>
+                    <!--/.Panel 10-->
+                    <div class="tab-pane fade" id="panel11" role="tabpanel">
 
+                        <form role="form" action="" method="post" (ngSubmit)="onSubmit()" #f="ngForm">
+                            <div class="text-center">
+                                <img src="../../assets/img/lockblue.png" class="forgotlock" /></div>
+                            <h1 class="forgothead">Forgot Your Password? Don't Worry!</h1>
+                            <div class="modal-body mb-1 align_left">
+                                <div class="field">
+                                    <input type="email" [(ngModel)]="usercouple.username" name="username" id="username"
+                                        required placeholder="Your Email">
+                                    <label for="username">Your Email</label>
+                                </div>
 
+                                <div class="text-center mt-2">
+                                    <button class="btn btn-vendor vendor" type="submit" id="type-success">Send link
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="footer_span1 text-center">
+                            <p><a (click)="loadScript()" class="blue-text"> Return To Sign In</a></p>
+                        </div>
+                    </div>
 
-              </div>
-          </div>
-      </div>
-     <!--/.Content-->
-  </div>
+                </div>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
 </div>
 <!-- Login box -->
 
-
-
-
-
 <!--basic-modal-->
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-  <div class="modal-dialog">
-    <!-- feedback -->
-    <div class="modal-content feedbackrate">
-          <div class="modal-header chartmainhead">
-            <h4>We hope you like using PerfectWedding.mu</h4>
-          </div>
-          <div class="modal-body text-center">
-            <p class="chartpara">Please remember to rate it. And send us feedback - we want to hear from you</p>
-            <div class="clearfix"></div>
-            <img src="../../assets/img/popup-image1.jpg">
+    <div class="modal-dialog">
+        <!-- feedback -->
+        <div class="modal-content feedbackrate">
+            <div class="modal-header chartmainhead">
+                <h4>We hope you like using PerfectWedding.mu</h4>
+            </div>
+            <div class="modal-body text-center">
+                <p class="chartpara">Please remember to rate it. And send us feedback - we want to hear from you</p>
                 <div class="clearfix"></div>
-            <ul class="starhead">
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-            </ul>
+                <img src="../../assets/img/popup-image1.jpg">
+                <div class="clearfix"></div>
+                <ul class="starhead">
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                </ul>
+                <div class="clearfix"></div>
+                <div class="feedbackfooter">
+                    <button type="button" class="btn btn-success">Rate</button>
+                    &nbsp;&nbsp;<button type="button" class="btn btn-warning sendfeedbackbtn">Send Feedback</button>
+                </div>
+            </div>
+            <div class="modal-footer feedbackfooter">
+                <button type="button" class="btn btn-secoundary" data-dismiss="modal">Remind Me Later</button>
+            </div>
+        </div>
+        <!-- Send Feedback -->
+        <div class="modal-content sendfeedback">
+            <div class="modal-header chartmainhead">
+                <h4><i class="material-icons backbtn1">arrow_back</i> Send Feedback</h4>
+            </div>
+            <div class="modal-body">
+                <p class="chartpara">Thanks for helping us improve your experience</p>
+                <div class="clearfix"></div>
 
-              <div class="clearfix"></div>
-              <div class="feedbackfooter">
-                <button type="button" class="btn btn-success">Rate</button>
-                 &nbsp;&nbsp;<button type="button" class="btn btn-warning sendfeedbackbtn">Send Feedback</button>
-              </div>
+                <div class="feedbackbtncontainer">
+                    <button type="button" class="btn btn100per likebtn">
+                        <img src="../../../assets/img/smile_icon.png" />
+                        <span>I Like Something</span>
+                        <i class="material-icons">arrow_forward_ios</i>
+                    </button>
 
-          </div>
-          <div class="modal-footer feedbackfooter">
-            <button type="button" class="btn btn-secoundary" data-dismiss="modal">Remind Me Later</button>
-          </div>
+                    <button type="button" class="btn btn100per unlikebtn">
+                        <img src="../../../assets/img/sad.png" />
+                        <span>I don't Like Something</span>
+                        <i class="material-icons">arrow_forward_ios</i>
+                    </button>
+
+                    <button type="button" class="btn btn100per ideabtn">
+                        <img src="../../../assets/img/bulb.png" />
+                        <span>I have an idea</span>
+                        <i class="material-icons">arrow_forward_ios</i>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+        <!-- Tell Us More like -->
+        <div class="modal-content telluslike">
+            <div class="modal-header chartmainhead">
+                <h4><i class="material-icons backbtn2">arrow_back</i> Tell us More</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="What did you like?"></textarea>
+                </div>
+                <div class="form-group text-left">
+                    <input type="checkbox" name=""> Include screenshot
+                </div>
+                <div class="form-group text-left">
+                    <input id="logo-id" name="logo" type="file" class="form-control">
+                </div>
+                <div class="clearfix"></div>
+                <div class="modal-footer feedbackfooter">
+                    <button type="button" class="btn btn-secoundary" data-dismiss="modal">Submit</button>
+                </div>
+            </div>
+        </div>
+        <!-- Tell Us More unlike -->
+        <div class="modal-content tellusunlike">
+            <div class="modal-header chartmainhead">
+                <h4><i class="material-icons backbtn2">arrow_back</i> Tell us More</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="How can we improve?"></textarea>
+                </div>
+                <div class="form-group text-left">
+                    <input type="checkbox" name=""> Include screenshot
+                </div>
+                <div class="fileUpload btn fake-shadow">
+                    <span>Add Image</span>
+                    <input id="logo-id" name="logo" type="file" class="attachment_upload  form-control">
+                </div>
+                <div class="clearfix"></div>
+                <div class="modal-footer feedbackfooter">
+                    <button type="button" class="btn btn-secoundary" data-dismiss="modal">Submit</button>
+                </div>
+            </div>
+        </div>
+        <!-- Tell Us More idea -->
+        <div class="modal-content tellusidea">
+            <div class="modal-header chartmainhead">
+                <h4><i class="material-icons backbtn2">arrow_back</i> Tell us More</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="Share your Ideas"></textarea>
+                </div>
+                <div class="form-group text-left">
+                    <input type="checkbox" name=""> Include screenshot
+                </div>
+                <div class="fileUpload btn fake-shadow">
+                    <span>Add Image</span>
+                    <input id="logo-id" name="logo" type="file" class="attachment_upload  form-control">
+                </div>
+                <div class="clearfix"></div>
+                <div class="modal-footer feedbackfooter">
+                    <button type="button" class="btn btn-secoundary" data-dismiss="modal">Submit</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- Send Feedback -->
-    <div class="modal-content sendfeedback">
-          <div class="modal-header chartmainhead">
-            <h4><i class="material-icons backbtn1">arrow_back</i> Send Feedback</h4>
-          </div>
-          <div class="modal-body">
-            <p class="chartpara">Thanks for helping us improve your experience</p>
-            <div class="clearfix"></div>
-
-              <div class="feedbackbtncontainer">
-                <button type="button" class="btn btn100per likebtn">
-                  <img src="../../../assets/img/smile_icon.png"/>
-                  <span>I Like Something</span>
-                  <i class="material-icons">arrow_forward_ios</i>
-                </button>
-
-                 <button type="button" class="btn btn100per unlikebtn">
-                  <img src="../../../assets/img/sad.png"/>
-                  <span>I don't Like Something</span>
-                  <i class="material-icons">arrow_forward_ios</i>
-                 </button>
-
-
-                 <button type="button" class="btn btn100per ideabtn">
-                  <img src="../../../assets/img/bulb.png"/>
-                  <span>I have an idea</span>
-                  <i class="material-icons">arrow_forward_ios</i>
-                 </button>
-
-
-              </div>
-
-          </div>
-    </div>
-    <!-- Tell Us More like -->
-    <div class="modal-content telluslike">
-          <div class="modal-header chartmainhead">
-            <h4><i class="material-icons backbtn2">arrow_back</i> Tell us More</h4>
-          </div>
-          <div class="modal-body">
-          <div class="form-group">
-          <textarea class="form-control" placeholder="What did you like?"></textarea>
-          </div>
-          <div class="form-group text-left">
-          <input type="checkbox" name=""> Include screenshot
-          </div>
-          <div class="form-group text-left">
-            <input id="logo-id" name="logo" type="file" class="form-control">
-          </div>
-          <div class="clearfix"></div>
-          <div class="modal-footer feedbackfooter">
-            <button type="button" class="btn btn-secoundary" data-dismiss="modal">Submit</button>
-          </div>
-
-
-          
-
-          </div>
-    </div>
-    <!-- Tell Us More unlike -->
-    <div class="modal-content tellusunlike">
-          <div class="modal-header chartmainhead">
-            <h4><i class="material-icons backbtn2">arrow_back</i> Tell us More</h4>
-          </div>
-          <div class="modal-body">
-          <div class="form-group">
-          <textarea class="form-control"  placeholder="How can we improve?"></textarea>
-          </div>
-          <div class="form-group text-left">
-          <input type="checkbox" name=""> Include screenshot
-          </div>
-             <div class="fileUpload btn fake-shadow">
-                <span>Add Image</span>
-                <input id="logo-id" name="logo" type="file" class="attachment_upload  form-control">
-              </div>
-          <div class="clearfix"></div>
-          <div class="modal-footer feedbackfooter">
-            <button type="button" class="btn btn-secoundary" data-dismiss="modal">Submit</button>
-          </div>
-
-
-          
-
-          </div>
-    </div>
-    <!-- Tell Us More idea -->
-    <div class="modal-content tellusidea">
-          <div class="modal-header chartmainhead">
-            <h4><i class="material-icons backbtn2">arrow_back</i> Tell us More</h4>
-          </div>
-          <div class="modal-body">
-          <div class="form-group">
-          <textarea class="form-control" placeholder="Share your Ideas"></textarea>
-          </div>
-          <div class="form-group text-left" >
-          <input type="checkbox" name=""> Include screenshot
-          </div>
-          <div class="fileUpload btn fake-shadow">
-               <span>Add Image</span>
-                <input id="logo-id" name="logo" type="file" class="attachment_upload  form-control">
-              </div>
-          <div class="clearfix"></div>
-          <div class="modal-footer feedbackfooter">
-            <button type="button" class="btn btn-secoundary" data-dismiss="modal">Submit</button>
-          </div>
-
-
-          
-
-          </div>
-    </div>
-  </div>
 </div>
 <!--basic-modal-end-->
 
-
-
 <!--basic-modal-->
 <div class="modal fade" id="basicModalvendor" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-  <div class="modal-dialog">
-    <!-- feedback -->
-    <div class="modal-content feedbackrate">
-          <div class="modal-header chartmainhead">
-            <h4>We hope you like using PerfectWedding.mu</h4>
-          </div>
-          <div class="modal-body text-center">
-            <p class="chartpara">Please remember to rate it. And send us feedback - we want to hear from you</p>
-            <div class="clearfix"></div>
-            <img src="../../assets/img/popup-image1.jpg">
+    <div class="modal-dialog">
+        <!-- feedback -->
+        <div class="modal-content feedbackrate">
+            <div class="modal-header chartmainhead">
+                <h4>We hope you like using PerfectWedding.mu</h4>
+            </div>
+            <div class="modal-body text-center">
+                <p class="chartpara">Please remember to rate it. And send us feedback - we want to hear from you</p>
                 <div class="clearfix"></div>
-            <ul class="starhead">
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-            </ul>
+                <img src="../../assets/img/popup-image1.jpg">
+                <div class="clearfix"></div>
+                <ul class="starhead">
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                </ul>
+                <div class="clearfix"></div>
+                <div class="feedbackfooter">
+                    <button type="button" class="btn btn-success">Rate</button>
+                    &nbsp;&nbsp;<button type="button" class="btn btn-warning sendfeedbackbtn">Send Feedback</button>
+                </div>
+            </div>
+            <div class="modal-footer feedbackfooter">
+                <button type="button" class="btn btn-secoundary" data-dismiss="modal">Remind Me Later</button>
+            </div>
+        </div>
+        <!-- Send Feedback -->
+        <div class="modal-content sendfeedback">
+            <div class="modal-header chartmainhead">
+                <h4><i class="material-icons backbtn1">arrow_back</i> Send Feedback</h4>
+            </div>
+            <div class="modal-body">
+                <p class="chartpara">Thanks for helping us improve your experience</p>
+                <div class="clearfix"></div>
 
-              <div class="clearfix"></div>
-              <div class="feedbackfooter">
-                <button type="button" class="btn btn-success">Rate</button>
-                 &nbsp;&nbsp;<button type="button" class="btn btn-warning sendfeedbackbtn">Send Feedback</button>
-              </div>
+                <div class="feedbackbtncontainer">
+                    <button type="button" class="btn btn100per likebtn">
+                        <img src="../../../assets/img/smile_icon.png" />
+                        <span>I Like Something</span>
+                        <i class="material-icons">arrow_forward_ios</i>
+                    </button>
 
-          </div>
-          <div class="modal-footer feedbackfooter">
-            <button type="button" class="btn btn-secoundary" data-dismiss="modal">Remind Me Later</button>
-          </div>
+                    <button type="button" class="btn btn100per unlikebtn">
+                        <img src="../../../assets/img/sad.png" />
+                        <span>I don't Like Something</span>
+                        <i class="material-icons">arrow_forward_ios</i>
+                    </button>
+
+                    <button type="button" class="btn btn100per ideabtn">
+                        <img src="../../../assets/img/bulb.png" />
+                        <span>I have an idea</span>
+                        <i class="material-icons">arrow_forward_ios</i>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+        <!-- Tell Us More like -->
+        <div class="modal-content telluslike">
+            <div class="modal-header chartmainhead">
+                <h4><i class="material-icons backbtn2">arrow_back</i> Tell us More</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="What did you like?"></textarea>
+                </div>
+                <div class="form-group text-left">
+                    <input type="checkbox" name=""> Include screenshot
+                </div>
+                <div class="form-group text-left">
+                    <input id="logo-id" name="logo" type="file" class="form-control">
+                </div>
+                <div class="clearfix"></div>
+                <div class="modal-footer feedbackfooter">
+                    <button type="button" class="btn btn-secoundary" data-dismiss="modal">Submit</button>
+                </div>
+            </div>
+        </div>
+        <!-- Tell Us More unlike -->
+        <div class="modal-content tellusunlike">
+            <div class="modal-header chartmainhead">
+                <h4><i class="material-icons backbtn2">arrow_back</i> Tell us More</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="How can we improve?"></textarea>
+                </div>
+                <div class="form-group text-left">
+                    <input type="checkbox" name=""> Include screenshot
+                </div>
+                <div class="fileUpload btn fake-shadow">
+                    <span>Add Image</span>
+                    <input id="logo-id" name="logo" type="file" class="attachment_upload  form-control">
+                </div>
+                <div class="clearfix"></div>
+                <div class="modal-footer feedbackfooter">
+                    <button type="button" class="btn btn-secoundary" data-dismiss="modal">Submit</button>
+                </div>
+            </div>
+        </div>
+        <!-- Tell Us More idea -->
+        <div class="modal-content tellusidea">
+            <div class="modal-header chartmainhead">
+                <h4><i class="material-icons backbtn2">arrow_back</i> Tell us More</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="Share your Ideas"></textarea>
+                </div>
+                <div class="form-group text-left">
+                    <input type="checkbox" name=""> Include screenshot
+                </div>
+                <div class="fileUpload btn fake-shadow">
+                    <span>Add Image</span>
+                    <input id="logo-id" name="logo" type="file" class="attachment_upload  form-control">
+                </div>
+                <div class="clearfix"></div>
+                <div class="modal-footer feedbackfooter">
+                    <button type="button" class="btn btn-secoundary" data-dismiss="modal">Submit</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- Send Feedback -->
-    <div class="modal-content sendfeedback">
-          <div class="modal-header chartmainhead">
-            <h4><i class="material-icons backbtn1">arrow_back</i> Send Feedback</h4>
-          </div>
-          <div class="modal-body">
-            <p class="chartpara">Thanks for helping us improve your experience</p>
-            <div class="clearfix"></div>
-
-              <div class="feedbackbtncontainer">
-                <button type="button" class="btn btn100per likebtn">
-                  <img src="../../../assets/img/smile_icon.png"/>
-                  <span>I Like Something</span>
-                  <i class="material-icons">arrow_forward_ios</i>
-                </button>
-
-                 <button type="button" class="btn btn100per unlikebtn">
-                  <img src="../../../assets/img/sad.png"/>
-                  <span>I don't Like Something</span>
-                  <i class="material-icons">arrow_forward_ios</i>
-                 </button>
-
-
-                 <button type="button" class="btn btn100per ideabtn">
-                  <img src="../../../assets/img/bulb.png"/>
-                  <span>I have an idea</span>
-                  <i class="material-icons">arrow_forward_ios</i>
-                 </button>
-
-
-              </div>
-
-          </div>
-    </div>
-    <!-- Tell Us More like -->
-    <div class="modal-content telluslike">
-          <div class="modal-header chartmainhead">
-            <h4><i class="material-icons backbtn2">arrow_back</i> Tell us More</h4>
-          </div>
-          <div class="modal-body">
-          <div class="form-group">
-          <textarea class="form-control" placeholder="What did you like?"></textarea>
-          </div>
-          <div class="form-group text-left">
-          <input type="checkbox" name=""> Include screenshot
-          </div>
-          <div class="form-group text-left">
-            <input id="logo-id" name="logo" type="file" class="form-control">
-          </div>
-          <div class="clearfix"></div>
-          <div class="modal-footer feedbackfooter">
-            <button type="button" class="btn btn-secoundary" data-dismiss="modal">Submit</button>
-          </div>
-
-
-          
-
-          </div>
-    </div>
-    <!-- Tell Us More unlike -->
-    <div class="modal-content tellusunlike">
-          <div class="modal-header chartmainhead">
-            <h4><i class="material-icons backbtn2">arrow_back</i> Tell us More</h4>
-          </div>
-          <div class="modal-body">
-          <div class="form-group">
-          <textarea class="form-control"  placeholder="How can we improve?"></textarea>
-          </div>
-          <div class="form-group text-left">
-          <input type="checkbox" name=""> Include screenshot
-          </div>
-             <div class="fileUpload btn fake-shadow">
-                <span>Add Image</span>
-                <input id="logo-id" name="logo" type="file" class="attachment_upload  form-control">
-              </div>
-          <div class="clearfix"></div>
-          <div class="modal-footer feedbackfooter">
-            <button type="button" class="btn btn-secoundary" data-dismiss="modal">Submit</button>
-          </div>
-
-
-          
-
-          </div>
-    </div>
-    <!-- Tell Us More idea -->
-    <div class="modal-content tellusidea">
-          <div class="modal-header chartmainhead">
-            <h4><i class="material-icons backbtn2">arrow_back</i> Tell us More</h4>
-          </div>
-          <div class="modal-body">
-          <div class="form-group">
-          <textarea class="form-control" placeholder="Share your Ideas"></textarea>
-          </div>
-          <div class="form-group text-left" >
-          <input type="checkbox" name=""> Include screenshot
-          </div>
-          <div class="fileUpload btn fake-shadow">
-               <span>Add Image</span>
-                <input id="logo-id" name="logo" type="file" class="attachment_upload  form-control">
-              </div>
-          <div class="clearfix"></div>
-          <div class="modal-footer feedbackfooter">
-            <button type="button" class="btn btn-secoundary" data-dismiss="modal">Submit</button>
-          </div>
-
-
-          
-
-          </div>
-    </div>
-  </div>
 </div>
-<!--basic-modal-end-->  
-
+<!--basic-modal-end-->
 <router-outlet></router-outlet>

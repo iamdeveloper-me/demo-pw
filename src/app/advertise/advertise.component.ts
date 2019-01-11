@@ -9,21 +9,14 @@ import { ToastrService } from 'ngx-toastr';
 export class AdvertiseComponent implements OnInit {
 
   constructor(private apiService: apiService, public toastr: ToastrService) { }
-
-    name: "string";
-    email: "string";
-    subject: "string";
-    phoneNumber: "string";
-    message: "string";
+  contactInfoObj  = new ContactUsVM()
     messageType = 1;
     Phone_no ;
-  ngOnInit() {
-    //this.contactus(c)
-  }
+
+  ngOnInit() { }
+
   contact(list){
-    console.log(list.value)
     this.apiService.postData(this.apiService.serverPath+'Home/contactus',list.value).subscribe(data => {
-      console.log(data)
       this.toastr.success(data.message);
       list.reset()
     },
@@ -42,4 +35,13 @@ export class AdvertiseComponent implements OnInit {
     }else{  this.Phone_no = " "}
   }
 
+}
+
+export class ContactUsVM {
+  name :	string
+  email:	string
+  subject:	string
+  phoneNumber:	string
+  message:	string
+  messageType=1
 }

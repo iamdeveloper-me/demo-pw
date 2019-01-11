@@ -1,7 +1,6 @@
 <div id="wrappervendor" class="">
     <app-menu></app-menu>
 
-
     <div class="freq_ask">
         <div class="fre_text">
             <section class="banner-div ">
@@ -79,48 +78,48 @@
         <p>Please fill up the form and we'll be in touch soon.</p>
         <div class="row myform">
             <div class="col-md-12">
-                <form (ngSubmit)="contact(list)" #list="ngForm" novalidate>
+                <form name="form" (ngSubmit)="list.form.valid && contact(list)" #list="ngForm" novalidate>
                     <input type="hidden" data-form-email="true">
                     <div class="row">
-                        <div class="col-md-2">
-
-                        </div>
+                        <div class="col-md-2"></div>
                         <div class="col-md-8">
                             <div class="form-group">
                                 <input 
                                     type="text" 
-                                    [(ngModel)]="name" 
+                                    [(ngModel)]="contactInfoObj.name" 
+                                    #name="ngModel" 
+                                    [ngClass]="{ 'is-invalid': list.submitted && name.invalid }"
                                     class="form-control" 
                                     name="name" 
-                                    required
+                                    required 
                                     placeholder="Name*" 
-                                    data-form-field="Name"
                                 />
-                                <!-- <div *ngIf="nameerror.dirty && nameerror.touched)">
-                                    Name is required
-                                </div> -->
+                                <div *ngIf="list.submitted && name.invalid" class="invalid-feedback">
+                                    <div *ngIf="name.errors.required">Name is required</div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-2">
-
-                        </div>
+                        <div class="col-md-2"></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-2">
-
-                        </div>
+                        <div class="col-md-2"></div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <input 
                                     type="email" 
                                     pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$" 
                                     class="form-control"
-                                    [(ngModel)]="email" 
+                                    [(ngModel)]="contactInfoObj.email" 
+                                    #email="ngModel" 
+                                    [ngClass]="{ 'is-invalid': list.submitted && email.invalid }"
                                     name="email" 
                                     required 
                                     placeholder="Email*" 
-                                    data-form-field="Email"
                                 />
+                                <div *ngIf="list.submitted && email.invalid" class="invalid-feedback">
+                                    <div *ngIf="email.errors.required">email is required</div>
+                                    <div *ngIf="email.errors.email">Email must be a valid email address</div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -129,56 +128,52 @@
                                     type="text" 
                                     class="form-control" 
                                     (keypress)="keyPress($event)" 
-                                    [(ngModel)]="phoneNumber"
+                                    [(ngModel)]="contactInfoObj.phoneNumber"
+                                    #phoneNumber="ngModel" 
+                                    [ngClass]="{ 'is-invalid': list.submitted && phoneNumber.invalid }"
                                     name="phoneNumber" 
                                     required 
-                                    maxlength="10" 
                                     placeholder="phone Number*" 
-                                    data-form-field="Email"
+                                    minlength="7" 
+                                    maxlength="10" 
                                 />
+                                <div *ngIf="list.submitted && phoneNumber.invalid" class="invalid-feedback">
+                                    <div *ngIf="phoneNumber.errors.required">phoneNumber is required</div>
+                                    <div *ngIf="phoneNumber.errors.minlength">phoneNumber is minimum 7 digit</div>
+                                </div>
                                 <small class="form-text text-muted danger">{{Phone_no}}</small>
                             </div>
                         </div>
-                        <div class="col-md-2">
-
-                        </div>
+                        <div class="col-md-2"></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-2">
-
-                        </div>
+                        <div class="col-md-2"> </div>
                         <div class="col-md-8">
                             <div class="form-group">
                                 <!-- <select class="form-control" id="exampleFormControlSelect1">
-                          <option>*Business</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                        </select> -->
+                                        <option>*Business</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select> -->
                                 <input 
                                     type="tel" 
                                     class="form-control" 
-                                    [(ngModel)]="subject" 
-                                    name="subject" 
-                                    placeholder="Subject"
-                                    data-form-field="subject"
-                                    required
+                                    [(ngModel)]="contactInfoObj.subject" 
+                                    #subject="ngModel"
+                                    [ngClass]="{ 'is-invalid': list.submitted && subject.invalid }" name="subject"
+                                    required 
+                                    placeholder="Subject" 
                                 />
-                                <input 
-                                    type="hidden" 
-                                    class="form-control" 
-                                    [(ngModel)]="messageType" 
-                                    value="messageType"
-                                    name="messageType" 
-                                    placeholder="messageType" 
-                                    data-form-field="subject"
-                                />
+                                <div *ngIf="list.submitted && subject.invalid" class="invalid-feedback">
+                                    <div *ngIf="subject.errors.required">subject is required</div>
+                                </div>
+                                <input type="hidden" class="form-control" [(ngModel)]="contactInfoObj.messageType"
+                                    value="messageType" name="messageType" placeholder="messageType" />
                             </div>
                         </div>
-                        <div class="col-md-2">
-
-                        </div>
+                        <div class="col-md-2"></div>
                     </div>
                     <div class="row">
                         <div class="col-md-2">
@@ -189,65 +184,51 @@
                                 <textarea 
                                     class="form-control" 
                                     name="message" 
-                                    [(ngModel)]="message" 
-                                    placeholder="Message"
-                                    rows="3" 
-                                    data-form-field="Message"
-                                    required>
+                                    [(ngModel)]="contactInfoObj.message"
+                                    #message="ngModel" 
+                                    [ngClass]="{ 'is-invalid': list.submitted && message.invalid }"
+                                    placeholder="Message" 
+                                    required 
+                                    rows="3">
                                 </textarea>
+                                <div *ngIf="list.submitted && message.invalid" class="invalid-feedback">
+                                    <div *ngIf="message.errors.required">message is required</div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-2">
-
-                        </div>
+                        <div class="col-md-2"></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-2">
-
-                        </div>
+                        <div class="col-md-2"> </div>
                         <div class="col-md-4">
                             <div class="form-check">
-                                <input 
-                                    type="checkbox" 
-                                    class="form-check-input" 
-                                    id="exampleCheck1"
-                                />
-                                <label class="form-check-label" for="exampleCheck1">Agree to <span>Terms and Cobditions</span>
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+                                <label class="form-check-label" for="exampleCheck1">
+                                    Agree to <span>Terms and Cobditions</span>
                                     and <span>privacy policy</span></label>
                             </div>
-
                         </div>
                         <div class="col-md-4">
-                            <button type="submit" [disabled]="!list.valid" class="send-btn">Send</button>
+                            <button type="submit" class="send-btn">Send</button>
                         </div>
-                        <div class="col-md-2">
-
-                        </div>
+                        <div class="col-md-2"></div>
                     </div>
                 </form>
-
-
-
             </div>
         </div>
     </section>
 
-
-
     <script>
         $('.carousel').carousel({
-            pause: "false" /* Change to true to make it paused when your mouse cursor enter the background */
+            pause: "false"
         });
         $(".downtik").click(function () {
-            //alert("hi");
             $('html,body').animate({
                     scrollTop: $(".business-features").offset().top
                 },
-                'slow');
+            'slow');
         });
     </script>
-
-
 
 </div>
 <app-foot></app-foot>

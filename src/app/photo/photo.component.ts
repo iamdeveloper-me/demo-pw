@@ -8,11 +8,11 @@ import { apiService } from '../shared/service/api.service';
 export class PhotoComponent implements OnInit {
     colors: Array<ColorPicker>;
     categories:any = [];
-    //category:any
+    category:any
     pho_data:any = {}
     loading = false;
-    //categoryId=''
-    //searchQuery=''
+    categoryId=''
+    searchQuery=''
     userId;
     find_color_tag ='';
     multy_colour_search = []

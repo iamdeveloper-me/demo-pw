@@ -85,5 +85,5 @@ export class HoneymoonDetailsComponent  {
   //$.getScript('./assets/js/owljsor.js');
   $.getScript('./assets/js/searchresult.js'); 
   }
-
+  getSearchFilterResult(){}
 }

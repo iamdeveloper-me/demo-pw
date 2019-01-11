@@ -89,7 +89,7 @@
                             <div class="form-group">
                                 <input 
                                     type="text" 
-                                    [(ngModel)]="name" 
+                                    [(ngModel)]="contactqq.name" 
                                     class="form-control" 
                                     name="name" 
                                     required
@@ -115,7 +115,7 @@
                                     type="email" 
                                     pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$" 
                                     class="form-control"
-                                    [(ngModel)]="email" 
+                                    [(ngModel)]="contactqq.email" 
                                     name="email" 
                                     required 
                                     placeholder="Email*" 
@@ -129,7 +129,7 @@
                                     type="text" 
                                     class="form-control" 
                                     (keypress)="keyPress($event)" 
-                                    [(ngModel)]="phoneNumber"
+                                    [(ngModel)]="contactqq.phoneNumber"
                                     name="phoneNumber" 
                                     required 
                                     maxlength="10" 
@@ -159,7 +159,7 @@
                                 <input 
                                     type="tel" 
                                     class="form-control" 
-                                    [(ngModel)]="subject" 
+                                    [(ngModel)]="contactqq.subject" 
                                     name="subject" 
                                     placeholder="Subject"
                                     data-form-field="subject"
@@ -168,7 +168,7 @@
                                 <input 
                                     type="hidden" 
                                     class="form-control" 
-                                    [(ngModel)]="messageType" 
+                                    [(ngModel)]="contactqq.messageType" 
                                     value="messageType"
                                     name="messageType" 
                                     placeholder="messageType" 
@@ -189,7 +189,7 @@
                                 <textarea 
                                     class="form-control" 
                                     name="message" 
-                                    [(ngModel)]="message" 
+                                    [(ngModel)]="contactqq.message" 
                                     placeholder="Message"
                                     rows="3" 
                                     data-form-field="Message"

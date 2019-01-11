@@ -67,29 +67,29 @@
         <form (ngSubmit)="contact(list)" #list="ngForm">
           <input type="hidden" data-form-email="true">
           <div class="form-group">
-            <input type="text" [(ngModel)]="name" class="form-control" name="name" required="" placeholder="Name*"
+            <input type="text" [(ngModel)]="contactus.name" class="form-control" name="name" required="" placeholder="Name*"
               data-form-field="Name">
           </div>
           <div class="form-group">
-            <input type="email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$" class="form-control" [(ngModel)]="email" name="email"
+            <input type="email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$" class="form-control" [(ngModel)]="contactus.email" name="email"
               required placeholder="Email*" data-form-field="Email">
             <div class="clearfix"></div>
             <!-- <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">Email is
               required!</small> -->
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" (keypress)="keyPress($event)" [(ngModel)]="phoneNumber" name="phoneNumber"
+            <input type="text" class="form-control" (keypress)="keyPress($event)" [(ngModel)]="contactus.phoneNumber" name="phoneNumber"
               required="" placeholder="phone Number*" data-form-field="Email">
             <small class="form-text text-muted danger">{{Phone_no}}</small>
           </div>
           <div class="form-group">
-            <input type="tel" class="form-control" [(ngModel)]="subject" name="subject" placeholder="Subject"
+            <input type="tel" class="form-control" [(ngModel)]="contactus.subject" name="subject" placeholder="Subject"
               data-form-field="subject">
-            <input type="hidden" class="form-control" [(ngModel)]="messageType" value="messageType" name="messageType"
+            <input type="hidden" class="form-control" [(ngModel)]="contactus.messageType" value="messageType" name="messageType"
               placeholder="messageType" data-form-field="subject">
           </div>
           <div class="form-group">
-            <textarea class="form-control" name="message" [(ngModel)]="message" placeholder="Message" rows="3"
+            <textarea class="form-control" name="message" [(ngModel)]="contactus.message" placeholder="Message" rows="3"
               data-form-field="Message"></textarea>
           </div>
           <div>

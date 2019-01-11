@@ -82,7 +82,7 @@ export class CalendertableComponent implements OnInit {
                   //all
                   this.http.post(this.geturl,{filter: 3},{headers:this.http_header}).subscribe(data =>{             
                     this.jobArray = data.json();
-                    debugger;
+                    
                     console.log(this.jobArray );
                     // this.final_List.forEach(function (value) { this.event_data.events.push(value); });
                   },error => { console.log(error)});
@@ -137,7 +137,7 @@ export class CalendertableComponent implements OnInit {
             activeDayIsOpen: boolean = true;
 
             job(jo){
-              debugger;
+       
               console.log(jo);
                       this.end_date = jo.value['endDate']['year']+'-'+jo.value['endDate']['month']+'-'+jo.value['endDate']['day']
                       this.start_date = jo.value['startDate']['year']+'-'+jo.value['startDate']['month']+'-'+jo.value['startDate']['day']
@@ -181,7 +181,7 @@ export class CalendertableComponent implements OnInit {
             }
             edit_job(b){
               console.log(b.value);
-              debugger;
+           
               let headers = new Headers();
               var authToken = localStorage.getItem('userToken');
               headers.append('Accept', 'application/json')

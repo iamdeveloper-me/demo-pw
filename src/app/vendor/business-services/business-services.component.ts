@@ -171,7 +171,7 @@ export class BusinessServicesComponent implements OnInit {
     this.getCustomFieldBySreviceId(id, name);
   }
   getCustomFieldBySreviceId(id, name) {
-    debugger;
+
     this.resetCustomFileds();
     this.objVenderServiceVm.servicesId = id;
     this.objVenderServiceVm.serviceName = name;
@@ -248,7 +248,7 @@ export class BusinessServicesComponent implements OnInit {
     this.customDialog = false;
   }
   seveCustomField(cfo, fieldType) {
-    debugger;
+  
    // cfo.isSelected = true;
    // let smv = new ServiceFieldValuesVM();
    // smv.FieldValue = cfo.key;
@@ -286,7 +286,7 @@ export class BusinessServicesComponent implements OnInit {
   SaveBusinessService2(){
     console.log(this.businessServiceEntity.serviceFields);
     console.log(this.customFields);
-    debugger;
+
     for (var i = 0; i < this.businessServiceEntity.serviceFields.length; i++) {
       let CheckboxSelectedValues = this.customFields.filter(c => c.customFieldId == this.businessServiceEntity.serviceFields[i].customFieldId)[0].customFieldOptionList.filter(o => o.isSelect == true);
        CheckboxSelectedValues.forEach(element => {

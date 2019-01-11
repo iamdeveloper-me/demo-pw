@@ -223,7 +223,7 @@ export class LocationComponent implements OnInit {
      // this.reverseGeocoding(navigator.geolocation.latitude,navigator.geolocation.longitude);
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          debugger
+         
           this.reverseGeocoding(position.coords.latitude,position.coords.longitude);
           let geocoder = new google.maps.Geocoder();
           let latlng = new google.maps.LatLng(56.77,55.777);
@@ -424,7 +424,7 @@ export class LocationComponent implements OnInit {
         }
       }
     }
-    debugger;
+   
     this.apiService.postData(this.post_phone_number, reqObj).subscribe(data => {
       this.toastr.success(data.message);
       this.phone_dailog = false;
@@ -495,7 +495,7 @@ export class LocationComponent implements OnInit {
   }
   mapDialogObj: any;
   OpenmapDailog(locationObj) {
-    debugger;
+ 
     console.log(this.location_Array[0].mapAddress);
     this.mapDialogObj = locationObj
     this.modelfield.address=this.location_Array[0].mapAddress;
@@ -618,7 +618,7 @@ export class LocationComponent implements OnInit {
     });
   }
   update__week(e) {
-    debugger;
+ 
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -679,7 +679,7 @@ export class LocationComponent implements OnInit {
   }
 
   isActive(b, e) {
-  debugger;
+ 
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')

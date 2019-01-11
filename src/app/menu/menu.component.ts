@@ -38,19 +38,15 @@ export class MenuComponent implements OnInit {
     locationId:number=0;
     Categorie(){ 
         this.masterservice.getAllCategories().subscribe(data => {
-         console.log(data);
           this.Categories = data;
          },error => {  console.log(error) })
       }
       location(){ 
         this.masterservice.getAllLocation().subscribe(data => {
-          console.log(data);
           this.locations = data;
          },error => {  console.log(error) })
       }
       search(e,isAllSupplier,isDreamLocation){
-        console.log(e.value);
-        // debugger;
         if(e){
           this.objFilterParam.catId  = e.value.category?e.value.category.categoryId:0;
           this.objFilterParam.categoryName= e.value.category?e.value.category.categoryName: '' ;
@@ -67,10 +63,7 @@ export class MenuComponent implements OnInit {
            this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
       }
 
-      searchCat(e,isAllSupplier,isDreamLocation){
-           console.log(e);
-        //   console.log(e.value);
-          
+      searchCat(e,isAllSupplier,isDreamLocation){      
           if(e){
             this.objFilterParam.catId  = e?e.categoryId:0;
             this.objFilterParam.categoryName= e?e.categoryName: '' ;
@@ -92,7 +85,7 @@ export class MenuComponent implements OnInit {
     onSubmit(){ 
      // headers.append('Content-Type', 'application/json');
      this.cservice.login(this.usercouple).subscribe(
-          (data)=> {  console.log(data.json());
+          (data)=> { 
           if (data.statusText == "OK" && data.json().role =="Vendors" ) {
             this.typeSuccess();
             localStorage.setItem('userId',data.json().id);
@@ -133,7 +126,7 @@ export class MenuComponent implements OnInit {
      // headers.append('Content-Type', 'application/json');
      this.cservice.login(this.user).subscribe(
           (data)=> {
-            //   debugger
+           
               console.log(data.json());
           if (data.statusText == "OK"  && data.json().role =="Users") {
               
@@ -173,7 +166,7 @@ export class MenuComponent implements OnInit {
     }
     //----------------userpanellogout
     logout(){
-        // debugger;
+       
         sessionStorage.clear();
         localStorage.clear();
         this.router.navigate(['../home']);

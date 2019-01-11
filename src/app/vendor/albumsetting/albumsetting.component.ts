@@ -181,7 +181,7 @@ editSetting(f){
  
                   this.description_dailog = false;
                   this.tag_array = this.tag_array.filter(element => element !== "")
-                debugger
+               
                 if(this.tag_array.length == 0 ){
                 
                   this.tag_array2 =  null
@@ -206,7 +206,7 @@ editSetting(f){
                                   SetAsBackground: false
                                 }
                                           
-                                debugger
+                              
                   this.post_tag_edit(fire)
    }
   

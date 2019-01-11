@@ -189,7 +189,7 @@ annualPrice(users){
     }
     districtA(event): void {  
 //      let district=event.target;
-// debugger;
+
       this.objVendorDetails.businessInfo.city=this.district.filter(d=>d.districtId==this.objVendorDetails.businessInfo.districtId)[0].name;
      // this.objVendorDetails.businessInfo.districtId=district.districtId;
       const newVal = event.target.value;

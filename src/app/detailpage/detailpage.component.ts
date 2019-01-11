@@ -104,7 +104,7 @@ export class DetailpageComponent implements OnInit {
    let obj={
      vendoreId: this.vendorDetails.vendorId,
      categoryId:CatId}
-     debugger;
+  
      
    this.masterservice.getSimilarVendors(obj).subscribe(res=>{
      this.similarVendors=res;

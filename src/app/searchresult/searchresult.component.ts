@@ -140,7 +140,7 @@ export class SearchresultComponent implements OnInit {
   $(".slider_use_anather_compo").hide();
   }
   goToPortfolioDetail(vendor){
-    // debugger;
+    
     let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
     this.api.getData(url+'?id='+vendor.vendorId).subscribe(res=>{
       sessionStorage.setItem('vendorDetails',JSON.stringify(res));

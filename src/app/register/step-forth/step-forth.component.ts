@@ -97,7 +97,7 @@ export class StepForthComponent implements OnInit {
 //    });
 
 
-debugger
+
 
 if(this.user.businessInfo.pricingPlanId == '1'){
     console.log(JSON.stringify(this.objVendorDetail));

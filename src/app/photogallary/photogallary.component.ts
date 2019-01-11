@@ -18,7 +18,7 @@ export class PhotogallaryComponent implements OnInit {
     const Images=JSON.parse(sessionStorage.getItem('Vendorimages'));
    // sessionStorage.removeItem('Vendorimages');
    this.albums=Images;
-   debugger;
+
     console.log(JSON.stringify(this.albums));
    
 }

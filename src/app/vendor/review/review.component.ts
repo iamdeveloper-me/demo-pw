@@ -67,7 +67,7 @@ pageSize:number = 10000
       .subscribe(data => {
         // set items to json response
         this.allItems = data['items'];
-        debugger
+      
         // initialize to page 1
         this.setPage(1);
       });
@@ -76,7 +76,7 @@ pageSize:number = 10000
   //     data => {
   //       const dv = data.json().items
   //       this.allItems = dv
-  //        debugger
+  //    
   // });
   }
   feed_baack(e) {
@@ -188,7 +188,7 @@ pageSize:number = 10000
         this.page = data.json().page
 
         // this.rows = JSON.parse(data.json().items)
-        debugger
+      
         //    this.rows = [
         //     {
         //         "name": "Ethel Price",

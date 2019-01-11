@@ -531,7 +531,7 @@ export class BusinessInfoComponent implements OnInit {
      // switch_fbAvailable(e){
 
     //   if(e==true){
-    //        debugger;
+    //  
     //     this.modelfield.facebookURL="";
     //     this.disabletxtFburl=false;
     //   }else{

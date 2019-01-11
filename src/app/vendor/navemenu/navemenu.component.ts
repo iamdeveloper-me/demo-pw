@@ -49,7 +49,7 @@ export class NavemenuComponent implements OnChanges,OnInit   {
       var authToken = localStorage.getItem('userToken');
    
    this.session_token =   sessionStorage.getItem('userToken')
-   console.log(  this.session_token)
+  
       headers.append('Accept', 'application/json')
       headers.append('Content-Type', 'application/json');
       headers.append("Authorization",'Bearer '+authToken);
@@ -58,7 +58,7 @@ export class NavemenuComponent implements OnChanges,OnInit   {
 
       this.http.get(this.url,{headers:headers}).subscribe(
         data =>{ this.vendor = data.json();
-                 console.log(this.vendor);
+                
                this.userImg = data.json().profileImage;
                                });
 
@@ -334,11 +334,7 @@ ngOnChanges(){
 
   
 search(newObj){
- // console.log(this.find_name.toUpperCase())
 
- /// console.log(this.historyArray)
-  // console.log(this.filter_id)
-  // this.filter_id = 1
   const json ={
     "filter" : this.filter_id,
     "search" : this.find_name
@@ -350,7 +346,7 @@ search(newObj){
               this.historyArray = data.json()  ;
               this.arrayLength =  this.historyArray.length
               this.unread_msg = this.historyArray.length;
-            //  console.log(this.historyArray)
+
             },error => 
             console.log(error) // error path
           )
@@ -379,7 +375,6 @@ unread(filter_id){
       this.unread_msg = this.historyArray.length;
       this.arrayLength =  this.historyArray.length
 
-      //console.log(this.historyArray)
     },error => 
     console.log(error) // error path
   )

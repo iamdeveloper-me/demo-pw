@@ -146,7 +146,7 @@ export class LocationComponent implements OnInit {
   private remove_phone_number: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/deletelocationphone'
   private urlpost: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savelocation'
   public arra = new Array(); public district = new Array(); public suburb = new Array();
-  // location: any = {};
+ 
 
   countryArray: string[];
   location_Array: Array<any>;
@@ -161,7 +161,7 @@ export class LocationComponent implements OnInit {
   }
 
   markerDragEnd(m: any) {
-    console.log(m);
+   
     this.location.marker.lat = m.coords.lat;
     this.location.marker.lng = m.coords.lng;
     this.findAddressByCoordinates();
@@ -223,7 +223,7 @@ export class LocationComponent implements OnInit {
      // this.reverseGeocoding(navigator.geolocation.latitude,navigator.geolocation.longitude);
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          debugger
+         
           this.reverseGeocoding(position.coords.latitude,position.coords.longitude);
           let geocoder = new google.maps.Geocoder();
           let latlng = new google.maps.LatLng(56.77,55.777);
@@ -245,7 +245,7 @@ export class LocationComponent implements OnInit {
           });
         }, (error) => {
 
-          console.log('Geolocation error: ' + error);
+          console.log(error);
         });
     } else {
    
@@ -317,7 +317,7 @@ export class LocationComponent implements OnInit {
       this.location_Array_length = this.location_Array.length;
       this.location_Array.sort(p=>p.isPrimary).reverse();
       this.location_Array[0].locationPhones.reverse();
-      console.log(JSON.stringify(this.location_Array));
+   
       this.location_Array.forEach(element => {
         element.str_businessPhone=this.arrayToCsv(element.locationPhones.filter(p=>p.phoneType=='Phone'));
         element.str_businessMobile=this.arrayToCsv(element.locationPhones.filter(p=>p.phoneType=='Mobile'));
@@ -384,7 +384,7 @@ export class LocationComponent implements OnInit {
       cancelButtonText: "Remind Me Later!",
       }).then(res=>{
         if(res.value==true){
-          console.log(res.value);
+        
          this.router.navigateByUrl('vendor/membership');
         }
       });
@@ -424,7 +424,7 @@ export class LocationComponent implements OnInit {
         }
       }
     }
-    debugger;
+   
     this.apiService.postData(this.post_phone_number, reqObj).subscribe(data => {
       this.toastr.success(data.message);
       this.phone_dailog = false;
@@ -489,14 +489,14 @@ export class LocationComponent implements OnInit {
     return;
   }
   openweek(b) {
-    console.log(b);
+
     this.modelfield = b;
     this.week_dailog = true;
   }
   mapDialogObj: any;
   OpenmapDailog(locationObj) {
-    debugger;
-    console.log(this.location_Array[0].mapAddress);
+ 
+  
     this.mapDialogObj = locationObj
     this.modelfield.address=this.location_Array[0].mapAddress;
     this.address = this.location_Array[0].mapAddress;
@@ -539,7 +539,7 @@ export class LocationComponent implements OnInit {
           this.location.marker.lng = results[0].geometry.location.lng();
           this.location.marker.draggable = true;
           this.location.viewport = results[0].geometry.viewport;
-          console.log(results[0].geometry.location);
+        
         }
 
         this.map.triggerResize()
@@ -608,17 +608,13 @@ export class LocationComponent implements OnInit {
     this.http.post(this.urlpost, loc_add, { headers: headers }).subscribe((data) => {
       this.mapDailog = false;
       this.toastr.success(data.statusText);
-//      this.ngOnInit();
-    //  this.http.get(this.urlget, { headers: headers }).subscribe((data) => {
-     //   this.location_Array = data.json();
-     //   console.log(this.location_Array);
-     // })
+
     }, (error) => {
       this.toastr.success(error.statusText);
     });
   }
   update__week(e) {
-    debugger;
+ 
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -663,9 +659,9 @@ export class LocationComponent implements OnInit {
         saturdayOpen: e.value.saturdayOpen==undefined?0:e.value.saturdayOpen,
         saturdayClose: e.value.saturdayClose==undefined?0:e.value.saturdayClose,
         isSaturdayOpen: e.value.isSaturdayOpen==undefined?0:e.value.isSaturdayOpen,
-       // locationPhones: this.col
+     
       }
-      console.log(JSON.stringify(jsonPost));
+     
       this.http.post(this.urlpost,jsonPost, { headers: headers }).subscribe((data) => {
         this.toastr.success(data.json().message);
       },
@@ -679,7 +675,7 @@ export class LocationComponent implements OnInit {
   }
 
   isActive(b, e) {
-  debugger;
+ 
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -987,7 +983,7 @@ export class LocationComponent implements OnInit {
     let url='https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+long+'&key=AIzaSyAZ1gsa9BUjNuL-WmCOLhelB2-jQ2jWlxo';
     this.http.get(url).subscribe(res=>{
       this.modelfield.address = res.json().results[0].formatted_address;
-      console.log(res.json().results);
+    
     })
   }
 

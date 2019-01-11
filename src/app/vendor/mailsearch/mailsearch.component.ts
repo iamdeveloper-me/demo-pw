@@ -1,4 +1,3 @@
-//import { DateTimePickerComponent } from './../calendertable/date-time-picker.component';
 import { TimeFormatter } from './../../components/extra/nouislider/nouislider.component';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -56,7 +55,7 @@ date_true:boolean = true;
 
    
       this.msg.messageHistory(this.messageId).subscribe(( data )  =>  
-      { console.log(data.json())
+      {
         this.total_message = data.json()
         this.total_message.forEach((msg)=>{
          
@@ -73,61 +72,30 @@ date_true:boolean = true;
               
                        }
           });
-
-
-// setInterval(() => {
-//   this.ngOnInit();
-// }, 10000);
-
-//          if(msg.messages.sendToUserId == this.userId){
-//           this.profile_name = msg.messages.sendByFirstName+' '+msg.messages.sendByLastName
-
-// this.vendorMsg['sendToUserId'] = msg.messages.sendByUserId
-
-//          }else{
-
-
-
-//          }
  
         })
       },error => 
       console.log(error) // error path
     )
 
-    // setTimeout(() => {
-    //   for(var i=0;i<=$('.dateholdercontainer').length;i++)
-      
-    //   if($('.dateholdercontainer')[i].textContent == ""){
-        
-    //     $('.dateholdercontainer').remove(); 
-    //   }
-    // }, 2000);
-
-    // $(".chatscroll").animate({ scrollTop: $(document).height() }, "slow");
-  // return false;
-
   
   
   this.dScrool()
 
-  // setInterval(() => {
-  //   this.ngOnInit(); 
-  //   }, 2000);  }
   
   }
     onSubmit() {
       setTimeout(() => {
-// var str = this.today |  date
+
         $(".dropmsg").last().append('<div  _ngcontent-c1 ><div _ngcontent-c1 class="man_imgright"><div  _ngcontent-c1 class="exellent_parright"><span _ngcontent-c1 class="revie_name">Just Now</span> <pre _ngcontent-c1 class="chat-content">'+this.vendorMsg['message']+'</pre><span class="deliver" _ngcontent-c1><i _ngcontent-c1 class="fa fa-check" aria-hidden="true"></i></span></div></div></div>') 
  
       }, 100);
-console.log(this.vendorMsg)
+
 this.vendorMsg['replyTo'] = parseInt(this.activatedRoute.snapshot.paramMap.get('id'))
 
-console.log(this.vendorMsg)
+
       this.vservice.message(this.vendorMsg).subscribe(( data )  =>  
-      { console.log(data.json())
+      {
         setTimeout(() => {
                  this.ngOnInit();
  

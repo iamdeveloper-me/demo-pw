@@ -47,6 +47,10 @@ export class SearchresultComponent implements OnInit {
   locations:any;
   categories:any;
   filters: any;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1b01c6828504d10d3cb74e8053156d4a0625e088
   loading=false;
   selectedLocationsCount = 0;
   objSearchlistvm: SearchListingVM;
@@ -54,6 +58,10 @@ export class SearchresultComponent implements OnInit {
   locationFilterParam:string='';
   categoryFilterParam:string='';
   pageNumber=0;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1b01c6828504d10d3cb74e8053156d4a0625e088
   disableLoadingButton=true;
   blankImg='../../assets/img/noImg.png';
   basicPlan:number;
@@ -71,7 +79,11 @@ export class SearchresultComponent implements OnInit {
       this.objSearchlistvm.districtId.push(this.objSearchFilter.locationId);
       this.paginate(this.objSearchFilter.pageSize)
     })
+<<<<<<< HEAD
     this.objSearchFilter=new filterParam();
+=======
+    this.objSearchFilter=new filterParam();  
+>>>>>>> 1b01c6828504d10d3cb74e8053156d4a0625e088
     if(this._activeRoute!=undefined){
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
     }
@@ -91,12 +103,10 @@ export class SearchresultComponent implements OnInit {
     }
   }
   ngOnInit() {   
-  //$.getScript('./assets/js/owljsor.js');
+ 
   $.getScript('./assets/js/searchresult.js'); 
   $.getScript('./assets/register/js/jquery-2.2.4.min.js');
   $.getScript('./assets/register/js/bootstrap.min.js');
-  //$.getScript('./assets/register/js/jquery.bootstrap.js');
-
   $.getScript('./assets/jss/core/popper.min.js');
   $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
   $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');

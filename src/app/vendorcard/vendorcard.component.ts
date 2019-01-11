@@ -53,7 +53,7 @@ export class VendorcardComponent implements OnInit {
 
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
-    console.log(this.activeSlides);
+ 
   }
   ngOnInit() {
     
@@ -84,20 +84,7 @@ if(this.featured_supplier_data!=null){
         });
       });
     }
-     console.log(this.slidesStore)
-
-
-      // this.featured_supplier_data.forEach(element => {
-      //   element.reviews.forEach(element => {           
-      //     this.max.push(element.rating) 
-      //     this.max.sort((a,b) => 0 - (a > b ? 1 : -1))
-      //   });
-      // });
-
-
-
-      //this.max = [];
-      console.log(data.featuredWeddingSuppliers)
+  
     },
       error => {
        console.log(error)
@@ -106,7 +93,7 @@ if(this.featured_supplier_data!=null){
   }
   Dream_Wedding(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/dreamweddinglocation').subscribe(data => {
-      console.log(data.dreamWeddingLocations)
+
       this.dream_wedding_location =  data.dreamWeddingLocations;
       this.dream_wedding_location_length = this.dream_wedding_location.length
     },
@@ -117,12 +104,12 @@ if(this.featured_supplier_data!=null){
   }
   Popular_Wedding(){
     this.apiService.getData(this.apiService.serverPath+'Categories/categorieswithlistingcount').subscribe(data => {
-      console.log(data)
+
       for (let i of data) {
         if(i.isPopular == true){
           this.Popular_Wedding_array.push(i);
         }
-        console.log( this.Popular_Wedding_array)
+       
       }
       
     
@@ -133,13 +120,13 @@ if(this.featured_supplier_data!=null){
     )
   }
   goToVendordetails(slide) {
-    console.log(slide);
+   
     this.router.navigate(['home/detailprofile/',slide.vendorId])
   }
   
   Categories_each(c,isAllSupplier,isDreamLocation){
     if(c){
-      console.log(this.objFilterParam);
+
    this.objFilterParam.catId  = c.categoryId;
    this.objFilterParam.categoryName= c?c.categoryName:'AllCategories';
    this.objFilterParam.isDreamLocation=isDreamLocation;
@@ -169,16 +156,9 @@ if(this.featured_supplier_data!=null){
   
     sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
     this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
-   // console.log(this.objFilterParam.categoryName);
+  
   }
-  // location_all(c){
-   
-  //   let catId= c.categoryId;
-  //   let CatName= c.categoryName;
-  //   alert("location")
-  //   console.log(c)
-  //   this.router.navigate(['home/searchresult',true]);
-  // }
+
 }
 
 export class filterParam{

@@ -81,8 +81,12 @@ h6.Honeymoon_heading {
     word-wrap: normal;
     direction: ltr;
 }
-.statr_point span {
-    display: inline-block;
+.statr_point{
+  margin-bottom: 5px !important;
+  font-size:12px!important; 
+}
+.statr_point span{
+  display: inline-block;
 }
 .checked {
     color: #e72e77;
@@ -183,12 +187,563 @@ h6.Honeymoon_heading {
 .nopadd{
     padding: 0px;
 }
-@media only screen and (max-width: 375px) {
+.filterbtnmobile{
+  display:none;
+}
+
+.martopless18px{
+  margin-top:-18px;
+}
+.showhidefilter{
+  margin:0px auto;
+  background:linear-gradient(40deg, #d8005a, #dc0070) !important;
+  border-radius: 6px;
+  padding: 7px 10px;
+  border:0px;
+  outline: none;
+  color:#fff;
+  font-weight: 700;
+  font-size: 14px;
+}
+.showhidefilter i{
+  float: left;
+}
+.showhidefilter span{
+  float: left;
+}
+.showhidefilter .showtext{
+  display: none;
+}
+.showhidefilter .hidetext{
+  display: inherit;
+}
+.showhidefilter.textshowhide .hidetext{
+  display: none;
+}
+.showhidefilter.textshowhide .showtext{
+  display: inherit;
+}
+.showhidefilter i.material-icons{
+transition: .5s;
+ margin-right: 5px;
+}
+.showhidefilter.textshowhide i.material-icons{
+transform: translateY(0px) translateX(0px) rotate(-135deg);
+}
+.badgecontainer .badge{
+  width: inherit!important;
+  height: inherit!important;
+  border-radius: 5px!important;
+  margin-right: 5px!important;
+  margin-bottom: 5px!important;
+  letter-spacing: normal!important;
+  line-height: 26px!important;
+}
+.badgecontainer select{
+  float: right;
+    height: 38px;
+    padding: 5px;
+    border-radius: 6px;
+    background: linear-gradient(40deg, #d8005a, #dc0070) !important;
+    color: #fff;
+    border: 0px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.badgecontainer select option{color:#000;}
+.badgecontainer .badge img{
+  max-height: 20px;
+  max-width: 20px;
+  float: left;
+  margin-right: 5px;
+}
+.breadcrumbcontainer{
+  background: transparent;
+  padding:0px;
+  float: left;
+}
+.breadcrums{padding: 15px 0px;}
+.searchfilterbox .panel{
+    background: transparent;
+    border-bottom: 0px solid #fff;
+    -webkit-box-shadow: 0 0px 0px rgba(0,0,0,.05);
+    box-shadow: 0 0px 0px rgba(0,0,0,.05);
+}
+.searchfilterbox .panel-heading{
+padding: 0px;
+}
+.searchfilterbox .panel-heading h3.panel-title{
+font-weight: bold;
+margin-bottom:20px;
+}
+.searchfilterbox .panel-heading h3.panel-title i.material-icons {
+  float: left;
+  margin-right: 5px;
+}
+.searchfilterbox .panel-heading h4.panel-title{
+padding:10px 20px 10px 10px;
+font-weight: bold;
+border-bottom:0px solid #e5e5e5;
+color: #000 !important;
+}
+.panel-collapse{
+border-bottom:1px solid #e5e5e5;
+}
+.filterbox{
+    padding: 0px;
+}
+.filterbox .panel-collapse {
+    background: #fff!important;
+    margin-top: -10px!important;
+}
+.filterbox .panel-heading{
+    background: #ffffff !important;
+    border-radius: 0px;
+    font-weight: normal;
+    color: #000;
+    margin-bottom: 10px;
+}
+.backicon{
+  float: left;
+}
+.panel-collapse.collapse{
+    margin-bottom: 10px;
+}
+ #list, #grid, #photoview{
+    margin-right:10px;
+    color: #000000;
+    font-size: 20px;
+}
+ #list i, #grid i, #photoview{
+    font-size: 30px;
+}
+.filterbox .panel-collapse{padding: 10px;
+    border-bottom: 0px solid #ccc;
+}
+.collapse.in.show{
+  display: block!important;
+}
+.filterbox h4.panel-title a{
+display: block;
+font-weight: normal;
+}
+.filterbox h4.panel-title a .indicator {
+float: right;
+}
+.filterbox h4.panel-title a:hover {
+    color:#000000;
+}
+.favicon{
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: #ffffff;
+    cursor: pointer;
+    text-shadow: 0px 0px 20px #000000;
+}
+.btn-group{
+  float: right;
+}
+#list, #grid, #photoview{
+    margin-right: 10px;
+    color: #000000;
+    font-size: 16px;
+    padding-right: 0px;
+    margin-right: 0px;
+    margin-left: 10px;
+    background: transparent;
+    border:0px;
+    box-shadow: none!important;
+  }
+  #list:hover, #grid:hover, #photoview:hover{
+    border:0px;
+    outline: none!important;
+  }
+.cityinput{
+  width: 100%;
+  border-radius: 50px;
+    border: none;
+    text-indent: 30px;
+    box-shadow: 0px 0px 6px #999;
+    cursor: pointer;
+    padding:6px 5px;
+}
+.cityscroll{
+    max-height: 105px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 10px 0px;
+}
+.city_position{
+  position: relative;
+}
+.cityinput2{
+    background: url(https://s3.us-east-2.amazonaws.com/prefect-image/location_new.png) #ffffff no-repeat 7px 10px !important;
+    text-indent: 20px!important;
+}
+
+
+.funkyradio{
+    overflow: hidden;
+    padding-bottom: 10px;
+    max-height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.funkyradio label {
+  width: 100%;
+  border-radius: 3px;
+  font-weight: normal;
+}
+
+.funkyradio input[type="radio"]:empty,
+.funkyradio input[type="checkbox"]:empty {
+  display: none;
+  // radio show
+}
+.tikmik{
+  display: inline!important;
+}
+.funkyradio input[type="radio"]:empty ~ label,
+.funkyradio input[type="checkbox"]:empty ~ label {
+  position: relative;
+  line-height: 2.5em;
+  text-indent: 30px;
+  margin-top:5px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin-bottom: 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+.funkyradio-info{
+font-size:14px;
+}
+.funkyradio-info i img{
+  max-width: 20px;
+}
+.funkyradio input[type="radio"]:empty ~ label:before,
+.funkyradio input[type="checkbox"]:empty ~ label:before {
+  position: absolute;
+  display: block;
+  top: 10px;
+  bottom: 0;
+  left: 0;
+  content: '';
+  width: 1.5em;
+  height:1.5em;
+  background: #ffffff;
+  border:1px solid #666;
+}
+
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label,
+.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+  color: #888;
+}
+
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
+.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+  content: '\2714';
+  text-indent: 5px;
+  line-height:1.4em;
+  color: #C2C2C2;
+}
+
+.funkyradio input[type="radio"]:checked ~ label,
+.funkyradio input[type="checkbox"]:checked ~ label {
+  color: #777;
+}
+
+.funkyradio input[type="radio"]:checked ~ label:before,
+.funkyradio input[type="checkbox"]:checked ~ label:before {
+  content: '\2714';
+  color: #333;
+  text-indent: 5px;
+  line-height:1.4em;
+  background-color: #fff;
+}
+
+.funkyradio input[type="radio"]:focus ~ label:before,
+.funkyradio input[type="checkbox"]:focus ~ label:before {
+  box-shadow: 0 0 0 3px #999;
+}
+
+.funkyradio-info input[type="radio"]:checked ~ label:before,
+.funkyradio-info input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #5bc0de;
+  border:1px solid #5bc0de;
+}
+.list-group{
+    flex-direction:inherit;
+}
+.book_mark i{
+  position: absolute;
+  right: 6px;
+  top: 7px;
+  bottom:inherit;
+  font-size: 20px;
+  cursor: pointer;
+  background: rgba(229, 229, 229,0.8);
+  padding:5px;
+  border-radius:100%;
+  transition:0.5s;
+}
+.book_mark i:hover{  background: rgba(220,0,112,0.8);  
+  color: #ffffff; 
+}
+.list-group-item .book_mark i{
+ bottom: 7px;
+ top:inherit;
+}
+.list-group-item .locat_icon{
+    position: absolute!important;
+    top: 8px!important;
+    right: 7px!important;
+}
+.list-group-item .descrip{
+  display:block;
+  max-width:97%;
+}
+.list-group-item .bordre_rad1{
+  margin-bottom:0px!important;
+}
+
+.nopadd{padding: 0px;}
+a.bottomheadlink{
+border-top: 1px solid #e5e5e5;
+display: block;
+width: 100%;
+color: #e72e77;
+font-weight: bold;
+padding:15px 10px;
+}
+a:hover.bottomheadlink{
+color: #ffffff;
+background: #e72e77;
+}
+.thumbnail{
+  padding:0px;
+  border:0px;
+}
+.list-group-item img.list-group-image{
+    float: left;
+    max-height: inherit;
+    height: auto;
+    display: block;
+    width:235px;
+    height: 175px;
+    object-fit:cover;
+}
+.item.list-group-item:before, .item.list-group-item:after
+{
+    display: table;
+    content: " ";
+}
+.list-group-item{
+  border:0px;
+  background: transparent;
+}
+#products .list-group-item .thumbnail .caption{
+  text-align:left!important;
+  padding:15px 10px!important;
+  overflow: hidden;
+}
+
+#products .grid-group-item .thumbnail .caption{
+  text-align: center!important;
+  overflow: hidden;
+  padding:10px 10px!important;
+}
+.thumbnail .caption .wedding_btn{
+padding: 3px 18px!important;
+font-size: 11px!important;
+margin: 3px 0px!important;
+white-space: nowrap; 
+overflow: hidden;
+text-overflow: ellipsis;
+width:230px;
+max-width:98%;
+}
+.cardfoottext{
+  font-size:12px!important;
+  line-height: 24px!important;
+  padding: 0px;
+}
+#products .list-group-item .thumbnail .caption .cardfoottext{
+  max-width: 220px;
+  margin-top:5px;
+}
+
+.imgnum{
+  position:absolute;
+  left:0px;
+  right:0px;
+  text-align:center;
+margin-top:-35px;
+}
+  .imgnum span{
+    background: #f5f5f5;
+    overflow: hidden;
+    display: inline-block;
+    padding: 2px 5px;
+    margin: 0px 5px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #ccc;
+}
+.imgnum span i{
+  float:left;
+}
+.imgnum span span{
+  background: transparent;
+  overflow: hidden;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  border-radius: 0px;
+  box-shadow: none;
+  float: right;
+  line-height: 24px;
+  margin-left: 5px;
+}
+#products .list-group-item .card .thumbnail .imgnum{
+  max-width:260px!important;
+  bottom:4px!important;
+}
+#products .list-group-item .thumbnail .caption .locat_icon{
+padding-top: 5px;
+padding-bottom: 5px;
+}
+.caro_control{
+  top: 25%;
+}
+.bordre_rad1{
+  border: 0px solid rgb(228, 223, 223);
+  border-radius: 1px;
+  font-size: 14px;
+  position: relative;
+  box-shadow:0px 0px 20px #e5e5e5!important;
+  margin-top:0px!important;
+  margin-bottom:20px!important;
+}
+.card-body a{
+  color: #444;
+}
+.in_list ul li{
+  list-style-type: none;
+}
+.information_ico{
+  display: inline-block;
+  width: 20px;
+  float: right !important;
+}
+
+.card-body{
+  background-color: #fff;
+  padding: 10px 0px;
+}
+.card-body .card_icon{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.list{
+  padding: 0%;
+  margin: 0%;
+  margin-left: -15px;
+ 
+}
+
+.card-body .list ul{
+  margin: 0%;
+  padding: 0%;
+} 
+.card-body .list ul li{
+  list-style-type: none; 
+  margin: 0;
+  padding: 0;
+} 
+.card-body h6{
+  font-weight: bold !important;
+  margin-bottom: 5px !important;
+}
+
+.list span{
+  font-size: 12px;
+  display: block;
+}
+.padd_zero{
+  padding: 0;
+}
+.list span i{
+  font-size: 13px;
+
+}
+.john_btn{
+  background-color: palevioletred;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+@media only screen and (max-width: 767px) {
+ .mobviewbox{
+ margin-top:70px!important;
+ text-align:center!important;
+ float: inherit!important;
+ }
     .dealsbanner{
         padding: 15px 0px;
         margin: 0px 0px 20px 0px;
     }
+    .showhidefilter{
+   display: none;
+ }
     .boxtikslide{
         max-width:100%!important;
       }
+    .mobviewbox{
+  max-width: inherit;
+}
+ .ipadnone,.searchfilterbox{
+    display: none;
+  }
+.filterbtnmobile{
+     position: fixed;
+     width: 50px;
+     height: 50px;
+     line-height: 50px;
+     text-align: center;
+     right: 5%;
+     top: 60%;
+     color: white;
+     font-weight: bold;
+     border-radius: 50%;
+     box-shadow: 0 0 10px -1px black;
+     z-index: 10;
+     cursor: pointer;
+     background:#e72e77;
+     display:block;
+ }
+ .breadcrumbcontainer {
+   display: none;
+ }
+ .showhidefilter{
+   display: none;
+ }
+ .badgecontainer select{
+ float: inherit;
+ }
+ .searchfilterbox{
+   display:none;
+   position: fixed;
+   z-index: 999999;
+   height: 100vh;
+   background: #ffffff;
+   top:0px;
+   }
   }

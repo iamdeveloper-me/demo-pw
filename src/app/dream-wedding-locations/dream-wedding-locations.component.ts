@@ -14,7 +14,6 @@ export class DreamWeddingLocationsComponent implements OnInit {
   }
   Dream_Wedding(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/dreamweddinglocation').subscribe(data => {
-      console.log(data.dreamWeddingLocations)
       this.dream_wedding_location =  data.dreamWeddingLocations;
     },
       error => {

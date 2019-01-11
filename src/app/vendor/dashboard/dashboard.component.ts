@@ -115,26 +115,20 @@ myplans:any = {};
         headers.append("Authorization",'Bearer '+authToken);
         this.http.get(this.images,{headers:headers}).subscribe(data =>{
         this.image_data = data.json();
-          console.log(data.json());
-       
          });
         this.http.post(this.geturl,{ filter: 2 },{headers:headers}).subscribe(data =>{
           this.jobArray = data.json(); 
-          console.log(this.jobArray);
           this.totaljobArray =   this.jobArray.length; 
-          console.log( this.totaljobArray);
          });
         this.http.get(this.dashboard,{headers:headers}).subscribe((data)=> 
         {
 
-          // console.log(data.json());
+    
           });
 
               //membership api
     this.http.get(this.membershipurl,{headers:headers}).subscribe(
       data =>{  
-               console.log(data.json());
-              // this.membershipdetail = data.json();
               this.myplans = data.json();
               this.statdate = data.json().startDateString;
               this.endDateString   = data.json().endDateString; 
@@ -155,8 +149,7 @@ myplans:any = {};
                   this.priceplantitle = this.vendor.pricingPlan.title
                   this.add = this.vendor.vendorLocations[0].mapAddress;
                   this.noPhone = this.vendor.vendorLocations[0].locationPhones[0].phoneNumber.length;
-                  //  console.log(this.vendor.vendorLocations[0].locationPhones[0].phoneNumber);
-                 
+                
                   if(this.vendor.vendorLocations[0].locationPhones.length > 1){
                     this.ph = this.vendor.vendorLocations[0].locationPhones.length-1;
                   }else{
@@ -172,8 +165,6 @@ myplans:any = {};
                   }
                   this.total_phone_no = Math.abs(this.vendor.vendorLocations.length ); 
                    
-                    console.log(this.total_phone_no);
-
                     if(this.vendor.vendorLocations.length > 1){
                       this.ct = this.vendor.vendorLocations.length-1;
                     }else{
@@ -199,8 +190,7 @@ myplans:any = {};
 
                       this.http.get(this.VendorDashboard,{headers:headers}).subscribe(
                         data =>{  
-                                 console.log(data.json());
-                                //  this.venderDash = data.json() as string[]; 
+                                
                                 this.VendorDashboard_data = data.json();
                                 this.VendorDashboard_data_image = data.json().portfolioImage;
                                
@@ -316,7 +306,7 @@ myplans:any = {};
             this.location_Array_length = this.location_Array.length;
             this.location_Array.sort(p=>p.isPrimary).reverse();
             this.location_Array[0].locationPhones.reverse();
-            console.log(JSON.stringify(this.location_Array));
+           
           });
         
         }
@@ -349,14 +339,14 @@ myplans:any = {};
           if(image.type == 'Portfolio'){
             this.http.get(this.urll+'api/supplier/setasstorefrontimage?PortfolioId'+ '=' + image.id,{headers:headers}).subscribe(data =>{
             
-              console.log(data.json());
+             
                     this.getstoreimage();
                     this.vendor_board()
              });
           }else{
             this.http.get(this.urll+'/api/albums/setasstorefrontimage?AlbumImageId'+'='+image.id,{headers:headers}).subscribe(data =>{
           
-              console.log(data.json());
+            
               this.getstoreimage();
               this.vendor_board();
             
@@ -376,7 +366,7 @@ myplans:any = {};
           headers.append("Authorization",'Bearer '+authToken);
           this.http.get(this.VendorDashboard,{headers:headers}).subscribe(
             data =>{  
-                  console.log(data.json())
+                
                     this.VendorDashboard_data_image = data.json().portfolioImage;
                     this.banner_image = "../../../assets/img/store_noimg.jpg"
                     this.images_dialog = false;
@@ -419,9 +409,7 @@ myplans:any = {};
                           
                            
                                    this.http.get(this.VendorDashboard,{headers:headers}).subscribe(
-                                      data =>{  console.log(data.json().profileCompletion);
-                                                console.log(data.json().profileCompletion.total);
-                                      
+                                      data =>{ 
                                             this.total = data.json().profileCompletion.total;
                                         
                                            var profile = localStorage.getItem('profile');
@@ -470,21 +458,20 @@ myplans:any = {};
          
           alert("Boom!");
           this.apiService.getData(this.apiService.serverPath+'PerfectWedding/storefrontview').subscribe(data => {
-            console.log(data)
+           
             this.vendorUniqueId = data.vendorUniqueId;
-            console.log(this.vendorUniqueId)
+          
             this.apiService.getData(this.apiService.serverPath+'VendorDashboard/Home').subscribe(data => {
-              console.log(data)
+             
               this.total = data.profileCompletion.total;
                                           
-              console.log(  this.total)
+            
               if( this.total ==100){
-                alert("sdfgvsdf");
-               
-              console.log(this.vendorUniqueId)
+             
+           
               let url ="../../home/detailprofile/"+this.vendorUniqueId
-              console.log(url)
-              //window.open(url, "_blank");
+            
+              
               this.router.navigate([url])
               }else{
                 swal({
@@ -514,12 +501,7 @@ myplans:any = {};
           )
      
 
-          // setTimeout(function(){
-           
-         
-            
-          // }, 2000);
-      
+        
        
 
         }

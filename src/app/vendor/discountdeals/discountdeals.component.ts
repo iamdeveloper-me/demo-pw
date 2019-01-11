@@ -123,11 +123,11 @@ export class DiscountdealsComponent implements OnInit {
      headers.append('Content-Type', 'application/json');
      headers.append("Authorization",'Bearer '+authToken);
      this.http.get(this.url+'api/LookupMaster/discounts',{headers:headers}).subscribe(data =>{  
-       console.log(data.json());
+    
        this.discount = data.json();
      })
      this.http.get(this.url+'api/Supplier/discount',{headers:headers}).subscribe(data =>{  
-      console.log(data.json());
+    
      this.Supplierdiscount = data.json();
      this.disTitle =   this.Supplierdiscount.title ;
      if(this.Supplierdiscount.length == 0 ){
@@ -139,32 +139,21 @@ export class DiscountdealsComponent implements OnInit {
     e=>{
       
      if(e.status == 400){
-      // this.toastr.error(JSON.parse(e._body)['no_discount'][0])
+     
       this.noDiscount = true;
      }
     })
     this.http.get(this.url+'api/Supplier/mydeals',{headers:headers}).subscribe(data =>{  
      
      this.recentmydeal = data.json();
-     console.log( this.recentmydeal);
+   
     })
        
   }
   @ViewChild('createdeal') validationForm: FormGroup;
-open(c){
-        console.log(c);
-       
-}
+
 updatedis(service){
-  
-
-
-
   this.dealservice = false;
-  console.log(service.value.select);
-  console.log(service.value.select.title);
-//  this.disTitle = service.value.select.title;
-
   let headers = new Headers();
   var authToken = localStorage.getItem('userToken');
   var id = service.value.select.discountId;
@@ -180,7 +169,7 @@ updatedis(service){
 this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatediscount?DiscountId'+'='+id, 
    a,{headers:headers}).subscribe(
     data =>{  
-    console.log(data.json());
+  
     this.noDiscount = false;
     this.disTitle = service.value.select.title;
 
@@ -226,11 +215,6 @@ this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/ap
 } 
 createdeals(createdeal){
   this.ram = true
- 
-  console.log(createdeal.value.neverExpire);
-  console.log( createdeal.value.neverExpire == true );
-
- 
    if(createdeal.value.neverExpire == true){
     alert("true");
 
@@ -285,21 +269,17 @@ create_deal_api(a){
       
       if(data.status == 200)      {        
         this.createdeal_dailog = false;       
-        console.log("saved");  
+      
         this.ram =false    
     }
 
-
-      console.log(data.json());   
-//
       this.http.get(this.url+'api/Supplier/mydeals',{headers:headers}).subscribe(data =>{  
      
         this.recentmydeal = data.json();
-        console.log( this.recentmydeal);
+    
        })
 
       this.toastr.success(" New Deal is created");
-      console.log( this.recentmydeal); 
     },error => {console.log(error); 
       this.toastr.warning(error._body.split('[')[1].split(']')[0])
                     
@@ -307,8 +287,6 @@ create_deal_api(a){
       })
 }
 openupdatedeal(data){
-  
-  console.log(data);
 
   this.updatemydeal = data ;
   if(data.endDate != null){
@@ -332,7 +310,7 @@ openupdatedeal(data){
 }
 updatedeal(info){
                    
-                    console.log(info);
+                   
                     let headers = new Headers();
                     var authToken = localStorage.getItem('userToken');
 
@@ -350,16 +328,16 @@ updatedeal(info){
                       endDate: info.value.End_date,
                       neverExpire: info.value.optradio
                     }
-                    console.log(upc);
+                   
                     this.http.post(this.url+'api/Supplier/createupdatedeals',upc,{headers:headers}).subscribe(
                       data =>{  
-                      console.log(data.json());
+                     
                       this.toastr.success(" Your deal is  updated successfully.");
 
                       this.http.get(this.url+'api/Supplier/mydeals',{headers:headers}).subscribe(data =>{  
      
                         this.recentmydeal = data.json();
-                        console.log( this.recentmydeal);
+                       
                        })
                        this.editdeal_dailog = false;  
                     },error => {console.log(error);
@@ -379,10 +357,10 @@ deletedeals(a ,index){
                       confirmButtonText: "Yes, delete it!",
                       cancelButtonText: "No, cancel plx!",
               }).then((res)=>{
-                                console.log(res);
+                             
                                 if(res.value===true){
                                                        
-                                                        console.log(a);
+                                                      
                                                       let headers = new Headers();
                                                       var authToken = localStorage.getItem('userToken');
                                                       headers.append('Accept', 'application/json')
@@ -396,11 +374,11 @@ deletedeals(a ,index){
                                                                     endDate: a.endDate,
                                                                     neverExpire: a.neverExpire
                                                          }
-                                                    console.log(aaa);
+                                                   
                                                     this.recentmydeal.splice(index,1);
                                                     this.http.post(this.url+'api/Supplier/deletedeal',aaa,{headers:headers}).subscribe(
                                                       data =>{  
-                                                      console.log(data.json());
+                                                    
                                                       this.toastr.success(" Your deal is  delete successfully.");
                                                     }, error => { console.log(error) });
                                                     alert(JSON.stringify(res));
@@ -423,7 +401,7 @@ closeModel(){
 changePlan(){
   if(this.noDiscount){
     swal({
-      // title: "Are you sure to change membership plan?",
+    
       title: "Free Plan",
       text: this.upgradeMsg,
       type: "warning",

@@ -21,8 +21,6 @@ export class ImageuploadService {
     headers.append("Authorization",'Bearer'+authToken);
     let input = new FormData();
     input.append("file", fileToUpload);
-    console.log(fileToUpload);
-    // console.log(headers)
     return this.http
         .post(this.uploadimage,{ files: input, AlbumId: 2 },{headers:headers});
 }
@@ -32,7 +30,6 @@ upalbumload(){
   headers.append('Accept', 'application/json')
   headers.append('Content-Type', 'application/json');
   headers.append("Authorization",'Bearer'+authToken);
-  console.log(authToken)
   return this.http.post(this.url,{
     albumsId: 0,
     albumName: "string",

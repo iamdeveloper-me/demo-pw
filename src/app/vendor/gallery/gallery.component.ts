@@ -58,7 +58,7 @@ export class GalleryComponent implements OnInit {
           this.portArray_length = this.portArray.length 
           this.showLoader = false;
           },
-          error => { console.log('aaaaaaaaaaa',error)
+          error => { console.log(error)
         }
         )
       }

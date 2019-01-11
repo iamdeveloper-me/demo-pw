@@ -29,7 +29,6 @@ export class AlbumviewComponent implements OnInit {
     defaultImage: string = "https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
   ngOnInit() {
     this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
-    console.log( this.basicplane)
     if(this.basicplane == '1' ){ this.router.navigate(['../vendor/gallery'])}
     this.noimage = 'https://vignette.wikia.nocookie.net/roblox-phantom-forces/images/7/7c/Noimage.png/revision/latest?cb=20171115203949';
     let headers = new Headers();
@@ -41,8 +40,6 @@ export class AlbumviewComponent implements OnInit {
 
     this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
         this.eventArray = data.json()
-    
-        console.log(this.eventArray);
        })
 
      
@@ -108,9 +105,6 @@ fileOverAnother(e: any): void {
 createAlbum(Album){
 
     this.createalbum_dailog = false;
-
-    console.log(Album);
-     
     let headers = new  Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append("content-type",'application/json ');
@@ -123,22 +117,15 @@ createAlbum(Album){
       tags: "Add tags ",
       colorTags: "Add your colour tag"
     }
-    console.log(album)
-  
     this.http.post(this.url+'api/Albums/createupdatealbum',album,{headers:headers})
       .subscribe(data =>{
-                          
-                          console.log(this.eventArray); 
+
                           this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
                             this.eventArray = data.json()
                             this.noimage = 'https://vignette.wikia.nocookie.net/roblox-phantom-forces/images/7/7c/Noimage.png/revision/latest?cb=20171115203949';
-                            console.log(this.eventArray);
                           })
-                          console.log(data.json()); 
                           this.toastr.success(data.json().message);
                         },(error)=>{
-                                    console.log(error._body);
-                                  
                                     this.typeWarning(error._body.split('[')[1].split(']')[0]);
                                     }
                 );
@@ -167,31 +154,18 @@ closeModel(){
     confirmButtonText: "Yes",
     cancelButtonText: "No",
     }).then((res)=>{
-      console.log(res);
-      if(res.value===true){
 
-    // let con = confirm('Are you sure you want to delete this?')
-    // if (con) {
-      console.log(image);
-      console.log(index);
-      console.log(image.albumsId);
+      if(res.value===true){
       this.eventArray.splice(index,1);
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
       headers.append('Accept', 'application/json')
       headers.append('Content-Type', 'application/json');
       headers.append("Authorization",'Bearer '+authToken);
-    
-    
-      // Album Getremoveevent?id'+'='+id  ?AlbumImageId'+'='+image.albumImageId
       this.http.post(this.url+'/api/Albums/deletealbum',{albumsId:image.albumsId},{headers:headers})
       .subscribe(data =>{
-        console.log(data.json());
         this.toastr.success(data.json().message);
           }); 
-
-    // }
-
   }else{
     
    }

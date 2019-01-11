@@ -49,13 +49,11 @@ export class BannerComponent implements OnInit {
   }
   Categorie(){ 
     this.masterservice.getAllCategories().subscribe(data => {
-     // console.log(data);
       this.Categories = data;
      },error => {  console.log(error) })
   }
   location(){ 
     this.masterservice.getAllLocation().subscribe(data => {
-      console.log(data);
       this.locations = data;
      },error => {  console.log(error) })
   }

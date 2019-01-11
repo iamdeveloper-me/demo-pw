@@ -41,7 +41,6 @@ export class EventsComponent implements OnInit {
                   "eventType": "all",
                   "dates": "all"
                 }).map((response: Response) => response.json()).subscribe(data => {
-                    console.log(data)
                     this.allItems = data['items']
                     this.setPage(1);
                   });  
@@ -62,7 +61,6 @@ export class EventsComponent implements OnInit {
     }
     this.http.post(this.apiService.serverPath+'Home/searchevents',q).map((response: Response) => response.json()).subscribe(data => {
         this.allItems = data['items']
-        console.log(data);
         this.setPage(1);
     });
     this.locationD()
@@ -73,7 +71,6 @@ export class EventsComponent implements OnInit {
   }
   locationD(){ 
     this.masterservice.getAllLocation().subscribe(data => {
-     console.log(data);
      this.locations = data;
      },error => {  console.log(error) })
   }

@@ -23,7 +23,6 @@ export class BusinessService {
    }  
    
    SaveIntoDb(obj){
-    console.log(JSON.stringify(obj));
    return this.http.post(this.api+'/api/Supplier/savebusinessservices',obj,{headers:this.header});    
   }
   update_VendorSocialLink(model): Observable<any>{

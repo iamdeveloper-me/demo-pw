@@ -20,23 +20,14 @@ export class PaymentSummaryComponent implements OnInit {
 
   ngOnInit() {
     $.getScript('./assets/js/membershipslider.js'); 
-
-    
-    // console.log(JSON.parse(sessionStorage.getItem('selected_plan')))
     this.MainData   =    JSON.parse(sessionStorage.getItem('selected_plan'));
-    console.log(this.MainData)
-
     if(this.MainData.route_key == 3){
-    
       this.WhichPlan =   JSON.parse(sessionStorage.getItem('which_plan'))
-      console.log(this.WhichPlan)
       if(this.MainData.payFrequency == 1){
-        // this.titleGet();
+      
         this.totalAmount = this.WhichPlan['monthlyPrice'] * 6
       }
       if(this.MainData.payFrequency == 2){
-        // this.titleGet();
-
         this.totalAmount = (this.WhichPlan['monthlyPrice'] * 12) - (this.WhichPlan['noOfMonthFeeOff'] * 2) 
       }
 
@@ -64,8 +55,6 @@ PayPalPayment(){
   
   if(this.MainData['route_key'] == 3){
     this.http.post(this.url+'api/Supplier/upgrademembership',this.MainData,{headers:headers}).subscribe( (data)=> { 
-    
-      console.log(data.json())
       sessionStorage.removeItem('selected_plan');
 
       this.router.navigate([]).then(result => {  window.open(data.json().url); });
@@ -77,8 +66,6 @@ PayPalPayment(){
     );
   }else{
     this.http.post(this.url+'/api/PromoteBusiness/saveadlog',this.MainData,{headers:headers}).subscribe( (data)=> { 
-    
-      console.log(data.json())
       sessionStorage.removeItem('selected_plan');
             this.router.navigate([]).then(result => {  window.open(data.json().url); });
       
@@ -102,8 +89,6 @@ titleGet(){
 
   this.http.get(this.url+'api/Supplier/mymembership',{headers:headers}).subscribe(
     data =>{ 
-      
-      console.log(data.json());
       this.MainData.title =  data.json()['pricingPlan']['title']
 
     });

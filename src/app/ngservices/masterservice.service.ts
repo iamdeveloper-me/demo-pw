@@ -21,7 +21,6 @@ export class MasterserviceService {
      return this.apiservice.postData(this.apiservice.serverPath + 'PerfectWedding/searchfilters/',categoryId);
    }
    getFilterResult(obj){
-     console.log(JSON.stringify(obj));
     return this.apiservice.postData(this.apiservice.serverPath + 'PerfectWedding/searchlisting',obj);
    }
    getSimilarVendors(obj){

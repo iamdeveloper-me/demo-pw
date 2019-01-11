@@ -3,7 +3,7 @@ import { Pipe, PipeTransform , OnInit, Component, HostListener } from '@angular/
 import {} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MasterserviceService } from 'app/ngservices/masterservice.service';
-import {RatingModule} from 'ngx-rating';
+import {RatingModule, Rating} from 'ngx-rating';
 import { CustompipePipe } from 'app/custompipe.pipe';
 import { CategoryPipePipe } from 'app/category-pipe.pipe';
 import { apiService } from 'app/shared/service/api.service';
@@ -12,7 +12,7 @@ import { SlidesOutputData } from 'ngx-owl-carousel-o';
 
 import { toBase64String } from '@angular/compiler/src/output/source_map';
 
-
+import{ratingStars} from '../ngservices/ratingstars';
 @Pipe({ name: 'defaultImage' })
 export class PP implements PipeTransform {
   transform(value: string, fallback: string, forceHttps: boolean = false ): string {
@@ -57,7 +57,11 @@ export class SearchresultComponent implements OnInit {
   disableLoadingButton=true;
   blankImg='../../assets/img/noImg.png';
   basicPlan:number;
-  constructor(public _route:Router, public _activeRoute: ActivatedRoute, private _masterservice: MasterserviceService, private api: apiService) {  
+   ratingmodel: ratingStars
+  constructor(public _route:Router, public _activeRoute: ActivatedRoute, 
+    private _masterservice: MasterserviceService, private api: apiService,
+    ) {
+      this.ratingmodel = new ratingStars();  
     this.basicPlan = parseInt(localStorage.getItem('basic-plan'))
     this._activeRoute.params.subscribe(res=>{
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
@@ -220,22 +224,20 @@ export class SearchresultComponent implements OnInit {
     }
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
+    console.log(JSON.stringify(this.objSearchResultItems));
     this.setBlankImg();
     this.addToCollection();
     this.loading=false; 
   },error=>{
     this.loading = false;
-  });   
-  
+  });
    
  }
  @HostListener("window:scroll", [])
  scrollToBottom(){
   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
     this.objSearchlistvm.page+=1;
-    this.paginate(this.objSearchFilter.pageSize);
-}
-
+    this.paginate(this.objSearchFilter.pageSize); }
  }
 }
 export class SearchFilterVm{

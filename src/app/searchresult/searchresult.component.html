@@ -22,28 +22,22 @@
                     {{getCategoryName(slide)}}  </button>              
                             <p class="locat_icon">
                       <i class="material-icons">location_on</i> 
-                     <!-- <span *ngIf='slide.vendorLocations[0]'> {{ slide.vendorLocations[0].suburb.name}},</span> -->
                      <span *ngIf='slide.vendorLocations[0]'>  {{ slide.vendorLocations[0]?.districts.name}}</span>
                      <span *ngIf='!slide.vendorLocations[0]'>No District Available</span>
-                    
-                     <!-- <span *ngIf='slide.vendorLocations[0]'>{{ slide.vendorLocations[0].country.name}},</span> 
-                     <span *ngIf='slide.vendorLocations[0]'> {{ slide.vendorLocations[0].postalCode}}</span> -->
                       </p>
                       <p class="statr_point">
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star"></span>
-                      <span class="fa fa-star"></span> 5.0 (47) </p>
+                      <span style="color:red" [innerHTML]='ratingmodel.printStars(slide.averageRating)'></span>
+                    </p>
                     </div>
               
                     <div class="col-md-12 col-12">
                       <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
                         <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
                           <span>Price from</span>
-                          <span class="pric_200">200 $</span>
+                          <span *ngIf='slide.priceTag' class="pric_200">{{slide.priceTag}}</span>
+                          <span *ngIf='!slide.priceTag' class="pric_200">Custom Price</span>
                       </div>
-                      <div class="col-md-4 col-4 span_positin">
+                      <div *ngIf='slide.dealsCount>0' class="col-md-4 col-4 span_positin">
                        <img src="../../assets/img/tag.svg"  alt=""> 
                       <span>Deals</span>
                       <span>1</span>
@@ -377,14 +371,16 @@
                           
                           <p class="statr_point">
                             
-                            <span class="fa fa-star checked"></span>
+                            <!-- <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span> -->
                             <!-- <ngb-rating [(rate)]="4"></ngb-rating> -->
-                            <span *ngIf='i.reviews>0'>
-                            {{i.averageRating}} {{i.reviews}} </span>
+                            <span *ngIf='i.averageRating>0'>
+                             {{i.averageRating}} <!--{{i.reviews}}  -->
+                            <span style="color:red" [innerHTML]='ratingmodel.printStars(i.averageRating)'></span>
+                          </span>
                           </p>
                          
                         </div>
@@ -392,7 +388,8 @@
                           <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
                             <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
                               <span>Price from</span>
-                              <span class="pric_200">{{i.priceTag}}</span>
+                              <span *ngIf='i.priceTag' class="pric_200">{{i.priceTag}}</span>
+                              <span *ngIf='!i.priceTag' class="pric_200">Custom Price</span>
                           </div>
                           <div *ngIf='i.dealsCount>0' class="col-md-4 col-4 span_positin">
                            <img src="../../assets/img/tag.svg"  alt=""> 

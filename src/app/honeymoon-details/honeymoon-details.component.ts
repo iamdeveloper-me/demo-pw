@@ -83,5 +83,9 @@ export class HoneymoonDetailsComponent  {
       console.log(JSON.stringify(error));
     });
   }
+  ngOnInit() {   
+  //$.getScript('./assets/js/owljsor.js');
+  $.getScript('./assets/js/searchresult.js'); 
+  }
 
 }

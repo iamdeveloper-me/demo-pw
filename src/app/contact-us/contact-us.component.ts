@@ -8,9 +8,9 @@ import { ContactUsVM } from '../advertise/advertise.component';
   styleUrls: ['./contact-us.component.scss']
 })
 export class ContactUsComponent implements OnInit {
-  contactus: ContactUsVM;
+  contactInfoObj: ContactUsVM;
   constructor(private apiService: apiService, public toastr: ToastrService ) {
-    this.contactus = new ContactUsVM();
+    this.contactInfoObj = new ContactUsVM();
   }
   Phone_no ;
   ngOnInit() {
@@ -34,9 +34,3 @@ export class ContactUsComponent implements OnInit {
     }else{  this.Phone_no = " "}
   }
 }
-
-
-
-
-
-  

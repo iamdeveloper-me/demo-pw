@@ -209,11 +209,16 @@ export class PortfolioviewComponent implements OnInit {
     .subscribe(data =>{ 
         //console.log(data.json().filesId);
         const data2 = {
+            // portfolioId: 0,
+            // filesId: data.json().filesId,
+            // tags: "",
+            // colorTags: "",
+            // setAsBackgroud: false
             portfolioId: 0,
-            filesId: data.json().filesId,
+            filesId: 0,
             tags: "",
             colorTags: "",
-            setAsBackgroud: false
+            setAsBackgroud: true
         }
 
         //console.log(data2);

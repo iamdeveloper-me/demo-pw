@@ -9,19 +9,14 @@ import { ToastrService } from 'ngx-toastr';
 export class AdvertiseComponent implements OnInit {
 
   constructor(private apiService: apiService, public toastr: ToastrService) { }
-  contactqq  = new ContactUsVM()
+  contactInfoObj  = new ContactUsVM()
     messageType = 1;
     Phone_no ;
 
-  ngOnInit() {
-    //this.contactus(c)
-    console.log(this.contactqq.name);
-    alert("dvgfdsg")
-  }
+  ngOnInit() { }
 
   contact(list){
     this.apiService.postData(this.apiService.serverPath+'Home/contactus',list.value).subscribe(data => {
-      console.log(data)
       this.toastr.success(data.message);
       list.reset()
     },

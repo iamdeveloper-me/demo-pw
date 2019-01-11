@@ -172,7 +172,6 @@ const appRoutes: Routes = [
   { path: 'home/category', component:  CategoryComponent },
   { path: 'home/register', component:  RegisterComponent  },
   { path: 'home/events', component: EventsComponent },
-  { path: 'home/contact', component: ContactUsComponent },
   { path: 'home/FAQ', component:FaquestionComponent },
   { path: 'home/TermsandConditions', component: TermsandconComponent  },
   { path: 'home/Careers', component:  CareersComponent  },

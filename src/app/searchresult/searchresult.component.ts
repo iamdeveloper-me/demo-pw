@@ -39,7 +39,6 @@ export class SearchresultComponent implements OnInit {
   customOptions: any = { loop: false, margin: 20, mouseDrag: true, touchDrag: true, pullDrag: true, dots: true,
     nav: false, autoplay: true, navSpeed: 700, responsive: { 0: { items: 1 }, 400: { items: 2 }, 740: { items: 3 }, 
     940: { items: 4 } },
-    //autoplaySpeed:1
   }
   activeSlides: SlidesOutputData;
   slidesStore: any[];
@@ -48,7 +47,6 @@ export class SearchresultComponent implements OnInit {
   locations:any;
   categories:any;
   filters: any;
- // count:number = 3
   loading=false;
   selectedLocationsCount = 0;
   objSearchlistvm: SearchListingVM;
@@ -56,7 +54,6 @@ export class SearchresultComponent implements OnInit {
   locationFilterParam:string='';
   categoryFilterParam:string='';
   pageNumber=0;
-  //  pageSize:number=3;
   disableLoadingButton=true;
   blankImg='../../assets/img/noImg.png';
   basicPlan:number;
@@ -65,45 +62,24 @@ export class SearchresultComponent implements OnInit {
     this._activeRoute.params.subscribe(res=>{
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
       this.collection=[];
-      
       this.objSearchlistvm = new SearchListingVM();
       this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
       this.objSearchlistvm.districtId.push(this.objSearchFilter.locationId);
       this.paginate(this.objSearchFilter.pageSize)
     })
     this.objSearchFilter=new filterParam();
-  //  this.objSearchlistvm = new SearchListingVM();
-   
     if(this._activeRoute!=undefined){
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
-      console.log(this.objSearchFilter);
-      // this._activeRoute.snapshot.params['id'].split('/')[2];
-    //  this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
-    ///  this.objSearchlistvm.districtId.push(this.objSearchFilter.locationId);
     }
     this.getLocations();
     this.getCategories();
     this.getFilters();
     this.getSearchFilterResult();
- //  this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
-    // this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
-    //   this.objSearchResultItems = res;
-    //   this.slidesStore = []//mahima
-    //   this.slidesStore =  this.objSearchResultItems['items']
-      
-    //   console.log(this.objSearchResultItems)
-    //   //console.log(JSON.stringify(this.objSearchResultItems));
-    // },error=>{
-    //   console.log(JSON.stringify(error));
-    // });
- //   this.paginate(this.objSearchFilter.pageSize);
   }
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
-    console.log(this.activeSlides);
   }
   getCategoryName(i):string{
-    debugger
     if(this._activeRoute.snapshot.params['id']!= ""){
       return this._activeRoute.snapshot.params['id'];
     }else{
@@ -170,7 +146,6 @@ export class SearchresultComponent implements OnInit {
     })
   }
   getSearchFilterResult(){
-   // this.objSearchlistvm = new SearchListingVM();
     if(this.filters){
     if(this.filters.services!=null){
     this.filters.services.forEach(element => {
@@ -211,8 +186,6 @@ export class SearchresultComponent implements OnInit {
   this.loading=true;
   this.collection=[];
   this.pageNumber=0;
- // this.paginate(this.objSearchFilter.pageSize);
-   
   }
   clearFilters(){
     this.locations.forEach(element => { element.isSelect=false; });
@@ -250,7 +223,6 @@ export class SearchresultComponent implements OnInit {
     this.setBlankImg();
     this.addToCollection();
     this.loading=false; 
-    console.log(JSON.stringify(this.objSearchResultItems)) ; 
   },error=>{
     this.loading = false;
   });   
@@ -260,8 +232,7 @@ export class SearchresultComponent implements OnInit {
  @HostListener("window:scroll", [])
  scrollToBottom(){
   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-    // you're at the bottom of the page
-    this.pageNumber+=1;
+    this.objSearchlistvm.page+=1;
     this.paginate(this.objSearchFilter.pageSize);
 }
 

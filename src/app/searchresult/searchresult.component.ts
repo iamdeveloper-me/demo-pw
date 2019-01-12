@@ -58,6 +58,7 @@ export class SearchresultComponent implements OnInit {
   blankImg='../../assets/img/noImg.png';
   basicPlan:number;
    ratingmodel: ratingStars
+   
   constructor(public _route:Router, public _activeRoute: ActivatedRoute, 
     private _masterservice: MasterserviceService, private api: apiService,
     ) {
@@ -73,6 +74,7 @@ export class SearchresultComponent implements OnInit {
     })
 
     this.objSearchFilter=new filterParam();
+
 
     if(this._activeRoute!=undefined){
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
@@ -236,7 +238,7 @@ export class SearchresultComponent implements OnInit {
  }
  @HostListener("window:scroll", [])
  scrollToBottom(){
-  if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight)) {
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
     this.objSearchlistvm.page+=1;
     this.paginate(this.objSearchFilter.pageSize); }
  }

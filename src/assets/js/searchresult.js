@@ -2,6 +2,8 @@ $(document).ready(function() {
     $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item col-sm-12');$('#products .item').removeClass('grid-group-item col-sm-4 col-6 mobpad5px');});
     $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item col-sm-12');$('#products .item').addClass('grid-group-item col-sm-4 col-6 mobpad5px');});
     $('#photoview').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item col-sm-12 col-6 mobpad5px grid-group-item');$('#products .item').addClass('photo-group-item col-sm-4');});
+    $('#gridmobile').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item col-sm-12');$('#products .item').addClass('grid-group-item col-sm-4 col-6 mobpad5px');});
+   
 });
 
 function toggleChevron(e) {

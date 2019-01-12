@@ -55,7 +55,7 @@ export class MenuComponent implements OnInit {
                     this.objFilterParam.searchQuery ="";
             }
             sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
-            this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
+            this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
         }
         searchCat(e,isAllSupplier,isDreamLocation){      
             if(e){
@@ -71,7 +71,7 @@ export class MenuComponent implements OnInit {
                 this.objFilterParam.locationId = this.locationId;
             }
             sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
-            this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
+            this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
         
         
         }

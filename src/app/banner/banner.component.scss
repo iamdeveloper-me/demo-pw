@@ -415,7 +415,10 @@ header.masthead p {
   display:none;
 }
 .mobilesidebanner{
-  display:block;
+    display: block;
+    position: relative;
+    top: 5px;
+    height: 390px;
 }
   .form-group{
       padding-bottom: 0px; 
@@ -438,8 +441,6 @@ header.masthead p {
     flex-direction: column;
     width: 100%;
     height: 420px;
-    background: url("https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B_mob.jpg") 50% no-repeat;
-    background-size: cover;
      }
     .FilterDialog{
     position: fixed; height: 100vh;left:0px; top:0px;width: 100%;background:#333;z-index:999999;overflow:scroll;overflow-x:hidden;
@@ -474,6 +475,7 @@ border-radius:0px 5px 5px 0px;
   text-indent: 10px;
   padding-left: 30px;
   border-radius:5px;
+  margin-top:125px!important;
 }
 .mobvendorebtn span{
   display: block;
@@ -667,6 +669,9 @@ min-height:100vh;
   header.masthead p {
     font-size: 1.15rem;
   }
- 
-
+}
+@media (max-width: 500px) {
+.just_picture{
+  bottom:-100px;
+}
 }

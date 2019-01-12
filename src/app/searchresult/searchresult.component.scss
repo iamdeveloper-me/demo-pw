@@ -17,6 +17,9 @@ background-image: url('https://s3.us-east-2.amazonaws.com/prefect-image/inner_he
   color: #ffffff;
   padding-top:115px!important;
 }
+.procard{background: url("https://s3.us-east-2.amazonaws.com/prefect-image/pro.png"); width: 58px; height: 53px; position: absolute;top: 0; left: 0;}
+
+
 .loadmorebtn{
   margin: 10px auto !important;
   border-radius: 30px;
@@ -185,9 +188,13 @@ background: #e72e77;
     display: table;
     content: " ";
 }
+.viewhandeler{
+  margin-top: 20px;
+}
 .list-group-item{
   border:0px;
   background: transparent;
+  padding:5px 10px!important;
 }
 #products .list-group-item .thumbnail .caption{
   text-align:left!important;
@@ -228,7 +235,7 @@ max-width:98%;
 margin-top:-35px;
 }
   .imgnum span{
-    background: #f5f5f5;
+    background: #f5f5f5c7;
     overflow: hidden;
     display: inline-block;
     padding: 2px 5px;
@@ -600,7 +607,7 @@ img.lazyOwl{
     max-width: 255px!important;
 }
 .card-img-top{
-  height:175px;
+  height:250px;
   object-fit: cover;
 }
 
@@ -862,10 +869,13 @@ overflow: hidden;
 margin-bottom:30px;
     margin-top: 50px;
 }
-
+.loadinggif{
+  margin-top: 10%;
+  position: fixed;
+}
 
   .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
-   height: 175px;
+   height: 250px;
     width: 100%;
     border-radius: 0px;
     object-fit:cover;
@@ -1245,6 +1255,15 @@ font-size:14px;
 
 
 @media (max-width:768px){
+   .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
+   height: 120px;
+  }
+
+ .carousel-inner>.photo-group-item>a>img, .carousel-inner>.photo-group-item>img, .img-responsive, .photo-group-item .thumbnail a>img, .thumbnail>img{
+   height: 200px;
+  }
+
+
 .funkyradio{
     overflow: hidden;
     padding-bottom: 10px;

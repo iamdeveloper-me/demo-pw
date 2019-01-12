@@ -100,16 +100,14 @@
             <li class="active">{{_activeRoute.snapshot.params['id']}}</li>
           </ol>
 
-           <div class="btn-group">
-            <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
-            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
-
-                class="glyphicon glyphicon-th-large"></span>Grid</a>
-
-                <a href="#" id="photoview" class="btn btn-default btn-sm hidden-lg hidden-sm hidden-md"><span
-                class="glyphicon glyphicon-picture"></span>Photo View</a>
-
-        </div>
+          <div class="btn-group hidden-xs">
+            <a id="list" class="btn btn-default btn-sm">
+              <span class="glyphicon glyphicon-th-list"></span>List
+            </a> 
+            <a id="grid" class="btn btn-default btn-sm">
+              <span class="glyphicon glyphicon-th-large"></span>Grid
+            </a>
+          </div>
       </div>
     </div>
   </div>
@@ -325,7 +323,7 @@
       <div class="photo_cont">
        	<div id="products" class="row list-group">
           <div *ngIf='objSearchResultItems'>
-	        	<div *ngFor='let i of collection' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
+	        	<div id='dv1' *ngFor='let i of collection' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
 
 	                <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
@@ -411,9 +409,9 @@
             </div>
           </div>
 	     	</div>
-        <div>
+        <div class="text-center">
 
-          <img *ngIf='loading' src="https://www.walgreens-hearing.com/img/loader.gif" style="bottom:35%;position: fixed;z-index:99999;margin-left:40%">
+          <img *ngIf='loading' src="../../../assets/img/loader.gif" class="loadinggif">
                   <!-- <ngb-pagination [collectionSize]="objSearchResultItems?.totalCount" [(page)]="objSearchResultItems.page" [boundaryLinks]="true"></ngb-pagination>
              <span class="totalpage">{{objSearchResultItems.totalPages}} (Page)s</span> -->
         </div>
@@ -493,8 +491,23 @@
     </button>
   </div>
 </div>
-
+<div class="clearfix"></div>
+<div class="filterrow viewhandeler">
+  <h1>PREFERRED VIEW</h1>
+   <div class="btn-group">
+            <a id="gridmobile" class="btn btn-default btn-sm">
+              <span class="glyphicon glyphicon-th-large"></span>Grid
+            </a>
+            <a id="photoview" class="btn btn-default btn-sm">
+              <span class="glyphicon glyphicon-picture"></span>Photo View
+            </a>
+          </div>
+</div>
   </div>
+
+
+
+
 
 </div>
 

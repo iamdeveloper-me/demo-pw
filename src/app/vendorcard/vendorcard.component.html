@@ -30,7 +30,7 @@
             </div>
           </div>
         </section>
-        <p class="browse_cat"> <a routerLink="/home/category"  > <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
+        <p class="browse_cat"> <a routerLink="/home/weddingcategories"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
       </div>
 
     </div>
@@ -121,7 +121,7 @@
                 </owl-carousel-o>
           </div> 
           <!--/.Carousel Wrapper-->
-          <p class="browse_cat"> <a (click) = "supplier_all(Popular,'true','false')"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
+          <p class="browse_cat"> <a (click) = "supplier_all(Popular,'true','false')"> <button class="btn btn-lg btn-primary btc">See All</button> </a> </p>
     </div>
 
 
@@ -143,11 +143,11 @@
                 (click)='goToVendordetails(list_dream)' >
                     <img [src]="list_dream.profileImage" class="img-responsive" alt="img06" /> 
                     <h2>{{list_dream?.nameOfBusiness}}
-                      <div *ngIf="list_dream?.district == null; else dwloc">
-                          <i class="material-icons">location_on</i> N/A    
-                      </div>
+                      <span *ngIf="list_dream?.district == null; else dwloc">
+                         N/A    
+                      </span>
                       <ng-template #dwloc>
-                          <span> <i class="material-icons">location_on</i>  {{list_dream?.district}}
+                          <span>{{list_dream?.district}}
                           </span>
                       </ng-template>
                       </h2>
@@ -155,7 +155,7 @@
                
               </div>
               <div class="clearfix"></div>
-              <p class="browse_cat"> <a (click) = "supplier_all(Popular,'false','true')"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
+              <p class="browse_cat"> <a (click) = "supplier_all(Popular,'false','true')"> <button class="btn btn-lg btn-primary btc">See All</button> </a> </p>
             </div>
           </div>
         </div>

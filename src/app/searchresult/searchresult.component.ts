@@ -18,13 +18,11 @@ export class PP implements PipeTransform {
   transform(value: string, fallback: string, forceHttps: boolean = false ): string {
     let image = "";
     if (value) { image = value; } else { image = fallback; }
-
     if (forceHttps) {
       if (image.indexOf("https") == -1) {
         image = image.replace("http", "https");
       }
     }
-
     return image;
   }
   
@@ -174,15 +172,16 @@ export class SearchresultComponent implements OnInit {
     });
   }
   if(this.categories){
+    // this.objSearchlistvm.categoryId=[];
     this.categories.forEach(element => {
-      if(element.isSelect){
-        this.objSearchlistvm.categoryId.push(element.categoryId);
-      }
+      this.objSearchlistvm.categoryId = this.categories.filter(c=>c.isSelect==true);
+//      if(element.isSelect){ this.objSearchlistvm.categoryId.push(element.categoryId); }
     });
   }
     this.locations.forEach(element => {
       if(element.isSelect){
-        this.objSearchlistvm.districtId.push(element.districtId)
+        this.objSearchlistvm.districtId = this.locations.filter(l=>l.isSelect==true);
+        // this.objSearchlistvm.districtId.push(element.districtId)
       }else{
         element.isSelect=false;
       }
@@ -237,7 +236,7 @@ export class SearchresultComponent implements OnInit {
  }
  @HostListener("window:scroll", [])
  scrollToBottom(){
-  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+  if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight)) {
     this.objSearchlistvm.page+=1;
     this.paginate(this.objSearchFilter.pageSize); }
  }
@@ -265,6 +264,7 @@ export class SearchListingVM{
     this.districtId=[];
     this.categoryId=[];
     this.serviceId=[];
+    this.sortDir='asc';
     this.customsFields = new Array<FieldSearchVM>();
     this.customField = new FieldSearchVM();
   }

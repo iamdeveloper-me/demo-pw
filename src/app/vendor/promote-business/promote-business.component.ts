@@ -98,7 +98,7 @@ export class PromoteBusinessComponent implements OnInit {
      });
 
      $(".location").click(function(){
-       alert("hi");
+     
       $(".homegallerybox").hide();
       $(".homelocationbox").show();
       $(".prioritybox").hide();

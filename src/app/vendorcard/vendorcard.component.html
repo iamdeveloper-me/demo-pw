@@ -20,7 +20,7 @@
                       </div>
                       <div class="project-name">
                         {{Popular.categoryName}}
-                        <!-- {{Popular.listingCount}} Listing -->
+                
                       </div>
                   
                     </div>
@@ -35,8 +35,7 @@
 
     </div>
     <div class="container-fluid mob_padd_30px" *ngIf='slidesStore?.length > 0'>
-          <!--Carousel Wrapper-->
-          <!-- {{slidesStore | json}} -->
+        
           <div class="caroosel_headin text-center">
             <h3>Featured Wedding  <strong style="color: #e72e77;">Suppliers </strong>  </h3>
           </div>
@@ -78,9 +77,9 @@
 
                       <div class="card-body ">
                           <div class="text-center"> 
-                            <!--  {{slidesStore | json}} -->
+                          
                              <h6> <strong>{{slide.nameOfBusiness}}  </strong> </h6>
-                           <!-- <button class="wedding_btn">{{slide?.nameOfBusiness}} </button> -->
+                         
                             <button class="wedding_btn" *ngIf="slide?.vendorCategories.length == 0; else vcat"> N/A  </button>
                             <ng-template #vcat>
                                 <button class="wedding_btn">{{slide?.vendorCategories}} </button>
@@ -132,7 +131,7 @@
       <div class="row" id="headcss" >
           <div class="col-sm-12" >
               <h3 class="font_size_22">Dream Wedding  <strong style="color: #e72e77"> Locations </strong> </h3>
-              <!-- <p class="content-sub-header">Image gallery grid with 30 subtle hover effect. Try to hover below demo images to show each hover effect.</p> -->
+             
           </div>
       </div>
       <section id="hover-effects" class="card" >
@@ -204,15 +203,6 @@
                   </div>
                 </a>
                 </div>
-                <!-- <div class="col-md-4 col-6">
-                    <div class="homeTools__item pure-u-1-5 app-link" data-href="/tools/Info?page=Wedsite">
-                      <span class="homeTools__itemIcon homeTools__itemIcon--wedsite"></span>
-                      <p class="homeTools__itemIconText">Create your free wedding website</p>
-                  </div>
-                  </div>
-                  <div class="col-md-4 col-6">
-
-                  </div> -->
             </div>      
             
 

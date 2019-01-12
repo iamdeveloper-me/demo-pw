@@ -19,7 +19,7 @@ export class BusinessinformationService {
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);   
     this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile',{headers:headers}).subscribe(data =>{ 
-      alert("vsz"); 
+    
       })
    }
 

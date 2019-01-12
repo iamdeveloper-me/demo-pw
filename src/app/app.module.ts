@@ -444,7 +444,7 @@ export function getAuthServiceConfigs() {
   ],
     imports: [
         CarouselModule,
-        BrowserModule,
+       // BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         // calender start
@@ -503,7 +503,8 @@ export function getAuthServiceConfigs() {
             libraries: ["places"]
         }),
         // code by v
-        BrowserModule, NgxPaginationModule
+        BrowserModule, 
+        NgxPaginationModule
     ],
 
     providers: [
@@ -522,7 +523,7 @@ export function getAuthServiceConfigs() {
         },
         apiService
     ],
-    bootstrap: [AppComponent, MylistingComponent],
+    bootstrap: [AppComponent],
     entryComponents: [NgbdModalContent],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA

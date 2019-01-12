@@ -56,7 +56,7 @@ export class PhotoComponent implements OnInit {
       $('.Search_img').on('click', function(){
           $('.clearclass').removeClass('seelist');
           });
-    })
+      })
     }
     createColorPanel(){
       this.colors= Array<ColorPicker>();
@@ -100,7 +100,6 @@ export class PhotoComponent implements OnInit {
         this.photo_search_param.color=[];
         for (let i = 0; i < selectedColors.length; i++) {
           this.csvColors+= selectedColors[i].colorName+',';
-
           this.photo_search_param.color.push(selectedColors[i].colorName);
         }
         console.log(this.photo_search_param.color)
@@ -171,9 +170,9 @@ export class  photoSearchParam  {
   pageSize: number;
   sortDir: string;
   sortedBy: string;
-  searchQuery:string;// "tag1",290 ,Blue
+  searchQuery:string;
   categoryId: string;
-  UserId : number; //this.userId?this.userId:0,
+  UserId : number; 
   color: Array<any>;
   constructor(){
     this.UserId = 0;
@@ -183,27 +182,3 @@ export class  photoSearchParam  {
     this.color = [];
   }
 }
-
-
-
-// this.colour_showTag = [];
-// for (const key of this.multy_colour_search) {
-// this.colors.filter(c=>c.colorName==key)
-// console.log( this.colors.filter(c=>c.colorName==key))
-// if( this.colors.filter(c=>c.colorName==key).length == 0){
-// this.showTag2 = true ;
-// this.showTag = false;
-// }else{
-// this.showTag = true;
-// this.showTag2 = false
-// this.colour_showTag.push(key)
-// console.log(this.colour_showTag )
-// }
-// }
-// if(f.value.searchQuery && this.colour_showTag.length == 0){
-// this.showTag2 = true ;
-// this.showTag = false;
-// }else{
-// this.showTag = true;
-// this.showTag2 = false;
-// }

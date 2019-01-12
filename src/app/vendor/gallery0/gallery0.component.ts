@@ -293,7 +293,7 @@ export class Gallery0Component implements OnInit {
     this.uploadphoto_dailog = false;
     this.createalbum_dailog = false;
     this.uploader.queue =[];
-   // alert("progress_bar")
+  
     
   }
 

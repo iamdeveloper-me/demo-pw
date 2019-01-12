@@ -20,7 +20,7 @@ export class DetailpageComponent implements OnInit {
   portfolioImages = [];
   lightBoxImages=[];
   @ViewChild('albumgallarypopup') albumgallarypopup: ElementRef;
-  constructor(public http: Http, public toastr: ToastrService, private api: apiService,
+  constructor(public http: Http, public toastr: ToastrService, private apiService: apiService,
      private activeroute: ActivatedRoute, private router: Router, private masterservice: MasterserviceService) { 
 
   }
@@ -52,26 +52,25 @@ export class DetailpageComponent implements OnInit {
   }
   review = { rating: '', comments: "", rateVendorID: 'a96129c3-8861-43aa-8bc9-1c155f1ffd79' }
   putReview(review) {
-
-    var headers = new Headers();
+   
     var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization", 'Bearer ' + authToken);
-
     if (!authToken) {
       this.toastr.error('Login To Give Your Review', 'Inconceivable!');
     }
 
     var rating1 = review.rating;
     var comments1 = review.comments;
-    this.http.post(this.url, {
+
+    this.apiService.postData(this.apiService.serverPath+this.url, {
       rating: rating1, comments:
         comments1, rateVendorID: this.vendorDetails.vendorUniqueId
-    },
-      { headers: headers }).subscribe(data => {
+    }).subscribe(data => {
+      console.log(data)
       }, error => { console.log(error) }
       );
+
+
+  
   }
   setLightboxImages(pi,ev){
     this.lightBoxImages=[];

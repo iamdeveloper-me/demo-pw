@@ -168,7 +168,7 @@ export class BusinessInfoComponent implements OnInit {
     public translate: TranslateService ,private cservice: LoginServiceService, private router: Router 
     )
         {
-         // this.showSweetAlert();          
+            
           this.cropperSettings = new CropperSettings();
           this.cropperSettings.croppedWidth =100;
           this.cropperSettings.croppedHeight = 100;

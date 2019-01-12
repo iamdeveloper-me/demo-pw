@@ -80,7 +80,7 @@ export class PromotionPriorityComponent implements OnInit {
    });
 
    $(".location").click(function(){
-     alert("hi");
+   
     $(".homegallerybox").hide();
     $(".homelocationbox").show();
     $(".prioritybox").hide();
@@ -179,7 +179,7 @@ export class PromotionPriorityComponent implements OnInit {
     let country = this.arra.filter(c => c.countryId == newVal)[0];
   }
   route() {
-    alert('ffffffffffff')
+   
     this.router.navigate['../../vendor/payment-selection']
   }
 }

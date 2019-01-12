@@ -57,7 +57,7 @@ export class BusinessServicesComponent implements OnInit {
     this.showLoader = true;
     this.http.get(this.api + 'api/Supplier/mybusinessservices', { headers: headers }).subscribe(data => {
       this.categoryserveice = data.json() as string[];
-      console.log(JSON.stringify(this.categoryserveice));
+     
       this.selected_category = this.categoryserveice.filter(c => c.isSelect == true);
       if (this.selected_category.length == 0) {
         this.selected_category = this.categoryserveice;
@@ -171,21 +171,22 @@ export class BusinessServicesComponent implements OnInit {
     this.getCustomFieldBySreviceId(id, name);
   }
   getCustomFieldBySreviceId(id, name) {
+
     this.resetCustomFileds();
     this.objVenderServiceVm.servicesId = id;
     this.objVenderServiceVm.serviceName = name;
     this.businessServiceEntity.servicesId = id;
     this.name_d = name;
     let isServiceExist = this.selected_category.filter(c => c.categoryId == this.objVenderServiceVm.categoryId)[0].services.filter(s => s.isSelect == true)[0];
-    console.log(isServiceExist);
+  
     if (isServiceExist != undefined) {
-      //  this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.isSelect==true)[0].isSelect=false;
-      //  this.selected_category.filter(c=>c.categoryId==this.objVenderServiceVm.categoryId)[0].services.filter(s=>s.servicesId==id)[0].isSelect=true;
+    
       this.customFields = isServiceExist.customFields;
       let display_text = '';
       this.customFields.forEach(element => {
         if (element.fieldType == 6) {
-          let SelectedCustomFieldOption = element.customFieldOptionList.filter(o => o.isSelect == true);
+          display_text='';
+          let SelectedCustomFieldOption = element.customFieldOptionList.filter(o => o.isSelect == true && o.customFieldId==element.customFieldId);
           for (let i = 0; i < SelectedCustomFieldOption.length; i++) {
             display_text = display_text + SelectedCustomFieldOption[i].displayText + ',';
           }
@@ -197,12 +198,11 @@ export class BusinessServicesComponent implements OnInit {
             element.SelectedOptionValue = SelectedCustomFieldOption.displayText;
           }
         }
-        console.log(this.customFields);
+       
       });
     }
   }
   saveServiceWithoutOptions() {
-    debugger;
     this.customFields = [];
     let customFields = this.categoryserveice.filter(c => c.categoryId == this.objVenderServiceVm.categoryId)[0].services.filter(s => s.servicesId == this.objVenderServiceVm.servicesId)[0].customFields;
     if (customFields != undefined) {
@@ -227,10 +227,10 @@ export class BusinessServicesComponent implements OnInit {
     })
   }
   getSelectOptions(customField) {
-    console.log(JSON.stringify(customField));
+  
     this.customFieldSelectOptions = this.categoryserveice.filter(c => c.categoryId == this.objVenderServiceVm.categoryId)[0].services.filter(s => s.servicesId == this.objVenderServiceVm.servicesId)[0].customFields.filter(cf => cf.customFieldId == customField.customFieldId)[0].customFieldOptionList;
     this.customFieldSelectOptions.forEach(element => {
-      // element.isSelected=false;
+     
       element.fieldType = customField.fieldType;
     });
     this.customDialog = true;
@@ -247,44 +247,41 @@ export class BusinessServicesComponent implements OnInit {
     this.customDialog = false;
   }
   seveCustomField(cfo, fieldType) {
-    cfo.isSelected = true;
-    debugger;
-    let smv = new ServiceFieldValuesVM();
-    smv.FieldValue = cfo.key;
-    smv.customFieldId = cfo.customFieldId;
-    this.customFields.filter(c => c.customFieldId == cfo.customFieldId)[0].SelectedOptionId = smv.id;
-    if (cfo.fieldType == 6) {
+  
+     if (cfo.fieldType ==6) {
       if(cfo.isSelect==false){
-      this.businessServiceEntity.remove=true;}
-      else{
-        this.businessServiceEntity.remove=false;
+  
+    this.businessServiceEntity.serviceFields.push({customFieldId:cfo.customFieldId, fieldValue:cfo.key,remove:true}) 
       }
-      let CheckboxSelectedValues = this.customFields.filter(c => c.customFieldId == cfo.customFieldId)[0].customFieldOptionList.filter(o => o.isSelect == true);
-      this.str_csv_selectedvalues = '';
-      CheckboxSelectedValues.forEach(element => {
-        this.str_csv_selectedvalues += element.key + ',';
-      });
-      this.customFields.filter(c => c.customFieldId == cfo.customFieldId)[0].SelectedOptionValue = this.str_csv_selectedvalues.substring(0, this.str_csv_selectedvalues.length - 1);
-    }
+      else{
+      this.businessServiceEntity.serviceFields.push({customFieldId:cfo.customFieldId, fieldValue:cfo.key,remove:false})  
+      }
+       }
     else {
-      this.customFields.filter(c => c.customFieldId == cfo.customFieldId)[0].SelectedOptionValue = smv.FieldValue;
+      this.businessServiceEntity.serviceFields.push({customFieldId:cfo.customFieldId, fieldValue:cfo.key,remove:false})
     }
-    let options = this.customFields.filter(c => c.customFieldId == cfo.customFieldId)[0].customFieldOptionList;
-    let CustomfieldType = this.customFields.filter(c => c.customFieldId == cfo.customFieldId)[0].fieldType;
-    this.businessServiceEntity.customFieldId = cfo.customFieldId;
-    this.businessServiceEntity.fieldValue = cfo.key;
-    
-    console.log(this.businessServiceEntity);
-    this.showLoader = true;
+
+    this.showLoader = false;
+  }
+  SaveBusinessService2(){
+  
+    for (var i = 0; i < this.businessServiceEntity.serviceFields.length; i++) {
+      let CheckboxSelectedValues = this.customFields.filter(c => c.customFieldId == this.businessServiceEntity.serviceFields[i].customFieldId)[0].customFieldOptionList.filter(o => o.isSelect == true);
+       CheckboxSelectedValues.forEach(element => {
+        this.str_csv_selectedvalues=this.str_csv_selectedvalues + element.key + ',';
+      });
+    }
+    this.customFields.filter(c => c.customFieldId == this.businessServiceEntity.serviceFields[0].customFieldId)[0].SelectedOptionValue = this.businessServiceEntity.serviceFields[0].fieldValue;   
     this.bs_service.SaveIntoDb(this.businessServiceEntity).subscribe(res => {
       if (res.status == 200) {
         this.showLoader = false;
         this.toastr.success(res.json().message,null,{timeOut:1000});
         this.objVenderServiceVm.serviceFields = [];
-        if (fieldType == '5') {
+        this.businessServiceEntity.serviceFields=[];
+       // if (fieldType == '5') {
           this.showLoader = false;
           this.customDialog = false;
-        }
+       // }
       } else {
         this.toastr.error(res.json().message);
       }
@@ -342,14 +339,22 @@ export class CategoryVm {
 export class BusinessServiceEntityModel {
   servicesId: number;
   categoryId: number;
-  customFieldId: number;
-  fieldValue: string;
-  remove:boolean;
+  serviceFields: Array<ServiceFieldVm>
+ // customFieldId: number;
+ // fieldValue: string;
+ // remove:boolean;
   constructor() {
+    this.serviceFields = new Array<ServiceFieldVm>();
     this.servicesId = 0;
     this.categoryId = 0;
-    this.customFieldId = 0;
-    this.fieldValue = '';
-    this.remove=false;
+   // this.customFieldId = 0;
+  //  this.fieldValue = '';
+  //  this.remove=false;
   }
+ 
+}
+export class ServiceFieldVm{
+  customFieldId:number;
+  fieldValue: string;
+  remove:boolean;   
 }

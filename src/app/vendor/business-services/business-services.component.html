@@ -40,14 +40,14 @@
 									</h5>
 									<hr class="hr-light">
 									<div class="row">
-										<div class="col-md-12">
-											<div class="col-md-6 marbot15px" *ngFor='let cf of customFields'>
-												<div class="col-xs-9">
+										<div class="col-md-12 nopadd">
+											<div class="col-md-6 col-12 marbot15px" *ngFor='let cf of customFields'>
+												<div class="col-xs-9 nopaddleft">
 													<label>
 														<!-- <input type="checkbox" [(checked)]='cf.isSelect' (change)='cf.isSelect?false:true' [value]='cf.isEnable' [(ngModel)]='cf.isSelect'  /> -->
 														<strong>{{cf.name}}</strong> <br />
 														<span *ngIf='cf.SelectedOptionValue!="NA"'>
-															 {{cf.SelectedOptionValue}} 
+															 {{cf.SelectedOptionValue}}
 														</span>
 														<span class="notset" *ngIf='cf.SelectedOptionValue=="NA"'>Not Set</span>
 													</label>
@@ -95,7 +95,7 @@
 										</div>
 									</div>
 									<div class="modal-footer text-center">
-										<div class="btn newbtn">Save</div>
+										<div class="btn newbtn" (click)='SaveBusinessService2()'>Save</div>
 										<div class="btn newbtn newcancelbtn" (click)='closeModel("customDialog")'>Close</div>
 									</div>
 								</div>

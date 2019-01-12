@@ -3,6 +3,8 @@ import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 import { apiService } from '../shared/service/api.service';
 import { find } from 'rxjs-compat/operator/find';
 import { Router } from '@angular/router';
+import { SlidesOutputData } from 'ngx-owl-carousel-o';
+
 @Component({
   selector: 'app-vendorcard',
   templateUrl: './vendorcard.component.html',
@@ -10,23 +12,51 @@ import { Router } from '@angular/router';
   providers: [NgbCarouselConfig] // add NgbCarouselConfig to the component providers
 })
 export class VendorcardComponent implements OnInit {
+
+  customOptions: any = {
+    margin: 20,
+    loop: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    autoplay: true,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: { 0: { items: 1, stagePadding: 40 }, 768: { items: 2, stagePadding: 40 }, 1024: { items: 4 }, 1366: { items: 4 } },
+    nav: true,
+    //autoplaySpeed:1
+  }
+
+  
+
   featured_supplier_data = []
   max = []
   dream_wedding_location = []
+  dream_wedding_location_length;
   all_category = []
   Popular_Wedding_array = []
   Popular=''
   objFilterParam: filterParam;
+  activeSlides: SlidesOutputData;
+
+  slidesStore: any[];
   constructor( private router: Router ,config: NgbCarouselConfig, private apiService: apiService) {
     // customize default values of carousels used by this component tree
     config.interval = 10000;
     config.wrap = false;
     config.keyboard = false;
     this.objFilterParam = new filterParam();
-
   }
+  
 
-  ngOnInit() { 
+
+  getData(data: SlidesOutputData) {
+    this.activeSlides = data;
+ 
+  }
+  ngOnInit() {
+    
     this.featured_supplier()
     this.Dream_Wedding()
     this.Popular_Wedding()
@@ -40,17 +70,21 @@ export class VendorcardComponent implements OnInit {
   }
   featured_supplier(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/featuredsuppliers').subscribe(data => {
-      console.log(data.featuredWeddingSuppliers)
+      
       this.featured_supplier_data = data.featuredWeddingSuppliers;
+
+
+
+      this.slidesStore = this.featured_supplier_data
+if(this.featured_supplier_data!=null){
       this.featured_supplier_data.forEach(element => {
         element.reviews.forEach(element => {           
           this.max.push(element.rating) 
           this.max.sort((a,b) => 0 - (a > b ? 1 : -1))
-          
         });
-       
       });
-      //this.max = [];
+    }
+  
     },
       error => {
        console.log(error)
@@ -59,8 +93,9 @@ export class VendorcardComponent implements OnInit {
   }
   Dream_Wedding(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/dreamweddinglocation').subscribe(data => {
-      console.log(data.dreamWeddingLocations)
+
       this.dream_wedding_location =  data.dreamWeddingLocations;
+      this.dream_wedding_location_length = this.dream_wedding_location.length
     },
       error => {
        console.log(error)
@@ -69,12 +104,12 @@ export class VendorcardComponent implements OnInit {
   }
   Popular_Wedding(){
     this.apiService.getData(this.apiService.serverPath+'Categories/categorieswithlistingcount').subscribe(data => {
-      console.log(data)
+
       for (let i of data) {
         if(i.isPopular == true){
           this.Popular_Wedding_array.push(i);
         }
-        //console.log( this.Popular_Wedding_array)
+       
       }
       
     
@@ -84,14 +119,16 @@ export class VendorcardComponent implements OnInit {
       }
     )
   }
+  goToVendordetails(slide) {
+   
+    this.router.navigate(['home/detailprofile/',slide.vendorId])
+  }
+  
   Categories_each(c,isAllSupplier,isDreamLocation){
-    alert("sdvf")
-    console.log(c)
-    console.log(isAllSupplier)
-    console.log(isDreamLocation)
     if(c){
+
    this.objFilterParam.catId  = c.categoryId;
-   this.objFilterParam.categoryName= c.categoryName;
+   this.objFilterParam.categoryName= c?c.categoryName:'AllCategories';
    this.objFilterParam.isDreamLocation=isDreamLocation;
    this.objFilterParam.isAllSupplier=isAllSupplier;
    this.objFilterParam.page = 0;
@@ -101,16 +138,14 @@ export class VendorcardComponent implements OnInit {
    this.objFilterParam.searchQuery ="";
 
   }
-    localStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
-    this.router.navigate(['home/searchresult',this.objFilterParam.categoryName]);
+
+   sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+    this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   }
   supplier_all(c,isAllSupplier,isDreamLocation){
-   // alert("dfsvf")
-   console.log(c)
-    if(c){
-      alert(c)
-      this.objFilterParam.catId  = c.categoryId;
-      this.objFilterParam.categoryName= '';
+
+      this.objFilterParam.catId  = c?c.categoryId:0;
+      this.objFilterParam.categoryName= c?c.categoryName:'AllCategories';
       this.objFilterParam.isDreamLocation=isDreamLocation;
       this.objFilterParam.isAllSupplier=isAllSupplier;
       this.objFilterParam.page = 0;
@@ -118,21 +153,12 @@ export class VendorcardComponent implements OnInit {
       this.objFilterParam.sortDir = "";
       this.objFilterParam.sortedBy ="";
       this.objFilterParam.searchQuery ="";
+  
+    sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+    this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
+  
   }
-    console.log(this.objFilterParam.categoryName)
-   
-    localStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
-    this.router.navigate(['home/searchresult',this.objFilterParam.categoryName]);
-   // console.log(this.objFilterParam.categoryName);
-  }
-  // location_all(c){
-   
-  //   let catId= c.categoryId;
-  //   let CatName= c.categoryName;
-  //   alert("location")
-  //   console.log(c)
-  //   this.router.navigate(['home/searchresult',true]);
-  // }
+
 }
 
 export class filterParam{
@@ -140,9 +166,11 @@ export class filterParam{
   categoryName:string='';
   isAllSupplier:boolean=false;
   isDreamLocation:boolean=false;
-  page: 0;
-  pageSize: 25;
+  page:number=1;
+  pageSize: number=3;
   sortDir: "";
   sortedBy: "";
   searchQuery: "";
+  locationId:number;
+  totalCount:number;
 }

@@ -4,6 +4,13 @@
     display: block;
     max-width: 650px;
     margin: 0 auto;
+    overflow:hidden;
+  }
+.portfolio-box img.img-responsive{
+transition: all .5s;
+  }
+.portfolio-box:hover img.img-responsive{
+transform: scale(1.2);
   }
 .imgfloatleft{
   float:left;
@@ -229,25 +236,23 @@ text-transform:uppercase;
   
   top: 25%;
 }
-#supplierscarousel .item{
-  max-width: 262.5px;
-  float: left;
+
+.owl-item {
   margin-right: 15px;
+  max-width:255px!important;
 }
-.bordre_rad1{
-  border: 0px solid #fff!important;
-  border-radius: 1px;
-  font-size: 14px;
-  position: relative;
-  box-shadow:0px 0px 20px #e5e5e5!important;
-  margin-top:20px!important;
-  margin-bottom:20px!important;
+.boxtikslide{
+    border: 0px solid #fff !important;
+    border-radius: 1px;
+    font-size: 14px;
+    position: relative;
+    box-shadow: 0px 0px 20px #e5e5e5 !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+    overflow: hidden;
+    max-width: 255px!important;
 }
-.bordre_rad1 img.card-img-top{
-  height:175px;
-  object-fit: cover;
-}
-.bordre_rad img.card-img-top{
+.card-img-top{
   height:175px;
   object-fit: cover;
 }
@@ -654,7 +659,12 @@ li{line-height:1.5rem !important;}
 .mob300pxwidth{
   width:300px!important;
 }
-
+.text-faded{
+  display:none;
+}
+.boxtikslide{
+  max-width: inherit!important;
+}
 .mobnopadd{
   padding:0px!important;
 }
@@ -747,24 +757,71 @@ li{line-height:1.5rem !important;}
   .locationbox h2{
 font-size: 12px;
 color: #fff;
+left:10px;
   }
   .locationbox h2 span{
     font-size: 12px;
   }
+
+  .locationbox img{
+  max-height:110px;
+  }
+  .pribox{
+  max-width:45%;
+  float:left;
+  }
+  .span_positin {
+    padding-right: 7px !important;
+    max-width: 76px;
+}
 }
 p.homeTools__itemIconText {
         color: #000;
     font-weight: 600;
     font-size: 13px;
 }
+.imgnum{
+  position:absolute;
+  left:0px;
+  right:0px;
+  text-align:center;
+  margin-top:-35px;
+  }
+  .imgnum span{
+  background: #f5f5f5;
+  overflow: hidden;
+  display: inline-block;
+  padding: 2px 5px;
+  margin: 0px 5px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px #ccc;
+  }
+  .imgnum span i{
+  float:left;
+  }
+  .imgnum img {
+  display:inherit!important;
+  width:inherit!important;
+  }
+  .imgnum span span{
+  background: transparent;
+  overflow: hidden;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  border-radius: 0px;
+  box-shadow: none;
+  float: right;
+  line-height: 24px;
+  margin-left: 5px;
+  }
 @media only screen and (max-width:768px) {
     .locationbox h2{
     font-size:15px !important;
 }
-
 }
 @media only screen and (max-width: 320px) {
-    .locationbox[_ngcontent-c3] h2[_ngcontent-c3] {
+    .locationbox h2 {
     font-size: 12px !important;
 }
 }

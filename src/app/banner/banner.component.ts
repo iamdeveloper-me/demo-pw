@@ -4,21 +4,29 @@ import { apiService } from '../shared/service/api.service';
 import{filterParam} from '../vendorcard/vendorcard.component'
 import { Router } from '@angular/router';
 
+import { CustompipePipe } from 'app/custompipe.pipe';
+import { CategoryPipePipe } from 'app/category-pipe.pipe';
+
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
-  styleUrls: ['./banner.component.scss']
+  styleUrls: ['./banner.component.scss'],
+  providers: [CustompipePipe, CategoryPipePipe]
+
 })
 export class BannerComponent implements OnInit {
-
   objFilterParam: filterParam;
   constructor( private router: Router ,private masterservice: MasterserviceService , private apiService: apiService) { 
     this.objFilterParam = new filterParam();
   }
-
+  locationFilterParam:string='';
+  categoryFilterParam:string=''
   Categories = [];
   locations = [];
+  locationId:number=0;
   banner_data = []
+  categoryClickData : any;
+  locationClickData : any;
   ngOnInit() {
     // alert("tiktik");
     this.Categorie();
@@ -41,59 +49,81 @@ export class BannerComponent implements OnInit {
   }
   Categorie(){ 
     this.masterservice.getAllCategories().subscribe(data => {
-     // console.log(data);
       this.Categories = data;
      },error => {  console.log(error) })
   }
   location(){ 
     this.masterservice.getAllLocation().subscribe(data => {
-    //  console.log(data);
       this.locations = data;
      },error => {  console.log(error) })
   }
   banner(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/banners').subscribe(data => {
-      console.log("banner_Api")
-    
       this.banner_data = data
-      console.log( this.banner_data)
-    },
+      },
       error => {
        console.log(error)
       }
     )
   }
 
-  search(e,isAllSupplier,isDreamLocation){
-  
-    if(e){
-      this.objFilterParam.catId  = e.value.category.categoryId;
-      this.objFilterParam.categoryName= e.value.category.categoryName ;
+  search(e,isAllSupplier,isDreamLocation,var_data){
+   if(var_data == null){
+     this.objFilterParam.catId  = e.value.category?e.value.category.categoryId:0;
+
+      this.objFilterParam.categoryName= e.value.category?e.value.category.categoryName: '' ;
+      this.objFilterParam.categoryName=this.objFilterParam.categoryName==undefined?'All Categories':this.objFilterParam.categoryName;
       this.objFilterParam.isDreamLocation=isDreamLocation;
       this.objFilterParam.isAllSupplier=isAllSupplier;
-      this.objFilterParam.page = 0;
+      this.objFilterParam.page = 1;
       this.objFilterParam.pageSize = 25;
       this.objFilterParam.sortDir = "";
       this.objFilterParam.sortedBy ="";
       this.objFilterParam.searchQuery ="";
-     
+      this.objFilterParam.locationId = this.locationId;
+   }else{
+      this.objFilterParam.catId  = var_data['category'] != 0 ?var_data['category']['categoryId']:0;
+      this.objFilterParam.categoryName= var_data['category']?var_data['category']['categoryName']: '' ;
+      this.objFilterParam.isDreamLocation=isDreamLocation;
+      this.objFilterParam.isAllSupplier=isAllSupplier;
+      this.objFilterParam.page = 1;
+      this.objFilterParam.pageSize = 25;
+      this.objFilterParam.sortDir = "";
+      this.objFilterParam.sortedBy ="";
+      this.objFilterParam.searchQuery ="";
+      this.objFilterParam.locationId = var_data['location'];
      }
-       localStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
-       this.router.navigate(['home/searchresult',this.objFilterParam.categoryName]);
+     sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+       this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
+
    
-   // this.router.navigate(['../searchresult/', e.value.category.categoryId]);
-    // let catId=0;
-    // let CatName='';
-    // if(e.value.category!=undefined){
-    //   catId=e.value.category.categoryId;
-    //   CatName=e.value.category.categoryName;
-    // }
-    // this.router.navigate(['home/searchresult',catId+'/'+CatName]);
+    
+  }
 
-    //searchresult
 
-   // this.router.navigate(['/home/searchresult']);
 
+
+
+  // Mobile size click to forword serch result page 
+
+  categoryClick(data){
+    if(data == 0 ){
+           
+       this.categoryClickData = 0;
+
+    }else{
+      this.categoryClickData = data;
+ 
+    }
+  }
+
+  locationClick(data){
+   this.locationClickData = data;
+   const var_data = {
+     category:  this.categoryClickData,
+     location: this.locationClickData
+   }
+   this.search(null,true,false,var_data)
   }
 
 }

@@ -16,6 +16,8 @@
               <a class="backicon" (click)="navigateTo()">
                 <i _ngcontent-c6="" class="material-icons"> arrow_back_ios </i>
               </a>
+
+
               <h1>{{page_title}}</h1>
 
               <div class="row">
@@ -121,8 +123,9 @@
                   </table>
                   <div class="clearfix"></div>
                   <!-- routerLink="../../vendor/payment-selection" -->
-                  <button class="btn inblock textwhite btn-success" [disabled]="!btnFalse" (click)="route()">
-                    <a style="color:white" routerLink="../../vendor/payment-selection">Proceed to Payment </a>
+                  <button class="btn inblock textwhite btn-success" type = "submit"  [disabled]="!btnFalse">
+                    <a style="color:white" >Proceed to Payment  </a>
+                    <!-- (click)="route()" routerLink="../../vendor/payment-selection"-->
                   </button>
 
 

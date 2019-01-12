@@ -1,19 +1,21 @@
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { NgModule} from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import {RatingModule} from "ngx-rating";
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import {DatePipe} from '@angular/common';
 import { ImageCropperModule } from 'ng2-img-cropper';
 import { DiscountdealsComponent } from './vendor/discountdeals/discountdeals.component';
 import { FullCalendarModule } from 'ng-fullcalendar';
 import { ProgressHttpModule } from 'angular-progress-http';
-
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { OwlModule } from 'ngx-owl-carousel';
 
 //import { NgProgressModule } from 'ngx-progressbar';
 
 ///import { NgProgressModule } from 'ngx-progressbar';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule } from 'angular-calendar';
 
 
 
@@ -22,7 +24,6 @@ import * as $ from 'jquery';
 
 import { CommonModule } from "@angular/common";
 import { NgbModalModule, NgbDatepickerModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
-import { CalendarModule, CalendarDateFormatter } from 'angular-calendar';
 // import { DateTimePickerComponent } from './vendor/calendertable/date-time-picker.component';
 
 //indox of vendor
@@ -64,7 +65,7 @@ import { StepThirdComponent } from './register/step-third/step-third.component';
 import { StepForthComponent } from './register/step-forth/step-forth.component';
 
 import { EqualValidator } from './register/equal-validator.directive';
-import { SearchresultComponent } from './searchresult/searchresult.component';
+import { SearchresultComponent, PP } from './searchresult/searchresult.component';
 import { PhotoComponent } from './photo/photo.component';
 import { TipsComponent } from './tips/tips.component';
 // import { DetailpageComponent } from './detailpage/detailpage.component';
@@ -194,7 +195,6 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { apiService } from './shared/service/api.service';
 import { PaymentSelectionComponent } from './vendor/payment-selection/payment-selection.component';
 import { HompageLocationComponent } from './vendor/hompage-location/hompage-location.component';
-import { Gallery0Component } from './vendor/gallery0/gallery0.component';
 
 import { PagerService } from './_services';
 import { DealsComponent } from './deals/deals.component';
@@ -202,7 +202,9 @@ import { DealDetailsComponent } from './deal-details/deal-details.component';
 import { HoneymoonComponent } from './honeymoon/honeymoon.component';
 import { HoneymoonDetailsComponent } from './honeymoon-details/honeymoon-details.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { CarouselModule } from 'ngx-owl-carousel-o';
 import { CustompipePipe } from './custompipe.pipe';
 import { CategoryPipePipe } from './category-pipe.pipe';
 
@@ -211,6 +213,10 @@ import { DreamWeddingLocationsComponent } from './dream-wedding-locations/dream-
 import { FeaturedWeddingSuppliersComponent } from './featured-wedding-suppliers/featured-wedding-suppliers.component';
 import { DetailpageComponent } from './detailpage/detailpage.component';
 import { PaymentSummaryComponent } from './payment-summary/payment-summary.component';
+import { Gallery0Component } from './vendor/gallery0/gallery0.component';
+import { GalleryTwoComponent } from './vendor/gallery-two/gallery-two.component';
+import { CalenderComComponent } from './vendor/calender-com/calender-com.component';
+import { SectionBComponent } from './vendor/membership/section-b/section-b.component';
 
 
 
@@ -241,6 +247,7 @@ export function getAuthServiceConfigs() {
     declarations: [
         SafePipeP,
         SafePipe,
+        PP,
         CustompipePipe,
         CategoryPipePipe,
         ReversePipe  ,
@@ -276,7 +283,7 @@ export function getAuthServiceConfigs() {
         BannerComponent,
         FootComponent,
         RegisterComponent,
-
+        Gallery0Component,
         //Register Steps
         StepFirstComponent,
         StepSecondComponent,
@@ -398,7 +405,6 @@ export function getAuthServiceConfigs() {
 
         HompageLocationComponent,
 
-        Gallery0Component,
 
 
         DealsComponent,
@@ -422,6 +428,12 @@ export function getAuthServiceConfigs() {
 
         PaymentSummaryComponent,
 
+        GalleryTwoComponent,
+
+        CalenderComComponent,
+
+        SectionBComponent,
+
 
         
         
@@ -431,6 +443,17 @@ export function getAuthServiceConfigs() {
 
   ],
     imports: [
+        CarouselModule,
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        // calender start
+        NgbModalModule,
+        FlatpickrModule.forRoot(),
+        CalendarModule.forRoot(),
+        // calender End
+        
+        OwlModule,
         ProgressHttpModule
 ,NgxDatatableModule,
        // NgProgressModule,
@@ -440,7 +463,6 @@ export function getAuthServiceConfigs() {
         FullCalendarModule,
         FileUploadModule,
         ImageCropperModule,
-        BrowserAnimationsModule,
         StoreModule.forRoot({}),
         AppRoutingModule,
         FormsModule,
@@ -462,7 +484,7 @@ export function getAuthServiceConfigs() {
         Ng2SmartTableModule,
         ChartistModule,
         NgxChartsModule,
-        CalendarModule.forRoot(),
+        // CalendarModule.forRoot(),
         NgbModalModule.forRoot(),
         NgbDatepickerModule.forRoot(),
         NgbTimepickerModule.forRoot(),
@@ -477,7 +499,6 @@ export function getAuthServiceConfigs() {
               }
         }),
         AgmCoreModule.forRoot({
-           // apiKey: 'AIzaSyBr5_picK8YJK7fFR2CPzTVMj6GG1TtRGo',
             apiKey: 'AIzaSyAZ1gsa9BUjNuL-WmCOLhelB2-jQ2jWlxo',
             libraries: ["places"]
         }),
@@ -503,6 +524,9 @@ export function getAuthServiceConfigs() {
     ],
     bootstrap: [AppComponent, MylistingComponent],
     entryComponents: [NgbdModalContent],
+    schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+    ],
    
 })
 export class AppModule {

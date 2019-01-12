@@ -1,6 +1,7 @@
 import { Input, Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Http,Headers } from '@angular/http';
+import { Router } from '@angular/router';
 @Component({
   selector: 'ngbd-modal-content',
   template: `
@@ -44,7 +45,6 @@ export class AllPromotionPageComponent implements OnInit {
     headers.append("Authorization",'Bearer '+authToken);
 
     this.http.get(this.allpromo,{headers:headers}).subscribe(data =>{ data.json();
-      console.log(data.json());
       this.promotion = data.json();
     },error => { console.log(error)});
 
@@ -57,11 +57,10 @@ export class AllPromotionPageComponent implements OnInit {
 
 closeResult: string;
 
-constructor(private modalService: NgbModal,public http: Http) { }
+constructor(private modalService: NgbModal,public http: Http,public router: Router) { }
 
 // Open default modal
 open(content,data) {
-    console.log(data);
     this.promodetail = data; 
     this.modalService.open(content).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
@@ -91,4 +90,8 @@ openContent() {
     const modalRef = this.modalService.open(NgbdModalContent);
     modalRef.componentInstance.name = 'World';
 }
+
+navigateTo() {
+    this.router.navigateByUrl('/vendor/PromoteBusiness');
+  }
 }

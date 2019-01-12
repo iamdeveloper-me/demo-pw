@@ -16,18 +16,13 @@ export class UsermailsearchComponent implements OnInit {
     replyTo:" ",
     sentDate:" ",
     messageStatus:" ",sendByFirstName:" ",sendByLastName:" ",sendByEmail:" "} 
-  constructor(private uservice: MessageService) { }
-
-  ngOnInit() {
-  }
-  loadScript(){this.ngOnInit;}
-
+    constructor(private uservice: MessageService) { }
+    ngOnInit() {
+    }
+    loadScript(){this.ngOnInit;}
     onSubmit() {   
-   	  	
       this.uservice.message(this.userMsg).subscribe(( data )  =>  
-      { 
-      	console.log(data.json())
-        
+      {  
       },error => 
       alert(error) // error path
     )}

@@ -157,8 +157,8 @@ const appRoutes: Routes = [
   { path: 'register/step2', component: StepSecondComponent },
   { path: 'register/step3', component: StepThirdComponent },
   { path: 'register/step4', component: StepForthComponent },
-  { path: 'home/searchresult', component: SearchresultComponent },
-  { path: 'home/searchresult/:id', component: SearchresultComponent },
+  { path: 'home/searchresult', component: SearchresultComponent, },
+  { path: 'home/searchresult/:id', component: SearchresultComponent,runGuardsAndResolvers: 'always', },
   { path: 'home/tips_list', component: TipslistComponent },
   { path: 'home/event_list', component: EventlistComponent },
   { path: 'home/detailprofile/:id', component:  DetailpageComponent  },
@@ -172,7 +172,6 @@ const appRoutes: Routes = [
   { path: 'home/category', component:  CategoryComponent },
   { path: 'home/register', component:  RegisterComponent  },
   { path: 'home/events', component: EventsComponent },
-  { path: 'home/contact', component: ContactUsComponent },
   { path: 'home/FAQ', component:FaquestionComponent },
   { path: 'home/TermsandConditions', component: TermsandconComponent  },
   { path: 'home/Careers', component:  CareersComponent  },
@@ -189,7 +188,7 @@ const appRoutes: Routes = [
   { path: 'home/Deals', component:  DealsComponent },
   { path: 'home/Deal_Details', component:  DealDetailsComponent },
   { path: 'home/Honeymoon', component:  HoneymoonComponent },
-  { path: 'home/Honeymoon_Details', component:  HoneymoonDetailsComponent },
+  { path: 'Honeymoon_Details', component:  HoneymoonDetailsComponent },
 
   { path: 'vendor/creatpromo', component:  CreatePromotionComponent, canActivate:[AuthGuardService]  },
   { path: 'vendor/messagess', component:  ChatComponent, canActivate:[AuthGuardService]  },
@@ -245,7 +244,7 @@ const appRoutes: Routes = [
     { path: 'vendor/Success', component:  SuccessComponent},
     { path: 'vendor/Failure', component:  FailureComponent},
     { path: 'vendor/payment-selection', component:  PaymentSelectionComponent  },
-    { path: 'payment-selection', component:  PaymentSummaryComponent  },
+    { path: 'register/step5', component:  PaymentSummaryComponent  },
   
 
 
@@ -302,7 +301,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes, { useHash: true })],
+  imports: [RouterModule.forRoot(appRoutes, { useHash: true})],
   exports: [RouterModule]
 })
 

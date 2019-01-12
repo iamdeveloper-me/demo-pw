@@ -68,9 +68,9 @@
                                                                 <div> {{data?.districts?.name}} </div>
                                                                 <div> {{data?.suburb?.name}}   </div>
                                                                 <div> {{data?.address}}</div>
-                                                                <div *ngIf='data?.postalCode'> {{data?.postalCode}}</div>
+                                                                <div *ngIf='data?.postalCode'>{{data?.postalCode}}</div>
                                                                 <div *ngIf='!data.postalCode' style='color:gray;font-style: italic;'> No Postal Code</div>
-                                                            <i class="material-icons edit_btn"> edit</i>
+                                                            <i class="material-icons edit_btn">edit</i>
                                                         </div>
                                                     </div>
                                                     <div class="clearfix"></div>
@@ -166,7 +166,8 @@
                                                                     Friday
                                                                 </div>
                                                                 <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isFridayOpen == true ">
-                                                                    {{data.fridayOpen}} {{'-'+data.fridayClose==null?'':data.fridayClose}}
+                                                                    
+                                                                    {{data.fridayOpen}} {{'-'+data.fridayClose===null?'':data.fridayClose}}
                                                                 </div>
                                                                 <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isFridayOpen == false ">
                                                                         closed
@@ -358,12 +359,13 @@
                                                         <div class="clearfix"></div>
                                                         <div class="col-sm-12 nopadd">
                                                             <div class="col-sm-4 col-xs-5-mob nopadd font14px">
-                                                                Friday
+                                                                Friday 
                                                             </div>
                                                             <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isFridayOpen == true ">
-                                                                {{data.fridayOpen}} {{'-'+data.fridayClose==null?'':data.fridayClose}}
+                                                                {{data.fridayOpen==null?'':data.fridayOpen}} {{'-'+ data.fridayClose==null?'':data.fridayClose}}
+                                                               acb
                                                             </div>
-                                                            <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isFridayOpen == false ">
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isFridayOpen == false">
                                                                     closed
                                                                 </div>
                                                         </div>
@@ -375,7 +377,7 @@
                                                             <div class="col-sm-8 col-xs-7-mob nopadd"  *ngIf = "data.isSaturdayOpen == true ">
                                                                 {{data.saturdayOpen}} {{'-'+data.saturdayClose==null?'':data.saturdayClose}}
                                                             </div>
-                                                            <div class="col-sm-8 col-xs-7-mob nopadd"  *ngIf = "data.isSaturdayOpen == false ">
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd"  *ngIf = "data.isSaturdayOpen == false">
                                                                     closed
                                                                 </div>
                                                         </div>
@@ -490,19 +492,21 @@
                             <span class="textopenclose" *ngIf = "modelfield.isMondayOpen == false" >close </span>
                             <span class="textopenclose" *ngIf = "modelfield.isMondayOpen == true">Open </span>
                         </div>
-                        <div class="col-sm-7" *ngIf='modelfield.isMondayOpen'>
-                                <div class="col-sm-6 field">
+                        <div class="col-sm-7 nopadd" *ngIf='modelfield.isMondayOpen'>
+                                <div class="col-sm-6 field tikmki">
                                     <select placeholder="Opening Hour" type="time" [(ngModel)]="modelfield.mondayOpen" [disabled] = "!modelfield.isMondayOpen"  id="mondayOpen" #mondayOpen name="mondayOpen">
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
                                         <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="mondayOpen">Opening Hour</label> -->
                                 </div>
-                                <div class="col-sm-6 field">
-                                    <select  placeholder="Closing Hour"  type="time" *ngIf='modelfield.mondayOpen!=="24 Hours"' [(ngModel)]="modelfield.mondayClose" [disabled] = "!modelfield.isMondayOpen" id="mondayClose" #mondayClose name="mondayClose">
+                                <div class="col-sm-6 field tikmki" *ngIf='modelfield.mondayOpen!=="24 Hours"'> 
+                                    <select  placeholder="Closing Hour"  type="time"  [(ngModel)]="modelfield.mondayClose" [disabled] = "!modelfield.isMondayOpen" id="mondayClose" #mondayClose name="mondayClose">
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
                                         <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                      <!-- <label for="mondayClose">Closing Hour</label> -->
                                 </div>
                         </div>
@@ -523,19 +527,21 @@
                             <span class="textopenclose" *ngIf = "modelfield.isTuesdayOpen == false" >close </span>
                             <span class="textopenclose" *ngIf = "modelfield.isTuesdayOpen == true">Open </span>
                         </div>
-                        <div class="col-sm-7" *ngIf='modelfield.isTuesdayOpen'>
-                                <div class="col-sm-6 field">
+                        <div class="col-sm-7 nopadd" *ngIf='modelfield.isTuesdayOpen'>
+                                <div class="col-sm-6 field tikmki">
                                     <select placeholder="Opening Hour" type="time"  [disabled] = "!modelfield.isTuesdayOpen" [(ngModel)]="modelfield.tuesdayOpen" id="tuesdayOpen" #tuesdayOpen name="tuesdayOpen">
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
                                         <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="tuesdayOpen">Opening Hour</label> -->
                                 </div>
-                                <div class="col-sm-6 field">
-                                    <select placeholder="Closing Hour" type="time" *ngIf='modelfield.tuesdayOpen!=="24 Hours"' [disabled] = "!modelfield.isTuesdayOpen" [(ngModel)]="modelfield.tuesdayClose" id="tuesdayClose" #tuesdayClose name="tuesdayClose">
+                                <div class="col-sm-6 field tikmki" *ngIf='modelfield.tuesdayOpen!=="24 Hours"'>
+                                    <select placeholder="Closing Hour" type="time"  [disabled] = "!modelfield.isTuesdayOpen" [(ngModel)]="modelfield.tuesdayClose" id="tuesdayClose" #tuesdayClose name="tuesdayClose">
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
                                         <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="tuesdayClose">Closing Hour</label> -->
                                 </div>
                         </div>
@@ -556,19 +562,21 @@
                             <span class="textopenclose" *ngIf = "modelfield.isWednesdayOpen == false" >close </span>
                             <span class="textopenclose" *ngIf = "modelfield.isWednesdayOpen == true">Open </span>
                         </div>
-                        <div class="col-sm-7" *ngIf='modelfield.isWednesdayOpen'>
-                                <div class="col-sm-6 field">
+                        <div class="col-sm-7 nopadd" *ngIf='modelfield.isWednesdayOpen'>
+                                <div class="col-sm-6 field tikmki">
                                     <select placeholder="Opening Hour" type="time"  [disabled] = "!modelfield.isWednesdayOpen" [(ngModel)]="modelfield.wednesdayOpen" id="wednesdayOpen" #wednesdayOpen name="wednesdayOpen">
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
                                         <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="wednesdayOpen">Opening Hour</label> -->
                                 </div>
-                                <div class="col-sm-6 field">
-                                    <select placeholder="Closing Hour" type="time" *ngIf='modelfield.wednesdayOpen!=="24 Hours"'  [disabled] = "!modelfield.isWednesdayOpen" [(ngModel)]="modelfield.wednesdayClose" id="wednesdayClose" #wednesdayClose name="wednesdayClose">
+                                <div class="col-sm-6 field tikmki" *ngIf='modelfield.wednesdayOpen!=="24 Hours"'>
+                                    <select placeholder="Closing Hour" type="time"  [disabled] = "!modelfield.isWednesdayOpen" [(ngModel)]="modelfield.wednesdayClose" id="wednesdayClose" #wednesdayClose name="wednesdayClose">
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
                                         <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="wednesdayClose">Closing Hour</label> -->
                                 </div>
                         </div>
@@ -589,20 +597,22 @@
                             <span class="textopenclose" *ngIf = "modelfield.isThursdayOpen == false" >close </span>
                             <span class="textopenclose" *ngIf = "modelfield.isThursdayOpen == true">Open </span>
                         </div>
-                        <div class="col-sm-7" *ngIf = "modelfield.isThursdayOpen">
+                        <div class="col-sm-7 nopadd" *ngIf = "modelfield.isThursdayOpen">
                             <div class="form-group">
-                                <div class="col-sm-6 field">
+                                <div class="col-sm-6 field tikmki">
                                     <select placeholder="Opening Hour" type="time"  [disabled] = "!modelfield.isThursdayOpen" [(ngModel)]="modelfield.thursdayOpen" id="thursdayOpen" #thursdayOpen name="thursdayOpen">
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
                                         <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="thursdayOpen">Opening Hour</label> -->
                                 </div>
-                                <div class="col-sm-6 field">
-                                    <select type="time" placeholder="Closing Hour"  *ngIf='modelfield.thursdayOpen!=="24 Hours"' [disabled] = "!modelfield.isThursdayOpen" [(ngModel)]="modelfield.thursdayClose" id="thursdayClose" #thursdayClose name="thursdayClose">
+                                <div class="col-sm-6 field tikmki" *ngIf='modelfield.thursdayOpen!=="24 Hours"'>
+                                    <select type="time" placeholder="Closing Hour"  [disabled] = "!modelfield.isThursdayOpen" [(ngModel)]="modelfield.thursdayClose" id="thursdayClose" #thursdayClose name="thursdayClose">
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>  
                                         <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="thursdayClose">Closing Hour</label> -->
                                 </div>
                             </div>
@@ -623,19 +633,21 @@
                       <span class="textopenclose" *ngIf = "modelfield.isFridayOpen == false" >close </span>
                       <span class="textopenclose" *ngIf = "modelfield.isFridayOpen == true">Open </span>
                         </div>
-                        <div class="col-sm-7" *ngIf = "modelfield.isFridayOpen">
-                                <div class="col-sm-6 field">
+                        <div class="col-sm-7 nopadd" *ngIf = "modelfield.isFridayOpen">
+                                <div class="col-sm-6 field tikmki">
                                     <select placeholder="Opening Hour" type="time"  [disabled] = "!modelfield.isFridayOpen" [(ngModel)]="modelfield.fridayOpen" id="fridayOpen" #fridayOpen name="fridayOpen">
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
                                         <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="fridayOpen">Opening Hour</label> -->
                                 </div>
-                                <div class="col-sm-6 field" *ngIf='modelfield.fridayOpen!=="24 Hours"'>
+                                <div class="col-sm-6 field tikmki" *ngIf='modelfield.fridayOpen!=="24 Hours"'>
                                     <select placeholder="Closing Hour" type="time"  [disabled] = "!modelfield.isFridayOpen" [(ngModel)]="modelfield.fridayClose" id="fridayClose" #fridayClose name="fridayClose">
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>   
                                         <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                      <!-- <label for="fridayClose">Closing Hour</label> -->
                                 </div>
                         </div>
@@ -656,19 +668,21 @@
                             <span class="textopenclose" *ngIf = "modelfield.isSaturdayOpen == false" >close</span>
                             <span class="textopenclose" *ngIf = "modelfield.isSaturdayOpen == true">Open </span>
                         </div>
-                        <div class="col-sm-7" *ngIf = "modelfield.isSaturdayOpen">
-                                <div class="col-sm-6 field">
+                        <div class="col-sm-7 nopadd" *ngIf = "modelfield.isSaturdayOpen">
+                                <div class="col-sm-6 field tikmki">
                                     <select placeholder="Opening Hour" type="time" [disabled] = "!modelfield.isSaturdayOpen" [(ngModel)]="modelfield.saturdayOpen" id="saturdayOpen" #saturdayOpen name="saturdayOpen">
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option> 
                                         <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="saturdayOpen">Opening Hour</label> -->
                                 </div>
-                                <div class="col-sm-6 field" *ngIf='modelfield.saturdayOpen!=="24 Hours"'>
+                                <div class="col-sm-6 field tikmki" *ngIf='modelfield.saturdayOpen!=="24 Hours"'>
                                     <select placeholder="Closing Hour" [disabled] = "!modelfield.isSaturdayOpen" [(ngModel)]="modelfield.saturdayClose" id="saturdayClose" #saturdayClose name="saturdayClose">
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>
                                         <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                     </select>
+                                    <span class="caret"></span>
                                     <!-- <label for="saturdayClose">Closing Hour</label> -->
                                     <input type="hidden" [(ngModel)]="modelfield.vendorLocationId" id="vendorLocationId" name="vendorLocationId">
                                     <input type="hidden"  [(ngModel)]="modelfield.country" id="country" name="country">
@@ -706,8 +720,8 @@
                                 <span class="textopenclose" *ngIf = "modelfield.isSundayOpen == false" >close </span>
                                 <span class="textopenclose" *ngIf = "modelfield.isSundayOpen == true">Open </span>
                             </div>
-                            <div class="col-sm-7" *ngIf = "modelfield.isSundayOpen">
-                                    <div class="col-sm-6 field" >
+                            <div class="col-sm-7 nopadd" *ngIf = "modelfield.isSundayOpen">
+                                    <div class="col-sm-6 field tikmki" >
                                             <select placeholder="Opening Hour"  
                                             [(ngModel)]="modelfield.sundayOpen" 
                                             [disabled] = "!modelfield.isSundayOpen " 
@@ -718,9 +732,10 @@
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>
                                             <option *ngFor='let s of timeslot.timing' [value]='s.startTime'>{{s.startTime}}</option>
                                                 </select>
+                                                <span class="caret"></span>
                                                 <!-- <label for="sundayOpen">Opening Hour</label> -->
                                     </div>
-                                    <div class="col-sm-6 field">
+                                    <div class="col-sm-6 field tikmki">
                                             <select placeholder="Closing Hour"
                                             [(ngModel)]="modelfield.sundayClose"    
                                             [disabled] = "!modelfield.isSundayOpen " 
@@ -731,6 +746,7 @@
                                             <option [ngValue]="null" disabled [selected]="true"> Please Select </option>  
                                             <option *ngFor='let s of timeslot.timing' [value]='s.endTime'>{{s.endTime}}</option>
                                                 </select>
+                                                <span class="caret"></span>
                                                 <!-- <label for="sundayClose">Closing Hour</label> -->
                                     </div>
                             </div>

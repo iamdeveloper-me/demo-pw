@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as chartsData from '../../shared/data/chartjs';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-enquiries',
   templateUrl: './enquiries.component.html',
@@ -8,9 +8,13 @@ import * as chartsData from '../../shared/data/chartjs';
 })
 export class EnquiriesComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(  private router: Router) { }
+  basicplane;
   ngOnInit() {
+    this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
+    if(this.basicplane == '1' )
+    { this.router.navigate(['../vendor/dashboard'])}
+   
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');

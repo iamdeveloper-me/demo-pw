@@ -68,7 +68,7 @@
   border-radius: 100%;
 }
 .cakes_hover .red_bg{
-  background-color: #f62459;
+  background-color: #fff;
 }
 .cakes_hover .orange_bg{
   background-color: #f9690e;
@@ -103,10 +103,48 @@
 .cakes_hover .mahndi_bg{
   background-color: #65aa0b;
 }
+.tranparentlayer{
+  width: calc(100% - 30px);
+  position: absolute;
+  bottom: 0px;
+  background: rgba(255, 255, 255, 0.5);
+}
+.tranparentlayer h5{
+  font-size: 16px!important;
+  font-weight: bold;
+  text-shadow: 0px 0px 10px #fff!important;
+  margin: 10px 10px 2px 10px;
+}
+.tranparentlayer p{
+  margin-bottom: 3px;
+  padding-left:10px;
+}
+.breadcrumbcontainer{
+  background: transparent;
+  padding: 10px 0px;
+  float: left;
+  margin-bottom: 10px;
+}
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  border-radius: 0;
+}
+.breadcrumb>li+li:before{
+    padding: 0 5px;
+    color: #333;
+    content: ">"!important;
+}
 .cakes_hover h5{
   margin-top: 50px;
   margin-bottom: 0;
+  font-size: 16px!important;
+  font-weight: bold;
+  text-shadow: 0px 0px 10px #fff!important;
+  width:150px;
 }
+
 
 .box_img a{
 display:block;overflow: hidden;border-radius:5px;
@@ -115,8 +153,11 @@ background-size:100%;
 height:165px;
 transition: all 0.3s;
 }
-.box_img:hover a{
-background-size:120%;
+.box_img .zoom_in{
+  transition: all .5s;
+}
+.box_img:hover .zoom_in{
+  transform: scale(1.2);
 }
 .cakebg{
   background-image:url("https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg");

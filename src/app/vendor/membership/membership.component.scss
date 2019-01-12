@@ -1,22 +1,6 @@
-/***
-User Profile Sidebar by @keenthemes
-A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
-Licensed under MIT
-***/
-
-/***
-Content
-***/
 .content {
     padding: 30px 0;
 }
-
-/***
-Pricing table
-***/
-
-//==========
-
 .font50px{
   font-size:50px!important;
 }
@@ -39,19 +23,11 @@ Pricing table
   margin-top:5px;
 }
 .textboxevent{font-size:14px;}
-
 .tabbingdesign{
     padding: 0px;
     margin: 0px auto;
     width: 300px;
 }
-.owl-carousel .panel.card{
-    width: calc(100% / 3);
-    float: left;
-    box-shadow: 0 0 20px rgba(0,0,0,.2)!important;
-    margin: 0px 20px;
-    max-width: 29%; 
-  }
   .owl-carousel .owl-stage .owl-item{
   padding:15px!important;
   }
@@ -60,6 +36,18 @@ Pricing table
      margin:inherit!important;
      max-width:inherit!important; 
   }
+.owl-carousel .panel.card:hover {
+    box-shadow: 0px 0px 20px rgba(2, 119, 189, 0.6) !important;
+}
+
+.panel.card.item.classno2{
+    box-shadow: 0px 0px 20px rgba(2, 119, 189, 0.6) !important;
+}
+#membershipcarousel .owl-item{
+    width:31%!important;
+    float: left;
+}
+
 .tabbingdesign li{
     list-style: none;
     display: inline-block;
@@ -264,14 +252,23 @@ max-width:100%;
   padding:25px 0px;
 }
 .btnchoosetik{
+  background:transparent!important;
+  border:2px solid #36cbf0;
+  color:#36cbf0!important;
+  border-radius:20px!important;
+  text-transform:uppercase!important;
+}
+.btnchoosetik:hover{
   background:#36cbf0!important;
+  border:2px solid #36cbf0;
   color:#fff!important;
   border-radius:20px!important;
   text-transform:uppercase!important;
 }
 .btnchoosetik.disabled{
-   background: #ccc!important;
-    color: #f5f5f5!important;
+    background: #36cbf0 !important;
+    color: #fff!important;
+    opacity: .5;
 }
 .panel-heading h3{
   font-weight:bold;
@@ -306,7 +303,7 @@ max-width:100%;
   text-align:center;
   margin-top:18px;
 }
-    /* card page */
+    // / card page /
 
     .credit-card-box .panel-title {
       display: inline;
@@ -332,7 +329,7 @@ max-width:100%;
   .credit-card-box label {
       display: block;
   }
-  /* The old "center div vertically" hack */
+//   / The old "center div vertically" hack /
   .credit-card-box .display-table {
       display: table;
   }
@@ -344,7 +341,7 @@ max-width:100%;
       vertical-align: middle;
       width: 50%;
   }
-  /* Just looks nicer */
+//   / Just looks nicer /
   .credit-card-box .panel-heading img {
       min-width: 180px;
   }

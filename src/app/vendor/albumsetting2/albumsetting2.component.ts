@@ -78,12 +78,7 @@ constructor( public http: Http,public toastr: ToastrService ) {
 
   
     remove_tag_picker(g){
-      console.log(g); 
-      // console.log('dff',this.tai.split(','))
-      
-    
       this.formdata['tags'].splice(g, 1);
-      console.log(this.tai); 
       if(this.tai.length == 0 )
       { 
         
@@ -101,8 +96,6 @@ constructor( public http: Http,public toastr: ToastrService ) {
                 headers.append('Content-Type', 'application/json');
                 headers.append("Authorization",'Bearer '+authToken);
                     this.http.get(this.mygeturl,{headers:headers}).subscribe(data =>{
-                      console.log(data.json())
-                      debugger
                       this.albumImagesModify = data.json()
                       this.albumImagesModify.forEach(el=>{
                         if(el['tags'] != ''){
@@ -119,25 +112,12 @@ constructor( public http: Http,public toastr: ToastrService ) {
 
                           ele['colorTags'] = ele['colorTags'].split(',')
                           this.albumImages.push(ele)
-                          console.log(this.albumImages)
                         }else{
                           
                           this.albumImages.push(ele)
                         }
                       })
-                      console.log('albumImages',this.albumImages)
-                            // for (var item of  data.json()) {
-                            //   this.tags = item.tags;
-                            //   this.colourtags = item.colorTags;
-                            //     if(item.tags != null){
-                            //       item['tags'] = item['tags'].split(',');
-                            //       item['colorTags'] = item['colorTags'].split(',');
-                            //     }else{
-                            //     this.albumImagesModify.push(item)
-                            //     }
-                            //   
-                            //     this.albumImagesModify.push(item);
-                            // } 
+   
                           
                       })
     }
@@ -150,21 +130,14 @@ constructor( public http: Http,public toastr: ToastrService ) {
       if(this.formdata['colorTags'] == ''){
         this.formdata['colorTags'] = ['']
       }
-      console.log(this.formdata)
       if(this.formdata['tags'] != ''){
         this.tai = this.formdata['tags'].join(',')
 
       }
-          
 
-        //  this.tai = this.tai.filter(element => element !== "")
-        //  this.tai = this.tai.filter(element => element !== ',')
-      //     console.log( this.tai )
-          // this.a = this.formdata.colorTags;
           this.createColorPanel();
-          console.log(this.colors)
         if(this.formdata['colorTags'] != ''){
-          debugger;
+
           this.formdata['colorTags'].forEach(element => {
             this.colors.forEach(el=>{
               if(element == el['colorName']){
@@ -176,26 +149,14 @@ constructor( public http: Http,public toastr: ToastrService ) {
         }else{
           this.colors = this.colors
         }
-          
-          
-      //     for (let i = 0; i < e.colorTags.length; i++) {
-      //       let c= this.colors.filter(cn=>cn.colorName==e.colorTags[i])[0].isSelected=true;
-      //     }
     }
 
     tags_edit(e){
       this.taggg = ''
-     
-     console.log(e)
       this.formdata['tags'].push(e)
-      // this.formdata['tags'] = this.tai.filter(element => element !== "")         
-      // console.log(this.formdata); 
-      // this.taggg = ''
+
      }
     editSettting(e){
-      debugger
-      console.log(e.value.tags)
-      console.log(this.colors)
       this.colors.forEach(element=>{
         if(element['isSelected']){
           this.arr.push(element['colorName'])
@@ -208,10 +169,9 @@ constructor( public http: Http,public toastr: ToastrService ) {
        colorTags: this.arr.join(','),
        setAsBackgroud: false
       }
-      console.log(fire)
       this.postapi_tag(fire)        
 this.arr  = []
-debugger
+
     }
 
 
@@ -239,7 +199,6 @@ debugger
                                
                                 }
                                 this.albumImagesModify.push(item);
-                                console.log( this.albumImagesModify)
                                 this.ngOnInit()
                             } 
                           });

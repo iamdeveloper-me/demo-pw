@@ -14,26 +14,15 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { forEach } from '@angular/router/src/utils/collection';
+import { utilities } from 'app/utilitymodel';
 declare var google: any;
 
-interface Marker {
-  lat: number;
-  lng: number;
-  label?: string;
-  draggable: boolean;
-}
+interface Marker {lat: number;lng: number;label?: string;draggable: boolean;}
 
 interface Location {
-  lat: number;
-  lng: number;
-  viewport?: Object;
-  zoom: number;
-  address_level_1?: string;
-  address_level_2?: string;
-  address_country?: string;
-  address_zip?: string;
-  address_state?: string;
-  marker?: Marker;
+  lat: number;lng: number;viewport?: Object;zoom: number;
+  address_level_1?: string;address_level_2?: string;address_country?: string;
+  address_zip?: string;address_state?: string;marker?: Marker;
 }
 
 @Component({
@@ -58,13 +47,7 @@ export class LocationComponent implements OnInit {
   arra_col = [];
   phone = []
   typePhone = []
-  columns = [{
-    locationPhoneId: '',
-    phoneType: '',
-    vendorLocationId: '',
-    phoneNumber: '',
-    isPrimary: '',
-
+  columns = [{locationPhoneId: '',phoneType: '',vendorLocationId: '',phoneNumber: '',isPrimary: '',
   }];
   Location_columns = [];
   locationPhoneId_tocreate = 0;
@@ -109,18 +92,9 @@ export class LocationComponent implements OnInit {
       districtId: "",
       suburbId: "",
       vendorId: "",
-      country: {
-        countryId: "",
-        countryName: "",
-      },
-      districts: {
-        districtId: "",
-        name: ""
-      },
-      suburb: {
-        name: "",
-        suburbId: ""
-      },
+      country: {countryId: "",countryName: "",},
+      districts: {districtId: "",name: ""},
+      suburb: {name: "",suburbId: ""},
 
       city: "",
       postalCode: "",
@@ -172,7 +146,7 @@ export class LocationComponent implements OnInit {
   private remove_phone_number: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/deletelocationphone'
   private urlpost: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/savelocation'
   public arra = new Array(); public district = new Array(); public suburb = new Array();
-  // location: any = {};
+ 
 
   countryArray: string[];
   location_Array: Array<any>;
@@ -187,7 +161,7 @@ export class LocationComponent implements OnInit {
   }
 
   markerDragEnd(m: any) {
-    console.log(m);
+   
     this.location.marker.lat = m.coords.lat;
     this.location.marker.lng = m.coords.lng;
     this.findAddressByCoordinates();
@@ -243,11 +217,16 @@ export class LocationComponent implements OnInit {
     zoom: 25};
 
   Find_current_location() {
+
     if (navigator.geolocation) {
+
+     // this.reverseGeocoding(navigator.geolocation.latitude,navigator.geolocation.longitude);
       navigator.geolocation.getCurrentPosition(
         (position) => {
+         
+          this.reverseGeocoding(position.coords.latitude,position.coords.longitude);
           let geocoder = new google.maps.Geocoder();
-          let latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+          let latlng = new google.maps.LatLng(56.77,55.777);
           let request = { latLng: latlng };
           geocoder.geocode(request, (results, status) => {
             if (status === google.maps.GeocoderStatus.OK) {
@@ -264,11 +243,9 @@ export class LocationComponent implements OnInit {
               }
             }
           });
-
-
         }, (error) => {
 
-          console.log('Geolocation error: ' + error);
+          console.log(error);
         });
     } else {
    
@@ -340,7 +317,7 @@ export class LocationComponent implements OnInit {
       this.location_Array_length = this.location_Array.length;
       this.location_Array.sort(p=>p.isPrimary).reverse();
       this.location_Array[0].locationPhones.reverse();
-      console.log(JSON.stringify(this.location_Array));
+   
       this.location_Array.forEach(element => {
         element.str_businessPhone=this.arrayToCsv(element.locationPhones.filter(p=>p.phoneType=='Phone'));
         element.str_businessMobile=this.arrayToCsv(element.locationPhones.filter(p=>p.phoneType=='Mobile'));
@@ -358,6 +335,12 @@ export class LocationComponent implements OnInit {
       event.preventDefault();
       this.toastr.error('Only Numbers');
     }
+  }
+  /// Replace String To ''
+  replaceTradingHour(TradingHours){
+    
+    let ac=TradingHours.Replace('string','007');
+    return ac;
   }
   openModel(b) {
     this.loadCountries();
@@ -401,7 +384,7 @@ export class LocationComponent implements OnInit {
       cancelButtonText: "Remind Me Later!",
       }).then(res=>{
         if(res.value==true){
-          console.log(res.value);
+        
          this.router.navigateByUrl('vendor/membership');
         }
       });
@@ -441,7 +424,7 @@ export class LocationComponent implements OnInit {
         }
       }
     }
-    debugger;
+   
     this.apiService.postData(this.post_phone_number, reqObj).subscribe(data => {
       this.toastr.success(data.message);
       this.phone_dailog = false;
@@ -507,18 +490,20 @@ export class LocationComponent implements OnInit {
   }
   openweek(b) {
 
-    console.log(b);
     this.modelfield = b;
     this.week_dailog = true;
   }
-
   mapDialogObj: any;
   OpenmapDailog(locationObj) {
-    console.log(this.location_Array[0].mapAddress);
+ 
+  
     this.mapDialogObj = locationObj
     this.modelfield.address=this.location_Array[0].mapAddress;
-   // this.address = this.location_Array[0].mapAddress;
+    this.address = this.location_Array[0].mapAddress;
+    this.mapDialogObj.lat=locationObj.lat;
+    this.mapDialogObj.lng=locationObj.long
     this.mapDailog = true;
+    this.mapDialogObj.mapAddress = locationObj.mapAddress;
   }
   findLocation(address) {
     if (!this.geocoder) this.geocoder = new google.maps.autocomplete.Geocoder()
@@ -554,7 +539,7 @@ export class LocationComponent implements OnInit {
           this.location.marker.lng = results[0].geometry.location.lng();
           this.location.marker.draggable = true;
           this.location.viewport = results[0].geometry.viewport;
-          console.log(results[0].geometry.location);
+        
         }
 
         this.map.triggerResize()
@@ -623,16 +608,13 @@ export class LocationComponent implements OnInit {
     this.http.post(this.urlpost, loc_add, { headers: headers }).subscribe((data) => {
       this.mapDailog = false;
       this.toastr.success(data.statusText);
-//      this.ngOnInit();
-    //  this.http.get(this.urlget, { headers: headers }).subscribe((data) => {
-     //   this.location_Array = data.json();
-     //   console.log(this.location_Array);
-     // })
+
     }, (error) => {
       this.toastr.success(error.statusText);
     });
   }
   update__week(e) {
+ 
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -677,9 +659,9 @@ export class LocationComponent implements OnInit {
         saturdayOpen: e.value.saturdayOpen==undefined?0:e.value.saturdayOpen,
         saturdayClose: e.value.saturdayClose==undefined?0:e.value.saturdayClose,
         isSaturdayOpen: e.value.isSaturdayOpen==undefined?0:e.value.isSaturdayOpen,
-       // locationPhones: this.col
+     
       }
-      console.log(JSON.stringify(jsonPost));
+     
       this.http.post(this.urlpost,jsonPost, { headers: headers }).subscribe((data) => {
         this.toastr.success(data.json().message);
       },
@@ -693,7 +675,7 @@ export class LocationComponent implements OnInit {
   }
 
   isActive(b, e) {
-  debugger;
+ 
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
@@ -715,11 +697,11 @@ export class LocationComponent implements OnInit {
     let isvalidTIme = 1;
     if (this.modelfield.isSundayOpen == true) {
       if (this.modelfield.sundayOpen !== '24 Hours') {
-        if (this.modelfield.sundayOpen == null || this.modelfield.sundayOpen == undefined || this.modelfield.sundayOpen == '') {
+        if (this.modelfield.sundayOpen == null || this.modelfield.sundayOpen == undefined || this.modelfield.sundayOpen == '' || this.modelfield.sundayOpen == '0') {
           this.toastr.error('Invalid Sunday Opening Time');
           return isvalidTIme = 0;
         }
-        else if (this.modelfield.sundayClose == null || this.modelfield.sundayClose == undefined || this.modelfield.sundayClose == '') {
+        else if (this.modelfield.sundayClose == null || this.modelfield.sundayClose == undefined || this.modelfield.sundayClose == '' || this.modelfield.sundayClose == '0') {
           this.toastr.error('Invalid Sunday Closing Time');
           return isvalidTIme = 0;
         }
@@ -730,11 +712,11 @@ export class LocationComponent implements OnInit {
     // Monday Validation Check
     if (this.modelfield.isMondayOpen == true) {
       if (this.modelfield.mondayOpen !== '24 Hours') {
-        if (this.modelfield.mondayOpen == null || this.modelfield.mondayOpen == undefined || this.modelfield.mondayOpen == '') {
+        if (this.modelfield.mondayOpen == null || this.modelfield.mondayOpen == undefined || this.modelfield.mondayOpen == '' || this.modelfield.mondayOpen == '0') {
           this.toastr.error('Invalid Monday Opening Time');
           return isvalidTIme = 0;
         }
-        else if (this.modelfield.mondayClose == null || this.modelfield.mondayClose == undefined || this.modelfield.mondayClose == '') {
+        else if (this.modelfield.mondayClose == null || this.modelfield.mondayClose == undefined || this.modelfield.mondayClose == '' || this.modelfield.mondayClose == '0') {
           this.toastr.error('Invalid Monday Closing Time');
           return isvalidTIme = 0;
         }
@@ -745,11 +727,11 @@ export class LocationComponent implements OnInit {
     // Tuesday Validation Check
     if (this.modelfield.isTuesdayOpen == true) {
       if (this.modelfield.tuesdayOpen !== '24 Hours') {
-        if (this.modelfield.tuesdayOpen == null || this.modelfield.tuesdayOpen == undefined || this.modelfield.tuesdayOpen == '') {
+        if (this.modelfield.tuesdayOpen == null || this.modelfield.tuesdayOpen == undefined || this.modelfield.tuesdayOpen == '' || this.modelfield.tuesdayOpen == '0') {
           this.toastr.error('Invalid Tuesday Opening Time');
           return isvalidTIme = 0;
         }
-        else if (this.modelfield.tuesdayClose == null || this.modelfield.tuesdayClose == undefined || this.modelfield.tuesdayClose == '') {
+        else if (this.modelfield.tuesdayClose == null || this.modelfield.tuesdayClose == undefined || this.modelfield.tuesdayClose == '' || this.modelfield.tuesdayClose == '0') {
           this.toastr.error('Invalid Tuesday Closing Time');
           return isvalidTIme = 0;
         }
@@ -760,11 +742,11 @@ export class LocationComponent implements OnInit {
     // Wednesday Validation Check
     if (this.modelfield.isWednesdayOpen == true) {
       if (this.modelfield.wednesdayOpen !== '24 Hours') {
-        if (this.modelfield.wednesdayOpen == null || this.modelfield.wednesdayOpen == undefined || this.modelfield.wednesdayOpen == '') {
+        if (this.modelfield.wednesdayOpen == null || this.modelfield.wednesdayOpen == undefined || this.modelfield.wednesdayOpen == '' || this.modelfield.wednesdayOpen == '0') {
           this.toastr.error('Invalid Wednesday Opening Time');
           return isvalidTIme = 0;
         }
-        else if (this.modelfield.wednesdayClose == null || this.modelfield.wednesdayClose == undefined || this.modelfield.wednesdayClose == '') {
+        else if (this.modelfield.wednesdayClose == null || this.modelfield.wednesdayClose == undefined || this.modelfield.wednesdayClose == '' || this.modelfield.wednesdayClose == '0') {
           this.toastr.error('Invalid Wednesday Closing Time');
           return isvalidTIme = 0;
         }
@@ -775,11 +757,11 @@ export class LocationComponent implements OnInit {
     // Thurseday Validation Check
     if (this.modelfield.isThursdayOpen == true) {
       if (this.modelfield.thursdayOpen !== '24 Hours') {
-        if (this.modelfield.thursdayOpen == null || this.modelfield.thursdayOpen == undefined || this.modelfield.thursdayOpen == '') {
+        if (this.modelfield.thursdayOpen == null || this.modelfield.thursdayOpen == undefined || this.modelfield.thursdayOpen == ''|| this.modelfield.thursdayOpen == '0') {
           this.toastr.error('Invalid Thurseday Opening Time');
           return isvalidTIme = 0;
         }
-        else if (this.modelfield.thursdayClose == null || this.modelfield.thursdayClose == undefined || this.modelfield.thursdayClose == '') {
+        else if (this.modelfield.thursdayClose == null || this.modelfield.thursdayClose == undefined || this.modelfield.thursdayClose == '' || this.modelfield.thursdayClose == '0') {
           this.toastr.error('Invalid Thurseday Closing Time');
           return isvalidTIme = 0;
         }
@@ -790,11 +772,11 @@ export class LocationComponent implements OnInit {
     // Friday Validation Check
     if (this.modelfield.isFridayOpen == true) {
       if (this.modelfield.fridayOpen !== '24 Hours') {
-        if (this.modelfield.fridayOpen == null || this.modelfield.fridayOpen == undefined || this.modelfield.fridayOpen == '') {
+        if (this.modelfield.fridayOpen == null || this.modelfield.fridayOpen == undefined || this.modelfield.fridayOpen == '' || this.modelfield.fridayOpen == '0') {
           this.toastr.error('Invalid Friday Opening Time');
           return isvalidTIme = 0;
         }
-        else if (this.modelfield.fridayClose == null || this.modelfield.fridayClose == undefined || this.modelfield.fridayClose == '') {
+        else if (this.modelfield.fridayClose == null || this.modelfield.fridayClose == undefined || this.modelfield.fridayClose == '' ||this.modelfield.fridayClose =='0') {
           this.toastr.error('Invalid Friday Closing Time');
           return isvalidTIme = 0;
         }
@@ -805,11 +787,11 @@ export class LocationComponent implements OnInit {
     // Satday Validation Check
     if (this.modelfield.isSaturdayOpen == true) {
       if (this.modelfield.saturdayOpen !== '24 Hours') {
-        if (this.modelfield.saturdayOpen == null || this.modelfield.saturdayOpen == undefined || this.modelfield.saturdayOpen == '') {
+        if (this.modelfield.saturdayOpen == null || this.modelfield.saturdayOpen == undefined || this.modelfield.saturdayOpen == ''||this.modelfield.saturdayOpen=='0') {
           this.toastr.error('Invalid Saturday Opening Time');
           return isvalidTIme = 0;
         }
-        else if (this.modelfield.saturdayClose == null || this.modelfield.saturdayClose == undefined || this.modelfield.saturdayClose == '') {
+        else if (this.modelfield.saturdayClose == null || this.modelfield.saturdayClose == undefined || this.modelfield.saturdayClose == '' || this.modelfield.saturdayClose=='0') {
           this.toastr.error('Invalid Saturday Closing Time');
           return isvalidTIme = 0;
         }
@@ -876,6 +858,7 @@ export class LocationComponent implements OnInit {
         });
   }
   Update_Address(e) {
+    
     if(this.ele_dist.nativeElement.value=='-1'){
       this.toastr.error('Invalid District Selected !');
     }else if(this.ele_suburb.nativeElement.value=='-1'|| this.ele_suburb.nativeElement.value==''){
@@ -993,6 +976,15 @@ export class LocationComponent implements OnInit {
     });
    csv= csv.substr(0,csv.length-1);
     return csv;
+  }
+  reverseGeocoding(lat,long){
+   let objutility =new utilities();
+    
+    let url='https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+long+'&key=AIzaSyAZ1gsa9BUjNuL-WmCOLhelB2-jQ2jWlxo';
+    this.http.get(url).subscribe(res=>{
+      this.modelfield.address = res.json().results[0].formatted_address;
+    
+    })
   }
 
 }

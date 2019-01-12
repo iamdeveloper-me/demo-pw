@@ -8,10 +8,12 @@
 <router-outlet></router-outlet> 
 <div class="container-fluid">
 
-
+  <a class="backicon" (click)="navigateTo()">
+    <i _ngcontent-c6="" class="material-icons"> arrow_back_ios </i>
+  </a>
       <div class="row  mobilefixedcontainer">
 
-            <div class="col-sm-4" *ngIf="MainData.route_key == 0">
+            <div class="col-sm-4" *ngIf="MainData?.route_key == 0">
             <!-- {{WhichPlan | json}} -->
                     <div class="card">
                       <div class="card-header">
@@ -41,7 +43,7 @@
                       </div>
                     </div>
                 </div>
-      <div class="col-sm-4" *ngIf="MainData.route_key == 1">
+      <div class="col-sm-4" *ngIf="MainData?.route_key == 1">
             <!-- {{MainData | json}} -->
           <div class="card">
             <div class="card-header">
@@ -90,7 +92,7 @@
       <div class="col-sm-8">
           <div class="card">
              <div class="card-header">
-                          <h1 class="headingpay">Payment Process</h1>
+                          <h1 class="headingpay">Choose Payment Type</h1>
                       </div>
                <!-- {{MainData |json}}fff -->
           
@@ -209,10 +211,6 @@
             </div>
       </div>
     </div>
-
-
-
-
 
 
 </div>

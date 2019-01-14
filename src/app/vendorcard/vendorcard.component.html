@@ -42,15 +42,14 @@
          
           <div class="container" style="padding: 13px;">
               <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
- 
                   <ng-container *ngFor="let slide of slidesStore">
                     <ng-template carouselSlide="1">
                       <div class="boxtikslide" (click)='goToVendordetails(slide)'>
                         <div class="procard"> </div>
 
-                      <img class="card-img-top" [src]="slide.profileImage" >
-                      <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                     <div class="imgnum">
+                        <img class="card-img-top" [src]="slide.profileImage" >
+                        <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
+                        <div class="imgnum">
                           <span>
                              <img src="../../assets/img/picture.png"/>
                              <span *ngIf="slide?.albums == 0; else salbum">
@@ -75,37 +74,46 @@
                           </span>
                         </div>
 
-                      <div class="card-body ">
+                        <div class="card-body ">
                           <div class="text-center"> 
                           
-                             <h6> <strong>{{slide.nameOfBusiness}}  </strong> </h6>
-                         
+                            <h6> <strong>{{slide.nameOfBusiness}}  </strong> </h6>   
                             <button class="wedding_btn" *ngIf="slide?.vendorCategories.length == 0; else vcat"> N/A  </button>
                             <ng-template #vcat>
                                 <button class="wedding_btn">{{slide?.vendorCategories}} </button>
                             </ng-template>
-                          <p  class="locat_icon" *ngIf="slide?.district == null; else fwloc">
-                              <i class="material-icons">location_on</i>  N/A 
-                          </p>
+                            <p  class="locat_icon" *ngIf="slide?.district == null; else fwloc">
+                                <i class="material-icons">location_on</i>  N/A 
+                            </p>
                           
                           <ng-template #fwloc>
-                           <P class="locat_icon">
+                            <P class="locat_icon">
                               <i class="material-icons">location_on</i> 
                               {{slide?.district}} 
                             </P>
                           </ng-template>
 
-                             <p class="statr_point" *ngFor='let list_star of max | slice:0:1'>
+                             <!-- <p class="statr_point" *ngFor='let list_star of max | slice:0:1'>
                                 <ngb-rating [rate]="list_star"></ngb-rating>
                                 {{list_star}}  
 
-                            </p>
+                            </p> -->
+                            <p *ngIf='slide.averageRating>0' class="statr_point">
+                                <span style="color:red" [innerHTML]='ratingmodel.printStars(slide.averageRating)'></span>
+                              </p>
+                              <p *ngIf='!slide.averageRating>0' class="statr_point">
+                                <span style="color:red">Not Yet Rated !</span>
+                              </p>
+
+
                           </div>
                           <div class="col-md-12 col-12 mobnopadd ">
                               <div class="col-md-8 col-7 pad_left_0 pad_left_5px pribox">
                                 <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
                                   <span>Price from</span>
-                                  <span class="pric_200">200 $</span>
+                                  <span *ngIf='slide.priceTag' class="pric_200">{{slide.priceTag}}</span>
+                                  <span *ngIf='!slide.priceTag' class="pric_200">Custom Price</span>
+                                  <!-- <span class="pric_200">200 $</span> -->
                               </div>
                               <div class="col-md-4 col-5 span_positin">
                                 <img src="../../assets/img/tag.svg"  alt=""> 
@@ -116,9 +124,8 @@
                         </div>
                       </div>
                     </ng-template>
-                  </ng-container>
-                
-                </owl-carousel-o>
+                  </ng-container>               
+              </owl-carousel-o>
           </div> 
           <!--/.Carousel Wrapper-->
           <p class="browse_cat"> <a (click) = "supplier_all(Popular,'true','false')"> <button class="btn btn-lg btn-primary btc">See All</button> </a> </p>

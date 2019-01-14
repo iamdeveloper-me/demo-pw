@@ -18,7 +18,7 @@ export class ContactUsComponent implements OnInit {
   contact(list){
     this.apiService.postData(this.apiService.serverPath+'Home/contactus',list.value).subscribe(data => {
       this.toastr.success(data.message);
-      list.reset();
+      list.resetForm();
     },
       error => {
        this.toastr.error(error._body.split('[')[1].split(']')[0]);

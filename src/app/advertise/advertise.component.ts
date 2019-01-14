@@ -18,7 +18,7 @@ export class AdvertiseComponent implements OnInit {
   contact(list){
     this.apiService.postData(this.apiService.serverPath+'Home/contactus',list.value).subscribe(data => {
       this.toastr.success(data.message);
-      list.reset()
+      list.resetForm();
     },
       error => {
        console.log(error)

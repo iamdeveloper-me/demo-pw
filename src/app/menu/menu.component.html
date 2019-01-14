@@ -348,13 +348,13 @@
                             <div class="modal-body mb-1 align_left">
                                 <div class="field">
 
-                                    <input type="email" [(ngModel)]="user.username" name="username" id="username2"
-                                        autocomplete="username" required placeholder="Your Email">
-                                    <label for="username2">Your Email</label>
+                                    <input type="email" [(ngModel)]="user.username" name="username" id="username1"
+                                       required placeholder="Your Email">
+                                    <label for="username1">Your Email</label>
                                 </div>
                                 <div class="field">
-                                    <input type="password" [(ngModel)]="user.password" name="password" id="password"
-                                        autocomplete="current-password" required placeholder="Password">
+                                    <input type="password" [(ngModel)]="user.password" name="password" id="password4"
+                                         required placeholder="Password">
                                     <label for="password">Password</label>
                                 </div>
                                 <div class="text-center mt-2">
@@ -384,27 +384,27 @@
                             <div class="modal-body mb-1 align_left">
 
                                 <div class="field">
-                                    <input type="email" autocomplete="username" required="required" #emailError="ngModel"
+                                    <input type="email"  required="required" #emailError="ngModel"
                                         [(ngModel)]="userSingUp.email" id="email" name="email" placeholder="Your Email">
                                     <label for="email">Your Email</label>
                                 </div>
                                 <div class="field">
-                                    <input type="password" autocomplete="current-password" required="required"
-                                        [(ngModel)]="userSingUp.password" id="password" name="password" placeholder="Password">
+                                    <input type="password" required="required"
+                                        [(ngModel)]="userSingUp.password" id="password2" name="password" placeholder="Password">
                                     <label for="password">Password</label>
                                 </div>
                                 <div class="field">
-                                    <input type="password" autocomplete="new-password" required="required" [(ngModel)]="userSingUp.confirmpass"
+                                    <input type="password"  required="required" [(ngModel)]="userSingUp.confirmpass"
                                         name="confirmpass" id="confirmpass" placeholder="Confirm Password">
                                     <label for="confirmpass">Confirm Password</label>
                                 </div>
                                 <div class="field">
-                                    <input type="text" autocomplete="new-password" required="required" [(ngModel)]="userSingUp.firstName"
+                                    <input type="text"  required="required" [(ngModel)]="userSingUp.firstName"
                                         name="firstName" id="firstName" placeholder="First Name">
                                     <label for="firstName">First Name</label>
                                 </div>
                                 <div class="field">
-                                    <input type="text" autocomplete="new-password" required="required" [(ngModel)]="userSingUp.lastName"
+                                    <input type="text"  required="required" [(ngModel)]="userSingUp.lastName"
                                         name="lastName" id="lastName" placeholder="Last Name">
                                     <label for="lastName">Last Name</label>
                                 </div>
@@ -429,29 +429,21 @@
                         <form role="form" action="" method="post" (ngSubmit)="onSubmit()" #f="ngForm">
                             <div class="modal-body mb-1 align_left">
                                 <div class="field">
-                                    <input type="email" [(ngModel)]="usercouple.username" name="username" id="username"
+                                    <input type="email" [(ngModel)]="usercouple.username" name="username" id="username2"
                                         placeholder="Your Email" required>
-                                    <label for="username">Your Email</label>
+                                    <label for="username2">Your Email</label>
                                 </div>
-                                <!-- <div class="input-effect">
-                                  <input class="effect-16"   
-                                  type="password"
-                                  [(ngModel)] = "usercouple.password" 
-                                  [ngModelOptions]="{standalone: true}"
-                                   >        
-                                   <label>Password</label>
-                                  <span class="focus-border"></span>                                     
-                              </div>    -->
+
                                 <div class="field">
-                                    <input type="password" [(ngModel)]="usercouple.password" name="password" id="password"
-                                        autocomplete="current-password" required placeholder="Password">
+                                    <input type="password" [(ngModel)]="usercouple.password" name="password" id="password3"
+                                        required placeholder="Password">
                                     <label for="password">Password</label>
                                 </div>
                                 <div class="text-center mt-2">
                                     <p class="pt-1 text-right">
                                         <a (click)="forgotvendor()" class="blue-text">Forgot Password</a>
                                     </p>
-                                    <button class="btn btn-vendor vendor" type="submit" id="type-success">SIGN IN
+                                    <button class="btn btn-vendor vendor" type="submit" id="type-success1">SIGN IN
                                     </button>
                                 </div>
                             </div>
@@ -470,13 +462,13 @@
                             <h1 class="forgothead">Forgot Your Password? Don't Worry!</h1>
                             <div class="modal-body mb-1 align_left">
                                 <div class="field">
-                                    <input type="email" [(ngModel)]="usercouple.username" name="username" id="username"
+                                    <input type="email" [(ngModel)]="usercouple.username" name="username" id="username3"
                                         required placeholder="Your Email">
-                                    <label for="username">Your Email</label>
+                                    <label for="username3">Your Email</label>
                                 </div>
 
                                 <div class="text-center mt-2">
-                                    <button class="btn btn-info" type="submit" id="type-success">Send link
+                                    <button class="btn btn-info" type="submit" id="type-success2">Send link
                                     </button>
                                 </div>
                             </div>
@@ -494,13 +486,13 @@
                             <h1 class="forgothead">Forgot Your Password? Don't Worry!</h1>
                             <div class="modal-body mb-1 align_left">
                                 <div class="field">
-                                    <input type="email" [(ngModel)]="usercouple.username" name="username" id="username"
+                                    <input type="email" [(ngModel)]="usercouple.username" name="username" id="username4"
                                         required placeholder="Your Email">
-                                    <label for="username">Your Email</label>
+                                    <label for="username4">Your Email</label>
                                 </div>
 
                                 <div class="text-center mt-2">
-                                    <button class="btn btn-vendor vendor" type="submit" id="type-success">Send link
+                                    <button class="btn btn-vendor vendor" type="submit" id="type-success3">Send link
                                     </button>
                                 </div>
                             </div>

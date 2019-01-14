@@ -216,7 +216,7 @@ this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/ap
 createdeals(createdeal){
   this.ram = true
    if(createdeal.value.neverExpire == true){
-    alert("true");
+   
 
     createdeal.value.Start_date =  createdeal.value.Start_date["year"]+'-'+createdeal.value.Start_date["month"]+'-'+createdeal.value.Start_date["day"]
 

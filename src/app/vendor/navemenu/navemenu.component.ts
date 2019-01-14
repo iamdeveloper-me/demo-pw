@@ -261,7 +261,7 @@ export class NavemenuComponent implements OnChanges,OnInit   {
                         });
 
                     $(".likebtn").click(function(){ 
-                    //alert("hi")
+                   
                             $(".feedbackrate").hide();
                             $(".tellusunlike").hide();
                             $(".tellusidea").hide();

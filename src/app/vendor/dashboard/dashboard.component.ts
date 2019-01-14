@@ -456,7 +456,7 @@ myplans:any = {};
         }
         goToLink(){
          
-          alert("Boom!");
+        
           this.apiService.getData(this.apiService.serverPath+'PerfectWedding/storefrontview').subscribe(data => {
            
             this.vendorUniqueId = data.vendorUniqueId;

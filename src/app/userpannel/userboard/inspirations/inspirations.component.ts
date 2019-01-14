@@ -19,19 +19,19 @@ export class InspirationsComponent implements OnInit {
      $("#login").hide();
 
 $('.allclick').click(function(e){
-//alert("hi")
+
     $(".photobox").show();
     $(".eventbox").show();
 });
 $('.photoclick').click(function(e){
-//alert("hi")
+
     $(".photobox").show();
     $(".photoclick").addClass("pink");
     $(".eventclick").removeClass("pink");
     $(".eventbox").hide();
 });
 $('.eventclick').click(function(e){
-//alert("hi")
+
     $(".photobox").hide();
     $(".photoclick").removeClass("pink");
     $(".eventclick").addClass("pink");
@@ -41,15 +41,15 @@ $('.eventclick').click(function(e){
 
 
 $('.filterbtnmobile').click(function(e){
-//alert("hi")
+
     $(".FilterDialog").show();
 });
 $('.icon-small').click(function(e){
-//alert("hi")
+
     $(".FilterDialog").hide();
 });
 $('.regular').click(function(e){
-//alert("hi")
+
     $(".FilterDialog").hide();
 });
 

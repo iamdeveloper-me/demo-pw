@@ -37,9 +37,9 @@
             <div class="text-center">
                 <section id="wrapper">
                     <div class="container">    
-                        <div *ngFor="let item of pagedItems  ">
-                            <span *ngFor="let colour_tag of item.colorTags" >
-                                    <span  *ngIf = "colout_tag && colour_tag != ''  " class="colortag"  [style.background-color]='colour_tag'> </span>
+                        <div *ngIf = "colout_tag ">
+                            <span *ngFor="let colour_tag of photo_search_param.color" >
+                                    <span  *ngIf = "colour_tag != ''  " class="colortag"  [style.background-color]='colour_tag'> </span>
                             </span>
                         </div>
                      
@@ -54,7 +54,6 @@
                         </div>
                         <div style="position:relative;min-height:100vh;" id="categoryProductContainer"  >
                             <h1>{{error_1}}</h1>
-                          <!--   <div class="span2 pcon prodcont actioninside" *ngFor="let item of pagedItems" data-toggle="modal" data-target="#myModal"> -->
                             <div class="span2 pcon prodcont actioninside" *ngFor="let item of pagedItems">
                                 <div (click) = "popup(item)">
                                     <a data-fancybox="cl-group" title="{{item.district}}" href="{{item.imageURL}}" [attr.data-caption]="item.nameOfBusiness">
@@ -64,7 +63,7 @@
                                         <div class="photodetail">
                                             <p class="detaildiv">
                                                 <span>{{item.nameOfBusiness}}</span>
-                                                <!-- {{item.id}} -->
+                                              
                                                 <span><i class="fa fa-map-marker"></i>{{item.district}}</span>
                                             </p>   
                                             <div class="linkdiv">
@@ -74,37 +73,11 @@
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
-                                      <!--   <div class="tagnamediv ">
-                                            <div *ngFor="let tag of item?.tags;let i=index">
-                                                <span class="tagstik" *ngIf = "tag != '' " > 
-                                                    {{tag}}    
-                                                </span> 
-                                            </div>
-                                        </div>  -->
-
                                 </div>   
                             </div>
                         </div>
                     </div>
                 </section>
-                <!-- pager -->
-                <!-- <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                    <li [ngClass]="{disabled:pager.currentPage === 1}">
-                        <a (click)="setPage(1)">First</a>
-                    </li>
-                    <li [ngClass]="{disabled:pager.currentPage === 1}">
-                        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-                    </li>
-                    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-                        <a (click)="setPage(page)">{{page}}</a>
-                    </li>
-                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                        <a (click)="setPage(pager.currentPage + 1)">Next</a>
-                    </li>
-                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                        <a (click)="setPage(pager.totalPages)">Last</a>
-                    </li>
-                </ul> -->
             </div>
         </div>
     </div>   

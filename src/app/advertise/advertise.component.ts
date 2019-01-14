@@ -10,8 +10,8 @@ export class AdvertiseComponent implements OnInit {
 
   constructor(private apiService: apiService, public toastr: ToastrService) { }
   contactInfoObj  = new ContactUsVM()
-    messageType = 1;
-    Phone_no ;
+  messageType = 1;
+  Phone_no ;
 
   ngOnInit() { }
 

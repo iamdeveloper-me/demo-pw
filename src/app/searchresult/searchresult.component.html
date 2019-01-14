@@ -380,7 +380,7 @@
                              {{i.averageRating}} <!--{{i.reviews}}  -->
                             <span style="color:red" [innerHTML]='ratingmodel.printStars(i.averageRating)'></span>
                           </span>
-                          <span *ngIf='!i.averageRating>0' class="statr_point">
+                          <span *ngIf='!i.averageRating>0' >
                             <span style="color:red">Not Yet Rated !</span>
                           </span>
                           </p>

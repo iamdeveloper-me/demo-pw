@@ -13,7 +13,7 @@ export class AdvertiseComponent implements OnInit {
   contactInfoObj  = new ContactUsVM()
   messageType = 1;
   Phone_no ;
-  ad_data = {}
+  ad_data = {title:""}
   contentData: any;
 @ViewChild('pageContent') pageContent: ElementRef;
   ngOnInit() {

@@ -6,7 +6,7 @@ import { apiService } from '../shared/service/api.service';
   styleUrls: ['./careers.component.scss']
 })
 export class CareersComponent implements OnInit {
-  carerr_data={}
+  carerr_data={title:"" ,pageContent:''}
   constructor(private apiService: apiService) { }
 
   ngOnInit() {

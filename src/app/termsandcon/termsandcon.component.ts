@@ -8,7 +8,7 @@ import { apiService } from '../shared/service/api.service';
 export class TermsandconComponent implements OnInit {
 
   constructor(private apiService: apiService) { }
-  terme_data = {}
+  terme_data = {title:'' ,pageContent: ''}
   ngOnInit() {
 
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/pagecontent?key=term').subscribe(data => {

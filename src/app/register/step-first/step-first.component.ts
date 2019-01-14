@@ -22,31 +22,11 @@ export class StepFirstComponent implements OnInit {
   }
    @ViewChild('x') public tooltip: NgbTooltip;
   ngOnInit() {
-    $('div').removeClass('modal-backdrop fade in show')
-    // $(".loginnav").hide(); 
-            // $.getScript('./assets/js/register.js');  
-            // $.getScript('./assets/js/membershipslider.js');            
-            // $(".show").hide();
-
-            // $("div").removeClass( "modal-backdrop");
+    $('div').removeClass('modal-backdrop fade in show');
+  
             let obs = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Categories/allcategories");
             obs.subscribe(data => { this.categoryArray = data as string[];  
             });
-
-            // $(".Suppliertab").click(function(){
-            //     $("#filter").show();
-            //     $("#action").hide();  
-            //     $(".Suppliertab").addClass("gradint_blue"); 
-            //     $(".Registertab").removeClass("gradint_blue");  
-            //   });
-
-            //     $(".Registertab").click(function(){
-
-            //     $("#filter").hide();
-            //     $("#action").show();  
-            //     $(".Suppliertab").removeClass("gradint_blue"); 
-            //     $(".Registertab").addClass("gradint_blue");  
-            //   });
 
   }
     constructor( private cservice: SignupVendorService,private http: HttpClient , private router: Router ) {

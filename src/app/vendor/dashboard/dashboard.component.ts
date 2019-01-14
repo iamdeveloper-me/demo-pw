@@ -7,7 +7,6 @@ import swal from 'sweetalert2';
 import { apiService } from '../../shared/service/api.service';
 // Add the RxJS Observable operators we need in this app.
 
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -19,10 +18,10 @@ export class DashboardComponent implements OnInit {
   jobArray:string[];
   images_colour = false ;
   VendorDashboard_data_image;
-    // PhoneEdit = '5555555' ;
     private urll: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/';
     angularLogo = 'https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg';
     private urlget: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mylocations'
+   
     constructor( private apiService: apiService,config: NgbCarouselConfig ,public http: Http ,private router: Router) {
       
     //config.interval = 10000;
@@ -30,23 +29,7 @@ export class DashboardComponent implements OnInit {
     //config.keyboard = false;
   }
 
-  private membershipurl : string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mymembership'
-  // membershipdetail : any = {
-  //   startDateString:'',
-  //   endDateString:'',
-  //   pricingPlan: {title: ''},
-  // };
-//membership api
-myplans:any = {}; 
-  pricing:any = [];
-  palnvoucher:any;
-  vo = {Voucher: ""}
-  statdate;
-  endDateString;
-  pricingPlantitle;
-  account_create_date;
-  // pricingPlanId:number;
-  payFrequency:number;
+  myplans:any = []; 
 
   location_Array: Array<any>;
   location_Array_length;
@@ -106,7 +89,7 @@ myplans:any = {};
  // supArray:string[];  
       ngOnInit()  {
         
-       
+        this.memberShip();
         let headers = new Headers();
         var authToken = localStorage.getItem('userToken');
         
@@ -126,18 +109,6 @@ myplans:any = {};
     
           });
 
-              //membership api
-    this.http.get(this.membershipurl,{headers:headers}).subscribe(
-      data =>{  
-              this.myplans = data.json();
-              this.statdate = data.json().startDateString;
-              this.endDateString   = data.json().endDateString; 
-              this.pricingPlantitle   = data.json().pricingPlan.title;
-              this.pricingPlanId   = data.json().pricingPlanId;
-              this.payFrequency = data.json().payFrequency;
-              this.account_create_date = data.json().dateAddedOn;
-      });
-
         if(!authToken) 
        {  this.router.navigate(['../home']);
         }
@@ -155,9 +126,7 @@ myplans:any = {};
                   }else{
                     this.ph = 0;
                   }
-               
-                  
-               
+
                   if(this.vendor.vendorCategories.length > 1){
                     this.total_business_Services = this.vendor.vendorCategories.length-1;
                   }else{
@@ -171,7 +140,6 @@ myplans:any = {};
                       this.ct = 0;
                     }
                  
-
                    localStorage.setItem('categoryid',data.json().vendorCategories[0].categoryId);
                    localStorage.setItem('firstName',data.json().firstName);
                    localStorage.setItem('countryid',data.json().countryId);
@@ -195,12 +163,6 @@ myplans:any = {};
                                 this.VendorDashboard_data_image = data.json().portfolioImage;
                                
                         });
-
-
- 
-
-
-
 
                   $.getScript('./assets/js/prism.min.js');
                   $.getScript('./assets/js/owljsor.js');
@@ -308,7 +270,16 @@ myplans:any = {};
             this.location_Array[0].locationPhones.reverse();
            
           });
-        
+
+        }
+//ngOnInit End
+        memberShip(){
+          this.apiService.getData(this.apiService.serverPath+'Supplier/mymembership').subscribe(data => {
+          this.myplans = data;
+            },
+            error => {
+              console.log(error)
+            }); 
         }
 
         getEvents(){
@@ -318,9 +289,7 @@ myplans:any = {};
           headers.append('Accept', 'application/json')
           headers.append('Content-Type', 'application/json');
           headers.append("Authorization",'Bearer '+authToken);
-        
-         
-        }
+      }
 
         closeModel(){
           this.images_dialog = false;
@@ -353,9 +322,7 @@ myplans:any = {};
              });
           }
          
-
         }
-
 
         getstoreimage(){
           let headers = new Headers();
@@ -501,11 +468,7 @@ myplans:any = {};
           )
      
 
-        
-       
-
-        }
-                        
+        }                        
                     
 }
 

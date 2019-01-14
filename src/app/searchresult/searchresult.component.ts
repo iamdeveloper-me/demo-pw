@@ -45,7 +45,6 @@ export class SearchresultComponent implements OnInit {
   locations:any;
   categories:any;
   filters: any;
-
   loading=false;
   selectedLocationsCount = 0;
   objSearchlistvm: SearchListingVM;
@@ -53,7 +52,6 @@ export class SearchresultComponent implements OnInit {
   locationFilterParam:string='';
   categoryFilterParam:string='';
   pageNumber=0;
-
   disableLoadingButton=true;
   blankImg='../../assets/img/noImg.png';
   basicPlan:number;

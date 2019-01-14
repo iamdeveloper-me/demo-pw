@@ -1,5 +1,5 @@
 
-import { Pipe, PipeTransform , OnInit, Component, HostListener } from '@angular/core';
+import { Pipe, PipeTransform , OnInit, Component, HostListener, ViewChild, ElementRef } from '@angular/core';
 import {} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MasterserviceService } from 'app/ngservices/masterservice.service';
@@ -18,14 +18,9 @@ export class PP implements PipeTransform {
   transform(value: string, fallback: string, forceHttps: boolean = false ): string {
     let image = "";
     if (value) { image = value; } else { image = fallback; }
-    if (forceHttps) {
-      if (image.indexOf("https") == -1) {
-        image = image.replace("http", "https");
-      }
-    }
+    if (forceHttps) { if (image.indexOf("https") == -1) {  image = image.replace("http", "https"); } }
     return image;
   }
-  
 }
 @Component({
   selector: 'app-searchresult',
@@ -43,7 +38,7 @@ export class SearchresultComponent implements OnInit {
   collection = [];
   objSearchFilter: filterParam
   locations:any;
-  categories:any;
+  categories:Array<any>;
   filters: any;
 
   loading=false;
@@ -53,16 +48,17 @@ export class SearchresultComponent implements OnInit {
   locationFilterParam:string='';
   categoryFilterParam:string='';
   pageNumber=0;
-
+  showALlCategories: boolean= true;
   disableLoadingButton=true;
   blankImg='../../assets/img/noImg.png';
   basicPlan:number;
-   ratingmodel: ratingStars
+  ratingmodel: ratingStars
    
   constructor(public _route:Router, public _activeRoute: ActivatedRoute, 
     private _masterservice: MasterserviceService, private api: apiService,
     ) {
-      this.ratingmodel = new ratingStars();  
+      this.ratingmodel = new ratingStars();
+      this.categories=[];  
     this.basicPlan = parseInt(localStorage.getItem('basic-plan'))
     this._activeRoute.params.subscribe(res=>{
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
@@ -101,7 +97,7 @@ export class SearchresultComponent implements OnInit {
   $.getScript('./assets/register/js/bootstrap.min.js');
   $.getScript('./assets/jss/core/popper.min.js');
   $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
-  $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');
+//  $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');
   $.getScript('./assets/jss/plugins/chartist.min.js');
   $.getScript('./assets/jss/plugins/bootstrap-notify.js');
   $(".slider_use_anather_compo").hide();
@@ -222,6 +218,7 @@ export class SearchresultComponent implements OnInit {
 
    paginate (pageSize) {
     this.loading=true; 
+    debugger;
     if(this.objSearchlistvm.categoryId.length==1 && this.objSearchlistvm.categoryId[0]==0){
       this.objSearchlistvm.categoryId=[];
     }
@@ -241,6 +238,20 @@ export class SearchresultComponent implements OnInit {
   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
     this.objSearchlistvm.page+=1;
     this.paginate(this.objSearchFilter.pageSize); }
+ }
+ showHideCategories(ind){
+  this.collection=[]; 
+  this.objSearchlistvm.categoryId=[];
+  if(ind!=-1){
+  this.categories[ind].isSelect=true; this.showALlCategories = false;
+  this.objSearchlistvm.categoryId.push(this.categories.filter(c=>c.isSelect===true)[0].categoryId);
+  }else{
+  this.categories.forEach(element => { element.isSelect=false; });
+  this.showALlCategories = true;
+  }
+  this.objSearchlistvm.categoryId.push(0);
+  console.log(this.objSearchlistvm);
+  this.paginate(this.objSearchFilter.pageSize);
  }
 }
 export class SearchFilterVm{

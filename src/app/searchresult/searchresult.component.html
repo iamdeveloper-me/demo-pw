@@ -100,14 +100,16 @@
             <li class="active">{{_activeRoute.snapshot.params['id']}}</li>
           </ol>
 
-          <div class="btn-group hidden-xs">
-            <a id="list" class="btn btn-default btn-sm">
-              <span class="glyphicon glyphicon-th-list"></span>List
-            </a> 
-            <a id="grid" class="btn btn-default btn-sm">
-              <span class="glyphicon glyphicon-th-large"></span>Grid
-            </a>
-          </div>
+           <div class="btn-group">
+            <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
+            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
+
+                class="glyphicon glyphicon-th-large"></span>Grid</a>
+
+                <a href="#" id="photoview" class="btn btn-default btn-sm hidden-lg hidden-sm hidden-md"><span
+                class="glyphicon glyphicon-picture"></span>Photo View</a>
+
+        </div>
       </div>
     </div>
   </div>
@@ -207,6 +209,18 @@
             </div>
             </div>
           </div>
+          <ul id='all_catlist' #all_catlist style="list-style-type:none" *ngIf='showALlCategories'>
+            <li (click)='showHideCategories(-1)'>All Categories</li>
+            <li style="cursor:pointer" *ngFor='let c of categories| categoryPipe:categoryFilterParam; let i=index' (click)='showHideCategories(i)'>
+                {{c.categoryName}}
+            </li>
+          </ul>
+          <ul style="list-style-type:none" *ngIf='!showALlCategories'>
+              <li style="cursor:pointer" (click)='showHideCategories(-1)'>All Categories</li>
+              <li *ngFor='let c of categories| categoryPipe:categoryFilterParam; let i=index'>
+                 <span *ngIf='c.isSelect'> {{c.categoryName}}</span>
+              </li>
+            </ul>
         <!--Services-->
         <div class="categoryboxmobile">
         <div class="panel-heading" >
@@ -323,7 +337,7 @@
       <div class="photo_cont">
        	<div id="products" class="row list-group">
           <div *ngIf='objSearchResultItems'>
-	        	<div id='dv1' *ngFor='let i of collection' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
+	        	<div id='dv1' #dv1 *ngFor='let i of collection' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
 
 	                <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
@@ -380,7 +394,7 @@
                              {{i.averageRating}} <!--{{i.reviews}}  -->
                             <span style="color:red" [innerHTML]='ratingmodel.printStars(i.averageRating)'></span>
                           </span>
-                          <span *ngIf='!i.averageRating>0' class="statr_point">
+                          <span *ngIf='!i.averageRating>0'>
                             <span style="color:red">Not Yet Rated !</span>
                           </span>
                           </p>
@@ -409,9 +423,9 @@
             </div>
           </div>
 	     	</div>
-        <div class="text-center">
+        <div>
 
-          <img *ngIf='loading' src="../../../assets/img/loader.gif" class="loadinggif">
+          <img *ngIf='loading' src="https://www.walgreens-hearing.com/img/loader.gif" style="bottom:35%;position: fixed;z-index:99999;margin-left:40%">
                   <!-- <ngb-pagination [collectionSize]="objSearchResultItems?.totalCount" [(page)]="objSearchResultItems.page" [boundaryLinks]="true"></ngb-pagination>
              <span class="totalpage">{{objSearchResultItems.totalPages}} (Page)s</span> -->
         </div>
@@ -491,23 +505,8 @@
     </button>
   </div>
 </div>
-<div class="clearfix"></div>
-<div class="filterrow viewhandeler">
-  <h1>PREFERRED VIEW</h1>
-   <div class="btn-group">
-            <a id="gridmobile" class="btn btn-default btn-sm">
-              <span class="glyphicon glyphicon-th-large"></span>Grid
-            </a>
-            <a id="photoview" class="btn btn-default btn-sm">
-              <span class="glyphicon glyphicon-picture"></span>Photo View
-            </a>
-          </div>
-</div>
+
   </div>
-
-
-
-
 
 </div>
 

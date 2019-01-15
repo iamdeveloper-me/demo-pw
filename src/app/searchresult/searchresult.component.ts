@@ -34,58 +34,48 @@ export class SearchresultComponent implements OnInit {
     940: { items: 4 } },
   }
   activeSlides: SlidesOutputData;
-  slidesStore: any[];
-  collection = [];
-  objSearchFilter: filterParam
-  locations:any;
-  categories:Array<any>;
-  filters: any;
+  slidesStore: any[];  collection = [];  objSearchFilter: filterParam;  locations:any;  categories:Array<any>; filters: any;
 
-  loading=false;
-  selectedLocationsCount = 0;
-  objSearchlistvm: SearchListingVM;
-  objSearchResultItems:any;
-  locationFilterParam:string='';
-  categoryFilterParam:string='';
-  pageNumber=0;
-  showALlCategories: boolean= true;
-  disableLoadingButton=true;
-  blankImg='../../assets/img/noImg.png';
-  basicPlan:number;
-  ratingmodel: ratingStars
+  loading=false;  selectedLocationsCount = 0;  objSearchlistvm: SearchListingVM;  objSearchResultItems:any;
+  locationFilterParam:string='';  categoryFilterParam:string='';  pageNumber=0;  showALlCategories: boolean= true;
+  disableLoadingButton=true;  blankImg='../../assets/img/noImg.png';  basicPlan:number;  ratingmodel: ratingStars
    
   constructor(public _route:Router, public _activeRoute: ActivatedRoute, 
     private _masterservice: MasterserviceService, private api: apiService,
     ) {
       this.ratingmodel = new ratingStars();
       this.categories=[];  
-    this.basicPlan = parseInt(localStorage.getItem('basic-plan'))
-    this._activeRoute.params.subscribe(res=>{
+      this.basicPlan = parseInt(localStorage.getItem('basic-plan'))
+      this._activeRoute.params.subscribe(res=>{
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
       this.collection=[];
       this.objSearchlistvm = new SearchListingVM();
-      this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
+     // this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
       this.objSearchlistvm.districtId.push(this.objSearchFilter.locationId);
-      this.paginate(this.objSearchFilter.pageSize)
+     // this.paginate(this.objSearchFilter.pageSize)
+     this.selectCategory('id',this.objSearchFilter.catId);
+      
     })
-
     this.objSearchFilter=new filterParam();
-
-
-    if(this._activeRoute!=undefined){
-      this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
-    }
     this.getLocations();
     this.getCategories();
     this.getFilters();
     this.getSearchFilterResult();
+    this._activeRoute.params.subscribe(params => {
+    if(this._activeRoute!=undefined){
+      this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
+      
+    }
+    this.showHideCategories(this.categories.indexOf(this._activeRoute.snapshot.params['id']));
+    });
   }
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
   }
   getCategoryName(i):string{
     if(this._activeRoute.snapshot.params['id']!= ""){
-      return this._activeRoute.snapshot.params['id'];
+       return this._activeRoute.snapshot.params['id'];
+      // return this.categories.filter(c=>c.isSelect===true)[0].categoryName;
     }else{
     return i.vendorCategories.filter(c=>c.isPrimary==true)[0].categories.categoryName;
     }
@@ -130,6 +120,7 @@ export class SearchresultComponent implements OnInit {
           if(element.categoryId==this.objSearchFilter.catId){
           element.isSelect=true;}else{element.isSelect=false;}
         });
+        this.showALlCategories=false;
       }
     })    
   }
@@ -218,7 +209,6 @@ export class SearchresultComponent implements OnInit {
 
    paginate (pageSize) {
     this.loading=true; 
-    debugger;
     if(this.objSearchlistvm.categoryId.length==1 && this.objSearchlistvm.categoryId[0]==0){
       this.objSearchlistvm.categoryId=[];
     }
@@ -231,7 +221,7 @@ export class SearchresultComponent implements OnInit {
   },error=>{
     this.loading = false;
   });
-   
+  // this.showHideCategories(this.categories.indexOf(this._activeRoute.snapshot.params['id']));
  }
  @HostListener("window:scroll", [])
  scrollToBottom(){
@@ -240,19 +230,48 @@ export class SearchresultComponent implements OnInit {
     this.paginate(this.objSearchFilter.pageSize); }
  }
  showHideCategories(ind){
-  this.collection=[]; 
-  this.objSearchlistvm.categoryId=[];
-  if(ind!=-1){
-  this.categories[ind].isSelect=true; this.showALlCategories = false;
+  // this.collection=[]; 
+  // this.objSearchlistvm.categoryId=[];
+  this.deselectAllCategories();
+  if(ind!=-1){    
+    if(this.categories.length>0){
+  this.selectCategory('index',ind);
+  
   this.objSearchlistvm.categoryId.push(this.categories.filter(c=>c.isSelect===true)[0].categoryId);
+  this._route.navigate(['/home/weddingvendors', '']);   
+}
   }else{
-  this.categories.forEach(element => { element.isSelect=false; });
-  this.showALlCategories = true;
-  }
-  this.objSearchlistvm.categoryId.push(0);
-  console.log(this.objSearchlistvm);
+  //this.categories.forEach(element => { element.isSelect=false; });
+  this.deselectAllCategories();
+ // this.showALlCategories = true;
+  this.objSearchlistvm.categoryId.push(0);  
+  this._route.navigate(['/home/weddingvendors', this.categories[ind].categoryName]);  
+};
   this.paginate(this.objSearchFilter.pageSize);
- }
+  
+}
+deselectAllCategories(){
+  this.categories.forEach(element => {
+    element.isSelect=false;
+  });
+  this.collection=[];
+  this.objSearchlistvm.categoryId=[];
+  this.showALlCategories=true;
+  this.objSearchlistvm.page=0;
+  this.paginate(this.objSearchFilter.pageSize);
+}
+selectCategory(paramType,Param){
+  this.deselectAllCategories();
+  if(paramType=='index'){
+    this.categories[Param].isSelect=true;
+    this.objSearchlistvm.categoryId.push(this.categories[Param].categoryId);
+    }else if(paramType=='id'){
+      this.categories.filter(c=>c.categoryId==Param)[0].isSelect=true;
+      this.objSearchlistvm.categoryId.push(Param);
+  }
+  this.showALlCategories = false;
+}
+ 
 }
 export class SearchFilterVm{
   categoryId:number=1;

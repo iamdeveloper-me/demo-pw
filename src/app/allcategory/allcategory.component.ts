@@ -1,14 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { apiService } from '../shared/service/api.service';
 import { Router } from '@angular/router';
+import { filterParam } from 'app/vendorcard/vendorcard.component';
 @Component({
   selector: 'app-allcategory',
   templateUrl: './allcategory.component.html',
   styleUrls: ['./allcategory.component.scss']
 })
 export class AllcategoryComponent implements OnInit {
+
 	Popular_Wedding_array = []
-  constructor( private router: Router ,private apiService: apiService) { }
+	objFilterParam: filterParam;
+
+  constructor( private router: Router ,private apiService: apiService) { 
+		this.objFilterParam = new filterParam();
+	}
   ngOnInit() {
 		this.Popular_Wedding()
 		$.getScript('./assets/register/js/jquery-2.2.4.min.js');
@@ -35,11 +41,26 @@ export class AllcategoryComponent implements OnInit {
        console.log(error)
       }
     )
-  }
-	Categories_each(c){
-    let catId= c.categoryId;
-    let CatName= c.categoryName;
-    this.router.navigate(['home/searchresult',catId+'/'+CatName]);
-  }
-}
+	}
+	
+	/* Old Function */
+	// Categories_each(c){
+  //   let catId= c.categoryId;
+  //   let CatName= c.categoryName;
+  //   this.router.navigate(['home/searchresult',catId+'/'+CatName]);
+  // }
 
+	Categories_each(c){
+		if(c){
+	 this.objFilterParam.catId  = c.categoryId;
+	 this.objFilterParam.categoryName= c?c.categoryName:'';
+	 this.objFilterParam.page = 0;
+	 this.objFilterParam.pageSize;
+	 this.objFilterParam.sortDir = "";
+	 this.objFilterParam.sortedBy ="";
+	 this.objFilterParam.searchQuery ="";
+	}
+	 sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+		this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
+	}
+}

@@ -1,5 +1,5 @@
 
-import { Pipe, PipeTransform , OnInit, Component, HostListener } from '@angular/core';
+import { Pipe, PipeTransform , OnInit, Component, HostListener, ViewChild, ElementRef } from '@angular/core';
 import {} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MasterserviceService } from 'app/ngservices/masterservice.service';
@@ -9,23 +9,16 @@ import { CategoryPipePipe } from 'app/category-pipe.pipe';
 import { apiService } from 'app/shared/service/api.service';
 import { filterParam } from 'app/vendorcard/vendorcard.component';
 import { SlidesOutputData } from 'ngx-owl-carousel-o';
-
 import { toBase64String } from '@angular/compiler/src/output/source_map';
-
 import{ratingStars} from '../ngservices/ratingstars';
 @Pipe({ name: 'defaultImage' })
 export class PP implements PipeTransform {
   transform(value: string, fallback: string, forceHttps: boolean = false ): string {
     let image = "";
     if (value) { image = value; } else { image = fallback; }
-    if (forceHttps) {
-      if (image.indexOf("https") == -1) {
-        image = image.replace("http", "https");
-      }
-    }
+    if (forceHttps) { if (image.indexOf("https") == -1) {  image = image.replace("http", "https"); } }
     return image;
   }
-  
 }
 @Component({
   selector: 'app-searchresult',
@@ -39,55 +32,50 @@ export class SearchresultComponent implements OnInit {
     940: { items: 4 } },
   }
   activeSlides: SlidesOutputData;
-  slidesStore: any[];
-  collection = [];
-  objSearchFilter: filterParam
-  locations:any;
-  categories:any;
-  filters: any;
-  loading=false;
-  selectedLocationsCount = 0;
-  objSearchlistvm: SearchListingVM;
-  objSearchResultItems:any;
-  locationFilterParam:string='';
-  categoryFilterParam:string='';
-  pageNumber=0;
-  disableLoadingButton=true;
-  blankImg='../../assets/img/noImg.png';
-  basicPlan:number;
-   ratingmodel: ratingStars
-   
+
+  slidesStore: any[];  collection = [];  objSearchFilter: filterParam;  locations:any;  categories:Array<any>; filters: any;
+
+  loading=false;  selectedLocationsCount = 0;  objSearchlistvm: SearchListingVM;  objSearchResultItems:any;
+  locationFilterParam:string='';  categoryFilterParam:string='';  pageNumber=0;  showALlCategories: boolean= true;
+  disableLoadingButton=true;  blankImg='../../assets/img/noImg.png';  basicPlan:number;  ratingmodel: ratingStars
+   SelectedCategory: any; SelectedLocation: any;
+
   constructor(public _route:Router, public _activeRoute: ActivatedRoute, 
     private _masterservice: MasterserviceService, private api: apiService,
     ) {
-      this.ratingmodel = new ratingStars();  
-    this.basicPlan = parseInt(localStorage.getItem('basic-plan'))
-    this._activeRoute.params.subscribe(res=>{
+      this.ratingmodel = new ratingStars();
+      this.basicPlan = parseInt(localStorage.getItem('basic-plan'))
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
-      this.collection=[];
+      this._activeRoute.params.subscribe(res=>{
+      this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
       this.objSearchlistvm = new SearchListingVM();
-      this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
-      this.objSearchlistvm.districtId.push(this.objSearchFilter.locationId);
-      this.paginate(this.objSearchFilter.pageSize)
+      this.objSearchlistvm.districts.push(this.objSearchFilter.locationId);
+      
     })
-
     this.objSearchFilter=new filterParam();
-
-
-    if(this._activeRoute!=undefined){
-      this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
-    }
     this.getLocations();
     this.getCategories();
+    if(this._activeRoute!=undefined){ this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam')); }
     this.getFilters();
-    this.getSearchFilterResult();
+    this.selectCategory('id',this.objSearchFilter.catId);
+    console.log(this.SelectedCategory);
+     this._activeRoute.params.subscribe(params => {
+     if(this.categories){
+      this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
+      this.selectCategory('id',this.objSearchFilter.catId);
+      this.showHideCategories(this.categories.indexOf(this._activeRoute.snapshot.params['id']));
+     }
+     this.getSearchFilterResult();
+     });
   }
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
   }
   getCategoryName(i):string{
     if(this._activeRoute.snapshot.params['id']!= ""){
-      return this._activeRoute.snapshot.params['id'];
+       return this._activeRoute.snapshot.params['id'];
+      // return this.SelectedCategory.categoryName;
+       // this.categories.filter(c=>c.isSelect===true)[0].categoryName;
     }else{
     return i.vendorCategories.filter(c=>c.isPrimary==true)[0].categories.categoryName;
     }
@@ -99,7 +87,7 @@ export class SearchresultComponent implements OnInit {
   $.getScript('./assets/register/js/bootstrap.min.js');
   $.getScript('./assets/jss/core/popper.min.js');
   $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
-  $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');
+//  $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');
   $.getScript('./assets/jss/plugins/chartist.min.js');
   $.getScript('./assets/jss/plugins/bootstrap-notify.js');
   $(".slider_use_anather_compo").hide();
@@ -114,32 +102,47 @@ export class SearchresultComponent implements OnInit {
   getLocations(){
     this._masterservice.getAllLocation().subscribe(res=>{
       this.locations=res;
-      if(this.objSearchFilter.locationId>0){
-        if(this.objSearchFilter.locationId>0){
-          this.locations=this.locations.filter(l=>l.id==this.objSearchFilter.locationId);
-          this.locations.forEach(element => {
-            element.isSelect=false;
-          });
-        }
-      }
+      
+     // this.locations.filter(l=>l.locationId===this.objSearchFilter.locationId)[0].isSelect=true;
+      // if(this.objSearchFilter.locationId>0){
+      //     this.locations=this.locations.filter(l=>l.id==this.objSearchFilter.locationId);
+      //     this.locations.forEach(element => {
+      //     element.isSelect=false;
+      //     });
+      //   }
     });
   }
   getCategories(){
      this._masterservice.getAllCategories().subscribe(res=>{
       this.categories=res;
       if(this.objSearchFilter.catId>0){
-        this.categories.forEach(element => {
-          if(element.categoryId==this.objSearchFilter.catId){
-          element.isSelect=true;}else{element.isSelect=false;}
-        });
+        this.categories.filter(c=>c.categoryId==this.objSearchFilter.catId)[0].isSelect=true;
+        this.SelectedCategory = this.categories.filter(c=>c.isSelect=true)[0];
+        this.showALlCategories=false;
+        // this.categories.forEach(element => {
+        //   element.isSelect=true;
+        //   if(parseInt(element.categoryId) == this.objSearchFilter.catId){
+        //   element.isSelect=true;
+        // this.SelectedCategory = element;
+        // this.showALlCategories=false;
+        // }else{element.isSelect=false;}
+        // }
+       // );
+        
       }
-    })    
+      this.collection=[];
+      this.paginate(this.objSearchFilter.pageSize);  
+         this.showALlCategories=false;
+
+    }) 
+     
   }
   getFilters(){
     let filter_paramArray=[];
     filter_paramArray.push(this.objSearchFilter.catId);
     this._masterservice.getFilters(filter_paramArray).subscribe(res=>{
       this.filters=res;
+      console.log(JSON.stringify(this.filters));
       if(this.filters.length>0){
       this.filters.services.forEach(element => {
         element.isSelect=false;
@@ -171,30 +174,20 @@ export class SearchresultComponent implements OnInit {
       this.objSearchlistvm.customField = new FieldSearchVM();
     });
   }
-  if(this.categories){
-    // this.objSearchlistvm.categoryId=[];
-    this.categories.forEach(element => {
-      this.objSearchlistvm.categoryId = this.categories.filter(c=>c.isSelect==true);
-//      if(element.isSelect){ this.objSearchlistvm.categoryId.push(element.categoryId); }
-    });
-  }
     this.locations.forEach(element => {
       if(element.isSelect){
-        this.objSearchlistvm.districtId = this.locations.filter(l=>l.isSelect==true);
-        // this.objSearchlistvm.districtId.push(element.districtId)
+        this.objSearchlistvm.districts = this.locations.filter(l=>l.isSelect==true);
       }else{
         element.isSelect=false;
       }
     });
   }
+  // this.paginate(this.objSearchFilter.pageSize);
 
-  this.loading=true;
-  this.collection=[];
-  this.pageNumber=0;
   }
   clearFilters(){
     this.locations.forEach(element => { element.isSelect=false; });
-    this.objSearchlistvm.districtId = [];
+    this.objSearchlistvm.districts = [];
     this.categories.forEach(element => { element.isSelect=false; });
     this.objSearchlistvm.categoryId = [];
   }
@@ -217,22 +210,44 @@ export class SearchresultComponent implements OnInit {
        });
       }
   }
+  addLocation(l){
+    debugger;
+    if(l==0){
+      this.SelectedLocation=null;
+      this.objSearchlistvm.districts=[];
+    }else{
+    console.log(l);
+    this.locations.forEach(element => {
+      element.isSelect=false;
+    });
+    l.isSelect=true;
+    this.SelectedLocation = l;
+  }
+    this.collection=[];
+    this.objSearchlistvm.page=0;
+    this.paginate(this.objSearchFilter.pageSize);
+  }
 
    paginate (pageSize) {
     this.loading=true; 
-    if(this.objSearchlistvm.categoryId.length==1 && this.objSearchlistvm.categoryId[0]==0){
-      this.objSearchlistvm.categoryId=[];
-    }
+   // this.collection=[];
+    this.objSearchlistvm.categoryId=[];
+    this.objSearchlistvm.districts=[];
+    if(this.categories){
+      if(this.SelectedCategory){
+    this.objSearchlistvm.categoryId.push(this.SelectedCategory.categoryId);}
+    if(this.SelectedLocation){
+    this.objSearchlistvm.districts.push(this.SelectedLocation.districtId);}
+    //this.objSearchlistvm.districts.splice(this.objSearchlistvm.districts.indexOf(0));
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
-    console.log(JSON.stringify(this.objSearchResultItems));
     this.setBlankImg();
     this.addToCollection();
     this.loading=false; 
   },error=>{
     this.loading = false;
   });
-   
+}
  }
  @HostListener("window:scroll", [])
  scrollToBottom(){
@@ -240,6 +255,49 @@ export class SearchresultComponent implements OnInit {
     this.objSearchlistvm.page+=1;
     this.paginate(this.objSearchFilter.pageSize); }
  }
+ showHideCategories(ind){
+  this.deselectAllCategories();
+  if(ind!=-1){    
+    if(this.categories.length>0){
+  this.selectCategory('index',ind);
+  }
+  }
+  this.paginate(this.objSearchFilter.pageSize);
+}
+deselectAllCategories(){
+  if(this.categories){
+  this.categories.forEach(element => {
+    element.isSelect=false;
+  });
+}
+  this.showALlCategories=true;
+  this.objSearchlistvm.page=0;
+  this.collection=[];
+  
+//  this.paginate(this.objSearchFilter.pageSize);
+}
+
+selectCategory(paramType,Param){
+  this.deselectAllCategories();
+  if(paramType=='index'){
+    if(this.categories){
+      this.categories[Param].isSelect=true;
+      this.SelectedCategory= this.categories[Param];
+      this.objSearchFilter.catId = this.SelectedCategory.categoryId;
+    }
+   }else if(paramType=='id'){
+      if(this.categories){
+        this.categories.filter(c=>c.categoryId==Param)[0].isSelect=true;
+        this.SelectedCategory= this.categories.filter(c=>c.isSelect=true)[0];
+        this.objSearchFilter.catId = this.SelectedCategory.categoryId;
+      }
+  }
+  sessionStorage.setItem('filterParam', JSON.stringify(this.objSearchFilter));
+  this.showALlCategories = false;
+  // this._route.navigate(['/home/weddingvendors',this.SelectedCategory?this.SelectedCategory.categoryName: ""]);
+  
+}
+ 
 }
 export class SearchFilterVm{
   categoryId:number=1;
@@ -253,15 +311,16 @@ export class SearchListingVM{
   sortDir:string;
   sortBy: string;
   searchQuery:string;
-  districtId:Array<number>;
+  districts:Array<number>;
   categoryId:Array<number>;
   serviceId:Array<number>;
+  rating: string;
   customsFields:Array<FieldSearchVM>;
   customField:FieldSearchVM;
   constructor(){
     this.pageSize=25;
     this.page=0;
-    this.districtId=[];
+    this.districts=[];
     this.categoryId=[];
     this.serviceId=[];
     this.sortDir='asc';

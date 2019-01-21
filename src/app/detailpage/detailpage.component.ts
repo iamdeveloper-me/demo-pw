@@ -95,6 +95,7 @@ export class DetailpageComponent implements OnInit {
      
    this.masterservice.getSimilarVendors(obj).subscribe(res=>{
      this.similarVendors=res;
+     console.log( this.similarVendors)
    })
   }
 }

@@ -39,7 +39,7 @@ export class AllcategoryComponent implements OnInit {
 	Categories_each(c){
     let catId= c.categoryId;
     let CatName= c.categoryName;
-    this.router.navigate(['home/searchresult',catId+'/'+CatName]);
+    this.router.navigate(['home/weddingvendors/',CatName]);
   }
 }
 

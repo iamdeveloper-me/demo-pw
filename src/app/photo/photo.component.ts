@@ -95,6 +95,7 @@ export class PhotoComponent implements OnInit {
         } else{
           a.isSelected =true;
         }
+       
         let selectedColors = this.colors.filter(c=>c.isSelected==true);
         this.csvColors='';
         this.photo_search_param.color=[];
@@ -107,7 +108,8 @@ export class PhotoComponent implements OnInit {
     find_photo(f){
 
       this.loading = false;
-      console.log(this.photo_search_param.searchQuery)
+      console.log(f.value.searchQuery)
+      console.log(this.photo_search_param)
       if(this.photo_search_param.color.length > 0 && this.photo_search_param.searchQuery == null){
         this.colout_tag = true;
         this.showTag2 = false;
@@ -145,7 +147,7 @@ export class PhotoComponent implements OnInit {
           }else{
             this.error_1 = " "
           }
-          this.photo_search_param.page +=1
+          this.photo_search_param.count +=1
         },error => {  console.log(error)});
     }
     popup(listall_categories){
@@ -167,6 +169,7 @@ export class ColorPicker{
 }
 export class  photoSearchParam  {
   page:number;
+  count:number;
   pageSize: number;
   sortDir: string;
   sortedBy: string;
@@ -177,6 +180,7 @@ export class  photoSearchParam  {
   constructor(){
     this.UserId = 0;
     this.page=0;
+    this.count = 0;
     this.pageSize=30;
     this.sortedBy = 'asc';
     this.color = [];

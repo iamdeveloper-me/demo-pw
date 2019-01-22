@@ -43,9 +43,12 @@ export class DetailpageComponent implements OnInit {
     this.vendorDetails.albums.forEach(element => {
       this.portfolioAndAlbumImagesTotal += element.albumImages.length ? element.albumImages.length : 0;
     });
-    this.portfolioAndAlbumImagesTotal += this.vendorDetails.portfolio.length;
-    this.vendorDetails.portfolio.forEach(element => {
-      this.portfolioImages.push(element.files.path);
+   
+    this.portfolioAndAlbumImagesTotal += this.vendorDetails.portfolios.length;
+    this.vendorDetails.portfolios.forEach(element => {
+    
+      // this.portfolioImages.push(element.files.path);
+     this.portfolioImages.push(element.path);
     });
     
 

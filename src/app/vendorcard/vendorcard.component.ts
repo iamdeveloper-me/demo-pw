@@ -152,7 +152,7 @@ export class filterParam{
   categoryName:string='';
   isAllSupplier:boolean=false;
   isDreamLocation:boolean=false;
-  page:number=1;
+  page:number=0;
   pageSize: number=3;
   sortDir: "";
   sortedBy: "";

@@ -295,7 +295,7 @@
                 <div>
                   {{pi.albumName}}
                   <br />
-                  {{pi.albumImages.length}}
+                  <!-- {{pi.albumImages.length}} -->{{i}}
                   (Images)
                 </div>
               </div>
@@ -552,12 +552,13 @@
                           <div class="carousel_content">
                             <div class="carousel_cat_body">
                               <span class="carousel_cat">
-                                {{simi_vendor.vendorCategories[0].categories.categoryName}}
+                              
+                                {{simi_vendor?.vendorCategories[0]?.categories.categoryName}}
                               </span>
                             </div>
 
                             <div class="carousel_title" *ngIf='simi_vendor.vendorLocations.districts'>
-                              {{simi_vendor.vendorLocations[0].districts.name}}
+                              {{simi_vendor?.vendorLocations[0]?.districts.name}}
                             </div>
                             <div class="carousel_city" *ngIf='simi_vendor.suburb'>
                               <i class="fa fa-map-marker" aria-hidden="true"></i> {{simi_vendor.suburb.name}}
@@ -593,16 +594,16 @@
             <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" />
           </div>
           <ul class="wed_me_social text-center">
-            <li *ngIf='vendorDetails.facebookURL'><a [href]='vendorDetails.facebookURL'>
+            <li *ngIf='vendorDetails.facebookURL'><a src='vendorDetails.facebookURL'>
                 <i class="fa fa-facebook" aria-hidden="true"></i>
               </a>
             </li>
-            <li *ngIf='vendorDetails.twitterURL'><a [href]='vendorDetails.twitterURL'>
+            <li *ngIf='vendorDetails.twitterURL'><a src='vendorDetails.twitterURL'>
                 <i class="fa fa-twitter" aria-hidden="true"></i>
               </a>
             </li>
             <li *ngIf='vendorDetails.instalURL'>
-              <a [href]='vendorDetails.instalURL'>
+              <a src='vendorDetails.instalURL'>
                 <i class="fa fa-instagram" aria-hidden="true"></i>
               </a>
             </li>
@@ -623,7 +624,7 @@
               <span>3.0</span>
             </div>
           </div>
-          <div class="carousel_cat">{{vendorDetails.vendorCategories[0].categories.categoryName}}</div>
+          <div class="carousel_cat">{{vendorDetails.vendorCategories[0]?.categories?.categoryName}}</div>
           <div class="clearfix"></div>
           <div class="col-sm-12">
             <div class="featurebtn row">
@@ -666,14 +667,14 @@
         <div class="left_box_section overviewsection startprice">
           <div class="vp_mainDetails_starting_price">
             <div class="large_subtext bob_pa_left text-center">
-              Starting Price: <span class="pink">{{vendorDetails.businessServices[0].customFields[0].fieldValue}}</span>
+              Starting Price: <span class="pink">{{vendorDetails.businessServices[0]?.customFields[0]?.fieldValue}}</span>
             </div>
             <div class="clearfix"></div>
             <div class="detailtabclick detailpri">
               <table class="tabledesignwork">
                 <tr *ngFor='let bs of vendorDetails.businessServices'>
                   <th>{{bs.serviceName}}</th>
-                  <td>{{bs.customFields[0].displayText}} {{bs.customFields[0].fieldValue}}</td>
+                  <td>{{bs.customFields[0]?.displayText}} {{bs.customFields[0]?.fieldValue}}</td>
                 </tr>
               </table>
             </div>
@@ -832,7 +833,6 @@
     </div>
   </div>
 
-
   <div class="modal fade" id="Vediogallarypopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -846,10 +846,6 @@
       </div>
     </div>
   </div>
-
-
-
-
 
   <div class="modal fade" id="albumgallarypopup" #albumgallarypopup tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">

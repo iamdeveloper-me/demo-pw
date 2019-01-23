@@ -33,6 +33,7 @@ export class DetailpageComponent implements OnInit {
       $("#Vediogallarypopup iframe").attr("src", $("#Vediogallarypopup iframe").attr("src"));
     });
     this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
+    console.log( this.vendorDetails )
     this.getSimilarVendors();
     this.vendorDetails.vendorLocations.reverse();
     this.vendorDetails.albums.forEach(element => {

@@ -6,7 +6,7 @@
     <div class="container mob_parallax mob_padd0">
       <div class="col-md-3 col-6 box_img" *ngFor='let list_featured_supplier of featured_supplier_data'>
       <a href="#" class="zoom_in">
-        <img style="height: 222px;"    [src]="list_featured_supplier.profileImage">
+        <img style="height: 222px;"  *ngIf="list_featured_supplier"  [src]="list_featured_supplier.profileImage">
         <div class="cakes_hover">
             <!-- <img _ngcontent-c1="" style="    height: 222px;
             " class="red_bg" [src]="dream_wedding.iconImageURL"> -->

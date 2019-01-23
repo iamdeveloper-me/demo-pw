@@ -185,7 +185,7 @@
                                         <div *ngIf="messageDetail.hasAttachment">
                                             <p class="primary">Attachments:</p>
                                             <div *ngFor="let attachment of messageDetail.attachments" class="float-left mr-2">
-                                                <img class="media-object width-100" [src]="attachment.url" alt="Generic placeholder image">
+                                                <img class="media-object width-100" *ngIf="attachment"  [src]="attachment.url" alt="Generic placeholder image">
                                             </div>
                                         </div>
                                     </div>

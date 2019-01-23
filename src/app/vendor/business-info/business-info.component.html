@@ -19,7 +19,7 @@
                                         <div class="busines_img" ngbTooltip="Change image/Logo">
                                             <i class="material-icons" (click)="imagecropDailog = true" id="description-function"
                                                 style="cursor:pointer"> camera_alt </i>
-                                            <img [src]="imagee">
+                                            <img [src]="imagee" >
                                         </div>
                                         <i class="material-icons helpicon" ngbTooltip="Upload your business logo or profile image of your business representative. This will be visible on your store front.">help_outline</i>
                                     </div>
@@ -557,7 +557,7 @@
                                             <img-cropper #cropper [image]="data" [settings]="cropperSettings" class="float-left mr-4"></img-cropper>
                                             <br>
                                             <span class="result" *ngIf="data.image">
-                                                <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight"
+                                                <img  *ngIf = "data" [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight"
                                                     class="rounded-circle">
                                             </span>
                                         </div>

@@ -20,7 +20,7 @@
         <div id="detailpagecarousel" class="owl-carousel detailpagecarousel owl-loaded owl-drag">
           <div class="item" *ngFor='let i of sliderImgaes'>
             <a>
-              <img class="owl-lazy" [src]='i' alt="">
+              <img class="owl-lazy" [src]='i' *ngIf="i"  alt="">
             </a>
             <div class="namecontainer">Album Name</div>
             <div class="numcontainer">15/20</div>
@@ -547,13 +547,17 @@
                     <div *ngFor='let simi_vendor of similarVendors' class="col-md-3 col-sm-3 mobpadd0">
                       <div class="mob_bot_mar">
                         <div class="item hover_effect">
-                          <img [src]='simi_vendor.profileImage' class="lazyOwl carousel_img tag_vendor_841 img-responsive">
+                          <img  *ngIf = "simi_vendor.profileImage != null" [src]='simi_vendor.profileImage' class="lazyOwl carousel_img tag_vendor_841 img-responsive">
+                          
+                          <img *ngIf = "simi_vendor.profileImage == null" src='../../assets/img/noImg.png' class="lazyOwl carousel_img tag_vendor_841 img-responsive">
 
                           <div class="carousel_content">
-                            <div class="carousel_cat_body">
+                            <div class="carousel_cat_body"  *ngFor='let pi_simi_vendor of simi_vendor.vendorCategories;let i=index' >
                               <span class="carousel_cat">
                               
-                                <!-- {{simi_vendor?.vendorCategories[0].categories.categoryName}} -->
+                             no category in
+
+                                {{pi_simi_vendor.categories.categoryName | json}}
                               </span>
                             </div>
 
@@ -866,7 +870,7 @@
           <div id="albumcarousel" class="owl-carousel owl-loaded owl-drag">
             <div class="item" *ngFor='let item of lightBoxImages'>
               <a>
-                <img class="owl-lazy" [src]="item+'?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'" alt=""></a>
+                <img class="owl-lazy" *ngIf="item" [src]="item+'?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'" alt=""></a>
               <div class="linkcontainer">
                 <button><i class="material-icons">bookmark_border</i></button>
                 <button><i class="material-icons">share</i></button>

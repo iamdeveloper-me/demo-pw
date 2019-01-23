@@ -16,7 +16,7 @@
 					<div *ngFor='let filepath of vd.albumImages'>
 		        	<a routerLink="../Photogallerydetail">
 		              <div class="thumbnail text-center">
-		              	<img [src]='filepath.path' alt="...">
+		              	<img  *ngIf="filepath" [src]='filepath.path' alt="...">
 		               <div>
 		                  My Portfolio 
 		                  <br/> 

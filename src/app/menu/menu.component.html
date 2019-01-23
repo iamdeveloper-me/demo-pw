@@ -45,7 +45,7 @@
                             <div *ngFor='let list_Categories of Categories'>
                                 <li><a class="dropdown-item" (click)="searchCat(list_Categories,true,false)">
                                         <i class="cake" aria-hidden="true">
-                                            <img [src]="list_Categories.iconImageURL" />
+                                            <img   *ngIf="list_Categories"  [src]="list_Categories.iconImageURL" />
                                         </i>{{list_Categories.categoryName}}</a>
                                 </li>
                             </div>
@@ -274,7 +274,7 @@
                     <div ngbDropdownMenu aria-labelledby="dropdownBasic3" class="userhomemenu">
                         <div class="vendorpicsec">
                             <div class="imgsection">
-                                <img [src]="vendor.profileImage" class="userimgtop">
+                                <img *ngIf="vendor"  [src]="vendor.profileImage" class="userimgtop">
                             </div>
                             <div class="detailsection">
                                 Hi {{vendor.firstName}}!

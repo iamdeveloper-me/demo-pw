@@ -12,11 +12,11 @@
             <div class="row no-gutters popup-gallery">
               <div class="col-lg-4 col-sm-6 col-6  galleryview" *ngFor='let Popular of Popular_Wedding_array'>
                 <a class="portfolio-box" (click) = "Categories_each(Popular,false,false)"  *ngIf = "Popular.isPopular == true">
-                  <img class="img-fluid" [src]="Popular.imagePath" class="img-responsive" alt="">
+                  <img class="img-fluid"  *ngIf = "Popular" [src]="Popular.imagePath" class="img-responsive" alt="">
                   <div class="portfolio-box-caption">
                     <div class="portfolio-box-caption-content">
                       <div class="text-faded">
-                        <img [src]="Popular.iconImageURL">
+                        <img  *ngIf = "Popular"  [src]="Popular.iconImageURL">
                       </div>
                       <div class="project-name">
                         {{Popular.categoryName}}
@@ -51,7 +51,7 @@
                       <div class="boxtikslide" (click)='goToVendordetails(slide)'>
                         <div class="procard"> </div>
 
-                        <img class="card-img-top" [src]="slide.profileImage" >
+                        <img class="card-img-top" *ngIf = "slide"  [src]="slide.profileImage" >
                         <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
                         <div class="imgnum">
                           <span>
@@ -152,7 +152,7 @@
               <div class="row" >
                 <div class="col-md-4 col-6 locationbox" *ngFor='let list_dream of dream_wedding_location' 
                 (click)='goToVendordetails(list_dream)' >
-                    <img [src]="list_dream.profileImage" class="img-responsive" alt="img06" /> 
+                    <img *ngIf = "Popular"  [src]="list_dream.profileImage" class="img-responsive" alt="img06" /> 
                     <h2>{{list_dream?.nameOfBusiness}}
                       <span *ngIf="list_dream?.district == null; else dwloc">
                          N/A    

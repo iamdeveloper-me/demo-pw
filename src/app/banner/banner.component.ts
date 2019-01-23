@@ -21,8 +21,8 @@ export class BannerComponent implements OnInit {
   categoryFilterParam:string=''
   Categories = [];
   locations = [];
+  banner_data = [];
   locationId:number=0;
-  banner_data = []
   categoryClickData : any;
   locationClickData : any;
   ngOnInit() {
@@ -65,36 +65,33 @@ export class BannerComponent implements OnInit {
     )
   }
   search(e,isAllSupplier,isDreamLocation,var_data){
-   if(var_data == null){
-     this.objFilterParam.catId  = e.value.category?e.value.category.categoryId:0;
-
-      this.objFilterParam.categoryName= e.value.category?e.value.category.categoryName: '' ;
-      this.objFilterParam.categoryName=this.objFilterParam.categoryName==undefined?'All Categories':this.objFilterParam.categoryName;
-      this.objFilterParam.isDreamLocation=isDreamLocation;
-      this.objFilterParam.isAllSupplier=isAllSupplier;
-      this.objFilterParam.page = 1;
-      this.objFilterParam.pageSize = 25;
-      this.objFilterParam.sortDir = "";
-      this.objFilterParam.sortedBy ="";
-      this.objFilterParam.searchQuery ="";
-      this.objFilterParam.locationId = this.locationId;
-   }else{
-      this.objFilterParam.catId  = var_data['category'] != 0 ?var_data['category']['categoryId']:0;
-      this.objFilterParam.categoryName= var_data['category']?var_data['category']['categoryName']: '' ;
-      this.objFilterParam.isDreamLocation=isDreamLocation;
-      this.objFilterParam.isAllSupplier=isAllSupplier;
-      this.objFilterParam.page = 1;
-      this.objFilterParam.pageSize = 25;
-      this.objFilterParam.sortDir = "";
-      this.objFilterParam.sortedBy ="";
-      this.objFilterParam.searchQuery ="";
-      this.objFilterParam.locationId = var_data['location'];
-     }
-     sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
-       this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
-
-   
-    
+    debugger;
+      if(var_data == null){
+          this.objFilterParam.catId  = e.value.category?e.value.category.categoryId:0;
+          this.objFilterParam.categoryName= e.value.category?e.value.category.categoryName: '' ;
+          this.objFilterParam.categoryName=this.objFilterParam.categoryName==undefined?'All Categories':this.objFilterParam.categoryName;
+          this.objFilterParam.isDreamLocation=isDreamLocation;
+          this.objFilterParam.isAllSupplier=isAllSupplier;
+          this.objFilterParam.page = 1;
+          this.objFilterParam.pageSize = 25;
+          this.objFilterParam.sortDir = "";
+          this.objFilterParam.sortedBy ="";
+          this.objFilterParam.searchQuery ="";
+          this.objFilterParam.locationId = this.locationId;
+      }else{
+          this.objFilterParam.catId  = var_data['category'] != 0 ?var_data['category']['categoryId']:0;
+          this.objFilterParam.categoryName= var_data['category']?var_data['category']['categoryName']: '' ;
+          this.objFilterParam.isDreamLocation=isDreamLocation;
+          this.objFilterParam.isAllSupplier=isAllSupplier;
+          this.objFilterParam.page = 1;
+          this.objFilterParam.pageSize = 25;
+          this.objFilterParam.sortDir = "";
+          this.objFilterParam.sortedBy ="";
+          this.objFilterParam.searchQuery ="";
+          this.objFilterParam.locationId = var_data['location'];
+        }
+          sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+          this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   }
   // Mobile size click to forword serch result page 
   categoryClick(data){
@@ -105,12 +102,12 @@ export class BannerComponent implements OnInit {
     }
   }
   locationClick(data){
-   this.locationClickData = data;
-   const var_data = {
-     category:  this.categoryClickData,
-     location: this.locationClickData
-   }
-   this.search(null,true,false,var_data)
+      this.locationClickData = data;
+      const var_data = {
+        category:  this.categoryClickData,
+        location: this.locationClickData
+      }
+      this.search(null,true,false,var_data)
   }
 
 }

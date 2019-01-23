@@ -3,6 +3,8 @@ import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 import { apiService } from '../shared/service/api.service';
 import { Router } from '@angular/router';
 import { SlidesOutputData } from 'ngx-owl-carousel-o';
+
+import{ratingStars} from '../ngservices/ratingstars';
 @Component({
   selector: 'app-vendorcard',
   templateUrl: './vendorcard.component.html',
@@ -10,7 +12,7 @@ import { SlidesOutputData } from 'ngx-owl-carousel-o';
   providers: [NgbCarouselConfig] // add NgbCarouselConfig to the component providers
 })
 export class VendorcardComponent implements OnInit {
-
+  ratingmodel: ratingStars;
   customOptions: any = {
     margin: 20,
     loop: false,
@@ -36,6 +38,7 @@ export class VendorcardComponent implements OnInit {
   slidesStore: any[];
   constructor( private router: Router ,config: NgbCarouselConfig, private apiService: apiService) {
     // customize default values of carousels used by this component tree
+    this.ratingmodel = new ratingStars();
     config.interval = 10000;
     config.wrap = false;
     config.keyboard = false;

@@ -6,6 +6,7 @@ import { apiService } from '../shared/service/api.service';
   styleUrls: ['./faquestion.component.scss']
 })
 export class FaquestionComponent implements OnInit {
+  content_data = [];
   constructor(private apiService: apiService) { }
   ngOnInit() {
     this.faq();
@@ -13,6 +14,8 @@ export class FaquestionComponent implements OnInit {
   }
   faq(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/sitefaqs').subscribe(data => {
+      this.content_data =data;
+      console.log(data)
     }, error => {
        console.log(error)
     })

@@ -7,10 +7,11 @@ import {RatingModule, Rating} from 'ngx-rating';
 import { CustompipePipe } from 'app/custompipe.pipe';
 import { CategoryPipePipe } from 'app/category-pipe.pipe';
 import { apiService } from 'app/shared/service/api.service';
-import { filterParam } from 'app/vendorcard/vendorcard.component';
+import { filterParam} from 'app/vendorcard/vendorcard.component';
 import { SlidesOutputData } from 'ngx-owl-carousel-o';
 import { toBase64String } from '@angular/compiler/src/output/source_map';
 import{ratingStars} from '../ngservices/ratingstars';
+import { setTimeout } from 'timers';
 @Pipe({ name: 'defaultImage' })
 export class PP implements PipeTransform {
   transform(value: string, fallback: string, forceHttps: boolean = false ): string {
@@ -41,16 +42,18 @@ export class SearchresultComponent implements OnInit {
   constructor(public _route:Router, public _activeRoute: ActivatedRoute, 
     private _masterservice: MasterserviceService, private api: apiService,
     ) {
+      debugger;
+      this.objSearchFilter=new filterParam();
       this.ratingmodel = new ratingStars();
       this.basicPlan = parseInt(localStorage.getItem('basic-plan'))
-      this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
+      // this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
       this._activeRoute.params.subscribe(res=>{
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
       this.objSearchlistvm = new SearchListingVM();
       this.objSearchlistvm.districts.push(this.objSearchFilter.locationId);
       
     })
-    this.objSearchFilter=new filterParam();
+    
     this.getLocations();
     this.getCategories();
     if(this._activeRoute!=undefined){ this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam')); }
@@ -100,14 +103,15 @@ export class SearchresultComponent implements OnInit {
   getLocations(){
     this._masterservice.getAllLocation().subscribe(res=>{
       this.locations=res;
-      
-     // this.locations.filter(l=>l.locationId===this.objSearchFilter.locationId)[0].isSelect=true;
-      // if(this.objSearchFilter.locationId>0){
-      //     this.locations=this.locations.filter(l=>l.id==this.objSearchFilter.locationId);
-      //     this.locations.forEach(element => {
-      //     element.isSelect=false;
-      //     });
-      //   }
+   //  this.locations.filter(l=>l.locationId===this.objSearchFilter.locationId)[0].isSelect=true;
+      if(this.objSearchFilter.locationId>0){
+
+          this.locations=this.locations.filter(l=>l.id==this.objSearchFilter.locationId);
+          this.SelectedLocation = this.locations[0];
+          this.locations.forEach(element => {
+          element.isSelect=false;
+          });
+        }
     });
   }
   getCategories(){
@@ -227,13 +231,15 @@ export class SearchresultComponent implements OnInit {
   }
 
    paginate (pageSize) {
+     debugger;
     this.loading=true; 
    // this.collection=[];
     this.objSearchlistvm.categoryId=[];
-    this.objSearchlistvm.districts=[];
+  //  this.objSearchlistvm.districts=[];
     if(this.categories){
       if(this.SelectedCategory){
     this.objSearchlistvm.categoryId.push(this.SelectedCategory.categoryId);}
+    this.SelectedLocation = this.locations.filter(l=>l.isSelect===true)[0];
     if(this.SelectedLocation){
     this.objSearchlistvm.districts.push(this.SelectedLocation.districtId);}
     //this.objSearchlistvm.districts.splice(this.objSearchlistvm.districts.indexOf(0));

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { apiService } from '../shared/service/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { viewClassName } from '@angular/compiler';
 @Component({
   selector: 'app-advertise',
   templateUrl: './advertise.component.html',
@@ -12,13 +13,24 @@ export class AdvertiseComponent implements OnInit {
   contactInfoObj  = new ContactUsVM()
   messageType = 1;
   Phone_no ;
-
-  ngOnInit() { }
+  ad_data = {title:""}
+  contentData: any;
+@ViewChild('pageContent') pageContent: ElementRef;
+  ngOnInit() {
+    this.apiService.getData(this.apiService.serverPath+'PerfectWedding/pagecontent?key=advertise').subscribe(data => {
+      this.contentData=data;
+      this.pageContent.nativeElement.innerHTML=data.pageContent;
+      console.log(data)
+      this.ad_data = data;
+    }, error => {
+       console.log(error)
+    })
+   }
 
   contact(list){
     this.apiService.postData(this.apiService.serverPath+'Home/contactus',list.value).subscribe(data => {
       this.toastr.success(data.message);
-      list.reset()
+      list.resetForm();
     },
       error => {
        console.log(error)

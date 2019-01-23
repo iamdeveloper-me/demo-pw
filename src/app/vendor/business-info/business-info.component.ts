@@ -17,6 +17,7 @@ import {BusinessService} from '../../ngservices/business.service';
 
 import swal from 'sweetalert2';
 import { viewClassName } from '@angular/compiler';
+import { apiService } from '../../shared/service/api.service';
 @Component({
   selector: 'app-business-info',
   templateUrl: './business-info.component.html',
@@ -24,6 +25,10 @@ import { viewClassName } from '@angular/compiler';
 })
 
 export class BusinessInfoComponent implements OnInit {
+
+
+  // businessInfoObj = new BusinessInfo()
+
   @Output() valueChange = new EventEmitter();
   @ViewChild('businessDetails') businessDetails: ElementRef;
   @ViewChild('nameOfBusiness') nameOfBusiness: ElementRef;
@@ -162,10 +167,13 @@ export class BusinessInfoComponent implements OnInit {
    })
   }
 
-  constructor(private _http: ProgressHttp,
-
+  constructor(
+    private _http: ProgressHttp,
+    private apiService:apiService,
     public http: Http,public toastr: ToastrService,
-    public translate: TranslateService ,private cservice: LoginServiceService, private router: Router 
+    public translate: TranslateService ,
+    private cservice: LoginServiceService, 
+    private router: Router 
     )
         {
             
@@ -812,3 +820,49 @@ UpdateSocialUrl(urlType){
 }
 }
 }
+
+
+// export class BusinessInfo {
+//   nameOfBusiness:	string;
+//   businessDetails:	string;
+//   pictureUrl:	string;
+//   fbAvailable:	boolean;
+//   facebookURL:	string;
+//   twitterAvailable:	boolean;
+//   twitterURL:	string;
+//   googleAvailable:	boolean;
+//   googleURL:	string;
+//   instaAvailable:	boolean;
+//   instalURL:	string;
+//   perfectWeddingAvailable:	boolean;
+//   perfectWeddingURL:	string;
+//   fileId: number;
+//   files:	Array<FilesVM>; 
+//   constructor(){
+//     {
+//       this.businessDetails = "string";
+//       this.pictureUrl = 'https://www.pictureUrl.com';
+//       this.fbAvailable = true
+//       this.facebookURL = 'https://www.facebookURL.com';
+//       this.twitterAvailable = true;
+//       this.twitterURL = 'https://www.twitterURL.com';
+//       this.googleAvailable = true;
+//       this.googleURL = 'https://www.googleURL.com';
+//       this.instaAvailable = true;
+//       this.instalURL = 'https://www.instalURL.com';
+//       this.perfectWeddingAvailable = true;
+//       this.perfectWeddingURL = 'https://www.perfectWeddingURL.com';
+//       this.fileId = 0
+//       }
+//   }
+// }
+
+// export class FilesVM {
+//   filesId: number
+//   originalFileName:	string
+//   serverFileName:	string;
+//   path:	string
+//   userId:	string
+//   uploadedOn:	string;
+// }
+

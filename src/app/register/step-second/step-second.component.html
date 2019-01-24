@@ -28,7 +28,7 @@
            </div>
         </div>
 <!-- Second Step -->
-<form role="form" action="" method="post" class="mt-25 mtx-0" (ngSubmit)="onSubmit(f)" #f="ngForm">
+<form role="form" class="mt-25 mtx-0" (ngSubmit)="onSubmit(f)" #f="ngForm">
  <div class="row setup-content-2">
   <div class="logininfobox">
       <h3 class="pl-0 my-4 lc_head"> Account Information </h3>
@@ -36,9 +36,7 @@
           <input  
               type="text" 
               placeholder="First Name" 
-              id="firstName" 
-              ngModel #firstName="ngModel" 
-              [ngModelOptions]="{updateOn: 'blur'}"
+              #firstName="ngModel" 
               [(ngModel)] = "objvendorDetails.logInInfo.firstName" 
               name = "firstName" 
               pattern="^[a-zA-Z]{1,}$"
@@ -55,10 +53,7 @@
               placeholder="Last Name"  
               [(ngModel)] = "objvendorDetails.logInInfo.lastName" 
               name = "lastName" 
-              id="lastName" 
-              ngModel 
               #lastName="ngModel" 
-              [ngModelOptions]="{updateOn: 'blur'}"
               required 
               pattern="^[a-zA-Z]{1,}$"
           />
@@ -71,20 +66,24 @@
           <input 
               type="text" 
               placeholder="Email" 
-              id="email" 
               name = "email" 
-              ngModel 
               #email="ngModel" 
-              [ngModelOptions]="{updateOn: 'blur'}"
-              autocomplete="username"
               [(ngModel)] = "objvendorDetails.contactInfo.email" 
-              required 
+              required
+              [ngClass]="{ 'is-invalid': email.errors && email.touched }"  
               pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$"
+              email
           />
           <label for="email">Email</label>
       </div>
       <div class="clearfix"></div>
-      <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">Email is required!</small>
+
+        <div *ngIf="email.invalid && (email.dirty || email.touched)"  class="form-text text-muted danger" >
+            <small *ngIf="email.errors.required"> Email is required </small>
+            <small *ngIf="email.errors.email"> Email must be a valid email address </small>
+        </div>
+
+      <!-- <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">Email is required!</small> -->
 
       <div class="field">
           <input 
@@ -92,10 +91,7 @@
               placeholder="Password" 
               [(ngModel)] = "objvendorDetails.logInInfo.password" 
               name = "password" 
-              id = "password" 
-              ngModel 
-              #password="ngModel" 
-              autocomplete="new-password"  
+              #password="ngModel"  
               [ngClass]="{ 'is-invalid': password.invalid }"
               required 
               minlength="6"
@@ -103,22 +99,15 @@
           />
           <label for="password">Password</label>
       </div>
-      <div *ngIf="password.invalid && (password.dirty || password.touched)"  class="form-text text-muted danger" >
-                  <div  class="form-text text-muted danger"  *ngIf="password.errors.required">
-                         Password is required.
-                  </div>
-                  <div  class="form-text text-muted danger"  *ngIf="password.errors.minlength">
-                          Password must be at least 6 characters!
-                  </div>
-      </div>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)"  class="form-text text-muted danger" >
+                <small *ngIf="password.errors.required"> Password is required. </small>
+                <small *ngIf="password.errors.minlength"> Password must be at least 6 characters! </small>
+        </div>
 
       <div class="field">
           <input 
               type="password" 
-              autocomplete="new-password"
-              id="confirmPassword" 
               placeholder="Confirm Password" 
-              ngModel 
               #confirmPassword="ngModel" 
               [(ngModel)] = "objvendorDetails.logInInfo.confirmPassword" 
               name = "confirmPassword" 
@@ -129,24 +118,18 @@
           />
           <label for="confirmPassword">Confirm Password</label>
       </div>
-      <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"  class="form-text text-muted danger" >
-                  <div  class="form-text text-muted danger"  *ngIf="confirmPassword.errors.required">
-                         Confirm Password is required.
-                  </div>
-                  <div  class="form-text text-muted danger"  *ngIf="confirmPassword.errors.minlength">
-                          Confirm Password must be at least 6 characters!
-                        </div>
-                  <small [hidden]="confirmPassword.valid || (confirmPassword.pristine && !f.submitted)" class="text-danger">
-                          Password mismatch
-                  </small>
-      </div>
+            <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"  class="form-text text-muted danger" >
+                  <small  *ngIf="confirmPassword.errors.required"> Confirm Password is required. </small>
+                  <small  *ngIf="confirmPassword.errors.minlength"> Confirm Password must be at least 6 characters! </small> <br>
+                  <small [hidden]="confirmPassword.valid || (confirmPassword.pristine)"> Password mismatch </small>
+            </div>
       <div class="field">
           <input  
               type="text"  
               id="phone"  
               placeholder="Phone" 
-              ngModel #phone="ngModel" 
-              [ngModelOptions]="{updateOn: 'blur'}"
+              #phone="ngModel"
+              (keypress)="keyPress($event)"  
               [(ngModel)] = "objvendorDetails.contactInfo.phone" 
               name = "phone" 
               required
@@ -156,7 +139,8 @@
           <label for="phone">Phone No</label>
       </div>
       <div class="clearfix"></div>
-       <small class="form-text text-muted danger" *ngIf="!phone.valid && (phone.dirty || phone.touched)">Phone is required!</small>
+       <!-- <small class="form-text text-muted danger" *ngIf="!phone.valid && (phone.dirty || phone.touched)">Phone is required!</small> -->
+       <small class="form-text text-muted danger">{{Phone_no}}</small>
   </div>
   <div class="col-sm-12 btnholder">
       <button class="btn btn-raised prevBtn-2 gradint_blue white signup_nextbtn btnborradius pull-left" type="button" [routerLink]="['/register/step1']">Previous</button>

@@ -926,7 +926,6 @@ export class LocationComponent implements OnInit {
     this.district =this.arra.filter(c=>c.countryId==this.address_modelfield.countryId)[0].districts
   }
   districtA(): void {
-    debugger;
    this.district =this.arra.filter(c=>c.countryId==this.address_modelfield.countryId)[0].districts;
    let selectedDist=this.district.filter(d=>d.districtId==this.dist_id);
    if(selectedDist==undefined){

@@ -14,7 +14,7 @@
                  <div class="card-header border_bottom_none card-header-warning card-header-icon">
                     <p class="card-category comp_top text-center"> Profile Completion</p>
                     
-                      <!-- <h1 *ngIf="vendor">{{vendor.contactPerson}}</h1> -->
+                    
 
                     <p class="card-category comp_topsubhead text-center">Complete the sections below to enable activation of your view storefront</p>
                  </div>
@@ -206,10 +206,7 @@
               <div class="card-body nopadd" style="overflow: hidden;">
                 <div class="col-sm-5 nopadd maxheight335px">
                    <div class="infoimgbox">
-                    <!-- <img [src] = "VendorDashboard_data_image "  alt="Profile picture" > -->
-                      <!-- <div *ngIf = "!VendorDashboard_data_image"> 
-                          <img src = "../../assets/img/store_noimg.jpg" alt="Profile picture" >
-                      </div> -->
+                  
                       <div > 
                           <img [src] = "VendorDashboard_data_image" alt="Profile picture" >
                       </div>
@@ -228,7 +225,7 @@
                         </div>
                       
                        
-                       <!-- <button class="photoedit" data-target="#camera" data-toggle="modal" type="button"><i class="material-icons">camera</i></button> -->
+                    
                     </div>
                     <div class="col-sm-10 col-9 blacktext nopadd pull-left">
                        <h2 class="titlehead"><strong>{{vendor.nameOfBusiness}}</strong></h2>
@@ -239,29 +236,19 @@
                           </div>
                           <div class="col-xs-8 nopadd edithovering" >
                           
-                            <!-- *ngIf = "vendor.vendorLocations > 0" -->
-                             <!-- <p data-target="#currentLocation" data-toggle="modal">{{currentLocation}}<br/>2 More Branches </p> -->
-                             <!-- <div  *ngFor='let c of vendor.vendorLocations | slice:0:1 ;let p=index'> -->
+  
                               <div *ngFor="let data of location_Array | slice:0:1;let i=index">
-                              <!-- <div >
-                                  <a routerLink="../location"  >
-                                  {{vendor.address}},
-                                  {{vendor.suburb.name}},
-                                  {{vendor.districts.name}},
-                                  {{vendor.country.countryName }}
-                                  </a>
-                                  <a *ngIf = "ct > 0"> {{ct}} more Location</a>
-                                </div>   -->
+
                                  <div >
                                   <a routerLink="../location"  >
-                                  {{data.address}},
-                                  {{data.suburb.name}},
-                                  {{data.districts.name}},
+                                  {{data.address}}
+                                  {{data.suburb.name}}
+                                  {{data.districts.name}}
                                   {{data.country.countryName }}
                                   </a>
                                   <a *ngIf = "ct > 0"> {{ct}} more Location</a>
                                 </div>  
-                                <!-- {{location_Array | json}} -->
+                       
                               </div>
                              <span  class="editbtn" routerLink="../location"> 
                               <span class="editbtn">
@@ -271,9 +258,7 @@
                           </div>
                        </div>
                        <div class="prolinkmob">
-                        <!-- <a routerLink="../PromoteBusiness" class="font11px bluelink">
-                        <i class="material-icons">assessment</i> <span>Promote Business</span></a><br/> -->
-                        <!-- <a routerLink="../statistics" class="font11px bluelink"><i class="material-icons">equalizer</i> <span>Business Insight</span></a> -->
+                     
                      </div>
                        <div class="clearfix"></div>
                        <div class="overhiddenmob" >
@@ -287,7 +272,7 @@
                                       
                                        <span *ngFor='let a of c.locationPhones | slice:0:1 '> 
                                           <span>
-                                                <!-- *ngIf = "a.isPrimary == false"  -->
+                                               
                                              {{a.phoneNumber}}
                                           </span>
                                        </span>  
@@ -320,14 +305,11 @@
                                 <a *ngFor='let c of vendor.vendorCategories| slice:0:1'>
                                     {{c.categories.categoryName }}
                                 </a>
-                                <!-- <a  *ngIf = "total_business_Services > 0" routerLink="../location" >
-                                 , {{total_business_Services}} more Categories                               
-                                 </a> -->
                               </span>
                               <br/>
                               <div class="clearfix"></div>
                               <div class="membershipbox">
-                               <!-- Membership Type: {{vendor.pricingPlan?.title}}  -->
+                               <!-- Membership Type:   -->
                                <span *ngIf="myplans.payFrequency == 1 && myplans.pricingPlanId == 1">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (6 Months)</span>
                                <span *ngIf="myplans.payFrequency == 2 && myplans.pricingPlanId == 1">Plan Name: <b>{{myplans?.pricingPlan.title}}</b> (6 Months)</span>
                                   <!--Free Basic-->
@@ -406,13 +388,7 @@
                                        Promote Business
                                     </a>
                               </div>
-                             <!--  <div class="col-sm-4">
-                                    <a routerLink="../statistics" class="text-muted mobilenone font11px sharelink">
-                                       <i class="material-icons">equalizer</i> 
-                                       <span>Business Insight</span>
-                                    </a>
-  
-                              </div> -->
+     
                               
                            </div>
                        <div class="clearfix"></div>
@@ -553,7 +529,7 @@
                             Call
                           </a>
 
-                       <!-- <button [routerLink] = "../vendor/eventlist">View All</button>					 -->
+                     
                      </div>
                    </div>
 
@@ -620,7 +596,6 @@
                              
                                   <i class="material-icons selectimg">check_circle</i>
                             
-                              <!-- {{images.type }} -->
                              
                               
                         </div>

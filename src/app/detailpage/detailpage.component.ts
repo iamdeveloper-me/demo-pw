@@ -33,6 +33,7 @@ export class DetailpageComponent implements OnInit {
       $("#Vediogallarypopup iframe").attr("src", $("#Vediogallarypopup iframe").attr("src"));
     });
     this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
+    console.log( this.vendorDetails )
     this.getSimilarVendors();
     this.vendorDetails.vendorLocations.reverse();
     this.vendorDetails.albums.forEach(element => {
@@ -43,9 +44,12 @@ export class DetailpageComponent implements OnInit {
     this.vendorDetails.albums.forEach(element => {
       this.portfolioAndAlbumImagesTotal += element.albumImages.length ? element.albumImages.length : 0;
     });
-    this.portfolioAndAlbumImagesTotal += this.vendorDetails.portfolio.length;
-    this.vendorDetails.portfolio.forEach(element => {
-      this.portfolioImages.push(element.files.path);
+   
+    this.portfolioAndAlbumImagesTotal += this.vendorDetails.portfolios.length;
+    this.vendorDetails.portfolios.forEach(element => {
+    
+      // this.portfolioImages.push(element.files.path);
+     this.portfolioImages.push(element.path);
     });
     
 
@@ -95,6 +99,7 @@ export class DetailpageComponent implements OnInit {
      
    this.masterservice.getSimilarVendors(obj).subscribe(res=>{
      this.similarVendors=res;
+     console.log( this.similarVendors)
    })
   }
 }

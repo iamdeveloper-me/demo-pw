@@ -63,7 +63,7 @@
 						<div class="col-sm-4 " *ngFor="let item of pagedItems">
 
 							<div class="card cardshadow" >
-								<img class="card-img-top img-fluid eventimg" [src]="item.files.path">
+								<img class="card-img-top img-fluid eventimg" *ngIf="item.files" [src]="item.files.path">
 								<div class="ribbon ribbon-top-right"><span>{{item.entry}}</span></div>
 								<div class="card-block text-center">
 									<div class="eventbtnholder">

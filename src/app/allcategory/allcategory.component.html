@@ -10,8 +10,8 @@
   </div>
   <div class="container mob_parallax mob_padd0">
     <div class="col-md-3 col-6 box_img"  *ngFor='let Popular of Popular_Wedding_array'>
-      <a (click) = "Categories_each(Popular)">
-        <img [src]="Popular.imagePath"  class="zoom_in">
+      <a (click) = "Categories_each(Popular,false,false)"  >
+        <img [src]="Popular.imagePath" *ngIf="Popular" class="zoom_in">
         <div class="tranparentlayer">
           <h5>{{Popular.categoryName}}</h5>
           <p>{{Popular.listingCount}} listing </p>
@@ -20,5 +20,4 @@
     </div>
   </div>
 </section>
-
 

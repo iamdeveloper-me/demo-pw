@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { SlidesOutputData } from 'ngx-owl-carousel-o';
 
 import{ratingStars} from '../ngservices/ratingstars';
+import { SearchresultComponent } from '../searchresult/searchresult.component';
 @Component({
   selector: 'app-vendorcard',
   templateUrl: './vendorcard.component.html',
@@ -108,6 +109,11 @@ export class VendorcardComponent implements OnInit {
     )
   }
   goToVendordetails(slide) {
+      let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
+      this.apiService.getData(url+'?id='+slide.vendorId).subscribe(res=>{
+        sessionStorage.setItem('vendorDetails',JSON.stringify(res));
+      this.router.navigate(['home/detailprofile',0]);
+    });
     this.router.navigate(['home/detailprofile/',slide.vendorId])
   }
   Categories_each(c,isAllSupplier,isDreamLocation){

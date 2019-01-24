@@ -3,7 +3,7 @@
   <div *ngFor='let list_banner_data of banner_data'>
     <div *ngFor='let list_banner_Images of list_banner_data.bannerImages'>
       <header class="masthead text-center text-white d-flex">
-        <img alt="close" class="homebanner webbanner" [src]="list_banner_Images.files.path">
+        <img alt="close" class="homebanner webbanner"   *ngIf="list_banner_Images" [src]="list_banner_Images.files.path">
         <img alt="close" class="homebanner mobilesidebanner" src="https://s3.us-east-2.amazonaws.com/prefect-image/wed.jpeg">
         <div class="container my-auto hombannertext">
           <div class="row heading_mob_mar">

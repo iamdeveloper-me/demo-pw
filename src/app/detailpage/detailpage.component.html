@@ -20,7 +20,7 @@
         <div id="detailpagecarousel" class="owl-carousel detailpagecarousel owl-loaded owl-drag">
           <div class="item" *ngFor='let i of sliderImgaes'>
             <a>
-              <img class="owl-lazy" [src]='i' alt="">
+              <img class="owl-lazy" [src]='i' *ngIf="i"  alt="">
             </a>
             <div class="namecontainer">Album Name</div>
             <div class="numcontainer">15/20</div>
@@ -38,11 +38,11 @@
 
 
         <div class="large_text text-center">
-          {{vendorDetails.nameOfBusiness}}
+          {{vendorDetails?.nameOfBusiness}}
         </div>
-        <div class="carousel_cat">{{vendorDetails.businessDetails}}</div>
+        <div class="carousel_cat">{{vendorDetails?.businessDetails}}</div>
         <div class="carousel_city text-center">
-          <i class="fa fa-map-marker" aria-hidden="true"></i> {{vendorDetails.suburb.name}}
+          <i class="fa fa-map-marker" aria-hidden="true"></i> {{vendorDetails?.suburb.name}}
         </div>
         <div class="vp_mainDetails_mini_rating text-center">
           <div class="large_subtext">
@@ -115,7 +115,7 @@
         </div>
         <div class="col-md-2 tikshow hidden-xs">
           <div class="large_text text-center">
-            {{vendorDetails.nameOfBusiness}}
+            {{vendorDetails?.nameOfBusiness}}
           </div>
           <div class="text-center pink">
             Starting Price: ₹ 1500
@@ -195,12 +195,12 @@
               <span class="vp_services_txt_span marriager_text_without_underline">
                 Speciality, Costs of Services $ Experienced </span>
             </div>
-            <div class="row servicerow" *ngFor='let service of  vendorDetails.businessServices'>
+            <div class="row servicerow" *ngFor='let service of  vendorDetails?.businessServices | slice:0:1'>
               <div class=" vp_services_txt_title headerWithoutTopBorder-0 large_subtext col-md-3"> 
-                {{service.serviceName}} ({{service.categoryName}})
+                {{service?.serviceName}} ({{service?.categoryName}})
               </div>
-              <div class="col-md-3">
-                  Starting Price {{service.customFields[0].fieldValue}}
+              <div class="col-md-3" *ngFor='let customF of  service.customFields  | slice:0:1'>
+                  Starting Price {{customF.fieldValue}}
               </div>
               
             </div>
@@ -288,14 +288,14 @@
           <span>({{portfolioAndAlbumImagesTotal}})</span>
           <div class="clearfix"></div>
           <div class="container row martop15px">
-            <div class="col-6 col-sm-3" *ngFor='let pi of vendorDetails.albums;let i=index' (click)='setLightboxImages(pi,$event)'
+            <div class="col-6 col-sm-3" *ngFor='let pi of vendorDetails?.albums;let i=index' (click)='setLightboxImages(pi,$event)'
               data-target="#albumgallarypopup" data-toggle="modal">
               <div class="thumbnail text-center" *ngIf='i<4'>
-                <img [src]='pi.albumImages[0].path' alt="...">
+                <!-- <img [src]='pi?.albumImages[0].path' alt="..."> -->
                 <div>
-                  {{pi.albumName}}
+                  {{pi?.albumName}}
                   <br />
-                  {{pi.albumImages.length}}
+                  <!-- {{pi.albumImages.length}} -->{{i}}
                   (Images)
                 </div>
               </div>
@@ -309,10 +309,10 @@
         </div>
         <div class="large_subtext">
           Vedio
-          <span>{{vendorDetails.vendorVideos?vendorDetails.vendorVideos.length:0}}</span>
+          <!-- <span>{{vendorDetails?.vendorVideos?vendorDetails.vendorVideos.length:0}}</span> -->
           <div class="clearfix"></div>
           <div class="container row martop15px">
-            <div class="col-6 col-sm-3" *ngFor='let video of vendorDetails.vendorVideos' data-target="#Vediogallarypopup" data-toggle="modal">
+            <div class="col-6 col-sm-3" *ngFor='let video of vendorDetails?.vendorVideos' data-target="#Vediogallarypopup" data-toggle="modal">
               <div class="thumbnail text-center">
                 <img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
                 <div>
@@ -335,7 +335,7 @@
               About Us
             </div>
             <div class="vp_about_txt_description ">
-              {{vendorDetails.businessDetails}}
+              {{vendorDetails?.businessDetails}}
               <div class="clearfix"></div>
               <div class="onlymobilesection">
                 <ul class="wed_me_social">
@@ -356,7 +356,7 @@
                   </li>
                 </ul>
 
-                <div class="">{{vendorDetails.suburb.name}}:</div>
+                <div class="">{{vendorDetails?.suburb.name}}:</div>
                 <div class="branchAddress"> New Plasiya, 143-D,AB Road,M.P </div>
                 <div class="" data-lattitude="19.012" data-longitude="72.822">View in Map </div>
 
@@ -470,13 +470,13 @@
       <div class="boxLightStyles hideShowMeNow box_section_light dealsection" id="deals">
         <div class="vp_review_txt_title large_subtext">Wedding Deals & Discount</div>
         <div class="row dealsinner">
-          <div class="col-sm-2 text-center dealhead pink" *ngIf='vendorDetails.discounts'>
-            {{vendorDetails.discounts.discount}}% {{vendorDetails.discounts.title}}
+          <div class="col-sm-2 text-center dealhead pink" *ngIf='vendorDetails?.discounts'>
+            {{vendorDetails?.discounts.discount}}% {{vendorDetails?.discounts.title}}
           </div>
-          <div class="col-sm-8" *ngIf='vendorDetails.discounts'>
-            <h1 class="pink">{{vendorDetails.discounts.title}}</h1>
+          <div class="col-sm-8" *ngIf='vendorDetails?.discounts'>
+            <h1 class="pink">{{vendorDetails?.discounts.title}}</h1>
             <p class="blue">
-              <strong>Discount</strong> {{vendorDetails.discounts.discount}}% </p>
+              <strong>Discount</strong> {{vendorDetails?.discounts.discount}}% </p>
           </div>
           <div class="col-sm-2">
             <button class="btn purple-gradient btntik borradius50per callbtn">
@@ -547,17 +547,22 @@
                     <div *ngFor='let simi_vendor of similarVendors' class="col-md-3 col-sm-3 mobpadd0">
                       <div class="mob_bot_mar">
                         <div class="item hover_effect">
-                          <img [src]='simi_vendor.profileImage' class="lazyOwl carousel_img tag_vendor_841 img-responsive">
+                          <img  *ngIf = "simi_vendor.profileImage != null" [src]='simi_vendor.profileImage' class="lazyOwl carousel_img tag_vendor_841 img-responsive">
+                          
+                          <img *ngIf = "simi_vendor.profileImage == null" src='../../assets/img/noImg.png' class="lazyOwl carousel_img tag_vendor_841 img-responsive">
 
                           <div class="carousel_content">
-                            <div class="carousel_cat_body">
+                            <div class="carousel_cat_body"  *ngFor='let pi_simi_vendor of simi_vendor.vendorCategories;let i=index' >
                               <span class="carousel_cat">
-                                {{simi_vendor.vendorCategories[0].categories.categoryName}}
+                              
+                             no category in
+
+                                {{pi_simi_vendor.categories.categoryName | json}}
                               </span>
                             </div>
 
                             <div class="carousel_title" *ngIf='simi_vendor.vendorLocations.districts'>
-                              {{simi_vendor.vendorLocations[0].districts.name}}
+                              {{simi_vendor?.vendorLocations[0].districts.name}}
                             </div>
                             <div class="carousel_city" *ngIf='simi_vendor.suburb'>
                               <i class="fa fa-map-marker" aria-hidden="true"></i> {{simi_vendor.suburb.name}}
@@ -593,25 +598,25 @@
             <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" />
           </div>
           <ul class="wed_me_social text-center">
-            <li *ngIf='vendorDetails.facebookURL'><a [href]='vendorDetails.facebookURL'>
+            <li *ngIf='vendorDetails?.facebookURL'><a src='vendorDetails?.facebookURL'>
                 <i class="fa fa-facebook" aria-hidden="true"></i>
               </a>
             </li>
-            <li *ngIf='vendorDetails.twitterURL'><a [href]='vendorDetails.twitterURL'>
+            <li *ngIf='vendorDetails?.twitterURL'><a src='vendorDetails?.twitterURL'>
                 <i class="fa fa-twitter" aria-hidden="true"></i>
               </a>
             </li>
-            <li *ngIf='vendorDetails.instalURL'>
-              <a [href]='vendorDetails.instalURL'>
+            <li *ngIf='vendorDetails?.instalURL'>
+              <a src='vendorDetails?.instalURL'>
                 <i class="fa fa-instagram" aria-hidden="true"></i>
               </a>
             </li>
           </ul>
           <div class="large_text text-center">
-            {{vendorDetails.nameOfBusiness}}
+            {{vendorDetails?.nameOfBusiness}}
           </div>
           <div class="carousel_city text-center">
-            <i class="fa fa-map-marker" aria-hidden="true"></i> {{vendorDetails.suburb.name}}
+            <i class="fa fa-map-marker" aria-hidden="true"></i> {{vendorDetails?.suburb.name}}
           </div>
           <div class="vp_mainDetails_mini_rating text-center">
             <div class="large_subtext">
@@ -623,7 +628,9 @@
               <span>3.0</span>
             </div>
           </div>
-          <div class="carousel_cat">{{vendorDetails.vendorCategories[0].categories.categoryName}}</div>
+          <div class="carousel_cat">
+            <!-- {{vendorDetails?.vendorCategories[0].categories?.categoryName}} -->
+          </div>
           <div class="clearfix"></div>
           <div class="col-sm-12">
             <div class="featurebtn row">
@@ -666,14 +673,20 @@
         <div class="left_box_section overviewsection startprice">
           <div class="vp_mainDetails_starting_price">
             <div class="large_subtext bob_pa_left text-center">
-              Starting Price: <span class="pink">{{vendorDetails.businessServices[0].customFields[0].fieldValue}}</span>
+              Starting Price: 
+              <span class="pink">
+                <!-- {{vendorDetails?.businessServices[0].customFields[0].fieldValue}} -->
+              </span>
             </div>
             <div class="clearfix"></div>
             <div class="detailtabclick detailpri">
               <table class="tabledesignwork">
-                <tr *ngFor='let bs of vendorDetails.businessServices'>
+                <tr *ngFor='let bs of vendorDetails?.businessServices'>
                   <th>{{bs.serviceName}}</th>
-                  <td>{{bs.customFields[0].displayText}} {{bs.customFields[0].fieldValue}}</td>
+                  <td>
+                    <!-- {{bs.customFields[0].displayText}} 
+                    {{bs.customFields[0].fieldValue}} -->
+                  </td>
                 </tr>
               </table>
             </div>
@@ -690,7 +703,7 @@
           <div class="large_subtext text-center  col-12">
             Branches
           </div>
-          <div class="branchrow row" *ngFor='let loc of vendorDetails.vendorLocations; let i=index'>
+          <div class="branchrow row" *ngFor='let loc of vendorDetails?.vendorLocations; let i=index'>
             <div class="text-center col-12">{{loc.address}}, {{loc.suburb.name}}: </div>
             <div class="clearfix"></div>
             <div class="branchAddress text-center col-12">
@@ -832,7 +845,6 @@
     </div>
   </div>
 
-
   <div class="modal fade" id="Vediogallarypopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -847,10 +859,6 @@
     </div>
   </div>
 
-
-
-
-
   <div class="modal fade" id="albumgallarypopup" #albumgallarypopup tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -862,7 +870,7 @@
           <div id="albumcarousel" class="owl-carousel owl-loaded owl-drag">
             <div class="item" *ngFor='let item of lightBoxImages'>
               <a>
-                <img class="owl-lazy" [src]="item+'?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'" alt=""></a>
+                <img class="owl-lazy" *ngIf="item" [src]="item+'?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'" alt=""></a>
               <div class="linkcontainer">
                 <button><i class="material-icons">bookmark_border</i></button>
                 <button><i class="material-icons">share</i></button>

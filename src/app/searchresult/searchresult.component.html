@@ -10,10 +10,10 @@
         <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
           <ng-container *ngFor="let slide of slidesStore">
             <ng-template carouselSlide="1" >
-              <div class="boxtikslide">
+              <div class="boxtikslide" (click)="goToPortfolioDetail(slide)" >
                 <div class="procard"> </div>
                 <!-- {{slide.profileImage }} -->
-                <img class="card-img-top" [src]="slide.profileImage | defaultImage:'https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg':true"/>
+                <img class="card-img-top" *ngIf = "slide" [src]="slide.profileImage | defaultImage:'https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg':true"/>
                 <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
                 <div class="card-body ">
                   <div class="text-center"> 
@@ -346,7 +346,7 @@
 	                <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
 
-                      <img class="group list-group-image" [src]='i.profileImage' alt="Card image cap">
+                      <img class="group list-group-image"  *ngIf = "i" [src]='i.profileImage' alt="Card image cap">
                       <span class="book_mark">
                         <i class="material-icons">bookmark_border</i>
                       </span>
@@ -397,7 +397,9 @@
                              {{i.averageRating}} <!--{{i.reviews}}  -->
                             <span style="color:red" [innerHTML]='ratingmodel.printStars(i.averageRating)'></span>
                           </span>
+
                           <span *ngIf='!i.averageRating>0'>
+
                             <span style="color:red">Not Yet Rated !</span>
                           </span>
                           </p>

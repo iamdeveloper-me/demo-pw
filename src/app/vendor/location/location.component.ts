@@ -664,6 +664,7 @@ export class LocationComponent implements OnInit {
      
       this.http.post(this.urlpost,jsonPost, { headers: headers }).subscribe((data) => {
         this.toastr.success(data.json().message);
+        this.week_dailog = false;
       },
         (error) => {
           console.log(error);
@@ -906,6 +907,7 @@ export class LocationComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
     this.http.post(this.urlpost, datapanel, { headers: headers }).subscribe((responce) => {
+      this.mapDailog = false;
       this.toastr.success(responce.statusText);
       if (responce.status == 200) {
         this.photo_ved_dailog = false;
@@ -919,11 +921,12 @@ export class LocationComponent implements OnInit {
   }
   }
   closeResult: string;
-
+ 
   country(): void {
     this.district =this.arra.filter(c=>c.countryId==this.address_modelfield.countryId)[0].districts
   }
   districtA(): void {
+    debugger;
    this.district =this.arra.filter(c=>c.countryId==this.address_modelfield.countryId)[0].districts;
    let selectedDist=this.district.filter(d=>d.districtId==this.dist_id);
    if(selectedDist==undefined){

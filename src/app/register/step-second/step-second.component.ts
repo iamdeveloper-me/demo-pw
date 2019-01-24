@@ -16,7 +16,7 @@ export class StepSecondComponent implements OnInit {
   city_id:any;
   sub_id:any;
   countryArray:string[];
-
+  Phone_no;
   objvendorDetails:VendorDetails;
   @ViewChild('x') public tooltip: NgbTooltip;
   public arra = new Array();public district = new Array();public suburb = new Array();
@@ -43,7 +43,7 @@ export class StepSecondComponent implements OnInit {
   localStorage.setItem('VednorDetails',JSON.stringify(this.objvendorDetails));
   this.cservice.GoToNextStep('/register/step3');
 }
-
+ 
     onSubmit(f) { 
 
    this.arra.forEach((element,pos) => {
@@ -108,4 +108,15 @@ annualPrice(users){
     var a = (monthlyPrice * (12 - noOfMonthFeeOff))/ 12 | number
     return number.toFixed(2).split(".")[1]
       }
+
+      keyPress(event: any) {
+        const pattern = /[0-9]/;
+        let inputChar = String.fromCharCode(event.charCode);
+        if (event.keyCode != 8 && !pattern.test(inputChar)) {
+          event.preventDefault();
+          this.Phone_no = "Enter a valid number!";
+        }else{  this.Phone_no = " "}
+      }
+
+
 }

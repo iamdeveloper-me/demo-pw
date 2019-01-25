@@ -220,7 +220,7 @@
             </li>
           </ul> -->
           <ul style="list-style-type:none" *ngIf='!showALlCategories'>
-              <li style="cursor:pointer" (click)='showHideCategories(-1)'>All Categories</li>
+              <li style="cursor:pointer" >All Categories</li> <!--(click)='showHideCategories(-1)'-->
               <li>
                  <span> {{SelectedCategory?SelectedCategory.categoryName:""}}</span>
               </li>
@@ -315,20 +315,20 @@
                  <div class="funkyradio">
                     <div class="funkyradio-info">
                       <label>
-                        <input type="checkbox" name="checkbox" id="any" (change)='getSearchFilterResult()'/>
+                        <input type="checkbox" name="checkbox" id="any" (change)='setFilterOptions(6,"any")'/>
                         Any
                     </label>
                     </div>
                     <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="star2" (change)='getSearchFilterResult()'/>
+                      <input type="checkbox" name="checkbox" id="star2" (change)='setFilterOptions(6,"2")'/>
                     <label>2.0+</label>
                     </div>
                     <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="star3" (change)='getSearchFilterResult()'/>
+                      <input type="checkbox" name="checkbox" id="star3" (change)='setFilterOptions(6,"3")'/>
                     <label> 3.0+</label>
                     </div>
                     <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="star4" (change)='getSearchFilterResult()'/>
+                      <input type="checkbox" name="checkbox" id="star4" (change)='setFilterOptions(6,"4")'/>
                     <label> 4.0+</label>
                     </div>
                   </div>

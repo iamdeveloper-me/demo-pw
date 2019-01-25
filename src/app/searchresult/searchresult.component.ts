@@ -215,7 +215,6 @@ export class SearchresultComponent implements OnInit {
   }
   setFilterOptions(filterType: optionTypes,FilterValue){
     this.collection=[];
-    console.log(FilterValue);
     switch(filterType){
       case 1: // Category
       this.objSearchlistvm.categoryId=[];
@@ -229,10 +228,11 @@ export class SearchresultComponent implements OnInit {
       case 4: // custom Field Id
       this.objSearchlistvm.customsFields=[];
       FilterValue.isSelect?false:true;break;
-     // this.filters.filters.filter(f=>f.customFieldId===FilterValue)[0].isSelect?false:true;break;
       case 5:
-      debugger;
       FilterValue.isSelect?false:true;break;
+      case 6:
+      this.objSearchlistvm.rating = FilterValue
+      break;
     }
     if(filterType!==4){ this.paginate(this.objSearchFilter.page)};
   }

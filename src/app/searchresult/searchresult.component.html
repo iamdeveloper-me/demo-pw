@@ -279,14 +279,14 @@
           <div *ngIf='filters'>
           <div class="funkyradio" *ngIf='filters.filters'>  
             <div class="funkyradio-info" style="border-bottom:1px;border-bottom-style:inset;border-bottom-color:gray" *ngFor='let ff of filters.filters'>
-              <input type="checkbox" name="checkbox" id="{{ff.name}}" (change)='setFilterOptions(4,ff.customfieldId)' [(ngModel)]='ff.isSelect'/> 
+              <input type="checkbox" name="checkbox" id="{{ff.name}}" (change)='setFilterOptions(4,ff.customFieldId)' [(ngModel)]='ff.isSelect'/> 
                 <label for="{{ff.name}}">
                    <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
                   {{ff.name}} 
                 </label>
                 <div *ngFor='let fc of ff.customFieldOptionList'>
                   <div *ngIf='ff.isSelect'>
-                  <input type="checkbox" class="tikmik" name="checkbox" [(ngModel)]='fc.isSelect'(change)='getSearchFilterResult()'/>
+                  <input type="checkbox" class="tikmik" name="checkbox" [(ngModel)]='fc.isSelect'(change)='setFilterOptions(5,fc)'/>
                     {{fc.displayText}}
                   </div>  
                 </div>

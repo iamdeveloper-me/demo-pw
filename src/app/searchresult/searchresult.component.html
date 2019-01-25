@@ -147,7 +147,7 @@
 							<div class="cityscroll22">
                   <div class="funkyradio" style="display:none">
                     <div class="funkyradio-info" *ngFor='let l of locations| custompipe:locationFilterParam'>
-                      <input type="checkbox" id='{{l.name}}' [checked]="l.isSelect" (change)='getSearchFilterResult()' [(ngModel)]='l.isSelect'/>
+                      <input type="checkbox" id='{{l.name}}' [checked]="l.isSelect" (change)='setFilterOptions(3,l.districtId)' [(ngModel)]='l.isSelect'/>
                         <label for='{{l.name}}'><i class="material-icons">location_on</i> {{l.name}}</label>
                       </div>
                   </div>
@@ -176,7 +176,7 @@
                  
                   <div class="funkyradio">
                     <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" (change)='getSearchFilterResult()' id="check1"/>
+                      <input type="checkbox" name="checkbox" (change)='setFilterOptions(4,"50000")' id="check1"/>
                       <label>< 50000</label>  
                     </div>
                   </div>
@@ -249,7 +249,7 @@
           <div class="funkyradio" *ngIf='filters'>  
             <div class="funkyradio-info" *ngFor='let f of filters.services'>
 
-             <input type="checkbox" (change)='getSearchFilterResult()' [(ngModel)]='f.isSelect' name="checkbox"  id="{{f.serviceName}}"/>
+             <input type="checkbox" (change)='setFilterOptions(2,f.servicesId)' [(ngModel)]='f.isSelect' name="checkbox"  id="{{f.serviceName}}"/>
                 <label for="{{f.serviceName}}"> <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
                 <b>{{f.serviceName}} </b>  
               </label>
@@ -279,7 +279,7 @@
           <div *ngIf='filters'>
           <div class="funkyradio" *ngIf='filters.filters'>  
             <div class="funkyradio-info" style="border-bottom:1px;border-bottom-style:inset;border-bottom-color:gray" *ngFor='let ff of filters.filters'>
-              <input type="checkbox" name="checkbox" id="{{ff.name}}" (change)='getSearchFilterResult()' [(ngModel)]='ff.isSelect'/> 
+              <input type="checkbox" name="checkbox" id="{{ff.name}}" (change)='setFilterOptions(4,ff.customfieldId)' [(ngModel)]='ff.isSelect'/> 
                 <label for="{{ff.name}}">
                    <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
                   {{ff.name}} 

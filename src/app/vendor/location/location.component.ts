@@ -81,6 +81,7 @@ export class LocationComponent implements OnInit {
   data;
   dist_id;
   m;
+  districts;
   enable = true;
   modelfield: any = { mobile: "" };
   locationPhoneId = 0;
@@ -926,7 +927,10 @@ export class LocationComponent implements OnInit {
     this.district =this.arra.filter(c=>c.countryId==this.address_modelfield.countryId)[0].districts
   }
   districtA(): void {
-   this.district =this.arra.filter(c=>c.countryId==this.address_modelfield.countryId)[0].districts;
+   this.district =this.arra.filter(c=>c.countryId==this.address_modelfield.countryId)[0]
+   console.log(this.arra)
+   
+   //.districts;
    let selectedDist=this.district.filter(d=>d.districtId==this.dist_id);
    if(selectedDist==undefined){
      this.ele_dist.nativeElement.value='-1';

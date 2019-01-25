@@ -22,182 +22,181 @@
             <div class="tab-content nopadd">
                 <div id="home" class="tab-pane fade in active">
                     <section id="user-profile"> 
-                            <div class="custom-form col-sm-4" *ngFor="let data of location_Array;let i=index"  >
-                                <div *ngIf='i==0'>
-                                    <div class="card martop10px" >
-                                        <div class="col-sm-12">
-                                            <h4 class="mainhead" *ngIf="data.isPrimary == false"  > Secondary </h4>
-                                            <h4 class="mainhead" *ngIf="data.isPrimary == true"  > Main Branch  </h4>
-                                        
-                                            <div class="switbtn" title="A little break from work? Enable this option to turn off your profile visibility temporarily to users.">
-                                                <ui-switch 
-                                                [(ngModel)]="data.isActive" 
-                                                id="{{i}} " 
-                                                name="isActive"
-                                                (click) = "isActive(data.isActive,data)"></ui-switch>
-                                                <span class="font10px">Vacation Mode</span>
-                                            </div>
-                                            <!--(change) = "data.fbAvailable  = !data.fbAvailable"  -->
-                                            
+                        <div class="custom-form col-sm-4" *ngFor="let data of location_Array;let i=index"  >
+                            <div *ngIf='i==0'>
+                                <div class="card martop10px" >
+                                    <div class="col-sm-12">
+                                        <h4 class="mainhead" *ngIf="data.isPrimary == false"  > Secondary </h4>
+                                        <h4 class="mainhead" *ngIf="data.isPrimary == true"  > Main Branch  </h4>
+                                    
+                                        <div class="switbtn" title="A little break from work? Enable this option to turn off your profile visibility temporarily to users.">
+                                            <ui-switch 
+                                            [(ngModel)]="data.isActive" 
+                                            id="{{i}} " 
+                                            name="isActive"
+                                            (click) = "isActive(data.isActive,data)"></ui-switch>
+                                            <span class="font10px">Vacation Mode</span>
                                         </div>
-                                        <div class="card-body">
-                                            <div class="text-center bg-form col-sm-12" (click)="openModel(data)"> 
-                                                <div class="img-section">
-                                                        <agm-map [(latitude)]="data.lat" [(longitude)]="data.long"  [disableDefaultUI]="true" [zoomControl]="true" [zoom]="15" >
-                                                                <agm-marker [(latitude)]="data.lat" [(longitude)]="data.long" ></agm-marker>
-                                                        </agm-map>
-                                                    <div class="img_overlay" style="cursor:pointer" (click)="OpenmapDailog(data); " >
-                                                        <div class="col-lg-12 col-md-12 pad_left_0px whitetext">
-                                                               <span> Edit Map</span>
-                                                            <button type="button" class="btn edit_btn1" >
-                                                                <i class="material-icons">edit</i>
-                                                            </button>
-                                                        </div>
+                                        <!--(change) = "data.fbAvailable  = !data.fbAvailable"  -->
+                                        
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="text-center bg-form col-sm-12" (click)="openModel(data)"> 
+                                            <div class="img-section">
+                                                    <agm-map [(latitude)]="data.lat" [(longitude)]="data.long"  [disableDefaultUI]="true" [zoomControl]="true" [zoom]="15" >
+                                                            <agm-marker [(latitude)]="data.lat" [(longitude)]="data.long" ></agm-marker>
+                                                    </agm-map>
+                                                <div class="img_overlay" style="cursor:pointer" (click)="OpenmapDailog(data); " >
+                                                    <div class="col-lg-12 col-md-12 pad_left_0px whitetext">
+                                                            <span> Edit Map</span>
+                                                        <button type="button" class="btn edit_btn1" >
+                                                            <i class="material-icons">edit</i>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 text_left">
-                                                    <h1 class="branchhead">Business Address</h1>
-                                                <div class=" nopadd weekboxinput">
-                                                    <div class="col-sm-12  edit_hide" id="address-function"   (click)="openModel(data); photo_ved_dailog = true" >
-                                                        <span class="acce_time1 col-sm-1 col-1">
-                                                <i  class="material-icons">location_on</i>
-                                                </span>
-                                                        <div class="col-sm-10 col-11 minheight130px" >
-                                                                <div> {{data?.country?.countryName }} </div>
-                                                                <div> {{data?.districts?.name}} </div>
-                                                                <div> {{data?.suburb?.name}}   </div>
-                                                                <div> {{data?.address}}</div>
-                                                                <div *ngIf='data?.postalCode'>{{data?.postalCode}}</div>
-                                                                <div *ngIf='!data.postalCode' style='color:gray;font-style: italic;'> No Postal Code</div>
-                                                            <i class="material-icons edit_btn">edit</i>
-                                                        </div>
+                                        </div>
+                                        <div class="col-sm-12 text_left">
+                                                <h1 class="branchhead">Business Address</h1>
+                                            <div class=" nopadd weekboxinput">
+                                                <div class="col-sm-12  edit_hide" id="address-function"   (click)="openModel(data); photo_ved_dailog = true" >
+                                                    <span class="acce_time1 col-sm-1 col-1">
+                                            <i  class="material-icons">location_on</i>
+                                            </span>
+                                                    <div class="col-sm-10 col-11 minheight130px" >
+                                                            <div> {{data?.country?.countryName }} </div>
+                                                            <div> {{data?.districts?.name}} </div>
+                                                            <div> {{data?.suburb?.name}}   </div>
+                                                            <div> {{data?.address}}</div>
+                                                            <div *ngIf='data?.postalCode'>{{data?.postalCode}}</div>
+                                                            <div *ngIf='!data.postalCode' style='color:gray;font-style: italic;'> No Postal Code</div>
+                                                        <i class="material-icons edit_btn">edit</i>
                                                     </div>
-                                                    <div class="clearfix"></div>
                                                 </div>
+                                                <div class="clearfix"></div>
                                             </div>
-                                            <div class="col-lg-12 text_left phone_icon1">
-                                                    <h1 class="branchhead">Business Contact</h1>
-                                                <div class=" nopadd weekboxinput">
-                                                    <div class="col-lg-12 col-md-12 edit_hide minphoneheight"  (click)="openphone(data)">
-                                                                <span class="acce_time1 col-1">
-                                                                <i  class="material-icons" >local_phone</i> 
+                                        </div>
+                                        <div class="col-lg-12 text_left phone_icon1">
+                                                <h1 class="branchhead">Business Contact</h1>
+                                            <div class=" nopadd weekboxinput">
+                                                <div class="col-lg-12 col-md-12 edit_hide minphoneheight"  (click)="openphone(data)">
+                                                            <span class="acce_time1 col-1">
+                                                            <i  class="material-icons" >local_phone</i> 
+                                                            </span>
+                                                            <div class="col-sm-10 col-11 minheight30px" >
+                                                                    <span [class.notAvailable]='data.str_businessPhone==="No Business Phone"'>
+                                                                    {{data.str_businessPhone}}
                                                                 </span>
-                                                                <div class="col-sm-10 col-11 minheight30px" >
-                                                                        <span [class.notAvailable]='data.str_businessPhone==="No Business Phone"'>
-                                                                        {{data.str_businessPhone}}
-                                                                    </span>
-                                                                </div>
-                                                                <div class="col-sm-12 martikset"></div>
-                                                                <span class="acce_time1 col-1">
-                                                                <i class="material-icons">phone_iphone</i>
-                                                                </span> 
-                                                                <div class="col-sm-10 col-11 minheight30px" >
-                                                                    <span [class.notAvailable]='data.str_businessMobile==="No Business Mobile"'>
-                                                                    {{data.str_businessMobile}}
-                                                                    </span>
-                                                                </div> 
-                                                    </div>
+                                                            </div>
+                                                            <div class="col-sm-12 martikset"></div>
+                                                            <span class="acce_time1 col-1">
+                                                            <i class="material-icons">phone_iphone</i>
+                                                            </span> 
+                                                            <div class="col-sm-10 col-11 minheight30px" >
+                                                                <span [class.notAvailable]='data.str_businessMobile==="No Business Mobile"'>
+                                                                {{data.str_businessMobile}}
+                                                                </span>
+                                                            </div> 
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 text_left">
-                                                    <h1 class="branchhead">Trading Hours</h1>
-                                                <div class="edit_hide paddtop15px bornone">
-                                                    <span class="acce_time1 col-1">
-                                                <i  class="material-icons">access_time</i>
-                                                </span>
-                                                    <div class="col-sm-10 col-11 nopadd weekboxinput1" (click)="openweek(data)">
+                                        </div>
+                                        <div class="col-sm-12 text_left">
+                                                <h1 class="branchhead">Trading Hours</h1>
+                                            <div class="edit_hide paddtop15px bornone">
+                                                <span class="acce_time1 col-1">
+                                            <i  class="material-icons">access_time</i>
+                                            </span>
+                                                <div class="col-sm-10 col-11 nopadd weekboxinput1" (click)="openweek(data)">
 
-                                                        <div class="col-sm-12 nopadd weekboxinput3">
-                                                            
-                                                            <div class="col-sm-12 nopadd">
-                                                                <div class="col-sm-4 col-xs-5-mob nopadd font14px">
-                                                                    Monday
-                                                                </div>
-                                                                <div class="col-sm-8 col-xs-7-mob nopadd"  *ngIf = "data.isMondayOpen == true ">
-                                                                    {{data.mondayOpen}} {{'-'+data.mondayClose==null?'':data.mondayClose}}
-                                                                </div>
-                                                                <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isMondayOpen == false ">
-                                                                        closed
-                                                                      
-                    
-                                                                </div>
+                                                    <div class="col-sm-12 nopadd weekboxinput3">
+                                                        
+                                                        <div class="col-sm-12 nopadd">
+                                                            <div class="col-sm-4 col-xs-5-mob nopadd font14px">
+                                                                Monday
                                                             </div>
-                                                            <div class="clearfix"></div>
-                                                            <div class="col-sm-12 nopadd">
-                                                                <div class="col-sm-4 col-xs-5-mob nopadd font14px">
-                                                                    Tuesday
-                                                                </div>
-                                                                <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isTuesdayOpen == true ">
-                                                                    {{data.tuesdayOpen}}{{'-'+data.tuesdayClose==null?'':data.tuesdayClose}}
-                                                                </div>
-                                                                <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isTuesdayOpen == false ">
-                                                                        closed
-                                                                   
-                                                                </div>
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd"  *ngIf = "data.isMondayOpen == true ">
+                                                                {{data.mondayOpen}} {{'-'+data.mondayClose==null?'':data.mondayClose}}
                                                             </div>
-                                                            <div class="clearfix"></div>
-                                                            <div class="col-sm-12 nopadd">
-                                                                <div class="col-sm-4 col-xs-5-mob nopadd font14px">
-                                                                    Wednesday
-                                                                </div>
-                                                                <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isWednesdayOpen == true ">
-                                                                    {{data.wednesdayOpen}} {{'-'+data.wednesdayClose==null?'':data.wednesdayClose}}
-                                                                </div>
-                                                                <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isWednesdayOpen == false ">
-                                                                        closed
-                                                                    </div>
-                                                            </div>
-                                                            <div class="clearfix"></div>
-                                                            <div class="col-sm-12 nopadd">
-                                                                <div class="col-sm-4 col-xs-5-mob nopadd font14px">
-                                                                    Thursday
-                                                                </div>
-                                                                <div class="col-sm-8 col-xs-7-mob nopadd"  *ngIf = "data.isThursdayOpen == true ">
-                                                                    {{data.thursdayOpen}}  {{'-'+data.thursdayClose==null?'':data.thursdayClose}}
-                                                                </div>
-                                                                <div class="col-sm-8 col-xs-7-mob nopadd"  *ngIf = "data.isThursdayOpen == false ">
-                                                                        closed
-                                                                    </div>
-                                                            </div>
-                                                            <div class="clearfix"></div>
-                                                            <div class="col-sm-12 nopadd">
-                                                                <div class="col-sm-4 col-xs-5-mob nopadd font14px">
-                                                                    Friday
-                                                                </div>
-                                                                <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isFridayOpen == true ">
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isMondayOpen == false ">
+                                                                    closed
                                                                     
-                                                                    {{data.fridayOpen}} {{'-'+data.fridayClose===null?'':data.fridayClose}}
-                                                                </div>
-                                                                <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isFridayOpen == false ">
-                                                                        closed
-                                                                    </div>
+                
                                                             </div>
-                                                            <div class="clearfix"></div>
-                                                            <div class="col-sm-12 nopadd">
-                                                                <div class="col-sm-4 col-xs-5-mob nopadd font14px">
-                                                                    Saturday
-                                                                </div>
-                                                                <div class="col-sm-8 col-xs-7-mob nopadd"  *ngIf = "data.isSaturdayOpen == true ">
-                                                                    {{data.saturdayOpen}} {{'-'+data.saturdayClose==null?'':data.saturdayClose}}
-                                                                </div>
-                                                                <div class="col-sm-8 col-xs-7-mob nopadd"  *ngIf = "data.isSaturdayOpen == false ">
-                                                                        closed
-                                                                    </div>
-                                                            </div>
-                                                            <div class="clearfix"></div>
-                                                            <div class="col-sm-4 col-xs-5-mob nopadd font14px">Sunday </div>
-                                                            <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isSundayOpen == true ">
-                                                                {{data.sundayOpen}} {{'-'+data.sundayClose==null?'':data.sundayClose}}
-                                                                <i class="material-icons edit_btn1">edit</i>
-
-                                                            </div>
-                                                            <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isSundayOpen == false ">
-                                                                   closed
-                                                            </div>
-
-                                                            <div class="clearfix"></div>
                                                         </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="col-sm-12 nopadd">
+                                                            <div class="col-sm-4 col-xs-5-mob nopadd font14px">
+                                                                Tuesday
+                                                            </div>
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isTuesdayOpen == true ">
+                                                                {{data.tuesdayOpen}}{{'-'+data.tuesdayClose==null?'':data.tuesdayClose}}
+                                                            </div>
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isTuesdayOpen == false ">
+                                                                    closed
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="col-sm-12 nopadd">
+                                                            <div class="col-sm-4 col-xs-5-mob nopadd font14px">
+                                                                Wednesday
+                                                            </div>
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isWednesdayOpen == true ">
+                                                                {{data.wednesdayOpen}} {{'-'+data.wednesdayClose==null?'':data.wednesdayClose}}
+                                                            </div>
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isWednesdayOpen == false ">
+                                                                    closed
+                                                                </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="col-sm-12 nopadd">
+                                                            <div class="col-sm-4 col-xs-5-mob nopadd font14px">
+                                                                Thursday
+                                                            </div>
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd"  *ngIf = "data.isThursdayOpen == true ">
+                                                                {{data.thursdayOpen}}  {{'-'+data.thursdayClose==null?'':data.thursdayClose}}
+                                                            </div>
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd"  *ngIf = "data.isThursdayOpen == false ">
+                                                                    closed
+                                                                </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="col-sm-12 nopadd">
+                                                            <div class="col-sm-4 col-xs-5-mob nopadd font14px">
+                                                                Friday
+                                                            </div>
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isFridayOpen == true ">
+                                                                
+                                                                {{data.fridayOpen}} {{'-'+data.fridayClose===null?'':data.fridayClose}}
+                                                            </div>
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isFridayOpen == false ">
+                                                                    closed
+                                                                </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="col-sm-12 nopadd">
+                                                            <div class="col-sm-4 col-xs-5-mob nopadd font14px">
+                                                                Saturday
+                                                            </div>
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd"  *ngIf = "data.isSaturdayOpen == true ">
+                                                                {{data.saturdayOpen}} {{'-'+data.saturdayClose==null?'':data.saturdayClose}}
+                                                            </div>
+                                                            <div class="col-sm-8 col-xs-7-mob nopadd"  *ngIf = "data.isSaturdayOpen == false ">
+                                                                    closed
+                                                                </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="col-sm-4 col-xs-5-mob nopadd font14px">Sunday </div>
+                                                        <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isSundayOpen == true ">
+                                                            {{data.sundayOpen}} {{'-'+data.sundayClose==null?'':data.sundayClose}}
+                                                            <i class="material-icons edit_btn1">edit</i>
+
+                                                        </div>
+                                                        <div class="col-sm-8 col-xs-7-mob nopadd" *ngIf = "data.isSundayOpen == false ">
+                                                                closed
+                                                        </div>
+
+                                                        <div class="clearfix"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -205,17 +204,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mobdisplay"></div>
-                            <div class="col-sm-4">
-                                        <div class="card martop10px">
-                                            <div class="text-center bg-form col-sm-12 addlocationbox">
-                                                <i class="material-icons font80px">  add_location </i>
-                                                <div>Have more business branches?</div>
-                                                
-                                                <button (click)="checkPlanForAddingLocation()"  type="button" class="martopbot15px borderbtnonly"> Add New Location </button>
-                                            </div>
-                                        </div>
+                        </div>
+                        <div class="mobdisplay"></div>
+                        <div class="col-sm-4">
+                            <div class="card martop10px">
+                                <div class="text-center bg-form col-sm-12 addlocationbox">
+                                    <i class="material-icons font80px">  add_location </i>
+                                    <div>Have more business branches?</div>
+                                    
+                                    <button (click)="checkPlanForAddingLocation()"  type="button" class="martopbot15px borderbtnonly"> Add New Location </button>
+                                </div>
                             </div>
+                        </div>
                     </section>
                 </div>
                 <div id="menu1" class="tab-pane fade">

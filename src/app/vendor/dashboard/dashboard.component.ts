@@ -80,21 +80,8 @@ export class DashboardComponent implements OnInit {
 
       this.apiService.getData(this.apiService.serverPath+'Supplier/mylocations').subscribe(
       data => {
-        debugger;
+        // debugger;
                 this.location_Array = data;
-                let temp_locationArray = this.location_Array.filter(l=>l.data.address!==null);
-                this.location_Array.forEach(element => {
-                  if(element.data.address!=null){
-                    element.data.address?element.data.address+' ,':'' ;
-                  }
-                  if(element.data.suburb.name!=null){
-                    element.data.suburb.name?element.data.suburb.name+' ,':'' ;
-                  }
-                  if(element.data.districts.name!=null){
-                    element.data.districts.name?element.data.districts.name+ ',':'' ;
-                  }
-                  
-                });
                 this.location_Array_length = this.location_Array.length;
                 this.location_Array.sort(p=>p.isPrimary).reverse();
                 this.location_Array[0].locationPhones.reverse();
@@ -187,23 +174,23 @@ export class DashboardComponent implements OnInit {
             $("div").removeClass( "modal-backdrop"); 
             $("body").css({ 'padding-right' : '' });
           }
-          var acc = document.getElementsByClassName("accordion");
-          var i;
-          for (i = 0; i < acc.length; i++) {
-              acc[i].addEventListener("click", function() {
-                  /* Toggle between adding and removing the "active" class,
-                  to highlight the button that controls the panel */
-                  this.classList.toggle("active");
+         // var acc = document.getElementsByClassName("accordion");
+        //  var i;
+          // for (i = 0; i < acc.length; i++) {
+          //     acc[i].addEventListener("click", function() {
+          //         /* Toggle between adding and removing the "active" class,
+          //         to highlight the button that controls the panel */
+          //         this.classList.toggle("active");
 
-                  /* Toggle between hiding and showing the active panel */
-                  var panel = this.nextElementSibling;
-                  if (panel.style.display === "block") {
-                      panel.style.display = "none";
-                  } else {
-                      panel.style.display = "block";
-                  }
-              });
-          }
+          //         /* Toggle between hiding and showing the active panel */
+          //         var panel = this.nextElementSibling;
+          //         if (panel.style.display === "block") {
+          //             panel.style.display = "none";
+          //         } else {
+          //             panel.style.display = "block";
+          //         }
+          //     });
+          // }
         }
         //ngOnInit End
         memberShip(){

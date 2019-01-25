@@ -3,20 +3,11 @@ import { CropperSettings, ImageCropperComponent } from 'ng2-img-cropper';
 import { Component, OnInit ,Input , ViewChild, NgZone, ElementRef, EventEmitter, Output,} from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
-import { NgForm } from '@angular/forms'
 import 'rxjs/add/operator/delay';
-import { FormControl, FormGroup, Validators} from '@angular/forms';
-import { isValid } from 'date-fns';
-import { NavemenuComponent } from '../navemenu/navemenu.component';
-import { LoginServiceService } from 'app/shared/service/login-service.service';
-import { Router } from '@angular/router';
+import { FormGroup} from '@angular/forms';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-
-import {BusinessService} from '../../ngservices/business.service';
-
 import swal from 'sweetalert2';
-import { viewClassName } from '@angular/compiler';
 import { apiService } from '../../shared/service/api.service';
 @Component({
   selector: 'app-business-info',
@@ -25,10 +16,6 @@ import { apiService } from '../../shared/service/api.service';
 })
 
 export class BusinessInfoComponent implements OnInit {
-
-
-  // businessInfoObj = new BusinessInfo()
-
   @Output() valueChange = new EventEmitter();
   @ViewChild('businessDetails') businessDetails: ElementRef;
   @ViewChild('nameOfBusiness') nameOfBusiness: ElementRef;
@@ -39,6 +26,8 @@ export class BusinessInfoComponent implements OnInit {
   @ViewChild('pwUrl') pwUrl:ElementRef;
   @ViewChild('x') public tooltip: NgbTooltip;
   dialogname;
+  progressPercentage:number = 0;
+  total;
   facebookDailog = false;
   twitterDailog = false;
   instagramDailog  = false;
@@ -49,19 +38,7 @@ export class BusinessInfoComponent implements OnInit {
   BusinessDailog = false;
   progress = false;
   cropperupload =true;
-  httpHeader: Headers;
-  nodata = '';
-  Description;
-  twitter;
-  instagram;
   progress_bar:boolean = false;
-  progressPercentage:number = 0
-
-  google;
-  total;
-  Businesname;
-  perfectWedding;
-  facebook;
   isValidFbUrl = false;
   disabletxtFburl=true;
   isVaidTwUrl = false;
@@ -72,12 +49,7 @@ export class BusinessInfoComponent implements OnInit {
   disabletxtInstaUrl=true;
   isValidOtherUrl=false;
   disabletxtOtherUrl=true;
-
   private uploadimage: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/FilesUploader/FileUploader';
-  private url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessinfo'
-
-  private profileurl: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile'
-
   vendor: any = { nameOfBusiness: '',
     businessDetails: '',
     contactPerson: '',
@@ -89,16 +61,8 @@ export class BusinessInfoComponent implements OnInit {
     files:{path:''}
   };
   modelfield: any = {};
-  primarylocation:any = {};
-  countryArray:string[];
   imagee:any;
-  Defaultimage1 = true;
- 
   fileid;
-  m;
-  croper1 = false;
-  defaimage = true;
-  geocoder:any;
   cropperSettings: CropperSettings;
   updatefield =    { 
                       title: "",
@@ -132,13 +96,12 @@ export class BusinessInfoComponent implements OnInit {
                       isThursdayOpen:"",
                       isTuesdayOpen:  "",
                       isWednesdayOpen:"",
-                      }
+                    }
   @ViewChild('e') validationForm: FormGroup;
   data: any;
   @ViewChild('cropper', undefined)
   cropper: ImageCropperComponent;
   fileChangeListener($event) {
-  
     var image: any = new Image();
     var file: File = $event.target.files[0];
     var myReader: FileReader = new FileReader();
@@ -146,25 +109,23 @@ export class BusinessInfoComponent implements OnInit {
     myReader.onloadend = function (loadEvent: any) {
       image.src = loadEvent.target.result;
       that.cropper.setImage(image);
-
     };
-
     myReader.readAsDataURL(file);
   }
   showSweetAlert(){
     swal({
-      title: "Are you sure?",
-  text: "You will not be able to recover this imaginary file!",
-  type: "warning",
-  showCancelButton: true,
-  confirmButtonClass: "btn-danger",
-  confirmButtonText: "Yes, delete it!",
-  cancelButtonText: "No, cancel plx!",
-   }).then((res)=>{
+          title: "Are you sure?",
+          text: "You will not be able to recover this imaginary file!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonClass: "btn-danger",
+          confirmButtonText: "Yes, delete it!",
+          cancelButtonText: "No, cancel plx!",
+    }).then((res)=>{
      alert(JSON.stringify(res));
-   },error=>{
+    },error=>{
     alert(JSON.stringify(error));
-   })
+    })
   }
 
   constructor(
@@ -172,11 +133,7 @@ export class BusinessInfoComponent implements OnInit {
     private apiService:apiService,
     public http: Http,public toastr: ToastrService,
     public translate: TranslateService ,
-    private cservice: LoginServiceService, 
-    private router: Router 
-    )
-        {
-            
+    ){    
           this.cropperSettings = new CropperSettings();
           this.cropperSettings.croppedWidth =100;
           this.cropperSettings.croppedHeight = 100;
@@ -184,373 +141,334 @@ export class BusinessInfoComponent implements OnInit {
           this.cropperSettings.canvasHeight = 200;
           this.cropperSettings.noFileInput = true;
           this.data = {};
-         }  
+          this.pageInitialize();
+          this.apiService.getData(this.apiService.serverPath+'Supplier/myprofile').subscribe(
+          data =>{ this.vendor = data;
+          });
+      }  
   
-  /* To copy Text from Textbox */
-  copyInputMessage(inputElement){
-    inputElement.select();
-    document.execCommand('copy');
-    inputElement.setSelectionRange(0, 0);
-  }
+      /* To copy Text from Textbox */
+      copyInputMessage(inputElement){
+        inputElement.select();
+        document.execCommand('copy');
+        inputElement.setSelectionRange(0, 0);
+      }
 
-  ngOnInit() {
-   this.pageInitialize();
-
-   let headers = new Headers();
-   var authToken = localStorage.getItem('userToken');
-   headers.append('Accept', 'application/json')
-   headers.append('Content-Type', 'application/json');
-   headers.append("Authorization",'Bearer '+authToken);
-
-   this.http.get(this.profileurl,{headers:headers}).subscribe(
-     data =>{ this.vendor = data.json();
-     });
-
-//Progress Bar Icon
-     $(function() {
-      var current_progress = 0;
-      var interval = setInterval(function() {
-          current_progress += 10;
-          $("#dynamic")
-          .css("width", current_progress + "%")
-          .attr("aria-valuenow", current_progress)
-          .text(current_progress + "% Complete");
-          if (current_progress >= 100)
-              clearInterval(interval);
-      }, 900);
-    });
-
- 
-  }
+      ngOnInit() {
+          //Progress Bar Icon
+          $(function() {
+            var current_progress = 0;
+            var interval = setInterval(function() {
+                current_progress += 10;
+                $("#dynamic")
+                .css("width", current_progress + "%")
+                .attr("aria-valuenow", current_progress)
+                .text(current_progress + "% Complete");
+                if (current_progress >= 100)
+                    clearInterval(interval);
+            }, 900);
+          });
+      }
   
-  //businessinformation 
-  gallery = { files: ''}
-  @ViewChild("fileInput") fileInput;
+      //businessinformation 
+      gallery = { files: ''}
+      @ViewChild("fileInput") fileInput;
 
-    addFile(infoo,v): void {
-       this.progress = true ;
-       this.cropperupload = false;
+      addFile(infoo,v): void {
+        this.progress = true ;
+        this.cropperupload = false;
         let fi = this.fileInput.nativeElement;
-        if (fi.files && fi.files[0]) {
-                
-                let fileToUpload = fi.files;
-             
-                let headers = new  Headers();
-                var authToken = localStorage.getItem('userToken');
-               
-                headers.append("Authorization",'Bearer '+authToken);
-                const formData = new FormData();
-                formData.append('AlbumId','2')
-                for (let image of fileToUpload){
-                  formData.append(image.name,image)
-                }
+          if (fi.files && fi.files[0]) {
+                  
+                  let fileToUpload = fi.files;
               
-// Hemant
-        this._http.withUploadProgressListener(progress => {this.progress_bar = true; 
-       
-           this.closeModel('DescriptionDailog');this.progressPercentage = progress.percentage})
-        .withDownloadProgressListener(progress => { 
-  
-        })
-        .post(this.uploadimage, formData,{headers: headers})
+                  let headers = new  Headers();
+                  var authToken = localStorage.getItem('userToken');
+                
+                  headers.append("Authorization",'Bearer '+authToken);
+                  const formData = new FormData();
+                  formData.append('AlbumId','2')
+                  for (let image of fileToUpload){
+                    formData.append(image.name,image)
+                  }
+                
+           // Hemant  
+          this._http.withUploadProgressListener(progress => {this.progress_bar = true; 
         
-        .subscribe( (data)=>{
-          this.progress_bar = false
-          this.fileid = data.json().filesId;
-          this.total = 10*10;
-         
-          let data3=    {   
-            nameOfBusiness: v.nameOfBusiness,
-            businessDetails: v.businessDetails,
-            fileId:    this.fileid,
-            facebookURL: v.facebookURL,
-            twitterURL: v.twitterURL,
-            googleURL:v.googleURL,
-            instalURL:v.instalURL ,
-            perfectWeddingURL: v.perfectWeddingURL,
-            "fbAvailable":v.fbAvailable,
-            "twitterAvailable":v.twitterAvailable,
-            "googleAvailable":v.googleAvailable,
-            "instaAvailable":v.instaAvailable,
-            "perfectWeddingAvailable":v.perfectWeddingAvailable,
+            this.closeModel('DescriptionDailog');this.progressPercentage = progress.percentage})
+          .withDownloadProgressListener(progress => { 
+    
+          })
+          .post(this.uploadimage, formData,{headers: headers})
+          
+          .subscribe( (data)=>{
+            this.progress_bar = false
+            this.fileid = data.json().filesId;
+            this.total = 10*10;
+          
+            let data3=    {   
+              nameOfBusiness: v.nameOfBusiness,
+              businessDetails: v.businessDetails,
+              fileId:    this.fileid,
+              facebookURL: v.facebookURL,
+              twitterURL: v.twitterURL,
+              googleURL:v.googleURL,
+              instalURL:v.instalURL ,
+              perfectWeddingURL: v.perfectWeddingURL,
+              "fbAvailable":v.fbAvailable,
+              "twitterAvailable":v.twitterAvailable,
+              "googleAvailable":v.googleAvailable,
+              "instaAvailable":v.instaAvailable,
+              "perfectWeddingAvailable":v.perfectWeddingAvailable,
+            }
+            
+            this.apiService.postData(this.apiService.serverPath+'Supplier/updatebusinessinfo',data3).subscribe((data)=>{
+                this.toastr.success(data.message);
+                this.apiService.getData(this.apiService.serverPath+'Supplier/businessinfo').subscribe(data =>{            
+                  
+                  
+                  this.imagee = data.files.path ;
+                  
+                  setTimeout(() => {
+                    this.imagecropDailog = false;
+                    }, 2000);
+                  if(!data.files)
+                  { 
+                    this.imagee = 'https://openclipart.org/download/247324/abstract-user-flat-1.svg'}
+                  else{ 
+                    this.imagee = data.files.path ;
+                      this.updateHeaderImg();
+                    }
+
+                });
+            
+                });
+
+              
+  
+
+
+          });
+          }
+      }
+
+      openModel(b){
+                    this.modelfield = b; 
+      }
+
+      openBusinessDialog(dialogname){
+        this.modelfield.nameOfBusiness=this.vendor.nameOfBusiness;
+        this.modelfield.businessDetails= this.vendor.businessDetails;
+        switch(dialogname){
+          case 'DescriptionDailog':
+          this.businessDetails.nativeElement.value = this.modelfield.businessDetails;
+          this.DescriptionDailog=true;
+          break;
+          case 'BusinessDailog':
+          this.nameOfBusiness.nativeElement.value=this.modelfield.nameOfBusiness;
+          this.BusinessDailog=true;
+          break;
+          case 'facebookDailog':
+          if(this.fburl!=undefined){
+          this.fburl.nativeElement.value=this.vendor.facebookURL;}
+          this.facebookDailog=true;
+          break;
+          case 'twitterDailog':
+          if(this.twurl!=undefined){
+          this.twurl.nativeElement.value=this.vendor.twitterURL;}
+          this.twitterDailog=true;
+          break;
+          case 'googleDailog':
+          if(this.gUrl!=undefined){
+          this.gUrl.nativeElement.value=this.vendor.googleURL;}
+          this.googleDailog=true;
+          break;
+          case 'instagramDailog':
+          if(this.insUrl!=undefined){
+          this.insUrl.nativeElement.value=this.vendor.instalURL;}
+          this.instagramDailog=true;
+          break;
+          case 'instagram2Dailog':
+          if(this.pwUrl!=undefined){
+          this.pwUrl.nativeElement.value=this.vendor.perfectWeddingURL;}
+          this.instagram2Dailog=true;
+          break;
+        }
+      }
+
+      upForm(e,data){
+          
+          this.vendor.businessDetails = this.businessDetails.nativeElement.value;
+          this.vendor.nameOfBusiness = this.nameOfBusiness.nativeElement.value;
+          
+          if(this.modelfield.fbAvailable){
+            this.vendor.facebookURL = this.fburl.nativeElement.value;
+          }else{
+            e.value.facebookURL='http://facebook.com';
+          }
+
+          if(this.modelfield.twitterAvailable){
+            this.vendor.twitterURL = this.twurl.nativeElement.value;
+          }else{
+            e.value.twitterURL='';
+          }
+
+          if(this.modelfield.googleAvailable){
+            this.vendor.googleURL = this.gUrl.nativeElement.value;          
+          }else{
+            e.value.googleURL='';
+          }
+
+          if(this.modelfield.instaAvailable){
+          this.vendor.instalURL = this.insUrl.nativeElement.value;
+          }else{
+            e.value.instalURL='';
+          }
+
+          if(this.modelfield.perfectWeddingAvailable){
+          this.vendor.perfectWeddingURL = this.pwUrl.nativeElement.value;
+          }else{
+            e.value.perfectWeddingURL='';
           }
           
-          let updatebusinessinfo = this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatebusinessinfo",
-         data3,{headers:headers})
-             
-             updatebusinessinfo.subscribe((data)=>{
-               this.toastr.success(data.json().message);
-               let headers = new  Headers();
-               var authToken = localStorage.getItem('userToken');
-               headers.append('Accept', 'application/json')
-               headers.append('Content-Type', 'application/json');
-               headers.append("Authorization",'Bearer '+authToken);
-               this.http.get(this.url,{headers:headers}).subscribe(data =>{            
+            this.facebookDailog = false;
+            this.twitterDailog = false;
+            this.instagramDailog = false;
+            this.googleDailog = false;
+            this.instagram2Dailog  = false;
+            this.DescriptionDailog = false;
+            this.BusinessDailog = false;
+            this.imagecropDailog = false;
+            
+                if(e.value.fbAvailable == false && !e.value.facebookURL|| 
+                e.value.googleAvailable == false && !e.value.googleURL ||
+                e.value.instaAvailable == false && !e.value.instalURL ||
+                e.value.perfectWeddingAvailable == false && !e.value.perfectWeddingURL ||
+                e.value.twitterAvailable == false && !e.value.twitterURL){
                 
+                  this.toastr.error("Can not save empty field fill, all social url ")
+                  this.apiService.getData(this.apiService.serverPath+'Supplier/businessinfo').subscribe(data =>{
+                  console.log(data)
+                    this.modelfield.nameOfBusiness =data.nameOfBusiness;
+                    this.modelfield.businessDetails = data.businessDetails;
+                    if(data.fbAvailable ==  false)
+                    {
+                      this.modelfield.facebookURL = '';
+                    
+                    }else{ this.modelfield.facebookURL= data.facebookURL;}
+                    
+                    if(data.twitterAvailable ==  false)
+                    {
+                      this.modelfield.twitterURL = '';
+                    }else{  this.modelfield.twitterURL =data.twitterURL;}
+
+                    
+                    if(data.googleAvailable ==  false)
+                    {
+                      this.modelfield.googleURL = '';
+                    }else{    this.modelfield.googleURL = data.googleURL;}
+
+                                  
+                    if(data.instaAvailable ==  false)
+                    {
+                      this.modelfield.instalURL = '';
+                    }else{this.modelfield.instalURL = data.instalURL;}                
                 
-                 this.imagee = data.json().files.path ;
-
-
-                 setTimeout(() => {
-                  this.imagecropDailog = false;
-                  }, 2000);
-                 if(!data.json().files)
-                 { 
-                   this.imagee = 'https://openclipart.org/download/247324/abstract-user-flat-1.svg'}
-                 else{ 
-                   this.imagee = data.json().files.path ;
-                    this.updateHeaderImg();
-                  }
-
-               });
-           
-              });
-
-             
- 
-
-
-        });
-      }
-    }
-
-    openModel(b){
-      this.modelfield = b; 
-     
-    }
-    passToHeader(){
-      
-    }
-    openBusinessDialog(dialogname){
-
-      this.modelfield.nameOfBusiness=this.vendor.nameOfBusiness;
-      this.modelfield.businessDetails= this.vendor.businessDetails;
-      switch(dialogname){
-        case 'DescriptionDailog':
-        this.businessDetails.nativeElement.value = this.modelfield.businessDetails;
-        this.DescriptionDailog=true;
-        break;
-        case 'BusinessDailog':
-        this.nameOfBusiness.nativeElement.value=this.modelfield.nameOfBusiness;
-        this.BusinessDailog=true;
-        break;
-        case 'facebookDailog':
-        if(this.fburl!=undefined){
-        this.fburl.nativeElement.value=this.vendor.facebookURL;}
-        this.facebookDailog=true;
-        break;
-        case 'twitterDailog':
-        if(this.twurl!=undefined){
-        this.twurl.nativeElement.value=this.vendor.twitterURL;}
-        this.twitterDailog=true;
-        break;
-        case 'googleDailog':
-        if(this.gUrl!=undefined){
-        this.gUrl.nativeElement.value=this.vendor.googleURL;}
-        this.googleDailog=true;
-        break;
-        case 'instagramDailog':
-        if(this.insUrl!=undefined){
-        this.insUrl.nativeElement.value=this.vendor.instalURL;}
-        this.instagramDailog=true;
-        break;
-        case 'instagram2Dailog':
-        if(this.pwUrl!=undefined){
-        this.pwUrl.nativeElement.value=this.vendor.perfectWeddingURL;}
-        this.instagram2Dailog=true;
-        break;
-      }
-
-    }
-
-    upForm(e,data){
-        
-         this.vendor.businessDetails = this.businessDetails.nativeElement.value;
-         this.vendor.nameOfBusiness = this.nameOfBusiness.nativeElement.value;
-         
-         if(this.modelfield.fbAvailable){
-          this.vendor.facebookURL = this.fburl.nativeElement.value;
-         }else{
-           e.value.facebookURL='http://facebook.com';
-        }
-         if(this.modelfield.twitterAvailable){
-          this.vendor.twitterURL = this.twurl.nativeElement.value;
-         }else{
-           e.value.twitterURL='';
-         }
-         if(this.modelfield.googleAvailable){
-          this.vendor.googleURL = this.gUrl.nativeElement.value;          
-         }else{
-           e.value.googleURL='';
-         }
-         if(this.modelfield.instaAvailable){
-         this.vendor.instalURL = this.insUrl.nativeElement.value;
-        }else{
-          e.value.instalURL='';
-        }
-        if(this.modelfield.perfectWeddingAvailable){
-         this.vendor.perfectWeddingURL = this.pwUrl.nativeElement.value;
-        }else{
-          e.value.perfectWeddingURL='';
-        }
-         
-         this.facebookDailog = false;
-          this.twitterDailog = false;
-          this.instagramDailog = false;
-          this.googleDailog = false;
-          this.instagram2Dailog  = false;
-          this.DescriptionDailog = false;
-          this.BusinessDailog = false;
-          this.imagecropDailog = false;
-          
-              let headers = new Headers();
-              var authToken = localStorage.getItem('userToken');
-              headers.append('Accept', 'application/json')
-              headers.append('Content-Type', 'application/json');
-              headers.append("Authorization",'Bearer '+authToken);
-              if(e.value.fbAvailable == false && !e.value.facebookURL|| 
-              e.value.googleAvailable == false && !e.value.googleURL ||
-              e.value.instaAvailable == false && !e.value.instalURL ||
-              e.value.perfectWeddingAvailable == false && !e.value.perfectWeddingURL ||
-              e.value.twitterAvailable == false && !e.value.twitterURL){
-              
-                this.toastr.error("Can not save empty field")
-                this.http.get(this.url,{headers:headers}).subscribe(data =>{
-              
-                  this.modelfield.nameOfBusiness =data.json().nameOfBusiness;
-                  this.modelfield.businessDetails = data.json().businessDetails;
-                  if(data.json().fbAvailable ==  false)
-                  {
-                    this.modelfield.facebookURL = '';
-                   
-                  }else{ this.modelfield.facebookURL= data.json().facebookURL;}
+                    if(data.perfectWeddingAvailable ==  false)
+                    {
+                      this.modelfield.perfectWeddingURL = '';
+                    }else{     this.modelfield.perfectWeddingURL = data.perfectWeddingURL;}
                   
-                  if(data.json().twitterAvailable ==  false)
-                  {
-                    this.modelfield.twitterURL = '';
-                  }else{  this.modelfield.twitterURL =data.json().twitterURL;}
+                  },error=>{console.log(error)})
+                } else{                      
+                         this.apiService.postData(this.apiService.serverPath+'Supplier/updatebusinessinfo', this.vendor).subscribe((responce)=>{ 
+                          
+                            this.toastr.success(responce.message);
+                          if(responce.status == 200)
+                          {
+                            //this.http.get(this.url,{headers:headers})
+                            this.apiService.getData(this.apiService.serverPath+'Supplier/businessinfo').subscribe(data =>{
+                              this.modelfield.nameOfBusiness =data.nameOfBusiness;
+                              this.modelfield.businessDetails = data.businessDetails;
+                              if(data.fbAvailable ==  false)
+                              {
+                                this.modelfield.facebookURL = '';
+                              }else{ this.modelfield.facebookURL= data.facebookURL;}
+                              
+                              if(data.twitterAvailable ==  false)
+                              {
+                                this.modelfield.twitterURL = '';
+                              }else{  this.modelfield.twitterURL =data.twitterURL;}
 
+                              
+                              if(data.googleAvailable ==  false)
+                              {
+                                this.modelfield.googleURL = '';
+                              }else{    this.modelfield.googleURL = data.googleURL;}
+
+                                            
+                              if(data.instaAvailable ==  false)
+                              {
+                                this.modelfield.instalURL = '';
+                              }else{       this.modelfield.instalURL = data.instalURL;}
+                              if(data.perfectWeddingAvailable ==  false)
+                              {
+                                this.modelfield.perfectWeddingURL = '';
+                              }else{     this.modelfield.perfectWeddingURL = data.perfectWeddingURL;}
+
+                            },error=>{console.log(error)})
+                          } 
+
+                          },(error)=>{console.log(error)
+                        this.toastr.error(error._body,error.statusText);});
+                }
+      }
+
+      closeModel(dialogname){
+        this.total = 0;
                   
-                  if(data.json().googleAvailable ==  false)
-                  {
-                    this.modelfield.googleURL = '';
-                  }else{    this.modelfield.googleURL = data.json().googleURL;}
-
-                                
-                  if(data.json().instaAvailable ==  false)
-                  {
-                    this.modelfield.instalURL = '';
-                  }else{this.modelfield.instalURL = data.json().instalURL;}                
-              
-                  if(data.json().perfectWeddingAvailable ==  false)
-                  {
-                    this.modelfield.perfectWeddingURL = '';
-                  }else{     this.modelfield.perfectWeddingURL = data.json().perfectWeddingURL;}
-                
-                },error=>{console.log(error)})
-              } else{
-                      let updatebusinessinfo = this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatebusinessinfo",
-                      this.vendor,{headers:headers});  
-
-                        updatebusinessinfo.subscribe((responce)=>{ 
-                       
-                          this.toastr.success(responce.json().message);
-                        if(responce.status == 200)
-                        {
-                          this.http.get(this.url,{headers:headers}).subscribe(data =>{
-                            this.modelfield.nameOfBusiness =data.json().nameOfBusiness;
-                            this.modelfield.businessDetails = data.json().businessDetails;
-                            if(data.json().fbAvailable ==  false)
-                            {
-                              this.modelfield.facebookURL = '';
-                            }else{ this.modelfield.facebookURL= data.json().facebookURL;}
-                            
-                            if(data.json().twitterAvailable ==  false)
-                            {
-                              this.modelfield.twitterURL = '';
-                            }else{  this.modelfield.twitterURL =data.json().twitterURL;}
-
-                            
-                            if(data.json().googleAvailable ==  false)
-                            {
-                              this.modelfield.googleURL = '';
-                            }else{    this.modelfield.googleURL = data.json().googleURL;}
-
-                                          
-                            if(data.json().instaAvailable ==  false)
-                            {
-                              this.modelfield.instalURL = '';
-                            }else{       this.modelfield.instalURL = data.json().instalURL;}
-                            if(data.json().perfectWeddingAvailable ==  false)
-                            {
-                              this.modelfield.perfectWeddingURL = '';
-                            }else{     this.modelfield.perfectWeddingURL = data.json().perfectWeddingURL;}
-
-                          },error=>{console.log(error)})
-                        } 
-
-                        },(error)=>{console.log(error)
-                      this.toastr.error(error._body,error.statusText);});
-              }
-    }
-    closeModel(dialogname){
-      this.total = 0;
-                  // this.myForm.reset('nameOfBusiness');
-                  switch(dialogname){
-                    case 'DescriptionDailog':
-                    if(this.businessDetails!=undefined){
-                    this.businessDetails.nativeElement.value=this.vendor.businessDetails;}
-                    this.DescriptionDailog=false;
-                    break;
-                    case 'BusinessDailog':
-                    if(this.nameOfBusiness!=undefined){
-                    this.nameOfBusiness.nativeElement.value=this.vendor.nameOfBusiness;  }
-                    this.BusinessDailog=false;
-                    break;
-                    case 'facebookDailog':
-                    if(this.fburl!=undefined){
-                    this.fburl.nativeElement.value=this.vendor.facebookURL;}
-                    this.facebookDailog=false;
-                    break;
-                    case 'twitterDailog':
-                    if(this.twurl!=undefined){
-                    this.twurl.nativeElement.value=this.vendor.twitterURL;}
-                    this.twitterDailog=false;
-                    break;
-                    case 'googleDailog':
-                    if(this.gUrl!=undefined){
-                    this.gUrl.nativeElement.value=this.vendor.googleURL;}
-                    this.googleDailog=false;
-                    break;
-                    case 'instagramDailog':
-                    if(this.insUrl!=undefined){
-                    this.insUrl.nativeElement.value=this.vendor.instalURL;}
-                    this.instagramDailog=false;
-                    break;
-                    case 'instagram2Dailog':
-                    if(this.pwUrl!=undefined){
-                    this.pwUrl.nativeElement.value=this.vendor.perfectWeddingURL;}
-                    this.instagram2Dailog=false;
-                    break;
-                  }
-                    this.imagecropDailog = false;
-                    this.pageInitialize();
-    } 
+                    switch(dialogname){
+                      case 'DescriptionDailog':
+                      if(this.businessDetails!=undefined){
+                      this.businessDetails.nativeElement.value=this.vendor.businessDetails;}
+                      this.DescriptionDailog=false;
+                      break;
+                      case 'BusinessDailog':
+                      if(this.nameOfBusiness!=undefined){
+                      this.nameOfBusiness.nativeElement.value=this.vendor.nameOfBusiness;  }
+                      this.BusinessDailog=false;
+                      break;
+                      case 'facebookDailog':
+                      if(this.fburl!=undefined){
+                      this.fburl.nativeElement.value=this.vendor.facebookURL;}
+                      this.facebookDailog=false;
+                      break;
+                      case 'twitterDailog':
+                      if(this.twurl!=undefined){
+                      this.twurl.nativeElement.value=this.vendor.twitterURL;}
+                      this.twitterDailog=false;
+                      break;
+                      case 'googleDailog':
+                      if(this.gUrl!=undefined){
+                      this.gUrl.nativeElement.value=this.vendor.googleURL;}
+                      this.googleDailog=false;
+                      break;
+                      case 'instagramDailog':
+                      if(this.insUrl!=undefined){
+                      this.insUrl.nativeElement.value=this.vendor.instalURL;}
+                      this.instagramDailog=false;
+                      break;
+                      case 'instagram2Dailog':
+                      if(this.pwUrl!=undefined){
+                      this.pwUrl.nativeElement.value=this.vendor.perfectWeddingURL;}
+                      this.instagram2Dailog=false;
+                      break;
+                    }
+                      this.imagecropDailog = false;
+                      this.pageInitialize();
+      } 
     
-     // switch_fbAvailable(e){
-
-    //   if(e==true){
-    //  
-    //     this.modelfield.facebookURL="";
-    //     this.disabletxtFburl=false;
-    //   }else{
-    //     this.modelfield.facebookURL="None";
-    //     this.disabletxtFburl=true;
-    //   }
-    //     this.isValidUrl(this.modelfield.facebookURL,'Fb');
-    //   }
-
-    switch_fbAvailable(e){
+      switch_fbAvailable(e){
       if(e==true){
   
         if(this.modelfield.facebookURL=this.modelfield.facebookURL){
@@ -559,25 +477,12 @@ export class BusinessInfoComponent implements OnInit {
          }else{
           this.modelfield.facebookURL="";
          }
-       // this.modelfield.facebookURL="";
         this.disabletxtFburl=false;
       }else{
-        // this.modelfield.facebookURL="None";
         this.disabletxtFburl=true;
       }
         this.isValidUrl(this.modelfield.facebookURL,'Fb');
       }
-  
-        //     switch_twitterAvailable(e){
-        // if(e==true){
-        //   this.modelfield.twitterURL="";
-        //   this.disabletxtTwurl=false;
-        // }else{
-        //   this.modelfield.twitterURL="None";
-        //   this.disabletxtTwurl=true;
-        // }
-        //  this.isValidUrl(this.modelfield.twitterURL,'Tw');
-        // }
   
       switch_twitterAvailable(e){
       if(e==true){
@@ -588,26 +493,14 @@ export class BusinessInfoComponent implements OnInit {
          }else{
           this.modelfield.twitterURL="";
          }
-       // this.modelfield.twitterURL="";
+      
         this.disabletxtTwurl=false;
       }else{
-        // this.modelfield.twitterURL="None";
+     
         this.disabletxtTwurl=true;
       }
         this.isValidUrl(this.modelfield.twitterURL,'Tw');
       }
-  
-        //     switch_googleAvailable(e){
-        // if(e==true){
-        //   this.modelfield.googleURL="";
-        //   this.disabletxtGoogeurl=false;
-        // }else{
-        //   this.modelfield.googleURL="None";
-        //   this.disabletxtGoogeurl=true;
-        // }
-        // this.isValidUrl(this.modelfield.googleURL,'Google');
-        // }
-  
   
       switch_googleAvailable(e){
         if(e==true){
@@ -617,27 +510,13 @@ export class BusinessInfoComponent implements OnInit {
            }else{
             this.modelfield.googleURL="";
            }
-        // this.modelfield.googleURL="";
+      
         this.disabletxtGoogeurl=false;
         }else{
-  
-          // this.modelfield.googleURL="None";
           this.disabletxtGoogeurl=true;
         }
         this.isValidUrl(this.modelfield.googleURL,'Google');
       }
-  
-      //       switch_instaAvailable(e){
-      //   if(e==true){
-      //     this.modelfield.instalURL="";
-      //     this.disabletxtInstaUrl=false;
-      //   }else{
-      //     this.modelfield.instalURL="None";
-      //     this.disabletxtInstaUrl=true;
-      //   }
-      //  this.isValidUrl(this.modelfield.instalURL,'Insta');
-      //   }
-  
   
       switch_instaAvailable(e){
         if(e==true){
@@ -648,26 +527,12 @@ export class BusinessInfoComponent implements OnInit {
            }else{
             this.modelfield.instalURL="";
            }
-          // this.modelfield.instalURL="";
         this.disabletxtInstaUrl=false;
         }else{
-          // this.modelfield.instalURL="None";
           this.disabletxtInstaUrl=true;
         }
         this.isValidUrl(this.modelfield.instalURL,'Insta');
       }
-  
-        //     switch_perfectWeddingAvailable(e){
-        // if(e==true){
-        //   this.modelfield.perfectWeddingURL="";
-        //   this.disabletxtOtherUrl=false;
-        // }else{
-        //   this.modelfield.perfectWeddingURL="None";
-        //   this.disabletxtOtherUrl=true;
-        // }
-        // this.isValidUrl(this.modelfield.perfectWeddingURL,'Other');
-        // }
-  
   
       switch_perfectWeddingAvailable(e){
         if(e==true){
@@ -677,192 +542,133 @@ export class BusinessInfoComponent implements OnInit {
            }else{
             this.modelfield.perfectWeddingURL="";
            }
-          // this.modelfield.perfectWeddingURL="";
         this.disabletxtOtherUrl=false;
         }else{
-          // this.modelfield.perfectWeddingURL="None";
           this.disabletxtOtherUrl=true;
         }
         this.isValidUrl(this.modelfield.perfectWeddingURL,'Other');
       }
 
-isValidUrl(url, urlType): boolean{
-  let matcher = /^(?:\w+:)?\/\/([^\s\.]+\.\S{2}|localhost[\:?\d]*)\S*$/;
-  let isValidUrl=false;
-  switch(urlType){
-    case 'Fb':
-    isValidUrl=this.isValidFbUrl= matcher.test(url);
-    break;
-    case 'Tw':
-    isValidUrl=this.isVaidTwUrl = matcher.test(url);
-    break;
-    case 'Google':
-    isValidUrl=this.isValidGoogeUrl = matcher.test(url);
-    break;
-    case 'Insta':
-    isValidUrl=this.isValidInstaUrl = matcher.test(url);
-    break;
-    case 'Other':
-    isValidUrl=this.isValidOtherUrl = matcher.test(url);
-    break;
-  }
-  return isValidUrl;
-}
-pageInitialize(){
-  $.getScript('./assets/js/vendorsidebar.js');
-  let headers = new Headers();
-  var authToken = localStorage.getItem('userToken');
-  headers.append('Accept', 'application/json')
-  headers.append('Content-Type', 'application/json');
-  headers.append("Authorization",'Bearer '+authToken);
-  this.httpHeader=headers;
-  this.http.get(this.url,{headers:headers}).subscribe(data =>{
-  this.vendor = data.json();
+      isValidUrl(url, urlType): boolean{
+        let matcher = /^(?:\w+:)?\/\/([^\s\.]+\.\S{2}|localhost[\:?\d]*)\S*$/;
+        let isValidUrl=false;
+        switch(urlType){
+          case 'Fb':
+          isValidUrl=this.isValidFbUrl= matcher.test(url);
+          break;
+          case 'Tw':
+          isValidUrl=this.isVaidTwUrl = matcher.test(url);
+          break;
+          case 'Google':
+          isValidUrl=this.isValidGoogeUrl = matcher.test(url);
+          break;
+          case 'Insta':
+          isValidUrl=this.isValidInstaUrl = matcher.test(url);
+          break;
+          case 'Other':
+          isValidUrl=this.isValidOtherUrl = matcher.test(url);
+          break;
+        }
+        return isValidUrl;
+      }
 
-  if(!this.vendor.fileId)
-                 {
-                  
-                 
-                   this.imagee = "https://openclipart.org/download/247324/abstract-user-flat-1.svg";
-                  
-                  }else{  
-                    this.imagee = this.vendor.files.path ;
-                 }
-                  this.facebook = data.json().facebookURL ;
-  this.twitter = data.json().twitterURL ;
-  this.instagram = data.json().instalURL ;
-  this.google = data.json().googleURL;
-  this.Businesname = data.json().nameOfBusiness ;
-  this.Description = data.json().businessDetails ;  
-  this.perfectWedding = data.json().perfectWeddingURL  ;
+      pageInitialize(){
+        $.getScript('./assets/js/vendorsidebar.js');
+       // this.http.get(this.url,{headers:headers})
+        this.apiService.getData(this.apiService.serverPath+'Supplier/businessinfo').subscribe(data =>{
+        this.vendor = data;
 
-  })
-}
-updateHeaderImg(){
-   this.valueChange.emit(this.imagee);
-}
-closeOpenDialog(){
-  this.facebookDailog = false;
-  this.twitterDailog = false;
-  this.instagramDailog = false;
-  this.googleDailog = false;
-  this.instagram2Dailog  = false;
-  this.DescriptionDailog = false;
-  this.BusinessDailog = false;
-  this.imagecropDailog = false;
-}
-UpdateSocialUrl(urlType){
+        if(!this.vendor.fileId)
+                      {
+                        
+                      
+                        this.imagee = "https://openclipart.org/download/247324/abstract-user-flat-1.svg";
+                        
+                        }else{  
+                          this.imagee = this.vendor.files.path ;
+                      }
+        })
+      }
 
-  let openDialog:boolean;
-  let chekIsValidUrl=true;
-  switch(urlType){
-    case 'Fb':
-    if(this.fburl!=undefined){
-    chekIsValidUrl=this.isValidUrl(this.fburl.nativeElement.value,'Fb');
-    if(chekIsValidUrl){
-    this.vendor.facebookURL = this.fburl.nativeElement.value;
-    }else{
-      this.fburl.nativeElement.value=this.vendor.facebookURL;
-      if(this.modelfield.fbAvailable==true){
-      chekIsValidUrl = false;}}}
-    break;
-    case 'Tw':
-    
-    if(this.twurl!=undefined){
-    chekIsValidUrl=this.isValidUrl(this.twurl.nativeElement.value,'Tw');
-    if(chekIsValidUrl){
-    this.vendor.twitterURL = this.twurl.nativeElement.value;
-    }else{
-      if(this.modelfield.twitterAvailable==true){
-      chekIsValidUrl = false;}}}
-    break;
-    case 'Google':
-    if(this.gUrl!=undefined){
-    chekIsValidUrl=this.isValidUrl(this.gUrl.nativeElement.value,'Tw');
-    if(chekIsValidUrl){
-    this.vendor.googleURL = this.gUrl.nativeElement.value;
-    }else{
-      if(this.modelfield.googleAvailable==true){
-      chekIsValidUrl=false;}}}
-    break;
-    case 'Insta':
-    if(this.insUrl!=undefined){
-    chekIsValidUrl=this.isValidUrl(this.insUrl.nativeElement.value,'Tw');
-    if(chekIsValidUrl){
-    this.vendor.instalURL = this.insUrl.nativeElement.value;
-    }else{
-      if(this.modelfield.twitterAvailable==true){
-      chekIsValidUrl=false;}
-    }}
-    break;
-    case 'Other':
-    if(this.pwUrl!=undefined){
-    chekIsValidUrl=this.isValidUrl(this.pwUrl.nativeElement.value,'Tw');
-    if(chekIsValidUrl){
-    this.vendor.perfectWeddingURL = this.pwUrl.nativeElement.value;
-    }else{
-      if(this.modelfield.perfectWeddingAvailable==true){
-      chekIsValidUrl=false;}
-    }}
-    break;
-  }
-  if(chekIsValidUrl==true){
-  this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/updatebusinessinfo',this.vendor,{headers:this.httpHeader}).subscribe(res=>{
-    if(res.status==200){
-      this.toastr.success(res.json().message);
-      this.closeOpenDialog();
-    }else{
-      this.toastr.error(res.json().message);
-    }
-  })
-}else{
-  this.toastr.error('Link entered is not valid');
-}
-}
+      updateHeaderImg(){
+        this.valueChange.emit(this.imagee);
+      }
+
+      closeOpenDialog(){
+        this.facebookDailog = false;
+        this.twitterDailog = false;
+        this.instagramDailog = false;
+        this.googleDailog = false;
+        this.instagram2Dailog  = false;
+        this.DescriptionDailog = false;
+        this.BusinessDailog = false;
+        this.imagecropDailog = false;
+      }
+
+      UpdateSocialUrl(urlType){
+
+        let openDialog:boolean;
+        let chekIsValidUrl=true;
+        switch(urlType){
+          case 'Fb':
+          if(this.fburl!=undefined){
+          chekIsValidUrl=this.isValidUrl(this.fburl.nativeElement.value,'Fb');
+          if(chekIsValidUrl){
+          this.vendor.facebookURL = this.fburl.nativeElement.value;
+          }else{
+            this.fburl.nativeElement.value=this.vendor.facebookURL;
+            if(this.modelfield.fbAvailable==true){
+            chekIsValidUrl = false;}}}
+          break;
+          case 'Tw':
+          
+          if(this.twurl!=undefined){
+          chekIsValidUrl=this.isValidUrl(this.twurl.nativeElement.value,'Tw');
+          if(chekIsValidUrl){
+          this.vendor.twitterURL = this.twurl.nativeElement.value;
+          }else{
+            if(this.modelfield.twitterAvailable==true){
+            chekIsValidUrl = false;}}}
+          break;
+          case 'Google':
+          if(this.gUrl!=undefined){
+          chekIsValidUrl=this.isValidUrl(this.gUrl.nativeElement.value,'Tw');
+          if(chekIsValidUrl){
+          this.vendor.googleURL = this.gUrl.nativeElement.value;
+          }else{
+            if(this.modelfield.googleAvailable==true){
+            chekIsValidUrl=false;}}}
+          break;
+          case 'Insta':
+          if(this.insUrl!=undefined){
+          chekIsValidUrl=this.isValidUrl(this.insUrl.nativeElement.value,'Tw');
+          if(chekIsValidUrl){
+          this.vendor.instalURL = this.insUrl.nativeElement.value;
+          }else{
+            if(this.modelfield.twitterAvailable==true){
+            chekIsValidUrl=false;}
+          }}
+          break;
+          case 'Other':
+          if(this.pwUrl!=undefined){
+          chekIsValidUrl=this.isValidUrl(this.pwUrl.nativeElement.value,'Tw');
+          if(chekIsValidUrl){
+          this.vendor.perfectWeddingURL = this.pwUrl.nativeElement.value;
+          }else{
+            if(this.modelfield.perfectWeddingAvailable==true){
+            chekIsValidUrl=false;}
+          }}
+          break;
+        }
+        if(chekIsValidUrl==true){
+        this.apiService.postData(this.apiService.serverPath+'Supplier/updatebusinessinfo', this.vendor).subscribe(data=>{
+            this.toastr.success(data.message);
+            this.closeOpenDialog();
+        })
+      }else{
+        this.toastr.error('Link entered is not valid');
+      }
+      }
 }
 
-
-// export class BusinessInfo {
-//   nameOfBusiness:	string;
-//   businessDetails:	string;
-//   pictureUrl:	string;
-//   fbAvailable:	boolean;
-//   facebookURL:	string;
-//   twitterAvailable:	boolean;
-//   twitterURL:	string;
-//   googleAvailable:	boolean;
-//   googleURL:	string;
-//   instaAvailable:	boolean;
-//   instalURL:	string;
-//   perfectWeddingAvailable:	boolean;
-//   perfectWeddingURL:	string;
-//   fileId: number;
-//   files:	Array<FilesVM>; 
-//   constructor(){
-//     {
-//       this.businessDetails = "string";
-//       this.pictureUrl = 'https://www.pictureUrl.com';
-//       this.fbAvailable = true
-//       this.facebookURL = 'https://www.facebookURL.com';
-//       this.twitterAvailable = true;
-//       this.twitterURL = 'https://www.twitterURL.com';
-//       this.googleAvailable = true;
-//       this.googleURL = 'https://www.googleURL.com';
-//       this.instaAvailable = true;
-//       this.instalURL = 'https://www.instalURL.com';
-//       this.perfectWeddingAvailable = true;
-//       this.perfectWeddingURL = 'https://www.perfectWeddingURL.com';
-//       this.fileId = 0
-//       }
-//   }
-// }
-
-// export class FilesVM {
-//   filesId: number
-//   originalFileName:	string
-//   serverFileName:	string;
-//   path:	string
-//   userId:	string
-//   uploadedOn:	string;
-// }
 

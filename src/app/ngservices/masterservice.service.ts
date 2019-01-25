@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MasterserviceService {
-  
+  abc:Array<any>;
   constructor(private apiservice: apiService) {
 
    }
@@ -27,5 +27,5 @@ export class MasterserviceService {
    getSimilarVendors(obj){
   return this.apiservice.postData(this.apiservice.serverPath + 'PerfectWedding/similarvendors',obj);     
    }
-   
+
 }

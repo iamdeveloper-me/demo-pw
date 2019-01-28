@@ -77,8 +77,7 @@ export class SearchresultComponent implements OnInit {
     if(this._activeRoute!=undefined){ this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam')); }
     this.getFilters();
     this.selectCategory('id',this.objSearchFilter.catId);
-    console.log(this.SelectedCategory);
-     this._activeRoute.params.subscribe(params => {
+       this._activeRoute.params.subscribe(params => {
      if(this.categories){
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
       this.selectCategory('id',this.objSearchFilter.catId);
@@ -91,11 +90,15 @@ export class SearchresultComponent implements OnInit {
     this.activeSlides = data;
   }
   getCategoryName(i):string{
-    if(this._activeRoute.snapshot.params['id']!= ""){
-       return this._activeRoute.snapshot.params['id'];
+    debugger;
+    if(this.SelectedCategory){
+      return this.SelectedCategory.categoryName;
     }else{
-    return i.vendorCategories.filter(c=>c.isPrimary==true)[0].categories.categoryName;
+      return i.vendorCategories.filter(c=>c.isPrimary===true)[0].categoryName;
     }
+//  return this.categories.filter(c=>c.isSelect==true)[0].categoryName;
+    //  return i.vendorCategories.filter(c=>c.categoryId===this.SelectedCategory)[0].categories.categoryName;
+    
   }
   ngOnInit() {   
  
@@ -217,8 +220,14 @@ export class SearchresultComponent implements OnInit {
     this.collection=[];
     switch(filterType){
       case 1: // Category
-      this.objSearchlistvm.categoryId=[];
-      this.categories.filter(c=>c.categoryId==FilterValue)[0].isSelect?false:true; break;
+      this.objSearchlistvm= new SearchListingVM();
+     // this.objSearchlistvm.categoryId=[];
+      this.deselectAllCategories();
+      this.categories.filter(c=>c.categoryId==FilterValue)[0].isSelect=true;
+      this.showALlCategories = false;
+      this.objSearchFilter.catId = FilterValue;
+      this.getFilters();
+      this.SelectedCategory = this.categories.filter(c=>c.isSelect==true)[0];break;
       case 2: // Service
       this.objSearchlistvm.serviceId = [];
       this.filters.services.filter(s=>s.servicesId==FilterValue)[0].isSelect?false:true; break;
@@ -297,11 +306,18 @@ export class SearchresultComponent implements OnInit {
     this.paginate(this.objSearchFilter.pageSize); }
  }
  showHideCategories(ind){
+   debugger;
   this.deselectAllCategories();
   if(ind!=-1){    
     if(this.categories.length>0){
   this.selectCategory('index',ind);
+  } else{
+   
   }
+  }else{
+    this.SelectedCategory=null;
+    this.objSearchFilter.catId=0;
+    this.getFilters();
   }
   this.paginate(this.objSearchFilter.pageSize);
 }
@@ -314,12 +330,12 @@ deselectAllCategories(){
   this.showALlCategories=true;
   this.objSearchlistvm.page=0;
   this.collection=[];
-  
 //  this.paginate(this.objSearchFilter.pageSize);
 }
 
 selectCategory(paramType,Param){
   this.deselectAllCategories();
+  debugger;
   if(paramType=='index'){
     if(this.categories){
       this.categories[Param].isSelect=true;

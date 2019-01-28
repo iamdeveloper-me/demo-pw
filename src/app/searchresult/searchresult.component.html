@@ -82,15 +82,9 @@
       <div class="container-fluid nopadd">
         <div class="badgecontainer">
           <span *ngIf='objSearchResultItems' class="badge badge-primary badge-labeled">
-            {{collection?collection.length:0}} Results
+          {{collection?collection.length:0}} Results in {{_activeRoute.snapshot.params['id']}}
           </span>
-       
-          <!-- <select (change)='getSearchFilterResult()' style="display:none" [(ngModel)]='objSearchlistvm.pageSize'>
-            <option value='25' selected>25 Result/Page</option>
-            <option value='50'>50 Result/Page</option>
-            <option value='100'>100 Result/Page</option>
-          </select> -->
-        </div>
+         </div>
         <div class="clearfix"></div>
           <ol class="breadcrumb breadcrumbcontainer ">
             <li><a href="#">Home</a></li>
@@ -196,16 +190,16 @@
   						</div>
   						<div id="collapse2" class="panel-collapse collapse">
                   <div class="category-body">
-                      <div class="searchmobtitlebar city_position">
+                      <div style="display:none" class="searchmobtitlebar city_position">
                         <i class="material-icons">search</i>
                         <input class="cityinput" type="text" [(ngModel)]='categoryFilterParam' placeholder="Type to Search Category">
                       </div>
                     <!-- <div class="regular">All Categories</div> -->
                 <div class="cityscroll22"> 
-                  <div class="funkyradio">  
+                  <div class="funkyradio" *ngIf='showALlCategories'>  
                     <div class="funkyradio-info" *ngFor='let c of categories| categoryPipe:categoryFilterParam'>
-                     <input type="checkbox" name="checkbox" id="{{c.categoryName}}" (change)='getSearchFilterResult()' [(ngModel)]='c.isSelect'/>
-                         <label for='{{c.categoryName}}'><i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
+                     <!-- <input type="checkbox" name="checkbox" id="{{c.categoryName}}" (change)='setFilterOptions(1,c.categoryId)' [(ngModel)]='c.isSelect'/> -->
+                         <label (click)='setFilterOptions(1,c.categoryId)' for='{{c.categoryName}}'><i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
                             {{c.categoryName}}  
                         </label>
                      </div>
@@ -213,16 +207,9 @@
             </div>
             </div>
           </div>
-          <!-- <ul id='all_catlist' #all_catlist style="list-style-type:none" *ngIf='showALlCategories'>
-            <li (click)='showHideCategories(-1)'>All Categories</li>
-            <li style="cursor:pointer" *ngFor='let c of categories| categoryPipe:categoryFilterParam; let i=index' (click)='selectCategory("index", i)'>
-                {{c.categoryName}}
-            </li>
-          </ul> -->
           <ul style="list-style-type:none" *ngIf='!showALlCategories'>
-              <li style="cursor:pointer" >All Categories</li> <!--(click)='showHideCategories(-1)'-->
               <li>
-                 <span> {{SelectedCategory?SelectedCategory.categoryName:""}}</span>
+                 <span> {{SelectedCategory?SelectedCategory.categoryName:""}} <span (click)='showHideCategories(-1)' class="badge" style="cursor:pointer">X</span></span>
               </li>
           </ul>
         <!--Services-->
@@ -452,7 +439,7 @@
   <h1>Category  {{objSearchlistvm.categoryId.length}}<i class="material-icons">arrow_right</i></h1>
   <div>
     <span class="badge" *ngFor='let c of categories'>
-      <div *ngIf='c.isSelect'>{{c.categoryName}}</div>
+      <div *ngIf='c.isSelect'>{{c.categoryName}}<span>X</span> </div>
     </span>
   </div>
 </div>

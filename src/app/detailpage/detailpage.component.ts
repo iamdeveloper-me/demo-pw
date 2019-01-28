@@ -19,6 +19,8 @@ export class DetailpageComponent implements OnInit {
   similarVendors:any;
   portfolioImages = [];
   lightBoxImages=[];
+  similarVendors_length;
+  vendorVideo_details = [];
   @ViewChild('albumgallarypopup') albumgallarypopup: ElementRef;
   constructor(public http: Http, public toastr: ToastrService, private apiService: apiService,
      private activeroute: ActivatedRoute, private router: Router, private masterservice: MasterserviceService) { 
@@ -34,6 +36,7 @@ export class DetailpageComponent implements OnInit {
     });
     this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
     console.log( this.vendorDetails )
+    this.vendorVideo_details = this.vendorDetails.vendorVideos.length;
     this.getSimilarVendors();
     this.vendorDetails.vendorLocations.reverse();
     this.vendorDetails.albums.forEach(element => {
@@ -47,14 +50,15 @@ export class DetailpageComponent implements OnInit {
    
     this.portfolioAndAlbumImagesTotal += this.vendorDetails.portfolios.length;
     this.vendorDetails.portfolios.forEach(element => {
-    
       // this.portfolioImages.push(element.files.path);
-     this.portfolioImages.push(element.path);
+         this.portfolioImages.push(element.path);
     });
     
 
   }
+
   review = { rating: '', comments: "", rateVendorID: 'a96129c3-8861-43aa-8bc9-1c155f1ffd79' }
+ 
   putReview(review) {
    
     var authToken = localStorage.getItem('userToken');
@@ -76,17 +80,21 @@ export class DetailpageComponent implements OnInit {
 
   
   }
+ 
   setLightboxImages(pi,ev){
     this.lightBoxImages=[];
     pi.albumImages.forEach(element => {
         this.lightBoxImages.push(element.path);  
     });
   }
-  goToPhotogallary(){
+  
+  goToPhotogallary(vendorDetails){
     sessionStorage.setItem('Vendorimages',JSON.stringify(this.vendorDetails.albums));
     this.router.navigateByUrl('/home/Photogallary');
+    // this.router.navigate(['home/Photogallary'])
     
   }
+ 
   getSimilarVendors(){
     let CatId=[];
     this.vendorDetails.vendorCategories.forEach(element => {
@@ -97,9 +105,11 @@ export class DetailpageComponent implements OnInit {
      categoryId:CatId}
   
      
-   this.masterservice.getSimilarVendors(obj).subscribe(res=>{
-     this.similarVendors=res;
+   this.masterservice.getSimilarVendors(obj).subscribe(data=>{
+     this.similarVendors=data;
      console.log( this.similarVendors)
-   })
+     this.similarVendors_length = data.length;
+   },error => {console.log(error)})
   }
 }
+//this.router.navigate(['home/detailprofile/',slide.vendorId])

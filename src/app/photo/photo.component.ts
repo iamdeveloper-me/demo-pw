@@ -125,7 +125,7 @@ export class PhotoComponent implements OnInit {
       this.search_api()
     }
     search_api(){
-      
+      this.pageNumber=0;
         this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',this.photo_search_param)
         .subscribe(data => {
           console.log(data)
@@ -147,7 +147,7 @@ export class PhotoComponent implements OnInit {
           }else{
             this.error_1 = " "
           }
-          this.photo_search_param.count +=1
+     //     this.photo_search_param.count +=1
         },error => {  console.log(error)});
     }
     popup(listall_categories){

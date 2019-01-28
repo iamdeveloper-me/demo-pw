@@ -19,7 +19,7 @@
                                         <div class="busines_img" ngbTooltip="Change image/Logo">
                                             <i class="material-icons" (click)="imagecropDailog = true" id="description-function"
                                                 style="cursor:pointer"> camera_alt </i>
-                                            <img [src]="imagee" >
+                                            <img [src]="imagee" *ngIf = "imagee" >
                                         </div>
                                         <i class="material-icons helpicon" ngbTooltip="Upload your business logo or profile image of your business representative. This will be visible on your store front.">help_outline</i>
                                     </div>
@@ -257,16 +257,10 @@
                                     id='fburl' #fburl #facebookURL="ngModel" placeholder="Link Your Facebook Account"
                                     [ngModel]="modelfield.facebookURL" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
                                     (ngModelChange)='isValidUrl(modelfield.facebookURL,"Fb")' required />
-                                <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="facebookURL.errors?.required"> Link entered is not valid </small> -->
-                                <!-- <small class="form-text text-muted danger validationErrorMsg" *ngIf="isValidFbUrl===false && modelfield.fbAvailable == true && !facebookURL.errors?.required">invalid url </small>  -->
                             </div>
 
                         </div>
-                        <!-- <div class="form-group">
-                                <label for="url">url</label>
-                                <input type="text" class="form-control" ngModel name="url" #url="ngModel" placeholder="url" url />
-                                <small class="form-text text-muted danger" *ngIf="url.errors?.url">url error</small>
-                            </div> -->
+
                     </div>
                 </div>
                 <div class="modal-footer text-center marTop50px">
@@ -317,12 +311,6 @@
                                     pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
                                     required />
                             </div>
-                            <!-- <div *ngIf="modelfield.twitterAvailable  ==  false">
-                                    <input class="effect-16 validate endent_10px width_60" 
-                                    type="text" disabled="disabled"
-                                    name="facebookURL"
-                                    placeholder="Enter the Link here"  >
-                                </div> -->
                         </div>
                     </div>
                 </div>
@@ -564,7 +552,7 @@
 
                                         <div class="modal-footer text-center">
                                             <button type="submit" class="btn newbtn">Save</button>&nbsp;
-                                            <!--  <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel(dialogname)">Close</button> -->
+                                       
                                         </div>
                                     </div>
                                 </div>
@@ -573,25 +561,13 @@
 
                     </div>
 
-                    <!-- <div class="progress nopadd col-sm-11 col-10" *ngIf= "progress== true" >
-                  <div 
-                    id="dynamic" 
-                    class="progress-bar progress-bar-success progress-bar-striped active" 
-                    role="progressbar" 
-                    aria-valuenow="0" 
-                    aria-valuemin="0" 
-                    aria-valuemax="100"
-                    [style.width]="total + '%'"
-                  >
-                    <span id="current-progress"> {{total}}</span>
-                  </div>
-                </div> -->
+
 
                 </div>
 
                 <div class="modal-footer text-center" *ngIf="progress== true">
                     <button type="reset" class="btn newbtn newcancelbtn" (click)="closeModel(dialogname)">Cancel</button>&nbsp;
-                    <!--  <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel(dialogname)">Close</button> -->
+                  
                 </div>
 
             </div>

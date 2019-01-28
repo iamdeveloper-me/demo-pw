@@ -24,3 +24,5 @@ export class AuthGuardService implements CanActivate,CanActivateChild {
     return true;}
   }
 }
+
+

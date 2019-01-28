@@ -81,6 +81,7 @@ export class LocationComponent implements OnInit {
   data;
   dist_id;
   m;
+  districts;
   enable = true;
   modelfield: any = { mobile: "" };
   locationPhoneId = 0;
@@ -272,7 +273,7 @@ export class LocationComponent implements OnInit {
       'street':new FormControl(),
       'pincode': new FormControl()
     })
-    this.objDashboard= new DashboardComponent(this.apiService, this.config,this.http,this.router);
+   // this.objDashboard= new DashboardComponent(this.apiService, this.config,this.http,this.router);
     this.mapsApiLoader = mapsApiLoader;
     this.zone = zone;
     this.wrapper = wrapper;
@@ -664,6 +665,7 @@ export class LocationComponent implements OnInit {
      
       this.http.post(this.urlpost,jsonPost, { headers: headers }).subscribe((data) => {
         this.toastr.success(data.json().message);
+        this.week_dailog = false;
       },
         (error) => {
           console.log(error);
@@ -906,6 +908,7 @@ export class LocationComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization", 'Bearer ' + authToken);
     this.http.post(this.urlpost, datapanel, { headers: headers }).subscribe((responce) => {
+      this.mapDailog = false;
       this.toastr.success(responce.statusText);
       if (responce.status == 200) {
         this.photo_ved_dailog = false;
@@ -919,12 +922,15 @@ export class LocationComponent implements OnInit {
   }
   }
   closeResult: string;
-
+ 
   country(): void {
     this.district =this.arra.filter(c=>c.countryId==this.address_modelfield.countryId)[0].districts
   }
   districtA(): void {
-   this.district =this.arra.filter(c=>c.countryId==this.address_modelfield.countryId)[0].districts;
+   this.district =this.arra.filter(c=>c.countryId==this.address_modelfield.countryId)[0]
+   console.log(this.arra)
+   
+   //.districts;
    let selectedDist=this.district.filter(d=>d.districtId==this.dist_id);
    if(selectedDist==undefined){
      this.ele_dist.nativeElement.value='-1';

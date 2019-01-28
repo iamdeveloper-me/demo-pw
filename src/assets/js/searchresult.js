@@ -11,7 +11,7 @@ $(document).ready(function() {
     $('#list').click(function(event){event.preventDefault();$('#products').addClass('listing-group');$('#products').removeClass('griding-group');});
     $('#grid').click(function(event){event.preventDefault();$('#products').addClass('griding-group');$('#products').removeClass('listing-group');});    
     $('#photoview').click(function(event){event.preventDefault();$('#products').addClass('photo-group');$('#products').removeClass('griding-group');});    
-    $('#gridmobile').click(function(event){event.preventDefault();$('#products').addClass('griding-group');$('#products').removeClass('listing-group');});    
+    $('#gridmobile').click(function(event){event.preventDefault();$('#products').addClass('griding-group');$('#products').removeClass('listing-group');$('#products').removeClass('photo-group');});    
 
 });
 

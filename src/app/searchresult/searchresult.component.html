@@ -92,22 +92,20 @@
           </select> -->
         </div>
         <div class="clearfix"></div>
-          <ol class="breadcrumb breadcrumbcontainer ">
+          <ol class="breadcrumb breadcrumbcontainer">
             <li><a href="#">Home</a></li>
             <li><a href="#">Wedding Vendors</a></li>
             <!-- <li><a href="#">All Categories</a></li> -->
             <li class="active">{{_activeRoute.snapshot.params['id']}}</li>
           </ol>
 
-           <div class="btn-group">
-            <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
-            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
-
-                class="glyphicon glyphicon-th-large"></span>Grid</a>
-
-                <a href="#" id="photoview" class="btn btn-default btn-sm hidden-lg hidden-sm hidden-md"><span
-                class="glyphicon glyphicon-picture"></span>Photo View</a>
-
+           <div class="btn-group hidden-xs">
+            <a href="#" id="list" class="btn btn-default btn-sm">
+              <span class="glyphicon glyphicon-th-list"></span>List
+            </a> 
+            <a href="#" id="grid" class="btn btn-default btn-sm">
+              <span class="glyphicon glyphicon-th-large"></span>Grid
+            </a>
         </div>
       </div>
     </div>
@@ -339,9 +337,9 @@
 		</div>
 		<div class="col-sm-9 listingtab">
       <div class="photo_cont">
-       	<div id="products" class="row list-group">
+       	<div id="products" class="row list-group photo-group">
           <div *ngIf='objSearchResultItems'>
-	        	<div id='dv1' #dv1 *ngFor='let i of collection' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
+	        	<div id='dv1' #dv1 *ngFor='let i of collection' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px ">
 
 	                <div class="card mb-2 bordre_rad1 hover_effect">
                     <div class="thumbnail">
@@ -430,7 +428,7 @@
 	     	</div>
         <div>
 
-          <img *ngIf='loading' src="https://www.walgreens-hearing.com/img/loader.gif" style="bottom:35%;position: fixed;z-index:99999;margin-left:40%">
+          <img *ngIf='loading' src="https://www.walgreens-hearing.com/img/loader.gif" style="bottom:35%;position: fixed;z-index:99999;margin-left:18%">
                   <!-- <ngb-pagination [collectionSize]="objSearchResultItems?.totalCount" [(page)]="objSearchResultItems.page" [boundaryLinks]="true"></ngb-pagination>
              <span class="totalpage">{{objSearchResultItems.totalPages}} (Page)s</span> -->
         </div>
@@ -510,6 +508,25 @@
     </button>
   </div>
 </div>
+
+
+<div class="clearfix"></div>
+
+<div class="filterrow martop50px">
+  <h1>Preferred View</h1>
+        <div class="btn-group">
+
+            <a href="#" id="photoview" class="btn btn-default btn-sm hidden-lg hidden-sm hidden-md">
+              <span class="glyphicon glyphicon-picture"></span>Photo View
+            </a>
+
+            <a href="#" id="gridmobile" class="btn btn-default btn-sm">
+              <span class="glyphicon glyphicon-th-large"></span>Grid
+            </a>
+          
+        </div>
+</div>
+
 
   </div>
 

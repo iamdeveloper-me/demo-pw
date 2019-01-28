@@ -990,16 +990,15 @@ margin-bottom:30px;
 .btn-group{
   float: right;
 }
-#list, #grid, #photoview{
+#list, #grid, #photoview, #gridmobile{
     margin-right: 10px;
     color: #000000;
     font-size: 16px;
     padding-right: 0px;
-    margin-right: 0px;
-    margin-left: 10px;
-    background: transparent;
+    background: #e5e5e5;
     border:0px;
     box-shadow: none!important;
+    padding:10px;
   }
   #list:hover, #grid:hover, #photoview:hover{
     border:0px;
@@ -1252,12 +1251,14 @@ padding-bottom: 5px;
   margin-bottom:0px!important;
 }
 @media (max-width:768px){
-   .carousel-inner>.item>a>img, .carousel-inner>.item>img, .thumbnail .item>a>img, .thumbnail>img{
+  .carousel-inner>.item>a>img, .carousel-inner>.item>img, .thumbnail .item>a>img, .thumbnail>img.list-group-image{
    height: 120px;
   }
- .carousel-inner>.photo-group-item>a>img, .carousel-inner>.photo-group-item>img, .photo-group-item .thumbnail .photo-group-item>a>img, .thumbnail>img{
+ .carousel-inner>.photo-group-item>a>img, .carousel-inner>.photo-group-item>img, 
+ .photo-group .thumbnail>img.list-group-image{
    height: 200px;
   }
+
 
 #products.photo-group  .grid-group-item{
   border:0px;
@@ -1273,9 +1274,12 @@ padding-bottom: 5px;
    overflow: hidden;
    text-align: center;
  }
- #products.photo-group .grid-group-item .thumbnail img{
+ #products.photo-group .grid-group-item .thumbnail img.list-group-image{
  max-height: inherit;
  height: 200px;
+ }
+ .imgnum img{
+ height:inherit!important;
  }
 
 .funkyradio{
@@ -1600,6 +1604,9 @@ padding-bottom: 5px;
   }
   .ipadwidth{
     max-width: inherit;
+  }
+  .martop50px{
+  margin-top:50px;
   }
  }
  

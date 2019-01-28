@@ -20,7 +20,7 @@ export class DetailpageComponent implements OnInit {
   portfolioImages = [];
   lightBoxImages=[];
   similarVendors_length;
-  vendorVideo_details = [];
+  vendorVideo_details:any = [];
   @ViewChild('albumgallarypopup') albumgallarypopup: ElementRef;
   constructor(public http: Http, public toastr: ToastrService, private apiService: apiService,
      private activeroute: ActivatedRoute, private router: Router, private masterservice: MasterserviceService) { 

@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PhotogallerydetailComponent implements OnInit {
 
   constructor() { }
-  vendorDetails = {};
+  vendorDetails = {albums:[]};
   ngOnInit() {
    $.getScript('./assets/js/prism.min.js'); 
     $.getScript('./assets/js/owljsor.js');

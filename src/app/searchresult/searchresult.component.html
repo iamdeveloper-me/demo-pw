@@ -258,10 +258,10 @@
   						</div>
   						<div id="collapse1" class="panel-collapse collapse" >
                  
-                  <div class="funkyradio">
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" (change)='setFilterOptions(4,"50000")' id="check1"/>
-                      <label>< 50000</label>  
+                  <div class="funkyradio" *ngIf='filters'>
+                    <div class="funkyradio-info"  *ngFor='let p of filters.filters[0].customFieldOptionList'>
+                      <input type="checkbox" name="checkbox" (change)='setFilterOptions(7,p)'  id="{{p.key}}"/>
+                      <label for="{{p.key}}"> <b>{{p.key}}</b></label>  
                     </div>
                   </div>
   						</div>
@@ -281,18 +281,15 @@
     </div>
     <div id="collapse333" class="panel-collapse collapse" >
        
-        <div class="funkyradio">
+        <div class="funkyradio" *ngFor='let feature of faaturedListingArray'>
           <div class="funkyradio-info">
             <input type="checkbox" name="checkbox" id="prolist"/>
-            <label>Priority Listing</label>  
+            <label (click)='setFilterOptions(8,feature)'>{{feature.key}}</label>  
           </div>
-
-          <div class="funkyradio-info">
+          <!-- <div class="funkyradio-info">
               <input type="checkbox" name="checkbox" id="toplist"/>
-              <label>Top Listing</label>  
-            </div>
-
-            
+              <label (click)='setFilterOptions(8,feature.key)'>{{feature.key}}</label>  
+            </div> -->
         </div>
     </div>
   </div>
@@ -312,24 +309,24 @@
   						</div>
   						<div id="collapse3" class="panel-collapse collapse">
                  <div class="funkyradio">
-                    <div class="funkyradio-info">
+                    <div class="funkyradio-info" *ngFor='let ur of userRatingArray'>
                       <label>
-                        <input type="checkbox" name="checkbox" id="any" (change)='setFilterOptions(6,"any")'/>
-                        Any
+                        <input type="checkbox" name="checkbox" id="any" (change)='setFilterOptions(6,ur)'/>
+                        {{ur.key}}
                     </label>
                     </div>
-                    <div class="funkyradio-info">
+                    <!-- <div class="funkyradio-info">
                       <input type="checkbox" name="checkbox" id="star2" (change)='setFilterOptions(6,"2")'/>
                     <label>2.0+</label>
-                    </div>
-                    <div class="funkyradio-info">
+                    </div> -->
+                    <!-- <div class="funkyradio-info">
                       <input type="checkbox" name="checkbox" id="star3" (change)='setFilterOptions(6,"3")'/>
                     <label> 3.0+</label>
-                    </div>
-                    <div class="funkyradio-info">
+                    </div> -->
+                    <!-- <div class="funkyradio-info">
                       <input type="checkbox" name="checkbox" id="star4" (change)='setFilterOptions(6,"4")'/>
                     <label> 4.0+</label>
-                    </div>
+                    </div> -->
                   </div>
   						</div>
             </div>
@@ -348,19 +345,19 @@
                 <div id="collapse444" class="panel-collapse collapse" >
                    
                     <div class="funkyradio">
-                      <div class="funkyradio-info">
-                        <input type="checkbox" name="checkbox" id="yes"/>
-                        <label>Yes</label>  
+                      <div class="funkyradio-info" *ngFor='let dd of dealsAndOfferArray'>
+                        <!-- <input type="checkbox" name="checkbox" id="yes"/> -->
+                        <label (click)='setFilterOptions(9,dd)'>{{dd.key}}</label>  
                       </div>
             
-                      <div class="funkyradio-info">
+                      <!-- <div class="funkyradio-info">
                           <input type="checkbox" name="checkbox" id="no"/>
                           <label>No</label>  
                         </div>
                         <div class="funkyradio-info">
                             <input type="checkbox" name="checkbox" id="any"/>
                             <label>Any</label>  
-                          </div>
+                        </div> -->
                         
                     </div>
                 </div>

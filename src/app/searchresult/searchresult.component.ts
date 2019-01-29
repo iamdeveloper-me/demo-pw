@@ -51,15 +51,20 @@ export class SearchresultComponent implements OnInit {
   locationFilterParam:string='';
   categoryFilterParam:string='';
   pageNumber=0;
+  priceRange: any;
   disableLoadingButton=true;
   blankImg='../../assets/img/noImg.png';
   basicPlan:number;
+  userRatingArray:any;
+  dealsAndOfferArray:any;
+  faaturedListingArray:any;
   SelectedCategory:any;
-   ratingmodel: ratingStars
+  ratingmodel: ratingStars
   constructor(public _route:Router, public _activeRoute: ActivatedRoute, 
     private _masterservice: MasterserviceService, private api: apiService,) {
       this.objSearchFilter=new filterParam();
       this.ratingmodel = new ratingStars();
+      this.generateStaticArray();
       this.basicPlan = parseInt(localStorage.getItem('basic-plan'))
       // this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
       this._activeRoute.params.subscribe(res=>{
@@ -67,7 +72,6 @@ export class SearchresultComponent implements OnInit {
       this.objSearchlistvm = new SearchListingVM();
       if(this.objSearchFilter.locationId!=0){
       this.objSearchlistvm.districts.push(this.objSearchFilter.locationId);}
-      
     })
     this.objSearchFilter=new filterParam();
     if(this._activeRoute!=undefined){
@@ -98,9 +102,6 @@ export class SearchresultComponent implements OnInit {
     }else{
       return i.vendorCategories.filter(c=>c.isPrimary===true)[0].categoryName;
     }
-//  return this.categories.filter(c=>c.isSelect==true)[0].categoryName;
-    //  return i.vendorCategories.filter(c=>c.categoryId===this.SelectedCategory)[0].categories.categoryName;
-    
   }
   ngOnInit() {   
  
@@ -155,11 +156,12 @@ export class SearchresultComponent implements OnInit {
     this._masterservice.getFilters(filter_paramArray).subscribe(res=>{
       this.filters=res;
       console.log(JSON.stringify(this.filters));
-      //debugger;
-    //  if(this.filters.length>0){
       this.filters.services.forEach(element => { element.isSelect=false; });
       this.filters.filters.forEach(element => { element.isSelect=false;});
-   // }
+      this.priceRange = this.filters.filters[0].customFieldOptionList;
+      this.priceRange.forEach(element => {
+        element.isSelect = false;
+      });
     },error=>{
       console.log(error);
     })
@@ -220,12 +222,11 @@ export class SearchresultComponent implements OnInit {
        });
       }
   }
-  setFilterOptions(filterType: optionTypes,FilterValue){
+  setFilterOptions(filterType,FilterValue){
     this.collection=[];
     switch(filterType){
       case 1: // Category
       this.objSearchlistvm= new SearchListingVM();
-     // this.objSearchlistvm.categoryId=[];
       this.deselectAllCategories();
       this.categories.filter(c=>c.categoryId==FilterValue)[0].isSelect=true;
       this.showALlCategories = false;
@@ -236,21 +237,33 @@ export class SearchresultComponent implements OnInit {
       this.objSearchlistvm.serviceId = [];
       this.filters.services.filter(s=>s.servicesId==FilterValue)[0].isSelect?false:true; break;
       case 3: // location
-      debugger;
       this.locations.filter(l=>l.districtId==FilterValue)[0].isSelect?false:true;
       this.showAllLocation=false; 
       this.SelectedLocation = this.locations.filter(l=>l.districtId==FilterValue)[0];
       this.selectedLocationName= this.SelectedLocation.name;break;
       case 4: // custom Field Id
       this.objSearchlistvm.customsFields=[];
-      FilterValue.isSelect?false:true;break;
-      case 5:
-      FilterValue.isSelect?false:true;break;
-      case 6:
-      this.objSearchlistvm.rating = FilterValue
-      break;
+      this.checkUncheckFilter(FilterValue);break;
+      case 5: // Custom Field Option
+      this.checkUncheckFilter(FilterValue); break;
+      case 6: // Rating
+      debugger;
+      this.checkUncheckFilter(FilterValue); break;
+      case 7: // Pricing
+      this.checkUncheckFilter(FilterValue); break;
+      case 8: // Feature Listing
+      this.checkUncheckFilter(FilterValue); break;
+      case 9: // Deals And Offer
+      this.checkUncheckFilter(FilterValue); break;
     }
     if(filterType!==4){ this.paginate(this.objSearchFilter.page)};
+  }
+  checkUncheckFilter(filterValie){
+    if(filterValie.isSelect){
+      filterValie.isSelect=false;
+    }else{
+      filterValie.isSelect=true;
+    }
   }
   addLocation(l){
     if(l==0){
@@ -263,7 +276,7 @@ export class SearchresultComponent implements OnInit {
     });
     l.isSelect=true;
     this.SelectedLocation = l;
-  }
+    }
     this.collection=[];
     this.objSearchlistvm.page=0;
     this.paginate(this.objSearchFilter.pageSize);
@@ -296,6 +309,33 @@ export class SearchresultComponent implements OnInit {
         });        
       });
   }
+
+  // Set Featured List 
+let SelectedFeaturedList= this.faaturedListingArray.filter(fl=>fl.isSelect==true);
+if(SelectedFeaturedList && SelectedFeaturedList.length>0){
+  this.objSearchlistvm.featuredListing = SelectedFeaturedList[0].key;}
+  // Set Price Range
+  let selectedprices = this.priceRange.filter(p=>p.isSelect==true);
+  if(selectedprices && selectedprices.length>0){
+    this.objSearchlistvm.price='';
+    selectedprices.forEach(element => {
+      this.objSearchlistvm.price+=element.key+',';
+    });
+  }
+  // Set Rating values
+  let userRating = this.userRatingArray.filter(ur=>ur.isSelect==true);
+  if(userRating){
+    this.objSearchlistvm.rating='';
+    userRating.forEach(element => {
+      this.objSearchlistvm.rating+=element.key+',';
+    });
+  }
+  // Set Deals And Offers
+  let SelectedDealsOffers = this.dealsAndOfferArray.filter(dd=>dd.isSelect==true);
+  if(SelectedDealsOffers && SelectedDealsOffers.length>0){
+    this.objSearchlistvm.dealsOffer =SelectedDealsOffers[0].key;
+  }
+  debugger;
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
     this.setBlankImg();
@@ -313,7 +353,6 @@ export class SearchresultComponent implements OnInit {
     this.paginate(this.objSearchFilter.pageSize); }
  }
  showHideCategories(ind){
-  // debugger;
   this.deselectAllCategories();
   if(ind!=-1){    
     if(this.categories.length>0){
@@ -337,12 +376,10 @@ deselectAllCategories(){
   this.showALlCategories=true;
   this.objSearchlistvm.page=0;
   this.collection=[];
-//  this.paginate(this.objSearchFilter.pageSize);
 }
 
 selectCategory(paramType,Param){
   this.deselectAllCategories();
-  //debugger;
   if(paramType=='index'){
     if(this.categories){
       this.categories[Param].isSelect=true;
@@ -358,7 +395,24 @@ selectCategory(paramType,Param){
   }
   sessionStorage.setItem('filterParam', JSON.stringify(this.objSearchFilter));
   this.showALlCategories = false;
-  // this._route.navigate(['/home/weddingvendors',this.SelectedCategory?this.SelectedCategory.categoryName: ""]);
+}
+generateStaticArray(){
+  this.userRatingArray=[
+    {'key':'Any',isSelect:false},
+    {'key':'2.0+',isSelect:false},
+    {'key':'3.0+',isSelect:false},
+    {'key':'4.0+',isSelect:false}
+  ];
+  this.dealsAndOfferArray = [
+    {'key':'Yes',isSelect:false},
+    {'key':'No',isSelect:false},
+    {'key':'Any',isSelect:false}
+  ];
+  this.faaturedListingArray=[
+    {'key':'Priority Listing',isSelect:false},
+    {'key':'Top Listing',isSelect:false},
+  ]
+
 }
 }
 export class SearchFilterVm{
@@ -377,6 +431,9 @@ export class SearchListingVM{
   categoryId:Array<number>;
   serviceId:Array<number>;
   rating: string;
+  price:string;
+  dealsOffer:string;
+  featuredListing:string;
   customsFields:Array<FieldSearchVM>;
   customField:FieldSearchVM;
   constructor(){
@@ -386,6 +443,10 @@ export class SearchListingVM{
     this.categoryId=[];
     this.serviceId=[];
     this.sortDir='asc';
+    this.price='';
+    this.rating='';
+    this.dealsOffer='';
+    this.featuredListing='';
     this.customsFields = new Array<FieldSearchVM>();
     this.customField = new FieldSearchVM();
   }
@@ -395,10 +456,10 @@ export class FieldSearchVM{
   customFieldId: number;
   userValue:string;
 }
-export enum optionTypes{
-  category=1,
-  location=2,
-  service=3,
-  price=4,
-  customoption=5
-}
+// export enum optionTypes{
+//   category=1,
+//   location=2,
+//   service=3,
+//   price=4,
+//   customoption=5
+// }

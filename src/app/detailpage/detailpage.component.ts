@@ -37,7 +37,6 @@ export class DetailpageComponent implements OnInit {
     });
     this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
     console.log( this.vendorDetails )
-    debugger
     this.vendorVideo_details = this.vendorDetails.vendorVideos.length;
     this.businessServices_length = this.vendorDetails.businessServices.length;
     this.getSimilarVendors();

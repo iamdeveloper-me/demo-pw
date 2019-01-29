@@ -314,20 +314,29 @@
       <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection gallery" *ngIf = "portfolioAndAlbumImagesTotal > 0">
         <div class="large_subtext" >
           Portfolio & Albums
-          <span>({{portfolioAndAlbumImagesTotal}})</span>
+          <!-- <span>({{portfolioAndAlbumImagesTotal}})</span> -->
           <div class="clearfix"></div>
           <div class="container row martop15px" >
             <div class="col-6 col-sm-3" *ngFor='let pi of vendorDetails?.albums;let i=index' (click)='setLightboxImages(pi,$event)'
               data-target="#albumgallarypopup" data-toggle="modal">
               <div class="thumbnail text-center" *ngIf='i<4'>
                 <div>
+                    <img style = "height: 100px" src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" alt="...">
+                    
                   {{pi?.albumName}}
-                  <br />
-                  {{i}}
-                  (Images)
+
+ 
                 </div>
               </div>
             </div>
+            <div class="col-6 col-sm-3" *ngFor='let portpi of vendorDetails?.portfolios  | slice:0:3 ' >
+              <div class="thumbnail text-center" >
+                <div>
+                    <img style = "height: 100px" [src]="portpi.path" alt="...">
+
+                </div>
+              </div>
+          </div>
             <div class="clearfix"></div>
             <div class="col-sm-12 text-center">
               <a (click)='goToPhotogallary(vendorDetails)' class="btn pinkbg whitetext"> View All Albums </a>
@@ -355,12 +364,12 @@
       </div>
 
 
-
+    <!-- mobile  -->
       <div class="vp_about_txt aboutsection" id="about">
         <div class="boxLightStyles hideShowMeNow vp_about box_section_light r_s_pre">
 
           <div class="vp_about_txt">
-            <div class="vp_about_txt_title large_subtext ">
+            <div class="vp_about_txt_title large_subtext " *ngIf = "vendorDetails?.businessDetails != null">
               About Us
             </div>
             <div class="vp_about_txt_description ">
@@ -369,17 +378,17 @@
               <div class="onlymobilesection">
                 <ul class="wed_me_social">
                   <li>
-                    <a href="#">
+                    <a routerLink="vendorDetails?.facebookURL">
                       <i aria-hidden="true" class="fa fa-facebook"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a routerLink="vendorDetails?.twitterURL">
                       <i aria-hidden="true" class="fa fa-twitter"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a routerLink="vendorDetails?.instalURL">
                       <i aria-hidden="true" class="fa fa-instagram"></i>
                     </a>
                   </li>
@@ -400,7 +409,58 @@
           </div>
         </div>
         <div class="left_box_section overviewsection tradinghours onlymobilesection">
-          <div class="large_subtext">
+
+            <div class="branchrow row" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:1 '>
+                <div class="large_subtext text-center  col-12">
+                     Trading Hours
+                </div>
+                <!-- <div class="text-center col-12">{{loc.address}}, {{loc.suburb.name}}: </div>
+                <div class="clearfix"></div>
+                <div class="branchAddress text-center col-12">
+                  {{loc.districts.name}},{{loc.country.countryName}}
+                </div> -->
+                <div class="clearfix"></div>
+                <div class="col-md-12">
+                  <table class="tabledesignwork text-center ">
+                    <tr *ngIf='loc.isMondayOpen'>
+                      <th><strong>Mon</strong></th>
+                      <th>{{loc.mondayOpen}} - {{loc.monClose}}<span class="greentext">Open</span>
+                      </th>
+                    </tr>
+                    <tr *ngIf='loc.isTuesdayOpen'>
+                      <th><strong>Tues</strong></th>
+                      <th>{{loc.tuesdayOpen}} - {{loc.tuesdayClose}}<span class="greentext">Open</span>
+                      </th>
+                    </tr>
+                    <tr *ngIf='loc.isWednesdayOpen'>
+                      <th><strong>Wed</strong></th>
+                      <th>{{loc.wednesdayOpen}} - {{loc.wednesdayClose}}<span class="greentext">Open</span>
+                      </th>
+                    </tr>
+                    <tr *ngIf='loc.isThursdayOpen'>
+                      <th><strong>Thurse</strong></th>
+                      <th>{{loc.thursdayOpen}} - {{loc.thursdayClose}}<span class="greentext">Open</span>
+                      </th>
+                    </tr>
+                    <tr *ngIf='loc.isFridayOpen'>
+                      <th><strong>Fri</strong></th>
+                      <th>{{loc.fridayOpen}} - {{loc.fridayClose}}<span class="greentext">Open</span>
+                      </th>
+                    </tr>
+                    <tr *ngIf='loc.isSaturdayOpen'>
+                      <th><strong>Sat</strong></th>
+                      <th>{{loc.sundayOpen}} - {{loc.sundayClose}}<span class="greentext">Open</span>
+                      </th>
+                    </tr>
+                    <tr *ngIf='loc.isSundayOpen'>
+                      <th><strong>Sun</strong></th>
+                      <th>{{loc.sundayOpen}} - {{loc.sundayClose}}<span class="greentext">Open</span>
+                      </th>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+          <!-- <div class="large_subtext">
             Trading Hours
           </div>
 
@@ -452,11 +512,10 @@
           </div>
           <div class="clearfix"></div>
           <div class="text-center showdetail">Show More</div>
-          <div class="text-center showless" style="display: none;">Show less</div>
+          <div class="text-center showless" style="display: none;">Show less</div> -->
         </div>
       </div>
-
-
+    <!-- End mobile  -->
 
 
 
@@ -565,15 +624,6 @@
                           <img *ngIf = "simi_vendor?.profileImage == null" src='../../assets/img/noImg.png' class="lazyOwl carousel_img tag_vendor_841 img-responsive">
 
                           <div class="carousel_content">
-                            <div class="carousel_cat_body"  *ngFor='let pi_simi_vendor of simi_vendor.vendorCategories;let i=index' >
-                              <span class="carousel_cat">
-                              
-                             no category in
-
-                                {{pi_simi_vendor.categories.categoryName | json}}
-                              </span>
-                            </div>
-
                             <div class="carousel_title" *ngIf='simi_vendor.vendorLocations.districts'>
                               {{simi_vendor?.vendorLocations[0].districts.name}}
                             </div>
@@ -613,16 +663,16 @@
           </div>
           <ul class="wed_me_social text-center">
             <li *ngIf='vendorDetails?.facebookURL'>
-              <a href='vendorDetails?.facebookURL'>
+              <a routerLink='vendorDetails?.facebookURL'>
                 <i class="fa fa-facebook" aria-hidden="true"></i>
               </a>
             </li>
-            <li *ngIf='vendorDetails?.twitterURL'><a href='vendorDetails?.twitterURL'>
+            <li *ngIf='vendorDetails?.twitterURL'><a routerLink='vendorDetails?.twitterURL'>
                 <i class="fa fa-twitter" aria-hidden="true"></i>
               </a>
             </li>
             <li *ngIf='vendorDetails?.instalURL'>
-              <a href='vendorDetails?.instalURL'>
+              <a routerLink='vendorDetails?.instalURL'>
                 <i class="fa fa-instagram" aria-hidden="true"></i>
               </a>
             </li>
@@ -730,11 +780,11 @@
               <div class="large_subtext text-center  col-12">
                    Trading Hours
               </div>
-              <div class="text-center col-12">{{loc.address}}, {{loc.suburb.name}}: </div>
+              <!-- <div class="text-center col-12">{{loc.address}}, {{loc.suburb.name}}: </div>
               <div class="clearfix"></div>
               <div class="branchAddress text-center col-12">
                 {{loc.districts.name}},{{loc.country.countryName}}
-              </div>
+              </div> -->
               <div class="clearfix"></div>
               <div class="col-md-12">
                 <table class="tabledesignwork text-center ">

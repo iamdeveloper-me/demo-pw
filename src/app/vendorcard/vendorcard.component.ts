@@ -109,11 +109,13 @@ export class VendorcardComponent implements OnInit {
     )
   }
   goToVendordetails(slide) {
-
+    console.log(slide)
+      console.log(slide.vendorCategories.length)
       let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
       this.apiService.getData(url+'?id='+slide.vendorId).subscribe(res=>{
         sessionStorage.setItem('vendorDetails',JSON.stringify(res));
-      this.router.navigate(['home/detailprofile',0]);
+
+       this.router.navigate(['home/detailprofile',0]);
     });
    // this.router.navigate(['home/detailprofile/',slide.vendorId])
   }

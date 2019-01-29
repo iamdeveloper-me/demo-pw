@@ -8,8 +8,8 @@
         <ol class="breadcrumb breadcrumbcontainer">
           <li><a href="#">Home</a></li>
           <li><a href="#">Wedding Vendors</a></li>
-          <li><a href="#">Photography, Videography</a></li>
-          <li class="active">Myfair Banquets</li>
+          <li><a href="#">  {{vendorDetails?.vendorCategories[0].categories?.categoryName}}</a></li>
+          <li class="active">{{vendorDetails?.nameOfBusiness}}</li>
         </ol>
       </div>
     </div>
@@ -190,23 +190,11 @@
                </div> 
             </div>
             <div class="clearfix"></div>
-            <div class="detailtabclick detailpri">
+            <div class="detailtabclick detailpri"  *ngFor='let service of  vendorDetails?.businessServices | slice:0:1'>
               <table class="tabledesignwork">
-                <tr>
-                  <th>Candid Photography</th>
-                  <td>25000 per day</td>
-                </tr>
-                <tr>
-                  <th>Studio Photography</th>
-                  <td>10000 per day</td>
-                </tr>
-                <tr>
-                  <th>Cinematography</th>
-                  <td>60000 per day</td>
-                </tr>
-                <tr>
-                  <th>Pre-Wedding Shoot</th>
-                  <td>20000 per day</td>
+                <tr *ngFor='let customF of  service.customFields  '>
+                  <th>{{customF.displayText}}</th>
+                  <td>{{customF.fieldValue}}</td>
                 </tr>
               </table>
             </div>
@@ -378,17 +366,17 @@
               <div class="onlymobilesection">
                 <ul class="wed_me_social">
                   <li>
-                    <a routerLink="vendorDetails?.facebookURL">
+                    <a href="{{vendorDetails?.facebookURL}}">
                       <i aria-hidden="true" class="fa fa-facebook"></i>
                     </a>
                   </li>
                   <li>
-                    <a routerLink="vendorDetails?.twitterURL">
+                    <a href="{{vendorDetails?.twitterURL}}">
                       <i aria-hidden="true" class="fa fa-twitter"></i>
                     </a>
                   </li>
                   <li>
-                    <a routerLink="vendorDetails?.instalURL">
+                    <a href="{{vendorDetails?.instalURL}}" >
                       <i aria-hidden="true" class="fa fa-instagram"></i>
                     </a>
                   </li>
@@ -663,16 +651,18 @@
           </div>
           <ul class="wed_me_social text-center">
             <li *ngIf='vendorDetails?.facebookURL'>
-              <a routerLink='vendorDetails?.facebookURL'>
+
+              <a href="{{vendorDetails?.facebookURL}}">
                 <i class="fa fa-facebook" aria-hidden="true"></i>
               </a>
             </li>
-            <li *ngIf='vendorDetails?.twitterURL'><a routerLink='vendorDetails?.twitterURL'>
+            <li *ngIf='vendorDetails?.twitterURL'>
+              <a href="{{vendorDetails?.twitterURL}}">
                 <i class="fa fa-twitter" aria-hidden="true"></i>
               </a>
             </li>
             <li *ngIf='vendorDetails?.instalURL'>
-              <a routerLink='vendorDetails?.instalURL'>
+              <a href="{{vendorDetails?.instalURL}}">
                 <i class="fa fa-instagram" aria-hidden="true"></i>
               </a>
             </li>
@@ -757,15 +747,25 @@
             </div>
             <div class="clearfix"></div>
             <div class="detailtabclick detailpri">
-              <table class="tabledesignwork">
+              <!-- <table class="tabledesignwork">
                 <tr *ngFor='let bs of vendorDetails?.businessServices'>
                   <th>{{bs.serviceName}}</th>
                   <td>
-                    <!-- {{bs.customFields[0].displayText}} 
-                    {{bs.customFields[0].fieldValue}} -->
+                     {{bs.customFields[0].displayText}} 
+                    {{bs.customFields[0].fieldValue}} 
                   </td>
                 </tr>
-              </table>
+              </table> -->
+
+              <div class="detailtabclick detailpri"  *ngFor='let service of  vendorDetails?.businessServices | slice:0:1'>
+                  <table class="tabledesignwork">
+                      <span>{{service.serviceName}}</span>
+                    <tr *ngFor='let customF of  service.customFields  '>
+                      <th>{{customF.displayText}}</th>
+                      <td>{{customF.fieldValue}}</td>
+                    </tr>
+                  </table>
+              </div>
             </div>
             <div class="clearfix"></div>
             <div class="text-center showdetail">Show More</div>
@@ -773,10 +773,10 @@
 
           </div>
         </div>
-         
-        <div class="left_box_section contactsection">
+         <!-- trading hour -->
+          <div class="left_box_section contactsection">
 
-            <div class="branchrow row" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:1 '>
+            <div class="branchrow row detailtabclick detailpri" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:1 '>
               <div class="large_subtext text-center  col-12">
                    Trading Hours
               </div>
@@ -826,8 +826,10 @@
                 </table>
               </div>
             </div>
+            <div class="text-center showdetail">Show More</div>
+            <div class="text-center showless" style="display: none;">Show less</div>
           </div>
-      
+         <!-- End trading hour -->
 
         <div class="left_box_section contactsection">
 

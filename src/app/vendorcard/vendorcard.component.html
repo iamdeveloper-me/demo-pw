@@ -121,8 +121,9 @@
                               </div>
                               <div class="col-md-4 col-5 span_positin">
                                 <img src="../../assets/img/tag.svg"  alt=""> 
-                              <span>Deals</span>
-                              <span>1</span>
+                              <!-- <span>Deals</span> -->
+                              <span>{{slide.deals}}</span>
+                              <span *ngIf='!slide.deals == 0'>N/A Deals</span>
                               </div>
                           </div>
                         </div>

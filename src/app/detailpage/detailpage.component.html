@@ -8,8 +8,8 @@
         <ol class="breadcrumb breadcrumbcontainer">
           <li><a href="#">Home</a></li>
           <li><a href="#">Wedding Vendors</a></li>
-          <li><a href="#">Photography, Videography</a></li>
-          <li class="active">Myfair Banquets</li>
+          <li><a href="#">  {{vendorDetails?.vendorCategories[0].categories?.categoryName}}</a></li>
+          <li class="active">{{vendorDetails?.nameOfBusiness}}</li>
         </ol>
       </div>
     </div>
@@ -22,6 +22,7 @@
             <a>
               <img class="owl-lazy" [src]='i' *ngIf="i"  alt="">
             </a>
+            
             <div class="namecontainer">Album Name</div>
             <div class="numcontainer">15/20</div>
             <div class="linkcontainer">
@@ -117,9 +118,21 @@
           <div class="large_text text-center">
             {{vendorDetails?.nameOfBusiness}}
           </div>
-          <div class="text-center pink">
-            Starting Price: ₹ 1500
+          <div class="large_subtext bob_pa_left text-center">
+            Starting Price: 
+           <div  *ngFor='let service of  vendorDetails?.businessServices | slice:0:1' >
+             <div *ngFor='let customF of  service.customFields  | slice:0:1' >
+                <span class="pink">
+                    <!-- {{vendorDetails?.businessServices[0].customFields[0].fieldValue}} -->
+                    {{customF.fieldValue}}
+                  </span>
+             </div>
+           </div> 
+
           </div>
+          <!-- <div class="text-center pink">
+            Starting Price: ₹ 1500
+          </div> -->
         </div>
         <div class="col-md-3 tikshow hidden-xs">
           <div class="featurebtn row fixedheaderbtn">
@@ -146,9 +159,11 @@
                 <i class="material-icons">share</i>
               </button>
             </div>
-            <div class="callinfo">
+            <div class="callinfo" style="display:none" *ngFor='let phone of  vendorDetails?.vendorLocations | slice:0:1'>
               <strong>Contact Number</strong><br />
-              +91-99999 12345
+              <!-- +91-99999 12345// -->
+              Mobile  : {{phone.mobile}}<br>
+              Phone   : {{phone.phone}}
             </div>
           </div>
         </div>
@@ -160,27 +175,26 @@
       <div class="boxLightStyles hideShowMeNow vp_services box_section_light1 r_s_pre  weddingvenue">
         <div class="left_box_section overviewsection startprice onlymobilesection">
           <div class="vp_mainDetails_starting_price">
-            <div class="large_subtext bob_pa_left text-center">
+            <!-- <div class="large_subtext bob_pa_left text-center">
               Starting Price: <span class="">₹ 1500</span>
+            </div> -->
+            <div class="large_subtext bob_pa_left text-center">
+                Starting Price: 
+               <div  *ngFor='let service of  vendorDetails?.businessServices | slice:0:1' >
+                 <div *ngFor='let customF of  service.customFields  | slice:0:1' >
+                    <span class="pink">
+                        <!-- {{vendorDetails?.businessServices[0].customFields[0].fieldValue}} -->
+                        {{customF.fieldValue}}
+                      </span>
+                 </div>
+               </div> 
             </div>
             <div class="clearfix"></div>
-            <div class="detailtabclick detailpri">
+            <div class="detailtabclick detailpri"  *ngFor='let service of  vendorDetails?.businessServices | slice:0:1'>
               <table class="tabledesignwork">
-                <tr>
-                  <th>Candid Photography</th>
-                  <td>25000 per day</td>
-                </tr>
-                <tr>
-                  <th>Studio Photography</th>
-                  <td>10000 per day</td>
-                </tr>
-                <tr>
-                  <th>Cinematography</th>
-                  <td>60000 per day</td>
-                </tr>
-                <tr>
-                  <th>Pre-Wedding Shoot</th>
-                  <td>20000 per day</td>
+                <tr *ngFor='let customF of  service.customFields  '>
+                  <th>{{customF.displayText}}</th>
+                  <td>{{customF.fieldValue}}</td>
                 </tr>
               </table>
             </div>
@@ -189,19 +203,22 @@
             <div class="text-center showless" style="display: none;">Show less</div>
           </div>
         </div>
-        <div class="vp_services_txt">
+        <div class="vp_services_txt" *ngIf = "businessServices_length > 0">
           <div class="servicecontainer_0 servicecontainer">
             <div class="servicerow">
               <span class="vp_services_txt_span marriager_text_without_underline">
                 Speciality, Costs of Services $ Experienced </span>
             </div>
-            <div class="row servicerow" *ngFor='let service of  vendorDetails?.businessServices | slice:0:1'>
+            <div class="row servicerow" *ngFor='let service of  vendorDetails?.businessServices'>
               <div class=" vp_services_txt_title headerWithoutTopBorder-0 large_subtext col-md-3"> 
-                {{service?.serviceName}} ({{service?.categoryName}})
+              
+                  Service Name  <span>   {{service?.serviceName}}  </span>
+               
+                  Category Name <span> ({{service?.categoryName}}) </span>
               </div>
-              <div class="col-md-3" *ngFor='let customF of  service.customFields  | slice:0:1'>
+              <!-- <div class="col-md-3" *ngFor='let customF of  service.customFields  | slice:0:1'>
                   Starting Price {{customF.fieldValue}}
-              </div>
+              </div> -->
               
             </div>
           </div>
@@ -282,38 +299,42 @@
           <div class="vp_services_txt_seeMore marriager_text "> <a href="#"> See More </a></div>
         </div>
       </div>
-      <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection gallery">
-        <div class="large_subtext">
+      <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection gallery" *ngIf = "portfolioAndAlbumImagesTotal > 0">
+        <div class="large_subtext" >
           Portfolio & Albums
-          <span>({{portfolioAndAlbumImagesTotal}})</span>
+          <!-- <span>({{portfolioAndAlbumImagesTotal}})</span> -->
           <div class="clearfix"></div>
-          <div class="container row martop15px" *ngIf = "portfolioAndAlbumImagesTotal > 0">
+          <div class="container row martop15px" >
             <div class="col-6 col-sm-3" *ngFor='let pi of vendorDetails?.albums;let i=index' (click)='setLightboxImages(pi,$event)'
               data-target="#albumgallarypopup" data-toggle="modal">
               <div class="thumbnail text-center" *ngIf='i<4'>
                 <div>
+                    <img style = "height: 100px" src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" alt="...">
+                    
                   {{pi?.albumName}}
-                  <br />
-                  {{i}}
-                  (Images)
+
+ 
                 </div>
               </div>
             </div>
+            <div class="col-6 col-sm-3" *ngFor='let portpi of vendorDetails?.portfolios  | slice:0:3 ' >
+              <div class="thumbnail text-center" >
+                <div>
+                    <img style = "height: 100px" [src]="portpi.path" alt="...">
+
+                </div>
+              </div>
+          </div>
             <div class="clearfix"></div>
             <div class="col-sm-12 text-center">
               <a (click)='goToPhotogallary(vendorDetails)' class="btn pinkbg whitetext"> View All Albums </a>
             </div>
           </div>
-          <div class="container row martop15px" *ngIf = "portfolioAndAlbumImagesTotal == 0">
-             
-              <span class=" text-center"> No Album Available Yet</span>
-          </div>
-
         </div>
-        <div class="large_subtext">
+        <div class="large_subtext"  *ngIf = "vendorDetails.vendorVideos?.length > 0">
           Vedio
           <div class="clearfix"></div>
-          <div class="container row martop15px" *ngIf = "vendorVideo_details > 0">
+          <div class="container row martop15px">
             <div class="col-6 col-sm-3" *ngFor='let video of vendorDetails?.vendorVideos' data-target="#Vediogallarypopup" data-toggle="modal">
               <div class="thumbnail text-center">
                 <img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
@@ -327,16 +348,16 @@
               <a routerLink="/home/Vediogallary" class="btn pinkbg whitetext"> View All Albums (267 more images) </a>
             </div>
           </div>
-          <div class="container row martop15px" *ngIf = "vendorVideo_details == 0">
-              <span class=" text-center"> No Video Available Yet</span>     
-          </div>
         </div>
       </div>
+
+
+    <!-- mobile  -->
       <div class="vp_about_txt aboutsection" id="about">
         <div class="boxLightStyles hideShowMeNow vp_about box_section_light r_s_pre">
 
           <div class="vp_about_txt">
-            <div class="vp_about_txt_title large_subtext ">
+            <div class="vp_about_txt_title large_subtext " *ngIf = "vendorDetails?.businessDetails != null">
               About Us
             </div>
             <div class="vp_about_txt_description ">
@@ -345,17 +366,17 @@
               <div class="onlymobilesection">
                 <ul class="wed_me_social">
                   <li>
-                    <a href="#">
+                    <a href="{{vendorDetails?.facebookURL}}">
                       <i aria-hidden="true" class="fa fa-facebook"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="{{vendorDetails?.twitterURL}}">
                       <i aria-hidden="true" class="fa fa-twitter"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="{{vendorDetails?.instalURL}}" >
                       <i aria-hidden="true" class="fa fa-instagram"></i>
                     </a>
                   </li>
@@ -376,7 +397,58 @@
           </div>
         </div>
         <div class="left_box_section overviewsection tradinghours onlymobilesection">
-          <div class="large_subtext">
+
+            <div class="branchrow row" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:1 '>
+                <div class="large_subtext text-center  col-12">
+                     Trading Hours
+                </div>
+                <!-- <div class="text-center col-12">{{loc.address}}, {{loc.suburb.name}}: </div>
+                <div class="clearfix"></div>
+                <div class="branchAddress text-center col-12">
+                  {{loc.districts.name}},{{loc.country.countryName}}
+                </div> -->
+                <div class="clearfix"></div>
+                <div class="col-md-12">
+                  <table class="tabledesignwork text-center ">
+                    <tr *ngIf='loc.isMondayOpen'>
+                      <th><strong>Mon</strong></th>
+                      <th>{{loc.mondayOpen}} - {{loc.monClose}}<span class="greentext">Open</span>
+                      </th>
+                    </tr>
+                    <tr *ngIf='loc.isTuesdayOpen'>
+                      <th><strong>Tues</strong></th>
+                      <th>{{loc.tuesdayOpen}} - {{loc.tuesdayClose}}<span class="greentext">Open</span>
+                      </th>
+                    </tr>
+                    <tr *ngIf='loc.isWednesdayOpen'>
+                      <th><strong>Wed</strong></th>
+                      <th>{{loc.wednesdayOpen}} - {{loc.wednesdayClose}}<span class="greentext">Open</span>
+                      </th>
+                    </tr>
+                    <tr *ngIf='loc.isThursdayOpen'>
+                      <th><strong>Thurse</strong></th>
+                      <th>{{loc.thursdayOpen}} - {{loc.thursdayClose}}<span class="greentext">Open</span>
+                      </th>
+                    </tr>
+                    <tr *ngIf='loc.isFridayOpen'>
+                      <th><strong>Fri</strong></th>
+                      <th>{{loc.fridayOpen}} - {{loc.fridayClose}}<span class="greentext">Open</span>
+                      </th>
+                    </tr>
+                    <tr *ngIf='loc.isSaturdayOpen'>
+                      <th><strong>Sat</strong></th>
+                      <th>{{loc.sundayOpen}} - {{loc.sundayClose}}<span class="greentext">Open</span>
+                      </th>
+                    </tr>
+                    <tr *ngIf='loc.isSundayOpen'>
+                      <th><strong>Sun</strong></th>
+                      <th>{{loc.sundayOpen}} - {{loc.sundayClose}}<span class="greentext">Open</span>
+                      </th>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+          <!-- <div class="large_subtext">
             Trading Hours
           </div>
 
@@ -428,11 +500,10 @@
           </div>
           <div class="clearfix"></div>
           <div class="text-center showdetail">Show More</div>
-          <div class="text-center showless" style="display: none;">Show less</div>
+          <div class="text-center showless" style="display: none;">Show less</div> -->
         </div>
       </div>
-
-
+    <!-- End mobile  -->
 
 
 
@@ -470,8 +541,8 @@
       </div>
       <!-- End Reviews form -->
       <div class="clearfix"></div>
-
-      <div class="boxLightStyles hideShowMeNow box_section_light dealsection" id="deals">
+      <!-- Wedding Deals & Discount -->
+      <div class="boxLightStyles hideShowMeNow box_section_light dealsection" id="deals" *ngIf = "vendorDetails?.dealsCount > 0">
         <div class="vp_review_txt_title large_subtext">Wedding Deals & Discount</div>
         <div class="row dealsinner">
           <!-- <div class="col-sm-2 text-center dealhead pink" *ngIf='vendorDetails?.discounts'>
@@ -495,7 +566,7 @@
             </button>
           </div>
         </div>
-        <div *ngIf = "vendorDetails?.dealsCount > 0">
+        <div >
           <div class="row dealsinner"  *ngFor='let deal of vendorDetails?.deals;let i=index'>
           <div class="col-sm-2 text-center dealhead">
             <span class="borradius50per btntikbg">%</span>
@@ -516,15 +587,11 @@
           </div>
           </div>
         </div>  
-        <div class="row dealsinner" *ngIf = "vendorDetails?.dealsCount == 0">
-                
-                <span class="text-center">No Deals For this vendor </span>
-        </div>
       </div>
-
+      <!--End Wedding Deals & Discount -->
       <div class="clearfix"></div>
-
-      <div class="boxLightStyles  box_section_light vp_similarVendors r_s_pre hidden-xs">
+      <!-- Similar Vendors -->
+      <div class="boxLightStyles  box_section_light vp_similarVendors r_s_pre hidden-xs"  *ngIf = "similarVendors_length > 0" >
         <div class="similarVendors_cat ">
           <div class="heading">
             <div class="large_subtext ">
@@ -536,24 +603,15 @@
               <div class="">
                 <div class="clearfix">
 
-                  <div class="owl-item"  *ngIf = "similarVendors_length > 0" >
+                  <div class="owl-item" >
                     <div *ngFor='let simi_vendor of similarVendors' class="col-md-3 col-sm-3 mobpadd0">
                       <div class="mob_bot_mar">
                         <div class="item hover_effect">
-                          <img  *ngIf = "simi_vendor.profileImage != null" [src]='simi_vendor.profileImage' class="lazyOwl carousel_img tag_vendor_841 img-responsive">
+                          <img  *ngIf = "simi_vendor?.profileImage != null" [src]='simi_vendor?.profileImage' class="lazyOwl carousel_img tag_vendor_841 img-responsive">
                           
-                          <img *ngIf = "simi_vendor.profileImage == null" src='../../assets/img/noImg.png' class="lazyOwl carousel_img tag_vendor_841 img-responsive">
+                          <img *ngIf = "simi_vendor?.profileImage == null" src='../../assets/img/noImg.png' class="lazyOwl carousel_img tag_vendor_841 img-responsive">
 
                           <div class="carousel_content">
-                            <div class="carousel_cat_body"  *ngFor='let pi_simi_vendor of simi_vendor.vendorCategories;let i=index' >
-                              <span class="carousel_cat">
-                              
-                             no category in
-
-                                {{pi_simi_vendor.categories.categoryName | json}}
-                              </span>
-                            </div>
-
                             <div class="carousel_title" *ngIf='simi_vendor.vendorLocations.districts'>
                               {{simi_vendor?.vendorLocations[0].districts.name}}
                             </div>
@@ -574,15 +632,13 @@
                       </div>
                     </div>
                   </div>
-                  <div *ngIf = "similarVendors_length ==0" >
-                       No similar vendor found 
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <!-- End Similar Vendors -->
     </div>
 
     <div class="col-sm-3 hidden-xs">
@@ -591,19 +647,22 @@
         <div class="left_box_section paddleftrite0px">
           <span class="flagicontik"><i class="material-icons">outlined_flag</i></span>
           <div class="hotellogo">
-            <img [src]="vendorDetails.profileImage" />
+            <img [src]="vendorDetails?.profileImage" />
           </div>
           <ul class="wed_me_social text-center">
-            <li *ngIf='vendorDetails?.facebookURL'><a src='vendorDetails?.facebookURL'>
+            <li *ngIf='vendorDetails?.facebookURL'>
+
+              <a href="{{vendorDetails?.facebookURL}}">
                 <i class="fa fa-facebook" aria-hidden="true"></i>
               </a>
             </li>
-            <li *ngIf='vendorDetails?.twitterURL'><a src='vendorDetails?.twitterURL'>
+            <li *ngIf='vendorDetails?.twitterURL'>
+              <a href="{{vendorDetails?.twitterURL}}">
                 <i class="fa fa-twitter" aria-hidden="true"></i>
               </a>
             </li>
             <li *ngIf='vendorDetails?.instalURL'>
-              <a src='vendorDetails?.instalURL'>
+              <a href="{{vendorDetails?.instalURL}}">
                 <i class="fa fa-instagram" aria-hidden="true"></i>
               </a>
             </li>
@@ -628,7 +687,7 @@
             </div>
           </div>
           <div class="carousel_cat">
-            <!-- {{vendorDetails?.vendorCategories[0].categories?.categoryName}} -->
+            {{vendorDetails?.vendorCategories[0].categories?.categoryName}}
           </div>
           <div class="clearfix"></div>
           <div class="col-sm-12">
@@ -661,15 +720,18 @@
                 <div class="featurehead">Share</div>
               </div>
             </div>
-            <div class="callinfo" style="display:none">
+
+            <div class="callinfo" style="display:none" *ngFor='let phone of  vendorDetails?.vendorLocations | slice:0:1'>
               <strong>Contact Number</strong><br />
-              +91-99999 12345
+              <!-- +91-99999 12345// -->
+              {{phone.mobile}}<br>
+              {{phone.phone}}
             </div>
           </div>
         </div>
 
         <div class="clearfix"></div>
-        <div class="left_box_section overviewsection startprice">
+        <div class="left_box_section overviewsection startprice" *ngIf = "vendorDetails?.businessServices.length > 0">
           <div class="vp_mainDetails_starting_price">
             <div class="large_subtext bob_pa_left text-center">
               Starting Price: 
@@ -685,15 +747,25 @@
             </div>
             <div class="clearfix"></div>
             <div class="detailtabclick detailpri">
-              <table class="tabledesignwork">
+              <!-- <table class="tabledesignwork">
                 <tr *ngFor='let bs of vendorDetails?.businessServices'>
                   <th>{{bs.serviceName}}</th>
                   <td>
-                    <!-- {{bs.customFields[0].displayText}} 
-                    {{bs.customFields[0].fieldValue}} -->
+                     {{bs.customFields[0].displayText}} 
+                    {{bs.customFields[0].fieldValue}} 
                   </td>
                 </tr>
-              </table>
+              </table> -->
+
+              <div class="detailtabclick detailpri"  *ngFor='let service of  vendorDetails?.businessServices | slice:0:1'>
+                  <table class="tabledesignwork">
+                      <span>{{service.serviceName}}</span>
+                    <tr *ngFor='let customF of  service.customFields  '>
+                      <th>{{customF.displayText}}</th>
+                      <td>{{customF.fieldValue}}</td>
+                    </tr>
+                  </table>
+              </div>
             </div>
             <div class="clearfix"></div>
             <div class="text-center showdetail">Show More</div>
@@ -701,65 +773,76 @@
 
           </div>
         </div>
+         <!-- trading hour -->
+          <div class="left_box_section contactsection">
 
-      
+            <div class="branchrow row detailtabclick detailpri" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:1 '>
+              <div class="large_subtext text-center  col-12">
+                   Trading Hours
+              </div>
+              <!-- <div class="text-center col-12">{{loc.address}}, {{loc.suburb.name}}: </div>
+              <div class="clearfix"></div>
+              <div class="branchAddress text-center col-12">
+                {{loc.districts.name}},{{loc.country.countryName}}
+              </div> -->
+              <div class="clearfix"></div>
+              <div class="col-md-12">
+                <table class="tabledesignwork text-center ">
+                  <tr *ngIf='loc.isMondayOpen'>
+                    <th><strong>Mon</strong></th>
+                    <th>{{loc.mondayOpen}} - {{loc.monClose}}<span class="greentext">Open</span>
+                    </th>
+                  </tr>
+                  <tr *ngIf='loc.isTuesdayOpen'>
+                    <th><strong>Tues</strong></th>
+                    <th>{{loc.tuesdayOpen}} - {{loc.tuesdayClose}}<span class="greentext">Open</span>
+                    </th>
+                  </tr>
+                  <tr *ngIf='loc.isWednesdayOpen'>
+                    <th><strong>Wed</strong></th>
+                    <th>{{loc.wednesdayOpen}} - {{loc.wednesdayClose}}<span class="greentext">Open</span>
+                    </th>
+                  </tr>
+                  <tr *ngIf='loc.isThursdayOpen'>
+                    <th><strong>Thurse</strong></th>
+                    <th>{{loc.thursdayOpen}} - {{loc.thursdayClose}}<span class="greentext">Open</span>
+                    </th>
+                  </tr>
+                  <tr *ngIf='loc.isFridayOpen'>
+                    <th><strong>Fri</strong></th>
+                    <th>{{loc.fridayOpen}} - {{loc.fridayClose}}<span class="greentext">Open</span>
+                    </th>
+                  </tr>
+                  <tr *ngIf='loc.isSaturdayOpen'>
+                    <th><strong>Sat</strong></th>
+                    <th>{{loc.sundayOpen}} - {{loc.sundayClose}}<span class="greentext">Open</span>
+                    </th>
+                  </tr>
+                  <tr *ngIf='loc.isSundayOpen'>
+                    <th><strong>Sun</strong></th>
+                    <th>{{loc.sundayOpen}} - {{loc.sundayClose}}<span class="greentext">Open</span>
+                    </th>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="text-center showdetail">Show More</div>
+            <div class="text-center showless" style="display: none;">Show less</div>
+          </div>
+         <!-- End trading hour -->
 
         <div class="left_box_section contactsection">
-          <div class="large_subtext text-center  col-12">
-            Branches
-          </div>
-          <div class="branchrow row" *ngFor='let loc of vendorDetails?.vendorLocations; let i=index'>
+
+          <div class="branchrow row" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:2  '>
+            <div class="large_subtext text-center  col-12">
+                  Branches
+            </div>
             <div class="text-center col-12">{{loc.address}}, {{loc.suburb.name}}: </div>
             <div class="clearfix"></div>
             <div class="branchAddress text-center col-12">
               {{loc.districts.name}},{{loc.country.countryName}}
             </div>
-            <div class="col-6 text-left">
-              <span *ngIf='loc.isMondayOpen'>Mon: {{loc.mondayOpen}} - {{loc.mondayClose}}</span>
-            </div>
-            <div class="col-6 text-right" data-lattitude="19.012" data-longitude="72.822">
-              View in Map
-            </div>
-            <div class="clearfix"></div>
-            <div class="col-md-12">
-              <table class="tabledesignwork text-center ">
-                <tr *ngIf='loc.isMondayOpen'>
-                  <th><strong>Mon</strong></th>
-                  <th>{{loc.mondayOpen}} - {{loc.monClose}}<span class="greentext">Open</span>
-                  </th>
-                </tr>
-                <tr *ngIf='loc.isTuesdayOpen'>
-                  <th><strong>Tues</strong></th>
-                  <th>{{loc.tuesdayOpen}} - {{loc.tuesdayClose}}<span class="greentext">Open</span>
-                  </th>
-                </tr>
-                <tr *ngIf='loc.isWednesdayOpen'>
-                  <th><strong>Wed</strong></th>
-                  <th>{{loc.wednesdayOpen}} - {{loc.wednesdayClose}}<span class="greentext">Open</span>
-                  </th>
-                </tr>
-                <tr *ngIf='loc.isThursdayOpen'>
-                  <th><strong>Thurse</strong></th>
-                  <th>{{loc.thursdayOpen}} - {{loc.thursdayClose}}<span class="greentext">Open</span>
-                  </th>
-                </tr>
-                <tr *ngIf='loc.isFridayOpen'>
-                  <th><strong>Fri</strong></th>
-                  <th>{{loc.fridayOpen}} - {{loc.fridayClose}}<span class="greentext">Open</span>
-                  </th>
-                </tr>
-                <tr *ngIf='loc.isSaturdayOpen'>
-                  <th><strong>Sat</strong></th>
-                  <th>{{loc.sundayOpen}} - {{loc.sundayClose}}<span class="greentext">Open</span>
-                  </th>
-                </tr>
-                <tr *ngIf='loc.isSundayOpen'>
-                  <th><strong>Sun</strong></th>
-                  <th>{{loc.sundayOpen}} - {{loc.sundayClose}}<span class="greentext">Open</span>
-                  </th>
-                </tr>
-              </table>
-            </div>
+
           </div>
         </div>
       </div>

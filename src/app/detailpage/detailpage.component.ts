@@ -15,6 +15,7 @@ export class DetailpageComponent implements OnInit {
   sliderImgaes: any = [];
   vendorId: number;
   vendorDetails: any;
+  businessServices_length ;
   portfolioAndAlbumImagesTotal: number = 0;
   similarVendors:any;
   portfolioImages = [];
@@ -37,6 +38,7 @@ export class DetailpageComponent implements OnInit {
     this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
     console.log( this.vendorDetails )
     this.vendorVideo_details = this.vendorDetails.vendorVideos.length;
+    this.businessServices_length = this.vendorDetails.businessServices.length;
     this.getSimilarVendors();
     this.vendorDetails.vendorLocations.reverse();
     this.vendorDetails.albums.forEach(element => {

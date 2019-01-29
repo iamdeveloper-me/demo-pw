@@ -3,7 +3,7 @@
 	<div class="container mobnopadd ipad100">
 	  	<div class="col-sm-12 detail_page nopadd">
 		   <div class="card inspirationhead">
-	  			<a routerLink="../home" class="backlink"> 
+	  			<a routerLink="../../home" class="backlink"> 
 		            <i class="material-icons">arrow_back_ios</i>
 		            Go Back
 		        </a>
@@ -33,8 +33,16 @@
 							{{vd.albumName | json}}
 						</a> 	
 					</div>
+
 				</div>
-		        
+		    <div class="col-6 col-sm-3" *ngFor='let portpi of vendorDetails?.portfolios  ' >
+              <div class="thumbnail text-center" >
+                <div>
+                    <img style = "height: 100px" [src]="portpi.path" alt="...">
+
+                </div>
+              </div>
+          </div>
 			</div>
 		</div>
    </div>

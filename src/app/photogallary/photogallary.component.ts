@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PhotogallaryComponent implements OnInit {
 
   albums:any;
+  
   constructor() { }
 
   ngOnInit() {
@@ -16,6 +17,8 @@ export class PhotogallaryComponent implements OnInit {
     $.getScript('./assets/js/jquery.fancybox.min.js');
     $.getScript('./assets/js/curosselfun.js');
     const Images=JSON.parse(sessionStorage.getItem('Vendorimages'));
+    // this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
+    // console.log( this.vendorDetails );
    this.albums=Images;
 }
 

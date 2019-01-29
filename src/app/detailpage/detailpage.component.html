@@ -287,31 +287,33 @@
           Portfolio & Albums
           <span>({{portfolioAndAlbumImagesTotal}})</span>
           <div class="clearfix"></div>
-          <div class="container row martop15px">
+          <div class="container row martop15px" *ngIf = "portfolioAndAlbumImagesTotal > 0">
             <div class="col-6 col-sm-3" *ngFor='let pi of vendorDetails?.albums;let i=index' (click)='setLightboxImages(pi,$event)'
               data-target="#albumgallarypopup" data-toggle="modal">
               <div class="thumbnail text-center" *ngIf='i<4'>
-                <!-- <img [src]='pi?.albumImages[0].path' alt="..."> -->
                 <div>
                   {{pi?.albumName}}
                   <br />
-                  <!-- {{pi.albumImages.length}} -->{{i}}
+                  {{i}}
                   (Images)
                 </div>
               </div>
             </div>
             <div class="clearfix"></div>
             <div class="col-sm-12 text-center">
-              <a (click)='goToPhotogallary()' class="btn pinkbg whitetext"> View All Albums
-                ({{portfolioAndAlbumImagesTotal}}) Images </a>
+              <a (click)='goToPhotogallary(vendorDetails)' class="btn pinkbg whitetext"> View All Albums </a>
             </div>
           </div>
+          <div class="container row martop15px" *ngIf = "portfolioAndAlbumImagesTotal == 0">
+             
+              <span class=" text-center"> No Album Available Yet</span>
+          </div>
+
         </div>
         <div class="large_subtext">
           Vedio
-          <!-- <span>{{vendorDetails?.vendorVideos?vendorDetails.vendorVideos.length:0}}</span> -->
           <div class="clearfix"></div>
-          <div class="container row martop15px">
+          <div class="container row martop15px" *ngIf = "vendorVideo_details > 0">
             <div class="col-6 col-sm-3" *ngFor='let video of vendorDetails?.vendorVideos' data-target="#Vediogallarypopup" data-toggle="modal">
               <div class="thumbnail text-center">
                 <img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
@@ -322,8 +324,11 @@
             </div>
             <div class="clearfix"></div>
             <div class="col-sm-12 text-center">
-              <a routerLink="../Vediogallary" class="btn pinkbg whitetext"> View All Albums (267 more images) </a>
+              <a routerLink="/home/Vediogallary" class="btn pinkbg whitetext"> View All Albums (267 more images) </a>
             </div>
+          </div>
+          <div class="container row martop15px" *ngIf = "vendorVideo_details == 0">
+              <span class=" text-center"> No Video Available Yet</span>     
           </div>
         </div>
       </div>
@@ -357,8 +362,8 @@
                 </ul>
 
                 <div class="">{{vendorDetails?.suburb.name}}:</div>
-                <div class="branchAddress"> New Plasiya, 143-D,AB Road,M.P </div>
-                <div class="" data-lattitude="19.012" data-longitude="72.822">View in Map </div>
+                <!-- <div class="branchAddress"> New Plasiya, 143-D,AB Road,M.P </div>
+                <div class="" data-lattitude="19.012" data-longitude="72.822">View in Map </div> -->
 
               </div>
             </div>
@@ -433,7 +438,7 @@
 
       <div class="clearfix"></div>
 
-
+      <!-- start Reviews form -->
       <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection" id="review">
         <div class="vp_review_txt_title large_subtext "> Reviews </div>
         <form (ngSubmit)="putReview(review)" #f="ngForm">
@@ -463,20 +468,22 @@
           </div>
         </form>
       </div>
-
-
+      <!-- End Reviews form -->
       <div class="clearfix"></div>
 
       <div class="boxLightStyles hideShowMeNow box_section_light dealsection" id="deals">
         <div class="vp_review_txt_title large_subtext">Wedding Deals & Discount</div>
         <div class="row dealsinner">
-          <div class="col-sm-2 text-center dealhead pink" *ngIf='vendorDetails?.discounts'>
+          <!-- <div class="col-sm-2 text-center dealhead pink" *ngIf='vendorDetails?.discounts'>
             {{vendorDetails?.discounts.discount}}% {{vendorDetails?.discounts.title}}
-          </div>
+          </div> -->
           <div class="col-sm-8" *ngIf='vendorDetails?.discounts'>
             <h1 class="pink">{{vendorDetails?.discounts.title}}</h1>
             <p class="blue">
               <strong>Discount</strong> {{vendorDetails?.discounts.discount}}% </p>
+          </div>
+          <div class="col-sm-8" *ngIf="vendorDetails?.discounts == null ">
+              <span class="text-center">No discounts Available </span>
           </div>
           <div class="col-sm-2">
             <button class="btn purple-gradient btntik borradius50per callbtn">
@@ -488,44 +495,30 @@
             </button>
           </div>
         </div>
-        <div class="row dealsinner">
+        <div *ngIf = "vendorDetails?.dealsCount > 0">
+          <div class="row dealsinner"  *ngFor='let deal of vendorDetails?.deals;let i=index'>
           <div class="col-sm-2 text-center dealhead">
             <span class="borradius50per btntikbg">%</span>
           </div>
           <div class="col-sm-10">
-            <h1 class="">Free Engagement Shoot</h1>
+            <h1 class="">{{deal.title}}</h1>{{deal.status}}
             <p>
-              This deal applies in our Gold, Daimond, Pearl or Sapphire photo packages only!
+              {{deal.conditions}}
             </p>
             <div class="clearfix"></div>
             <table width="100%" class="martop15px table table-bordered">
               <tr>
-                <td class="text-center">Offer Expires: 12/31/2018</td>
+                <td class="text-center">Offer Expires: {{deal.endDateString}}</td>
                 <td class="text-center">$800.00 Value</td>
                 <td class="text-center">Promo Code: <strong>FES8220</strong></td>
               </tr>
             </table>
           </div>
-        </div>
-        <div class="row dealsinner">
-          <div class="col-sm-2 text-center dealhead">
-            <span class="borradius50per btntikbg">%</span>
           </div>
-          <div class="col-sm-10">
-            <h1 class="">Free Engagement Shoot</h1>
-            <p>
-              This deal applies in our Gold, Daimond, Pearl or Sapphire photo packages only!<br />
-              Available to the first 10 couples
-            </p>
-            <div class="clearfix"></div>
-            <table width="100%" class="martop15px table table-bordered">
-              <tr>
-                <td class="text-center">Offer Expires: 12/31/2018</td>
-                <td class="text-center">$800.00 Value</td>
-                <td class="text-center">Promo Code: <strong>FES8220</strong></td>
-              </tr>
-            </table>
-          </div>
+        </div>  
+        <div class="row dealsinner" *ngIf = "vendorDetails?.dealsCount == 0">
+                
+                <span class="text-center">No Deals For this vendor </span>
         </div>
       </div>
 
@@ -543,7 +536,7 @@
               <div class="">
                 <div class="clearfix">
 
-                  <div class="owl-item">
+                  <div class="owl-item"  *ngIf = "similarVendors_length > 0" >
                     <div *ngFor='let simi_vendor of similarVendors' class="col-md-3 col-sm-3 mobpadd0">
                       <div class="mob_bot_mar">
                         <div class="item hover_effect">
@@ -581,6 +574,9 @@
                       </div>
                     </div>
                   </div>
+                  <div *ngIf = "similarVendors_length ==0" >
+                       No similar vendor found 
+                  </div>
                 </div>
               </div>
             </div>
@@ -595,7 +591,7 @@
         <div class="left_box_section paddleftrite0px">
           <span class="flagicontik"><i class="material-icons">outlined_flag</i></span>
           <div class="hotellogo">
-            <img src="https://s3.us-east-2.amazonaws.com/prefect-image/deco4.jpg" />
+            <img [src]="vendorDetails.profileImage" />
           </div>
           <ul class="wed_me_social text-center">
             <li *ngIf='vendorDetails?.facebookURL'><a src='vendorDetails?.facebookURL'>
@@ -619,13 +615,16 @@
             <i class="fa fa-map-marker" aria-hidden="true"></i> {{vendorDetails?.suburb.name}}
           </div>
           <div class="vp_mainDetails_mini_rating text-center">
-            <div class="large_subtext">
+            <div class="large_subtext" *ngIf = "vendorDetails?.averageRating > 0 ">
               <span class="fa fa-star checked star_mar1"></span>
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star"></span>
               <span class="fa fa-star"></span>
-              <span>3.0</span>
+              <span>{{vendorDetails?.averageRating}} </span>
+            </div>
+            <div class="large_subtext" *ngIf = "vendorDetails?.averageRating == 0 ">
+               No Reviewed yet
             </div>
           </div>
           <div class="carousel_cat">
@@ -674,9 +673,15 @@
           <div class="vp_mainDetails_starting_price">
             <div class="large_subtext bob_pa_left text-center">
               Starting Price: 
-              <span class="pink">
-                <!-- {{vendorDetails?.businessServices[0].customFields[0].fieldValue}} -->
-              </span>
+             <div  *ngFor='let service of  vendorDetails?.businessServices | slice:0:1' >
+               <div *ngFor='let customF of  service.customFields  | slice:0:1' >
+                  <span class="pink">
+                      <!-- {{vendorDetails?.businessServices[0].customFields[0].fieldValue}} -->
+                      {{customF.fieldValue}}
+                    </span>
+               </div>
+             </div> 
+
             </div>
             <div class="clearfix"></div>
             <div class="detailtabclick detailpri">

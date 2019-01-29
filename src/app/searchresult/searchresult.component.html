@@ -82,7 +82,7 @@
       <div class="container-fluid nopadd">
         <div class="badgecontainer">
           <span *ngIf='objSearchResultItems' class="badge badge-primary badge-labeled">
-          {{_activeRoute.snapshot.params['id']}} in location Name (  {{collection?collection.length:0}} Results)
+          {{_activeRoute.snapshot.params['id']}} in {{SelectedLocation?SelectedLocation.name:''}} (  {{collection?collection.length:0}} Results)
           </span>
          </div>
         <div class="clearfix"></div>
@@ -135,7 +135,7 @@
                   <ul class="selectedlist" *ngIf='!showAllLocation'>
                       <li>
                         <i class="material-icons">location_on</i> 
-                        {{selectedLocationName}}
+                        {{SelectedLocation.name}}
   
                         <span (click)='showAllLocation=true'  class="closebtnlist">&times;</span>
                       </li>
@@ -229,7 +229,7 @@
             
                          <input type="checkbox" (change)='setFilterOptions(2,f.servicesId)' [(ngModel)]='f.isSelect' name="checkbox"  id="{{f.serviceName}}"/>
                             <label for="{{f.serviceName}}"> <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
-                            <b>{{f.serviceName}} </b>  
+                            {{f.serviceName}}  
                           </label>
                        </div>
                       </div>
@@ -255,34 +255,15 @@
                   <div class="funkyradio" *ngIf='filters'>
                     <div class="funkyradio-info"  *ngFor='let p of filters.filters[0].customFieldOptionList'>
                       <input type="checkbox" name="checkbox" (change)='setFilterOptions(7,p)'  id="{{p.key}}"/>
-                      <label for="{{p.key}}"> <b>{{p.key}}</b></label>  
+                      <label for="{{p.key}}"> {{p.key}}</label>  
                     </div>
                   </div>
   						</div>
             </div>
-            <!-- Featured Listing   -->
-            <div class="featureboxmobile">
-                <div class="panel-heading ">
-                  <h4 class="panel-title">
-                     <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
-                      arrow_back_ios
-                    </i>
-                    <a data-toggle="collapse" href="#collapse333">
-                      <i class="indicator fa fa-caret-down hidden-xs" aria-hidden="true"></i> Featured Listing
-                    </a>
-                  </h4>
-                </div>
-                <div id="collapse333" class="panel-collapse collapse" >
-                   
-                    <div class="funkyradio">
-                      <div class="funkyradio-info">
-                        <input type="checkbox" name="checkbox" id="prolist"/>
-                        <label>Priority Listing</label>  
-                      </div>
-
+          
 
 <!-- Featured Listing   -->
-<div class="categoryboxmobile">
+<div class="featureboxmobile">
     <div class="panel-heading ">
       <h4 class="panel-title">
          <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
@@ -295,23 +276,14 @@
     </div>
     <div id="collapse333" class="panel-collapse collapse" >
        
-        <div class="funkyradio" *ngFor='let feature of faaturedListingArray'>
-          <div class="funkyradio-info">
-            <input type="checkbox" name="checkbox" id="prolist"/>
-            <label (click)='setFilterOptions(8,feature)'>{{feature.key}}</label>  
+        <div class="funkyradio">
+          <div class="funkyradio-info" *ngFor='let feature of faaturedListingArray'>
+            <input type="checkbox" name="checkbox" id="{{feature.key}}" (change)='setFilterOptions(8,feature)'/>
+            <label  for="{{feature.key}}">{{feature.key}}</label>  
           </div>
-          <!-- <div class="funkyradio-info">
-              <input type="checkbox" name="checkbox" id="toplist"/>
-              <label (click)='setFilterOptions(8,feature.key)'>{{feature.key}}</label>  
-            </div> -->
         </div>
     </div>
   </div>
-
-
-
-
-
 						<!-- Customer Rating -->
             <div class="ratingboxmobile">
   						<div class="panel-heading" >
@@ -325,23 +297,11 @@
   						<div id="collapse3" class="panel-collapse collapse">
                  <div class="funkyradio">
                     <div class="funkyradio-info" *ngFor='let ur of userRatingArray'>
-                      <label>
-                        <input type="checkbox" name="checkbox" id="any" (change)='setFilterOptions(6,ur)'/>
+                        <input type="checkbox" name="checkbox" id="{{ur.key}}" (change)='setFilterOptions(6,ur)'/>
+                      <label  for="{{ur.key}}">
                         {{ur.key}}
                     </label>
                     </div>
-                    <!-- <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="star2" (change)='setFilterOptions(6,"2")'/>
-                    <label>2.0+</label>
-                    </div> -->
-                    <!-- <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="star3" (change)='setFilterOptions(6,"3")'/>
-                    <label> 3.0+</label>
-                    </div> -->
-                    <!-- <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="star4" (change)='setFilterOptions(6,"4")'/>
-                    <label> 4.0+</label>
-                    </div> -->
                   </div>
   						</div>
             </div>
@@ -361,19 +321,9 @@
                    
                     <div class="funkyradio">
                       <div class="funkyradio-info" *ngFor='let dd of dealsAndOfferArray'>
-                        <!-- <input type="checkbox" name="checkbox" id="yes"/> -->
-                        <label (click)='setFilterOptions(9,dd)'>{{dd.key}}</label>  
+                         <input type="checkbox" name="checkbox" id="{{dd.key}}" (change)='setFilterOptions(9,dd)' />
+                        <label for="{{dd.key}}">{{dd.key}}</label>  
                       </div>
-            
-                      <!-- <div class="funkyradio-info">
-                          <input type="checkbox" name="checkbox" id="no"/>
-                          <label>No</label>  
-                        </div>
-                        <div class="funkyradio-info">
-                            <input type="checkbox" name="checkbox" id="any"/>
-                            <label>Any</label>  
-                        </div> -->
-                        
                     </div>
                 </div>
               </div>
@@ -530,16 +480,18 @@
 <p class="text-center">Filters (0)</p>
 
 <div class="filterrow categoryfilter">
-  <h1>Category  {{objSearchlistvm.categoryId.length}}<i class="material-icons">arrow_right</i></h1>
+  <h1>Category<i class="material-icons">arrow_right</i></h1>
   <div>
     <span class="badge" *ngFor='let c of categories'>
       <div *ngIf='c.isSelect'>{{c.categoryName}}<span>X</span> </div>
     </span>
   </div>
 </div>
+
+
 <div class="filterrow locationfilter">
-  <h1>Location {{objSearchlistvm.districts.length}} <i class="material-icons">arrow_right</i></h1>
-  <div>
+  <h1>Location <i class="material-icons">arrow_right</i></h1>
+  <div *ngIf='showAllLocation'>
     <span class="badge" *ngFor='let l of locations'>
       <div *ngIf='l.isSelect'>{{l.name}} </div>
     </span>
@@ -547,49 +499,58 @@
      Grand Port <i class="material-icons">clear</i>
     </span> -->
   </div>
+  <div *ngIf='!showAllLocation'>
+      <span class="badge" *ngFor='let l of locations'>
+        <div *ngIf='l.isSelect'> {{SelectedLocation.name}}</div>
+      </span>
+       <!-- <span class="badge">
+       Grand Port <i class="material-icons">clear</i>
+      </span> -->
+    </div>
+  
 </div>
 
-<div class="filterrow servicefilter">
-  <h1>Services (1) <i class="material-icons">arrow_right</i></h1>
-  <div>
-    <span class="badge">
-    Wedding Cake Only
+<div class="filterrow servicefilter" *ngIf='filters'>
+  <h1>Services  <i class="material-icons">arrow_right</i></h1>
+  <div *ngFor='let f of filters.services'>
+    <span class="badge" (click)='setFilterOptions(2,f.servicesId)'>
+        {{f.serviceName}} 
     </span>
   </div>
 </div>
 
-<div class="filterrow pricefilter">
+<div class="filterrow pricefilter" *ngIf='filters'>
   <h1>Price Range (1) <i class="material-icons">arrow_right</i></h1>
-  <div>
-    <span class="badge">
-     Any 
+  <div *ngFor='let p of filters.filters[0].customFieldOptionList'>
+    <span class="badge" (click)='setFilterOptions(7,p)'>
+        {{p.key}}
     </span>
   </div>
 </div>
 
 <div class="filterrow featuredfilter">
   <h1>Featured Listing (1) <i class="material-icons">arrow_right</i></h1>
-  <div>
-    <span class="badge">
-     Priority Listing 
+  <div *ngFor='let feature of faaturedListingArray'>
+    <span class="badge" (click)='setFilterOptions(8,feature)'>
+        {{feature.key}}
     </span>
   </div>
 </div>
 
 <div class="filterrow dealsoffer">
-  <h1>Deals & Offers (1) <i class="material-icons">arrow_right</i></h1>
-  <div>
-    <span class="badge">
-     Yes
+  <h1>Deals & Offers <i class="material-icons">arrow_right</i></h1>
+  <div *ngFor='let dd of dealsAndOfferArray'>
+    <span class="badge" (click)='setFilterOptions(9,dd)'>
+        {{dd.key}}
     </span>
   </div>
 </div>
 
-<div class="filterrow filteroffer">
+<div class="filterrow filteroffer" *ngIf='filters.filters'>
   <h1>Filters (1) <i class="material-icons">arrow_right</i></h1>
-  <div>
-    <span class="badge">
-     Delivery Type
+  <div *ngFor='let ff of filters.filters'>
+    <span class="badge" (click)='setFilterOptions(4,ff.customFieldId)'>
+        {{ff.name}} 
     </span>
   </div>
 </div>
@@ -610,25 +571,25 @@
       <i class="material-icons">star_border</i>
     </div>
   </button>
-    <button class="rating">
+  <button class="rating">
     3.0
+      <div>
+        <i class="material-icons">star</i> 
+        <i class="material-icons">star</i> 
+        <i class="material-icons">star</i>
+        <i class="material-icons">star_border</i>
+        <i class="material-icons">star_border</i>
+      </div>
+  </button>
+  <button class="rating">4.0
     <div>
       <i class="material-icons">star</i> 
       <i class="material-icons">star</i> 
       <i class="material-icons">star</i>
-      <i class="material-icons">star_border</i>
+      <i class="material-icons">star</i>
       <i class="material-icons">star_border</i>
     </div>
   </button>
-    <button class="rating">4.0
-    <div>
-      <i class="material-icons">star</i> 
-      <i class="material-icons">star</i> 
-      <i class="material-icons">star</i>
-      <i class="material-icons">star</i>
-      <i class="material-icons">star_border</i>
-    </div>
-    </button>
   </div>
 </div>
 

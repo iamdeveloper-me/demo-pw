@@ -174,8 +174,8 @@ $(".dealsoffer").click(function(){
       $(".serviceboxmobile").hide(); 
       $(".priceboxmobile").hide();
       $(".featureboxmobile").hide();
-      $(".ratingboxmobile").show();
-      $(".dealboxmobile").hide();
+      $(".ratingboxmobile").hide();
+      $(".dealboxmobile").show();
       $(".filterboxmobile").hide();
     $(".collapse").addClass("show in");
     });

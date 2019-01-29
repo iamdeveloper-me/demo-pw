@@ -41,8 +41,10 @@ export class SearchresultComponent implements OnInit {
   categories:any;
   filters: any;
   SelectedLocation:any;
+  selectedLocationName='';
   loading=false;
   showALlCategories:boolean;
+  showAllLocation:boolean=false;
   selectedLocationsCount = 0;
   objSearchlistvm: SearchListingVM;
   objSearchResultItems:any;
@@ -71,7 +73,7 @@ export class SearchresultComponent implements OnInit {
     if(this._activeRoute!=undefined){
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
     }
-    debugger;
+    //debugger;
     this.getLocations();
     this.getCategories();
     if(this._activeRoute!=undefined){ this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam')); }
@@ -90,7 +92,7 @@ export class SearchresultComponent implements OnInit {
     this.activeSlides = data;
   }
   getCategoryName(i):string{
-    debugger;
+    //debugger;
     if(this.SelectedCategory){
       return this.SelectedCategory.categoryName;
     }else{
@@ -128,6 +130,8 @@ export class SearchresultComponent implements OnInit {
           this.locations.forEach(element => {
           element.isSelect=false;
           });
+        }else{
+          this.showAllLocation = true;
         }
     });
   }
@@ -151,7 +155,7 @@ export class SearchresultComponent implements OnInit {
     this._masterservice.getFilters(filter_paramArray).subscribe(res=>{
       this.filters=res;
       console.log(JSON.stringify(this.filters));
-      debugger;
+      //debugger;
     //  if(this.filters.length>0){
       this.filters.services.forEach(element => { element.isSelect=false; });
       this.filters.filters.forEach(element => { element.isSelect=false;});
@@ -232,8 +236,11 @@ export class SearchresultComponent implements OnInit {
       this.objSearchlistvm.serviceId = [];
       this.filters.services.filter(s=>s.servicesId==FilterValue)[0].isSelect?false:true; break;
       case 3: // location
-      this.objSearchlistvm.districts =[];
-      this.locations.filter(l=>l.districtId==FilterValue)[0].isSelect?false:true; break;
+      debugger;
+      this.locations.filter(l=>l.districtId==FilterValue)[0].isSelect?false:true;
+      this.showAllLocation=false; 
+      this.SelectedLocation = this.locations.filter(l=>l.districtId==FilterValue)[0];
+      this.selectedLocationName= this.SelectedLocation.name;break;
       case 4: // custom Field Id
       this.objSearchlistvm.customsFields=[];
       FilterValue.isSelect?false:true;break;
@@ -306,7 +313,7 @@ export class SearchresultComponent implements OnInit {
     this.paginate(this.objSearchFilter.pageSize); }
  }
  showHideCategories(ind){
-   debugger;
+  // debugger;
   this.deselectAllCategories();
   if(ind!=-1){    
     if(this.categories.length>0){
@@ -335,7 +342,7 @@ deselectAllCategories(){
 
 selectCategory(paramType,Param){
   this.deselectAllCategories();
-  debugger;
+  //debugger;
   if(paramType=='index'){
     if(this.categories){
       this.categories[Param].isSelect=true;

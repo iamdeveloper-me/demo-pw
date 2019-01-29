@@ -82,6 +82,10 @@ $(".showhidefilter").click(function(){
       $("#searchfilterbox").hide();
       $(".locationboxmobile").hide();
       $(".priceboxmobile").hide();
+
+      $(".featuredboxmobile").hide();
+      $(".dealsboxoffermobie").hide();
+
       $(".categoryboxmobile").hide();
       $(".ratingboxmobile").hide();
       $(".collapse").removeClass("show in");
@@ -129,6 +133,15 @@ $(".pricefilter").click(function(){
     $(".ratingboxmobile").hide();
     $(".collapse").addClass("show in");
     });
+
+
+
+
+
+    
+
+
+
 $(".rating").click(function(){
  // alert("hi")
    $(this).toggleClass("active");

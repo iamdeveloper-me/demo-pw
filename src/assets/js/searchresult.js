@@ -81,13 +81,14 @@ $(".showhidefilter").click(function(){
       $(".filterselectbox").show();
       $("#searchfilterbox").hide();
       $(".locationboxmobile").hide();
-      $(".priceboxmobile").hide();
-
-      $(".featuredboxmobile").hide();
-      $(".dealsboxoffermobie").hide();
-
       $(".categoryboxmobile").hide();
+      $(".serviceboxmobile").hide(); 
+      $(".priceboxmobile").hide();
+      $(".featureboxmobile").hide();
       $(".ratingboxmobile").hide();
+      $(".dealboxmobile").hide();
+      $(".filterboxmobile").hide();
+      
       $(".collapse").removeClass("show in");
     });
  $(".clearbtn").click(function(){
@@ -104,10 +105,14 @@ $(".showhidefilter").click(function(){
  //alert("location");
     $(".filterselectbox").hide();
     $("#searchfilterbox").show();
-    $(".locationboxmobile").show();
-    $(".priceboxmobile").hide();
-    $(".categoryboxmobile").hide();
-    $(".ratingboxmobile").hide();
+     $(".locationboxmobile").show();
+      $(".categoryboxmobile").hide();
+      $(".serviceboxmobile").hide(); 
+      $(".priceboxmobile").hide();
+      $(".featureboxmobile").hide();
+      $(".ratingboxmobile").hide();
+      $(".dealboxmobile").hide();
+      $(".filterboxmobile").hide();
     $(".collapse").addClass("show in");
     
     });
@@ -116,10 +121,14 @@ $(".categoryfilter").click(function(){
  //alert("category");
     $(".filterselectbox").hide();
     $("#searchfilterbox").show();
-    $(".locationboxmobile").hide();
-    $(".priceboxmobile").hide();
-    $(".categoryboxmobile").show();
-    $(".ratingboxmobile").hide();
+     $(".locationboxmobile").hide();
+      $(".categoryboxmobile").show();
+      $(".serviceboxmobile").hide(); 
+      $(".priceboxmobile").hide();
+      $(".featureboxmobile").hide();
+      $(".ratingboxmobile").hide();
+      $(".dealboxmobile").hide();
+      $(".filterboxmobile").hide();
     $(".collapse").addClass("show in");   
     });
 
@@ -127,17 +136,86 @@ $(".pricefilter").click(function(){
 // alert("price");
     $(".filterselectbox").hide();
     $("#searchfilterbox").show();
-    $(".locationboxmobile").hide();
-    $(".priceboxmobile").show();
-    $(".categoryboxmobile").hide();
-    $(".ratingboxmobile").hide();
+     $(".locationboxmobile").hide();
+      $(".categoryboxmobile").hide();
+      $(".serviceboxmobile").hide(); 
+      $(".priceboxmobile").show();
+      $(".featureboxmobile").hide();
+      $(".ratingboxmobile").hide();
+      $(".dealboxmobile").hide();
+      $(".filterboxmobile").hide();
     $(".collapse").addClass("show in");
     });
 
 
 
+$(".featuredfilter").click(function(){
+// alert("price");
+    $(".filterselectbox").hide();
+    $("#searchfilterbox").show();
+     $(".locationboxmobile").hide();
+      $(".categoryboxmobile").hide();
+      $(".serviceboxmobile").hide(); 
+      $(".priceboxmobile").hide();
+      $(".featureboxmobile").show();
+      $(".ratingboxmobile").hide();
+      $(".dealboxmobile").hide();
+      $(".filterboxmobile").hide();
+    $(".collapse").addClass("show in");
+    });
 
 
+$(".dealsoffer").click(function(){
+// alert("price");
+    $(".filterselectbox").hide();
+    $("#searchfilterbox").show();
+     $(".locationboxmobile").hide();
+      $(".categoryboxmobile").hide();
+      $(".serviceboxmobile").hide(); 
+      $(".priceboxmobile").hide();
+      $(".featureboxmobile").hide();
+      $(".ratingboxmobile").show();
+      $(".dealboxmobile").hide();
+      $(".filterboxmobile").hide();
+    $(".collapse").addClass("show in");
+    });
+
+
+
+$(".servicefilter").click(function(){
+// alert("price");
+    $(".filterselectbox").hide();
+    $("#searchfilterbox").show();
+     $(".locationboxmobile").hide();
+      $(".categoryboxmobile").hide();
+      $(".serviceboxmobile").show(); 
+      $(".priceboxmobile").hide();
+      $(".featureboxmobile").hide();
+      $(".ratingboxmobile").hide();
+      $(".dealboxmobile").hide();
+      $(".filterboxmobile").hide();
+    $(".collapse").addClass("show in");
+    });
+
+   
+
+
+
+$(".filteroffer").click(function(){
+// alert("price");
+    $(".filterselectbox").hide();
+    $("#searchfilterbox").show();
+     $(".locationboxmobile").hide();
+      $(".categoryboxmobile").hide();
+      $(".serviceboxmobile").hide(); 
+      $(".priceboxmobile").hide();
+      $(".featureboxmobile").hide();
+      $(".ratingboxmobile").hide();
+      $(".dealboxmobile").hide();
+      $(".filterboxmobile").show();
+    $(".collapse").addClass("show in");
+    });
+ 
     
 
 

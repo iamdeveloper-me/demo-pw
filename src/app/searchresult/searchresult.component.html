@@ -183,7 +183,6 @@
                            <span> {{SelectedCategory?SelectedCategory.categoryName:""}} <span (click)='showHideCategories(-1)' class="closebtnlist">&times;</span></span>
                         </li>
                     </ul>
-
                   </div>
                   <div id="collapse2" class="panel-collapse collapse pddtop0px">
                       <div class="category-body ">
@@ -192,58 +191,53 @@
                             <input class="cityinput" type="text" [(ngModel)]='categoryFilterParam' placeholder="Type to Search Category">
                           </div>
                         <!-- <div class="regular">All Categories</div> -->
-                    <div class="cityscroll22 "> 
-                      <div class="funkyradio" *ngIf='showALlCategories'>  
-                        <div class="funkyradio-info" *ngFor='let c of categories| categoryPipe:categoryFilterParam'>
-                         <!-- <input type="checkbox" name="checkbox" id="{{c.categoryName}}" (change)='setFilterOptions(1,c.categoryId)' [(ngModel)]='c.isSelect'/> -->
-                             <label (click)='setFilterOptions(1,c.categoryId)' for='{{c.categoryName}}'><i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
-                                {{c.categoryName}}  
-                            </label>
-                         </div>
-                  </div>
-                </div>
-                </div>
-
-               
+                          <div class="cityscroll22 "> 
+                            <div class="funkyradio" *ngIf='showALlCategories'>  
+                              <div class="funkyradio-info" *ngFor='let c of categories| categoryPipe:categoryFilterParam'>
+                               <!-- <input type="checkbox" name="checkbox" id="{{c.categoryName}}" (change)='setFilterOptions(1,c.categoryId)' [(ngModel)]='c.isSelect'/> -->
+                                   <label (click)='setFilterOptions(1,c.categoryId)' for='{{c.categoryName}}'><i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
+                                      {{c.categoryName}}  
+                                  </label>
+                               </div>
+                            </div>
+                          </div>
+                      </div>
                   </div>
               </div>
             <!--Services-->
-            <div class="categoryboxmobile">
-            <div class="panel-heading" >
-              <h4 class="panel-title">
-                 <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
-                  arrow_back_ios
-                </i>
-                <a data-toggle="collapse" href="#collapse33">
-                  <i class="indicator fa fa-caret-down hidden-xs" aria-hidden="true"></i> Services
-                </a>
-              </h4>
-            </div>
-            <div id="collapse33" class="panel-collapse collapse" >
-              <div class="category-body">
-                  <div class="searchmobtitlebar city_position ">
-                    <i class="material-icons">search</i>
-                    <input class="cityinput" type="text" value="" id="search" placeholder="Type to Search Category">
+            <div class="serviceboxmobile">
+              <div class="panel-heading" >
+                <h4 class="panel-title">
+                   <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
+                    arrow_back_ios
+                  </i>
+                  <a data-toggle="collapse" href="#collapse33">
+                    <i class="indicator fa fa-caret-down hidden-xs" aria-hidden="true"></i> Services
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse33" class="panel-collapse collapse" >
+                  <div class="category-body">
+                    <div class="searchmobtitlebar city_position ">
+                      <i class="material-icons">search</i>
+                      <input class="cityinput" type="text" value="" id="search" placeholder="Type to Search Category">
+                    </div>
+                    <!-- <div class="regular">All Categories</div> -->
+                    <div class="cityscroll22"> 
+                      <div class="funkyradio" *ngIf='filters'>  
+                        <div class="funkyradio-info" *ngFor='let f of filters.services'>
+            
+                         <input type="checkbox" (change)='setFilterOptions(2,f.servicesId)' [(ngModel)]='f.isSelect' name="checkbox"  id="{{f.serviceName}}"/>
+                            <label for="{{f.serviceName}}"> <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
+                            <b>{{f.serviceName}} </b>  
+                          </label>
+                       </div>
+                      </div>
+                    </div>
                   </div>
-                <!-- <div class="regular">All Categories</div> -->
-            <div class="cityscroll22"> 
-    
-              <div class="funkyradio" *ngIf='filters'>  
-                <div class="funkyradio-info" *ngFor='let f of filters.services'>
-    
-                 <input type="checkbox" (change)='setFilterOptions(2,f.servicesId)' [(ngModel)]='f.isSelect' name="checkbox"  id="{{f.serviceName}}"/>
-                    <label for="{{f.serviceName}}"> <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
-                    <b>{{f.serviceName}} </b>  
-                  </label>
-               </div>
-    
-          </div>
-        </div>
-        </div>
-      </div>
-           </div>
+              </div>
+            </div>
             <!--End Services filters-->
-         
 						<!-- Price Range  -->
             <div class="priceboxmobile">
   						<div class="panel-heading ">
@@ -266,40 +260,35 @@
                   </div>
   						</div>
             </div>
+            <!-- Featured Listing   -->
+            <div class="featureboxmobile">
+                <div class="panel-heading ">
+                  <h4 class="panel-title">
+                     <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
+                      arrow_back_ios
+                    </i>
+                    <a data-toggle="collapse" href="#collapse333">
+                      <i class="indicator fa fa-caret-down hidden-xs" aria-hidden="true"></i> Featured Listing
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapse333" class="panel-collapse collapse" >
+                   
+                    <div class="funkyradio">
+                      <div class="funkyradio-info">
+                        <input type="checkbox" name="checkbox" id="prolist"/>
+                        <label>Priority Listing</label>  
+                      </div>
 
-<!-- Featured Listing   -->
-<div class="categoryboxmobile">
-    <div class="panel-heading ">
-      <h4 class="panel-title">
-         <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
-          arrow_back_ios
-        </i>
-        <a data-toggle="collapse" href="#collapse333">
-          <i class="indicator fa fa-caret-down hidden-xs" aria-hidden="true"></i> Featured Listing
-        </a>
-      </h4>
-    </div>
-    <div id="collapse333" class="panel-collapse collapse" >
-       
-        <div class="funkyradio">
-          <div class="funkyradio-info">
-            <input type="checkbox" name="checkbox" id="prolist"/>
-            <label>Priority Listing</label>  
-          </div>
+                      <div class="funkyradio-info">
+                          <input type="checkbox" name="checkbox" id="toplist"/>
+                          <label>Top Listing</label>  
+                        </div>
 
-          <div class="funkyradio-info">
-              <input type="checkbox" name="checkbox" id="toplist"/>
-              <label>Top Listing</label>  
+                        
+                    </div>
+                </div>
             </div>
-
-            
-        </div>
-    </div>
-  </div>
-
-
-
-
 						<!-- Customer Rating -->
             <div class="ratingboxmobile">
   						<div class="panel-heading" >
@@ -334,7 +323,7 @@
   						</div>
             </div>
 	          <!-- Deals & Offers -->
-            <div class="categoryboxmobile">
+            <div class="dealboxmobile">
                 <div class="panel-heading ">
                   <h4 class="panel-title">
                      <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
@@ -365,9 +354,8 @@
                     </div>
                 </div>
               </div>
-
-             <!--Filters-->
-          <div class="categoryboxmobile">
+            <!--Filters-->
+            <div class="filterboxmobile">
               <div class="panel-heading" >
                 <h4 class="panel-title">
                    <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
@@ -379,30 +367,29 @@
                 </h4>
               </div>
               <div id="collapse44" class="panel-collapse collapse" >
-                <div class="category-body">
-              <div class="cityscroll22"> 
-                <div *ngIf='filters'>
-                <div class="funkyradio" *ngIf='filters.filters'>  
-                  <div class="funkyradio-info" style="border-bottom:1px;border-bottom-style:inset;border-bottom-color:gray" *ngFor='let ff of filters.filters'>
-                    <input type="checkbox" name="checkbox" id="{{ff.name}}" (change)='setFilterOptions(4,ff.customFieldId)' [(ngModel)]='ff.isSelect'/> 
-                      <label for="{{ff.name}}">
-                         <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
-                        {{ff.name}} 
-                      </label>
-                      <div *ngFor='let fc of ff.customFieldOptionList'>
-                        <div *ngIf='ff.isSelect'>
-                        <input type="checkbox" class="tikmik" name="checkbox" [(ngModel)]='fc.isSelect'(change)='setFilterOptions(5,fc)'/>
-                          {{fc.displayText}}
-                        </div>  
+                  <div class="category-body">
+                    <div class="cityscroll22"> 
+                      <div *ngIf='filters'>
+                        <div class="funkyradio" *ngIf='filters.filters'>  
+                          <div class="funkyradio-info" style="border-bottom:1px;border-bottom-style:inset;border-bottom-color:gray" *ngFor='let ff of filters.filters'>
+                            <input type="checkbox" name="checkbox" id="{{ff.name}}" (change)='setFilterOptions(4,ff.customFieldId)' [(ngModel)]='ff.isSelect'/> 
+                              <label for="{{ff.name}}">
+                                 <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
+                                {{ff.name}} 
+                              </label>
+                              <div *ngFor='let fc of ff.customFieldOptionList'>
+                                <div *ngIf='ff.isSelect'>
+                                <input type="checkbox" class="tikmik" name="checkbox" [(ngModel)]='fc.isSelect'(change)='setFilterOptions(5,fc)'/>
+                                  {{fc.displayText}}
+                                </div>  
+                              </div>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
                       </div>
-                 </div>
-                <div class="clearfix"></div>
-      
-            </div>
-          </div>
-          </div>
-          </div>
-        </div>
+                    </div>
+                  </div>
+              </div>
             </div>
           </div>
             <!--End Filters-->  
@@ -538,6 +525,16 @@
     </span> -->
   </div>
 </div>
+
+<div class="filterrow servicefilter">
+  <h1>Services (1) <i class="material-icons">arrow_right</i></h1>
+  <div>
+    <span class="badge">
+    Wedding Cake Only
+    </span>
+  </div>
+</div>
+
 <div class="filterrow pricefilter">
   <h1>Price Range (1) <i class="material-icons">arrow_right</i></h1>
   <div>
@@ -546,6 +543,36 @@
     </span>
   </div>
 </div>
+
+<div class="filterrow featuredfilter">
+  <h1>Featured Listing (1) <i class="material-icons">arrow_right</i></h1>
+  <div>
+    <span class="badge">
+     Priority Listing 
+    </span>
+  </div>
+</div>
+
+<div class="filterrow dealsoffer">
+  <h1>Deals & Offers (1) <i class="material-icons">arrow_right</i></h1>
+  <div>
+    <span class="badge">
+     Yes
+    </span>
+  </div>
+</div>
+
+<div class="filterrow filteroffer">
+  <h1>Filters (1) <i class="material-icons">arrow_right</i></h1>
+  <div>
+    <span class="badge">
+     Delivery Type
+    </span>
+  </div>
+</div>
+
+
+
 <div class="filterrow ratingfilter">
   <h1>Customer Rating (0)</h1>
   <div>

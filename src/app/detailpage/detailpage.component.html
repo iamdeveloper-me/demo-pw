@@ -19,7 +19,7 @@
         <button class="closepopup"><i class="material-icons">clear</i></button>
         <div id="detailpagecarousel" class="owl-carousel detailpagecarousel owl-loaded owl-drag">
           <div class="item" *ngFor='let i of sliderImgaes'>
-            <a>
+            <a data-fancybox="gallery" [href]="i">
               <img class="owl-lazy" [src]='i' *ngIf="i"  alt="">
             </a>
             
@@ -121,7 +121,7 @@
           </div>
           <div class="large_subtext bob_pa_left text-center">
             Starting Price: 
-            <div  *ngFor='let service of  vendorDetails?.businessServices' >
+            <span style="float: right;" *ngFor='let service of  vendorDetails?.businessServices' >
                 <div *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
                   <div *ngFor='let customF of  service?.customFields  | slice:0:1' >
                       <span class="pink">
@@ -129,7 +129,7 @@
                       </span>
                   </div>
                 </div>
-              </div>  
+              </span>  
 
           </div>
           <!-- <div class="text-center pink">
@@ -173,7 +173,7 @@
 
 
 
-
+      
       <div class="boxLightStyles hideShowMeNow vp_services box_section_light1 r_s_pre  weddingvenue">
         <div class="left_box_section overviewsection startprice onlymobilesection">
           <div class="vp_mainDetails_starting_price">
@@ -210,19 +210,19 @@
           <div class="servicecontainer_0 servicecontainer">
             <div class="servicerow">
               <span class="vp_services_txt_span marriager_text_without_underline">
-                Speciality, Costs of Services $ Experienced </span>
+                  Wedding Services & Experience</span>
             </div>
-            <div class="row servicerow"  >
-              <div  *ngFor='let service of  vendorDetails?.businessServices'>
-                    <div class=" vp_services_txt_title headerWithoutTopBorder-0 large_subtext col-md-3">          
-                      <table class="tabledesignwork" *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
-                          <span>{{service.serviceName}}</span>
+            <div class="row servicerow venserbox"  >
+              <div  *ngFor='let service of  vendorDetails?.businessServices'>  
+                      
+                        <!-- <span>{{service.serviceName}}</span> -->
+                      <table class="tabledesignwork table table-bordered table-stripped" *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
+                          
                         <tr *ngFor='let customF of  service.customFields  '>
                           <th>{{customF.displayText}}</th>
                           <td>{{customF.fieldValue}}</td>
                         </tr>
-                      </table>
-                    </div>            
+                      </table>         
               </div>
             </div>
           </div>
@@ -303,6 +303,7 @@
           <div class="vp_services_txt_seeMore marriager_text "> <a href="#"> See More </a></div>
         </div>
       </div>
+
       <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection gallery" *ngIf = "portfolioAndAlbumImagesTotal > 0">
         <div class="large_subtext" >
           Portfolio & Albums
@@ -355,7 +356,7 @@
         </div>
       </div>
 
-
+    
     <!-- mobile  -->
       <div class="vp_about_txt aboutsection" id="about">
         <div class="boxLightStyles hideShowMeNow vp_about box_section_light r_s_pre">
@@ -511,7 +512,7 @@
 
 
 
-      <div class="clearfix"></div>
+     
 
       <!-- start Reviews form -->
       <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection" id="review">
@@ -544,7 +545,6 @@
         </form>
       </div>
       <!-- End Reviews form -->
-      <div class="clearfix"></div>
       <!-- Wedding Deals & Discount -->
       <div class="boxLightStyles hideShowMeNow box_section_light dealsection" id="deals" *ngIf = "vendorDetails?.dealsCount > 0">
         <div class="vp_review_txt_title large_subtext">Wedding Deals & Discount</div>
@@ -593,7 +593,7 @@
         </div>  
       </div>
       <!--End Wedding Deals & Discount -->
-      <div class="clearfix"></div>
+    
       <!-- Similar Vendors -->
       <div class="boxLightStyles  box_section_light vp_similarVendors r_s_pre hidden-xs"  *ngIf = "similarVendors_length > 0" >
         <div class="similarVendors_cat ">

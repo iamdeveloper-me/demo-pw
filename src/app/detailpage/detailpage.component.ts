@@ -30,8 +30,8 @@ export class DetailpageComponent implements OnInit {
   ngOnInit() {
     $.getScript('./assets/js/prism.min.js');
     $.getScript('./assets/js/owljsor.js');
-    $.getScript('./assets/js/jquery.fancybox.min.js');
     $.getScript('./assets/js/curosselfun.js');
+     $.getScript('./assets/js/jquery.fancybox.min.js');
     $("#Vediogallarypopup").on('hidden.bs.modal', function (e) {
       $("#Vediogallarypopup iframe").attr("src", $("#Vediogallarypopup iframe").attr("src"));
     });

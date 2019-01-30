@@ -12,14 +12,12 @@
 	    </div>
 	    <div class="boxLightStyles">
 	   		<div class="container row martop15px">
-				<div class="col-6 col-sm-3" *ngFor='let vd of vendorDetails.albums; let i=index'>
-					Alnum Name : vendorDetails.albums.albumName	
-					<div *ngFor='let filepath of vd.albumImages'>           
-						<div class="thumbnail text-center">
+				<div  *ngFor='let vd of vendorDetails.albums; let i=index'>
+					<!-- Alnum Name : vendorDetails.albums.albumName-->
+					<div class="col-6 col-sm-3" *ngFor='let filepath of vd.albumImages'>           
+						<a data-fancybox="gallery" class="thumbnail" [href]="filepath.path">
 							<img  *ngIf="filepath" [src]='filepath.path' alt="...">
-						<div>
-					</div>
-						</div>
+						</a>
 					</div>
 				</div>
 			</div>

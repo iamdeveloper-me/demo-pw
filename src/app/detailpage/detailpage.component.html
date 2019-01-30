@@ -17,9 +17,9 @@
       <!-- carosel slider -->
       <div class="boxLightStyles martop0px imgbannerbox">
         <button class="closepopup"><i class="material-icons">clear</i></button>
-        <div id="detailpagecarousel" class="owl-carousel detailpagecarousel owl-loaded owl-drag">
+        <div id="detailpagecarousel" class="owl-carousel detailpagecarousel owl-loaded owl-drag gallery">
           <div class="item" *ngFor='let i of sliderImgaes'>
-            <a>
+            <a  [href]="i" data-fancybox="gallery">
               <img class="owl-lazy" [src]='i' *ngIf="i"  alt="">
             </a>
             

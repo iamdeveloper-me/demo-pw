@@ -201,22 +201,22 @@ export class SearchresultComponent implements OnInit {
     });
   }
   }
-  clearFilters(){
-    this.locations.forEach(element => { element.isSelect=false; });
-    this.objSearchlistvm.districts = [];
-    this.categories.forEach(element => { element.isSelect=false; });
-    this.objSearchlistvm.categoryId = [];
-  }
+  // clearFilters(){
+  //   this.locations.forEach(element => { element.isSelect=false; });
+  //   this.objSearchlistvm.districts = [];
+  //   this.categories.forEach(element => { element.isSelect=false; });
+  //   this.objSearchlistvm.categoryId = [];
+  // }
   addToCollection(){
     this.objSearchResultItems.items.forEach(element => {
       this.collection.push(element);
       this.slidesStore = this.collection
     });
   }
-  filterLocations(ev){
-    let filterResult=this.locations.filter(n=>n.name.startwith(ev.value));
-    this.locations=filterResult;
-  }
+  // filterLocations(ev){
+  //   let filterResult=this.locations.filter(n=>n.name.startwith(ev.value));
+  //   this.locations=filterResult;
+  // }
   setBlankImg(){
     if(this.objSearchResultItems){
       this.objSearchResultItems.items.forEach(element => {
@@ -228,22 +228,33 @@ export class SearchresultComponent implements OnInit {
   }
   setFilterOptions(filterType,FilterValue){
     this.collection=[];
+    this.objSearchlistvm.page=0;
     switch(filterType){
       case 1: // Category
       this.objSearchlistvm= new SearchListingVM();
       this.deselectAllCategories();
-      this.categories.filter(c=>c.categoryId==FilterValue)[0].isSelect=true;
-      this.showALlCategories = false;
-      this.objSearchFilter.catId = FilterValue;
+     this.checkUncheckFilter(FilterValue);
+     if(FilterValue.isSelect){
+      this.SelectedCategory = FilterValue;
+      this.showALlCategories = false;}else{
+        this.showALlCategories = true;
+        this.SelectedCategory=null;
+      }
       this.getFilters();
-      this.SelectedCategory = this.categories.filter(c=>c.isSelect==true)[0];break;
+       break;
       case 2: // Service
-      this.objSearchlistvm.serviceId = [];
-      this.filters.services.filter(s=>s.servicesId==FilterValue)[0].isSelect?false:true; break;
+       break;
       case 3: // location
-      this.locations.filter(l=>l.districtId==FilterValue)[0].isSelect?false:true;
-      this.showAllLocation=false; 
-      this.SelectedLocation = this.locations.filter(l=>l.districtId==FilterValue)[0];
+      this.checkUncheckFilter(FilterValue);
+     debugger
+     if(FilterValue.isSelect){
+       this.SelectedLocation = FilterValue;
+       this.showAllLocation = false;
+     }else{
+       this.SelectedLocation = null;
+       this.showAllLocation = true;
+     }
+      this.objSearchlistvm.districts=[];
       break;
       case 4: // custom Field Id
       this.objSearchlistvm.customsFields=[];
@@ -260,7 +271,6 @@ export class SearchresultComponent implements OnInit {
       case 9: // Deals And Offer
       this.checkUncheckFilter(FilterValue); break;
     }
-    this.collection=[];
     if(filterType!==4){ this.paginate(this.objSearchFilter.page)};
   }
   checkUncheckFilter(filterValie){
@@ -270,23 +280,6 @@ export class SearchresultComponent implements OnInit {
       filterValie.isSelect=true;
     }
   }
-  // addLocation(l){
-  //   if(l==0){
-  //     this.SelectedLocation=null;
-  //     this.objSearchlistvm.districts=[];
-  //   }else{
-  //   console.log(l);
-  //   this.locations.forEach(element => {
-  //     element.isSelect=false;
-  //   });
-  //   l.isSelect=true;
-  //   this.SelectedLocation = l;
-  //   }
-  //   this.collection=[];
-  //   this.objSearchlistvm.page=0;
-  //   this.paginate(this.objSearchFilter.pageSize);
-  // }
-
    paginate (pageSize) {
     this.loading=true; 
     this.objSearchlistvm.categoryId=[];
@@ -295,9 +288,11 @@ export class SearchresultComponent implements OnInit {
     this.objSearchlistvm.categoryId.push(this.SelectedCategory.categoryId);}
     this.SelectedLocation = this.locations.filter(l=>l.isSelect===true)[0];
     if(this.SelectedLocation){
+      this.objSearchlistvm.districts=[];
     this.objSearchlistvm.districts.push(this.SelectedLocation.districtId);}
     let selectedServices = this.filters.services.filter(s=>s.isSelect==true);
     if(selectedServices.length>0){
+      this.objSearchlistvm.serviceId=[];
     selectedServices.forEach(element => {
       this.objSearchlistvm.serviceId.push(element.servicesId);  
     });}
@@ -318,7 +313,10 @@ export class SearchresultComponent implements OnInit {
   // Set Featured List 
 let SelectedFeaturedList= this.faaturedListingArray.filter(fl=>fl.isSelect==true);
 if(SelectedFeaturedList && SelectedFeaturedList.length>0){
-  this.objSearchlistvm.featuredListing = SelectedFeaturedList[0].key;}
+  SelectedFeaturedList.forEach(element => {
+    this.objSearchlistvm.listing += element.key+','; 
+  });
+   }
   // Set Price Range
   let selectedprices = this.priceRange.filter(p=>p.isSelect==true);
   if(selectedprices && selectedprices.length>0){
@@ -338,7 +336,7 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
   // Set Deals And Offers
   let SelectedDealsOffers = this.dealsAndOfferArray.filter(dd=>dd.isSelect==true);
   if(SelectedDealsOffers && SelectedDealsOffers.length>0){
-    this.objSearchlistvm.dealsOffer =SelectedDealsOffers[0].key;
+    this.objSearchlistvm.deals =SelectedDealsOffers[0].key;
   }
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
@@ -354,7 +352,8 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
  scrollToBottom(){
   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
     this.objSearchlistvm.page+=1;
-    this.paginate(this.objSearchFilter.pageSize); }
+  //  this.paginate(this.objSearchFilter.pageSize); 
+  }
  }
  showHideCategories(ind){
   this.deselectAllCategories();
@@ -436,8 +435,8 @@ export class SearchListingVM{
   serviceId:Array<number>;
   rating: string;
   price:string;
-  dealsOffer:string;
-  featuredListing:string;
+  deals:string;
+  listing:string;
   customsFields:Array<FieldSearchVM>;
   customField:FieldSearchVM;
   constructor(){
@@ -449,8 +448,8 @@ export class SearchListingVM{
     this.sortDir='asc';
     this.price='';
     this.rating='';
-    this.dealsOffer='';
-    this.featuredListing='';
+    this.deals='';
+    this.listing='';
     this.customsFields = new Array<FieldSearchVM>();
     this.customField = new FieldSearchVM();
   }
@@ -460,10 +459,3 @@ export class FieldSearchVM{
   customFieldId: number;
   userValue:string;
 }
-// export enum optionTypes{
-//   category=1,
-//   location=2,
-//   service=3,
-//   price=4,
-//   customoption=5
-// }

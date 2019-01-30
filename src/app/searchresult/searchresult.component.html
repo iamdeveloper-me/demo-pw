@@ -107,6 +107,7 @@
 </div>
 
 <div class="container ipadwidth">
+  
 	<div class="row">
 		<div id="searchfilterbox" class="col-sm-3  nopadd searchfilterbox">
 			<div id="accordion" class="panel">
@@ -345,8 +346,8 @@
                       <div *ngIf='filters'>
                         <div class="funkyradio" *ngIf='filters.filters'>  
                           <div class="funkyradio-info" style="border-bottom:1px;border-bottom-style:inset;border-bottom-color:gray" *ngFor='let ff of filters.filters'>
-                            <input type="checkbox" name="checkbox" id="{{ff.name}}" (change)='setFilterOptions(4,ff.customFieldId)' [(ngModel)]='ff.isSelect'/> 
-                              <label for="{{ff.name}}">
+                            <input type="checkbox" *ngIf='ff.name!="Starting Price"' name="checkbox" id="{{ff.name}}" (change)='setFilterOptions(4,ff.customFieldId)' [(ngModel)]='ff.isSelect'/> 
+                              <label *ngIf='ff.name!="Starting Price"' for="{{ff.name}}">
                                  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
                                 {{ff.name}} 
                               </label>
@@ -369,6 +370,26 @@
 			</div>
 		</div>
 		<div class="col-sm-9 listingtab">
+        <div class="row">
+            
+            <!-- <div #servicefilters id='servicefilters'>
+            {{objAppliedFilters.services}}
+            </div> -->
+            
+
+                <span class="filterrowcard" *ngFor='let f of faaturedListingArray'>
+                    <span  *ngIf='f.isSelect'>{{f.key}}</span>
+                    </span>
+
+                    <span class="filterrowcard" *ngFor='let f of userRatingArray'>
+                    <span *ngIf='f.isSelect'>{{f.key}}</span>
+                    </span>
+                    <span class="filterrowcard" *ngFor='let f of dealsAndOfferArray'>
+                        <span *ngIf='f.isSelect'>{{f.key}}</span>
+                    </span>
+           
+          </div>
+          
       <div class="photo_cont">
        	<div id="products" class="row list-group photo-group">
           <div *ngIf='objSearchResultItems'>
@@ -519,7 +540,7 @@
   </div>
 </div>
 
-<div class="filterrow pricefilter" *ngIf='filters'>
+<div class="filterrow pricefilter" *ngIf='filters && filters.filters'>
   <h1>Price Range (1) <i class="material-icons">arrow_right</i></h1>
   <div *ngFor='let p of filters.filters[0].customFieldOptionList'>
     <span class="badge" (click)='setFilterOptions(7,p)'>

@@ -201,12 +201,12 @@ export class SearchresultComponent implements OnInit {
     });
   }
   }
-  // clearFilters(){
-  //   this.locations.forEach(element => { element.isSelect=false; });
-  //   this.objSearchlistvm.districts = [];
-  //   this.categories.forEach(element => { element.isSelect=false; });
-  //   this.objSearchlistvm.categoryId = [];
-  // }
+  clearFilters(){
+    this.locations.forEach(element => { element.isSelect=false; });
+    this.objSearchlistvm.districts = [];
+    this.categories.forEach(element => { element.isSelect=false; });
+    this.objSearchlistvm.categoryId = [];
+  }
   addToCollection(){
     this.objSearchResultItems.items.forEach(element => {
       this.collection.push(element);

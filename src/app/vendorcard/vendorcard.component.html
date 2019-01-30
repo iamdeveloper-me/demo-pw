@@ -54,27 +54,13 @@
                         <img class="card-img-top" *ngIf = "slide"  [src]="slide.profileImage" >
                         <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
                         <div class="imgnum">
-                          <span>
+                          <span *ngIf="slide?.albums.length > 0">
                              <img src="../../assets/img/picture.png"/>
-                             <span *ngIf="slide?.albums == 0; else salbum">
-                             0
-                             </span>
-                             <ng-template #salbum>
-                                <span>
-                                    {{slide?.albums}}
-                                </span>
-                             </ng-template>
+                             {{slide?.albums?.length}} 
                           </span>
-                          <span>
+                          <span *ngIf="slide?.vendorVideos.length > 0">
                             <img src="../../assets/img/video.png"/>
-                            <span *ngIf="slide?.vendorVideos == 0; else vvideo">
-                              0
-                            </span>
-                            <ng-template #vvideo>
-                              <span>
-                                {{slide?.vendorVideos}}
-                              </span>
-                           </ng-template>
+                            {{slide?.vendorVideos?.length}}
                           </span>
                         </div>
 

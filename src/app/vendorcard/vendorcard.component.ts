@@ -68,7 +68,7 @@ export class VendorcardComponent implements OnInit {
   featured_supplier(){
       this.apiService.getData(this.apiService.serverPath+'PerfectWedding/featuredsuppliers').subscribe(data => {
       this.featured_supplier_data = data.featuredWeddingSuppliers;
-      this.slidesStore = this.featured_supplier_data
+      this.slidesStore = this.featured_supplier_data;
       if(this.featured_supplier_data.length > 0){
         this.featured_supplier_data.forEach(element => {
           if(element.reviews != null)
@@ -109,8 +109,6 @@ export class VendorcardComponent implements OnInit {
     )
   }
   goToVendordetails(slide) {
-    console.log(slide)
-      console.log(slide.vendorCategories.length)
       let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
       this.apiService.getData(url+'?id='+slide.vendorId).subscribe(res=>{
         sessionStorage.setItem('vendorDetails',JSON.stringify(res));

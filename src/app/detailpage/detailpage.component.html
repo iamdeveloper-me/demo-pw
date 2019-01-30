@@ -19,7 +19,8 @@
         <button class="closepopup"><i class="material-icons">clear</i></button>
         <div id="detailpagecarousel" class="owl-carousel detailpagecarousel owl-loaded owl-drag gallery">
           <div class="item" *ngFor='let i of sliderImgaes'>
-            <a  [href]="i" data-fancybox="gallery">
+
+            <a data-fancybox="gallery" [href]="i">
               <img class="owl-lazy" [src]='i' *ngIf="i"  alt="">
             </a>
             
@@ -54,6 +55,7 @@
             <span class="fa fa-star"></span>
             <span>3.0</span>
           </div>
+         
         </div>
 
         <div class="col-sm-12">
@@ -120,14 +122,15 @@
           </div>
           <div class="large_subtext bob_pa_left text-center">
             Starting Price: 
-           <div  *ngFor='let service of  vendorDetails?.businessServices | slice:0:1' >
-             <div *ngFor='let customF of  service.customFields  | slice:0:1' >
-                <span class="pink">
-                    <!-- {{vendorDetails?.businessServices[0].customFields[0].fieldValue}} -->
-                    {{customF.fieldValue}}
-                  </span>
-             </div>
-           </div> 
+            <span style="float: right;" *ngFor='let service of  vendorDetails?.businessServices' >
+                <div *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
+                  <div *ngFor='let customF of  service?.customFields  | slice:0:1' >
+                      <span class="pink">
+                        {{customF?.fieldValue}}
+                      </span>
+                  </div>
+                </div>
+              </span>  
 
           </div>
           <!-- <div class="text-center pink">
@@ -171,7 +174,7 @@
 
 
 
-
+      
       <div class="boxLightStyles hideShowMeNow vp_services box_section_light1 r_s_pre  weddingvenue">
         <div class="left_box_section overviewsection startprice onlymobilesection">
           <div class="vp_mainDetails_starting_price">
@@ -180,46 +183,48 @@
             </div> -->
             <div class="large_subtext bob_pa_left text-center">
                 Starting Price: 
-               <div  *ngFor='let service of  vendorDetails?.businessServices | slice:0:1' >
-                 <div *ngFor='let customF of  service.customFields  | slice:0:1' >
-                    <span class="pink">
-                        <!-- {{vendorDetails?.businessServices[0].customFields[0].fieldValue}} -->
-                        {{customF.fieldValue}}
-                      </span>
-                 </div>
-               </div> 
+                <div  *ngFor='let service of  vendorDetails?.businessServices' >
+                    <div *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
+                      <div *ngFor='let customF of  service?.customFields  | slice:0:1' >
+                          <span class="pink">
+                            {{customF?.fieldValue}}
+                          </span>
+                      </div>
+                    </div>
+                  </div> 
             </div>
             <div class="clearfix"></div>
-            <div class="detailtabclick detailpri"  *ngFor='let service of  vendorDetails?.businessServices | slice:0:1'>
+            <!-- <div class="detailtabclick detailpri"  *ngFor='let service of  vendorDetails?.businessServices | slice:0:1'>
               <table class="tabledesignwork">
                 <tr *ngFor='let customF of  service.customFields  '>
                   <th>{{customF.displayText}}</th>
                   <td>{{customF.fieldValue}}</td>
                 </tr>
               </table>
-            </div>
-            <div class="clearfix"></div>
+            </div> -->
+            <!-- <div class="clearfix"></div>
             <div class="text-center showdetail">Show More</div>
-            <div class="text-center showless" style="display: none;">Show less</div>
+            <div class="text-center showless" style="display: none;">Show less</div> -->
           </div>
         </div>
         <div class="vp_services_txt" *ngIf = "businessServices_length > 0">
           <div class="servicecontainer_0 servicecontainer">
             <div class="servicerow">
               <span class="vp_services_txt_span marriager_text_without_underline">
-                Speciality, Costs of Services $ Experienced </span>
+                  Wedding Services & Experience</span>
             </div>
-            <div class="row servicerow" *ngFor='let service of  vendorDetails?.businessServices'>
-              <div class=" vp_services_txt_title headerWithoutTopBorder-0 large_subtext col-md-3"> 
-              
-                  Service Name  <span>   {{service?.serviceName}}  </span>
-               
-                  Category Name <span> ({{service?.categoryName}}) </span>
+            <div class="row servicerow venserbox"  >
+              <div  *ngFor='let service of  vendorDetails?.businessServices'>  
+                      
+                        <!-- <span>{{service.serviceName}}</span> -->
+                      <table class="tabledesignwork table table-bordered table-stripped" *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
+                          
+                        <tr *ngFor='let customF of  service.customFields  '>
+                          <th>{{customF.displayText}}</th>
+                          <td>{{customF.fieldValue}}</td>
+                        </tr>
+                      </table>         
               </div>
-              <!-- <div class="col-md-3" *ngFor='let customF of  service.customFields  | slice:0:1'>
-                  Starting Price {{customF.fieldValue}}
-              </div> -->
-              
             </div>
           </div>
         </div>
@@ -299,6 +304,7 @@
           <div class="vp_services_txt_seeMore marriager_text "> <a href="#"> See More </a></div>
         </div>
       </div>
+
       <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection gallery" *ngIf = "portfolioAndAlbumImagesTotal > 0">
         <div class="large_subtext" >
           Portfolio & Albums
@@ -351,7 +357,7 @@
         </div>
       </div>
 
-
+    
     <!-- mobile  -->
       <div class="vp_about_txt aboutsection" id="about">
         <div class="boxLightStyles hideShowMeNow vp_about box_section_light r_s_pre">
@@ -366,17 +372,17 @@
               <div class="onlymobilesection">
                 <ul class="wed_me_social">
                   <li>
-                    <a href="{{vendorDetails?.facebookURL}}">
+                    <a href="{{vendorDetails?.facebookURL}}" target="_blank">
                       <i aria-hidden="true" class="fa fa-facebook"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="{{vendorDetails?.twitterURL}}">
+                    <a href="{{vendorDetails?.twitterURL}}" target="_blank">
                       <i aria-hidden="true" class="fa fa-twitter"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="{{vendorDetails?.instalURL}}" >
+                    <a href="{{vendorDetails?.instalURL}}" target="_blank">
                       <i aria-hidden="true" class="fa fa-instagram"></i>
                     </a>
                   </li>
@@ -507,7 +513,7 @@
 
 
 
-      <div class="clearfix"></div>
+     
 
       <!-- start Reviews form -->
       <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection" id="review">
@@ -540,7 +546,6 @@
         </form>
       </div>
       <!-- End Reviews form -->
-      <div class="clearfix"></div>
       <!-- Wedding Deals & Discount -->
       <div class="boxLightStyles hideShowMeNow box_section_light dealsection" id="deals" *ngIf = "vendorDetails?.dealsCount > 0">
         <div class="vp_review_txt_title large_subtext">Wedding Deals & Discount</div>
@@ -589,7 +594,7 @@
         </div>  
       </div>
       <!--End Wedding Deals & Discount -->
-      <div class="clearfix"></div>
+    
       <!-- Similar Vendors -->
       <div class="boxLightStyles  box_section_light vp_similarVendors r_s_pre hidden-xs"  *ngIf = "similarVendors_length > 0" >
         <div class="similarVendors_cat ">
@@ -652,17 +657,17 @@
           <ul class="wed_me_social text-center">
             <li *ngIf='vendorDetails?.facebookURL'>
 
-              <a href="{{vendorDetails?.facebookURL}}">
+              <a href="{{vendorDetails?.facebookURL}}" target="_blank">
                 <i class="fa fa-facebook" aria-hidden="true"></i>
               </a>
             </li>
             <li *ngIf='vendorDetails?.twitterURL'>
-              <a href="{{vendorDetails?.twitterURL}}">
+              <a href="{{vendorDetails?.twitterURL}}" target="_blank">
                 <i class="fa fa-twitter" aria-hidden="true"></i>
               </a>
             </li>
-            <li *ngIf='vendorDetails?.instalURL'>
-              <a href="{{vendorDetails?.instalURL}}">
+            <li *ngIf='vendorDetails?.instalURL' >
+              <a href="{{vendorDetails?.instalURL}}" target="_blank">
                 <i class="fa fa-instagram" aria-hidden="true"></i>
               </a>
             </li>
@@ -675,12 +680,15 @@
           </div>
           <div class="vp_mainDetails_mini_rating text-center">
             <div class="large_subtext" *ngIf = "vendorDetails?.averageRating > 0 ">
-              <span class="fa fa-star checked star_mar1"></span>
+              <!-- <span class="fa fa-star checked star_mar1"></span>
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star"></span>
               <span class="fa fa-star"></span>
-              <span>{{vendorDetails?.averageRating}} </span>
+              <span>{{vendorDetails?.averageRating}} </span> -->
+              <div class="rating_star">
+                  <rating [(ngModel)]="vendorDetails.averageRating" readonly="isReadonly"></rating>
+                </div>
             </div>
             <div class="large_subtext" *ngIf = "vendorDetails?.averageRating == 0 ">
                No Reviewed yet
@@ -734,31 +742,22 @@
         <div class="left_box_section overviewsection startprice" *ngIf = "vendorDetails?.businessServices.length > 0">
           <div class="vp_mainDetails_starting_price">
             <div class="large_subtext bob_pa_left text-center">
-              Starting Price: 
-             <div  *ngFor='let service of  vendorDetails?.businessServices | slice:0:1' >
-               <div *ngFor='let customF of  service.customFields  | slice:0:1' >
-                  <span class="pink">
-                      <!-- {{vendorDetails?.businessServices[0].customFields[0].fieldValue}} -->
-                      {{customF.fieldValue}}
-                    </span>
-               </div>
-             </div> 
+              Starting Price:
+              <div  *ngFor='let service of  vendorDetails?.businessServices' >
+                <div *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
+                  <div *ngFor='let customF of  service.customFields  | slice:0:1' >
+                      <span class="pink">
+                        {{customF.fieldValue}}
+                      </span>
+                  </div>
+                </div>
+              </div> 
 
             </div>
             <div class="clearfix"></div>
-            <div class="detailtabclick detailpri">
-              <!-- <table class="tabledesignwork">
-                <tr *ngFor='let bs of vendorDetails?.businessServices'>
-                  <th>{{bs.serviceName}}</th>
-                  <td>
-                     {{bs.customFields[0].displayText}} 
-                    {{bs.customFields[0].fieldValue}} 
-                  </td>
-                </tr>
-              </table> -->
-
-              <div class="detailtabclick detailpri"  *ngFor='let service of  vendorDetails?.businessServices | slice:0:1'>
-                  <table class="tabledesignwork">
+            <!-- <div class="detailtabclick detailpri">
+              <div class="detailtabclick detailpri"  *ngFor='let service of  vendorDetails?.businessServices'>
+                  <table class="tabledesignwork" *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
                       <span>{{service.serviceName}}</span>
                     <tr *ngFor='let customF of  service.customFields  '>
                       <th>{{customF.displayText}}</th>
@@ -766,17 +765,17 @@
                     </tr>
                   </table>
               </div>
-            </div>
-            <div class="clearfix"></div>
+            </div> -->
+            <!-- <div class="clearfix"></div>
             <div class="text-center showdetail">Show More</div>
-            <div class="text-center showless" style="display: none;">Show less</div>
+            <div class="text-center showless" style="display: none;">Show less</div> -->
 
           </div>
         </div>
          <!-- trading hour -->
           <div class="left_box_section contactsection">
 
-            <div class="branchrow row detailtabclick detailpri" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:1 '>
+            <div class="branchrow row " *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:1 '>
               <div class="large_subtext text-center  col-12">
                    Trading Hours
               </div>
@@ -826,8 +825,8 @@
                 </table>
               </div>
             </div>
-            <div class="text-center showdetail">Show More</div>
-            <div class="text-center showless" style="display: none;">Show less</div>
+            <!-- <div class="text-center showdetail">Show More</div>
+            <div class="text-center showless" style="display: none;">Show less</div> -->
           </div>
          <!-- End trading hour -->
 

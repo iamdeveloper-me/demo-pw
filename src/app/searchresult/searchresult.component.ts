@@ -12,6 +12,8 @@ import { SlidesOutputData } from 'ngx-owl-carousel-o';
 import { toBase64String } from '@angular/compiler/src/output/source_map';
 import{ratingStars} from '../ngservices/ratingstars';
 import { setTimeout } from 'timers';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
 import { forEach } from '@angular/router/src/utils/collection';
 @Pipe({ name: 'defaultImage' })
 export class PP implements PipeTransform {
@@ -41,6 +43,8 @@ export class SearchresultComponent implements OnInit {
   categories:any;
   filters: any;
   SelectedLocation:any;
+  objAppliedFilters:AppliedFilters;
+  @ViewChild('servicefilters') servicefilters:SafeHtml;
   loading=false;
   showALlCategories:boolean;
   showAllLocation:boolean=false;
@@ -60,7 +64,8 @@ export class SearchresultComponent implements OnInit {
   SelectedCategory:any;
   ratingmodel: ratingStars
   constructor(public _route:Router, public _activeRoute: ActivatedRoute, 
-    private _masterservice: MasterserviceService, private api: apiService,) {
+    private _masterservice: MasterserviceService, private api: apiService, private domsanitizar: DomSanitizer) {
+      this.objAppliedFilters = new AppliedFilters();
       this.objSearchFilter=new filterParam();
       this.ratingmodel = new ratingStars();
       this.generateStaticArray();
@@ -122,7 +127,6 @@ export class SearchresultComponent implements OnInit {
   });
   }
   getLocations(){
-    debugger;
     this._masterservice.getAllLocation().subscribe(res=>{
       this.locations=res;
       if(this.objSearchFilter.locationId>0){
@@ -213,10 +217,10 @@ export class SearchresultComponent implements OnInit {
       this.slidesStore = this.collection
     });
   }
-  // filterLocations(ev){
-  //   let filterResult=this.locations.filter(n=>n.name.startwith(ev.value));
-  //   this.locations=filterResult;
-  // }
+  filterLocations(ev){
+    let filterResult=this.locations.filter(n=>n.name.startwith(ev.value));
+    this.locations=filterResult;
+  }
   setBlankImg(){
     if(this.objSearchResultItems){
       this.objSearchResultItems.items.forEach(element => {
@@ -260,6 +264,7 @@ export class SearchresultComponent implements OnInit {
       this.objSearchlistvm.customsFields=[];
       this.checkUncheckFilter(FilterValue);break;
       case 5: // Custom Field Option
+      debugger;
       this.checkUncheckFilter(FilterValue); break;
       case 6: // Rating
       debugger;
@@ -294,7 +299,8 @@ export class SearchresultComponent implements OnInit {
     if(selectedServices.length>0){
       this.objSearchlistvm.serviceId=[];
     selectedServices.forEach(element => {
-      this.objSearchlistvm.serviceId.push(element.servicesId);  
+      this.objSearchlistvm.serviceId.push(element.servicesId);
+      this.objAppliedFilters.services= '<span class="badge">'+element.serviceName+'</span>';
     });}
     this.objSearchlistvm.customsFields=[];
     if(this.filters.filters[0].customFieldOptionList){
@@ -313,6 +319,7 @@ export class SearchresultComponent implements OnInit {
   // Set Featured List 
 let SelectedFeaturedList= this.faaturedListingArray.filter(fl=>fl.isSelect==true);
 if(SelectedFeaturedList && SelectedFeaturedList.length>0){
+  this.objSearchlistvm.listing='';
   SelectedFeaturedList.forEach(element => {
     this.objSearchlistvm.listing += element.key+','; 
   });
@@ -351,7 +358,7 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
  @HostListener("window:scroll", [])
  scrollToBottom(){
   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-    this.objSearchlistvm.page+=1;
+   // this.objSearchlistvm.page+=1;
   //  this.paginate(this.objSearchFilter.pageSize); 
   }
  }
@@ -408,8 +415,7 @@ generateStaticArray(){
   ];
   this.dealsAndOfferArray = [
     {'key':'Yes',isSelect:false},
-    {'key':'No',isSelect:false},
-    {'key':'Any',isSelect:false}
+    {'key':'No',isSelect:false}
   ];
   this.faaturedListingArray=[
     {'key':'Priority Listing',isSelect:false},
@@ -458,4 +464,12 @@ export class SearchListingVM{
 export class FieldSearchVM{
   customFieldId: number;
   userValue:string;
+}
+export class AppliedFilters{
+  services:SafeHtml;
+  pricerange:string;
+  featuredListing:string;
+  customerRating:string;
+  deals:string;
+  filters:string;
 }

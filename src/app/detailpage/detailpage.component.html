@@ -34,7 +34,7 @@
         </div>
       </div>
       <!-- carosel slider end -->
-
+      <!-- onlymobilesection -->
       <div class="onlymobilesection">
 
 
@@ -46,14 +46,14 @@
           <i class="fa fa-map-marker" aria-hidden="true"></i> {{vendorDetails?.suburb.name}}
         </div>
         <div class="vp_mainDetails_mini_rating text-center">
-          <div class="large_subtext">
-            <span class="fa fa-star checked star_mar1"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span>3.0</span>
-          </div>
+         
+            <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
+                <div class="jq-ry-group-wrapper">
+                  <div class="jq-ry-normal-group jq-ry-group">
+                    <rating [(ngModel)]="review.rating" name="rating"></rating>
+                  </div>
+                </div>
+              </span>
          
         </div>
 
@@ -78,16 +78,11 @@
               </button>
               <div class="featurehead">Bookmark</div>
             </div>
-            <div class="col-3">
-              <button class="btn purple-gradient borradius50per">
-                <i class="material-icons">share</i>
-              </button>
-              <div class="featurehead">Share</div>
-            </div>
+           
           </div>
         </div>
       </div>
-
+    
       <div class="tabdesktop row">
         <div class="col-md-7 tabwidth100per">
           <button class="overviewbox">
@@ -132,9 +127,6 @@
               </div>  
 
           </div>
-          <!-- <div class="text-center pink">
-            Starting Price: ₹ 1500
-          </div> -->
         </div>
         <div class="col-md-3 tikshow hidden-xs">
           <div class="featurebtn row fixedheaderbtn">
@@ -156,11 +148,6 @@
                 <i class="material-icons">bookmark_border</i>
               </button>
             </div>
-            <div class="col-3">
-              <button class="btn purple-gradient borradius50per">
-                <i class="material-icons">share</i>
-              </button>
-            </div>
             <div class="callinfo" style="display:none" *ngFor='let phone of  vendorDetails?.vendorLocations | slice:0:1'>
               <strong>Contact Number</strong><br />
               <!-- +91-99999 12345// -->
@@ -171,15 +158,9 @@
         </div>
       </div>
 
-
-
-
       <div class="boxLightStyles hideShowMeNow vp_services box_section_light1 r_s_pre  weddingvenue">
         <div class="left_box_section overviewsection startprice onlymobilesection">
           <div class="vp_mainDetails_starting_price">
-            <!-- <div class="large_subtext bob_pa_left text-center">
-              Starting Price: <span class="">₹ 1500</span>
-            </div> -->
             <div class="large_subtext bob_pa_left text-center">
                 Starting Price: 
                 <div  *ngFor='let service of  vendorDetails?.businessServices' >
@@ -228,6 +209,10 @@
           </div>
         </div>
       </div>
+
+      <!-- end onlymobilesection -->
+
+      <!-- Capacity -->
       <div style="display:none" class="boxLightStyles hideShowMeNow vp_venues box_section_light r_s_pre">
 
         <div class="heading vp_venues_txt_title large_subtext">Venues</div>
@@ -303,6 +288,9 @@
           <div class="vp_services_txt_seeMore marriager_text "> <a href="#"> See More </a></div>
         </div>
       </div>
+      <!-- end Capacity -->
+
+      <!-- Portfolio & Albums -->
       <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection gallery" *ngIf = "portfolioAndAlbumImagesTotal > 0">
         <div class="large_subtext" >
           Portfolio & Albums
@@ -354,7 +342,7 @@
           </div>
         </div>
       </div>
-
+      <!-- end Portfolio & Albums -->
 
     <!-- mobile  -->
       <div class="vp_about_txt aboutsection" id="about">
@@ -545,6 +533,7 @@
       </div>
       <!-- End Reviews form -->
       <div class="clearfix"></div>
+
       <!-- Wedding Deals & Discount -->
       <div class="boxLightStyles hideShowMeNow box_section_light dealsection" id="deals" *ngIf = "vendorDetails?.dealsCount > 0">
         <div class="vp_review_txt_title large_subtext">Wedding Deals & Discount</div>
@@ -594,6 +583,7 @@
       </div>
       <!--End Wedding Deals & Discount -->
       <div class="clearfix"></div>
+
       <!-- Similar Vendors -->
       <div class="boxLightStyles  box_section_light vp_similarVendors r_s_pre hidden-xs"  *ngIf = "similarVendors_length > 0" >
         <div class="similarVendors_cat ">
@@ -677,6 +667,9 @@
           <div class="carousel_city text-center">
             <i class="fa fa-map-marker" aria-hidden="true"></i> {{vendorDetails?.suburb.name}}
           </div>
+          <div class="carousel_city text-center">
+                   Membership of 2 years
+            </div>
           <div class="vp_mainDetails_mini_rating text-center">
             <div class="large_subtext" *ngIf = "vendorDetails?.averageRating > 0 ">
               <!-- <span class="fa fa-star checked star_mar1"></span>
@@ -699,33 +692,28 @@
           <div class="clearfix"></div>
           <div class="col-sm-12">
             <div class="featurebtn row">
-              <div class="col-3">
-                <button class="btn purple-gradient borradius50per callbtn" style="display:none">
+              <div class="col-4">
+                <button class="btn purple-gradient borradius50per callbtn" >
                   <i class="material-icons">call</i>
                 </button>
-                <button class="btn purple-gradient borradius50per callbtnhide" style="display: none;">
+                <button class="btn purple-gradient borradius50per callbtnhide" style="display: none;" >
                   <i class="material-icons">call</i>
                 </button>
-                <div style="display: none;" class="featurehead">Call</div>
+                <div class="featurehead">Call</div>
               </div>
-              <div class="col-3">
+              <div class="col-4">
                 <button class="btn purple-gradient borradius50per" data-toggle="modal" data-target="#address">
                   <i class="material-icons">mail_outline</i>
                 </button>
                 <div class="featurehead">Message</div>
               </div>
-              <div class="col-3">
+              <div class="col-4">
                 <button class="btn purple-gradient borradius50per">
                   <i class="material-icons">bookmark_border</i>
                 </button>
                 <div class="featurehead">Bookmark</div>
               </div>
-              <div class="col-3">
-                <button class="btn purple-gradient borradius50per">
-                  <i class="material-icons">share</i>
-                </button>
-                <div class="featurehead">Share</div>
-              </div>
+
             </div>
 
             <div class="callinfo" style="display:none" *ngFor='let phone of  vendorDetails?.vendorLocations | slice:0:1'>
@@ -772,9 +760,9 @@
           </div>
         </div>
          <!-- trading hour -->
-          <div class="left_box_section contactsection">
+          <div class="left_box_section contactsection " >
 
-            <div class="branchrow row " *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:1 '>
+            <div class="branchrow row" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:1 '>
               <div class="large_subtext text-center  col-12">
                    Trading Hours
               </div>
@@ -824,23 +812,33 @@
                 </table>
               </div>
             </div>
-            <!-- <div class="text-center showdetail">Show More</div>
-            <div class="text-center showless" style="display: none;">Show less</div> -->
+            <div class="text-center showdetail"  style="display: none;">Show More</div>
+            <div class="text-center showless" style="display: none;">Show less</div>
           </div>
          <!-- End trading hour -->
 
         <div class="left_box_section contactsection">
-
-          <div class="branchrow row" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:2  '>
             <div class="large_subtext text-center  col-12">
-                  Branches
+                Branches
+          </div>
+          <div class="branchrow row" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:2 ; let i=index'>
+     
+            <div class="col-2">{{i}}</div>
+            <div class="text-left col-10">
+              {{loc.address}}, {{loc.suburb.name}} 
+              <div class="clearfix"></div>
+              <span class="branchAddress">{{loc.districts.name}},{{loc.country.countryName}}</span>
             </div>
-            <div class="text-center col-12">{{loc.address}}, {{loc.suburb.name}}: </div>
             <div class="clearfix"></div>
-            <div class="branchAddress text-center col-12">
-              {{loc.districts.name}},{{loc.country.countryName}}
+            <div style="width:100%;">
+              <table width="100%">
+                <tr>
+                  <td align="left"><a href="#" class="pinklink">View Trading Hour</a></td>
+                  <td align="right"><a href="#" class="pinklink">View Map</a></td>
+                </tr>
+              </table>
             </div>
-
+          
           </div>
         </div>
       </div>

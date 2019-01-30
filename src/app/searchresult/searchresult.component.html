@@ -82,7 +82,7 @@
       <div class="container-fluid nopadd">
         <div class="badgecontainer">
           <span *ngIf='objSearchResultItems' class="badge badge-primary badge-labeled">
-          {{_activeRoute.snapshot.params['id']}} in {{SelectedLocation?SelectedLocation.name:''}} (  {{collection?collection.length:0}} Results)
+          {{SelectedCategory?SelectedCategory.categoryName:''}}  {{SelectedLocation?SelectedLocation.name:''}} (  {{collection?collection.length:0}} Results)
           </span>
          </div>
         <div class="clearfix"></div>
@@ -135,9 +135,9 @@
                   <ul class="selectedlist" *ngIf='!showAllLocation'>
                       <li>
                         <i class="material-icons">location_on</i> 
-                        {{SelectedLocation.name}}
+                        {{SelectedLocation?SelectedLocation.name:''}}
   
-                        <span (click)='showAllLocation=true'  class="closebtnlist">&times;</span>
+                        <span (click)='setFilterOptions(3,SelectedLocation)'  class="closebtnlist">&times;</span>
                       </li>
                     </ul>
 
@@ -153,7 +153,7 @@
                               <div class="funkyradio">
                                 <div class="funkyradio-info" *ngFor='let l of locations| custompipe:locationFilterParam'>
                                   <!-- <input type="checkbox" id='{{l.name}}' [checked]="l.isSelect"  [(ngModel)]='l.isSelect'/> -->
-                                    <label (click)='setFilterOptions(3,l.districtId)' for='{{l.name}}'><i class="material-icons">location_on</i> {{l.name}}</label>
+                                    <label (click)='setFilterOptions(3,l)' for='{{l.name}}'><i class="material-icons">location_on</i> {{l.name}}</label>
                                   </div>
                               </div>
                               
@@ -195,7 +195,7 @@
                             <div class="funkyradio" *ngIf='showALlCategories'>  
                               <div class="funkyradio-info" *ngFor='let c of categories| categoryPipe:categoryFilterParam'>
                                <!-- <input type="checkbox" name="checkbox" id="{{c.categoryName}}" (change)='setFilterOptions(1,c.categoryId)' [(ngModel)]='c.isSelect'/> -->
-                                   <label (click)='setFilterOptions(1,c.categoryId)' for='{{c.categoryName}}'><i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
+                                   <label (click)='setFilterOptions(1,c)' for='{{c.categoryName}}'><i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
                                       {{c.categoryName}}  
                                   </label>
                                </div>
@@ -227,7 +227,7 @@
                       <div class="funkyradio" *ngIf='filters'>  
                         <div class="funkyradio-info" *ngFor='let f of filters.services'>
             
-                         <input type="checkbox" (change)='setFilterOptions(2,f.servicesId)' [(ngModel)]='f.isSelect' name="checkbox"  id="{{f.serviceName}}"/>
+                         <input type="checkbox" (change)='setFilterOptions(2,f)' [(ngModel)]='f.isSelect' name="checkbox"  id="{{f.serviceName}}"/>
                             <label for="{{f.serviceName}}"> <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
                             {{f.serviceName}}  
                           </label>
@@ -252,7 +252,7 @@
   						</div>
   						<div id="collapse1" class="panel-collapse collapse" >
                  
-                  <div class="funkyradio" *ngIf='filters'>
+                  <div class="funkyradio" *ngIf='filters && filters.filters'>
                     <div class="funkyradio-info"  *ngFor='let p of filters.filters[0].customFieldOptionList'>
                       <input type="checkbox" name="checkbox" (change)='setFilterOptions(7,p)'  id="{{p.key}}"/>
                       <label for="{{p.key}}"> {{p.key}}</label>  
@@ -546,7 +546,7 @@
   </div>
 </div>
 
-<div class="filterrow filteroffer" *ngIf='filters.filters'>
+<div class="filterrow filteroffer" *ngIf='filters && filters.filters'>
   <h1>Filters (1) <i class="material-icons">arrow_right</i></h1>
   <div *ngFor='let ff of filters.filters'>
     <span class="badge" (click)='setFilterOptions(4,ff.customFieldId)'>

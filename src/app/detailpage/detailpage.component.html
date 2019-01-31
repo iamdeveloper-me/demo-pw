@@ -234,12 +234,12 @@
                 </div>
               </div>
             </div>
-            <div class="col-6 col-sm-3" *ngFor='let portpi of vendorDetails?.portfolios  | slice:0:3 ' >
-              <div class="thumbnail text-center" >
-                <div>
-                    <img style = "height: 100px" [src]="portpi.path" alt="...">
+            <div class="col-6 col-sm-3 image_div"  >
+              <div class="thumbnail text-center" *ngFor='let portpi of vendorDetails?.portfolios  | slice:0:1 ' >
+              
+                    <img  [src]="portpi.path" alt="...">
 
-                </div>
+                    <div class="albumname">Portfolio</div>
               </div>
           </div>
             <div class="clearfix"></div>

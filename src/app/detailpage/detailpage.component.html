@@ -38,9 +38,9 @@
       <!-- onlymobilesection -->
       <div class="onlymobilesection boxLightStyles">
         <div class="large_text text-center">
-          {{vendorDetails?.nameOfBusiness}}
+         {{vendorDetails?.nameOfBusiness}}
         </div>
-        <div class="carousel_cat">{{vendorDetails?.businessDetails}}</div>
+        <div class="carousel_cat"> {{vendorDetails?.vendorCategories[0].categories?.categoryName}}</div>
         <div class="carousel_city text-center">
           <i class="fa fa-map-marker" aria-hidden="true"></i> {{vendorDetails?.suburb.name}}
         </div>
@@ -48,15 +48,16 @@
                    Membership of 2 years
             </div>
         <div class="vp_mainDetails_mini_rating text-center">
-         
-            <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
-                <div class="jq-ry-group-wrapper">
-                  <div class="jq-ry-normal-group jq-ry-group">
-                    <rating [(ngModel)]="review.rating" name="rating"></rating>
+            <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px" *ngIf = "vendorDetails?.averageRating > 0 ">
+                  <div class="rating_star">
+                        <rating [(ngModel)]="vendorDetails.averageRating" readonly="isReadonly"></rating>
                   </div>
-                </div>
-              </span>
-         
+                 
+                  <div class="large_subtext" *ngIf = "vendorDetails?.averageRating == 0 ">
+                     No Reviewed yet
+                  </div>
+               
+            </span>
         </div>
 
         <div class="col-sm-12">
@@ -198,8 +199,6 @@
             </div>
             <div class="row servicerow venserbox">
               <div style="width: 100%;" *ngFor='let service of  vendorDetails?.businessServices'>  
-                      
-                        <!-- <span>{{service.serviceName}}</span> -->
                       <table class="tabledesignwork table table-bordered table-stripped" *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
                           
                         <tr *ngFor='let customF of  service.customFields  '>
@@ -220,7 +219,6 @@
       <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection gallery" *ngIf = "portfolioAndAlbumImagesTotal > 0">
         <div class="large_subtext" >
           Portfolio & Albums
-          <!-- <span>({{portfolioAndAlbumImagesTotal}})</span> -->
           <div class="clearfix"></div>
           <div class="container row martop15px" >
             <div class="col-6 col-sm-3" *ngFor='let pi of vendorDetails?.albums;let i=index' (click)='setLightboxImages(pi,$event)'
@@ -302,9 +300,7 @@
                 </ul>
 
                 <div class="">{{vendorDetails?.suburb.name}}:</div>
-                <!-- <div class="branchAddress"> New Plasiya, 143-D,AB Road,M.P </div>
-                <div class="" data-lattitude="19.012" data-longitude="72.822">View in Map </div> -->
-
+            
               </div>
             </div>
             <div style="display:none" class="vp_about_txt_readMore marriager_text ">
@@ -317,109 +313,81 @@
         </div>
         <div class="left_box_section overviewsection tradinghours onlymobilesection">
 
-            <div class="branchrow row" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:1 '>
-                <div class="large_subtext text-center  col-12">
+         
+            <div class="branchrow row tradinghours" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:1 '>
+                <div class="large_subtext detailtra text-center  col-12">
                      Trading Hours
-                </div>
-                <!-- <div class="text-center col-12">{{loc.address}}, {{loc.suburb.name}}: </div>
-                <div class="clearfix"></div>
-                <div class="branchAddress text-center col-12">
-                  {{loc.districts.name}},{{loc.country.countryName}}
-                </div> -->
-                <div class="clearfix"></div>
-                <div class="col-md-12">
-                  <table class="tabledesignwork text-center ">
-                    <tr *ngIf='loc.isMondayOpen'>
+                      <div class="branchdefaulttable in">
+                        <table class="banchtable text-center">
+                            <tr>
+                                <th><strong>Mon</strong></th>
+                                <td>{{loc.mondayOpen}} - {{loc.mondayClose}}
+                                </td>
+                                <td><span class="greentext" *ngIf='loc.isMondayOpen'>Open</span></td>
+                                <td><span class="greentext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
+                              </tr>
+                        </table>
+                      </div> 
+                      <div class="clearfix"></div>
+                <div  class="branchdetailtable">
+                  <table class="tabledesignwork text-center">
+                    <tr >
                       <th><strong>Mon</strong></th>
-                      <th>{{loc.mondayOpen}} - {{loc.monClose}}<span class="greentext">Open</span>
-                      </th>
+                      <td *ngIf='loc.isMondayOpen'>{{loc.mondayOpen}} - {{loc.mondayClose}}
+                      </td>
+                      <td><span class="greentext" *ngIf='loc.isMondayOpen'>Open</span></td>
+                      <td><span class="greentext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
                     </tr>
-                    <tr *ngIf='loc.isTuesdayOpen'>
-                      <th><strong>Tues</strong></th>
-                      <th>{{loc.tuesdayOpen}} - {{loc.tuesdayClose}}<span class="greentext">Open</span>
-                      </th>
+                    <tr >
+                      <th><strong>Tue</strong></th>
+                      <td *ngIf='loc.isTuesdayOpen'>{{loc.tuesdayOpen}} - {{loc.tuesdayClose}}
+                      </td>
+                      <td><span class="greentext" *ngIf='loc.isTuesdayOpen'>Open</span></td>
+                      <td><span class="greentext" *ngIf='loc.isTuesdayOpen == false '>Close</span></td>
                     </tr>
-                    <tr *ngIf='loc.isWednesdayOpen'>
+                    <tr>
                       <th><strong>Wed</strong></th>
-                      <th>{{loc.wednesdayOpen}} - {{loc.wednesdayClose}}<span class="greentext">Open</span>
-                      </th>
+                      <td  *ngIf='loc.isWednesdayOpen'>{{loc.wednesdayOpen}} - {{loc.wednesdayClose}}
+                      </td>
+                      <td><span class="greentext" *ngIf='loc.isWednesdayOpen'>Open</span></td>
+                      <td><span class="greentext" *ngIf='loc.isWednesdayOpen == false '>Close</span></td>
                     </tr>
-                    <tr *ngIf='loc.isThursdayOpen'>
-                      <th><strong>Thurse</strong></th>
-                      <th>{{loc.thursdayOpen}} - {{loc.thursdayClose}}<span class="greentext">Open</span>
-                      </th>
+                    <tr >
+                      <th><strong>Thu</strong></th>
+                      <td *ngIf='loc.isThursdayOpen'>{{loc.thursdayOpen}} - {{loc.thursdayClose}}
+                      </td>
+                      <td><span class="greentext"  *ngIf='loc.isThursdayOpen'>Open</span></td>
+                      <td><span class="greentext" *ngIf='loc.isThursdayOpen == false '>Close</span></td>
                     </tr>
-                    <tr *ngIf='loc.isFridayOpen'>
+                    <tr >
                       <th><strong>Fri</strong></th>
-                      <th>{{loc.fridayOpen}} - {{loc.fridayClose}}<span class="greentext">Open</span>
-                      </th>
+                      <td *ngIf='loc.isFridayOpen'>{{loc.fridayOpen}} - {{loc.fridayClose}}
+                      </td>
+                      <td><span class="greentext" *ngIf='loc.isFridayOpen'>Open</span></td>
+                      <td><span class="greentext" *ngIf='loc.isFridayOpen == false '>Close</span></td>
                     </tr>
-                    <tr *ngIf='loc.isSaturdayOpen'>
+                    <tr >
                       <th><strong>Sat</strong></th>
-                      <th>{{loc.sundayOpen}} - {{loc.sundayClose}}<span class="greentext">Open</span>
-                      </th>
+                      <td *ngIf='loc.isSaturdayOpen'>{{loc.sundayOpen}} - {{loc.sundayClose}}
+                      </td>
+                      <td><span class="greentext" *ngIf='loc.isSaturdayOpen'>Open</span></td>
+                      <td><span class="greentext" *ngIf='loc.isSaturdayOpen == false '>Close</span></td>
                     </tr>
-                    <tr *ngIf='loc.isSundayOpen'>
+                    <tr >
                       <th><strong>Sun</strong></th>
-                      <th>{{loc.sundayOpen}} - {{loc.sundayClose}}<span class="greentext">Open</span>
-                      </th>
+                      <td *ngIf='loc.isSundayOpen'>{{loc.sundayOpen}} - {{loc.sundayClose}}
+                      </td>
+                      <td><span class="greentext" *ngIf='loc.isSundayOpen'>Open</span></td>
+                      <td><span class="greentext" *ngIf='loc.isSundayOpen == false '>Close</span></td>
                     </tr>
                   </table>
                 </div>
+              <div class="text-center showdetail barnchtableshow">Show More</div>
+              <div class="text-center showless barnchtablenone" style="display: none;">Show less</div>
+                </div>
+  
               </div>
-          <!-- <div class="large_subtext">
-            Trading Hours
-          </div>
-
-          <div class="clearfix"></div>
-          <table class="tabledesignwork text-center ">
-            <tr>
-              <th><strong>Wed</strong></th>
-              <th>
-                12:00PM-12:00PM
-                <span class="greentext">Open</span>
-              </th>
-            </tr>
-          </table>
-          <div class="clearfix"></div>
-          <div class="detailtabclick detailtra">
-            <table class="tabledesignwork">
-              <tr>
-                <td width="35%">Mon</td>
-                <td>12:00PM-12:00PM</td>
-              </tr>
-              <tr>
-                <td>Tue</td>
-                <td>12:00PM-12:00PM</td>
-              </tr>
-              <tr>
-                <th><strong>Wed</strong></th>
-                <th>
-                  12:00PM-12:00PM
-                  <span class="greentext">Open</span>
-                </th>
-              </tr>
-              <tr>
-                <td>Thu</td>
-                <td>12:00PM-12:00PM</td>
-              </tr>
-              <tr>
-                <td>Fri</td>
-                <td>12:00PM-12:00PM</td>
-              </tr>
-              <tr>
-                <td>Sat</td>
-                <td>12:00PM-12:00PM</td>
-              </tr>
-              <tr>
-                <td>Sun</td>
-                <td>12:00PM-12:00PM</td>
-              </tr>
-            </table>
-          </div>
-          <div class="clearfix"></div>
-          <div class="text-center showdetail">Show More</div>
-          <div class="text-center showless" style="display: none;">Show less</div> -->
+ 
         </div>
       </div>
     <!-- End mobile  -->
@@ -603,12 +571,7 @@
             </div>
           <div class="vp_mainDetails_mini_rating text-center">
             <div class="large_subtext" *ngIf = "vendorDetails?.averageRating > 0 ">
-              <!-- <span class="fa fa-star checked star_mar1"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-              <span>{{vendorDetails?.averageRating}} </span> -->
+
               <div class="rating_star">
                   <rating [(ngModel)]="vendorDetails.averageRating" readonly="isReadonly"></rating>
                 </div>
@@ -686,20 +649,7 @@
 
             </div>
             <div class="clearfix"></div>
-            <!-- <div class="detailtabclick detailpri">
-              <div class="detailtabclick detailpri"  *ngFor='let service of  vendorDetails?.businessServices'>
-                  <table class="tabledesignwork" *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
-                      <span>{{service.serviceName}}</span>
-                    <tr *ngFor='let customF of  service.customFields  '>
-                      <th>{{customF.displayText}}</th>
-                      <td>{{customF.fieldValue}}</td>
-                    </tr>
-                  </table>
-              </div>
-            </div> -->
-            <!-- <div class="clearfix"></div>
-            <div class="text-center showdetail">Show More</div>
-            <div class="text-center showless" style="display: none;">Show less</div> -->
+
 
           </div>
         </div>
@@ -711,58 +661,66 @@
                    Trading Hours
                     <div class="branchdefaulttable in">
                       <table class="banchtable text-center">
-                        <tr>
-                          <th><strong>Mon</strong></th>
-                          <td><strong>12:00AM - 12:00PM</strong>
-                          </td>
-                          <td><span class="greentext">Open</span></td>
-                        </tr>
+                          <tr>
+                              <th><strong>Mon</strong></th>
+                              <td>{{loc.mondayOpen}} - {{loc.mondayClose}}
+                              </td>
+                              <td><span class="greentext" *ngIf='loc.isMondayOpen'>Open</span></td>
+                              <td><span class="greentext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
+                            </tr>
                       </table>
                     </div> 
                     <div class="clearfix"></div>
               <div  class="branchdetailtable">
                 <table class="tabledesignwork text-center">
-                  <tr *ngIf='loc.isMondayOpen'>
+                  <tr >
                     <th><strong>Mon</strong></th>
-                    <td>{{loc.mondayOpen}} - {{loc.monClose}}
+                    <td *ngIf='loc.isMondayOpen'>{{loc.mondayOpen}} - {{loc.mondayClose}}
                     </td>
-                    <td><span class="greentext">Open</span></td>
+                    <td><span class="greentext" *ngIf='loc.isMondayOpen'>Open</span></td>
+                    <td><span class="greentext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
                   </tr>
-                  <tr *ngIf='loc.isTuesdayOpen'>
+                  <tr >
                     <th><strong>Tue</strong></th>
-                    <td>{{loc.tuesdayOpen}} - {{loc.tuesdayClose}}
+                    <td *ngIf='loc.isTuesdayOpen'>{{loc.tuesdayOpen}} - {{loc.tuesdayClose}}
                     </td>
-                    <td><span class="greentext">Open</span></td>
+                    <td><span class="greentext" *ngIf='loc.isTuesdayOpen'>Open</span></td>
+                    <td><span class="greentext" *ngIf='loc.isTuesdayOpen == false '>Close</span></td>
                   </tr>
-                  <tr *ngIf='loc.isWednesdayOpen'>
+                  <tr>
                     <th><strong>Wed</strong></th>
-                    <td>{{loc.wednesdayOpen}} - {{loc.wednesdayClose}}
+                    <td  *ngIf='loc.isWednesdayOpen'>{{loc.wednesdayOpen}} - {{loc.wednesdayClose}}
                     </td>
-                    <td><span class="greentext">Open</span></td>
+                    <td><span class="greentext" *ngIf='loc.isWednesdayOpen'>Open</span></td>
+                    <td><span class="greentext" *ngIf='loc.isWednesdayOpen == false '>Close</span></td>
                   </tr>
-                  <tr *ngIf='loc.isThursdayOpen'>
+                  <tr >
                     <th><strong>Thu</strong></th>
-                    <td>{{loc.thursdayOpen}} - {{loc.thursdayClose}}
+                    <td *ngIf='loc.isThursdayOpen'>{{loc.thursdayOpen}} - {{loc.thursdayClose}}
                     </td>
-                    <td><span class="greentext">Open</span></td>
+                    <td><span class="greentext"  *ngIf='loc.isThursdayOpen'>Open</span></td>
+                    <td><span class="greentext" *ngIf='loc.isThursdayOpen == false '>Close</span></td>
                   </tr>
-                  <tr *ngIf='loc.isFridayOpen'>
+                  <tr >
                     <th><strong>Fri</strong></th>
-                    <td>{{loc.fridayOpen}} - {{loc.fridayClose}}
+                    <td *ngIf='loc.isFridayOpen'>{{loc.fridayOpen}} - {{loc.fridayClose}}
                     </td>
-                    <td><span class="greentext">Open</span></td>
+                    <td><span class="greentext" *ngIf='loc.isFridayOpen'>Open</span></td>
+                    <td><span class="greentext" *ngIf='loc.isFridayOpen == false '>Close</span></td>
                   </tr>
-                  <tr *ngIf='loc.isSaturdayOpen'>
+                  <tr >
                     <th><strong>Sat</strong></th>
-                    <td>{{loc.sundayOpen}} - {{loc.sundayClose}}
+                    <td *ngIf='loc.isSaturdayOpen'>{{loc.sundayOpen}} - {{loc.sundayClose}}
                     </td>
-                    <td><span class="greentext">Open</span></td>
+                    <td><span class="greentext" *ngIf='loc.isSaturdayOpen'>Open</span></td>
+                    <td><span class="greentext" *ngIf='loc.isSaturdayOpen == false '>Close</span></td>
                   </tr>
-                  <tr *ngIf='loc.isSundayOpen'>
+                  <tr >
                     <th><strong>Sun</strong></th>
-                    <td>{{loc.sundayOpen}} - {{loc.sundayClose}}
+                    <td *ngIf='loc.isSundayOpen'>{{loc.sundayOpen}} - {{loc.sundayClose}}
                     </td>
-                    <td><span class="greentext">Open</span></td>
+                    <td><span class="greentext" *ngIf='loc.isSundayOpen'>Open</span></td>
+                    <td><span class="greentext" *ngIf='loc.isSundayOpen == false '>Close</span></td>
                   </tr>
                 </table>
               </div>
@@ -778,15 +736,16 @@
             </div>
         </div>
          <!-- End trading hour -->
+         <!-- other branches  -->
         <div class="left_box_section contactsection">
             <div class="large_subtext text-center  col-12">
                 Branches
             </div>
-            <div class="branchrow branchlist" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:2 ; let i=index'>
+            <div class="branchrow branchlist" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:2 ; let  i=index'>
      
            
             <div class="text-left col-12 nopadd">
-              <span class="numlist">{{i}}</span>
+              <span class="numlist">{{i + 1}}</span>
               <span class="branchAddress">
                 {{loc.address}}, {{loc.suburb.name}} 
                 <div class="clearfix"></div>
@@ -794,16 +753,69 @@
              </span>
             </div>
             <div class="clearfix"></div>
-            <div style="width:100%;">
-              <table width="100%">
-                <tr>
-                  <td align="left"><a href="#" class="pinklink">View Trading Hour</a></td>
-                  <td align="right"><a href="#" class="pinklink">View Map</a></td>
-                </tr>
-              </table>
+            <div  class="branchdetailtableinner" >
+                  <table class="tabledesignwork text-center">
+                    <tr >
+                      <th><strong>Mon</strong></th>
+                      <td *ngIf='loc.isMondayOpen'>{{loc.mondayOpen}} - {{loc.mondayClose}}
+                      </td>
+                      <td><span class="greentext" *ngIf='loc.isMondayOpen'>Open</span></td>
+                      <td><span class="greentext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
+                    </tr>
+                    <tr >
+                      <th><strong>Tue</strong></th>
+                      <td *ngIf='loc.isTuesdayOpen'>{{loc.tuesdayOpen}} - {{loc.tuesdayClose}}
+                      </td>
+                      <td><span class="greentext" *ngIf='loc.isTuesdayOpen'>Open</span></td>
+                      <td><span class="greentext" *ngIf='loc.isTuesdayOpen == false '>Close</span></td>
+                    </tr>
+                    <tr>
+                      <th><strong>Wed</strong></th>
+                      <td  *ngIf='loc.isWednesdayOpen'>{{loc.wednesdayOpen}} - {{loc.wednesdayClose}}
+                      </td>
+                      <td><span class="greentext" *ngIf='loc.isWednesdayOpen'>Open</span></td>
+                      <td><span class="greentext" *ngIf='loc.isWednesdayOpen == false '>Close</span></td>
+                    </tr>
+                    <tr >
+                      <th><strong>Thu</strong></th>
+                      <td *ngIf='loc.isThursdayOpen'>{{loc.thursdayOpen}} - {{loc.thursdayClose}}
+                      </td>
+                      <td><span class="greentext"  *ngIf='loc.isThursdayOpen'>Open</span></td>
+                      <td><span class="greentext" *ngIf='loc.isThursdayOpen == false '>Close</span></td>
+                    </tr>
+                    <tr >
+                      <th><strong>Fri</strong></th>
+                      <td *ngIf='loc.isFridayOpen'>{{loc.fridayOpen}} - {{loc.fridayClose}}
+                      </td>
+                      <td><span class="greentext" *ngIf='loc.isFridayOpen'>Open</span></td>
+                      <td><span class="greentext" *ngIf='loc.isFridayOpen == false '>Close</span></td>
+                    </tr>
+                    <tr >
+                      <th><strong>Sat</strong></th>
+                      <td *ngIf='loc.isSaturdayOpen'>{{loc.sundayOpen}} - {{loc.sundayClose}}
+                      </td>
+                      <td><span class="greentext" *ngIf='loc.isSaturdayOpen'>Open</span></td>
+                      <td><span class="greentext" *ngIf='loc.isSaturdayOpen == false '>Close</span></td>
+                    </tr>
+                    <tr >
+                      <th><strong>Sun</strong></th>
+                      <td *ngIf='loc.isSundayOpen'>{{loc.sundayOpen}} - {{loc.sundayClose}}
+                      </td>
+                      <td><span class="greentext" *ngIf='loc.isSundayOpen'>Open</span></td>
+                      <td><span class="greentext" *ngIf='loc.isSundayOpen == false '>Close</span></td>
+                    </tr>
+                  </table>
+               <!-- end adddd -->
+                <div class="clearfix"></div>
+                <span class="pinklink viewbranchhour">View Trading Hour</span>
+
+                <span class="pinklink maplink">View Map</span>
             </div>
+           
+            
             </div>
         </div>
+           <!-- end  other branches  -->
       </div>
     </div>
 

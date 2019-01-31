@@ -195,6 +195,13 @@ $(".barnchtablenone").click(function(){
 });
 
 
+$(".viewbranchhour").click(function(){
+    alert("hi")
+    $(this).parents('.branchdetailtableinner').toggleClass("in");
+  });
+
+
+
 // tab desktop
 $(".dealbox").click(function() {
     $('html,body').animate({scrollTop: $("#deals").offset().top-150},'slow');

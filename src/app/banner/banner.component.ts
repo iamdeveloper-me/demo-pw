@@ -48,16 +48,19 @@ export class BannerComponent implements OnInit {
   Categorie(){ 
     this.masterservice.getAllCategories().subscribe(data => {
       this.Categories = data;
+      console.log( this.Categories )
      },error => {  console.log(error) })
   }
   location(){ 
     this.masterservice.getAllLocation().subscribe(data => {
       this.locations = data;
+      console.log(  this.locations )
      },error => {  console.log(error) })
   }
   banner(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/banners').subscribe(data => {
       this.banner_data = data
+      console.log(this.banner_data)
       },
       error => {
        console.log(error)

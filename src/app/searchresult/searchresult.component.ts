@@ -161,19 +161,24 @@ export class SearchresultComponent implements OnInit {
   }
   getFilters(){
     let filter_paramArray=[];
-    filter_paramArray.push(this.objSearchFilter.catId);
+    if(this.SelectedCategory!=null){
+    filter_paramArray.push(this.SelectedCategory.categoryId);}
     this._masterservice.getFilters(filter_paramArray).subscribe(res=>{
       this.filters=res;
+      debugger;
       console.log(JSON.stringify(this.filters));
+      if(this.filters.services!=null){
       this.filters.services.forEach(element => { element.isSelect=false; });
       this.filters.filters.forEach(element => { element.isSelect=false;});
       this.priceRange = this.filters.filters[0].customFieldOptionList;
       this.priceRange.forEach(element => {
         element.isSelect = false;
       });
+    }
     },error=>{
       console.log(error);
     })
+
   }
   getSearchFilterResult(){
     if(this.filters){
@@ -206,12 +211,12 @@ export class SearchresultComponent implements OnInit {
     });
   }
   }
-  clearFilters(){
-    this.locations.forEach(element => { element.isSelect=false; });
-    this.objSearchlistvm.districts = [];
-    this.categories.forEach(element => { element.isSelect=false; });
-    this.objSearchlistvm.categoryId = [];
-  }
+  // clearFilters(){
+  //   this.locations.forEach(element => { element.isSelect=false; });
+  //   this.objSearchlistvm.districts = [];
+  //   this.categories.forEach(element => { element.isSelect=false; });
+  //   this.objSearchlistvm.categoryId = [];
+  // }
   addToCollection(){
     this.objSearchResultItems.items.forEach(element => {
       this.collection.push(element);
@@ -232,12 +237,13 @@ export class SearchresultComponent implements OnInit {
       }
   }
   setFilterOptions(filterType,FilterValue){
+   debugger
     this.collection=[];
     this.objSearchlistvm.page=0;
     switch(filterType){
       case 1: // Category
       this.objSearchlistvm= new SearchListingVM();
-      this.deselectAllCategories();
+      // this.deselectAllCategories();
      this.checkUncheckFilter(FilterValue);
      if(FilterValue.isSelect){
       this.SelectedCategory = FilterValue;
@@ -251,7 +257,6 @@ export class SearchresultComponent implements OnInit {
        break;
       case 3: // location
       this.checkUncheckFilter(FilterValue);
-     debugger
      if(FilterValue.isSelect){
        this.SelectedLocation = FilterValue;
        this.showAllLocation = false;
@@ -262,11 +267,11 @@ export class SearchresultComponent implements OnInit {
       this.objSearchlistvm.districts=[];
       break;
       case 4: // custom Field Id
-      this.objSearchlistvm.customsFields=[];
+     // this.objSearchlistvm.customsFields=[];
       this.checkUncheckFilter(FilterValue);break;
       case 5: // Custom Field Option
-      debugger;
-      this.checkUncheckFilter(FilterValue); break;
+      this.objSearchlistvm.customsFields=[];
+      break;
       case 6: // Rating
       debugger;
       this.checkUncheckFilter(FilterValue); break;
@@ -277,7 +282,9 @@ export class SearchresultComponent implements OnInit {
       case 9: // Deals And Offer
       this.checkUncheckFilter(FilterValue); break;
     }
-    if(filterType!==4){ this.paginate(this.objSearchFilter.page)};
+    if(filterType!==4){ 
+      this.paginate(this.objSearchFilter.page)
+    };
   }
   checkUncheckFilter(filterValie){
     if(filterValie.isSelect){
@@ -296,6 +303,7 @@ export class SearchresultComponent implements OnInit {
     if(this.SelectedLocation){
       this.objSearchlistvm.districts=[];
     this.objSearchlistvm.districts.push(this.SelectedLocation.districtId);}
+    if(this.filters!=null && this.filters.filters!=null){
     let selectedServices = this.filters.services.filter(s=>s.isSelect==true);
     if(selectedServices.length>0){
       this.objSearchlistvm.serviceId=[];
@@ -303,7 +311,7 @@ export class SearchresultComponent implements OnInit {
       this.objSearchlistvm.serviceId.push(element.servicesId);
       this.objAppliedFilters.services= '<span class="badge">'+element.serviceName+'</span>';
     });}
-    this.objSearchlistvm.customsFields=[];
+  
     if(this.filters.filters[0].customFieldOptionList){
       this.filters.filters.forEach(el => {
         el.customFieldOptionList.forEach(element => {
@@ -316,6 +324,7 @@ export class SearchresultComponent implements OnInit {
         });        
       });
   }
+}
 
   // Set Featured List 
 let SelectedFeaturedList= this.faaturedListingArray.filter(fl=>fl.isSelect==true);
@@ -326,6 +335,7 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
   });
    }
   // Set Price Range
+ if(this.priceRange!=undefined){
   let selectedprices = this.priceRange.filter(p=>p.isSelect==true);
   if(selectedprices && selectedprices.length>0){
     this.objSearchlistvm.price='';
@@ -333,6 +343,7 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
       this.objSearchlistvm.price+=element.key+',';
     });
   }
+}
   // Set Rating values
   let userRating = this.userRatingArray.filter(ur=>ur.isSelect==true);
   if(userRating){
@@ -359,8 +370,8 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
  @HostListener("window:scroll", [])
  scrollToBottom(){
   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-   // this.objSearchlistvm.page+=1;
-  //  this.paginate(this.objSearchFilter.pageSize); 
+  //  this.objSearchlistvm.page+=1;
+    this.paginate(this.objSearchFilter.pageSize); 
   }
  }
  showHideCategories(ind){

@@ -10,7 +10,8 @@ export class PhotogallaryComponent implements OnInit {
   albums:any;
   vendorDetails:any = {}
   constructor(private router: Router ) { }
-
+  albumName:any[];
+  albumImages:any[];
   ngOnInit() {
     $.getScript('./assets/js/prism.min.js'); 
     $.getScript('./assets/js/owljsor.js');

@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PhotogallerydetailComponent implements OnInit {
 
   constructor() { }
-  vendorDetails = {albums:[]};
+  vendorDetails = {};
   portpholio = [];
   portfolios_length:any;
   ngOnInit() {

@@ -224,3 +224,4 @@ $(".rating").click(function(){
  // alert("hi")
    $(this).toggleClass("active");
     });
+

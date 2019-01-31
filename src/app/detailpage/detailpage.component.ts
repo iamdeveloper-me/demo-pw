@@ -15,6 +15,7 @@ export class DetailpageComponent implements OnInit {
   sliderImgaes: any = [];
   vendorId: number;
   vendorDetails: any;
+  data_arr = []
   businessServices_length ;
   portfolioAndAlbumImagesTotal: number = 0;
   similarVendors:any;
@@ -41,9 +42,18 @@ export class DetailpageComponent implements OnInit {
     this.businessServices_length = this.vendorDetails.businessServices.length;
     this.getSimilarVendors();
     this.vendorDetails.vendorLocations.reverse();
-    this.vendorDetails.albums.forEach(element => {
-      element.albumImages.forEach(img => {
-        this.sliderImgaes.push(img.path);
+    debugger
+     this.data_arr = this.vendorDetails.albums
+    console.log(this.data_arr)
+    this.data_arr.forEach(vendor => {
+      debugger
+      vendor.albumImages.forEach(img => {
+        
+        const data = {
+          "name" : vendor.albumName,
+          "image" : img.path
+        }
+        this.sliderImgaes.push(data);
       });
     });
     this.vendorDetails.albums.forEach(element => {

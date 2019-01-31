@@ -70,6 +70,7 @@ export class SearchresultComponent implements OnInit {
       this.ratingmodel = new ratingStars();
       this.generateStaticArray();
       this.basicPlan = parseInt(localStorage.getItem('basic-plan'))
+      alert(this.basicPlan)
       // this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
       this._activeRoute.params.subscribe(res=>{
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));

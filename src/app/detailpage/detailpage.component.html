@@ -18,14 +18,15 @@
       <div class="boxLightStyles martop0px imgbannerbox">
         <button class="closepopup"><i class="material-icons">clear</i></button>
         <div id="detailpagecarousel" class="owl-carousel detailpagecarousel owl-loaded owl-drag gallery">
+          
           <div class="item" *ngFor='let i of sliderImgaes'>
 
-            <a data-fancybox="gallery" [href]="i">
-              <img class="owl-lazy" [src]='i' *ngIf="i"  alt="">
+              <a data-fancybox="gallery" [href]="i.image">
+              <img class="owl-lazy" [src]='i.image' *ngIf="i"  alt="">
             </a>
             
-            <div class="namecontainer">Album Name</div>
-            <div class="numcontainer">15/20</div>
+            <div class="namecontainer">{{i.name}}</div>
+            <div class="numcontainer">{{sliderImgaes.length}}/20</div>
             <div class="linkcontainer">
               <button><i class="material-icons">favorite_border</i></button>
               <button><i class="material-icons">share</i></button>

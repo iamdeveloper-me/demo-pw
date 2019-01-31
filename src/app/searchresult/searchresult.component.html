@@ -82,7 +82,7 @@
       <div class="container-fluid nopadd">
         <div class="badgecontainer">
           <span *ngIf='objSearchResultItems' class="badge badge-primary badge-labeled">
-          {{SelectedCategory?SelectedCategory.categoryName:''}}  {{SelectedLocation?SelectedLocation.name:''}} (  {{collection?collection.length:0}} Results)
+          {{SelectedCategory?SelectedCategory.categoryName:''}}  {{SelectedLocation?'in '+SelectedLocation.name:''}} (  {{collection?collection.length:0}} Results)
           </span>
          </div>
         <div class="clearfix"></div>
@@ -90,7 +90,7 @@
             <li><a href="#">Home</a></li>
             <li><a href="#">Wedding Vendors</a></li>
             <!-- <li><a href="#">All Categories</a></li> -->
-            <li class="active">{{_activeRoute.snapshot.params['id']}}</li>
+            <!-- <li class="active">{{_activeRoute.snapshot.params['id']}}</li> -->
           </ol>
 
            <div class="btn-group hidden-xs">
@@ -181,7 +181,7 @@
 
                     <ul class="selectedlist" *ngIf='!showALlCategories'>
                         <li>
-                           <span> {{SelectedCategory?SelectedCategory.categoryName:""}} <span (click)='showHideCategories(-1)' class="closebtnlist">&times;</span></span>
+                           <span> {{SelectedCategory?SelectedCategory.categoryName:""}} <span (click)='setFilterOptions(1,SelectedCategory)' class="closebtnlist">&times;</span></span>
                         </li>
                     </ul>
                   </div>
@@ -371,12 +371,18 @@
 		</div>
 		<div class="col-sm-9 listingtab">
         <div class="row">
-            
-            <!-- <div #servicefilters id='servicefilters'>
-            {{objAppliedFilters.services}}
-            </div> -->
-            
-
+            <!--services-->
+            <div *ngIf=filters>
+          <span class="filterrowcard" *ngFor='let f of filters.services'>
+            <span  *ngIf='f.isSelect'>{{f.serviceName}}</span>
+            </span>
+          </div>
+            <!--Price Range-->
+            <div *ngIf='filters && filters.filters'>
+            <span class="filterrowcard" *ngFor='let p of filters.filters[0].customFieldOptionList'>
+              <span  *ngIf='p.isSelect'>{{p.key}}</span>
+              </span>
+            </div>
                 <span class="filterrowcard" *ngFor='let f of faaturedListingArray'>
                     <span  *ngIf='f.isSelect'>{{f.key}}</span>
                     </span>
@@ -387,7 +393,14 @@
                     <span class="filterrowcard" *ngFor='let f of dealsAndOfferArray'>
                         <span *ngIf='f.isSelect'>{{f.key}}</span>
                     </span>
-           
+                    <div *ngIf='filters && filters.filters'>
+                    <div  *ngFor='let ff of filters.filters'>
+                    <span class="filterrowcard" *ngFor='let fc of ff.customFieldOptionList'>
+                      <span *ngIf='fc.isSelect'>{{fc.displayText}}</span>
+                   </span>
+                   </div>
+                  </div>
+                    
           </div>
           
       <div class="photo_cont">
@@ -570,7 +583,7 @@
 <div class="filterrow filteroffer" *ngIf='filters && filters.filters'>
   <h1>Filters (1) <i class="material-icons">arrow_right</i></h1>
   <div *ngFor='let ff of filters.filters'>
-    <span class="badge" (click)='setFilterOptions(4,ff.customFieldId)'>
+    <span class="badge" (click)='setFilterOptions(4,ff)'>
         {{ff.name}} 
     </span>
   </div>

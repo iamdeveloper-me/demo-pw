@@ -159,6 +159,9 @@ export class SearchresultComponent implements OnInit {
          this.showALlCategories=false;
     }) 
   }
+  clearFilters(){
+    
+  }
   getFilters(){
     let filter_paramArray=[];
     if(this.SelectedCategory!=null){

@@ -212,86 +212,7 @@
         </div>
       </div>
 
-      <!-- end onlymobilesection -->
-
-      <!-- Capacity -->
-      <div style="display:none" class="boxLightStyles hideShowMeNow vp_venues box_section_light r_s_pre">
-
-        <div class="heading vp_venues_txt_title large_subtext">Venues</div>
-        <div class="vp_venues_txt table-responsive" style="display: block;">
-          <table align="center" class="mainTable">
-            <thead class="vp_tableHeadingContainer">
-              <tr>
-                <td class="vp_tableHeading">Name </td>
-                <td class="vp_tableHeading"> Type </td>
-                <td class="vp_tableHeading vp_tableHeading_capacity">
-                  <span> Capacity </span>
-                  <table class="vp_subtableHeading">
-                    <thead>
-                      <tr>
-                        <td class="font11_414">Seated</td>
-                        <td class="font11_414">Floating</td>
-                      </tr>
-                    </thead>
-                  </table>
-                </td>
-                <td class="vp_tableHeading"> Starting Price ₹ </td>
-              </tr>
-            </thead>
-            <tbody class="vp_tableHeadingBody">
-              <tr class="vp_tableBodyRow tableRow-0">
-                <td> North|South|Odyssey </td>
-                <td> Banquet </td>
-                <td>
-                  <table class="vp_tableBodyInner">
-                    <tbody>
-                      <tr>
-                        <td>550</td>
-                        <td>800</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-                <td> 1,900 </td>
-              </tr>
-              <tr class="vp_tableBodyRow tableRow-1">
-                <td> North|South </td>
-                <td> Banquet </td>
-                <td>
-                  <table class="vp_tableBodyInner">
-                    <tbody>
-                      <tr>
-                        <td>300</td>
-                        <td>800</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-                <td> 1,700</td>
-              </tr>
-              <tr class="vp_tableBodyRow tableRow-2">
-                <td> South </td>
-                <td> Banquet </td>
-                <td>
-                  <table class="vp_tableBodyInner">
-                    <tbody>
-                      <tr>
-                        <td>450</td>
-                        <td>500</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-                <td>1,5000</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="vp_services_txt_seeMore marriager_text "> <a href="#"> See More </a></div>
-        </div>
-      </div>
-
-      <!-- end Capacity -->
+     
 
       <!-- Portfolio & Albums -->
 
@@ -733,6 +654,19 @@
         </div>
 
         <div class="clearfix"></div>
+  <div class="left_box_section paddleftrite0px martop20px">
+            <div class="large_subtext bob_pa_left text-center">
+              Share This Listing
+            </div>
+            <div class="featurebtn">
+              <div class="col-sm-3"><a href="#"><img src="../../assets/img/fb_icon.png"></a></div>
+              <div class="col-sm-3"><a href="#"><img src="../../assets/img/msg_icon.png"></a></div>
+              <div class="col-sm-3"><a href="#"><img src="../../assets/img/share_icon.png"></a></div>
+              <div class="col-sm-3"><a href="#"><img src="../../assets/img/wa_icon.png"></a></div>
+            </div>
+  </div>
+<div class="clearfix"></div>
+
         <div class="left_box_section overviewsection startprice" *ngIf = "vendorDetails?.businessServices.length > 0">
           <div class="vp_mainDetails_starting_price">
             <div class="large_subtext bob_pa_left text-center">
@@ -767,60 +701,79 @@
           </div>
         </div>
          <!-- trading hour -->
-          <div class="left_box_section contactsection " >
+          <div class="left_box_section contactsection tradinghours">
 
-            <div class="branchrow row" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:1 '>
-              <div class="large_subtext text-center  col-12">
+            <div class="branchrow row tradinghours" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:1 '>
+              <div class="large_subtext detailtra text-center  col-12">
                    Trading Hours
+                    <div class="branchdefaulttable in">
+                      <table class="banchtable text-center">
+                        <tr>
+                          <th><strong>Mon</strong></th>
+                          <td><strong>12:00AM - 12:00PM</strong>
+                          </td>
+                          <td><span class="greentext">Open</span></td>
+                        </tr>
+                      </table>
+                    </div> 
+                    <div class="clearfix"></div>
+              <div  class="branchdetailtable">
+                <table class="tabledesignwork text-center">
+                  <tr *ngIf='loc.isMondayOpen'>
+                    <th><strong>Mon</strong></th>
+                    <td>{{loc.mondayOpen}} - {{loc.monClose}}
+                    </td>
+                    <td><span class="greentext">Open</span></td>
+                  </tr>
+                  <tr *ngIf='loc.isTuesdayOpen'>
+                    <th><strong>Tue</strong></th>
+                    <td>{{loc.tuesdayOpen}} - {{loc.tuesdayClose}}
+                    </td>
+                    <td><span class="greentext">Open</span></td>
+                  </tr>
+                  <tr *ngIf='loc.isWednesdayOpen'>
+                    <th><strong>Wed</strong></th>
+                    <td>{{loc.wednesdayOpen}} - {{loc.wednesdayClose}}
+                    </td>
+                    <td><span class="greentext">Open</span></td>
+                  </tr>
+                  <tr *ngIf='loc.isThursdayOpen'>
+                    <th><strong>Thu</strong></th>
+                    <td>{{loc.thursdayOpen}} - {{loc.thursdayClose}}
+                    </td>
+                    <td><span class="greentext">Open</span></td>
+                  </tr>
+                  <tr *ngIf='loc.isFridayOpen'>
+                    <th><strong>Fri</strong></th>
+                    <td>{{loc.fridayOpen}} - {{loc.fridayClose}}
+                    </td>
+                    <td><span class="greentext">Open</span></td>
+                  </tr>
+                  <tr *ngIf='loc.isSaturdayOpen'>
+                    <th><strong>Sat</strong></th>
+                    <td>{{loc.sundayOpen}} - {{loc.sundayClose}}
+                    </td>
+                    <td><span class="greentext">Open</span></td>
+                  </tr>
+                  <tr *ngIf='loc.isSundayOpen'>
+                    <th><strong>Sun</strong></th>
+                    <td>{{loc.sundayOpen}} - {{loc.sundayClose}}
+                    </td>
+                    <td><span class="greentext">Open</span></td>
+                  </tr>
+                </table>
+              </div>
+            <div class="text-center showdetail barnchtableshow">Show More</div>
+            <div class="text-center showless barnchtablenone" style="display: none;">Show less</div>
               </div>
               <!-- <div class="text-center col-12">{{loc.address}}, {{loc.suburb.name}}: </div>
               <div class="clearfix"></div>
               <div class="branchAddress text-center col-12">
                 {{loc.districts.name}},{{loc.country.countryName}}
               </div> -->
-              <div class="clearfix"></div>
-              <div class="col-md-12">
-                <table class="tabledesignwork text-center ">
-                  <tr *ngIf='loc.isMondayOpen'>
-                    <th><strong>Mon</strong></th>
-                    <th>{{loc.mondayOpen}} - {{loc.monClose}}<span class="greentext">Open</span>
-                    </th>
-                  </tr>
-                  <tr *ngIf='loc.isTuesdayOpen'>
-                    <th><strong>Tues</strong></th>
-                    <th>{{loc.tuesdayOpen}} - {{loc.tuesdayClose}}<span class="greentext">Open</span>
-                    </th>
-                  </tr>
-                  <tr *ngIf='loc.isWednesdayOpen'>
-                    <th><strong>Wed</strong></th>
-                    <th>{{loc.wednesdayOpen}} - {{loc.wednesdayClose}}<span class="greentext">Open</span>
-                    </th>
-                  </tr>
-                  <tr *ngIf='loc.isThursdayOpen'>
-                    <th><strong>Thurse</strong></th>
-                    <th>{{loc.thursdayOpen}} - {{loc.thursdayClose}}<span class="greentext">Open</span>
-                    </th>
-                  </tr>
-                  <tr *ngIf='loc.isFridayOpen'>
-                    <th><strong>Fri</strong></th>
-                    <th>{{loc.fridayOpen}} - {{loc.fridayClose}}<span class="greentext">Open</span>
-                    </th>
-                  </tr>
-                  <tr *ngIf='loc.isSaturdayOpen'>
-                    <th><strong>Sat</strong></th>
-                    <th>{{loc.sundayOpen}} - {{loc.sundayClose}}<span class="greentext">Open</span>
-                    </th>
-                  </tr>
-                  <tr *ngIf='loc.isSundayOpen'>
-                    <th><strong>Sun</strong></th>
-                    <th>{{loc.sundayOpen}} - {{loc.sundayClose}}<span class="greentext">Open</span>
-                    </th>
-                  </tr>
-                </table>
-              </div>
+
             </div>
-            <div class="text-center showdetail"  style="display: none;">Show More</div>
-            <div class="text-center showless" style="display: none;">Show less</div>
+            
           </div>
          <!-- End trading hour -->
 

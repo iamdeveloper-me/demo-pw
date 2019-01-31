@@ -178,16 +178,22 @@ $(".startprice .showless").click(function() {
     $('.startprice .showdetail').show();
 });
 
-$(".tradinghours .showdetail").click(function() {
-    $('.detailtra').addClass('heightauto');
-    $('.tradinghours .showdetail').hide();
-    $('.tradinghours .showless').show();
+$(".barnchtableshow").click(function(){
+  //alert("hi")
+   $(".branchdefaulttable").toggleClass("in");
+   $(".branchdetailtable").toggleClass("in");
+   $(".barnchtableshow").hide();
+   $(".barnchtablenone").show();
 });
-$(".tradinghours .showless").click(function() {
-    $('.detailtra').removeClass('heightauto');
-    $('.tradinghours .showless').hide();
-    $('.tradinghours .showdetail').show();
+
+$(".barnchtablenone").click(function(){
+  //alert("hi")
+   $(".branchdefaulttable").toggleClass("in");
+   $(".branchdetailtable").toggleClass("in");
+   $(".barnchtableshow").show();
+   $(".barnchtablenone").hide();
 });
+
 
 // tab desktop
 $(".dealbox").click(function() {

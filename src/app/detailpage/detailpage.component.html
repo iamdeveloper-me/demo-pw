@@ -36,9 +36,7 @@
       </div>
       <!-- carosel slider end -->
       <!-- onlymobilesection -->
-      <div class="onlymobilesection">
-
-
+      <div class="onlymobilesection boxLightStyles">
         <div class="large_text text-center">
           {{vendorDetails?.nameOfBusiness}}
         </div>
@@ -46,6 +44,9 @@
         <div class="carousel_city text-center">
           <i class="fa fa-map-marker" aria-hidden="true"></i> {{vendorDetails?.suburb.name}}
         </div>
+         <div class="carousel_city text-center">
+                   Membership of 2 years
+            </div>
         <div class="vp_mainDetails_mini_rating text-center">
          
             <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
@@ -61,19 +62,19 @@
         <div class="col-sm-12">
           <div class="featurebtn row">
 
-            <div class="col-3">
+            <div class="col-4">
               <button class="btn purple-gradient borradius50per">
                 <i class="material-icons">call</i>
               </button>
               <div class="featurehead">Call</div>
             </div>
-            <div class="col-3">
+            <div class="col-4">
               <button class="btn purple-gradient borradius50per" data-toggle="modal" data-target="#address">
                 <i class="material-icons">mail_outline</i>
               </button>
               <div class="featurehead">Message</div>
             </div>
-            <div class="col-3">
+            <div class="col-4">
               <button class="btn purple-gradient borradius50per">
                 <i class="material-icons">bookmark_border</i>
               </button>
@@ -195,8 +196,8 @@
               <span class="vp_services_txt_span marriager_text_without_underline">
                   Wedding Services & Experience</span>
             </div>
-            <div class="row servicerow venserbox"  >
-              <div  *ngFor='let service of  vendorDetails?.businessServices'>  
+            <div class="row servicerow venserbox">
+              <div style="width: 100%;" *ngFor='let service of  vendorDetails?.businessServices'>  
                       
                         <!-- <span>{{service.serviceName}}</span> -->
                       <table class="tabledesignwork table table-bordered table-stripped" *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
@@ -425,7 +426,7 @@
 
 
 
-     
+      <div class="clearfix"></div>
 
       <!-- start Reviews form -->
       <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection" id="review">
@@ -468,42 +469,44 @@
           <!-- <div class="col-sm-2 text-center dealhead pink" *ngIf='vendorDetails?.discounts'>
             {{vendorDetails?.discounts.discount}}% {{vendorDetails?.discounts.title}}
           </div> -->
-          <div class="col-sm-8" *ngIf='vendorDetails?.discounts'>
-            <h1 class="pink">{{vendorDetails?.discounts.title}}</h1>
-            <p class="blue">
-              <strong>Discount</strong> {{vendorDetails?.discounts.discount}}% </p>
+          <div style="width: 100%;"  *ngIf='vendorDetails?.discounts'>
+            <div class="col-sm-10">
+              <h1 class="pink">{{vendorDetails?.discounts.title}}</h1>
+              <p class="blue">
+                <strong>Discount</strong> {{vendorDetails?.discounts.discount}}% </p>
+            </div>
+             <div class="col-sm-2">
+              <button class="btn purple-gradient btntik borradius50per callbtn">
+                <i class="material-icons">call</i>
+              </button>
+
+              <button class="btn purple-gradient btntik borradius50per" data-target="#address" data-toggle="modal">
+                <i class="material-icons">mail_outline</i>
+              </button>
+            </div>
           </div>
-          <div class="col-sm-8" *ngIf="vendorDetails?.discounts == null ">
+          <div class="col-sm-12" *ngIf="vendorDetails?.discounts == null ">
               <span class="text-center">No discounts Available </span>
           </div>
-          <div class="col-sm-2">
-            <button class="btn purple-gradient btntik borradius50per callbtn">
-              <i class="material-icons">call</i>
-            </button>
-
-            <button class="btn purple-gradient btntik borradius50per" data-target="#address" data-toggle="modal">
-              <i class="material-icons">mail_outline</i>
-            </button>
-          </div>
+         
         </div>
         <div >
           <div class="row dealsinner"  *ngFor='let deal of vendorDetails?.deals;let i=index'>
-          <div class="col-sm-2 text-center dealhead">
+          <!-- <div class="col-sm-2 text-center dealhead">
             <span class="borradius50per btntikbg">%</span>
+          </div> -->
+          <div class="col-sm-3">
+            <div>$800.00 Value</div>
+            <div>Promo Code: <strong>FES8220</strong></div>
           </div>
-          <div class="col-sm-10">
-            <h1 class="">{{deal.title}}</h1>{{deal.status}}
+          <div class="col-sm-9">
+            <h1>{{deal.title}}</h1>
             <p>
               {{deal.conditions}}
             </p>
+             <p>Offer Expires: {{deal.endDateString}}&nbsp;&nbsp;|&nbsp;&nbsp;Status: {{deal.status}}</p>
             <div class="clearfix"></div>
-            <table width="100%" class="martop15px table table-bordered">
-              <tr>
-                <td class="text-center">Offer Expires: {{deal.endDateString}}</td>
-                <td class="text-center">$800.00 Value</td>
-                <td class="text-center">Promo Code: <strong>FES8220</strong></td>
-              </tr>
-            </table>
+           
           </div>
           </div>
         </div>  
@@ -654,18 +657,18 @@
         </div>
 
         <div class="clearfix"></div>
-  <div class="left_box_section paddleftrite0px martop20px">
-            <div class="large_subtext bob_pa_left text-center">
-              Share This Listing
-            </div>
-            <div class="featurebtn">
-              <div class="col-sm-3"><a href="#"><img src="../../assets/img/fb_icon.png"></a></div>
-              <div class="col-sm-3"><a href="#"><img src="../../assets/img/msg_icon.png"></a></div>
-              <div class="col-sm-3"><a href="#"><img src="../../assets/img/share_icon.png"></a></div>
-              <div class="col-sm-3"><a href="#"><img src="../../assets/img/wa_icon.png"></a></div>
-            </div>
-  </div>
-<div class="clearfix"></div>
+        <div class="left_box_section paddleftrite0px martop20px">
+                  <div class="large_subtext bob_pa_left text-center">
+                    Share This Listing
+                  </div>
+                  <div class="featurebtn">
+                    <div class="col-sm-3"><a href="#"><img src="../../assets/img/fb_icon.png"></a></div>
+                    <div class="col-sm-3"><a href="#"><img src="../../assets/img/msg_icon.png"></a></div>
+                    <div class="col-sm-3"><a href="#"><img src="../../assets/img/share_icon.png"></a></div>
+                    <div class="col-sm-3"><a href="#"><img src="../../assets/img/wa_icon.png"></a></div>
+                  </div>
+        </div>
+        <div class="clearfix"></div>
 
         <div class="left_box_section overviewsection startprice" *ngIf = "vendorDetails?.businessServices.length > 0">
           <div class="vp_mainDetails_starting_price">
@@ -701,7 +704,7 @@
           </div>
         </div>
          <!-- trading hour -->
-          <div class="left_box_section contactsection tradinghours">
+        <div class="left_box_section contactsection tradinghours">
 
             <div class="branchrow row tradinghours" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:1 '>
               <div class="large_subtext detailtra text-center  col-12">
@@ -773,21 +776,22 @@
               </div> -->
 
             </div>
-            
-          </div>
+        </div>
          <!-- End trading hour -->
-
         <div class="left_box_section contactsection">
             <div class="large_subtext text-center  col-12">
                 Branches
-          </div>
-          <div class="branchrow row" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:2 ; let i=index'>
+            </div>
+            <div class="branchrow branchlist" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:2 ; let i=index'>
      
-            <div class="col-2">{{i}}</div>
-            <div class="text-left col-10">
-              {{loc.address}}, {{loc.suburb.name}} 
-              <div class="clearfix"></div>
-              <span class="branchAddress">{{loc.districts.name}},{{loc.country.countryName}}</span>
+           
+            <div class="text-left col-12 nopadd">
+              <span class="numlist">{{i}}</span>
+              <span class="branchAddress">
+                {{loc.address}}, {{loc.suburb.name}} 
+                <div class="clearfix"></div>
+               {{loc.districts.name}},{{loc.country.countryName}}
+             </span>
             </div>
             <div class="clearfix"></div>
             <div style="width:100%;">
@@ -798,8 +802,7 @@
                 </tr>
               </table>
             </div>
-          
-          </div>
+            </div>
         </div>
       </div>
     </div>

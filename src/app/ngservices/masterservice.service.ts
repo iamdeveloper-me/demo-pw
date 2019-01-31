@@ -24,7 +24,6 @@ export class MasterserviceService {
      return this.apiservice.postData(this.apiservice.serverPath + 'PerfectWedding/searchfilters/',categoryId);
    }
    getFilterResult(obj){
-     debugger;
      if(obj.districts.length==1 && obj.districts[0]==null){
       obj.districts=[];
      }

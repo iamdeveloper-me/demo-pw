@@ -65,6 +65,7 @@ export class SearchresultComponent implements OnInit {
   ratingmodel: ratingStars
   constructor(public _route:Router, public _activeRoute: ActivatedRoute, 
     private _masterservice: MasterserviceService, private api: apiService, private domsanitizar: DomSanitizer) {
+      
       this.objAppliedFilters = new AppliedFilters();
       this.objSearchFilter=new filterParam();
       this.ratingmodel = new ratingStars();
@@ -84,6 +85,7 @@ export class SearchresultComponent implements OnInit {
     //debugger;
     this.getLocations();
     this.getCategories();
+    debugger;
     if(this._activeRoute!=undefined){ this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam')); }
     this.getFilters();
     this.selectCategory('id',this.objSearchFilter.catId);
@@ -91,10 +93,12 @@ export class SearchresultComponent implements OnInit {
      if(this.categories){
       this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
       this.selectCategory('id',this.objSearchFilter.catId);
-      this.showHideCategories(this.categories.indexOf(this._activeRoute.snapshot.params['id']));
+      // this.showHideCategories(this.categories.indexOf(this._activeRoute.snapshot.params['id']));
      }
      this.getSearchFilterResult();
      });
+     debugger;
+     this.getSearchFilterResult();
   }
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
@@ -164,7 +168,7 @@ export class SearchresultComponent implements OnInit {
     filter_paramArray.push(this.SelectedCategory.categoryId);}
     this._masterservice.getFilters(filter_paramArray).subscribe(res=>{
       this.filters=res;
-      debugger;
+      
       console.log(JSON.stringify(this.filters));
       if(this.filters.services!=null){
       this.filters.services.forEach(element => { element.isSelect=false; });
@@ -180,8 +184,8 @@ export class SearchresultComponent implements OnInit {
 
   }
   getSearchFilterResult(){
-    if(this.filters){
-    if(this.filters.services!=null){
+    if(this.filters && this.filters.filters!=null){
+    if(this.filters.filters.services!=null){
     this.filters.services.forEach(element => {
       if(element.isSelect){
         this.objSearchlistvm.serviceId.push(element.servicesId);
@@ -236,7 +240,7 @@ export class SearchresultComponent implements OnInit {
       }
   }
   setFilterOptions(filterType,FilterValue){
-   debugger
+   
     this.collection=[];
     this.objSearchlistvm.page=0;
     switch(filterType){
@@ -246,11 +250,11 @@ export class SearchresultComponent implements OnInit {
      this.checkUncheckFilter(FilterValue);
      if(FilterValue.isSelect){
       this.SelectedCategory = FilterValue;
+      this.getFilters();
       this.showALlCategories = false;}else{
         this.showALlCategories = true;
         this.SelectedCategory=null;
       }
-      this.getFilters();
        break;
       case 2: // Service
        break;
@@ -272,7 +276,7 @@ export class SearchresultComponent implements OnInit {
       this.objSearchlistvm.customsFields=[];
       break;
       case 6: // Rating
-      debugger;
+      
       this.checkUncheckFilter(FilterValue); break;
       case 7: // Pricing
       this.checkUncheckFilter(FilterValue); break;

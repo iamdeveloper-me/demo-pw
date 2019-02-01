@@ -497,22 +497,6 @@ font-size:14px;
 .book_mark i:hover{  background: rgba(220,0,112,0.8);  
   color: #ffffff; 
 }
-.list-group-item .book_mark i{
- bottom: 7px;
- top:inherit;
-}
-.list-group-item .locat_icon{
-    position: absolute!important;
-    top: 8px!important;
-    right: 7px!important;
-}
-.list-group-item .descrip{
-  display:block;
-  max-width:97%;
-}
-.list-group-item .bordre_rad1{
-  margin-bottom:0px!important;
-}
 
 .nopadd{padding: 0px;}
 a.bottomheadlink{
@@ -531,28 +515,15 @@ background: #e72e77;
   padding:0px;
   border:0px;
 }
-.list-group-item img.list-group-image{
-    float: left;
-    max-height: inherit;
-    height: auto;
-    display: block;
-    width:235px;
-    height: 175px;
-    object-fit:cover;
-}
-.item.list-group-item:before, .item.list-group-item:after
-{
-    display: table;
-    content: " ";
-}
-.list-group-item{
-  border:0px;
-  background: transparent;
-}
-#products .list-group-item .thumbnail .caption{
-  text-align:left!important;
-  padding:15px 10px!important;
-  overflow: hidden;
+
+.listing-group .grid-group-item img.list-group-image{
+  float: left;
+  max-height: inherit;
+  height: auto;
+  display: block;
+  width:235px;
+  height: 175px;
+  object-fit:cover;
 }
 
 #products .grid-group-item .thumbnail .caption{
@@ -575,10 +546,7 @@ max-width:98%;
   line-height: 24px!important;
   padding: 0px;
 }
-#products .list-group-item .thumbnail .caption .cardfoottext{
-  max-width: 220px;
-  margin-top:5px;
-}
+
 
 .imgnum{
   position:absolute;
@@ -610,14 +578,6 @@ margin-top:-35px;
   float: right;
   line-height: 24px;
   margin-left: 5px;
-}
-#products .list-group-item .card .thumbnail .imgnum{
-  max-width:260px!important;
-  bottom:4px!important;
-}
-#products .list-group-item .thumbnail .caption .locat_icon{
-padding-top: 5px;
-padding-bottom: 5px;
 }
 .caro_control{
   top: 25%;
@@ -690,6 +650,64 @@ padding-bottom: 5px;
   border-radius: 5px;
   padding: 5px 10px;
 }
+
+
+.listing-group .grid-group-item img.list-group-image{
+  float: left;
+  max-height: inherit;
+  height: auto;
+  display: block;
+  width:235px;
+  height: 175px;
+  object-fit:cover;
+}
+.listing-group  .item.grid-group-item:before, .listing-group  .item.grid-group-item:after
+{
+  display: table;
+  content: " ";
+}
+.listing-group  .grid-group-item{
+border:0px;
+background: transparent;
+padding:5px 10px!important;
+max-width: inherit;
+width: 100%;
+flex: 100%;
+}
+#products.listing-group  .grid-group-item .thumbnail .caption{
+text-align:left!important;
+padding:15px 10px!important;
+overflow: hidden;
+}
+#products.listing-group  .grid-group-item .thumbnail .caption .cardfoottext{
+max-width: 220px;
+margin-top:5px;
+}
+#products.listing-group  .grid-group-item .card .thumbnail .imgnum{
+max-width:260px!important;
+bottom:4px!important;
+}
+#products.listing-group  .grid-group-item .thumbnail .caption .locat_icon{
+padding-top: 5px;
+padding-bottom: 5px;
+}
+.listing-group .grid-group-item .book_mark i{
+bottom: 7px;
+top:inherit;
+}
+.listing-group .grid-group-item .locat_icon{
+  position: absolute!important;
+  top: 8px!important;
+  right: 7px!important;
+}
+.listing-group .grid-group-item .descrip{
+display:block;
+max-width:97%;
+}
+.listing-group .grid-group-item .bordre_rad1{
+margin-bottom:0px!important;
+}
+.thumbnail{margin-bottom: 0px !important;}
 @media only screen and (max-width: 767px) {
  .mobviewbox{
  margin-top:70px!important;
@@ -746,4 +764,31 @@ padding-bottom: 5px;
    background: #ffffff;
    top:0px;
    }
+   .carousel-inner>.item>a>img, .carousel-inner>.item>img, .thumbnail .item>a>img, .thumbnail>img.list-group-image{
+    height: 120px;
+   }
+  .carousel-inner>.photo-group-item>a>img, .carousel-inner>.photo-group-item>img, 
+  .photo-group .thumbnail>img.list-group-image{
+    height: 200px;
+   }
+ 
+ 
+ #products.photo-group  .grid-group-item{
+   border:0px;
+   background: transparent;
+   padding:5px 10px!important;
+   max-width: inherit;
+   width: 100%;
+   flex: 100%;
+ }
+ 
+ #products.photo-group .grid-group-item .thumbnail .caption {
+    padding: 15px 10px!important;
+    overflow: hidden;
+    text-align: center;
+  }
+  #products.photo-group .grid-group-item .thumbnail img.list-group-image{
+  max-height: inherit;
+  height: 200px;
+  }
   }

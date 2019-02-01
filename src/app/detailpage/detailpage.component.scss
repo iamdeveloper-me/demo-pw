@@ -1,6 +1,11 @@
 .detail_page{
    padding-top: 60px;
 }
+.image_div{
+    max-width: 50%;
+      float: left;
+      margin-right: 10px;
+  }
 .venserbox .ng-star-inserted {
 width:100%!important;
 padding: 0px;
@@ -21,6 +26,21 @@ padding: 0px;
 .fixedheaderbtn button{
     width:45px!important;
     height:45px!important;
+}
+.numlist{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: #e5e5e5;
+    text-align: center;
+    line-height: 25px;
+    font-weight: 900;
+    border-radius: 50%;
+    float: left;
+    margin-right: 10px;
+}
+.floatlefttik{
+    float:left;
 }
 .tikshow{
     display:none;
@@ -90,8 +110,13 @@ position: absolute;
     right:20px;
     top:3px;
 }
+.nopadd{
+    padding:0px;
+}
 .branchAddress {
     color: #6e798a;
+    float:left;
+    width:calc(100% - 35px);
 }
 .callinfo {
     position: absolute;
@@ -280,7 +305,6 @@ position: absolute;
 }
 .startprice{
     overflow:hidden;
-    margin-top:20px;
 }
 .martop20px{
     margin-top: 20px;
@@ -571,7 +595,7 @@ div.servicecontainer>div:nth-of-type(odd) {
 }
 .boxLightStyles {
     width: 100%;
-    margin: 20px 0;
+    margin: 20px 0 0 0;
     border: 1px solid #f0f0f0;
     border-radius: 2px;
     transition: all .5s;
@@ -648,7 +672,7 @@ td{
 
 .boxLightStyles {
     width: 100%;
-    margin: 20px 0;
+    margin: 20px 0px 0px 0px;
     border: 1px solid #f0f0f0;
     border-radius: 2px;
     transition: all .5s;
@@ -863,10 +887,42 @@ border-bottom: 1px solid #e72e77;
 .greentext{
     color:#65b045;
 }
-
+.banchtable{
+width:100%;
+margin:5px 0px;
+}
+.banchtable tr th,.banchtable tr td{
+    font-size:12px!important;
+    text-align:left!important;
+    padding:1px 2px;
+}
 .tabledesignwork{
 width:100%;
 margin:15px 0px;
+}
+.branchdetailtable{
+    display:none;
+}
+.branchdefaulttable{
+    display:none;
+}
+.branchdefaulttable.in{
+    display:block;
+}
+.branchdetailtableinner table{
+display:none;
+}
+.branchdetailtableinner.in table{
+    display:block;
+    }
+    .viewbranchhour{
+        float:left;
+    }
+    .maplink{
+float:right;
+    }
+.branchdetailtable.in{
+    display:block;
 }
 .tabledesignwork tr th,.tabledesignwork tr td{
     font-size:12px!important;
@@ -904,6 +960,11 @@ margin-left: 5px;
 .branchrow{
     margin-bottom:15px;
 }
+.branchlist{   
+    margin:10px 5px!important;
+    padding:10px!important;
+    background:#f5f5f5!important;
+}
 .martop0px{
     margin-top:0px!important;
 }
@@ -920,7 +981,7 @@ margin-left: 5px;
 }
 .fixedpostioneddesktop{
     position: fixed;
-    z-index: 9999;
+    z-index: 999;
     top:60px;
     transition: 1s;
     box-shadow: 0px 5px 10px #ccc; 
@@ -976,10 +1037,16 @@ margin-left: 5px;
     cursor: pointer;
     font-size: 14px;
     color: #e72e77;
+    font-weight:normal;
 }
 a.pinklink{
     cursor: pointer;
-    font-size: 14px;
+    font-size: 13px;
+    color: #e72e77;
+}
+pinklink{
+    cursor: pointer;
+    font-size: 13px;
     color: #e72e77;
 }
 .featurebtn{

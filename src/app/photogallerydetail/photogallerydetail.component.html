@@ -3,25 +3,40 @@
 	<div class="container mobnopadd ipad100">
 	  	<div class="col-sm-12 detail_page nopadd">
 		   <div class="card inspirationhead">
-	  			<a routerLink="../Photogallary" class="backlink"> 
+	  			<a routerLink="../Photogallary" class="backlink" (click) = "session_data()"> 
 		            <i class="material-icons">arrow_back_ios</i>
 		            Go Back
 		        </a>
-      			<h2 class="text-center">Album Name</h2>
+      			<h2 class="text-center">
+					  {{vendorDetails?.albumName}}
+				</h2>
+				<h2 class="text-center" *ngIf = "portfolios_length > 0">
+						Portfolio
+				  </h2>
    			</div>
 	    </div>
 	    <div class="boxLightStyles">
-	   		<div class="container row martop15px">
-				<div  *ngFor='let vd of vendorDetails.albums; let i=index'>
-					<!-- Alnum Name : vendorDetails.albums.albumName-->
-					<div class="col-6 col-sm-3" *ngFor='let filepath of vd.albumImages'>           
-						<a data-fancybox="gallery" class="thumbnail" [href]="filepath.path">
-							<img  *ngIf="filepath" [src]='filepath.path' alt="...">
-						</a>
-					</div>
+	   		<!-- <div class="container row martop15px" *ngIf = "vendorDetails?.albumImages.length > 0"> -->
+				<div class="col-6 col-sm-3" *ngFor='let filepath of vendorDetails?.albumImages'>           
+					<a data-fancybox="gallery" class="thumbnail" [href]="filepath?.path">
+							<img  *ngIf="filepath" [src]='filepath?.path' alt="...">
+					</a>
 				</div>
-			</div>
+			<!-- </div> -->
+			<!-- <div *ngIf = "vendorDetails?.albumImages.length == 0">
+                <span>
+					NO images
+				</span>
+			</div> -->
+			<!-- <div *ngIf = "portfolios.length > 0"> -->
+				<div class="col-6 col-sm-3"  *ngFor='let portpi of portpholio' >
+					<img style="    height: 143px;width: 151px;" [src]="portpi?.path" alt="..." >
+				</div>
+			<!-- </div> -->
 		</div>
+
+
+
     </div>
     <app-foot></app-foot>
 </div>

@@ -1,6 +1,8 @@
   <div id="wrappervendor" class="">
   <app-menu></app-menu>
-  <app-tool *ngIf="basicPlan == 3"></app-tool>
+  <app-tool *ngIf="basicPlan != 3">
+   
+  </app-tool>
   <div class="container-fluid recomslider">
       <!--Carousel Wrapper-->
   <div class="container">
@@ -278,7 +280,7 @@
     <div id="collapse333" class="panel-collapse collapse" >
        
         <div class="funkyradio">
-          <div class="funkyradio-info" *ngFor='let feature of faaturedListingArray'>
+          <div class="funkyradio-info" *ngFor='let feature of featuredListingArray'>
             <input type="checkbox" name="checkbox" id="{{feature.key}}" (change)='setFilterOptions(8,feature)'/>
             <label  for="{{feature.key}}">{{feature.key}}</label>  
           </div>
@@ -378,11 +380,11 @@
             </span>
           </div>
             <!--Price Range-->
-            <div *ngIf='filters && filters.filters'>
+            <!-- <div *ngIf='filters && filters.filters'>
             <span class="filterrowcard" *ngFor='let p of filters.filters[0].customFieldOptionList'>
               <span  *ngIf='p.isSelect'>{{p.key}}</span>
               </span>
-            </div>
+            </div> -->
                 <span class="filterrowcard" *ngFor='let f of faaturedListingArray'>
                     <span  *ngIf='f.isSelect'>{{f.key}}</span>
                     </span>

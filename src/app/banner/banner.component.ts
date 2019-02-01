@@ -48,16 +48,20 @@ export class BannerComponent implements OnInit {
   Categorie(){ 
     this.masterservice.getAllCategories().subscribe(data => {
       this.Categories = data;
+      localStorage.setItem('catlist',JSON.stringify(data));
+      console.log( this.Categories )
      },error => {  console.log(error) })
   }
   location(){ 
     this.masterservice.getAllLocation().subscribe(data => {
       this.locations = data;
+      console.log(  this.locations )
      },error => {  console.log(error) })
   }
   banner(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/banners').subscribe(data => {
       this.banner_data = data
+      console.log(this.banner_data)
       },
       error => {
        console.log(error)
@@ -65,7 +69,6 @@ export class BannerComponent implements OnInit {
     )
   }
   search(e,isAllSupplier,isDreamLocation,var_data){
-    debugger;
       if(var_data == null){
           this.objFilterParam.catId  = e.value.category?e.value.category.categoryId:0;
           this.objFilterParam.categoryName= e.value.category?e.value.category.categoryName: '' ;

@@ -8,7 +8,7 @@ import { Object } from 'core-js/library/web/timers';
   providedIn: 'root'
 })
 export class MasterserviceService {
-  abc:Array<any>;
+ 
   constructor(private apiservice: apiService) {
 
    }
@@ -19,18 +19,9 @@ export class MasterserviceService {
      return this.apiservice.getData(this.apiservice.serverPath+'LookupMaster/alllocation');
    }
    getFilters(categoryId){
-     console.log(categoryId);
-     debugger;
      return this.apiservice.postData(this.apiservice.serverPath + 'PerfectWedding/searchfilters/',categoryId);
    }
    getFilterResult(obj){
-     if(obj.districts.length==1 && obj.districts[0]==null){
-      obj.districts=[];
-     }
-     if(obj.categoryId.length==0){
-       obj.categoryId.push(0);
-     }
-     console.log(JSON.stringify(obj));
     return this.apiservice.postData(this.apiservice.serverPath + 'PerfectWedding/searchlisting',obj);
    }
    getSimilarVendors(obj){

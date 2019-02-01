@@ -46,13 +46,33 @@ export class DetailpageComponent implements OnInit {
     console.log(this.data_arr)
     this.data_arr.forEach(vendor => {
       vendor.albumImages.forEach(img => {      
+    
+     this.data_arr = this.vendorDetails.albums
+    console.log(this.data_arr)
+    this.data_arr.forEach(vendor => {
+      if(vendor.albumImages != []){
+        vendor.albumImages.forEach(img => {
         const data = {
-          "name" : vendor.albumName,
-          "image" : img.path
-        }
-        this.sliderImgaes.push(data);
-      });
+            "name" : vendor.albumName,
+            "image" : img.path
+          }
+          this.sliderImgaes.push(data);
+        });
+      }
     });
+    console.log(this.sliderImgaes)
+    console.log(this.vendorDetails.portfolios)
+      
+      this.vendorDetails.portfolios.forEach(dxg => {
+        const data = {
+            "name" : "PORTFOLIO",
+            "image" : dxg.path
+          }
+          this.sliderImgaes.push(data);
+        });
+
+        console.log(this.sliderImgaes)
+
     this.vendorDetails.albums.forEach(element => {
       this.portfolioAndAlbumImagesTotal += element.albumImages.length ? element.albumImages.length : 0;
     });
@@ -119,6 +139,20 @@ export class DetailpageComponent implements OnInit {
      console.log( this.similarVendors)
      this.similarVendors_length = data.length;
    },error => {console.log(error)})
+  }
+  goto_detail_of_album(a){
+  
+    console.log(a);
+    sessionStorage.setItem('albumimages',JSON.stringify(a));
+    sessionStorage.setItem('portfolio_count',JSON.stringify('0'));
+    
+    this.router.navigate(['home/Photogallerydetail']);
+  }
+  goto_detail_of_portfolio(d){
+    sessionStorage.setItem('portfolios',JSON.stringify(d));
+    sessionStorage.setItem('portfolio_count',JSON.stringify('1'));
+    
+    this.router.navigate(['home/Photogallerydetail']);
   }
 }
 //this.router.navigate(['home/detailprofile/',slide.vendorId])

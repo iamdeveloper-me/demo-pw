@@ -5,23 +5,22 @@
 		   <div class="card inspirationhead">
 	  			<a routerLink="../../home" class="backlink"> 
 		            <i class="material-icons">arrow_back_ios</i>
-		            Go Back
+		            <span>Go Back</span>
 		        </a>
       			<h2 class="text-center">PORTFOLIO & ALBUMS</h2>
    			</div>
 	    </div>
 	    <div class="boxLightStyles">
-	   		<div class="container row martop15px">			 
+	   		<div class="container row rowset martop15px">			 
 		        <div class="col-6 col-sm-3" *ngFor='let vd of albums; let i=index'>
 					<div class="thumbnail text-center">						
 						<a routerLink="../Photogallerydetail" (click) ="goto_detail_of_album(vd)">
 							<img  src='https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg'>
-							<div class="albumname">{{vd.albumName }}</div>
-							<div class="albumname"> Images ({{vd.albumImages.length}}) </div>
+							<div class="albumname">{{vd.albumName }}  ({{vd.albumImages.length}})</div>
 						</a> 	
 					</div>
 				</div>
-		    <div class="col-6 col-sm-3 thumbnail text-center" (click) ="goto_detail_of_portfolio(vendorDetails?.portfolios )" >
+		    <div class="col-6 col-sm-3  text-center" (click) ="goto_detail_of_portfolio(vendorDetails?.portfolios )" >
               <div  *ngFor='let portpi of vendorDetails?.portfolios  | slice:0:1 ' >
 				  
 							<img  [src]="portpi.path" alt="..." >
@@ -29,10 +28,13 @@
 					    
 				  
 						<div class="albumname">Portfolio</div>
+						<div class="albumname"> Images ({{vendorDetails?.portfolios.length}}) </div>
+
                    
 			  </div>
 			
           </div>
+
 			</div>
 		</div>
    </div>

@@ -196,7 +196,7 @@ $(".barnchtablenone").click(function(){
 
 
 $(".viewbranchhour").click(function(){
-    alert("hi")
+    //alert("hi")
     $(this).parents('.branchdetailtableinner').toggleClass("in");
   });
 

@@ -385,7 +385,7 @@
               <span  *ngIf='p.isSelect'>{{p.key}}</span>
               </span>
             </div> -->
-                <span class="filterrowcard" *ngFor='let f of faaturedListingArray'>
+                <span class="filterrowcard" *ngFor='let f of featuredListingArray'>
                     <span  *ngIf='f.isSelect'>{{f.key}}</span>
                     </span>
 
@@ -566,7 +566,7 @@
 
 <div class="filterrow featuredfilter">
   <h1>Featured Listing (1) <i class="material-icons">arrow_right</i></h1>
-  <div *ngFor='let feature of faaturedListingArray'>
+  <div *ngFor='let feature of featuredListingArray'>
     <span class="badge" (click)='setFilterOptions(8,feature)'>
         {{feature.key}}
     </span>

@@ -228,7 +228,7 @@
           Portfolio & Albums
           <div class="clearfix"></div>
           <div class="container row martop15px" >
-            <div class="col-6 col-sm-3 image_div" *ngFor='let pi of vendorDetails?.albums;let i=index' (click)='setLightboxImages(pi,$event) || goto_detail_of_album(pi)'
+            <div class="col-6 col-sm-3 image_div" *ngFor='let pi of vendorDetails?.albums;let i=index' (click)='goto_detail_of_album(pi)'
               data-target="#albumgallarypopup" data-toggle="modal">
               <div class="thumbnail text-center" *ngIf='i<4'>
                 <div>

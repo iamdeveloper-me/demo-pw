@@ -10,12 +10,12 @@ import { apiService } from 'app/shared/service/api.service';
 export class HoneymoonDetailsComponent  {
 
   customOptions: any = {
-    loop: true,
+    loop: false,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
     dots: true,
-    autoplay: true,
+    autoplay: false,
     navSpeed: 700,
     margin:12,
     navText: ['', ''],

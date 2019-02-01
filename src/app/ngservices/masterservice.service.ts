@@ -24,13 +24,13 @@ export class MasterserviceService {
      return this.apiservice.postData(this.apiservice.serverPath + 'PerfectWedding/searchfilters/',categoryId);
    }
    getFilterResult(obj){
-     debugger;
-     if(obj.districts.length==1 && obj.districts[0]==null){
-      obj.districts=[];
-     }
-     if(obj.categoryId.length==0){
-       obj.categoryId.push(0);
-     }
+    
+    //  if(obj.districts.length==1 && obj.districts[0]==null){
+    //   obj.districts=[];
+    //  }
+    //  if(obj.categoryId.length==0){
+    //    obj.categoryId.push(0);
+    //  }
      console.log(JSON.stringify(obj));
     return this.apiservice.postData(this.apiservice.serverPath + 'PerfectWedding/searchlisting',obj);
    }

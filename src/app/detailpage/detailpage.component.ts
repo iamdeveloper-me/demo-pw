@@ -42,10 +42,6 @@ export class DetailpageComponent implements OnInit {
     this.businessServices_length = this.vendorDetails.businessServices.length;
     this.getSimilarVendors();
     this.vendorDetails.vendorLocations.reverse();
-    this.data_arr = this.vendorDetails.albums
-    console.log(this.data_arr)
-    this.data_arr.forEach(vendor => {
-      vendor.albumImages.forEach(img => {      
     
      this.data_arr = this.vendorDetails.albums
     console.log(this.data_arr)

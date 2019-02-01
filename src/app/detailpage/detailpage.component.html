@@ -19,14 +19,14 @@
         <button class="closepopup"><i class="material-icons">clear</i></button>
         <div id="detailpagecarousel" class="owl-carousel detailpagecarousel owl-loaded owl-drag gallery">
           
-          <div class="item" *ngFor='let i of sliderImgaes'>
+          <div class="item" *ngFor='let i of sliderImgaes; let pos = index'>
 
               <a data-fancybox="gallery" [href]="i.image">
               <img class="owl-lazy" [src]='i.image' *ngIf="i"  alt="">
             </a>
             
             <div class="namecontainer">{{i.name}}</div>
-            <div class="numcontainer">{{sliderImgaes.length}}/20</div>
+            <div class="numcontainer">{{pos + 1}}/{{sliderImgaes.length}}</div>
             <div class="linkcontainer">
               <button><i class="material-icons">favorite_border</i></button>
               <button><i class="material-icons">share</i></button>
@@ -222,24 +222,28 @@
           Portfolio & Albums
           <div class="clearfix"></div>
           <div class="container row martop15px" >
-            <div class="col-6 col-sm-3" *ngFor='let pi of vendorDetails?.albums;let i=index' (click)='setLightboxImages(pi,$event)'
+            <div class="col-6 col-sm-3" *ngFor='let pi of vendorDetails?.albums;let i=index' (click)='setLightboxImages(pi,$event) || goto_detail_of_album(pi)'
               data-target="#albumgallarypopup" data-toggle="modal">
               <div class="thumbnail text-center" *ngIf='i<4'>
                 <div>
                     <img style = "height: 100px" src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" alt="...">
                     
                   {{pi?.albumName}}
-
+                  <span *ngIf="pi?.albumImages.length != 0">({{pi?.albumImages.length}})</span>
  
                 </div>
               </div>
             </div>
             <div class="col-6 col-sm-3 image_div"  >
-              <div class="thumbnail text-center" *ngFor='let portpi of vendorDetails?.portfolios  | slice:0:1 ' >
+              <div class="thumbnail text-center" *ngFor='let portpi of vendorDetails?.portfolios  | slice:0:1 ' (click)="goto_detail_of_portfolio(vendorDetails?.portfolios )">
               
                     <img  [src]="portpi.path" alt="...">
 
-                    <div class="albumname">Portfolio</div>
+                    <div class="albumname">Portfolio 
+                        <span *ngIf="vendorDetails?.portfolios.length != 0">
+                          ({{vendorDetails?.portfolios.length}})
+                        </span>
+                        </div>
               </div>
           </div>
             <div class="clearfix"></div>

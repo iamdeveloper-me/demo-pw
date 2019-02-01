@@ -15,13 +15,19 @@
 				  </h2>
    			</div>
 	    </div>
-	    <div class="boxLightStyles">
+	    <div class="">
 	   		<!-- <div class="container row martop15px" *ngIf = "vendorDetails?.albumImages.length > 0"> -->
 				<div class="col-6 col-sm-3" *ngFor='let filepath of vendorDetails?.albumImages'>           
-					<a data-fancybox="gallery" class="thumbnail" [href]="filepath?.path">
+					<!-- <a data-fancybox="gallery" class="thumbnail" [href]="filepath?.path">
 							<img  *ngIf="filepath" [src]='filepath?.path' alt="...">
-					</a>
-				</div>
+					</a> -->
+
+					<a data-fancybox="gallery" class="thumbnail" [href]="filepath?.path" >
+                      
+                            <img  class="img-thumbnail img-responsive"  [src]="filepath?.path " alt="Another alt text"> 
+               
+                             
+                        </a>				</div>
 			<!-- </div> -->
 			<!-- <div *ngIf = "vendorDetails?.albumImages.length == 0">
                 <span>
@@ -30,7 +36,12 @@
 			</div> -->
 			<!-- <div *ngIf = "portfolios.length > 0"> -->
 				<div class="col-6 col-sm-3"  *ngFor='let portpi of portpholio' >
-					<img style="    height: 143px;width: 151px;" [src]="portpi?.path" alt="..." >
+					<a data-fancybox="gallery" class="thumbnail" [href]="portpi?.path" >
+                      
+                            <img  class="img-thumbnail img-responsive"  [src]="portpi?.path " alt="Another alt text"> 
+               
+                             
+                        </a>
 				</div>
 			<!-- </div> -->
 		</div>

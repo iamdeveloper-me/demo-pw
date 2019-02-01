@@ -222,11 +222,11 @@
           Portfolio & Albums
           <div class="clearfix"></div>
           <div class="container row martop15px" >
-            <div class="col-6 col-sm-3" *ngFor='let pi of vendorDetails?.albums;let i=index' (click)='setLightboxImages(pi,$event)'
+            <div class="col-6 col-sm-3 image_div" *ngFor='let pi of vendorDetails?.albums;let i=index' (click)='setLightboxImages(pi,$event)'
               data-target="#albumgallarypopup" data-toggle="modal">
               <div class="thumbnail text-center" *ngIf='i<4'>
                 <div>
-                    <img style = "height: 100px" src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" alt="...">
+                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" alt="...">
                     
                   {{pi?.albumName}}
 

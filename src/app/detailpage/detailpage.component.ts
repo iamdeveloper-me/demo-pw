@@ -42,13 +42,10 @@ export class DetailpageComponent implements OnInit {
     this.businessServices_length = this.vendorDetails.businessServices.length;
     this.getSimilarVendors();
     this.vendorDetails.vendorLocations.reverse();
-    debugger
-     this.data_arr = this.vendorDetails.albums
+    this.data_arr = this.vendorDetails.albums
     console.log(this.data_arr)
     this.data_arr.forEach(vendor => {
-      debugger
-      vendor.albumImages.forEach(img => {
-        
+      vendor.albumImages.forEach(img => {      
         const data = {
           "name" : vendor.albumName,
           "image" : img.path

@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { SlidesOutputData } from 'ngx-owl-carousel-o';
 import { MasterserviceService } from 'app/ngservices/masterservice.service';
-
-
+import { apiService } from 'app/shared/service/api.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-honeymoon',
   templateUrl: './honeymoon.component.html',
-  styleUrls: ['./honeymoon.component.scss']
+  styleUrls: ['./honeymoon.component.scss'],
+  providers: [apiService],
 })
-export class HoneymoonComponent {
-
+export class HoneymoonComponent implements OnInit{
+  Honeymoon_destinations:any;
+  vendors_of_honeymoon:any;
   customOptions: any = {
     loop: true,
     mouseDrag: true,
@@ -38,40 +40,25 @@ export class HoneymoonComponent {
     nav: true,
     //autoplaySpeed:1
   }
+  ngOnInit() {
+      this.apiService.getData(this.apiService.serverPath+'PerfectWedding/vendorsinhoneymoonandtravel').subscribe(data => {
+        this.slidesStore = data;
+        console.log(data);
+        }, error => { console.log(error) }
+        );
 
-  activeSlides: SlidesOutputData;
-
-  slidesStore: any[];
-  constructor(public _masterservice: MasterserviceService,) {
-    this.slidesStore = [
-      {
-        src: "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        business_name: "Business Name" 
-      },
-      {
-        src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-
-      },
-      {
-        src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-
-      },
-      {
-        src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-
-      },
-      {
-        src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-
-      }
-    ]
-    this.getSliderData(); 
-    
   }
-
+  activeSlides: SlidesOutputData;
+  slidesStore: any[];
+  constructor(public _masterservice: MasterserviceService,private apiService: apiService,private router: Router,) {
+    this.getSliderData(); 
+    this.apiService.getData(this.apiService.serverPath+'PerfectWedding/honeymoondestinations').subscribe(data => {
+      this.Honeymoon_destinations =data;
+      console.log( this.Honeymoon_destinations);
+      },error => { console.log(error) });
+  }
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
-   
   }
   getSliderData(){
     const data = {
@@ -79,10 +66,13 @@ export class HoneymoonComponent {
       "districtId" : 1
     }
     this._masterservice.getFilterResult(data).subscribe(res =>{
-      this.slidesStore =  res['items']  
-     
+      this.slidesStore =  res['items']  ;
     },error=>{
       console.log(JSON.stringify(error));
     });
+  }
+  honeymoondetail_page(a){
+    sessionStorage.setItem('Honeymoon_detail',JSON.stringify(a));
+    this.router.navigateByUrl('/home/Honeymoon_Details');
   }
 }

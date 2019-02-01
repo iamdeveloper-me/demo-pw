@@ -42,7 +42,7 @@
     <div class="container-fluid mob_padd_30px" *ngIf='slidesStore?.length > 0'>
         
           <div class="caroosel_headin text-center">
-            <h3>Wedding Suppliers by  <strong style="color: #e72e77;">Locations </strong>  </h3>
+            <h3>Wedding Suppliers by <strong style="color: #e72e77;">Locations </strong>  </h3>
           </div>
          
           <div class="container" style="padding: 13px;">
@@ -51,8 +51,12 @@
                     <ng-template carouselSlide="1">
                       <div class="boxtikslide" (click)='goToVendordetails(slide)'>
                         <div class="procard"> </div>
-
-                        <img class="card-img-top" *ngIf = "slide"  [src]="slide.profileImage" >
+                       
+                        <img class="card-img-top" *ngIf = "!slide.profileImage"  src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg"> 
+                          <div  *ngIf = "slide.profileImage" >
+                              <img class="card-img-top" [src]="slide.profileImage" >
+                          </div>
+                      
                         <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
                         <div class="imgnum">
                           <span *ngIf="slide?.albums.length > 0">
@@ -109,8 +113,8 @@
                               <div class="col-md-4 col-5 span_positin">
                                 <img src="../../assets/img/tag.svg"  alt=""> 
                               <!-- <span>Deals</span> -->
-                              <span>{{slide.deals}}</span>
-                              <span *ngIf='!slide.deals == 0'>N/A Deals</span>
+                              <span *ngIf='slide.deals.length >0'>{{slide.deals.length}} Deals</span>
+                              <span *ngIf='slide.deals.length == 0'>N/A Deals</span>
                               </div>
                           </div>
                         </div>

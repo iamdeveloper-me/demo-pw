@@ -188,7 +188,7 @@ const appRoutes: Routes = [
   { path: 'home/Deals', component:  DealsComponent },
   { path: 'home/Deal_Details', component:  DealDetailsComponent },
   { path: 'home/Honeymoon', component:  HoneymoonComponent },
-  { path: 'Honeymoon_Details', component:  HoneymoonDetailsComponent },
+  { path: 'home/Honeymoon_Details', component:  HoneymoonDetailsComponent },
 
   { path: 'vendor/creatpromo', component:  CreatePromotionComponent, canActivate:[AuthGuardService]  },
   { path: 'vendor/messagess', component:  ChatComponent, canActivate:[AuthGuardService]  },

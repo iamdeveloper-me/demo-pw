@@ -119,8 +119,9 @@
             {{vendorDetails?.nameOfBusiness}}
           </div>
           <div class="large_subtext bob_pa_left text-center">
+
             Starting Price: 
-            <span style="float: right;" *ngFor='let service of  vendorDetails?.businessServices' >
+              <span style="float: right;" *ngFor='let service of  vendorDetails?.businessServices' >
                 <div *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
                   <div *ngFor='let customF of  service?.customFields  | slice:0:1' >
                       <span class="pink">
@@ -129,7 +130,9 @@
                   </div>
                 </div>
               </span>  
-
+             <span  style="float: right;" *ngIf="vendorDetails?.businessServices.length == 0 ">
+               Not Available Yet
+             </span>
           </div>
         </div>
         <div class="col-md-3 tikshow hidden-xs">
@@ -168,7 +171,7 @@
           <div class="vp_mainDetails_starting_price">
             <div class="large_subtext bob_pa_left text-center">
                 Starting Price: 
-                <div  *ngFor='let service of  vendorDetails?.businessServices' >
+                  <div  *ngFor='let service of  vendorDetails?.businessServices' >
                     <div *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
                       <div *ngFor='let customF of  service?.customFields  | slice:0:1' >
                           <span class="pink">
@@ -177,6 +180,9 @@
                       </div>
                     </div>
                   </div> 
+                  <span *ngIf="vendorDetails?.businessServices.length == 0 ">
+                      Not Available Yet
+                  </span>
             </div>
             <div class="clearfix"></div>
             <!-- <div class="detailtabclick detailpri"  *ngFor='let service of  vendorDetails?.businessServices | slice:0:1'>
@@ -271,11 +277,11 @@
       <!-- end Portfolio & Albums -->
 
     <!-- mobile  -->
-      <div class="vp_about_txt aboutsection" id="about">
+      <div class="vp_about_txt aboutsection" id="about" *ngIf = "vendorDetails?.businessDetails != null">
         <div class="boxLightStyles hideShowMeNow vp_about box_section_light r_s_pre">
 
           <div class="vp_about_txt">
-            <div class="vp_about_txt_title large_subtext " *ngIf = "vendorDetails?.businessDetails != null">
+            <div class="vp_about_txt_title large_subtext " >
               About Us
             </div>
             <div class="vp_about_txt_description ">
@@ -512,13 +518,11 @@
                             <div class="carousel_city" *ngIf='simi_vendor.suburb'>
                               <i class="fa fa-map-marker" aria-hidden="true"></i> {{simi_vendor.suburb.name}}
                             </div>
-                            <div class="carousel_rating">
-                              <span class="fa fa-star checked star_mar1"></span>
-                              <span class="fa fa-star checked"></span>
-                              <span class="fa fa-star checked"></span>
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star"></span> 5.0
-
+                            <div class="rating_star">
+                                <rating [(ngModel)]="simi_vendor.averageRating" readonly="isReadonly"></rating>
+                            </div>
+                            <div class="rating_star" *ngIf = "simi_vendor.averageRating == 0">
+                                No Reviewed Yet
                             </div>
 
                           </div>
@@ -541,7 +545,13 @@
         <div class="left_box_section paddleftrite0px">
           <span class="flagicontik"><i class="material-icons">outlined_flag</i></span>
           <div class="hotellogo">
-            <img [src]="vendorDetails?.profileImage" />
+              <div  *ngIf="vendorDetails?.profileImage ">
+                  <img [src]="vendorDetails?.profileImage" />
+              </div>
+            
+            <div  *ngIf="!vendorDetails?.profileImage ">
+                <img src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg"> 
+              </div>
           </div>
           <ul class="wed_me_social text-center">
             <li *ngIf='vendorDetails?.facebookURL'>
@@ -622,19 +632,19 @@
 
         <div class="clearfix"></div>
         <div class="left_box_section paddleftrite0px martop20px">
-                  <div class="large_subtext bob_pa_left text-center">
-                    Share This Listing
-                  </div>
-                  <div class="featurebtn">
-                    <div class="col-sm-3"><a href="#"><img src="../../assets/img/fb_icon.png"></a></div>
-                    <div class="col-sm-3"><a href="#"><img src="../../assets/img/msg_icon.png"></a></div>
-                    <div class="col-sm-3"><a href="#"><img src="../../assets/img/share_icon.png"></a></div>
-                    <div class="col-sm-3"><a href="#"><img src="../../assets/img/wa_icon.png"></a></div>
-                  </div>
+          <div class="large_subtext bob_pa_left text-center">
+            Share This Listing
+          </div>
+          <div class="featurebtn">
+            <div class="col-sm-3"><a href="#"><img src="../../assets/img/fb_icon.png"></a></div>
+            <div class="col-sm-3"><a href="#"><img src="../../assets/img/msg_icon.png"></a></div>
+            <div class="col-sm-3"><a href="#"><img src="../../assets/img/share_icon.png"></a></div>
+            <div class="col-sm-3"><a href="#"><img src="../../assets/img/wa_icon.png"></a></div>
+          </div>
         </div>
         <div class="clearfix"></div>
 
-        <div class="left_box_section overviewsection startprice" *ngIf = "vendorDetails?.businessServices.length > 0">
+        <div class="left_box_section overviewsection startprice" >
           <div class="vp_mainDetails_starting_price">
             <div class="large_subtext bob_pa_left text-center">
               Starting Price:
@@ -647,7 +657,9 @@
                   </div>
                 </div>
               </div> 
-
+              <span  style="float: right;" *ngIf="vendorDetails?.businessServices.length == 0 ">
+                     Not Available Yet
+              </span>
             </div>
             <div class="clearfix"></div>
 

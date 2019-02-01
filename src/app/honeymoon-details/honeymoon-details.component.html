@@ -2,74 +2,83 @@
 	<app-menu></app-menu>
 
     <div class="container martop60px">
-                    <ol class="breadcrumb breadcrumbcontainer">
-                        <li><a routerLink="/home">Home</a></li>
-                        <li><a routerLink="/home/Deals">Honeymoon</a></li>
-                        <li class="active">Bali</li>
-                    </ol>
+				<ol class="breadcrumb breadcrumbcontainer">
+						<li><a routerLink="/home">Home</a></li>
+						<li><a routerLink="/home/Honeymoon" (clear) = "clear_the_session() ">Honeymoon</a></li>
+						<li class="active">{{Honeymoon_detail.name}}</li>
+				</ol>
         <div class="clearfix"></div>
         <div class="row dealsbanner">
-                <div class="col-sm-6 dealbannerdetail">
-                    <h4 class="bali_heading">Bali</h4>
-                    <p class="contant_text">Lorem Ipsum is simply dummy text of the printing and 
-                        typesetting industry. Lorem Ipsum has been the industry's</p> 
-                        <p class="contant_text">standard dummy text ever since the 1500s, when an unknown 
-                        printer took a galley of type and scrambled it to make a 
-                        type specimen book. It has survived not only five centuries, 
-                        but also the leap into electronic typesetting, remaining</p> 
-                    <p class="contant_text">essentially unchanged. It was popularised in the 1960s with 
-                        the release of Letraset sheets containing Lorem Ipsum passages
-                        and more recently with desktop publishing.</p>
-                </div>
-                <div class="col-sm-6">
-                    <img src="../../assets/img/bali_detail.jpg" class="dealbanner">
-                </div>
+					<div class="col-sm-6 dealbannerdetail">
+						<h4 class="bali_heading">{{Honeymoon_detail.name}}</h4>
+						<p class="contant_text">{{Honeymoon_detail.description}}</p>
+					</div>
+					<div class="col-sm-6">
+							<img [src]="Honeymoon_detail.imageURL" class="dealbanner">
+					</div>
         </div> 		
     </div>    
 
-<div class="clearfix"></div>
+    <div class="clearfix"></div>
     <div class="container-fluid nopadd whitebg">  
-            <div class="container">
-                <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
+			<div class="container">
+				<owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
 						<ng-container *ngFor="let slide of slidesStore">
-						  <ng-template carouselSlide="1" >
-							<div class="boxtikslide ng-star-inserted">
-								<div class="procard"></div>
-								<img class="card-img-top" src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg">
-								<span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-								<div class="card-body ">
-									<div class="text-center">
-									<h6><strong>Business Name</strong></h6>
-									<button class="wedding_btn">Cakes</button>
-									<p class="locat_icon"><i class="material-icons">location_on</i>
-									Indore</p>
-									<p class="statr_point">
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span> 
-										5.0 (47) 
-									</p>
-								</div>
-								<div class="col-md-12 col-12">
-									<div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-										<img alt="" class="imgfloatleft" src="../../assets/img/money.svg">
-										<span>Price from</span>
-										<span class="pric_200">200 $</span>
-									</div>
-										<div class="col-md-4 col-4 span_positin">
-											<img alt="" src="../../assets/img/tag.svg">
-											<span>Deals</span>
-											<span>1</span>
+								<ng-template carouselSlide="1" >
+									<div class="boxtikslide ng-star-inserted">
+										<div class="procard"></div>
+										<img class="card-img-top" [src]="slide.profileImage">
+						
+										<div  *ngIf="!slide.profileImage ">
+											<img class="card-img-top" src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg"> 
+										</div>
+					
+									
+										<span class="book_mark"><i class="material-icons">bookmark_border</i></span>
+										<div class="card-body ">
+											<div class="text-center">
+											<h6><strong>{{slide.nameOfBusiness}}</strong></h6>
+										
+											<p class="locat_icon" *ngIf = "slide?.district">
+												<i class="material-icons">location_on</i>
+													{{slide.district}}
+											</p>
+											<p class="locat_icon" *ngIf = "!slide.district">
+													<i class="material-icons">location_on</i>
+															N/A
+												</p>
+									
+												<div class="large_subtext" *ngIf = "slide?.averageRating > 0 ">
+													<div class="rating_star">
+													<rating [(ngModel)]="slide.averageRating" readonly="isReadonly"></rating>
+													</div>
+												</div>
+												<div class="large_subtext" *ngIf = "slide?.averageRating == 0 ">
+														<div class="rating_star">
+																No Review Yet
+														</div>
+													</div>
+										
+										</div>
+										<div class="col-md-12 col-12">
+											<div class="col-md-8 col-8 pad_left_0 pad_left_5px">
+												<img alt="" class="imgfloatleft" src="../../assets/img/money.svg">
+												<span>Price from</span>
+												<span class="pric_200">{{slide.priceTag}}</span>
+																				<span class="pric_200" *ngIf = "!slide.priceTag">Custom Price</span>
+											</div>
+												<div class="col-md-4 col-4 span_positin">
+													<img alt="" src="../../assets/img/tag.svg">
+													<span> Deals</span>
+													<span>{{slide.deals.length}}</span>
+												</div>
+											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-						  </ng-template>
+								</ng-template>
 						</ng-container>
-                </owl-carousel-o>
-            </div>
+				</owl-carousel-o>
+			</div>
     </div>
 
 <div class="clearfix"></div>

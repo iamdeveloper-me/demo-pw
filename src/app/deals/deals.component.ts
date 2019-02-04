@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-deals',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DealsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private meta:Meta) {
+    this.meta.addTag({ name: 'description', content: 'Great Wedding Deals and Offers | Perfect Weddings' });
+   }
 
   ngOnInit() {
   }

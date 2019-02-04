@@ -3,6 +3,7 @@ import { SlidesOutputData } from 'ngx-owl-carousel-o';
 import { MasterserviceService } from 'app/ngservices/masterservice.service';
 import { apiService } from 'app/shared/service/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-honeymoon',
@@ -50,7 +51,8 @@ export class HoneymoonComponent implements OnInit{
   }
   activeSlides: SlidesOutputData;
   slidesStore: any[];
-  constructor(public _masterservice: MasterserviceService,private apiService: apiService,private router: Router,) {
+  constructor(public _masterservice: MasterserviceService,private apiService: apiService,private router: Router,private meta:Meta) {
+    this.meta.addTag({ name: 'description', content: 'Top Honeymoon & Travel Destinations | Perfect Weddings' });
     this.getSliderData(); 
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/honeymoondestinations').subscribe(data => {
       this.Honeymoon_destinations =data;

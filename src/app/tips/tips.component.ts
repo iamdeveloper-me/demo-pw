@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { apiService } from '../shared/service/api.service';
 import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tips',
@@ -24,7 +25,9 @@ export class TipsComponent  {
     currentPage1 = 2;
     currentPage2 = 2;
     isDisabled = true;
-    constructor(private apiService: apiService,public http: Http ,public toastr: ToastrService) { }
+    constructor(private apiService: apiService,public http: Http ,public toastr: ToastrService,private meta:Meta) {
+      this.meta.addTag({ name: 'description', content: 'Wedding Tips & Articles | Perfect Weddings' });
+     }
     ngOnInit() { 
       this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchblogs',{
         page: 0,

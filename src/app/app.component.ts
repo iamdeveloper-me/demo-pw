@@ -12,6 +12,7 @@ constructor(private router: Router){
 }
 
 ngOnInit() {
+    localStorage.setItem('basic-plan', '0')
     $.getScript('./assets/jss/core/popper.min.js');
     $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
     // $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');

@@ -16,7 +16,7 @@ export class VendorcardComponent implements OnInit {
   ratingmodel: ratingStars;
   customOptions: any = {
     margin: 20,
-    loop: false,
+    loop: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,

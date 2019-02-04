@@ -42,7 +42,7 @@
     <div class="container-fluid mob_padd_30px" *ngIf='slidesStore?.length > 0'>
         
           <div class="caroosel_headin text-center">
-            <h3>Wedding Suppliers by <strong style="color: #e72e77;">Locations </strong>  </h3>
+            <h3>Featured Wedding  <strong style="color: #e72e77;">Suppliers </strong>  </h3>
           </div>
          
           <div class="container" style="padding: 13px;">
@@ -144,6 +144,7 @@
               <div class="row" >
                 <div class="col-md-4 col-6 locationbox" *ngFor='let list_dream of dream_wedding_location' 
                 (click)='goToVendordetails(list_dream)' >
+                
                     <img *ngIf = "Popular"  [src]="list_dream.profileImage" class="img-responsive" alt="img06" /> 
                     <h2>{{list_dream?.nameOfBusiness}}
                       <span *ngIf="list_dream?.district == null; else dwloc">

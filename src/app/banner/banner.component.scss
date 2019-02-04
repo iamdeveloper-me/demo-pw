@@ -87,7 +87,7 @@ img::-moz-selection {
 .hombannertext{
   position: absolute;
   height: 340px;
-  top:150px;
+  top:155px;
   left: 0px;
   right: 0px;
   margin:0px auto;
@@ -382,7 +382,59 @@ header.masthead p {
 
 
 
+.select-hidden {
+  display: none;
+  visibility: hidden;
+  padding-right: 10px;
+}
+.select {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  font-size: 16px;
+}
+.select-styled {
+  position: absolute; 
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 8px 15px;
+  &:after {
+    content:"";
+    width: 0;
+    height: 0;
+    border: 7px solid transparent;
+    position: absolute;
+    top: 16px;
+    right: 10px;
+  }
+  &:active, &.active {
+    &:after {
+      top: 9px;
+    }
+  }
+}
 
+.select-options {
+  display: none; 
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    margin: 0;
+    padding: 12px 0;
+    text-indent: 15px;
+    &[rel="hide"] {
+      display: none;
+    }
+  }
+}
 
 
 
@@ -409,7 +461,7 @@ header.masthead p {
 }
 @media (max-width: 767px){
   .hombannertext{
-  height: 165px;
+  height: 215px;
 }
 .webbanner{
   display:none;
@@ -475,7 +527,7 @@ border-radius:0px 5px 5px 0px;
   text-indent: 10px;
   padding-left: 30px;
   border-radius:5px;
-  margin-top:15px!important;
+  margin-top:75px!important;
 }
 .mobvendorebtn span{
   display: block;
@@ -652,6 +704,7 @@ min-height:100vh;
    .just_picture span{
   padding:5px;
   border-radius: 3px;
+  font-size:14px!important;
 }
 .category-body{
   height:100vh;
@@ -672,6 +725,6 @@ min-height:100vh;
 }
 @media (max-width: 500px) {
 .just_picture{
-  bottom:0px;
+  bottom:5px;
 }
 }

@@ -26,7 +26,7 @@ export class BannerComponent implements OnInit {
   categoryClickData : any;
   locationClickData : any;
   ngOnInit() {
-   
+   $.getScript('./assets/js/bannerselect.js');
     this.Categorie();
     this.location();
     this.banner();

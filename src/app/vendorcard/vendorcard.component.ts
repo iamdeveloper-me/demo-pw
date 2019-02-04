@@ -37,6 +37,7 @@ export class VendorcardComponent implements OnInit {
   objFilterParam: filterParam;
   activeSlides: SlidesOutputData;
   slidesStore: any[];
+  noImage:string='https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg';
   constructor( private router: Router ,config: NgbCarouselConfig, private apiService: apiService) {
     // customize default values of carousels used by this component tree
     this.ratingmodel = new ratingStars();

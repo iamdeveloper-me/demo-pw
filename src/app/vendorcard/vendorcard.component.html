@@ -145,7 +145,14 @@
                 <div class="col-md-4 col-6 locationbox" *ngFor='let list_dream of dream_wedding_location' 
                 (click)='goToVendordetails(list_dream)' >
                 <!-- *ngIf = "Popular"  -->
-                    <img  [src]="list_dream.storeFrontImage" class="img-responsive" alt="img06" /> 
+                    <img  *ngIf="list_dream.storeFrontImage; else noStoreImg" [src]="list_dream.storeFrontImage" class="img-responsive" alt="img06" /> 
+                    <!-- <img  [src]="{{noImage}}" class="img-responsive" alt="img06" />  -->
+                    <ng-template #noStoreImg>
+                        <img  [src]="list_dream.profileImage" class="img-responsive" alt="img06" /> 
+                    </ng-template>
+                    <div *ngIf="!list_dream.profileImage && !list_dream.storeFrontImage">
+                        <img  [src]="noImage" class="img-responsive" alt="img06" /> 
+                    </div>
                     <h2>{{list_dream?.nameOfBusiness}}
                       <span *ngIf="list_dream?.district == null; else dwloc">
                          N/A    

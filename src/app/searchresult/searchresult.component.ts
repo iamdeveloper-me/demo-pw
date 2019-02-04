@@ -221,7 +221,11 @@ export class SearchresultComponent implements OnInit {
       this.collection.push(element);
       this.slidesStore = this.collection
     });
-//    this.slidesStore = this.slidesStore.filter(s=>s.promoted==true);
+   this.slidesStore.forEach(el=>{
+     if(el.promoted == true){
+       el = el;
+     }
+   })
   }
   filterLocations(ev){
     let filterResult=this.locations.filter(n=>n.name.startwith(ev.value));

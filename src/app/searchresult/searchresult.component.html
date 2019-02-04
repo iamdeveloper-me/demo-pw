@@ -11,7 +11,7 @@
       <!-- {{slidesStore }} -->
         <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
           <ng-container *ngFor="let slide of slidesStore | slice:0:11 ">
-            <ng-template carouselSlide="1" >
+            <ng-template *ngIf="slide.promoted" carouselSlide="1" >
               <div class="boxtikslide" (click)="goToPortfolioDetail(slide)" >
                 <div class="procard"> </div>
                 <!-- {{slide.profileImage }} -->
@@ -411,6 +411,8 @@
 	        	<div id='dv1' #dv1 *ngFor='let i of collection' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px ">
 
 	                <div class="card mb-2 bordre_rad1 hover_effect">
+                      <div *ngIf="i.promoted" class="procard"> </div>
+
                     <div class="thumbnail">
 
                       <img class="group list-group-image"  *ngIf = "i" [src]='i.profileImage' alt="Card image cap">

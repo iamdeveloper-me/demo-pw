@@ -79,14 +79,14 @@ export class SearchresultComponent implements OnInit {
     this.generateStaticArray();
     this.objSearchFilter=new filterParam();
     this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
-    console.log(JSON.stringify(this.objSearchFilter));
     this.objSearchlistvm = new SearchListingVM();
+    debugger;
+    if(this.objSearchFilter.locationId != 0){
+    this.objSearchlistvm.districts.push(this.objSearchFilter.locationId);}
     this.getLocations();
     this.getCategories();
     this.ratingmodel = new ratingStars();
-    
     this.basicPlan = parseInt(localStorage.getItem('basic-plan'))
-    
     this.getFilters();
     this.getSearchFilterResult();
   }
@@ -147,7 +147,7 @@ export class SearchresultComponent implements OnInit {
     this.collection=[];
     this.paginate(this.objSearchFilter.pageSize);  
     this.showALlCategories=false;
-
+    alert(this.SelectedCategory.isSelect);
     //  this._masterservice.getAllCategories().subscribe(res=>{
     //   this.categories=res;
     //   console.log(JSON.stringify(this.categories));
@@ -165,7 +165,7 @@ export class SearchresultComponent implements OnInit {
     this._masterservice.getFilters(filter_paramArray).subscribe(res=>{
       this.filters=res;
       
-      console.log(JSON.stringify(this.filters));
+      
       if(this.filters.services!=null){
       this.filters.services.forEach(element => { element.isSelect=false; });
       this.filters.filters.forEach(element => { element.isSelect=false;});
@@ -221,7 +221,7 @@ export class SearchresultComponent implements OnInit {
       this.collection.push(element);
       this.slidesStore = this.collection
     });
-    this.slidesStore = this.slidesStore.filter(s=>s.promoted==true);
+//    this.slidesStore = this.slidesStore.filter(s=>s.promoted==true);
   }
   filterLocations(ev){
     let filterResult=this.locations.filter(n=>n.name.startwith(ev.value));
@@ -300,11 +300,10 @@ export class SearchresultComponent implements OnInit {
     if(this.categories){
       if(this.SelectedCategory){
     this.objSearchlistvm.categoryId.push(this.SelectedCategory.categoryId);}
-   
+   debugger;
     if(this.SelectedLocation){
       this.objSearchlistvm.districts=[];
     this.objSearchlistvm.districts.push(this.SelectedLocation.districtId);}
-    debugger;
     if(this.filters!=null && this.filters.filters!=null){
     let selectedServices = this.filters.services.filter(s=>s.isSelect==true);
     if(selectedServices.length>0){
@@ -314,7 +313,6 @@ export class SearchresultComponent implements OnInit {
       
     });}
     if(this.filters.filters){
-      console.log(JSON.stringify(this.filters.filters));
       this.filters.filters.forEach(el => {
         el.customFieldOptionList.forEach(element => {
           if(element.isSelect){
@@ -364,6 +362,7 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
   }
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
+    console.log(this.objSearchResultItems);
     this.setBlankImg();
     this.addToCollection();
     this.loading=false; 

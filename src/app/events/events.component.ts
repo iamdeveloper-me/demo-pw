@@ -5,6 +5,8 @@ import { PagerService } from '../_services';
 import 'rxjs/add/operator/map'
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-events',
@@ -13,7 +15,9 @@ import { Observable } from 'rxjs/Observable';
 })
 export class EventsComponent implements OnInit {
 
-  constructor( public http:Http, private pagerService: PagerService,private apiService: apiService,private masterservice: MasterserviceService ) { }
+  constructor( public http:Http, private pagerService: PagerService,private apiService: apiService,private masterservice: MasterserviceService,private router:Router,private meta:Meta ) {
+    this.meta.addTag({ name: 'description', content: 'Top Wedding Events in Mauritius | Perfect Weddings.' });
+   }
   locations = [];
   private allItems: any[];
   location:string = 'all'
@@ -41,7 +45,8 @@ export class EventsComponent implements OnInit {
                   "eventType": "all",
                   "dates": "all"
                 }).map((response: Response) => response.json()).subscribe(data => {
-                    this.allItems = data['items']
+                    this.allItems = data['items'];
+                    console.log(this.allItems);
                     this.setPage(1);
                   });  
   }
@@ -74,4 +79,9 @@ export class EventsComponent implements OnInit {
      this.locations = data;
      },error => {  console.log(error) })
   }
+
+  goToNextPage(){
+    this.router.navigate(['home/event_list'])
+  }
+
 }

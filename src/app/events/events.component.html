@@ -37,6 +37,12 @@
 									<option >Today</option>
 								</select>
 							</div>
+							<div *ngFor="let item of pagedItems">
+									<p ngIf="item.length > 0">
+											No Event Regarding this date!!
+									</p>
+							</div>
+							
                             <!-- <div class="col-sm-2  col-6">
 									<select class="form-control"  name="pageSize"  [(ngModel)]="pageSize"  id="pageSize">
 										<option selected [value]="1">10 - 20</option>
@@ -62,8 +68,12 @@
 						<!-- {{pagedItems?.length}} -->
 						<div class="col-sm-4 " *ngFor="let item of pagedItems">
 
-							<div class="card cardshadow" >
+							<div class="card cardshadow"  (click)="goToNextPage()">
 								<img class="card-img-top img-fluid eventimg" *ngIf="item.files" [src]="item.files.path">
+								<div class="ribbon ribbon-top-right" *ngIf="item?.entryFee == null; else entry"><span>Free</span></div>
+								<ng-template #entry>
+										<div class="ribbon ribbon-top-right" ><span>{{item.entry}}</span></div>
+								</ng-template>
 								<div class="ribbon ribbon-top-right"><span>{{item.entry}}</span></div>
 								<div class="card-block text-center">
 									<div class="eventbtnholder">
@@ -76,17 +86,25 @@
 											</i>
 										</button>
 									</div>
-									<div class="eventdate col-sm-2"  *ngFor='let Date of item.eventsDates' >
-										<span>{{Date.startDateString | date}}</span>
+									<div class="eventdate"  *ngFor='let Date of item.eventsDates | slice:0:1 ;let i=index ' >
+										<span>Start Date : {{Date.startDateString | date}}</span>
+										<span>End Date : {{Date.endDateString | date}}</span>
 										<span class="date"></span>
 									</div>
 									<div class="col-sm-10 heightadjust">
 		
 										<div class="eventtitle">
-											<a routerLink="../event_list">{{item.eventTitle}}</a>
+												<!--  routerLink="../event_list"p -->
+											<a >{{item.eventTitle}}</a>
 										</div>
 										<div class="eventvenue">
 											Location is  {{item.location}}, {{item.venueName}}
+										</div>
+										<div class="eventvenue" *ngIf="item.entryFee == null">
+												Entry Fee :  0
+										</div>
+										<div class="eventvenue" *ngIf="item.entryFee != null">
+												Entry Fee :  {{item.entryFee}}
 										</div>
 									</div>
 									<div class="col-sm-12 footericon">

@@ -147,7 +147,7 @@ export class SearchresultComponent implements OnInit {
     this.collection=[];
     this.paginate(this.objSearchFilter.pageSize);  
     this.showALlCategories=false;
-    alert(this.SelectedCategory.isSelect);
+    
     //  this._masterservice.getAllCategories().subscribe(res=>{
     //   this.categories=res;
     //   console.log(JSON.stringify(this.categories));
@@ -241,7 +241,6 @@ export class SearchresultComponent implements OnInit {
       }
   }
   setFilterOptions(filterType,FilterValue){
-   debugger;
     this.collection=[];
     this.objSearchlistvm.page=0;
     switch(filterType){

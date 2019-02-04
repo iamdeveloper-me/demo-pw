@@ -84,7 +84,7 @@
       <div class="container-fluid nopadd">
         <div class="badgecontainer">
           <span *ngIf='objSearchResultItems' class="badge badge-primary badge-labeled">
-          {{SelectedCategory?SelectedCategory.categoryName:''}}  {{SelectedLocation?'in '+SelectedLocation.name:''}} (  {{collection?collection.length:0}} Results)
+          {{SelectedCategory?SelectedCategory.categoryName:''}}  {{SelectedLocation?'in '+SelectedLocation.name:''}} (  {{collection?collection.length:0}} Results Of {{objSearchResultItems.totalCount}})
           </span>
          </div>
         <div class="clearfix"></div>

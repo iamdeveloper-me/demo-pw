@@ -341,7 +341,7 @@
                                   <th><strong>Mon</strong></th>
                                   <td>{{loc.mondayOpen}} - {{loc.mondayClose}}
                                   </td>
-                                  <td><span class="greentext" *ngIf='loc.isMondayOpen'>Open</span></td>
+                                  <td><span class="greentext" *ngIf='loc.isMondayOpen == true'>Open</span></td>
                                   <td><span class="greentext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
                                 </tr>
                           </table>
@@ -353,49 +353,49 @@
                         <th><strong>Mon</strong></th>
                         <td *ngIf='loc.isMondayOpen'>{{loc.mondayOpen}} - {{loc.mondayClose}}
                         </td>
-                        <td><span class="greentext" *ngIf='loc.isMondayOpen'>Open</span></td>
+                        <td><span class="greentext" *ngIf='loc.isMondayOpen == true'>Open</span></td>
                         <td><span class="greentext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
                       </tr>
                       <tr >
                         <th><strong>Tue</strong></th>
                         <td *ngIf='loc.isTuesdayOpen'>{{loc.tuesdayOpen}} - {{loc.tuesdayClose}}
                         </td>
-                        <td><span class="greentext" *ngIf='loc.isTuesdayOpen'>Open</span></td>
+                        <td><span class="greentext" *ngIf='loc.isTuesdayOpen == true'>Open</span></td>
                         <td><span class="greentext" *ngIf='loc.isTuesdayOpen == false '>Close</span></td>
                       </tr>
                       <tr>
                         <th><strong>Wed</strong></th>
                         <td  *ngIf='loc.isWednesdayOpen'>{{loc.wednesdayOpen}} - {{loc.wednesdayClose}}
                         </td>
-                        <td><span class="greentext" *ngIf='loc.isWednesdayOpen'>Open</span></td>
+                        <td><span class="greentext" *ngIf='loc.isWednesdayOpen == true'>Open</span></td>
                         <td><span class="greentext" *ngIf='loc.isWednesdayOpen == false '>Close</span></td>
                       </tr>
                       <tr >
                         <th><strong>Thu</strong></th>
                         <td *ngIf='loc.isThursdayOpen'>{{loc.thursdayOpen}} - {{loc.thursdayClose}}
                         </td>
-                        <td><span class="greentext"  *ngIf='loc.isThursdayOpen'>Open</span></td>
+                        <td><span class="greentext"  *ngIf='loc.isThursdayOpen == true'>Open</span></td>
                         <td><span class="greentext" *ngIf='loc.isThursdayOpen == false '>Close</span></td>
                       </tr>
                       <tr >
                         <th><strong>Fri</strong></th>
                         <td *ngIf='loc.isFridayOpen'>{{loc.fridayOpen}} - {{loc.fridayClose}}
                         </td>
-                        <td><span class="greentext" *ngIf='loc.isFridayOpen'>Open</span></td>
+                        <td><span class="greentext" *ngIf='loc.isFridayOpen == true'>Open</span></td>
                         <td><span class="greentext" *ngIf='loc.isFridayOpen == false '>Close</span></td>
                       </tr>
                       <tr >
                         <th><strong>Sat</strong></th>
                         <td *ngIf='loc.isSaturdayOpen'>{{loc.sundayOpen}} - {{loc.sundayClose}}
                         </td>
-                        <td><span class="greentext" *ngIf='loc.isSaturdayOpen'>Open</span></td>
+                        <td><span class="greentext" *ngIf='loc.isSaturdayOpen == true'>Open</span></td>
                         <td><span class="greentext" *ngIf='loc.isSaturdayOpen == false '>Close</span></td>
                       </tr>
                       <tr >
                         <th><strong>Sun</strong></th>
                         <td *ngIf='loc.isSundayOpen'>{{loc.sundayOpen}} - {{loc.sundayClose}}
                         </td>
-                        <td><span class="greentext" *ngIf='loc.isSundayOpen'>Open</span></td>
+                        <td><span class="greentext" *ngIf='loc.isSundayOpen == true'>Open</span></td>
                         <td><span class="greentext" *ngIf='loc.isSundayOpen == false '>Close</span></td>
                       </tr>
                     </table>

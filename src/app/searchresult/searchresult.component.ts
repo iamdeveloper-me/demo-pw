@@ -15,6 +15,7 @@ import { setTimeout } from 'timers';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { forEach } from '@angular/router/src/utils/collection';
+import { ToastrService } from 'ngx-toastr';
 @Pipe({ name: 'defaultImage' })
 export class PP implements PipeTransform {
   transform(value: string, fallback: string, forceHttps: boolean = false ): string {
@@ -58,15 +59,20 @@ export class SearchresultComponent implements OnInit {
   disableLoadingButton=true;
   blankImg='../../assets/img/noImg.png';
   basicPlan:number;
+  isTostPopulated=false;
   userRatingArray:any;
   dealsAndOfferArray:any;
   featuredListingArray:any;
   SelectedCategory:any;
   ratingmodel: ratingStars
   constructor(public _route:Router, public _activeRoute: ActivatedRoute, 
-    private _masterservice: MasterserviceService, private api: apiService, private domsanitizar: DomSanitizer) {
-      debugger; 
-     this.initializeResult();
+    private _masterservice: MasterserviceService, private api: apiService,
+    public toastr: ToastrService) {
+      
+      this._activeRoute.params.subscribe((params) => {
+        this.initializeResult();   
+     });
+     
       
   }
   initializeResult(){
@@ -74,12 +80,13 @@ export class SearchresultComponent implements OnInit {
     this.objSearchFilter=new filterParam();
     this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
     this.objSearchlistvm = new SearchListingVM();
+    debugger;
+    if(this.objSearchFilter.locationId != 0){
+    this.objSearchlistvm.districts.push(this.objSearchFilter.locationId);}
     this.getLocations();
     this.getCategories();
     this.ratingmodel = new ratingStars();
-    
     this.basicPlan = parseInt(localStorage.getItem('basic-plan'))
-    
     this.getFilters();
     this.getSearchFilterResult();
   }
@@ -114,6 +121,7 @@ export class SearchresultComponent implements OnInit {
   });
   }
   getLocations(){
+    debugger;
     this._masterservice.getAllLocation().subscribe(res=>{
       this.locations=res;
       if(this.objSearchFilter.locationId>0){
@@ -139,7 +147,7 @@ export class SearchresultComponent implements OnInit {
     this.collection=[];
     this.paginate(this.objSearchFilter.pageSize);  
     this.showALlCategories=false;
-
+    alert(this.SelectedCategory.isSelect);
     //  this._masterservice.getAllCategories().subscribe(res=>{
     //   this.categories=res;
     //   console.log(JSON.stringify(this.categories));
@@ -157,7 +165,7 @@ export class SearchresultComponent implements OnInit {
     this._masterservice.getFilters(filter_paramArray).subscribe(res=>{
       this.filters=res;
       
-      console.log(JSON.stringify(this.filters));
+      
       if(this.filters.services!=null){
       this.filters.services.forEach(element => { element.isSelect=false; });
       this.filters.filters.forEach(element => { element.isSelect=false;});
@@ -213,6 +221,11 @@ export class SearchresultComponent implements OnInit {
       this.collection.push(element);
       this.slidesStore = this.collection
     });
+   this.slidesStore.forEach(el=>{
+     if(el.promoted == true){
+       el = el;
+     }
+   })
   }
   filterLocations(ev){
     let filterResult=this.locations.filter(n=>n.name.startwith(ev.value));
@@ -228,7 +241,7 @@ export class SearchresultComponent implements OnInit {
       }
   }
   setFilterOptions(filterType,FilterValue){
-   
+   debugger;
     this.collection=[];
     this.objSearchlistvm.page=0;
     switch(filterType){
@@ -274,6 +287,7 @@ export class SearchresultComponent implements OnInit {
       this.checkUncheckFilter(FilterValue); break;
     }
     if(filterType!==4){ 
+      this.isTostPopulated = false;
       this.paginate(this.objSearchFilter.page)
     };
   }
@@ -290,7 +304,7 @@ export class SearchresultComponent implements OnInit {
     if(this.categories){
       if(this.SelectedCategory){
     this.objSearchlistvm.categoryId.push(this.SelectedCategory.categoryId);}
-   
+   debugger;
     if(this.SelectedLocation){
       this.objSearchlistvm.districts=[];
     this.objSearchlistvm.districts.push(this.SelectedLocation.districtId);}
@@ -302,9 +316,8 @@ export class SearchresultComponent implements OnInit {
       this.objSearchlistvm.serviceId.push(element.servicesId);
       
     });}
-    debugger;
     if(this.filters.filters){
-      this.filters.filters.customFieldOptionList.forEach(el => {
+      this.filters.filters.forEach(el => {
         el.customFieldOptionList.forEach(element => {
           if(element.isSelect){
             this.objSearchlistvm.customsFields.push({
@@ -328,12 +341,14 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
    }
   // Set Price Range
  if(this.priceRange!=undefined){
+  this.objSearchlistvm.price='';
   let selectedprices = this.priceRange.filter(p=>p.isSelect==true);
   if(selectedprices && selectedprices.length>0){
     this.objSearchlistvm.price='';
     selectedprices.forEach(element => {
       this.objSearchlistvm.price+=element.key+',';
     });
+    this.objSearchlistvm.price= this.objSearchlistvm.price.substring(0,this.objSearchlistvm.price.length-1);
   }
 }
   // Set Rating values
@@ -351,6 +366,7 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
   }
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
+    console.log(this.objSearchResultItems);
     this.setBlankImg();
     this.addToCollection();
     this.loading=false; 
@@ -361,10 +377,10 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
  }
  @HostListener("window:scroll", [])
  scrollToBottom(){
-  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-  //  this.objSearchlistvm.page+=1;
-    this.paginate(this.objSearchFilter.pageSize); 
-  }
+   
+  if ((window.innerHeight + window.scrollY) == document.body.offsetHeight) {
+    this.objSearchlistvm.page+=1;
+    this.paginate(this.objSearchFilter.pageSize); }
  }
  showHideCategories(ind){
   this.deselectAllCategories();

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-eventlist',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventlistComponent implements OnInit {
 
-  constructor() { }
+  constructor(private meta:Meta) { 
+    this.meta.addTag({ name: 'description', content: 'Event Title | Perfect Weddings' });
+
+  }
 
   ngOnInit() {
   }

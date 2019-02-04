@@ -1,5 +1,6 @@
 import { Component, OnInit ,HostListener} from '@angular/core';
 import { apiService } from '../shared/service/api.service';
+import { Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-photo',
   templateUrl: './photo.component.html',
@@ -26,7 +27,8 @@ export class PhotoComponent implements OnInit {
     // paged items
     pagedItems: any[];
     error_1 = '';
-    constructor(private apiService: apiService ) {
+    constructor(private apiService: apiService,private meta:Meta ) {
+      this.meta.addTag({ name: 'description', content: 'Wedding Photos & Inspirations | Perfect Weddings' });
       this.colout_tag= false
       this.photo_search_param = new  photoSearchParam();
       this.createColorPanel()

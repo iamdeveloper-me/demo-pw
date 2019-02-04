@@ -1,6 +1,6 @@
   <div id="wrappervendor" class="">
   <app-menu></app-menu>
-  <app-tool *ngIf="basicPlan != 3">
+  <app-tool *ngIf="basicPlan != 3 && basicPlan != 0">
    
   </app-tool>
   <div class="container-fluid recomslider">
@@ -10,7 +10,7 @@
 
       <!-- {{slidesStore }} -->
         <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
-          <ng-container *ngFor="let slide of slidesStore">
+          <ng-container *ngFor="let slide of slidesStore | slice:0:11 ">
             <ng-template carouselSlide="1" >
               <div class="boxtikslide" (click)="goToPortfolioDetail(slide)" >
                 <div class="procard"> </div>

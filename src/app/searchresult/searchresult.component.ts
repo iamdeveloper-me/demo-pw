@@ -79,6 +79,7 @@ export class SearchresultComponent implements OnInit {
     this.generateStaticArray();
     this.objSearchFilter=new filterParam();
     this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
+    console.log(JSON.stringify(this.objSearchFilter));
     this.objSearchlistvm = new SearchListingVM();
     this.getLocations();
     this.getCategories();
@@ -120,6 +121,7 @@ export class SearchresultComponent implements OnInit {
   });
   }
   getLocations(){
+    debugger;
     this._masterservice.getAllLocation().subscribe(res=>{
       this.locations=res;
       if(this.objSearchFilter.locationId>0){
@@ -219,6 +221,7 @@ export class SearchresultComponent implements OnInit {
       this.collection.push(element);
       this.slidesStore = this.collection
     });
+    this.slidesStore = this.slidesStore.filter(s=>s.promoted==true);
   }
   filterLocations(ev){
     let filterResult=this.locations.filter(n=>n.name.startwith(ev.value));
@@ -301,6 +304,7 @@ export class SearchresultComponent implements OnInit {
     if(this.SelectedLocation){
       this.objSearchlistvm.districts=[];
     this.objSearchlistvm.districts.push(this.SelectedLocation.districtId);}
+    debugger;
     if(this.filters!=null && this.filters.filters!=null){
     let selectedServices = this.filters.services.filter(s=>s.isSelect==true);
     if(selectedServices.length>0){
@@ -309,7 +313,6 @@ export class SearchresultComponent implements OnInit {
       this.objSearchlistvm.serviceId.push(element.servicesId);
       
     });}
-    debugger;
     if(this.filters.filters){
       console.log(JSON.stringify(this.filters.filters));
       this.filters.filters.forEach(el => {

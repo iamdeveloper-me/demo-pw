@@ -65,7 +65,8 @@ export class EventsComponent implements OnInit {
       dates: list.value.dates
     }
     this.http.post(this.apiService.serverPath+'Home/searchevents',q).map((response: Response) => response.json()).subscribe(data => {
-        this.allItems = data['items']
+        this.allItems = data['items'];
+        console.log(this.allItems);
         this.setPage(1);
     });
     this.locationD()

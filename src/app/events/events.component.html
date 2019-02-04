@@ -8,42 +8,37 @@
 		<div class="container-fluid nopadd">
 			<div class="eventsearchbox">
 				<h1>Find your next experience</h1>
-				    <form (ngSubmit)="event(list)" #list="ngForm">
-						<div class="form-group row">
-							<div class="col-sm-3">
-								<input [(ngModel)]="searchQuery"  type="text" name="searchQuery" class="form-control" placeholder="Search Events">
-							</div>
-							<div class="col-sm-3">
-								<select class="form-control" name="location"  [(ngModel)]="location"  id="location">
-									<option selected>All Location</option>
-									<option *ngFor='let list_locations of locations'> {{list_locations.name}}</option>
-								</select>
-							</div>
+				<form (ngSubmit)="event(list)" #list="ngForm">
+					<div class="form-group row">
+						<div class="col-sm-3">
+							<input [(ngModel)]="searchQuery" type="text" name="searchQuery" class="form-control" placeholder="Search Events">
+						</div>
+						<div class="col-sm-3">
+							<select class="form-control" name="location" [(ngModel)]="location" id="location">
+								<option selected>All Location</option>
+								<option *ngFor='let list_locations of locations'> {{list_locations.name}}</option>
+							</select>
+						</div>
 
-							<div class="col-sm-2 col-6">
-								<select class="form-control" name="eventType"  [(ngModel)]="eventType"  id="eventType">
-								
-									<option value="All" selected>All Events</option>
-									<option>Free</option>
-									<option>Paid</option>
-								</select>
-							</div>
-							<div class="col-sm-2  col-6">
-								<select class="form-control"  name="dates"  [(ngModel)]="dates"  id="dates">
-									<option   value="All" selected>All Dates</option>
-									<option >NextMonth</option>
-									<option >ThisWeek</option>
-									<option >Tomorrow</option>
-									<option >Today</option>
-								</select>
-							</div>
-							<div *ngFor="let item of pagedItems">
-									<p ngIf="item.length > 0">
-											No Event Regarding this date!!
-									</p>
-							</div>
-							
-                            <!-- <div class="col-sm-2  col-6">
+						<div class="col-sm-2 col-6">
+							<select class="form-control" name="eventType" [(ngModel)]="eventType" id="eventType">
+
+								<option value="All" selected>All Events</option>
+								<option>Free</option>
+								<option>Paid</option>
+							</select>
+						</div>
+						<div class="col-sm-2  col-6">
+							<select class="form-control" name="dates" [(ngModel)]="dates" id="dates">
+								<option value="All" selected>All Dates</option>
+								<option>NextMonth</option>
+								<option>ThisWeek</option>
+								<option>Tomorrow</option>
+								<option>Today</option>
+							</select>
+						</div>
+
+						<!-- <div class="col-sm-2  col-6">
 									<select class="form-control"  name="pageSize"  [(ngModel)]="pageSize"  id="pageSize">
 										<option selected [value]="1">10 - 20</option>
 										<option [value]="2">20 - 30</option>
@@ -52,27 +47,30 @@
 										<option [value]="60">50 - 60</option>
 									</select>
 								</div> -->
-								<div class="col-sm-2  col-6">
-										<button type="submit" class="eventsearchbtn"> search </button>
-								</div>
+						<div class="col-sm-2  col-6">
+							<button type="submit" class="eventsearchbtn"> search </button>
 						</div>
-						
-					</form>
-
+					</div>
+				</form>
+				<div *ngFor="let allitem of allItems">
+						<p ngIf="allItems.length == 0">
+								No Event Regarding this date!!
+						</p>
+				</div>
 			</div>
 			<div class="row eventlisting">
 				<div class="container">
 					<div class="text-center">
-			
+
 						<!-- items being paged -->
 						<!-- {{pagedItems?.length}} -->
 						<div class="col-sm-4 " *ngFor="let item of pagedItems">
 
-							<div class="card cardshadow"  (click)="goToNextPage()">
+							<div class="card cardshadow" (click)="goToNextPage()">
 								<img class="card-img-top img-fluid eventimg" *ngIf="item.files" [src]="item.files.path">
 								<div class="ribbon ribbon-top-right" *ngIf="item?.entryFee == null; else entry"><span>Free</span></div>
 								<ng-template #entry>
-										<div class="ribbon ribbon-top-right" ><span>{{item.entry}}</span></div>
+									<div class="ribbon ribbon-top-right"><span>{{item.entry}}</span></div>
 								</ng-template>
 								<div class="ribbon ribbon-top-right"><span>{{item.entry}}</span></div>
 								<div class="card-block text-center">
@@ -86,25 +84,25 @@
 											</i>
 										</button>
 									</div>
-									<div class="eventdate"  *ngFor='let Date of item.eventsDates | slice:0:1 ;let i=index ' >
+									<div class="eventdate" *ngFor='let Date of item.eventsDates | slice:0:1 ;let i=index '>
 										<span>Start Date : {{Date.startDateString | date}}</span>
 										<span>End Date : {{Date.endDateString | date}}</span>
 										<span class="date"></span>
 									</div>
 									<div class="col-sm-10 heightadjust">
-		
+
 										<div class="eventtitle">
-												<!--  routerLink="../event_list"p -->
-											<a >{{item.eventTitle}}</a>
+											<!--  routerLink="../event_list"p -->
+											<a>{{item.eventTitle}}</a>
 										</div>
 										<div class="eventvenue">
-											Location is  {{item.location}}, {{item.venueName}}
+											Location is {{item.location}}, {{item.venueName}}
 										</div>
 										<div class="eventvenue" *ngIf="item.entryFee == null">
-												Entry Fee :  0
+											Entry Fee : 0
 										</div>
 										<div class="eventvenue" *ngIf="item.entryFee != null">
-												Entry Fee :  {{item.entryFee}}
+											Entry Fee : {{item.entryFee}}
 										</div>
 									</div>
 									<div class="col-sm-12 footericon">
@@ -116,9 +114,9 @@
 										</span>
 									</div>
 								</div>
-							</div> 
+							</div>
 						</div>
-			<div class="clearfix"></div>
+						<div class="clearfix"></div>
 						<!-- pager -->
 						<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
 							<li [ngClass]="{disabled:pager.currentPage === 1}">
@@ -139,7 +137,7 @@
 						</ul>
 					</div>
 				</div>
-				<hr/>
+				<hr />
 			</div>
 			<!-- <div class="card row">
 				<div class="page-nation">
@@ -152,8 +150,8 @@
 		</div>
 
 		<div>
-			
-		
+
+
 		</div>
 
 

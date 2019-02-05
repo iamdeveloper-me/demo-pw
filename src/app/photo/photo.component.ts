@@ -43,10 +43,15 @@ export class PhotoComponent implements OnInit {
       // $.getScript('./assets/js/blocksit.min.js');
       // $.getScript('./assets/js/lazy.js');
       // $.getScript('./assets/js/jquery.pinbox.js');
-      // $.getScript('./assets/js/photo.js');    
+      //   
            
       this.onpageload();
       $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
+     // $.getScript('https://rawgithub.com/kayahr/jquery-fullscreen-plugin/master/jquery.fullscreen.js');
+     // $.getScript('./assets/js/fullview.js'); 
+
+
+     
 
       $(document).ready(function(){
       $('.head').on('click', function(){

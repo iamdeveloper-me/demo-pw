@@ -9,7 +9,10 @@
           <div class="container my-auto hombannertext">
             <div class="row heading_mob_mar">
               <div class="col-lg-8 mx-auto text-center">
-                <h2 class="section-heading text-white">{{list_banner_data.title}}</h2>
+                  
+                <h2 class="section-heading text-white">
+               
+                    {{list_banner_data.title}}</h2>
                 <p class="text-faded mb-4">Find Photographers, Venues, and more wedding vendors </p>
                 <div class="mobvendorebtn">
                   <i class="large material-icons firsticon">search</i>
@@ -21,21 +24,26 @@
               </div>
               <form (ngSubmit)="search(e,true,false)" #e="ngForm">
                 <div class="col-sm-10 mx-auto no-gutters searchbar mob_dis_none">
-                  <div class="form-group col-sm-5 padd_bottom custom-select">
+                  <div class="form-group col-sm-5 padd_bottom">
                     <span class="home_search"><i class="material-icons">camera_alt</i></span>
-                    <select class="form-control chosen-wrapper chosen-wrapper--style2 round_first" [(ngModel)]="category" name="category" data-js="custom-scroll">
+                    <ngx-select-dropdown [(ngModel)]="category" name="category" [config]="configCategory" [options]="Categories" 
+                    [multiple]="false"></ngx-select-dropdown>
+                    <!-- <select class="form-control chosen-wrapper chosen-wrapper--style2 round_first" [(ngModel)]="category" name="category" data-js="custom-scroll">
                       <option value='undefined'> All Categories </option>
                       <option *ngFor='let list_Categories of Categories' [ngValue]="list_Categories">
                         {{list_Categories.categoryName}} </option>
-                    </select>
+                    </select> -->
+   
                   </div>
                   <div class="form-group col-sm-5">
                     <span class="home_search"><i class="material-icons">location_on</i></span>
-                    <select class="form-control" name='location' [(ngModel)]='locationId'>
+                    <!-- <select class="form-control" name='location' [(ngModel)]='locationId'>
                       <option value='0'> All Locations</option>
                       <option *ngFor='let list_locations of locations' [value]='list_locations.districtId'>
                         {{list_locations.name}}</option>
-                    </select>
+                    </select> -->
+                    <ngx-select-dropdown [(ngModel)]='locationId' name='location' [config]="configLocation" [options]="locations" 
+                    [multiple]="false"></ngx-select-dropdown>
                    
                   </div>
                   <div class="form-group col-sm-2 posi_rela_100px">

@@ -23,6 +23,9 @@ interface Location {
   providers: [apiService],
 })
 export class DetailpageComponent implements OnInit {
+  lat: number = 51.678418;
+  lng: number = 7.809007;
+  
   private url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails/'
   sliderImgaes: any = [];
   trading_hours_popups:any= {isMondayOpen: ''};

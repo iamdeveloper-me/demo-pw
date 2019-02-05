@@ -25,8 +25,19 @@ export class BannerComponent implements OnInit {
   locationId:number=0;
   categoryClickData : any;
   locationClickData : any;
+  configCategory = {
+    displayKey: "categoryName", //if objects array passed which key to be displayed defaults to description
+    limitTo: 20,
+    placeholder:'All Categories'
+  };
+  configLocation = {
+    displayKey: "name", //if objects array passed which key to be displayed defaults to description
+    limitTo: 20,
+    placeholder:'All Location',
+  };
+ 
   ngOnInit() {
-   //$.getScript('./assets/js/bannerselect.js');
+  //  $.getScript('./assets/js/bannerselect.js');
     this.Categorie();
     this.location();
     this.banner();
@@ -80,7 +91,7 @@ export class BannerComponent implements OnInit {
           this.objFilterParam.sortDir = "";
           this.objFilterParam.sortedBy ="";
           this.objFilterParam.searchQuery ="";
-          this.objFilterParam.locationId = this.locationId;
+          this.objFilterParam.locationId = this.locationId['districtId'];
       }else{
           this.objFilterParam.catId  = var_data['category'] != 0 ?var_data['category']['categoryId']:0;
           this.objFilterParam.categoryName= var_data['category']?var_data['category']['categoryName']: '' ;

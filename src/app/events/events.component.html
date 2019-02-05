@@ -6,6 +6,7 @@
 	</div>
 	<section class="container event_div">
 		<div class="container-fluid nopadd">
+			<!-- search part  -->
 			<div class="eventsearchbox">
 				<h1>Find your next experience</h1>
 				<form (ngSubmit)="event(list)" #list="ngForm">
@@ -58,6 +59,7 @@
 						</p>
 				</div>
 			</div>
+			<!-- search part  end -->
 			<div class="row eventlisting">
 				<div class="container">
 					<div class="text-center">
@@ -116,45 +118,31 @@
 								</div>
 							</div>
 						</div>
-						<div class="clearfix"></div>
+		            	<div class="clearfix"></div>
 						<!-- pager -->
-						<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-							<li [ngClass]="{disabled:pager.currentPage === 1}">
-								<a (click)="setPage(1)">First</a>
-							</li>
-							<li [ngClass]="{disabled:pager.currentPage === 1}">
-								<a (click)="setPage(pager.currentPage - 1)">Previous</a>
-							</li>
-							<li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-								<a (click)="setPage(page)">{{page}}</a>
-							</li>
-							<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-								<a (click)="setPage(pager.currentPage + 1)">Next</a>
-							</li>
-							<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-								<a (click)="setPage(pager.totalPages)">Last</a>
-							</li>
-						</ul>
+							<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+								<li [ngClass]="{disabled:pager.currentPage === 1}">
+									<a (click)="setPage(1)">First</a>
+								</li>
+								<li [ngClass]="{disabled:pager.currentPage === 1}">
+									<a (click)="setPage(pager.currentPage - 1)">Previous</a>
+								</li>
+								<li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+									<a (click)="setPage(page)">{{page}}</a>
+								</li>
+								<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+									<a (click)="setPage(pager.currentPage + 1)">Next</a>
+								</li>
+								<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+									<a (click)="setPage(pager.totalPages)">Last</a>
+								</li>
+							</ul>
+						<!-- pager end -->
 					</div>
 				</div>
 				<hr />
 			</div>
-			<!-- <div class="card row">
-				<div class="page-nation">
-					<ngb-pagination [collectionSize]="70" [(page)]="page2" [boundaryLinks]="true" class="abc123"></ngb-pagination>
-					<span class="totalpage">24 Pages</span>
-					<hr>
-                  <p>Current page: {{page2}}</p>
-				</div>
-			</div> -->
 		</div>
-
-		<div>
-
-
-		</div>
-
-
 	</section>
 	<div class="clearfix"></div>
 	<app-foot></app-foot>

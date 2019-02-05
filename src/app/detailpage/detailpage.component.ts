@@ -1,9 +1,21 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef,NgZone } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { apiService } from 'app/shared/service/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MasterserviceService } from 'app/ngservices/masterservice.service';
+import { MapsAPILoader, AgmMap } from '@agm/core';
+import { GoogleMapsAPIWrapper } from '@agm/core/services';
+import { utilities } from 'app/utilitymodel';
+declare var google: any;
+
+interface Marker {lat: number;lng: number;label?: string;draggable: boolean;}
+
+interface Location {
+  lat: number;lng: number;viewport?: Object;zoom: number;
+  address_level_1?: string;address_level_2?: string;address_country?: string;
+  address_zip?: string;address_state?: string;marker?: Marker;
+}
 @Component({
   selector: 'app-detailpage',
   templateUrl: './detailpage.component.html',
@@ -13,6 +25,9 @@ import { MasterserviceService } from 'app/ngservices/masterservice.service';
 export class DetailpageComponent implements OnInit {
   private url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails/'
   sliderImgaes: any = [];
+  trading_hours_popups:any= {isMondayOpen: ''};
+  report= false;
+  succesfull_report = ""
   vendorId: number;
   vendorDetails: any;
   data_arr = []
@@ -24,8 +39,15 @@ export class DetailpageComponent implements OnInit {
   similarVendors_length;
   vendorVideo_details:any = [];
   @ViewChild('albumgallarypopup') albumgallarypopup: ElementRef;
-  constructor(public http: Http, public toastr: ToastrService, private apiService: apiService,
-     private activeroute: ActivatedRoute, private router: Router, private masterservice: MasterserviceService) { 
+  @ViewChild(AgmMap) map: AgmMap;
+  @ViewChild('gmapInput') gmapInput: ElementRef;
+  constructor(public http: Http, 
+     public toastr: ToastrService, 
+     private apiService: apiService,
+     private masterservice: MasterserviceService,
+     public mapsApiLoader: MapsAPILoader,
+     private router: Router,
+   ) { 
 
   }
   ngOnInit() {
@@ -150,5 +172,16 @@ export class DetailpageComponent implements OnInit {
     
     this.router.navigate(['home/Photogallerydetail']);
   }
+  report_fun(){
+   this.succesfull_report = "Thank you for your feedback."
+  }
+  trading_hours_popup(a){
+       this.trading_hours_popups =a;
+  }
+
+
+
+
+
 }
-//this.router.navigate(['home/detailprofile/',slide.vendorId])
+

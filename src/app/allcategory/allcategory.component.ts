@@ -33,7 +33,7 @@ export class AllcategoryComponent implements OnInit {
 	}
   Popular_Wedding(){
     this.apiService.getData(this.apiService.serverPath+'/Categories/categorieswithlistingcount').subscribe(data => {
-			this.Popular_Wedding_array = data   
+      this.Popular_Wedding_array = data  
     },
       error => {
        console.log(error)

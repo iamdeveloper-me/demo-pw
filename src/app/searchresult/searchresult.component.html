@@ -84,7 +84,7 @@
       <div class="container-fluid nopadd">
         <div class="badgecontainer">
           <span *ngIf='objSearchResultItems' class="badge badge-primary badge-labeled">
-          {{SelectedCategory?SelectedCategory.categoryName:''}}  {{SelectedLocation?'in '+SelectedLocation.name:''}} (  {{collection?collection.length:0}} Results Of {{objSearchResultItems.totalCount}})
+          {{SelectedCategory?SelectedCategory.categoryName:'Wedding Vendors'}}  {{SelectedLocation?'in '+SelectedLocation.name:'in Mauritius'}} (  {{collection?collection.length:0}} Results Of {{objSearchResultItems.totalCount}})
           </span>
          </div>
         <div class="clearfix"></div>
@@ -194,12 +194,12 @@
                             <input class="cityinput" type="text" [(ngModel)]='categoryFilterParam' placeholder="Type to Search Category">
                           </div>
                         <!-- <div class="regular">All Categories</div> -->
-                          <div class="cityscroll22 "> 
-                            <div class="funkyradio" *ngIf='showALlCategories'>  
+                          <div class="cityscroll22" *ngIf='!showALlCategories'> 
+                            <div class="funkyradio">  
                               <div class="funkyradio-info" *ngFor='let c of categories| categoryPipe:categoryFilterParam'>
                                <!-- <input type="checkbox" name="checkbox" id="{{c.categoryName}}" (change)='setFilterOptions(1,c.categoryId)' [(ngModel)]='c.isSelect'/> -->
                                    <label (click)='setFilterOptions(1,c)' for='{{c.categoryName}}'><i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
-                                      {{c.categoryName}}  
+                                      {{c.categoryName}} 
                                   </label>
                                </div>
                             </div>
@@ -379,12 +379,7 @@
             <span  *ngIf='f.isSelect'>{{f.serviceName}}</span>
             </span>
           </div>
-            <!--Price Range-->
-            <!-- <div *ngIf='filters && filters.filters'>
-            <span class="filterrowcard" *ngFor='let p of filters.filters[0].customFieldOptionList'>
-              <span  *ngIf='p.isSelect'>{{p.key}}</span>
-              </span>
-            </div> -->
+            
                 <span class="filterrowcard" *ngFor='let f of featuredListingArray'>
                     <span  *ngIf='f.isSelect'>{{f.key}}</span>
                     </span>
@@ -428,11 +423,6 @@
                         </span>
                         <span *ngIf='i.vendorVideos.length>0'>
                             <img src="../../assets/img/video.png"/>{{i.vendorVideos[0].vendorVideos.length}}</span>
-                        <!-- <span *ngIf='!i.vendorVideos.length>0'>
-                          <img src="../../assets/img/video.png"/>
-                         <span>0</span>
-                          
-                      </span> -->
                       </div>
                       <div class="caption card-body">
                         <div>
@@ -440,28 +430,14 @@
 
                           <button *ngIf='i.vendorCategories[0].categories' class="wedding_btn">
                             {{getCategoryName(i)}}  </button>
-
-                          <!-- <p class="locat_icon" *ngIf='i.vendorLocations.length>0'> -->
                           <p class="locat_icon">   
                             <i class="material-icons">location_on</i> 
-                            <!-- {{i.vendorLocations[0].suburb.name}}, -->
-                            <!-- {{i.vendorLocations[0]?.districts.name}} -->
                             <span>  {{ i.district.name}}</span>
                         
-
-                            <!-- {{i.vendorLocations[0].country.name}},
-                            {{i.vendorLocations.postalCode}} -->
-
                           </p>
                           
                           <p class="statr_point">
-                            
-                            <!-- <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span> -->
-                            <!-- <ngb-rating [(rate)]="4"></ngb-rating> -->
+                           
                             <span *ngIf='i.averageRating>0'>
                              {{i.averageRating}} <!--{{i.reviews}}  -->
                             <span style="color:red" [innerHTML]='ratingmodel.printStars(i.averageRating)'></span>

@@ -3,8 +3,8 @@ import { MasterserviceService } from '../ngservices/masterservice.service';
 import { apiService } from '../shared/service/api.service';
 import { filterParam } from '../vendorcard/vendorcard.component'
 import { Router } from '@angular/router';
-import { CustompipePipe } from 'app/custompipe.pipe';
-import { CategoryPipePipe } from 'app/category-pipe.pipe';
+import { CustompipePipe } from '../custompipe.pipe';
+import { CategoryPipePipe } from '../category-pipe.pipe';
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
@@ -60,19 +60,19 @@ export class BannerComponent implements OnInit {
     this.masterservice.getAllCategories().subscribe(data => {
       this.Categories = data;
       localStorage.setItem('catlist',JSON.stringify(data));
-      console.log( this.Categories )
+      // console.log(this.Categories);
      },error => {  console.log(error) })
   }
   location(){ 
     this.masterservice.getAllLocation().subscribe(data => {
       this.locations = data;
-      console.log(  this.locations )
+      // console.log(this.locations);
      },error => {  console.log(error) })
   }
   banner(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/banners').subscribe(data => {
       this.banner_data = data
-      console.log(this.banner_data)
+      // console.log(this.banner_data);
       },
       error => {
        console.log(error)

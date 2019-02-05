@@ -19,7 +19,7 @@ export class EventsComponent implements OnInit {
     this.meta.addTag({ name: 'description', content: 'Top Wedding Events in Mauritius | Perfect Weddings.' });
    }
   locations = [];
-  private allItems: any[];
+   allItems: any[];
   location:string = 'all'
   eventType:string = 'All'
   dates:string =  "All"
@@ -66,6 +66,8 @@ export class EventsComponent implements OnInit {
     }
     this.http.post(this.apiService.serverPath+'Home/searchevents',q).map((response: Response) => response.json()).subscribe(data => {
         this.allItems = data['items'];
+        console.log(this.allItems);
+
         this.setPage(1);
     });
     this.locationD()

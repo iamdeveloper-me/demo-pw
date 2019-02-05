@@ -80,8 +80,9 @@ export class EventsComponent implements OnInit {
      },error => {  console.log(error) })
   }
 
-  goToNextPage(){
-    this.router.navigate(['home/event_list'])
+  goToNextPage(a){
+    sessionStorage.setItem('event',JSON.stringify(a));
+    this.router.navigate(['home/event_list']);
   }
 
 }

@@ -75,6 +75,8 @@ export class HoneymoonComponent implements OnInit{
   }
   honeymoondetail_page(a){
     sessionStorage.setItem('Honeymoon_detail',JSON.stringify(a));
-    this.router.navigateByUrl('/home/Honeymoon_Details');
+   // this.router.navigateByUrl(['/home/Honeymoon_Details/', a.name]);
+    this.router.navigate(['home/Honeymoon_Details',a.name.replace(/\s/g,'')]);
+  
   }
 }

@@ -2,7 +2,7 @@
 	<app-menu></app-menu>
 
 	<div class="eventbanner">
-		<img src="https://s3.us-east-2.amazonaws.com/prefect-image/wed.jpeg" class="img-responsive" />
+		<img style="height: 107%;width: 101%"  src="https://s3.us-east-2.amazonaws.com/prefect-image/wed.jpeg" class="img-responsive" />
 	</div>
 	<section class="container event_div">
 		<div class="container-fluid nopadd">
@@ -68,14 +68,16 @@
 						<div class="col-sm-4 " *ngFor="let item of pagedItems">
 
 
-							<div class="card cardshadow"  (click)="goToNextPage()">
+							<div class="card cardshadow"  (click)="goToNextPage(item)">
 
 								<img class="card-img-top img-fluid eventimg" *ngIf="item.files" [src]="item.files.path">
 								<div class="ribbon ribbon-top-right" *ngIf="item?.entryFee == null; else entry"><span>Free</span></div>
 								<ng-template #entry>
 										<div class="ribbon ribbon-top-right" ><span>{{item.entry}}</span></div>
 								</ng-template>
-								<div class="ribbon ribbon-top-right"><span>{{item.entry}}</span></div>
+								<div class="ribbon ribbon-top-right"  >
+									<span>{{item.entry}}</span>
+								</div>
 								<div class="card-block text-center">
 									<div class="eventbtnholder">
 										<button class="purple-gradient borradius50per">
@@ -102,10 +104,10 @@
 											Location is  {{item.location}}, {{item.venueName}}
 										</div>
 										<div class="eventvenue" *ngIf="item.entryFee == null">
-												Entry Fee :  0
+												Ticket Cost/Entry Fee :  0
 										</div>
 										<div class="eventvenue" *ngIf="item.entryFee != null">
-												Entry Fee :  {{item.entryFee}}
+												Ticket Cost/Entry Fee :  {{item.entryFee}}
 										</div>
 									</div>
 									<div class="col-sm-12 footericon">

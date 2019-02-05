@@ -3,8 +3,8 @@ import { MasterserviceService } from '../ngservices/masterservice.service';
 import { apiService } from '../shared/service/api.service';
 import { filterParam } from '../vendorcard/vendorcard.component'
 import { Router } from '@angular/router';
-import { CustompipePipe } from '..//custompipe.pipe';
-import { CategoryPipePipe } from '..//category-pipe.pipe';
+import { CustompipePipe } from '../custompipe.pipe';
+import { CategoryPipePipe } from '../category-pipe.pipe';
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',

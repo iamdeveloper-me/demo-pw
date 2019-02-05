@@ -100,7 +100,8 @@ export class VendorcardComponent implements OnInit {
   }
   Popular_Wedding(){
     this.apiService.getData(this.apiService.serverPath+'Categories/categorieswithlistingcount').subscribe(data => {
-     for (let i of data) {
+      // console.log(data);
+      for (let i of data) {
         if(i.isPopular == true){
           this.Popular_Wedding_array.push(i);
           // console.log(this.Popular_Wedding_array);

@@ -44,7 +44,7 @@ export class SearchresultComponent implements OnInit {
   categories:any;
   filters: any;
   SelectedLocation:any;
-  objAppliedFilters:AppliedFilters;
+  
   @ViewChild('servicefilters') servicefilters:SafeHtml;
   loading=false;
   showALlCategories:boolean;
@@ -80,25 +80,25 @@ export class SearchresultComponent implements OnInit {
     this.objSearchFilter=new filterParam();
     this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
     this.objSearchlistvm = new SearchListingVM();
-    debugger;
     if(this.objSearchFilter.locationId != 0){
     this.objSearchlistvm.districts.push(this.objSearchFilter.locationId);}
     this.getLocations();
     this.getCategories();
     this.ratingmodel = new ratingStars();
+    console.log(JSON.stringify(this.categories));
     this.basicPlan = parseInt(localStorage.getItem('basic-plan'))
     this.getFilters();
-    this.getSearchFilterResult();
+ //   this.getSearchFilterResult();
+ console.log(JSON.stringify(this.categories));
   }
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
   }
   getCategoryName(i):string{
-    //debugger;
     if(this.SelectedCategory){
       return this.SelectedCategory.categoryName;
     }else{
-      return i.vendorCategories.filter(c=>c.isPrimary===true)[0].categoryName;
+      return i.vendorCategories[0].categories.categoryName;
     }
   }
   ngOnInit() {   
@@ -121,7 +121,6 @@ export class SearchresultComponent implements OnInit {
   });
   }
   getLocations(){
-    debugger;
     this._masterservice.getAllLocation().subscribe(res=>{
       this.locations=res;
       if(this.objSearchFilter.locationId>0){
@@ -138,7 +137,9 @@ export class SearchresultComponent implements OnInit {
     });
   }
   getCategories(){
+    debugger;
     this.categories = JSON.parse(localStorage.getItem('catlist'));
+    console.log(this.categories);
     if(this.objSearchFilter.catId>0){
       this.categories.filter(c=>c.categoryId==this.objSearchFilter.catId)[0].isSelect=true;
       this.SelectedCategory = this.categories.filter(c=>c.isSelect==true)[0];
@@ -147,25 +148,17 @@ export class SearchresultComponent implements OnInit {
     this.collection=[];
     this.paginate(this.objSearchFilter.pageSize);  
     this.showALlCategories=false;
-    
-    //  this._masterservice.getAllCategories().subscribe(res=>{
-    //   this.categories=res;
-    //   console.log(JSON.stringify(this.categories));
-
-    // }) 
   }
   clearFilters(){
     
   }
   getFilters(){
     let filter_paramArray=[];
-    this.selectCategory('Id',this.objSearchFilter.catId);
+   // this.selectCategory('id',this.objSearchFilter.catId);
     if(this.SelectedCategory!=null){
     filter_paramArray.push(this.SelectedCategory.categoryId);}
     this._masterservice.getFilters(filter_paramArray).subscribe(res=>{
       this.filters=res;
-      
-      
       if(this.filters.services!=null){
       this.filters.services.forEach(element => { element.isSelect=false; });
       this.filters.filters.forEach(element => { element.isSelect=false;});
@@ -221,11 +214,6 @@ export class SearchresultComponent implements OnInit {
       this.collection.push(element);
       this.slidesStore = this.collection
     });
-   this.slidesStore.forEach(el=>{
-     if(el.promoted == true){
-       el = el;
-     }
-   })
   }
   filterLocations(ev){
     let filterResult=this.locations.filter(n=>n.name.startwith(ev.value));
@@ -245,11 +233,12 @@ export class SearchresultComponent implements OnInit {
     this.objSearchlistvm.page=0;
     switch(filterType){
       case 1: // Category
+      debugger;
       this.objSearchlistvm= new SearchListingVM();
-      // this.deselectAllCategories();
-     this.checkUncheckFilter(FilterValue);
+      this.checkUncheckFilter(FilterValue);
      if(FilterValue.isSelect){
       this.SelectedCategory = FilterValue;
+      this.objSearchFilter.catId = this.SelectedCategory.categoryId;
       this.getFilters();
       this.showALlCategories = false;}else{
         this.showALlCategories = true;
@@ -303,7 +292,6 @@ export class SearchresultComponent implements OnInit {
     if(this.categories){
       if(this.SelectedCategory){
     this.objSearchlistvm.categoryId.push(this.SelectedCategory.categoryId);}
-   debugger;
     if(this.SelectedLocation){
       this.objSearchlistvm.districts=[];
     this.objSearchlistvm.districts.push(this.SelectedLocation.districtId);}
@@ -376,26 +364,10 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
  }
  @HostListener("window:scroll", [])
  scrollToBottom(){
-   
-  if ((window.innerHeight + window.scrollY) == document.body.offsetHeight) {
+   if ((window.innerHeight + window.scrollY) == document.body.offsetHeight) {
     this.objSearchlistvm.page+=1;
     this.paginate(this.objSearchFilter.pageSize); }
  }
- showHideCategories(ind){
-  this.deselectAllCategories();
-  if(ind!=-1){    
-    if(this.categories.length>0){
-  this.selectCategory('index',ind);
-  } else{
-   
-  }
-  }else{
-    this.SelectedCategory=null;
-    this.objSearchFilter.catId=0;
-    this.getFilters();
-  }
-  this.paginate(this.objSearchFilter.pageSize);
-}
 deselectAllCategories(){
   if(this.categories){
   this.categories.forEach(element => {
@@ -484,11 +456,11 @@ export class FieldSearchVM{
   customFieldId: number;
   userValue:string;
 }
-export class AppliedFilters{
-  services:SafeHtml;
-  pricerange:string;
-  featuredListing:string;
-  customerRating:string;
-  deals:string;
-  filters:string;
-}
+// export class AppliedFilters{
+//   services:SafeHtml;
+//   pricerange:string;
+//   featuredListing:string;
+//   customerRating:string;
+//   deals:string;
+//   filters:string;
+// }

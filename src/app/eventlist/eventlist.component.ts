@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
-
+import { apiService } from '../shared/service/api.service';
 @Component({
   selector: 'app-eventlist',
   templateUrl: './eventlist.component.html',
@@ -8,12 +8,29 @@ import { Meta } from '@angular/platform-browser';
 })
 export class EventlistComponent implements OnInit {
 
-  constructor(private meta:Meta) { 
+  constructor(private meta:Meta ,private apiService: apiService) { 
     this.meta.addTag({ name: 'description', content: 'Event Title | Perfect Weddings' });
 
   }
-
+  data;
+  all_event:any;
   ngOnInit() {
+
+    this.data = JSON.parse(sessionStorage.getItem('event'));
+    console.log(this.data);
+    this.apiService.postData(this.apiService.serverPath+'Home/searchevents',{
+      "page": 0,
+      "pageSize": 100000,
+      "sortDir": "",
+      "sortedBy": "asc",
+      "searchQuery": "",
+      "location": "",
+      "eventType": "all",
+      "dates": "all"
+    }).subscribe(data => {
+        console.log(data.items)
+        this.all_event = data.items; 
+      });  
   }
 
 }

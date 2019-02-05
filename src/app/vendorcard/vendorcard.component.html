@@ -12,7 +12,7 @@
             </div>
             <div class="row no-gutters popup-gallery">
               <div class="col-lg-4 col-sm-6 col-6  galleryview" *ngFor='let Popular of Popular_Wedding_array'>
-                <a class="portfolio-box" (click) = "Categories_each(Popular,false,false)"  *ngIf = "Popular.isPopular == true">
+                <a class="portfolio-box" (click) = "Categories_each(Popular,false)"  *ngIf = "Popular.isPopular == true">
                   <img class="img-fluid"  *ngIf = "Popular" [src]="Popular.imagePath" class="img-responsive" alt="">
                   <div class="portfolio-box-caption">
                     <div class="portfolio-box-caption-content">
@@ -21,9 +21,7 @@
                       </div>
                       <div class="project-name">
                         {{Popular.categoryName}}
-                
                       </div>
-                  
                     </div>
                   </div>
                 </a>
@@ -42,11 +40,7 @@
     <div class="container-fluid mob_padd_30px" *ngIf='slidesStore?.length > 0'>
         
           <div class="caroosel_headin text-center">
-<<<<<<< HEAD
-            <h3>Featured Wedding  <strong style="color: #e72e77;">Suppliers </strong>  </h3>
-=======
             <h3>Featured Wedding <strong style="color: #e72e77;">Suppliers </strong>  </h3>
->>>>>>> 8985fbf537cf372eba92f11e7dafaf6bbf7a2657
           </div>
          
           <div class="container" style="padding: 13px;">
@@ -150,8 +144,14 @@
                 (click)='goToVendordetails(list_dream)' >
 
                 <!-- *ngIf = "Popular"  -->
-                    <img  [src]="list_dream.storeFrontImage" class="img-responsive" alt="img06" /> 
-
+                    <img  *ngIf="list_dream.storeFrontImage; else noStoreImg" [src]="list_dream.storeFrontImage" class="img-responsive" alt="img06" /> 
+                    <!-- <img  [src]="{{noImage}}" class="img-responsive" alt="img06" />  -->
+                    <ng-template #noStoreImg>
+                        <img  [src]="list_dream.profileImage" class="img-responsive" alt="img06" /> 
+                    </ng-template>
+                    <div *ngIf="!list_dream.profileImage && !list_dream.storeFrontImage">
+                        <img  [src]="noImage" class="img-responsive" alt="img06" /> 
+                    </div>
                     <h2>{{list_dream?.nameOfBusiness}}
                       <span *ngIf="list_dream?.district == null; else dwloc">
                          N/A    

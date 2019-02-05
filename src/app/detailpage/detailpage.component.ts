@@ -23,6 +23,9 @@ interface Location {
   providers: [apiService],
 })
 export class DetailpageComponent implements OnInit {
+  lat: number = 51.678418;
+  lng: number = 7.809007;
+  
   private url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails/'
   sliderImgaes: any = [];
   trading_hours_popups:any= {isMondayOpen: ''};
@@ -54,7 +57,9 @@ export class DetailpageComponent implements OnInit {
     $.getScript('./assets/js/prism.min.js');
     $.getScript('./assets/js/owljsor.js');
     $.getScript('./assets/js/curosselfun.js');
-     $.getScript('./assets/js/jquery.fancybox.min.js');
+    
+    $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
+
     $("#Vediogallarypopup").on('hidden.bs.modal', function (e) {
       $("#Vediogallarypopup iframe").attr("src", $("#Vediogallarypopup iframe").attr("src"));
     });

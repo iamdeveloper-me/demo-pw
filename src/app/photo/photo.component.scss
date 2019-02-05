@@ -7,6 +7,7 @@
   margin:5px 5px 0px 0px;
   display: inline-block;
   }
+
   .colortags{
     width:40px;height:21px;
     border-radius:10px;
@@ -106,13 +107,14 @@ margin-top:1px;
     background:blue!important;
 }
 .tips{
-
   margin-top: 60px;
-  background-color: #fff;
+  background-color:#fff;
   padding-bottom:20px;
   padding-top:20px;
 }
-
+.select{
+  background:#fff;
+}
 .searchtopbar{
 margin:0px auto;
 max-width:1100px; 
@@ -393,7 +395,20 @@ text-align: left;
   float:left;
   font-size:20px;
   text-align: right;
+  margin-top:13px;
   }
+  .halfdiv span{
+  font-size:12px;
+  }
+.photodetail div.linkdiv .halfdiv{
+float:left;
+width:48%;
+  }
+
+
+
+
+
 @media screen and (max-width : 1240px) {
 	body{
 		overflow:auto;
@@ -479,9 +494,50 @@ margin-top: 50px;
     margin-top: 22px;
 }
 
+
+.expander {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 16px;
+    height: 16px;
+    padding: 4px;
+    background: white url(https://github.com/openxe/django-ace/diff_blob/1993c731626a44139b97d2d9fca8f4f4023f107a/django_ace/static/django_ace/img/expand.png?raw=true) center center no-repeat;
+    z-index: 99999;   
+    cursor: pointer;
+}
+
 .photo_cont{background: #ffffff; padding: 0px; box-shadow: 0 2px 5px 0 rgba(0,0,0,.2) }
 
 @media(max-width:768px){
+  .rowset{
+  margin:0px!important;
+  padding:10px!important;
+  }
+  .rowset .col-4{
+  padding:0px;
+  }
+.tips{
+  background-color:#fff;
+}
+    .rowset .col-3 select, .rowset .col-4 input, .rowset .col-5 input{
+  border-radius:0px;
+  border:1px solid #ccc; 
+  font-size:12px!important;
+  padding:5px;
+  text-align:left;
+  text-indent:0px!important;
+  }
+  .colorselect span.head{
+ border-radius:0px!important;
+  border:1px solid #ccc!important; 
+  font-size:12px!important;
+  padding:5px!important;
+  line-height:28px!important;
+  text-indent:0px!important;
+  }
+  ::-webkit-input-placeholder { text-align:left; }
+
 .search-button{
   background-size:80%;
 }
@@ -536,7 +592,7 @@ width:48%!important;
 .searchtopbar{
 margin-bottom:0px;
 margin-top:0px;
-overflow: hidden;
+overflow: inherit!important;
     box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.12);
     -moz-box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.12);
     -webkit-box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.12);
@@ -546,7 +602,26 @@ overflow: hidden;
   border-bottom:0px;
   botder-top:0px;
 }
-
+.Search_img .search-button{
+    height: 40px;
+    right: 0px;
+    top: 0px;
+    width: 35px;
+    background-color: #fff;
+}
+.mobileviewfix{
+  margin-top:130px!important;
+}
+[class*="span"] {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.span2 {
+  width: calc(100% - 10px);
+}
+.span2 img {
+      height: 170px;
+}
 }
 
 
@@ -904,7 +979,7 @@ margin-bottom:30px;
     position: fixed;
     z-index: 1;
     padding-top: 0;
-    top: 50px;
+    top: 0px;
 }
 .Venders{padding-top: 130px;}
 .col-xs-6{width: 50%;}

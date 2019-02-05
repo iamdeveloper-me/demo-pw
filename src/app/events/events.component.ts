@@ -66,6 +66,8 @@ export class EventsComponent implements OnInit {
     }
     this.http.post(this.apiService.serverPath+'Home/searchevents',q).map((response: Response) => response.json()).subscribe(data => {
         this.allItems = data['items'];
+        console.log(this.allItems);
+
         this.setPage(1);
     });
     this.locationD()
@@ -80,8 +82,9 @@ export class EventsComponent implements OnInit {
      },error => {  console.log(error) })
   }
 
-  goToNextPage(){
-    this.router.navigate(['home/event_list'])
+  goToNextPage(a){
+    sessionStorage.setItem('event',JSON.stringify(a));
+    this.router.navigate(['home/event_list']);
   }
 
 }

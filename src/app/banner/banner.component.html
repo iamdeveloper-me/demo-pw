@@ -75,8 +75,11 @@
   
                   <div *ngFor='let list_Categories of Categories | categoryPipe:categoryFilterParam' (click)=categoryClick(list_Categories)>
                     <div class="regular">
-                      <i class="material-icons">location_on</i>
-                      {{list_Categories.categoryName}}
+                      <!-- <i class="material-icons">location_on</i>
+                      {{list_Categories.categoryName}} -->
+                      <i class="cake" aria-hidden="true">
+                          <img [src]="list_Categories.iconImageURL" />
+                      </i>{{list_Categories.categoryName}}
                     </div>
                   </div>
                 </div>

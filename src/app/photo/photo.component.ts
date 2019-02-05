@@ -8,7 +8,10 @@ import { Meta } from '@angular/platform-browser';
 })
 export class PhotoComponent implements OnInit {
     colors: Array<ColorPicker>;
-    categories:any = [];
+    item:any = [];
+
+        categories:any = [];
+
     category:any
     pho_data:any = {}
     loading = false;
@@ -169,6 +172,25 @@ export class PhotoComponent implements OnInit {
         this.onpageload()
       }
     }
+    classAdd(item){
+      this.item = item.colorTags
+      console.log(item)
+      this.item.forEach(element => {
+        this.colors.forEach(ele => {
+          if(ele.colorName == element ){
+            ele['isSelected'] = true
+          }
+        });
+      });
+      
+      setTimeout(() => {
+        $('.fancybox-toolbar').append('<button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Share"><i class="material-icons">share</i></button><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')
+        $('.fancybox-caption').append('<button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Share"><i class="material-icons">share</i></button><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')
+      }, 30);
+      setTimeout(() => {
+        $('.fancybox-caption').append(' <ul><li *ngFor="let c of colors"   style="color:black"><i class="fa fa-check ticklist" *ngIf="c.isSelected"></i><span class="colortag"  [style.background-color]="c.colorName"></span>{{c.colorName}}</li></ul>')
+      }, 30);
+    }
 }
 export class ColorPicker{
    public colorName: string;
@@ -192,4 +214,5 @@ export class  photoSearchParam  {
     this.sortedBy = 'asc';
     this.color = [];
   }
+  
 }

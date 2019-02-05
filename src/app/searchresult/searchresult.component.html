@@ -84,7 +84,7 @@
       <div class="container-fluid nopadd">
         <div class="badgecontainer">
           <span *ngIf='objSearchResultItems' class="badge badge-primary badge-labeled">
-          {{SelectedCategory?SelectedCategory.categoryName:''}}  {{SelectedLocation?'in '+SelectedLocation.name:''}} (  {{collection?collection.length:0}} Results Of {{objSearchResultItems.totalCount}})
+          {{SelectedCategory?SelectedCategory.categoryName:'Wedding Vendors'}}  {{SelectedLocation?'in '+SelectedLocation.name:'in Mauritius'}} (  {{collection?collection.length:0}} Results Of {{objSearchResultItems.totalCount}})
           </span>
          </div>
         <div class="clearfix"></div>
@@ -194,7 +194,7 @@
                             <input class="cityinput" type="text" [(ngModel)]='categoryFilterParam' placeholder="Type to Search Category">
                           </div>
                         <!-- <div class="regular">All Categories</div> -->
-                          <div class="cityscroll22 "> 
+                          <div class="cityscroll22" *ngIf='!showALlCategories'> 
                             <div class="funkyradio">  
                               <div class="funkyradio-info" *ngFor='let c of categories| categoryPipe:categoryFilterParam'>
                                <!-- <input type="checkbox" name="checkbox" id="{{c.categoryName}}" (change)='setFilterOptions(1,c.categoryId)' [(ngModel)]='c.isSelect'/> -->

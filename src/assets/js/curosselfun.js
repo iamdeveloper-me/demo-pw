@@ -180,18 +180,32 @@ $(".startprice .showless").click(function() {
 
 $(".barnchtableshow").click(function(){
   //alert("hi")
-   $(".branchdefaulttable").toggleClass("in");
-   $(".branchdetailtable").toggleClass("in");
+   $(".branchdefaulttable").hide();
+   $(".branchdetailtable").show();
    $(".barnchtableshow").hide();
    $(".barnchtablenone").show();
 });
 
 $(".barnchtablenone").click(function(){
   //alert("hi")
-   $(".branchdefaulttable").toggleClass("in");
-   $(".branchdetailtable").toggleClass("in");
+   $(".branchdefaulttable").show();
+   $(".branchdetailtable").hide();
    $(".barnchtableshow").show();
    $(".barnchtablenone").hide();
+});
+
+$(".showaboutmore").click(function(){
+  //alert("hi")
+   $(".vp_about_txt_description").addClass("showmoretext");
+   $(".showaboutmore").hide();
+   $(".showaboutless").show();
+});
+
+$(".showaboutless").click(function(){
+  //alert("hi")
+   $(".vp_about_txt_description").removeClass("showmoretext");
+   $(".showaboutmore").show();
+   $(".showaboutless").hide();
 });
 
 

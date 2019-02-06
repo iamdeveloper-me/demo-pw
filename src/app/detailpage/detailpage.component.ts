@@ -108,7 +108,13 @@ export class DetailpageComponent implements OnInit {
     
 
   }
-
+classAdd(item){
+    //  console.log(this.colors)
+      
+      setTimeout(() => {
+        $('.fancybox-toolbar').append('<a class="fancybox-button" title="Share" href="whatsapp://send?text=Text to send withe message: http://13.59.229.254"><i class="material-icons">share</i></a><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')  
+    }, 50);
+  }
   review = { rating: '', comments: "", rateVendorID: 'a96129c3-8861-43aa-8bc9-1c155f1ffd79' }
  
   putReview(review) {

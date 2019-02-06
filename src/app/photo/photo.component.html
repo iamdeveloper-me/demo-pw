@@ -61,10 +61,12 @@
                                         <div class="clearfix"></div>
                                         <div class="photodetail">
                                             <p class="detaildiv">
+                                                <span class="vendorlogoimg"><img src="../../assets/img/noImg.png"/></span>
+                                               <span class="photdetailtext">
                                                 <span>{{item.nameOfBusiness}}</span>
                                                 <span *ngIf="item?.tags == null">N/A </span>
                                                 <span *ngIf="item?.tags != null">{{item.tags}}</span>
-                                               
+                                            </span>
                                             </p>   
                                             <div class="linkdiv">
                                                 <div class="halfdiv"> 

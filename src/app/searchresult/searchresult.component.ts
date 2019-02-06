@@ -348,9 +348,15 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
   }
   // Set Deals And Offers
   let SelectedDealsOffers = this.dealsAndOfferArray.filter(dd=>dd.isSelect==true);
+  debugger;
   if(SelectedDealsOffers && SelectedDealsOffers.length>0){
-    this.objSearchlistvm.deals =SelectedDealsOffers[0].key;
+    this.objSearchlistvm.deals='';
+    SelectedDealsOffers.forEach(element => {
+      this.objSearchlistvm.deals +=element.key+',';  
+    });
+    
   }
+  console.log(this.objSearchlistvm);
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
     console.log(this.objSearchResultItems);

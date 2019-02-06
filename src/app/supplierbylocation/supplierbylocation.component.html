@@ -10,11 +10,26 @@
 	</div>
 <div class="clearfix"></div>
 
-	<div class="col-sm-12 citybox1">
+	<!-- <ul>
+		<div *ngFor='let list_Categories of Categories'>
+			<li>
+				<a class="dropdown-item" (click)="searchCat(list_Categories,true,false)">
+				{{list_Categories.categoryName}}</a>
+			</li>
+		</div>
+	</ul> -->
+
+	<ul >
+		<div *ngFor='let location of locations'>
+				<li>
+					<a class="dropdown-item" (click)="searchCat(location,true,false)">
+				{{location.name}}</a>
+				</li>
+		</div>
+	</ul>
+
+	<!-- <div class="col-sm-12 citybox1">
 		<img src="../../assets/img/black_river_img.jpg">
-		<!-- <div class="overlay">
-			<div class="text">Hello World</div>
-		  </div> -->
 		<h2>Black River</h2>
 	</div>
 	
@@ -52,7 +67,7 @@
 	<div class="col-sm-6 citybox">
 		<img src="../../assets/img/rodrigues.jpg">
 		<h2>Rodrigues</h2>
-	</div>
+	</div> -->
 
 	
 

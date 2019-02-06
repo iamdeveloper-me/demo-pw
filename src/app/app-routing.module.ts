@@ -150,7 +150,7 @@ import { StepForthComponent } from './register/step-forth/step-forth.component';
 import { PaymentSummaryComponent } from './payment-summary/payment-summary.component';
 
 const appRoutes: Routes = [
-
+ 
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'register/step1', component: StepFirstComponent },

@@ -348,7 +348,7 @@
                       <div *ngIf='filters'>
                         <div class="funkyradio" *ngIf='filters.filters'>  
                           <div class="funkyradio-info" style="border-bottom:1px;border-bottom-style:inset;border-bottom-color:gray" *ngFor='let ff of filters.filters'>
-                            <input type="checkbox" *ngIf='ff.name!="Starting Price"' name="checkbox" id="{{ff.name}}" (change)='setFilterOptions(4,ff.customFieldId)' [(ngModel)]='ff.isSelect'/> 
+                            <input type="checkbox" *ngIf='ff.name!="Starting Price"' name="checkbox" id="{{ff.name}}" (change)='setFilterOptions(4,ff)' [(ngModel)]='ff.isSelect'/> 
                               <label *ngIf='ff.name!="Starting Price"' for="{{ff.name}}">
                                  <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
                                 {{ff.name}} 

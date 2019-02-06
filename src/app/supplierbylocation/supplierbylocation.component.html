@@ -10,20 +10,11 @@
 	</div>
 <div class="clearfix"></div>
 
-	<!-- <ul>
-		<div *ngFor='let list_Categories of Categories'>
-			<li>
-				<a class="dropdown-item" (click)="searchCat(list_Categories,true,false)">
-				{{list_Categories.categoryName}}</a>
-			</li>
-		</div>
-	</ul> -->
-
-	<ul >
+	<ul style="list-style: none;">
 		<div *ngFor='let location of locations'>
 				<li>
-					<a class="dropdown-item" (click)="searchCat(location,true,false)">
-				{{location.name}}</a>
+					<a class="dropdown-item" (click)="searchCat(location.districtId)">
+							<i class="material-icons">location_on</i>{{location.name}}</a>
 				</li>
 		</div>
 	</ul>

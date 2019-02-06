@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef,NgZone } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { apiService } from 'app/shared/service/api.service';
+import{ratingStars} from '../ngservices/ratingstars';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MasterserviceService } from 'app/ngservices/masterservice.service';
 import { MapsAPILoader, AgmMap } from '@agm/core';
@@ -37,6 +38,7 @@ export class DetailpageComponent implements OnInit {
   businessServices_length ;
   portfolioAndAlbumImagesTotal: number = 0;
   similarVendors:any;
+  ratingmodel: ratingStars;
   portfolioImages = [];
   lightBoxImages=[];
   similarVendors_length;
@@ -51,7 +53,7 @@ export class DetailpageComponent implements OnInit {
      public mapsApiLoader: MapsAPILoader,
      private router: Router,
    ) { 
-
+      this.ratingmodel = new ratingStars();
   }
   ngOnInit() {
     $.getScript('./assets/js/prism.min.js');

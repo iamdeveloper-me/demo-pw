@@ -894,13 +894,22 @@ outline: none;
 .tabdesktop button.activebuttontab{
 border-bottom: 1px solid #e72e77;
 }
-.reviewmore{
-    font-weight:normal;
+.reviewmore, .reviewless{
+    font-weight:normal!important;
+    cursor: pointer;
 }
 .greentext{
     color:#65b045;
 }
 .reviewrow{
+    height:225px;
+    overflow:hidden;
+}
+.reviewrow.reviewrowmore{
+    height:auto;
+    overflow:hidden;
+}
+.reviewrow div{
     background:#f5f5f5;
     padding:10px;
     margin:10px 0px;

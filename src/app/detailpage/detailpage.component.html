@@ -51,7 +51,7 @@
         <div class="vp_mainDetails_mini_rating text-center">
             <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px" *ngIf = "vendorDetails?.averageRating > 0 ">
                   <div class="rating_star">
-                        <rating [(ngModel)]="vendorDetails.averageRating" readonly="isReadonly"></rating>
+                     <rating [(ngModel)]="vendorDetails.averageRating" readonly="isReadonly"></rating> 
                   </div>
                  
                   <div class="large_subtext" *ngIf = "vendorDetails?.averageRating == 0 ">
@@ -415,33 +415,21 @@
 
       <!-- start Reviews form -->
       <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection" id="review">
-        <div class="vp_review_txt_title large_subtext "> Reviews (10 reviews) 
-          <span class="reviewmore">View All</span>
+        <div class="vp_review_txt_title large_subtext "> Reviews ( {{vendorDetails.reviews.length}} reviews) 
+          <span class="reviewmore">Show All</span>
+          <span class="reviewless" style="display:none;">Show Less</span>
         </div>
         <div class="reviewrow">
-          <div>
-            <span><i class="star-icon half100" title="1">☆</i></span>
-            <span><i class="star-icon half100" title="1">☆</i></span>
-            <span><i class="star-icon half100" title="1">☆</i></span>
-            <span><i class="star-icon half100" title="1">☆</i></span>
-            <span><i class="star-icon half100" title="1">☆</i></span>
-          </div>
-            <p>
-              Very Good Service.
+          <div *ngFor='let rev of vendorDetails.reviews'>
+              <!--   {{ratingmodel.printStars(rev.rating)}} -->
+              <p [innerHTML]='ratingmodel.printStars(rev.rating)'></p>
+            <p>         
+              {{rev.comments}}
             </p>
         </div>
-        <div class="reviewrow">
-          <div>
-            <span><i class="star-icon half100" title="1">☆</i></span>
-            <span><i class="star-icon half100" title="1">☆</i></span>
-            <span><i class="star-icon half100" title="1">☆</i></span>
-            <span><i class="star-icon half100" title="1">☆</i></span>
-            <span><i class="star-icon half100" title="1">☆</i></span>
-          </div>
-            <p>
-              Very Good Service.
-            </p>
+         
         </div>
+        
         <form (ngSubmit)="putReview(review)" #f="ngForm">
           <div class="vp_review_txt">
             <div class="vp_giveReviewBox">
@@ -679,6 +667,7 @@
           <div class="vp_mainDetails_starting_price">
             <div class="large_subtext bob_pa_left text-center">
               Starting Price:
+
               <div  *ngFor='let service of  vendorDetails?.businessServices' >
                 <div *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
                   <div *ngFor='let customF of  service.customFields  | slice:0:1' >

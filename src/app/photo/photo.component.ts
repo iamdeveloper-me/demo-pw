@@ -173,25 +173,37 @@ export class PhotoComponent implements OnInit {
       }
     }
     classAdd(item){
-      this.item = item.colorTags
-      console.log(item)
-      this.item.forEach(element => {
-        this.colors.forEach(ele => {
-          if(ele.colorName == element ){
-            ele['isSelected'] = true
-          }
-        });
-      });
+      console.log(this.colors)
       
       setTimeout(() => {
-        $('.fancybox-toolbar').append('<button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Share"><i class="material-icons">share</i></button><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')
-        $('.fancybox-caption').append('<button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Share"><i class="material-icons">share</i></button><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')
-      }, 30);
-      setTimeout(() => {
-        $('.fancybox-caption').append(' <ul><li *ngFor="let c of colors"   style="color:black"><i class="fa fa-check ticklist" *ngIf="c.isSelected"></i><span class="colortag"  [style.background-color]="c.colorName"></span>{{c.colorName}}</li></ul>')
-      }, 30);
-    }
+        $('.fancybox-toolbar').append('<button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Share"><a href="whatsapp://send?text=Text to send withe message: http://13.59.229.254"><i class="material-icons">share</i></a></button>')
+        $('.fancybox-caption').append('<button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Share"><i class="material-icons">share</i></button>')
+  
+    }, 50);
+  }
+ 
 }
+
+      // setTimeout(() => {
+        // $('.fancybox-caption').append(' <ul><li *ngFor="let c of colors"   style="color:black"><i class="fa fa-check ticklist" *ngIf="c.isSelected"></i><span class="colortag"  [style.background-color]="c.colorName" [innerHtml]="c.colorName">fffffffffff</span></li></ul>')
+      // }, 30);
+
+    //   switch(item.colorName) { 
+    //     case constant_expr1: { 
+    //        //statements; 
+    //        break; 
+    //     } 
+    //     case constant_expr2: { 
+    //        //statements; 
+    //        break; 
+    //     } 
+    //     default: { 
+    //        //statements; 
+    //        break; 
+    //     } 
+    //  } 
+    
+
 export class ColorPicker{
    public colorName: string;
    public isSelected:boolean;

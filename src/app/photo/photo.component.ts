@@ -49,9 +49,9 @@ col: any = []
       //   
            
       this.onpageload();
-      $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
+      $.getScript('../../assets/register/jquery.fancybox.min.js');
      // $.getScript('https://rawgithub.com/kayahr/jquery-fullscreen-plugin/master/jquery.fullscreen.js');
-     // $.getScript('./assets/js/fullview.js'); 
+     $.getScript(''); 
 
 
      
@@ -173,19 +173,27 @@ col: any = []
       }
     }
     classAdd(item){
+      setTimeout(() => {
+        $('.fancybox-content').append('<div class="colorcoderfullveiw"></div>')
+
+        $('.fancybox-toolbar').append('<button  class="fancybox-button fancybox-button--share" title="Share"><a href="whatsapp://send?text=Text to send withe message: http://13.59.229.254"><i class="material-icons">share</i></a></button><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')
+        // $('.fancybox-caption').append('<button  class="fancybox-button fancybox-button--share" title="Share"><i class="material-icons">share</i></button>')
+  
+    }, 50);
+
       if(item["colorTags"] !=null){
         item["colorTags"].splice(item["colorTags"].indexOf(""))
         this.col = item["colorTags"]
          this.col.forEach(element => {
            console.log(element)
          });
-         setTimeout(() => {
-           $('.fancybox-content').append('<div class="colorcoderfullveiw"></div>')
+      //    setTimeout(() => {
+      //      $('.fancybox-content').append('<div class="colorcoderfullveiw"></div>')
    
-           $('.fancybox-toolbar').append('<button  class="fancybox-button fancybox-button--share" title="Share"><a href="whatsapp://send?text=Text to send withe message: http://13.59.229.254"><i class="material-icons">share</i></a></button><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')
-           // $('.fancybox-caption').append('<button  class="fancybox-button fancybox-button--share" title="Share"><i class="material-icons">share</i></button>')
+      //      $('.fancybox-toolbar').append('<button  class="fancybox-button fancybox-button--share" title="Share"><a href="whatsapp://send?text=Text to send withe message: http://13.59.229.254"><i class="material-icons">share</i></a></button><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')
+      //      // $('.fancybox-caption').append('<button  class="fancybox-button fancybox-button--share" title="Share"><i class="material-icons">share</i></button>')
      
-       }, 50);
+      //  }, 50);
    
        setTimeout(() => {
          this.colors.forEach(element => {

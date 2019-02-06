@@ -9,7 +9,7 @@ import { Meta } from '@angular/platform-browser';
 export class PhotoComponent implements OnInit {
     colors: Array<ColorPicker>;
     item:any = [];
-
+col: any = []
         categories:any = [];
 
     category:any
@@ -173,13 +173,36 @@ export class PhotoComponent implements OnInit {
       }
     }
     classAdd(item){
-      console.log(this.colors)
+      if(item["colorTags"] !=null){
+        item["colorTags"].splice(item["colorTags"].indexOf(""))
+        this.col = item["colorTags"]
+         this.col.forEach(element => {
+           console.log(element)
+         });
+         setTimeout(() => {
+           $('.fancybox-content').append('<div class="colorcoderfullveiw"></div>')
+   
+           $('.fancybox-toolbar').append('<button  class="fancybox-button fancybox-button--share" title="Share"><a href="whatsapp://send?text=Text to send withe message: http://13.59.229.254"><i class="material-icons">share</i></a></button><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')
+           // $('.fancybox-caption').append('<button  class="fancybox-button fancybox-button--share" title="Share"><i class="material-icons">share</i></button>')
+     
+       }, 50);
+   
+       setTimeout(() => {
+         this.colors.forEach(element => {
+           if(element['isSelected'] == true){
+           }
+         });
+       }, 60);
+   
+       setTimeout(() => {
+         this.col.forEach(element => {
+             debugger
+           $('.colorcoderfullveiw').append('<span class="colortag"  style="background-color:'+element+'"> </span>')
+         });
+       }, 60);
+      }
       
-      setTimeout(() => {
-        $('.fancybox-toolbar').append('<button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Share"><a href="whatsapp://send?text=Text to send withe message: http://13.59.229.254"><i class="material-icons">share</i></a></button>')
-        $('.fancybox-caption').append('<button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Share"><i class="material-icons">share</i></button>')
-  
-    }, 50);
+    
   }
  
 }

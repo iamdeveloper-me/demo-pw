@@ -17,7 +17,8 @@ export class EventsComponent implements OnInit {
 
   constructor( public http:Http, private pagerService: PagerService,private apiService: apiService,private masterservice: MasterserviceService,private router:Router,private meta:Meta ) {
     this.meta.addTag({ name: 'description', content: 'Top Wedding Events in Mauritius | Perfect Weddings.' });
-   }
+  this.event(''); 
+  }
   locations = [];
    allItems: any[];
   location:string = 'all'
@@ -35,36 +36,41 @@ export class EventsComponent implements OnInit {
   searchQuery: ""
   ngOnInit() {
                 this.locationD();
-                this.http.post(this.apiService.serverPath+'Home/searchevents',{
-                  "page": 0,
-                  "pageSize": 100000,
-                  "sortDir": "",
-                  "sortedBy": "asc",
-                  "searchQuery": "",
-                  "location": "",
-                  "eventType": "all",
-                  "dates": "all"
-                }).map((response: Response) => response.json()).subscribe(data => {
+                this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchevents',{
+                  page: 0,
+                  pageSize: 100000,
+                  sortDir: "string",
+                  sortedBy: "string",
+                  searchQuery: "",
+                  location: "string",
+                  eventType: "string",
+                  dates: "string"
+                  }).subscribe(data => {
+                    console.log(data)
                     this.allItems = data['items'];
-                    console.log(this.allItems);
-                    this.setPage(1);
-                  });  
+                        console.log(this.allItems);
+                        this.setPage(1);
+                },
+                  error => {
+                   console.log(error)
+                  }
+                )
   }
   page2 = 4;
 
   event(list){
-
+debugger;
     const q = {
       page: 0,
       pageSize: 1000000,
       sortDir: "",
       sortedBy: "asc",
-      searchQuery: list.value.searchQuery,
-      location: list.value.location,
-      eventType: list.value.eventType,
-      dates: list.value.dates
+      searchQuery: list?list.value.searchQuery:'event',
+      location: list?list.value.location:'all',
+      eventType: list?list.value.eventType:'all',
+      dates: list?list.value.dates:'all'
     }
-    this.http.post(this.apiService.serverPath+'Home/searchevents',q).map((response: Response) => response.json()).subscribe(data => {
+    this.http.post(this.apiService.serverPath+'PerfectWedding/searchevents',q).map((response: Response) => response.json()).subscribe(data => {
         this.allItems = data['items'];
         console.log(this.allItems);
 

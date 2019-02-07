@@ -194,7 +194,7 @@
                             <input class="cityinput" type="text" [(ngModel)]='categoryFilterParam' placeholder="Type to Search Category">
                           </div>
                         <!-- <div class="regular">All Categories</div> -->
-                          <div class="cityscroll22" *ngIf='!showALlCategories'> 
+                          <div class="cityscroll22" *ngIf='showALlCategories'> 
                             <div class="funkyradio">  
                               <div class="funkyradio-info" *ngFor='let c of categories| categoryPipe:categoryFilterParam'>
                                <!-- <input type="checkbox" name="checkbox" id="{{c.categoryName}}" (change)='setFilterOptions(1,c.categoryId)' [(ngModel)]='c.isSelect'/> -->
@@ -524,49 +524,63 @@
   
 </div>
 
-<div class="filterrow servicefilter" *ngIf='filters'>
+<div class="filterrow servicefilter">
   <h1>Services  <i class="material-icons">arrow_right</i></h1>
-  <div *ngFor='let f of filters.services'>
-    <span class="badge" (click)='setFilterOptions(2,f.servicesId)'>
-        {{f.serviceName}} 
-    </span>
+  <div *ngIf="filters && filters.services">
+      <div  *ngFor='let f of filters.services'>
+          <span *ngIf="f.isSelect" class="badge" (click)='setFilterOptions(2,f.servicesId)'>
+              {{f.serviceName}} 
+          </span>
+        </div>
   </div>
+  
 </div>
 
-<div class="filterrow pricefilter" *ngIf='filters && filters.filters'>
+<div class="filterrow pricefilter" >
   <h1>Price Range (1) <i class="material-icons">arrow_right</i></h1>
-  <div *ngFor='let p of filters.filters[0].customFieldOptionList'>
-    <span class="badge" (click)='setFilterOptions(7,p)'>
-        {{p.key}}
-    </span>
+  <div *ngIf="filters && filters.filters[0]">
+      <div *ngFor='let p of filters.filters[0].customFieldOptionList'>
+          <span *ngIf="p.isSelect" class="badge" (click)='setFilterOptions(7,p)'>
+              {{p.key}}
+          </span>
+        </div>
   </div>
+  
 </div>
 
 <div class="filterrow featuredfilter">
   <h1>Featured Listing (1) <i class="material-icons">arrow_right</i></h1>
-  <div *ngFor='let feature of featuredListingArray'>
-    <span class="badge" (click)='setFilterOptions(8,feature)'>
-        {{feature.key}}
-    </span>
+  <div *ngIf="filters">
+      <div *ngFor='let feature of featuredListingArray'>
+          <span *ngIf="feature.isSelect" class="badge" (click)='setFilterOptions(8,feature)'>
+              {{feature.key}}
+          </span>
+        </div>
   </div>
+ 
 </div>
 
 <div class="filterrow dealsoffer">
   <h1>Deals & Offers <i class="material-icons">arrow_right</i></h1>
-  <div *ngFor='let dd of dealsAndOfferArray'>
-    <span class="badge" (click)='setFilterOptions(9,dd)'>
-        {{dd.key}}
-    </span>
+  <div *ngIf="filters">
+      <div *ngFor='let dd of dealsAndOfferArray'>
+          <span *ngIf="dd.isSelect" class="badge" (click)='setFilterOptions(9,dd)'>
+              {{dd.key}}
+          </span>
+        </div>
   </div>
+ 
 </div>
 
-<div class="filterrow filteroffer" *ngIf='filters && filters.filters'>
+<div class="filterrow filteroffer" >
   <h1>Filters (1) <i class="material-icons">arrow_right</i></h1>
-  <div *ngFor='let ff of filters.filters'>
-    <span class="badge" (click)='setFilterOptions(4,ff)'>
-        {{ff.name}} 
-    </span>
-  </div>
+<div *ngIf="filters">
+    <div *ngFor='let ff of filters.filters'>
+        <span *ngIf="ff.isSelect" class="badge" (click)='setFilterOptions(4,ff)'>
+            {{ff.name}} 
+        </span>
+      </div>
+</div>
 </div>
 
 

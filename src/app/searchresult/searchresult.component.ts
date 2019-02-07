@@ -159,6 +159,7 @@ export class SearchresultComponent implements OnInit {
     filter_paramArray.push(this.SelectedCategory.categoryId);}
     this._masterservice.getFilters(filter_paramArray).subscribe(res=>{
       this.filters=res;
+      console.log(this.filters)
       if(this.filters.services!=null){
       this.filters.services.forEach(element => { element.isSelect=false; });
       this.filters.filters.forEach(element => { element.isSelect=false;});
@@ -348,7 +349,6 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
   }
   // Set Deals And Offers
   let SelectedDealsOffers = this.dealsAndOfferArray.filter(dd=>dd.isSelect==true);
-  debugger;
   if(SelectedDealsOffers && SelectedDealsOffers.length>0){
     this.objSearchlistvm.deals='';
     SelectedDealsOffers.forEach(element => {

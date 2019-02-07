@@ -860,13 +860,29 @@ img.lazyOwl {
     background: #ffffff;
     margin:0px;
 }
+#top-menu li{
+    list-style: none;
+    display: inline-block;
+    width:20%;
+}
+
 .tabdesktop a{
     background: #ffffff;
     color:#333;
     display:inline-block;
-    width:20%;
     text-align:center;
     padding:10px;
+}
+#top-menu li a{
+    width:100%;
+    border-bottom: 2px solid transparent;
+}
+#top-menu li.activebuttontab a{
+    border-bottom: 2px solid #e72e77!important;
+}
+.tabdesktop a.activebuttontab{
+background:#e72e77!important;
+color:#fff!important;
 }
 .tabdesktop a i{
 display:block;
@@ -955,7 +971,7 @@ min-height:248px;
     margin: 0px auto;
 }
 .vp_about_txt_description {
-    height:78px;
+    height:90px;
     overflow:hidden;
 }
 .vp_about_txt_description.showmoretext{

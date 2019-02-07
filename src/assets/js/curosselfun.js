@@ -347,59 +347,6 @@ $(document).ready(function() {
 });
 
 
-
-
-
-$(window).scroll(function() {    
-    var scroll = $(window).scrollTop();
-    if(scroll >= 450)  {
-        $(".overviewbox").addClass("activebuttontab");
-        $(".aboutbox").removeClass("activebuttontab");
-        $(".gallerybox").removeClass("activebuttontab");
-        $(".reviewbox").removeClass("activebuttontab");
-        $(".dealbox").removeClass("activebuttontab");  
-    } 
-});
-$(window).scroll(function() {    
-    var scroll = $(window).scrollTop();
-    if(scroll >= 1160) {
-        $(".aboutbox").removeClass("activebuttontab");
-        $(".overviewbox").removeClass("activebuttontab");
-        $(".gallerybox").addClass("activebuttontab");
-        $(".reviewbox").removeClass("activebuttontab");
-        $(".dealbox").removeClass("activebuttontab");  
-    } 
-});
-$(window).scroll(function() {    
-    var scroll = $(window).scrollTop();
-    if(scroll >= 1560) {
-      $(".gallerybox").removeClass("activebuttontab");
-      $(".aboutbox").addClass("activebuttontab");
-      $(".overviewbox").removeClass("activebuttontab");
-      $(".reviewbox").removeClass("activebuttontab");
-      $(".dealbox").removeClass("activebuttontab");  
-    } 
-}); 
-$(window).scroll(function() {    
-    var scroll = $(window).scrollTop();
-    if(scroll >= 1820) {
-      $(".reviewbox").addClass("activebuttontab");
-      $(".gallerybox").removeClass("activebuttontab");
-      $(".aboutbox").removeClass("activebuttontab");
-      $(".overviewbox").removeClass("activebuttontab");
-      $(".dealbox").removeClass("activebuttontab");  
-    } 
-});   
-$(window).scroll(function() {    
-    var scroll = $(window).scrollTop();
-    if(scroll >= 2000) {
-      $(".reviewbox").removeClass("activebuttontab");
-      $(".gallerybox").removeClass("activebuttontab");
-      $(".aboutbox").removeClass("activebuttontab");
-      $(".overviewbox").removeClass("activebuttontab");
-      $(".dealbox").addClass("activebuttontab");  
-    } 
-});  
 $(window).scroll(function(){
       if ($(this).scrollTop() > 270) {
           $('.icon-div').addClass('fixedpostioneddesktop');
@@ -486,3 +433,4 @@ window.onload = function(){
         readURL(this);
     }
 };
+

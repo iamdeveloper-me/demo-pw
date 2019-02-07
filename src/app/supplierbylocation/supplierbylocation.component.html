@@ -4,20 +4,21 @@
 
 
 	<div class="caroosel_headin text-center">
-		<h3>Featured Wedding 
-			<strong style="color: #e72e77;">Suppliers</strong>
+		<h3>Supplier By
+			<strong style="color: #e72e77;">Location</strong>
 		</h3>
 	</div>
 <div class="clearfix"></div>
 
 	<ul style="list-style: none;">
-		<div *ngFor='let location of locations'>
-				<li>
-					<a class="dropdown-item" (click)="searchCat(location.districtId)">
-							<i class="material-icons">location_on</i>{{location.name}}</a>
-				</li>
-		</div>
+		<li *ngFor='let location of locations' style="display: inline-block;">
+			<a class="dropdown-item" style="padding: 38px;" (click)="searchLocation(location)">
+				<i class="material-icons">location_on</i>
+				{{location.name}}
+			</a>
+		</li>
 	</ul>
+
 
 	<!-- <div class="col-sm-12 citybox1">
 		<img src="../../assets/img/black_river_img.jpg">

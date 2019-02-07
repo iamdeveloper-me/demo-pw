@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SlidesOutputData } from 'ngx-owl-carousel-o';
+import { apiService } from 'app/shared/service/api.service';
 @Component({
   selector: 'app-deal-details',
   templateUrl: './deal-details.component.html',
@@ -34,24 +35,27 @@ export class DealDetailsComponent implements OnInit {
   }
   activeSlides: SlidesOutputData;
   slidesStore: any[];
-  constructor() {
-                    this.slidesStore = [
-                                          {
-                                            src: "https://static1.squarespace.com/static/51d17d80e4b0df98a9be4719/54aa5cd6e4b0b365f776ab79/59a42ecf6b8f5b86e3a49497/1503932119299/RJH+Wedding+Photography-IMG_5895.jpg?format=2500w"
-                                          },
-                                          {
-                                            src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-
-                                          },
-                                          {
-                                            src: "https://static1.squarespace.com/static/51d17d80e4b0df98a9be4719/54aa5cd6e4b0b365f776ab79/59a42ecf6b8f5b86e3a49497/1503932119299/RJH+Wedding+Photography-IMG_5895.jpg?format=2500w"
-
-                                          },
-                    ] 
+  constructor(private apiService:apiService) {
+    
   }
+  noImage:string='https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg';
+  data;
+  all_event:any;
+  highlighteddeal = [];
+  districtdeal = [];
+  suburbdeal = [];
+  albumArray = [];
   getData(data: SlidesOutputData) {
       this.activeSlides = data;
   }
   ngOnInit() {
+
+    this.data = JSON.parse(sessionStorage.getItem('deal,mydeal'));
+    console.log(this.data);
+    this.albumArray = this.data.albums;
+    console.log(this.albumArray);
+    this.albumArray = this.data.albums[0].albumImages;
+    console.log(this.albumArray);
+
   }
 }

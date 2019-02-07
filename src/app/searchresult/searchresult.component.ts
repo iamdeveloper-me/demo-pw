@@ -56,6 +56,9 @@ export class SearchresultComponent implements OnInit {
   categoryFilterParam:string='';
   pageNumber=0;
   priceRange: any;
+  selectedPriceRangeCount:number=0;
+  selectedDealsCount:number=0;
+  selectedServiceCount:number=0
   disableLoadingButton=true;
   blankImg='../../assets/img/noImg.png';
   basicPlan:number;
@@ -147,7 +150,6 @@ export class SearchresultComponent implements OnInit {
     });
   }
   getCategories(){
-    debugger;
     this.categories = JSON.parse(localStorage.getItem('catlist'));
     console.log(this.categories);
     if(this.objSearchFilter.catId>0){
@@ -285,7 +287,13 @@ export class SearchresultComponent implements OnInit {
       
       this.checkUncheckFilter(FilterValue); break;
       case 7: // Pricing
-      this.checkUncheckFilter(FilterValue); break;
+      this.checkUncheckFilter(FilterValue);
+      if(FilterValue.isSelect){
+        this.selectedPriceRangeCount+=1;
+      }else{
+        this.selectedPriceRangeCount-=1;
+      }
+      break;
       case 8: // Feature Listing
       this.checkUncheckFilter(FilterValue); break;
       case 9: // Deals And Offer

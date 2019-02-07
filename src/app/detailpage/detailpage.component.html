@@ -87,33 +87,45 @@
         </div>
       </div>
     
-      <div class="tabdesktop row">
-        <div class="col-md-7 tabwidth100per">
-          <button class="overviewbox" *ngIf="vendorDetails?.businessServices.length > 0 ">
-            <i class="material-icons">insert_comment</i>
+      <div  class="tabdesktop row">
+        <div class="col-md-7 tabwidth100per" id="top-menu">
+          <li>
+          <a href="#overview" class="overviewbox" *ngIf="vendorDetails?.businessServices.length > 0 ">
+            <i class="material-icons">sms</i>
             Overview
-          </button>
-          <button class="gallerybox" *ngIf = "(vendorDetails?.albums.length > 0 || vendorDetails?.portfolios.length > 0 )">
+          </a>
+        </li>
+        <li>
+          <a href="#gallery" class="gallerybox" *ngIf = "(vendorDetails?.albums.length > 0 || vendorDetails?.portfolios.length > 0 )">
               <!-- | vendorDetails?.portfolios.length > 0 -->
-            <i class="material-icons">camera_enhance</i>
+            <i class="material-icons">photo_camera</i>
             Gallery
-          </button>
-          <button class="aboutbox hidden-xs" *ngIf = "vendorDetails?.businessDetails != null">
-            <i class="material-icons">insert_comment</i>
+          </a>
+          </li>
+        <li class="hidden-xs">
+          <a href="#about" class="aboutbox" *ngIf = "vendorDetails?.businessDetails != null">
+            <i class="material-icons">live_help</i>
             About
-          </button>
-          <button class="aboutbox hidden-sm hidden-md hidden-lg mobileabout" *ngIf = "vendorDetails?.businessDetails != null">
-            <i class="material-icons">insert_comment</i>
+          </a>
+          </li>
+        <li class="hidden-sm hidden-md hidden-lg" >
+           <a href="#about" class="aboutbox mobileabout" *ngIf = "vendorDetails?.businessDetails != null">
+            <i class="material-icons">live_help</i>
             About
-          </button>
-          <button class="reviewbox">
-            <i class="material-icons">star</i>
+          </a>
+          </li>
+        <li>
+           <a href="#review" class="reviewbox">
+            <i class="material-icons">star_border</i>
             Reveiws
-          </button>
-          <button class="dealbox" *ngIf = "vendorDetails?.dealsCount > 0">
+          </a>
+          </li>
+        <li>
+           <a href="#deals" class="dealbox" *ngIf = "vendorDetails?.dealsCount > 0">
             <i class="material-icons">local_offer</i>
             Deals
-          </button>
+          </a>
+        </li>
         </div>
         <div class="col-md-2 tikshow hidden-xs">
           <div class="large_text text-center">
@@ -199,7 +211,7 @@
             <div class="text-center showless" style="display: none;">Show less</div> -->
           </div>
         </div>
-        <div class="vp_services_txt" *ngIf = "businessServices_length > 0">
+        <div id="overview" class="vp_services_txt" *ngIf = "businessServices_length > 0">
           <div class="servicecontainer_0 servicecontainer">
             <div class="servicerow">
               <span class="vp_services_txt_span marriager_text_without_underline">
@@ -223,8 +235,7 @@
       <!-- -->
 
       <!-- Portfolio & Albums -->
-
-      <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection gallery" *ngIf = "portfolioAndAlbumImagesTotal > 0">
+      <div id="gallery" class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection gallery" *ngIf = "portfolioAndAlbumImagesTotal > 0">
         <div class="large_subtext" >
           Portfolio & Albums 
           <div class="clearfix"></div>
@@ -414,7 +425,7 @@
       <div class="clearfix"></div>
 
       <!-- start Reviews form -->
-      <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection" id="review">
+      <div id="review" class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection" id="review">
         <div class="vp_review_txt_title large_subtext "> Reviews ( {{vendorDetails.reviews.length}} reviews) 
           <span class="reviewmore">Show All</span>
           <span class="reviewless" style="display:none;">Show Less</span>

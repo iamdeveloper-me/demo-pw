@@ -59,6 +59,7 @@ export class DetailpageComponent implements OnInit {
     $.getScript('./assets/js/prism.min.js');
     $.getScript('./assets/js/owljsor.js');
     $.getScript('./assets/js/curosselfun.js');
+    $.getScript('./assets/js/detailpagescroll_active.js');
     
     $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
 

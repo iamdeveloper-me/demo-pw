@@ -209,7 +209,7 @@
               </div>
             <!--Services-->
             <div class="serviceboxmobile">
-              <div class="panel-heading" >
+              <div class="panel-heading" *ngIf="filters.services.length != 1">
                 <h4 class="panel-title">
                    <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
                     arrow_back_ios
@@ -220,19 +220,19 @@
                 </h4>
               </div>
               <div id="collapse33" class="panel-collapse collapse" >
-                  <div class="category-body">
-                    <div class="searchmobtitlebar city_position ">
+                  <div class="category-body" >
+                    <div class="searchmobtitlebar city_position " >
                       <i class="material-icons">search</i>
                       <input class="cityinput" type="text" value="" id="search" placeholder="Type to Search Category">
                     </div>
                     <!-- <div class="regular">All Categories</div> -->
                     <div class="cityscroll22"> 
-                      <div class="funkyradio" *ngIf='filters'>  
+                      <div class="funkyradio" *ngIf='filters'  >  
                         <div class="funkyradio-info" *ngFor='let f of filters.services'>
             
                          <input type="checkbox" (change)='setFilterOptions(2,f)' [(ngModel)]='f.isSelect' name="checkbox"  id="{{f.serviceName}}"/>
                             <label for="{{f.serviceName}}"> <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
-                            {{f.serviceName}}  
+                            {{f.serviceName}} 
                           </label>
                        </div>
                       </div>
@@ -243,7 +243,7 @@
             <!--End Services filters-->
 						<!-- Price Range  -->
             <div class="priceboxmobile">
-  						<div class="panel-heading ">
+  						<div class="panel-heading " *ngIf="categories[0].services[0].customFields[0].customFieldOptionList.length != 1">
   							<h4 class="panel-title">
                    <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
                     arrow_back_ios
@@ -254,10 +254,9 @@
   							</h4>
   						</div>
   						<div id="collapse1" class="panel-collapse collapse" >
-                 
-                  <div class="funkyradio" *ngIf='filters '>
+             <div class="funkyradio" *ngIf='filters '>
                     <div class="funkyradio-info"  *ngFor='let p of  categories[0].services[0].customFields[0].customFieldOptionList'>
-                      <input type="checkbox" name="checkbox" (change)='setFilterOptions(7,p)'  id="{{p.key}}"/>
+                      <input type="checkbox" name="checkbox" (change)='setFilterOptions(7,p)'  id="{{p.key}}" [(checked)]="p.isSelect"/>
                       <label for="{{p.key}}"> {{p.key}}</label>  
                     </div>
                   </div>

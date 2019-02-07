@@ -280,7 +280,7 @@
   						</div>
   						<div id="collapse1" class="panel-collapse collapse" >
                  
-                  <div class="funkyradio" *ngIf='filters && filters.filters'>
+                  <div class="funkyradio" *ngIf='filters && filters.filters && [0].customFieldOptionList'>
                     <div class="funkyradio-info"  *ngFor='let p of filters.filters[0].customFieldOptionList'>
                       <input type="checkbox" name="checkbox" (change)='setFilterOptions(7,p)'  id="{{p.key}}"/>
                       <label for="{{p.key}}"> {{p.key}}</label>  

@@ -416,16 +416,13 @@
       <!-- start Reviews form -->
       <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection" id="review">
         <div class="vp_review_txt_title large_subtext "> Reviews ( {{vendorDetails.reviews.length}} reviews) 
-          <span class="reviewmore">Show All</span>
-          <span class="reviewless" style="display:none;">Show Less</span>
+          <span *ngIf='vendorDetails.reviews.length>2' class="reviewmore" (click)='showHideReviews(0)'>Show All</span>
+          <span  class="reviewless" style="display:none;" (click)='showHideReviews(2)'>Show Less</span>
         </div>
-        <div class="reviewrow">
+        <div>
           <div *ngFor='let rev of vendorDetails.reviews'>
-              <!--   {{ratingmodel.printStars(rev.rating)}} -->
-              <p [innerHTML]='ratingmodel.printStars(rev.rating)'></p>
-            <p>         
-              {{rev.comments}}
-            </p>
+            <p *ngIf='rev.visible' [innerHTML]='ratingmodel.printStars(rev.rating)'></p>
+            <p *ngIf='rev.visible'> {{rev.comments}}</p>
         </div>
          
         </div>

@@ -280,8 +280,8 @@
   						</div>
   						<div id="collapse1" class="panel-collapse collapse" >
                  
-                  <div class="funkyradio" *ngIf='filters && filters.filters && [0].customFieldOptionList'>
-                    <div class="funkyradio-info"  *ngFor='let p of filters.filters[0].customFieldOptionList'>
+                  <div class="funkyradio" *ngIf='filters '>
+                    <div class="funkyradio-info"  *ngFor='let p of  categories[0].services[0].customFields[0].customFieldOptionList'>
                       <input type="checkbox" name="checkbox" (change)='setFilterOptions(7,p)'  id="{{p.key}}"/>
                       <label for="{{p.key}}"> {{p.key}}</label>  
                     </div>
@@ -594,9 +594,9 @@
 </div>
 
 <div class="filterrow pricefilter" >
-  <h1>Price Range (1) <i class="material-icons">arrow_right</i></h1>
+  <h1>Price Range ({{selectedPriceRangeCount}}) <i class="material-icons">arrow_right</i></h1>
   <div *ngIf="filters ">
-      <div *ngFor='let p of filters.filters[0].customFieldOptionList'>
+      <div *ngFor='let p of categories[0].services[0].customFields[0].customFieldOptionList'>
           <span *ngIf="p.isSelect" class="badge" (click)='setFilterOptions(7,p)'>
               {{p.key}}
           </span>

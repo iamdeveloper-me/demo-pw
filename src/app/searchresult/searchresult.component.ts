@@ -56,6 +56,9 @@ export class SearchresultComponent implements OnInit {
   categoryFilterParam:string='';
   pageNumber=0;
   priceRange: any;
+  selectedPriceRangeCount:number=0;
+  selectedDealsCount:number=0;
+  selectedServiceCount:number=0
   disableLoadingButton=true;
   blankImg='../../assets/img/noImg.png';
   basicPlan:number;
@@ -90,6 +93,7 @@ export class SearchresultComponent implements OnInit {
     this.getFilters();
  //   this.getSearchFilterResult();
  console.log(JSON.stringify(this.categories));
+ debugger
   }
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
@@ -268,7 +272,13 @@ export class SearchresultComponent implements OnInit {
       
       this.checkUncheckFilter(FilterValue); break;
       case 7: // Pricing
-      this.checkUncheckFilter(FilterValue); break;
+      this.checkUncheckFilter(FilterValue);
+      if(FilterValue.isSelect){
+        this.selectedPriceRangeCount+=1;
+      }else{
+        this.selectedPriceRangeCount-=1;
+      }
+      break;
       case 8: // Feature Listing
       this.checkUncheckFilter(FilterValue); break;
       case 9: // Deals And Offer

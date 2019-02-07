@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { apiService } from 'app/shared/service/api.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-deals',
   templateUrl: './deals.component.html',
@@ -9,8 +10,11 @@ import { apiService } from 'app/shared/service/api.service';
 })
 export class DealsComponent implements OnInit {
   deals=[];
-  all_deals= [];
-  constructor(private meta:Meta,   private apiService: apiService,) {
+  all_deals= []; 
+  districtdeal= []; 
+  suburbdeal= []; 
+  highlighteddeal =[];
+  constructor(private meta:Meta,   private apiService: apiService,private router:Router) {
     this.meta.addTag({ name: 'description', content: 'Great Wedding Deals and Offers | Perfect Weddings' });
    }
 
@@ -20,7 +24,25 @@ export class DealsComponent implements OnInit {
     this.all_deals = data.deals;
     console.log(data)
   });
+
+  this.apiService.getData(this.apiService.serverPath+'PerfectWedding/highlighteddeal').subscribe(data => {
+    // console.log(data)
+    this.highlighteddeal = data;
+    console.log(this.highlighteddeal);
+    this.districtdeal = data.districts;
+    this.suburbdeal = data.suburb;
+  }, error => {
+     console.log(error)
+  })
+
   
   }
+
+  goToNextPage(a){
+    sessionStorage.setItem('deal,mydeal',JSON.stringify(a));
+    this.router.navigate(['home/Deal_Details']);
+  }
+
+
 
 }

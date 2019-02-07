@@ -4,7 +4,7 @@
 			<ol _ngcontent-c11="" class="breadcrumb breadcrumbcontainer">
 				<li><a routerLink="/home">Home</a></li>
 				<li><a routerLink="/home/Deals">All Deals</a></li>
-				<li class="active">Deals Details-Vision Photography</li>
+				<li class="active" *ngFor='let deal of data?.vendorCategories; let i=index '>{{deal.categories.categoryName}}</li>
 			</ol>
 		</div>
 		<div class="container">
@@ -12,18 +12,20 @@
 			<div class="row">
 					<div class="col-sm-8 nopadd" id="dealcarousel">
 						<owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
-						  <ng-container *ngFor="let slide of slidesStore">
+						  <ng-container *ngFor="let slide of albumArray">
 						    <ng-template carouselSlide="1" >
-						      <img *ngIf="slide" [src]="slide.src" [alt]="slide.alt" >
-						    </ng-template>
+						      <img [src]="slide.path" [alt]="slide.originalFileName" >
+							</ng-template>
+							<!-- <ng-template carouselSlide="1" *ngIf="albumArray.length == 0" >
+									<img [src]="noImage" >
+							</ng-template> -->
 						  </ng-container>
 						</owl-carousel-o>
 					</div>
 
-
 					<div class="col-sm-4 dealsbanner ">
-						<h1 class="dealdetailhead">
-							10 % discount on Photography
+						<h1 class="dealdetailhead" *ngFor='let deal of data?.vendorCategories; let i=index '>
+							{{data?.discount}} % discount on {{deal.categories.categoryName}}
 							<span class="greentext">Save up to 10% OFF (Value of Rs 2500)</span>
 						</h1>
 						<div class="boxdetail">
@@ -35,14 +37,17 @@
 						<div class="clearfix"></div>
 						<div class="boxdetail">
 							<i class="fa fa-user pullleft font24px"></i>
-							<span>One Eye Photographer<br/>
+							<span>{{data?.businessName}}<br/>
 								<a href="#" class="profilebtn">Veiw Profile</a>
 							</span>
 						</div>
 						<div class="clearfix"></div>
 						<div class="vaildbox">
-							<span><strong class="pink">DEAL VALID UNTIL</strong><br/>
-								14 Jun 2019
+							<span *ngIf="!data?.endDateString == ''"><strong class="pink">DEAL VALID UNTIL</strong><br/>
+								{{data?.endDateString}}
+							</span>
+							<span *ngIf="data?.endDateString == ''"><strong class="pink">DEAL VALID UNTIL</strong><br/>
+								N/A End Date
 							</span>
 						</div>
 						

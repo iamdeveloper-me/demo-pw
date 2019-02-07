@@ -538,7 +538,7 @@
 
 <div class="filterrow pricefilter" >
   <h1>Price Range (1) <i class="material-icons">arrow_right</i></h1>
-  <div *ngIf="filters && filters.filters[0]">
+  <div *ngIf="filters ">
       <div *ngFor='let p of filters.filters[0].customFieldOptionList'>
           <span *ngIf="p.isSelect" class="badge" (click)='setFilterOptions(7,p)'>
               {{p.key}}

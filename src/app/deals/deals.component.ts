@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
   providers: [apiService],
 })
 export class DealsComponent implements OnInit {
-  deals:any[];
-  all_deals:any[]; 
-  districtdeal: any[]; 
-  suburbdeal:any []; 
-  highlighteddeal : any[];
+  deals:any;
+  all_deals:any; 
+  districtdeal: any; 
+  suburbdeal:any ; 
+  highlighteddeal : any;
   constructor(private meta:Meta,   private apiService: apiService,private router:Router) {
     this.meta.addTag({ name: 'description', content: 'Great Wedding Deals and Offers | Perfect Weddings' });
    }

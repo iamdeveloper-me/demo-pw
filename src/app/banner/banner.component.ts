@@ -3,8 +3,8 @@ import { MasterserviceService } from '../ngservices/masterservice.service';
 import { apiService } from '../shared/service/api.service';
 import { filterParam } from '../vendorcard/vendorcard.component'
 import { Router } from '@angular/router';
-import { CustompipePipe } from 'app/custompipe.pipe';
-import { CategoryPipePipe } from 'app/category-pipe.pipe';
+import { CustompipePipe } from '../custompipe.pipe';
+import { CategoryPipePipe } from '../category-pipe.pipe';
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
@@ -25,8 +25,19 @@ export class BannerComponent implements OnInit {
   locationId:number=0;
   categoryClickData : any;
   locationClickData : any;
+  configCategory = {
+    displayKey: "categoryName", //if objects array passed which key to be displayed defaults to description
+    limitTo: 20,
+    placeholder:'All Categories'
+  };
+  configLocation = {
+    displayKey: "name", //if objects array passed which key to be displayed defaults to description
+    limitTo: 20,
+    placeholder:'All Location',
+  };
+ 
   ngOnInit() {
-   //$.getScript('./assets/js/bannerselect.js');
+  //  $.getScript('./assets/js/bannerselect.js');
     this.Categorie();
     this.location();
     this.banner();
@@ -49,19 +60,19 @@ export class BannerComponent implements OnInit {
     this.masterservice.getAllCategories().subscribe(data => {
       this.Categories = data;
       localStorage.setItem('catlist',JSON.stringify(data));
-      console.log( this.Categories )
+      // console.log(this.Categories);
      },error => {  console.log(error) })
   }
   location(){ 
     this.masterservice.getAllLocation().subscribe(data => {
       this.locations = data;
-      console.log(  this.locations )
+      // console.log(this.locations);
      },error => {  console.log(error) })
   }
   banner(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/banners').subscribe(data => {
       this.banner_data = data
-      console.log(this.banner_data)
+      // console.log(this.banner_data);
       },
       error => {
        console.log(error)
@@ -80,7 +91,7 @@ export class BannerComponent implements OnInit {
           this.objFilterParam.sortDir = "";
           this.objFilterParam.sortedBy ="";
           this.objFilterParam.searchQuery ="";
-          this.objFilterParam.locationId = this.locationId;
+          this.objFilterParam.locationId = this.locationId['districtId'];
       }else{
           this.objFilterParam.catId  = var_data['category'] != 0 ?var_data['category']['categoryId']:0;
           this.objFilterParam.categoryName= var_data['category']?var_data['category']['categoryName']: '' ;

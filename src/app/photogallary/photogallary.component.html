@@ -23,17 +23,14 @@
 						</a> 	
 					</div>
 				</div>
-		    <div class="col-6 col-sm-3  text-center" (click) ="goto_detail_of_portfolio(vendorDetails?.portfolios )" >
-              <div  *ngFor='let portpi of vendorDetails?.portfolios  | slice:0:1 ' >
-				  
-							<img style="height: 156px;" [src]="portpi.path" alt="..." >
-					
-					    
-				  
-						<div class="albumname"> My Portfolio</div>
-						<div class="albumname"> Images ({{vendorDetails?.portfolios.length}}) </div>
+		    <div class="col-6 col-sm-3"  *ngFor='let portpi of vendorDetails?.portfolios  | slice:0:1 ' >
+              <div class="thumbnail text-center" >
+				  <a   routerLink="../Photogallerydetail"  (click) ="goto_detail_of_portfolio(vendorDetails?.portfolios )">
+					<img  [src]="portpi.path" alt="..." >
+					<div class="albumname"> My Portfolio <br/>
+						 ({{vendorDetails?.portfolios.length}}) Images </div>
 
-                   
+                </a>
 			  </div>
 			
           </div>

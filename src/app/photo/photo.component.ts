@@ -8,7 +8,10 @@ import { Meta } from '@angular/platform-browser';
 })
 export class PhotoComponent implements OnInit {
     colors: Array<ColorPicker>;
-    categories:any = [];
+    item:any = [];
+col: any = []
+        categories:any = [];
+
     category:any
     pho_data:any = {}
     loading = false;
@@ -43,10 +46,15 @@ export class PhotoComponent implements OnInit {
       // $.getScript('./assets/js/blocksit.min.js');
       // $.getScript('./assets/js/lazy.js');
       // $.getScript('./assets/js/jquery.pinbox.js');
-      // $.getScript('./assets/js/photo.js');    
+      //   
            
       this.onpageload();
-      $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
+      $.getScript('../../assets/register/jquery.fancybox.min.js');
+     // $.getScript('https://rawgithub.com/kayahr/jquery-fullscreen-plugin/master/jquery.fullscreen.js');
+     $.getScript(''); 
+
+
+     
 
       $(document).ready(function(){
       $('.head').on('click', function(){
@@ -164,7 +172,69 @@ export class PhotoComponent implements OnInit {
         this.onpageload()
       }
     }
+    classAdd(item){
+      setTimeout(() => {
+        $('.fancybox-content').append('<div class="colorcoderfullveiw"></div>')
+
+        $('.fancybox-toolbar').append('<button  class="fancybox-button fancybox-button--share" title="Share"><a href="whatsapp://send?text=Text to send withe message: http://13.59.229.254"><i class="material-icons">share</i></a></button><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')
+        // $('.fancybox-caption').append('<button  class="fancybox-button fancybox-button--share" title="Share"><i class="material-icons">share</i></button>')
+  
+    }, 50);
+
+      if(item["colorTags"] !=null){
+        item["colorTags"].splice(item["colorTags"].indexOf(""))
+        this.col = item["colorTags"]
+         this.col.forEach(element => {
+           console.log(element)
+         });
+      //    setTimeout(() => {
+      //      $('.fancybox-content').append('<div class="colorcoderfullveiw"></div>')
+   
+      //      $('.fancybox-toolbar').append('<button  class="fancybox-button fancybox-button--share" title="Share"><a href="whatsapp://send?text=Text to send withe message: http://13.59.229.254"><i class="material-icons">share</i></a></button><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')
+      //      // $('.fancybox-caption').append('<button  class="fancybox-button fancybox-button--share" title="Share"><i class="material-icons">share</i></button>')
+     
+      //  }, 50);
+   
+       setTimeout(() => {
+         this.colors.forEach(element => {
+           if(element['isSelected'] == true){
+           }
+         });
+       }, 60);
+   
+       setTimeout(() => {
+         this.col.forEach(element => {
+             debugger
+           $('.colorcoderfullveiw').append('<span class="colortag"  style="background-color:'+element+'"> </span>')
+         });
+       }, 60);
+      }
+      
+    
+  }
+ 
 }
+
+      // setTimeout(() => {
+        // $('.fancybox-caption').append(' <ul><li *ngFor="let c of colors"   style="color:black"><i class="fa fa-check ticklist" *ngIf="c.isSelected"></i><span class="colortag"  [style.background-color]="c.colorName" [innerHtml]="c.colorName">fffffffffff</span></li></ul>')
+      // }, 30);
+
+    //   switch(item.colorName) { 
+    //     case constant_expr1: { 
+    //        //statements; 
+    //        break; 
+    //     } 
+    //     case constant_expr2: { 
+    //        //statements; 
+    //        break; 
+    //     } 
+    //     default: { 
+    //        //statements; 
+    //        break; 
+    //     } 
+    //  } 
+    
+
 export class ColorPicker{
    public colorName: string;
    public isSelected:boolean;
@@ -187,4 +257,5 @@ export class  photoSearchParam  {
     this.sortedBy = 'asc';
     this.color = [];
   }
+  
 }

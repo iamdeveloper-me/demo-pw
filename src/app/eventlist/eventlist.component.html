@@ -1,123 +1,107 @@
-<div id="wrappervendor" class="" >
-  <app-menu></app-menu>
-  
-<section class="container-fluid tipslist">
-   <h1 class="eventtitle">
-     Event Title
-   </h1>
-</section>
+<div id="wrappervendor" class="">
+    <app-menu></app-menu>
 
-<div class="clearfix"></div>
-<section class="container event_box">
-   <!-- <h4><span><i class="fa fa-calendar-check-o" aria-hidden="true"></i> </span> Schedule</h4> -->
-   <div class="row">
-      <div class="col-md-9">
-          <div class="event_para">
-                <h4><span><i class="material-icons">description</i> </span> Event Information
-                    <span class="iconbox">
-                      <span><i class="material-icons">visibility</i> 85 </span>
-                      <span><i class="material-icons">bookmark</i> 0 </span>
-                      &nbsp;&nbsp;&nbsp;
-                      <span><a href="#" class="pink_color">Share this Event</a></span>
-                    </span>
-                </h4>
-                <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. <br> <br>
-    
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                </p>
-          </div>
-          
-      
-            <section class="margi_top_30px padd_bot_10px">
-                    
-                <div class="row parking_row">
+    <section class="container-fluid tipslist">
+        <h1 class="eventtitle">
+            {{data.eventTitle}}
+        </h1>
+        <img [src]="data.files.path" class="imgClass">
+    </section>
+
+    <div class="clearfix"></div>
+    <section class="container event_box">
+        <!-- <h4><span><i class="fa fa-calendar-check-o" aria-hidden="true"></i> </span> Schedule</h4> -->
+        <div class="row">
+            <div class="col-md-9">
+                <div class="event_para">
+                    <h4><span><i class="material-icons">description</i> </span> Event Information
+                        <span class="iconbox">
+                            <span><i class="material-icons">visibility</i> {{data?.numberOfViews}} </span>
+                            <span><i class="material-icons">bookmark</i> {{data?.numberOfBookmarks}} </span>
+                            &nbsp;&nbsp;&nbsp;
+                            <span><a href="#" class="pink_color">Share this Event</a></span>
+                        </span>
+                    </h4>
+                    <p>
+                        {{data.eventDescription}}
+                    </p>
+                </div>
+
+
+                <section class="margi_top_30px padd_bot_10px">
+
+                    <div class="row parking_row">
                         <h4 class="location_up"><span><i class="material-icons">location_on
-                            </i> </span> Location</h4>
-                         <div class="col-md-12"> 
-                            <p><strong>Venue</strong></p>
-                            <p>642, Beauty Fort Street, Mount Lawley Western Australia 6050</p>
-                            <p><i class="material-icons pull-left">phone_iphone</i> +91- 99999-12345</p>
+                                </i> </span> Location</h4>
+                        <div class="col-md-12">
+                            <p><strong>{{data?.venueName }}</strong></p>
+                            <p>{{data?.location}},{{data?.country}},{{data?.districts}},{{data?.suburb}}</p>
+                            <p><i class="material-icons pull-left" *ngIf="data?.phoneNumber == null">phone_iphone</i> N/A PhoneNumber</p>
+                            <p><i class="material-icons pull-left" *ngIf="!data?.phoneNumber== null">phone_iphone</i> {{data?.phoneNumber}}</p>
                         </div>
-                </div>
-            </section>
-            <section class="margi_top_30px margin_bott_50px">
-                   
-                <div class="row parking_row padd_bott_30px">
-                        <h4 class="location_up">Similar Events  That May Interest You</h4>
-                         <div class="row col-md-12 padd0"> 
-                               <div class="col-md-3 col-6">
-                                   <div>
-                                        <img src="../../assets/img/photo.jpg" width="100%" alt="">
-                                        <p class="text-center bold">Event Name</p>
-                                   </div>  
-                               </div>
-                               <div class="col-md-3 col-6">
-                                     <div>
-                                         <img src="../../assets/img/photo.jpg" width="100%" alt="">
-                                          <p class="text-center bold">Event Name</p>
-                                    </div>  
-                                </div>
-                                <div class="col-md-3 col-6">
-                                         <div>
-                                             <img src="../../assets/img/photo.jpg" width="100%" alt="">
-                                              <p class="text-center bold">Event Name</p>
-                                        </div>  
-                                    </div>
-                                    <div class="col-md-3 col-6">
-                                             <div>
-                                                 <img src="../../assets/img/photo.jpg" width="100%" alt="">
-                                                  <p class="text-center bold">Event Name</p>
-                                            </div>  
-                                        </div>
-                        </div>
-                </div>
-            </section>         
-      </div>
+                    </div>
+                </section>
+                <section class="margi_top_30px margin_bott_50px">
 
-      <div class="col-md-3">
-            <section class="">
-                    
-                <div class="row parking_row">
+                    <div class="row parking_row padd_bott_30px">
+                        <h4 class="location_up">Similar Events That May Interest You</h4>
+                        <div class="row col-md-12 padd0">
+                            <div class="col-md-3 col-6" *ngFor='let other_event of all_event  | slice:0:4 '>
+                                <div>
+                                    <img [src]="other_event.files.path" width="100%" alt="">
+                                    <p class="text-center bold">{{other_event.eventTitle}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-md-3">
+                <section class="">
+
+                    <div class="row parking_row">
                         <h4><span><i class="material-icons">watch_later</i> </span> Schedule</h4>
-                         <div class="col-md-12 marbot5px"> 
-                           <p><span class="bold">Start Date & Time</span><br/>
-                           24 Jan 2018 &nbsp;&nbsp; 8:00 am</p>
-                         </div>
-                         <div class="col-md-12 marbot5px"> 
-                           <p><span class="bold">Ending Date and Time</span><br/>
-                           24 Jan 2018 &nbsp;&nbsp; 8:00 am</p>
-                         </div>
-                         <div class="col-md-12 marbot5px"> 
-                           <p><span class="bold">Duration</span><br/>
-                           1 day</p>
-                         </div>
-                </div>
-            </section>
-            <section class="margi_top_30px">
-                   
-                <div class="row parking_row2">
+                        <div class="col-md-12 marbot5px" *ngFor='let event of data?.eventsDates | slice:0:1 ;let i=index '>
+                            <p><span class="bold">Start Date & Time</span><br />
+                                    {{event?.startDateString}} &nbsp;&nbsp;{{event?.startTimeString}}</p>
+                            <!-- <div class="col-md-12 marbot5px"> -->
+                                <p><span class="bold">Ending Date and Time</span><br />
+                                    {{event?.endDateString}} &nbsp;&nbsp;{{event?.endTimeString}}</p>
+                            <!-- </div> -->
+                        </div>
+
+                        <div class="col-md-12 marbot5px"  *ngFor='let event of data?.eventsDates | slice:0:1 ;let i=index '>
+                            <p><span class="bold">Duration</span><br />
+                                {{event?.duration}} </p>
+                        </div>
+                    </div>
+                </section>
+                <section class="margi_top_30px">
+
+                    <div class="row parking_row2">
                         <h4><i class="material-icons">local_play</i> Tickets</h4>
                         <div class="clearfix"></div>
-                            <div class="col-sm-12">
+                        <div class="col-sm-12">
                             <div class="tickets">FREE ENTRY</div>
-                            
-                            <p class="text-center">CAPACITY:500</p>
+                            <p class="text-center">FEES : {{data?.entryFee}}</p>
+                            <p class="text-center">CAPACITY:{{data.capacity}}</p>
                         </div>
-                </div>
-            </section>
+                    </div>
+                </section>
 
-            <section class="margi_top_30px">  
-                <div class="row parking_row3">
-                        <h4 class="location_up"><span><i class="fa fa-user" aria-hidden="true"></i> </span> Event Organiser</h4>
-                         <div class="col-md-12 text-center"> 
-                              <img class="circle_img" src="../../assets/img/photo.jpg" alt=""> 
-                          </div>
-                          <div class="col-md-12 text-center"> 
-                            <span> <strong> Jack Amiol</strong> <br> Member since January 2015 </span>
+                <section class="margi_top_30px">
+                    <div class="row parking_row3">
+                        <h4 class="location_up"><span><i class="fa fa-user" aria-hidden="true"></i> </span> Event
+                            Organiser</h4>
+                        <div class="col-md-12 text-center">
+                            <img class="circle_img" src="../../assets/img/photo.jpg" alt="">
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <span> <strong> {{data?.organiserName}}</strong> <br> {{data?.memberSince}} </span>
 
-                            
-                            
+
+
                             <p class="social_field">
                                 <span> <i class="fa fa-facebook" aria-hidden="true"></i></span>
                                 <span> <i class="fa fa-twitter" aria-hidden="true"></i></span>
@@ -125,16 +109,16 @@
                             </p>
 
                             <p>
-                              <a href="#" class="profilebtn">View Profile</a>
+                                <a href="#" class="profilebtn">View Profile</a>
                             </p>
-                         </div>
-                </div>
-            </section>
+                        </div>
+                    </div>
+                </section>
 
-      </div>
-   </div>
-</section>
-<div class="clearfix"></div>
-<app-foot></app-foot>
+            </div>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+    <app-foot></app-foot>
 </div>
 <router-outlet></router-outlet>

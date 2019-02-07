@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef,NgZone } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { apiService } from 'app/shared/service/api.service';
+import{ratingStars} from '../ngservices/ratingstars';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MasterserviceService } from 'app/ngservices/masterservice.service';
 import { MapsAPILoader, AgmMap } from '@agm/core';
@@ -23,6 +24,9 @@ interface Location {
   providers: [apiService],
 })
 export class DetailpageComponent implements OnInit {
+  lat: number = 51.678418;
+  lng: number = 7.809007;
+  
   private url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails/'
   sliderImgaes: any = [];
   trading_hours_popups:any= {isMondayOpen: ''};
@@ -34,6 +38,7 @@ export class DetailpageComponent implements OnInit {
   businessServices_length ;
   portfolioAndAlbumImagesTotal: number = 0;
   similarVendors:any;
+  ratingmodel: ratingStars;
   portfolioImages = [];
   lightBoxImages=[];
   similarVendors_length;
@@ -48,13 +53,15 @@ export class DetailpageComponent implements OnInit {
      public mapsApiLoader: MapsAPILoader,
      private router: Router,
    ) { 
-
+      this.ratingmodel = new ratingStars();
   }
   ngOnInit() {
     $.getScript('./assets/js/prism.min.js');
     $.getScript('./assets/js/owljsor.js');
     $.getScript('./assets/js/curosselfun.js');
-     $.getScript('./assets/js/jquery.fancybox.min.js');
+    
+    $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
+
     $("#Vediogallarypopup").on('hidden.bs.modal', function (e) {
       $("#Vediogallarypopup iframe").attr("src", $("#Vediogallarypopup iframe").attr("src"));
     });
@@ -103,7 +110,13 @@ export class DetailpageComponent implements OnInit {
     
 
   }
-
+classAdd(item){
+    //  console.log(this.colors)
+      
+      setTimeout(() => {
+        $('.fancybox-toolbar').append('<a class="fancybox-button" title="Share" href="whatsapp://send?text=Text to send withe message: http://13.59.229.254"><i class="material-icons">share</i></a><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')  
+    }, 50);
+  }
   review = { rating: '', comments: "", rateVendorID: 'a96129c3-8861-43aa-8bc9-1c155f1ffd79' }
  
   putReview(review) {

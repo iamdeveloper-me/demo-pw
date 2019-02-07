@@ -90,6 +90,7 @@ export class SearchresultComponent implements OnInit {
     this.getFilters();
  //   this.getSearchFilterResult();
  console.log(JSON.stringify(this.categories));
+ debugger
   }
   getData(data: SlidesOutputData) {
     this.activeSlides = data;

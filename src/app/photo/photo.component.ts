@@ -10,6 +10,8 @@ export class PhotoComponent implements OnInit {
     colors: Array<ColorPicker>;
     item:any = [];
 col: any = []
+item_tags:any = []
+
         categories:any = [];
 
     category:any
@@ -173,6 +175,7 @@ col: any = []
       }
     }
     classAdd(item){
+      this.item_tags = item['tags']
       setTimeout(() => {
         $('.fancybox-content').append('<div class="colorcoderfullveiw"></div>')
 
@@ -182,8 +185,13 @@ col: any = []
     }, 50);
 
       if(item["colorTags"] !=null){
-        item["colorTags"].splice(item["colorTags"].indexOf(""))
-        this.col = item["colorTags"]
+           if(item["colorTags"].indexOf("") == -1){
+            this.col = item["colorTags"]
+           }else{
+            item["colorTags"].splice(item["colorTags"].indexOf(""))
+            this.col = item["colorTags"]
+           }
+        
          this.col.forEach(element => {
            console.log(element)
          });
@@ -204,10 +212,17 @@ col: any = []
    
        setTimeout(() => {
          this.col.forEach(element => {
-             debugger
+
            $('.colorcoderfullveiw').append('<span class="colortag"  style="background-color:'+element+'"> </span>')
          });
        }, 60);
+       setTimeout(() => {
+        this.item_tags.forEach(element => {
+
+          $('.colorcoderfullveiw').append('<span class="colortag" >'+element+' </span>')
+        });
+      }, 70);
+      debugger
       }
       
     

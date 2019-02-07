@@ -137,7 +137,6 @@ export class SearchresultComponent implements OnInit {
     });
   }
   getCategories(){
-    debugger;
     this.categories = JSON.parse(localStorage.getItem('catlist'));
     console.log(this.categories);
     if(this.objSearchFilter.catId>0){
@@ -348,7 +347,6 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
   }
   // Set Deals And Offers
   let SelectedDealsOffers = this.dealsAndOfferArray.filter(dd=>dd.isSelect==true);
-  debugger;
   if(SelectedDealsOffers && SelectedDealsOffers.length>0){
     this.objSearchlistvm.deals='';
     SelectedDealsOffers.forEach(element => {

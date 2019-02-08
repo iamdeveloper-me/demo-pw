@@ -14,11 +14,12 @@ export class EventlistComponent implements OnInit {
   }
   data;
   all_event:any;
+  noImage:string='https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg';
   ngOnInit() {
 
     this.data = JSON.parse(sessionStorage.getItem('event'));
     console.log(this.data);
-    this.apiService.postData(this.apiService.serverPath+'Home/searchevents',{
+    this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchevents',{
       "page": 0,
       "pageSize": 100000,
       "sortDir": "",
@@ -28,8 +29,9 @@ export class EventlistComponent implements OnInit {
       "eventType": "all",
       "dates": "all"
     }).subscribe(data => {
-        console.log(data.items)
-        this.all_event = data.items; 
+        // console.log(data.items);
+        this.all_event = data.items;
+        console.log(this.all_event); 
       });  
   }
 

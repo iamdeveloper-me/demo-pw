@@ -17,11 +17,10 @@ export class EventsComponent implements OnInit {
 
   constructor( public http:Http, private pagerService: PagerService,private apiService: apiService,private masterservice: MasterserviceService,private router:Router,private meta:Meta ) {
     this.meta.addTag({ name: 'description', content: 'Top Wedding Events in Mauritius | Perfect Weddings.' });
-  this.event(''); 
-  }
+   }
   locations = [];
    allItems: any[];
-  location:string = 'all'
+  location:string = 'All'
   eventType:string = 'All'
   dates:string =  "All"
   pager: any = {};
@@ -36,42 +35,50 @@ export class EventsComponent implements OnInit {
   searchQuery: ""
   ngOnInit() {
                 this.locationD();
-                this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchevents',{
-                  page: 0,
-                  pageSize: 100000,
-                  sortDir: "string",
-                  sortedBy: "asc",
-                  searchQuery: '',
-                  location: '',
-                  eventType: '',
-                  dates: 'all'
-                  }).subscribe(data => {
-                    console.log(JSON.stringify(data));
+                this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchevents',
+
+                     {
+                             
+                        "page": 0,
+                        "pageSize": 23,
+                        "sortDir": "string",
+                        "sortedBy": "asc",
+                        "searchQuery": "string",
+                        "location": "",
+                        "eventType": "All",
+                        "dates": "All"
+                        }
+
+                        
+                  ).subscribe(data => {
+                    
                     this.allItems = data['items'];
-                        console.log(this.allItems);
-                        this.setPage(1);
-                },
-                  error => {
-                   console.log(error)
-                  }
-                )
+                    console.log(this.allItems);
+                    this.setPage(1);
+                  });  
   }
   page2 = 4;
 
   event(list){
-debugger;
-    const q = {
+           
+    const q = 
+  
+    {
       page: 0,
       pageSize: 1000000,
       sortDir: "",
       sortedBy: "asc",
-      searchQuery: list?list.value.searchQuery:'event',
+      searchQuery: list?list.value.searchQuery:'',
       location: list?list.value.location:'all',
       eventType: list?list.value.eventType:'all',
       dates: list?list.value.dates:'all'
     }
+    console.log(list.value.location);
+    console.log(q);
+  
+  
     this.http.post(this.apiService.serverPath+'PerfectWedding/searchevents',q).map((response: Response) => response.json()).subscribe(data => {
-        this.allItems = data['items'];
+        this.allItems = data.items;
         console.log(this.allItems);
 
         this.setPage(1);

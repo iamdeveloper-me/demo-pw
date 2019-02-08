@@ -34,5 +34,6 @@ export class EventlistComponent implements OnInit {
         console.log(this.all_event); 
       });  
   }
+  //Event Api
 
 }

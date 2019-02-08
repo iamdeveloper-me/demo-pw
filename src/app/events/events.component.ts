@@ -69,6 +69,7 @@ export class EventsComponent implements OnInit {
       eventType: list?list.value.eventType:'all',
       dates: list?list.value.dates:'all'
     }
+    //Event API
     this.http.post(this.apiService.serverPath+'PerfectWedding/searchevents',q).map((response: Response) => response.json()).subscribe(data => {
         this.allItems = data['items'];
         console.log(this.allItems);

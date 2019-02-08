@@ -5,6 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { element } from 'protractor';
+import { ImageuploadService } from 'app/shared/service/vendor/imageupload.service';
+
+
 @Component({
   selector: 'app-discountdeals',
   templateUrl: './discountdeals.component.html',
@@ -27,24 +31,39 @@ export class DiscountdealsComponent implements OnInit {
   upgradeMsg=''
   upgradeMembership:boolean = false;
   Supplierdiscount:any = [];
-
+  
   title;
   disTitle;
   createdial = false;
-  
+  selectedFile: ImageSnippet;
+
   createdeal:{dealId: 0,  title: "",  conditions: "",  startDate: "", endDate: "", neverExpire: true};
   updatemydeal:any = {
     title: "",
     conditions: "",
     startDate: "",
     endDate: "",
-    neverExpire: true
+    neverExpire: true,
+    discountType:"",
+    discount: ''
   };
+  discountTypeList = [ 
+  {
+    name: "Percentage",
+    value: 0,
+    isSelected: true
+  },
+  {
+    name: "Ammount",
+    value: 1,
+    isSelected: false
+  }]
+  selectedDiscountType : string = ''
   recentmydeal:any = [];
   readioSelected_serv:boolean;
   ram:boolean =false
   basicplan:number
-  constructor(public http: Http,public toastr: ToastrService, private router: Router  ) {
+  constructor(public imageService : ImageuploadService,public http: Http,public toastr: ToastrService, private router: Router  ) {
     this.basicplan = JSON.parse(localStorage.getItem('basic-plan'));
 
    }
@@ -152,6 +171,8 @@ export class DiscountdealsComponent implements OnInit {
   }
   @ViewChild('createdeal') validationForm: FormGroup;
 
+  onItemChange(item){
+this.discountTypeList.forEach(element => {if(element == item){element["isSelected"] = true}else{element["isSelected"] = false}});}
 updatedis(service){
   this.dealservice = false;
   let headers = new Headers();
@@ -308,25 +329,36 @@ openupdatedeal(data){
  
   
 }
+
 updatedeal(info){
                    
                    
                     let headers = new Headers();
                     var authToken = localStorage.getItem('userToken');
-
+debugger
                     headers.append('Accept', 'application/json')
                     headers.append('Content-Type', 'application/json');
                     headers.append("Authorization",'Bearer '+authToken);
                     info.value.Start_date =  info.value.Start_date["year"]+'-'+info.value.Start_date["month"]+'-'+info.value.Start_date["day"]
-                    info.value.End_date =  info.value.End_date["year"]+'-'+info.value.End_date["month"]+'-'+info.value.End_date["day"]
+                    if(info.value.End_date != undefined){
+                      info.value.End_date =  info.value.End_date["year"]+'-'+info.value.End_date["month"]+'-'+info.value.End_date["day"]
+                    }
+                    this.discountTypeList.forEach(item=>{
+                      if(item['isSelected'] == true){
+                        debugger
+                        this.selectedDiscountType  = item['name']
+                      }
+                    })
                  
                     const upc = {
                       dealId: info.value.dealId,
                       title: info.value.update_title ,
                       conditions: info.value.Condition,
-                      startDate: info.value.Start_date,
-                      endDate: info.value.End_date,
-                      neverExpire: info.value.optradio
+                      startDate: info.value.Start_date+"T07:15:14.972Z",
+                      endDate: info.value.End_date != undefined ? info.value.End_date+'T07:15:14.972Z': null,
+                      neverExpire: info.value.optradio,
+                      discountType:  this.selectedDiscountType,
+                      discount : info.value.update_discount
                     }
                    
                     this.http.post(this.url+'api/Supplier/createupdatedeals',upc,{headers:headers}).subscribe(
@@ -452,7 +484,12 @@ return;
 }  
 }
 
+class ImageSnippet {
+  pending: boolean = false;
+  status: string = 'init';
 
+  constructor(public src: string, public file: File) {}
+}
  
 // 1. /api/LookupMaster/discounts get done 
 // 2. /api/Supplier/discount  grt  done

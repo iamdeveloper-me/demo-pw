@@ -208,7 +208,7 @@
                   </div>
               </div>
             <!--Services-->
-            <div class="serviceboxmobile" >
+            <div class="serviceboxmobile" *ngIf='filters && filters.services && filters.services.length>1' >
                       <div class="panel-heading" >
                           <h4 class="panel-title">
                              <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">

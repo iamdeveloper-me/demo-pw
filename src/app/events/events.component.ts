@@ -20,7 +20,7 @@ export class EventsComponent implements OnInit {
    }
   locations = [];
    allItems: any[];
-  location:string = 'all'
+  location:string = 'All'
   eventType:string = 'All'
   dates:string =  "All"
   pager: any = {};
@@ -36,27 +36,22 @@ export class EventsComponent implements OnInit {
   ngOnInit() {
                 this.locationD();
                 this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchevents',
-                // {
-                //   "page": 0,
-                //   "pageSize": 100000,
-                //   "sortDir": "",
-                //   "sortedBy": "asc",
-                //   "searchQuery": "",
-                //   "location": "",
-                //   "eventType": "all",
-                //   "dates": "all"
-                // }
+
                      {
-                              "page": 0,
-                              "pageSize": 100000,
-                              "sortDir": "string",
-                              "sortedBy": "string",
-                              "searchQuery": "string",
-                              "location": "string",
-                              "eventType": "string",
-                              "dates": "string"
-                            }
+                             
+                        "page": 0,
+                        "pageSize": 23,
+                        "sortDir": "string",
+                        "sortedBy": "asc",
+                        "searchQuery": "string",
+                        "location": "",
+                        "eventType": "All",
+                        "dates": "All"
+                        }
+
+                        
                   ).subscribe(data => {
+                    
                     this.allItems = data['items'];
                     console.log(this.allItems);
                     this.setPage(1);
@@ -65,28 +60,23 @@ export class EventsComponent implements OnInit {
   page2 = 4;
 
   event(list){
-
+           
     const q = 
-    // {
-    //   "page": 0,
-    //   "pageSize": 100000,
-    //   "sortDir": "string",
-    //   "sortedBy": "string",
-    //   "searchQuery": "string",
-    //   "location": "string",
-    //   "eventType": "string",
-    //   "dates": "string"
-    // }
+  
     {
       page: 0,
       pageSize: 1000000,
       sortDir: "",
       sortedBy: "asc",
-      searchQuery: list.value.searchQuery,
-      location: list.value.location,
-      eventType: list.value.eventType,
-      dates: list.value.dates
+      searchQuery: list?list.value.searchQuery:'',
+      location: list?list.value.location:'all',
+      eventType: list?list.value.eventType:'all',
+      dates: list?list.value.dates:'all'
     }
+    console.log(list.value.location);
+    console.log(q);
+  
+  
     this.http.post(this.apiService.serverPath+'PerfectWedding/searchevents',q).map((response: Response) => response.json()).subscribe(data => {
         this.allItems = data.items;
         console.log(this.allItems);

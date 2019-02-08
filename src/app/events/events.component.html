@@ -16,7 +16,7 @@
 						</div>
 						<div class="col-sm-3">
 							<select class="form-control" name="location" [(ngModel)]="location" id="location">
-								<option selected>All Location</option>
+								<option value="All" selected>All Location</option>
 								<option *ngFor='let list_locations of locations'> {{list_locations.name}}</option>
 							</select>
 						</div>
@@ -53,11 +53,7 @@
 						</div>
 					</div>
 				</form>
-				<div *ngFor="let allitem of allItems">
-						<p ngIf="allItems.length == 0">
-								No Event Regarding this date!!
-						</p>
-				</div>
+
 			</div>
 			<!-- search part  end -->
 			<div class="row eventlisting">
@@ -126,7 +122,7 @@
 						</div>
 		            	<div class="clearfix"></div>
 						<!-- pager -->
-							<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+							<!-- <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
 								<li [ngClass]="{disabled:pager.currentPage === 1}">
 									<a (click)="setPage(1)">First</a>
 								</li>
@@ -142,7 +138,7 @@
 								<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
 									<a (click)="setPage(pager.totalPages)">Last</a>
 								</li>
-							</ul>
+							</ul> -->
 						<!-- pager end -->
 					</div>
 				</div>

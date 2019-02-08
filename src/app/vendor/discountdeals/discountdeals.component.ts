@@ -8,13 +8,18 @@ import { Router } from '@angular/router';
 import { element } from 'protractor';
 import { ImageuploadService } from 'app/shared/service/vendor/imageupload.service';
 
-
+import { FileUploader ,FileItem} from 'ng2-file-upload/ng2-file-upload';
+const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 @Component({
   selector: 'app-discountdeals',
   templateUrl: './discountdeals.component.html',
   styleUrls: ['./discountdeals.component.scss']
 })
 export class DiscountdealsComponent implements OnInit {
+  uploader: FileUploader = new FileUploader({
+    url: URL,
+    isHTML5: true
+  });
   url = apiPath.url;
   create_start_date;
   customDay;
@@ -31,12 +36,12 @@ export class DiscountdealsComponent implements OnInit {
   upgradeMsg=''
   upgradeMembership:boolean = false;
   Supplierdiscount:any = [];
-  
+  imageToUpload: any;
   title;
   disTitle;
   createdial = false;
   selectedFile: ImageSnippet;
-
+  image_data = {}; 
   createdeal:{dealId: 0,  title: "",  conditions: "",  startDate: "", endDate: "", neverExpire: true};
   updatemydeal:any = {
     title: "",
@@ -329,13 +334,24 @@ openupdatedeal(data){
  
   
 }
-
+fileChangeListener($event) {
+  var image: any = new Image();
+  var file: File = $event.target.files[0];
+  var myReader: FileReader = new FileReader();
+  var that = this;
+  myReader.onloadend = function (loadEvent: any) {
+    image.src = loadEvent.target.result;
+   // that.cropper.setImage(image);
+   console.log(image);
+  };
+  myReader.readAsDataURL(file);
+  console.log(myReader);
+}
 updatedeal(info){
-                   
-                   
+           
                     let headers = new Headers();
                     var authToken = localStorage.getItem('userToken');
-debugger
+
                     headers.append('Accept', 'application/json')
                     headers.append('Content-Type', 'application/json');
                     headers.append("Authorization",'Bearer '+authToken);
@@ -350,6 +366,7 @@ debugger
                       }
                     })
                  
+
                     const upc = {
                       dealId: info.value.dealId,
                       title: info.value.update_title ,

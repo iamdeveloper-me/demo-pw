@@ -40,13 +40,13 @@ export class EventsComponent implements OnInit {
                   page: 0,
                   pageSize: 100000,
                   sortDir: "string",
-                  sortedBy: "string",
-                  searchQuery: "",
-                  location: "string",
-                  eventType: "string",
-                  dates: "string"
+                  sortedBy: "asc",
+                  searchQuery: '',
+                  location: '',
+                  eventType: '',
+                  dates: 'all'
                   }).subscribe(data => {
-                    console.log(data)
+                    console.log(JSON.stringify(data));
                     this.allItems = data['items'];
                         console.log(this.allItems);
                         this.setPage(1);

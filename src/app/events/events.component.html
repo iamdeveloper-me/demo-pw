@@ -60,12 +60,9 @@
 				<div class="container">
 					<div class="text-center">
 
-
+						<p *ngIf="pagedItems?.length == 0">No Events Found!!!</p>
 						<!-- items being paged -->
-						<!-- {{pagedItems?.length}} -->
 						<div class="col-sm-4 " *ngFor="let item of pagedItems">
-
-
 							<div class="card cardshadow" (click)="goToNextPage(item)">
 								<img class="card-img-top img-fluid eventimg" *ngIf="item.files" [src]="item.files.path">
 								<div class="ribbon ribbon-top-right" *ngIf="item?.entryFee == null; else entry"><span>Free</span></div>
@@ -121,7 +118,7 @@
 						</div>
 		            	<div class="clearfix"></div>
 						<!-- pager -->
-							<!-- <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+							<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
 								<li [ngClass]="{disabled:pager.currentPage === 1}">
 									<a (click)="setPage(1)">First</a>
 								</li>
@@ -137,7 +134,7 @@
 								<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
 									<a (click)="setPage(pager.totalPages)">Last</a>
 								</li>
-							</ul> -->
+							</ul>
 						<!-- pager end -->
 					</div>
 				</div>

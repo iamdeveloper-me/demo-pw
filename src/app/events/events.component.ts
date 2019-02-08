@@ -46,9 +46,9 @@ export class EventsComponent implements OnInit {
                   eventType: '',
                   dates: 'all'
                   }).subscribe(data => {
-                    console.log(JSON.stringify(data));
+                    // console.log(JSON.stringify(data));
                     this.allItems = data['items'];
-                        console.log(this.allItems);
+                        // console.log(this.allItems);
                         this.setPage(1);
                 },
                   error => {
@@ -59,13 +59,12 @@ export class EventsComponent implements OnInit {
   page2 = 4;
 
   event(list){
-debugger;
     const q = {
       page: 0,
       pageSize: 1000000,
       sortDir: "",
       sortedBy: "asc",
-      searchQuery: list?list.value.searchQuery:'event',
+      searchQuery: list?list.value.searchQuery:'',
       location: list?list.value.location:'all',
       eventType: list?list.value.eventType:'all',
       dates: list?list.value.dates:'all'

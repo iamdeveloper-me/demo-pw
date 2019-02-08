@@ -16,7 +16,7 @@
 						</div>
 						<div class="col-sm-3">
 							<select class="form-control" name="location" [(ngModel)]="location" id="location">
-								<option selected>All Location</option>
+								<option value="All" selected>All Location</option>
 								<option *ngFor='let list_locations of locations'> {{list_locations.name}}</option>
 							</select>
 						</div>

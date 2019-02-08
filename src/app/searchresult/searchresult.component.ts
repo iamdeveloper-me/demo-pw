@@ -90,6 +90,16 @@ export class SearchresultComponent implements OnInit {
     this.getFilters();
  //   this.getSearchFilterResult();
  console.log(JSON.stringify(this.categories));
+ if(this.categories[0].services[0].customFields[0].customFieldOptionList.length == 1){
+  this.categories[0].services[0].customFields[0].customFieldOptionList.forEach(element => {element['isSelect'] = true});
+ }else{
+  this.categories[0].services[0].customFields[0].customFieldOptionList.forEach(element => {element['isSelect'] = false});
+ }
+
+
+   
+ 
+ debugger
   }
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
@@ -159,13 +169,20 @@ export class SearchresultComponent implements OnInit {
     filter_paramArray.push(this.SelectedCategory.categoryId);}
     this._masterservice.getFilters(filter_paramArray).subscribe(res=>{
       this.filters=res;
+      console.log(this.filters)
       if(this.filters.services!=null){
-      this.filters.services.forEach(element => { element.isSelect=false; });
+        if(this.filters.services.length == 1){
+          this.filters.services.forEach(element => { element.isSelect=true; });
+        }else{
+          this.filters.services.forEach(element => { element.isSelect=false; });
+        }
       this.filters.filters.forEach(element => { element.isSelect=false;});
+     
       this.priceRange = this.filters.filters[0].customFieldOptionList;
       this.priceRange.forEach(element => {
         element.isSelect = false;
       });
+      
     }
     },error=>{
       console.log(error);
@@ -349,8 +366,13 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
   // Set Deals And Offers
   let SelectedDealsOffers = this.dealsAndOfferArray.filter(dd=>dd.isSelect==true);
   if(SelectedDealsOffers && SelectedDealsOffers.length>0){
-    this.objSearchlistvm.deals =SelectedDealsOffers[0].key;
+    this.objSearchlistvm.deals='';
+    SelectedDealsOffers.forEach(element => {
+      this.objSearchlistvm.deals +=element.key+',';  
+    });
+    
   }
+  console.log(this.objSearchlistvm);
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
     console.log(this.objSearchResultItems);

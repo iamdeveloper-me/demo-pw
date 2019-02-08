@@ -55,8 +55,8 @@
                             <h1>{{error_1}}</h1>
                             <div class="span2 pcon prodcont actioninside" *ngFor="let item of pagedItems">
                                 <div (click) = "popup(item)">
-                                    <a data-fancybox="cl-group"  class="fancybox" title="{{item.district}}" href="{{item.imageURL}}" [attr.data-caption]="item.nameOfBusiness">
-                                        <img (click)="classAdd(item)" *ngIf="item"  [src]="item.imageURL"/>
+                                    <a data-fancybox="cl-group" (click)="classAdd(item)"  class="fancybox" title="{{item.district}}" href="{{item.imageURL}}" [attr.data-caption]="item.nameOfBusiness" >
+                                        <img *ngIf="item"  [src]="item.imageURL"/>
                                     </a>
                                         <div class="clearfix"></div>
                                         <div class="photodetail">

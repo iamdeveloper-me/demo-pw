@@ -9,6 +9,8 @@ import { Meta } from '@angular/platform-browser';
 export class PhotoComponent implements OnInit {
     colors: Array<ColorPicker>;
     item:any = [];
+col: any = []
+item_tags:any = []
 
         categories:any = [];
 
@@ -49,9 +51,9 @@ export class PhotoComponent implements OnInit {
       //   
            
       this.onpageload();
-      $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
+      $.getScript('../../assets/register/jquery.fancybox.min.js');
      // $.getScript('https://rawgithub.com/kayahr/jquery-fullscreen-plugin/master/jquery.fullscreen.js');
-     // $.getScript('./assets/js/fullview.js'); 
+     $.getScript(''); 
 
 
      
@@ -173,25 +175,81 @@ export class PhotoComponent implements OnInit {
       }
     }
     classAdd(item){
-      this.item = item.colorTags
-      console.log(item)
-      this.item.forEach(element => {
-        this.colors.forEach(ele => {
-          if(ele.colorName == element ){
-            ele['isSelected'] = true
-          }
+      this.item_tags = item['tags']
+      setTimeout(() => {
+        $('.fancybox-content').append('<div class="colorcoderfullveiw"></div>')
+
+        $('.fancybox-toolbar').append('<button  class="fancybox-button fancybox-button--share" title="Share"><a href="whatsapp://send?text=Text to send withe message: http://13.59.229.254"><i class="material-icons">share</i></a></button><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')
+        // $('.fancybox-caption').append('<button  class="fancybox-button fancybox-button--share" title="Share"><i class="material-icons">share</i></button>')
+  
+    }, 50);
+
+      if(item["colorTags"] !=null){
+           if(item["colorTags"].indexOf("") == -1){
+            this.col = item["colorTags"]
+           }else{
+            item["colorTags"].splice(item["colorTags"].indexOf(""))
+            this.col = item["colorTags"]
+           }
+        
+         this.col.forEach(element => {
+           console.log(element)
+         });
+      //    setTimeout(() => {
+      //      $('.fancybox-content').append('<div class="colorcoderfullveiw"></div>')
+   
+      //      $('.fancybox-toolbar').append('<button  class="fancybox-button fancybox-button--share" title="Share"><a href="whatsapp://send?text=Text to send withe message: http://13.59.229.254"><i class="material-icons">share</i></a></button><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')
+      //      // $('.fancybox-caption').append('<button  class="fancybox-button fancybox-button--share" title="Share"><i class="material-icons">share</i></button>')
+     
+      //  }, 50);
+   
+       setTimeout(() => {
+         this.colors.forEach(element => {
+           if(element['isSelected'] == true){
+           }
+         });
+       }, 60);
+   
+       setTimeout(() => {
+         this.col.forEach(element => {
+
+           $('.colorcoderfullveiw').append('<span class="colortag"  style="background-color:'+element+'"> </span>')
+         });
+       }, 60);
+       setTimeout(() => {
+        this.item_tags.forEach(element => {
+
+          $('.colorcoderfullveiw').append('<span class="colortag" >'+element+' </span>')
         });
-      });
+      }, 70);
+      debugger
+      }
       
-      setTimeout(() => {
-        $('.fancybox-toolbar').append('<button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Share"><i class="material-icons">share</i></button><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')
-        $('.fancybox-caption').append('<button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Share"><i class="material-icons">share</i></button><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')
-      }, 30);
-      setTimeout(() => {
-        $('.fancybox-caption').append(' <ul><li *ngFor="let c of colors"   style="color:black"><i class="fa fa-check ticklist" *ngIf="c.isSelected"></i><span class="colortag"  [style.background-color]="c.colorName"></span>{{c.colorName}}</li></ul>')
-      }, 30);
-    }
+    
+  }
+ 
 }
+
+      // setTimeout(() => {
+        // $('.fancybox-caption').append(' <ul><li *ngFor="let c of colors"   style="color:black"><i class="fa fa-check ticklist" *ngIf="c.isSelected"></i><span class="colortag"  [style.background-color]="c.colorName" [innerHtml]="c.colorName">fffffffffff</span></li></ul>')
+      // }, 30);
+
+    //   switch(item.colorName) { 
+    //     case constant_expr1: { 
+    //        //statements; 
+    //        break; 
+    //     } 
+    //     case constant_expr2: { 
+    //        //statements; 
+    //        break; 
+    //     } 
+    //     default: { 
+    //        //statements; 
+    //        break; 
+    //     } 
+    //  } 
+    
+
 export class ColorPicker{
    public colorName: string;
    public isSelected:boolean;

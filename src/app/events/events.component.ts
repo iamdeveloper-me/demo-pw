@@ -35,16 +35,28 @@ export class EventsComponent implements OnInit {
   searchQuery: ""
   ngOnInit() {
                 this.locationD();
-                this.http.post(this.apiService.serverPath+'Home/searchevents',{
-                  "page": 0,
-                  "pageSize": 100000,
-                  "sortDir": "",
-                  "sortedBy": "asc",
-                  "searchQuery": "",
-                  "location": "",
-                  "eventType": "all",
-                  "dates": "all"
-                }).map((response: Response) => response.json()).subscribe(data => {
+                this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchevents',
+                // {
+                //   "page": 0,
+                //   "pageSize": 100000,
+                //   "sortDir": "",
+                //   "sortedBy": "asc",
+                //   "searchQuery": "",
+                //   "location": "",
+                //   "eventType": "all",
+                //   "dates": "all"
+                // }
+                     {
+                              "page": 0,
+                              "pageSize": 100000,
+                              "sortDir": "string",
+                              "sortedBy": "string",
+                              "searchQuery": "string",
+                              "location": "string",
+                              "eventType": "string",
+                              "dates": "string"
+                            }
+                  ).subscribe(data => {
                     this.allItems = data['items'];
                     console.log(this.allItems);
                     this.setPage(1);
@@ -54,7 +66,18 @@ export class EventsComponent implements OnInit {
 
   event(list){
 
-    const q = {
+    const q = 
+    // {
+    //   "page": 0,
+    //   "pageSize": 100000,
+    //   "sortDir": "string",
+    //   "sortedBy": "string",
+    //   "searchQuery": "string",
+    //   "location": "string",
+    //   "eventType": "string",
+    //   "dates": "string"
+    // }
+    {
       page: 0,
       pageSize: 1000000,
       sortDir: "",
@@ -64,8 +87,8 @@ export class EventsComponent implements OnInit {
       eventType: list.value.eventType,
       dates: list.value.dates
     }
-    this.http.post(this.apiService.serverPath+'Home/searchevents',q).map((response: Response) => response.json()).subscribe(data => {
-        this.allItems = data['items'];
+    this.http.post(this.apiService.serverPath+'PerfectWedding/searchevents',q).map((response: Response) => response.json()).subscribe(data => {
+        this.allItems = data.items;
         console.log(this.allItems);
 
         this.setPage(1);

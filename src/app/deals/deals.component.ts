@@ -18,7 +18,8 @@ export class DealsComponent implements OnInit {
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/dealsanddiscount').subscribe(data => {
     this.deals = data.discounts;
     this.all_deals = data.deals;
-    console.log(data)
+    console.log( this.deals);
+    console.log( this.all_deals)
   });
   
   }

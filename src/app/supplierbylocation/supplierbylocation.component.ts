@@ -55,7 +55,7 @@ export class SupplierbylocationComponent implements OnInit {
       this.objFilterParam.locationId = var_data['location'];
     }
       sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
-      this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
+      this.router.navigate(['home/weddingvendors']);
 }
 
 }

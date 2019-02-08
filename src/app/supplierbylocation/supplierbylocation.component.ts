@@ -23,9 +23,20 @@ export class SupplierbylocationComponent implements OnInit {
   }
 
   location(){ 
+    this.locations=[
+      { 'districtId':1, 'locationName': 'Black River', 'className': 'col-sm-12 citybox1', 'locationUrl': '../../assets/img/black_river_img.jpg'},
+      { 'districtId':3, 'locationName': 'Flacq', 'className': 'col-sm-6 citybox cityboxcontant mob375', 'locationUrl': '../../assets/img/flacq.jpg'},
+      { 'districtId':2, 'locationName': 'Grand Port', 'className': 'col-sm-6 citybox cityboxcontant', 'locationUrl': '../../assets/img/gand_port.jpg'},
+      { 'districtId':4, 'locationName': 'Moka', 'className': 'col-sm-4 citybox', 'locationUrl': '../../assets/img/moka_img.jpg'},
+      { 'districtId':5, 'locationName': 'Pamplemousses', 'className': 'col-sm-8 citybox', 'locationUrl': '../../assets/img/pamless.jpg'},
+      { 'districtId':6, 'locationName': 'Plaines-Wilhems', 'className': 'col-sm-8 citybox', 'locationUrl': '../../assets/img/plains_will.jpg'},
+      { 'districtId':7, 'locationName': 'Port-Louis', 'className': 'col-sm-4 citybox', 'locationUrl': '../../assets/img/port_louis.jpg'},
+      { 'districtId':8, 'locationName': 'Riviere du Rempart', 'className': 'col-sm-6 citybox citybox1', 'locationUrl': '../../assets/img/maxresdefault.jpg'},
+      { 'districtId':18, 'locationName': 'Roche Bon Dieu - Trefles', 'className': 'col-sm-6 citybox', 'locationUrl': '../../assets/img/rodrigues.jpg'},
+    ]
       this.masterservice.getAllLocation().subscribe(data => {
-      this.locations = data;
-      console.log(this.locations);
+//      this.locations = data;
+      console.log(JSON.stringify(data));
       },error => {  console.log(error) })
   }
 
@@ -46,4 +57,10 @@ export class SupplierbylocationComponent implements OnInit {
       this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
 }
 
+}
+export class Locations{
+  locationId:number;
+  locationName:string;
+  locationUrl:string;
+  locationClass:string;
 }

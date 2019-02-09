@@ -64,15 +64,19 @@ export class SearchresultComponent implements OnInit {
   dealsAndOfferArray:any;
   featuredListingArray:any;
   SelectedCategory:any;
-  ratingmodel: ratingStars
-  constructor(public _route:Router, public _activeRoute: ActivatedRoute, 
+  ratingmodel: ratingStars;
+  Honeymoon_detail:any = {};
+    constructor(public _route:Router, public _activeRoute: ActivatedRoute, 
     private _masterservice: MasterserviceService, private api: apiService,
     public toastr: ToastrService) {
       
       this._activeRoute.params.subscribe((params) => {
         this.initializeResult();   
      });
-     
+     //honeymoon page code
+     this.Honeymoon_detail= JSON.parse(sessionStorage.getItem('Honeymoon_detail'));
+
+     console.log(this.Honeymoon_detail) 
       
   }
   initializeResult(){
@@ -99,7 +103,7 @@ export class SearchresultComponent implements OnInit {
 
    
  
- debugger
+
   }
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
@@ -147,7 +151,7 @@ export class SearchresultComponent implements OnInit {
     });
   }
   getCategories(){
-    debugger;
+  
     this.categories = JSON.parse(localStorage.getItem('catlist'));
     console.log(this.categories);
     if(this.objSearchFilter.catId>0){
@@ -250,7 +254,7 @@ export class SearchresultComponent implements OnInit {
     this.objSearchlistvm.page=0;
     switch(filterType){
       case 1: // Category
-      debugger;
+ 
       this.objSearchlistvm= new SearchListingVM();
       this.checkUncheckFilter(FilterValue);
      if(FilterValue.isSelect){
@@ -311,7 +315,8 @@ export class SearchresultComponent implements OnInit {
     this.objSearchlistvm.categoryId.push(this.SelectedCategory.categoryId);}
     if(this.SelectedLocation){
       this.objSearchlistvm.districts=[];
-    this.objSearchlistvm.districts.push(this.SelectedLocation.districtId);}
+      if(this.SelectedLocation!=undefined && this.SelectedLocation.districtId>0){
+    this.objSearchlistvm.districts.push(this.SelectedLocation.districtId);}}
     if(this.filters!=null && this.filters.filters!=null){
     let selectedServices = this.filters.services.filter(s=>s.isSelect==true);
     if(selectedServices.length>0){

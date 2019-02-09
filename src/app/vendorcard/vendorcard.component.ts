@@ -169,6 +169,6 @@ export class filterParam{
   sortDir: "";
   sortedBy: "";
   searchQuery: "";
-  locationId:number;
-  totalCount:number;
+  locationId:number=0;
+  totalCount:number=0;
 }

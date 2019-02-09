@@ -311,7 +311,8 @@ export class SearchresultComponent implements OnInit {
     this.objSearchlistvm.categoryId.push(this.SelectedCategory.categoryId);}
     if(this.SelectedLocation){
       this.objSearchlistvm.districts=[];
-    this.objSearchlistvm.districts.push(this.SelectedLocation.districtId);}
+      if(this.SelectedLocation!=undefined && this.SelectedLocation.districtId>0){
+    this.objSearchlistvm.districts.push(this.SelectedLocation.districtId);}}
     if(this.filters!=null && this.filters.filters!=null){
     let selectedServices = this.filters.services.filter(s=>s.isSelect==true);
     if(selectedServices.length>0){

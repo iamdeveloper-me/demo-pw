@@ -3,6 +3,26 @@
   <app-tool *ngIf="basicPlan != 3 && basicPlan != 0">
    
   </app-tool>
+
+  <div class="container martop60px" *ngIf = "Honeymoon_detail != null">
+    <ol class="breadcrumb breadcrumbcontainer">
+        <li class="active">{{Honeymoon_detail?.name}}</li>
+    </ol>
+    <div class="clearfix"></div>
+    <div class="row dealsbanner">
+      <div class="col-sm-6 dealbannerdetail">
+        <h4 class="bali_heading">{{Honeymoon_detail?.name}}</h4>
+        <p class="contant_text">{{Honeymoon_detail?.description}}</p>
+      </div>
+      <div class="col-sm-6">
+          <img [src]="Honeymoon_detail?.imageURL" class="dealbanner">
+      </div>
+      <div>
+      
+      </div>
+    </div> 		
+</div>    
+
   <div class="container-fluid recomslider">
       <!--Carousel Wrapper-->
   <div class="container">

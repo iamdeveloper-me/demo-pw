@@ -185,6 +185,16 @@
                     <button type="button" class="close" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">   
+
+                        <div class="col-md-12">
+                                <label class="image-upload-container btn btn-bwm">
+                                        <span>Select Image</span>
+                                        <input #fileInput style="width:100%" (change)="fileChangeListener($event)"
+                                        type="file" name="image" id="image" />
+                                </label>
+                        </div>
+
+                              
                     <div class="col-md-12">
                         <div class="field">
                                 <input class="effect-16 validate" 

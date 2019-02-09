@@ -159,6 +159,7 @@ const appRoutes: Routes = [
   { path: 'register/step4', component: StepForthComponent },
   { path: 'home/weddingvendors', component: SearchresultComponent },
   { path: 'home/weddingvendors/:id', component: SearchresultComponent },
+  { path: 'home/weddingvendors/:id/:id', component: SearchresultComponent },
   { path: 'home/tips_list', component: TipslistComponent },
   { path: 'home/event_list', component: EventlistComponent },
   { path: 'home/detailprofile/:id', component:  DetailpageComponent  },

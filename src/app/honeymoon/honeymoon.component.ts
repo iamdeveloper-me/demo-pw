@@ -4,7 +4,7 @@ import { MasterserviceService } from 'app/ngservices/masterservice.service';
 import { apiService } from 'app/shared/service/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
-
+import { filterParam } from '../vendorcard/vendorcard.component'
 @Component({
   selector: 'app-honeymoon',
   templateUrl: './honeymoon.component.html',
@@ -13,7 +13,10 @@ import { Meta } from '@angular/platform-browser';
 })
 export class HoneymoonComponent implements OnInit{
   Honeymoon_destinations:any;
+  objFilterParam: filterParam;
   vendors_of_honeymoon:any;
+  locationId:number=0;
+  locationClickData : any;
   customOptions: any = {
     loop: true,
     mouseDrag: true,
@@ -52,6 +55,7 @@ export class HoneymoonComponent implements OnInit{
   activeSlides: SlidesOutputData;
   slidesStore: any[];
   constructor(public _masterservice: MasterserviceService,private apiService: apiService,private router: Router,private meta:Meta) {
+    this.objFilterParam = new filterParam();
     this.meta.addTag({ name: 'description', content: 'Top Honeymoon & Travel Destinations | Perfect Weddings' });
     this.getSliderData(); 
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/honeymoondestinations').subscribe(data => {
@@ -73,10 +77,53 @@ export class HoneymoonComponent implements OnInit{
       console.log(JSON.stringify(error));
     });
   }
-  honeymoondetail_page(a){
-    sessionStorage.setItem('Honeymoon_detail',JSON.stringify(a));
-   // this.router.navigateByUrl(['/home/Honeymoon_Details/', a.name]);
-    this.router.navigate(['home/Honeymoon_Details',a.name.replace(/\s/g,'')]);
-  
+  search(e,isAllSupplier,isDreamLocation,var_data){
+    
+    if(var_data == null){
+        this.objFilterParam.catId  = e.value.category?e.value.category.categoryId:0;
+        this.objFilterParam.categoryName= e.value.category?e.value.category.categoryName: '' ;
+        this.objFilterParam.categoryName=this.objFilterParam.categoryName==undefined?'All Categories':this.objFilterParam.categoryName;
+        this.objFilterParam.isDreamLocation=isDreamLocation;
+        this.objFilterParam.isAllSupplier=isAllSupplier;
+        this.objFilterParam.page = 1;
+        this.objFilterParam.pageSize = 25;
+        this.objFilterParam.sortDir = "";
+        this.objFilterParam.sortedBy ="";
+        this.objFilterParam.searchQuery ="";
+        this.objFilterParam.locationId = this.locationId['districtId'];
+    }else{
+        this.objFilterParam.catId  = var_data['category'] != 0 ?var_data['category']['categoryId']:0;
+        this.objFilterParam.categoryName= var_data['place_name'] ;
+        this.objFilterParam.isDreamLocation=isDreamLocation;
+        this.objFilterParam.isAllSupplier=isAllSupplier;
+        this.objFilterParam.page = 1;
+        this.objFilterParam.pageSize = 25;
+        this.objFilterParam.sortDir = "";
+        this.objFilterParam.sortedBy ="";
+        this.objFilterParam.searchQuery ="";
+        this.objFilterParam.locationId = var_data['location'];
+      }
+
+      console.log( this.objFilterParam.categoryName)
+        sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+        this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'') ,this.objFilterParam.locationId ]);
   }
+  searchmore(data){
+    sessionStorage.setItem('Honeymoon_detail',JSON.stringify(data));
+      this.locationClickData = data.honeymoonLocationId;
+      const var_data = {
+        category:  0,
+        location: this.locationClickData,
+        place_name: data.name
+      }
+     
+      this.search(null,true,false,var_data)
+  }
+  // honeymoondetail_page(a){
+    
+  //   sessionStorage.setItem('Honeymoon_detail',JSON.stringify(a));
+  //  // this.router.navigateByUrl(['/home/Honeymoon_Details/', a.name]);
+  //   this.router.navigate(['home/weddingvendors',a.name.replace(/\s/g,''),a.honeymoonLocationId]);
+  
+  // }
 }

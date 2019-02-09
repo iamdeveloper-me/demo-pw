@@ -35,35 +35,34 @@ export class EventsComponent implements OnInit {
   searchQuery: ""
   ngOnInit() {
                 this.locationD();
-                this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchevents',
 
-                     {
-                             
-                        "page": 0,
-                        "pageSize": 23,
-                        "sortDir": "string",
-                        "sortedBy": "asc",
-                        "searchQuery": "string",
-                        "location": "",
-                        "eventType": "All",
-                        "dates": "All"
-                        }
-
-                        
-                  ).subscribe(data => {
-                    
+                this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchevents',{
+                  page: 0,
+                  pageSize: 100000,
+                  sortDir: "string",
+                  sortedBy: "asc",
+                  searchQuery: '',
+                  location: '',
+                  eventType: '',
+                  dates: 'all'
+                  }).subscribe(data => {
+                    // console.log(JSON.stringify(data));
                     this.allItems = data['items'];
-                    console.log(this.allItems);
-                    this.setPage(1);
-                  });  
+                        // console.log(this.allItems);
+                        this.setPage(1);
+                },
+                  error => {
+                   console.log(error)
+                  }
+                )
+
   }
   page2 = 4;
 
   event(list){
-           
-    const q = 
-  
-    {
+
+    const q = {
+
       page: 0,
       pageSize: 1000000,
       sortDir: "",
@@ -73,10 +72,7 @@ export class EventsComponent implements OnInit {
       eventType: list?list.value.eventType:'all',
       dates: list?list.value.dates:'all'
     }
-    console.log(list.value.location);
-    console.log(q);
-  
-  
+    //Event API
     this.http.post(this.apiService.serverPath+'PerfectWedding/searchevents',q).map((response: Response) => response.json()).subscribe(data => {
         this.allItems = data.items;
         console.log(this.allItems);

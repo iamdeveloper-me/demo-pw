@@ -44,7 +44,23 @@ background-image: url('https://s3.us-east-2.amazonaws.com/prefect-image/inner_he
   font-weight: bold;
   position: relative;
   top: 6px;
-
+}
+h4.panel-title i {
+    border: solid #999;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 4px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transition: all ease .3s;
+    top: 3px;
+    position: relative;
+    float: right;
+}
+.arrowup h4.panel-title i {
+  transform: rotate(-135deg)!important;
+  -webkit-transform: rotate(-135deg)!important;
+  transition: all ease .3s;
 }
 .loadmorebtn{
   margin: 10px auto !important;
@@ -1300,7 +1316,6 @@ padding-bottom: 5px;
  .photo-group .thumbnail>img.list-group-image{
    height: 200px;
   }
-
 
 #products.photo-group  .grid-group-item{
   border:0px;

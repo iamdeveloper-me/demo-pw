@@ -109,12 +109,15 @@ $(".showhidefilter").click(function(){
       $(".ratingboxmobile").hide();
       $(".dealboxmobile").hide();
       $(".filterboxmobile").hide();
+      $(".serviceBoxMobile").hide();
+      $(".dealsAndOfferBoxMobile").hide();
+
     $(".collapse").addClass("show in");
     
     });
 
 $(".categoryfilter").click(function(){
- //alert("category");
+//  alert("category");
     $(".filterselectbox").hide();
     $("#searchfilterbox").show();
      $(".locationboxmobile").hide();
@@ -125,8 +128,67 @@ $(".categoryfilter").click(function(){
       $(".ratingboxmobile").hide();
       $(".dealboxmobile").hide();
       $(".filterboxmobile").hide();
+      $(".serviceBoxMobile").hide();
+      $(".dealsAndOfferBoxMobile").hide();
+
     $(".collapse").addClass("show in");   
     });
+
+    $(".servicesFilter").click(function(){
+        // alert("servicesFilter");
+           $(".filterselectbox").hide();
+           $("#searchfilterbox").show();
+            $(".locationboxmobile").hide();
+             $(".categoryboxmobile").hide();
+             $(".serviceBoxMobile").show();
+             $(".dealsAndOfferBoxMobile").hide();
+
+             $(".serviceboxmobile").hide(); 
+             $(".priceboxmobile").hide();
+             $(".featureboxmobile").hide();
+             $(".ratingboxmobile").hide();
+             $(".dealboxmobile").hide();
+             $(".filterboxmobile").hide();
+           $(".collapse").addClass("show in");   
+           });
+           $(".dealsAndOffer").click(function(){
+            // alert("dealsAndOffer");
+               $(".filterselectbox").hide();
+               $("#searchfilterbox").show();
+                $(".locationboxmobile").hide();
+                 $(".categoryboxmobile").hide();
+                 $(".serviceBoxMobile").hide();
+                 $(".dealsAndOfferBoxMobile").show();
+
+                 
+    
+                 $(".serviceboxmobile").hide(); 
+                 $(".priceboxmobile").hide();
+                 $(".featureboxmobile").hide();
+                 $(".ratingboxmobile").hide();
+                 $(".dealboxmobile").hide();
+                 $(".filterboxmobile").hide();
+               $(".collapse").addClass("show in");   
+               });
+
+               $(".filterViewBox").click(function(){
+                // alert("filterViewBox");
+                   $(".filterselectbox").hide();
+                   $("#searchfilterbox").show();
+                    $(".locationboxmobile").hide();
+                     $(".categoryboxmobile").hide();
+                     $(".serviceBoxMobile").hide();
+                     $(".dealsAndOfferBoxMobile").hide();
+                     $(".dealsAndOfferBoxMobile").hide();
+                     $(".serviceboxmobile").hide(); 
+                     $(".priceboxmobile").hide();
+                     $(".featureboxmobile").hide();
+                     $(".ratingboxmobile").hide();
+                     $(".dealboxmobile").hide();
+                     $(".filterboxmobile").show();
+                   $(".collapse").addClass("show in");   
+                   });
+              
 
 $(".pricefilter").click(function(){
 // alert("price");
@@ -140,6 +202,9 @@ $(".pricefilter").click(function(){
       $(".ratingboxmobile").hide();
       $(".dealboxmobile").hide();
       $(".filterboxmobile").hide();
+      $(".serviceBoxMobile").hide();
+      $(".dealsAndOfferBoxMobile").hide();
+
     $(".collapse").addClass("show in");
     });
 
@@ -157,6 +222,9 @@ $(".featuredfilter").click(function(){
       $(".ratingboxmobile").hide();
       $(".dealboxmobile").hide();
       $(".filterboxmobile").hide();
+      $(".serviceBoxMobile").hide();
+      $(".dealsAndOfferBoxMobile").hide();
+
     $(".collapse").addClass("show in");
     });
 
@@ -173,10 +241,30 @@ $(".dealsoffer").click(function(){
       $(".ratingboxmobile").hide();
       $(".dealboxmobile").show();
       $(".filterboxmobile").hide();
+      $(".serviceBoxMobile").hide();
+      $(".dealsAndOfferBoxMobile").hide();
+
     $(".collapse").addClass("show in");
     });
 
+    $(".aaa").click(function(){
+        alert("price");
+            $(".filterselectbox").hide();
+            $("#searchfilterbox").show();
+             $(".locationboxmobile").hide();
+              $(".categoryboxmobile").hide();
+              $(".serviceboxmobile").hide(); 
+              $(".priceboxmobile").hide();
+              $(".featureboxmobile").hide();
+              $(".ratingboxmobile").hide();
+              $(".dealboxmobile").hide();
+              $(".bbbb").show();
+              $(".serviceBoxMobile").hide();
 
+
+              $(".filterboxmobile").hide();
+            $(".collapse").addClass("show in");
+            });
 
 $(".servicefilter").click(function(){
 // alert("price");
@@ -188,6 +276,9 @@ $(".servicefilter").click(function(){
       $(".priceboxmobile").hide();
       $(".featureboxmobile").hide();
       $(".ratingboxmobile").hide();
+      $(".serviceBoxMobile").hide();
+      $(".dealsAndOfferBoxMobile").hide();
+
       $(".dealboxmobile").hide();
       $(".filterboxmobile").hide();
     $(".collapse").addClass("show in");
@@ -209,9 +300,11 @@ $(".filteroffer").click(function(){
       $(".ratingboxmobile").hide();
       $(".dealboxmobile").hide();
       $(".filterboxmobile").show();
+      $(".dealsAndOfferBoxMobile").hide();
+
     $(".collapse").addClass("show in");
     });
- 
+    
     
 
 

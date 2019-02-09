@@ -11,6 +11,15 @@ import { Object } from 'core-js/library/web/timers';
 })
 export class FaqComponent {
 
+  ngOnInit() {
+
+  $('.card-block').each(function(){
+      var $this = $(this);
+      var t = $this.text();
+      $this.html(t.replace('&lt','<').replace('&gt', '>'));
+  });
+  
+  }
   faqs: FAQ[];
 
   constructor(private faqService: FaqService) {

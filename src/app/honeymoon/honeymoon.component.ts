@@ -61,6 +61,7 @@ export class HoneymoonComponent implements OnInit{
     this.searchlistvm.categoryId.push(4);
     this._masterservice.getFilterResult(this.searchlistvm).subscribe(res =>{
       this.slidesStore =  res['items']  ;
+      console.log( this.slidesStore)
     },error=>{
       console.log(JSON.stringify(error));
     });

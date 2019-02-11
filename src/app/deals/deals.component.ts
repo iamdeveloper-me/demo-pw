@@ -12,6 +12,7 @@ export class DealsComponent implements OnInit {
   deals:any;
   all_deals:any; 
   districtdeal: any = {name:''}; 
+  albumeArray:any = [];
   suburbdeal:any={name:""} ; 
   highlighteddeal : any = {nameOfBusiness : ''};
   constructor(private meta:Meta,   private apiService: apiService,private router:Router) {
@@ -21,18 +22,18 @@ export class DealsComponent implements OnInit {
   ngOnInit() {
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/dealsanddiscount').subscribe(data => {
     this.deals = data.discounts;
-    this.all_deals = data.deals;
     console.log( this.deals);
+    this.all_deals = data.deals;
     console.log( this.all_deals)
   },error => {
     console.log(error)
   });
 
   this.apiService.getData(this.apiService.serverPath+'PerfectWedding/highlighteddeal').subscribe(data => {
-    // console.log(data)
     this.highlighteddeal = data;
     console.log(this.highlighteddeal);
     this.districtdeal = data.districts;
+    this.albumeArray = data.dealsImages;
     this.suburbdeal = data.suburb;
   }, error => {
      console.log(error)

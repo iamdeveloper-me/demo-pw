@@ -34,7 +34,8 @@ item_tags:any = []
     error_1 = '';
     constructor(private apiService: apiService,private meta:Meta ) {
       this.meta.addTag({ name: 'description', content: 'Wedding Photos & Inspirations | Perfect Weddings' });
-      this.colout_tag= false
+      this.colout_tag= false;
+      this.pagedItems = [];
       this.photo_search_param = new  photoSearchParam();
       this.createColorPanel()
       this.userId = localStorage.getItem('userId');
@@ -84,8 +85,9 @@ item_tags:any = []
       this.colors.push({colorName:'grey', isSelected:false});
     }
     onpageload(){
-      this.pagedItems = [];
-      this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',        this.photo_search_param
+      
+      this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',
+      this.photo_search_param
         ).subscribe(data => {
           console.log(data)
           this.loading=false;  
@@ -101,7 +103,7 @@ item_tags:any = []
       },error => {  console.log(error)});
     }
     colourArray(a){
-      this.photo_search_param.page=0;
+      this.photo_search_param.page+=1;
         if(a.isSelected){
           a.isSelected = false;
         } else{
@@ -138,6 +140,7 @@ item_tags:any = []
     }
     search_api(){
       this.pageNumber=0;
+      this.photo_search_param.page=0;
         this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',this.photo_search_param)
         .subscribe(data => {
           console.log(data)
@@ -156,6 +159,7 @@ item_tags:any = []
         
           if( this.pagedItems.length == 0 ){
               this.error_1 = "no data found"
+             
           }else{
             this.error_1 = " "
           }
@@ -169,7 +173,7 @@ item_tags:any = []
     scrollToBottom(){
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
         // you're at the bottom of the page
-        this.pageNumber+=1;
+        this.photo_search_param.page+=1;
         this.loading = true
         this.onpageload()
       }
@@ -195,13 +199,7 @@ item_tags:any = []
          this.col.forEach(element => {
            console.log(element)
          });
-      //    setTimeout(() => {
-      //      $('.fancybox-content').append('<div class="colorcoderfullveiw"></div>')
-   
-      //      $('.fancybox-toolbar').append('<button  class="fancybox-button fancybox-button--share" title="Share"><a href="whatsapp://send?text=Text to send withe message: http://13.59.229.254"><i class="material-icons">share</i></a></button><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')
-      //      // $('.fancybox-caption').append('<button  class="fancybox-button fancybox-button--share" title="Share"><i class="material-icons">share</i></button>')
-     
-      //  }, 50);
+
    
        setTimeout(() => {
          this.colors.forEach(element => {
@@ -222,7 +220,7 @@ item_tags:any = []
           $('.colorcoderfullveiw').append('<span class="colortag" >'+element+' </span>')
         });
       }, 70);
-      debugger
+      
       }
       
     
@@ -230,25 +228,6 @@ item_tags:any = []
  
 }
 
-      // setTimeout(() => {
-        // $('.fancybox-caption').append(' <ul><li *ngFor="let c of colors"   style="color:black"><i class="fa fa-check ticklist" *ngIf="c.isSelected"></i><span class="colortag"  [style.background-color]="c.colorName" [innerHtml]="c.colorName">fffffffffff</span></li></ul>')
-      // }, 30);
-
-    //   switch(item.colorName) { 
-    //     case constant_expr1: { 
-    //        //statements; 
-    //        break; 
-    //     } 
-    //     case constant_expr2: { 
-    //        //statements; 
-    //        break; 
-    //     } 
-    //     default: { 
-    //        //statements; 
-    //        break; 
-    //     } 
-    //  } 
-    
 
 export class ColorPicker{
    public colorName: string;

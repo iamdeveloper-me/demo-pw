@@ -14,13 +14,13 @@
 				<div class="dealspricebox">
 					<div class="pricestart borrtonly bluetext">
 						<span>Starting From</span>
-						<h3>$169</h3>
+						<h3>{{highlighteddeal.startingFrom}}</h3>
 					</div>
 					<div class="pricestart greentext">
 						<span>
 							Saved up to
 						</span>
-						<h3>70% Off</h3>
+						<h3>{{highlighteddeal.discount}}% Off</h3>
 					</div>
 				</div>
 
@@ -28,9 +28,14 @@
 				<button class="btn btn-lg dealbtn">Veiw Deals</button>
 
 			</div>
-			<div class="col-sm-6">
+			<div class="col-sm-6" *ngIf="albumeArray.length == 0">
 				<img src="https://static1.squarespace.com/static/51d17d80e4b0df98a9be4719/54aa5cd6e4b0b365f776ab79/59a42ecf6b8f5b86e3a49497/1503932119299/RJH+Wedding+Photography-IMG_5895.jpg?format=2500w"
 				 class="dealbanner">
+			</div>
+			<div class="col-sm-6" *ngFor="let albumImage of albumeArray">
+				<img [src]="albumImage.dealsImages"
+				 class="dealbanner">
+				 {{albumImage | json}}
 			</div>
 		</div>
 
@@ -57,7 +62,7 @@
 							</a>
 							<div class="textdisdetaill">
 								<div class="discat">
-									{{deal.discount}} % Discount
+									{{deal.discount}} % Discount Amit(discounts)
 								</div>
 								<div class="title">
 									{{deal.title}} discount on
@@ -82,8 +87,13 @@
 					<div class="col-sm-3">
 							<div class="disboxloop" *ngFor="let mydeal of all_deals ;let i=index" (click)="goToNextPage(mydeal)">
 								<a *ngIf="mydeal.dealsImages.length == 0">
-									<img  src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
+									<img  src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" class="discountimg">
 								</a>
+								<!-- <a  *ngFor=" let img of  mydeal.dealsImages">
+									{{img | json}}
+									 <img  [src]="img.dealsImages.path" class="discountimg">
+									 <img *ngIf="!img.dealsImages.path" src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" class="discountimg">
+								</a>	 -->
 								<div class="textdisdetaill">
 									<div class="discat">
 										{{mydeal.discount}} % Discount

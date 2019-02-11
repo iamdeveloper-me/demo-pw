@@ -36,25 +36,26 @@ export class EventsComponent implements OnInit {
   ngOnInit() {
                 this.locationD();
 
-                this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchevents',{
-                  page: 0,
-                  pageSize: 100000,
-                  sortDir: "string",
-                  sortedBy: "asc",
-                  searchQuery: '',
-                  location: '',
-                  eventType: '',
-                  dates: 'all'
-                  }).subscribe(data => {
-                    // console.log(JSON.stringify(data));
-                    this.allItems = data['items'];
-                        // console.log(this.allItems);
-                        this.setPage(1);
-                },
-                  error => {
-                   console.log(error)
-                  }
-                )
+                // this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchevents',{
+                //   page: 0,
+                //   pageSize: 100000,
+                //   sortDir: "string",
+                //   sortedBy: "asc",
+                //   searchQuery: '',
+                //   location: '',
+                //   eventType: '',
+                //   dates: 'all'
+                //   }).subscribe(data => {
+                //     // console.log(JSON.stringify(data));
+                //     this.allItems = data['items'];
+                //         // console.log(this.allItems);
+                //         this.setPage(1);
+                // },
+                //   error => {
+                //    console.log(error)
+                //   }
+                // )
+                this.event('');
 
   }
   page2 = 4;

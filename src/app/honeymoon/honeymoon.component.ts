@@ -5,6 +5,7 @@ import { apiService } from 'app/shared/service/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
 import { filterParam } from '../vendorcard/vendorcard.component'
+import { SearchListingVM } from 'app/searchresult/searchresult.component';
 @Component({
   selector: 'app-honeymoon',
   templateUrl: './honeymoon.component.html',
@@ -17,6 +18,7 @@ export class HoneymoonComponent implements OnInit{
   vendors_of_honeymoon:any;
   locationId:number=0;
   locationClickData : any;
+  searchlistvm: SearchListingVM;
   customOptions: any = {
     loop: true,
     mouseDrag: true,
@@ -27,20 +29,8 @@ export class HoneymoonComponent implements OnInit{
     navSpeed: 700,
     margin:12,
     navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 1
-      },
-      740: {
-        items: 4
-      },
-      940: {
-        items: 4
-      }
-    },
+    responsive: { 0: { items: 1 }, 400: { items: 1 },
+      740: { items: 4 }, 940: { items: 4 } },
     nav: true,
     //autoplaySpeed:1
   }
@@ -56,6 +46,7 @@ export class HoneymoonComponent implements OnInit{
   slidesStore: any[];
   constructor(public _masterservice: MasterserviceService,private apiService: apiService,private router: Router,private meta:Meta) {
     this.objFilterParam = new filterParam();
+    this.searchlistvm = new SearchListingVM();
     this.meta.addTag({ name: 'description', content: 'Top Honeymoon & Travel Destinations | Perfect Weddings' });
     this.getSliderData(); 
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/honeymoondestinations').subscribe(data => {
@@ -67,11 +58,8 @@ export class HoneymoonComponent implements OnInit{
     this.activeSlides = data;
   }
   getSliderData(){
-    const data = {
-      "categoryId" : 4,
-      "districtId" : 1
-    }
-    this._masterservice.getFilterResult(data).subscribe(res =>{
+    this.searchlistvm.categoryId.push(4);
+    this._masterservice.getFilterResult(this.searchlistvm).subscribe(res =>{
       this.slidesStore =  res['items']  ;
     },error=>{
       console.log(JSON.stringify(error));

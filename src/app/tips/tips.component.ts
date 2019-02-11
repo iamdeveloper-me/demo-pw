@@ -38,6 +38,7 @@ export class TipsComponent  {
         blogTopicId: 0
         }).subscribe(data => {
         this.tipsArrays_items = data.items; 
+        console.log(this.tipsArrays_items);
       },
         error => {
          console.log(error)

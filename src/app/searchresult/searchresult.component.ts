@@ -69,7 +69,7 @@ export class SearchresultComponent implements OnInit {
     constructor(public _route:Router, public _activeRoute: ActivatedRoute, 
     private _masterservice: MasterserviceService, private api: apiService,
     public toastr: ToastrService) {
-      
+      debugger;
       this._activeRoute.params.subscribe((params) => {
         this.initializeResult();   
      });

@@ -17,7 +17,8 @@ export class EventsComponent implements OnInit {
 
   constructor( public http:Http, private pagerService: PagerService,private apiService: apiService,private masterservice: MasterserviceService,private router:Router,private meta:Meta ) {
     this.meta.addTag({ name: 'description', content: 'Top Wedding Events in Mauritius | Perfect Weddings.' });
-   }
+   
+  }
   locations = [];
    allItems: any[];
   location:string = 'All'
@@ -35,26 +36,8 @@ export class EventsComponent implements OnInit {
   searchQuery: ""
   ngOnInit() {
                 this.locationD();
+                this.event('');
 
-                this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchevents',{
-                  page: 0,
-                  pageSize: 100000,
-                  sortDir: "string",
-                  sortedBy: "asc",
-                  searchQuery: '',
-                  location: '',
-                  eventType: '',
-                  dates: 'all'
-                  }).subscribe(data => {
-                    // console.log(JSON.stringify(data));
-                    this.allItems = data['items'];
-                        // console.log(this.allItems);
-                        this.setPage(1);
-                },
-                  error => {
-                   console.log(error)
-                  }
-                )
 
   }
   page2 = 4;

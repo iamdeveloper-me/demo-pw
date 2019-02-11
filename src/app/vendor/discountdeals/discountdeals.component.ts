@@ -41,7 +41,7 @@ export class DiscountdealsComponent implements OnInit {
   disTitle;
   createdial = false;
   selectedFile: ImageSnippet;
-  image_data = {}; 
+  image_data:any = {}; 
 
   createdeal:{dealId: 0,  title: "",  conditions: "",  startDate: "", endDate: "", neverExpire: true};
   updatemydeal:any = {
@@ -69,6 +69,7 @@ export class DiscountdealsComponent implements OnInit {
   readioSelected_serv:boolean;
   ram:boolean =false
   basicplan:number
+  previewImages:any = [];
   constructor(public imageService : ImageuploadService,public http: Http,public toastr: ToastrService, private router: Router  ) {
     this.basicplan = JSON.parse(localStorage.getItem('basic-plan'));
 
@@ -171,6 +172,7 @@ $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/ve
   this.http.get(this.url+'api/Supplier/mydeals',{headers:headers}).subscribe(data =>{  
     
     this.recentmydeal = data.json();
+    console.log(data.json())
   
   })
       
@@ -241,12 +243,28 @@ $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/ve
             
             } 
             createdeals(createdeal){
-              this.ram = true
+              this.ram = true;
+  
+              console.log(createdeal.value)
               if(createdeal.value.neverExpire == true){
               
-
+                
                 createdeal.value.Start_date =  createdeal.value.Start_date["year"]+'-'+createdeal.value.Start_date["month"]+'-'+createdeal.value.Start_date["day"]
-
+ 
+                // const a =  {
+                //   "dealId": 0,
+                //   "title": createdeal.value.title,
+                //   "conditions": createdeal.value.Condition,
+                //   "startDate": createdeal.value.Start_date ,
+                //   "endDate": "2019-02-11T07:37:31.611Z",
+                //   "neverExpire": createdeal.value.neverExpire,
+                //   "originalPrice": 0,
+                //   "discountType": "string",
+                //   "discount": 0,
+                 
+                // }
+                // this.create_deal_api(a)
+             
                 const a = {
                   dealId: 0,
                   title: createdeal.value.title,
@@ -257,7 +275,7 @@ $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/ve
               
                 }
 
-                this.create_deal_api(a)
+               
                 createdeal.reset();
               }else{
                 createdeal.value.Start_date =  createdeal.value.Start_date["year"]+'-'+createdeal.value.Start_date["month"]+'-'+createdeal.value.Start_date["day"]
@@ -276,40 +294,53 @@ $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/ve
                 this.create_deal_api(a);
                 createdeal.reset();
               }
-
-
-              
-
-              
-            
             }
             create_deal_api(a){
-              let headers = new Headers();
-              var authToken = localStorage.getItem('userToken');
-              headers.append('Accept', 'application/json')
-              headers.append('Content-Type', 'application/json');
-              headers.append("Authorization",'Bearer '+authToken);
-              this.http.post(this.url+'api/Supplier/createupdatedeals',a,{headers:headers}).subscribe(
-                data =>{  
-                  
-                  if(data.status == 200)      {        
-                    this.createdeal_dailog = false;       
-                  
-                    this.ram =false    
-                }
+             
+                            let headers = new Headers();
+                            var authToken = localStorage.getItem('userToken');
+                            headers.append('Accept', 'application/json')
+                            headers.append('Content-Type', 'application/json');
+                            headers.append("Authorization",'Bearer '+authToken);
 
-                  this.http.get(this.url+'api/Supplier/mydeals',{headers:headers}).subscribe(data =>{  
-                
-                    this.recentmydeal = data.json();
-                
-                  })
-
-                  this.toastr.success(" New Deal is created");
-                },error => {console.log(error); 
-                  this.toastr.warning(error._body.split('[')[1].split(']')[0])
+                            // let fileReader = new FileReader();
+                            // fileReader.onload = (e) => {
+                            //   const c = {
+                            //     "dealsImages": [
+                            //       {
+                            //         "dealsImagesId": 0,
+                            //         "originalFileName": "string",
+                            //         "serverFileName": "string",
+                            //         "path": fileReader.result,
+                            //         "dealId": 0
+                            //       }
+                            //     ]
+                            //   }
+                            //  // this.image_data = a.push(c) 
+                            //   console.log( this.image_data );
+                            // }
+                            // fileReader.readAsText(this.file);
+                            this.http.post(this.url+'api/Supplier/createupdatedeals',a,{headers:headers}).subscribe(
+                              data =>{  
                                 
-                  
-                  })
+                                if(data.status == 200)      {        
+                                  this.createdeal_dailog = false;       
+                                
+                                  this.ram =false    
+                              }
+
+                                this.http.get(this.url+'api/Supplier/mydeals',{headers:headers}).subscribe(data =>{  
+                              
+                                  this.recentmydeal = data.json();
+                              
+                                })
+
+                                this.toastr.success(" New Deal is created");
+                              },error => {console.log(error); 
+                                this.toastr.warning(error._body.split('[')[1].split(']')[0])
+                                              
+                                
+                                })
             }
             openupdatedeal(data){
 
@@ -333,24 +364,25 @@ $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/ve
             
               
             }
-            fileChangeListener($event) {
-              var image: any = new Image();
-              var file: File = $event.target.files[0];
-              var myReader: FileReader = new FileReader();
-              var that = this;
-            
-              myReader.onloadend = function (loadEvent: any) {
-                image.src = loadEvent.target.result;
-                // that.cropper.setImage(image);
-                // console.log(image.src);
-              };
-              console.log($event.target.files[0].name);
-              console.log(myReader);
-              
-              myReader.readAsDataURL(file);
+     
+            file:any;
+            fileChanged(e,a) {
+                this.file = e.target.files[0];
+                
+                this.image_data = a;
             }
+        
             updatedeal(info){
-                      
+                      console.log(info)
+
+                            let fileReader = new FileReader();
+                            fileReader.onload = (e) => {
+                            
+                           
+                              console.log( e.target)   
+                            }
+                            console.log(  this.image_data )
+                            fileReader.readAsText(this.file);
                                 let headers = new Headers();
                                 var authToken = localStorage.getItem('userToken');
 
@@ -506,6 +538,52 @@ $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/ve
             })
             return; 
             }  
+
+            /////////////////
+            previewFile(event) {
+
+              let files = event.target.files;
+              if (files) {
+                  for (let file of files) {
+                      let FI  = new FileItem(this.uploader,file,null);
+                      this.uploader.queue.push(FI);  
+                   //   this.fileNames.push(file.name);
+        
+                     // this.previewImages = [];
+                      let reader = new FileReader();
+                      reader.onload = (e: any) => {
+                      this.previewImages.push(e.target.result);
+       
+                      }
+                      reader.readAsDataURL(file);
+                  }
+               
+              }
+          }
+
+
+          uploadAll(){
+            const formData = new FormData();
+            for(let file of this.previewImages){
+       
+                    const a = {'files': file ,
+                              dealId: 49
+                              }
+                    console.log(a)
+                            debugger
+                    let headers = new  Headers();
+                    
+                    // multipart/form-data
+                    headers.append('Accept', 'application/json')
+                    headers.append('Content-Type', 'multipart/form-data ; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW');
+                    var authToken = localStorage.getItem('userToken');
+                    headers.append("Authorization",'Bearer '+authToken);
+                    this.http.post(this.url+'api/ImageUploader/DealsImageUploader', 
+                    a,{headers: headers}).subscribe(data =>{ console.log(data)},(error)=>{
+                    console.log(error)
+                    });        
+            }        
+          }
 }
 
 class ImageSnippet {

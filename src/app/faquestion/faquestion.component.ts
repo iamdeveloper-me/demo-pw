@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { apiService } from '../shared/service/api.service';
+import { CustompipePipe } from 'app/custompipe.pipe';
 @Component({
   selector: 'app-faquestion',
   templateUrl: './faquestion.component.html',
-  styleUrls: ['./faquestion.component.scss']
+  styleUrls: ['./faquestion.component.scss'],
+  providers: [CustompipePipe]
 })
 export class FaquestionComponent implements OnInit {
   content_data = [];
+  questionsearch:string;
   constructor(private apiService: apiService) { }
   ngOnInit() {
     this.faq();

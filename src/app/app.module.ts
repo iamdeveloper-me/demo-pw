@@ -526,6 +526,7 @@ export function getAuthServiceConfigs() {
         },
         apiService
     ],
+    exports:[AdminsidebarComponent],
     bootstrap: [AppComponent],
     entryComponents: [NgbdModalContent],
     schemas: [

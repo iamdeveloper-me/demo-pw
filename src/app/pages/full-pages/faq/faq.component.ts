@@ -13,11 +13,8 @@ export class FaqComponent {
 
   ngOnInit() {
 
-  $('.card-block').each(function(){
-      var $this = $(this);
-      var t = $this.text();
-      $this.html(t.replace('&lt','<').replace('&gt', '>'));
-  });
+    $.getScript('http://code.jquery.com/jquery-1.6.2.js')
+    $.getScript('./assets/js/removeTag.js');
   
   }
   faqs: FAQ[];

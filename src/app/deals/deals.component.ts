@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
 export class DealsComponent implements OnInit {
   deals:any;
   all_deals:any; 
-  districtdeal: any; 
-  suburbdeal:any ; 
-  highlighteddeal : any;
+  districtdeal: any = {name:''}; 
+  suburbdeal:any={name:""} ; 
+  highlighteddeal : any = {nameOfBusiness : ''};
   constructor(private meta:Meta,   private apiService: apiService,private router:Router) {
     this.meta.addTag({ name: 'description', content: 'Great Wedding Deals and Offers | Perfect Weddings' });
    }
@@ -22,7 +22,10 @@ export class DealsComponent implements OnInit {
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/dealsanddiscount').subscribe(data => {
     this.deals = data.discounts;
     this.all_deals = data.deals;
-    console.log(data)
+    console.log( this.deals);
+    console.log( this.all_deals)
+  },error => {
+    console.log(error)
   });
 
   this.apiService.getData(this.apiService.serverPath+'PerfectWedding/highlighteddeal').subscribe(data => {

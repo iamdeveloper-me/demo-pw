@@ -1,499 +1,563 @@
 <div id="wrapper" class="toggled">
-        <div id="sidebar-wrapper" >
-            <app-vendorsidebar></app-vendorsidebar>
-        </div>
-        <div id="page-content-wrapper">    
+    <div id="sidebar-wrapper" >
+        <app-vendorsidebar></app-vendorsidebar>
+    </div>
+    <div id="page-content-wrapper">    
+  <div class="container-fluid nopadd">
+    <app-navemenu></app-navemenu> 
+    <router-outlet></router-outlet>
+    <div class="container-fluid mobilefixedcontainer">
+  <div class="content"></div>
+    <section id="user-profile">
       <div class="container-fluid nopadd">
-        <app-navemenu></app-navemenu> 
-        <router-outlet></router-outlet>
-        <div class="container-fluid mobilefixedcontainer">
-      <div class="content"></div>
-        <section id="user-profile">
-          <div class="container-fluid nopadd">
-            <div class="card col-sm-12">
-                  <section class="user-table">
-                    <div class="container">
-                      <div class="boxcolumn">
-                      <div class="row box-border">
-                        <div class="col-md-3">
-                          <div class="roundedicon">
-                              <img src="https://s3.us-east-2.amazonaws.com/prefect-image/child.png" class="img-responsive"> 
-                            </div>
-                            <h1>Audience Discounts </h1>
+        <div class="card col-sm-12">
+              <section class="user-table">
+                <div class="container">
+                  <div class="boxcolumn">
+                  <div class="row box-border">
+                    <div class="col-md-3">
+                      <div class="roundedicon">
+                          <img src="https://s3.us-east-2.amazonaws.com/prefect-image/child.png" class="img-responsive"> 
                         </div>
-                        <div class="col-md-9">
-                          <h6>Perfect wedding exclusive discounts</h6>
-                            <p>Attract potential audience with a discounted offer</p>
-                            <h4>{{disTitle}}
-                                <img *ngIf="noDiscount" src="../../../assets/img/noDiscount.png">
-                            </h4>
-                            <div class="button11" *ngIf="basicplan == 1 ;else dd" >       
-                                    <button class="select-btn" style="display:none" (click)="dealservice = true" [disabled]="true">Select Discount</button> 
-                                    <button class="select-btn" (click)="noDealSwal()" >Select Discount</button> 
-                                </div>
-                                <ng-template #dd>
-                                        <div class="button11">
-                                          <button (click)="dealservice = true" class="select-btn">Select Discount</button>
-                                        </div>    
-                            </ng-template>
-                         
-                        </div>   
-                      </div> 
-                      </div> 
-                    </div>  
-                  </section>
-            </div>
-            <div class="card col-sm-12">
-                  <section class="user-table">
-                    <div class="container">
-                      <div class="boxcolumn">
-                      <div class="row box-border">
-                        <div class="col-md-3">
-                          <div class="roundedicon">
-                            <img src="https://s3.us-east-2.amazonaws.com/prefect-image/horn.png" class="img-responsive">
-                          </div>
-                          <h1>Deals</h1>
-                        </div>
-                        <div class="col-md-9">
-                          <h6>Deals & Offers</h6>
-                          <p>create personallsed & unique offers</p>
-                       
-
-                        <div class="button11" *ngIf="basicplan == 1 ;else cc" >       
-                                <button class="select-btn" style="display:none" (click)="createdeal_dailog = true" [disabled]="true">Create Deal</button> 
-                                <button class="select-btn" (click)="noDealSwal()" >Create Deal</button> 
+                        <h1>Audience Discounts </h1>
+                    </div>
+                    <div class="col-md-9">
+                      <h6>Perfect wedding exclusive discounts</h6>
+                        <p>Attract potential audience with a discounted offer</p>
+                        <h4>{{disTitle}}
+                            <img *ngIf="noDiscount" src="../../../assets/img/noDiscount.png">
+                        </h4>
+                        <div class="button11" *ngIf="basicplan == 1 ;else dd" >       
+                                <button class="select-btn" style="display:none" (click)="dealservice = true" [disabled]="true">Select Discount</button> 
+                                <button class="select-btn" (click)="noDealSwal()" >Select Discount</button> 
                             </div>
-                            <ng-template #cc>
+                            <ng-template #dd>
                                     <div class="button11">
-                                            <button (click)="createdeal_dailog = true " class="select-btn">Create Deal
-                                            </button>
+                                      <button (click)="dealservice = true" class="select-btn">Select Discount</button>
                                     </div>    
                         </ng-template>
-                        </div>   
-                      </div>
-                      </div> 
-                    </div>  
-                  </section>
-            </div>
-          </div>
-      
-            <section class="table-div">
-        <div class="container-fluid nopadd" *ngIf="recentmydeal.length > 0">
-          <div class="card col-sm-12">
-          
-                  <div class="card-header padleft0px" >
-                      <h4 _ngcontent-c0="" class="card-title">
-                      Recent  Deals  
-                    </h4>
-                  </div>
-                    <div class="card-body">
-                      <div class="table-responsive">
-                      <table class="table table-striped ">
-      
-                          <tr *ngFor="let data of recentmydeal;let a= index" >
-                              <td>
-                                <div class="content-div">
-                                <strong>{{data.title}}</strong> &nbsp;<span class="green-btn">{{data.status}}</span><br/>
-                                This is the selection to show the deal description
-                                <p><strong>Terms & Conditions:</strong><br/>
-                                {{data.conditions}}
-                                </p>
-                              </div>
-                              </td>
-                              <td>
-                                <div class="dateholder">
-                                  <strong>Start Date</strong>
-                                 {{data.startDateString }}
-                                </div>
-                                <div class="dateholder">
-                                  <strong>End  Date</strong>
-                                  {{data.endDateString}}
-                                </div>
-                              </td>
-                              <td class="text-center" >
-                                
-                                <div class="clearfix"></div>
-                                <button class="btn btn-info" (click) = "openupdatedeal(data); editdeal_dailog = true" >
-                                  <i class="fa fa-pencil" aria-hidden="true"></i> Edit {{data.dealId}}
-                                </button>
-                                <div class="clearfix"></div>
-                                <button class="btn btn-danger" (click)="deletedeals(data,a)">
-                                  <i class="fa fa-trash" aria-hidden="true"></i> Remove
-                                </button>
-                              </td>
-                          </tr>
-                         
-                         
-                      </table>
                      
-                   
-                  </div>
-              </div>
-            </div>
-        </div>  
-      </section>
-        </section>
-         </div>
-      <!-- <app-foot></app-foot> -->
-      
-      </div>
-      </div>
-      </div>
-      <form (ngSubmit)="updatedis(service)" #service="ngForm" >
-          <div class="modal fade" [ngClass] = "{'show' : dealservice}" id="selectdiscount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-              <div class="modal-dialog" role="document">
-                  <div class="modal-content" >
-                      <div class="modal-header">
-                          <h4 class="card-title">Select Discount </h4>
-                          <button type="button" class="close"  (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>   
+                  </div> 
+                  </div> 
+                </div>  
+              </section>
+        </div>
+        <div class="card col-sm-12">
+              <section class="user-table">
+                <div class="container">
+                  <div class="boxcolumn">
+                  <div class="row box-border">
+                    <div class="col-md-3">
+                      <div class="roundedicon">
+                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/horn.png" class="img-responsive">
                       </div>
-      
-                      <div class="modal-body">   
-                          <div class="card">         
-                              <div class="card-body">
-                                  <div class="col-md-12">
-                                  <div class="funkyradio" *ngFor = 'let dis of discount '>
-                                      <div class="funkyradio-success">    
-                                      <input 
-                                      type="radio" 
-                                      name="select" 
-                                      [value]= "dis"
-                                      id="{{dis.discountId}}"  
-                                      ngModel/>
-                                      <label for="{{dis.discountId}}">{{dis.title}}</label>
-                                      </div>
-                                  </div>
-                                  </div>
-                              </div> 
-                          </div>
-                      </div>
-                      <div class="modal-footer">
-                              <button type="submit" class="btn  newbtn" >Save</button>
-                              <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()" >Close</button>
-                      </div>
-                  </div>
-              </div>
-          </div> 
-      <form>   
-      
-    <div class="modal fade" id="createdeal" [ngClass] = "{'show' : createdeal_dailog}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document" >
-            <form (ngSubmit)="createdeals(createdeal)" #createdeal="ngForm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="card-title">Deal Details</h4>
-                        <button type="button" class="close" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h1>Deals</h1>
                     </div>
-                    <div class="modal-body">   
+                    <div class="col-md-9">
+                      <h6>Deals & Offers</h6>
+                      <p>create personallsed & unique offers</p>
+                   
+
+                    <div class="button11" *ngIf="basicplan == 1 ;else cc" >       
+                            <button class="select-btn" style="display:none" (click)="createdeal_dailog = true" [disabled]="true">Create Deal</button> 
+                            <button class="select-btn" (click)="noDealSwal()" >Create Deal</button> 
+                        </div>
+                        <ng-template #cc>
+                                <div class="button11">
+                                        <button (click)="createdeal_dailog = true " class="select-btn">Create Deal
+                                        </button>
+                                </div>    
+                    </ng-template>
+                    </div>   
+                  </div>
+                  </div> 
+                </div>  
+              </section>
+        </div>
+      </div>
+  
+        <section class="table-div">
+            <div class="container-fluid nopadd" *ngIf="recentmydeal.length > 0">
+            <div class="card col-sm-12">
+            
+                    <div class="card-header padleft0px" >
+                        <h4 _ngcontent-c0="" class="card-title">
+                        Recent  Deals  
+                        </h4>
+                    </div>
+                        <div class="card-body">
+                        <div class="table-responsive">
+                        <table class="table table-striped ">
+        
+                            <tr *ngFor="let data of recentmydeal;let a= index" >
+                                <td>
+                                    <div class="content-div">
+                                    <strong>{{data.title}}</strong> &nbsp;<span class="green-btn">{{data.status}}</span><br/>
+                                    This is the selection to show the deal description
+                                    <p><strong>Terms & Conditions:</strong><br/>
+                                    {{data.conditions}}
+                                    </p>
+                                </div>
+                                </td>
+                                <td>
+                                    <div class="dateholder">
+                                    <strong>Start Date</strong>
+                                    {{data.startDateString }}
+                                    </div>
+                                    <div class="dateholder">
+                                    <strong>End  Date</strong>
+                                    {{data.endDateString}}
+                                    </div>
+                                </td>
+                                <td class="text-center" >
+                                    
+                                    <div class="clearfix"></div>
+                                    <button class="btn btn-info" (click) = "openupdatedeal(data); editdeal_dailog = true" >
+                                    <i class="fa fa-pencil" aria-hidden="true"></i> Edit {{data.dealId}}
+                                    </button>
+                                    <div class="clearfix"></div>
+                                    <button class="btn btn-danger" (click)="deletedeals(data,a)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i> Remove
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            
+                        </table>
+                        
+                    
+                    </div>
+                </div>
+                </div>
+            </div>  
+        </section>
+    </section>
+     </div>
+  <!-- <app-foot></app-foot> -->
+  
+  </div>
+  </div>
+  </div>
+  <form (ngSubmit)="updatedis(service)" #service="ngForm" >
+      <div class="modal fade" [ngClass] = "{'show' : dealservice}" id="selectdiscount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content" >
+                  <div class="modal-header">
+                      <h4 class="card-title">Select Discount </h4>
+                      <button type="button" class="close"  (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  </div>
+  
+                  <div class="modal-body">   
+                      <div class="card">         
+                          <div class="card-body">
+                              <div class="col-md-12">
+                              <div class="funkyradio" *ngFor = 'let dis of discount '>
+                                  <div class="funkyradio-success">    
+                                  <input 
+                                  type="radio" 
+                                  name="select" 
+                                  [value]= "dis"
+                                  id="{{dis.discountId}}"  
+                                  ngModel/>
+                                  <label for="{{dis.discountId}}">{{dis.title}}</label>
+                                  </div>
+                              </div>
+                              </div>
+                          </div> 
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                          <button type="submit" class="btn  newbtn" >Save</button>
+                          <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()" >Close</button>
+                  </div>
+              </div>
+          </div>
+      </div> 
+  <form>   
+  
+<div class="modal fade" id="createdeal" [ngClass] = "{'show' : createdeal_dailog}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document" >
+        <form (ngSubmit)="createdeals(createdeal)" #createdeal="ngForm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="card-title">Deal Details</h4>
+                    <button type="button" class="close" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">   
+
                         <div class="col-md-12">
-                            <div class="field">
-                                    <input class="effect-16 validate" 
-                                        type="text"
-                                        placeholder="Deal Title" 
-                                        name= "title"
-                                        [(ngModel)] ="createdeal.title"
-                                        id = "deal_title"
-                                        #titles="ngModel" 
-                                        required 
-                                    >
-                                    <label for="deal_title">Deal Title</label>
-                                    
+                                <label class="image-upload-container btn btn-bwm">
+                                        <span>Select Image</span>
+                                        <input #fileInput style="width:100%" (change)="fileChangeListener($event)"
+                                        type="file" name="image" id="image" />
+                                </label>
+                        </div>
+
+                              
+                    <div class="col-md-12">
+                        <div class="field">
+                                <input class="effect-16 validate" 
+                                    type="text"
+                                    placeholder="Deal Title" 
+                                    name= "title"
+                                    [(ngModel)] ="createdeal.title"
+                                    id = "deal_title"
+                                    #titles="ngModel" 
+                                    required 
+                                >
+                                <label for="deal_title">Deal Title</label>
                                 
+                            
+                        </div>
+                        <div class="clearfix"></div>
+                        <small class="form-text text-muted danger" *ngIf="ram && titles.errors?.required ">required error</small>
+                        <input 
+                        type="hidden"
+                        name= "dealId" 
+                        [value] = '0' >
+                    </div>  
+
+                    <div class="col-md-12 row">
+                        <div class="col-md-6 radio-btn">
+                            
+                            <label>
+                                
+                                <input 
+                                type="radio" 
+                                name="neverExpire" 
+                                [(ngModel)] ="createdeal.neverExpire"  
+                                [value]="false" 
+                                >Choose date</label>
+
+                                <!-- <input 
+                                type="radio" 
+                                [(ngModel)] ="readioSelected_serv"  
+                                name="neverExpire" 
+                                [value]= "readioSelected_serv" 
+                                >     -->
                             </div>
-                            <div class="clearfix"></div>
-                            <small class="form-text text-muted danger" *ngIf="ram && titles.errors?.required ">required error</small>
-                            <input 
-                            type="hidden"
-                            name= "dealId" 
-                            [value] = '0' >
-                        </div>  
-
-                        <div class="col-md-12 row">
                             <div class="col-md-6 radio-btn">
-                                
-                                <label>
+                            <label>
+                                <input 
+                                type="radio" 
+                                name="neverExpire" 
+                                [(ngModel)] ="createdeal.neverExpire" 
+                                [value]="true" 
+                                >
+                                Never Expire
+                            </label>
+                            </div> 
+                    </div>  
+                    <div class="col-md-12 row">
+                        <div class="col-md-6">
+                            <div class="field">
                                     
-                                    <input 
-                                    type="radio" 
-                                    name="neverExpire" 
-                                    [(ngModel)] ="createdeal.neverExpire"  
-                                    [value]="false" 
-                                    >Choose date</label>
+                            <!-- <div class="form-group md-form">
+                                
+                                <input 
+                                type="date" 
+                                name= "Start_date"
+                                id = "Start_date"
+                                [(ngModel)] ="update_start_date"
+                                #Start_date="ngModel" 
+                                required 
+                                placeholder="Start Date"
+                                >
+                                <small class="form-text text-muted danger" *ngIf="Start_date.errors?.required">required error</small>
+                            </div> -->
+                                    <input class="form-control" 
+                                    placeholder="yyyy-mm-dd" 
+                                    name="Start_date" 
+                                    id="Start_date"
+                                    [(ngModel)]="create_start_date"
+                                    ngbDatepicker 
+                                     [dayTemplate]="customDay"
+                                        [markDisabled]="isDisabled" #d3_Start_date="ngbDatepicker"   #Start_date="ngModel" 
+                                        required >
+                                        <label for="Start_date">Start Date {{create_start_date}}</label>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text" (click)="d3_Start_date.toggle()">
+                                            <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                            </div>
+                                        </div>
+                           
+                            </div> 
+                          <small class="form-text text-muted danger" *ngIf="Start_date.errors?.required">required error</small>
+                        </div> 
+                    
+                    <div class="col-md-6"  *ngIf = "createdeal.neverExpire == false ">
+                        <div class="field">
+                               
+                            <!-- <div class="form-group md-form ">
+                        
+                                <input
+                                    class="effect-16 validate" 
+                                    type="date" 
+                                    [(ngModel)] ="update_end_date"
+                                    name= "End_date"
+                                    id = "End_date"
+                                    #End_date="ngModel" 
+                                    required 
+                                    placeholder="End Date"
+                                    >
 
-                                    <!-- <input 
-                                    type="radio" 
-                                    [(ngModel)] ="readioSelected_serv"  
-                                    name="neverExpire" 
-                                    [value]= "readioSelected_serv" 
-                                    >     -->
+                                <small class="form-text text-muted danger" *ngIf="End_date.errors?.required">required error</small>
+                            </div> -->
+                          
+                                <input class="form-control" placeholder="yyyy-mm-dd" name="End_date" [(ngModel)]="create_end_date" ngbDatepicker [dayTemplate]="customDay"
+                                [markDisabled]="isDisabled" #d3_End_date="ngbDatepicker" #End_date="ngModel" 
+                                required >
+                                <label for="End_date">End Date {{create_end_date}}</label>
+                                <div class="input-group-append">
+                                    <div class="input-group-text" (click)="d3_End_date.toggle()">
+                                    <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                    </div>
+                                </div>   
+                        </div>
+                          <small class="form-text text-muted danger" *ngIf="End_date.errors?.required">required error</small>
+                      
+                    </div> 
+                    </div> 
+                    <div class="col-md-12">
+                        <div class="field">
+                            
+                                <input 
+                                class="effect-16 validate" 
+                                type="text" 
+                                placeholder="Terms & Condition of your deal" id="Condition"
+                                name= "Condition"
+                                [(ngModel)] ="createdeal.conditions"
+                                #Conditionss="ngModel" 
+                                required >
+                                <label for="Condition">Terms & Condition of your deal</label>
+                            
+                        </div>
+                        <div class="clearfix"></div>
+                        <span class="focus-border"></span>
+                        <small class="form-text text-muted danger" *ngIf="ram && Conditionss.errors?.required">required error</small>
+                    </div>  
+                </div> 
+                <div class="modal-footer">
+                <button type="submit" class="btn newbtn">Save</button>
+                <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
+                </div>
+            </div>
+        </form>       
+    </div>        
+</div> 
+
+<div class="modal fade" id="editdeal" [ngClass] = "{'show' : editdeal_dailog}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+               
+            <div class="modal-header">
+                    <h4 class="card-title">Edit Deal Detailssssssss</h4>
+                    <button type="button" class="close"  (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+
+            <label class="image-upload-container btn btn-bwm">
+                <span>Select Image</span>
+                <input #fileInput style="width:100%" (change)="fileChangeListener($event)"
+                type="file" name="image" id="image" />
+              </label>
+              
+              
+              <div *ngIf="selectedFile" class="img-preview-container">
+              
+                <div class="img-preview{{selectedFile.status === 'fail' ? '-error' : ''}}"
+                     [ngStyle]="{'background-image': 'url('+ selectedFile.src + ')'}">
+                </div>
+              
+                <div *ngIf="selectedFile.pending" class="img-loading-overlay">
+                  <div class="img-spinning-circle"></div>
+                </div>
+              
+                <div *ngIf="selectedFile.status === 'ok'" class="alert alert-success"> Image Uploaded Succesfuly!</div>
+                <div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Image Upload Failed!</div>
+              </div>
+              
+            <form (ngSubmit)="updatedeal(info)" #info="ngForm">
+                <div class="modal-body">   
+                    <div class="card">         
+                        <div class="card-body">
+                            <!-- <div class="col-md-12">
+                                <div class="field">
+                                        <input 
+                                        type="text" 
+                                        placeholder="Deal Title" 
+                                        name= "update_title"
+                                        id = "update_title"
+                                        [ngModel] ="updatemydeal.title"
+                                        #update_title="ngModel" 
+                                        required 
+                                        >  
+                                        <label for="update_title">Deal Title</label>
+                                </div>
+                                <div class="clearfix"></div>
+                                <small class="form-text text-muted danger" *ngIf="update_title.errors?.required">required error</small>
+                                <input type="hidden" name= "dealId" id = "dealId"
+                            [(ngModel)] ="updatemydeal.dealId"
+                            required="required">
+                            </div>  -->
+                            <div class="col-md-12">
+                                <div class="field">
+                                        <input 
+                                        type="text" 
+                                        placeholder="Deal Title" 
+                                        name= "update_title"
+                                        id = "update_title"
+                                        [ngModel] ="updatemydeal.title"
+                                        #update_title="ngModel" 
+                                        required 
+                                        >  
+                                        <label for="update_title">Deal Title</label>
+                                </div>
+                                <div class="clearfix"></div>
+                                <small class="form-text text-muted danger" *ngIf="update_title.errors?.required">required error</small>
+                                <input type="hidden" name= "dealId" id = "dealId"
+                            [(ngModel)] ="updatemydeal.dealId"
+                            required="required">
+                            </div>
+                            <div class="col-md-12 row">
+                                <div class="col-md-6 radio-btn">
+                                    <label><input 
+                                        type="radio" 
+                                        name="optradio" 
+                                        
+                                        [value]="false"
+                                        [(ngModel)] ="updatemydeal.neverExpire"
+                                    >Choose date
+                                    </label>
                                 </div>
                                 <div class="col-md-6 radio-btn">
-                                <label>
-                                    <input 
-                                    type="radio" 
-                                    name="neverExpire" 
-                                    [(ngModel)] ="createdeal.neverExpire" 
-                                    [value]="true" 
-                                    >
-                                    Never Expire
-                                </label>
-                                </div> 
-                        </div>  
-                        <div class="col-md-12 row">
-                            <div class="col-md-6">
-                                <div class="field">
+                                    <label>
+                                        <input 
+                                        type="radio"
+                                        name="optradio" 
                                         
-                                <!-- <div class="form-group md-form">
-                                    
-                                    <input 
-                                    type="date" 
-                                    name= "Start_date"
-                                    id = "Start_date"
-                                    [(ngModel)] ="update_start_date"
-                                    #Start_date="ngModel" 
-                                    required 
-                                    placeholder="Start Date"
-                                    >
-                                    <small class="form-text text-muted danger" *ngIf="Start_date.errors?.required">required error</small>
-                                </div> -->
-                                        <input class="form-control" 
-                                        placeholder="yyyy-mm-dd" 
-                                        name="Start_date" 
-                                        id="Start_date"
-                                        [(ngModel)]="create_start_date"
-                                        ngbDatepicker 
-                                         [dayTemplate]="customDay"
-                                            [markDisabled]="isDisabled" #d3_Start_date="ngbDatepicker"   #Start_date="ngModel" 
-                                            required >
-                                            <label for="Start_date">Start Date {{create_start_date}}</label>
-                                            <div class="input-group-append">
-                                                <div class="input-group-text" (click)="d3_Start_date.toggle()">
-                                                <i class="fa fa-calendar" style="cursor: pointer;"></i>
-                                                </div>
-                                            </div>
-                               
+                                        [value]="true"
+                                        [(ngModel)] ="updatemydeal.neverExpire"
+                                        >Never Expire {{updatemydeal.neverExpire}}</label>
                                 </div> 
-                              <small class="form-text text-muted danger" *ngIf="Start_date.errors?.required">required error</small>
-                            </div> 
-                        
-                        <div class="col-md-6"  *ngIf = "createdeal.neverExpire == false ">
-                            <div class="field">
-                                   
-                                <!-- <div class="form-group md-form ">
-                            
-                                    <input
-                                        class="effect-16 validate" 
+                            </div>  
+                            <div class="col-md-12 row">
+                                <div class="col-md-6">
+                                <div class="field">
+                                  
+                                       
+                                        <!-- <input 
                                         type="date" 
-                                        [(ngModel)] ="update_end_date"
-                                        name= "End_date"
-                                        id = "End_date"
-                                        #End_date="ngModel" 
+                                        name= "Start_date"
+                                        id = "Start_date"
+                                        [(ngModel)] ="update_start_date"
+                                        #Start_date="ngModel" 
                                         required 
-                                        placeholder="End Date"
-                                        >
-
-                                    <small class="form-text text-muted danger" *ngIf="End_date.errors?.required">required error</small>
-                                </div> -->
-                              
-                                    <input class="form-control" placeholder="yyyy-mm-dd" name="End_date" [(ngModel)]="create_end_date" ngbDatepicker [dayTemplate]="customDay"
-                                    [markDisabled]="isDisabled" #d3_End_date="ngbDatepicker" #End_date="ngModel" 
-                                    required >
-                                    <label for="End_date">End Date {{create_end_date}}</label>
-                                    <div class="input-group-append">
-                                        <div class="input-group-text" (click)="d3_End_date.toggle()">
-                                        <i class="fa fa-calendar" style="cursor: pointer;"></i>
-                                        </div>
-                                    </div>   
-                            </div>
-                              <small class="form-text text-muted danger" *ngIf="End_date.errors?.required">required error</small>
-                          
-                        </div> 
-                        </div> 
-                        <div class="col-md-12">
-                            <div class="field">
-                                
-                                    <input 
-                                    class="effect-16 validate" 
-                                    type="text" 
-                                    placeholder="Terms & Condition of your deal" id="Condition"
-                                    name= "Condition"
-                                    [(ngModel)] ="createdeal.conditions"
-                                    #Conditionss="ngModel" 
-                                    required >
-                                    <label for="Condition">Terms & Condition of your deal</label>
-                                
-                            </div>
-                            <div class="clearfix"></div>
-                            <span class="focus-border"></span>
-                            <small class="form-text text-muted danger" *ngIf="ram && Conditionss.errors?.required">required error</small>
-                        </div>  
-                    </div> 
-                    <div class="modal-footer">
-                    <button type="submit" class="btn newbtn">Save</button>
-                    <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
-                    </div>
-                </div>
-            </form>       
-        </div>        
-    </div> 
-
-    <div class="modal fade" id="editdeal" [ngClass] = "{'show' : editdeal_dailog}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                   
-                <div class="modal-header">
-                        <h4 class="card-title">Edit Deal Details</h4>
-                        <button type="button" class="close"  (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-    
-                <form (ngSubmit)="updatedeal(info)" #info="ngForm">
-                    <div class="modal-body">   
-                        <div class="card">         
-                            <div class="card-body">
-                                <!-- <div class="col-md-12">
-                                    <div class="field">
-                                            <input 
-                                            type="text" 
-                                            placeholder="Deal Title" 
-                                            name= "update_title"
-                                            id = "update_title"
-                                            [ngModel] ="updatemydeal.title"
-                                            #update_title="ngModel" 
-                                            required 
-                                            >  
-                                            <label for="update_title">Deal Title</label>
+                                        placeholder="Start Date"
+                                        > -->
+                                       
+                                                <input class="form-control" placeholder="yyyy-mm-dd" name="Start_date" [(ngModel)]="update_start_date" ngbDatepicker [dayTemplate]="customDay"
+                                                  [markDisabled]="isDisabled" #d4_Start_date="ngbDatepicker"  #Start_date="ngModel" 
+                                                  required s>
+                                                   <label for="Start_date">Start Date</label>
+                                                    <div class="input-group-append">
+                                                      <div class="input-group-text" (click)="d4_Start_date.toggle()">
+                                                        <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                                      </div>
+                                                    </div>
                                     </div>
-                                    <div class="clearfix"></div>
-                                    <small class="form-text text-muted danger" *ngIf="update_title.errors?.required">required error</small>
-                                    <input type="hidden" name= "dealId" id = "dealId"
-                                [(ngModel)] ="updatemydeal.dealId"
-                                required="required">
-                                </div>  -->
-                                <div class="col-md-12">
-                                    <div class="field">
-                                            <input 
-                                            type="text" 
-                                            placeholder="Deal Title" 
-                                            name= "update_title"
-                                            id = "update_title"
-                                            [ngModel] ="updatemydeal.title"
-                                            #update_title="ngModel" 
-                                            required 
-                                            >  
-                                            <label for="update_title">Deal Title</label>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <small class="form-text text-muted danger" *ngIf="update_title.errors?.required">required error</small>
-                                    <input type="hidden" name= "dealId" id = "dealId"
-                                [(ngModel)] ="updatemydeal.dealId"
-                                required="required">
-                                </div>
-                                <div class="col-md-12 row">
-                                    <div class="col-md-6 radio-btn">
-                                        <label><input 
-                                            type="radio" 
-                                            name="optradio" 
-                                            
-                                            [value]="false"
-                                            [(ngModel)] ="updatemydeal.neverExpire"
-                                        >Choose date
-                                        </label>
-                                    </div>
-                                    <div class="col-md-6 radio-btn">
-                                        <label>
-                                            <input 
-                                            type="radio"
-                                            name="optradio" 
-                                            
-                                            [value]="true"
-                                            [(ngModel)] ="updatemydeal.neverExpire"
-                                            >Never Expire {{updatemydeal.neverExpire}}</label>
-                                    </div> 
-                                </div>  
-                                <div class="col-md-12 row">
-                                    <div class="col-md-6">
-                                    <div class="field">
-                                      
-                                           
-                                            <!-- <input 
+                                      <small class="form-text text-muted danger" *ngIf="Start_date.errors?.required">required error</small>
+                                </div> 
+                            
+                            <div class="col-md-6" *ngIf = "updatemydeal.neverExpire == false">
+                                <div class="field">
+                                  
+                                    
+                                        <!-- <input
+                                            class="effect-16 validate" 
                                             type="date" 
-                                            name= "Start_date"
-                                            id = "Start_date"
-                                            [(ngModel)] ="update_start_date"
-                                            #Start_date="ngModel" 
+                                            [(ngModel)] ="update_end_date"
+                                            name= "End_date"
+                                            id = "End_date"
+                                            #End_date="ngModel" 
                                             required 
-                                            placeholder="Start Date"
+                                            placeholder="End Date"
                                             > -->
-                                           
-                                                    <input class="form-control" placeholder="yyyy-mm-dd" name="Start_date" [(ngModel)]="update_start_date" ngbDatepicker [dayTemplate]="customDay"
-                                                      [markDisabled]="isDisabled" #d4_Start_date="ngbDatepicker"  #Start_date="ngModel" 
-                                                      required s>
-                                                       <label for="Start_date">Start Date</label>
+                                                    <input class="form-control" placeholder="yyyy-mm-dd" name="End_date" [(ngModel)]="update_end_date" ngbDatepicker [dayTemplate]="customDay"
+                                                      [markDisabled]="isDisabled" #d5_End_date="ngbDatepicker"   #End_date="ngModel" 
+                                                      required >
+                                                      <label for="End_date">End Date</label>
                                                         <div class="input-group-append">
-                                                          <div class="input-group-text" (click)="d4_Start_date.toggle()">
+                                                          <div class="input-group-text" (click)="d5_End_date.toggle()">
                                                             <i class="fa fa-calendar" style="cursor: pointer;"></i>
                                                           </div>
                                                         </div>
-                                        </div>
-                                          <small class="form-text text-muted danger" *ngIf="Start_date.errors?.required">required error</small>
-                                    </div> 
-                                
-                                <div class="col-md-6" *ngIf = "updatemydeal.neverExpire == false">
-                                    <div class="field">
-                                      
-                                        
-                                            <!-- <input
-                                                class="effect-16 validate" 
-                                                type="date" 
-                                                [(ngModel)] ="update_end_date"
-                                                name= "End_date"
-                                                id = "End_date"
-                                                #End_date="ngModel" 
-                                                required 
-                                                placeholder="End Date"
-                                                > -->
-                                                        <input class="form-control" placeholder="yyyy-mm-dd" name="End_date" [(ngModel)]="update_end_date" ngbDatepicker [dayTemplate]="customDay"
-                                                          [markDisabled]="isDisabled" #d5_End_date="ngbDatepicker"   #End_date="ngModel" 
-                                                          required >
-                                                          <label for="End_date">End Date</label>
-                                                            <div class="input-group-append">
-                                                              <div class="input-group-text" (click)="d5_End_date.toggle()">
-                                                                <i class="fa fa-calendar" style="cursor: pointer;"></i>
-                                                              </div>
-                                                            </div>
-                                                      </div>
-                                            <small class="form-text text-muted danger" *ngIf="End_date.errors?.required">required error</small>
-            
-                                    </div>
-                                </div>                                      
-                                <div class="col-md-12">
-                                    <div class="field">
-                                            <input 
-                                            class="effect-16 validate" 
-                                            type="text" 
-                                            placeholder="Terms & Condition of your deal" 
-                                            [ngModel] ="updatemydeal.conditions"
-                                            name= "Condition"
-                                            id = "Condition"
-                                            #Condition="ngModel" 
-                                            required 
-                                            placeholder="required" 
-                                            >
-                                            <label for="Condition">Terms & Condition of your deal</label>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <small class="form-text text-muted danger" *ngIf="Condition.errors?.required">required error</small>
-                                </div>  
+                                                  </div>
+                                        <small class="form-text text-muted danger" *ngIf="End_date.errors?.required">required error</small>
+        
+                                </div>
+                            </div>   
+                            <div class="col-md-12">
+                                <div class="col-md-6 radio-btn" *ngFor="let item of discountTypeList">
+                                    <label><input 
+                                        type="radio" 
+                                        name="discountType" 
+                                        [(value)]="item.isSelect"
+                                        (change)="onItemChange(item)"
+                                    >{{item.name}}
+                                    </label>
+                                </div>
+                                <div class="clearfix"></div>
                             </div> 
-                        </div>
+                            <div class="col-md-12">
+                                <div class="field">
+                                        <input 
+                                        type="text" 
+                                        placeholder="Deal Discount" 
+                                        name= "update_discount"
+                                        id = "update_discount"
+                                        [ngModel] ="updatemydeal.discount"
+                                        #update_discount="ngModel" 
+                                        required 
+                                        >  
+                                        <label for="update_title">Deal Discount</label>
+                                </div>
+                                <div class="clearfix"></div>
+                                <small class="form-text text-muted danger" *ngIf="update_title.errors?.required">required error</small>
+                                <input type="hidden" name= "dealId" id = "dealId"
+                            [(ngModel)] ="updatemydeal.dealId"
+                            required="required">
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <div class="field">
+                                        <input 
+                                        class="effect-16 validate" 
+                                        type="text" 
+                                        placeholder="Terms & Condition of your deal" 
+                                        [ngModel] ="updatemydeal.conditions"
+                                        name= "Condition"
+                                        id = "Condition"
+                                        #Condition="ngModel" 
+                                        required 
+                                        placeholder="required" 
+                                        >
+                                        <label for="Condition">Terms & Condition of your deal</label>
+                                </div>
+                                <div class="clearfix"></div>
+                                <small class="form-text text-muted danger" *ngIf="Condition.errors?.required">required error</small>
+                            </div>  
+                        </div> 
                     </div>
-                    <div class="modal-footer">
-                            <button type="submit" class="btn newbtn"  [disabled]="!info.valid">Save</button>
-                            <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
-                            
-                    </div>
-                </form>
-            </div>
-         </div>
-    </div> 
+                </div>
+                <div class="modal-footer">
+                        <button type="submit" class="btn newbtn"  [disabled]="!info.valid">Save</button>
+                        <button type="button" class="btn newbtn newcancelbtn" (click)="closeModel()">Close</button>
+                        
+                </div>
+            </form>
+        </div>
+     </div>
+</div> 
 

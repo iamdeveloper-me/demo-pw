@@ -23,7 +23,7 @@ export class MasterserviceService {
    }
    getFilterResult(obj){
     console.log(JSON.stringify(obj));
-       if(obj.districts.length==1 && obj.districts[0]==null){
+       if(obj.districts.length==1 && obj.districts[0]==null||obj.districts[0]==undefined) {
         obj.districts=[];
         }
     return this.apiservice.postData(this.apiservice.serverPath + 'PerfectWedding/searchlisting',obj);

@@ -7,7 +7,7 @@ export class apiService {
   constructor(private http: HttpClient) { }
   serverPath = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/"
   getData(url) : Observable<any> {
-    var authToken = localStorage.getItem('userToken');
+    var authToken = sessionStorage.getItem('userToken');
 
     let httpOptions = {
       headers: new HttpHeaders({
@@ -22,7 +22,7 @@ export class apiService {
 
 
   postData(url, reqObj) : Observable<any> {
-    var authToken = localStorage.getItem('userToken');
+    var authToken = sessionStorage.getItem('userToken');
 
     let httpOptions = {
       headers: new HttpHeaders({

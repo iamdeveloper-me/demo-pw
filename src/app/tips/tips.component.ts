@@ -3,6 +3,7 @@ import { apiService } from '../shared/service/api.service';
 import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { Meta } from '@angular/platform-browser';
+import { PagerService } from 'app/_services';
 
 @Component({
   selector: 'app-tips',
@@ -25,7 +26,11 @@ export class TipsComponent  {
     currentPage1 = 2;
     currentPage2 = 2;
     isDisabled = true;
-    constructor(private apiService: apiService,public http: Http ,public toastr: ToastrService,private meta:Meta) {
+    pagedItems: any[];
+    pager: any = {};
+    allItems: any[];
+
+    constructor(private pagerService: PagerService,private apiService: apiService,public http: Http ,public toastr: ToastrService,private meta:Meta) {
       this.meta.addTag({ name: 'description', content: 'Wedding Tips & Articles | Perfect Weddings' });
      }
     ngOnInit() { 
@@ -39,12 +44,21 @@ export class TipsComponent  {
         }).subscribe(data => {
         this.tipsArrays_items = data.items; 
         console.log(this.tipsArrays_items);
+        this.allItems = this.tipsArrays_items
+        console.log(this.allItems);
+
+        this.setPage(1);
       },
         error => {
          console.log(error)
         }
       )
 
+    }
+
+    setPage(page: number) {
+      this.pager = this.pagerService.getPagerEvent(this.allItems.length, page);
+      this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
     }
 }
 

@@ -23,6 +23,7 @@ export class BannerComponent implements OnInit {
   locations = [];
   banner_data = [];
   locationId:number=0;
+  defaultbanner = false;
   categoryClickData : any;
   locationClickData : any;
   configCategory = {
@@ -73,6 +74,9 @@ export class BannerComponent implements OnInit {
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/banners').subscribe(data => {
       this.banner_data = data
       // console.log(this.banner_data);
+      if(this.banner_data.length == 0){
+        this.defaultbanner = true ;
+      }
       },
       error => {
        console.log(error)

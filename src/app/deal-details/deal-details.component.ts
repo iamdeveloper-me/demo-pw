@@ -45,6 +45,7 @@ export class DealDetailsComponent implements OnInit {
   districtdeal = [];
   suburbdeal = [];
   albumArray = [];
+  dealsAlbumArray = [];
   getData(data: SlidesOutputData) {
       this.activeSlides = data;
   }
@@ -52,9 +53,11 @@ export class DealDetailsComponent implements OnInit {
 
     this.data = JSON.parse(sessionStorage.getItem('deal,mydeal'));
     console.log(this.data);
+    this.dealsAlbumArray = this.data.dealsImages
+    console.log(this.dealsAlbumArray)
     this.albumArray = this.data.albums;
-    console.log(this.albumArray);
-    this.albumArray = this.data.albums[0].albumImages;
+    // console.log(this.albumArray);
+    // this.albumArray = this.data.albums[0].albumImages;
     console.log(this.albumArray);
 
   }

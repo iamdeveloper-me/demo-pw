@@ -12,9 +12,9 @@
 			<div class="row">
 					<div class="col-sm-8 nopadd" id="dealcarousel" >
 						<owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
-						  <ng-container *ngFor="let slide of albumArray">
-						    <ng-template carouselSlide="1" >
-						      <img [src]="slide.path" [alt]="slide.originalFileName" >
+						  <ng-container *ngFor='let deal of data?.vendorCategories; let j=index '>
+						    <ng-template carouselSlide="1"   >
+						      <img [src]="deal.categories.imagePath" alt="" >
 							</ng-template>
 							<!-- <ng-template carouselSlide="1" *ngIf="albumArray.length == 0" >
 									<img [src]="noImage" >
@@ -22,7 +22,18 @@
 						  </ng-container>
 						</owl-carousel-o>
 					</div>
-					
+					<div class="col-sm-8 nopadd" id="dealcarousel" >
+							<owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
+							  <ng-container *ngFor="let dealImg of dealsAlbumArray">
+								<ng-template carouselSlide="1"   >
+								  <img [src]="dealImg.path" [alt]="dealImg.originalFileName" >
+								</ng-template>
+								<!-- <ng-template carouselSlide="1" *ngIf="albumArray.length == 0" >
+										<img [src]="noImage" >
+								</ng-template> -->
+							  </ng-container>
+							</owl-carousel-o>
+						</div>
 					<div class="col-sm-4 dealsbanner ">
 						<h1 class="dealdetailhead" *ngFor='let deal of data?.vendorCategories; let i=index '>
 							{{data?.discount}} % discount on {{deal.categories.categoryName}}
@@ -52,7 +63,9 @@
 							<span *ngIf="data?.endDateString == ''"><strong class="pink">DEAL VALID UNTIL</strong><br/>
 								{{data?.endDateString}}
 							</span>
-							<span *ngIf="data?.endDateString == ''"><strong class="pink">DEAL VALID UNTIL</strong><br/>
+							<span *ngIf="data?.endDateString !== ''">
+								<strong class="pink">DEAL VALID UNTIL</strong>
+								<br/>
 								N/A End Date
 							</span>
 						</div>

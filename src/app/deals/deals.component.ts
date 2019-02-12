@@ -34,6 +34,7 @@ export class DealsComponent implements OnInit {
     console.log(this.highlighteddeal);
     this.districtdeal = data.districts;
     this.albumeArray = data.dealsImages;
+    console.log(this.albumeArray)
     this.suburbdeal = data.suburb;
   }, error => {
      console.log(error)

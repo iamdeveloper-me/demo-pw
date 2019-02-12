@@ -54,15 +54,16 @@
 		</ul>
 		<div class="tab-content nopadd">
 			<div id="all" class="tab-pane fade in active">
+					<!--Discount Start All-->
 				<div class="col-sm-3">
 					<div class="disboxloop" *ngFor="let deal of deals ;let i=index" (click)="goToNextPage(deal)">
 							<a *ngFor=" let i of  deal.vendorCategories | slice:0:1  ">
 								<img *ngIf="i.categories.imagePath" [src]="i.categories.imagePath" class="discountimg">
-								<img *ngIf="!i.categories.imagePath" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
+								<img *ngIf="!i.categories.imagePath" src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" class="discountimg">
 							</a>
 							<div class="textdisdetaill">
 								<div class="discat">
-									{{deal.discount}} % Discount Amit(discounts)
+									{{deal.discount}} % Discount
 								</div>
 								<div class="title">
 									{{deal.title}} discount on
@@ -72,58 +73,59 @@
 								</div>
 								<div class="offerdis">
 									<span>{{deal.businessName}}</span>
-									<span>
+									<!-- <span>
 										<i class="material-icons" *ngIf="deal.endDateString == null">query_builder</i>
-										N/A End Date
+										End Date : N/A
 									</span>
 									<span>
 										<i class="material-icons" *ngIf="!deal.endDateString == null">query_builder</i>
 										{{deal.endDateString}}
-									</span>
+									</span> -->
 								</div>
 							</div>
 						</div>
 					</div>
+						<!--Discount Start All-->
 					<div class="col-sm-3">
+						<!--Deals Start All-->
 							<div class="disboxloop" *ngFor="let mydeal of all_deals ;let i=index" (click)="goToNextPage(mydeal)">
-								<a *ngIf="mydeal.dealsImages.length == 0">
+								<a *ngIf="mydeal.dealsImages.length == 0; else elseBlock">
 									<img  src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" class="discountimg">
 								</a>
-								<!-- <a  *ngFor=" let img of  mydeal.dealsImages">
-									{{img | json}}
-									 <img  [src]="img.dealsImages.path" class="discountimg">
-									 <img *ngIf="!img.dealsImages.path" src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" class="discountimg">
-								</a>	 -->
+								<ng-template #elseBlock>
+									<a *ngFor="let img of  mydeal.dealsImages | slice:1:2 ">
+										<img  [src]="img.path" class="discountimg">
+									</a>
+								</ng-template>
 								<div class="textdisdetaill">
 									<div class="discat">
 										{{mydeal.discount}} % Discount
 									</div>
 									<div class="title">
 										{{mydeal.conditions}} 
-										<!-- discount on -->
-										<!-- <div *ngFor=" let i of  deal.vendorCategories | slice:0:1  ">
-											{{i.categories.categoryName}}
-										</div> -->
 									</div>
 									<div class="offerdis">
 										<span>
 											{{mydeal.title}}
 										</span>
 										<span>
-												<i class="material-icons" >query_builder</i>
+											<i class="material-icons" >query_builder</i>
 												Start Date : {{mydeal.startDateString}}
 											</span>
 										<span>
-											<i class="material-icons" *ngIf="mydeal.endDateString == null">query_builder</i>
-											N/A End Date
+											<i class="material-icons" *ngIf="mydeal.endDateString == ''; else endBlock">query_builder</i>
+											End Date : N/A
 										</span>
-										<span>
-											<i class="material-icons" *ngIf="!mydeal.endDateString == null">query_builder</i>
-											End Date : {{mydeal.endDateString}}
-										</span>
+										<ng-template #endBlock>
+											<span>
+												<i class="material-icons">query_builder</i>
+												End Date : {{mydeal.endDateString}}
+											</span>
+										</ng-template>
 									</div>
 								</div>
 							</div>
+								<!--Deals End All-->
 						</div>
 				<!-- <div class="col-sm-3">
 					<div class="disboxloop">
@@ -311,80 +313,85 @@
 					</div>
 				</div> -->
 			</div>
-			<!--Discount-->
+			<!--Discount Main-->
 			<div id="discount" class="tab-pane fade">
-				<!-- | slice:0:1  -->
+					<!--Deals Start-->
 				<div class="col-sm-3">
-					<div class="disboxloop" *ngFor="let deal of deals ;let i=index" (click)="goToNextPage(deal)">
-						<a *ngFor=" let i of  deal.vendorCategories | slice:0:1  ">
-							<img *ngIf="i.categories.imagePath" [src]="i.categories.imagePath" class="discountimg">
-							<img *ngIf="!i.categories.imagePath" src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-						</a>
-						<div class="textdisdetaill">
-							<div class="discat">
-								{{deal.discount}} % Discount
-							</div>
-							<div class="title">
-								{{deal.title}} discount on
-								<div *ngFor=" let i of  deal.vendorCategories | slice:0:1  ">
-									{{i.categories.categoryName}}
+						<div class="disboxloop" *ngFor="let deal of deals ;let i=index" (click)="goToNextPage(deal)">
+								<a *ngFor=" let i of  deal.vendorCategories | slice:0:1  ">
+									<img *ngIf="i.categories.imagePath" [src]="i.categories.imagePath" class="discountimg">
+									<img *ngIf="!i.categories.imagePath" src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" class="discountimg">
+								</a>
+								<div class="textdisdetaill">
+									<div class="discat">
+										{{deal.discount}} % Discount
+									</div>
+									<div class="title">
+										{{deal.title}} discount on
+										<div *ngFor=" let i of  deal.vendorCategories | slice:0:1  ">
+											{{i.categories.categoryName}}
+										</div>
+									</div>
+									<div class="offerdis">
+										<span>{{deal.businessName}}</span>
+										<!-- <span>
+											<i class="material-icons" *ngIf="deal.endDateString == null">query_builder</i>
+											End Date : N/A
+										</span>
+										<span>
+											<i class="material-icons" *ngIf="!deal.endDateString == null">query_builder</i>
+											{{deal.endDateString}}
+										</span> -->
+									</div>
 								</div>
 							</div>
-							<div class="offerdis">
-								<span>{{deal.businessName}}</span>
-								<span>
-									<i class="material-icons" *ngIf="deal.endDateString == null">query_builder</i>
-									N/A End Date
-								</span>
-								<span>
-									<i class="material-icons" *ngIf="!deal.endDateString == null">query_builder</i>
-									{{deal.endDateString}}
-								</span>
-							</div>
-						</div>
-					</div>
 				</div>
+				<!--Deals End-->
 			</div>
-			<!--Promotion-->
+
+			<!--Deals Main Start-->
 			<div id="promotion" class="tab-pane fade">
 				<div class="col-sm-3">
-					<div class="disboxloop" *ngFor="let mydeal of all_deals ;let i=index" (click)="goToNextPage(mydeal)">
-						<a *ngIf="mydeal.dealsImages.length == 0">
-							<img  src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-						</a>
-						<div class="textdisdetaill">
-							<div class="discat">
-								{{mydeal.discount}} % Discount
+						<div class="disboxloop" *ngFor="let mydeal of all_deals ;let i=index" (click)="goToNextPage(mydeal)">
+								<a *ngIf="mydeal.dealsImages.length == 0; else elseBlock">
+									<img  src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" class="discountimg">
+								</a>
+								<ng-template #elseBlock>
+									<a *ngFor="let img of  mydeal.dealsImages | slice:1:2 ">
+										<img  [src]="img.path" class="discountimg">
+									</a>
+								</ng-template>
+								<div class="textdisdetaill">
+									<div class="discat">
+										{{mydeal.discount}} % Discount
+									</div>
+									<div class="title">
+										{{mydeal.conditions}} 
+									</div>
+									<div class="offerdis">
+										<span>
+											{{mydeal.title}}
+										</span>
+										<span>
+											<i class="material-icons" >query_builder</i>
+												Start Date : {{mydeal.startDateString}}
+											</span>
+										<span>
+											<i class="material-icons" *ngIf="mydeal.endDateString == ''; else endBlock">query_builder</i>
+											End Date : N/A
+										</span>
+										<ng-template #endBlock>
+											<span>
+												<i class="material-icons">query_builder</i>
+												End Date : {{mydeal.endDateString}}
+											</span>
+										</ng-template>
+									</div>
+								</div>
 							</div>
-							<div class="title">
-								{{mydeal.conditions}} 
-								<!-- discount on -->
-								<!-- <div *ngFor=" let i of  deal.vendorCategories | slice:0:1  ">
-									{{i.categories.categoryName}}
-								</div> -->
-							</div>
-							<div class="offerdis">
-								<span>
-									{{mydeal.title}}
-								</span>
-								<span>
-										<i class="material-icons" >query_builder</i>
-										{{mydeal.startDateString}}
-									</span>
-								<span>
-									<i class="material-icons" *ngIf="mydeal.endDateString == null">query_builder</i>
-									N/A End Date
-								</span>
-								<span>
-									<i class="material-icons" *ngIf="!mydeal.endDateString == null">query_builder</i>
-									{{mydeal.endDateString}}
-								</span>
-							</div>
-						</div>
-					</div>
 				</div>
-				
 			</div>
+			<!--Deasl Main End-->
 
 		</div>
 	</div>

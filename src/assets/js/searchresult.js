@@ -19,8 +19,6 @@ function toggleChevron(e) {
 		.find("i.indicator")
 		.toggleClass('fa-caret-down fa-caret-right');
 }
-$('#accordion').on('hidden.bs.collapse', toggleChevron);
-$('#accordion').on('shown.bs.collapse', toggleChevron);
 
 if ($(window).width() < 514) {
     $('.collapse').removeClass('in');
@@ -226,3 +224,12 @@ $(".panel-heading").click(function(){
   // alert("price");
    $(this).toggleClass("arrowup");
 });
+
+$(".panel-body .panel-heading").click(function(){
+  // alert("price");
+  $()
+   $(this).toggleClass("arrowup");
+});
+
+
+

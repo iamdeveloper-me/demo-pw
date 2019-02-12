@@ -57,15 +57,14 @@
 
       <div class="col-md-12 card paddall20px">
          <div>
-            <select class="pull-right">
-               <option>All</option>
-               <option>Tips</option>
-               <option>Articles</option>
+            <select class="pull-right" [(ngModel)]='selectedTipic'>
+               <option  value='all'>All Types</option>
+               <option *ngFor="let t of distinctTipic" [value]='t'>{{t}}</option>
             </select>
          </div>
          <div class="row">
-               <!-- *ngFor='let a of tipsArrays;let i=index ' -->
-            <div class="col-sm-4"  *ngFor='let a of pagedItems;let i=index ' >
+            <div class="col-sm-4"  *ngFor='let a of pagedItems | topic:selectedTipic' >
+               <p *ngIf="pagedItems.length == 0"> No Data Found</p>
                <div class="card">
                   <a routerLink="../tips_list">
                      <img class="imgshadow" [src]="a.imagePath"></a>

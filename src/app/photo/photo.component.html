@@ -7,7 +7,7 @@
                     <div class="col-md-2 col-3">
                         <select class="form-control round_first" [(ngModel)]="category" name="categoryId" >
                             <option value='undefined'> All Categories </option>
-                            <option *ngFor='let list_Categories of categories' [value]="list_Categories.categoryId" > 
+                            <option *ngFor='let list_Categories of categories' [value]="list_Categories.categoryName" > 
                                 {{list_Categories.categoryName}}
                             </option>
                         </select>
@@ -51,9 +51,10 @@
                                 </div>
                             </div> 
                         </div>
+                        {{category}}
                         <div style="position:relative;min-height:100vh;" id="categoryProductContainer"  >
                             <h1>{{error_1}}</h1>
-                            <div class="span2 pcon prodcont actioninside" *ngFor="let item of pagedItems">
+                            <div class="span2 pcon prodcont actioninside" *ngFor="let item of pagedItems | photo:'category'">
                                 <div (click) = "popup(item)">
                                     <a data-fancybox="cl-group" (click)="classAdd(item)"  class="fancybox" title="{{item.district}}" href="{{item.imageURL}}" [attr.data-caption]="item.nameOfBusiness" >
                                         <img *ngIf="item"  [src]="item.imageURL"/>
@@ -80,6 +81,28 @@
                                         </div>
                                 </div>   
                             </div>
+
+
+                            <div class="clearfix"></div>
+                            <!-- pager -->
+                               <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                                  <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                     <a (click)="setPage(1)">First</a>
+                                  </li>
+                                  <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                     <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                                  </li>
+                                  <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                     <a (click)="setPage(page)">{{page}}</a>
+                                  </li>
+                                  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                     <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                                  </li>
+                                  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                     <a (click)="setPage(pager.totalPages)">Last</a>
+                                  </li>
+                               </ul>
+                            <!-- pager end -->
                         </div>
                     </div>
                 </section>

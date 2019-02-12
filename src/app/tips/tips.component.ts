@@ -4,18 +4,21 @@ import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { Meta } from '@angular/platform-browser';
 import { PagerService } from 'app/_services';
-
+import { TopicPipe } from './topic.pipe';
 @Component({
   selector: 'app-tips',
   templateUrl: './tips.component.html',
-  styleUrls: ['./tips.component.scss']
+  styleUrls: ['./tips.component.scss'],
+  providers: [TopicPipe]
 })
 export class TipsComponent  {
     searchquery= ''
     onSearch=''
     tipsArray:string[];
-    tipsArrays_items:string[];
+    tipsArrays_items:any[];
     blogArray:string[];
+    distinctTipic: any;
+    selectedTipic:string = 'all';
     page = 4;
     page1 = 4;
     page2 = 4;
@@ -43,12 +46,10 @@ export class TipsComponent  {
         blogTopicId: 0
         }).subscribe(data => {
         this.tipsArrays_items = data.items; 
-        console.log(this.tipsArrays_items);
+        this.distinctTipic = [new Set(this.tipsArrays_items.map(x=>x.blogTopic.topic))][0];
         this.allItems = this.tipsArrays_items
-        console.log(this.allItems);
-
         this.setPage(1);
-      },
+        },
         error => {
          console.log(error)
         }

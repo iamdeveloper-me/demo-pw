@@ -1,10 +1,14 @@
 import { Component, OnInit ,HostListener} from '@angular/core';
 import { apiService } from '../shared/service/api.service';
 import { Meta } from '@angular/platform-browser';
+import { PhotoPipe } from './photo.pipe';
+import { PagerService } from 'app/_services';
 @Component({
   selector: 'app-photo',
   templateUrl: './photo.component.html',
-  styleUrls: ['./photo.component.scss']
+  styleUrls: ['./photo.component.scss'],
+  providers: [PhotoPipe]
+
 })
 export class PhotoComponent implements OnInit {
     colors: Array<ColorPicker>;
@@ -30,9 +34,12 @@ item_tags:any = []
     default_colour_tags = true
     csvColors:string;
     // paged items
-    pagedItems: any[];
     error_1 = '';
-    constructor(private apiService: apiService,private meta:Meta ) {
+
+    pagedItems: any[];
+    pager: any = {};
+    allItems: any[];
+    constructor(private pagerService: PagerService,private apiService: apiService,private meta:Meta ) {
       this.meta.addTag({ name: 'description', content: 'Wedding Photos & Inspirations | Perfect Weddings' });
       this.colout_tag= false;
       this.pagedItems = [];
@@ -93,11 +100,12 @@ item_tags:any = []
           this.loading=false;  
           for (var pagedItem of  data.items ) {
               if(pagedItem['colorTags'] == null || pagedItem['tags'] == null){
-                this.pagedItems.push(pagedItem);
+                this.allItems.push(pagedItem);
               }else{
                 pagedItem['colorTags'] =  pagedItem['colorTags'].split(',');
                 pagedItem['tags'] =  pagedItem['tags'].split(',');
-                this.pagedItems.push(pagedItem);
+                this.allItems.push(pagedItem);
+                this.setPage(1)
               }
             }
       },error => {  console.log(error)});
@@ -166,6 +174,12 @@ item_tags:any = []
      //     this.photo_search_param.count +=1
         },error => {  console.log(error)});
     }
+
+    setPage(page: number) {
+      this.pager = this.pagerService.getPagerEvent(this.allItems.length, page);
+      this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    }
+
     popup(listall_categories){
       this.pho_data = listall_categories
     }
@@ -247,7 +261,7 @@ export class  photoSearchParam  {
     this.UserId = 0;
     this.page=0;
     this.count = 0;
-    this.pageSize=30;
+    this.pageSize=1000000;
     this.sortedBy = 'asc';
     this.color = [];
   }

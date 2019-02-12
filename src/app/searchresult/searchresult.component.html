@@ -32,11 +32,13 @@
         <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
           <ng-container *ngFor="let slide of slidesStore | slice:0:11 ">
             <ng-template *ngIf="slide.promoted" carouselSlide="1" >
-              <div class="boxtikslide" (click)="goToPortfolioDetail(slide)" >
+              <div class="boxtikslide" >
                 <div class="procard"> </div>
-                <!-- {{slide.profileImage }} -->
-                <img class="card-img-top" *ngIf = "slide" [src]="slide.profileImage | defaultImage:'https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg':true"/>
                 <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
+                <!-- {{slide.profileImage }} -->
+                <div (click)="goToPortfolioDetail(slide)" >
+                <img class="card-img-top" *ngIf = "slide" [src]="slide.profileImage | defaultImage:'https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg':true"/>
+               
                 <div class="card-body ">
                   <div class="text-center"> 
                    <h6><strong>{{slide.nameOfBusiness}}</strong> </h6>
@@ -68,6 +70,7 @@
                       </div>
                     </div>
                 </div>
+              </div>
               </div>
             </ng-template>
           </ng-container>
@@ -116,10 +119,10 @@
           </ol>
 
            <div class="btn-group hidden-xs">
-            <a href="#" id="list" class="btn btn-default btn-sm">
+            <a id="list" class="btn btn-default btn-sm">
               <span class="glyphicon glyphicon-th-list"></span>List
             </a> 
-            <a href="#" id="grid" class="btn btn-default btn-sm">
+            <a  id="grid" class="btn btn-default btn-sm active">
               <span class="glyphicon glyphicon-th-large"></span>Grid
             </a>
         </div>
@@ -219,7 +222,7 @@
                             <div class="funkyradio">  
                               <div class="funkyradio-info" *ngFor='let c of categories| categoryPipe:categoryFilterParam'>
                                <!-- <input type="checkbox" name="checkbox" id="{{c.categoryName}}" (change)='setFilterOptions(1,c.categoryId)' [(ngModel)]='c.isSelect'/> -->
-                                   <label (click)='setFilterOptions(1,c)' for='{{c.categoryName}}'><i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
+                                   <label (click)='setFilterOptions(1,c)' for='{{c.categoryName}}'><i>  <img [src]='c.iconImageURL'/></i>
                                       {{c.categoryName}} 
                                   </label>
                                </div>
@@ -253,8 +256,8 @@
                           <div class="funkyradio" *ngIf='filters && filters.services'  >  
                             <div class="funkyradio-info" *ngFor='let f of filters.services'>
                 
-                             <input type="checkbox" (change)='setFilterOptions(2,f)' [(ngModel)]='f.isSelect' name="checkbox"  id="{{f.serviceName}}"/>
-                                <label for="{{f.serviceName}}"> <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
+                             <input type="radio" (change)='setFilterOptions(2,f)' [value]="f.serviceName" name="f.serviceName"  [(ngModel)]='f.isSelect'  [id]="f.serviceName"/>
+                                <label for="{{f.serviceName}}">
                                 {{f.serviceName}} 
                               </label>
                            </div>
@@ -281,7 +284,7 @@
   						<div id="collapse1" class="panel-collapse collapse" >
              <div class="funkyradio" *ngIf='filters '>
                     <div class="funkyradio-info"  *ngFor='let p of  categories[0].services[0].customFields[0].customFieldOptionList'>
-                      <input type="checkbox" name="checkbox" (change)='setFilterOptions(7,p)'  id="{{p.key}}" [(checked)]="p.isSelect"/>
+                      <input type="radio" name="p.key" [value]='p.key' (change)='setFilterOptions(7,p)'  [id]="p.key" [(ngModel)]="p.isSelect"/>
                       <label for="{{p.key}}"> {{p.key}}</label>  
                     </div>
                   </div>
@@ -327,7 +330,7 @@
   						<div id="collapse3" class="panel-collapse collapse">
                  <div class="funkyradio">
                     <div class="funkyradio-info" *ngFor='let ur of userRatingArray'>
-                        <input type="checkbox" name="checkbox" id="{{ur.key}}" (change)='setFilterOptions(6,ur)'/>
+                        <input type="radio" name="ur.key" [value]="ur.key" [id]="ur.key" (change)='setFilterOptions(6,ur)'/>
                       <label  for="{{ur.key}}">
                         {{ur.key}}
                     </label>
@@ -352,7 +355,7 @@
                    
                     <div class="funkyradio">
                       <div class="funkyradio-info" *ngFor='let dd of dealsAndOfferArray'>
-                         <input type="checkbox" name="checkbox" id="{{dd.key}}" (change)='setFilterOptions(9,dd)' />
+                         <input type="radio" name="key" [id]="dd.key" [value]='dd.key' (change)='setFilterOptions(9,dd)' />
                         <label for="{{dd.key}}">{{dd.key}}</label>  
                       </div>
                     </div>
@@ -432,17 +435,17 @@
       <div class="photo_cont">
        	<div id="products" class="row list-group photo-group">
           <div *ngIf='objSearchResultItems'>
-	        	<div id='dv1' #dv1 *ngFor='let i of collection' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px ">
+	        	<div id='dv1' #dv1 *ngFor='let i of collection' class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px ">
 
 	                <div class="card mb-2 bordre_rad1 hover_effect">
                       <div *ngIf="i.promoted" class="procard"> </div>
-
-                    <div class="thumbnail">
+                      <span class="book_mark">
+                          <i class="material-icons">bookmark_border</i>
+                        </span>
+                    <div class="thumbnail" (click)="goToPortfolioDetail(i)" >
 
                       <img class="group list-group-image"  *ngIf = "i" [src]='i.profileImage' alt="Card image cap">
-                      <span class="book_mark">
-                        <i class="material-icons">bookmark_border</i>
-                      </span>
+                     
                       <div class="imgnum">
                         <span *ngIf='i.albums[0]'>
                            <img src="../../assets/img/picture.png"/>

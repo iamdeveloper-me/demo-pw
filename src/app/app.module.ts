@@ -219,6 +219,7 @@ import { Gallery0Component } from './vendor/gallery0/gallery0.component';
 import { GalleryTwoComponent } from './vendor/gallery-two/gallery-two.component';
 import { CalenderComComponent } from './vendor/calender-com/calender-com.component';
 import { SectionBComponent } from './vendor/membership/section-b/section-b.component';
+import { TopicPipe } from './tips/topic.pipe';
 
 
 
@@ -435,6 +436,8 @@ export function getAuthServiceConfigs() {
         CalenderComComponent,
 
         SectionBComponent,
+
+        TopicPipe,
 
 
         

@@ -57,10 +57,9 @@
 
       <div class="col-md-12 card paddall20px">
          <div>
-            <select class="pull-right">
-               <option>All</option>
-               <option>Tips</option>
-               <option>Articles</option>
+               {{selectedTipic}}
+            <select class="pull-right" [(ngModel)]='selectedTipic'>
+               <option *ngFor="let t of distinctTipic" [value]='t'>{{t}}</option>
             </select>
          </div>
          <div class="row">

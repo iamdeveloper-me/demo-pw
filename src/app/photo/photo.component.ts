@@ -9,11 +9,9 @@ import { Meta } from '@angular/platform-browser';
 export class PhotoComponent implements OnInit {
     colors: Array<ColorPicker>;
     item:any = [];
-col: any = []
-item_tags:any = []
-
-        categories:any = [];
-
+    col: any = []
+    item_tags:any = []
+    categories:any = [];
     category:any
     pho_data:any = {}
     loading = false;
@@ -60,15 +58,15 @@ item_tags:any = []
      
 
       $(document).ready(function(){
-      $('.head').on('click', function(){
-          $('.colorlist').toggleClass('seelist');
-          });
-      $('.Search_img').on('click', function(){
-          $('.colorlist').removeClass('seelist');
-          });
-      $('.Search_img').on('click', function(){
-          $('.clearclass').removeClass('seelist');
-          });
+        $('.head').on('click', function(){
+            $('.colorlist').toggleClass('seelist');
+            });
+        $('.Search_img').on('click', function(){
+            $('.colorlist').removeClass('seelist');
+            });
+        $('.Search_img').on('click', function(){
+            $('.clearclass').removeClass('seelist');
+            });
       })
     }
     createColorPanel(){
@@ -120,9 +118,10 @@ item_tags:any = []
         console.log(this.photo_search_param.color)
     }
     find_photo(f){
-
+    
       this.loading = false;
-      console.log(f.value.searchQuery)
+      console.log(f.value.categoryId)
+      this.photo_search_param.categoryId = f.value.categoryId
       console.log(this.photo_search_param)
       if(this.photo_search_param.color.length > 0 && this.photo_search_param.searchQuery == null){
         this.colout_tag = true;
@@ -154,16 +153,13 @@ item_tags:any = []
               this.pagedItems.push(pagedItem);
             }
           }
-          console.log( this.pagedItems)
-         
-        
+          console.log( this.pagedItems)   
           if( this.pagedItems.length == 0 ){
-              this.error_1 = "no data found"
-             
+              this.error_1 = "NO INSPIRATIONS FOUND!"            
           }else{
             this.error_1 = " "
           }
-     //     this.photo_search_param.count +=1
+     //this.photo_search_param.count +=1
         },error => {  console.log(error)});
     }
     popup(listall_categories){

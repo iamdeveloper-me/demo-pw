@@ -82,7 +82,7 @@
                           <ng-template #fwloc>
                             <P class="locat_icon">
                               <i class="material-icons">location_on</i> 
-                              {{slide?.district}} 
+                              {{slide?.district.name}} 
                             </P>
                           </ng-template>
 
@@ -109,10 +109,13 @@
                                   <!-- <span class="pric_200">200 $</span> -->
                               </div>
                               <div class="col-md-4 col-5 span_positin">
-                                <img src="../../assets/img/tag.svg"  alt=""> 
+                              
                               <!-- <span>Deals</span> -->
-                              <span *ngIf='slide.deals.length >0'>{{slide.deals.length}} Deals</span>
-                              <span *ngIf='slide.deals.length == 0'>N/A Deals</span>
+                              <span *ngIf='slide.deals.length >0'>
+                                <img src="../../assets/img/tag.svg"  alt="">   
+                                {{slide.deals.length}} Deals
+                              </span>
+                              <!-- <span *ngIf='slide.deals.length == 0'>N/A Deals</span> -->
                               </div>
                           </div>
                         </div>

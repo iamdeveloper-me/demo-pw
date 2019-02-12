@@ -78,5 +78,11 @@ export class EventsComponent implements OnInit {
     sessionStorage.setItem('event',JSON.stringify(a));
     this.router.navigate(['home/event_list']);
   }
+  bookMark(data, type , action_which_lacation){
+    const id = data['eventId'] 
+   this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
+     console.log(data)
+   })
+  }
 
 }

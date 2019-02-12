@@ -32,4 +32,15 @@ export class MasterserviceService {
   return this.apiservice.postData(this.apiservice.serverPath + 'PerfectWedding/similarvendors',obj);     
    }
 
+   fillBookmark(id, type, action_which_lacation){
+    const data = {
+      "id": id,
+      "type": type,
+      "action": action_which_lacation,
+      "promoted": true
+    }
+    return this.apiservice.postData(this.apiservice.serverPath + 'PerfectWedding/loguseraction',data);     
+
+   }
+
 }

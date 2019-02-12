@@ -6,6 +6,7 @@ import { SlidesOutputData } from 'ngx-owl-carousel-o';
 
 import{ratingStars} from '../ngservices/ratingstars';
 import { SearchresultComponent } from '../searchresult/searchresult.component';
+import { MasterserviceService } from '../ngservices/masterservice.service';
 @Component({
   selector: 'app-vendorcard',
   templateUrl: './vendorcard.component.html',
@@ -38,7 +39,7 @@ export class VendorcardComponent implements OnInit {
   activeSlides: SlidesOutputData;
   slidesStore: any[];
   noImage:string='https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg';
-  constructor( private router: Router ,config: NgbCarouselConfig, private apiService: apiService) {
+  constructor( private masterservice: MasterserviceService ,private router: Router ,config: NgbCarouselConfig, private apiService: apiService) {
     // customize default values of carousels used by this component tree
     this.ratingmodel = new ratingStars();
     config.interval = 10000;
@@ -70,7 +71,7 @@ export class VendorcardComponent implements OnInit {
       this.apiService.getData(this.apiService.serverPath+'PerfectWedding/featuredsuppliers').subscribe(data => {
       this.featured_supplier_data = data.featuredWeddingSuppliers;
       this.slidesStore = this.featured_supplier_data;
-      // console.log(this.slidesStore);
+       //console.log(this.slidesStore);
       if(this.featured_supplier_data.length > 0){
         this.featured_supplier_data.forEach(element => {
           if(element.reviews != null)
@@ -90,7 +91,7 @@ export class VendorcardComponent implements OnInit {
   Dream_Wedding(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/dreamweddinglocation').subscribe(data => {
       this.dream_wedding_location =  data.dreamWeddingLocations;
-      // console.log(this.dream_wedding_location);
+       console.log(this.dream_wedding_location);
       this.dream_wedding_location_length = this.dream_wedding_location.length
     },
       error => {
@@ -98,9 +99,15 @@ export class VendorcardComponent implements OnInit {
       }
     )
   }
+  bookMark(data, type , action_which_lacation){
+    const id = data['vendorId'] 
+   this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
+     console.log(data)
+   })
+  }
   Popular_Wedding(){
     this.apiService.getData(this.apiService.serverPath+'Categories/categorieswithlistingcount').subscribe(data => {
-      // console.log(data);
+       console.log(data);
       for (let i of data) {
         if(i.isPopular == true){
           this.Popular_Wedding_array.push(i);

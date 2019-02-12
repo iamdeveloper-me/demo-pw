@@ -17,25 +17,31 @@ background-image: url('https://s3.us-east-2.amazonaws.com/prefect-image/inner_he
   color: #ffffff;
   padding-top:115px!important;
 }
-.procard{background: url("https://s3.us-east-2.amazonaws.com/prefect-image/pro.png"); width: 58px; height: 53px; position: absolute;top: 0; left: 0;}
+.procard{background: url("assets/img/top_list.png"); width: 58px; height: 53px; position: absolute;top: 0; left: 0;}
 .selectedlist{
   padding: 0px;
   margin: 0px auto 10px;
   max-width: 93%;
 }
+
+
+
+.badge-primary{background: #dc0070!important;}
 .selectedlist li{
   background: #e5e5e5;
   border-radius:5px!important;
   padding:0px 5px;
   list-style: none;
+  font-size:12px!important;
 }
 
 .closebtnlist{
-  background: #cc0000;
+  background:transparent;
   border-radius: 50%;
-  color: #fff;
+  color: #333;
   cursor: pointer;
   width: 20px;
+  font-size:20px!important;
   display: inline-block;
   height: 20px;
   line-height: 20px;
@@ -381,7 +387,7 @@ border-bottom:1px solid #e5e5e5;
     margin-bottom: 10px;
 }
  #list, #grid, #photoview{
-	margin-right:10px;
+	margin-right:0px;
 	color: #000000;
 	font-size: 20px;
 }
@@ -604,7 +610,7 @@ img.lazyOwl{
     max-width: 255px!important;
 }
 .card-img-top{
-  height:250px;
+  height:180px;
   object-fit: cover;
 }
 
@@ -870,7 +876,7 @@ margin-bottom:30px;
   position: fixed;
 }
   .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
-   height: 250px;
+   height: 180px;
     width: 100%;
     border-radius: 0px;
     object-fit:cover;
@@ -926,7 +932,7 @@ margin-bottom:30px;
     font-size: 20px;
   }
   .grid-hover figure{
-    max-height: 250px !important;
+    max-height: 180px !important;
   }
   .grid-hover{
      padding: 0px !important;
@@ -1042,8 +1048,9 @@ margin-bottom:30px;
 .btn-group{
   float: right;
 }
+
 #list, #grid, #photoview, #gridmobile{
-    margin-right: 10px;
+    margin-right: 0px;
     color: #000000;
     font-size: 16px;
     padding-right: 0px;
@@ -1055,6 +1062,12 @@ margin-bottom:30px;
   #list:hover, #grid:hover, #photoview:hover{
     border:0px;
     outline: none!important;
+    background: #d8005a!important;
+    color: #ffffff!important;
+  }
+  #list.active, #grid.active, #photoview.active, #gridmobile.active{
+    background: #d8005a!important;
+    color: #ffffff!important;
   }
 .badgecontainer .badge{
   width: inherit!important;
@@ -1135,9 +1148,9 @@ margin-bottom:30px;
 .funkyradio input[type="radio"]:empty ~ label,
 .funkyradio input[type="checkbox"]:empty ~ label {
   position: relative;
-  line-height: 2.5em;
+  line-height: 25px;
   text-indent: 30px;
-  margin-top:5px;
+  margin-top:0px;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -1151,6 +1164,7 @@ margin-bottom:30px;
 }
 .filterrowcard{
   margin-top:-15px;
+  float: left;
 }
 .filterrowcard span{
   padding: 2px 10px;
@@ -1167,11 +1181,10 @@ font-size:14px;
 .funkyradio-info i img{
   max-width: 20px;
 }
-.funkyradio input[type="radio"]:empty ~ label:before,
 .funkyradio input[type="checkbox"]:empty ~ label:before {
   position: absolute;
   display: block;
-  top: 10px;
+  top: 7px;
   bottom: 0;
   left: 0;
   content: '';
@@ -1182,15 +1195,35 @@ font-size:14px;
   border-radius:4px;
 }
 
+.funkyradio input[type="radio"]:empty ~ label:before{
+  position: absolute;
+  display: block;
+  top: 7px;
+  bottom: 0;
+  left: 0;
+  content: '';
+  width: 1.5em;
+  height:1.5em;
+  background: #ffffff;
+  border:1px solid #666;
+  border-radius:50%!important;
+}
+
 .funkyradio input[type="radio"]:hover:not(:checked) ~ label,
 .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
   color: #888;
 }
 
-.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
 .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
   content: '\2714';
   text-indent: 5px;
+  line-height:1.4em;
+  color: #C2C2C2;
+}
+
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before {
+  content: '\2739';
+  text-indent: 3px;
   line-height:1.4em;
   color: #C2C2C2;
 }
@@ -1200,7 +1233,6 @@ font-size:14px;
   color: #777;
 }
 
-.funkyradio input[type="radio"]:checked ~ label:before,
 .funkyradio input[type="checkbox"]:checked ~ label:before {
   content: '\2714';
   color: #333;
@@ -1208,6 +1240,15 @@ font-size:14px;
   line-height:1.4em;
   background-color: #fff;
 }
+.funkyradio input[type="radio"]:checked ~ label:before{
+  content: '\2739';
+  color: #333;
+  text-indent: 3px;
+  line-height:1.4em;
+  background-color: #fff;
+}
+
+
 
 .funkyradio input[type="radio"]:focus ~ label:before,
 .funkyradio input[type="checkbox"]:focus ~ label:before {
@@ -1299,6 +1340,9 @@ font-size:14px;
 padding-top: 5px;
 padding-bottom: 5px;
 }
+
+
+
 .listing-group .grid-group-item .book_mark i{
  bottom: 7px;
  top:inherit;
@@ -1308,6 +1352,16 @@ padding-bottom: 5px;
     top: 8px!important;
     right: 7px!important;
 }
+.listing-group .locat_icon i{
+display: inline-block;
+text-align: left!important;
+float: left!important;
+}
+.listing-group .locat_icon span{
+  display: inline-block;
+  text-align: left!important;
+  float: left!important;
+  }
 .listing-group .grid-group-item .descrip{
   display:block;
   max-width:97%;
@@ -1323,7 +1377,9 @@ padding-bottom: 5px;
  .photo-group .thumbnail>img.list-group-image{
    height: 200px;
   }
-
+  .badgecontainer .badge{
+    font-size:75%;
+  }
 #products.photo-group  .grid-group-item{
   border:0px;
   background: transparent;

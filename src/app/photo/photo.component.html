@@ -28,6 +28,7 @@
                         <input type="text"  [(ngModel)]="photo_search_param.searchQuery"  type="text" name="searchQuery"  placeholder="Tags Name" class="searchinput">
                         <input type="submit"  value=""  class="search-button">
                     </div>
+                    {{photo_search_param.searchQuery}}
                 </form>
             </div>
         </div>
@@ -53,7 +54,7 @@
                         </div>
                         <div style="position:relative;min-height:100vh;" id="categoryProductContainer"  >
                             <h1>{{error_1}}</h1>
-                            <div class="span2 pcon prodcont actioninside" *ngFor="let item of pagedItems">
+                            <div class="span2 pcon prodcont actioninside" *ngFor="let item of pagedItems | photo: photo_search_param.searchQuery">
                                 <div (click) = "popup(item)">
                                     <a data-fancybox="cl-group" (click)="classAdd(item)"  class="fancybox" title="{{item.district}}" href="{{item.imageURL}}" [attr.data-caption]="item.nameOfBusiness" >
                                         <img *ngIf="item"  [src]="item.imageURL"/>

@@ -119,11 +119,11 @@ item_tags:any = []
         }
         console.log(this.photo_search_param.color)
     }
-    find_photo(f){
+    find_photo(){
 
       this.loading = false;
-      console.log(f.value.searchQuery)
       console.log(this.photo_search_param)
+      this.photo_search_param.categoryId = this.category
       if(this.photo_search_param.color.length > 0 && this.photo_search_param.searchQuery == null){
         this.colout_tag = true;
         this.showTag2 = false;
@@ -240,7 +240,7 @@ export class  photoSearchParam  {
   sortDir: string;
   sortedBy: string;
   searchQuery:string;
-  categoryId: string;
+  categoryId: any;
   UserId : number; 
   color: Array<any>;
   constructor(){

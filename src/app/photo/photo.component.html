@@ -28,7 +28,6 @@
                         <input type="text"  [(ngModel)]="photo_search_param.searchQuery"  type="text" name="searchQuery"  placeholder="Tags Name" class="searchinput">
                         <input type="submit"  value=""  class="search-button">
                     </div>
-                    {{photo_search_param.searchQuery}}
                 </form>
             </div>
         </div>
@@ -96,6 +95,11 @@
                                                 <div class="halfdiv"> 
                                                     <i class="material-icons">share</i>
                                                 </div>
+                                                <div class="halfdiv" (click)="bookMark(item,'albums','bookmarked')"> 
+                                                        <i class="material-icons">bookmark</i>
+                                                    </div>
+
+                                                
                                             </div>
                                         </div>
                                 </div>   

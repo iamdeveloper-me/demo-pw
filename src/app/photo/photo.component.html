@@ -69,6 +69,25 @@
                                                 <span *ngIf="item?.tags != null">{{item.tags}}</span>
                                             </span>
                                             </p>   
+
+
+                                          
+                                            <div *ngFor='let colour of item.colorTags' >
+                                                    <div *ngIf = "colour != null">
+                                                        <span class="colortag" style="    width: 19px !important;
+                                                        border-radius: 59px;" [style.background-color]='colour'>                           
+                                                        </span>
+                                                    </div>
+                                            </div>
+                                            <div *ngFor='let colour1 of item.tags' >
+                                                    <div *ngIf = "colour1 != ''">
+                                                        <span class="colortag">     
+                                                           {{colour1}}                      
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
                                             <div class="linkdiv">
                                                 <div class="halfdiv"> 
                                                     <i class="material-icons">favorite_border</i> 

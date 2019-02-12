@@ -9,31 +9,32 @@
 		</div>
 		<div class="container">
 			
-			<div class="row">
-					<div class="col-sm-8 nopadd" id="dealcarousel" >
+			<div class="row" >
+					<!-- <div class="col-sm-8 nopadd" id="dealcarousel" *ngFor='let deal of data?.vendorCategories; let j=index ' >
 						<owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
 						  <ng-container *ngFor='let deal of data?.vendorCategories; let j=index '>
 						    <ng-template carouselSlide="1"   >
-						      <img [src]="deal.categories.imagePath" alt="" >
+							  <img [src]="deal.categories.imagePath" alt="" >
 							</ng-template>
-							<!-- <ng-template carouselSlide="1" *ngIf="albumArray.length == 0" >
-									<img [src]="noImage" >
-							</ng-template> -->
 						  </ng-container>
 						</owl-carousel-o>
-					</div>
-					<div class="col-sm-8 nopadd" id="dealcarousel" >
+					</div> -->
+					
+					<div class="col-sm-8 nopadd" id="dealcarousel"  *ngIf="dealsAlbumArray.length > 0" >
 							<owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
 							  <ng-container *ngFor="let dealImg of dealsAlbumArray">
 								<ng-template carouselSlide="1"   >
 								  <img [src]="dealImg.path" [alt]="dealImg.originalFileName" >
 								</ng-template>
-								<!-- <ng-template carouselSlide="1" *ngIf="albumArray.length == 0" >
-										<img [src]="noImage" >
-								</ng-template> -->
 							  </ng-container>
 							</owl-carousel-o>
-						</div>
+
+					</div>
+
+							<div *ngIf="dealsAlbumArray.length == 0">
+									<img  src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" alt="">
+							</div>
+
 					<div class="col-sm-4 dealsbanner ">
 						<h1 class="dealdetailhead" *ngFor='let deal of data?.vendorCategories; let i=index '>
 							{{data?.discount}} % discount on {{deal.categories.categoryName}}

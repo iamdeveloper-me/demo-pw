@@ -12,7 +12,7 @@ export class DealsComponent implements OnInit {
   deals:any;
   all_deals:any; 
   districtdeal: any = {name:''}; 
-  albumeArray:any = [];
+  albumeArrays:any = [];
   suburbdeal:any={name:""} ; 
   highlighteddeal : any = {nameOfBusiness : ''};
   constructor(private meta:Meta,   private apiService: apiService,private router:Router) {
@@ -33,8 +33,8 @@ export class DealsComponent implements OnInit {
     this.highlighteddeal = data;
     console.log(this.highlighteddeal);
     this.districtdeal = data.districts;
-    this.albumeArray = data.dealsImages;
-    console.log(this.albumeArray)
+    this.albumeArrays = data.dealsImages;
+    console.log(this.albumeArrays)
     this.suburbdeal = data.suburb;
   }, error => {
      console.log(error)

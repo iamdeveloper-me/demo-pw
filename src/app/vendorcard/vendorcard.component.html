@@ -47,16 +47,16 @@
               <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
                   <ng-container *ngFor="let slide of slidesStore">
                     <ng-template carouselSlide="1">
-                      <div class="boxtikslide" (click)='goToVendordetails(slide)'>
+                      <div class="boxtikslide" >
                         <div class="procard"> </div>
-                       
+                        <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
+                       <div (click)='goToVendordetails(slide)'>
                         <img class="card-img-top" *ngIf = "!slide.profileImage"  src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg"> 
                           <div  *ngIf = "slide.profileImage" >
                               <img class="card-img-top" [src]="slide.profileImage" >
                           </div>
                       
-                        <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                        <div class="imgnum">
+                         <div class="imgnum">
                           <span *ngIf="slide?.albums.length > 0">
                              <img src="../../assets/img/picture.png"/>
                              {{slide?.albums?.length}} 
@@ -116,6 +116,7 @@
                               </div>
                           </div>
                         </div>
+                      </div>
                       </div>
                     </ng-template>
                   </ng-container>               

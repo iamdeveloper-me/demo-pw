@@ -1,21 +1,19 @@
 import { Component, OnInit ,HostListener} from '@angular/core';
 import { apiService } from '../shared/service/api.service';
 import { Meta } from '@angular/platform-browser';
-import { PhotoPipe } from './photo.pipe';
-import { PagerService } from 'app/_services';
 @Component({
   selector: 'app-photo',
   templateUrl: './photo.component.html',
-  styleUrls: ['./photo.component.scss'],
-  providers: [PhotoPipe]
-
+  styleUrls: ['./photo.component.scss']
 })
 export class PhotoComponent implements OnInit {
     colors: Array<ColorPicker>;
     item:any = [];
-    col: any = []
-    item_tags:any = []
-    categories:any = [];
+col: any = []
+item_tags:any = []
+
+        categories:any = [];
+
     category:any
     pho_data:any = {}
     loading = false;
@@ -32,12 +30,9 @@ export class PhotoComponent implements OnInit {
     default_colour_tags = true
     csvColors:string;
     // paged items
-    error_1 = '';
-
     pagedItems: any[];
-    pager: any = {};
-    allItems: any[];
-    constructor(private pagerService: PagerService,private apiService: apiService,private meta:Meta ) {
+    error_1 = '';
+    constructor(private apiService: apiService,private meta:Meta ) {
       this.meta.addTag({ name: 'description', content: 'Wedding Photos & Inspirations | Perfect Weddings' });
       this.colout_tag= false;
       this.pagedItems = [];
@@ -65,15 +60,15 @@ export class PhotoComponent implements OnInit {
      
 
       $(document).ready(function(){
-        $('.head').on('click', function(){
-            $('.colorlist').toggleClass('seelist');
-            });
-        $('.Search_img').on('click', function(){
-            $('.colorlist').removeClass('seelist');
-            });
-        $('.Search_img').on('click', function(){
-            $('.clearclass').removeClass('seelist');
-            });
+      $('.head').on('click', function(){
+          $('.colorlist').toggleClass('seelist');
+          });
+      $('.Search_img').on('click', function(){
+          $('.colorlist').removeClass('seelist');
+          });
+      $('.Search_img').on('click', function(){
+          $('.clearclass').removeClass('seelist');
+          });
       })
     }
     createColorPanel(){
@@ -98,12 +93,11 @@ export class PhotoComponent implements OnInit {
           this.loading=false;  
           for (var pagedItem of  data.items ) {
               if(pagedItem['colorTags'] == null || pagedItem['tags'] == null){
-                this.allItems.push(pagedItem);
+                this.pagedItems.push(pagedItem);
               }else{
                 pagedItem['colorTags'] =  pagedItem['colorTags'].split(',');
                 pagedItem['tags'] =  pagedItem['tags'].split(',');
-                this.allItems.push(pagedItem);
-                this.setPage(1)
+                this.pagedItems.push(pagedItem);
               }
             }
       },error => {  console.log(error)});
@@ -126,10 +120,9 @@ export class PhotoComponent implements OnInit {
         console.log(this.photo_search_param.color)
     }
     find_photo(f){
-    
+
       this.loading = false;
-      console.log(f.value.categoryId)
-      this.photo_search_param.categoryId = f.value.categoryId
+      console.log(f.value.searchQuery)
       console.log(this.photo_search_param)
       if(this.photo_search_param.color.length > 0 && this.photo_search_param.searchQuery == null){
         this.colout_tag = true;
@@ -161,21 +154,18 @@ export class PhotoComponent implements OnInit {
               this.pagedItems.push(pagedItem);
             }
           }
-          console.log( this.pagedItems)   
+          console.log( this.pagedItems)
+         
+        
           if( this.pagedItems.length == 0 ){
-              this.error_1 = "NO INSPIRATIONS FOUND!"            
+              this.error_1 = "no data found"
+             
           }else{
             this.error_1 = " "
           }
-     //this.photo_search_param.count +=1
+     //     this.photo_search_param.count +=1
         },error => {  console.log(error)});
     }
-
-    setPage(page: number) {
-      this.pager = this.pagerService.getPagerEvent(this.allItems.length, page);
-      this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    }
-
     popup(listall_categories){
       this.pho_data = listall_categories
     }
@@ -257,7 +247,7 @@ export class  photoSearchParam  {
     this.UserId = 0;
     this.page=0;
     this.count = 0;
-    this.pageSize=1000000;
+    this.pageSize=30;
     this.sortedBy = 'asc';
     this.color = [];
   }

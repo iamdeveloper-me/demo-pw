@@ -5,15 +5,15 @@
             <div class="searchtopbar">
                 <form (ngSubmit)="find_photo(list)" #list="ngForm" class="row rowset">
                     <div class="col-md-2 col-3">
-                        <select  class="form-control round_first" [(ngModel)]="category" name="categoryId" >
+                        <select class="form-control round_first" [(ngModel)]="category" name="categoryId" >
                             <option value='undefined'> All Categories </option>
-                            <option *ngFor='let list_Categories of categories' [value]="list_Categories.categoryName" > 
+                            <option *ngFor='let list_Categories of categories' [value]="list_Categories.categoryId" > 
                                 {{list_Categories.categoryName}}
                             </option>
                         </select>
                     </div>
                     <div class="colorselect col-md-2 col-4">
-                            <span class="head"> Color <span class="caret"></span></span>
+                            <span class="head">Select Color Tag <span class="caret"></span></span>
                             <div class="colorlist">
                                 <ul>
                                     <li *ngFor='let c of colors'  (click)='colourArray(c)'  style="color:black">
@@ -25,7 +25,7 @@
                             </div>
                     </div>
                     <div class="col-md-8 col-5 Search_img"  >
-                        <input type="text"  [(ngModel)]="photo_search_param.searchQuery"  type="text" name="searchQuery"  placeholder="Type a Keyword " class="searchinput">
+                        <input type="text"  [(ngModel)]="photo_search_param.searchQuery"  type="text" name="searchQuery"  placeholder="Tags Name" class="searchinput">
                         <input type="submit"  value=""  class="search-button">
                     </div>
                 </form>
@@ -51,10 +51,9 @@
                                 </div>
                             </div> 
                         </div>
-                        {{category}}
                         <div style="position:relative;min-height:100vh;" id="categoryProductContainer"  >
                             <h1>{{error_1}}</h1>
-                            <div class="span2 pcon prodcont actioninside" *ngFor="let item of pagedItems | photo:'category'">
+                            <div class="span2 pcon prodcont actioninside" *ngFor="let item of pagedItems">
                                 <div (click) = "popup(item)">
                                     <a data-fancybox="cl-group" (click)="classAdd(item)"  class="fancybox" title="{{item.district}}" href="{{item.imageURL}}" [attr.data-caption]="item.nameOfBusiness" >
                                         <img *ngIf="item"  [src]="item.imageURL"/>
@@ -62,25 +61,13 @@
                                         <div class="clearfix"></div>
                                         <div class="photodetail">
                                             <p class="detaildiv">
-                                                <span class="vendorlogoimg" *ngIf = "!item.businessLogo"><img src="../../assets/img/noImg.png"/></span>
-                                                <span class="vendorlogoimg" *ngIf = "item.businessLogo">
-                                                    <img [src] = "item.businessLogo">
-                                                </span>
-                                           
+                                                <span class="vendorlogoimg"><img src="../../assets/img/noImg.png"/></span>
                                                <span class="photdetailtext">
                                                 <span>{{item.nameOfBusiness}}</span>
-                                               
+                                                <span *ngIf="item?.tags == null">No Tags </span>
+                                                <span *ngIf="item?.tags != null">{{item.tags}}</span>
                                             </span>
                                             </p>   
-
-                                            {{item.tags | json}}
-                                            <div *ngFor='let colour of item.colorTags' >
-                                                    <div *ngIf = "colour != ''">
-                                                        <span class="colortag" style="    width: 19px !important;
-                                                        border-radius: 59px;" [style.background-color]='colour'>                           
-                                                        </span>
-                                                    </div>
-                                                </div>
                                             <div class="linkdiv">
                                                 <div class="halfdiv"> 
                                                     <i class="material-icons">favorite_border</i> 
@@ -93,28 +80,6 @@
                                         </div>
                                 </div>   
                             </div>
-
-
-                            <div class="clearfix"></div>
-                            <!-- pager -->
-                               <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                                  <li [ngClass]="{disabled:pager.currentPage === 1}">
-                                     <a (click)="setPage(1)">First</a>
-                                  </li>
-                                  <li [ngClass]="{disabled:pager.currentPage === 1}">
-                                     <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-                                  </li>
-                                  <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-                                     <a (click)="setPage(page)">{{page}}</a>
-                                  </li>
-                                  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                                     <a (click)="setPage(pager.currentPage + 1)">Next</a>
-                                  </li>
-                                  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                                     <a (click)="setPage(pager.totalPages)">Last</a>
-                                  </li>
-                               </ul>
-                            <!-- pager end -->
                         </div>
                     </div>
                 </section>

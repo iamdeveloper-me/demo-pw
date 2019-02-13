@@ -172,7 +172,7 @@
                     <div class="category-body" *ngIf='showAllLocation'>
 
                         <div  class="searchmobtitlebar city_position">
-                            <input type="text" [(ngModel)]='locationFilterParam' placeholder="Type the city" class="cityinput"/>
+                          <input type="text" [(ngModel)]='locationFilterParam' placeholder="Type to Search Location" class="cityinput"/>
                           </div>
 
                           <div class="cityscroll22" >
@@ -323,7 +323,7 @@
                     arrow_back_ios
                   </i>
   								<a data-toggle="collapse" href="#collapse3">
-                    Customer Rating
+                    Rating
                     <i class="hidden-xs" aria-hidden="true"></i></a>
   							</h4>
   						</div>
@@ -507,7 +507,14 @@
 	     	</div>
         <div>
 
-          <img *ngIf='loading' src="https://www.walgreens-hearing.com/img/loader.gif" style="bottom:35%;position: fixed;z-index:99999;margin-left:18%">
+       <!--    <img  src="https://www.walgreens-hearing.com/img/loader.gif" style="bottom:35%;position: fixed;z-index:99999;margin-left:18%"> -->
+
+          <div class="preloaderbox" *ngIf='loading'>
+            <span class="circle"></span>
+            <span class="title"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+          </div>
                   <!-- <ngb-pagination [collectionSize]="objSearchResultItems?.totalCount" [(page)]="objSearchResultItems.page" [boundaryLinks]="true"></ngb-pagination>
              <span class="totalpage">{{objSearchResultItems.totalPages}} (Page)s</span> -->
         </div>

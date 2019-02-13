@@ -66,7 +66,7 @@ export class SearchresultComponent implements OnInit {
   SelectedCategory:any;
   ratingmodel: ratingStars;
   Honeymoon_detail:any = {};
-    constructor(public _route:Router, public _activeRoute: ActivatedRoute, 
+    constructor(private masterservice: MasterserviceService,public _route:Router, public _activeRoute: ActivatedRoute, 
     private _masterservice: MasterserviceService, private api: apiService,
     public toastr: ToastrService) {
       debugger;
@@ -442,6 +442,12 @@ generateStaticArray(){
     {'key':'Top Listing',isSelect:false},
   ]
 
+}
+bookMark(data, type , action_which_lacation){
+  const id = data['vendorId'] 
+ this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
+   console.log(data)
+ })
 }
 }
 export class SearchFilterVm{

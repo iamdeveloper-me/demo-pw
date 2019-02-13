@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { apiService } from '../shared/service/api.service';
 import { Http,Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { PagerService } from 'app/_services';
 import { TopicPipe } from './topic.pipe';
 @Component({
@@ -33,10 +33,12 @@ export class TipsComponent  {
     pager: any = {};
     allItems: any[];
 
-    constructor(private pagerService: PagerService,private apiService: apiService,public http: Http ,public toastr: ToastrService,private meta:Meta) {
-      this.meta.addTag({ name: 'description', content: 'Wedding Tips & Articles | Perfect Weddings' });
-     }
+    constructor(private pagerService: PagerService,private apiService: apiService,public http: Http ,public toastr: ToastrService,private meta:Meta, private title : Title) {
+           }
     ngOnInit() { 
+      this.title.setTitle('Wedding Tips & Articles |Perfect Weddings');    
+      this.meta.addTag({name:'description',content:'Wedding Tips & Articles |Perfect Weddings'});    
+  
       this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchblogs',{
         page: 0,
         pageSize: 25,

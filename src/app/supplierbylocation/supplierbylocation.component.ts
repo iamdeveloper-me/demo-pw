@@ -33,7 +33,7 @@ export class SupplierbylocationComponent implements OnInit {
       { 'districtId':7, 'locationName': 'Port-Louis', 'className': 'col-sm-4 citybox', 'locationUrl': '../../assets/img/port_louis.jpg'},
       { 'districtId':8, 'locationName': 'Riviere du Rempart', 'className': 'col-sm-6 citybox citybox1', 'locationUrl': '../../assets/img/maxresdefault.jpg'},
       { 'districtId':9, 'locationName': 'Savanne', 'className': 'col-sm-6 citybox', 'locationUrl': '../../assets/img/plains_will.jpg'},
-      { 'districtId':10, 'locationName': 'Port Mathurin', 'className': 'col-sm-6 citybox', 'locationUrl': '../../assets/img/rodrigues.jpg'},
+      { 'districtId':10, 'locationName': 's', 'className': 'col-sm-6 citybox', 'locationUrl': '../../assets/img/rodrigues.jpg'},
       
     ]
       this.masterservice.getAllLocation().subscribe(data => {

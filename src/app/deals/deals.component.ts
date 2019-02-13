@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
+import { Meta , Title } from '@angular/platform-browser';
 import { apiService } from 'app/shared/service/api.service';
 import { Router } from '@angular/router';
 @Component({
@@ -15,11 +15,13 @@ export class DealsComponent implements OnInit {
   albumeArrays:any = [];
   suburbdeal:any={name:""} ; 
   highlighteddeal : any = {nameOfBusiness : ''};
-  constructor(private meta:Meta,   private apiService: apiService,private router:Router) {
-    this.meta.addTag({ name: 'description', content: 'Great Wedding Deals and Offers | Perfect Weddings' });
-   }
+  constructor(private meta:Meta,   private apiService: apiService,private router:Router, private title : Title) {
+ }
 
   ngOnInit() {
+    this.title.setTitle('Great Wedding Deals & Offers |Perfect Weddings');    
+    this.meta.addTag({name:'description',content:'Great Wedding Deals & Offers |Perfect Weddings'});    
+
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/dealsanddiscount').subscribe(data => {
     this.deals = data.discounts;
     console.log( this.deals);

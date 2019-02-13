@@ -8,6 +8,7 @@ import { MasterserviceService } from 'app/ngservices/masterservice.service';
 import { MapsAPILoader, AgmMap } from '@agm/core';
 import { GoogleMapsAPIWrapper } from '@agm/core/services';
 import { utilities } from 'app/utilitymodel';
+import { Meta, Title } from '@angular/platform-browser';
 declare var google: any;
 
 interface Marker {lat: number;lng: number;label?: string;draggable: boolean;}
@@ -43,6 +44,8 @@ export class DetailpageComponent implements OnInit {
   lightBoxImages=[];
   similarVendors_length;
   vendorVideo_details:any = [];
+  CatName;
+
   @ViewChild('albumgallarypopup') albumgallarypopup: ElementRef;
   @ViewChild(AgmMap) map: AgmMap;
   @ViewChild('gmapInput') gmapInput: ElementRef;
@@ -52,6 +55,8 @@ export class DetailpageComponent implements OnInit {
      private masterservice: MasterserviceService,
      public mapsApiLoader: MapsAPILoader,
      private router: Router,
+     private meta : Meta,
+     private title : Title
    ) { 
       this.ratingmodel = new ratingStars();
   }
@@ -68,7 +73,18 @@ export class DetailpageComponent implements OnInit {
     });
     this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
     this.showHideReviews(2)
-    console.log( this.vendorDetails )
+    // console.log( this.vendorDetails);
+
+    for (let cat of this.vendorDetails.vendorCategories) {
+      this.CatName = cat.categories.categoryName;
+      console.log(this.CatName)
+  }
+        //Meta Tags
+      this.title.setTitle(this.vendorDetails.nameOfBusiness + ` , ` + this.vendorDetails.suburb.name + ` , ` + this.CatName + ` | Perfect Weddings` );   
+      this.meta.addTag({name:'description',content:'Team Contact | Perfect Weddings'});  
+      console.log(this.vendorDetails.vendorCategories)
+      
+
     this.vendorVideo_details = this.vendorDetails.vendorVideos.length;
     this.businessServices_length = this.vendorDetails.businessServices.length;
     this.getSimilarVendors();

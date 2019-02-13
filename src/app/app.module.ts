@@ -221,9 +221,11 @@ import { CalenderComComponent } from './vendor/calender-com/calender-com.compone
 import { SectionBComponent } from './vendor/membership/section-b/section-b.component';
 import { TopicPipe } from './tips/topic.pipe';
 import { PhotoPipe } from './photo/photo.pipe';
+
 import { EventsearchPipe } from './events/eventsearch.pipe';
 import { EventsearchlocationPipe } from './events/eventsearch.pipe';
 import { EventsearchentryPipe } from './events/eventsearch.pipe';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 
 
@@ -468,7 +470,11 @@ export function getAuthServiceConfigs() {
         FlatpickrModule.forRoot(),
         CalendarModule.forRoot(),
         // calender End
+
         NgxPaginationModule,
+
+        RecaptchaModule,
+
         OwlModule,
         ProgressHttpModule
 ,NgxDatatableModule,

@@ -10,8 +10,8 @@ export class FootComponent implements OnInit {
 
   constructor(private meta : Meta,private title : Title) { }
   ngOnInit() {
-    this.title.setTitle('Website About Weddings | Perfect Weddings');    
-    this.meta.addTag({name:'description',content:'Website About Weddings | Perfect Weddings'});    
+    // this.title.setTitle('Tools to plan your wedding | couples');    
+    // this.meta.addTag({name:'description',content:'Tools to plan your wedding | couples'});    
 
                 $(".footer_bg button.btn.btn-info").click(function(){
                   $(this).toggleClass("hide_menus");

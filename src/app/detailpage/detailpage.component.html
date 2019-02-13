@@ -211,7 +211,8 @@
             <div class="text-center showless" style="display: none;">Show less</div> -->
           </div>
         </div>
-        <div id="overview" class="vp_services_txt" *ngIf = "businessServices_length > 0">
+        <a id="overview" class="tiktikmik"></a>
+        <div  class="vp_services_txt" *ngIf = "businessServices_length > 0">
           <div class="servicecontainer_0 servicecontainer">
             <div class="servicerow">
               <span class="vp_services_txt_span marriager_text_without_underline">
@@ -219,7 +220,7 @@
             </div>
             <div class="row servicerow venserbox">
               <div style="width: 100%;" *ngFor='let service of  vendorDetails?.businessServices'>  
-                      <table class="tabledesignwork table table-bordered table-stripped" *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
+                      <table class="tabledesignwork" *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
                           
                         <tr *ngFor='let customF of  service.customFields  '>
                           <th>{{customF.displayText}}</th>
@@ -233,9 +234,9 @@
       </div>
 
       <!-- -->
-
+       <a id="gallery" class="tiktikmik"></a>
       <!-- Portfolio & Albums -->
-      <div id="gallery" class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection gallery" *ngIf = "portfolioAndAlbumImagesTotal > 0">
+      <div  class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection gallery" *ngIf = "portfolioAndAlbumImagesTotal > 0">
         <div class="large_subtext" >
           Portfolio & Albums 
           <div class="clearfix"></div>
@@ -248,7 +249,7 @@
                     
                   {{pi?.albumName}}
                 <br>
-                <span *ngIf="pi?.albumImages.length">({{pi?.albumImages.length}} Images ) </span>
+                <span>({{pi?.albumImages.length}} Images ) </span>
                 
                 </div>
               </div>
@@ -295,7 +296,8 @@
       <!-- end Portfolio & Albums -->
 
     <!-- mobile  -->
-      <div class="vp_about_txt aboutsection" id="about" *ngIf = "vendorDetails?.businessDetails != null">
+      <a id="about" class="tiktikmik"></a>
+      <div class="vp_about_txt aboutsection" *ngIf = "vendorDetails?.businessDetails != null">
       
           <!-- About Us -->
             <div class="boxLightStyles hideShowMeNow vp_about box_section_light r_s_pre">
@@ -423,9 +425,9 @@
 
 
       <div class="clearfix"></div>
-
+       <a id="review" class="tiktikmik"></a>
       <!-- start Reviews form -->
-      <div id="review" class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection" id="review">
+      <div  class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection">
         <div class="vp_review_txt_title large_subtext "> Reviews ( {{vendorDetails.reviews.length}} reviews) 
           <span *ngIf='vendorDetails.reviews.length>2' class="reviewmore" (click)='showHideReviews(0)'>Show All</span>
           <span  class="reviewless" style="display:none;" (click)='showHideReviews(2)'>Show Less</span>
@@ -468,9 +470,9 @@
       <!-- End Reviews form -->
 
       <div class="clearfix"></div>
-
+         <a id="deals" class="tiktikmik"></a>
       <!-- Wedding Deals & Discount -->
-      <div class="boxLightStyles hideShowMeNow box_section_light dealsection" id="deals" *ngIf = "vendorDetails?.dealsCount > 0">
+      <div class="boxLightStyles hideShowMeNow box_section_light dealsection" *ngIf = "vendorDetails?.dealsCount > 0">
         <div class="vp_review_txt_title large_subtext">Wedding Deals & Discount</div>
         <div class="row dealsinner">
           <!-- <div class="col-sm-2 text-center dealhead pink" *ngIf='vendorDetails?.discounts'>
@@ -664,9 +666,10 @@
           </div>
           <div class="featurebtn">
             <div class="col-sm-3"><a ><img src="../../assets/img/fb_icon.png"></a></div>
+            <div class="col-sm-3"><a ><img src="../../assets/img/wa_icon.png"></a></div>
             <div class="col-sm-3"><a ><img src="../../assets/img/msg_icon.png"></a></div>
             <div class="col-sm-3"><a ><img src="../../assets/img/share_icon.png"></a></div>
-            <div class="col-sm-3"><a ><img src="../../assets/img/wa_icon.png"></a></div>
+            
           </div>
         </div>
         <div class="clearfix"></div>
@@ -854,6 +857,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Send Message</h4>
+           <button type="button" class="btn closebtn" data-dismiss="modal">&times;</button>
         </div>
         <div class="col-sm-12">
           <div class="container">
@@ -879,9 +883,7 @@
             </div>
             <div class="clearfix"></div>
             <div class="form-group btnholder">
-              <button type="submit" class="btn btn-secondary">SAVE</button>
-              &nbsp;
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-info">SAVE</button>
             </div>
           </div>
         </div>

@@ -17,8 +17,10 @@ export class EventsComponent implements OnInit {
   objSearchlistvm: SearchListingVM;
 
   constructor( public http:Http, private pagerService: PagerService,private apiService: apiService,private masterservice: MasterserviceService,private router:Router,private meta:Meta, private title : Title ) {
+
     this.meta.addTag({ name: 'description', content: 'Top Wedding Events in Mauritius | Perfect Weddings.' });
    this.objSearchlistvm = new SearchListingVM()
+
   }
 
   locations = [];

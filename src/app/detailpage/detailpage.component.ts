@@ -43,6 +43,8 @@ export class DetailpageComponent implements OnInit {
   portfolioImages = [];
   lightBoxImages=[];
   similarVendors_length;
+  user_login_token;
+  currentDate
   vendorVideo_details:any = [];
   CatName;
 
@@ -59,6 +61,12 @@ export class DetailpageComponent implements OnInit {
      private title : Title
    ) { 
       this.ratingmodel = new ratingStars();
+
+      var dateObj = new Date();
+      this.currentDate  = dateObj.getDay()  //months from 1-12
+      console.log(this.currentDate )
+      this.user_login_token = JSON.parse(sessionStorage.getItem('userId'));
+      console.log( this.user_login_token )
   }
   ngOnInit() {
     $.getScript('./assets/js/prism.min.js');
@@ -146,10 +154,11 @@ classAdd(item){
 
     var rating1 = review.rating;
     var comments1 = review.comments;
-
+    console.log(this.user_login_token )
     this.apiService.postData(this.apiService.serverPath+this.url, {
-      rating: rating1, comments:
-        comments1, rateVendorID: this.vendorDetails.vendorUniqueId
+       rating: rating1, 
+       comments: comments1,
+       rateVendorID: this.user_login_token 
     }).subscribe(data => {
       console.log(data)
       }, error => { console.log(error) }

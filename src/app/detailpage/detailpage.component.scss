@@ -56,6 +56,20 @@ padding: 0px;
     float: left;
     margin-right: 10px;
 }
+.ratingimg{
+    width:40px;
+    height:40px;
+    border-radius: 50%;
+    float: left;
+    margin-right:10px;
+}
+.reviewedtext{
+    font-size: 16px;
+}
+.reviewedtext i{
+    font-size:12px;
+    color:#ccc;
+}
 .floatlefttik{
     float:left;
 }
@@ -934,19 +948,24 @@ border-bottom: 1px solid #e72e77;
     color:#65b045;
 }
 .reviewrow{
-    height:225px;
+    height:130px;
     overflow:hidden;
+    background:#fff;
+    padding:0px;
+    margin:10px 0px;
+    border-bottom:1px solid #ccc;
+}
+.reviewrow div{
+    padding:5px;
 }
 .reviewrow.reviewrowmore{
     height:auto;
     overflow:hidden;
 }
-
-.reviewrow div{
-    background:#f5f5f5;
-    padding:10px;
-    margin:10px 0px;
+.reviewrow .fa-star:before{
+    color: orange!important;
 }
+
 .similarvendor .item{
 min-height:248px;
 }

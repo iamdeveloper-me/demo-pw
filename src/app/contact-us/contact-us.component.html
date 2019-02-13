@@ -47,7 +47,7 @@
 
       <div class="col-md-6 cont_bg">
         <div>
-          <h4>CONTACT FORM</h4>
+          <h4>Getting in touch is easy!</h4>
         </div>
         <form name="form" (ngSubmit)="list.form.valid && contact(list)" #list="ngForm" novalidate>
             <input type="hidden" data-form-email="true">
@@ -66,6 +66,36 @@
                   <div *ngIf="name.errors.required">Name is required</div>
               </div>
             </div>
+            <!-- <div class="form-group">
+                <input 
+                  type="text" 
+                  [(ngModel)]="contactInfoObj.firstName" 
+                  #name="ngModel" 
+                  [ngClass]="{ 'is-invalid': list.submitted && firstName.invalid }"
+                  class="form-control" 
+                  name="firstName" 
+                  required 
+                  placeholder="firstName*"
+                />
+                <div *ngIf="list.submitted && firstName.invalid" class="invalid-feedback">
+                    <div *ngIf="firstName.errors.required">firstName is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                  <input 
+                    type="text" 
+                    [(ngModel)]="contactInfoObj.lastName" 
+                    #name="ngModel" 
+                    [ngClass]="{ 'is-invalid': list.submitted && lastName.invalid }"
+                    class="form-control" 
+                    name="lastName" 
+                    required 
+                    placeholder="lastName*"
+                  />
+                  <div *ngIf="list.submitted && lastName.invalid" class="invalid-feedback">
+                      <div *ngIf="lastName.errors.required">lastName is required</div>
+                  </div>
+                </div> -->
             <div class="form-group">
               <input 
                 type="email" 
@@ -105,6 +135,10 @@
               <small class="form-text text-muted danger">{{Phone_no}}</small>
             </div>
             <div class="form-group">
+              <!-- <select name="subjects" class="form-control" [(ngModel)]="subjects" id="subjects">
+                <option [value]="undefined" disabled>Please Select</option>
+                <option *ngFor="let subject of subjects ;let s =index" [value]="subject">{{subject}}</option>
+              </select> -->
               <input 
                 type="tel" 
                 class="form-control" 

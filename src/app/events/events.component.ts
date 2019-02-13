@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map'
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-events',
@@ -16,7 +16,7 @@ import { Meta } from '@angular/platform-browser';
 export class EventsComponent implements OnInit {
   objSearchlistvm: SearchListingVM;
 
-  constructor( public http:Http, private pagerService: PagerService,private apiService: apiService,private masterservice: MasterserviceService,private router:Router,private meta:Meta ) {
+  constructor( public http:Http, private pagerService: PagerService,private apiService: apiService,private masterservice: MasterserviceService,private router:Router,private meta:Meta, private title : Title ) {
     this.meta.addTag({ name: 'description', content: 'Top Wedding Events in Mauritius | Perfect Weddings.' });
    this.objSearchlistvm = new SearchListingVM()
   }
@@ -37,6 +37,9 @@ export class EventsComponent implements OnInit {
   page_sizzze  = 1;
   searchQuery: ""
   ngOnInit() {
+    this.title.setTitle('Top Wedding Events in Mauritius |Perfect Weddings');    
+    this.meta.addTag({name:'description',content:'Top Wedding Events in Mauritius |Perfect Weddings'});    
+
                 this.locationD();
                 this.event();
 

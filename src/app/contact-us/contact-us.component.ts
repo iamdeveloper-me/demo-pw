@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { apiService } from '../shared/service/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { ContactUsVM } from '../advertise/advertise.component';
+import { Meta, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-contact-us',
   templateUrl: './contact-us.component.html',
@@ -9,11 +10,15 @@ import { ContactUsVM } from '../advertise/advertise.component';
 })
 export class ContactUsComponent implements OnInit {
   contactInfoObj: ContactUsVM;
-  constructor(private apiService: apiService, public toastr: ToastrService ) {
+  subjects = ["General Enquiry","Business Enquiry - Advertising","Complaints"];
+  constructor(private apiService: apiService, public toastr: ToastrService, private meta : Meta, private title : Title ) {
     this.contactInfoObj = new ContactUsVM();
   }
   Phone_no ;
   ngOnInit() {
+    this.title.setTitle('Team Contact | Perfect Weddings');    
+    this.meta.addTag({name:'description',content:'Team Contact | Perfect Weddings'});   
+
   }
   contact(list){
     this.apiService.postData(this.apiService.serverPath+'Home/contactus',list.value).subscribe(data => {

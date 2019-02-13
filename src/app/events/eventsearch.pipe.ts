@@ -65,23 +65,23 @@ export class EventsearchentryPipe implements PipeTransform {
 
 }
 
-@Pipe({
-  name: 'eventsearchentrydates'
-})
-export class EventsearchdatePipe implements PipeTransform {
+// @Pipe({
+//   name: 'eventsearchentrydate'
+// })
+// export class EventsearchdatePipe implements PipeTransform {
 
 
 
-  transform(value: any, args?: any): any {
+//   transform(value: any, args?: any): any {
 
-    // if(value){
-    //   if(args == undefined || args === 'All'){
-    //     return value
-    //   }else{
-    //     return value.filter((listing:any)=>listing.entry.toLowerCase().includes(args.toLowerCase()));
-    //   }
-    // }
-    return value;
-  }
+//     // if(value){
+//     //   if(args == undefined || args === 'All'){
+//     //     return value
+//     //   }else{
+//     //     return value.filter((listing:any)=>listing.entry.toLowerCase().includes(args.toLowerCase()));
+//     //   }
+//     // }
+//     return value;
+//   }
 
-}
+// }

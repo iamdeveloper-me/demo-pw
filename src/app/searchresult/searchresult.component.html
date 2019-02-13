@@ -406,7 +406,9 @@
             <!--services-->
             <div *ngIf=filters>
           <span class="filterrowcard" *ngFor='let f of filters.services'>
-            <span  *ngIf='f.isSelect'>{{f.serviceName}}</span>
+            <span  *ngIf='f.isSelect' >{{f.serviceName}}
+                <i class="chipsCLose" (click)='setFilterOptions(2,f)'>X</i>
+            </span>
             </span>
           </div>
             

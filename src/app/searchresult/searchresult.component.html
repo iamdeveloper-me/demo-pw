@@ -349,7 +349,7 @@
                   </h4>
                 </div>
                 <div id="collapse444" class="panel-collapse collapse" >
-                   
+                   {{dealsAndOfferArray|json}}
                     <div class="funkyradio">
                       <div class="funkyradio-info" *ngFor='let dd of dealsAndOfferArray'>
                          <input type="radio" name="key" [id]="dd.key" [value]='dd.key' (change)='setFilterOptions(9,dd)' />
@@ -501,7 +501,11 @@
 	       		      </div>
             </div>
           </div>
-	     	</div>
+         </div>
+         <ul style="display:inline">
+           <li>Previous</li>
+           <li>Next</li>
+         </ul>
         <div>
 
        <!--    <img  src="https://www.walgreens-hearing.com/img/loader.gif" style="bottom:35%;position: fixed;z-index:99999;margin-left:18%"> -->

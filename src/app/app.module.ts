@@ -468,7 +468,7 @@ export function getAuthServiceConfigs() {
         FlatpickrModule.forRoot(),
         CalendarModule.forRoot(),
         // calender End
-        
+        NgxPaginationModule,
         OwlModule,
         ProgressHttpModule
 ,NgxDatatableModule,

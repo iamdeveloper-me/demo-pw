@@ -450,6 +450,16 @@ bookMark(data, type , action_which_lacation){
    console.log(data)
  })
 }
+radioChecker(mainItem , selectedItem){
+  const data = selectedItem
+  mainItem.forEach(element => {
+    if(element == data){
+      element['isSelect'] = !element['isSelect']
+    }else{
+      element['isSelect'] = false
+    }
+  });
+}
 }
 export class SearchFilterVm{
   categoryId:number=1;

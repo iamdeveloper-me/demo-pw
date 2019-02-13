@@ -350,9 +350,10 @@
                 </div>
                 <div id="collapse444" class="panel-collapse collapse" >
                    {{dealsAndOfferArray|json}}
-                    <div class="funkyradio">
-                      <div class="funkyradio-info" *ngFor='let dd of dealsAndOfferArray'>
-                         <input type="radio" name="key" [id]="dd.key" [value]='dd.key' (change)='setFilterOptions(9,dd)' />
+                    <div >
+                      <div  *ngFor='let dd of dealsAndOfferArray'>
+                         <input type="radio" name="key" [id]="dd.key" value='{{dd.key}}' [checked]="dd.isSelect" (change)='radioChecker(dealsAndOfferArray, dd)' />
+                         <!-- setFilterOptions(9,dd) || -->
                         <label for="{{dd.key}}">{{dd.key}}</label>  
                       </div>
                     </div>

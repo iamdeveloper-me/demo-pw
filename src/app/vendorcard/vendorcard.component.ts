@@ -71,7 +71,7 @@ export class VendorcardComponent implements OnInit {
       this.apiService.getData(this.apiService.serverPath+'PerfectWedding/featuredsuppliers').subscribe(data => {
       this.featured_supplier_data = data.featuredWeddingSuppliers;
       this.slidesStore = this.featured_supplier_data;
-       //console.log(this.slidesStore);
+       console.log(this.slidesStore);
       if(this.featured_supplier_data.length > 0){
         this.featured_supplier_data.forEach(element => {
           if(element.reviews != null)

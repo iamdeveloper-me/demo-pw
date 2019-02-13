@@ -44,12 +44,17 @@ background-image: url('https://s3.us-east-2.amazonaws.com/prefect-image/inner_he
   font-size:20px!important;
   display: inline-block;
   height: 20px;
-  line-height: 20px;
+  line-height: 15px;
   text-align: center;
   float: right;
   font-weight: bold;
   position: relative;
   top: 6px;
+}
+
+.closebtnlist:hover{
+  background:#cc0000;
+  color: #fff;
 }
 h4.panel-title i {
     border: solid #999;
@@ -980,7 +985,7 @@ margin-bottom:30px;
 }
 .locat_icon {
   margin-bottom: 0;
-    font-size: 0.80rem;
+    font-size: 0.70rem;
 }
 .imgfloatleft{
   float:left;
@@ -1123,7 +1128,20 @@ margin-bottom:30px;
   }
 }
 
-
+.chipsCLose{
+  cursor: pointer;
+}
+ul.pageNumbers {
+  list-style: none;
+}
+ul.pageNumbers li {
+  display: inline-block;
+  padding: 0 20px;
+  cursor: pointer;
+}
+// ul.pageNumbers li.active{
+//   color: red;
+// }
 .funkyradio{
     overflow: hidden;
     padding-bottom: 10px;
@@ -1184,7 +1202,7 @@ font-size:14px;
 .funkyradio input[type="checkbox"]:empty ~ label:before {
   position: absolute;
   display: block;
-  top: 7px;
+  top: 4px;
   bottom: 0;
   left: 0;
   content: '';
@@ -1198,14 +1216,14 @@ font-size:14px;
 .funkyradio input[type="radio"]:empty ~ label:before{
   position: absolute;
   display: block;
-  top: 7px;
+  top: 4px;
   bottom: 0;
   left: 0;
   content: '';
   width: 1.5em;
   height:1.5em;
   background: #ffffff;
-  border:1px solid #666;
+  border:1px solid #5bc0de;
   border-radius:50%!important;
 }
 
@@ -1216,16 +1234,21 @@ font-size:14px;
 
 .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
   content: '\2714';
-  text-indent: 5px;
+  text-indent: 3px;
   line-height:1.4em;
   color: #C2C2C2;
 }
 
 .funkyradio input[type="radio"]:hover:not(:checked) ~ label:before {
-  content: '\2739';
-  text-indent: 3px;
-  line-height:1.4em;
-  color: #C2C2C2;
+content: '\2219';
+    color: #fff;
+    text-indent: 1px;
+    line-height: 1.4em;
+    background-color: #fff;
+    font-size: 50px;
+    width: 18px;
+    height: 18px;
+    line-height: 8px;
 }
 
 .funkyradio input[type="radio"]:checked ~ label,
@@ -1236,16 +1259,20 @@ font-size:14px;
 .funkyradio input[type="checkbox"]:checked ~ label:before {
   content: '\2714';
   color: #333;
-  text-indent: 5px;
+  text-indent: 3px;
   line-height:1.4em;
   background-color: #fff;
 }
 .funkyradio input[type="radio"]:checked ~ label:before{
-  content: '\2739';
-  color: #333;
-  text-indent: 3px;
-  line-height:1.4em;
-  background-color: #fff;
+    content: '\2219';
+    color: #333;
+    text-indent: 1px;
+    line-height: 1.4em;
+    background-color: #fff;
+    font-size: 50px;
+    width: 18px;
+    height: 18px;
+    line-height: 12px;
 }
 
 
@@ -1325,7 +1352,7 @@ font-size:14px;
 }
 #products.listing-group  .grid-group-item .thumbnail .caption{
   text-align:left!important;
-  padding:15px 10px!important;
+  padding:10px 10px!important;
   overflow: hidden;
 }
 #products.listing-group  .grid-group-item .thumbnail .caption .cardfoottext{
@@ -1364,7 +1391,48 @@ float: left!important;
   }
 .listing-group .grid-group-item .descrip{
   display:block;
-  max-width:97%;
+  max-width:93%;
+}
+
+
+/* styles for '...' */ 
+.descrip {
+  /* hide text if it more than N lines  */
+  overflow: hidden;
+  /* for set '...' in absolute position */
+  position: relative; 
+  /* use this value to count block height */
+  line-height: 1.2em;
+  /* max-height = line-height (1.2) * lines max number (3) */
+  max-height: 2.5em; 
+  /* fix problem when last visible word doesn't adjoin right side  */
+  text-align: justify;
+  
+  /* */
+  margin-right: -1em;
+  padding-right: 1em;
+}
+.descrip:before {
+  /* points in the end */
+  content: '...';
+  /* absolute position */
+  position: absolute;
+  /* set position to right bottom corner of block */
+  right: 0;
+  bottom: 0;
+}
+.descrip:after {
+  /* points in the end */
+  content: '';
+  /* absolute position */
+  position: absolute;
+  /* set position to right bottom corner of text */
+  right: 0;
+  width: 1em;
+  /* set width and height */
+  height: 1em;
+  margin-top: 0.2em;
+  background: white;
 }
 .listing-group .grid-group-item .bordre_rad1{
   margin-bottom:0px!important;
@@ -1380,6 +1448,9 @@ float: left!important;
   .badgecontainer .badge{
     font-size:75%;
   }
+  .filterrowcard{
+    display: none!important;
+  }
 #products.photo-group  .grid-group-item{
   border:0px;
   background: transparent;
@@ -1388,9 +1459,11 @@ float: left!important;
   width: 100%;
   flex: 100%;
 }
-
+#products.griding-group .card-body h6{
+  font-size:0.70rem;
+}
 #products.photo-group .grid-group-item .thumbnail .caption {
-   padding: 15px 10px!important;
+   padding: 10px 10px!important;
    overflow: hidden;
    text-align: center;
  }
@@ -1610,7 +1683,7 @@ float: left!important;
      line-height: 50px;
      text-align: center;
      right: 5%;
-     top: 60%;
+     bottom: 5%;
      color: white;
      font-weight: bold;
      border-radius: 50%;
@@ -1649,7 +1722,7 @@ float: left!important;
    padding: 10px 0px!important;
  }
  .grid-group-item .col-8{
-   max-width: 100px;
+   max-width: 165px;
    padding-right: 0px!important;
  }
  .grid-group-item .imgfloatleft, .grid-group-item .span_positin img{
@@ -1730,3 +1803,76 @@ float: left!important;
   }
  }
  
+
+
+
+ .preloaderbox{
+    width: 300px;
+    padding: 10px;
+    margin: 100px auto 0px auto;
+    box-shadow: 0px 0px 10px rgba(0,0,0, 0.2);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+ .preloaderbox span{
+    display: block;
+}
+
+ .preloaderbox .circle{
+    
+    background: #e1e9ee;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 150px;
+}
+
+ .preloaderbox .title{
+    width: 150px;
+    height: 10px;
+    background: #e1e9ee;
+    margin-bottom: 10px;
+}
+
+ .preloaderbox .line{
+    width: 80%;
+    height: 10px;
+    background: #e1e9ee;
+    margin-bottom: 10px;
+}
+
+ .preloaderbox .linehalf{
+    width: 40%;
+    height: 10px;
+    background: #e1e9ee;
+    margin-bottom: 10px;
+    margin-right: 20px;
+}
+
+ .preloaderbox:after{
+    content: "";
+    background-color: #333;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation-duration: 0.6s;
+    animation-iteration-count: infinite;
+    animation-name: loader-animate;
+    animation-timing-function: linear;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0) 81%);
+}
+
+@keyframes loader-animate{
+    0%{
+        transform: translate3d(-100%, 0, 0);
+    }
+    100%{
+        transform: translate3d(100%, 0, 0);
+    }
+}

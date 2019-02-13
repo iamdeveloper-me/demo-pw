@@ -226,3 +226,21 @@ $(".panel-heading").click(function(){
   // alert("price");
    $(this).toggleClass("arrowup");
 });
+
+
+$(".panel-heading").click(function(){
+  // debugger
+  // console.log($(this).parents('.panel-body').find('.panel-collapse'))
+  $(this).parents('.panel-body').find('.panel-collapse').removeClass('in');
+   // debugger
+  //  var _this = $(this);
+  // setTimeout(function () {
+  //   if (_this.parent().find(".panel-collapse").hasClass('in')) {
+  //     _this.removeClass('in');
+  //   } //else {
+  //   //   $(this).addClass('in');
+  //   // }
+  // }, 2000);
+});
+
+

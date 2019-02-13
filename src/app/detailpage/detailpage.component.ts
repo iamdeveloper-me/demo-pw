@@ -8,6 +8,7 @@ import { MasterserviceService } from 'app/ngservices/masterservice.service';
 import { MapsAPILoader, AgmMap } from '@agm/core';
 import { GoogleMapsAPIWrapper } from '@agm/core/services';
 import { utilities } from 'app/utilitymodel';
+import { Meta, Title } from '@angular/platform-browser';
 declare var google: any;
 
 interface Marker {lat: number;lng: number;label?: string;draggable: boolean;}
@@ -42,7 +43,11 @@ export class DetailpageComponent implements OnInit {
   portfolioImages = [];
   lightBoxImages=[];
   similarVendors_length;
+  user_login_token;
+  currentDate
   vendorVideo_details:any = [];
+  CatName;
+
   @ViewChild('albumgallarypopup') albumgallarypopup: ElementRef;
   @ViewChild(AgmMap) map: AgmMap;
   @ViewChild('gmapInput') gmapInput: ElementRef;
@@ -52,8 +57,16 @@ export class DetailpageComponent implements OnInit {
      private masterservice: MasterserviceService,
      public mapsApiLoader: MapsAPILoader,
      private router: Router,
+     private meta : Meta,
+     private title : Title
    ) { 
       this.ratingmodel = new ratingStars();
+
+      var dateObj = new Date();
+      this.currentDate  = dateObj.getDay()  //months from 1-12
+      console.log(this.currentDate )
+      this.user_login_token = JSON.parse(sessionStorage.getItem('userId'));
+      console.log( this.user_login_token )
   }
   ngOnInit() {
     $.getScript('./assets/js/prism.min.js');
@@ -68,7 +81,18 @@ export class DetailpageComponent implements OnInit {
     });
     this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
     this.showHideReviews(2)
-    console.log( this.vendorDetails )
+    // console.log( this.vendorDetails);
+
+    for (let cat of this.vendorDetails.vendorCategories) {
+      this.CatName = cat.categories.categoryName;
+      console.log(this.CatName)
+  }
+        //Meta Tags
+      this.title.setTitle(this.vendorDetails.nameOfBusiness + ` , ` + this.vendorDetails.district.name + ` , ` + this.CatName + ` | Perfect Weddings` );   
+      this.meta.addTag({name:'description',content:'Team Contact | Perfect Weddings'});  
+      console.log(this.vendorDetails.vendorCategories)
+      
+
     this.vendorVideo_details = this.vendorDetails.vendorVideos.length;
     this.businessServices_length = this.vendorDetails.businessServices.length;
     this.getSimilarVendors();
@@ -130,10 +154,11 @@ classAdd(item){
 
     var rating1 = review.rating;
     var comments1 = review.comments;
-
+    console.log(this.user_login_token )
     this.apiService.postData(this.apiService.serverPath+this.url, {
-      rating: rating1, comments:
-        comments1, rateVendorID: this.vendorDetails.vendorUniqueId
+       rating: rating1, 
+       comments: comments1,
+       rateVendorID: this.user_login_token 
     }).subscribe(data => {
       console.log(data)
       }, error => { console.log(error) }

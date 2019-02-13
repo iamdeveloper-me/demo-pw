@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SlidesOutputData } from 'ngx-owl-carousel-o';
 import { apiService } from 'app/shared/service/api.service';
+import { Meta, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-deal-details',
   templateUrl: './deal-details.component.html',
@@ -35,7 +36,7 @@ export class DealDetailsComponent implements OnInit {
   }
   activeSlides: SlidesOutputData;
   slidesStore: any[];
-  constructor(private apiService:apiService) {
+  constructor(private apiService:apiService,private meta : Meta, private title : Title) {
     
   }
   noImage:string='https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg';
@@ -53,11 +54,14 @@ export class DealDetailsComponent implements OnInit {
 
     this.data = JSON.parse(sessionStorage.getItem('deal,mydeal'));
     console.log(this.data);
+
+          //Meta Tags
+    this.title.setTitle(this.data.title + ` | Perfect Weddings ` );   
+
     this.dealsAlbumArray = this.data.dealsImages
     console.log(this.dealsAlbumArray)
+    console.log(this.dealsAlbumArray.length)
     this.albumArray = this.data.albums;
-    // console.log(this.albumArray);
-    // this.albumArray = this.data.albums[0].albumImages;
     console.log(this.albumArray);
 
   }

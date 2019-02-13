@@ -1,6 +1,6 @@
 import { Component, OnInit ,HostListener} from '@angular/core';
 import { apiService } from '../shared/service/api.service';
-import { Meta } from '@angular/platform-browser';
+import { Meta , Title } from '@angular/platform-browser';
 import { MasterserviceService } from '../ngservices/masterservice.service';
 @Component({
   selector: 'app-photo',
@@ -33,9 +33,8 @@ item_tags:any = []
     // paged items
     pagedItems: any[];
     error_1 = '';
-    constructor(private masterservice: MasterserviceService,private apiService: apiService,private meta:Meta ) {
-      this.meta.addTag({ name: 'description', content: 'Wedding Photos & Inspirations | Perfect Weddings' });
-      this.colout_tag= false;
+    constructor(private masterservice: MasterserviceService,private apiService: apiService,private meta:Meta, private title : Title ) {
+     this.colout_tag= false;
       this.pagedItems = [];
       this.photo_search_param = new  photoSearchParam();
       this.createColorPanel()
@@ -47,6 +46,9 @@ item_tags:any = []
     
     }
     ngOnInit() {
+      this.title.setTitle('Wedding Photos & Inspirations |Perfect Weddings');    
+      this.meta.addTag({name:'description',content:'Wedding Photos & Inspirations |Perfect Weddings'});    
+  
       // $.getScript('./assets/js/blocksit.min.js');
       // $.getScript('./assets/js/lazy.js');
       // $.getScript('./assets/js/jquery.pinbox.js');
@@ -126,7 +128,7 @@ item_tags:any = []
         }
         console.log(this.photo_search_param.color)
     }
-    find_photo(){
+    find_photo(list){
 
       this.loading = false;
       console.log(this.photo_search_param)

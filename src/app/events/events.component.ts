@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map'
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-events',
@@ -14,11 +14,13 @@ import { Meta } from '@angular/platform-browser';
   styleUrls: ['./events.component.scss']
 })
 export class EventsComponent implements OnInit {
+  objSearchlistvm: SearchListingVM;
 
-  constructor( public http:Http, private pagerService: PagerService,private apiService: apiService,private masterservice: MasterserviceService,private router:Router,private meta:Meta ) {
+  constructor( public http:Http, private pagerService: PagerService,private apiService: apiService,private masterservice: MasterserviceService,private router:Router,private meta:Meta, private title : Title ) {
     this.meta.addTag({ name: 'description', content: 'Top Wedding Events in Mauritius | Perfect Weddings.' });
-   
+   this.objSearchlistvm = new SearchListingVM()
   }
+
   locations = [];
    allItems: any[];
   location:string = 'All'
@@ -35,34 +37,54 @@ export class EventsComponent implements OnInit {
   page_sizzze  = 1;
   searchQuery: ""
   ngOnInit() {
+    this.title.setTitle('Top Wedding Events in Mauritius |Perfect Weddings');    
+    this.meta.addTag({name:'description',content:'Top Wedding Events in Mauritius |Perfect Weddings'});    
+
                 this.locationD();
-                this.event('');
+                this.event();
 
 
   }
   page2 = 4;
 
-  event(list){
-
-    const q = {
-
-      page: 0,
-      pageSize: 1000000,
-      sortDir: "",
-      sortedBy: "asc",
-      searchQuery: list?list.value.searchQuery:'',
-      location: list?list.value.location:'all',
-      eventType: list?list.value.eventType:'all',
-      dates: list?list.value.dates:'all'
-    }
+  event(){
     //Event API
-    this.http.post(this.apiService.serverPath+'PerfectWedding/searchevents',q).map((response: Response) => response.json()).subscribe(data => {
+    this.http.post(this.apiService.serverPath+'PerfectWedding/searchevents',this.objSearchlistvm).map((response: Response) => response.json()).subscribe(data => {
         this.allItems = data.items;
         console.log(this.allItems);
 
         this.setPage(1);
     });
     this.locationD()
+  }
+  changeData(str){
+   // var grade:string = str; 
+    switch(str) { 
+       case "title": { 
+        this.objSearchlistvm['searchQuery'] = this.searchQuery
+        this.event();
+        break; 
+       } 
+       case "location": { 
+        this.objSearchlistvm['location'] = this.location
+        this.event();
+          break; 
+       } 
+       case "eventType": {
+        this.objSearchlistvm['eventType'] = this.eventType
+        this.event();          
+          break;    
+       } 
+       case "datesFilter": { 
+        this.objSearchlistvm['dates'] = this.dates
+        this.event(); 
+          break; 
+       }  
+       default: { 
+          console.log("Invalid choice"); 
+          break;              
+       } 
+    } 
   }
   setPage(page: number) {
     this.pager = this.pagerService.getPagerEvent(this.allItems.length, page);
@@ -85,4 +107,26 @@ export class EventsComponent implements OnInit {
    })
   }
 
+}
+
+
+export class SearchListingVM{
+ 
+  page: number;
+  pageSize: number;
+  sortDir: string;
+  sortedBy: string;
+  searchQuery: string;
+  location: string;
+  eventType: string;
+  dates: string
+  constructor(){
+    this.pageSize=25;
+    this.page=0;
+    this.sortDir = 'asc';
+    this.searchQuery = ''
+    this.location = 'all';
+    this.eventType = 'all';
+    this.dates = 'all';
+  }
 }

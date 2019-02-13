@@ -9,20 +9,19 @@
 			<!-- search part  -->
 			<div class="eventsearchbox">
 				<h1>Find your next experience</h1>
-				<form (ngSubmit)="event(list)" #list="ngForm">
+				<form (ngSubmit)="event()" #list="ngForm">
 					<div class="form-group row">
 						<div class="col-sm-3">
-							<input [(ngModel)]="searchQuery" type="text" name="searchQuery" class="form-control" placeholder="Search Events">
+							<input [(ngModel)]="searchQuery" type="text" name="searchQuery" class="form-control" placeholder="Search Events" (keyup)="changeData('title')">
 						</div>
 						<div class="col-sm-3">
-							<select class="form-control" name="location" [(ngModel)]="location" id="location">
+							<select class="form-control" name="location" [(ngModel)]="location" id="location" (change)="changeData('location')">
 								<option value="All" selected>All Location</option>
 								<option *ngFor='let list_locations of locations'> {{list_locations.name}}</option>
 							</select>
 						</div>
-
 						<div class="col-sm-2 col-6">
-							<select class="form-control" name="eventType" [(ngModel)]="eventType" id="eventType">
+							<select class="form-control" name="eventType" [(ngModel)]="eventType" id="eventType" (change)="changeData('eventType')">
 
 								<option value="All" selected>All Events </option>
 								<option>Free</option>
@@ -30,7 +29,7 @@
 							</select>
 						</div>
 						<div class="col-sm-2  col-6">
-							<select class="form-control" name="dates" [(ngModel)]="dates" id="dates">
+							<select class="form-control" name="dates" [(ngModel)]="dates" id="dates" (change)="changeData('datesFilter')">
 								<option value="All" selected>All Dates</option>
 								<option>NextMonth</option>
 								<option>ThisWeek</option>
@@ -48,9 +47,9 @@
 										<option [value]="60">50 - 60</option>
 									</select>
 								</div> -->
-						<div class="col-sm-2  col-6">
+						<!-- <div class="col-sm-2  col-6">
 							<button type="submit" class="eventsearchbtn"> search </button>
-						</div>
+						</div> -->
 					</div>
 				</form>
 
@@ -59,10 +58,9 @@
 			<div class="row eventlisting">
 				<div class="container">
 					<div class="text-center">
-
 						<p *ngIf="pagedItems?.length == 0">No Events Found!!!</p>
 						<!-- items being paged -->
-						<div class="col-sm-4 " *ngFor="let item of pagedItems">
+						<div class="col-sm-4 " *ngFor="let item of pagedItems ">
 							<div class="card cardshadow" (click)="goToNextPage(item)">
 								<img class="card-img-top img-fluid eventimg" *ngIf="item.files" [src]="item.files.path">
 								<div class="ribbon ribbon-top-right" *ngIf="item?.entryFee == null; else entry"><span>Free</span></div>

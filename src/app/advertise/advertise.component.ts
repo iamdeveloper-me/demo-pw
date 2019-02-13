@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { apiService } from '../shared/service/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { viewClassName } from '@angular/compiler';
+import { Meta, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-advertise',
   templateUrl: './advertise.component.html',
@@ -9,7 +10,7 @@ import { viewClassName } from '@angular/compiler';
 })
 export class AdvertiseComponent implements OnInit {
 
-  constructor(private apiService: apiService, public toastr: ToastrService) { }
+  constructor(private apiService: apiService, public toastr: ToastrService,private meta : Meta,private title : Title) { }
   contactInfoObj  = new ContactUsVM()
   messageType = 1;
   Phone_no ;
@@ -17,6 +18,9 @@ export class AdvertiseComponent implements OnInit {
   contentData: any;
 @ViewChild('pageContent') pageContent: ElementRef;
   ngOnInit() {
+    this.title.setTitle('Grow your Business & Membership Benefits | Wedding Vendors');    
+    this.meta.addTag({name:'description',content:'Grow your Business & Membership Benefits | Wedding Vendors'});  
+   
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/pagecontent?key=advertise').subscribe(data => {
       this.contentData=data;
       this.pageContent.nativeElement.innerHTML=data.pageContent;

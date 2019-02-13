@@ -45,7 +45,7 @@
          
           <div class="container" style="padding: 13px;">
               <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
-                  <ng-container *ngFor="let slide of slidesStore">
+                  <ng-container *ngFor="let slide of slidesStore ;let s=index">
                     <ng-template carouselSlide="1">
                       <div class="boxtikslide" >
                         <div class="procard"> </div>
@@ -70,10 +70,12 @@
                         <div class="card-body ">
                           <div class="text-center"> 
                           
-                            <h6> <strong>{{slide.nameOfBusiness}}  </strong> </h6>   
+                            <h6> <strong>{{slide?.nameOfBusiness}}  </strong> </h6>   
                             <button class="wedding_btn" *ngIf="slide?.vendorCategories.length == 0; else vcat"> N/A  </button>
                             <ng-template #vcat>
-                                <button class="wedding_btn">{{slide?.vendorCategories}} </button>
+                                <button class="wedding_btn" *ngFor="let c of slide.vendorCategories">
+                                  {{ c?.categories.categoryName }}
+                                 </button>
                             </ng-template>
                             <p  class="locat_icon" *ngIf="slide?.district == null; else fwloc">
                                 <i class="material-icons">location_on</i>  N/A 
@@ -104,7 +106,7 @@
                               <div class="col-md-8 col-7 pad_left_0 pad_left_5px pribox">
                                 <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
                                   <span>Price from</span>
-                                  <span *ngIf='slide.priceTag' class="pric_200">{{slide.priceTag}}</span>
+                                  <span *ngIf='slide.priceTag' class="pric_200">{{slide?.priceTag}}</span>
                                   <span *ngIf='!slide.priceTag' class="pric_200">Custom Price</span>
                                   <!-- <span class="pric_200">200 $</span> -->
                               </div>
@@ -113,7 +115,7 @@
                               <!-- <span>Deals</span> -->
                               <span *ngIf='slide.deals.length >0'>
                                 <img src="../../assets/img/tag.svg"  alt="">   
-                                {{slide.deals.length}} Deals
+                                {{slide?.deals.length}} Deals
                               </span>
                               <!-- <span *ngIf='slide.deals.length == 0'>N/A Deals</span> -->
                               </div>
@@ -161,7 +163,7 @@
                          N/A    
                       </span>
                       <ng-template #dwloc>
-                          <span>{{list_dream?.district}}
+                          <span>{{list_dream?.district.name}}
                           </span>
                       </ng-template>
                       </h2>

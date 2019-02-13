@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-foot',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FootComponent implements OnInit {
 
-  constructor() { }
+  constructor(private meta : Meta,private title : Title) { }
   ngOnInit() {
+    this.title.setTitle('Website About Weddings | Perfect Weddings');    
+    this.meta.addTag({name:'description',content:'Website About Weddings | Perfect Weddings'});    
+
                 $(".footer_bg button.btn.btn-info").click(function(){
                   $(this).toggleClass("hide_menus");
                 });

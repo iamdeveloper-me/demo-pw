@@ -227,12 +227,6 @@ export class SearchresultComponent implements OnInit {
     });
   }
   }
-  // clearFilters(){
-  //   this.locations.forEach(element => { element.isSelect=false; });
-  //   this.objSearchlistvm.districts = [];
-  //   this.categories.forEach(element => { element.isSelect=false; });
-  //   this.objSearchlistvm.categoryId = [];
-  // }
   addToCollection(){
     this.objSearchResultItems.items.forEach(element => {
       this.collection.push(element);
@@ -404,25 +398,25 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
   }
  }
  goToPage(pageNumber,buttonType){
-   debugger
-  this.collection=[];
+   debugger;
   switch(buttonType){
     case 'N':
-    if(this.objSearchResultItems.totalPages<this.objSearchlistvm.page)
+    if(this.objSearchResultItems.totalPages>this.objSearchlistvm.page)
     {
+    this.collection=[];
     this.objSearchlistvm.page+=1;
-    alert(this.objSearchlistvm.page);
     this.paginate(this.objSearchlistvm.pageSize);
     }
     break;
     case 'P':
     if(this.objSearchlistvm.page>1){
+    this.collection=[];
     this.objSearchlistvm.page-=1;
-    alert(this.objSearchlistvm.page);
     this.paginate(this.objSearchlistvm.pageSize);
     }
     break;
     default:
+    this.collection=[];
     this.objSearchlistvm.page= pageNumber;
     this.paginate(this.objSearchlistvm.pageSize);
   }
@@ -497,7 +491,9 @@ radioChecker(mainItem , selectedItem){
 generatePageNumbers(){
   this.paginations=[];
   for (let i = 0; i < this.objSearchResultItems.totalPages-1; i++) {
+    if(this.objSearchResultItems.totalPages-1 > 0){
     this.paginations.push(i+1);
+  }
   }
 }
 }

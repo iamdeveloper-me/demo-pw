@@ -204,7 +204,8 @@
 
                     <ul class="selectedlist" *ngIf='!showALlCategories'>
                         <li>
-                           <span> {{SelectedCategory?SelectedCategory.categoryName:""}} <span (click)='setFilterOptions(1,SelectedCategory)' class="closebtnlist">&times;</span></span>
+                           <span> {{SelectedCategory?SelectedCategory.categoryName:""}} 
+                             <span *ngIf='SelectedCategory && SelectedCategory.categoryName' (click)='setFilterOptions(1,SelectedCategory)' class="closebtnlist">&times;</span></span>
                         </li>
                     </ul>
                   </div>
@@ -457,9 +458,10 @@
                       <div class="caption card-body">
                         <div>
                           <h6><strong>{{i.nameOfBusiness}}</strong></h6>
-
+                          <div *ngIf='i.vendorCategories[0]'>
                           <button *ngIf='i.vendorCategories[0].categories' class="wedding_btn">
                             {{getCategoryName(i)}}  </button>
+                          </div>
                           <p class="locat_icon">   
                             <i class="material-icons">location_on</i> 
                             <span>  {{ i.district.name}}</span>
@@ -503,10 +505,10 @@
             </div>
           </div>
          </div>
-         <ul class="pageNumbers">
-          <li (click)='goToPage(0,"P")'>Previous</li>
+         <ul class="pageNumbers" *ngIf='paginations.length>0'>
+          <li *ngIf='objSearchlistvm.page > 1' (click)='goToPage(0,"P")'>Previous</li>
            <li *ngFor='let p of paginations' (click)='goToPage(p,0)'>{{p}}</li>
-           <li (click)='goToPage(0,"N")'>Next</li>
+           <li *ngIf='objSearchResultItems.totalPages >= objSearchlistvm.page' (click)='goToPage(0,"N")'>Next</li>
          </ul>
         <div>
 

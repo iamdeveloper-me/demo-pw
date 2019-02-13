@@ -5,13 +5,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PhotoPipe implements PipeTransform {
 
+
+
   transform(value: any, args?: any): any {
-    console.log(value)
+
     if(value){
-      if(args == 'all'){
+      if(args == undefined){
         return value
       }else{
-        return value.filter((listing:any)=>listing.topic.toLowerCase().includes(args.toLowerCase()));
+        return value.filter((listing:any)=>listing.nameOfBusiness.toLowerCase().includes(args.toLowerCase()));
       }
     }
     return value;

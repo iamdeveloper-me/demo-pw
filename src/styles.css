@@ -1123,8 +1123,14 @@ margin-bottom: 0px!important;
 .ngx-dropdown-container button {
   font-weight: 400!important;
 }
+  .breadcrumb>li+li:before{
+    content: ">\00a0"!important;
+    color:#333!important;
+  }
 
-
+  .breadcrumb a{
+    color:#dc0070!important;
+  }
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 812px) {

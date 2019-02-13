@@ -290,7 +290,7 @@ export class SearchresultComponent implements OnInit {
       case 8: // Feature Listing
       this.checkUncheckFilter(FilterValue); break;
       case 9: // Deals And Offer
-      // this.checkUncheckFilter(FilterValue); 
+       this.checkUncheckFilter(FilterValue); 
       break;
     }
     if(filterType!==4){ 

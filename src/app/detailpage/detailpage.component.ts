@@ -88,7 +88,7 @@ export class DetailpageComponent implements OnInit {
       console.log(this.CatName)
   }
         //Meta Tags
-      this.title.setTitle(this.vendorDetails.nameOfBusiness + ` , ` + this.vendorDetails.suburb.name + ` , ` + this.CatName + ` | Perfect Weddings` );   
+      this.title.setTitle(this.vendorDetails.nameOfBusiness + ` , ` + this.vendorDetails.district.name + ` , ` + this.CatName + ` | Perfect Weddings` );   
       this.meta.addTag({name:'description',content:'Team Contact | Perfect Weddings'});  
       console.log(this.vendorDetails.vendorCategories)
       

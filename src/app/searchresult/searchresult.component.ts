@@ -263,8 +263,8 @@ export class SearchresultComponent implements OnInit {
       this.SelectedCategory = FilterValue;
       this.objSearchFilter.catId = this.SelectedCategory.categoryId;
       this.getFilters();
-      this.showALlCategories = false;}else{
-        this.showALlCategories = true;
+      this.showALlCategories = true;}else{
+        this.showALlCategories = false;
         this.SelectedCategory=null;
       }
        break;
@@ -435,7 +435,8 @@ generateStaticArray(){
   ];
   this.dealsAndOfferArray = [
     {'key':'Yes',isSelect:false},
-    {'key':'No',isSelect:false}
+    {'key':'No',isSelect:false},
+    {'key':'Any',isSelect:false}
   ];
   this.featuredListingArray=[
     {'key':'Priority Listing',isSelect:false},

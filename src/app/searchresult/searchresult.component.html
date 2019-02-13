@@ -107,7 +107,7 @@
       <div class="container-fluid nopadd">
         <div class="badgecontainer">
           <span *ngIf='objSearchResultItems' class="badge badge-primary badge-labeled">
-          {{SelectedCategory?SelectedCategory.categoryName:'Wedding Vendors'}}  {{SelectedLocation?'in '+SelectedLocation.name:'in Mauritius'}} (  {{collection?collection.length:0}} Results Of {{objSearchResultItems.totalCount}})
+          {{SelectedCategory?SelectedCategory.categoryName:'Wedding Vendors'}}  {{SelectedLocation?'in '+SelectedLocation.name:'in Mauritius'}} (  {{collection?collection.length:'Not Found'}} Results Of {{objSearchResultItems.totalCount}})
           </span>
          </div>
         <div class="clearfix"></div>
@@ -156,8 +156,6 @@
                     <i class="hidden-xs" aria-hidden="true"></i> 
                   </a>
                 </h4>
-
-            
                   <ul class="selectedlist" *ngIf='!showAllLocation'>
                       <li>
                         <i class="material-icons">location_on</i> 
@@ -166,7 +164,6 @@
                         <span (click)='setFilterOptions(3,SelectedLocation)'  class="closebtnlist">&times;</span>
                       </li>
                     </ul>
-
                 </div>
                 <div id="collapse0" class="panel-collapse collapse ">
                     <div class="category-body" *ngIf='showAllLocation'>
@@ -247,10 +244,10 @@
                  
                   <div id="collapse33" class="panel-collapse collapse" >
                       <div class="category-body" >
-                        <div class="searchmobtitlebar city_position " >
+                        <!-- <div class="searchmobtitlebar city_position " >
                           <i class="material-icons">search</i>
                           <input class="cityinput" type="text" value="" id="search" placeholder="Type to Search Category">
-                        </div>
+                        </div> -->
                         <!-- <div class="regular">All Categories</div> -->
                         <div class="cityscroll22"> 
                           <div class="funkyradio" *ngIf='filters && filters.services'  >  

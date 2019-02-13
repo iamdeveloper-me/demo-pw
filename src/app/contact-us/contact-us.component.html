@@ -51,7 +51,7 @@
         </div>
         <form name="form" (ngSubmit)="list.form.valid && contact(list)" #list="ngForm" novalidate>
             <input type="hidden" data-form-email="true">
-            <div class="form-group">
+            <!-- <div class="form-group">
               <input 
                 type="text" 
                 [(ngModel)]="contactInfoObj.name" 
@@ -65,8 +65,8 @@
               <div *ngIf="list.submitted && name.invalid" class="invalid-feedback">
                   <div *ngIf="name.errors.required">Name is required</div>
               </div>
-            </div>
-            <!-- <div class="form-group">
+            </div> -->
+            <div class="form-group col-md-6">
                 <input 
                   type="text" 
                   [(ngModel)]="contactInfoObj.firstName" 
@@ -81,7 +81,7 @@
                     <div *ngIf="firstName.errors.required">firstName is required</div>
                 </div>
               </div>
-              <div class="form-group">
+              <div class="form-group col-md-6">
                   <input 
                     type="text" 
                     [(ngModel)]="contactInfoObj.lastName" 
@@ -95,7 +95,7 @@
                   <div *ngIf="list.submitted && lastName.invalid" class="invalid-feedback">
                       <div *ngIf="lastName.errors.required">lastName is required</div>
                   </div>
-                </div> -->
+                </div>
             <div class="form-group">
               <input 
                 type="email" 
@@ -135,11 +135,13 @@
               <small class="form-text text-muted danger">{{Phone_no}}</small>
             </div>
             <div class="form-group">
-              <!-- <select name="subjects" class="form-control" [(ngModel)]="subjects" id="subjects">
-                <option [value]="undefined" disabled>Please Select</option>
-                <option *ngFor="let subject of subjects ;let s =index" [value]="subject">{{subject}}</option>
-              </select> -->
-              <input 
+              <select name="subjects" class="form-control" [(ngModel)]="subjects" id="subjects">
+                  <option [value]="undefined" disabled>Please Select</option>
+                  <option *ngFor="let subject of subjects ;let s =index" value="">{{subject}}</option>
+              </select>
+            </div>
+            <!-- <div class="form-group">
+               <input 
                 type="tel" 
                 class="form-control" 
                 [(ngModel)]="contactInfoObj.subject" 
@@ -151,7 +153,7 @@
               />
               <div *ngIf="list.submitted && subject.invalid" class="invalid-feedback">
                   <div *ngIf="subject.errors.required">subject is required</div>
-              </div>
+              </div> 
               <input 
                 type="hidden" 
                 class="form-control" 
@@ -160,7 +162,7 @@
                 name="messageType"
                 placeholder="messageType" 
               />
-            </div>
+            </div> -->
              <div class="form-group">
               <textarea 
               class="form-control" 
@@ -176,6 +178,10 @@
                 <div *ngIf="message.errors.required">message is required</div>
             </div>
             </div>
+            <div>
+                <re-captcha (resolved)="resolved($event)" siteKey="Site_key"></re-captcha>
+            </div>
+            <br>
             <div>
               <button type="submit" [disabled]="!list.valid" class="btn btn-lg btn-danger">Submit Message</button>
             </div>

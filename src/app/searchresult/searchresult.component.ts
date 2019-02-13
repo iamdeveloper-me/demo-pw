@@ -295,7 +295,8 @@ export class SearchresultComponent implements OnInit {
       case 8: // Feature Listing
       this.checkUncheckFilter(FilterValue); break;
       case 9: // Deals And Offer
-      this.checkUncheckFilter(FilterValue); break;
+      // this.checkUncheckFilter(FilterValue); 
+      break;
     }
     if(filterType!==4){ 
       this.isTostPopulated = false;
@@ -459,7 +460,7 @@ radioChecker(mainItem , selectedItem){
       element['isSelect'] = false
     }
   });
-}
+  this.paginate(this.objSearchFilter.page)}
 }
 export class SearchFilterVm{
   categoryId:number=1;

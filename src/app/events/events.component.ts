@@ -16,7 +16,7 @@ import { Meta, Title } from '@angular/platform-browser';
 export class EventsComponent implements OnInit {
 
   constructor( public http:Http, private pagerService: PagerService,private apiService: apiService,private masterservice: MasterserviceService,private router:Router,private meta:Meta, private title : Title ) {
-    this.meta.addTag({ name: 'description', content: 'Top Wedding Events in Mauritius | Perfect Weddings.' });
+    // this.meta.addTag({ name: 'description', content: 'Top Wedding Events in Mauritius | Perfect Weddings.' });
    
   }
   locations = [];

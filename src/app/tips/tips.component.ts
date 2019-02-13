@@ -36,7 +36,7 @@ export class TipsComponent  {
     constructor(private pagerService: PagerService,private apiService: apiService,public http: Http ,public toastr: ToastrService,private meta:Meta, private title : Title) {
            }
     ngOnInit() { 
-      this.title.setTitle('Wedding Tips & Articles |Perfect Weddings');    
+      this.title.setTitle('Wedding Tips & Articles | Perfect Weddings');    
       this.meta.addTag({name:'description',content:'Wedding Tips & Articles |Perfect Weddings'});    
   
       this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchblogs',{

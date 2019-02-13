@@ -152,6 +152,9 @@ $(document).ready(function () {
 //       }
 //   });
 
+document.getElementsByTagName("rating_star span")[0].removeAttribute("title");
+
+
 
 $(".linkshow").click(function() {
   //alert("hhhh");
@@ -310,12 +313,13 @@ $(".reviewbtn").click(function() {
 });
 
 $(".callbtn").click(function() {
+  //alert("hi");
      $('.callinfo').show();
      $('.callbtn').hide();
      $('.callbtnhide').show();
 });
 $(".callbtnhide").click(function() {
-      $('.callinfo').hide();
+     $('.callinfo').hide();
      $('.callbtn').show();
      $('.callbtnhide').hide();
 });

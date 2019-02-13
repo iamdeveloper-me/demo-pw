@@ -350,7 +350,6 @@
                   </h4>
                 </div>
                 <div id="collapse444" class="panel-collapse collapse" >
-                   {{dealsAndOfferArray|json}}
                     <div >
                       <div  *ngFor='let dd of dealsAndOfferArray'>
                          <input type="radio" name="key" [id]="dd.key" value='{{dd.key}}' [checked]="dd.isSelect" (change)='radioChecker(dealsAndOfferArray, dd)' />

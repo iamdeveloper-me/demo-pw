@@ -411,14 +411,14 @@
           </div>
             
                 <span class="filterrowcard" *ngFor='let f of featuredListingArray'>
-                    <span  *ngIf='f.isSelect'>{{f.key}}</span>
+                    <span  *ngIf='f.isSelect'>{{f.key}} <i class="chipsCLose" (click)='setFilterOptions(8,f)'>X</i></span>
                     </span>
 
                     <span class="filterrowcard" *ngFor='let f of userRatingArray'>
-                    <span *ngIf='f.isSelect'>{{f.key}}</span>
+                    <span *ngIf='f.isSelect'>{{f.key}} <i class="chipsCLose" (click)='setFilterOptions(6,f)'>X</i></span>
                     </span>
                     <span class="filterrowcard" *ngFor='let f of dealsAndOfferArray'>
-                        <span *ngIf='f.isSelect'>{{f.key}}</span>
+                        <span *ngIf='f.isSelect'>{{f.key}} <i class="chipsCLose" (click)='setFilterOptions(9,f)'>X</i></span>
                     </span>
                     <div *ngIf='filters && filters.filters'>
                     <div  *ngFor='let ff of filters.filters'>
@@ -503,9 +503,10 @@
             </div>
           </div>
          </div>
-         <ul style="display:inline">
-           <li>Previous</li>
-           <li>Next</li>
+         <ul class="pageNumbers">
+          <li (click)='goToPage(0,"P")'>Previous</li>
+           <li *ngFor='let p of paginations' (click)='goToPage(p,0)'>{{p}}</li>
+           <li (click)='goToPage(0,"N")'>Next</li>
          </ul>
         <div>
 

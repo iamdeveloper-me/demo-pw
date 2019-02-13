@@ -39,6 +39,7 @@ export class SearchresultComponent implements OnInit {
   activeSlides: SlidesOutputData;
   slidesStore: any[];
   collection = [];
+  paginations=[];
   objSearchFilter: filterParam
   locations:any;
   categories:any;
@@ -313,6 +314,7 @@ export class SearchresultComponent implements OnInit {
    paginate (pageSize) {
     this.loading=true; 
     this.objSearchlistvm.categoryId=[];
+    this.collection = [];
     if(this.categories){
       if(this.SelectedCategory){
     this.objSearchlistvm.categoryId.push(this.SelectedCategory.categoryId);}
@@ -372,18 +374,20 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
     });
   }
   // Set Deals And Offers
-  let SelectedDealsOffers = this.dealsAndOfferArray.filter(dd=>dd.isSelect==true);
-  if(SelectedDealsOffers && SelectedDealsOffers.length>0){
-    this.objSearchlistvm.deals='';
-    SelectedDealsOffers.forEach(element => {
-      this.objSearchlistvm.deals +=element.key+',';  
-    });
+  this.objSearchlistvm.deals = this.dealsAndOfferArray.filter(dd=>dd.isSelect==true)[0]== undefined ? '' :this.dealsAndOfferArray.filter(dd=>dd.isSelect==true)[0]['key'] 
+  debugger
+  // if(SelectedDealsOffers && SelectedDealsOffers.length>0){
+  //   this.objSearchlistvm.deals='';
+  //   SelectedDealsOffers.forEach(element => {
+  //     this.objSearchlistvm.deals +=element.key+',';  
+  //   });
     
-  }
+  // }
   console.log(this.objSearchlistvm);
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
-    console.log(this.objSearchResultItems);
+    this.generatePageNumbers();
+    console.log(JSON.stringify(this.objSearchResultItems));
     this.setBlankImg();
     this.addToCollection();
     this.loading=false; 
@@ -395,8 +399,34 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
  @HostListener("window:scroll", [])
  scrollToBottom(){
    if ((window.innerHeight + window.scrollY) == document.body.offsetHeight) {
+//    this.objSearchlistvm.page+=1;
+ //   this.paginate(this.objSearchFilter.pageSize); 
+  }
+ }
+ goToPage(pageNumber,buttonType){
+   debugger
+  this.collection=[];
+  switch(buttonType){
+    case 'N':
+    if(this.objSearchResultItems.totalPages<this.objSearchlistvm.page)
+    {
     this.objSearchlistvm.page+=1;
-    this.paginate(this.objSearchFilter.pageSize); }
+    alert(this.objSearchlistvm.page);
+    this.paginate(this.objSearchlistvm.pageSize);
+    }
+    break;
+    case 'P':
+    if(this.objSearchlistvm.page>1){
+    this.objSearchlistvm.page-=1;
+    alert(this.objSearchlistvm.page);
+    this.paginate(this.objSearchlistvm.pageSize);
+    }
+    break;
+    default:
+    this.objSearchlistvm.page= pageNumber;
+    this.paginate(this.objSearchlistvm.pageSize);
+  }
+    
  }
 deselectAllCategories(){
   if(this.categories){
@@ -435,9 +465,9 @@ generateStaticArray(){
     {'key':'4.0+',isSelect:false}
   ];
   this.dealsAndOfferArray = [
-    {'key':'Yes',isSelect:false},
-    {'key':'No',isSelect:false},
-    {'key':'Any',isSelect:false}
+    {'key':'yes',isSelect:false},
+    {'key':'no',isSelect:false},
+    {'key':'any',isSelect:false}
   ];
   this.featuredListingArray=[
     {'key':'Priority Listing',isSelect:false},
@@ -460,7 +490,16 @@ radioChecker(mainItem , selectedItem){
       element['isSelect'] = false
     }
   });
-  this.paginate(this.objSearchFilter.page)}
+    this.paginate(this.objSearchFilter.page)
+  }
+
+
+generatePageNumbers(){
+  this.paginations=[];
+  for (let i = 0; i < this.objSearchResultItems.totalPages-1; i++) {
+    this.paginations.push(i+1);
+  }
+}
 }
 export class SearchFilterVm{
   categoryId:number=1;
@@ -485,7 +524,7 @@ export class SearchListingVM{
   customsFields:Array<FieldSearchVM>;
   customField:FieldSearchVM;
   constructor(){
-    this.pageSize=25;
+    this.pageSize=24;
     this.page=0;
     this.districts=[];
     this.categoryId=[];
@@ -504,11 +543,4 @@ export class FieldSearchVM{
   customFieldId: number;
   userValue:string;
 }
-// export class AppliedFilters{
-//   services:SafeHtml;
-//   pricerange:string;
-//   featuredListing:string;
-//   customerRating:string;
-//   deals:string;
-//   filters:string;
-// }
+

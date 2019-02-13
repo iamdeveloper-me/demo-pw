@@ -55,6 +55,7 @@ export class DealDetailsComponent implements OnInit {
     console.log(this.data);
     this.dealsAlbumArray = this.data.dealsImages
     console.log(this.dealsAlbumArray)
+    console.log(this.dealsAlbumArray.length)
     this.albumArray = this.data.albums;
     // console.log(this.albumArray);
     // this.albumArray = this.data.albums[0].albumImages;

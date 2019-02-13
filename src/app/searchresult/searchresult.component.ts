@@ -39,6 +39,7 @@ export class SearchresultComponent implements OnInit {
   activeSlides: SlidesOutputData;
   slidesStore: any[];
   collection = [];
+  paginations=[];
   objSearchFilter: filterParam
   locations:any;
   categories:any;
@@ -66,7 +67,7 @@ export class SearchresultComponent implements OnInit {
   SelectedCategory:any;
   ratingmodel: ratingStars;
   Honeymoon_detail:any = {};
-    constructor(public _route:Router, public _activeRoute: ActivatedRoute, 
+    constructor(private masterservice: MasterserviceService,public _route:Router, public _activeRoute: ActivatedRoute, 
     private _masterservice: MasterserviceService, private api: apiService,
     public toastr: ToastrService) {
       debugger;
@@ -226,12 +227,6 @@ export class SearchresultComponent implements OnInit {
     });
   }
   }
-  // clearFilters(){
-  //   this.locations.forEach(element => { element.isSelect=false; });
-  //   this.objSearchlistvm.districts = [];
-  //   this.categories.forEach(element => { element.isSelect=false; });
-  //   this.objSearchlistvm.categoryId = [];
-  // }
   addToCollection(){
     this.objSearchResultItems.items.forEach(element => {
       this.collection.push(element);
@@ -263,8 +258,8 @@ export class SearchresultComponent implements OnInit {
       this.SelectedCategory = FilterValue;
       this.objSearchFilter.catId = this.SelectedCategory.categoryId;
       this.getFilters();
-      this.showALlCategories = false;}else{
-        this.showALlCategories = true;
+      this.showALlCategories = true;}else{
+        this.showALlCategories = false;
         this.SelectedCategory=null;
       }
        break;
@@ -295,7 +290,8 @@ export class SearchresultComponent implements OnInit {
       case 8: // Feature Listing
       this.checkUncheckFilter(FilterValue); break;
       case 9: // Deals And Offer
-      this.checkUncheckFilter(FilterValue); break;
+      // this.checkUncheckFilter(FilterValue); 
+      break;
     }
     if(filterType!==4){ 
       this.isTostPopulated = false;
@@ -312,6 +308,7 @@ export class SearchresultComponent implements OnInit {
    paginate (pageSize) {
     this.loading=true; 
     this.objSearchlistvm.categoryId=[];
+    this.collection = [];
     if(this.categories){
       if(this.SelectedCategory){
     this.objSearchlistvm.categoryId.push(this.SelectedCategory.categoryId);}
@@ -371,18 +368,20 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
     });
   }
   // Set Deals And Offers
-  let SelectedDealsOffers = this.dealsAndOfferArray.filter(dd=>dd.isSelect==true);
-  if(SelectedDealsOffers && SelectedDealsOffers.length>0){
-    this.objSearchlistvm.deals='';
-    SelectedDealsOffers.forEach(element => {
-      this.objSearchlistvm.deals +=element.key+',';  
-    });
+  this.objSearchlistvm.deals = this.dealsAndOfferArray.filter(dd=>dd.isSelect==true)[0]== undefined ? '' :this.dealsAndOfferArray.filter(dd=>dd.isSelect==true)[0]['key'] 
+  debugger
+  // if(SelectedDealsOffers && SelectedDealsOffers.length>0){
+  //   this.objSearchlistvm.deals='';
+  //   SelectedDealsOffers.forEach(element => {
+  //     this.objSearchlistvm.deals +=element.key+',';  
+  //   });
     
-  }
+  // }
   console.log(this.objSearchlistvm);
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
-    console.log(this.objSearchResultItems);
+    this.generatePageNumbers();
+    console.log(JSON.stringify(this.objSearchResultItems));
     this.setBlankImg();
     this.addToCollection();
     this.loading=false; 
@@ -394,8 +393,34 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
  @HostListener("window:scroll", [])
  scrollToBottom(){
    if ((window.innerHeight + window.scrollY) == document.body.offsetHeight) {
+//    this.objSearchlistvm.page+=1;
+ //   this.paginate(this.objSearchFilter.pageSize); 
+  }
+ }
+ goToPage(pageNumber,buttonType){
+   debugger;
+  switch(buttonType){
+    case 'N':
+    if(this.objSearchResultItems.totalPages>this.objSearchlistvm.page)
+    {
+    this.collection=[];
     this.objSearchlistvm.page+=1;
-    this.paginate(this.objSearchFilter.pageSize); }
+    this.paginate(this.objSearchlistvm.pageSize);
+    }
+    break;
+    case 'P':
+    if(this.objSearchlistvm.page>1){
+    this.collection=[];
+    this.objSearchlistvm.page-=1;
+    this.paginate(this.objSearchlistvm.pageSize);
+    }
+    break;
+    default:
+    this.collection=[];
+    this.objSearchlistvm.page= pageNumber;
+    this.paginate(this.objSearchlistvm.pageSize);
+  }
+    
  }
 deselectAllCategories(){
   if(this.categories){
@@ -434,14 +459,42 @@ generateStaticArray(){
     {'key':'4.0+',isSelect:false}
   ];
   this.dealsAndOfferArray = [
-    {'key':'Yes',isSelect:false},
-    {'key':'No',isSelect:false}
+    {'key':'yes',isSelect:false},
+    {'key':'no',isSelect:false},
+    {'key':'any',isSelect:false}
   ];
   this.featuredListingArray=[
     {'key':'Priority Listing',isSelect:false},
     {'key':'Top Listing',isSelect:false},
   ]
 
+}
+bookMark(data, type , action_which_lacation){
+  const id = data['vendorId'] 
+ this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
+   console.log(data)
+ })
+}
+radioChecker(mainItem , selectedItem){
+  const data = selectedItem
+  mainItem.forEach(element => {
+    if(element == data){
+      element['isSelect'] = !element['isSelect']
+    }else{
+      element['isSelect'] = false
+    }
+  });
+    this.paginate(this.objSearchFilter.page)
+  }
+
+
+generatePageNumbers(){
+  this.paginations=[];
+  for (let i = 0; i < this.objSearchResultItems.totalPages-1; i++) {
+    if(this.objSearchResultItems.totalPages-1 > 0){
+    this.paginations.push(i+1);
+  }
+  }
 }
 }
 export class SearchFilterVm{
@@ -467,7 +520,7 @@ export class SearchListingVM{
   customsFields:Array<FieldSearchVM>;
   customField:FieldSearchVM;
   constructor(){
-    this.pageSize=25;
+    this.pageSize=24;
     this.page=0;
     this.districts=[];
     this.categoryId=[];
@@ -486,11 +539,4 @@ export class FieldSearchVM{
   customFieldId: number;
   userValue:string;
 }
-// export class AppliedFilters{
-//   services:SafeHtml;
-//   pricerange:string;
-//   featuredListing:string;
-//   customerRating:string;
-//   deals:string;
-//   filters:string;
-// }
+

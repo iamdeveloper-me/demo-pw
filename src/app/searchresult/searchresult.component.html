@@ -34,7 +34,7 @@
             <ng-template *ngIf="slide.promoted" carouselSlide="1" >
               <div class="boxtikslide" >
                 <div class="procard"> </div>
-                <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
+                <span class="book_mark" (click)="bookMark(slide,'searchfilter','bookmarked')"><i class="material-icons">bookmark_border</i></span>
                 <!-- {{slide.profileImage }} -->
                 <div (click)="goToPortfolioDetail(slide)" >
                 <img class="card-img-top" *ngIf = "slide" [src]="slide.profileImage | defaultImage:'https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg':true"/>
@@ -107,7 +107,7 @@
       <div class="container-fluid nopadd">
         <div class="badgecontainer">
           <span *ngIf='objSearchResultItems' class="badge badge-primary badge-labeled">
-          {{SelectedCategory?SelectedCategory.categoryName:'Wedding Vendors'}}  {{SelectedLocation?'in '+SelectedLocation.name:'in Mauritius'}} (  {{collection?collection.length:0}} Results Of {{objSearchResultItems.totalCount}})
+          {{SelectedCategory?SelectedCategory.categoryName:'Wedding Vendors'}}  {{SelectedLocation?'in '+SelectedLocation.name:'in Mauritius'}} (  {{collection?collection.length:'Not Found'}} Results Of {{objSearchResultItems.totalCount}})
           </span>
          </div>
         <div class="clearfix"></div>
@@ -156,8 +156,6 @@
                     <i class="hidden-xs" aria-hidden="true"></i> 
                   </a>
                 </h4>
-
-            
                   <ul class="selectedlist" *ngIf='!showAllLocation'>
                       <li>
                         <i class="material-icons">location_on</i> 
@@ -166,7 +164,6 @@
                         <span (click)='setFilterOptions(3,SelectedLocation)'  class="closebtnlist">&times;</span>
                       </li>
                     </ul>
-
                 </div>
                 <div id="collapse0" class="panel-collapse collapse ">
                     <div class="category-body" *ngIf='showAllLocation'>
@@ -207,7 +204,8 @@
 
                     <ul class="selectedlist" *ngIf='!showALlCategories'>
                         <li>
-                           <span> {{SelectedCategory?SelectedCategory.categoryName:""}} <span (click)='setFilterOptions(1,SelectedCategory)' class="closebtnlist">&times;</span></span>
+                           <span> {{SelectedCategory?SelectedCategory.categoryName:""}} 
+                             <span *ngIf='SelectedCategory && SelectedCategory.categoryName' (click)='setFilterOptions(1,SelectedCategory)' class="closebtnlist">&times;</span></span>
                         </li>
                     </ul>
                   </div>
@@ -247,10 +245,10 @@
                  
                   <div id="collapse33" class="panel-collapse collapse" >
                       <div class="category-body" >
-                        <div class="searchmobtitlebar city_position " >
+                        <!-- <div class="searchmobtitlebar city_position " >
                           <i class="material-icons">search</i>
                           <input class="cityinput" type="text" value="" id="search" placeholder="Type to Search Category">
-                        </div>
+                        </div> -->
                         <!-- <div class="regular">All Categories</div> -->
                         <div class="cityscroll22"> 
                           <div class="funkyradio" *ngIf='filters && filters.services'  >  
@@ -352,10 +350,10 @@
                   </h4>
                 </div>
                 <div id="collapse444" class="panel-collapse collapse" >
-                   
-                    <div class="funkyradio">
-                      <div class="funkyradio-info" *ngFor='let dd of dealsAndOfferArray'>
-                         <input type="radio" name="key" [id]="dd.key" [value]='dd.key' (change)='setFilterOptions(9,dd)' />
+                    <div >
+                      <div  *ngFor='let dd of dealsAndOfferArray'>
+                         <input type="radio" name="key" [id]="dd.key" value='{{dd.key}}' [checked]="dd.isSelect" (change)='radioChecker(dealsAndOfferArray, dd)' />
+                         <!-- setFilterOptions(9,dd) || -->
                         <label for="{{dd.key}}">{{dd.key}}</label>  
                       </div>
                     </div>
@@ -413,14 +411,14 @@
           </div>
             
                 <span class="filterrowcard" *ngFor='let f of featuredListingArray'>
-                    <span  *ngIf='f.isSelect'>{{f.key}}</span>
+                    <span  *ngIf='f.isSelect'>{{f.key}} <i class="chipsCLose" (click)='setFilterOptions(8,f)'>X</i></span>
                     </span>
 
                     <span class="filterrowcard" *ngFor='let f of userRatingArray'>
-                    <span *ngIf='f.isSelect'>{{f.key}}</span>
+                    <span *ngIf='f.isSelect'>{{f.key}} <i class="chipsCLose" (click)='setFilterOptions(6,f)'>X</i></span>
                     </span>
                     <span class="filterrowcard" *ngFor='let f of dealsAndOfferArray'>
-                        <span *ngIf='f.isSelect'>{{f.key}}</span>
+                        <span *ngIf='f.isSelect'>{{f.key}} <i class="chipsCLose" (click)='setFilterOptions(9,f)'>X</i></span>
                     </span>
                     <div *ngIf='filters && filters.filters'>
                     <div  *ngFor='let ff of filters.filters'>
@@ -439,7 +437,7 @@
 
 	                <div class="card mb-2 bordre_rad1 hover_effect">
                       <div *ngIf="i.promoted" class="procard"> </div>
-                      <span class="book_mark">
+                      <span class="book_mark" (click)="bookMark(i,'searchfilter','bookmarked')">
                           <i class="material-icons">bookmark_border</i>
                         </span>
                     <div class="thumbnail" (click)="goToPortfolioDetail(i)" >
@@ -459,9 +457,10 @@
                       <div class="caption card-body">
                         <div>
                           <h6><strong>{{i.nameOfBusiness}}</strong></h6>
-
+                          <div *ngIf='i.vendorCategories[0]'>
                           <button *ngIf='i.vendorCategories[0].categories' class="wedding_btn">
                             {{getCategoryName(i)}}  </button>
+                          </div>
                           <p class="locat_icon">   
                             <i class="material-icons">location_on</i> 
                             <span>  {{ i.district.name}}</span>
@@ -504,7 +503,12 @@
 	       		      </div>
             </div>
           </div>
-	     	</div>
+         </div>
+         <ul class="pageNumbers" *ngIf='paginations.length>0'>
+          <li *ngIf='objSearchlistvm.page > 1' (click)='goToPage(0,"P")'>Previous</li>
+           <li *ngFor='let p of paginations' (click)='goToPage(p,0)'>{{p}}</li>
+           <li *ngIf='objSearchResultItems.totalPages >= objSearchlistvm.page' (click)='goToPage(0,"N")'>Next</li>
+         </ul>
         <div>
 
        <!--    <img  src="https://www.walgreens-hearing.com/img/loader.gif" style="bottom:35%;position: fixed;z-index:99999;margin-left:18%"> -->

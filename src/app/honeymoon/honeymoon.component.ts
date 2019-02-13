@@ -3,7 +3,7 @@ import { SlidesOutputData } from 'ngx-owl-carousel-o';
 import { MasterserviceService } from 'app/ngservices/masterservice.service';
 import { apiService } from 'app/shared/service/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { filterParam } from '../vendorcard/vendorcard.component'
 import { SearchListingVM } from 'app/searchresult/searchresult.component';
 @Component({
@@ -35,6 +35,9 @@ export class HoneymoonComponent implements OnInit{
     //autoplaySpeed:1
   }
   ngOnInit() {
+    this.title.setTitle('Honeymoon & Travel | Perfect Weddings');    
+    this.meta.addTag({name:'description',content:'Honeymoon & Travel | Perfect Weddings'});    
+
       this.apiService.getData(this.apiService.serverPath+'PerfectWedding/vendorsinhoneymoonandtravel').subscribe(data => {
         this.slidesStore = data;
         console.log(data);
@@ -44,11 +47,10 @@ export class HoneymoonComponent implements OnInit{
   }
   activeSlides: SlidesOutputData;
   slidesStore: any[];
-  constructor(public _masterservice: MasterserviceService,private apiService: apiService,private router: Router,private meta:Meta) {
+  constructor(public _masterservice: MasterserviceService,private apiService: apiService,private router: Router,private meta:Meta, private title : Title) {
     this.objFilterParam = new filterParam();
     this.searchlistvm = new SearchListingVM();
-    this.meta.addTag({ name: 'description', content: 'Top Honeymoon & Travel Destinations | Perfect Weddings' });
-    this.getSliderData(); 
+   this.getSliderData(); 
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/honeymoondestinations').subscribe(data => {
       this.Honeymoon_destinations =data;
       console.log( this.Honeymoon_destinations);

@@ -128,7 +128,7 @@ item_tags:any = []
         }
         console.log(this.photo_search_param.color)
     }
-    find_photo(){
+    find_photo(list){
 
       this.loading = false;
       console.log(this.photo_search_param)

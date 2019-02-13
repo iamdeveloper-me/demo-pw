@@ -39,6 +39,7 @@ export class SearchresultComponent implements OnInit {
   activeSlides: SlidesOutputData;
   slidesStore: any[];
   collection = [];
+  paginations=[];
   objSearchFilter: filterParam
   locations:any;
   categories:any;
@@ -382,7 +383,8 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
   console.log(this.objSearchlistvm);
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
-    console.log(this.objSearchResultItems);
+    this.generatePageNumbers();
+    console.log(JSON.stringify(this.objSearchResultItems));
     this.setBlankImg();
     this.addToCollection();
     this.loading=false; 
@@ -394,8 +396,34 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
  @HostListener("window:scroll", [])
  scrollToBottom(){
    if ((window.innerHeight + window.scrollY) == document.body.offsetHeight) {
+//    this.objSearchlistvm.page+=1;
+ //   this.paginate(this.objSearchFilter.pageSize); 
+  }
+ }
+ goToPage(pageNumber,buttonType){
+   debugger
+  this.collection=[];
+  switch(buttonType){
+    case 'N':
+    if(this.objSearchResultItems.totalPages<this.objSearchlistvm.page)
+    {
     this.objSearchlistvm.page+=1;
-    this.paginate(this.objSearchFilter.pageSize); }
+    alert(this.objSearchlistvm.page);
+    this.paginate(this.objSearchlistvm.pageSize);
+    }
+    break;
+    case 'P':
+    if(this.objSearchlistvm.page>1){
+    this.objSearchlistvm.page-=1;
+    alert(this.objSearchlistvm.page);
+    this.paginate(this.objSearchlistvm.pageSize);
+    }
+    break;
+    default:
+    this.objSearchlistvm.page= pageNumber;
+    this.paginate(this.objSearchlistvm.pageSize);
+  }
+    
  }
 deselectAllCategories(){
   if(this.categories){
@@ -450,6 +478,12 @@ bookMark(data, type , action_which_lacation){
    console.log(data)
  })
 }
+generatePageNumbers(){
+  this.paginations=[];
+  for (let i = 0; i < this.objSearchResultItems.totalPages-1; i++) {
+    this.paginations.push(i+1);
+  }
+}
 }
 export class SearchFilterVm{
   categoryId:number=1;
@@ -474,7 +508,7 @@ export class SearchListingVM{
   customsFields:Array<FieldSearchVM>;
   customField:FieldSearchVM;
   constructor(){
-    this.pageSize=25;
+    this.pageSize=24;
     this.page=0;
     this.districts=[];
     this.categoryId=[];
@@ -493,11 +527,4 @@ export class FieldSearchVM{
   customFieldId: number;
   userValue:string;
 }
-// export class AppliedFilters{
-//   services:SafeHtml;
-//   pricerange:string;
-//   featuredListing:string;
-//   customerRating:string;
-//   deals:string;
-//   filters:string;
-// }
+

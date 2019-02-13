@@ -659,6 +659,7 @@ li{line-height:1.5rem !important;}
   }
 .pribox{
   font-size:12px;
+  float: left;
 }
 @media(max-width: 767px) {
 .mob300pxwidth{
@@ -673,10 +674,6 @@ margin-bottom:0px;
 }
 .text-faded{
   display:none;
-}
-.boxtikslide{
-  max-width: 255px!important;
-  margin:0px auto;
 }
 .mobnopadd{
   padding:0px!important;
@@ -840,4 +837,17 @@ p.homeTools__itemIconText {
     .locationbox h2 {
     font-size: 12px !important;
 }
+}
+@media(max-width: 500px) {
+  .boxtikslide{
+    max-width: 255px!important;
+    margin:0px auto;
+  }
+}
+
+@media only screen and (min-device-width: 501px) and (max-device-width: 823px) {
+  .boxtikslide{
+    max-width: 96%!important;
+    margin:0px auto;
+  }
 }

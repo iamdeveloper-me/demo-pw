@@ -543,6 +543,7 @@ $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/ve
             previewFile(event) {
 
               let files = event.target.files;
+              this.imageToUpload = event.target.files[0];
               if (files) {
                   for (let file of files) {
                       let FI  = new FileItem(this.uploader,file,null);
@@ -564,10 +565,26 @@ $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/ve
 
           uploadAll(){
             const formData = new FormData();
+            console.log(this.imageToUpload);
+            // formData.append(this.imageToUpload.name, this.imageToUpload);
+      
+            // formData.append('dealId', '48');
+            // let headers = new  Headers();
+                    
+            // // multipart/form-data
+            // console.log(formData)
+            // headers.append('Accept', 'application/json')
+            // headers.append('Content-Type', 'multipart/form-data ; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW');
+            // var authToken = localStorage.getItem('userToken');
+            // headers.append("Authorization",'Bearer '+authToken);
+            // this.http.post(this.url+'api/ImageUploader/DealsImageUploader', 
+            // formData,{headers: headers}).subscribe(data =>{ console.log(data)},(error)=>{
+            // console.log(error)
+            // });    
             for(let file of this.previewImages){
        
                     const a = {'files': file ,
-                              dealId: 49
+                              dealId: 48
                               }
                     console.log(a)
                             debugger

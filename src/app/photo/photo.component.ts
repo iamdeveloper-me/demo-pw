@@ -1,6 +1,7 @@
 import { Component, OnInit ,HostListener} from '@angular/core';
 import { apiService } from '../shared/service/api.service';
 import { Meta } from '@angular/platform-browser';
+import { MasterserviceService } from '../ngservices/masterservice.service';
 @Component({
   selector: 'app-photo',
   templateUrl: './photo.component.html',
@@ -32,7 +33,7 @@ item_tags:any = []
     // paged items
     pagedItems: any[];
     error_1 = '';
-    constructor(private apiService: apiService,private meta:Meta ) {
+    constructor(private masterservice: MasterserviceService,private apiService: apiService,private meta:Meta ) {
       this.meta.addTag({ name: 'description', content: 'Wedding Photos & Inspirations | Perfect Weddings' });
       this.colout_tag= false;
       this.pagedItems = [];
@@ -70,6 +71,12 @@ item_tags:any = []
           $('.clearclass').removeClass('seelist');
           });
       })
+    }
+    bookMark(data, type , action_which_lacation){
+      const id = data['id'] 
+     this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
+       console.log(data)
+     })
     }
     createColorPanel(){
       this.colors= Array<ColorPicker>();
@@ -119,11 +126,11 @@ item_tags:any = []
         }
         console.log(this.photo_search_param.color)
     }
-    find_photo(f){
+    find_photo(){
 
       this.loading = false;
-      console.log(f.value.searchQuery)
       console.log(this.photo_search_param)
+      this.photo_search_param.categoryId = this.category
       if(this.photo_search_param.color.length > 0 && this.photo_search_param.searchQuery == null){
         this.colout_tag = true;
         this.showTag2 = false;
@@ -240,7 +247,7 @@ export class  photoSearchParam  {
   sortDir: string;
   sortedBy: string;
   searchQuery:string;
-  categoryId: string;
+  categoryId: any;
   UserId : number; 
   color: Array<any>;
   constructor(){

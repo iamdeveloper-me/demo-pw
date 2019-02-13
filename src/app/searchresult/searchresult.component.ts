@@ -83,7 +83,9 @@ export class SearchresultComponent implements OnInit {
     this.generateStaticArray();
     this.objSearchFilter=new filterParam();
     this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
+    
     this.objSearchlistvm = new SearchListingVM();
+    this.objSearchlistvm.searchInDreamLocation = this.objSearchFilter.isDreamLocation;
     if(this.objSearchFilter.locationId != 0){
     this.objSearchlistvm.districts.push(this.objSearchFilter.locationId);}
     this.getLocations();
@@ -461,6 +463,7 @@ export class SearchListingVM{
   price:string;
   deals:string;
   listing:string;
+  searchInDreamLocation:boolean=false;
   customsFields:Array<FieldSearchVM>;
   customField:FieldSearchVM;
   constructor(){

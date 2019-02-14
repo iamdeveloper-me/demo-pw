@@ -19,6 +19,7 @@ export class DealsComponent implements OnInit {
  }
 
   ngOnInit() {
+    sessionStorage.clear();
     this.title.setTitle('Great Wedding Deals & Offers |Perfect Weddings');    
     this.meta.addTag({name:'description',content:'Great Wedding Deals & Offers |Perfect Weddings'});    
 

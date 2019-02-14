@@ -32,6 +32,7 @@ export class ContactUsComponent implements OnInit {
     this.apiService.postData(this.apiService.serverPath+'Home/contactus',list.value).subscribe(data => {
       list.resetForm();
       // this.toastr.success(data.message);
+      grecaptcha.reset();
 
       swal({
   

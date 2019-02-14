@@ -50,6 +50,7 @@ export class TipsComponent  {
         this.tipsArrays_items = data.items; 
         this.distinctTipic = [new Set(this.tipsArrays_items.map(x=>x.blogTopic.topic))][0];
         this.allItems = this.tipsArrays_items
+        console.log(JSON.stringify(this.allItems));   
         this.setPage(1);
         },
         error => {

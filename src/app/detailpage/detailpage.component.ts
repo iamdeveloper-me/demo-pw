@@ -38,6 +38,7 @@ export class DetailpageComponent implements OnInit {
   businessServices_length ;
   portfolioAndAlbumImagesTotal: number = 0;
   similarVendors:any;
+  reviewButtonLabel:string='Show reviews';
   ratingmodel: ratingStars;
   portfolioImages = [];
   lightBoxImages=[];
@@ -67,7 +68,7 @@ export class DetailpageComponent implements OnInit {
       $("#Vediogallarypopup iframe").attr("src", $("#Vediogallarypopup iframe").attr("src"));
     });
     this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
-    this.showHideReviews(2)
+    this.showHideReviews();
     console.log( this.vendorDetails )
     this.vendorVideo_details = this.vendorDetails.vendorVideos.length;
     this.businessServices_length = this.vendorDetails.businessServices.length;
@@ -193,22 +194,26 @@ classAdd(item){
   trading_hours_popup(a){
        this.trading_hours_popups =a;
   }
-  showHideReviews(count){
+  showHideReviews(){
+    debugger;
     this.vendorDetails.reviews.forEach((element,index) => {
-      element.visible=false;
-      if(count>0 ){
-        if(index<=1){
-        element.visible=true;}
-      }else{
+      if(this.reviewButtonLabel==='Show More')
+      {
         element.visible=true;
+      }else{
+        if(index<=1){
+          element.visible=true;
+      } else {
+          element.visible=false;
+      }
       }
     });
+    if(this.vendorDetails.reviews.filter(r=>r.visible==true).length>2){
+      this.reviewButtonLabel = 'Show Less';
+    }else{
+      this.reviewButtonLabel = 'Show More';
+    }
     
   }
-
-
-
-
-
 }
 

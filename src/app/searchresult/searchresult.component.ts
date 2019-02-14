@@ -162,6 +162,9 @@ export class SearchresultComponent implements OnInit {
       this.SelectedCategory = this.categories.filter(c=>c.isSelect==true)[0];
       this.showALlCategories=false;
     }
+    this.categories[0].services[0].customFields[0].customFieldOptionList.forEach(element => {
+      element.isSelect = false;
+    });
     this.collection=[];
     this.paginate(this.objSearchFilter.pageSize);  
     this.showALlCategories=false;
@@ -185,10 +188,12 @@ export class SearchresultComponent implements OnInit {
         }
       this.filters.filters.forEach(element => { element.isSelect=false;});
      
+      if(this.filters.filters){
       this.priceRange = this.filters.filters[0].customFieldOptionList;
       this.priceRange.forEach(element => {
         element.isSelect = false;
       });
+    }
       
     }
     },error=>{
@@ -247,6 +252,7 @@ export class SearchresultComponent implements OnInit {
       }
   }
   setFilterOptions(filterType,FilterValue){
+    debugger;
     this.collection=[];
     this.objSearchlistvm.page=0;
     switch(filterType){
@@ -264,6 +270,8 @@ export class SearchresultComponent implements OnInit {
       }
        break;
       case 2: // Service
+      debugger;
+      FilterValue['isSelect'] = !FilterValue['isSelect']
        break;
       case 3: // location
       this.checkUncheckFilter(FilterValue);
@@ -283,14 +291,16 @@ export class SearchresultComponent implements OnInit {
       this.objSearchlistvm.customsFields=[];
       break;
       case 6: // Rating
-      
+      debugger;      
       this.checkUncheckFilter(FilterValue); break;
       case 7: // Pricing
-      this.checkUncheckFilter(FilterValue); break;
+      debugger
+      FilterValue['isSelect'] = !FilterValue['isSelect']
+      ; break;
       case 8: // Feature Listing
       this.checkUncheckFilter(FilterValue); break;
       case 9: // Deals And Offer
-      // this.checkUncheckFilter(FilterValue); 
+       this.checkUncheckFilter(FilterValue); 
       break;
     }
     if(filterType!==4){ 
@@ -377,6 +387,7 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
   //   });
     
   // }
+  this.objSearchlistvm.pageSize = this.objSearchFilter.pageSize;
   console.log(this.objSearchlistvm);
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
@@ -393,8 +404,8 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
  @HostListener("window:scroll", [])
  scrollToBottom(){
    if ((window.innerHeight + window.scrollY) == document.body.offsetHeight) {
-//    this.objSearchlistvm.page+=1;
- //   this.paginate(this.objSearchFilter.pageSize); 
+    this.objSearchlistvm.page+=1;
+    this.paginate(this.objSearchFilter.pageSize); 
   }
  }
  goToPage(pageNumber,buttonType){
@@ -405,20 +416,21 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
     {
     this.collection=[];
     this.objSearchlistvm.page+=1;
-    this.paginate(this.objSearchlistvm.pageSize);
+    this.paginate(this.objSearchFilter.pageSize);
     }
     break;
     case 'P':
     if(this.objSearchlistvm.page>1){
     this.collection=[];
     this.objSearchlistvm.page-=1;
-    this.paginate(this.objSearchlistvm.pageSize);
+    alert(this.objSearchFilter.pageSize);
+    this.paginate(this.objSearchFilter.pageSize);
     }
     break;
     default:
     this.collection=[];
     this.objSearchlistvm.page= pageNumber;
-    this.paginate(this.objSearchlistvm.pageSize);
+    this.paginate(this.objSearchFilter.pageSize);
   }
     
  }
@@ -476,9 +488,10 @@ bookMark(data, type , action_which_lacation){
  })
 }
 radioChecker(mainItem , selectedItem){
-  const data = selectedItem
+  debugger;
+ // const data = selectedItem
   mainItem.forEach(element => {
-    if(element == data){
+    if(element == selectedItem){
       element['isSelect'] = !element['isSelect']
     }else{
       element['isSelect'] = false

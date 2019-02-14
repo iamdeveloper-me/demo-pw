@@ -427,8 +427,8 @@
       <!-- start Reviews form -->
       <div id="review" class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection" id="review">
         <div class="vp_review_txt_title large_subtext "> Reviews ( {{vendorDetails.reviews.length}} reviews) 
-          <span *ngIf='vendorDetails.reviews.length>2' class="reviewmore" (click)='showHideReviews(0)'>Show All</span>
-          <span  class="reviewless" style="display:none;" (click)='showHideReviews(2)'>Show Less</span>
+          <span style="cursor:pointer" *ngIf='vendorDetails.reviews.length>1' (click)='showHideReviews()'>{{reviewButtonLabel}}</span>
+          <!-- <span style="display:none;" (click)='showHideReviews(2)'>Show Less</span> -->
         </div>
         <div>
           <div *ngFor='let rev of vendorDetails.reviews'>

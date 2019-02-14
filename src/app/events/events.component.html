@@ -81,11 +81,11 @@
 											</i>
 										</button>
 									</div>
-									<div class="eventdate col-sm-2" *ngFor='let Date of item.eventsDates | slice:0:1 ;let i=index '>
-										<span>{{Date.startDateString | date}}</span>
-										<!-- <span>End Date : {{Date.endDateString | date}}</span> -->
+									<div class="eventdate col-sm-4" *ngFor='let Date of item.eventsDates | slice:0:1 ;let i=index '>
+									<p><span> Start Date </span>  {{Date.startDateString | date}}</p>
+									<p><span> End Date </span> {{Date.endDateString | date}} </p>
 									</div>
-									<div class="col-sm-10 heightadjust">
+									<div class="col-sm-8 heightadjust">
 
 										<div class="eventtitle">
 											<!--  routerLink="../event_list"p -->

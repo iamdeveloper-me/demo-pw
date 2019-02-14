@@ -41,6 +41,11 @@
                   <span (click)="removeColor(i)" *ngIf="colour_tag != ''  " class="colortag" [style.background-color]='colour_tag'>X</span>
                </span>
             </div>
+            <div  style="padding:0;padding-left: 5px;">
+               <span class="tag-color" >
+                  {{photo_search_param.searchQuery}}
+               </span>
+            </div>
 
             <div style="position:relative;min-height:100vh;" id="categoryProductContainer">
                <h1>{{error_1}}</h1>

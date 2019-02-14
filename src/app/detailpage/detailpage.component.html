@@ -426,64 +426,40 @@
       <div class="clearfix"></div>
        <a id="review" class="tiktikmik"></a>
       <!-- start Reviews form -->
-      <div  class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection">
-        <div class="vp_review_txt_title large_subtext "> Reviews ( {{vendorDetails.reviews.length}} reviews) 
-          <span *ngIf='vendorDetails.reviews.length>2' class="reviewmore" (click)='showHideReviews(0)'>VIEW ALL</span>
-          <span  class="reviewless" style="display:none;" (click)='showHideReviews(2)'>Show Less</span>
-        </div>
-        <div>
-          <div *ngFor='let rev of vendorDetails.reviews  | slice:0:3 ' class="reviewrow">
-            
-           <div>
-             <img src="../../assets/img/noImg.png" class="ratingimg"/> 
-             <strong style="font-weight:bold;">{{rev.sendByFirstName}} {{rev.sendByLastName}}</strong>
-           <br/>
-             <span class="reviewedtext"> 
-                <i class="material-icons">chat_bubble</i> 
-                {{rev.reviewStatus}} reviews
-              </span>
-
-            </div> 
-          
-          
-           <div>
-            <span *ngIf='rev.visible' [innerHTML]='ratingmodel.printStars(rev.rating)'></span>
-            {{rev.dateAddedOnString}}
+      <div  class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection" *ngIf = "vendorDetails.reviews.length > 0">
+          <div class="vp_review_txt_title large_subtext "> Reviews dsfdsf({{vendorDetails.reviews.length}} Reviews)
+            <span *ngIf='vendorDetails.reviews.length>3' class="reviewmore" (click)='showHideReviews(0)'>VIEW ALL</span>
+            <span class="reviewless"  (click)='showHideReviews(3)'>Show Less</span>
+          </div>
+          <div>
+              
+            {{vendorDetails.averageRating}}
+            <div class="rating_star">
+                <rating [(ngModel)]="vendorDetails.averageRating" readonly="isReadonly"></rating> 
             </div>
-            <p *ngIf='rev.visible'> {{rev.comments}}</p>
+            {{vendorDetails.reviews.length}}
+          </div>
+          <div *ngFor='let rev of vendorDetails.reviews'>
+            <div class="reviewrow" *ngIf='rev.visible'>
+                <div>
+                  <img src="../../assets/img/noImg.png" class="ratingimg"/> 
+                  <strong style="font-weight:bold;">{{rev.sendByFirstName}} {{rev.sendByLastName}}</strong>
+                <br/>
+                  <span class="reviewedtext"> 
+                    <i class="material-icons">chat_bubble</i> 
+                    {{rev.reviewStatus}} reviews
+                  </span>
+                </div> 
+                <div>
+                <span  [innerHTML]='ratingmodel.printStars(rev.rating)'></span>
+                {{rev.dateAddedOnString}}
+                </div>
+                <p> {{rev.comments}}</p>
+            </div> 
           </div>
           <div class="text-center">
-              <button data-target="#Review_vendor" data-toggle="modal" class="btn pinkbg whitetext"> Review this vendor  </button>
-      
+              <button data-target="#Review_vendor" data-toggle="modal" class="btn pinkbg whitetext">Review this vendor</button>
           </div>
-              </div>
-        
-        <!-- <form (ngSubmit)="putReview(review)" #f="ngForm">
-          <div class="vp_review_txt">
-            <div class="vp_giveReviewBox">
-              <span>Give A Review:</span>
-
-              <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
-                <div class="jq-ry-group-wrapper">
-                  <div class="jq-ry-normal-group jq-ry-group">
-                    <rating [(ngModel)]="review.rating" name="rating"></rating>
-                  </div>
-                </div>
-              </span>
-
-              <div class="textInput">
-
-                <input placeholder="Write a Review" type="text" class="textInputInner" required [(ngModel)]="review.comments"
-                  name="comments">
-                <button type="submit" class="textInputSubmit" value="SUBMIT">SUBMIT</button>
-                <input class="submitedRating" type="hidden" value="0">
-                <div class="errorInValidation sendAReview">
-                  Your review is empty. SUBMIT again to send this anyway
-                </div>
-              </div>
-            </div>
-          </div>
-        </form> -->
       </div>
       <!-- End Reviews form -->
 
@@ -491,11 +467,17 @@
          <a id="deals" class="tiktikmik"></a>
       <!-- Wedding Deals & Discount -->
       <div class="boxLightStyles hideShowMeNow box_section_light dealsection" *ngIf = "vendorDetails?.dealsCount > 0">
-        <div class="vp_review_txt_title large_subtext">Wedding Deals & Discount</div>
+        <div class="vp_review_txt_title large_subtext">Wedding Deals & Discount ({{vendorDetails?.deals.length}}) 
+       
+
+        <span *ngIf='vendorDetails.deals.length > 5' class="reviewmore" (click)='showHideevents(0)'>VIEW ALL</span>
+        <span  class="reviewless"  (click)='showHideevents(5)'>Show Less</span>
+      </div>
         <div class="row dealsinner">
           <!-- <div class="col-sm-2 text-center dealhead pink" *ngIf='vendorDetails?.discounts'>
             {{vendorDetails?.discounts.discount}}% {{vendorDetails?.discounts.title}}
           </div> -->
+          
           <div style="width: 100%;"  *ngIf='vendorDetails?.discounts'>
             <div class="col-sm-10">
               <h1 class="pink">{{vendorDetails?.discounts.title}}</h1>
@@ -517,24 +499,25 @@
           </div>
          
         </div>
-        <div >
-          <div class="row dealsinner"  *ngFor='let deal of vendorDetails?.deals;let i=index'>
-          <!-- <div class="col-sm-2 text-center dealhead">
-            <span class="borradius50per btntikbg">%</span>
-          </div> -->
-          <div class="col-sm-3">
-            <div>$800.00 Value</div>
-            <div>Promo Code: <strong>FES8220</strong></div>
-          </div>
-          <div class="col-sm-9">
-            <h1>{{deal.title}}</h1>
-            <p>
-              {{deal.conditions}}
-            </p>
-             <p>Offer Expires: {{deal.endDateString}}&nbsp;&nbsp;|&nbsp;&nbsp;Status: {{deal.status}}</p>
+        <div *ngFor='let deal of vendorDetails?.deals;let i=index'>
+          <div class="row dealsinner" *ngIf='deal.visible' >
+            <div>
+                <div class="col-sm-3" >
+                    <button (click) = "deal_Detail(deal)" >deal view </button>
+                  <div>$800.00 Value</div>
+                  <div>Promo Code: <strong>FES8220</strong></div>
+                </div>
+                <div class="col-sm-9">
+                  <h1>{{deal.title}}</h1>
+                  <p>
+                    {{deal.conditions}}
+                  </p>
+                  <p>Offer Expires: {{deal.endDateString}}&nbsp;&nbsp;|&nbsp;&nbsp;Status: {{deal.status}}</p>
+                  
+                
+                </div>
+            </div>
             <div class="clearfix"></div>
-           
-          </div>
           </div>
         </div>  
       </div>
@@ -964,8 +947,18 @@
               <span class="focus-border"></span>
             </div>
             <div class="input-effect  form-group mt-3">
+              <input class="effect-16" name="checkbox" placeholder="" required="" type="checkbox">
+             
+              <span class="focus-border"></span>
+            </div>
+            <div class="input-effect  form-group mt-3">
               <input class="effect-16" name="phone" placeholder="" required="" type="tel">
               <label>Your Phone Number</label>
+              <span class="focus-border"></span>
+            </div>
+            <div class="input-effect  form-group mt-3">
+              <textarea class="effect-16" placeholder='' type = "date"></textarea>
+              <label>date</label>
               <span class="focus-border"></span>
             </div>
             <div class="input-effect  form-group mt-3">
@@ -987,38 +980,40 @@
   <div class="modal fade" id="Review_vendor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="col-sm-12">
+          <div class="col-sm-12"  >
               {{vendorDetails?.nameOfBusiness}}
-        <form (ngSubmit)="putReview(review)" #f="ngForm">
-            <div class="vp_review_txt">
-              <div class="vp_giveReviewBox">
-                <span>Give A Review:</span>
-  
-                <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
-                  <div class="jq-ry-group-wrapper">
-                    <div class="jq-ry-normal-group jq-ry-group">
-                      <rating [(ngModel)]="review.rating" name="rating"></rating>
+              <div *ngIf = "responce_review  == true ">
+                <form (ngSubmit)="putReview(review)" #f="ngForm">
+                  <div class="vp_review_txt">
+                    <div class="vp_giveReviewBox">
+                      <span>Give A Review:</span>
+        
+                      <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
+                        <div class="jq-ry-group-wrapper">
+                          <div class="jq-ry-normal-group jq-ry-group">
+                            <rating [(ngModel)]="review.rating" name="rating"></rating>
+                          </div>
+                        </div>
+                      </span>
+        
+                      <div class="textInput">
+        
+                        <input placeholder="Write a Review" type="text" class="textInputInner" required [(ngModel)]="review.comments"
+                          name="comments">
+                        <button type="submit" class="textInputSubmit" value="SUBMIT">SUBMIT</button>
+                        <input class="submitedRating" type="hidden" value="0">
+                        <div class="errorInValidation sendAReview">
+                          Your review is empty. SUBMIT again to send this anyway
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </span>
-  
-                <div class="textInput">
-  
-                  <input placeholder="Write a Review" type="text" class="textInputInner" required [(ngModel)]="review.comments"
-                    name="comments">
-                  <button type="submit" class="textInputSubmit" value="SUBMIT">SUBMIT</button>
-                  <input class="submitedRating" type="hidden" value="0">
-                  <div class="errorInValidation sendAReview">
-                    Your review is empty. SUBMIT again to send this anyway
-                  </div>
-                </div>
+                </form>
               </div>
-            </div>
-          </form>
             <div class="clearfix"></div>
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
           </div>
-  
+          <h1 *ngIf = "responce_thanks == true ">THANK YOU FOR YOUR REVIEW</h1>
         </div>
       </div>
     </div>
@@ -1140,7 +1135,8 @@
                         <td *ngIf='trading_hours_popups.isSundayOpen'>{{trading_hours_popups.sundayOpen}} - {{trading_hours_popups.sundayClose}}
                         </td>
                         <td><span class="greentext" *ngIf='trading_hours_popups.isSundayOpen == true'>Open</span></td>
-                        <td><span class="redtext" *ngIf='trading_hours_popups.isSundayOpen == false '>Close</span></td>
+                        <td> <span class="redtext" *ngIf='trading_hours_popups.isSundayOpen == false '>Close</span></td>
+                       
                       </tr>
                   </table> 
                </div>

@@ -423,17 +423,20 @@
       <a id="review" class="tiktikmik"></a>
       <!-- start Reviews form -->
             <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection" *ngIf="vendorDetails.reviews.length > 0">
-              <div class="vp_review_txt_title large_subtext "> Reviews dsfdsf({{vendorDetails.reviews.length}} Reviews)
-                  <span style="cursor:pointer" *ngIf='vendorDetails.reviews.length>1' (click)='showHideReviews()'>{{reviewButtonLabel}}</span>
+              <div class="vp_review_txt_title large_subtext "> Reviews
+                 
               </div>
-              <div>
-
-                {{vendorDetails.averageRating}}
-                <div class="rating_star">
+              <div class="reviewrow" style="height:100px;">
+                <div class="ratingtexthead"><strong>{{vendorDetails.averageRating}}</strong></div>
+                <div class="reveiwsecondhead">
+                <div class="rating_star" style="text-align: left;">
                   <rating [(ngModel)]="vendorDetails.averageRating" readonly="isReadonly"></rating>
                 </div>
-                {{vendorDetails.reviews.length}}
+               ({{vendorDetails.reviews.length}} REVIEWS) 
+               <span style="cursor:pointer" *ngIf='vendorDetails.reviews.length>1' (click)='showHideReviews()'>{{reviewButtonLabel}}</span>
+                </div>
               </div>
+
               <div *ngFor='let rev of vendorDetails.reviews'>
                 <div class="reviewrow" *ngIf='rev.visible'>
                   <div>

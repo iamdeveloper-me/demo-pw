@@ -41,7 +41,6 @@ export class DetailpageComponent implements OnInit {
   businessServices_length ;
   portfolioAndAlbumImagesTotal: number = 0;
   similarVendors:any;
-  reviewButtonLabel:string='Show reviews';
   ratingmodel: ratingStars;
   portfolioImages = [];
   lightBoxImages=[];
@@ -50,7 +49,7 @@ export class DetailpageComponent implements OnInit {
   currentDate
   vendorVideo_details:any = [];
   CatName;
-
+  reviewButtonLabel= 'Show More';
   @ViewChild('albumgallarypopup') albumgallarypopup: ElementRef;
   @ViewChild(AgmMap) map: AgmMap;
   @ViewChild('gmapInput') gmapInput: ElementRef;
@@ -83,8 +82,20 @@ export class DetailpageComponent implements OnInit {
       $("#Vediogallarypopup iframe").attr("src", $("#Vediogallarypopup iframe").attr("src"));
     });
     this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
-    this.showHideReviews();
-    console.log( this.vendorDetails )
+    
+  
+    // console.log( this.vendorDetails);
+
+    for (let cat of this.vendorDetails.vendorCategories) {
+      this.CatName = cat.categories.categoryName;
+      console.log(this.CatName)
+  }
+        //Meta Tags
+      this.title.setTitle(this.vendorDetails.nameOfBusiness + ` , ` + this.vendorDetails.district.name + ` , ` + this.CatName + ` | Perfect Weddings` );   
+      this.meta.addTag({name:'description',content:'Team Contact | Perfect Weddings'});  
+      console.log(this.vendorDetails.vendorCategories)
+      
+
     this.vendorVideo_details = this.vendorDetails.vendorVideos.length;
     this.businessServices_length = this.vendorDetails.businessServices.length;
     this.getSimilarVendors();
@@ -127,6 +138,7 @@ export class DetailpageComponent implements OnInit {
     });
    // debugger;
     this.showHideReviews();
+    
     this.showHideevents(5);
   }
 classAdd(item){
@@ -217,30 +229,26 @@ classAdd(item){
        this.trading_hours_popups =a;
   }
   showHideReviews(){
-    debugger;
+
     this.vendorDetails.reviews.forEach((element,index) => {
-      if(this.reviewButtonLabel==='Show More')
-      {
-        element.visible=true;
-      }else{
-        if(index<=1){
-          element.visible=true;
-      } else {
-          element.visible=false;
-      }
-      }
+    if(this.reviewButtonLabel==='Show More')
+    {
+    element.visible=true;
+    }else{
+    if(index<=1){
+    element.visible=true;
+    } else {
+    element.visible=false;
+    }
+    }
     });
-
-   
-
-
-
-    console.log(JSON.stringify(this.vendorDetails.reverse));
-
-
-
-
-  }
+    if(this.vendorDetails.reviews.filter(r=>r.visible==true).length>2){
+    this.reviewButtonLabel = 'Show Less';
+    }else{
+    this.reviewButtonLabel = 'Show More';
+    }
+    
+    }
   
 
   showHideevents(count){
@@ -257,12 +265,7 @@ classAdd(item){
      });
 
     }
-    deal_Detail(deal){
-   
-      sessionStorage.setItem('deal',JSON.stringify(deal));
-       
-      this.router.navigate(['home/Deal_Details']);
-    }
+
 
 }
 

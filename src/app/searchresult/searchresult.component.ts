@@ -299,11 +299,7 @@ export class SearchresultComponent implements OnInit {
     };
   }
   checkUncheckFilter(filterValie){
-    if(filterValie.isSelect){
-      filterValie.isSelect=false;
-    }else{
-      filterValie.isSelect=true;
-    }
+    filterValie.isSelect = !filterValie.isSelect;
   }
    paginate (pageSize) {
     this.loading=true; 

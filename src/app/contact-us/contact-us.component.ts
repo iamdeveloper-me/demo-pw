@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class ContactUsComponent implements OnInit {
   contactInfoObj: ContactUsVM;
+  listCaptchaValue;
   subjects = ["General Enquiry","Business Enquiry - Advertising","Complaints"];
   constructor(private apiService: apiService, public toastr: ToastrService, private meta : Meta, private title : Title,private router : Router ) {
     this.contactInfoObj = new ContactUsVM();
@@ -32,6 +33,7 @@ export class ContactUsComponent implements OnInit {
     this.apiService.postData(this.apiService.serverPath+'Home/contactus',list.value).subscribe(data => {
       list.resetForm();
       // this.toastr.success(data.message);
+      grecaptcha.reset();
 
       swal({
   

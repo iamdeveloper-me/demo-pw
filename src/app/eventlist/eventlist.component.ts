@@ -10,22 +10,20 @@ export class EventlistComponent implements OnInit {
 
   constructor(private meta : Meta, private title : Title,private apiService: apiService) { 
     this.meta.addTag({ name: 'description', content: 'Event Title | Perfect Weddings' });
-
   }
+  
   data;
   all_event:any;
   noImage:string='https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg';
-  ngOnInit() {
-   
- 
 
+  ngOnInit() {
     this.data = JSON.parse(sessionStorage.getItem('event'));
     console.log(this.data);
     //Meta Tags
     this.title.setTitle(this.data.eventTitle + ` | ` + this.data.districts);   
     this.meta.addTag({name:'description',content:'Team Contact | Perfect Weddings'});   
 
-    this.data.eventTitle
+  //Event Api
     this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchevents',{
       "page": 0,
       "pageSize": 100000,
@@ -36,11 +34,9 @@ export class EventlistComponent implements OnInit {
       "eventType": "all",
       "dates": "all"
     }).subscribe(data => {
-        // console.log(data.items);
         this.all_event = data.items;
         console.log(this.all_event); 
       });  
   }
-  //Event Api
 
 }

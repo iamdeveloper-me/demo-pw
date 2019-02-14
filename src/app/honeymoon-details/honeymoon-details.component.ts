@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-honeymoon-details',
   templateUrl: './honeymoon-details.component.html',
-  styleUrls: ['./honeymoon-details.component.scss']
+  styleUrls: ['./honeymoon-details.component.scss'],
+  providers: [apiService]
 })
 export class HoneymoonDetailsComponent  {
   objFilterParam: filterParam;

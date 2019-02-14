@@ -29,6 +29,8 @@ export class DetailpageComponent implements OnInit {
   lng: number = 7.809007;
   
   private url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails/'
+  responce_review = true;
+  responce_thanks = false;
   sliderImgaes: any = [];
   trading_hours_popups:any= {isMondayOpen: ''};
   report= false;
@@ -47,7 +49,7 @@ export class DetailpageComponent implements OnInit {
   currentDate
   vendorVideo_details:any = [];
   CatName;
-
+  reviewButtonLabel= 'Show More';
   @ViewChild('albumgallarypopup') albumgallarypopup: ElementRef;
   @ViewChild(AgmMap) map: AgmMap;
   @ViewChild('gmapInput') gmapInput: ElementRef;
@@ -65,7 +67,7 @@ export class DetailpageComponent implements OnInit {
       var dateObj = new Date();
       this.currentDate  = dateObj.getDay()  //months from 1-12
       console.log(this.currentDate )
-      this.user_login_token = JSON.parse(sessionStorage.getItem('userId'));
+      this.user_login_token = sessionStorage.getItem('userId')
       console.log( this.user_login_token )
   }
   ngOnInit() {
@@ -80,7 +82,8 @@ export class DetailpageComponent implements OnInit {
       $("#Vediogallarypopup iframe").attr("src", $("#Vediogallarypopup iframe").attr("src"));
     });
     this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
-    this.showHideReviews(2)
+    
+  
     // console.log( this.vendorDetails);
 
     for (let cat of this.vendorDetails.vendorCategories) {
@@ -133,8 +136,10 @@ export class DetailpageComponent implements OnInit {
       // this.portfolioImages.push(element.files.path);
          this.portfolioImages.push(element.path);
     });
+   // debugger;
+    this.showHideReviews();
     
-
+    this.showHideevents(5);
   }
 classAdd(item){
     //  console.log(this.colors)
@@ -147,22 +152,27 @@ classAdd(item){
  
   putReview(review) {
    
-    var authToken = localStorage.getItem('userToken');
-    if (!authToken) {
+    
+    if (!sessionStorage.getItem('userToken')) {
       this.toastr.error('Login To Give Your Review', 'Inconceivable!');
-    }
+    }else{
 
     var rating1 = review.rating;
     var comments1 = review.comments;
+    const a = {
+      rating: rating1, 
+      comments: comments1,
+      rateVendorID:  this.vendorDetails.vendorUniqueId
+   }
     console.log(this.user_login_token )
-    this.apiService.postData(this.apiService.serverPath+this.url, {
-       rating: rating1, 
-       comments: comments1,
-       rateVendorID: this.user_login_token 
-    }).subscribe(data => {
+    this.apiService.postData(this.apiService.serverPath+'Reviews/postreview', a).subscribe(data => {
       console.log(data)
+      this.responce_review = false;
+      this.responce_thanks = true;
       }, error => { console.log(error) }
       );
+    }
+
 
 
   
@@ -218,21 +228,43 @@ classAdd(item){
   trading_hours_popup(a){
        this.trading_hours_popups =a;
   }
-  showHideReviews(count){
+  showHideReviews(){
+
     this.vendorDetails.reviews.forEach((element,index) => {
-      element.visible=false;
-      if(count>0 ){
-        if(index<=1){
-        element.visible=true;}
-      }else{
-        element.visible=true;
-      }
+    if(this.reviewButtonLabel==='Show More')
+    {
+    element.visible=true;
+    }else{
+    if(index<=1){
+    element.visible=true;
+    } else {
+    element.visible=false;
+    }
+    }
     });
+    if(this.vendorDetails.reviews.filter(r=>r.visible==true).length>2){
+    this.reviewButtonLabel = 'Show Less';
+    }else{
+    this.reviewButtonLabel = 'Show More';
+    }
     
-  }
+    }
+  
 
+  showHideevents(count){
+    // alert("hi")
+    console.log(this.vendorDetails.deals)
+     this.vendorDetails.deals.forEach((element,index) => {
+       element.visible=false;
+       if(count>0 ){
+         if(index<=4){
+         element.visible=true;}
+       }else{
+         element.visible=true;
+       }
+     });
 
-
+    }
 
 
 }

@@ -53,6 +53,7 @@ export class DealDetailsComponent implements OnInit {
   ngOnInit() {
 
     this.data = JSON.parse(sessionStorage.getItem('deal,mydeal'));
+    this.data = sessionStorage.getItem('deal');
     console.log(this.data);
 
           //Meta Tags

@@ -35,6 +35,19 @@ export class apiService {
     return this.http.post(url,reqObj,httpOptions);
   }
 
+  postImageData(url, reqObj) : Observable<any> {
+    var authToken = sessionStorage.getItem('userToken');
+    let httpOptions = {
+      headers: new HttpHeaders({
+        // 'Content-Type':  'multipart/form-data',
+        
+        'Authorization': 'Bearer '+authToken
+      })
+    };
+
+    return this.http.post(url,reqObj,httpOptions);
+  }
+
 
 
 
@@ -53,4 +66,37 @@ export class apiService {
   const date = format['year'] +'-'+ format['month'] +'-'+ format['day'] ;
   return date;
   }
+
+
+
+  public bookMark(data, type , action_which_lacation,page){
+    switch(page) { 
+      case "albums": { 
+        var id = data['id'] 
+        break; 
+      } 
+      case "honeymoonpage": { 
+        var id = data['vendorId'] 
+         break; 
+      } 
+      default: { 
+         //statements; 
+         break; 
+      } 
+   } 
+   this.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
+     console.log(data)
+   })
+  }
+
+  fillBookmark(id, type, action_which_lacation){
+    const data = {
+      "id": id,
+      "type": type,
+      "action": action_which_lacation,
+      "promoted": true
+    }
+    return this.postData(this.serverPath + 'PerfectWedding/loguseraction',data);     
+
+   }
 }

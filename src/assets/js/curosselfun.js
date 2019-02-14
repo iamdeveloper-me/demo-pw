@@ -213,15 +213,12 @@ $(".showaboutless").click(function(){
 
 
 $(".reviewmore").click(function(){
-  alert("hi")
-  // $(".reviewrow").addClass("reviewrowmore");
+  
    $(".reviewmore").hide();
    $(".reviewless").show();
 });
 
 $(".reviewless").click(function(){
-  alert("hi")
-  // $(".reviewrow").removeClass("reviewrowmore");
    $(".reviewmore").show();
    $(".reviewless").hide();
 });

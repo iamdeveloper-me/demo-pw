@@ -41,6 +41,7 @@ export class DetailpageComponent implements OnInit {
   businessServices_length ;
   portfolioAndAlbumImagesTotal: number = 0;
   similarVendors:any;
+  reviewButtonLabel:string='Show reviews';
   ratingmodel: ratingStars;
   portfolioImages = [];
   lightBoxImages=[];
@@ -82,20 +83,8 @@ export class DetailpageComponent implements OnInit {
       $("#Vediogallarypopup iframe").attr("src", $("#Vediogallarypopup iframe").attr("src"));
     });
     this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
-    
-  
-    // console.log( this.vendorDetails);
-
-    for (let cat of this.vendorDetails.vendorCategories) {
-      this.CatName = cat.categories.categoryName;
-      console.log(this.CatName)
-  }
-        //Meta Tags
-      this.title.setTitle(this.vendorDetails.nameOfBusiness + ` , ` + this.vendorDetails.district.name + ` , ` + this.CatName + ` | Perfect Weddings` );   
-      this.meta.addTag({name:'description',content:'Team Contact | Perfect Weddings'});  
-      console.log(this.vendorDetails.vendorCategories)
-      
-
+    this.showHideReviews();
+    console.log( this.vendorDetails )
     this.vendorVideo_details = this.vendorDetails.vendorVideos.length;
     this.businessServices_length = this.vendorDetails.businessServices.length;
     this.getSimilarVendors();
@@ -137,7 +126,7 @@ export class DetailpageComponent implements OnInit {
          this.portfolioImages.push(element.path);
     });
    // debugger;
-    this.showHideReviews(3);
+    this.showHideReviews();
     this.showHideevents(5);
   }
 classAdd(item){
@@ -227,15 +216,18 @@ classAdd(item){
   trading_hours_popup(a){
        this.trading_hours_popups =a;
   }
-  showHideReviews(count){
-    //alert("hi")
+  showHideReviews(){
+    debugger;
     this.vendorDetails.reviews.forEach((element,index) => {
-      element.visible=false;
-      if(count>0 ){
-        if(index<=2){
-        element.visible=true;}
-      }else{
+      if(this.reviewButtonLabel==='Show More')
+      {
         element.visible=true;
+      }else{
+        if(index<=1){
+          element.visible=true;
+      } else {
+          element.visible=false;
+      }
       }
     });
 

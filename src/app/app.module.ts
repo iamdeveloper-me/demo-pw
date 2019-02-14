@@ -226,6 +226,7 @@ import { EventsearchPipe } from './events/eventsearch.pipe';
 import { EventsearchlocationPipe } from './events/eventsearch.pipe';
 import { EventsearchentryPipe } from './events/eventsearch.pipe';
 import { RecaptchaModule } from 'ng-recaptcha';
+import { VendorDealDetailComponent } from './vendor-deal-detail/vendor-deal-detail.component';
 
 
 
@@ -454,7 +455,9 @@ export function getAuthServiceConfigs() {
 
         EventsearchlocationPipe,
         
-        EventsearchentryPipe
+        EventsearchentryPipe,
+        
+        VendorDealDetailComponent
 
 
 

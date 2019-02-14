@@ -148,6 +148,8 @@ import { StepSecondComponent } from './register/step-second/step-second.componen
 import { StepThirdComponent } from './register/step-third/step-third.component';
 import { StepForthComponent } from './register/step-forth/step-forth.component';
 import { PaymentSummaryComponent } from './payment-summary/payment-summary.component';
+import { VendorDealDetailComponent } from './vendor-deal-detail/vendor-deal-detail.component';
+
 
 const appRoutes: Routes = [
  
@@ -164,7 +166,7 @@ const appRoutes: Routes = [
   { path: 'home/event_list', component: EventlistComponent },
   { path: 'home/detailprofile/:id', component:  DetailpageComponent  },
   { path: 'home/gallery', component:  GalleryComponent  },
-  //{ path: 'home/vendor', component:  VendorComponent  },
+  //{ path: 'home/vendor', component:  VendorComponent  },VendorDealDetailComponent
   { path: 'home/photo', component: PhotoComponent },
   { path: 'home/tips', component: TipsComponent },
   { path: 'home/contact', component: ContactUsComponent },
@@ -172,6 +174,7 @@ const appRoutes: Routes = [
   { path: 'home/allcategory', component:  AllcategoryComponent },
   { path: 'home/weddingcategories', component:  CategoryComponent },
   { path: 'home/register', component:  RegisterComponent  },
+
   { path: 'home/events', component: EventsComponent },
   { path: 'home/FAQ', component:FaquestionComponent },
   { path: 'home/TermsandConditions', component: TermsandconComponent  },
@@ -188,6 +191,7 @@ const appRoutes: Routes = [
 
   { path: 'home/Deals', component:  DealsComponent },
   { path: 'home/Deal_Details', component:  DealDetailsComponent },
+  { path: 'home/Deal_Details/:id', component:  DealDetailsComponent },
   { path: 'home/Honeymoondestinations', component:  HoneymoonComponent },
   { path: 'home/Honeymoon_Details', component:  HoneymoonDetailsComponent },
   { path: 'home/Honeymoon_Details/:id', component:  HoneymoonDetailsComponent },

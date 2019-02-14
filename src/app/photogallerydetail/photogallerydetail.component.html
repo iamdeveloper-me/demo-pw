@@ -20,14 +20,27 @@
 				<div class="col-4 col-sm-3 mobnopadd" *ngFor='let filepath of vendorDetails?.albumImages'>           
 					<a data-fancybox="gallery" class="thumbnail" [href]="filepath?.path">
 							<img  *ngIf="filepath" [src]='filepath?.path' alt="...">
+
+                <div class="col-sm-12 footericon">
+            <span><i class="material-icons">bookmark</i> 0 </span>
+            <span><i class="material-icons">visibility</i> 0 </span>
+          </div>
           </a>
-       
+
+        
+
 				</div>
 			
 				<div class="col-4 col-sm-3 mobnopadd"  *ngFor='let portpi of portpholio' >
 					<a data-fancybox="gallery" class="thumbnail" [href]="portpi?.path">
 						<img [src]="portpi?.path" alt="..." >
 					</a>
+
+            <div class="col-sm-12 footericon">
+            <span><i class="material-icons">bookmark</i> 0 </span>
+            <span><i class="material-icons">visibility</i> 0 </span>
+          </div>
+
 				</div>
 			</div>
 		</div>

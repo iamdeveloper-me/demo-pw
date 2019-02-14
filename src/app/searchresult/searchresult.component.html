@@ -411,14 +411,14 @@
           </div>
             
                 <span class="filterrowcard" *ngFor='let f of featuredListingArray'>
-                    <span  *ngIf='f.isSelect'>{{f.key}} <i class="chipsCLose" (click)='setFilterOptions(8,f)'>X</i></span>
+                    <span  *ngIf='f.isSelect'>{{f.key}} <i class="chipsCLose" (click)='setFilterOptions(8,f)'>&times;</i></span>
                     </span>
 
                     <span class="filterrowcard" *ngFor='let f of userRatingArray'>
-                    <span *ngIf='f.isSelect'>{{f.key}} <i class="chipsCLose" (click)='setFilterOptions(6,f)'>X</i></span>
+                    <span *ngIf='f.isSelect'>{{f.key}} <i class="chipsCLose" (click)='setFilterOptions(6,f)'>&times;</i></span>
                     </span>
                     <span class="filterrowcard" *ngFor='let f of dealsAndOfferArray'>
-                        <span *ngIf='f.isSelect'>{{f.key}} <i class="chipsCLose" (click)='setFilterOptions(9,f)'>X</i></span>
+                        <span *ngIf='f.isSelect'>{{f.key}} <i class="chipsCLose" (click)='setFilterOptions(9,f)'>&times;</i></span>
                     </span>
                     <div *ngIf='filters && filters.filters'>
                     <div  *ngFor='let ff of filters.filters'>

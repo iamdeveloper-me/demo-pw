@@ -2,6 +2,7 @@ import { Component, OnInit ,HostListener} from '@angular/core';
 import { apiService } from '../shared/service/api.service';
 import { Meta , Title } from '@angular/platform-browser';
 import { MasterserviceService } from '../ngservices/masterservice.service';
+import { PagerService } from 'app/_services';
 @Component({
   selector: 'app-photo',
   templateUrl: './photo.component.html',
@@ -31,11 +32,13 @@ item_tags:any = []
     default_colour_tags = true
     csvColors:string;
     // paged items
-    pagedItems: any[];
+    allItems: any[];
     error_1 = '';
-    constructor(private masterservice: MasterserviceService,private apiService: apiService,private meta:Meta, private title : Title ) {
+    pager: any = {};
+    pagedItems: any[];
+    constructor(public pagerService : PagerService,private masterservice: MasterserviceService,private apiService: apiService,private meta:Meta, private title : Title ) {
      this.colout_tag= false;
-      this.pagedItems = [];
+      this.allItems = [];
       this.photo_search_param = new  photoSearchParam();
       this.createColorPanel()
       this.userId = localStorage.getItem('userId');
@@ -74,6 +77,29 @@ item_tags:any = []
           });
       })
     }
+    changeData(str){
+      // var grade:string = str; 
+       switch(str) { 
+          case "title": { 
+            this.find_photo();
+           break; 
+          } 
+          case "color-picker": { 
+           this.find_photo();
+             break; 
+          } 
+          case "category": {
+           this.photo_search_param['categoryId'] = this.category
+           this.find_photo();          
+             break;    
+          } 
+        
+          default: { 
+             console.log("Invalid choice"); 
+             break;              
+          } 
+       } 
+     }
     bookMark(data, type , action_which_lacation){
       const id = data['id'] 
      this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
@@ -93,6 +119,14 @@ item_tags:any = []
       this.colors.push({colorName:'black', isSelected:false});
       this.colors.push({colorName:'grey', isSelected:false});
     }
+    removeColor(index_pos){
+      const index: number = index_pos;
+      if (index !== -1) {
+          this.photo_search_param['color'].splice(index, 1);
+          this.colors[index]['isSelected'] = false
+      }  
+      this.changeData('color-picker')       
+    }
     onpageload(){
       
       this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',
@@ -102,13 +136,14 @@ item_tags:any = []
           this.loading=false;  
           for (var pagedItem of  data.items ) {
               if(pagedItem['colorTags'] == null || pagedItem['tags'] == null){
-                this.pagedItems.push(pagedItem);
+                this.allItems.push(pagedItem);
               }else{
                 pagedItem['colorTags'] =  pagedItem['colorTags'].split(',');
                 pagedItem['tags'] =  pagedItem['tags'].split(',');
-                this.pagedItems.push(pagedItem);
+                this.allItems.push(pagedItem);
               }
             }
+            this.setPage(1)
       },error => {  console.log(error)});
     }
     colourArray(a){
@@ -126,9 +161,9 @@ item_tags:any = []
           this.csvColors+= selectedColors[i].colorName+',';
           this.photo_search_param.color.push(selectedColors[i].colorName);
         }
-        console.log(this.photo_search_param.color)
-    }
-    find_photo(list){
+        this.changeData('color-picker')
+   }
+    find_photo(){
 
       this.loading = false;
       console.log(this.photo_search_param)
@@ -153,20 +188,20 @@ item_tags:any = []
         this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',this.photo_search_param)
         .subscribe(data => {
           console.log(data)
-          this.pagedItems = [];
+          this.allItems = [];
           for (var pagedItem of data.items  ) {
             if(pagedItem['colorTags'] == null || pagedItem['tags'] == null){
-              this.pagedItems.push(pagedItem);
+              this.allItems.push(pagedItem);
             }else{
               pagedItem['colorTags'] =  pagedItem['colorTags'].split(',');
               pagedItem['tags'] =  pagedItem['tags'].split(',');
-              this.pagedItems.push(pagedItem);
+              this.allItems.push(pagedItem);
             }
           }
-          console.log( this.pagedItems)
-         
+          console.log( this.allItems)
+         this.setPage(1)
         
-          if( this.pagedItems.length == 0 ){
+          if( this.allItems.length == 0 ){
               this.error_1 = "no data found"
              
           }else{
@@ -178,14 +213,18 @@ item_tags:any = []
     popup(listall_categories){
       this.pho_data = listall_categories
     }
-    @HostListener("window:scroll", [])
-    scrollToBottom(){
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        // you're at the bottom of the page
-        this.photo_search_param.page+=1;
-        this.loading = true
-        this.onpageload()
-      }
+    // @HostListener("window:scroll", [])
+    // scrollToBottom(){
+    //   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    //     // you're at the bottom of the page
+    //     this.photo_search_param.page+=1;
+    //     this.loading = true
+    //     this.onpageload()
+    //   }
+    // }
+    setPage(page: number) {
+      this.pager = this.pagerService.getPagerEvent(this.allItems.length, page);
+      this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
     }
     classAdd(item){
       this.item_tags = item['tags']

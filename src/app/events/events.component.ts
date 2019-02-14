@@ -17,9 +17,7 @@ export class EventsComponent implements OnInit {
   objSearchlistvm: SearchListingVM;
 
   constructor( public http:Http, private pagerService: PagerService,private apiService: apiService,private masterservice: MasterserviceService,private router:Router,private meta:Meta, private title : Title ) {
-
-    this.meta.addTag({ name: 'description', content: 'Top Wedding Events in Mauritius | Perfect Weddings.' });
-   this.objSearchlistvm = new SearchListingVM()
+              this.objSearchlistvm = new SearchListingVM()
 
   }
 
@@ -41,11 +39,9 @@ export class EventsComponent implements OnInit {
   ngOnInit() {
     this.title.setTitle('Top Wedding Events in Mauritius |Perfect Weddings');    
     this.meta.addTag({name:'description',content:'Top Wedding Events in Mauritius |Perfect Weddings'});    
-
-                this.locationD();
-                this.event();
-
-
+    sessionStorage.clear();
+    this.locationD();
+    this.event();
   }
   page2 = 4;
 
@@ -54,7 +50,6 @@ export class EventsComponent implements OnInit {
     this.http.post(this.apiService.serverPath+'PerfectWedding/searchevents',this.objSearchlistvm).map((response: Response) => response.json()).subscribe(data => {
         this.allItems = data.items;
         console.log(this.allItems);
-
         this.setPage(1);
     });
     this.locationD()
@@ -112,8 +107,7 @@ export class EventsComponent implements OnInit {
 }
 
 
-export class SearchListingVM{
- 
+export class SearchListingVM { 
   page: number;
   pageSize: number;
   sortDir: string;

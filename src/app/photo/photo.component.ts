@@ -77,6 +77,10 @@ item_tags:any = []
           });
       })
     }
+    removeTag(){
+      this.photo_search_param.searchQuery = '';
+      this.find_photo(); 
+    }
     changeData(str){
       // var grade:string = str; 
        switch(str) { 
@@ -295,6 +299,8 @@ export class  photoSearchParam  {
     this.UserId = 0;
     this.page=0;
     this.count = 0;
+    this.searchQuery = '';
+
     this.pageSize=30;
     this.sortedBy = 'asc';
     this.color = [];

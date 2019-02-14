@@ -448,9 +448,9 @@
           
            <div>
             <span *ngIf='rev.visible' [innerHTML]='ratingmodel.printStars(rev.rating)'></span>
-            {{rev.dateAddedOnString}}
+            &nbsp;<span class="font14px">.{{rev.dateAddedOnString}}</span>
             </div>
-            <p *ngIf='rev.visible'> {{rev.comments}}</p>
+            <p *ngIf='rev.visible'  class="commenttext"> {{rev.comments}}</p>
           </div>
           <div class="text-center">
               <button data-target="#Review_vendor" data-toggle="modal" class="btn pinkbg whitetext"> Review this vendor  </button>
@@ -987,38 +987,43 @@
   <div class="modal fade" id="Review_vendor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="col-sm-12">
-              {{vendorDetails?.nameOfBusiness}}
-        <form (ngSubmit)="putReview(review)" #f="ngForm">
-            <div class="vp_review_txt">
-              <div class="vp_giveReviewBox">
-                <span>Give A Review:</span>
-  
-                <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
-                  <div class="jq-ry-group-wrapper">
-                    <div class="jq-ry-normal-group jq-ry-group">
-                      <rating [(ngModel)]="review.rating" name="rating"></rating>
-                    </div>
-                  </div>
-                </span>
-  
-                <div class="textInput">
-  
-                  <input placeholder="Write a Review" type="text" class="textInputInner" required [(ngModel)]="review.comments"
-                    name="comments">
-                  <button type="submit" class="textInputSubmit" value="SUBMIT">SUBMIT</button>
-                  <input class="submitedRating" type="hidden" value="0">
-                  <div class="errorInValidation sendAReview">
-                    Your review is empty. SUBMIT again to send this anyway
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-            <div class="clearfix"></div>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+ <div class="modal-header">
+            <h4 class="modal-title text-left" style="width:100%;">{{vendorDetails?.nameOfBusiness}}</h4>
+            <button type="button" class="btnradius50per" data-dismiss="modal">
+              X
+            </button>
           </div>
-  
+
+
+           <div class="modal-body">
+             
+                  <form (ngSubmit)="putReview(review)" #f="ngForm">
+                      <div class="vp_review_txt">
+                        <div class="vp_giveReviewBox">
+                          <span>Give A Review:</span>
+            
+                          <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
+                            <div class="jq-ry-group-wrapper">
+                              <div class="jq-ry-normal-group jq-ry-group">
+                                <rating [(ngModel)]="review.rating" name="rating"></rating>
+                              </div>
+                            </div>
+                          </span>
+            
+                          <div class="textInput">
+            
+                            <input placeholder="Write a Review" type="text" class="textInputInner" required [(ngModel)]="review.comments"
+                              name="comments">
+                            <button type="submit" class="textInputSubmit" value="SUBMIT">SUBMIT</button>
+                            <input class="submitedRating" type="hidden" value="0">
+                            <div class="errorInValidation sendAReview">
+                              Your review is empty. SUBMIT again to send this anyway
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+          </div>
         </div>
       </div>
     </div>
@@ -1041,6 +1046,8 @@
 <div class="modal fade" id="albumgallarypopup" #albumgallarypopup tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
+
+
         <div class="modal-header">
           <h4 class="modal-title text-left" style="width:100%;">Something wrong with this Profile?</h4>
           <button type="button" class="btn btn-warning btnradius50per whitetext" data-dismiss="modal">&times;</button>

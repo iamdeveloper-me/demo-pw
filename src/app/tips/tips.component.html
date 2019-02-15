@@ -86,8 +86,10 @@
                   </div>
                </div>
             </div>
+           
+
             <div class="clearfix"></div>
-            <!-- pager -->
+            <div class="col-sm-12">
                <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
                   <li [ngClass]="{disabled:pager.currentPage === 1}">
                      <a (click)="setPage(1)">First</a>
@@ -105,12 +107,10 @@
                      <a (click)="setPage(pager.totalPages)">Last</a>
                   </li>
                </ul>
+            </div>
+            <div class="clearfix"></div>
+
             <!-- pager end -->
-
-
-
-
-
 
             <!-- <div class="col-md-12">
 
@@ -123,7 +123,11 @@
 
             </div> -->
          </div>
+
       </div>
+       <div class="clearfix"></div>
+            <!-- pager -->
+
       <div class="clearfix"></div>
       <div class="col-md-12 card paddall20px">
          <h1 class="card-title text-center">Articles By Topics</h1>

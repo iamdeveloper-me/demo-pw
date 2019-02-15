@@ -250,7 +250,6 @@ export class DetailpageComponent implements OnInit {
        this.trading_hours_popups =a;
   }
   showHideReviews(){
-
     this.vendorDetails.reviews.forEach((element,index) => {
         if(this.reviewButtonLabel=='Show More')
         {

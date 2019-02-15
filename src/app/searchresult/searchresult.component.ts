@@ -265,8 +265,8 @@ export class SearchresultComponent implements OnInit {
       this.SelectedCategory = FilterValue;
       this.objSearchFilter.catId = this.SelectedCategory.categoryId;
       this.getFilters();
-      this.showALlCategories = true;}else{
-        this.showALlCategories = false;
+      this.showALlCategories = false;}else{
+        this.showALlCategories = true;
         this.SelectedCategory=null;
       }
        break;

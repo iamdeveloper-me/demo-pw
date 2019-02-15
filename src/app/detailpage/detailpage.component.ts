@@ -195,7 +195,7 @@ classAdd(item){
        this.trading_hours_popups =a;
   }
   showHideReviews(){
-    debugger;
+    
     this.vendorDetails.reviews.forEach((element,index) => {
       if(this.reviewButtonLabel==='Show More')
       {

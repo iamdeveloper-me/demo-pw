@@ -13,7 +13,7 @@ export class PhotoComponent implements OnInit {
     item:any = [];
 col: any = []
 item_tags:any = []
-titleSet:any;
+titleSet:any = [];
         categories:any = [];
 
     category:any
@@ -77,15 +77,20 @@ titleSet:any;
           });
       })
     }
-    removeTag(){
-      this.photo_search_param.searchQuery = '';
-      this.find_photo(); 
+    removeTag(pos){
+this.titleSet.splice(pos,1)      
+this.find_photo(); 
     }
     changeData(str){
       // var grade:string = str; 
        switch(str) { 
           case "title": { 
-            this.titleSet.push(this.photo_search_param.searchQuery)
+            debugger
+           
+              this.titleSet.push(this.photo_search_param.searchQuery)
+
+      
+            console.log(this.titleSet)
             this.find_photo();
            break; 
           } 
@@ -190,6 +195,9 @@ titleSet:any;
     search_api(){
       this.pageNumber=0;
       this.photo_search_param.page=0;
+    
+
+
         this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',this.photo_search_param)
         .subscribe(data => {
           console.log(data)
@@ -293,6 +301,7 @@ export class  photoSearchParam  {
   sortDir: string;
   sortedBy: string;
   searchQuery:string;
+  tagSearch: string;
   categoryId: any;
   UserId : number; 
   color: Array<any>;

@@ -39,18 +39,20 @@
       <section id="wrapper" class="mobileviewfix">
          <div class="container">
             <div *ngIf="photo_search_param.color">
-                  Color :
+                  
                <span *ngFor="let colour_tag of photo_search_param.color ; let i = index">
+                  <p *ngIf="i ==0">&nbsp;Color :</p>
                     <span (click)="removeColor(i)" *ngIf="colour_tag != ''  " class="colortag" [style.background-color]='colour_tag'>X</span>
                </span>
             </div>
             <div  style="padding:0;padding-left: 5px;">
                
                <span >
-                  {{titleSet |json}}
-                  Keyword  :
-                   
-                  <span class="tag-color" *ngFor="let d of titleSet" (click)="removeTag()">#{{d}}   X</span>
+
+                  <span class="tag-color" *ngFor="let d of titleSet ; let i = index" (click)="removeTag(i)">
+                      <p *ngIf="i ==0">&nbsp;Tag :</p>
+
+                     #{{d}}   X</span>
                </span>
             </div>
 

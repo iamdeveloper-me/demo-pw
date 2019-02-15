@@ -86,8 +86,6 @@ this.find_photo();
       // var grade:string = str; 
        switch(str) { 
           case "title": { 
-           // debugger
-           
               this.titleSet.push(this.photo_search_param.searchQuery)
 
       

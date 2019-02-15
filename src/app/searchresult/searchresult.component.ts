@@ -189,6 +189,7 @@ export class SearchresultComponent implements OnInit {
       this.filters.filters.forEach(element => { element.isSelect=false;});
      
       if(this.filters.filters){
+        debugger;
       this.priceRange = this.filters.filters[0].customFieldOptionList;
       this.priceRange.forEach(element => {
         element.isSelect = false;
@@ -291,10 +292,8 @@ export class SearchresultComponent implements OnInit {
       this.objSearchlistvm.customsFields=[];
       break;
       case 6: // Rating
-      debugger;      
       this.checkUncheckFilter(FilterValue); break;
       case 7: // Pricing
-      debugger
       FilterValue['isSelect'] = !FilterValue['isSelect']
       ; break;
       case 8: // Feature Listing
@@ -354,35 +353,24 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
   });
    }
   // Set Price Range
+
  if(this.priceRange!=undefined){
-  this.objSearchlistvm.price='';
-  let selectedprices = this.priceRange.filter(p=>p.isSelect==true);
-  if(selectedprices && selectedprices.length>0){
-    this.objSearchlistvm.price='';
-    selectedprices.forEach(element => {
-      this.objSearchlistvm.price+=element.key+',';
-    });
-    this.objSearchlistvm.price= this.objSearchlistvm.price.substring(0,this.objSearchlistvm.price.length-1);
-  }
+ // this.objSearchlistvm.price='';
+  let selectedprices = this.categories[0].services[0].customFields[0].customFieldOptionList.filter(p=>p.isSelect==true)[0];
+  if(selectedprices){
+  this.objSearchlistvm.price= selectedprices.key;}else{
+    this.objSearchlistvm.price= '';
+  }  
 }
   // Set Rating values
-  let userRating = this.userRatingArray.filter(ur=>ur.isSelect==true);
+  let userRating = this.userRatingArray.filter(ur=>ur.isSelect==true)[0];
   if(userRating){
-    this.objSearchlistvm.rating='';
-    userRating.forEach(element => {
-      this.objSearchlistvm.rating+=element.key+',';
-    });
+  this.objSearchlistvm.rating = userRating.value; }else{
+    this.objSearchlistvm.rating= '';  
   }
   // Set Deals And Offers
   this.objSearchlistvm.deals = this.dealsAndOfferArray.filter(dd=>dd.isSelect==true)[0]== undefined ? '' :this.dealsAndOfferArray.filter(dd=>dd.isSelect==true)[0]['key'] 
-  debugger
-  // if(SelectedDealsOffers && SelectedDealsOffers.length>0){
-  //   this.objSearchlistvm.deals='';
-  //   SelectedDealsOffers.forEach(element => {
-  //     this.objSearchlistvm.deals +=element.key+',';  
-  //   });
-    
-  // }
+  
   this.objSearchlistvm.pageSize = this.objSearchFilter.pageSize;
   console.log(this.objSearchlistvm);
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
@@ -419,7 +407,6 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
     if(this.objSearchlistvm.page>1){
     this.collection=[];
     this.objSearchlistvm.page-=1;
-    alert(this.objSearchFilter.pageSize);
     this.paginate(this.objSearchFilter.pageSize);
     }
     break;
@@ -461,15 +448,16 @@ selectCategory(paramType,Param){
 }
 generateStaticArray(){
   this.userRatingArray=[
-    {'key':'Any',isSelect:false},
-    {'key':'2.0+',isSelect:false},
-    {'key':'3.0+',isSelect:false},
-    {'key':'4.0+',isSelect:false}
+    {'key':'Any',isSelect:false, value:0},
+    {'key':'2.0+',isSelect:false, value:2},
+    {'key':'3.0+',isSelect:false, value:3},
+    {'key':'4.0+',isSelect:false, value:4}
   ];
   this.dealsAndOfferArray = [
-    {'key':'yes',isSelect:false},
-    {'key':'no',isSelect:false},
-    {'key':'any',isSelect:false}
+    {'key':'any',isSelect:false, displayText: 'Any'},
+    {'key':'yes',isSelect:false, displayText: 'Yes'},
+    {'key':'no',isSelect:false, displayText: 'No'}
+    
   ];
   this.featuredListingArray=[
     {'key':'Priority Listing',isSelect:false},
@@ -483,7 +471,7 @@ bookMark(data, type , action_which_lacation){
    console.log(data)
  })
 }
-radioChecker(mainItem , selectedItem){
+radioChecker(mainItem , selectedItem, filterType=0){
   debugger;
  // const data = selectedItem
   mainItem.forEach(element => {
@@ -493,7 +481,8 @@ radioChecker(mainItem , selectedItem){
       element['isSelect'] = false
     }
   });
-    this.paginate(this.objSearchFilter.page)
+this.setFilterOptions(filterType,mainItem);
+  //  this.paginate(this.objSearchFilter.page)
   }
 
 

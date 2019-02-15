@@ -22,9 +22,9 @@ function toggleChevron(e) {
 // $('#accordion').on('hidden.bs.collapse', toggleChevron);
 // $('#accordion').on('shown.bs.collapse', toggleChevron);
 
-// if ($(window).width() < 514) {
-//     $('.collapse').removeClass('in');
-// } 
+if ($(window).width() < 514) {
+    $('.collapse').removeClass('in');
+} 
 
 // $(document).ready(function () {
 //   $("#supplierscarousel").owlCarousel({
@@ -228,6 +228,7 @@ $(".rating").click(function(){
 // });
 
 
+
 // $(".panel-heading").click(function(){
 //   // debugger
 //   // console.log($(this).parents('.panel-body').find('.panel-collapse'))
@@ -244,6 +245,7 @@ $(".rating").click(function(){
 //     // } 
    
 //   }, 500);
+
 
 
 

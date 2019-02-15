@@ -17,7 +17,7 @@ background-image: url('https://s3.us-east-2.amazonaws.com/prefect-image/inner_he
   color: #ffffff;
   padding-top:115px!important;
 }
-.procard{background: url("assets/img/top_list.png"); width: 58px; height: 53px; position: absolute;top: 0; left: 0;}
+.procard{background: url("../../assets/img/top_list.png"); width: 58px; height: 53px; position: absolute;top: 0; left: 0;}
 .selectedlist{
   padding: 0px;
   margin: 0px auto 10px;
@@ -985,7 +985,7 @@ margin-bottom:30px;
 }
 .locat_icon {
   margin-bottom: 0;
-    font-size: 0.80rem;
+    font-size: 0.70rem;
 }
 .imgfloatleft{
   float:left;
@@ -1062,7 +1062,8 @@ margin-bottom:30px;
     background: #e5e5e5;
     border:0px;
     box-shadow: none!important;
-    padding:10px;
+    padding:5px 10px;
+    margin-top:5px;
   }
   #list:hover, #grid:hover, #photoview:hover{
     border:0px;
@@ -1127,9 +1128,24 @@ margin-bottom:30px;
     visibility: hidden;
   }
 }
-
+.pagedropdown{
+  float:right;
+}
 .chipsCLose{
-  cursor: pointer;
+cursor: pointer;
+    border: 0px solid #ccc;
+    border-radius: 50%;
+    background: #fff;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    line-height: 16px;
+    text-indent: 3px;
+    font-style: normal;
+    font-size: 16px;
+    font-weight: bold;
+    right:5px;
+    color:#333!important;
 }
 ul.pageNumbers {
   list-style: none;
@@ -1154,7 +1170,12 @@ ul.pageNumbers li {
   border-radius: 3px;
   font-weight: normal;
 }
-
+.pageNumbers{
+    margin: 15px auto;
+    width: -webkit-max-content!important;
+    width: -moz-max-content!important;
+    width: max-content!important;
+}
 .funkyradio input[type="radio"]:empty,
 .funkyradio input[type="checkbox"]:empty {
   display: none;
@@ -1185,13 +1206,16 @@ ul.pageNumbers li {
   float: left;
 }
 .filterrowcard span{
-  padding: 2px 10px;
-  background: #e5e5e5;
-  border-radius:10px;
-  color:#333;
-  margin-right:5px;
-  display:inline-block;
-  margin-bottom: 10px;
+    padding: 0px 15px;
+    background: #fff;
+    border-radius: 20px;
+    color: #ffaa2d;
+    margin-right: 5px;
+    display: inline-block;
+    margin-bottom: 10px;
+    border: 1px solid #ffaa2d;
+    font-size: 14px;
+    position: relative;
 }
 .funkyradio-info{
 font-size:14px;
@@ -1248,7 +1272,7 @@ content: '\2219';
     font-size: 50px;
     width: 18px;
     height: 18px;
-    line-height: 8px;
+    line-height: 7px;
 }
 
 .funkyradio input[type="radio"]:checked ~ label,
@@ -1272,7 +1296,7 @@ content: '\2219';
     font-size: 50px;
     width: 18px;
     height: 18px;
-    line-height: 8px;
+    line-height: 7px;
 }
 
 
@@ -1434,13 +1458,6 @@ float: left!important;
   margin-top: 0.2em;
   background: white;
 }
-
-
-
-
-
-
-
 .listing-group .grid-group-item .bordre_rad1{
   margin-bottom:0px!important;
 }
@@ -1448,13 +1465,40 @@ float: left!important;
   .carousel-inner>.item>a>img, .carousel-inner>.item>img, .thumbnail .item>a>img, .thumbnail>img.list-group-image{
    height: 120px;
   }
- .carousel-inner>.photo-group-item>a>img, .carousel-inner>.photo-group-item>img, 
- .photo-group .thumbnail>img.list-group-image{
+  .carousel-inner>.photo-group-item>a>img, .carousel-inner>.photo-group-item>img, 
+  .photo-group .thumbnail>img.list-group-image{
    height: 200px;
   }
   .badgecontainer .badge{
     font-size:75%;
   }
+  .filterrowcard{
+    display: none!important;
+  }
+  #photoview, #gridmobile{
+   margin-right: 10px;
+  }
+  h4.panel-title i {
+    border: solid #999;
+    border-width: 0 0px 0px 0;
+    display: inline-block;
+    padding: 4px;
+    transform:none;
+    -webkit-transform: none;
+    transition: all ease .3s;
+    top: -3px;
+    position: relative;
+    float: left;
+  }
+  .arrowup h4.panel-title i {
+    transform: none!important;
+    -webkit-transform: none!important;
+    transition: all ease .3s;
+  }
+
+
+
+
 #products.photo-group  .grid-group-item{
   border:0px;
   background: transparent;
@@ -1463,7 +1507,9 @@ float: left!important;
   width: 100%;
   flex: 100%;
 }
-
+#products.griding-group .card-body h6{
+  font-size:0.70rem;
+}
 #products.photo-group .grid-group-item .thumbnail .caption {
    padding: 10px 10px!important;
    overflow: hidden;
@@ -1481,6 +1527,7 @@ float: left!important;
     overflow: hidden;
     padding-bottom: 10px;
     height: inherit;
+    max-height: inherit;
     overflow-x:inherit;
     overflow-y: inherit;
 }
@@ -1685,7 +1732,7 @@ float: left!important;
      line-height: 50px;
      text-align: center;
      right: 5%;
-     top: 60%;
+     bottom: 5%;
      color: white;
      font-weight: bold;
      border-radius: 50%;
@@ -1724,7 +1771,7 @@ float: left!important;
    padding: 10px 0px!important;
  }
  .grid-group-item .col-8{
-   max-width: 100px;
+   max-width: 165px;
    padding-right: 0px!important;
  }
  .grid-group-item .imgfloatleft, .grid-group-item .span_positin img{
@@ -1826,11 +1873,11 @@ float: left!important;
 }
 
  .preloaderbox .circle{
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
+    
     background: #e1e9ee;
     margin-bottom: 10px;
+    width: 100%;
+    height: 150px;
 }
 
  .preloaderbox .title{
@@ -1845,6 +1892,14 @@ float: left!important;
     height: 10px;
     background: #e1e9ee;
     margin-bottom: 10px;
+}
+
+ .preloaderbox .linehalf{
+    width: 40%;
+    height: 10px;
+    background: #e1e9ee;
+    margin-bottom: 10px;
+    margin-right: 20px;
 }
 
  .preloaderbox:after{

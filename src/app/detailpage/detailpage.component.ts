@@ -8,6 +8,7 @@ import { MasterserviceService } from 'app/ngservices/masterservice.service';
 import { MapsAPILoader, AgmMap } from '@agm/core';
 import { GoogleMapsAPIWrapper } from '@agm/core/services';
 import { utilities } from 'app/utilitymodel';
+import { Meta, Title } from '@angular/platform-browser';
 declare var google: any;
 
 interface Marker {lat: number;lng: number;label?: string;draggable: boolean;}
@@ -28,6 +29,8 @@ export class DetailpageComponent implements OnInit {
   lng: number = 7.809007;
   
   private url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails/'
+  responce_review = true;
+  responce_thanks = false;
   sliderImgaes: any = [];
   trading_hours_popups:any= {isMondayOpen: ''};
   report= false;
@@ -38,12 +41,15 @@ export class DetailpageComponent implements OnInit {
   businessServices_length ;
   portfolioAndAlbumImagesTotal: number = 0;
   similarVendors:any;
-  reviewButtonLabel:string='Show reviews';
   ratingmodel: ratingStars;
   portfolioImages = [];
   lightBoxImages=[];
   similarVendors_length;
+  user_login_token;
+  currentDate
   vendorVideo_details:any = [];
+  CatName;
+  reviewButtonLabel= 'Show More';
   @ViewChild('albumgallarypopup') albumgallarypopup: ElementRef;
   @ViewChild(AgmMap) map: AgmMap;
   @ViewChild('gmapInput') gmapInput: ElementRef;
@@ -53,8 +59,16 @@ export class DetailpageComponent implements OnInit {
      private masterservice: MasterserviceService,
      public mapsApiLoader: MapsAPILoader,
      private router: Router,
+     private meta : Meta,
+     private title : Title
    ) { 
       this.ratingmodel = new ratingStars();
+
+      var dateObj = new Date();
+      this.currentDate  = dateObj.getDay()  //months from 1-12
+      console.log(this.currentDate )
+      this.user_login_token = sessionStorage.getItem('userId')
+      console.log( this.user_login_token )
   }
   ngOnInit() {
     $.getScript('./assets/js/prism.min.js');
@@ -68,8 +82,20 @@ export class DetailpageComponent implements OnInit {
       $("#Vediogallarypopup iframe").attr("src", $("#Vediogallarypopup iframe").attr("src"));
     });
     this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
-    this.showHideReviews();
-    console.log( this.vendorDetails )
+    
+  
+    // console.log( this.vendorDetails);
+
+    for (let cat of this.vendorDetails.vendorCategories) {
+      this.CatName = cat.categories.categoryName;
+      console.log(this.CatName)
+  }
+        //Meta Tags
+      this.title.setTitle(this.vendorDetails.nameOfBusiness + ` , ` + this.vendorDetails.district.name + ` , ` + this.CatName + ` | Perfect Weddings` );   
+      this.meta.addTag({name:'description',content:'Team Contact | Perfect Weddings'});  
+      console.log(this.vendorDetails.vendorCategories)
+      
+
     this.vendorVideo_details = this.vendorDetails.vendorVideos.length;
     this.businessServices_length = this.vendorDetails.businessServices.length;
     this.getSimilarVendors();
@@ -110,8 +136,10 @@ export class DetailpageComponent implements OnInit {
       // this.portfolioImages.push(element.files.path);
          this.portfolioImages.push(element.path);
     });
+   // debugger;
+    this.showHideReviews();
     
-
+    this.showHideevents(5);
   }
 classAdd(item){
     //  console.log(this.colors)
@@ -124,21 +152,27 @@ classAdd(item){
  
   putReview(review) {
    
-    var authToken = localStorage.getItem('userToken');
-    if (!authToken) {
+    
+    if (!sessionStorage.getItem('userToken')) {
       this.toastr.error('Login To Give Your Review', 'Inconceivable!');
-    }
+    }else{
 
     var rating1 = review.rating;
     var comments1 = review.comments;
-
-    this.apiService.postData(this.apiService.serverPath+this.url, {
-      rating: rating1, comments:
-        comments1, rateVendorID: this.vendorDetails.vendorUniqueId
-    }).subscribe(data => {
+    const a = {
+      rating: rating1, 
+      comments: comments1,
+      rateVendorID:  this.vendorDetails.vendorUniqueId
+   }
+    console.log(this.user_login_token )
+    this.apiService.postData(this.apiService.serverPath+'Reviews/postreview', a).subscribe(data => {
       console.log(data)
+      this.responce_review = false;
+      this.responce_thanks = true;
       }, error => { console.log(error) }
       );
+    }
+
 
 
   
@@ -195,25 +229,42 @@ classAdd(item){
        this.trading_hours_popups =a;
   }
   showHideReviews(){
-    
     this.vendorDetails.reviews.forEach((element,index) => {
-      if(this.reviewButtonLabel==='Show More')
-      {
-        element.visible=true;
-      }else{
-        if(index<=1){
-          element.visible=true;
-      } else {
-          element.visible=false;
-      }
-      }
+    if(this.reviewButtonLabel==='Show More')
+    {
+    element.visible=true;
+    }else{
+    if(index<=1){
+    element.visible=true;
+    } else {
+    element.visible=false;
+    }
+    }
     });
     if(this.vendorDetails.reviews.filter(r=>r.visible==true).length>2){
-      this.reviewButtonLabel = 'Show Less';
+    this.reviewButtonLabel = 'Show Less';
     }else{
-      this.reviewButtonLabel = 'Show More';
+    this.reviewButtonLabel = 'Show More';
     }
     
-  }
+    }
+  
+
+  showHideevents(count){
+    // alert("hi")
+    console.log(this.vendorDetails.deals)
+     this.vendorDetails.deals.forEach((element,index) => {
+       element.visible=false;
+       if(count>0 ){
+         if(index<=4){
+         element.visible=true;}
+       }else{
+         element.visible=true;
+       }
+     });
+
+    }
+
+
 }
 

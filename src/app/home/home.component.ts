@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     this.title.setTitle('Perfect Weddings |Best Wedding Suppliers in Mauritius');    
     this.meta.addTag({name:'description',content:'Perfect Weddings |Best Wedding Suppliers in Mauritius'});    
 
-    sessionStorage.clear()
+  // sessionStorage.clear()
   if(window.location.pathname == '/home' )
   { $("body").removeClass( "modal-open");
    

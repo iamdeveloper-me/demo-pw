@@ -152,6 +152,9 @@ $(document).ready(function () {
 //       }
 //   });
 
+document.getElementsByTagName("rating_star span")[0].removeAttribute("title");
+
+
 
 $(".linkshow").click(function() {
   //alert("hhhh");
@@ -210,15 +213,12 @@ $(".showaboutless").click(function(){
 
 
 $(".reviewmore").click(function(){
-  //alert("hi")
-   //$(".reviewrow").addClass("reviewrowmore");
+  
    $(".reviewmore").hide();
    $(".reviewless").show();
 });
 
 $(".reviewless").click(function(){
-  //alert("hi")
-  // $(".reviewrow").removeClass("reviewrowmore");
    $(".reviewmore").show();
    $(".reviewless").hide();
 });
@@ -310,12 +310,13 @@ $(".reviewbtn").click(function() {
 });
 
 $(".callbtn").click(function() {
+  //alert("hi");
      $('.callinfo').show();
      $('.callbtn').hide();
      $('.callbtnhide').show();
 });
 $(".callbtnhide").click(function() {
-      $('.callinfo').hide();
+     $('.callinfo').hide();
      $('.callbtn').show();
      $('.callbtnhide').hide();
 });

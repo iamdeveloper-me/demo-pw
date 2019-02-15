@@ -6,9 +6,9 @@
 
       <div class="martop0px">
         <ol class="breadcrumb breadcrumbcontainer">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Wedding Vendors</a></li>
-          <li><a href="#">  {{vendorDetails?.vendorCategories[0].categories?.categoryName}}</a></li>
+          <li><a routerLink="/home">Home</a></li>
+          <li><a routerLink="/home">Wedding Vendors</a></li>
+          <li><a routerLink="/home/detailprofile/0"> {{vendorDetails?.vendorCategories[0].categories?.categoryName}}</a></li>
           <li class="active">{{vendorDetails?.nameOfBusiness}}</li>
         </ol>
       </div>
@@ -18,13 +18,12 @@
       <div class="boxLightStyles martop0px imgbannerbox">
         <button class="closepopup"><i class="material-icons">clear</i></button>
         <div id="detailpagecarousel" class="owl-carousel detailpagecarousel owl-loaded owl-drag gallery">
-          
           <div class="item" *ngFor='let i of sliderImgaes; let pos = index'>
-
-              <a data-fancybox="gallery" title="{{i.name}}" [attr.data-caption]="i.name" [href]="i.image" (click)="classAdd(i)">
-              <img class="owl-lazy" [src]='i.image' *ngIf="i"  alt="">
+            <a data-fancybox="gallery" title="{{i.name}}" [attr.data-caption]="i.name" [href]="i.image" (click)="classAdd(i)">
+              <!-- <img class="owl-lazy" src='https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg'  style="height:400px ; width:200px" >  -->
+              <img class="owl-lazy" [src]='i.image' style="height:400px ; width:900px" alt="">
             </a>
-            
+
             <div class="namecontainer">{{i.name}}</div>
             <div class="numcontainer">{{pos + 1}}/{{sliderImgaes.length}}</div>
             <div class="linkcontainer">
@@ -39,26 +38,26 @@
       <!-- onlymobilesection -->
       <div class="onlymobilesection boxLightStyles">
         <div class="large_text text-center">
-         {{vendorDetails?.nameOfBusiness}}
+          {{vendorDetails?.nameOfBusiness}}
         </div>
         <div class="carousel_cat"> {{vendorDetails?.vendorCategories[0].categories?.categoryName}}</div>
         <div class="carousel_city text-center">
           <i class="fa fa-map-marker" aria-hidden="true"></i> {{vendorDetails?.suburb.name}}
         </div>
-         <div class="carousel_city text-center">
-                   Membership of 2 years
-            </div>
+        <div class="carousel_city text-center">
+          Membership of 2 years
+        </div>
         <div class="vp_mainDetails_mini_rating text-center">
-            <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px" *ngIf = "vendorDetails?.averageRating > 0 ">
-                  <div class="rating_star">
-                     <rating [(ngModel)]="vendorDetails.averageRating" readonly="isReadonly"></rating> 
-                  </div>
-                 
-                  <div class="large_subtext" *ngIf = "vendorDetails?.averageRating == 0 ">
-                     No Reviewed yet
-                  </div>
-               
-            </span>
+          <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px" *ngIf="vendorDetails?.averageRating > 0 ">
+            <div class="rating_star">
+              <rating [(ngModel)]="vendorDetails.averageRating" readonly="isReadonly"></rating>
+            </div>
+
+            <div class="large_subtext" *ngIf="vendorDetails?.averageRating == 0 ">
+              No Reviewed yet
+            </div>
+
+          </span>
         </div>
 
         <div class="col-sm-12">
@@ -82,50 +81,50 @@
               </button>
               <div class="featurehead">Bookmark</div>
             </div>
-           
+
           </div>
         </div>
       </div>
-    
-      <div  class="tabdesktop row">
+
+      <div class="tabdesktop row">
         <div class="col-md-7 tabwidth100per" id="top-menu">
           <li>
-          <a href="#overview" class="overviewbox" *ngIf="vendorDetails?.businessServices.length > 0 ">
-            <i class="material-icons">sms</i>
-            Overview
-          </a>
-        </li>
-        <li>
-          <a href="#gallery" class="gallerybox" *ngIf = "(vendorDetails?.albums.length > 0 || vendorDetails?.portfolios.length > 0 )">
+            <a href="#overview" class="overviewbox" *ngIf="vendorDetails?.businessServices.length > 0 ">
+              <i class="material-icons">sms</i>
+              Overview
+            </a>
+          </li>
+          <li>
+            <a href="#gallery" class="gallerybox" *ngIf="(vendorDetails?.albums.length > 0 || vendorDetails?.portfolios.length > 0 )">
               <!-- | vendorDetails?.portfolios.length > 0 -->
-            <i class="material-icons">photo_camera</i>
-            Gallery
-          </a>
+              <i class="material-icons">photo_camera</i>
+              Gallery
+            </a>
           </li>
-        <li class="hidden-xs">
-          <a href="#about" class="aboutbox" *ngIf = "vendorDetails?.businessDetails != null">
-            <i class="material-icons">live_help</i>
-            About
-          </a>
+          <li class="hidden-xs">
+            <a href="#about" class="aboutbox" *ngIf="vendorDetails?.businessDetails != null">
+              <i class="material-icons">live_help</i>
+              About
+            </a>
           </li>
-        <li class="hidden-sm hidden-md hidden-lg" >
-           <a href="#about" class="aboutbox mobileabout" *ngIf = "vendorDetails?.businessDetails != null">
-            <i class="material-icons">live_help</i>
-            About
-          </a>
+          <li class="hidden-sm hidden-md hidden-lg">
+            <a href="#about" class="aboutbox mobileabout" *ngIf="vendorDetails?.businessDetails != null">
+              <i class="material-icons">live_help</i>
+              About
+            </a>
           </li>
-        <li>
-           <a href="#review" class="reviewbox">
-            <i class="material-icons">star_border</i>
-            Reveiws
-          </a>
+          <li>
+            <a href="#review" class="reviewbox">
+              <i class="material-icons">star_border</i>
+              Reveiws
+            </a>
           </li>
-        <li>
-           <a href="#deals" class="dealbox" *ngIf = "vendorDetails?.dealsCount > 0">
-            <i class="material-icons">local_offer</i>
-            Deals
-          </a>
-        </li>
+          <li>
+            <a href="#deals" class="dealbox" *ngIf="vendorDetails?.dealsCount > 0">
+              <i class="material-icons">local_offer</i>
+              Deals
+            </a>
+          </li>
         </div>
         <div class="col-md-2 tikshow hidden-xs">
           <div class="large_text text-center">
@@ -133,19 +132,19 @@
           </div>
           <div class="large_subtext bob_pa_left text-center">
 
-            Starting Price: 
-              <span style="float: right;" *ngFor='let service of  vendorDetails?.businessServices' >
-                <div *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
-                  <div *ngFor='let customF of  service?.customFields  | slice:0:1' >
-                      <span class="pink">
-                       Rs  {{customF?.fieldValue}}
-                      </span>
-                  </div>
+            Starting Price:
+            <span style="float: right;" *ngFor='let service of  vendorDetails?.businessServices'>
+              <div *ngIf="service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
+                <div *ngFor='let customF of  service?.customFields  | slice:0:1'>
+                  <span class="pink">
+                    Rs {{customF?.fieldValue}}
+                  </span>
                 </div>
-              </span>  
-             <span  style="float: right;" *ngIf="vendorDetails?.businessServices.length == 0 ">
-               Not Available Yet
-             </span>
+              </div>
+            </span>
+            <span style="float: right;" *ngIf="vendorDetails?.businessServices.length == 0 ">
+              Not Available Yet
+            </span>
           </div>
         </div>
         <div class="col-md-3 tikshow hidden-xs">
@@ -171,8 +170,7 @@
             <div class="callinfo" style="display:none" *ngFor='let phone of  vendorDetails?.vendorLocations | slice:0:1'>
               <strong>Contact Number</strong><br />
               <!-- +91-99999 12345// -->
-              Mobile  : {{phone.mobile}}<br>
-              Phone   : {{phone.phone}}
+              Mobile : {{phone.mobile}}<br> Phone : {{phone.phone}}
             </div>
           </div>
         </div>
@@ -183,19 +181,19 @@
         <div class="left_box_section overviewsection startprice onlymobilesection">
           <div class="vp_mainDetails_starting_price">
             <div class="large_subtext bob_pa_left text-center">
-                Starting Price: 
-                  <div  *ngFor='let service of  vendorDetails?.businessServices' >
-                    <div *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
-                      <div *ngFor='let customF of  service?.customFields  | slice:0:1' >
-                          <span class="pink">
-                           Rs {{customF?.fieldValue}}
-                          </span>
-                      </div>
-                    </div>
-                  </div> 
-                  <span *ngIf="vendorDetails?.businessServices.length == 0 ">
-                      Not Available Yet
-                  </span>
+              Starting Price:
+              <div *ngFor='let service of  vendorDetails?.businessServices'>
+                <div *ngIf="service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
+                  <div *ngFor='let customF of  service?.customFields  | slice:0:1'>
+                    <span class="pink">
+                      Rs {{customF?.fieldValue}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <span *ngIf="vendorDetails?.businessServices.length == 0 ">
+                Not Available Yet
+              </span>
             </div>
             <div class="clearfix"></div>
             <!-- <div class="detailtabclick detailpri"  *ngFor='let service of  vendorDetails?.businessServices | slice:0:1'>
@@ -211,21 +209,22 @@
             <div class="text-center showless" style="display: none;">Show less</div> -->
           </div>
         </div>
-        <div id="overview" class="vp_services_txt" *ngIf = "businessServices_length > 0">
+        <a id="overview" class="tiktikmik"></a>
+        <div class="vp_services_txt" *ngIf="businessServices_length > 0">
           <div class="servicecontainer_0 servicecontainer">
             <div class="servicerow">
               <span class="vp_services_txt_span marriager_text_without_underline">
-                  Wedding Services & Experience</span>
+                Wedding Services & Experience</span>
             </div>
             <div class="row servicerow venserbox">
-              <div style="width: 100%;" *ngFor='let service of  vendorDetails?.businessServices'>  
-                      <table class="tabledesignwork table table-bordered table-stripped" *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
-                          
-                        <tr *ngFor='let customF of  service.customFields  '>
-                          <th>{{customF.displayText}}</th>
-                          <td>{{customF.fieldValue}}</td>
-                        </tr>
-                      </table>         
+              <div style="width: 100%;" *ngFor='let service of  vendorDetails?.businessServices'>
+                <table class="tabledesignwork" *ngIf="service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
+
+                  <tr *ngFor='let customF of  service.customFields  '>
+                    <th>{{customF.displayText}}</th>
+                    <td>{{customF.fieldValue}}</td>
+                  </tr>
+                </table>
               </div>
             </div>
           </div>
@@ -233,46 +232,43 @@
       </div>
 
       <!-- -->
-
+      <a id="gallery" class="tiktikmik"></a>
       <!-- Portfolio & Albums -->
-      <div id="gallery" class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection gallery" *ngIf = "portfolioAndAlbumImagesTotal > 0">
-        <div class="large_subtext" >
-          Portfolio & Albums 
+      <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection gallery" *ngIf="portfolioAndAlbumImagesTotal > 0">
+        <div class="large_subtext">
+          Portfolio & Albums
           <div class="clearfix"></div>
-          <div class="container row martop15px" >
-            <div class="col-6 col-sm-3 image_div" *ngFor='let pi of vendorDetails?.albums;let i=index' (click)='goto_detail_of_album(pi)'
-          >
+          <div class="container row martop15px">
+            <div class="col-6 col-sm-3 image_div" *ngFor='let pi of vendorDetails?.albums;let i=index' (click)='goto_detail_of_album(pi)'>
               <div class="thumbnail text-center" *ngIf='i<4'>
                 <div>
-                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" alt="...">
-                    
-                  {{pi?.albumName}}
-                <br>
-                <span *ngIf="pi?.albumImages.length">({{pi?.albumImages.length}} Images ) </span>
-                
+                  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" alt="..."> {{pi?.albumName}}
+                  <br>
+                  <span>({{pi?.albumImages.length}} Images ) </span>
+
                 </div>
               </div>
             </div>
-            <div class="col-6 col-sm-3 image_div"  >
+            <div class="col-6 col-sm-3 image_div">
               <div class="thumbnail text-center" *ngFor='let portpi of vendorDetails?.portfolios  | slice:0:1 ' (click)="goto_detail_of_portfolio(vendorDetails?.portfolios )">
-              
-                    <img  [src]="portpi.path" alt="...">
 
-                    <div class="albumname">Portfolio 
-                      <br/>
-                        <span *ngIf="vendorDetails?.portfolios.length">
-                          ({{vendorDetails?.portfolios.length}}  Images)
-                        </span>
-                    </div>
+                <img [src]="portpi.path" alt="...">
+
+                <div class="albumname">Portfolio
+                  <br/>
+                  <span *ngIf="vendorDetails?.portfolios.length">
+                    ({{vendorDetails?.portfolios.length}} Images)
+                  </span>
+                </div>
               </div>
-          </div>
+            </div>
             <div class="clearfix"></div>
             <div class="col-sm-12 text-center">
               <a (click)='goToPhotogallary(vendorDetails)' class="btn pinkbg whitetext"> View All Albums </a>
             </div>
           </div>
         </div>
-        <div class="large_subtext"  *ngIf = "vendorDetails.vendorVideos?.length > 0">
+        <div class="large_subtext" *ngIf="vendorDetails.vendorVideos?.length > 0">
           Vedio
           <div class="clearfix"></div>
           <div class="container row martop15px">
@@ -294,627 +290,791 @@
 
       <!-- end Portfolio & Albums -->
 
-    <!-- mobile  -->
-      <div class="vp_about_txt aboutsection" id="about" *ngIf = "vendorDetails?.businessDetails != null">
-      
-          <!-- About Us -->
-            <div class="boxLightStyles hideShowMeNow vp_about box_section_light r_s_pre">
+      <!-- mobile  -->
+      <a id="about" class="tiktikmik"></a>
+      <div class="vp_about_txt aboutsection" *ngIf="vendorDetails?.businessDetails != null">
 
-              <div class="vp_about_txt">
-                <div class="vp_about_txt_title large_subtext " >
-                  About Us
-                </div>
-                <div class="vp_about_txt_description ">
-                  {{vendorDetails?.businessDetails}}
-                  <div class="clearfix"></div>
-                  <div class="onlymobilesection">
-                    <ul class="wed_me_social">
-                      <li>
-                        <a href="{{vendorDetails?.facebookURL}}" target="_blank">
-                          <i aria-hidden="true" class="fa fa-facebook"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{{vendorDetails?.twitterURL}}" target="_blank">
-                          <i aria-hidden="true" class="fa fa-twitter"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{{vendorDetails?.instalURL}}" target="_blank">
-                          <i aria-hidden="true" class="fa fa-instagram"></i>
-                        </a>
-                      </li>
-                    </ul>
+        <!-- About Us -->
+        <div class="boxLightStyles hideShowMeNow vp_about box_section_light r_s_pre">
 
-                    <div class="">{{vendorDetails?.suburb.name}}:</div>
-                  </div>
-                </div>
-                <div  class="vp_about_txt_readMore marriager_text ">
-                  <a *ngIf='vendorDetails.businessDetails.length > 200' class="showaboutmore">Show More</a>
-                   <a class="showaboutless" style="display:none;">Show Less</a>
-                </div>
+          <div class="vp_about_txt">
+            <div class="vp_about_txt_title large_subtext ">
+              About Us
+            </div>
+            <div class="vp_about_txt_description ">
+              {{vendorDetails?.businessDetails}}
+              <div class="clearfix"></div>
+              <div class="onlymobilesection">
+                <ul class="wed_me_social">
+                  <li>
+                    <a href="{{vendorDetails?.facebookURL}}" target="_blank">
+                      <i aria-hidden="true" class="fa fa-facebook"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{vendorDetails?.twitterURL}}" target="_blank">
+                      <i aria-hidden="true" class="fa fa-twitter"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{vendorDetails?.instalURL}}" target="_blank">
+                      <i aria-hidden="true" class="fa fa-instagram"></i>
+                    </a>
+                  </li>
+                </ul>
 
+                <div class="">{{vendorDetails?.suburb.name}}:</div>
               </div>
             </div>
-          <!-- About Us  end-->
-          <!-- Trading Hours -->
-          <div class="left_box_section overviewsection tradinghours onlymobilesection" >
+            <div class="vp_about_txt_readMore marriager_text ">
+              <a *ngIf='vendorDetails.businessDetails.length > 200' class="showaboutmore">Show More</a>
+              <a class="showaboutless" style="display:none;">Show Less</a>
+            </div>
 
-          
-              <div class="branchrow row tradinghours" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:1 '>
-                  <div class="large_subtext detailtra text-center  col-12" >
-                      Trading Hours
-                        <div class="branchdefaulttable in">
-                          <table class="banchtable text-center">
-                              <tr>
-                                  <th><strong>Mon</strong></th>
-                                  <td>{{loc.mondayOpen}} - {{loc.mondayClose}}
-                                  </td>
-                                  <td><span class="greentext" *ngIf='loc.isMondayOpen == true'>Open</span></td>
-                                  <td><span class="greentext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
-                                </tr>
-                          </table>
-                        </div> 
-                        <div class="clearfix"></div>
-                  <div  class="branchdetailtable">
-                    <table class="tabledesignwork text-center">
-                      <tr>
-                        <th><strong>Mon</strong></th>
-                        <td *ngIf='loc.isMondayOpen'>{{loc.mondayOpen}} - {{loc.mondayClose}}
-                        </td>
-                        <td><span class="greentext" *ngIf='loc.isMondayOpen == true'>Open</span></td>
-                        <td><span class="redtext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
-                      </tr>
-                      <tr >
-                        <th><strong>Tue</strong></th>
-                        <td *ngIf='loc.isTuesdayOpen'>{{loc.tuesdayOpen}} - {{loc.tuesdayClose}}
-                        </td>
-                        <td><span class="greentext" *ngIf='loc.isTuesdayOpen == true'>Open</span></td>
-                        <td><span class="redtext" *ngIf='loc.isTuesdayOpen == false '>Close</span></td>
-                      </tr>
-                      <tr>
-                        <th><strong>Wed</strong></th>
-                        <td  *ngIf='loc.isWednesdayOpen'>{{loc.wednesdayOpen}} - {{loc.wednesdayClose}}
-                        </td>
-                        <td><span class="greentext" *ngIf='loc.isWednesdayOpen == true'>Open</span></td>
-                        <td><span class="redtext" *ngIf='loc.isWednesdayOpen == false '>Close</span></td>
-                      </tr>
-                      <tr >
-                        <th><strong>Thu</strong></th>
-                        <td *ngIf='loc.isThursdayOpen'>{{loc.thursdayOpen}} - {{loc.thursdayClose}}
-                        </td>
-                        <td><span class="greentext"  *ngIf='loc.isThursdayOpen == true'>Open</span></td>
-                        <td><span class="redtext" *ngIf='loc.isThursdayOpen == false '>Close</span></td>
-                      </tr>
-                      <tr >
-                        <th><strong>Fri</strong></th>
-                        <td *ngIf='loc.isFridayOpen'>{{loc.fridayOpen}} - {{loc.fridayClose}}
-                        </td>
-                        <td><span class="greentext" *ngIf='loc.isFridayOpen == true'>Open</span></td>
-                        <td><span class="redtext" *ngIf='loc.isFridayOpen == false '>Close</span></td>
-                      </tr>
-                      <tr >
-                        <th><strong>Sat</strong></th>
-                        <td *ngIf='loc.isSaturdayOpen'>{{loc.sundayOpen}} - {{loc.sundayClose}}
-                        </td>
-                        <td><span class="greentext" *ngIf='loc.isSaturdayOpen == true'>Open</span></td>
-                        <td><span class="redtext" *ngIf='loc.isSaturdayOpen == false '>Close</span></td>
-                      </tr>
-                      <tr >
-                        <th><strong>Sun</strong></th>
-                        <td *ngIf='loc.isSundayOpen'>{{loc.sundayOpen}} - {{loc.sundayClose}}
-                        </td>
-                        <td><span class="greentext" *ngIf='loc.isSundayOpen == true'>Open</span></td>
-                        <td><span class="redtext" *ngIf='loc.isSundayOpen == false '>Close</span></td>
-                      </tr>
-                    </table>
-                  </div>
-                <div class="text-center showdetail barnchtableshow">Show More</div>
-                <div class="text-center showless barnchtablenone" style="display: none;">Show less</div>
-                  </div>
-    
-                </div>
-  
           </div>
-          <!-- Trading Hours end-->
+        </div>
+        <!-- About Us  end-->
+        <!-- Trading Hours -->
+        <div class="left_box_section overviewsection tradinghours onlymobilesection">
+
+
+          <div class="branchrow row tradinghours" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:1 '>
+            <div class="large_subtext detailtra text-center  col-12">
+              Trading Hours
+              <div class="branchdefaulttable in">
+                <table class="banchtable text-center">
+                  <tr>
+                    <th><strong>Mon</strong></th>
+                    <td>{{loc.mondayOpen}} - {{loc.mondayClose}}
+                    </td>
+                    <td><span class="greentext" *ngIf='loc.isMondayOpen == true'>Open</span></td>
+                    <td><span class="greentext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="clearfix"></div>
+              <div class="branchdetailtable">
+                <table class="tabledesignwork text-center">
+                  <tr>
+                    <th><strong>Mon</strong></th>
+                    <td *ngIf='loc.isMondayOpen'>{{loc.mondayOpen}} - {{loc.mondayClose}}
+                    </td>
+                    <td><span class="greentext" *ngIf='loc.isMondayOpen == true'>Open</span></td>
+                    <td><span class="redtext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
+                  </tr>
+                  <tr>
+                    <th><strong>Tue</strong></th>
+                    <td *ngIf='loc.isTuesdayOpen'>{{loc.tuesdayOpen}} - {{loc.tuesdayClose}}
+                    </td>
+                    <td><span class="greentext" *ngIf='loc.isTuesdayOpen == true'>Open</span></td>
+                    <td><span class="redtext" *ngIf='loc.isTuesdayOpen == false '>Close</span></td>
+                  </tr>
+                  <tr>
+                    <th><strong>Wed</strong></th>
+                    <td *ngIf='loc.isWednesdayOpen'>{{loc.wednesdayOpen}} - {{loc.wednesdayClose}}
+                    </td>
+                    <td><span class="greentext" *ngIf='loc.isWednesdayOpen == true'>Open</span></td>
+                    <td><span class="redtext" *ngIf='loc.isWednesdayOpen == false '>Close</span></td>
+                  </tr>
+                  <tr>
+                    <th><strong>Thu</strong></th>
+                    <td *ngIf='loc.isThursdayOpen'>{{loc.thursdayOpen}} - {{loc.thursdayClose}}
+                    </td>
+                    <td><span class="greentext" *ngIf='loc.isThursdayOpen == true'>Open</span></td>
+                    <td><span class="redtext" *ngIf='loc.isThursdayOpen == false '>Close</span></td>
+                  </tr>
+                  <tr>
+                    <th><strong>Fri</strong></th>
+                    <td *ngIf='loc.isFridayOpen'>{{loc.fridayOpen}} - {{loc.fridayClose}}
+                    </td>
+                    <td><span class="greentext" *ngIf='loc.isFridayOpen == true'>Open</span></td>
+                    <td><span class="redtext" *ngIf='loc.isFridayOpen == false '>Close</span></td>
+                  </tr>
+                  <tr>
+                    <th><strong>Sat</strong></th>
+                    <td *ngIf='loc.isSaturdayOpen'>{{loc.sundayOpen}} - {{loc.sundayClose}}
+                    </td>
+                    <td><span class="greentext" *ngIf='loc.isSaturdayOpen == true'>Open</span></td>
+                    <td><span class="redtext" *ngIf='loc.isSaturdayOpen == false '>Close</span></td>
+                  </tr>
+                  <tr>
+                    <th><strong>Sun</strong></th>
+                    <td *ngIf='loc.isSundayOpen'>{{loc.sundayOpen}} - {{loc.sundayClose}}
+                    </td>
+                    <td><span class="greentext" *ngIf='loc.isSundayOpen == true'>Open</span></td>
+                    <td><span class="redtext" *ngIf='loc.isSundayOpen == false '>Close</span></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="text-center showdetail barnchtableshow">Show More</div>
+              <div class="text-center showless barnchtablenone" style="display: none;">Show less</div>
+            </div>
+
+          </div>
+
+        </div>
+        <!-- Trading Hours end-->
       </div>
-    <!-- End mobile  -->
+      <!-- End mobile  -->
 
 
 
       <div class="clearfix"></div>
-
+      <a id="review" class="tiktikmik"></a>
       <!-- start Reviews form -->
-      <div id="review" class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection" id="review">
-        <div class="vp_review_txt_title large_subtext "> Reviews ( {{vendorDetails.reviews.length}} reviews) 
-          <span style="cursor:pointer" *ngIf='vendorDetails.reviews.length>1' (click)='showHideReviews()'>{{reviewButtonLabel}}</span>
-          <!-- <span style="display:none;" (click)='showHideReviews(2)'>Show Less</span> -->
-        </div>
-        <div>
-          <div *ngFor='let rev of vendorDetails.reviews'>
-            <p *ngIf='rev.visible' [innerHTML]='ratingmodel.printStars(rev.rating)'></p>
-            <p *ngIf='rev.visible'> {{rev.comments}}</p>
-          </div>
-         
-        </div>
-        
-        <form (ngSubmit)="putReview(review)" #f="ngForm">
-          <div class="vp_review_txt">
-            <div class="vp_giveReviewBox">
-              <span>Give A Review:</span>
-
-              <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
-                <div class="jq-ry-group-wrapper">
-                  <div class="jq-ry-normal-group jq-ry-group">
-                    <rating [(ngModel)]="review.rating" name="rating"></rating>
-                  </div>
-                </div>
-              </span>
-
-              <div class="textInput">
-
-                <input placeholder="Write a Review" type="text" class="textInputInner" required [(ngModel)]="review.comments"
-                  name="comments">
-                <button type="submit" class="textInputSubmit" value="SUBMIT">SUBMIT</button>
-                <input class="submitedRating" type="hidden" value="0">
-                <div class="errorInValidation sendAReview">
-                  Your review is empty. SUBMIT again to send this anyway
-                </div>
+            <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection" *ngIf="vendorDetails.reviews.length > 0">
+              <div class="vp_review_txt_title large_subtext "> Reviews
+                 
               </div>
-            </div>
-          </div>
-        </form>
-      </div>
-      <!-- End Reviews form -->
-
-      <div class="clearfix"></div>
-
-      <!-- Wedding Deals & Discount -->
-      <div class="boxLightStyles hideShowMeNow box_section_light dealsection" id="deals" *ngIf = "vendorDetails?.dealsCount > 0">
-        <div class="vp_review_txt_title large_subtext">Wedding Deals & Discount</div>
-        <div class="row dealsinner">
-          <!-- <div class="col-sm-2 text-center dealhead pink" *ngIf='vendorDetails?.discounts'>
-            {{vendorDetails?.discounts.discount}}% {{vendorDetails?.discounts.title}}
-          </div> -->
-          <div style="width: 100%;"  *ngIf='vendorDetails?.discounts'>
-            <div class="col-sm-10">
-              <h1 class="pink">{{vendorDetails?.discounts.title}}</h1>
-              <p class="blue">
-                <strong>Discount</strong> {{vendorDetails?.discounts.discount}}% </p>
-            </div>
-             <div class="col-sm-2">
-              <button class="btn purple-gradient btntik borradius50per callbtn">
-                <i class="material-icons">call</i>
-              </button>
-
-              <button class="btn purple-gradient btntik borradius50per" data-target="#address" data-toggle="modal">
-                <i class="material-icons">mail_outline</i>
-              </button>
-            </div>
-          </div>
-          <div class="col-sm-12" *ngIf="vendorDetails?.discounts == null ">
-              <span class="text-center">No discounts Available </span>
-          </div>
-         
-        </div>
-        <div >
-          <div class="row dealsinner"  *ngFor='let deal of vendorDetails?.deals;let i=index'>
-          <!-- <div class="col-sm-2 text-center dealhead">
-            <span class="borradius50per btntikbg">%</span>
-          </div> -->
-          <div class="col-sm-3">
-            <div>$800.00 Value</div>
-            <div>Promo Code: <strong>FES8220</strong></div>
-          </div>
-          <div class="col-sm-9">
-            <h1>{{deal.title}}</h1>
-            <p>
-              {{deal.conditions}}
-            </p>
-             <p>Offer Expires: {{deal.endDateString}}&nbsp;&nbsp;|&nbsp;&nbsp;Status: {{deal.status}}</p>
-            <div class="clearfix"></div>
-           
-          </div>
-          </div>
-        </div>  
-      </div>
-      <!--End Wedding Deals & Discount -->
-
-      <div class="clearfix"></div>
-
-      <!-- Similar Vendors -->
-      <div class="boxLightStyles  box_section_light vp_similarVendors r_s_pre hidden-xs marbott20px"  *ngIf = "similarVendors_length > 0" >
-        <div class="similarVendors_cat ">
-          <div class="heading">
-            <div class="large_subtext ">
-              Similar Vendors
-            </div>
-          </div>
-          <div class="inner_body">
-                    <div *ngFor='let simi_vendor of similarVendors | slice:0:4 ' class="col-md-3 col-sm-3 mobpadd0 similarvendor">
-                        <div class="item">
-                          <img  *ngIf = "simi_vendor?.profileImage != null" [src]='simi_vendor?.profileImage'>
-                          
-                          <img *ngIf = "simi_vendor?.profileImage == null" src='../../assets/img/noImg.png'>
-
-                          <div class="catnameholder">
-                            Cake 
-                          </div>
-
-                          <div class="similarvendorname">
-                             {{simi_vendor.nameOfBusiness}}
-                          </div>
-                            <div class="similarvendorlocation"   *ngFor='let location of simi_vendor.vendorLocations | slice:0:1 ;let i=index '>
-                              <i class="fa fa-map-marker" aria-hidden="true"></i> 
-                               {{location.districts.name }}
-                            </div>
-
-
-
-                            <div class="rating_star" *ngIf = "simi_vendor.averageRating > 0">
-                                <rating [(ngModel)]="simi_vendor.averageRating" readonly="isReadonly"></rating>
-                            </div>
-                            <div class="rating_star font12px redtext" *ngIf = "simi_vendor.averageRating == 0">
-                                No Reviewed Yet
-                            </div>
-                      </div>
-                    </div>
-               
-          </div>
-        </div>
-      </div>
-      <!-- End Similar Vendors -->
-    </div>
-
-    <div class="col-sm-3 hidden-xs">
-      <div class="left_side_box_text left_details leftfixed">
-
-        <div class="left_box_section paddleftrite0px">
-          <span class="flagicontik" data-target="#albumgallarypopup" data-toggle="modal" ><i class="material-icons">outlined_flag</i></span>
-          <div class="hotellogo">
-              <div  *ngIf="vendorDetails?.profileImage ">
-                  <img [src]="vendorDetails?.profileImage" />
-              </div>
-            
-            <div  *ngIf="!vendorDetails?.profileImage ">
-                <img src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg"> 
-              </div>
-          </div>
-          <ul class="wed_me_social text-center">
-            <li *ngIf='vendorDetails?.facebookURL'>
-
-              <a href="{{vendorDetails?.facebookURL}}" target="_blank">
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li *ngIf='vendorDetails?.twitterURL'>
-              <a href="{{vendorDetails?.twitterURL}}" target="_blank">
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li *ngIf='vendorDetails?.instalURL' >
-              <a href="{{vendorDetails?.instalURL}}" target="_blank">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
-              </a>
-            </li>
-          </ul>
-          <div class="large_text text-center">
-            {{vendorDetails?.nameOfBusiness}}
-          </div>
-          <div class="carousel_city text-center">
-            <i class="fa fa-map-marker" aria-hidden="true"></i> {{vendorDetails?.suburb.name}}
-          </div>
-          <div class="carousel_city text-center">
-                   Membership of 2 years
-            </div>
-          <div class="vp_mainDetails_mini_rating text-center">
-            <div class="large_subtext" *ngIf = "vendorDetails?.averageRating > 0 ">
-
-              <div class="rating_star">
+              <div class="reviewrow" style="height:100px;">
+                <div class="ratingtexthead"><strong>{{vendorDetails.averageRating}}</strong></div>
+                <div class="reveiwsecondhead">
+                <div class="rating_star" style="text-align: left;">
                   <rating [(ngModel)]="vendorDetails.averageRating" readonly="isReadonly"></rating>
                 </div>
-            </div>
-            <div class="large_subtext" *ngIf = "vendorDetails?.averageRating == 0 ">
-               No Reviewed yet
-            </div>
-          </div>
-          <div class="carousel_cat">
-            {{vendorDetails?.vendorCategories[0].categories?.categoryName}}
-          </div>
-          <div class="clearfix"></div>
-          <div class="col-sm-12">
-            <div class="featurebtn row">
-              <div class="col-4">
-                <button class="btn purple-gradient borradius50per callbtn" >
-                  <i class="material-icons">call</i>
-                </button>
-                <button class="btn purple-gradient borradius50per callbtnhide" style="display: none;" >
-                  <i class="material-icons">call</i>
-                </button>
-                <div class="featurehead">Call</div>
-              </div>
-              <div class="col-4">
-                <button class="btn purple-gradient borradius50per" data-toggle="modal" data-target="#address">
-                  <i class="material-icons">mail_outline</i>
-                </button>
-                <div class="featurehead">Message</div>
-              </div>
-              <div class="col-4">
-                <button class="btn purple-gradient borradius50per">
-                  <i class="material-icons">bookmark_border</i>
-                </button>
-                <div class="featurehead">Bookmark</div>
+               ({{vendorDetails.reviews.length}} REVIEWS) 
+               <span style="cursor:pointer" *ngIf='vendorDetails.reviews.length>1' (click)='showHideReviews()'>{{reviewButtonLabel}}</span>
+                </div>
               </div>
 
+              <div *ngFor='let rev of vendorDetails.reviews'>
+                <div class="reviewrow" *ngIf='rev.visible'>
+                  <div>
+                    <img src="../../assets/img/noImg.png" class="ratingimg" />
+                    <strong style="font-weight:bold;">{{rev.sendByFirstName}} {{rev.sendByLastName}}</strong>
+                    <br/>
+                    <span class="reviewedtext">
+                      <i class="material-icons">chat_bubble</i>
+                      {{rev.reviewStatus}} reviews
+                    </span>
+                  </div>
+                  <div>
+                    <span [innerHTML]='ratingmodel.printStars(rev.rating)'></span>
+                    {{rev.dateAddedOnString}}
+                  </div>
+                  <p class="font14px"> {{rev.comments}}</p>
+                </div>
+              </div>
+              <div class="text-center">
+                <button data-target="#Review_vendor" data-toggle="modal" class="btn pinkbg whitetext">Review this vendor</button>
+              </div>
             </div>
+            <!-- End Reviews form -->
 
-            <div class="callinfo" style="display:none" *ngFor='let phone of  vendorDetails?.vendorLocations | slice:0:1'>
-              <strong>Contact Number</strong><br />
-              <!-- +91-99999 12345// -->
-              {{phone.mobile}}<br>
-              {{phone.phone}}
-            </div>
-          </div>
-        </div>
+            <div class="clearfix"></div>
+            <a id="deals" class="tiktikmik"></a>
+            <!-- Wedding Deals & Discount -->
+            <div class="boxLightStyles hideShowMeNow box_section_light dealsection" *ngIf="vendorDetails?.dealsCount > 0">
+              <div class="vp_review_txt_title large_subtext">Wedding Deals & Discount ({{vendorDetails?.deals.length}})
 
-        <div class="clearfix"></div>
-        <div class="left_box_section paddleftrite0px martop20px">
-          <div class="large_subtext bob_pa_left text-center">
-              Share Vendor Profile
-          </div>
-          <div class="featurebtn">
-            <div class="col-sm-3"><a ><img src="../../assets/img/fb_icon.png"></a></div>
-            <div class="col-sm-3"><a ><img src="../../assets/img/msg_icon.png"></a></div>
-            <div class="col-sm-3"><a ><img src="../../assets/img/share_icon.png"></a></div>
-            <div class="col-sm-3"><a ><img src="../../assets/img/wa_icon.png"></a></div>
-          </div>
-        </div>
-        <div class="clearfix"></div>
 
-        <div class="left_box_section overviewsection startprice" >
-          <div class="vp_mainDetails_starting_price">
-            <div class="large_subtext bob_pa_left text-center">
-              Starting Price:
+                <span *ngIf='vendorDetails.deals.length > 5' class="reviewmore" (click)='showHideevents(0)'>VIEW ALL</span>
+                <span class="reviewless" (click)='showHideevents(5)'>Show Less</span>
+              </div>
+              <div class="row dealsinner">
+                <!-- <div class="col-sm-2 text-center dealhead pink" *ngIf='vendorDetails?.discounts'>
+            {{vendorDetails?.discounts.discount}}% {{vendorDetails?.discounts.title}}
+          </div> -->
 
-              <div  *ngFor='let service of  vendorDetails?.businessServices' >
-                <div *ngIf = "service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
-                  <div *ngFor='let customF of  service.customFields  | slice:0:1' >
-                      <span class="pink">
-                          Rs. {{customF.fieldValue}}
-                      </span>
+                <div style="width: 100%;" *ngIf='vendorDetails?.discounts'>
+                  <div class="col-sm-10">
+                    <h1 class="pink">{{vendorDetails?.discounts.title}}</h1>
+                    <p class="blue">
+                      <strong>Discount</strong> {{vendorDetails?.discounts.discount}}% </p>
+                  </div>
+                  <div class="col-sm-2">
+                    <button class="btn purple-gradient btntik borradius50per callbtn">
+                      <i class="material-icons">call</i>
+                    </button>
+
+                    <button class="btn purple-gradient btntik borradius50per" data-target="#address" data-toggle="modal">
+                      <i class="material-icons">mail_outline</i>
+                    </button>
                   </div>
                 </div>
-              </div> 
-              <span  style="float: right;" *ngIf="vendorDetails?.businessServices.length == 0 ">
-                     Not Available Yet
-              </span>
+                <div class="col-sm-12" *ngIf="vendorDetails?.discounts == null ">
+                  <span class="text-center">No discounts Available </span>
+                </div>
+
+              </div>
+              <div *ngFor='let deal of vendorDetails?.deals;let i=index'>
+                <div class="row dealsinner" *ngIf='deal.visible'>
+                  <div>
+                    <div class="col-sm-3">
+                      <button (click)="deal_Detail(deal)">deal view </button>
+                      <div>$800.00 Value</div>
+                      <div>Promo Code: <strong>FES8220</strong></div>
+                    </div>
+                    <div class="col-sm-9">
+                      <h1>{{deal.title}}</h1>
+                      <p>
+                        {{deal.conditions}}
+                      </p>
+                      <p>Offer Expires: {{deal.endDateString}}&nbsp;&nbsp;|&nbsp;&nbsp;Status: {{deal.status}}</p>
+
+
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
             </div>
+            <!--End Wedding Deals & Discount -->
+
             <div class="clearfix"></div>
 
+            <!-- Similar Vendors -->
+            <div class="boxLightStyles  box_section_light vp_similarVendors r_s_pre hidden-xs marbott20px" *ngIf="similarVendors_length > 0">
+              <div class="similarVendors_cat ">
+                <div class="heading">
+                  <div class="large_subtext ">
+                    Similar Vendors
+                  </div>
+                </div>
+                <div class="inner_body">
+                  <div *ngFor='let simi_vendor of similarVendors | slice:0:4 ' class="col-md-3 col-sm-3 mobpadd0 similarvendor">
+                    <div class="item">
+                      <img *ngIf="simi_vendor?.profileImage != null" [src]='simi_vendor?.profileImage'>
 
-          </div>
-        </div>
-         <!-- trading hour -->
-        <div class="left_box_section contactsection tradinghours"  >      
-            <div  class="branchrow row tradinghours"  *ngIf = "vendorDetails?.vendorLocations.length > 0 ">
-              <div *ngFor='let loc of vendorDetails?.vendorLocations  | slice:0:1 '>
-                    <div class="large_subtext detailtra text-center  col-12">
-                         Trading Hours
-                          <div class="branchdefaulttable in">
-                            <table class="banchtable text-center">
-                                <tr>
-                                    <th><strong>Mon</strong></th>
-                                    <td>{{loc.mondayOpen}} - {{loc.mondayClose}}
-                                    </td>
-                                    <td><span class="greentext" *ngIf='loc.isMondayOpen == true'>Open</span></td>
-                                    <td><span class="greentext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
-                                  </tr>
-                            </table>
-                          </div> 
-                          <div class="clearfix"></div>
-                    <div  class="branchdetailtable">
-                      <table class="tabledesignwork text-center">
-                        <tr >
-                          <th><strong>Mon</strong></th>
-                          <td *ngIf='loc.isMondayOpen'>{{loc.mondayOpen}} - {{loc.mondayClose}}
-                          </td>
-                          <td><span class="greentext" *ngIf='loc.isMondayOpen == true'>Open</span></td>
-                          <td><span class="greentext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
-                        </tr>
-                        <tr >
-                          <th><strong>Tue</strong></th>
-                          <td *ngIf='loc.isTuesdayOpen'>{{loc.tuesdayOpen}} - {{loc.tuesdayClose}}
-                          </td>
-                          <td><span class="greentext" *ngIf='loc.isTuesdayOpen == true'>Open</span></td>
-                          <td><span class="greentext" *ngIf='loc.isTuesdayOpen == false '>Close</span></td>
-                        </tr>
-                        <tr>
-                          <th><strong>Wed</strong></th>
-                          <td  *ngIf='loc.isWednesdayOpen'>{{loc.wednesdayOpen}} - {{loc.wednesdayClose}}
-                          </td>
-                          <td><span class="greentext" *ngIf='loc.isWednesdayOpen == true'>Open</span></td>
-                          <td><span class="greentext" *ngIf='loc.isWednesdayOpen == false '>Close</span></td>
-                        </tr>
-                        <tr >
-                          <th><strong>Thu</strong></th>
-                          <td *ngIf='loc.isThursdayOpen'>{{loc.thursdayOpen}} - {{loc.thursdayClose}}
-                          </td>
-                          <td><span class="greentext"  *ngIf='loc.isThursdayOpen == true'>Open</span></td>
-                          <td><span class="greentext" *ngIf='loc.isThursdayOpen == false '>Close</span></td>
-                        </tr>
-                        <tr >
-                          <th><strong>Fri</strong></th>
-                          <td *ngIf='loc.isFridayOpen'>{{loc.fridayOpen}} - {{loc.fridayClose}}
-                          </td>
-                          <td><span class="greentext" *ngIf='loc.isFridayOpen == true'>Open</span></td>
-                          <td><span class="greentext" *ngIf='loc.isFridayOpen == false '>Close</span></td>
-                        </tr>
-                        <tr >
-                          <th><strong>Sat</strong></th>
-                          <td *ngIf='loc.isSaturdayOpen'>{{loc.sundayOpen}} - {{loc.sundayClose}}
-                          </td>
-                          <td><span class="greentext" *ngIf='loc.isSaturdayOpen == true'>Open</span></td>
-                          <td><span class="greentext" *ngIf='loc.isSaturdayOpen == false '>Close</span></td>
-                        </tr>
-                        <tr >
-                          <th><strong>Sun</strong></th>
-                          <td *ngIf='loc.isSundayOpen'>{{loc.sundayOpen}} - {{loc.sundayClose}}
-                          </td>
-                          <td><span class="greentext" *ngIf='loc.isSundayOpen == true'>Open</span></td>
-                          <td><span class="greentext" *ngIf='loc.isSundayOpen == false '>Close</span></td>
-                        </tr>
-                      </table>
+                      <img *ngIf="simi_vendor?.profileImage == null" src='../../assets/img/noImg.png'>
+
+                      <div class="catnameholder">
+                        Cake
+                      </div>
+
+                      <div class="similarvendorname">
+                        {{simi_vendor.nameOfBusiness}}
+                      </div>
+                      <div class="similarvendorlocation" *ngFor='let location of simi_vendor.vendorLocations | slice:0:1 ;let i=index '>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        {{location.districts.name }}
+                      </div>
+
+
+
+                      <div class="rating_star" *ngIf="simi_vendor.averageRating > 0">
+                        <rating [(ngModel)]="simi_vendor.averageRating" readonly="isReadonly"></rating>
+                      </div>
+                      <div class="rating_star font12px redtext" *ngIf="simi_vendor.averageRating == 0">
+                        No Reviewed Yet
+                      </div>
                     </div>
-                  <div class="text-center showdetail barnchtableshow">Show More</div>
-                  <div class="text-center showless barnchtablenone" style="display: none;">xShow less</div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <!-- End Similar Vendors -->
+          </div>
+
+          <div class="col-sm-3 hidden-xs">
+            <div class="left_side_box_text left_details leftfixed">
+
+              <div class="left_box_section paddleftrite0px">
+                <span class="flagicontik" data-target="#albumgallarypopup" data-toggle="modal"><i class="material-icons">outlined_flag</i></span>
+                <div class="hotellogo">
+                  <div *ngIf="vendorDetails?.profileImage ">
+                    <img [src]="vendorDetails?.profileImage" />
+                  </div>
+
+                  <div *ngIf="!vendorDetails?.profileImage ">
+                    <img src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg">
+                  </div>
+                </div>
+                <ul class="wed_me_social text-center">
+                  <li *ngIf='vendorDetails?.facebookURL'>
+
+                    <a href="{{vendorDetails?.facebookURL}}" target="_blank">
+                      <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                  <li *ngIf='vendorDetails?.twitterURL'>
+                    <a href="{{vendorDetails?.twitterURL}}" target="_blank">
+                      <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                  <li *ngIf='vendorDetails?.instalURL'>
+                    <a href="{{vendorDetails?.instalURL}}" target="_blank">
+                      <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                </ul>
+                <div class="large_text text-center">
+                  {{vendorDetails?.nameOfBusiness}}
+                </div>
+                <div class="carousel_city text-center">
+                  <i class="fa fa-map-marker" aria-hidden="true"></i> {{vendorDetails?.district.name}}
+                </div>
+                <div class="carousel_city text-center">
+                  Membership of 2 years
+                </div>
+                <div class="vp_mainDetails_mini_rating text-center">
+                  <div class="large_subtext" *ngIf="vendorDetails?.averageRating > 0 ">
+
+                    <div class="rating_star">
+                      <rating [(ngModel)]="vendorDetails.averageRating" readonly="isReadonly"></rating>
+                    </div>
+                  </div>
+                  <div class="large_subtext" *ngIf="vendorDetails?.averageRating == 0 ">
+                    No Reviewed yet
+                  </div>
+                </div>
+                <div class="carousel_cat">
+                  {{vendorDetails?.vendorCategories[0].categories?.categoryName}}
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-12">
+                  <div class="featurebtn row">
+                    <div class="col-4">
+                      <button class="btn purple-gradient borradius50per callbtn">
+                        <i class="material-icons">call</i>
+                      </button>
+                      <button class="btn purple-gradient borradius50per callbtnhide" style="display: none;">
+                        <i class="material-icons">call</i>
+                      </button>
+                      <div class="featurehead">Call</div>
+                    </div>
+                    <div class="col-4">
+                      <button class="btn purple-gradient borradius50per" data-toggle="modal" data-target="#address">
+                        <i class="material-icons">mail_outline</i>
+                      </button>
+                      <div class="featurehead">Message</div>
+                    </div>
+                    <div class="col-4">
+                      <button class="btn purple-gradient borradius50per">
+                        <i class="material-icons">bookmark_border</i>
+                      </button>
+                      <div class="featurehead">Bookmark</div>
+                    </div>
+
+                  </div>
+
+                  <div class="callinfo" style="display:none" *ngFor='let phone of  vendorDetails?.vendorLocations | slice:0:1'>
+                    <strong>Contact Number</strong><br />
+                    <!-- +91-99999 12345// -->
+                    {{phone.mobile}}<br> {{phone.phone}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="clearfix"></div>
+              <div class="left_box_section paddleftrite0px martop20px">
+                <div class="large_subtext bob_pa_left text-center">
+                  Share Vendor Profile
+                </div>
+                <div class="featurebtn">
+                  <div class="col-sm-3"><a><img src="../../assets/img/fb_icon.png"></a></div>
+                  <div class="col-sm-3"><a><img src="../../assets/img/wa_icon.png"></a></div>
+                  <div class="col-sm-3"><a><img src="../../assets/img/msg_icon.png"></a></div>
+                  <div class="col-sm-3"><a><img src="../../assets/img/share_icon.png"></a></div>
+
+                </div>
+              </div>
+              <div class="clearfix"></div>
+
+              <div class="left_box_section overviewsection startprice">
+                <div class="vp_mainDetails_starting_price">
+                  <div class="large_subtext bob_pa_left text-center">
+                    Starting Price:
+
+                    <div *ngFor='let service of  vendorDetails?.businessServices'>
+                      <div *ngIf="service.categoryId == vendorDetails?.vendorCategories[0].categories?.categoryId">
+                        <div *ngFor='let customF of  service.customFields  | slice:0:1'>
+                          <span class="pink">
+                            Rs. {{customF.fieldValue}}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <span style="float: right;" *ngIf="vendorDetails?.businessServices.length == 0 ">
+                      Not Available Yet
+                    </span>
+                  </div>
+                  <div class="clearfix"></div>
+
+
+                </div>
+              </div>
+              <!-- trading hour -->
+              <div class="left_box_section contactsection tradinghours">
+                <div class="branchrow row tradinghours" *ngIf="vendorDetails?.vendorLocations.length > 0 ">
+                  <div *ngFor='let loc of vendorDetails?.vendorLocations  | slice:0:1 '>
+                    <div class="large_subtext detailtra text-center  col-12">
+                      Trading Hours
+                      <div class="branchdefaulttable in">
+                        <table class="banchtable text-center">
+                          <tr>
+                            <th><strong>Mon</strong></th>
+                            <td>{{loc.mondayOpen}} - {{loc.mondayClose}}
+                            </td>
+                            <td><span class="greentext" *ngIf='loc.isMondayOpen == true'>Open</span></td>
+                            <td><span class="greentext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
+                          </tr>
+                        </table>
+                      </div>
+                      <div class="clearfix"></div>
+                      <div class="branchdetailtable">
+                        <table class="tabledesignwork text-center">
+                          <tr *ngIf='loc.isMondayOpen'>
+                            <th><strong>Mon</strong></th>
+                            <td>
+
+                              <span *ngIf='loc.mondayOpen != 0'>
+                                {{loc.mondayOpen}}
+                              </span>
+
+
+                              <span *ngIf='loc.mondayClose != 0'>
+                                - {{loc.mondayClose}}
+                              </span>
+                            </td>
+                            <td><span class="greentext" *ngIf='loc.isMondayOpen == true && currentDate == 1'>Open</span></td>
+                            <td><span class="greentext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
+                          </tr>
+                          <tr *ngIf='loc.isTuesdayOpen'>
+                            <th><strong>Tue</strong></th>
+                            <td>
+                              <span *ngIf='loc.tuesdayOpen != 0'>
+                                {{loc.tuesdayOpen}}
+                              </span>
+
+
+                              <span *ngIf='loc.tuesdayClose != 0'>
+                                - {{loc.tuesdayClose}}
+                              </span>
+
+                            </td>
+                            <td><span class="greentext" *ngIf='loc.isTuesdayOpen == true  && currentDate == 2'>Open</span></td>
+                            <td><span class="greentext" *ngIf='loc.isTuesdayOpen == false '>Close</span></td>
+                          </tr>
+                          <tr *ngIf='loc.isWednesdayOpen'>
+                            <th><strong>Wed</strong></th>
+                            <td>
+
+                              <span *ngIf='loc.wednesdayOpen != 0'>
+                                {{loc.wednesdayOpen}}
+                              </span>
+
+
+                              <span *ngIf='loc.wednesdayClose != 0'>
+                                - {{loc.wednesdayClose}}
+                              </span>
+                            </td>
+                            <td><span class="greentext" *ngIf='loc.isWednesdayOpen == true  && currentDate == 3'>Open</span></td>
+                            <td><span class="greentext" *ngIf='loc.isWednesdayOpen == false '>Close</span></td>
+                          </tr>
+                          <tr *ngIf='loc.isThursdayOpen'>
+                            <th><strong>Thu</strong></th>
+                            <td>
+
+                              <span *ngIf='loc.thursdayOpen != 0'>
+                                {{loc.thursdayOpen}}
+                              </span>
+
+
+                              <span *ngIf='loc.thursdayClose != 0'>
+                                - {{loc.thursdayClose}}
+                              </span>
+                            </td>
+                            <td><span class="greentext" *ngIf='loc.isThursdayOpen == true  && currentDate == 4'>Open</span></td>
+                            <td><span class="greentext" *ngIf='loc.isThursdayOpen == false '>Close</span></td>
+                          </tr>
+                          <tr *ngIf='loc.isFridayOpen'>
+                            <th><strong>Fri</strong></th>
+                            <td>
+
+                              <span *ngIf='loc.fridayOpen != 0'>
+                                {{loc.fridayOpen}}
+                              </span>
+
+
+                              <span *ngIf='loc.fridayClose != 0'>
+                                - {{loc.fridayClose}}
+                              </span>
+                            </td>
+                            <td><span class="greentext" *ngIf='loc.isFridayOpen == true  && currentDate == 5'>Open</span></td>
+                            <td><span class="greentext" *ngIf='loc.isFridayOpen == false '>Close</span></td>
+                          </tr>
+                          <tr *ngIf='loc.isSaturdayOpen'>
+                            <th><strong>Sat</strong></th>
+                            <td>
+
+                              <span *ngIf='loc.saturdayOpen != 0'>
+                                {{loc.saturdayOpen}}
+                              </span>
+
+
+                              <span *ngIf='loc.saturdayClose != 0'>
+                                - {{loc.saturdayClose}}
+                              </span>
+                            </td>
+                            <td><span class="greentext" *ngIf='loc.isSaturdayOpen == true  && currentDate == 6'>Open</span></td>
+                            <td><span class="greentext" *ngIf='loc.isSaturdayOpen == false '>Close</span></td>
+                          </tr>
+                          <tr *ngIf='loc.isSundayOpen'>
+                            <th><strong>Sun</strong></th>
+                            <td>
+
+                              <span *ngIf='loc.sundayOpen != 0'>
+                                {{loc.sundayOpen}}
+                              </span>
+
+
+                              <span *ngIf='loc.sundayClose != 0'>
+                                - {{loc.sundayClose}}
+                              </span>
+                            </td>
+                            <td><span class="greentext" *ngIf='loc.isSundayOpen == true  && currentDate == 7'>Open</span></td>
+                            <td><span class="greentext" *ngIf='loc.isSundayOpen == false '>Close</span></td>
+                          </tr>
+                        </table>
+                      </div>
+                      <div class="text-center showdetail barnchtableshow">Show More</div>
+                      <div class="text-center showless barnchtablenone" style="display: none;">Show less</div>
                     </div>
                     <!-- <div class="text-center col-12">{{loc.address}}, {{loc.suburb.name}}: </div>
                     <div class="clearfix"></div>
                     <div class="branchAddress text-center col-12">
                       {{loc.districts.name}},{{loc.country.countryName}}
                     </div> -->
-      
+
+                  </div>
+                </div>
+                <div class="branchrow row tradinghours" *ngIf="vendorDetails?.vendorLocations.length == 0 ">
+                  NO trading hours available
+                </div>
+              </div>
+              <!-- End trading hour -->
+              <!-- other branches  -->
+              <div class="left_box_section contactsection" *ngIf="vendorDetails?.vendorLocations.length > 1">
+                <div class="large_subtext text-center  col-12">
+                  Branches
+                </div>
+                <div class="branchrow branchlist" *ngFor='let loc of vendorDetails?.vendorLocations  | slice:1:vendorDetails?.vendorLocations.length  ; let  i=index'>
+
+
+                  <div class="text-left col-12 nopadd">
+                    <span class="numlist">{{i + 1}}</span>
+                    <span class="branchAddress">
+                      {{loc.address}}, {{loc.suburb.name}}
+                      <div class="clearfix"></div>
+                      {{loc.districts.name}},{{loc.country.countryName}}
+                    </span>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="branchdetailtableinner">
+
+                    <!-- end adddd -->
+                    <div class="clearfix"></div>
+                    <span class="pinklink viewbranchhour" data-target="#View_Trading_Hours" data-toggle="modal" (click)="trading_hours_popup(loc)">View
+                      Trading Hour</span>
+
+                    <span class="pinklink maplink " data-target="#google_maps" data-toggle="modal" (click)="trading_hours_popup(loc)">View
+                      Map</span>
+                  </div>
+
+
+                </div>
+              </div>
+              <!-- end  other branches  -->
+            </div>
+          </div>
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="bottomsticky row">
+          <div class="col-sm-12">
+            <div class="col-6 text-center">
+              $ 400 per day
+              <div class="clearfix"></div>
+              <button class="bottombtn">View All</button>
+            </div>
+            <div class="featurebtn col-6">
+              <div class="row">
+                <div class="col-12">
+                  <div class="col-4">
+                    <button class="btn purple-gradient borradius50per">
+                      <i class="material-icons">call</i>
+                    </button>
+                  </div>
+                  <div class="col-4">
+                    <button class="btn purple-gradient borradius50per" data-target="#address" data-toggle="modal">
+                      <i class="material-icons">mail_outline</i>
+                    </button>
+                  </div>
+                  <div class="col-4">
+                    <button class="btn purple-gradient borradius50per">
+                      <i class="material-icons">bookmark_border</i>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-            <div  class="branchrow row tradinghours"  *ngIf = "vendorDetails?.vendorLocations.length == 0 ">
-                NO trading hours available 
-            </div>
-        </div>
-         <!-- End trading hour -->
-         <!-- other branches  -->
-        <div class="left_box_section contactsection" *ngIf = "vendorDetails?.vendorLocations.length > 1">
-            <div class="large_subtext text-center  col-12"  >
-                Branches
-            </div>
-            <div class="branchrow branchlist" *ngFor='let loc of vendorDetails?.vendorLocations  | slice:1:vendorDetails?.vendorLocations.length  ; let  i=index'>
-     
-           
-            <div class="text-left col-12 nopadd">
-              <span class="numlist">{{i + 1}}</span>
-              <span class="branchAddress">
-                {{loc.address}}, {{loc.suburb.name}} 
-                <div class="clearfix"></div>
-               {{loc.districts.name}},{{loc.country.countryName}}
-             </span>
-            </div>
-            <div class="clearfix"></div>
-            <div  class="branchdetailtableinner" >
-                 
-               <!-- end adddd -->
-                <div class="clearfix"></div>
-                <span class="pinklink viewbranchhour" data-target="#View_Trading_Hours" data-toggle="modal" (click) = "trading_hours_popup(loc)">View Trading Hour</span>
-
-                <span class="pinklink maplink "  data-target="#google_maps" data-toggle="modal" (click) = "trading_hours_popup(loc)">View Map</span>
-            </div>
-           
-            
-            </div>
-        </div>
-           <!-- end  other branches  -->
-      </div>
-    </div>
-
-  </div>
-  <div class="clearfix"></div>
-  <div class="bottomsticky row">
-    <div class="col-sm-12">
-      <div class="col-6 text-center">
-        $ 400 per day
-        <div class="clearfix"></div>
-        <button class="bottombtn">View All</button>
-      </div>
-      <div class="featurebtn col-6">
-        <div class="row">
-          <div class="col-12">
-            <div class="col-4">
-              <button class="btn purple-gradient borradius50per">
-                <i class="material-icons">call</i>
-              </button>
-            </div>
-            <div class="col-4">
-              <button class="btn purple-gradient borradius50per" data-target="#address" data-toggle="modal">
-                <i class="material-icons">mail_outline</i>
-              </button>
-            </div>
-            <div class="col-4">
-              <button class="btn purple-gradient borradius50per">
-                <i class="material-icons">bookmark_border</i>
-              </button>
-            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 
 
 
-  <div class="modal fade" id="address" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Send Message</h4>
-        </div>
-        <div class="col-sm-12">
-          <div class="container">
-            <div class="input-effect  form-group mt-3">
-              <input class="effect-16" name="text" placeholder="" required="" type="name">
-              <label>Your Name</label>
-              <span class="focus-border"></span>
-            </div>
-            <div class="input-effect  form-group mt-3">
-              <input class="effect-16" name="email" placeholder="" required="" type="text">
-              <label>Your Email</label>
-              <span class="focus-border"></span>
-            </div>
-            <div class="input-effect  form-group mt-3">
-              <input class="effect-16" name="phone" placeholder="" required="" type="tel">
-              <label>Your Phone Number</label>
-              <span class="focus-border"></span>
-            </div>
-            <div class="input-effect  form-group mt-3">
-              <textarea class="effect-16" placeholder=''></textarea>
-              <label>Message</label>
-              <span class="focus-border"></span>
-            </div>
-            <div class="clearfix"></div>
-            <div class="form-group btnholder">
-              <button type="submit" class="btn btn-secondary">SAVE</button>
-              &nbsp;
+        <div class="modal fade" id="address" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="clearfix"></div>
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              <div class="modal-header">
+
+                <button type="button" class="btn closebtn" data-dismiss="modal">&times;</button>
+
+                <h4 class="modal-title"> Contact {{vendorDetails?.nameOfBusiness}}</h4>
+
+              </div>
+              <div class="col-sm-12">
+                <div class="container">
+                  <div class="input-effect  form-group mt-3">
+                    <input class="effect-16" name="text" placeholder="" required="" type="name">
+                    <label>First Name</label>
+                    <span class="focus-border"></span>
+                  </div>
+                  <div class="input-effect  form-group mt-3">
+                    <input class="effect-16" name="text" placeholder="" required="" type="name">
+                    <label>Last Name</label>
+                    <span class="focus-border"></span>
+                  </div>
+
+                  <div class="input-effect  form-group mt-3">
+                    <input class="effect-16" name="email" placeholder="" required="" type="text">
+                    <label>EMAIL</label>
+                    <span class="focus-border"></span>
+                  </div>
+                  <div class="input-effect  form-group mt-3">
+                    <input class="effect-16" name="checkbox" placeholder="" required="" type="checkbox">
+
+                    <span class="focus-border"></span>
+                  </div>
+                  <div class="input-effect  form-group mt-3">
+                    <input class="effect-16" name="phone" placeholder="" required="" type="tel">
+                    <label>Your Phone Number</label>
+                    <span class="focus-border"></span>
+                  </div>
+                  <div class="input-effect  form-group mt-3">
+                    <textarea class="effect-16" placeholder='' type="date"></textarea>
+                    <label>date</label>
+                    <span class="focus-border"></span>
+                  </div>
+                  <div class="input-effect  form-group mt-3">
+                    <textarea class="effect-16" placeholder='' type="textarea"></textarea>
+                    <label>Message</label>
+                    <span class="focus-border"></span>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="form-group btnholder">
+                    <button type="submit" class="btn btn-info">SAVE</button>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
 
-      </div>
-    </div>
-  </div>
+        <div class="modal fade" id="Review_vendor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title text-left" style="width:100%;">{{vendorDetails?.nameOfBusiness}}</h4>
+                <button type="button" class="btnradius50per" data-dismiss="modal">
+                  X
+                </button>
+              </div>
 
-  <div class="modal fade" id="Vediogallarypopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="col-sm-12">
-          <iframe src="https://www.youtube.com/embed/Zo4PRKnqJdg" frameborder="0" allow="autoplay; encrypted-media"
-            allowfullscreen></iframe>
-          <div class="clearfix"></div>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+              <div class="modal-body">
+
+                <form (ngSubmit)="putReview(review)" #f="ngForm">
+                  <div class="vp_review_txt">
+                    <div class="vp_giveReviewBox">
+                      <span>Give A Review:</span>
+
+                      <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
+                        <div class="jq-ry-group-wrapper">
+                          <div class="jq-ry-normal-group jq-ry-group">
+                            <rating [(ngModel)]="review.rating" name="rating"></rating>
+                          </div>
+                        </div>
+                      </span>
+
+                      <div class="textInput">
+
+                        <input placeholder="Write a Review" type="text" class="textInputInner" required [(ngModel)]="review.comments" name="comments">
+                        <button type="submit" class="textInputSubmit" value="SUBMIT">SUBMIT</button>
+                        <input class="submitedRating" type="hidden" value="0">
+                        <div class="errorInValidation sendAReview">
+                          Your review is empty. SUBMIT again to send this anyway
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-sm-12">
+                {{vendorDetails?.nameOfBusiness}}
+                <div *ngIf="responce_review  == true ">
+                  <form (ngSubmit)="putReview(review)" #f="ngForm">
+                    <div class="vp_review_txt">
+                      <div class="vp_giveReviewBox">
+                        <span>Give A Review:</span>
+
+                        <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
+                          <div class="jq-ry-group-wrapper">
+                            <div class="jq-ry-normal-group jq-ry-group">
+                              <rating [(ngModel)]="review.rating" name="rating"></rating>
+                            </div>
+                          </div>
+                        </span>
+
+                        <div class="textInput">
+
+                          <input placeholder="Write a Review" type="text" class="textInputInner" required [(ngModel)]="review.comments" name="comments">
+                          <button type="submit" class="textInputSubmit" value="SUBMIT">SUBMIT</button>
+                          <input class="submitedRating" type="hidden" value="0">
+                          <div class="errorInValidation sendAReview">
+                            Your review is empty. SUBMIT again to send this anyway
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="clearfix"></div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              </div>
+              <h1 *ngIf="responce_thanks == true ">THANK YOU FOR YOUR REVIEW</h1>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="Vediogallarypopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="col-sm-12">
+                <iframe src="https://www.youtube.com/embed/Zo4PRKnqJdg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <div class="clearfix"></div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              </div>
+
+            </div>
+          </div>
         </div>
 
-      </div>
-    </div>
-  </div>
 
-  
- 
-<div class="modal fade" id="albumgallarypopup" #albumgallarypopup tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title text-left" style="width:100%;">Something wrong with this Profile?</h4>
-          <button type="button" class="btn btn-warning btnradius50per whitetext" data-dismiss="modal">&times;</button>
-        </div>
-     
-            <div class="modal-body">
+
+        <div class="modal fade" id="albumgallarypopup" #albumgallarypopup tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title text-left" style="width:100%;">Something wrong with this Profile?</h4>
+                <button type="button" class="btnradius50per" data-dismiss="modal">X</button>
+              </div>
+
+              <div class="modal-body">
                 <div>
                   <label>
                     <input type="radio" name="falg"> This profile is fake (Scam).
@@ -927,120 +1087,124 @@
                 </div>
                 <div>
                   <label>
-                    <input type="radio" name="falg">  The Vendor is in the wrong category
+                    <input type="radio" name="falg"> The Vendor is in the wrong category
                   </label>
-                 </div>
+                </div>
                 <div>
-                   <label (click) = "report = true">
-                    <input type="radio" name="falg">  Other
+                  <label (click)="report = true">
+                    <input type="radio" name="falg"> Other
                   </label>
                 </div>
                 <div class="clearfix"></div>
                 <div *ngIf="report == true">
-                       <label> Please provide more details  </label>
-                        <div class="form-group">
-                          <input type="textarea" class="form-control">
-                        </div>
-                        <div class="form-group">  
-                          <button class="btn btntikbg" (click) = "report_fun()" *ngIf="report == true"> Report </button>
-                       </div>
+                  <label> Please provide more details </label>
+                  <div class="form-group">
+                    <input type="textarea" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btntikbg" (click)="report_fun()" *ngIf="report == true"> Report </button>
+                  </div>
                 </div>
                 {{succesfull_report}}
                 <div class="clearfix"></div>
+              </div>
             </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="View_Trading_Hours" #View_Trading_Hours tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title text-left" style="width:100%;">View Trading Hours</h4>
-            <button type="button" class="btn btn-warning btnradius50per whitetext" data-dismiss="modal">&times;</button>
           </div>
-          <div class="modal-body">
-               <div>
+        </div>
+        <div class="modal fade" id="View_Trading_Hours" #View_Trading_Hours tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title text-left" style="width:100%;">View Trading Hours</h4>
+                <button type="button" class="btnradius50per" data-dismiss="modal">X</button>
+              </div>
+              <div class="modal-body">
+                <div>
                   <table class="table table-bordered table-stripped text-center">
-                      <tr >
-                        <th>Mon</th>
-                        <td *ngIf='trading_hours_popups.isMondayOpen'>{{trading_hours_popups.mondayOpen}} - {{trading_hours_popups.mondayClose}}
-                        </td>
-                        <td><span class="greentext" *ngIf='trading_hours_popups.isMondayOpen == true'>Open</span></td>
-                        <td><span class="redtext" *ngIf='trading_hours_popups.isMondayOpen == false '>Close</span></td>
-                      </tr>
-                      <tr >
-                        <th>Tue</th>
-                        <td *ngIf='trading_hours_popups.isTuesdayOpen'>{{trading_hours_popups.tuesdayOpen}} - {{trading_hours_popups.tuesdayClose}}
-                        </td>
-                        <td><span class="greentext" *ngIf='trading_hours_popups.isTuesdayOpen == true'>Open</span></td>
-                        <td><span class="redtext" *ngIf='trading_hours_popups.isTuesdayOpen == false '>Close</span></td>
-                      </tr>
-                         <tr>
-                        <th>Wed</th>
-                        <td  *ngIf='trading_hours_popups.isWednesdayOpen'>{{trading_hours_popups.wednesdayOpen}} - {{trading_hours_popups.wednesdayClose}}
-                        </td>
-                        <td><span class="greentext" *ngIf='trading_hours_popups.isWednesdayOpen == true'>Open</span></td>
-                        <td><span class="redtext" *ngIf='trading_hours_popups.isWednesdayOpen == false '>Close</span></td>
-                      </tr>
-                      <tr >
-                        <th>Thu</th>
-                        <td *ngIf='trading_hours_popups.isThursdayOpen'>{{trading_hours_popups.thursdayOpen}} - {{trading_hours_popups.thursdayClose}}
-                        </td>
-                        <td><span class="greentext"  *ngIf='trading_hours_popups.isThursdayOpen == true'>Open</span></td>
-                        <td><span class="redtext" *ngIf='trading_hours_popups.isThursdayOpen == false '>Close</span></td>
-                      </tr>
-                      <tr >
-                        <th>Fri</th>
-                        <td *ngIf='trading_hours_popups.isFridayOpen'>{{trading_hours_popups.fridayOpen}} - {{trading_hours_popups.fridayClose}}
-                        </td>
-                        <td><span class="greentext" *ngIf='trading_hours_popups.isFridayOpen == true'>Open</span></td>
-                        <td><span class="redtext" *ngIf='trading_hours_popups.isFridayOpen == false '>Close</span></td>
-                      </tr>
-                      <tr >
-                        <th>Sat</th>
-                        <td *ngIf='trading_hours_popups.isSaturdayOpen'>{{trading_hours_popups.sundayOpen}} - {{trading_hours_popups.sundayClose}}
-                        </td>
-                        <td><span class="greentext" *ngIf='trading_hours_popups.isSaturdayOpen == true'>Open</span></td>
-                        <td><span class="redtext" *ngIf='trading_hours_popups.isSaturdayOpen == false '>Close</span></td>
-                      </tr>
-                      <tr>
-                        <th>Sun</th>
-                        <td *ngIf='trading_hours_popups.isSundayOpen'>{{trading_hours_popups.sundayOpen}} - {{trading_hours_popups.sundayClose}}
-                        </td>
-                        <td><span class="greentext" *ngIf='trading_hours_popups.isSundayOpen == true'>Open</span></td>
-                        <td><span class="redtext" *ngIf='trading_hours_popups.isSundayOpen == false '>Close</span></td>
-                      </tr>
-                  </table> 
-               </div>
+                    <tr>
+                      <th>Mon</th>
+                      <td *ngIf='trading_hours_popups.isMondayOpen'>{{trading_hours_popups.mondayOpen}} - {{trading_hours_popups.mondayClose}}
+                      </td>
+                      <td><span class="greentext" *ngIf='trading_hours_popups.isMondayOpen == true'>Open</span></td>
+                      <td><span class="redtext" *ngIf='trading_hours_popups.isMondayOpen == false '>Close</span></td>
+                    </tr>
+                    <tr>
+                      <th>Tue</th>
+                      <td *ngIf='trading_hours_popups.isTuesdayOpen'>{{trading_hours_popups.tuesdayOpen}} - {{trading_hours_popups.tuesdayClose}}
+                      </td>
+                      <td><span class="greentext" *ngIf='trading_hours_popups.isTuesdayOpen == true'>Open</span></td>
+                      <td><span class="redtext" *ngIf='trading_hours_popups.isTuesdayOpen == false '>Close</span></td>
+                    </tr>
+                    <tr>
+                      <th>Wed</th>
+                      <td *ngIf='trading_hours_popups.isWednesdayOpen'>{{trading_hours_popups.wednesdayOpen}} - {{trading_hours_popups.wednesdayClose}}
+                      </td>
+                      <td><span class="greentext" *ngIf='trading_hours_popups.isWednesdayOpen == true'>Open</span></td>
+                      <td><span class="redtext" *ngIf='trading_hours_popups.isWednesdayOpen == false '>Close</span></td>
+                    </tr>
+                    <tr>
+                      <th>Thu</th>
+                      <td *ngIf='trading_hours_popups.isThursdayOpen'>{{trading_hours_popups.thursdayOpen}} - {{trading_hours_popups.thursdayClose}}
+                      </td>
+                      <td><span class="greentext" *ngIf='trading_hours_popups.isThursdayOpen == true'>Open</span></td>
+                      <td><span class="redtext" *ngIf='trading_hours_popups.isThursdayOpen == false '>Close</span></td>
+                    </tr>
+                    <tr>
+                      <th>Fri</th>
+                      <td *ngIf='trading_hours_popups.isFridayOpen'>{{trading_hours_popups.fridayOpen}} - {{trading_hours_popups.fridayClose}}
+                      </td>
+                      <td><span class="greentext" *ngIf='trading_hours_popups.isFridayOpen == true'>Open</span></td>
+                      <td><span class="redtext" *ngIf='trading_hours_popups.isFridayOpen == false '>Close</span></td>
+                    </tr>
+                    <tr>
+                      <th>Sat</th>
+                      <td *ngIf='trading_hours_popups.isSaturdayOpen'>{{trading_hours_popups.sundayOpen}} - {{trading_hours_popups.sundayClose}}
+                      </td>
+                      <td><span class="greentext" *ngIf='trading_hours_popups.isSaturdayOpen == true'>Open</span></td>
+                      <td><span class="redtext" *ngIf='trading_hours_popups.isSaturdayOpen == false '>Close</span></td>
+                    </tr>
+                    <tr>
+                      <th>Sun</th>
+                      <td *ngIf='trading_hours_popups.isSundayOpen'>{{trading_hours_popups.sundayOpen}} - {{trading_hours_popups.sundayClose}}
+                      </td>
+                      <td><span class="greentext" *ngIf='trading_hours_popups.isSundayOpen == true'>Open</span></td>
+                      <td> <span class="redtext" *ngIf='trading_hours_popups.isSundayOpen == false '>Close</span></td>
+
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-  </div>
 
-  <div class="modal fade" id="google_maps" #google_maps tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title text-left" style="width:100%;">Branch Location  Map</h4>
-              <button type="button" class="btn btn-warning btnradius50per whitetext" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-             <div><p>{{trading_hours_popups.mapAddress}}</p></div>
+        <div class="modal fade" id="google_maps" #google_maps tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title text-left" style="width:100%;">Branch Location Map</h4>
+                <button type="button" class="btnradius50per" data-dismiss="modal">X</button>
+              </div>
+              <div class="modal-body">
+                <div>
+                  <p>{{trading_hours_popups.mapAddress}}</p>
+                </div>
                 <div class="clearfix"></div>
-             <div>
+                <div>
 
-                    <agm-map [(latitude)]="trading_hours_popups.lat" [(longitude)]="trading_hours_popups.long"  [disableDefaultUI]="true" [zoomControl]="true" [zoom]="15" >
-                        <agm-marker [(latitude)]="trading_hours_popups.lat" [(longitude)]="trading_hours_popups.long" ></agm-marker>
-                </agm-map>
-                 </div>
-    
-              <div class="clearfix"></div>
-    
+                  <agm-map [(latitude)]="trading_hours_popups.lat" [(longitude)]="trading_hours_popups.long" [disableDefaultUI]="true" [zoomControl]="true"
+                    [zoom]="15">
+                    <agm-marker [(latitude)]="trading_hours_popups.lat" [(longitude)]="trading_hours_popups.long"></agm-marker>
+                  </agm-map>
+                </div>
+
+                <div class="clearfix"></div>
+
+              </div>
             </div>
           </div>
         </div>
-  </div>
 
-  <app-foot></app-foot>
-</div>
-<router-outlet></router-outlet>
+        <app-foot></app-foot>
+      </div>
+      <router-outlet></router-outlet>

@@ -363,5 +363,6 @@ export class MessagesVM {
   message:	string;
   sendToUserId:	string;
   isFromAdmin:boolean = false;
+  sentDate:number
 }
 

@@ -63,15 +63,15 @@
             </select>
          </div>
          <div class="row">
-            <div class="col-sm-4"  *ngFor='let a of pagedItems | topic:selectedTipic' >
+            <div class="col-sm-4"  *ngFor='let page of pagedItems | topic:selectedTipic' >
                <p *ngIf="pagedItems.length == 0"> No Data Found</p>
-               <div class="card">
-                  <a routerLink="../tips_list">
-                     <img class="imgshadow" [src]="a.imagePath"></a>
+               <div class="card" style="cursor: pointer;" (click)="goToNextPage(page)">
+                     <!-- routerLink="../tips_list" -->
+                  <a><img class="imgshadow" [src]="page.imagePath"></a>
                   <div class="card-block card-body-cascade text-center">
-                     <h4 class="card-title"> {{a.blogTopic.topic}} </h4>
-                     <h4 class="card-title-small">Sub title </h4>
-                     <p class="card-text"> {{a.description}}</p>
+                     <h4 class="card-title"> {{page.blogTopic.topic}} </h4>
+                     <h4 class="card-title-small"> {{page.title}} </h4>
+                     <p class="card-text"> {{page.description}}</p>
                      <p class="text-center">
                         <a class="px-2 fb-ic">
                            <i class="fa fa-facebook"></i>

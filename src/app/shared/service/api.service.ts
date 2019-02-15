@@ -35,6 +35,19 @@ export class apiService {
     return this.http.post(url,reqObj,httpOptions);
   }
 
+  postImageData(url, reqObj) : Observable<any> {
+    var authToken = sessionStorage.getItem('userToken');
+    let httpOptions = {
+      headers: new HttpHeaders({
+        // 'Content-Type':  'multipart/form-data',
+        
+        'Authorization': 'Bearer '+authToken
+      })
+    };
+
+    return this.http.post(url,reqObj,httpOptions);
+  }
+
 
 
 

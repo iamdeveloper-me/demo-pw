@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Meta, Title } from '@angular/platform-browser';
 import { PagerService } from 'app/_services';
 import { TopicPipe } from './topic.pipe';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-tips',
   templateUrl: './tips.component.html',
@@ -33,9 +34,17 @@ export class TipsComponent  {
     pager: any = {};
     allItems: any[];
 
-    constructor(private pagerService: PagerService,private apiService: apiService,public http: Http ,public toastr: ToastrService,private meta:Meta, private title : Title) {
+    constructor(
+      private pagerService: PagerService,
+      private apiService: apiService,
+      public http: Http ,
+      public toastr: ToastrService,
+      private meta:Meta, 
+      private title : Title,
+      private router : Router) {
            }
     ngOnInit() { 
+      sessionStorage.clear();
       this.title.setTitle('Wedding Tips & Articles | Perfect Weddings');    
       this.meta.addTag({name:'description',content:'Wedding Tips & Articles |Perfect Weddings'});    
   
@@ -47,9 +56,12 @@ export class TipsComponent  {
         searchQuery: '',
         blogTopicId: 0
         }).subscribe(data => {
+          console.log(data)
         this.tipsArrays_items = data.items; 
+        console.log(this.tipsArrays_items);
         this.distinctTipic = [new Set(this.tipsArrays_items.map(x=>x.blogTopic.topic))][0];
         this.allItems = this.tipsArrays_items
+        console.log(JSON.stringify(this.allItems));   
         this.setPage(1);
         },
         error => {
@@ -62,6 +74,12 @@ export class TipsComponent  {
     setPage(page: number) {
       this.pager = this.pagerService.getPagerEvent(this.allItems.length, page);
       this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    }
+
+    //GotoNextPage
+    goToNextPage(page){
+      sessionStorage.setItem('page',JSON.stringify(page));
+      this.router.navigate(['home/tips_list']);
     }
 }
 

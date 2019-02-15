@@ -33,9 +33,8 @@
 				 class="dealbanner">
 			</div>
 			<div class="col-sm-6" *ngFor="let albumImage of albumeArrays">
-				<img [src]="albumImage.dealsImages"
-				 class="dealbanner">
-				 {{albumImage | json}}
+				<img [src]="albumImage.dealsImages" class="dealbanner">
+				{{albumImage | json}}
 			</div>
 		</div>
 
@@ -54,12 +53,14 @@
 		</ul>
 		<div class="tab-content nopadd">
 			<div id="all" class="tab-pane fade in active">
-					<!--Discount Start All-->
-				<div class="col-sm-3">
-					<div class="disboxloop" *ngFor="let deal of deals ;let i=index" (click)="goToNextPage(deal)">
+				<!--Discount Start All-->
+				<div class="row" style="padding:5px;" style="padding:5px;">
+					<div class="col-sm-3" *ngFor="let deal of deals ;let i=index">
+						<div class="disboxloop" (click)="goToNextPage(deal)">
 							<a *ngFor=" let i of  deal.vendorCategories | slice:0:1  ">
 								<img *ngIf="i.categories.imagePath" [src]="i.categories.imagePath" class="discountimg">
-								<img *ngIf="!i.categories.imagePath" src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" class="discountimg">
+								<img *ngIf="!i.categories.imagePath" src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg"
+								 class="discountimg">
 							</a>
 							<div class="textdisdetaill">
 								<div class="discat">
@@ -85,256 +86,74 @@
 							</div>
 						</div>
 					</div>
-						<!--Discount Start All-->
-					<div class="col-sm-3">
+					<div class="col-sm-3" *ngFor="let mydeal of all_deals ;let i=index">
 						<!--Deals Start All-->
-							<div class="disboxloop" *ngFor="let mydeal of all_deals ;let i=index" (click)="goToNextPage(mydeal)">
-								<a *ngIf="mydeal.dealsImages.length == 0; else elseBlock">
-									<img  src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" class="discountimg">
+						<div class="disboxloop" (click)="goToNextPage(mydeal)">
+							<a *ngIf="mydeal.dealsImages.length == 0; else elseBlock">
+								<img src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" class="discountimg">
+							</a>
+							<ng-template #elseBlock>
+								<a *ngFor="let img of  mydeal.dealsImages | slice:1:2 ">
+									<img [src]="img.path" class="discountimg">
 								</a>
-								<ng-template #elseBlock>
-									<a *ngFor="let img of  mydeal.dealsImages | slice:1:2 ">
-										<img  [src]="img.path" class="discountimg">
-									</a>
-								</ng-template>
-								<div class="textdisdetaill">
-									<div class="discat">
-										{{mydeal.discount}} % Discount
-									</div>
-									<div class="title">
-										{{mydeal.conditions}} 
-									</div>
-									<div class="offerdis">
+							</ng-template>
+							<div class="textdisdetaill">
+								<div class="discat">
+									{{mydeal.discount}} % Discount
+								</div>
+								<div class="title">
+									{{mydeal.conditions}}
+								</div>
+								<div class="offerdis">
+									<span>
+										{{mydeal.title}}
+									</span>
+									<span>
+										<i class="material-icons">query_builder</i>
+										Start Date : {{mydeal.startDateString}}
+									</span>
+									<span>
+										<i class="material-icons" *ngIf="mydeal.endDateString == ''; else endBlock">query_builder</i>
+										End Date : N/A
+									</span>
+									<ng-template #endBlock>
 										<span>
-											{{mydeal.title}}
+											<i class="material-icons">query_builder</i>
+											End Date : {{mydeal.endDateString}}
 										</span>
-										<span>
-											<i class="material-icons" >query_builder</i>
-												Start Date : {{mydeal.startDateString}}
-											</span>
-										<span>
-											<i class="material-icons" *ngIf="mydeal.endDateString == ''; else endBlock">query_builder</i>
-											End Date : N/A
-										</span>
-										<ng-template #endBlock>
-											<span>
-												<i class="material-icons">query_builder</i>
-												End Date : {{mydeal.endDateString}}
-											</span>
-										</ng-template>
-									</div>
+									</ng-template>
 								</div>
 							</div>
-								<!--Deals End All-->
 						</div>
-				<!-- <div class="col-sm-3">
-					<div class="disboxloop">
-						<a routerLink="/home/Deal_Details">
-							<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-							<div class="textdisdetaill">
-								<div class="discat">
-									% Discount
-								</div>
-								<div class="title">
-									10 % discount on Photography
-								</div>
-								<div class="offerdis">
-									<span>Exclusive discount on wedding photography</span>
-									<span>
-										<i class="material-icons">query_builder</i>
-
-										Expires on 31/12/2019
-									</span>
-								</div>
-							</div>
-						</a>
-					</div>
-
-				</div>
-				<div class="col-sm-3">
-					<div class="disboxloop">
-						<a routerLink="/home/Deal_Details">
-							<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-							<div class="textdisdetaill">
-								<div class="discat">
-									% Discount
-								</div>
-								<div class="title">
-									10 % discount on Photography
-								</div>
-								<div class="offerdis">
-									<span>Exclusive discount on wedding photography</span>
-									<span>
-										<i class="material-icons">query_builder</i>
-
-										Expires on 31/12/2019
-									</span>
-								</div>
-							</div>
-						</a>
+						<!--Deals End All-->
 					</div>
 				</div>
-				<div class="col-sm-3">
-					<div class="disboxloop">
-						<a routerLink="/home/Deal_Details">
-							<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-							<div class="textdisdetaill">
-								<div class="discat">
-									% Discount
-								</div>
-								<div class="title">
-									10 % discount on Photography
-								</div>
-								<div class="offerdis">
-									<span>Exclusive discount on wedding photography</span>
-									<span>
-										<i class="material-icons">query_builder</i>
-
-										Expires on 31/12/2019
-									</span>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="disboxloop">
-						<a routerLink="/home/Deal_Details">
-							<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-							<div class="textdisdetaill">
-								<div class="discat">
-									% Discount
-								</div>
-								<div class="title">
-									10 % discount on Photography
-								</div>
-								<div class="offerdis">
-									<span>Exclusive discount on wedding photography</span>
-									<span>
-										<i class="material-icons">query_builder</i>
-
-										Expires on 31/12/2019
-									</span>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="disboxloop">
-						<a routerLink="/home/Deal_Details">
-							<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-							<div class="textdisdetaill">
-								<div class="discat">
-									% Discount
-								</div>
-								<div class="title">
-									10 % discount on Photography
-								</div>
-								<div class="offerdis">
-									<span>Exclusive discount on wedding photography</span>
-									<span>
-										<i class="material-icons">query_builder</i>
-
-										Expires on 31/12/2019
-									</span>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="disboxloop">
-						<a routerLink="/home/Deal_Details">
-							<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-							<div class="textdisdetaill">
-								<div class="discat">
-									% Discount
-								</div>
-								<div class="title">
-									10 % discount on Photography
-								</div>
-								<div class="offerdis">
-									<span>Exclusive discount on wedding photography</span>
-									<span>
-										<i class="material-icons">query_builder</i>
-
-										Expires on 31/12/2019
-									</span>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="disboxloop">
-						<a routerLink="/home/Deal_Details">
-							<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-							<div class="textdisdetaill">
-								<div class="discat">
-									% Discount
-								</div>
-								<div class="title">
-									10 % discount on Photography
-								</div>
-								<div class="offerdis">
-									<span>Exclusive discount on wedding photography</span>
-									<span>
-										<i class="material-icons">query_builder</i>
-
-										Expires on 31/12/2019
-									</span>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="disboxloop">
-						<a routerLink="/home/Deal_Details">
-							<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-							<div class="textdisdetaill">
-								<div class="discat">
-									% Discount
-								</div>
-								<div class="title">
-									10 % discount on Photography
-								</div>
-								<div class="offerdis">
-									<span>Exclusive discount on wedding photography</span>
-									<span>
-										<i class="material-icons">query_builder</i>
-
-										Expires on 31/12/2019
-									</span>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div> -->
+				<!--Discount Start All-->
 			</div>
 			<!--Discount Main-->
 			<div id="discount" class="tab-pane fade">
-					<!--Deals Start-->
-				<div class="col-sm-3">
-						<div class="disboxloop" *ngFor="let deal of deals ;let i=index" (click)="goToNextPage(deal)">
-								<a *ngFor=" let i of  deal.vendorCategories | slice:0:1  ">
-									<img *ngIf="i.categories.imagePath" [src]="i.categories.imagePath" class="discountimg">
-									<img *ngIf="!i.categories.imagePath" src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" class="discountimg">
-								</a>
-								<div class="textdisdetaill">
-									<div class="discat">
-										{{deal.discount}} % Discount
+				<!--Deals Start-->
+				<div class="row" style="padding:5px;">
+					<div class="col-sm-3" *ngFor="let deal of deals ;let i=index">
+						<div class="disboxloop" (click)="goToNextPage(deal)">
+							<a *ngFor=" let i of  deal.vendorCategories | slice:0:1  ">
+								<img *ngIf="i.categories.imagePath" [src]="i.categories.imagePath" class="discountimg">
+								<img *ngIf="!i.categories.imagePath" src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg"
+								 class="discountimg">
+							</a>
+							<div class="textdisdetaill">
+								<div class="discat">
+									{{deal.discount}} % Discount
+								</div>
+								<div class="title">
+									{{deal.title}} discount on
+									<div *ngFor=" let i of  deal.vendorCategories | slice:0:1  ">
+										{{i.categories.categoryName}}
 									</div>
-									<div class="title">
-										{{deal.title}} discount on
-										<div *ngFor=" let i of  deal.vendorCategories | slice:0:1  ">
-											{{i.categories.categoryName}}
-										</div>
-									</div>
-									<div class="offerdis">
-										<span>{{deal.businessName}}</span>
-										<!-- <span>
+								</div>
+								<div class="offerdis">
+									<span>{{deal.businessName}}</span>
+									<!-- <span>
 											<i class="material-icons" *ngIf="deal.endDateString == null">query_builder</i>
 											End Date : N/A
 										</span>
@@ -342,54 +161,59 @@
 											<i class="material-icons" *ngIf="!deal.endDateString == null">query_builder</i>
 											{{deal.endDateString}}
 										</span> -->
-									</div>
 								</div>
 							</div>
+						</div>
+					</div>
 				</div>
+
 				<!--Deals End-->
 			</div>
 
 			<!--Deals Main Start-->
 			<div id="promotion" class="tab-pane fade">
-				<div class="col-sm-3">
-						<div class="disboxloop" *ngFor="let mydeal of all_deals ;let i=index" (click)="goToNextPage(mydeal)">
-								<a *ngIf="mydeal.dealsImages.length == 0; else elseBlock">
-									<img  src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" class="discountimg">
+			<div class="row" style="padding:5px;">
+					<div class="col-sm-3" *ngFor="let mydeal of all_deals ;let i=index">
+						<div class="disboxloop" (click)="goToNextPage(mydeal)">
+							<a *ngIf="mydeal.dealsImages.length == 0; else elseBlock">
+								<img src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" class="discountimg">
+							</a>
+							<ng-template #elseBlock>
+								<a *ngFor="let img of  mydeal.dealsImages | slice:1:2 ">
+									<img [src]="img.path" class="discountimg">
 								</a>
-								<ng-template #elseBlock>
-									<a *ngFor="let img of  mydeal.dealsImages | slice:1:2 ">
-										<img  [src]="img.path" class="discountimg">
-									</a>
-								</ng-template>
-								<div class="textdisdetaill">
-									<div class="discat">
-										{{mydeal.discount}} % Discount
-									</div>
-									<div class="title">
-										{{mydeal.conditions}} 
-									</div>
-									<div class="offerdis">
+							</ng-template>
+							<div class="textdisdetaill">
+								<div class="discat">
+									{{mydeal.discount}} % Discount
+								</div>
+								<div class="title">
+									{{mydeal.conditions}}
+								</div>
+								<div class="offerdis">
+									<span>
+										{{mydeal.title}}
+									</span>
+									<span>
+										<i class="material-icons">query_builder</i>
+										Start Date : {{mydeal.startDateString}}
+									</span>
+									<span>
+										<i class="material-icons" *ngIf="mydeal.endDateString == ''; else endBlock">query_builder</i>
+										End Date : N/A
+									</span>
+									<ng-template #endBlock>
 										<span>
-											{{mydeal.title}}
+											<i class="material-icons">query_builder</i>
+											End Date : {{mydeal.endDateString}}
 										</span>
-										<span>
-											<i class="material-icons" >query_builder</i>
-												Start Date : {{mydeal.startDateString}}
-											</span>
-										<span>
-											<i class="material-icons" *ngIf="mydeal.endDateString == ''; else endBlock">query_builder</i>
-											End Date : N/A
-										</span>
-										<ng-template #endBlock>
-											<span>
-												<i class="material-icons">query_builder</i>
-												End Date : {{mydeal.endDateString}}
-											</span>
-										</ng-template>
-									</div>
+									</ng-template>
 								</div>
 							</div>
+						</div>
+					</div>
 				</div>
+
 			</div>
 			<!--Deasl Main End-->
 

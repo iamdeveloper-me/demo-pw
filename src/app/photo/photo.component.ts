@@ -13,7 +13,7 @@ export class PhotoComponent implements OnInit {
     item:any = [];
 col: any = []
 item_tags:any = []
-
+titleSet:any;
         categories:any = [];
 
     category:any
@@ -85,6 +85,7 @@ item_tags:any = []
       // var grade:string = str; 
        switch(str) { 
           case "title": { 
+            this.titleSet.push(this.photo_search_param.searchQuery)
             this.find_photo();
            break; 
           } 

@@ -34,7 +34,7 @@ export class BannerComponent implements OnInit {
   configLocation = {
     displayKey: "name", //if objects array passed which key to be displayed defaults to description
     limitTo: 20,
-    placeholder:'All Location',
+    placeholder:'All Locations',
   };
  
   ngOnInit() {

@@ -31,6 +31,7 @@ export class DetailpageComponent implements OnInit {
   private url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails/'
   responce_review = true;
   responce_thanks = false;
+  showLoader: boolean = true;
   sliderImgaes: any = [];
   trading_hours_popups:any= {isMondayOpen: ''};
   report= false;
@@ -50,6 +51,8 @@ export class DetailpageComponent implements OnInit {
   vendorVideo_details:any = [];
   CatName;
   reviewButtonLabel= 'Show More';
+  dealButtonLabel= 'Show More';
+  vendorLocationsButtonLabel = 'Show More'
   @ViewChild('albumgallarypopup') albumgallarypopup: ElementRef;
   @ViewChild(AgmMap) map: AgmMap;
   @ViewChild('gmapInput') gmapInput: ElementRef;
@@ -71,25 +74,42 @@ export class DetailpageComponent implements OnInit {
       console.log( this.user_login_token )
   }
   ngOnInit() {
-    $.getScript('./assets/js/prism.min.js');
+    //setTimeout(function () { this.showLoader = true; }, 500);
     $.getScript('./assets/js/owljsor.js');
     $.getScript('./assets/js/curosselfun.js');
     $.getScript('./assets/js/detailpagescroll_active.js');
-    
     $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
-
     $("#Vediogallarypopup").on('hidden.bs.modal', function (e) {
       $("#Vediogallarypopup iframe").attr("src", $("#Vediogallarypopup iframe").attr("src"));
     });
-    this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
-    
-  
-    // console.log( this.vendorDetails);
+    $.getScript('./assets/js/prism.min.js');
 
+   
+    this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
+    console.log(this.vendorDetails)
+    // setTimeout(function () { 
+    // alert("dfdsff") 
+    // this.showLoader = false;}, 2900);
+    this.vendorDetails.reviews.forEach((element,index) => {
+      if(index<=2){ element.visible=true;this.reviewButtonLabel='Show More'; } 
+            else { element.visible=false; }
+            
+    });
+    this.vendorDetails.deals.forEach((element,index) => {
+      if(index<=2){ element.visible=true; 
+        this.dealButtonLabel='Show More';
+      }else{  
+        element.visible=false; }
+    });
+    this.vendorDetails.vendorLocations.forEach((element,index) => {
+      if(index<=2){ element.visible=true; 
+        this.vendorLocationsButtonLabel='Show More';
+      }else{ element.visible=false; }
+    });
     for (let cat of this.vendorDetails.vendorCategories) {
       this.CatName = cat.categories.categoryName;
       console.log(this.CatName)
-  }
+    }
         //Meta Tags
       this.title.setTitle(this.vendorDetails.nameOfBusiness + ` , ` + this.vendorDetails.district.name + ` , ` + this.CatName + ` | Perfect Weddings` );   
       this.meta.addTag({name:'description',content:'Team Contact | Perfect Weddings'});  
@@ -108,7 +128,8 @@ export class DetailpageComponent implements OnInit {
         vendor.albumImages.forEach(img => {
         const data = {
             "name" : vendor.albumName,
-            "image" : img.path
+            "image" : img.path,
+            "likeCounts": img.likeCounts
           }
           this.sliderImgaes.push(data);
         });
@@ -120,9 +141,12 @@ export class DetailpageComponent implements OnInit {
       this.vendorDetails.portfolios.forEach(dxg => {
         const data = {
             "name" : "PORTFOLIO",
-            "image" : dxg.path
+            "image" : dxg.path,
+            "likeCounts": dxg.likeCounts
           }
           this.sliderImgaes.push(data);
+          
+          
         });
 
         console.log(this.sliderImgaes)
@@ -136,20 +160,15 @@ export class DetailpageComponent implements OnInit {
       // this.portfolioImages.push(element.files.path);
          this.portfolioImages.push(element.path);
     });
-   // debugger;
-    this.showHideReviews();
-    
-    this.showHideevents(5);
+
   }
-classAdd(item){
-    //  console.log(this.colors)
+  classAdd(item){
       
       setTimeout(() => {
         $('.fancybox-toolbar').append('<a class="fancybox-button" title="Share" href="whatsapp://send?text=Text to send withe message: http://13.59.229.254"><i class="material-icons">share</i></a><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')  
     }, 50);
   }
   review = { rating: '', comments: "", rateVendorID: 'a96129c3-8861-43aa-8bc9-1c155f1ffd79' }
- 
   putReview(review) {
    
     
@@ -177,21 +196,18 @@ classAdd(item){
 
   
   }
- 
   setLightboxImages(pi,ev){
     this.lightBoxImages=[];
     pi.albumImages.forEach(element => {
         this.lightBoxImages.push(element.path);  
     });
   }
-  
   goToPhotogallary(vendorDetails){
     sessionStorage.setItem('Vendorimages',JSON.stringify(this.vendorDetails.albums));
     this.router.navigateByUrl('/home/Photogallary');
     // this.router.navigate(['home/Photogallary'])
     
   }
- 
   getSimilarVendors(){
     let CatId=[];
     this.vendorDetails.vendorCategories.forEach(element => {
@@ -231,41 +247,73 @@ classAdd(item){
   showHideReviews(){
 
     this.vendorDetails.reviews.forEach((element,index) => {
-    if(this.reviewButtonLabel==='Show More')
-    {
-    element.visible=true;
-    }else{
-    if(index<=1){
-    element.visible=true;
-    } else {
-    element.visible=false;
-    }
-    }
+        if(this.reviewButtonLabel=='Show More')
+        {
+              element.visible=true;
+        }else{
+              if(index<=2){
+                   element.visible=true;
+              } else {
+                   element.visible=false;
+              }
+        }
     });
-    if(this.vendorDetails.reviews.filter(r=>r.visible==true).length>2){
-    this.reviewButtonLabel = 'Show Less';
+    if(this.vendorDetails.reviews.filter(r=>r.visible==true).length>3){
+      this.reviewButtonLabel = 'Show Less';
+
     }else{
-    this.reviewButtonLabel = 'Show More';
+      this.reviewButtonLabel = 'Show More';
     }
     
-    }
-  
-
-  showHideevents(count){
-    // alert("hi")
-    console.log(this.vendorDetails.deals)
+  }
+  showHideevents(){
+ 
      this.vendorDetails.deals.forEach((element,index) => {
-       element.visible=false;
-       if(count>0 ){
-         if(index<=4){
-         element.visible=true;}
-       }else{
-         element.visible=true;
-       }
+      if(this.dealButtonLabel=='Show More')
+      {
+            element.visible=true;
+      }else{
+            if(index<=4){
+                 element.visible=true;
+            } else {
+                 element.visible=false;
+            }
+      }
      });
 
+     if(this.vendorDetails.deals.filter(r=>r.visible==true).length>3){
+      this.dealButtonLabel = 'Show Less';
+
+    }else{
+      this.dealButtonLabel = 'Show More';
     }
 
+  }
+  showHidetrading_hours(){
+ alert("vfdsg")
+    this.vendorDetails.vendorLocations.forEach((element,index) => {
+     if(this.vendorLocationsButtonLabel=='Show More')
+     {
+           element.visible=true;
+     }else{
+           if(index<=1){
+                element.visible=true;
+           } else {
+                element.visible=false;
+           }
+     }
+    });
 
+    if(this.vendorDetails.vendorLocations.filter(r=>r.visible==true).length>3){
+     this.vendorLocationsButtonLabel = 'Show Less';
+
+   }else{
+     this.vendorLocationsButtonLabel = 'Show More';
+   }
+
+  }
 }
+
+
+
 

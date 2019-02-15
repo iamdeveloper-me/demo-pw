@@ -108,7 +108,8 @@ export class DetailpageComponent implements OnInit {
         vendor.albumImages.forEach(img => {
         const data = {
             "name" : vendor.albumName,
-            "image" : img.path
+            "image" : img.path,
+            "likeCounts": img.likeCounts
           }
           this.sliderImgaes.push(data);
         });
@@ -120,7 +121,8 @@ export class DetailpageComponent implements OnInit {
       this.vendorDetails.portfolios.forEach(dxg => {
         const data = {
             "name" : "PORTFOLIO",
-            "image" : dxg.path
+            "image" : dxg.path,
+            "likeCounts": dxg.likeCounts
           }
           this.sliderImgaes.push(data);
         });

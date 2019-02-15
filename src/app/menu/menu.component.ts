@@ -79,7 +79,7 @@ export class MenuComponent implements OnInit {
             this.cservice.login(this.usercouple).subscribe((data)=> {
                                 if (data.statusText == "OK" && data.json().role =="Vendors" ) {
                                     this.typeSuccess();
-                                    //localStorage.setItem('userId',data.json().id);
+                                    localStorage.setItem('userId',data.json().id);
                                     localStorage.setItem('userToken',data.json().auth_token);
                                     sessionStorage.setItem('userToken',data.json().auth_token);
                                     this.router.navigate(['../vendor/dashboard'])

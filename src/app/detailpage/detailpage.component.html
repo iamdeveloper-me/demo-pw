@@ -1,6 +1,10 @@
-<div id="wrappervendor" class="">
+<!-- <div *ngIf='showLoader' class="loadingdiv">
+    <img src="../../assets/img/ajax-loader.gif"/>
+    <h1>Loading Please Wait...</h1>
+</div> -->
+      <div id="wrappervendor" class="">
   <app-menu></app-menu>
-  <div class="container mobnopadd ipad100">
+        <div class="container mobnopadd ipad100">
 
     <div class="col-sm-12 detail_page">
 
@@ -14,14 +18,14 @@
       </div>
     </div>
     <div class="col-sm-9 mobnopadd imgbannerboxcontainer">
+
       <!-- carosel slider -->
       <div class="boxLightStyles martop0px imgbannerbox">
         <button class="closepopup"><i class="material-icons">clear</i></button>
         <div id="detailpagecarousel" class="owl-carousel detailpagecarousel owl-loaded owl-drag gallery">
           <div class="item" *ngFor='let i of sliderImgaes; let pos = index'>
             <a data-fancybox="gallery" title="{{i.name}}" [attr.data-caption]="i.name" [href]="i.image" (click)="classAdd(i)">
-              <!-- <img class="owl-lazy" src='https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg'  style="height:400px ; width:200px" >  -->
-              <img class="owl-lazy" [src]='i.image' style="height:400px ; width:900px" alt="">
+                <img class="owl-lazy" [src]='i.image' style="height:400px ; width:900px" alt="">
             </a>
 
             <div class="namecontainer">{{i.name}}</div>
@@ -35,6 +39,7 @@
         </div>
       </div>
       <!-- carosel slider end -->
+
       <!-- onlymobilesection -->
       <div class="onlymobilesection boxLightStyles">
         <div class="large_text text-center">
@@ -196,17 +201,6 @@
               </span>
             </div>
             <div class="clearfix"></div>
-            <!-- <div class="detailtabclick detailpri"  *ngFor='let service of  vendorDetails?.businessServices | slice:0:1'>
-              <table class="tabledesignwork">
-                <tr *ngFor='let customF of  service.customFields  '>
-                  <th>{{customF.displayText}}</th>
-                  <td>{{customF.fieldValue}}</td>
-                </tr>
-              </table>
-            </div> -->
-            <!-- <div class="clearfix"></div>
-            <div class="text-center showdetail">Show More</div>
-            <div class="text-center showless" style="display: none;">Show less</div> -->
           </div>
         </div>
         <a id="overview" class="tiktikmik"></a>
@@ -231,7 +225,6 @@
         </div>
       </div>
 
-      <!-- -->
       <a id="gallery" class="tiktikmik"></a>
       <!-- Portfolio & Albums -->
       <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection gallery" *ngIf="portfolioAndAlbumImagesTotal > 0">
@@ -287,7 +280,6 @@
           </div>
         </div>
       </div>
-
       <!-- end Portfolio & Albums -->
 
       <!-- mobile  -->
@@ -338,7 +330,7 @@
         <div class="left_box_section overviewsection tradinghours onlymobilesection">
           <div class="branchrow row tradinghours" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:1 '>
             <div class="large_subtext detailtra text-center  col-12">
-              Trading Hours
+              Trading Hourssssssssss
               <div class="branchdefaulttable in">
                 <table class="banchtable text-center">
                   <tr>
@@ -418,44 +410,42 @@
 
       <div class="clearfix"></div>
       <a id="review" class="tiktikmik"></a>
-      <!-- start Reviews form -->
-            <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection" *ngIf="vendorDetails.reviews.length > 0">
-              <div class="vp_review_txt_title large_subtext "> Reviews
-                 
-              </div>
-              <div class="reviewrow" style="height:100px;">
-                <div class="ratingtexthead"><strong>{{vendorDetails.averageRating}}</strong></div>
-                <div class="reveiwsecondhead">
-                <div class="rating_star" style="text-align: left;">
-                  <rating [(ngModel)]="vendorDetails.averageRating" readonly="isReadonly"></rating>
-                </div>
-               ({{vendorDetails.reviews.length}} REVIEWS) 
-               <span style="cursor:pointer" *ngIf='vendorDetails.reviews.length>1' (click)='showHideReviews()'>{{reviewButtonLabel}}</span>
-                </div>
-              </div>
+            <!-- start Reviews form -->
+                <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection" *ngIf="vendorDetails.reviews.length > 0">
+                  <div class="vp_review_txt_title large_subtext "> Reviews    </div>
+                  <div class="reviewrow" style="height:100px;">
+                    <div class="ratingtexthead"><strong>{{vendorDetails.averageRating}}</strong></div>
+                    <div class="reveiwsecondhead">
+                    <div class="rating_star" style="text-align: left;">
+                      <rating [(ngModel)]="vendorDetails.averageRating" readonly="isReadonly"></rating>
+                    </div>
+                    ({{vendorDetails.reviews.length}} REVIEWS) 
+                    <span style="cursor:pointer" *ngIf='vendorDetails.reviews.length>1' (click)='showHideReviews()'>{{reviewButtonLabel}}</span>
+                    </div>
+                  </div>
 
-              <div *ngFor='let rev of vendorDetails.reviews'>
-                <div class="reviewrow" *ngIf='rev.visible'>
-                  <div>
-                    <img src="../../assets/img/noImg.png" class="ratingimg" />
-                    <strong style="font-weight:bold;">{{rev.sendByFirstName}} {{rev.sendByLastName}}</strong>
-                    <br/>
-                    <span class="reviewedtext">
-                      <i class="material-icons">chat_bubble</i>
-                      {{rev.reviewStatus}} reviews
-                    </span>
+                  <div *ngFor='let rev of vendorDetails.reviews'>
+                    <div class="reviewrow" *ngIf='rev.visible'>
+                      <div>
+                        <img src="../../assets/img/noImg.png" class="ratingimg" />
+                        <strong style="font-weight:bold;">{{rev.sendByFirstName}} {{rev.sendByLastName}}</strong>
+                        <br/>
+                        <span class="reviewedtext">
+                          <i class="material-icons">chat_bubble</i>
+                          {{rev.reviewStatus}} reviews
+                        </span>
+                      </div>
+                      <div>
+                        <span [innerHTML]='ratingmodel.printStars(rev.rating)'></span>
+                        {{rev.dateAddedOnString}}
+                      </div>
+                      <p class="font14px"> {{rev.comments}}</p>
+                    </div>
                   </div>
-                  <div>
-                    <span [innerHTML]='ratingmodel.printStars(rev.rating)'></span>
-                    {{rev.dateAddedOnString}}
+                  <div class="text-center">
+                    <button data-target="#Review_vendor" data-toggle="modal" class="btn pinkbg whitetext">Review this vendor</button>
                   </div>
-                  <p class="font14px"> {{rev.comments}}</p>
                 </div>
-              </div>
-              <div class="text-center">
-                <button data-target="#Review_vendor" data-toggle="modal" class="btn pinkbg whitetext">Review this vendor</button>
-              </div>
-            </div>
             <!-- End Reviews form -->
 
             <div class="clearfix"></div>
@@ -463,16 +453,9 @@
             <!-- Wedding Deals & Discount -->
             <div class="boxLightStyles hideShowMeNow box_section_light dealsection" *ngIf="vendorDetails?.dealsCount > 0">
               <div class="vp_review_txt_title large_subtext">Wedding Deals & Discount ({{vendorDetails?.deals.length}})
-
-
-                <span *ngIf='vendorDetails.deals.length > 5' class="reviewmore" (click)='showHideevents(0)'>VIEW ALL</span>
-                <span class="reviewless" (click)='showHideevents(5)'>Show Less</span>
+                  <span style="cursor:pointer" *ngIf='vendorDetails.deals.length>1' (click)='showHideevents()'>wew{{dealButtonLabel}}</span>
               </div>
               <div class="row dealsinner">
-                <!-- <div class="col-sm-2 text-center dealhead pink" *ngIf='vendorDetails?.discounts'>
-            {{vendorDetails?.discounts.discount}}% {{vendorDetails?.discounts.title}}
-          </div> -->
-
                 <div style="width: 100%;" *ngIf='vendorDetails?.discounts'>
                   <div class="col-sm-10">
                     <h1 class="pink">{{vendorDetails?.discounts.title}}</h1>
@@ -494,11 +477,10 @@
                 </div>
 
               </div>
-              <div *ngFor='let deal of vendorDetails?.deals;let i=index'>
-                <div class="row dealsinner" *ngIf='deal.visible'>
+              <div *ngFor='let deal of vendorDetails?.deals ;let i=index'>
+                <div class="row dealsinner" *ngIf='deal.visible' (click)="deal_Detail(deal)" >
                   <div>
                     <div class="col-sm-3">
-                      <button (click)="deal_Detail(deal)">deal view </button>
                       <div>$800.00 Value</div>
                       <div>Promo Code: <strong>FES8220</strong></div>
                     </div>
@@ -607,7 +589,6 @@
                 </div>
                 <div class="vp_mainDetails_mini_rating text-center">
                   <div class="large_subtext" *ngIf="vendorDetails?.averageRating > 0 ">
-
                     <div class="rating_star">
                       <rating [(ngModel)]="vendorDetails.averageRating" readonly="isReadonly"></rating>
                     </div>
@@ -643,9 +624,7 @@
                       </button>
                       <div class="featurehead">Bookmark</div>
                     </div>
-
                   </div>
-
                   <div class="callinfo" style="display:none" *ngFor='let phone of  vendorDetails?.vendorLocations | slice:0:1'>
                     <strong>Contact Number</strong><br />
                     <!-- +91-99999 12345// -->
@@ -692,13 +671,17 @@
 
                 </div>
               </div>
-              <!-- trading hour -->
+
+
+
+
+              <!-- trading hour desktop view -->
               <div class="left_box_section contactsection tradinghours">
                 <div class="branchrow row tradinghours" *ngIf="vendorDetails?.vendorLocations.length > 0 ">
                   <div *ngFor='let loc of vendorDetails?.vendorLocations  | slice:0:1 '>
-                    <div class="large_subtext detailtra text-center  col-12">
+                    <div class="large_subtext detailtra text-center  col-12" *ngIf='loc.visible'>
                       Trading Hours
-                      <div class="branchdefaulttable in">
+                      <!-- <div class="branchdefaulttable in">
                         <table class="banchtable text-center">
                           <tr>
                             <th><strong>Mon</strong></th>
@@ -708,9 +691,9 @@
                             <td><span class="greentext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
                           </tr>
                         </table>
-                      </div>
+                      </div> -->
                       <div class="clearfix"></div>
-                      <div class="branchdetailtable">
+                      <div class="branchdetailtable markshow">
                         <table class="tabledesignwork text-center">
                           <tr *ngIf='loc.isMondayOpen'>
                             <th><strong>Mon</strong></th>
@@ -826,22 +809,23 @@
                           </tr>
                         </table>
                       </div>
-                      <div class="text-center showdetail barnchtableshow">Show More</div>
-                      <div class="text-center showless barnchtablenone" style="display: none;">Show less</div>
                     </div>
-                    <!-- <div class="text-center col-12">{{loc.address}}, {{loc.suburb.name}}: </div>
-                    <div class="clearfix"></div>
-                    <div class="branchAddress text-center col-12">
-                      {{loc.districts.name}},{{loc.country.countryName}}
-                    </div> -->
-
                   </div>
+                  <span style="cursor:pointer" *ngIf='vendorDetails?.vendorLocations.length>1' (click)='showHidetrading_hours()'>{{vendorLocationsButtonLabel}}</span>
+                  <!-- <div class="text-center showdetail barnchtableshow ">Show More</div>
+                  <div class="text-center showless barnchtablenone" style="display: none;">Show less</div> -->
                 </div>
                 <div class="branchrow row tradinghours" *ngIf="vendorDetails?.vendorLocations.length == 0 ">
                   NO trading hours available
                 </div>
               </div>
               <!-- End trading hour -->
+
+
+
+
+
+
               <!-- other branches  -->
               <div class="left_box_section contactsection" *ngIf="vendorDetails?.vendorLocations.length > 1">
                 <div class="large_subtext text-center  col-12">
@@ -909,8 +893,6 @@
             </div>
           </div>
         </div>
-
-
 
         <div class="modal fade" id="address" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
@@ -984,7 +966,7 @@
               </div>
 
 
-              <div class="modal-body">
+              <!-- <div class="modal-body">
 
                 <form (ngSubmit)="putReview(review)" #f="ngForm">
                   <div class="vp_review_txt">
@@ -1011,9 +993,8 @@
                     </div>
                   </div>
                 </form>
-              </div>
+              </div> -->
               <div class="col-sm-12">
-                {{vendorDetails?.nameOfBusiness}}
                 <div *ngIf="responce_review  == true ">
                   <form (ngSubmit)="putReview(review)" #f="ngForm">
                     <div class="vp_review_txt">
@@ -1204,3 +1185,4 @@
         <app-foot></app-foot>
       </div>
       <router-outlet></router-outlet>
+

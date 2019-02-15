@@ -9,6 +9,7 @@ import { MapsAPILoader, AgmMap } from '@agm/core';
 import { GoogleMapsAPIWrapper } from '@agm/core/services';
 import { utilities } from 'app/utilitymodel';
 import { Meta, Title } from '@angular/platform-browser';
+import { ContactUsVM } from '../advertise/advertise.component';
 declare var google: any;
 
 interface Marker {lat: number;lng: number;label?: string;draggable: boolean;}
@@ -27,7 +28,8 @@ interface Location {
 export class DetailpageComponent implements OnInit {
   lat: number = 51.678418;
   lng: number = 7.809007;
-  
+  MessagesVMObj  = new MessagesVM();
+  contactInfoObj: ContactUsVM;
   private url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails/'
   responce_review = true;
   responce_thanks = false;
@@ -46,6 +48,7 @@ export class DetailpageComponent implements OnInit {
   lightBoxImages=[];
   similarVendors_length;
   user_login_token;
+  userId;
   currentDate
   vendorVideo_details:any = [];
   CatName;
@@ -63,7 +66,7 @@ export class DetailpageComponent implements OnInit {
      private title : Title
    ) { 
       this.ratingmodel = new ratingStars();
-
+      this.contactInfoObj = new ContactUsVM();
       var dateObj = new Date();
       this.currentDate  = dateObj.getDay()  //months from 1-12
       console.log(this.currentDate )
@@ -71,6 +74,9 @@ export class DetailpageComponent implements OnInit {
       console.log( this.user_login_token )
   }
   ngOnInit() {
+
+
+
     $.getScript('./assets/js/prism.min.js');
     $.getScript('./assets/js/owljsor.js');
     $.getScript('./assets/js/curosselfun.js');
@@ -266,6 +272,48 @@ classAdd(item){
 
     }
 
+    message(msg){
+      this.user_login_token = sessionStorage.getItem('userToken');
+      this.userId = localStorage.getItem('userId'); 
+      msg.value.sendToUserId =  localStorage.getItem('userId'); 
+      console.log(msg.value)
+      if (!sessionStorage.getItem('userToken')) {
+        this.toastr.error('Login To Give Your Message');
+        msg.resetForm();
+     } 
+        else
+     {
+        this.apiService.postData(this.apiService.serverPath+'Messages/Post',msg.value).subscribe(data => {
+        console.log(data)
+        msg.resetForm();
+        this.toastr.success(data.message);
+    },error=>{
+      this.toastr.error(error._body);
+      // this.toastr.error(error);
+    })
+  }
+}
+
+contact(list){
+  this.apiService.postData(this.apiService.serverPath+'Home/contactus',list.value).subscribe(data => {
+    this.toastr.success(data.message);
+    list.resetForm();
+  },
+    error => {
+     console.log(error)
+     this.toastr.error(error._body);
+    }
+  )
+}
 
 }
 
+export class MessagesVM {
+  sendByFirstName: string;
+  sendByLastName: string;
+  sendByEmail: string;
+  subject:	string;
+  message:	string;
+  sendToUserId:	string;
+  isFromAdmin:boolean = false;
+}

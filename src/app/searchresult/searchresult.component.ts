@@ -1,33 +1,29 @@
 
-import { Pipe, PipeTransform , OnInit, Component, HostListener } from '@angular/core';
+import { Pipe, PipeTransform , OnInit, Component, HostListener, ViewChild, ElementRef } from '@angular/core';
 import {} from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { MasterserviceService } from 'app/ngservices/masterservice.service';
 import {RatingModule, Rating} from 'ngx-rating';
 import { CustompipePipe } from 'app/custompipe.pipe';
 import { CategoryPipePipe } from 'app/category-pipe.pipe';
 import { apiService } from 'app/shared/service/api.service';
-import { filterParam } from 'app/vendorcard/vendorcard.component';
+import { filterParam} from 'app/vendorcard/vendorcard.component';
 import { SlidesOutputData } from 'ngx-owl-carousel-o';
-
 import { toBase64String } from '@angular/compiler/src/output/source_map';
-
 import{ratingStars} from '../ngservices/ratingstars';
+import { setTimeout } from 'timers';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
+import { forEach } from '@angular/router/src/utils/collection';
+import { ToastrService } from 'ngx-toastr';
 @Pipe({ name: 'defaultImage' })
 export class PP implements PipeTransform {
   transform(value: string, fallback: string, forceHttps: boolean = false ): string {
     let image = "";
     if (value) { image = value; } else { image = fallback; }
-
-    if (forceHttps) {
-      if (image.indexOf("https") == -1) {
-        image = image.replace("http", "https");
-      }
-    }
-
+    if (forceHttps) { if (image.indexOf("https") == -1) {  image = image.replace("http", "https"); } }
     return image;
   }
-  
 }
 @Component({
   selector: 'app-searchresult',
@@ -43,55 +39,83 @@ export class SearchresultComponent implements OnInit {
   activeSlides: SlidesOutputData;
   slidesStore: any[];
   collection = [];
+  paginations=[];
   objSearchFilter: filterParam
   locations:any;
   categories:any;
   filters: any;
-
+  SelectedLocation:any;
+  
+  @ViewChild('servicefilters') servicefilters:SafeHtml;
   loading=false;
+  showALlCategories:boolean;
+  showAllLocation:boolean=false;
   selectedLocationsCount = 0;
   objSearchlistvm: SearchListingVM;
   objSearchResultItems:any;
   locationFilterParam:string='';
   categoryFilterParam:string='';
   pageNumber=0;
-
+  priceRange: any;
   disableLoadingButton=true;
   blankImg='../../assets/img/noImg.png';
   basicPlan:number;
-   ratingmodel: ratingStars
-  constructor(public _route:Router, public _activeRoute: ActivatedRoute, 
+  isTostPopulated=false;
+  userRatingArray:any;
+  dealsAndOfferArray:any;
+  featuredListingArray:any;
+  SelectedCategory:any;
+  ratingmodel: ratingStars;
+  Honeymoon_detail:any = {};
+    constructor(private masterservice: MasterserviceService,public _route:Router, public _activeRoute: ActivatedRoute, 
     private _masterservice: MasterserviceService, private api: apiService,
-    ) {
-      this.ratingmodel = new ratingStars();  
-    this.basicPlan = parseInt(localStorage.getItem('basic-plan'))
-    this._activeRoute.params.subscribe(res=>{
-      this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
-      this.collection=[];
-      this.objSearchlistvm = new SearchListingVM();
-      this.objSearchlistvm.categoryId.push(this.objSearchFilter.catId);
-      this.objSearchlistvm.districtId.push(this.objSearchFilter.locationId);
-      this.paginate(this.objSearchFilter.pageSize)
-    })
+    public toastr: ToastrService) {
+      debugger;
+      this._activeRoute.params.subscribe((params) => {
+        this.initializeResult();   
+     });
+     //honeymoon page code
+     this.Honeymoon_detail= JSON.parse(sessionStorage.getItem('Honeymoon_detail'));
 
+     console.log(this.Honeymoon_detail) 
+      
+  }
+  initializeResult(){
+    this.generateStaticArray();
     this.objSearchFilter=new filterParam();
-
-    if(this._activeRoute!=undefined){
-      this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
-    }
+    this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
+    
+    this.objSearchlistvm = new SearchListingVM();
+    this.objSearchlistvm.searchInDreamLocation = this.objSearchFilter.isDreamLocation;
+    if(this.objSearchFilter.locationId != 0){
+    this.objSearchlistvm.districts.push(this.objSearchFilter.locationId);}
     this.getLocations();
     this.getCategories();
+    this.ratingmodel = new ratingStars();
+    console.log(JSON.stringify(this.categories));
+    this.basicPlan = parseInt(localStorage.getItem('basic-plan'))
     this.getFilters();
-    this.getSearchFilterResult();
+ //   this.getSearchFilterResult();
+ console.log(JSON.stringify(this.categories));
+ if(this.categories[0].services[0].customFields[0].customFieldOptionList.length == 1){
+  this.categories[0].services[0].customFields[0].customFieldOptionList.forEach(element => {element['isSelect'] = true});
+ }else{
+  this.categories[0].services[0].customFields[0].customFieldOptionList.forEach(element => {element['isSelect'] = false});
+ }
+
+
+   
+ 
+
   }
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
   }
   getCategoryName(i):string{
-    if(this._activeRoute.snapshot.params['id']!= ""){
-      return this._activeRoute.snapshot.params['id'];
+    if(this.SelectedCategory){
+      return this.SelectedCategory.categoryName;
     }else{
-    return i.vendorCategories.filter(c=>c.isPrimary==true)[0].categories.categoryName;
+      return i.vendorCategories[0].categories.categoryName;
     }
   }
   ngOnInit() {   
@@ -101,7 +125,7 @@ export class SearchresultComponent implements OnInit {
   $.getScript('./assets/register/js/bootstrap.min.js');
   $.getScript('./assets/jss/core/popper.min.js');
   $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
-  $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');
+//  $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');
   $.getScript('./assets/jss/plugins/chartist.min.js');
   $.getScript('./assets/jss/plugins/bootstrap-notify.js');
   $(".slider_use_anather_compo").hide();
@@ -117,43 +141,70 @@ export class SearchresultComponent implements OnInit {
     this._masterservice.getAllLocation().subscribe(res=>{
       this.locations=res;
       if(this.objSearchFilter.locationId>0){
-        if(this.objSearchFilter.locationId>0){
-          this.locations=this.locations.filter(l=>l.id==this.objSearchFilter.locationId);
           this.locations.forEach(element => {
-            element.isSelect=false;
+            if(element.districtId== this.objSearchFilter.locationId){
+              element.isSelect=true;
+              this.SelectedLocation = element;
+            }else{
+          element.isSelect=false;}
           });
+        }else{
+          this.showAllLocation = true;
         }
-      }
     });
   }
   getCategories(){
-     this._masterservice.getAllCategories().subscribe(res=>{
-      this.categories=res;
-      if(this.objSearchFilter.catId>0){
-        this.categories.forEach(element => {
-          if(element.categoryId==this.objSearchFilter.catId){
-          element.isSelect=true;}else{element.isSelect=false;}
-        });
-      }
-    })    
+  
+    this.categories = JSON.parse(localStorage.getItem('catlist'));
+    console.log(this.categories);
+    if(this.objSearchFilter.catId>0){
+      this.categories.filter(c=>c.categoryId==this.objSearchFilter.catId)[0].isSelect=true;
+      this.SelectedCategory = this.categories.filter(c=>c.isSelect==true)[0];
+      this.showALlCategories=false;
+    }
+    this.categories[0].services[0].customFields[0].customFieldOptionList.forEach(element => {
+      element.isSelect = false;
+    });
+    this.collection=[];
+    this.paginate(this.objSearchFilter.pageSize);  
+    this.showALlCategories=false;
+  }
+  clearFilters(){
+    
   }
   getFilters(){
     let filter_paramArray=[];
-    filter_paramArray.push(this.objSearchFilter.catId);
+   // this.selectCategory('id',this.objSearchFilter.catId);
+    if(this.SelectedCategory!=null){
+    filter_paramArray.push(this.SelectedCategory.categoryId);}
     this._masterservice.getFilters(filter_paramArray).subscribe(res=>{
       this.filters=res;
-      if(this.filters.length>0){
-      this.filters.services.forEach(element => {
-        element.isSelect=false;
+      console.log(this.filters)
+      if(this.filters.services!=null){
+        if(this.filters.services.length == 1){
+          this.filters.services.forEach(element => { element.isSelect=true; });
+        }else{
+          this.filters.services.forEach(element => { element.isSelect=false; });
+        }
+      this.filters.filters.forEach(element => { element.isSelect=false;});
+     
+      if(this.filters.filters){
+        debugger;
+      this.priceRange = this.filters.filters[0].customFieldOptionList;
+      this.priceRange.forEach(element => {
+        element.isSelect = false;
       });
+    }
+      
     }
     },error=>{
       console.log(error);
     })
+
   }
   getSearchFilterResult(){
-    if(this.filters){
-    if(this.filters.services!=null){
+    if(this.filters && this.filters.filters!=null){
+    if(this.filters.filters.services!=null){
     this.filters.services.forEach(element => {
       if(element.isSelect){
         this.objSearchlistvm.serviceId.push(element.servicesId);
@@ -173,31 +224,14 @@ export class SearchresultComponent implements OnInit {
       this.objSearchlistvm.customField = new FieldSearchVM();
     });
   }
-  if(this.categories){
-    this.categories.forEach(element => {
-      if(element.isSelect){
-        this.objSearchlistvm.categoryId.push(element.categoryId);
-      }
-    });
-  }
     this.locations.forEach(element => {
       if(element.isSelect){
-        this.objSearchlistvm.districtId.push(element.districtId)
+        this.objSearchlistvm.districts = this.locations.filter(l=>l.isSelect==true);
       }else{
         element.isSelect=false;
       }
     });
   }
-
-  this.loading=true;
-  this.collection=[];
-  this.pageNumber=0;
-  }
-  clearFilters(){
-    this.locations.forEach(element => { element.isSelect=false; });
-    this.objSearchlistvm.districtId = [];
-    this.categories.forEach(element => { element.isSelect=false; });
-    this.objSearchlistvm.categoryId = [];
   }
   addToCollection(){
     this.objSearchResultItems.items.forEach(element => {
@@ -218,14 +252,130 @@ export class SearchresultComponent implements OnInit {
        });
       }
   }
-
+  setFilterOptions(filterType,FilterValue){
+    debugger;
+    this.collection=[];
+    this.objSearchlistvm.page=0;
+    switch(filterType){
+      case 1: // Category
+ 
+      this.objSearchlistvm= new SearchListingVM();
+      this.checkUncheckFilter(FilterValue);
+     if(FilterValue.isSelect){
+      this.SelectedCategory = FilterValue;
+      this.objSearchFilter.catId = this.SelectedCategory.categoryId;
+      this.getFilters();
+      this.showALlCategories = false;}else{
+        this.showALlCategories = true;
+        this.SelectedCategory=null;
+      }
+       break;
+      case 2: // Service
+      debugger;
+      FilterValue['isSelect'] = !FilterValue['isSelect']
+       break;
+      case 3: // location
+      this.checkUncheckFilter(FilterValue);
+     if(FilterValue.isSelect){
+       this.SelectedLocation = FilterValue;
+       this.showAllLocation = false;
+     }else{
+       this.SelectedLocation = null;
+       this.showAllLocation = true;
+     }
+      this.objSearchlistvm.districts=[];
+      break;
+      case 4: // custom Field Id
+     // this.objSearchlistvm.customsFields=[];
+      this.checkUncheckFilter(FilterValue);break;
+      case 5: // Custom Field Option
+      this.objSearchlistvm.customsFields=[];
+      break;
+      case 6: // Rating
+      this.checkUncheckFilter(FilterValue); break;
+      case 7: // Pricing
+      FilterValue['isSelect'] = !FilterValue['isSelect']
+      ; break;
+      case 8: // Feature Listing
+      this.checkUncheckFilter(FilterValue); break;
+      case 9: // Deals And Offer
+       this.checkUncheckFilter(FilterValue); 
+      break;
+    }
+    if(filterType!==4){ 
+      this.isTostPopulated = false;
+      this.paginate(this.objSearchFilter.page)
+    };
+  }
+  checkUncheckFilter(filterValie){
+    filterValie.isSelect = !filterValie.isSelect;
+  }
    paginate (pageSize) {
     this.loading=true; 
-    if(this.objSearchlistvm.categoryId.length==1 && this.objSearchlistvm.categoryId[0]==0){
-      this.objSearchlistvm.categoryId=[];
-    }
+    this.objSearchlistvm.categoryId=[];
+    this.collection = [];
+    if(this.categories){
+      if(this.SelectedCategory){
+    this.objSearchlistvm.categoryId.push(this.SelectedCategory.categoryId);}
+    if(this.SelectedLocation){
+      this.objSearchlistvm.districts=[];
+      if(this.SelectedLocation!=undefined && this.SelectedLocation.districtId>0){
+    this.objSearchlistvm.districts.push(this.SelectedLocation.districtId);}}
+    if(this.filters!=null && this.filters.filters!=null){
+    let selectedServices = this.filters.services.filter(s=>s.isSelect==true);
+    if(selectedServices.length>0){
+      this.objSearchlistvm.serviceId=[];
+    selectedServices.forEach(element => {
+      this.objSearchlistvm.serviceId.push(element.servicesId);
+      
+    });}
+    if(this.filters.filters){
+      this.filters.filters.forEach(el => {
+        el.customFieldOptionList.forEach(element => {
+          if(element.isSelect){
+            this.objSearchlistvm.customsFields.push({
+              'customFieldId':element.customFieldId,
+              'userValue':element.key
+            });
+          }
+        });        
+      });
+  }
+}
+
+  // Set Featured List 
+  
+let SelectedFeaturedList= this.featuredListingArray.filter(fl=>fl.isSelect==true);
+if(SelectedFeaturedList && SelectedFeaturedList.length>0){
+  this.objSearchlistvm.listing='';
+  SelectedFeaturedList.forEach(element => {
+    this.objSearchlistvm.listing += element.key+','; 
+  });
+   }
+  // Set Price Range
+
+ if(this.priceRange!=undefined){
+ // this.objSearchlistvm.price='';
+  let selectedprices = this.categories[0].services[0].customFields[0].customFieldOptionList.filter(p=>p.isSelect==true)[0];
+  if(selectedprices){
+  this.objSearchlistvm.price= selectedprices.key;}else{
+    this.objSearchlistvm.price= '';
+  }  
+}
+  // Set Rating values
+  let userRating = this.userRatingArray.filter(ur=>ur.isSelect==true)[0];
+  if(userRating){
+  this.objSearchlistvm.rating = userRating.value; }else{
+    this.objSearchlistvm.rating= '';  
+  }
+  // Set Deals And Offers
+  this.objSearchlistvm.deals = this.dealsAndOfferArray.filter(dd=>dd.isSelect==true)[0]== undefined ? '' :this.dealsAndOfferArray.filter(dd=>dd.isSelect==true)[0]['key'] 
+  
+  this.objSearchlistvm.pageSize = this.objSearchFilter.pageSize;
+  console.log(this.objSearchlistvm);
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
+    this.generatePageNumbers();
     console.log(JSON.stringify(this.objSearchResultItems));
     this.setBlankImg();
     this.addToCollection();
@@ -233,14 +383,117 @@ export class SearchresultComponent implements OnInit {
   },error=>{
     this.loading = false;
   });
-   
+}
  }
  @HostListener("window:scroll", [])
  scrollToBottom(){
-  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+   if ((window.innerHeight + window.scrollY) == document.body.offsetHeight) {
     this.objSearchlistvm.page+=1;
-    this.paginate(this.objSearchFilter.pageSize); }
+    this.paginate(this.objSearchFilter.pageSize); 
+  }
  }
+ goToPage(pageNumber,buttonType){
+   debugger;
+  switch(buttonType){
+    case 'N':
+    if(this.objSearchResultItems.totalPages>this.objSearchlistvm.page)
+    {
+    this.collection=[];
+    this.objSearchlistvm.page+=1;
+    this.paginate(this.objSearchFilter.pageSize);
+    }
+    break;
+    case 'P':
+    if(this.objSearchlistvm.page>1){
+    this.collection=[];
+    this.objSearchlistvm.page-=1;
+    this.paginate(this.objSearchFilter.pageSize);
+    }
+    break;
+    default:
+    this.collection=[];
+    this.objSearchlistvm.page= pageNumber;
+    this.paginate(this.objSearchFilter.pageSize);
+  }
+    
+ }
+deselectAllCategories(){
+  if(this.categories){
+  this.categories.forEach(element => {
+    element.isSelect=false;
+  });
+}
+  this.showALlCategories=true;
+  this.objSearchlistvm.page=0;
+  this.collection=[];
+}
+
+selectCategory(paramType,Param){
+  this.deselectAllCategories();
+  if(paramType=='index'){
+    if(this.categories){
+      this.categories[Param].isSelect=true;
+      this.SelectedCategory= this.categories[Param];
+      this.objSearchFilter.catId = this.SelectedCategory.categoryId;
+    }
+   }else if(paramType=='id'){
+      if(this.categories){
+        this.categories.filter(c=>c.categoryId==Param)[0].isSelect=true;
+        this.SelectedCategory= this.categories.filter(c=>c.isSelect=true)[0];
+        this.objSearchFilter.catId = this.SelectedCategory.categoryId;
+      }
+  }
+  sessionStorage.setItem('filterParam', JSON.stringify(this.objSearchFilter));
+  this.showALlCategories = false;
+}
+generateStaticArray(){
+  this.userRatingArray=[
+    {'key':'Any',isSelect:false, value:0},
+    {'key':'2.0+',isSelect:false, value:2},
+    {'key':'3.0+',isSelect:false, value:3},
+    {'key':'4.0+',isSelect:false, value:4}
+  ];
+  this.dealsAndOfferArray = [
+    {'key':'any',isSelect:false, displayText: 'Any'},
+    {'key':'yes',isSelect:false, displayText: 'Yes'},
+    {'key':'no',isSelect:false, displayText: 'No'}
+    
+  ];
+  this.featuredListingArray=[
+    {'key':'Priority Listing',isSelect:false},
+    {'key':'Top Listing',isSelect:false},
+  ]
+
+}
+bookMark(data, type , action_which_lacation){
+  const id = data['vendorId'] 
+ this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
+   console.log(data)
+ })
+}
+radioChecker(mainItem , selectedItem, filterType=0){
+  debugger;
+ // const data = selectedItem
+  mainItem.forEach(element => {
+    if(element == selectedItem){
+      element['isSelect'] = !element['isSelect']
+    }else{
+      element['isSelect'] = false
+    }
+  });
+this.setFilterOptions(filterType,mainItem);
+  //  this.paginate(this.objSearchFilter.page)
+  }
+
+
+generatePageNumbers(){
+  this.paginations=[];
+  for (let i = 0; i < this.objSearchResultItems.totalPages-1; i++) {
+    if(this.objSearchResultItems.totalPages-1 > 0){
+    this.paginations.push(i+1);
+  }
+  }
+}
 }
 export class SearchFilterVm{
   categoryId:number=1;
@@ -254,17 +507,27 @@ export class SearchListingVM{
   sortDir:string;
   sortBy: string;
   searchQuery:string;
-  districtId:Array<number>;
+  districts:Array<number>;
   categoryId:Array<number>;
   serviceId:Array<number>;
+  rating: string;
+  price:string;
+  deals:string;
+  listing:string;
+  searchInDreamLocation:boolean=false;
   customsFields:Array<FieldSearchVM>;
   customField:FieldSearchVM;
   constructor(){
-    this.pageSize=25;
+    this.pageSize=24;
     this.page=0;
-    this.districtId=[];
+    this.districts=[];
     this.categoryId=[];
     this.serviceId=[];
+    this.sortDir='asc';
+    this.price='';
+    this.rating='';
+    this.deals='';
+    this.listing='';
     this.customsFields = new Array<FieldSearchVM>();
     this.customField = new FieldSearchVM();
   }
@@ -274,3 +537,4 @@ export class FieldSearchVM{
   customFieldId: number;
   userValue:string;
 }
+

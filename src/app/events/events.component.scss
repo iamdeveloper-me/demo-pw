@@ -23,6 +23,7 @@
   width:100%!important;
   height: 160px!important;
   object-fit: cover!important;
+  cursor: pointer;
 }
 .eventsearchbtn{
   -webkit-appreance: none;
@@ -50,7 +51,8 @@
 }
 .eventlisting .card-block{
 	padding:10px!important;
-	position:relative;
+  position:relative;
+  cursor: pointer;
 }
 .eventdate{
 padding:3px 0px 0px 0px;
@@ -58,17 +60,17 @@ padding:3px 0px 0px 0px;
 .eventdate span{
     text-align: center;
     display: block;
-    color: #dc0070;
+    color: #000;
     text-transform: uppercase;
     font-size: 12px;
     line-height: 20px;
     font-weight: 600;
 }
-.eventdate span.date{
-	color: #000 !important;
-    font-size: 14px !important;
-    font-weight: 600;
+.eventdate p{
+  color: #dc0070;
+  font-size: 14px;
 }
+
 .heightadjust{
   min-height:110px;
 }
@@ -89,6 +91,9 @@ padding:3px 0px 0px 0px;
     text-align: left;
     margin-bottom:5px;
     line-height: 20px;
+}
+.eventtitle a{
+color: #3498db!important;
 }
 .eventvenue{
 	text-align:left;

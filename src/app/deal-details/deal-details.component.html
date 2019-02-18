@@ -4,26 +4,40 @@
 			<ol _ngcontent-c11="" class="breadcrumb breadcrumbcontainer">
 				<li><a routerLink="/home">Home</a></li>
 				<li><a routerLink="/home/Deals">All Deals</a></li>
-				<li class="active">Deals Details-Vision Photography</li>
+				<li class="active" *ngFor='let deal of data?.vendorCategories; let i=index '>{{deal.categories.categoryName}}</li>
 			</ol>
 		</div>
 		<div class="container">
 			
-			<div class="row">
-					<div class="col-sm-8 nopadd" id="dealcarousel">
+			<div class="row" >
+					<!-- <div class="col-sm-8 nopadd" id="dealcarousel" *ngFor='let deal of data?.vendorCategories; let j=index ' >
 						<owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
-						  <ng-container *ngFor="let slide of slidesStore">
-						    <ng-template carouselSlide="1" >
-						      <img [src]="slide.src" [alt]="slide.alt" >
-						    </ng-template>
+						  <ng-container *ngFor='let deal of data?.vendorCategories; let j=index '>
+						    <ng-template carouselSlide="1"   >
+							  <img [src]="deal.categories.imagePath" alt="" >
+							</ng-template>
 						  </ng-container>
 						</owl-carousel-o>
+					</div> -->
+					<!-- *ngIf="dealsAlbumArray.length > 0" -->
+					<div class="col-sm-8 nopadd" id="dealcarousel"  >
+							<owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
+							  <ng-container *ngFor="let dealImg of dealsAlbumArray">
+								<ng-template carouselSlide="1"   >
+								  <img [src]="dealImg.path" [alt]="dealImg.originalFileName" >
+								</ng-template>
+							  </ng-container>
+							</owl-carousel-o>
+
 					</div>
 
+							<!-- <div *ngIf="dealsAlbumArray.length == 0">
+									<img  src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" alt="">
+							</div> -->
 
 					<div class="col-sm-4 dealsbanner ">
-						<h1 class="dealdetailhead">
-							10 % discount on Photography
+						<h1 class="dealdetailhead" *ngFor='let deal of data?.vendorCategories; let i=index '>
+							{{data?.discount}} % discount on {{deal.categories.categoryName}}
 							<span class="greentext">Save up to 10% OFF (Value of Rs 2500)</span>
 						</h1>
 						<div class="boxdetail">
@@ -33,16 +47,27 @@
 							</span>
 						</div>
 						<div class="clearfix"></div>
-						<div class="boxdetail">
+						<div class="boxdetail" *ngIf="data?.businessName">
+								<i class="fa fa-user pullleft font24px"></i>
+								<span>{{data?.businessName}}<br/>
+									<a href="#" class="profilebtn">Veiw Profile</a>
+								</span>
+						</div>
+						<!-- <div class="boxdetail" *ngIf="data?.title">
 							<i class="fa fa-user pullleft font24px"></i>
-							<span>One Eye Photographer<br/>
+							<span>{{data?.title}}<br/>
 								<a href="#" class="profilebtn">Veiw Profile</a>
 							</span>
-						</div>
+						</div> -->
 						<div class="clearfix"></div>
 						<div class="vaildbox">
-							<span><strong class="pink">DEAL VALID UNTIL</strong><br/>
-								14 Jun 2019
+							<span *ngIf="data?.endDateString == ''"><strong class="pink">DEAL VALID UNTIL</strong><br/>
+								{{data?.endDateString}}
+							</span>
+							<span *ngIf="data?.endDateString !== ''">
+								<strong class="pink">DEAL VALID UNTIL</strong>
+								<br/>
+								N/A End Date
 							</span>
 						</div>
 						
@@ -73,22 +98,6 @@
 					<li>Available for bookings from 02 January 2019</li>
 				</ul>
 			</div>
-			<!-- <div class="divcontainer">
-				<h1>Location</h1>
-				<p>
-					<i class="material-icons pullleft">location_on</i> 642 Beaufort Street Mount Lawley Western Australia 6050
-				</p>
-				<p>
-					<i class="material-icons pullleft">phone_iphone</i> +91 99999-12345
-				</p>
-			</div> -->
-		<!-- 	<div class="divcontainer">
-				<h1>Validity</h1>
-				<p>
-					<i class="material-icons pullleft">access_time</i> Expires on 31/12/2019
-				</p>
-				
-			</div> -->
 			<div class="divcontainer">
 				<h1>How to Redeem</h1>
 				<p>

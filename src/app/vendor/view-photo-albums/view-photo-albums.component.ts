@@ -406,6 +406,7 @@ uploadAll(){
  
   this.lodar = true;
   var i = 0;
+  debugger
 const formData = new FormData();
   for (let file of this.uploader.queue)
   {

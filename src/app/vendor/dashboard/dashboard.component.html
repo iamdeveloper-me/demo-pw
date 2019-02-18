@@ -1,633 +1,589 @@
 <div id="wrapper" class="toggled">
   <div id="sidebar-wrapper">
-     <app-vendorsidebar></app-vendorsidebar>
+      <app-vendorsidebar></app-vendorsidebar>
   </div>
   <div id="page-content-wrapper">
-  <div class="container-fluid nopadd">
-  <app-navemenu></app-navemenu>
-  <div class="container-fluid Analytics mobilefixedcontainer">
-     <div class="row profile">
-        <div class="container-fluid Profile_com">
-           <div>
+      <div class="container-fluid nopadd">
+          <app-navemenu></app-navemenu>
+          <div class="container-fluid Analytics mobilefixedcontainer">
+              <div class="row profile">
+                  <div class="container-fluid Profile_com">
+                      <div>
 
-              <div class="col-md-12 card mobWight">  
-                 <div class="card-header border_bottom_none card-header-warning card-header-icon">
-                    <p class="card-category comp_top text-center"> Profile Completion</p>
-                    
-                      <!-- <h1 *ngIf="vendor">{{vendor.contactPerson}}</h1> -->
+                          <div class="col-md-12 card mobWight">
+                              <div class="card-header border_bottom_none card-header-warning card-header-icon">
+                                  <p class="card-category comp_top text-center"> Profile Completion</p>
 
-                    <p class="card-category comp_topsubhead text-center">Complete the sections below to enable activation of your view storefront</p>
-                 </div>
-                 <div class="col-md-12 prof_martop">
-                    <div class="progress nopadd col-sm-11 col-10">
-                       <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                          aria-valuemin="0" aria-valuemax="100" [style.width]="total + '%'">
-                       </div>
-                    </div>
-                    <div class="progresstext col-sm-1 col-2 bluetext text-center"><strong>{{total}} %</strong></div>
-                    <div class="clearfix"></div>
-                    <div class="profileleftbox prof_padbot">
-                      
-                        <div class="col-sm-3  displya_name">
-                            <ul>
-                              <li > 
-                                <a routerLink="../location" *ngIf="buinessPhone == test">
-                                
-                                  <i class="material-icons" ngbTooltip="Business Phone">check_circle</i>
-
-                                   <strong class="blacktext" >Business Phone </strong>
-                                   <span class="editbtn">
-                                       <i class="material-icons">arrow_backward</i>
-                                    </span>
-                                </a>
-                                <a routerLink="../location" *ngIf="buinessPhone == test1">
-                                  <i class="material-icons graytext" ngbTooltip="Business Phone">error_outline</i> 
-
-                                  <strong class="blacktext" >Business Phone </strong>
-                                  <span class="editbtn">
-                                       <i class="material-icons">arrow_backward</i>
-                                     </span>
-                                </a>
-                             </li>
-                              <li>
-                                  <a routerLink="../business" *ngIf="businessProfilePic == test" class="done">
-                                    <i class="material-icons" ngbTooltip="Business Logo">check_circle</i>
-  
-                                    <strong class="blacktext" >Business Logo </strong>
-                                    <span class="editbtn">
-                                          <i class="material-icons">arrow_backward</i>
-                                        </span>
-                                  </a>
-                                <a routerLink="../business"  *ngIf="businessProfilePic == test1" >
-                                    <i class="material-icons graytext" ngbTooltip="Business Logo">error_outline</i> 
-                                    <strong class="blacktext">Logo/Representative </strong>  
-                                    <span class="editbtn">
-                                          <i class="material-icons">arrow_backward</i>
-                                        </span>
-                                </a>
-                             </li>
-                            </ul>
-                          </div>
-                          <div class="col-sm-3  displya_name">
-                              <ul>
-                                  <li>
-                                    <a routerLink="../business-services" *ngIf="businessService == test" class="done">
-                                      <i class="material-icons" ngbTooltip="Type of Services">check_circle</i>
-    
-                                      <strong class="blacktext" >Type of Services</strong>
-                                      <span class="editbtn">
-                                          <i class="material-icons">arrow_backward</i>
-                                        </span>
-                                    </a>
-                                  <a routerLink="../business-services"  *ngIf="businessService == test1" >
-                                      <i class="material-icons graytext" ngbTooltip="Type of Services">error_outline</i> 
-                                      <strong class="blacktext">Type of Services</strong>  
-                                      <span class="editbtn">
-                                          <i class="material-icons">arrow_backward</i>
-                                        </span>
-                                  </a>
-                                 </li>
-
-                                 <li>
-                                    <a routerLink="../location" *ngIf="mapSettings == test" class="done">
-                                      <i class="material-icons" ngbTooltip="location">check_circle</i>
-    
-                                      <strong class="blacktext" >location (map)</strong>
-                                      <span class="editbtn">
-                                          <i class="material-icons">arrow_backward</i>
-                                        </span>
-                                    </a>
-                                  <a routerLink="../location"  *ngIf="mapSettings == test1" >
-                                      <i class="material-icons graytext" ngbTooltip="location">error_outline</i> 
-                                      <strong class="blacktext">location (map)</strong>  
-                                      <span class="editbtn">
-                                          <i class="material-icons">arrow_backward</i>
-                                        </span>
-                                  </a>
-                                 </li>
-                              </ul>
-                            </div>
-                            <div class="col-sm-3  displya_name">
-                                <ul>
-                                    <li> 
-                           
-                                       <a routerLink="../business" *ngIf="description == test" class="done">
-                                         <i class="material-icons" ngbTooltip="Description">check_circle</i>
-       
-                                         <strong class="blacktext" >Description</strong>
-                                         <span class="editbtn">
-                                             <i class="material-icons">arrow_backward</i>
-                                           </span>
-                                       </a>
-                                     <a routerLink="../business"  *ngIf="description == test1" >
-                                         <i class="material-icons graytext" ngbTooltip="Description">error_outline</i> 
-                                         <strong class="blacktext">Description</strong>  
-                                         <span class="editbtn">
-                                             <i class="material-icons">arrow_backward</i>
-                                           </span>
-                                     </a>
-                                    </li>
-                                    <li> 
-                               
-                                       <a routerLink="../gallery" *ngIf="photos == test" class="done">
-                                         <i class="material-icons" ngbTooltip="Photos">check_circle</i>
-       
-                                         <strong class="blacktext" >Photos</strong>
-                                         <span class="editbtn">
-                                             <i class="material-icons">arrow_backward</i>
-                                           </span>
-                                       </a>
-                                     <a routerLink="../gallery"  *ngIf="photos == test1" >
-                                         <i class="material-icons" ngbTooltip="Photos">error_outline</i> 
-                                         <strong class="blacktext">Photos</strong>  
-                                         <span class="editbtn">
-                                             <i class="material-icons">arrow_backward</i>
-                                           </span>
-                                     </a>
-                                    </li>
-                                   </ul>
+                                  <p class="card-category comp_topsubhead text-center">Complete the sections below to enable activation of your view storefront</p>
                               </div>
-                              <div class="col-sm-3  displya_name">
-                                <ul>
-                                    <li > 
-                               
-                                        <a routerLink="../portfolioview" *ngIf="coverImage == test" class="done">
-                                          <i class="material-icons" ngbTooltip="Business Cover">check_circle</i>
-        
-                                          <strong class="blacktext" >Business Cover</strong>
-                                          <span class="editbtn">
-                                                <i class="material-icons">arrow_backward</i>
-                                              </span>
-                                        </a>
-                                      <a routerLink="../portfolioview" *ngIf="coverImage == test1" >
-                                          <i class="material-icons graytext" ngbTooltip="Business Cover">error_outline</i> 
-                                          <strong class="blacktext">Business Cover</strong>  
-                                          <span class="editbtn">
-                                                <i class="material-icons">arrow_backward</i>
-                                              </span>
-                                      </a>
-                                     </li>
-                                     <li > 
-                             
-                                        <a routerLink="../business" *ngIf="tradingName == test" class="done">
-                                          <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
-        
-                                          <strong class="blacktext" >Trading Name</strong>
-                                          <span class="editbtn">
-                                                <i class="material-icons">arrow_backward</i>
-                                              </span>
-                                        </a>
-                                      <a routerLink="../business"  *ngIf="tradingName == test1" >
-                                          <i class="material-icons graytext" ngbTooltip="Trading Name">error_outline</i> 
-                                          <strong class="blacktext">Trading Name</strong>  
-                                          <span class="editbtn">
-                                                <i class="material-icons">arrow_backward</i>
-                                              </span>
-                                      </a>
-                                     </li>
-                                  </ul>
-                                </div>
+                              <div class="col-md-12 prof_martop">
+                                  <div class="progress nopadd col-sm-11 col-10">
+                                      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" [style.width]="total + '%'">
+                                      </div>
+                                  </div>
+                                  <div class="progresstext col-sm-1 col-2 bluetext text-center"><strong>{{total}} %</strong></div>
+                                  <div class="clearfix"></div>
+                                  <div class="profileleftbox prof_padbot">
 
+                                      <div class="col-sm-3  displya_name">
+                                          <ul>
+                                              <li>
+                                                  <a routerLink="../location" *ngIf="buinessPhone == test">
 
-                      
-                       <div class="col-sm-5 displya_name">
-                       
-                       </div>
+                                                      <i class="material-icons" ngbTooltip="Business Phone">check_circle</i>
 
-                    </div>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </div>
-     <div class="row">
-        <div class="container-fluid Profile_com">
-           <div class="card overviewbox">
-              <div class="card-body nopadd" style="overflow: hidden;">
-                <div class="col-sm-5 nopadd maxheight335px">
-                   <div class="infoimgbox">
-                    <!-- <img [src] = "VendorDashboard_data_image "  alt="Profile picture" > -->
-                      <!-- <div *ngIf = "!VendorDashboard_data_image"> 
-                          <img src = "../../assets/img/store_noimg.jpg" alt="Profile picture" >
-                      </div> -->
-                      <div > 
-                          <img [src] = "VendorDashboard_data_image" alt="Profile picture" >
+                                                      <strong class="blacktext">Business Phone </strong>
+                                                      <span class="editbtn">
+                                     <i class="material-icons">arrow_backward</i>
+                                  </span>
+                                                  </a>
+                                                  <a routerLink="../location" *ngIf="buinessPhone == test1">
+                                                      <i class="material-icons graytext" ngbTooltip="Business Phone">error_outline</i>
+
+                                                      <strong class="blacktext">Business Phone </strong>
+                                                      <span class="editbtn">
+                                     <i class="material-icons">arrow_backward</i>
+                                   </span>
+                                                  </a>
+                                              </li>
+                                              <li>
+                                                  <a routerLink="../business" *ngIf="businessProfilePic == test" class="done">
+                                                      <i class="material-icons" ngbTooltip="Business Logo">check_circle</i>
+
+                                                      <strong class="blacktext">Business Logo </strong>
+                                                      <span class="editbtn">
+                                        <i class="material-icons">arrow_backward</i>
+                                      </span>
+                                                  </a>
+                                                  <a routerLink="../business" *ngIf="businessProfilePic == test1">
+                                                      <i class="material-icons graytext" ngbTooltip="Business Logo">error_outline</i>
+                                                      <strong class="blacktext">Logo/Representative </strong>
+                                                      <span class="editbtn">
+                                        <i class="material-icons">arrow_backward</i>
+                                      </span>
+                                                  </a>
+                                              </li>
+                                          </ul>
+                                      </div>
+                                      <div class="col-sm-3  displya_name">
+                                          <ul>
+                                              <li>
+                                                  <a routerLink="../business-services" *ngIf="businessService == test" class="done">
+                                                      <i class="material-icons" ngbTooltip="Type of Services">check_circle</i>
+
+                                                      <strong class="blacktext">Type of Services</strong>
+                                                      <span class="editbtn">
+                                        <i class="material-icons">arrow_backward</i>
+                                      </span>
+                                                  </a>
+                                                  <a routerLink="../business-services" *ngIf="businessService == test1">
+                                                      <i class="material-icons graytext" ngbTooltip="Type of Services">error_outline</i>
+                                                      <strong class="blacktext">Type of Services</strong>
+                                                      <span class="editbtn">
+                                        <i class="material-icons">arrow_backward</i>
+                                      </span>
+                                                  </a>
+                                              </li>
+
+                                              <li>
+                                                  <a routerLink="../location" *ngIf="mapSettings == test" class="done">
+                                                      <i class="material-icons" ngbTooltip="location">check_circle</i>
+
+                                                      <strong class="blacktext">location (map)</strong>
+                                                      <span class="editbtn">
+                                        <i class="material-icons">arrow_backward</i>
+                                      </span>
+                                                  </a>
+                                                  <a routerLink="../location" *ngIf="mapSettings == test1">
+                                                      <i class="material-icons graytext" ngbTooltip="location">error_outline</i>
+                                                      <strong class="blacktext">location (map)</strong>
+                                                      <span class="editbtn">
+                                        <i class="material-icons">arrow_backward</i>
+                                      </span>
+                                                  </a>
+                                              </li>
+                                          </ul>
+                                      </div>
+                                      <div class="col-sm-3  displya_name">
+                                          <ul>
+                                              <li>
+
+                                                  <a routerLink="../business" *ngIf="description == test" class="done">
+                                                      <i class="material-icons" ngbTooltip="Description">check_circle</i>
+
+                                                      <strong class="blacktext">Description</strong>
+                                                      <span class="editbtn">
+                                           <i class="material-icons">arrow_backward</i>
+                                         </span>
+                                                  </a>
+                                                  <a routerLink="../business" *ngIf="description == test1">
+                                                      <i class="material-icons graytext" ngbTooltip="Description">error_outline</i>
+                                                      <strong class="blacktext">Description</strong>
+                                                      <span class="editbtn">
+                                           <i class="material-icons">arrow_backward</i>
+                                         </span>
+                                                  </a>
+                                              </li>
+                                              <li>
+
+                                                  <a routerLink="../gallery" *ngIf="photos == test" class="done">
+                                                      <i class="material-icons" ngbTooltip="Photos">check_circle</i>
+
+                                                      <strong class="blacktext">Photos</strong>
+                                                      <span class="editbtn">
+                                           <i class="material-icons">arrow_backward</i>
+                                         </span>
+                                                  </a>
+                                                  <a routerLink="../gallery" *ngIf="photos == test1">
+                                                      <i class="material-icons" ngbTooltip="Photos">error_outline</i>
+                                                      <strong class="blacktext">Photos</strong>
+                                                      <span class="editbtn">
+                                           <i class="material-icons">arrow_backward</i>
+                                         </span>
+                                                  </a>
+                                              </li>
+                                          </ul>
+                                      </div>
+                                      <div class="col-sm-3  displya_name">
+                                          <ul>
+                                              <li>
+
+                                                  <a routerLink="../portfolioview" *ngIf="coverImage == test" class="done">
+                                                      <i class="material-icons" ngbTooltip="Business Cover">check_circle</i>
+
+                                                      <strong class="blacktext">Business Cover</strong>
+                                                      <span class="editbtn">
+                                              <i class="material-icons">arrow_backward</i>
+                                            </span>
+                                                  </a>
+                                                  <a routerLink="../portfolioview" *ngIf="coverImage == test1">
+                                                      <i class="material-icons graytext" ngbTooltip="Business Cover">error_outline</i>
+                                                      <strong class="blacktext">Business Cover</strong>
+                                                      <span class="editbtn">
+                                              <i class="material-icons">arrow_backward</i>
+                                            </span>
+                                                  </a>
+                                              </li>
+                                              <li>
+
+                                                  <a routerLink="../business" *ngIf="tradingName == test" class="done">
+                                                      <i class="material-icons" ngbTooltip="Trading Name">check_circle</i>
+
+                                                      <strong class="blacktext">Trading Name</strong>
+                                                      <span class="editbtn">
+                                              <i class="material-icons">arrow_backward</i>
+                                            </span>
+                                                  </a>
+                                                  <a routerLink="../business" *ngIf="tradingName == test1">
+                                                      <i class="material-icons graytext" ngbTooltip="Trading Name">error_outline</i>
+                                                      <strong class="blacktext">Trading Name</strong>
+                                                      <span class="editbtn">
+                                              <i class="material-icons">arrow_backward</i>
+                                            </span>
+                                                  </a>
+                                              </li>
+                                          </ul>
+                                      </div>
+
+                                      <div class="col-sm-5 displya_name">
+
+                                      </div>
+
+                                  </div>
+                              </div>
+                          </div>
                       </div>
-                    </div>
-                    <div class="viewstore">
-                         <a (click) = "goToLink()">View Storefront</a> &nbsp;&nbsp;
-                         <a (click) = "images_dialog = true">Change Business Cover</a>
-                    </div>
-                </div>
-                <div class="col-sm-7 nopadd maxheight335px mobileheightauto ">
-                    <div class="martop15px"></div> 
-                    <div class="col-sm-2 col-3 mobpadd10 edithovering">
-                      
-                        <div > 
-                          <img [src] = "vendor.profileImage" class="oviewviewimgcircle" alt="Profile picture" >
-                        </div>
-                      
-                       
-                       <!-- <button class="photoedit" data-target="#camera" data-toggle="modal" type="button"><i class="material-icons">camera</i></button> -->
-                    </div>
-                    <div class="col-sm-10 col-9 blacktext nopadd pull-left">
-                       <h2 class="titlehead"><strong>{{vendor.nameOfBusiness}}</strong></h2>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="container-fluid Profile_com">
+                      <div class="card overviewbox">
+                          <div class="card-body nopadd" style="overflow: hidden;">
+                              <div class="col-sm-5 nopadd maxheight335px">
+                                  <div class="infoimgbox">
 
-                       <div class="overhiddenmob mobmartop15px"  >
-                          <div class="col-xs-1 nopadd">
-                             <i class="material-icons">location_on</i>
-                          </div>
-                          <div class="col-xs-8 nopadd edithovering" >
-                          
-                            <!-- *ngIf = "vendor.vendorLocations > 0" -->
-                             <!-- <p data-target="#currentLocation" data-toggle="modal">{{currentLocation}}<br/>2 More Branches </p> -->
-                             <!-- <div  *ngFor='let c of vendor.vendorLocations | slice:0:1 ;let p=index'> -->
-                              <div *ngFor="let data of location_Array | slice:0:1;let i=index">
-                              <!-- <div >
-                                  <a routerLink="../location"  >
-                                  {{vendor.address}},
-                                  {{vendor.suburb.name}},
-                                  {{vendor.districts.name}},
-                                  {{vendor.country.countryName }}
-                                  </a>
-                                  <a *ngIf = "ct > 0"> {{ct}} more Location</a>
-                                </div>   -->
-                                 <div >
-                                  <a routerLink="../location"  >
-                                  {{data.address}},
-                                  {{data.suburb.name}},
-                                  {{data.districts.name}},
-                                  {{data.country.countryName }}
-                                  </a>
-                                  <a *ngIf = "ct > 0"> {{ct}} more Location</a>
-                                </div>  
-                                <!-- {{location_Array | json}} -->
+                                      <div>
+                                          <img [src]="VendorDashboard_data_image" alt="Profile picture">
+                                      </div>
+                                  </div>
+                                  <div class="viewstore">
+                                      <a (click)="goToLink()">View Storefront</a> &nbsp;&nbsp;
+                                      <a (click)="images_dialog = true">Change Business Cover</a>
+                                  </div>
                               </div>
-                             <span  class="editbtn" routerLink="../location"> 
-                              <span class="editbtn">
-                                 <i class="material-icons">arrow_backward</i>
-                               </span>
-                              </span>  
-                          </div>
-                       </div>
-                       <div class="prolinkmob">
-                        <!-- <a routerLink="../PromoteBusiness" class="font11px bluelink">
-                        <i class="material-icons">assessment</i> <span>Promote Business</span></a><br/> -->
-                        <!-- <a routerLink="../statistics" class="font11px bluelink"><i class="material-icons">equalizer</i> <span>Business Insight</span></a> -->
-                     </div>
-                       <div class="clearfix"></div>
-                       <div class="overhiddenmob" >
-                          <div class="col-xs-1 nopadd">
-                             <i class="material-icons">phone</i>
-                          </div>
-                          <div class="col-xs-8 nopadd edithovering">
-                             <p>
-                                <a routerLink="../location">
-                                   <div *ngFor='let c of vendor.vendorLocations | slice:0:1 ;let p=index'> 
-                                      
-                                       <span *ngFor='let a of c.locationPhones | slice:0:1 '> 
-                                          <span>
-                                                <!-- *ngIf = "a.isPrimary == false"  -->
-                                             {{a.phoneNumber}}
-                                          </span>
-                                       </span>  
-                                          <span  *ngIf = "ph > 0">
-                                                , {{ph}} More Numbers                       
-                                          </span>
-                                          <div class="clearfix"></div>
-                                          <p *ngIf = "noPhone == 0"  class="nophone">
-                                                  No business Phone number
-                                          </p>
-                                     
-                                   </div>
+                              <div class="col-sm-7 nopadd maxheight335px mobileheightauto ">
+                                  <div class="martop15px"></div>
+                                  <div class="col-sm-2 col-3 mobpadd10 edithovering">
 
-                                  
-                                <span class="editbtn"> <span class="editbtn">
-                                    <i class="material-icons">arrow_backward</i>
-                                  </span></span> 
+                                      <div>
+                                          <img [src]="vendor.profileImage" class="oviewviewimgcircle" alt="Profile picture">
+                                      </div>
+
+                                  </div>
+                                  <div class="col-sm-10 col-9 blacktext nopadd pull-left">
+                                      <h2 class="titlehead"><strong>{{vendor.nameOfBusiness}}</strong></h2>
+
+                                      <div class="overhiddenmob mobmartop15px">
+                                          <div class="col-xs-1 nopadd">
+                                              <i class="material-icons">location_on</i>
+                                          </div>
+                                          <div class="col-xs-8 nopadd edithovering">
+
+                                              <div *ngFor="let data of location_Array | slice:0:1;let i=index">
+
+                                                  <div>
+                                                      <a routerLink="../location">
+                                    {{data.address}}
+                                    <span *ngIf = "data.address">,</span>
+                                    {{data.suburb.name}}
+                                    <span *ngIf = "data.suburb.name">,</span>
+                                    {{data.districts.name}}
+                                    <span *ngIf = "data.districts.name">,</span>
+                                    {{data.country.countryName }}
                                 </a>
-                              
-                                 
-                             </p>
+                                                      <a *ngIf="ct > 0"> {{ct}} more Location</a>
+                                                  </div>
+
+                                              </div>
+                                              <span class="editbtn" routerLink="../location"> 
+                            <span class="editbtn">
+                               <i class="material-icons">arrow_backward</i>
+                             </span>
+                                              </span>
+                                          </div>
+                                      </div>
+                                      <div class="prolinkmob">
+
+                                      </div>
+                                      <div class="clearfix"></div>
+                                      <div class="overhiddenmob">
+                                          <div class="col-xs-1 nopadd">
+                                              <i class="material-icons">phone</i>
+                                          </div>
+                                          <div class="col-xs-8 nopadd edithovering">
+                                              <p>
+                                                  <a routerLink="../location">
+                                                      <div *ngFor='let c of vendor.vendorLocations | slice:0:1 ;let p=index'>
+
+                                                          <span *ngFor='let a of c.locationPhones | slice:0:1 '> 
+                                        <span>
+
+                                           {{a.phoneNumber}}
+                                        </span>
+                                                          </span>
+                                                          <span *ngIf="ph > 0">
+                                              , {{ph}} More Numbers                       
+                                        </span>
+                                                          <div class="clearfix"></div>
+                                                          <p *ngIf="noPhone == 0" class="nophone">
+                                                              No business Phone number
+                                                          </p>
+
+                                                      </div>
+
+                                                      <span class="editbtn"> <span class="editbtn">
+                                  <i class="material-icons">arrow_backward</i>
+                                </span></span>
+                                                  </a>
+
+                                              </p>
+                                          </div>
+                                      </div>
+                                      <div class="col-sm-12 nopadd martop12px overhiddenmob mobilenone">
+                                          <div class="col-xs-1 nopadd">
+                                              <i class="material-icons">work_outline</i>
+                                          </div>
+                                          <div class="col-xs-11 nopadd">
+                                              <span class="pinkchip">
+                              <a *ngFor='let c of vendor.vendorCategories| slice:0:1'>
+                                  {{c.categories.categoryName }}
+                              </a>
+                            </span>
+                                              <br/>
+                                              <div class="clearfix"></div>
+                                              <div class="membershipbox">
+                                                  <!-- Membership Type:   -->
+                                                  <span *ngIf="myplans.payFrequency == 1 && myplans.pricingPlanId == 1">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (6 Months)</span>
+                                                  <span *ngIf="myplans.payFrequency == 2 && myplans.pricingPlanId == 1">Plan Name: <b>{{myplans?.pricingPlan.title}}</b> (6 Months)</span>
+                                                  <!--Free Basic-->
+                                                  <span *ngIf="myplans.payFrequency == 0 && myplans.pricingPlanId == 2">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (6 Months)</span>
+                                                  <span *ngIf="myplans.payFrequency == 1 && myplans.pricingPlanId == 2">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (12 Months)</span>
+                                                  <!--Premium-->
+                                                  <span *ngIf="myplans.payFrequency == 0 && myplans.pricingPlanId == 3">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (12 Months)</span>
+                                                  <span *ngIf="myplans.payFrequency == 1 && myplans.pricingPlanId == 3">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (6 Months)</span>
+                                                  <!--Ultimate-->&nbsp;&nbsp;
+                                                  <a routerLink="../membership" class="viewallbutton">Change Your Plan
+                             </a>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="clearfix"></div>
+                                  </div>
+                                  <div class="clearfix"></div>
+                                  <div class="col-sm-12 nopadd marbot15px clearfix">
+                                      <div class="col-xs-4 text-center">
+                                          <a routerLink="../portfolioview" class="blacktext">
+                                              <i class="material-icons">photo_library</i>
+                                              <strong>{{VendorDashboard_data.portfolioCount}}</strong>
+                                              <div class="clearfix"></div>
+                                              Portfolio
+                                          </a>
+                                      </div>
+                                      <div class="col-xs-4 text-center">
+                                          <a routerLink="../Videos" class="blacktext">
+                                              <i class="material-icons">video_library</i>
+                                              <strong>{{VendorDashboard_data.videoCount}}</strong>
+                                              <div class="clearfix"></div>
+                                              Videos
+                                          </a>
+                                      </div>
+                                      <div class="col-xs-4 text-center">
+                                          <a class="blacktext" (click)="freeuser()">
+                                              <i class="material-icons">library_books</i>
+                                              <strong>{{VendorDashboard_data.albumImageCount}}</strong>
+                                              <div class="clearfix"></div>
+                                              Albumss
+                                          </a>
+                                      </div>
+
+                                  </div>
+                                  <div class="col-sm-12 bortop desktopnone nopadd paddtopbot10 clearfix">
+
+                                      <table width="100%">
+                                          <tr>
+                                              <td align="center">
+                                                  <a class="font11px bluelink" target="_blank" (click)="goToLink()">
+                                                      <i class="material-icons">share</i> Share Profile
+                                                  </a>
+                                              </td>
+                                              <td align="center">
+                                                  <a routerLink="../PromoteBusiness" class="font11px bluelink">
+                                                      <i class="material-icons">assessment</i> Promote Business
+                                                  </a>
+                                              </td>
+                                          </tr>
+                                      </table>
+
+                                  </div>
+
+                                  <div class="col-sm-12 bottop botsharelink padbot0px padtop0px text-center clearfix">
+                                      <div class="row">
+                                          <div class="col-sm-6">
+                                              <a class="text-muted mobilenone font11px sharelink" target="_blank" routerlink="../../home/detailprofile">
+                                                  <i class="material-icons">share</i> Share Profile
+                                              </a>
+                                          </div>
+                                          <div class="col-sm-6">
+                                              <a routerLink="../PromoteBusiness" class="text-muted mobilenone font11px sharelink">
+                                                  <i class="material-icons">assessment</i> Promote Business
+                                              </a>
+                                          </div>
+
+                                      </div>
+                                      <div class="clearfix"></div>
+                                      <div class="col-8 pull-left desktopnone blacktext padbot5px text-left">
+                                          Membership Type : Free
+                                      </div>
+                                      <div class="col-4 pull-left text-right desktopnone padbot5px">
+                                          <button routerLink="../membership" class="col-sm-12 text-center viewallbutton">Upgrade</button>
+                                      </div>
+                                  </div>
+                              </div>
                           </div>
-                       </div>
-                       <div class="col-sm-12 nopadd martop12px overhiddenmob mobilenone">
-                          <div class="col-xs-1 nopadd">
-                             <i class="material-icons">work_outline</i>
+                      </div>
+                  </div>
+              </div>
+              <div class="row martop15px">
+                  <div class="col-md-3 col-6 pull-left">
+                      <div class="card card-stats mobileviewcontent marbot10px mobilemarbot30px">
+                          <div class="card-header card-header-warning card-header-icon">
+                              <div class="card-icon">
+                                  <i class="material-icons">store</i>
+                              </div>
+                              <p class="card-category">Impressions</p>
+                              <h3 class="card-title"> {{VendorDashboard_data.impression}}</h3>
                           </div>
-                          <div class="col-xs-11 nopadd">
-                              <span class="pinkchip">
-                                <a *ngFor='let c of vendor.vendorCategories| slice:0:1'>
-                                    {{c.categories.categoryName }}
-                                </a>
-                                <!-- <a  *ngIf = "total_business_Services > 0" routerLink="../location" >
-                                 , {{total_business_Services}} more Categories                               
-                                 </a> -->
-                              </span>
-                              <br/>
+                          <div class="card-footer mobilenone">
+                              <div class="stats">
+                                  <i class="material-icons text-danger">warning</i>
+                                  <span>Storefront views</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-3 col-6 pull-left">
+                      <div class="card card-stats mobileviewcontent marbot10px mobilemarbot30px">
+                          <div class="card-header card-header-warning card-header-icon">
+                              <div class="card-icon rose">
+                                  <i class="material-icons">equalizer</i>
+                              </div>
+                              <p class="card-category">Enquiries <span class="tabnone">& Leads </span> </p>
+                              <h3 class="card-title"> {{VendorDashboard_data.enquiries}}</h3>
+                          </div>
+                          <div class="card-footer mobilenone">
+                              <div class="stats">
+                                  <i class="material-icons ">local_offer</i>
+                                  <span>Contact From & Job Pool</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-3 col-6 mobileviewcontent pull-left">
+                      <div class="card card-stats marbot10px mobilemarbot30px">
+                          <div class="card-header card-header-warning card-header-icon">
+                              <div class="card-icon green_bg">
+                                  <i class="material-icons">favorite_border</i>
+                              </div>
+                              <p class="card-category">Love count</p>
+                              <h3 class="card-title">  {{VendorDashboard_data.loveCount}}</h3>
+                          </div>
+                          <div class="card-footer mobilenone">
+                              <div class="stats">
+                                  <i class="material-icons ">date_range</i>
+                                  <span> No of times images are bookmark</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-3 col-6 mobileviewcontent pull-left">
+                      <div class="card card-stats marbot10px mobilemarbot30px">
+                          <div class="card-header card-header-warning card-header-icon">
+                              <div class="card-icon green_bg1">
+                                  <i class="material-icons">message</i>
+                              </div>
+                              <p class="card-category">Reviews</p>
+                              <h3 class="card-title">{{VendorDashboard_data.reviews}}</h3>
+                          </div>
+                          <div class="card-footer mobilenone">
+                              <div class="stats">
+                                  <i class="material-icons">date_range</i>
+                                  <span> update</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="clearfix"></div>
+          <div class="col-12">
+              <div class="card">
+                  <div class="text-center">
+                      <a routerLink="../statistics" class="font11px bluelink">
+                          <i class="material-icons">equalizer</i>
+                          <br/> Business Insight
+                      </a>
+                  </div>
+              </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="container-fluid Profile_com">
+              <div class="col-sm-6 mobnopadd padleft0px">
+                  <div class="col-md-12 card mobnopadd padleft0px height360px">
+                      <div class="card card-stats ">
+
+                          <div class="col-sm-12" *ngIf="totaljobArray > 0 ">
+                              <div class="card-header card-header-warning card-header-icon">
+                                  <div class="card-icon  white_bg margRight0 cardiconset">
+                                      <i class="material-icons">event_available</i>
+                                  </div>
+                                  <p class="card-category upcominghead">Upcoming Jobs</p>
+                              </div>
+
+                              <div class="upcominglisthomepage" *ngFor="let job of jobArray | slice:0:3 ">
+                                  <div class="col-sm-8 col-8">
+                                      <i class="material-icons flotleft">date_range</i> {{job.jobDate | date:'medium' }}
+                                      <ul>
+
+                                          <li>Client Name: {{job.clientName}}</li>
+                                          <li>Start Date: {{job.startDate | date}}</li>
+                                          <li>Time: {{job.startTime | date:'shortTime'}}</li>
+
+                                      </ul>
+                                  </div>
+                                  <div class="col-sm-4 col-4 upcomingright">
+                                      <div>
+                                          <i class="material-icons ">location_on
+                       </i>{{job.eventLocation}}
+                                      </div>
+
+                                      <div class="mobilenone">
+                                          <i class="material-icons ">phone
+                         </i>{{job.clientNumber}}
+                                      </div>
+
+                                      <a class="callbutton" href="tel:{{job.clientNumber}}">
+                          Call
+                        </a>
+
+                                  </div>
+                              </div>
+
+                              <div class="col-sm-12 text-center martop20px"><a class="viewallbutton" routerLink="../calender"> View All</a></div>
+                          </div>
+                          <div class="col-sm-12" *ngIf="totaljobArray == 0">
+                              <div class="card-header card-header-warning card-header-icon">
+                                  <div class="card-icon  white_bg margRight0 cardiconset">
+                                      <i class="material-icons">event_available</i>
+                                  </div>
+                                  <p class="card-category upcominghead">Upcoming Jobs</p>
+                              </div>
                               <div class="clearfix"></div>
-                              <div class="membershipbox">
-                               <!-- Membership Type: {{vendor.pricingPlan?.title}}  -->
-                               <span *ngIf="myplans.payFrequency == 1 && myplans.pricingPlanId == 1">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (6 Months)</span>
-                               <span *ngIf="myplans.payFrequency == 2 && myplans.pricingPlanId == 1">Plan Name: <b>{{myplans?.pricingPlan.title}}</b> (6 Months)</span>
-                                  <!--Free Basic-->
-                               <span *ngIf="myplans.payFrequency == 0 && myplans.pricingPlanId == 2">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (6 Months)</span>
-                               <span *ngIf="myplans.payFrequency == 1 && myplans.pricingPlanId == 2">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (12 Months)</span>
-                                  <!--Premium-->
-                               <span *ngIf="myplans.payFrequency == 0 && myplans.pricingPlanId == 3">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (12 Months)</span>
-                               <span *ngIf="myplans.payFrequency == 1 && myplans.pricingPlanId == 3">Plan Name: <b>{{myplans.pricingPlan.title}}</b>  (6 Months)</span>
-                                  <!--Ultimate--> &nbsp;&nbsp;
-                               <a routerLink="../membership" class="viewallbutton">Change Your Plan
-                               </a>
-                             </div>
+                              <div class="upcominglisthomepage">
+                                  <div class="text-center martop20px">
+                                      <img src="../../../assets/img/noplan.jpg" alt="Profile picture">
+                                      <p class="martop20px"><strong>Nothing Planned!</strong></p>
+                                  </div>
+                              </div>
+                              <div class="col-sm-12 text-center "><a class="viewallbutton" routerLink="../calender"> Go to Planner</a></div>
                           </div>
-                       </div>
-                       <div class="clearfix"></div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="col-sm-12 nopadd marbot15px clearfix">
-                       <div class="col-xs-4 text-center">
-                          <a routerLink="../portfolioview" class="blacktext">
-                             <i class="material-icons">photo_library</i>
-                             <strong>{{VendorDashboard_data.portfolioCount}}</strong>
-                             <div class="clearfix"></div>
-                             Portfolio
-                          </a>
-                       </div>
-                       <div class="col-xs-4 text-center">
-                          <a routerLink="../Videos" class="blacktext">
-                             <i class="material-icons">video_library</i>
-                             <strong>{{VendorDashboard_data.videoCount}}</strong>
-                             <div class="clearfix"></div>
-                             Videos
-                          </a>
-                       </div>
-                       <div class="col-xs-4 text-center" >
-                          <a  class="blacktext"  (click) = "freeuser()">
-                             <i class="material-icons">library_books</i>
-                             <strong>{{VendorDashboard_data.albumImageCount}}</strong>
-                             <div class="clearfix"></div>
-                             Albums ({{VendorDashboard_data.albumCount}})
-                          </a>
-                       </div>
-                      
-                       
-                    </div>
-                     <div class="col-sm-12 bortop desktopnone nopadd paddtopbot10 clearfix">
-                      
-                        <table width="100%">
-                          <tr>
-                            <td align="center"><a class="font11px bluelink" target="_blank" (click) = "goToLink()">
-                                       <i  class="material-icons">share</i> Share Profile
-                                    </a></td>
-                            <td align="center"><a routerLink="../PromoteBusiness" class="font11px bluelink">
-                          <i class="material-icons">assessment</i> Promote Business
-                          </a></td>
-                          </tr>
-                        </table>
-                         
-                      
-                      
-                          
-                      
-                     </div>
-                   
-                    <div class="col-sm-12 bottop botsharelink padbot0px padtop0px text-center clearfix">
-                           <div class="row">
-                            <div class="col-sm-6">
-                                    <a class="text-muted mobilenone font11px sharelink" target="_blank" routerlink="../../home/detailprofile">
-                                       <i class="material-icons">share</i> 
-                                       Share Profile
-                                    </a>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-6 card  mobileheightauto nopadd height360px">
+                  <div class="card-body">
+                      <div class="card-block nopadd" id="demo">
+                          <div id="carousel" class="owl-carousel">
+                              <div class="item"> <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> </div>
+                              <div class="item"> <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> </div>
+                              <div class="item"> <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> </div>
+                              <div class="item"> <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <router-outlet></router-outlet>
+
+          <div class="modal fade" id="uploadphoto" [ngClass]="{'show' : images_dialog}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h4 class="modal-title"> Change Business Cover </h4>
+                          <button type="button" class="close" (click)="closeModel()" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                          <div *ngIf="image_data==0; else pp">
+                              <h3>No image available in your Portfolio or Albums</h3>
+                              <button type="submit" class="btn newbtn" (click)="closeModel()">Close</button>&nbsp;
+
+                          </div>
+                          <ng-template #pp>
+                              <div class="row popupscrollfit">
+                                  <div *ngFor="let images of image_data" class="col-3 imgbottom">
+
+                                      <img [src]="images.imageURL" alt="Profile picture" class="img-responsive selectimages" (click)="setportfolio_image(images)">
+
+                                      <i class="material-icons selectimg">check_circle</i>
+
+                                  </div>
                               </div>
-                              <div class="col-sm-6">
-                                    <a routerLink="../PromoteBusiness" class="text-muted mobilenone font11px sharelink">
-                                       <i class="material-icons">assessment</i> 
-                                       Promote Business
-                                    </a>
-                              </div>
-                             <!--  <div class="col-sm-4">
-                                    <a routerLink="../statistics" class="text-muted mobilenone font11px sharelink">
-                                       <i class="material-icons">equalizer</i> 
-                                       <span>Business Insight</span>
-                                    </a>
-  
-                              </div> -->
-                              
-                           </div>
-                       <div class="clearfix"></div>
-                        <div class="col-8 pull-left desktopnone blacktext padbot5px text-left">
-                          Membership Type : Free
-                       </div>
-                      <div class="col-4 pull-left text-right desktopnone padbot5px">
-                         <button routerLink="../membership" class="col-sm-12 text-center viewallbutton">Upgrade</button>
-                        </div>
-                    </div>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </div>
-     <div class="row martop15px">
-        <div class="col-md-3 col-6 pull-left">
-           <div class="card card-stats mobileviewcontent marbot10px mobilemarbot30px">
-              <div class="card-header card-header-warning card-header-icon">
-                 <div class="card-icon">
-                    <i class="material-icons">store</i>
-                 </div>
-                 <p class="card-category">Impressions</p>
-                 <h3 class="card-title"> {{VendorDashboard_data.impression}}</h3>
-              </div>
-              <div class="card-footer mobilenone">
-                 <div class="stats">
-                    <i class="material-icons text-danger">warning</i>
-                    <span>Storefront views</span>
-                 </div>
-              </div>
-           </div>
-        </div>
-        <div class="col-md-3 col-6 pull-left">
-           <div class="card card-stats mobileviewcontent marbot10px mobilemarbot30px">
-              <div class="card-header card-header-warning card-header-icon">
-                 <div class="card-icon rose">
-                    <i class="material-icons">equalizer</i>
-                 </div>
-                 <p class="card-category">Enquiries <span class="tabnone">& Leads </span> </p>
-                 <h3 class="card-title"> {{VendorDashboard_data.enquiries}}</h3>
-              </div>
-              <div class="card-footer mobilenone">
-                 <div class="stats">
-                    <i class="material-icons ">local_offer</i>
-                    <span>Contact From & Job Pool</span>
-                 </div>
-              </div>
-           </div>
-        </div>
-        <div class="col-md-3 col-6 mobileviewcontent pull-left">
-           <div class="card card-stats marbot10px mobilemarbot30px">
-              <div class="card-header card-header-warning card-header-icon">
-                 <div class="card-icon green_bg">
-                    <i class="material-icons">favorite_border</i>
-                 </div>
-                 <p class="card-category">Love count</p>
-                 <h3 class="card-title">  {{VendorDashboard_data.loveCount}}</h3>
-              </div>
-              <div class="card-footer mobilenone">
-                 <div class="stats">
-                    <i class="material-icons ">date_range</i>
-                    <span> No of times images are bookmark</span>
-                 </div>
-              </div>
-           </div>
-        </div>
-        <div class="col-md-3 col-6 mobileviewcontent pull-left">
-           <div class="card card-stats marbot10px mobilemarbot30px">
-              <div class="card-header card-header-warning card-header-icon">
-                 <div class="card-icon green_bg1">
-                    <i class="material-icons">message</i>
-                 </div>
-                 <p class="card-category">Reviews</p>
-                 <h3 class="card-title">{{VendorDashboard_data.reviews}}</h3>
-              </div>
-              <div class="card-footer mobilenone">
-                 <div class="stats">
-                    <i class="material-icons">date_range</i>
-                    <span> update</span>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </div>
-  </div>
-
-  <div class="clearfix"></div>
-    <div class="col-12">
-      <div class="card">
-        <div  class="text-center">
-                            <a routerLink="../statistics" class="font11px bluelink">
-                            <i class="material-icons">equalizer</i> <br/>
-                            Business Insight
-                            </a>
-        </div>
-      </div>
-    </div>
-    <div class="clearfix"></div>
-  <div class="container-fluid Profile_com"  >
-     <div class="col-sm-6 mobnopadd padleft0px">
-        <div class="col-md-12 card mobnopadd padleft0px height360px">
-            <div class="card card-stats ">
-             
-              <div class="col-sm-12" *ngIf = "totaljobArray > 0 ">
-                  <div class="card-header card-header-warning card-header-icon">
-                      <div class="card-icon  white_bg margRight0 cardiconset">
-                        <i class="material-icons">event_available</i>
+                          </ng-template>
                       </div>
-                      <p class="card-category upcominghead">Upcoming Jobs</p>
+
                   </div>
-              
-                  <div class="upcominglisthomepage" *ngFor="let job of jobArray | slice:0:3 ">
-                     <div class="col-sm-8 col-8">
-                       <i class="material-icons flotleft">date_range</i>  {{job.jobDate |  date:'medium' }}
-                       <ul>
-                       
-
-                         <li>Client Name: {{job.clientName}}</li>
-                         <li>Start Date: {{job.startDate | date}}</li>
-                         <li>Time: {{job.startTime | date:'shortTime'}}</li>
-
-                      
-                       </ul>
-                     </div>
-                     <div class="col-sm-4 col-4 upcomingright">
-                       <div>
-                         <i class="material-icons ">location_on
-                         </i>{{job.eventLocation}}
-                       </div>
-
-                       <div class="mobilenone">
-                           <i class="material-icons ">phone
-                           </i>{{job.clientNumber}}
-                        </div>
-
-                          <a class="callbutton" href="tel:{{job.clientNumber}}">
-                            Call
-                          </a>
-
-                       <!-- <button [routerLink] = "../vendor/eventlist">View All</button>					 -->
-                     </div>
-                   </div>
-
-                   <div class="col-sm-12 text-center martop20px"><a  class="viewallbutton" routerLink="../calender"> View All</a></div>
               </div>
-              <div class="col-sm-12" *ngIf = "totaljobArray == 0">
-                  <div class="card-header card-header-warning card-header-icon">
-                      <div class="card-icon  white_bg margRight0 cardiconset">
-                        <i class="material-icons">event_available</i>
-                      </div>
-                      <p class="card-category upcominghead">Upcoming Jobs</p>
-                  </div>
-                 <div class="clearfix"></div>
-                  <div class="upcominglisthomepage">
-                    <div class="text-center martop20px">
-                     <img src = "../../../assets/img/noplan.jpg"  alt="Profile picture" >
-                    <p class="martop20px"><strong>Nothing Planned!</strong></p>
-                    </div>
-                  </div>
-                   <div class="col-sm-12 text-center "><a  class="viewallbutton" routerLink="../calender"> Go to Planner</a></div>
-              </div>
-            </div>
-        </div>
-     </div>
-     <div class="col-sm-6 card  mobileheightauto nopadd height360px" >
-      <div class="card-body">
-            <div class="card-block nopadd" id="demo">
-                <div id="carousel" class="owl-carousel">
-                  <div class="item"> <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> </div>
-                  <div class="item"> <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> </div>
-                  <div class="item"> <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> </div>
-                  <div class="item"> <img class="owl-lazy" data-src="https://s3.us-east-2.amazonaws.com/prefect-image/Beach_2B.jpg" alt=""> </div>
-                </div>
-            </div>
-      </div>
-    </div>
-  </div>
-
-  
-  <router-outlet></router-outlet>
-
-
-
-  <div class="modal fade" id="uploadphoto" [ngClass] = "{'show' : images_dialog}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title"> Change Business Cover </h4>
-                <button type="button" class="close" (click)="closeModel()" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                    <div *ngIf="image_data==0; else pp">
-                        <h3>No image available in your Portfolio or Albums</h3> 
-                        <button type="submit" class="btn newbtn" (click)="closeModel()" >Close</button>&nbsp;
-           
-                    </div>
-                    <ng-template #pp>
-                      <div class="row popupscrollfit">
-                        <div *ngFor="let images of image_data" class="col-3 imgbottom">
-                          
-                              <img [src] = "images.imageURL"  alt="Profile picture"  class="img-responsive selectimages" (click)="setportfolio_image(images)">
-                             
-                                  <i class="material-icons selectimg">check_circle</i>
-                            
-                              <!-- {{images.type }} -->
-                             
-                              
-                        </div>
-                      </div>
-                     </ng-template> 
-            </div>
-          
-        </div>  
-    </div>    
-  </div>
+          </div>

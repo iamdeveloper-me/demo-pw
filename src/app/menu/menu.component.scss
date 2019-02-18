@@ -44,7 +44,7 @@ background: transparent;
     -webkit-transition: all 0.2s;
     -moz-transition: all 0.2s;
     transition: all 0.2s;
-    z-index: 999;
+    z-index: 9999;
   }
   #mainNav .navbar-brand {
     font-weight: 600;
@@ -255,7 +255,7 @@ height:60px!important;
 position:relative;
 }
 #navbarResponsive ul .nav-item a{
-line-height:60px!important;
+line-height:50px!important;
 padding-bottom:0px!important;
 padding-top:5px!important;
 }
@@ -592,6 +592,7 @@ a.blue-text{
 }
 .logo_icon{background: url('https://s3.us-east-2.amazonaws.com/prefect-image/logo_icon.png');
     background-repeat: no-repeat;
+    line-height: 48px !important;
     padding-left: 54px;
     height: 58px;
     color: #ffffff !important;
@@ -1049,9 +1050,9 @@ and (max-device-width : 1100px) {
   }
     .mobileshowwebnav {
       min-width: inherit;
-      top:-45px;
+      top:-54px;
       left:266px;
-      width: 282px;
+      width: 282px!important;
       display: block;
       overflow: scroll;
       transition: left .5s;
@@ -1207,13 +1208,7 @@ and (max-device-width : 1100px) {
      background-color: #f3f3f3 !important;
   }
   #navbarResponsive ul li::after{
-      border-bottom-width: 1px !important;
-      border-bottom-style: solid !important;
-      display: block !important;
-      right: 0 !important;
-      left: 16px !important;
-      content: '' !important;
-      border-color: #ccc !important;
+     display:none;
   }
   .nav-item .mob_arrow::after{
      border-top: 2px solid transparent;
@@ -1307,7 +1302,9 @@ and (max-device-width : 1100px) {
     top: 15px;
 }
   .show .mobileshowwebnav {
-      top:-45px!important;
+      top:0px!important;
+      left:0px!important;
+      position:fixed!important;
     }
   .navbar-nav>li.usernavmenu>a, .navbar-nav>li.usernavmenu>a>i.material-icons, .navbar-nav>li.notilink>a, .navbar-nav>li.notilink>a>i.material-icons {
     padding-top: 0px;
@@ -1348,9 +1345,9 @@ and (max-device-width : 1100px) {
     z-index: 999;
 }
 .mobileshowwebnav {
-    top:-45px!important;
+    top:-54px!important;
     /*left:-308px!important;*/
-    width:293px!important;
+    width:282px!important;
   }
   .locationbox h2 {
     font-size:15px !important;

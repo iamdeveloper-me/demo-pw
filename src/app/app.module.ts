@@ -1,6 +1,8 @@
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import {RatingModule} from "ngx-rating";
+import { SelectDropDownModule } from 'ngx-select-dropdown'
+
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import {DatePipe} from '@angular/common';
@@ -217,6 +219,14 @@ import { Gallery0Component } from './vendor/gallery0/gallery0.component';
 import { GalleryTwoComponent } from './vendor/gallery-two/gallery-two.component';
 import { CalenderComComponent } from './vendor/calender-com/calender-com.component';
 import { SectionBComponent } from './vendor/membership/section-b/section-b.component';
+import { TopicPipe } from './tips/topic.pipe';
+import { PhotoPipe } from './photo/photo.pipe';
+
+import { EventsearchPipe } from './events/eventsearch.pipe';
+import { EventsearchlocationPipe } from './events/eventsearch.pipe';
+import { EventsearchentryPipe } from './events/eventsearch.pipe';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { VendorDealDetailComponent } from './vendor-deal-detail/vendor-deal-detail.component';
 
 
 
@@ -434,9 +444,20 @@ export function getAuthServiceConfigs() {
 
         SectionBComponent,
 
+        TopicPipe,
 
+
+        PhotoPipe,
+
+
+        EventsearchPipe,
+
+
+        EventsearchlocationPipe,
         
+        EventsearchentryPipe,
         
+        VendorDealDetailComponent
 
 
 
@@ -444,7 +465,7 @@ export function getAuthServiceConfigs() {
   ],
     imports: [
         CarouselModule,
-        BrowserModule,
+       // BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         // calender start
@@ -452,7 +473,11 @@ export function getAuthServiceConfigs() {
         FlatpickrModule.forRoot(),
         CalendarModule.forRoot(),
         // calender End
-        
+
+        NgxPaginationModule,
+
+        RecaptchaModule,
+
         OwlModule,
         ProgressHttpModule
 ,NgxDatatableModule,
@@ -484,6 +509,7 @@ export function getAuthServiceConfigs() {
         Ng2SmartTableModule,
         ChartistModule,
         NgxChartsModule,
+        SelectDropDownModule,
         // CalendarModule.forRoot(),
         NgbModalModule.forRoot(),
         NgbDatepickerModule.forRoot(),
@@ -503,12 +529,13 @@ export function getAuthServiceConfigs() {
             libraries: ["places"]
         }),
         // code by v
-        BrowserModule, NgxPaginationModule
+        BrowserModule, 
+        NgxPaginationModule
     ],
 
     providers: [
             PagerService,
-        {provide: LocationStrategy, useClass: HashLocationStrategy},
+        
         AuthService,
         GoogleMapsAPIWrapper,
         AuthGuard,
@@ -522,7 +549,8 @@ export function getAuthServiceConfigs() {
         },
         apiService
     ],
-    bootstrap: [AppComponent, MylistingComponent],
+    exports:[AdminsidebarComponent],
+    bootstrap: [AppComponent],
     entryComponents: [NgbdModalContent],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA

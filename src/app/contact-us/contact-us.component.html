@@ -1,8 +1,8 @@
 <app-menu></app-menu>
 
-<div id="wrappervendorsidbar">
+<!-- <div id="wrappervendorsidbar">
   <app-vendorsidebar></app-vendorsidebar>
-</div>
+</div> -->
 
 <section class="contact_us fixedtik">
   <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d396154.2548715597!2d75.79027847337561!3d22.708063533462894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1530948933000"
@@ -47,29 +47,58 @@
 
       <div class="col-md-6 cont_bg">
         <div>
-          <h4>CONTACT FORM</h4>
+          <h4>Getting in touch is easy!</h4>
         </div>
         <form name="form" (ngSubmit)="list.form.valid && contact(list)" #list="ngForm" novalidate>
             <input type="hidden" data-form-email="true">
-            <div class="form-group">
+            <div class="form-group col-md-6">
               <input 
                 type="text" 
                 [(ngModel)]="contactInfoObj.name" 
                 #name="ngModel" 
                 [ngClass]="{ 'is-invalid': list.submitted && name.invalid }"
-                class="form-control" 
+                class="form-control nameClass" 
                 name="name" 
                 required 
-                placeholder="Name*"
+                placeholder="First Name*"
               />
               <div *ngIf="list.submitted && name.invalid" class="invalid-feedback">
-                  <div *ngIf="name.errors.required">Name is required</div>
+                  <div *ngIf="name.errors.required">First Name is required</div>
               </div>
             </div>
+            <!-- <div class="form-group col-md-6">
+                <input 
+                  type="text" 
+                  [(ngModel)]="firstName" 
+                  #name="ngModel" 
+                  [ngClass]="{ 'is-invalid': list.submitted && firstName.invalid }"
+                  class="form-control" 
+                  name="firstName" 
+                  required 
+                  placeholder="firstName*"
+                />
+                <div *ngIf="list.submitted && firstName.invalid" class="invalid-feedback">
+                    <div *ngIf="firstName.errors.required">firstName is required</div>
+                </div>
+              </div> -->
+              <div class="form-group col-md-6">
+                  <input 
+                    type="text" 
+                    [(ngModel)]="contactInfoObj.lastName" 
+                    #lastName="ngModel" 
+                    [ngClass]="{ 'is-invalid': list.submitted && lastName.invalid }"
+                    class="form-control lastNameClass" 
+                    name="lastName" 
+                    required 
+                    placeholder="Last Name*"
+                  />
+                  <div *ngIf="list.submitted && lastName.invalid" class="invalid-feedback">
+                      <div *ngIf="lastName.errors.required">LastName is required</div>
+                  </div>
+                </div>
             <div class="form-group">
               <input 
                 type="email" 
-                pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$" 
                 class="form-control" 
                 [(ngModel)]="contactInfoObj.email"
                 #email="ngModel" 
@@ -79,7 +108,7 @@
                 placeholder="Email*" 
               />
               <div *ngIf="list.submitted && email.invalid" class="invalid-feedback">
-                  <div *ngIf="email.errors.required">email is required</div>
+                  <div *ngIf="email.errors.required">Email is required</div>
                   <div *ngIf="email.errors.email">Email must be a valid email address</div>
               </div>
               <div class="clearfix"></div>
@@ -104,8 +133,14 @@
               </div>
               <small class="form-text text-muted danger">{{Phone_no}}</small>
             </div>
-            <div class="form-group">
-              <input 
+            <!-- <div class="form-group">
+              <select name="subjects" class="form-control" [(ngModel)]="subjects" id="subjects">
+                  <option [value]="undefined" disabled>Please Select</option>
+                  <option *ngFor="let subject of subjects ;let s =index" value="">{{subject}}</option>
+              </select>
+            </div> -->
+              <div class="form-group">
+               <input 
                 type="tel" 
                 class="form-control" 
                 [(ngModel)]="contactInfoObj.subject" 
@@ -117,7 +152,7 @@
               />
               <div *ngIf="list.submitted && subject.invalid" class="invalid-feedback">
                   <div *ngIf="subject.errors.required">subject is required</div>
-              </div>
+              </div> 
               <input 
                 type="hidden" 
                 class="form-control" 
@@ -143,7 +178,11 @@
             </div>
             </div>
             <div>
-              <button type="submit" class="btn btn-lg btn-danger">Submit Message</button>
+                <re-captcha [(ngModel)]="listCaptchaValue"  name="captcha" (resolved)="resolved($event)" siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></re-captcha>
+            </div>
+            <br>
+            <div>
+              <button type="submit" [disabled]="!list.valid" class="btn btn-lg btn-danger">Submit Message</button>
             </div>
           </form>
       </div>

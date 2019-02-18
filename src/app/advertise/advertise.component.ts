@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { apiService } from '../shared/service/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { viewClassName } from '@angular/compiler';
+import { Meta, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-advertise',
   templateUrl: './advertise.component.html',
@@ -8,17 +10,31 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AdvertiseComponent implements OnInit {
 
-  constructor(private apiService: apiService, public toastr: ToastrService) { }
+  constructor(private apiService: apiService, public toastr: ToastrService,private meta : Meta,private title : Title) { }
   contactInfoObj  = new ContactUsVM()
-    messageType = 1;
-    Phone_no ;
-
-  ngOnInit() { }
+  messageType = 1;
+  Phone_no ;
+  ad_data = {title:""}
+  contentData: any;
+@ViewChild('pageContent') pageContent: ElementRef;
+  ngOnInit() {
+    this.title.setTitle('Grow your Business & Membership Benefits | Wedding Vendors');    
+    this.meta.addTag({name:'description',content:'Grow your Business & Membership Benefits | Wedding Vendors'});  
+   
+    this.apiService.getData(this.apiService.serverPath+'PerfectWedding/pagecontent?key=advertise').subscribe(data => {
+      this.contentData=data;
+      this.pageContent.nativeElement.innerHTML=data.pageContent;
+      console.log(data)
+      this.ad_data = data;
+    }, error => {
+       console.log(error)
+    })
+   }
 
   contact(list){
     this.apiService.postData(this.apiService.serverPath+'Home/contactus',list.value).subscribe(data => {
       this.toastr.success(data.message);
-      list.reset()
+      list.resetForm();
     },
       error => {
        console.log(error)
@@ -38,10 +54,11 @@ export class AdvertiseComponent implements OnInit {
 }
 
 export class ContactUsVM {
-  name :	string
-  email:	string
-  subject:	string
-  phoneNumber:	string
-  message:	string
-  messageType=1
+  name :	string;
+  lastName: string;
+  email:	string;
+  subject:	string;
+  phoneNumber:	string;
+  message: string;
+  messageType: number;
 }

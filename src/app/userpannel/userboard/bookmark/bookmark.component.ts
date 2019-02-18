@@ -97,33 +97,33 @@ $.getScript('https://code.jquery.com/jquery-1.11.1.min.js');
 	}
 })
 $('.tikchecklist').click(function(e){
-//alert("hi")
+
     $(this).parent('.CheckListdiv').toggleClass('doneListdiv');
     $(this).parent('.CheckListdiv').toggleClass('donecheckbox');
     $(this).parent('.CheckListdiv').toggleClass('todocheckbox');   
 });
 $('.deletebtnhover').click(function(e){
-//alert("hi")
+
     $(this).parent('.CheckListdiv').toggleClass('displaynone');
 });
 
 $('.filterbtn').click(function(e){
-//alert("hi")
+
     $(".filterbox").toggleClass( "in");
 });
 
 $('.todobtncheck').click(function(e){
-//alert("hi")
+
     $(".todocheckbox").show();
     $(".donecheckbox").hide();
 });
 $('.donebtncheck').click(function(e){
-//alert("hi")
+
     $(".todocheckbox").hide();
     $(".donecheckbox").show();
 });
 $('.allbtncheck').click(function(e){
-//alert("hi")
+
     $(".todocheckbox").show();
     $(".donecheckbox").show();
 });

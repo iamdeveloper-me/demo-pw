@@ -26,7 +26,7 @@
               <tr *ngFor="let image of albumImagesModify; let i=index " >
                 <td class="imgboxlist">               
                   <div >
-                    <img class="img-thumbnail" src="{{image.path}}"> 
+                    <img   *ngIf = "image" class="img-thumbnail" src="{{image.path}}"> 
                   </div> 
                 </td>
                 <td valign="top"> 

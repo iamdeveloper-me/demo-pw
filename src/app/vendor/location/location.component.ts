@@ -81,6 +81,7 @@ export class LocationComponent implements OnInit {
   data;
   dist_id;
   m;
+  districts;
   enable = true;
   modelfield: any = { mobile: "" };
   locationPhoneId = 0;
@@ -272,7 +273,7 @@ export class LocationComponent implements OnInit {
       'street':new FormControl(),
       'pincode': new FormControl()
     })
-    this.objDashboard= new DashboardComponent(this.apiService, this.config,this.http,this.router);
+   // this.objDashboard= new DashboardComponent(this.apiService, this.config,this.http,this.router);
     this.mapsApiLoader = mapsApiLoader;
     this.zone = zone;
     this.wrapper = wrapper;
@@ -307,13 +308,8 @@ export class LocationComponent implements OnInit {
       });
     });
     this.location.marker.draggable = true;
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization", 'Bearer ' + authToken);
-    this.http.get(this.urlget, { headers: headers }).subscribe((data) => {
-      this.location_Array = data.json();
+    this.apiService.getData(this.apiService.serverPath+'Supplier/mylocations').subscribe((data) => {
+      this.location_Array = data;
       this.location_Array_length = this.location_Array.length;
       this.location_Array.sort(p=>p.isPrimary).reverse();
       this.location_Array[0].locationPhones.reverse();
@@ -464,17 +460,13 @@ export class LocationComponent implements OnInit {
           "phoneNumber": phoneObj.value.number?phoneObj.value.number:'0',
           "isPrimary": phoneObj.value.isprime
         }
-        let headers = new Headers();
-        var authToken = localStorage.getItem('userToken');
-        headers.append('Accept', 'application/json')
-        headers.append('Content-Type', 'application/json');
-        headers.append("Authorization", 'Bearer ' + authToken);
-        this.http.post(this.remove_phone_number, obj, { headers: headers }).subscribe(
+        this.apiService.postData(this.apiService.serverPath+'Supplier/deletelocationphone',obj).subscribe(
           (data) => {
             this.toastr.success(data.statusText);
             let control = <FormArray>this.formPhone.controls['phoneArry'];
             control.removeAt(index);
           }, (error) => {
+            console.log(error);
             let control = <FormArray>this.formPhone.controls['phoneArry'];
             control.removeAt(index);
           });
@@ -484,7 +476,7 @@ export class LocationComponent implements OnInit {
             this.ngOnInit();
       }
     }, error => {
-    
+     console.log(error);
     })
     return;
   }
@@ -600,12 +592,7 @@ export class LocationComponent implements OnInit {
       isSaturdayOpen: a.isSaturdayOpen
     }
     this.week_dailog = false;
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization", 'Bearer ' + authToken);
-    this.http.post(this.urlpost, loc_add, { headers: headers }).subscribe((data) => {
+    this.apiService.postData(this.apiService.serverPath+'Supplier/savelocation',loc_add).subscribe((data) => {
       this.mapDailog = false;
       this.toastr.success(data.statusText);
 
@@ -615,11 +602,6 @@ export class LocationComponent implements OnInit {
   }
   update__week(e) {
  
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization", 'Bearer ' + authToken);
     let isvalidTIme = this.validateTradingTime();
     if (isvalidTIme == 1) {
       let jsonPost={
@@ -662,8 +644,10 @@ export class LocationComponent implements OnInit {
      
       }
      
-      this.http.post(this.urlpost,jsonPost, { headers: headers }).subscribe((data) => {
-        this.toastr.success(data.json().message);
+      //this.http.post(this.urlpost,jsonPost, { headers: headers })
+      this.apiService.postData(this.apiService.serverPath+'Supplier/savelocation',jsonPost).subscribe((data) => {
+        this.toastr.success(data.message);
+        this.week_dailog = false;
       },
         (error) => {
           console.log(error);
@@ -676,19 +660,15 @@ export class LocationComponent implements OnInit {
 
   isActive(b, e) {
  
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization", 'Bearer ' + authToken);
     
     if (b == true) {
         this.toastr.info('Vacation Mode is ON');
       }else{ 
         this.toastr.warning("Vacation Mode is OFF");
        }
-    this.http.post(this.urlpost, e, { headers: headers }).subscribe((data) => {
-      
+    // this.http.post(this.urlpost, e, { headers: headers })
+    this.apiService.postData(this.apiService.serverPath+'Supplier/savelocation',e).subscribe((data) => {
+      console.log(data);
     }
       , (error) => { console.log(error); });
   }
@@ -804,15 +784,10 @@ export class LocationComponent implements OnInit {
   }
   cerate(e) {
     this.create_location_dailog = false;
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    var vendorID = localStorage.getItem('vendorid');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization", 'Bearer ' + authToken);
-
-
-    this.http.post(this.urlpost, {
+     var vendorID = localStorage.getItem('vendorid');
+  
+    
+    const data2 = {
       vendorLocationId: 0,
       countryId: e.value.country_id,
       districtId: e.value.dist_id,
@@ -850,9 +825,11 @@ export class LocationComponent implements OnInit {
       isSaturdayOpen: false,
 
     }
-      , { headers: headers }).subscribe(
+
+    //this.http.post(this.urlpost, data2, { headers: headers })
+    this.apiService.postData(this.apiService.serverPath+'Supplier/savelocation',data2).subscribe(
         (data) => {
-          this.toastr.success(data.json().message);
+          this.toastr.success(data.message);
         }, (err) => {
           this.toastr.error(err._body);
         });
@@ -900,12 +877,9 @@ export class LocationComponent implements OnInit {
       saturdayClose: e.value.saturdayClose,
       isSaturdayOpen: e.value.isSaturdayOpen
     }
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization", 'Bearer ' + authToken);
-    this.http.post(this.urlpost, datapanel, { headers: headers }).subscribe((responce) => {
+  //  this.http.post(this.urlpost, datapanel, { headers: headers })
+    this.apiService.postData(this.apiService.serverPath+'Supplier/savelocation',datapanel).subscribe((responce) => {
+      this.mapDailog = false;
       this.toastr.success(responce.statusText);
       if (responce.status == 200) {
         this.photo_ved_dailog = false;
@@ -919,12 +893,15 @@ export class LocationComponent implements OnInit {
   }
   }
   closeResult: string;
-
+ 
   country(): void {
     this.district =this.arra.filter(c=>c.countryId==this.address_modelfield.countryId)[0].districts
   }
   districtA(): void {
    this.district =this.arra.filter(c=>c.countryId==this.address_modelfield.countryId)[0].districts;
+   console.log(this.district)
+   
+   //.districts;
    let selectedDist=this.district.filter(d=>d.districtId==this.dist_id);
    if(selectedDist==undefined){
      this.ele_dist.nativeElement.value='-1';
@@ -952,9 +929,10 @@ export class LocationComponent implements OnInit {
     this.ngOnInit();
   }
   loadCountries() {
-    let country = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries");
+    
+    let country = this.apiService.getData(this.apiService.serverPath+'LookupMaster/countries');
     country.subscribe(data => {
-      this.countryArray = data.json();
+      this.countryArray = data;
       this.arra = this.countryArray
       this.districtA();
       this.subr();
@@ -1047,3 +1025,53 @@ export class TimeSlot {
 
 
 }
+
+
+// export class LocationVM {
+
+//   vendorLocationId: number;
+//   title: string;
+//   countryId: number;
+//   districtId: string;
+//   suburbId: number;
+//   vendorId: number;
+//   country: {countryId:  number,countryName:string};
+//   districts: {districtId:  number,name: string};
+//   suburb: {name: string,suburbId:  number};
+//   city: string;
+//   postalCode: number;
+//   address: string;
+//   lat: number;
+//   long: number;
+//   addedOn:number;
+//   phone:number;
+//   mobile:number;
+//   isPrimary:boolean;
+//   isActive: boolean;
+//   sundayOpen: null;
+//   sundayClose: null;
+//   isSundayOpen: boolean;
+//   mondayOpen: null;
+//   mondayClose: null;
+//   isMondayOpen: boolean;
+//   tuesdayOpen: null;
+//   tuesdayClose: null;
+//   isTuesdayOpen: boolean;
+//   wednesdayOpen: string;
+//   wednesdayClose:  string;
+//   isWednesdayOpen: boolean;
+//   thursdayOpen: null;
+//   thursdayClose: null;
+//   isThursdayOpen: boolean;
+//   fridayOpen: null;
+//   fridayClose: null;
+//   isFridayOpen: boolean;
+//   saturdayOpen:  string;
+//   saturdayClose: string;
+//   isSaturdayOpen: boolean;
+//   locationPhones:Array<locationPhonesVM>
+// }
+
+// export class locationPhonesVM{
+
+// }

@@ -462,7 +462,7 @@ export class EventListComponent implements OnInit {
       headerForImageUpload.append("Authorization", 'Bearer ' + authToken);
       const formData = new FormData();
       formData.append('AlbumId', '2');
-      //    alert(JSON.stringify(this.imageToUpload));
+   
       if (this.objevent.entry == 'Paid' && (this.objevent.entryFee==undefined || this.objevent.entryFee==0)) {
         this.entry = 'Field Required'
         this.toastr.error('Please Enter Valid Entry Fees!');

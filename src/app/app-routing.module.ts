@@ -148,29 +148,33 @@ import { StepSecondComponent } from './register/step-second/step-second.componen
 import { StepThirdComponent } from './register/step-third/step-third.component';
 import { StepForthComponent } from './register/step-forth/step-forth.component';
 import { PaymentSummaryComponent } from './payment-summary/payment-summary.component';
+import { VendorDealDetailComponent } from './vendor-deal-detail/vendor-deal-detail.component';
+
 
 const appRoutes: Routes = [
-
+ 
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'register/step1', component: StepFirstComponent },
   { path: 'register/step2', component: StepSecondComponent },
   { path: 'register/step3', component: StepThirdComponent },
   { path: 'register/step4', component: StepForthComponent },
-  { path: 'home/searchresult', component: SearchresultComponent, },
-  { path: 'home/searchresult/:id', component: SearchresultComponent,runGuardsAndResolvers: 'always', },
+  { path: 'home/weddingvendors', component: SearchresultComponent },
+  { path: 'home/weddingvendors/:id', component: SearchresultComponent },
+  { path: 'home/weddingvendors/:id/:id', component: SearchresultComponent },
   { path: 'home/tips_list', component: TipslistComponent },
   { path: 'home/event_list', component: EventlistComponent },
   { path: 'home/detailprofile/:id', component:  DetailpageComponent  },
   { path: 'home/gallery', component:  GalleryComponent  },
-  //{ path: 'home/vendor', component:  VendorComponent  },
+  //{ path: 'home/vendor', component:  VendorComponent  },VendorDealDetailComponent
   { path: 'home/photo', component: PhotoComponent },
   { path: 'home/tips', component: TipsComponent },
   { path: 'home/contact', component: ContactUsComponent },
   { path: 'home/events', component:  EventsComponent  },
   { path: 'home/allcategory', component:  AllcategoryComponent },
-  { path: 'home/category', component:  CategoryComponent },
+  { path: 'home/weddingcategories', component:  CategoryComponent },
   { path: 'home/register', component:  RegisterComponent  },
+
   { path: 'home/events', component: EventsComponent },
   { path: 'home/FAQ', component:FaquestionComponent },
   { path: 'home/TermsandConditions', component: TermsandconComponent  },
@@ -187,9 +191,10 @@ const appRoutes: Routes = [
 
   { path: 'home/Deals', component:  DealsComponent },
   { path: 'home/Deal_Details', component:  DealDetailsComponent },
-  { path: 'home/Honeymoon', component:  HoneymoonComponent },
-  { path: 'Honeymoon_Details', component:  HoneymoonDetailsComponent },
-
+  { path: 'home/Deal_Details/:id', component:  DealDetailsComponent },
+  { path: 'home/Honeymoondestinations', component:  HoneymoonComponent },
+  { path: 'home/Honeymoon_Details', component:  HoneymoonDetailsComponent },
+  { path: 'home/Honeymoon_Details/:id', component:  HoneymoonDetailsComponent },
   { path: 'vendor/creatpromo', component:  CreatePromotionComponent, canActivate:[AuthGuardService]  },
   { path: 'vendor/messagess', component:  ChatComponent, canActivate:[AuthGuardService]  },
   { path: 'vendor/dashboard', component:  DashboardComponent,canActivate:[AuthGuardService]  },
@@ -301,7 +306,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes, { useHash: true})],
+  imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
 

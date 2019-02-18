@@ -1,17 +1,19 @@
 <section class="all_category" id="portfolio">
   <div class="container martop60px">
-    <ol _ngcontent-c11="" class="breadcrumb breadcrumbcontainer">
+    <ol _ngcontent-c11="" class="breadcrumb breadcrumbcontainer mob_dis_none">
       <li><a routerLink="/home">Home</a></li>
-      <li class="active">All Wedding Categories</li>
+      <li class="active">Wedding Categories</li>
     </ol>
   </div>
-  <div class="container text-center mob_dis_none">
-    <h3 class="brows_head"> <strong> Wedding Vendors by  <span class="bate_bg"> Category </span>  </strong> </h3>
+  <div class="container text-center">
+    <h3 class="brows_head"> 
+<a routerLink="/home" class="homelinkmobile"><i class="material-icons"> arrow_back_ios </i></a>
+      <strong> Wedding Vendors by  <span class="bate_bg"> Category </span>  </strong> </h3>
   </div>
   <div class="container mob_parallax mob_padd0">
     <div class="col-md-3 col-6 box_img"  *ngFor='let Popular of Popular_Wedding_array'>
-      <a (click) = "Categories_each(Popular)">
-        <img [src]="Popular.imagePath"  class="zoom_in">
+      <a (click) = "Categories_each(Popular,false,false)"  >
+        <img [src]="Popular.imagePath" *ngIf="Popular" class="zoom_in">
         <div class="tranparentlayer">
           <h5>{{Popular.categoryName}}</h5>
           <p>{{Popular.listingCount}} listing </p>
@@ -20,5 +22,4 @@
     </div>
   </div>
 </section>
-
 

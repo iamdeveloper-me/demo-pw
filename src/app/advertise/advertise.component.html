@@ -9,7 +9,8 @@
                     style="margin-left:65% !important; margin-top:25% !important;">
                 <div class="banner-content text-center pt-max position-relative">
                     <p class="text-white">We work hard, we result perfect</p>
-                    <h1 class="text-white">Creative Digital Agency</h1>
+                    <h1 class="text-white">Creative {{ad_data.title}} Agency</h1>
+                 
                     <h3 class="white">Multi Purpose Template</h3>
                     <a href="#about" class="primary-btn banner-btn">Explore Us</a>
                     <br>
@@ -18,6 +19,11 @@
             </section>
         </div>
     </div>
+    <!-- <div class="content">
+        <h1>{{pageContent.title}}</h1>
+            <div id='pageContent' #pageContent></div>
+    </div> -->
+    
 
     <section class="business-features">
         <h3>Business features</h3>
@@ -209,7 +215,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <button type="submit" class="send-btn">Send</button>
+                            <button type="submit" [disabled]="!list.valid" class="send-btn">Send</button>
                         </div>
                         <div class="col-md-2"></div>
                     </div>
@@ -218,7 +224,7 @@
         </div>
     </section>
 
-    <script>
+    <!-- <script>
         $('.carousel').carousel({
             pause: "false"
         });
@@ -228,7 +234,7 @@
                 },
             'slow');
         });
-    </script>
+    </script> -->
 
 </div>
 <app-foot></app-foot>

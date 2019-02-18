@@ -1,428 +1,224 @@
 <div id="wrappervendor" class="" style="text-align:center;background-color:white;">
 	<app-menu></app-menu>
-		<div class="container">
-			<div class="row dealsbanner">
-					<div class="col-sm-6 dealbannerdetail">
-						<div class="locationtext">
-							<i class="material-icons">location_on</i>
-							<span>Borivali, Mumbai</span>
-						</div>
+	<div class="container">
+		<div class="row dealsbanner">
+			<div class="col-sm-6 dealbannerdetail">
+				<div class="locationtext">
+					<i class="material-icons">location_on</i>
+					<span>{{suburbdeal.name}}, {{districtdeal.name}}</span>
+				</div>
 
-						<h1>Vision Photography</h1>
-						<h2>Best Photography deals ever</h2>
-						<div class="clearfix"></div>
-						<div class="dealspricebox">
-							<div  class="pricestart borrtonly bluetext">
-								<span>Starting From</span>
-								<h3>$169</h3>
-							</div>
-							<div  class="pricestart greentext">
-								<span>
-									Saved up to
-								</span>
-								<h3>70% Off</h3>
+				<h1>{{highlighteddeal.nameOfBusiness}}</h1>
+				<h2>{{highlighteddeal.conditions}}</h2>
+				<div class="clearfix"></div>
+				<div class="dealspricebox">
+					<div class="pricestart borrtonly bluetext">
+						<span>Starting From</span>
+						<h3>{{highlighteddeal.startingFrom}}</h3>
+					</div>
+					<div class="pricestart greentext">
+						<span>
+							Saved up to
+						</span>
+						<h3>{{highlighteddeal.discount}}% Off</h3>
+					</div>
+				</div>
+
+				<div class="clearfix"></div>
+				<button class="btn btn-lg dealbtn">Veiw Deals</button>
+
+			</div>
+			<div class="col-sm-6">
+				<img src="https://static1.squarespace.com/static/51d17d80e4b0df98a9be4719/54aa5cd6e4b0b365f776ab79/59a42ecf6b8f5b86e3a49497/1503932119299/RJH+Wedding+Photography-IMG_5895.jpg?format=2500w"
+				 class="dealbanner">
+			</div>
+			<div class="col-sm-6" *ngFor="let albumImage of albumeArrays">
+				<img [src]="albumImage.dealsImages" class="dealbanner">
+				{{albumImage | json}}
+			</div>
+		</div>
+
+
+		<div class="clearfix"></div>
+		<ul class="nav nav-tabs tabbingdesign">
+			<li class="active">
+				<a data-toggle="tab" href="#all">All</a>
+			</li>
+			<li>
+				<a data-toggle="tab" href="#discount">Exclusive Discounts</a>
+			</li>
+			<li>
+				<a data-toggle="tab" href="#promotion">Deals</a>
+			</li>
+		</ul>
+		<div class="tab-content nopadd">
+			<div id="all" class="tab-pane fade in active">
+				<!--Discount Start All-->
+				<div class="row" style="padding:5px;" style="padding:5px;">
+					<div class="col-sm-3" *ngFor="let deal of deals ;let i=index">
+						<div class="disboxloop" (click)="goToNextPage(deal)">
+							<a *ngFor=" let i of  deal.vendorCategories | slice:0:1  ">
+								<img *ngIf="i.categories.imagePath" [src]="i.categories.imagePath" class="discountimg">
+								<img *ngIf="!i.categories.imagePath" src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg"
+								 class="discountimg">
+							</a>
+							<div class="textdisdetaill">
+								<div class="discat">
+									{{deal.discount}} % Discount
+								</div>
+								<div class="title">
+									{{deal.title}} discount on
+									<div *ngFor=" let i of  deal.vendorCategories | slice:0:1  ">
+										{{i.categories.categoryName}}
+									</div>
+								</div>
+								<div class="offerdis">
+									<span>{{deal.businessName}}</span>
+									<!-- <span>
+										<i class="material-icons" *ngIf="deal.endDateString == null">query_builder</i>
+										End Date : N/A
+									</span>
+									<span>
+										<i class="material-icons" *ngIf="!deal.endDateString == null">query_builder</i>
+										{{deal.endDateString}}
+									</span> -->
+								</div>
 							</div>
 						</div>
-						<div class="clearfix"></div>
-						<button class="btn btn-lg dealbtn">Veiw Deals</button>
+					</div>
+					<div class="col-sm-3" *ngFor="let mydeal of all_deals ;let i=index">
+						<!--Deals Start All-->
+						<div class="disboxloop" (click)="goToNextPage(mydeal)">
+							<a *ngIf="mydeal.dealsImages.length == 0; else elseBlock">
+								<img src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" class="discountimg">
+							</a>
+							<ng-template #elseBlock>
+								<a *ngFor="let img of  mydeal.dealsImages | slice:1:2 ">
+									<img [src]="img.path" class="discountimg">
+								</a>
+							</ng-template>
+							<div class="textdisdetaill">
+								<div class="discat">
+									{{mydeal.discount}} % Discount
+								</div>
+								<div class="title">
+									{{mydeal.conditions}}
+								</div>
+								<div class="offerdis">
+									<span>
+										{{mydeal.title}}
+									</span>
+									<span>
+										<i class="material-icons">query_builder</i>
+										Start Date : {{mydeal.startDateString}}
+									</span>
+									<span>
+										<i class="material-icons" *ngIf="mydeal.endDateString == ''; else endBlock">query_builder</i>
+										End Date : N/A
+									</span>
+									<ng-template #endBlock>
+										<span>
+											<i class="material-icons">query_builder</i>
+											End Date : {{mydeal.endDateString}}
+										</span>
+									</ng-template>
+								</div>
+							</div>
+						</div>
+						<!--Deals End All-->
+					</div>
+				</div>
+				<!--Discount Start All-->
+			</div>
+			<!--Discount Main-->
+			<div id="discount" class="tab-pane fade">
+				<!--Deals Start-->
+				<div class="row" style="padding:5px;">
+					<div class="col-sm-3" *ngFor="let deal of deals ;let i=index">
+						<div class="disboxloop" (click)="goToNextPage(deal)">
+							<a *ngFor=" let i of  deal.vendorCategories | slice:0:1  ">
+								<img *ngIf="i.categories.imagePath" [src]="i.categories.imagePath" class="discountimg">
+								<img *ngIf="!i.categories.imagePath" src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg"
+								 class="discountimg">
+							</a>
+							<div class="textdisdetaill">
+								<div class="discat">
+									{{deal.discount}} % Discount
+								</div>
+								<div class="title">
+									{{deal.title}} discount on
+									<div *ngFor=" let i of  deal.vendorCategories | slice:0:1  ">
+										{{i.categories.categoryName}}
+									</div>
+								</div>
+								<div class="offerdis">
+									<span>{{deal.businessName}}</span>
+									<!-- <span>
+											<i class="material-icons" *ngIf="deal.endDateString == null">query_builder</i>
+											End Date : N/A
+										</span>
+										<span>
+											<i class="material-icons" *ngIf="!deal.endDateString == null">query_builder</i>
+											{{deal.endDateString}}
+										</span> -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-					</div>
-					<div class="col-sm-6">
-						<img src="https://static1.squarespace.com/static/51d17d80e4b0df98a9be4719/54aa5cd6e4b0b365f776ab79/59a42ecf6b8f5b86e3a49497/1503932119299/RJH+Wedding+Photography-IMG_5895.jpg?format=2500w" class="dealbanner">
-					</div>
+				<!--Deals End-->
 			</div>
 
-			<div class="clearfix"></div>
-			<ul class="nav nav-tabs tabbingdesign">
-                <li class="active">
-                    <a data-toggle="tab" href="#all">All</a>
-                </li>
-                <li>
-                    <a data-toggle="tab" href="#discount">Exclusive Discounts</a>
-                </li>
-                <li>
-                    <a data-toggle="tab" href="#promotion">Other Promotions</a>
-                </li>
-            </ul>
-            <div class="tab-content nopadd">
-                <div id="all" class="tab-pane fade in active">
-                		<div class="col-sm-3">
-	                		<div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-		                			<div class="textdisdetaill">
-			                			<div class="discat">
-			                				% Discount
-			                			</div>
-			                			<div class="title">
-			                				10 % discount on Photography
-			                			</div>
-			                			<div class="offerdis">
-			                				<span>Exclusive discount on wedding photography</span>
-			                				<span>
-			                						<i class="material-icons">query_builder</i>
+			<!--Deals Main Start-->
+			<div id="promotion" class="tab-pane fade">
+			<div class="row" style="padding:5px;">
+					<div class="col-sm-3" *ngFor="let mydeal of all_deals ;let i=index">
+						<div class="disboxloop" (click)="goToNextPage(mydeal)">
+							<a *ngIf="mydeal.dealsImages.length == 0; else elseBlock">
+								<img src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" class="discountimg">
+							</a>
+							<ng-template #elseBlock>
+								<a *ngFor="let img of  mydeal.dealsImages | slice:1:2 ">
+									<img [src]="img.path" class="discountimg">
+								</a>
+							</ng-template>
+							<div class="textdisdetaill">
+								<div class="discat">
+									{{mydeal.discount}} % Discount
+								</div>
+								<div class="title">
+									{{mydeal.conditions}}
+								</div>
+								<div class="offerdis">
+									<span>
+										{{mydeal.title}}
+									</span>
+									<span>
+										<i class="material-icons">query_builder</i>
+										Start Date : {{mydeal.startDateString}}
+									</span>
+									<span>
+										<i class="material-icons" *ngIf="mydeal.endDateString == ''; else endBlock">query_builder</i>
+										End Date : N/A
+									</span>
+									<ng-template #endBlock>
+										<span>
+											<i class="material-icons">query_builder</i>
+											End Date : {{mydeal.endDateString}}
+										</span>
+									</ng-template>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-			                						Expires on 31/12/2019
-			                				</span>
-			                			</div>
-		                			</div>
-		                		</a>
-	                		</div>
-                		</div>
-                		<div class="col-sm-3">
-	                		<div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-		                			<div class="textdisdetaill">
-			                			<div class="discat">
-			                				% Discount
-			                			</div>
-			                			<div class="title">
-			                				10 % discount on Photography
-			                			</div>
-			                			<div class="offerdis">
-			                				<span>Exclusive discount on wedding photography</span>
-			                				<span>
-			                						<i class="material-icons">query_builder</i>
+			</div>
+			<!--Deasl Main End-->
 
-			                						Expires on 31/12/2019
-			                				</span>
-			                			</div>
-		                			</div>
-		                		</a>
-	                		</div>
-                		</div>
-                		<div class="col-sm-3">
-	                		<div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-		                			<div class="textdisdetaill">
-			                			<div class="discat">
-			                				% Discount
-			                			</div>
-			                			<div class="title">
-			                				10 % discount on Photography
-			                			</div>
-			                			<div class="offerdis">
-			                				<span>Exclusive discount on wedding photography</span>
-			                				<span>
-			                						<i class="material-icons">query_builder</i>
-
-			                						Expires on 31/12/2019
-			                				</span>
-			                			</div>
-		                			</div>
-		                		</a>
-	                		</div>
-                		</div>
-                		<div class="col-sm-3">
-	                		<div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-		                			<div class="textdisdetaill">
-			                			<div class="discat">
-			                				% Discount
-			                			</div>
-			                			<div class="title">
-			                				10 % discount on Photography
-			                			</div>
-			                			<div class="offerdis">
-			                				<span>Exclusive discount on wedding photography</span>
-			                				<span>
-			                						<i class="material-icons">query_builder</i>
-
-			                						Expires on 31/12/2019
-			                				</span>
-			                			</div>
-		                			</div>
-		                		</a>
-	                		</div>
-                		</div>
-                		<div class="col-sm-3">
-	                		<div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-		                			<div class="textdisdetaill">
-			                			<div class="discat">
-			                				% Discount
-			                			</div>
-			                			<div class="title">
-			                				10 % discount on Photography
-			                			</div>
-			                			<div class="offerdis">
-			                				<span>Exclusive discount on wedding photography</span>
-			                				<span>
-			                						<i class="material-icons">query_builder</i>
-
-			                						Expires on 31/12/2019
-			                				</span>
-			                			</div>
-		                			</div>
-		                		</a>
-	                		</div>
-                		</div>
-                		<div class="col-sm-3">
-	                		<div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-		                			<div class="textdisdetaill">
-			                			<div class="discat">
-			                				% Discount
-			                			</div>
-			                			<div class="title">
-			                				10 % discount on Photography
-			                			</div>
-			                			<div class="offerdis">
-			                				<span>Exclusive discount on wedding photography</span>
-			                				<span>
-			                						<i class="material-icons">query_builder</i>
-
-			                						Expires on 31/12/2019
-			                				</span>
-			                			</div>
-		                			</div>
-		                		</a>
-	                		</div>
-                		</div>
-                		<div class="col-sm-3">
-	                		<div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-		                			<div class="textdisdetaill">
-			                			<div class="discat">
-			                				% Discount
-			                			</div>
-			                			<div class="title">
-			                				10 % discount on Photography
-			                			</div>
-			                			<div class="offerdis">
-			                				<span>Exclusive discount on wedding photography</span>
-			                				<span>
-			                						<i class="material-icons">query_builder</i>
-
-			                						Expires on 31/12/2019
-			                				</span>
-			                			</div>
-		                			</div>
-		                		</a>
-	                		</div>
-                		</div>
-                		<div class="col-sm-3">
-	                		<div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-		                			<div class="textdisdetaill">
-			                			<div class="discat">
-			                				% Discount
-			                			</div>
-			                			<div class="title">
-			                				10 % discount on Photography
-			                			</div>
-			                			<div class="offerdis">
-			                				<span>Exclusive discount on wedding photography</span>
-			                				<span>
-			                						<i class="material-icons">query_builder</i>
-
-			                						Expires on 31/12/2019
-			                				</span>
-			                			</div>
-		                			</div>
-		                		</a>
-	                		</div>
-                		</div>
-                </div>
-                <div id="discount" class="tab-pane fade">
-                		<div class="col-sm-3">
-	                		<div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-		                			<div class="textdisdetaill">
-			                			<div class="discat">
-			                				% Discount
-			                			</div>
-			                			<div class="title">
-			                				10 % discount on Photography
-			                			</div>
-			                			<div class="offerdis">
-			                				<span>Exclusive discount on wedding photography</span>
-			                				<span>
-			                						<i class="material-icons">query_builder</i>
-
-			                						Expires on 31/12/2019
-			                				</span>
-			                			</div>
-		                			</div>
-		                		</a>
-	                		</div>
-                		</div>
-                		<div class="col-sm-3">
-	                		<div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-		                			<div class="textdisdetaill">
-			                			<div class="discat">
-			                				% Discount
-			                			</div>
-			                			<div class="title">
-			                				10 % discount on Photography
-			                			</div>
-			                			<div class="offerdis">
-			                				<span>Exclusive discount on wedding photography</span>
-			                				<span>
-			                						<i class="material-icons">query_builder</i>
-
-			                						Expires on 31/12/2019
-			                				</span>
-			                			</div>
-		                			</div>
-		                		</a>
-	                		</div>
-                		</div>
-                		<div class="col-sm-3">
-	                		<div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-		                			<div class="textdisdetaill">
-			                			<div class="discat">
-			                				% Discount
-			                			</div>
-			                			<div class="title">
-			                				10 % discount on Photography
-			                			</div>
-			                			<div class="offerdis">
-			                				<span>Exclusive discount on wedding photography</span>
-			                				<span>
-			                						<i class="material-icons">query_builder</i>
-
-			                						Expires on 31/12/2019
-			                				</span>
-			                			</div>
-		                			</div>
-		                		</a>
-	                		</div>
-                		</div>
-                		<div class="col-sm-3">
-	                		<div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-		                			<div class="textdisdetaill">
-			                			<div class="discat">
-			                				% Discount
-			                			</div>
-			                			<div class="title">
-			                				10 % discount on Photography
-			                			</div>
-			                			<div class="offerdis">
-			                				<span>Exclusive discount on wedding photography</span>
-			                				<span>
-			                						<i class="material-icons">query_builder</i>
-
-			                						Expires on 31/12/2019
-			                				</span>
-			                			</div>
-		                			</div>
-		                		</a>
-	                		</div>
-                		</div>
-                </div>
-                <div id="promotion" class="tab-pane fade">
-                 		<div class="col-sm-3">
-	                		<div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-		                			<div class="textdisdetaill">
-			                			<div class="discat">
-			                				% Discount
-			                			</div>
-			                			<div class="title">
-			                				10 % discount on Photography
-			                			</div>
-			                			<div class="offerdis">
-			                				<span>Exclusive discount on wedding photography</span>
-			                				<span>
-			                						<i class="material-icons">query_builder</i>
-
-			                						Expires on 31/12/2019
-			                				</span>
-			                			</div>
-		                			</div>
-		                		</a>
-	                		</div>
-                		</div>
-                		<div class="col-sm-3">
-	                		<div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-		                			<div class="textdisdetaill">
-			                			<div class="discat">
-			                				% Discount
-			                			</div>
-			                			<div class="title">
-			                				10 % discount on Photography
-			                			</div>
-			                			<div class="offerdis">
-			                				<span>Exclusive discount on wedding photography</span>
-			                				<span>
-			                						<i class="material-icons">query_builder</i>
-
-			                						Expires on 31/12/2019
-			                				</span>
-			                			</div>
-		                			</div>
-		                		</a>
-	                		</div>
-                		</div>
-                		<div class="col-sm-3">
-	                		<div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-		                			<div class="textdisdetaill">
-			                			<div class="discat">
-			                				% Discount
-			                			</div>
-			                			<div class="title">
-			                				10 % discount on Photography
-			                			</div>
-			                			<div class="offerdis">
-			                				<span>Exclusive discount on wedding photography</span>
-			                				<span>
-			                						<i class="material-icons">query_builder</i>
-
-			                						Expires on 31/12/2019
-			                				</span>
-			                			</div>
-		                			</div>
-		                		</a>
-	                		</div>
-                		</div>
-                		<div class="col-sm-3">
-	                		<div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="https://s3.us-east-2.amazonaws.com/prefect-image/fower.jpeg" class="discountimg">
-		                			<div class="textdisdetaill">
-			                			<div class="discat">
-			                				% Discount
-			                			</div>
-			                			<div class="title">
-			                				10 % discount on Photography
-			                			</div>
-			                			<div class="offerdis">
-			                				<span>Exclusive discount on wedding photography</span>
-			                				<span>
-			                						<i class="material-icons">query_builder</i>
-
-			                						Expires on 31/12/2019
-			                				</span>
-			                			</div>
-		                			</div>
-		                		</a>
-	                		</div>
-                		</div>
-                </div>
-            </div>
 		</div>
-	
-
+	</div>
 	<app-foot></app-foot>
 </div>
-<router-outlet></router-outlet>  
+<router-outlet></router-outlet>

@@ -152,6 +152,9 @@ $(document).ready(function () {
 //       }
 //   });
 
+document.getElementsByTagName("rating_star span")[0].removeAttribute("title");
+
+
 
 $(".linkshow").click(function() {
   //alert("hhhh");
@@ -178,16 +181,57 @@ $(".startprice .showless").click(function() {
     $('.startprice .showdetail').show();
 });
 
-$(".tradinghours .showdetail").click(function() {
-    $('.detailtra').addClass('heightauto');
-    $('.tradinghours .showdetail').hide();
-    $('.tradinghours .showless').show();
+$(".barnchtableshow").click(function(){
+  //alert("hi")
+   $(".branchdefaulttable").hide();
+   $(".branchdetailtable").show();
+   $(".barnchtableshow").hide();
+   $(".barnchtablenone").show();
 });
-$(".tradinghours .showless").click(function() {
-    $('.detailtra').removeClass('heightauto');
-    $('.tradinghours .showless').hide();
-    $('.tradinghours .showdetail').show();
+
+$(".barnchtablenone").click(function(){
+  //alert("hi")
+   $(".branchdefaulttable").show();
+   $(".branchdetailtable").hide();
+   $(".barnchtableshow").show();
+   $(".barnchtablenone").hide();
 });
+
+$(".showaboutmore").click(function(){
+  //alert("hi")
+   $(".vp_about_txt_description").addClass("showmoretext");
+   $(".showaboutmore").hide();
+   $(".showaboutless").show();
+});
+
+$(".showaboutless").click(function(){
+  //alert("hi")
+   $(".vp_about_txt_description").removeClass("showmoretext");
+   $(".showaboutmore").show();
+   $(".showaboutless").hide();
+});
+
+
+$(".reviewmore").click(function(){
+  
+   $(".reviewmore").hide();
+   $(".reviewless").show();
+});
+
+$(".reviewless").click(function(){
+   $(".reviewmore").show();
+   $(".reviewless").hide();
+});
+
+
+
+
+$(".viewbranchhour").click(function(){
+    //alert("hi")
+    $(this).parents('.branchdetailtableinner').toggleClass("in");
+  });
+
+
 
 // tab desktop
 $(".dealbox").click(function() {
@@ -266,12 +310,13 @@ $(".reviewbtn").click(function() {
 });
 
 $(".callbtn").click(function() {
+  //alert("hi");
      $('.callinfo').show();
      $('.callbtn').hide();
      $('.callbtnhide').show();
 });
 $(".callbtnhide").click(function() {
-      $('.callinfo').hide();
+     $('.callinfo').hide();
      $('.callbtn').show();
      $('.callbtnhide').hide();
 });
@@ -303,59 +348,6 @@ $(document).ready(function() {
 });
 
 
-
-
-
-$(window).scroll(function() {    
-    var scroll = $(window).scrollTop();
-    if(scroll >= 450)  {
-        $(".overviewbox").addClass("activebuttontab");
-        $(".aboutbox").removeClass("activebuttontab");
-        $(".gallerybox").removeClass("activebuttontab");
-        $(".reviewbox").removeClass("activebuttontab");
-        $(".dealbox").removeClass("activebuttontab");  
-    } 
-});
-$(window).scroll(function() {    
-    var scroll = $(window).scrollTop();
-    if(scroll >= 1160) {
-        $(".aboutbox").removeClass("activebuttontab");
-        $(".overviewbox").removeClass("activebuttontab");
-        $(".gallerybox").addClass("activebuttontab");
-        $(".reviewbox").removeClass("activebuttontab");
-        $(".dealbox").removeClass("activebuttontab");  
-    } 
-});
-$(window).scroll(function() {    
-    var scroll = $(window).scrollTop();
-    if(scroll >= 1560) {
-      $(".gallerybox").removeClass("activebuttontab");
-      $(".aboutbox").addClass("activebuttontab");
-      $(".overviewbox").removeClass("activebuttontab");
-      $(".reviewbox").removeClass("activebuttontab");
-      $(".dealbox").removeClass("activebuttontab");  
-    } 
-}); 
-$(window).scroll(function() {    
-    var scroll = $(window).scrollTop();
-    if(scroll >= 1820) {
-      $(".reviewbox").addClass("activebuttontab");
-      $(".gallerybox").removeClass("activebuttontab");
-      $(".aboutbox").removeClass("activebuttontab");
-      $(".overviewbox").removeClass("activebuttontab");
-      $(".dealbox").removeClass("activebuttontab");  
-    } 
-});   
-$(window).scroll(function() {    
-    var scroll = $(window).scrollTop();
-    if(scroll >= 2000) {
-      $(".reviewbox").removeClass("activebuttontab");
-      $(".gallerybox").removeClass("activebuttontab");
-      $(".aboutbox").removeClass("activebuttontab");
-      $(".overviewbox").removeClass("activebuttontab");
-      $(".dealbox").addClass("activebuttontab");  
-    } 
-});  
 $(window).scroll(function(){
       if ($(this).scrollTop() > 270) {
           $('.icon-div').addClass('fixedpostioneddesktop');
@@ -442,3 +434,4 @@ window.onload = function(){
         readURL(this);
     }
 };
+

@@ -2,42 +2,43 @@
 	<app-menu></app-menu>
 
 	<div class="eventbanner">
-		<img src="https://s3.us-east-2.amazonaws.com/prefect-image/wed.jpeg" class="img-responsive" />
+		<img style="height: 107%;width: 101%"  src="https://s3.us-east-2.amazonaws.com/prefect-image/wed.jpeg" class="img-responsive" />
 	</div>
 	<section class="container event_div">
 		<div class="container-fluid nopadd">
+			<!-- search part  -->
 			<div class="eventsearchbox">
 				<h1>Find your next experience</h1>
-				    <form (ngSubmit)="event(list)" #list="ngForm">
-						<div class="form-group row">
-							<div class="col-sm-3">
-								<input [(ngModel)]="searchQuery"  type="text" name="searchQuery" class="form-control" placeholder="Search Events">
-							</div>
-							<div class="col-sm-3">
-								<select class="form-control" name="location"  [(ngModel)]="location"  id="location">
-									<option selected>All Location</option>
-									<option *ngFor='let list_locations of locations'> {{list_locations.name}}</option>
-								</select>
-							</div>
+				<form (ngSubmit)="event()" #list="ngForm">
+					<div class="form-group row">
+						<div class="col-sm-3">
+							<input [(ngModel)]="searchQuery" type="text" name="searchQuery" class="form-control" placeholder="Search Events" (keyup)="changeData('title')">
+						</div>
+						<div class="col-sm-3">
+							<select class="form-control" name="location" [(ngModel)]="location" id="location" (change)="changeData('location')">
+								<option value="All" selected>All Location</option>
+								<option *ngFor='let list_locations of locations'> {{list_locations.name}}</option>
+							</select>
+						</div>
+						<div class="col-sm-3 col-6">
+							<select class="form-control" name="eventType" [(ngModel)]="eventType" id="eventType" (change)="changeData('eventType')">
 
-							<div class="col-sm-2 col-6">
-								<select class="form-control" name="eventType"  [(ngModel)]="eventType"  id="eventType">
-								
-									<option value="All" selected>All Events</option>
-									<option>Free</option>
-									<option>Paid</option>
-								</select>
-							</div>
-							<div class="col-sm-2  col-6">
-								<select class="form-control"  name="dates"  [(ngModel)]="dates"  id="dates">
-									<option   value="All" selected>All Dates</option>
-									<option >NextMonth</option>
-									<option >ThisWeek</option>
-									<option >Tomorrow</option>
-									<option >Today</option>
-								</select>
-							</div>
-                            <!-- <div class="col-sm-2  col-6">
+								<option value="All" selected>All Events </option>
+								<option>Free</option>
+								<option>Paid</option>
+							</select>
+						</div>
+						<div class="col-sm-3  col-6">
+							<select class="form-control" name="dates" [(ngModel)]="dates" id="dates" (change)="changeData('datesFilter')">
+								<option value="All" selected>All Dates</option>
+								<option>NextMonth</option>
+								<option>ThisWeek</option>
+								<option>Tomorrow</option>
+								<option>Today</option>
+							</select>
+						</div>
+
+						<!-- <div class="col-sm-2  col-6">
 									<select class="form-control"  name="pageSize"  [(ngModel)]="pageSize"  id="pageSize">
 										<option selected [value]="1">10 - 20</option>
 										<option [value]="2">20 - 30</option>
@@ -46,99 +47,98 @@
 										<option [value]="60">50 - 60</option>
 									</select>
 								</div> -->
-								<div class="col-sm-2  col-6">
-										<button type="submit" class="eventsearchbtn"> search </button>
-								</div>
-						</div>
-						
-					</form>
+						<!-- <div class="col-sm-2  col-6">
+							<button type="submit" class="eventsearchbtn"> search </button>
+						</div> -->
+					</div>
+				</form>
 
 			</div>
+			<!-- search part  end -->
 			<div class="row eventlisting">
 				<div class="container">
 					<div class="text-center">
-			
+						<p *ngIf="pagedItems?.length == 0">No Events Found!!!</p>
 						<!-- items being paged -->
-						<!-- {{pagedItems?.length}} -->
-						<div class="col-sm-4 " *ngFor="let item of pagedItems">
-
-							<div class="card cardshadow" >
-								<img class="card-img-top img-fluid eventimg" [src]="item.files.path">
-								<div class="ribbon ribbon-top-right"><span>{{item.entry}}</span></div>
+						<div class="col-sm-4 " *ngFor="let item of pagedItems ">
+							<div class="card cardshadow" (click)="goToNextPage(item)">
+								<img class="card-img-top img-fluid eventimg" *ngIf="item.files" [src]="item.files.path">
+								<div class="ribbon ribbon-top-right" *ngIf="item?.entryFee == null; else entry"><span>Free</span></div>
+								<ng-template #entry>
+									<div class="ribbon ribbon-top-right"><span>{{item.entry}}</span></div>
+								</ng-template>
+								<div class="ribbon ribbon-top-right"  >
+									<span>{{item.entry}}</span>
+								</div>
 								<div class="card-block text-center">
 									<div class="eventbtnholder">
 										<button class="purple-gradient borradius50per">
 											<i class="material-icons">share</i>
 										</button>
-										<button class="purple-gradient borradius50per">
+										<button class="purple-gradient borradius50per" (click)="bookMark(item,'events','bookmarked')">
 											<i class="material-icons">
 												bookmark_border
 											</i>
 										</button>
 									</div>
-									<div class="eventdate col-sm-2"  *ngFor='let Date of item.eventsDates' >
-										<span>{{Date.startDateString | date}}</span>
-										<span class="date"></span>
+									<div class="eventdate col-sm-4" *ngFor='let Date of item.eventsDates | slice:0:1 ;let i=index '>
+									<p><span> Start Date </span>  {{Date.startDateString | date}}</p>
+									<p><span> End Date </span> {{Date.endDateString | date}} </p>
 									</div>
-									<div class="col-sm-10 heightadjust">
-		
+									<div class="col-sm-8 heightadjust">
+
 										<div class="eventtitle">
-											<a routerLink="../event_list">{{item.eventTitle}}</a>
+											<!--  routerLink="../event_list"p -->
+											<a>{{item.eventTitle}}</a>
 										</div>
 										<div class="eventvenue">
-											Location is  {{item.location}}, {{item.venueName}}
+											Location is {{item.location}}, {{item.venueName}}
+										</div>
+										<div class="eventvenue" *ngIf="item.entryFee == null">
+
+												Ticket Cost/Entry Fee :  0
+										</div>
+										<div class="eventvenue" *ngIf="item.entryFee != null">
+												Ticket Cost/Entry Fee :  {{item.entryFee}}
+
 										</div>
 									</div>
 									<div class="col-sm-12 footericon">
 										<span>
-											<i class="material-icons">bookmark</i> 0
+											<i class="material-icons">bookmark</i> {{item.numberOfBookmarks}}
 										</span>
 										<span>
-											<i class="material-icons">visibility</i> 85
+											<i class="material-icons">visibility</i> {{item.numberOfViews}}
 										</span>
 									</div>
 								</div>
-							</div> 
+							</div>
 						</div>
-			<div class="clearfix"></div>
+		            	<div class="clearfix"></div>
 						<!-- pager -->
-						<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-							<li [ngClass]="{disabled:pager.currentPage === 1}">
-								<a (click)="setPage(1)">First</a>
-							</li>
-							<li [ngClass]="{disabled:pager.currentPage === 1}">
-								<a (click)="setPage(pager.currentPage - 1)">Previous</a>
-							</li>
-							<li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-								<a (click)="setPage(page)">{{page}}</a>
-							</li>
-							<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-								<a (click)="setPage(pager.currentPage + 1)">Next</a>
-							</li>
-							<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-								<a (click)="setPage(pager.totalPages)">Last</a>
-							</li>
-						</ul>
+							<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+								<li [ngClass]="{disabled:pager.currentPage === 1}">
+									<a (click)="setPage(1)">First</a>
+								</li>
+								<li [ngClass]="{disabled:pager.currentPage === 1}">
+									<a (click)="setPage(pager.currentPage - 1)">Previous</a>
+								</li>
+								<li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+									<a (click)="setPage(page)">{{page}}</a>
+								</li>
+								<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+									<a (click)="setPage(pager.currentPage + 1)">Next</a>
+								</li>
+								<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+									<a (click)="setPage(pager.totalPages)">Last</a>
+								</li>
+							</ul>
+						<!-- pager end -->
 					</div>
 				</div>
-				<hr/>
+				<hr />
 			</div>
-			<!-- <div class="card row">
-				<div class="page-nation">
-					<ngb-pagination [collectionSize]="70" [(page)]="page2" [boundaryLinks]="true" class="abc123"></ngb-pagination>
-					<span class="totalpage">24 Pages</span>
-					<hr>
-                  <p>Current page: {{page2}}</p>
-				</div>
-			</div> -->
 		</div>
-
-		<div>
-			
-		
-		</div>
-
-
 	</section>
 	<div class="clearfix"></div>
 	<app-foot></app-foot>

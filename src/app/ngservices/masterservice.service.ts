@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { apiService } from 'app/shared/service/api.service';
 import { Observable } from 'rxjs';
+import { Object } from 'core-js/library/web/timers';
+import { apiService } from '../shared/service/api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MasterserviceService {
-  
+ 
   constructor(private apiservice: apiService) {
 
    }
@@ -21,10 +22,25 @@ export class MasterserviceService {
      return this.apiservice.postData(this.apiservice.serverPath + 'PerfectWedding/searchfilters/',categoryId);
    }
    getFilterResult(obj){
+    console.log(JSON.stringify(obj));
+       if(obj.districts!=undefined && obj.districts.length==1 && obj.districts[0]==null||obj.districts[0]==undefined) {
+        obj.districts=[];
+        }
     return this.apiservice.postData(this.apiservice.serverPath + 'PerfectWedding/searchlisting',obj);
    }
    getSimilarVendors(obj){
   return this.apiservice.postData(this.apiservice.serverPath + 'PerfectWedding/similarvendors',obj);     
    }
-   
+
+   fillBookmark(id, type, action_which_lacation){
+    const data = {
+      "id": id,
+      "type": type,
+      "action": action_which_lacation,
+      "promoted": true
+    }
+    return this.apiservice.postData(this.apiservice.serverPath + 'PerfectWedding/loguseraction',data);     
+
+   }
+
 }

@@ -1,6 +1,28 @@
-  <div id="wrappervendor" class="">
+<div id="wrappervendor" class="">
   <app-menu></app-menu>
-  <app-tool *ngIf="basicPlan == 3"></app-tool>
+  <app-tool *ngIf="basicPlan != 3 && basicPlan != 0">
+   
+  </app-tool>
+
+  <div class="container martop60px" *ngIf = "Honeymoon_detail != null">
+    <ol class="breadcrumb breadcrumbcontainer">
+        <li class="active">{{Honeymoon_detail?.name}}</li>
+    </ol>
+    <div class="clearfix"></div>
+    <div class="row dealsbanner">
+      <div class="col-sm-6 dealbannerdetail">
+        <h4 class="bali_heading">{{Honeymoon_detail?.name}}</h4>
+        <p class="contant_text">{{Honeymoon_detail?.description}}</p>
+      </div>
+      <div class="col-sm-6">
+          <img [src]="Honeymoon_detail?.imageURL" class="dealbanner">
+      </div>
+      <div>
+      
+      </div>
+    </div> 		
+</div>    
+
   <div class="container-fluid recomslider">
       <!--Carousel Wrapper-->
   <div class="container">
@@ -8,13 +30,15 @@
 
       <!-- {{slidesStore }} -->
         <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
-          <ng-container *ngFor="let slide of slidesStore">
-            <ng-template carouselSlide="1" >
-              <div class="boxtikslide">
+          <ng-container *ngFor="let slide of slidesStore | slice:0:11 ">
+            <ng-template *ngIf="slide.promoted" carouselSlide="1" >
+              <div class="boxtikslide" >
                 <div class="procard"> </div>
+                <span class="book_mark" (click)="bookMark(slide,'searchfilter','bookmarked')"><i class="material-icons">bookmark_border</i></span>
                 <!-- {{slide.profileImage }} -->
-                <img class="card-img-top" [src]="slide.profileImage | defaultImage:'https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg':true"/>
-                <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
+                <div (click)="goToPortfolioDetail(slide)" >
+                <img class="card-img-top" *ngIf = "slide" [src]="slide.profileImage | defaultImage:'https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg':true"/>
+               
                 <div class="card-body ">
                   <div class="text-center"> 
                    <h6><strong>{{slide.nameOfBusiness}}</strong> </h6>
@@ -22,11 +46,13 @@
                     {{getCategoryName(slide)}}  </button>              
                             <p class="locat_icon">
                       <i class="material-icons">location_on</i> 
-                     <span *ngIf='slide.vendorLocations[0]'>  {{ slide.vendorLocations[0]?.districts.name}}</span>
-                     <span *ngIf='!slide.vendorLocations[0]'>No District Available</span>
+                     <span>  {{ slide.district.name}}</span>
                       </p>
-                      <p class="statr_point">
+                      <p *ngIf='slide.averageRating>0' class="statr_point">
                       <span style="color:red" [innerHTML]='ratingmodel.printStars(slide.averageRating)'></span>
+                    </p>
+                    <p *ngIf='!slide.averageRating>0' class="statr_point">
+                      <span style="color:red">Not Yet Rated !</span>
                     </p>
                     </div>
               
@@ -40,10 +66,11 @@
                       <div *ngIf='slide.dealsCount>0' class="col-md-4 col-4 span_positin">
                        <img src="../../assets/img/tag.svg"  alt=""> 
                       <span>Deals</span>
-                      <span>1</span>
+                      <span *ngIf='slide.dealsCount> 0'>{{slide.dealsCount}}</span>
                       </div>
                     </div>
                 </div>
+              </div>
               </div>
             </ng-template>
           </ng-container>
@@ -80,32 +107,32 @@
       <div class="container-fluid nopadd">
         <div class="badgecontainer">
           <span *ngIf='objSearchResultItems' class="badge badge-primary badge-labeled">
-            {{collection?collection.length:0}} Results
+          {{SelectedCategory?SelectedCategory.categoryName:'Wedding Vendors'}}  {{SelectedLocation?'in '+SelectedLocation.name:'in Mauritius'}} (  {{collection?collection.length:'Not Found'}} Results Of {{objSearchResultItems.totalCount}})
           </span>
-       
-          <!-- <select (change)='getSearchFilterResult()' style="display:none" [(ngModel)]='objSearchlistvm.pageSize'>
-            <option value='25' selected>25 Result/Page</option>
-            <option value='50'>50 Result/Page</option>
-            <option value='100'>100 Result/Page</option>
-          </select> -->
-        </div>
+
+
+
+           <select class="pagedropdown" [(ngModel)]='objSearchFilter.pageSize' (change)='this.paginate(objSearchFilter.pageSize)'>
+             <option value="25">Page Size 25</option>
+             <option value="50">Page Size 50</option>
+             <option value="100">Page Size 100</option>
+           </select>
+         </div>
         <div class="clearfix"></div>
-          <ol class="breadcrumb breadcrumbcontainer ">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Wedding Suppliers</a></li>
-            <li><a href="#">All Categories</a></li>
-            <li class="active">{{_activeRoute.snapshot.params['id']}}</li>
+          <ol class="breadcrumb breadcrumbcontainer">
+            <li><a href="/home" routerlink="/home">Home</a></li>
+            <li><a href="/home/weddingvendors" routerlink="/home/weddingvendors">Wedding Vendors</a></li>
+            <!-- <li><a href="#">All Categories</a></li> -->
+            <li class="active">{{SelectedCategory?SelectedCategory.categoryName:''}}</li>
           </ol>
 
-           <div class="btn-group">
-            <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
-            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
-
-                class="glyphicon glyphicon-th-large"></span>Grid</a>
-
-                <a href="#" id="photoview" class="btn btn-default btn-sm hidden-lg hidden-sm hidden-md"><span
-                class="glyphicon glyphicon-picture"></span>Photo View</a>
-
+           <div class="btn-group hidden-xs">
+            <a id="list" class="btn btn-default btn-sm">
+              <span class="glyphicon glyphicon-th-list"></span>List
+            </a> 
+            <a  id="grid" class="btn btn-default btn-sm active">
+              <span class="glyphicon glyphicon-th-large"></span>Grid
+            </a>
         </div>
       </div>
     </div>
@@ -113,177 +140,182 @@
 </div>
 
 <div class="container ipadwidth">
+  
 	<div class="row">
 		<div id="searchfilterbox" class="col-sm-3  nopadd searchfilterbox">
-			<div id="accordion" class="panel">
-					<div class="panel-heading  hidden-xs"> 
-						<h3 class="panel-title"> 
-              <i class="material-icons hidden-xs">sort</i>
-              <img alt="close" class="icon-small hidden-sm hidden-md hidden-lg" src="https://s3.us-east-2.amazonaws.com/prefect-image/cross-grey.png"> 
-              Refine by
-            </h3>
-					</div>
+
+
+
+<div>
+  <h3> 
+    <i class="material-icons hidden-xs">sort</i>
+    <img alt="close" class="icon-small hidden-sm hidden-md hidden-lg" src="https://s3.us-east-2.amazonaws.com/prefect-image/cross-grey.png"> 
+    Refine by
+  </h3>
+</div>
+
+			<div id="accordion" class="panel" role="tablist" aria-multiselectable="true">
+					
 					<div class="panel-body  filterbox" >
-						<!-- location filter -->
+            <!-- location filter -->
             <div class="locationboxmobile">
-						  <div class="panel-heading" >
-							<h4 class="panel-title">
-                  <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
-                    arrow_back_ios
-                  </i>
-								<a data-toggle="collapse" href="#collapse0">Locations
-									<i class="indicator fa fa-caret-down hidden-xs" aria-hidden="true"></i> 
-								</a>
-							</h4>
-						  </div>
-						  <div id="collapse0" class="panel-collapse collapse ">
+                <div class="panel-heading" >
+                <h4 class="panel-title">
+                    <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
+                      arrow_back_ios
+                    </i>
+                  <a data-toggle="collapse" href="#collapse0">Locations 
+                    <!-- ({{objSearchlistvm.districts.length}}) -->
+                   
+                  </a>
+                </h4>
+                  <ul class="selectedlist" *ngIf='!showAllLocation'>
+                      <li>
+                        <i class="material-icons">location_on</i> 
+                        {{SelectedLocation?SelectedLocation.name:''}}
+  
+                        <span (click)='setFilterOptions(3,SelectedLocation)'  class="closebtnlist">&times;</span>
+                      </li>
+                    </ul>
+                </div>
+                <div id="collapse0" class="panel-collapse collapse ">
+                    <div class="category-body" *ngIf='showAllLocation'>
 
-							<div>
-                <input type="text" [(ngModel)]='locationFilterParam' placeholder="Type the city" class="cityinput"/>
-                <!-- {{locationFilterParam}} -->
-                
-                <!-- <i class="material-icons">search</i> -->
-              </div>
+                        <div  class="searchmobtitlebar city_position">
+                          <input type="text" [(ngModel)]='locationFilterParam' placeholder="Type to Search Location" class="cityinput"/>
+                          </div>
 
-							<div class="cityscroll22">
-                  <div class="funkyradio">
-                    <div class="funkyradio-info" *ngFor='let l of locations| custompipe:locationFilterParam'>
-                      <input type="checkbox" id='{{l.name}}' (change)='getSearchFilterResult()' [(ngModel)]='l.isSelect'/>
-                        <label for='{{l.name}}'><i class="material-icons">location_on</i> {{l.name}}</label>
+                          <div class="cityscroll22" >
+                              <div class="funkyradio">
+                                <div class="funkyradio-info" *ngFor='let l of locations| custompipe:locationFilterParam'>
+                                  <!-- <input type="checkbox" id='{{l.name}}' [checked]="l.isSelect"  [(ngModel)]='l.isSelect'/> -->
+                                    <label (click)='setFilterOptions(3,l)' for='{{l.name}}'><i class="material-icons">location_on</i> {{l.name}}</label>
+                                  </div>
+                              </div>
+                              
+                          </div>
+
                     </div>
-                  </div>
-							</div>			
-						  </div>
+               
+  
+               			
+                </div>
             </div>
+            <!-- Category -->
+            <div class="categoryboxmobile">
+                  <div class="panel-heading" >
+                    <h4 class="panel-title">
+                       <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
+                        arrow_back_ios
+                      </i>
+                      <a data-toggle="collapse" href="#collapse2">
+                         Category 
+                        
+                        <!-- ({{objSearchlistvm.categoryId.length}}) -->
+                      </a>
+                    </h4>
+
+                    <ul class="selectedlist" *ngIf='!showALlCategories'>
+                        <li>
+                           <span> {{SelectedCategory?SelectedCategory.categoryName:""}} 
+                             <span *ngIf='SelectedCategory && SelectedCategory.categoryName' (click)='setFilterOptions(1,SelectedCategory)' class="closebtnlist">&times;</span></span>
+                        </li>
+                    </ul>
+                  </div>
+                  <div id="collapse2" class="panel-collapse collapse pddtop0px">
+                      <div class="category-body ">
+                          <div style="display:none" class="searchmobtitlebar city_position">
+                            <i class="material-icons">search</i>
+                            <input class="cityinput" type="text" [(ngModel)]='categoryFilterParam' placeholder="Type to Search Category">
+                          </div>
+                        <!-- <div class="regular">All Categories</div> -->
+                          <div class="cityscroll22" *ngIf='showALlCategories'> 
+                            <div class="funkyradio">  
+                              <div class="funkyradio-info" *ngFor='let c of categories| categoryPipe:categoryFilterParam'>
+                               <!-- <input type="checkbox" name="checkbox" id="{{c.categoryName}}" (change)='setFilterOptions(1,c.categoryId)' [(ngModel)]='c.isSelect'/> -->
+                                   <label (click)='setFilterOptions(1,c)' for='{{c.categoryName}}'><i>  <img [src]='c.iconImageURL'/></i>
+                                      {{c.categoryName}} 
+                                  </label>
+                               </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+            </div>
+            <!--Services-->
+            <div class="serviceboxmobile" *ngIf='filters && filters.services && filters.services.length>1' >
+                  <div class="panel-heading" >
+                          <h4 class="panel-title">
+                             <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
+                              arrow_back_ios
+                            </i>
+                            <a data-toggle="collapse" href="#collapse33">
+                               Services
+                            
+                            </a>
+                          </h4>
+                  </div>
+                  <div id="collapse33" class="panel-collapse collapse" >
+                      <div class="category-body" >
+                        <div class="cityscroll22"> 
+                          <div class="funkyradio" *ngIf='filters && filters.services'  >  
+                            <div class="funkyradio-info" *ngFor='let f of filters.services'>
+                
+                             <input type="radio" (change)='radioChecker(filters.services,f)'  [value]="f.isSelect" name="serviceName" [checked]="f.isSelect"  [id]="f.serviceName"/>
+                                <label for="{{f.serviceName}}">
+                                {{f.serviceName}} 
+                              </label>
+                           </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+            </div>
+            <!--End Services filters-->
 						<!-- Price Range  -->
-            <div class="priceboxmobile">
-  						<div class="panel-heading ">
+            <div class="priceboxmobile" *ngIf="categories[0].services[0].customFields[0]">
+  						<div class="panel-heading " *ngIf="categories[0].services[0].customFields[0].customFieldOptionList.length != 1">
   							<h4 class="panel-title">
                    <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
                     arrow_back_ios
                   </i>
   								<a data-toggle="collapse" href="#collapse1">
-  									<i class="indicator fa fa-caret-down hidden-xs" aria-hidden="true"></i> Price Range
+                    Price Range
+  							
   								</a>
   							</h4>
   						</div>
   						<div id="collapse1" class="panel-collapse collapse" >
-                 
-                  <div class="funkyradio">
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" (change)='getSearchFilterResult()' id="check1"/>
-                      <label>< 50000</label>  
+                  <div class="funkyradio" *ngIf='filters '>
+                    <div  class="funkyradio-info" *ngFor='let p of  categories[0].services[0].customFields[0].customFieldOptionList'>
+                      <input type="radio" name="price" (change)='radioChecker(categories[0].services[0].customFields[0].customFieldOptionList,p,7)' [value]='p.isSelect'  [id]="p.key"  [checked]="p.isSelect"/>
+                      <label for="{{p.key}}"> {{p.key}}</label> 
                     </div>
                   </div>
   						</div>
             </div>
-						<!-- Category -->
-            <div class="categoryboxmobile">
-  						<div class="panel-heading" >
-  							<h4 class="panel-title">
-                   <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
-                    arrow_back_ios
-                  </i>
-  								<a data-toggle="collapse" href="#collapse2">
-  									<i class="indicator fa fa-caret-down hidden-xs" aria-hidden="true"></i> Category
-  								</a>
-  							</h4>
-  						</div>
-  						<div id="collapse2" class="panel-collapse collapse " >
-                  <div class="category-body">
-                      <div class="searchmobtitlebar city_position">
-                        <i class="material-icons">search</i>
-                        <input class="cityinput" type="text" [(ngModel)]='categoryFilterParam' placeholder="Type to Search Category">
-                      </div>
-                    <!-- <div class="regular">All Categories</div> -->
-                <div class="cityscroll22"> 
-                  <div class="funkyradio">  
-                    <div class="funkyradio-info" *ngFor='let c of categories| categoryPipe:categoryFilterParam'>
-                     <input type="checkbox" name="checkbox" id="{{c.categoryName}}" (change)='getSearchFilterResult()' [(ngModel)]='c.isSelect'/>
-                         <label for='{{c.categoryName}}'><i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
-                            {{c.categoryName}}  
-                        </label>
-                     </div>
-  						</div>
-            </div>
-            </div>
-          </div>
-        <!--Services-->
-        <div class="categoryboxmobile">
-        <div class="panel-heading" >
-          <h4 class="panel-title">
-             <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
-              arrow_back_ios
-            </i>
-            <a data-toggle="collapse" href="#collapse33">
-              <i class="indicator fa fa-caret-down hidden-xs" aria-hidden="true"></i> Services
-            </a>
-          </h4>
-        </div>
-        <div id="collapse33" class="panel-collapse collapse" >
-          <div class="category-body">
-              <div class="searchmobtitlebar city_position ">
-                <i class="material-icons">search</i>
-                <input class="cityinput" type="text" value="" id="search" placeholder="Type to Search Category">
-              </div>
-            <!-- <div class="regular">All Categories</div> -->
-        <div class="cityscroll22"> 
-
-          <div class="funkyradio" *ngIf='filters'>  
-            <div class="funkyradio-info" *ngFor='let f of filters.services'>
-
-             <input type="checkbox" (change)='getSearchFilterResult()' [(ngModel)]='f.isSelect' name="checkbox"  id="{{f.serviceName}}"/>
-                <label for="{{f.serviceName}}"> <i>  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
-                <b>{{f.serviceName}} </b>  
-              </label>
-           </div>
-
-      </div>
-    </div>
-    </div>
-  </div>
-</div>
-        <!--End Services filters-->
-      <!--Filters-->
-      <div class="categoryboxmobile">
-        <div class="panel-heading" >
-          <h4 class="panel-title">
-             <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
-              arrow_back_ios
-            </i>
-            <a data-toggle="collapse" href="#collapse44">
-              <i class="indicator fa fa-caret-down hidden-xs" aria-hidden="true"></i> Filters
-            </a>
-          </h4>
-        </div>
-        <div id="collapse44" class="panel-collapse collapse" >
-          <div class="category-body">
-        <div class="cityscroll22"> 
-          <div *ngIf='filters'>
-          <div class="funkyradio" *ngIf='filters.filters'>  
-            <div class="funkyradio-info" style="border-bottom:1px;border-bottom-style:inset;border-bottom-color:gray" *ngFor='let ff of filters.filters'>
-              <input type="checkbox" name="checkbox" id="{{ff.name}}" (change)='getSearchFilterResult()' [(ngModel)]='ff.isSelect'/> 
-                <label for="{{ff.name}}">
-                   <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
-                  {{ff.name}} 
-                </label>
-                <div *ngFor='let fc of ff.customFieldOptionList'>
-                  <div *ngIf='ff.isSelect'>
-                  <input type="checkbox" class="tikmik" name="checkbox" [(ngModel)]='fc.isSelect'(change)='getSearchFilterResult()'/>
-                    {{fc.displayText}}
-                  </div>  
+            <!-- Featured Listing   -->
+            <div class="featureboxmobile">
+                <div class="panel-heading ">
+                  <h4 class="panel-title">
+                     <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
+                      arrow_back_ios
+                    </i>
+                    <a data-toggle="collapse" href="#collapse333">
+                      Featured Listing
+                    
+                    </a>
+                  </h4>
                 </div>
-           </div>
-          <div class="clearfix"></div>
-
-      </div>
-    </div>
-    </div>
-    </div>
-  </div>
-</div>
-      <!--End Filters-->  
-        </div>
+                <div id="collapse333" class="panel-collapse collapse">
+                    <div class="funkyradio">
+                      <div class="funkyradio-info" *ngFor='let feature of featuredListingArray'>
+                        <input type="checkbox" name="checkbox" id="{{feature.key}}" [checked]='feature.isSelect' (change)='radioChecker(featuredListingArray,feature)'/>
+                        <label  for="{{feature.key}}">{{feature.key}}</label>  
+                      </div>
+                    </div>
+                </div>
+            </div>
 						<!-- Customer Rating -->
             <div class="ratingboxmobile">
   						<div class="panel-heading" >
@@ -291,95 +323,178 @@
                   <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
                     arrow_back_ios
                   </i>
-  								<a data-toggle="collapse" href="#collapse3"><i class="indicator fa fa-caret-down hidden-xs" aria-hidden="true"></i> Customer Rating</a>
+  								<a data-toggle="collapse" href="#collapse3">
+                    Rating
+                   
+                  </a>
   							</h4>
   						</div>
   						<div id="collapse3" class="panel-collapse collapse">
                  <div class="funkyradio">
-                    <div class="funkyradio-info">
-                      <label>
-                        <input type="checkbox" name="checkbox" id="any" (change)='getSearchFilterResult()'/>
-                        Any
+                    <div class="funkyradio-info" *ngFor='let ur of userRatingArray'>
+                        <input type="radio" name="ur" [value]="ur.isSelect" [id]="ur.key" [checked]='ur.isSelect' (change)='radioChecker(userRatingArray,ur,6)'/>
+                      <label  for="{{ur.key}}">
+                        {{ur.key}}
                     </label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="star2" (change)='getSearchFilterResult()'/>
-                    <label>2.0+</label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="star3" (change)='getSearchFilterResult()'/>
-                    <label> 3.0+</label>
-                    </div>
-                    <div class="funkyradio-info">
-                      <input type="checkbox" name="checkbox" id="star4" (change)='getSearchFilterResult()'/>
-                    <label> 4.0+</label>
                     </div>
                   </div>
   						</div>
             </div>
-					</div>
+	          <!-- Deals & Offers -->
+            <div class="dealboxmobile">
+                <div class="panel-heading ">
+                  <h4 class="panel-title">
+                     <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
+                      arrow_back_ios
+                    </i>
+                    <a data-toggle="collapse" href="#collapse444">
+                      Deal & Offers
+                    
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapse444" class="panel-collapse collapse" >
+                    <div class="funkyradio">
+                      <div class="funkyradio-info" *ngFor='let dd of dealsAndOfferArray'>
+                         <input type="radio" name="key" [id]="dd.key" value='{{dd.key}}' [checked]="dd.isSelect" (change)='radioChecker(dealsAndOfferArray, dd)' />
+                         <!-- setFilterOptions(9,dd) || -->
+                        <label for="{{dd.key}}">{{dd.displayText}}</label>  
+                      </div>
+                    </div>
+                </div>
+              </div>
+            <!--Filters-->
+            <div class="filterboxmobile">
+              <div class="panel-heading" >
+                <h4 class="panel-title">
+                   <i class="backicon material-icons hidden-sm hidden-lg hidden-lg">
+                    arrow_back_ios
+                  </i>
+                  <a data-toggle="collapse" href="#collapse44">
+                    Filters
+                  
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse44" class="panel-collapse collapse" >
+                  <div class="category-body">
+                    <div class="cityscroll22"> 
+                      <div *ngIf='filters'>
+                        <div class="funkyradio" *ngIf='filters.filters'>  
+                          <div class="funkyradio-info" style="border-bottom:1px;border-bottom-style:inset;border-bottom-color:gray" *ngFor='let ff of filters.filters'>
+                            <input type="checkbox" *ngIf='ff.name!="Starting Price"' name="checkbox" id="{{ff.name}}" (change)='setFilterOptions(4,ff)' [(ngModel)]='ff.isSelect'/> 
+                              <label *ngIf='ff.name!="Starting Price"' for="{{ff.name}}">
+                                 <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/></i>
+                                {{ff.name}} 
+                              </label>
+                              <div *ngFor='let fc of ff.customFieldOptionList'>
+                                <div *ngIf='ff.isSelect'>
+                                <input type="checkbox" class="tikmik" name="checkbox" [(ngModel)]='fc.isSelect'(change)='setFilterOptions(5,fc)'/>
+                                  {{fc.displayText}}
+                                </div>  
+                              </div>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+            <!--End Filters-->  
 			</div>
 		</div>
 		<div class="col-sm-9 listingtab">
+      <div class="row">
+            <!--services-->
+            <div *ngIf=filters>
+              <span class="filterrowcard" *ngFor='let f of filters.services'>
+                <span  *ngIf='f.isSelect'>Service: {{f.serviceName}}
+                    <i class="chipsCLose" (click)='setFilterOptions(2,f)'>&times;</i>
+                </span>
+              </span>
+              <!--Price-->
+              <span class="filterrowcard"  *ngFor='let p of  categories[0].services[0].customFields[0].customFieldOptionList'>
+                <span  *ngIf='p.isSelect'> Price: {{p.key}}
+                  <i class="chipsCLose" (click)='setFilterOptions(7,p)'>&times;</i>
+                </span>
+              </span>
+            </div>
+            
+            <span class="filterrowcard" *ngFor='let f of featuredListingArray'>
+                  <span  *ngIf='f.isSelect'>
+                      Featured:
+                    {{f.key}} <i class="chipsCLose" (click)='setFilterOptions(8,f)'>&times;</i></span>
+            </span>
+            <span class="filterrowcard" *ngFor='let f of userRatingArray'>
+                      <span *ngIf='f.isSelect'> Rating: {{f.key}} <i class="chipsCLose" (click)='setFilterOptions(6,f)'>X</i>
+                      </span>
+            </span>
+            <span class="filterrowcard" *ngFor='let f of dealsAndOfferArray'>
+                      <span *ngIf='f.isSelect'>
+                          Deals And Offers :
+                        {{f.key}} <i class="chipsCLose" (click)='setFilterOptions(9,f)'>&times;</i></span>
+            </span>
+            <div *ngIf='filters && filters.filters'>
+                    <div  *ngFor='let ff of filters.filters'>
+                      <span class="filterrowcard" *ngFor='let fc of ff.customFieldOptionList'>
+                        <span *ngIf='fc.isSelect'>
+                          Custom Fields :
+                          {{fc.displayText}}</span>
+                     </span>
+                    </div>
+            </div>      
+      </div>
+          
       <div class="photo_cont">
-       	<div id="products" class="row list-group">
+       	<div id="products" class="row list-group photo-group">
+          
           <div *ngIf='objSearchResultItems'>
-	        	<div *ngFor='let i of collection' (click)="goToPortfolioDetail(i)" class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px">
+	        	<div id='dv1' #dv1 *ngFor='let i of collection' class="item tik3 tik4 col-6 col-sm-4 grid-group-item mobpad5px ">
 
 	                <div class="card mb-2 bordre_rad1 hover_effect">
-                    <div class="thumbnail">
+                      <div *ngIf="i.promoted" class="procard"> </div>
+                      <span class="book_mark" (click)="bookMark(i,'searchfilter','bookmarked')">
+                          <i class="material-icons">bookmark_border</i>
+                        </span>
+                    <div class="thumbnail" (click)="goToPortfolioDetail(i)" >
 
-                      <img class="group list-group-image" [src]='i.profileImage' alt="Card image cap">
-                      <span class="book_mark">
-                        <i class="material-icons">bookmark_border</i>
-                      </span>
+                      <img class="group list-group-image"  *ngIf = "i" [src]='i.profileImage' alt="Card image cap">
+                     
                       <div class="imgnum">
-                        <span>
+                        <span *ngIf='i.albums[0]'>
                            <img src="../../assets/img/picture.png"/>
-                           <span *ngIf='i.albums[0]'>
+                           <span>
                             {{i.albums[0].albumImages.length}}</span>
                             <span *ngIf='!i.albums[0]'>0</span>
                         </span>
                         <span *ngIf='i.vendorVideos.length>0'>
                             <img src="../../assets/img/video.png"/>{{i.vendorVideos[0].vendorVideos.length}}</span>
-                        <span>
-                          <img src="../../assets/img/video.png"/>
-                         <span *ngIf='i.vendorVideos.length==0'>0</span>
-                          
-                      </span>
                       </div>
                       <div class="caption card-body">
                         <div>
                           <h6><strong>{{i.nameOfBusiness}}</strong></h6>
-
+                          <div *ngIf='i.vendorCategories[0]'>
                           <button *ngIf='i.vendorCategories[0].categories' class="wedding_btn">
                             {{getCategoryName(i)}}  </button>
-
-                          <!-- <p class="locat_icon" *ngIf='i.vendorLocations.length>0'> -->
+                          </div>
                           <p class="locat_icon">   
                             <i class="material-icons">location_on</i> 
-                            <!-- {{i.vendorLocations[0].suburb.name}}, -->
-                            <!-- {{i.vendorLocations[0]?.districts.name}} -->
-                            <span *ngIf='!i.vendorLocations[0]'>No District Available</span>
-                            <span *ngIf='i.vendorLocations[0]'>  {{ i.vendorLocations[0]?.districts.name}}</span>
+                            <span>  {{ i.district.name}}</span>
                         
-
-                            <!-- {{i.vendorLocations[0].country.name}},
-                            {{i.vendorLocations.postalCode}} -->
-
                           </p>
                           
                           <p class="statr_point">
-                            
-                            <!-- <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span> -->
-                            <!-- <ngb-rating [(rate)]="4"></ngb-rating> -->
+                           
                             <span *ngIf='i.averageRating>0'>
-                             {{i.averageRating}} <!--{{i.reviews}}  -->
+                              <!--{{i.reviews}}  -->
                             <span style="color:red" [innerHTML]='ratingmodel.printStars(i.averageRating)'></span>
+                          </span>
+
+                          <span *ngIf='!i.averageRating>0'>
+
+                            <span style="color:red">Not Yet Rated !</span>
                           </span>
                           </p>
                          
@@ -388,7 +503,7 @@
                           <div class="col-md-8 col-8 pad_left_0 pad_left_5px">
                             <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
                               <span>Price from</span>
-                              <span *ngIf='i.priceTag' class="pric_200">{{i.priceTag}}</span>
+                              <span *ngIf='i.priceTag' class="pric_200"> {{i.priceTag}}</span>
                               <span *ngIf='!i.priceTag' class="pric_200">Custom Price</span>
                           </div>
                           <div *ngIf='i.dealsCount>0' class="col-md-4 col-4 span_positin">
@@ -399,21 +514,38 @@
                         </div>
                         <div class="clearfix"></div>
                         <div class="descrip">
-                          {{i.businessDetails?i.businessDetails:'N/A'}}
+                          {{i.businessDetails?i.businessDetails:'No Business Description'}}
                         </div>
                       </div>
                     </div>
 	       		      </div>
             </div>
           </div>
-	     	</div>
+         </div>
         <div>
 
-          <img *ngIf='loading' src="https://www.walgreens-hearing.com/img/loader.gif" style="bottom:35%;position: fixed;z-index:99999;margin-left:40%">
+       <!--    <img  src="https://www.walgreens-hearing.com/img/loader.gif" style="bottom:35%;position: fixed;z-index:99999;margin-left:18%"> -->
+
+          <div class="preloaderbox" *ngIf='loading'>
+            <span class="circle"></span>
+
+            <span class="title"></span>
+            <span class="line"></span>
+            <span class="linehalf"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+
+            
+          </div>
                   <!-- <ngb-pagination [collectionSize]="objSearchResultItems?.totalCount" [(page)]="objSearchResultItems.page" [boundaryLinks]="true"></ngb-pagination>
              <span class="totalpage">{{objSearchResultItems.totalPages}} (Page)s</span> -->
         </div>
       </div>
+      <ul style="display:none" class="pageNumbers" *ngIf='paginations.length>0'>
+          <li *ngIf='objSearchlistvm.page > 1' (click)='goToPage(0,"P")'>Previous</li>
+           <li *ngFor='let p of paginations' (click)='goToPage(p,0)'>{{p}}</li>
+           <li *ngIf='objSearchResultItems.totalPages < objSearchlistvm.page' (click)='goToPage(0,"N")'>Next</li>
+      </ul>
     </div>
 </div>
 </div>
@@ -428,16 +560,18 @@
 <p class="text-center">Filters (0)</p>
 
 <div class="filterrow categoryfilter">
-  <h1>Category  {{objSearchlistvm.categoryId.length}}<i class="material-icons">arrow_right</i></h1>
+  <h1>Category<i class="material-icons">arrow_right</i></h1>
   <div>
     <span class="badge" *ngFor='let c of categories'>
-      <div *ngIf='c.isSelect'>{{c.categoryName}}</div>
+      <div *ngIf='c.isSelect'>{{c.categoryName}}<span>X</span> </div>
     </span>
   </div>
 </div>
+
+
 <div class="filterrow locationfilter">
-  <h1>Location {{objSearchlistvm.districtId.length}} <i class="material-icons">arrow_right</i></h1>
-  <div>
+  <h1>Location <i class="material-icons">arrow_right</i></h1>
+  <div *ngIf='showAllLocation'>
     <span class="badge" *ngFor='let l of locations'>
       <div *ngIf='l.isSelect'>{{l.name}} </div>
     </span>
@@ -445,40 +579,107 @@
      Grand Port <i class="material-icons">clear</i>
     </span> -->
   </div>
+  <div *ngIf='!showAllLocation'>
+      <span class="badge" *ngFor='let l of locations'>
+        <div *ngIf='l.isSelect'> {{SelectedLocation.name}}</div>
+      </span>
+       <!-- <span class="badge">
+       Grand Port <i class="material-icons">clear</i>
+      </span> -->
+    </div>
+  
 </div>
-<div class="filterrow pricefilter">
-  <h1>Price Range (1) <i class="material-icons">arrow_right</i></h1>
-  <div>
-    <span class="badge">
-     Any 
-    </span>
+
+<div class="filterrow servicefilter">
+  <h1>Services  <i class="material-icons">arrow_right</i></h1>
+  <div *ngIf="filters && filters.services">
+      <div  *ngFor='let f of filters.services'>
+          <span *ngIf="f.isSelect" class="badge" (click)='setFilterOptions(2,f.servicesId)'>
+              {{f.serviceName}} 
+          </span>
+        </div>
   </div>
+  
 </div>
+
+<div class="filterrow pricefilter" >
+  <h1>Price Range (1) <i class="material-icons">arrow_right</i></h1>
+  <div *ngIf="filters ">
+      <div *ngFor='let p of categories[0].services[0].customFields[0].customFieldOptionList'>
+          <span *ngIf="p.isSelect" class="badge"  (click)='setFilterOptions(7,p)'>
+              {{p.key}}
+          </span>
+        </div>
+  </div>
+  
+</div>
+
+<div class="filterrow featuredfilter">
+  <h1>Featured Listing (1) <i class="material-icons">arrow_right</i></h1>
+  <div *ngIf="filters">
+      <div *ngFor='let feature of featuredListingArray'>
+          <span *ngIf="feature.isSelect" class="badge" (click)='setFilterOptions(8,feature)'>
+              {{feature.key}}
+          </span>
+        </div>
+  </div>
+ 
+</div>
+
+<div class="filterrow dealsoffer">
+  <h1>Deals & Offers <i class="material-icons">arrow_right</i></h1>
+  <div *ngIf="filters">
+      <div *ngFor='let dd of dealsAndOfferArray'>
+          <span *ngIf="dd.isSelect" class="badge" (click)='setFilterOptions(9,dd)'>
+              {{dd.key}}
+          </span>
+        </div>
+  </div>
+ 
+</div>
+
+<div class="filterrow filteroffer" >
+  <h1>Filters (1) <i class="material-icons">arrow_right</i></h1>
+<div *ngIf="filters">
+    <div *ngFor='let ff of filters.filters'>
+        <span *ngIf="ff.isSelect" class="badge" (click)='setFilterOptions(4,ff)'>
+            {{ff.name}} 
+        </span>
+      </div>
+</div>
+</div>
+
+
+
 <div class="filterrow ratingfilter">
   <h1>Customer Rating (0)</h1>
   <div>
-    <button class="rating active">Any</button>
-    <button class="rating">
-    2.0
     <div>
+        <div class="rating btn" *ngFor='let ur of userRatingArray'>
+            <input  type="radio" name="ur.key" [value]="ur.value" [checked]='ur.isSelect' (change)='radioChecker(userRatingArray,ur)'/>
+          <label  for="{{ur.key}}" [innerHTML]='ratingmodel.printStars(ur.value)'>
+            {{ur.key}}
+        </label>
+        </div>
+
+        <!-- <i style="color:red" [innerHTML]='ratingmodel.printStars(2)'></i> -->
+      <!-- <i class="material-icons">star</i> 
       <i class="material-icons">star</i> 
-      <i class="material-icons">star</i> 
       <i class="material-icons">star_border</i>
       <i class="material-icons">star_border</i>
-      <i class="material-icons">star_border</i>
+      <i class="material-icons">star_border</i> -->
     </div>
-  </button>
-    <button class="rating">
+  <!-- <button class="rating">
     3.0
-    <div>
-      <i class="material-icons">star</i> 
-      <i class="material-icons">star</i> 
-      <i class="material-icons">star</i>
-      <i class="material-icons">star_border</i>
-      <i class="material-icons">star_border</i>
-    </div>
+  <div>
+        <i class="material-icons">star</i> 
+        <i class="material-icons">star</i> 
+        <i class="material-icons">star</i>
+        <i class="material-icons">star_border</i>
+        <i class="material-icons">star_border</i>
+      </div>
   </button>
-    <button class="rating">4.0
+  <button class="rating">4.0
     <div>
       <i class="material-icons">star</i> 
       <i class="material-icons">star</i> 
@@ -486,9 +687,28 @@
       <i class="material-icons">star</i>
       <i class="material-icons">star_border</i>
     </div>
-    </button>
+  </button> -->
   </div>
 </div>
+
+
+<div class="clearfix"></div>
+
+<div class="filterrow martop50px">
+  <h1>Preferred View</h1>
+        <div class="btn-group">
+
+            <a href="#" id="photoview" class="btn btn-default btn-sm hidden-lg hidden-sm hidden-md active">
+              <span class="glyphicon glyphicon-picture"></span>Photo View
+            </a>
+
+            <a href="#" id="gridmobile" class="btn btn-default btn-sm">
+              <span class="glyphicon glyphicon-th-large"></span>Grid
+            </a>
+          
+        </div>
+</div>
+
 
   </div>
 

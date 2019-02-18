@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 import { apiService } from '../shared/service/api.service';
-import { find } from 'rxjs-compat/operator/find';
 import { Router } from '@angular/router';
 import { SlidesOutputData } from 'ngx-owl-carousel-o';
 
+import{ratingStars} from '../ngservices/ratingstars';
+import { SearchresultComponent } from '../searchresult/searchresult.component';
+import { MasterserviceService } from '../ngservices/masterservice.service';
 @Component({
   selector: 'app-vendorcard',
   templateUrl: './vendorcard.component.html',
@@ -12,10 +14,10 @@ import { SlidesOutputData } from 'ngx-owl-carousel-o';
   providers: [NgbCarouselConfig] // add NgbCarouselConfig to the component providers
 })
 export class VendorcardComponent implements OnInit {
-
+  ratingmodel: ratingStars;
   customOptions: any = {
     margin: 20,
-    loop: false,
+    loop: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
@@ -25,11 +27,7 @@ export class VendorcardComponent implements OnInit {
     navText: ['', ''],
     responsive: { 0: { items: 1, stagePadding: 40 }, 768: { items: 2, stagePadding: 40 }, 1024: { items: 4 }, 1366: { items: 4 } },
     nav: true,
-    //autoplaySpeed:1
   }
-
-  
-
   featured_supplier_data = []
   max = []
   dream_wedding_location = []
@@ -39,22 +37,23 @@ export class VendorcardComponent implements OnInit {
   Popular=''
   objFilterParam: filterParam;
   activeSlides: SlidesOutputData;
-
   slidesStore: any[];
-  constructor( private router: Router ,config: NgbCarouselConfig, private apiService: apiService) {
+  noImage:string='https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg';
+  constructor( private masterservice: MasterserviceService ,private router: Router ,config: NgbCarouselConfig, private apiService: apiService) {
     // customize default values of carousels used by this component tree
+    this.ratingmodel = new ratingStars();
     config.interval = 10000;
     config.wrap = false;
     config.keyboard = false;
     this.objFilterParam = new filterParam();
   }
-  
-
-
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
- 
   }
+  
+
+  
+
   ngOnInit() {
     
     this.featured_supplier()
@@ -69,32 +68,30 @@ export class VendorcardComponent implements OnInit {
     $.getScript('./assets/js/curosselfun.js');  
   }
   featured_supplier(){
-    this.apiService.getData(this.apiService.serverPath+'PerfectWedding/featuredsuppliers').subscribe(data => {
-      
+      this.apiService.getData(this.apiService.serverPath+'PerfectWedding/featuredsuppliers').subscribe(data => {
       this.featured_supplier_data = data.featuredWeddingSuppliers;
-
-
-
-      this.slidesStore = this.featured_supplier_data
-if(this.featured_supplier_data!=null){
-      this.featured_supplier_data.forEach(element => {
-        element.reviews.forEach(element => {           
-          this.max.push(element.rating) 
-          this.max.sort((a,b) => 0 - (a > b ? 1 : -1))
+      this.slidesStore = this.featured_supplier_data;
+       console.log(this.slidesStore);
+      if(this.featured_supplier_data.length > 0){
+        this.featured_supplier_data.forEach(element => {
+          if(element.reviews != null)
+          {
+            element.reviews.forEach(element => {           
+              this.max.push(element.rating) 
+              this.max.sort((a,b) => 0 - (a > b ? 1 : -1))
+            });
+          }
         });
-      });
-    }
-  
-    },
-      error => {
+      }
+    },error => {
        console.log(error)
       }
     )
   }
   Dream_Wedding(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/dreamweddinglocation').subscribe(data => {
-
       this.dream_wedding_location =  data.dreamWeddingLocations;
+       console.log(this.dream_wedding_location);
       this.dream_wedding_location_length = this.dream_wedding_location.length
     },
       error => {
@@ -102,17 +99,21 @@ if(this.featured_supplier_data!=null){
       }
     )
   }
+  bookMark(data, type , action_which_lacation){
+    const id = data['vendorId'] 
+   this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
+     console.log(data)
+   })
+  }
   Popular_Wedding(){
     this.apiService.getData(this.apiService.serverPath+'Categories/categorieswithlistingcount').subscribe(data => {
-
+       console.log(data);
       for (let i of data) {
         if(i.isPopular == true){
           this.Popular_Wedding_array.push(i);
+          // console.log(this.Popular_Wedding_array);
         }
-       
       }
-      
-    
     },
       error => {
        console.log(error)
@@ -120,15 +121,20 @@ if(this.featured_supplier_data!=null){
     )
   }
   goToVendordetails(slide) {
-   
-    this.router.navigate(['home/detailprofile/',slide.vendorId])
+      let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
+      this.apiService.getData(url+'?id='+slide.vendorId).subscribe(res=>{
+        sessionStorage.setItem('vendorDetails',JSON.stringify(res));
+
+       this.router.navigate(['home/detailprofile',0]);
+    });
+   // this.router.navigate(['home/detailprofile/',slide.vendorId])
   }
-  
   Categories_each(c,isAllSupplier,isDreamLocation){
     if(c){
+    
 
    this.objFilterParam.catId  = c.categoryId;
-   this.objFilterParam.categoryName= c?c.categoryName:'AllCategories';
+   this.objFilterParam.categoryName= c?c.categoryName:'';
    this.objFilterParam.isDreamLocation=isDreamLocation;
    this.objFilterParam.isAllSupplier=isAllSupplier;
    this.objFilterParam.page = 0;
@@ -140,12 +146,11 @@ if(this.featured_supplier_data!=null){
   }
 
    sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
-    this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
+    this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   }
   supplier_all(c,isAllSupplier,isDreamLocation){
-
       this.objFilterParam.catId  = c?c.categoryId:0;
-      this.objFilterParam.categoryName= c?c.categoryName:'AllCategories';
+      this.objFilterParam.categoryName= c?c.categoryName:'';
       this.objFilterParam.isDreamLocation=isDreamLocation;
       this.objFilterParam.isAllSupplier=isAllSupplier;
       this.objFilterParam.page = 0;
@@ -153,24 +158,24 @@ if(this.featured_supplier_data!=null){
       this.objFilterParam.sortDir = "";
       this.objFilterParam.sortedBy ="";
       this.objFilterParam.searchQuery ="";
+
   
     sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
-    this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
+    this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   
   }
 
 }
-
 export class filterParam{
   catId:number=0;
   categoryName:string='';
   isAllSupplier:boolean=false;
   isDreamLocation:boolean=false;
-  page:number=1;
+  page:number=0;
   pageSize: number=3;
   sortDir: "";
   sortedBy: "";
   searchQuery: "";
-  locationId:number;
-  totalCount:number;
+  locationId:number=0;
+  totalCount:number=0;
 }

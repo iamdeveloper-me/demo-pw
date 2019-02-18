@@ -57,22 +57,21 @@
 
       <div class="col-md-12 card paddall20px">
          <div>
-            <select class="pull-right">
-               <option>All</option>
-               <option>Tips</option>
-               <option>Articles</option>
+            <select class="pull-right" [(ngModel)]='selectedTipic'>
+               <option  value='all'>All Types</option>
+               <option *ngFor="let t of distinctTipic" [value]='t'>{{t}}</option>
             </select>
          </div>
          <div class="row">
-               <!-- *ngFor='let a of tipsArrays;let i=index ' -->
-            <div class="col-sm-4"  *ngFor='let a of tipsArrays_items;let i=index ' >
-               <div class="card">
-                  <a routerLink="../tips_list">
-                     <img class="imgshadow" [src]="a.imagePath"></a>
+            <div class="col-sm-4"  *ngFor='let page of pagedItems | topic:selectedTipic' >
+               <p *ngIf="pagedItems.length == 0"> No Data Found</p>
+               <div class="card" style="cursor: pointer;" (click)="goToNextPage(page)">
+                     <!-- routerLink="../tips_list" -->
+                  <a><img class="imgshadow" [src]="page.imagePath"></a>
                   <div class="card-block card-body-cascade text-center">
-                     <h4 class="card-title"> {{a.blogTopic.topic}} </h4>
-                     <h4 class="card-title-small">Sub title </h4>
-                     <p class="card-text"> {{a.description}}</p>
+                     <h4 class="card-title"> {{page.blogTopic.topic}} </h4>
+                     <h4 class="card-title-small"> {{page.title}} </h4>
+                     <p class="card-text"> {{page.description}}</p>
                      <p class="text-center">
                         <a class="px-2 fb-ic">
                            <i class="fa fa-facebook"></i>
@@ -87,14 +86,33 @@
                   </div>
                </div>
             </div>
-      
+           
 
+            <div class="clearfix"></div>
+            <div class="col-sm-12">
+               <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                  <li [ngClass]="{disabled:pager.currentPage === 1}">
+                     <a (click)="setPage(1)">First</a>
+                  </li>
+                  <li [ngClass]="{disabled:pager.currentPage === 1}">
+                     <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                  </li>
+                  <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                     <a (click)="setPage(page)">{{page}}</a>
+                  </li>
+                  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                     <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                  </li>
+                  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                     <a (click)="setPage(pager.totalPages)">Last</a>
+                  </li>
+               </ul>
+            </div>
+            <div class="clearfix"></div>
 
+            <!-- pager end -->
 
-
-
-
-            <div class="col-md-12">
+            <!-- <div class="col-md-12">
 
                <div class="page-nation">
                   <ngb-pagination [collectionSize]="70" [(page)]="page2" [boundaryLinks]="true"></ngb-pagination>
@@ -103,9 +121,13 @@
                      <p>Current page: {{page2}}</p>
                </div>
 
-            </div>
+            </div> -->
          </div>
+
       </div>
+       <div class="clearfix"></div>
+            <!-- pager -->
+
       <div class="clearfix"></div>
       <div class="col-md-12 card paddall20px">
          <h1 class="card-title text-center">Articles By Topics</h1>

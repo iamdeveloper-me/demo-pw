@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MasterserviceService } from '../ngservices/masterservice.service';
 import { apiService } from '../shared/service/api.service';
-import{filterParam} from '../vendorcard/vendorcard.component'
+import { filterParam } from '../vendorcard/vendorcard.component'
 import { Router } from '@angular/router';
-
-import { CustompipePipe } from 'app/custompipe.pipe';
-import { CategoryPipePipe } from 'app/category-pipe.pipe';
-
+import { CustompipePipe } from '../custompipe.pipe';
+import { CategoryPipePipe } from '../category-pipe.pipe';
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
@@ -23,12 +21,24 @@ export class BannerComponent implements OnInit {
   categoryFilterParam:string=''
   Categories = [];
   locations = [];
+  banner_data = [];
   locationId:number=0;
-  banner_data = []
+  defaultbanner = false;
   categoryClickData : any;
   locationClickData : any;
+  configCategory = {
+    displayKey: "categoryName", //if objects array passed which key to be displayed defaults to description
+    limitTo: 20,
+    placeholder:'All Categories'
+  };
+  configLocation = {
+    displayKey: "name", //if objects array passed which key to be displayed defaults to description
+    limitTo: 20,
+    placeholder:'All Locations',
+  };
+ 
   ngOnInit() {
-    // alert("tiktik");
+  //  $.getScript('./assets/js/bannerselect.js');
     this.Categorie();
     this.location();
     this.banner();
@@ -50,80 +60,72 @@ export class BannerComponent implements OnInit {
   Categorie(){ 
     this.masterservice.getAllCategories().subscribe(data => {
       this.Categories = data;
+      localStorage.setItem('catlist',JSON.stringify(data));
+      // console.log(this.Categories);
      },error => {  console.log(error) })
   }
   location(){ 
     this.masterservice.getAllLocation().subscribe(data => {
       this.locations = data;
+      // console.log(this.locations);
      },error => {  console.log(error) })
   }
   banner(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/banners').subscribe(data => {
       this.banner_data = data
+      // console.log(this.banner_data);
+      if(this.banner_data.length == 0){
+        this.defaultbanner = true ;
+      }
       },
       error => {
        console.log(error)
       }
     )
   }
-
   search(e,isAllSupplier,isDreamLocation,var_data){
-   if(var_data == null){
-     this.objFilterParam.catId  = e.value.category?e.value.category.categoryId:0;
-
-      this.objFilterParam.categoryName= e.value.category?e.value.category.categoryName: '' ;
-      this.objFilterParam.categoryName=this.objFilterParam.categoryName==undefined?'All Categories':this.objFilterParam.categoryName;
-      this.objFilterParam.isDreamLocation=isDreamLocation;
-      this.objFilterParam.isAllSupplier=isAllSupplier;
-      this.objFilterParam.page = 1;
-      this.objFilterParam.pageSize = 25;
-      this.objFilterParam.sortDir = "";
-      this.objFilterParam.sortedBy ="";
-      this.objFilterParam.searchQuery ="";
-      this.objFilterParam.locationId = this.locationId;
-   }else{
-      this.objFilterParam.catId  = var_data['category'] != 0 ?var_data['category']['categoryId']:0;
-      this.objFilterParam.categoryName= var_data['category']?var_data['category']['categoryName']: '' ;
-      this.objFilterParam.isDreamLocation=isDreamLocation;
-      this.objFilterParam.isAllSupplier=isAllSupplier;
-      this.objFilterParam.page = 1;
-      this.objFilterParam.pageSize = 25;
-      this.objFilterParam.sortDir = "";
-      this.objFilterParam.sortedBy ="";
-      this.objFilterParam.searchQuery ="";
-      this.objFilterParam.locationId = var_data['location'];
-     }
-     sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
-       this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
-
-   
-    
+      if(var_data == null){
+          this.objFilterParam.catId  = e.value.category?e.value.category.categoryId:0;
+          this.objFilterParam.categoryName= e.value.category?e.value.category.categoryName: '' ;
+          this.objFilterParam.categoryName=this.objFilterParam.categoryName==undefined?'All Categories':this.objFilterParam.categoryName;
+          this.objFilterParam.isDreamLocation=isDreamLocation;
+          this.objFilterParam.isAllSupplier=isAllSupplier;
+          this.objFilterParam.page = 1;
+          this.objFilterParam.pageSize = 25;
+          this.objFilterParam.sortDir = "";
+          this.objFilterParam.sortedBy ="";
+          this.objFilterParam.searchQuery ="";
+          this.objFilterParam.locationId = this.locationId['districtId'];
+      }else{
+          this.objFilterParam.catId  = var_data['category'] != 0 ?var_data['category']['categoryId']:0;
+          this.objFilterParam.categoryName= var_data['category']?var_data['category']['categoryName']: '' ;
+          this.objFilterParam.isDreamLocation=isDreamLocation;
+          this.objFilterParam.isAllSupplier=isAllSupplier;
+          this.objFilterParam.page = 1;
+          this.objFilterParam.pageSize = 25;
+          this.objFilterParam.sortDir = "";
+          this.objFilterParam.sortedBy ="";
+          this.objFilterParam.searchQuery ="";
+          this.objFilterParam.locationId = var_data['location'];
+        }
+          sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+          this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   }
-
-
-
-
-
   // Mobile size click to forword serch result page 
-
   categoryClick(data){
     if(data == 0 ){
-           
        this.categoryClickData = 0;
-
     }else{
       this.categoryClickData = data;
- 
     }
   }
-
   locationClick(data){
-   this.locationClickData = data;
-   const var_data = {
-     category:  this.categoryClickData,
-     location: this.locationClickData
-   }
-   this.search(null,true,false,var_data)
+      this.locationClickData = data;
+      const var_data = {
+        category:  this.categoryClickData,
+        location: this.locationClickData
+      }
+      this.search(null,true,false,var_data)
   }
 
 }

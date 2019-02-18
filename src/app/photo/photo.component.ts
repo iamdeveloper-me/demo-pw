@@ -13,7 +13,7 @@ export class PhotoComponent implements OnInit {
     item:any = [];
 col: any = []
 item_tags:any = []
-titleSet:any;
+titleSet:any[];
         categories:any = [];
 
     category:any

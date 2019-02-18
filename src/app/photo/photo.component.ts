@@ -13,12 +13,13 @@ export class PhotoComponent implements OnInit {
     item:any = [];
 col: any = []
 item_tags:any = []
-titleSet:any[];
+titleSet:any = [];
         categories:any = [];
 
     category:any
     pho_data:any = {}
     loading = false;
+    oneTime = false
     categoryId=''
     searchQuery=''
     userId;
@@ -77,15 +78,18 @@ titleSet:any[];
           });
       })
     }
-    removeTag(){
-      this.photo_search_param.searchQuery = '';
-      this.find_photo(); 
+    removeTag(pos){
+this.titleSet.splice(pos,1)      
+this.find_photo(); 
     }
     changeData(str){
       // var grade:string = str; 
        switch(str) { 
           case "title": { 
-            this.titleSet.push(this.photo_search_param.searchQuery)
+              this.titleSet.push(this.photo_search_param.searchQuery)
+
+      
+            console.log(this.titleSet)
             this.find_photo();
            break; 
           } 
@@ -132,6 +136,14 @@ titleSet:any[];
       }  
       this.changeData('color-picker')       
     }
+    colorDeselect(){
+      this.colors.forEach(el=>{
+        el['isSelected'] = false
+      })
+      this.oneTime = false
+      this.photo_search_param.color = []
+      this.find_photo();
+    }
     onpageload(){
       
       this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',
@@ -157,6 +169,7 @@ titleSet:any[];
           a.isSelected = false;
         } else{
           a.isSelected =true;
+          this.oneTime = true
         }
        
         let selectedColors = this.colors.filter(c=>c.isSelected==true);
@@ -190,6 +203,9 @@ titleSet:any[];
     search_api(){
       this.pageNumber=0;
       this.photo_search_param.page=0;
+    
+
+
         this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',this.photo_search_param)
         .subscribe(data => {
           console.log(data)
@@ -207,7 +223,7 @@ titleSet:any[];
          this.setPage(1)
         
           if( this.allItems.length == 0 ){
-              this.error_1 = "no data found"
+              this.error_1 = "NO INSPIRATIONS FOUND!"
              
           }else{
             this.error_1 = " "
@@ -231,11 +247,12 @@ titleSet:any[];
       this.pager = this.pagerService.getPagerEvent(this.allItems.length, page);
       this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
     }
+
     classAdd(item){
       this.item_tags = item['tags']
       setTimeout(() => {
         $('.fancybox-content').append('<div class="colorcoderfullveiw"></div>')
-
+        $('.fancybox-content').append('<div class="tagfullveiw"></div>')
         $('.fancybox-toolbar').append('<button  class="fancybox-button fancybox-button--share" title="Share"><a href="whatsapp://send?text=Text to send withe message: http://13.59.229.254"><i class="material-icons">share</i></a></button><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')
         // $('.fancybox-caption').append('<button  class="fancybox-button fancybox-button--share" title="Share"><i class="material-icons">share</i></button>')
   
@@ -270,7 +287,7 @@ titleSet:any[];
        setTimeout(() => {
         this.item_tags.forEach(element => {
 
-          $('.colorcoderfullveiw').append('<span class="colortag" >'+element+' </span>')
+          $('.tagfullveiw').append('<span>'+element+' </span>')
         });
       }, 70);
       
@@ -293,6 +310,7 @@ export class  photoSearchParam  {
   sortDir: string;
   sortedBy: string;
   searchQuery:string;
+  tagSearch: string;
   categoryId: any;
   UserId : number; 
   color: Array<any>;

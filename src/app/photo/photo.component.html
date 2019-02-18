@@ -4,7 +4,7 @@
       <div class="select">
          <div class="searchtopbar">
             <form (ngSubmit)="find_photo()" #list="ngForm" class="row rowset">
-               <div class="col-md-2 col-3">
+               <div class="col-md-2 col-4">
                   <select class="form-control round_first" [(ngModel)]="category" name="categoryId" (change)="changeData('category')">
                      <option value='undefined'> All Categories </option>
                      <option *ngFor='let list_Categories of categories' [value]="list_Categories.categoryId">
@@ -13,7 +13,7 @@
                   </select>
                   <span class="caret caretcaty"></span>
                </div>
-               <div class="colorselect col-md-2 col-4">
+               <div class="colorselect col-md-2 col-3">
                   <span class="head">Color <span class="caret"></span></span>
                   <div class="colorlist">
                      <ul>
@@ -26,33 +26,52 @@
                   </div>
                </div>
                <div class="col-md-8 col-5 Search_img">
-                  <input type="text" [(ngModel)]="photo_search_param.searchQuery" type="text" name="searchQuery"
+                     <input type="text" [(ngModel)]="photo_search_param.searchQuery" type="text" name="searchQuery"
                      placeholder="Type a keyword" class="searchinput" >
                  <button (click)="changeData('title')" value=""  class="search-button"><i class="material-icons"> search </i></button>
                   <!-- <input type="svalue="" ubmit" class="search-button"> -->
                </div>
             </form>
          </div>
+
+
+
+
       </div>
    </section>
    <div class="container-fluid clearclass">
       <section id="wrapper" class="mobileviewfix">
          <div class="container">
             <div *ngIf="photo_search_param.color">
-                  Color :
-               <span *ngFor="let colour_tag of photo_search_param.color ; let i = index">
-                    <span (click)="removeColor(i)" *ngIf="colour_tag != ''  " class="colortag" [style.background-color]='colour_tag'>X</span>
-               </span>
+                  <span *ngFor="let colour_tag of photo_search_param.color ; let i = index">
+                     <span *ngIf="i ==0">Color :</span> 
+                    <span (click)="removeColor(i)" *ngIf="colour_tag != ''  " class="colortag mobadjust" [style.background-color]='colour_tag'>X</span>
+                  </span>
+                  &nbsp;&nbsp;
+                  <span *ngIf="oneTime" (click)="colorDeselect()">Clear All</span>
             </div>
-            <div  style="padding:0;padding-left: 5px;">
-               
-               <span >
-                  {{titleSet |json}}
-                  Keyword  :
-                   
-                  <span class="tag-color" *ngFor="let d of titleSet" (click)="removeTag()">#{{d}}   X</span>
-               </span>
+            <div class="martop10px">
+                  <span>
+                     <span *ngFor="let d of titleSet ; let i = index" (click)="removeTag(i)">
+                         <span *ngIf="i ==0">Keyword :</span>
+                         &nbsp;
+                         <span class="tagkeyword">#{{d}}   X </span>
+                     </span>
+                  </span>
             </div>
+
+
+
+
+                  
+           
+                
+              
+         
+         
+
+
+
 
             <div style="position:relative;min-height:100vh;" id="categoryProductContainer">
                <h1>{{error_1}}</h1>
@@ -77,33 +96,24 @@
 
                            </div>
                            <div class="col-md-12" style="padding:0">
-                              <span *ngFor='let colour of item.colorTags' class="colortag" style=" height: 12px!important;   width: 12px !important;
-                        border-radius: 59px;"
+                              <span *ngFor='let colour of item.colorTags' class="colortag boxcolorround"
                                  [style.background-color]='colour'>
                               </span>
                            </div>
-                           <div class="col-md-12" style="padding:0">
-                              <div class="col-md-8" style="padding:0;padding-left: 5px;">
+                              <div class="col-md-12 tagbox">
                                  <span class="tag-color" *ngFor='let colour1 of item.tags'>
                                     #{{colour1}},
                                  </span>
                               </div>
-                              <div class="col-md-4 text-right" style="padding:0">
-                                 <div class="linkdiv">
-                                    <span class="halfdiv">
+                                <div class="linkdiv">
+                                    <span class="halfdiv"  (click)="bookMark(item,'albums','bookmarked')">
                                        <i class="material-icons">favorite_border</i>
                                     </span>
                                     &nbsp;
                                     <span class="halfdiv">
                                        <i class="material-icons">share</i>
                                     </span>
-                                    &nbsp;
-                                    <span class="halfdiv" (click)="bookMark(item,'albums','bookmarked')">
-                                       <i class="material-icons">bookmark</i>
-                                    </span>
                                  </div>
-                              </div>
-                           </div>
                         </div>
                      </div>
                   </div>

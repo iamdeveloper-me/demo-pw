@@ -54,12 +54,11 @@ export class AdvertiseComponent implements OnInit {
 }
 
 export class ContactUsVM {
-  // firstName:string;
-  lastName:string;
-  name :	string
-  email:	string
-  subject:	string
-  phoneNumber:	string
-  message:	string
-  messageType=1
+  name :	string;
+  lastName: string;
+  email:	string;
+  subject:	string;
+  phoneNumber:	string;
+  message: string;
+  messageType: number;
 }

@@ -22,7 +22,7 @@ Str1: string = '<span class="fa fa-star"></span><span class="fa fa-star-o"></spa
       case 4.5: Stars= this.Str4_5; break;
       case 5: Stars= this.Str5; break;
       default:
-      break;
+      Stars = 'Any'; break;
     }
     return Stars;
   }

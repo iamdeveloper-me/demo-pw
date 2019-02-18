@@ -298,22 +298,15 @@ export class DetailpageComponent implements OnInit {
     }
 
   }
-  showHidetrading_hours(){
-   alert("vfdsg")
-    this.vendorDetails.vendorLocations.forEach((element,index) => {
-     if(this.vendorLocationsButtonLabel=='Show More')
-     {
-           element.visible=true;
-     }else{
-           if(index<=1){
-                element.visible=true;
-           } else {
-                element.visible=false;
-           }
-     }
-    });
+  showHidetrading_hours() {
+    this.show = !this.show;
+    this.hide = this.hide;
 
-
+    // CHANGE THE NAME OF THE BUTTON.
+    if (this.show)
+      this.buttonName = "Show Less";
+    else
+      this.buttonName = "Show More";
   }
 
 

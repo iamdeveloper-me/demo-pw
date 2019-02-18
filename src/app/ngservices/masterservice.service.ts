@@ -23,6 +23,9 @@ export class MasterserviceService {
    }
    getFilterResult(obj){
     console.log(JSON.stringify(obj));
+    if(obj.categoryId.length==1 && obj.categoryId[0]==0){
+      obj.categoryId=[];
+    }
        if(obj.districts!=undefined && obj.districts.length==1 && obj.districts[0]==null||obj.districts[0]==undefined) {
         obj.districts=[];
         }

@@ -121,7 +121,7 @@
         <div class="clearfix"></div>
           <ol class="breadcrumb breadcrumbcontainer">
             <li><a href="/home" routerlink="/home">Home</a></li>
-            <li><a href="/home/weddingvendors" routerlink="/home/weddingvendors">Wedding Vendors</a></li>
+            <li><a href="#" routerlink="#">Wedding Vendors</a></li>
             <!-- <li><a href="#">All Categories</a></li> -->
             <li class="active">{{SelectedCategory?SelectedCategory.categoryName:''}}</li>
           </ol>
@@ -231,6 +231,12 @@
                         <!-- <div class="regular">All Categories</div> -->
                           <div class="cityscroll22" *ngIf='showALlCategories'> 
                             <div class="funkyradio">  
+                                <div class="funkyradio-info">
+                                    <!-- <input type="checkbox" name="checkbox" id="{{c.categoryName}}" (change)='setFilterOptions(1,c.categoryId)' [(ngModel)]='c.isSelect'/> -->
+                                        <label (click)='setFilterOptions(1,"")'>
+                                            <i>  <img [src]='c.iconImageURL'/></i> All Categories </label>
+                                    </div>
+
                               <div class="funkyradio-info" *ngFor='let c of categories| categoryPipe:categoryFilterParam'>
                                <!-- <input type="checkbox" name="checkbox" id="{{c.categoryName}}" (change)='setFilterOptions(1,c.categoryId)' [(ngModel)]='c.isSelect'/> -->
                                    <label (click)='setFilterOptions(1,c)' for='{{c.categoryName}}'><i>  <img [src]='c.iconImageURL'/></i>
@@ -257,7 +263,7 @@
                   </div>
                   <div id="collapse33" class="panel-collapse collapse" >
                       <div class="category-body" >
-                        <div class="cityscroll22"> 
+                        <div class="cityscroll22" style="padding:0 !important"> 
                           <div class="funkyradio" *ngIf='filters && filters.services'  >  
                             <div class="funkyradio-info" *ngFor='let f of filters.services'>
                 
@@ -541,10 +547,10 @@
              <span class="totalpage">{{objSearchResultItems.totalPages}} (Page)s</span> -->
         </div>
       </div>
-      <ul style="display:none" class="pageNumbers" *ngIf='paginations.length>0'>
+      <ul style="display:block" class="pageNumbers" *ngIf='paginations.length>0'>
           <li *ngIf='objSearchlistvm.page > 1' (click)='goToPage(0,"P")'>Previous</li>
            <li *ngFor='let p of paginations' (click)='goToPage(p,0)'>{{p}}</li>
-           <li *ngIf='objSearchResultItems.totalPages < objSearchlistvm.page' (click)='goToPage(0,"N")'>Next</li>
+           <li *ngIf='paginations.length > 10 ' (click)='goToPage(0,"N")'>Next</li>
       </ul>
     </div>
 </div>

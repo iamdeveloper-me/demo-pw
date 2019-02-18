@@ -162,6 +162,8 @@ export class SearchresultComponent implements OnInit {
       this.categories.filter(c=>c.categoryId==this.objSearchFilter.catId)[0].isSelect=true;
       this.SelectedCategory = this.categories.filter(c=>c.isSelect==true)[0];
       this.showALlCategories=false;
+    }else{
+      this.SelectedCategory={ 'categoryId': 0,'categoryName':'All Categories', 'isSelect': false};
     }
     this.categories[0].services[0].customFields[0].customFieldOptionList.forEach(element => {
       element.isSelect = false;
@@ -259,7 +261,6 @@ export class SearchresultComponent implements OnInit {
     this.objSearchlistvm.page=0;
     switch(filterType){
       case 1: // Category
- debugger;
       this.objSearchlistvm= new SearchListingVM();
       if(FilterValue!=''){
       this.checkUncheckFilter(FilterValue);
@@ -423,6 +424,9 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
   }
     
  }
+ navigateToDynamicUrl() {
+  this._route.navigate(['/home/weddingvendors/',this.SelectedCategory.categoryName])
+}
 deselectAllCategories(){
   if(this.categories){
   this.categories.forEach(element => {

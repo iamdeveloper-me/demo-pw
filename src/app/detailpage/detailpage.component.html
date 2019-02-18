@@ -330,7 +330,7 @@
         <div class="left_box_section overviewsection tradinghours onlymobilesection">
           <div class="branchrow row tradinghours" *ngFor='let loc of vendorDetails?.vendorLocations | slice:0:1 '>
             <div class="large_subtext detailtra text-center  col-12">
-              Trading Hourssssssssss
+              Trading Hours
               <div class="branchdefaulttable in">
                 <table class="banchtable text-center">
                   <tr>
@@ -681,7 +681,8 @@
                   <div *ngFor='let loc of vendorDetails?.vendorLocations  | slice:0:1 '>
                     <div class="large_subtext detailtra text-center  col-12" *ngIf='loc.visible'>
                       Trading Hours
-                      <!-- <div class="branchdefaulttable in">
+                      <ng-container *ngIf="hide">
+                       <div class="branchdefaulttable in">
                         <table class="banchtable text-center">
                           <tr>
                             <th><strong>Mon</strong></th>
@@ -691,11 +692,13 @@
                             <td><span class="greentext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
                           </tr>
                         </table>
-                      </div> -->
+                      </div>
+                      </ng-container>
                       <div class="clearfix"></div>
-                      <div class="branchdetailtable markshow">
+                      <ng-container *ngIf="show">
+                      <div class="branchdetailtable in">
                         <table class="tabledesignwork text-center">
-                          <tr *ngIf='loc.isMondayOpen'>
+                          <!-- <tr *ngIf='loc.isMondayOpen'>
                             <th><strong>Mon</strong></th>
                             <td>
 
@@ -708,9 +711,11 @@
                                 - {{loc.mondayClose}}
                               </span>
                             </td>
-                            <td><span class="greentext" *ngIf='loc.isMondayOpen == true && currentDate == 1'>Open</span></td>
-                            <td><span class="greentext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
-                          </tr>
+                            <td>
+                              <span class="greentext" *ngIf='loc.isMondayOpen == true && currentDate == 1'>Open</span>
+                              <span class="greentext" *ngIf='loc.isMondayOpen == false '>Close</span>
+                            </td>
+                          </tr> -->
                           <tr *ngIf='loc.isTuesdayOpen'>
                             <th><strong>Tue</strong></th>
                             <td>
@@ -809,12 +814,16 @@
                           </tr>
                         </table>
                       </div>
+                      </ng-container>
                     </div>
                   </div>
-                  <span style="cursor:pointer" *ngIf='vendorDetails?.vendorLocations.length>1' (click)='showHidetrading_hours()'>{{vendorLocationsButtonLabel}}</span>
+
                   <!-- <div class="text-center showdetail barnchtableshow ">Show More</div>
                   <div class="text-center showless barnchtablenone" style="display: none;">Show less</div> -->
                 </div>
+<div style="cursor:pointer;text-align: center;color: #e72e77" *ngIf='vendorDetails?.vendorLocations.length>1' (click)='showHidetrading_hours()'>
+  {{buttonName}}
+</div>
                 <div class="branchrow row tradinghours" *ngIf="vendorDetails?.vendorLocations.length == 0 ">
                   NO trading hours available
                 </div>
@@ -897,72 +906,72 @@
         <div class="modal fade" id="address" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
-              <div class="clearfix"></div>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
               <div class="modal-header">
-
-                <button type="button" class="btn closebtn" data-dismiss="modal">&times;</button>
-
-                <h4 class="modal-title"> Contact {{vendorDetails?.nameOfBusiness}}</h4>
-
+                <h4 class="modal-title text-left" style="width:100%;"> Contact {{vendorDetails?.nameOfBusiness}}</h4>
+                <button type="button" class="btnradius50per" data-dismiss="modal">&times;</button>
               </div>
-              <div class="col-sm-12">
-                <div class="container">
+              <div class="clearfix"></div>
+                <div class="modal-body">
+                  <div class="container">
+                    <form (ngSubmit)="message(msg)" #msg="ngForm">
+                      <div class="input-effect col-sm-6  form-group mt-3">
+                        <input class="effect-16" type="text" name="sendByFirstName" [(ngModel)]="MessagesVMObj.sendByFirstName">
+                        <label>First Name</label>
+                        <span class="focus-border"></span>
+                      </div>
+                      
+                      <div class="input-effect col-sm-6   form-group mt-3">
+                        <input class="effect-16" type="text" name="sendByLastName" [(ngModel)]="MessagesVMObj.sendByLastName">
+                        <label>Last Name</label>
+                        <span class="focus-border"></span>
+                      </div>
 
-                  <form (ngSubmit)="message(msg)" #msg="ngForm">
-                  <div class="input-effect  form-group mt-3">
-                    <input class="effect-16" type="text" name="sendByFirstName" [(ngModel)]="MessagesVMObj.sendByFirstName">
-                    <label>First Name</label>
-                    <span class="focus-border"></span>
+                      <div class="input-effect col-sm-6  form-group mt-3">
+                        <input class="effect-16" type="text" name="sendByEmail" [(ngModel)]="MessagesVMObj.sendByEmail">
+                        <label>Email</label>
+                        <span class="focus-border"></span>
+                      </div>
+                      <!-- <div class="input-effect col-sm-6  form-group mt-3">
+                        <input class="effect-16" name="checkbox" type="checkbox">
+                        <span class="focus-border"></span>
+                      </div> -->
+                      <div class="input-effect col-sm-6  form-group mt-3">
+                        <input class="effect-16" name="phone" type="tel" disabled>
+                        <label>Your Phone Number</label>
+                        <span class="focus-border"></span>
+                      </div>
+                      <div class="input-effect col-sm-6  form-group mt-3">
+                        <input class="effect-16" type="text" name="sentDate" [(ngModel)]="MessagesVMObj.sentDate" disabled>
+                        <label>Date</label>
+                        <span class="focus-border"></span>
+                      </div>
+                      <div class="input-effect col-sm-6  form-group mt-3">
+                        <input class="effect-16" type="text" name="subject" [(ngModel)]="MessagesVMObj.subject">
+                          <label>Subject</label>
+                          <span class="focus-border"></span>
+                      </div>
+                      <div class="clearfix"></div>
+                      <div class="input-effect  form-group mt-3">
+                        <textarea class="effect-16" type="textarea" name="message" [(ngModel)]="MessagesVMObj.message"></textarea>
+                        <label>Message</label>
+                        <span class="focus-border"></span>
+                      </div>
+                      <div class="clearfix"></div>
+                      <div class="">
+                        <div class="funkyradio">
+                          <div class="funkyradio-info">
+                            <input type="checkbox" id='phonesent' />
+                            <label  for='phonesent'>Send Phone Number</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                      <div class="btnholder">
+                        <button type="submit" class="btn btn-info">Send</button>
+                      </div>
+                    </form>
                   </div>
-                  
-                  <div class="input-effect  form-group mt-3">
-                    <input class="effect-16" type="text" name="sendByLastName" [(ngModel)]="MessagesVMObj.sendByLastName">
-                    <label>Last Name</label>
-                    <span class="focus-border"></span>
-                  </div>
-
-                  <div class="input-effect  form-group mt-3">
-                    <input class="effect-16" type="text" name="sendByEmail" [(ngModel)]="MessagesVMObj.sendByEmail">
-                    <label>Email</label>
-                    <span class="focus-border"></span>
-                  </div>
-                  <!-- <div class="input-effect  form-group mt-3">
-                    <input class="effect-16" name="checkbox" type="checkbox">
-                    <span class="focus-border"></span>
-                  </div> -->
-                  <div class="input-effect  form-group mt-3">
-                    <input class="effect-16" name="phone" type="tel" disabled>
-                    <label>Your Phone Number</label>
-                    <span class="focus-border"></span>
-                  </div>
-                  <div class="input-effect  form-group mt-3">
-
-                    <textarea class="effect-16" type="date" name="sentDate" [(ngModel)]="MessagesVMObj.sentDate" disabled></textarea>
-                    <label>Date</label>
-
-                    <span class="focus-border"></span>
-                  </div>
-                  <div class="input-effect  form-group mt-3">
-                    <input class="effect-16" type="text" name="subject" [(ngModel)]="MessagesVMObj.subject">
-                      <label>Subject</label>
-                      <span class="focus-border"></span>
-                    </div>
-                  <div class="input-effect  form-group mt-3">
-                    <textarea class="effect-16" type="textarea" name="message" [(ngModel)]="MessagesVMObj.message"></textarea>
-                    <label>Message</label>
-                    <span class="focus-border"></span>
-                  </div>
-                  <div class="clearfix"></div>
-                  <div class="form-group btnholder">
-                    <button type="submit" class="btn btn-info">Save</button>
-                  </div>
-
-                  </form>
-
-                </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -1006,7 +1015,7 @@
                   </div>
                 </form>
               </div> -->
-              <div class="col-sm-12">
+              <div class="modal-body">
                 <div *ngIf="responce_review  == true ">
                   <form (ngSubmit)="putReview(review)" #f="ngForm">
                     <div class="vp_review_txt">
@@ -1034,8 +1043,6 @@
                     </div>
                   </form>
                 </div>
-                <div class="clearfix"></div>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
               </div>
               <h1 *ngIf="responce_thanks == true ">THANK YOU FOR YOUR REVIEW</h1>
             </div>
@@ -1057,47 +1064,47 @@
         <div class="modal fade" id="albumgallarypopup" #albumgallarypopup tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
               <form (ngSubmit)="contact(list)" #list="ngForm">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title text-left" style="width:100%;">Something wrong with this Profile?</h4>
-                <button type="button" class="btnradius50per" data-dismiss="modal">X</button>
-              </div>
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title text-left" style="width:100%;">Something wrong with this Profile?</h4>
+                    <button type="button" class="btnradius50per" data-dismiss="modal">X</button>
+                  </div>
 
-              <div class="modal-body">
-                <div>
-                  <label (click)="report = true">
-                    <input type="radio" name="messageType" [value]="1" [(ngModel)]="contactInfoObj.messageType"> This profile is fake (Scam).
-                  </label>
-                </div>
-                <div>
-                  <label (click)="report = true">
-                    <input type="radio" name="messageType"[value]="2" [(ngModel)]="contactInfoObj.messageType"> This vendor is no longer available.
-                  </label>
-                </div>
-                <div>
-                  <label (click)="report = true">
-                    <input type="radio" name="messageType" [value]="3" [(ngModel)]="contactInfoObj.messageType"> The Vendor is in the wrong category
-                  </label>
-                </div>
-                <div>
-                  <label (click)="report = true">
-                    <input type="radio" name="messageType"[value]="4" [(ngModel)]="contactInfoObj.messageType"> Other
-                  </label>
-                </div>
-                <div class="clearfix"></div>
-                <div *ngIf="report == true">
-                  <label> Please provide more details </label>
-                  <div class="form-group">
-                    <input type="textarea" class="form-control" name="message" [(ngModel)]="contactInfoObj.message">
+                  <div class="modal-body">
+                    <div>
+                      <label (click)="report = true">
+                        <input type="radio" name="messageType" [value]="1" [(ngModel)]="contactInfoObj.messageType"> This profile is fake (Scam).
+                      </label>
+                    </div>
+                    <div>
+                      <label (click)="report = true">
+                        <input type="radio" name="messageType"[value]="2" [(ngModel)]="contactInfoObj.messageType"> This vendor is no longer available.
+                      </label>
+                    </div>
+                    <div>
+                      <label (click)="report = true">
+                        <input type="radio" name="messageType" [value]="3" [(ngModel)]="contactInfoObj.messageType"> The Vendor is in the wrong category
+                      </label>
+                    </div>
+                    <div>
+                      <label (click)="report = true">
+                        <input type="radio" name="messageType"[value]="4" [(ngModel)]="contactInfoObj.messageType"> Other
+                      </label>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div *ngIf="report == true">
+                      <label> Please provide more details </label>
+                      <div class="form-group">
+                        <input type="textarea" class="form-control" name="message" [(ngModel)]="contactInfoObj.message">
+                      </div>
+                      <div class="form-group">
+                        <button class="btn btntikbg" type="submit" *ngIf="report == true"> Report </button>
+                      </div>
+                    </div>
+                    {{succesfull_report}}
+                    <div class="clearfix"></div>
                   </div>
-                  <div class="form-group">
-                    <button class="btn btntikbg" type="submit" *ngIf="report == true"> Report </button>
-                  </div>
                 </div>
-                {{succesfull_report}}
-                <div class="clearfix"></div>
-              </div>
-            </div>
               </form>
           </div>
         </div>
@@ -1120,6 +1127,10 @@
                       <td ><span class="greentext" *ngIf='trading_hours_popups.isMondayOpen == true  && currentDate == 1'>Open</span>
                         <span class="redtext" *ngIf='trading_hours_popups.isMondayOpen == false && currentDate == 1' >Close</span>
                       </td>
+                      <td>
+                        <span class="greentext" *ngIf='trading_hours_popups.isMondayOpen == true  && currentDate == 1'>Open</span>
+                        <span class="redtext" *ngIf='trading_hours_popups.isMondayOpen == false && currentDate == 1'>Close</span>     
+                      </td>
                     </tr>
                     <tr>
                       <th>Tue</th>
@@ -1128,6 +1139,10 @@
                       </td>
                       <td ><span class="greentext" *ngIf='trading_hours_popups.isTuesdayOpen == true  && currentDate == 2'>Open</span>
                         <span class="redtext" *ngIf='trading_hours_popups.isTuesdayOpen == false && currentDate == 2 ' >Close</span>
+                      </td>
+                      <td>
+                        <span class="greentext" *ngIf='trading_hours_popups.isTuesdayOpen == true  && currentDate == 2'>Open</span>
+                        <span class="redtext" *ngIf='trading_hours_popups.isTuesdayOpen == false && currentDate == 2 '>Close</span>       
                       </td>
                     </tr>
                     <tr>
@@ -1138,6 +1153,10 @@
                       <td ><span class="greentext" *ngIf='trading_hours_popups.isWednesdayOpen == true  && currentDate == 3' >Open</span>
                         <span class="redtext"  *ngIf='trading_hours_popups.isWednesdayOpen == false && currentDate == 3'>Close</span>
                       </td>
+                      <td>
+                          <span class="greentext" *ngIf='trading_hours_popups.isWednesdayOpen == true  && currentDate == 3' >Open</span>
+                          <span class="redtext" *ngIf='trading_hours_popups.isWednesdayOpen == false && currentDate == 3'>Close</span>
+                      </td>
                     </tr>
                     <tr>
                       <th>Thu</th>
@@ -1147,7 +1166,10 @@
                       <td><span class="greentext" *ngIf='trading_hours_popups.isThursdayOpen == true  && currentDate == 4'>Open</span>
                         <span class="redtext" *ngIf='trading_hours_popups.isThursdayOpen == false  && currentDate == 4'>Close</span>
                       </td>
-                    
+                      <td>
+                        <span class="greentext" *ngIf='trading_hours_popups.isThursdayOpen == true  && currentDate == 4'>Open</span>
+                        <span class="redtext" *ngIf='trading_hours_popups.isThursdayOpen == false  && currentDate == 4'>Close</span>  
+                      </td>
                     </tr>
                     <tr>
                       <th>Fri</th>
@@ -1155,6 +1177,10 @@
                         <span *ngIf='trading_hours_popups.isFridayOpen'>{{trading_hours_popups.fridayOpen}} - {{trading_hours_popups.fridayClose}}</span>
                       </td>
                       <td><span class="greentext" *ngIf='trading_hours_popups.isFridayOpen == true  && currentDate == 5'>Open</span>
+                        <span class="redtext" *ngIf='trading_hours_popups.isFridayOpen == false   && currentDate == 5'>Close</span>
+                      </td>
+                      <td>
+                        <span class="greentext" *ngIf='trading_hours_popups.isFridayOpen == true  && currentDate == 5'>Open</span>
                         <span class="redtext" *ngIf='trading_hours_popups.isFridayOpen == false   && currentDate == 5'>Close</span>
                       </td>
                     </tr>
@@ -1166,7 +1192,10 @@
                       <td><span class="greentext"  *ngIf='trading_hours_popups.isSaturdayOpen == true  && currentDate == 6'>Open</span>
                         <span class="redtext" *ngIf='trading_hours_popups.isSaturdayOpen == false  && currentDate == 6 '>Close</span>
                       </td>
-                     
+                      <td>
+                        <span class="greentext"  *ngIf='trading_hours_popups.isSaturdayOpen == true  && currentDate == 6'>Open</span>
+                        <span class="redtext" *ngIf='trading_hours_popups.isSaturdayOpen == false  && currentDate == 6 '>Close</span>
+                      </td>
                     </tr>
                     <tr>
                       <th>Sun</th>
@@ -1178,7 +1207,10 @@
 
                         <span class="redtext" *ngIf='trading_hours_popups.isSundayOpen == false && currentDate == 7'>Close</span>
                       </td>
-
+                      <td>
+                        <span class="greentext"*ngIf='trading_hours_popups.isSundayOpen == true  && currentDate == 7' >Open</span>
+                        <span class="redtext" *ngIf='trading_hours_popups.isSundayOpen == false && currentDate == 7'>Close</span>
+                      </td>
                     </tr>
                   </table>
                 </div>

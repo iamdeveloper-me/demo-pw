@@ -156,6 +156,7 @@ document.getElementsByTagName("rating_star span")[0].removeAttribute("title");
 
 
 
+
 $(".linkshow").click(function() {
   //alert("hhhh");
     $('.vp_about_txt_description').addClass('showtik');
@@ -435,3 +436,10 @@ window.onload = function(){
     }
 };
 
+
+
+
+$(document).ready(function () {
+  alert("hi")
+  $("i.star-icon").removeAttr("title");
+});

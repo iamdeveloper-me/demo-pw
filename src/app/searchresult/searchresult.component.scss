@@ -853,9 +853,6 @@ img.dealbanner {
   border-radius: 5px;
   padding: 5px 10px;
 }
-.card-body span{
-  display: block;
-}
 .marg_top{
   margin-top: 20px;
   border-top: 1px solid rgb(247, 243, 243);
@@ -1135,19 +1132,24 @@ margin-bottom:30px;
 }
 .chipsCLose{
 cursor: pointer;
-    border: 0px solid #ccc;
-    border-radius: 50%;
-    background: #fff;
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    line-height: 16px;
-    text-indent: 3px;
-    font-style: normal;
-    font-size: 16px;
-    font-weight: bold;
-    right:5px;
-    color:#333!important;
+border: 0px solid #ccc;
+border-radius: 50%;
+background: #fff;
+width: 20px;
+height: 20px;
+display: inline-block;
+line-height: 16px;
+text-indent: 4px;
+font-style: normal;
+font-size: 16px;
+font-weight: bold;
+right: 5px;
+color: #ccc !important;
+line-height: 17px;
+}
+.chipsCLose:hover {
+background: #e5e5e5;
+color: #999;
 }
 ul.pageNumbers {
   list-style: none;
@@ -1408,12 +1410,17 @@ padding-bottom: 5px;
 .listing-group .locat_icon i{
 display: inline-block;
 text-align: left!important;
-float: left!important;
 }
 .listing-group .locat_icon span{
-  display: inline-block;
+  display:inherit!important;
   text-align: left!important;
-  float: left!important;
+  }
+  .card-body span {
+    display: block;
+  }
+  .locat_icon span {
+    display: inline !important;
+    text-align: left !important;
   }
 .listing-group .grid-group-item .descrip{
   display:block;
@@ -1843,7 +1850,7 @@ padding:0px;
 
  @media (max-width:736px){
   .boxtikslide{
-  max-width:inherit!important;
+  max-width:345px!important;
   }
   .ipadnone,.searchfilterbox{
     display: none;

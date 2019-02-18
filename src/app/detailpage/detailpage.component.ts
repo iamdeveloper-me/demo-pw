@@ -55,7 +55,12 @@ export class DetailpageComponent implements OnInit {
   CatName;
   reviewButtonLabel= 'Show More';
   dealButtonLabel= 'Show More';
-  vendorLocationsButtonLabel = 'Show More'
+  vendorLocationsButtonLabel = 'Show More';
+
+  public show: boolean = false;
+  public hide: boolean = true;
+  public buttonName: any = 'Show More';
+
   @ViewChild('albumgallarypopup') albumgallarypopup: ElementRef;
   @ViewChild(AgmMap) map: AgmMap;
   @ViewChild('gmapInput') gmapInput: ElementRef;
@@ -308,13 +313,39 @@ export class DetailpageComponent implements OnInit {
      }
     });
 
-    if(this.vendorDetails.vendorLocations.filter(r=>r.visible==true).length>3){
-     this.vendorLocationsButtonLabel = 'Show Less';
 
-   }else{
-     this.vendorLocationsButtonLabel = 'Show More';
-   }
   }
+
+
+
+
+  // showHidetrading_hours(){
+  //   alert("vfdsg")
+  //   this.vendorDetails.vendorLocations.forEach((element,index) => {
+  //    if(this.vendorLocationsButtonLabel=='Show More')
+  //    {
+  //          element.visible=true;
+  //    }else{
+  //          if(index<=1){
+  //               element.visible=true;
+  //          } else {
+  //               element.visible=false;
+  //          }
+  //    }
+  //   });
+
+
+ 
+
+  //   if(this.vendorDetails.vendorLocations.filter(r=>r.visible==true).length>3){
+  //    this.vendorLocationsButtonLabel = 'Show Less';
+
+  //  }else{
+  //    this.vendorLocationsButtonLabel = 'Show More';
+  //  }
+  // }
+
+
     message(msg){
       this.user_login_token = sessionStorage.getItem('userToken');
       this.userId = localStorage.getItem('userId'); 

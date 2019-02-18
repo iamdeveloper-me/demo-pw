@@ -475,7 +475,7 @@ display:none;
    padding:0px;
    color:#000!important;
 }
-#Vediogallarypopup, #albumgallarypopup{
+.modal{
   z-index:99999!important;
 }
 #albumcarousel{
@@ -1085,7 +1085,6 @@ margin:5px 0px;
 }
 .tabledesignwork{
 width:100%;
-margin:15px 0px;
 }
 .branchdetailtable{
     display:none;
@@ -1152,9 +1151,9 @@ margin-left: 5px;
 .slidersection img{
     width:inherit!important;
 }
-.branchrow{
-    margin-bottom:15px;
-}
+// .branchrow{
+//     margin-bottom:15px;
+// }
 .branchlist{   
     margin:10px 5px!important;
     padding:10px!important;
@@ -1552,7 +1551,11 @@ color:#fff!important;
     max-width: 80%!important;
     background: linear-gradient(40deg, #e60060, #f09) !important;
     border: 0px solid #fff!important;
-    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15)!important;
+    box-shadow:none!important;
+}
+.btnholder .btn.btn-info:hover{
+     box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18),
+     0 4px 15px 0 rgba(0, 0, 0, 0.15) !important;
 }
 .closebtn{
     background: transparent!important;
@@ -1569,4 +1572,107 @@ img.owl-lazy{
     opacity: inherit !important;
     width: 100%;
 }
+#Review_vendor{
+    margin-top: 50px;
+}
+.input-effect{
+    padding-left: 0px !important;
+}
+.funkyradio {
+    overflow: hidden;
+    padding-bottom: 10px;
+    max-height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin-top: 15px;
+}
 
+.funkyradio label {
+    width: 100%;
+    border-radius: 3px;
+    font-weight: normal;
+}
+
+.funkyradio input[type="radio"]:empty,
+.funkyradio input[type="checkbox"]:empty {
+    display: none;
+    // radio show
+}
+
+.funkyradio input[type="radio"]:empty~label,
+.funkyradio input[type="checkbox"]:empty~label {
+    position: relative;
+    line-height: 25px;
+    text-indent: 30px;
+    margin-top: 0px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-bottom: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+}
+
+.funkyradio-info {
+    font-size: 14px;
+}
+
+.funkyradio input[type="checkbox"]:empty~label:before {
+    position: absolute;
+    display: block;
+    top: 4px;
+    bottom: 0;
+    left: 0;
+    content: '';
+    width: 1.5em;
+    height: 1.5em;
+    background: #ffffff;
+    border: 1px solid #666;
+    border-radius: 4px;
+}
+
+
+.funkyradio input[type="radio"]:hover:not(:checked)~label,
+.funkyradio input[type="checkbox"]:hover:not(:checked)~label {
+    color: #888;
+}
+
+.funkyradio input[type="checkbox"]:hover:not(:checked)~label:before {
+    content: '\2714';
+    text-indent: 3px;
+    line-height: 1.4em;
+    color: #C2C2C2;
+}
+
+
+.funkyradio input[type="radio"]:checked~label,
+.funkyradio input[type="checkbox"]:checked~label {
+    color: #777;
+}
+
+.funkyradio input[type="checkbox"]:checked~label:before {
+    content: '\2714';
+    color: #333;
+    text-indent: 3px;
+    line-height: 1.4em;
+    background-color: #fff;
+}
+
+
+
+.funkyradio input[type="radio"]:focus~label:before,
+.funkyradio input[type="checkbox"]:focus~label:before {
+    box-shadow: 0 0 0 3px #999;
+}
+
+.funkyradio-info input[type="radio"]:checked~label:before,
+.funkyradio-info input[type="checkbox"]:checked~label:before {
+    color: #5bc0de;
+    background-color: #fff;
+    border: 1px solid #5bc0de;
+
+}

@@ -157,6 +157,7 @@ export class SearchresultComponent implements OnInit {
   
     this.categories = JSON.parse(localStorage.getItem('catlist'));
     console.log(this.categories);
+    // this.categories.upshift({'categoryId':0, 'categoryName':'All Categories'});
     if(this.objSearchFilter.catId>0){
       this.categories.filter(c=>c.categoryId==this.objSearchFilter.catId)[0].isSelect=true;
       this.SelectedCategory = this.categories.filter(c=>c.isSelect==true)[0];
@@ -258,8 +259,9 @@ export class SearchresultComponent implements OnInit {
     this.objSearchlistvm.page=0;
     switch(filterType){
       case 1: // Category
- 
+ debugger;
       this.objSearchlistvm= new SearchListingVM();
+      if(FilterValue!=''){
       this.checkUncheckFilter(FilterValue);
      if(FilterValue.isSelect){
       this.SelectedCategory = FilterValue;
@@ -268,6 +270,10 @@ export class SearchresultComponent implements OnInit {
       this.showALlCategories = false;}else{
         this.showALlCategories = true;
         this.SelectedCategory=null;
+      }}else{
+        this.SelectedCategory={ 'categoryId': 0,'categoryName':'All Categories', 'isSelect': false};
+        this.getFilters();
+        this.showALlCategories = false;
       }
        break;
       case 2: // Service

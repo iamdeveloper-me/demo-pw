@@ -107,7 +107,7 @@
       <div class="container-fluid nopadd">
         <div class="badgecontainer">
           <span *ngIf='objSearchResultItems' class="badge badge-primary badge-labeled">
-          {{SelectedCategory?SelectedCategory.categoryName:'Wedding Vendors'}}  {{SelectedLocation?'in '+SelectedLocation.name:'in Mauritius'}} (  {{collection?collection.length:'Not Found'}} Results Of {{objSearchResultItems.totalCount}})
+          {{SelectedCategory?SelectedCategory.categoryName:'Wedding Vendors'}}  {{SelectedLocation?'in '+SelectedLocation.name:'in Mauritius'}} (  {{collection?collection.length:'No Result Found'}} Results Of {{objSearchResultItems.totalCount}})
           </span>
 
 
@@ -121,9 +121,11 @@
         <div class="clearfix"></div>
           <ol class="breadcrumb breadcrumbcontainer">
             <li><a href="/home" routerlink="/home">Home</a></li>
-            <li><a href="#" routerlink="#">Wedding Vendors</a></li>
+            <li><a href="/home/weddingvendors" routerlink="/home/weddingvendors">Wedding Vendors</a></li>
             <!-- <li><a href="#">All Categories</a></li> -->
-            <li class="active">{{SelectedCategory?SelectedCategory.categoryName:''}}</li>
+            <li class="active">
+              <a (click)='navigateToDynamicUrl()'>
+              {{SelectedCategory?SelectedCategory.categoryName:''}}</a></li>
           </ol>
 
            <div class="btn-group hidden-xs">
@@ -218,7 +220,7 @@
                     <ul class="selectedlist" *ngIf='!showALlCategories'>
                         <li>
                            <span> {{SelectedCategory?SelectedCategory.categoryName:""}} 
-                             <span *ngIf='SelectedCategory && SelectedCategory.categoryName' (click)='setFilterOptions(1,SelectedCategory)' class="closebtnlist">&times;</span></span>
+                             <span *ngIf='SelectedCategory && SelectedCategory.categoryName' (click)='setFilterOptions(1,SelectedCategory)' style="cursor:pointer;float:right">x</span></span>
                         </li>
                     </ul>
                   </div>

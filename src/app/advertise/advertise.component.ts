@@ -54,7 +54,7 @@ export class AdvertiseComponent implements OnInit {
 }
 
 export class ContactUsVM {
-  name :	string;
+  firstName:	string;
   lastName: string;
   email:	string;
   subject:	string;

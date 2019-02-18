@@ -149,6 +149,7 @@ import { StepThirdComponent } from './register/step-third/step-third.component';
 import { StepForthComponent } from './register/step-forth/step-forth.component';
 import { PaymentSummaryComponent } from './payment-summary/payment-summary.component';
 import { VendorDealDetailComponent } from './vendor-deal-detail/vendor-deal-detail.component';
+import { AllReviewsComponent } from './all-reviews/all-reviews.component';
 
 
 const appRoutes: Routes = [
@@ -182,6 +183,8 @@ const appRoutes: Routes = [
   { path: 'home/Advertise', component:  AdvertiseComponent },
   { path: 'home/cuplefoot', component:  FootCupleComponent },
   { path: 'home/Photogallary', component:  PhotogallaryComponent },
+  //All Reviews Page
+  { path: 'home/allReviews', component: AllReviewsComponent },
   { path: 'home/Vediogallary', component:  VediogallaryComponent },
   { path: 'home/supplierbylocation', component:  SupplierbylocationComponent },
   { path: 'home/Photogallerydetail', component:  PhotogallerydetailComponent },

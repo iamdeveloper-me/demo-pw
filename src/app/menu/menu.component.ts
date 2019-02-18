@@ -80,6 +80,8 @@ export class MenuComponent implements OnInit {
                                 if (data.statusText == "OK" && data.json().role =="Vendors" ) {
                                     this.typeSuccess();
                                     localStorage.setItem('userId',data.json().id);
+                                    localStorage.setItem('role',data.json().role);
+
                                     localStorage.setItem('userToken',data.json().auth_token);
                                     sessionStorage.setItem('userToken',data.json().auth_token);
                                     this.router.navigate(['../vendor/dashboard'])
@@ -110,6 +112,8 @@ export class MenuComponent implements OnInit {
                                     if (data.statusText == "OK"  && data.json().role =="Users") {
                                         sessionStorage.setItem('userToken',data.json().auth_token);
                                         sessionStorage.setItem('userId',data.json().id);
+                                        sessionStorage.setItem('role',data.json().role);
+
                                         // localStorage.setItem('userId',data.json().id);
                                         this.router.navigate(['../User/vendor'])
                                         this.typeSuccess();

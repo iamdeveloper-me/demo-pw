@@ -10,6 +10,7 @@ import { GoogleMapsAPIWrapper } from '@agm/core/services';
 import { utilities } from 'app/utilitymodel';
 import { Meta, Title } from '@angular/platform-browser';
 import { ContactUsVM } from '../advertise/advertise.component';
+import { filterParam } from '../vendorcard/vendorcard.component'
 declare var google: any;
 
 interface Marker {lat: number;lng: number;label?: string;draggable: boolean;}
@@ -27,6 +28,7 @@ interface Location {
 })
 export class DetailpageComponent implements OnInit {
   lat: number = 51.678418;
+  role:string;
   lng: number = 7.809007;
   MessagesVMObj  = new MessagesVM();
   contactInfoObj: ContactUsVM;
@@ -41,6 +43,7 @@ export class DetailpageComponent implements OnInit {
   vendorId: number;
   vendorDetails: any;
   data_arr = []
+  show:boolean = false
   businessServices_length ;
   portfolioAndAlbumImagesTotal: number = 0;
   similarVendors:any;
@@ -53,9 +56,10 @@ export class DetailpageComponent implements OnInit {
   currentDate
   vendorVideo_details:any = [];
   CatName;
-  reviewButtonLabel= 'Show More';
-  dealButtonLabel= 'Show More';
-  vendorLocationsButtonLabel = 'Show More'
+  reviewButtonLabel= 'View All';
+  dealButtonLabel= 'View All';
+  vendorLocationsButtonLabel = 'View All'
+  objFilterParam: filterParam;
   @ViewChild('albumgallarypopup') albumgallarypopup: ElementRef;
   @ViewChild(AgmMap) map: AgmMap;
   @ViewChild('gmapInput') gmapInput: ElementRef;
@@ -74,7 +78,16 @@ export class DetailpageComponent implements OnInit {
       this.currentDate  = dateObj.getDay()  //months from 1-12
       console.log(this.currentDate )
       this.user_login_token = sessionStorage.getItem('userId')
-      console.log( this.user_login_token )
+      this.role = (sessionStorage.getItem('role'))
+      debugger
+  if(sessionStorage.getItem('role') == 'Users'){
+    this.show = true
+  }else{
+    this.show = false
+
+  }
+      console.log(this.user_login_token);
+      this.objFilterParam = new filterParam();
   }
   ngOnInit() {
 
@@ -96,19 +109,19 @@ export class DetailpageComponent implements OnInit {
     // alert("dfdsff") 
     // this.showLoader = false;}, 2900);
     this.vendorDetails.reviews.forEach((element,index) => {
-      if(index<=2){ element.visible=true;this.reviewButtonLabel='Show More'; } 
+      if(index<=2){ element.visible=true;this.reviewButtonLabel='View All'; } 
             else { element.visible=false; }
             
     });
     this.vendorDetails.deals.forEach((element,index) => {
       if(index<=2){ element.visible=true; 
-        this.dealButtonLabel='Show More';
+        this.dealButtonLabel='View All';
       }else{  
         element.visible=false; }
     });
     this.vendorDetails.vendorLocations.forEach((element,index) => {
       if(index<=2){ element.visible=true; 
-        this.vendorLocationsButtonLabel='Show More';
+        this.vendorLocationsButtonLabel='View All';
       }else{ element.visible=false; }
     });
     for (let cat of this.vendorDetails.vendorCategories) {
@@ -188,7 +201,7 @@ export class DetailpageComponent implements OnInit {
       comments: comments1,
       rateVendorID:  this.vendorDetails.vendorUniqueId
    }
-    console.log(this.user_login_token )
+    console.log(this.user_login_token);
     this.apiService.postData(this.apiService.serverPath+'Reviews/postreview', a).subscribe(data => {
       console.log(data)
       this.responce_review = false;
@@ -251,7 +264,7 @@ export class DetailpageComponent implements OnInit {
   }
   showHideReviews(){
     this.vendorDetails.reviews.forEach((element,index) => {
-        if(this.reviewButtonLabel=='Show More')
+        if(this.reviewButtonLabel=='View All')
         {
               element.visible=true;
         }else{
@@ -263,13 +276,20 @@ export class DetailpageComponent implements OnInit {
         }
     });
     if(this.vendorDetails.reviews.filter(r=>r.visible==true).length>3){
-      this.reviewButtonLabel = 'Show Less';
+      this.reviewButtonLabel = 'Veiw Less';
 
     }else{
-      this.reviewButtonLabel = 'Show More';
+      this.reviewButtonLabel = 'Veiw All';
     }
     
   }
+
+  //GoToAllReviews
+  goToAllReviews(vendorDetails){
+    sessionStorage.setItem('Vendorimages',JSON.stringify(this.vendorDetails.reviews));
+    this.router.navigateByUrl('/home/allReviews');
+  }
+
   showHideevents(){
  
      this.vendorDetails.deals.forEach((element,index) => {
@@ -349,7 +369,19 @@ export class DetailpageComponent implements OnInit {
     )
   }
 
-
+  search(e,){
+    if(e){
+      this.objFilterParam.catId  = e.value.category?e.value.category.categoryId:0;
+      this.objFilterParam.categoryName= e.value.category?e.value.category.categoryName: '' ;
+      this.objFilterParam.page = 0;
+      this.objFilterParam.pageSize = 25;
+      this.objFilterParam.sortDir = "";
+      this.objFilterParam.sortedBy ="";
+      this.objFilterParam.searchQuery ="";
+     }
+      sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+      this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
+  }
   
 }
 

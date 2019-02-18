@@ -175,7 +175,7 @@
                           <i class="material-icons">location_on</i> 
                           {{SelectedLocation?SelectedLocation.name:''}}
     
-                          <span (click)='setFilterOptions(3,SelectedLocation)'  class="closebtnlist">&times;</span>
+                          <span (click)='setFilterOptions(3,SelectedLocation)'  class="closebtnlist chipsCLose">&times;</span>
                         </li>
                   </ul>
                 </div>
@@ -216,7 +216,7 @@
                     <ul class="selectedlist" *ngIf='!showALlCategories'>
                         <li>
                            <span> {{SelectedCategory?SelectedCategory.categoryName:""}} 
-                             <span *ngIf='SelectedCategory && SelectedCategory.categoryName' (click)='setFilterOptions(1,SelectedCategory)' style="cursor:pointer;float:right">x</span></span>
+                             <span *ngIf='SelectedCategory && SelectedCategory.categoryName' (click)='setFilterOptions(1,SelectedCategory)' class="chipsCLose">x</span></span>
                         </li>
                     </ul>
                   </div>

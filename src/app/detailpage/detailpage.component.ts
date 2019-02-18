@@ -294,7 +294,7 @@ export class DetailpageComponent implements OnInit {
 
   }
   showHidetrading_hours(){
- alert("vfdsg")
+   alert("vfdsg")
     this.vendorDetails.vendorLocations.forEach((element,index) => {
      if(this.vendorLocationsButtonLabel=='Show More')
      {

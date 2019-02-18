@@ -1114,52 +1114,70 @@
                   <table class="table table-bordered table-stripped text-center">
                     <tr>
                       <th>Mon</th>
-                      <td *ngIf='trading_hours_popups.isMondayOpen'>{{trading_hours_popups.mondayOpen}} - {{trading_hours_popups.mondayClose}}
+                      <td>
+                        <span *ngIf='trading_hours_popups.isMondayOpen'>{{trading_hours_popups.mondayOpen}} - {{trading_hours_popups.mondayClose}}</span>
                       </td>
-                      <td ><span class="greentext" *ngIf='trading_hours_popups.isMondayOpen == true  && currentDate == 1'>Open</span></td>
-                      <td *ngIf='trading_hours_popups.isMondayOpen == false && currentDate == 1'><span class="redtext" >Close</span></td>
+                      <td ><span class="greentext" *ngIf='trading_hours_popups.isMondayOpen == true  && currentDate == 1'>Open</span>
+                        <span class="redtext" *ngIf='trading_hours_popups.isMondayOpen == false && currentDate == 1' >Close</span>
+                      </td>
                     </tr>
                     <tr>
                       <th>Tue</th>
-                      <td *ngIf='trading_hours_popups.isTuesdayOpen'>{{trading_hours_popups.tuesdayOpen}} - {{trading_hours_popups.tuesdayClose}}
+                      <td >
+                        <span *ngIf='trading_hours_popups.isTuesdayOpen'>{{trading_hours_popups.tuesdayOpen}} - {{trading_hours_popups.tuesdayClose}}</span>
                       </td>
-                      <td ><span class="greentext" *ngIf='trading_hours_popups.isTuesdayOpen == true  && currentDate == 2'>Open</span></td>
-                      <td *ngIf='trading_hours_popups.isTuesdayOpen == false && currentDate == 2 '><span class="redtext" >Close</span></td>
+                      <td ><span class="greentext" *ngIf='trading_hours_popups.isTuesdayOpen == true  && currentDate == 2'>Open</span>
+                        <span class="redtext" *ngIf='trading_hours_popups.isTuesdayOpen == false && currentDate == 2 ' >Close</span>
+                      </td>
                     </tr>
                     <tr>
                       <th>Wed</th>
-                      <td *ngIf='trading_hours_popups.isWednesdayOpen'>{{trading_hours_popups.wednesdayOpen}} - {{trading_hours_popups.wednesdayClose}}
+                      <td >
+                        <span *ngIf='trading_hours_popups.isWednesdayOpen'>{{trading_hours_popups.wednesdayOpen}} - {{trading_hours_popups.wednesdayClose}}</span>
                       </td>
-                      <td ><span class="greentext" *ngIf='trading_hours_popups.isWednesdayOpen == true  && currentDate == 3' >Open</span></td>
-                      <td *ngIf='trading_hours_popups.isWednesdayOpen == false && currentDate == 3'><span class="redtext" >Close</span></td>
+                      <td ><span class="greentext" *ngIf='trading_hours_popups.isWednesdayOpen == true  && currentDate == 3' >Open</span>
+                        <span class="redtext"  *ngIf='trading_hours_popups.isWednesdayOpen == false && currentDate == 3'>Close</span>
+                      </td>
                     </tr>
                     <tr>
                       <th>Thu</th>
-                      <td *ngIf='trading_hours_popups.isThursdayOpen'>{{trading_hours_popups.thursdayOpen}} - {{trading_hours_popups.thursdayClose}}
+                      <td>
+                        <span *ngIf='trading_hours_popups.isThursdayOpen'>{{trading_hours_popups.thursdayOpen}} - {{trading_hours_popups.thursdayClose}}</span>
                       </td>
-                      <td ><span class="greentext" *ngIf='trading_hours_popups.isThursdayOpen == true  && currentDate == 4'>Open</span></td>
-                      <td *ngIf='trading_hours_popups.isThursdayOpen == false  && currentDate == 4'><span class="redtext" >Close</span></td>
+                      <td><span class="greentext" *ngIf='trading_hours_popups.isThursdayOpen == true  && currentDate == 4'>Open</span>
+                        <span class="redtext" *ngIf='trading_hours_popups.isThursdayOpen == false  && currentDate == 4'>Close</span>
+                      </td>
+                    
                     </tr>
                     <tr>
                       <th>Fri</th>
-                      <td *ngIf='trading_hours_popups.isFridayOpen'>{{trading_hours_popups.fridayOpen}} - {{trading_hours_popups.fridayClose}}
+                      <td>
+                        <span *ngIf='trading_hours_popups.isFridayOpen'>{{trading_hours_popups.fridayOpen}} - {{trading_hours_popups.fridayClose}}</span>
                       </td>
-                      <td ><span class="greentext" *ngIf='trading_hours_popups.isFridayOpen == true  && currentDate == 5'>Open</span></td>
-                      <td *ngIf='trading_hours_popups.isFridayOpen == false   && currentDate == 5'><span class="redtext" >Close</span></td>
+                      <td><span class="greentext" *ngIf='trading_hours_popups.isFridayOpen == true  && currentDate == 5'>Open</span>
+                        <span class="redtext" *ngIf='trading_hours_popups.isFridayOpen == false   && currentDate == 5'>Close</span>
+                      </td>
                     </tr>
                     <tr>
                       <th>Sat</th>
-                      <td *ngIf='trading_hours_popups.isSaturdayOpen'>{{trading_hours_popups.sundayOpen}} - {{trading_hours_popups.sundayClose}}
+                      <td>
+                        <span *ngIf='trading_hours_popups.isSaturdayOpen'>{{trading_hours_popups.sundayOpen}} - {{trading_hours_popups.sundayClose}}</span>
                       </td>
-                      <td><span class="greentext"  *ngIf='trading_hours_popups.isSaturdayOpen == true  && currentDate == 6'>Open</span></td>
-                      <td *ngIf='trading_hours_popups.isSaturdayOpen == false  && currentDate == 6 '><span class="redtext" >Close</span></td>
+                      <td><span class="greentext"  *ngIf='trading_hours_popups.isSaturdayOpen == true  && currentDate == 6'>Open</span>
+                        <span class="redtext" *ngIf='trading_hours_popups.isSaturdayOpen == false  && currentDate == 6 '>Close</span>
+                      </td>
+                     
                     </tr>
                     <tr>
                       <th>Sun</th>
-                      <td *ngIf='trading_hours_popups.isSundayOpen'>{{trading_hours_popups.sundayOpen}} - {{trading_hours_popups.sundayClose}}
+                      <td>
+                        <span *ngIf='trading_hours_popups.isSundayOpen'>{{trading_hours_popups.sundayOpen}} - {{trading_hours_popups.sundayClose}}</span>
                       </td>
-                      <td ><span class="greentext"*ngIf='trading_hours_popups.isSundayOpen == true  && currentDate == 7' >Open</span></td>
-                      <td *ngIf='trading_hours_popups.isSundayOpen == false && currentDate == 7'> <span class="redtext" >Close</span></td>
+                      <td >
+                        <span class="greentext"*ngIf='trading_hours_popups.isSundayOpen == true  && currentDate == 7' >Open</span>
+
+                        <span class="redtext" *ngIf='trading_hours_popups.isSundayOpen == false && currentDate == 7'>Close</span>
+                      </td>
 
                     </tr>
                   </table>

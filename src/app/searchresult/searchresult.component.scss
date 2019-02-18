@@ -369,7 +369,7 @@ transition: .5s;
 transform: translateY(0px) translateX(0px) rotate(-135deg);
 }
 .searchfilterbox .panel-heading h4.panel-title{
-padding:10px 20px 10px 10px;
+padding:5px 20px 5px 10px;
 font-weight: bold;
 border-bottom:0px solid #e5e5e5;
 color: #000 !important;
@@ -386,6 +386,8 @@ border-bottom:1px solid #e5e5e5;
 	font-weight: normal;
 	color: #000;
     margin-bottom: 10px;
+    padding-top:5px;
+     padding-bottom:5px;
 }
 
 .panel-collapse.collapse{
@@ -1461,6 +1463,9 @@ float: left!important;
 .listing-group .grid-group-item .bordre_rad1{
   margin-bottom:0px!important;
 }
+  .font20px{
+  font-size:20px;
+  }
 @media (max-width:768px){
   .carousel-inner>.item>a>img, .carousel-inner>.item>img, .thumbnail .item>a>img, .thumbnail>img.list-group-image{
    height: 120px;
@@ -1469,8 +1474,17 @@ float: left!important;
   .photo-group .thumbnail>img.list-group-image{
    height: 200px;
   }
+  .panel-title>a, .panel-title>a:active{
+  padding:15px;
+}
+  .searchfilterbox .panel-heading h4.panel-title{
+padding:0px;
+}
   .badgecontainer .badge{
     font-size:75%;
+  }
+  .panel-heading a::before{
+  display:none;
   }
   .filterrowcard{
     display: none!important;
@@ -1478,6 +1492,7 @@ float: left!important;
   #photoview, #gridmobile{
    margin-right: 10px;
   }
+
   h4.panel-title i {
     border: solid #999;
     border-width: 0 0px 0px 0;
@@ -1486,7 +1501,7 @@ float: left!important;
     transform:none;
     -webkit-transform: none;
     transition: all ease .3s;
-    top: -3px;
+    top: 10px;
     position: relative;
     float: left;
   }
@@ -1935,7 +1950,7 @@ float: left!important;
 }
 .panel-title>a, .panel-title>a:active{
   display:block;
-  padding:15px;
+  padding:5px 0px;
   color:#555;
   font-size:16px;
   font-weight:bold;

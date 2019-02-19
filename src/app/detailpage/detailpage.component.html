@@ -11,7 +11,7 @@
       <div class="martop0px">
         <ol class="breadcrumb breadcrumbcontainer">
           <li><a routerLink="/home">Home</a></li>
-          <li><a (click)="search()">Wedding Vendors</a></li>
+          <li><a routerLink="/home/weddingvendors">Wedding Vendors</a></li>
           <li><a routerLink="/home/detailprofile/0"> {{vendorDetails?.vendorCategories[0].categories?.categoryName}}</a></li>
           <li class="active">{{vendorDetails?.nameOfBusiness}}</li>
         </ol>
@@ -64,8 +64,8 @@
 
           </span>
         </div>
-
-        <div class="col-sm-12" *ngIf="showD">
+        <!--icon Block-->
+        <div class="col-sm-12">
           <div class="featurebtn row" >
 
             <div class="col-4">
@@ -74,12 +74,22 @@
               </button>
               <div class="featurehead">Call</div>
             </div>
-            <div class="col-4">
+            <!--Message Block Start-->
+            <div class="col-4" *ngIf="showD else elseModel3">
               <button class="btn purple-gradient borradius50per" data-toggle="modal" data-target="#address">
                 <i class="material-icons">mail_outline</i>
               </button>
               <div class="featurehead">Message</div>
             </div>
+            <ng-template #elseModel3>
+                <div class="col-4">
+                    <button class="btn purple-gradient borradius50per" data-toggle="modal" data-target="#MMM">
+                      <i class="material-icons">mail_outline</i>
+                    </button>
+                    <div class="featurehead">Message</div>
+                </div>
+            </ng-template>
+            <!--Message Block End-->
             <div class="col-4">
               <button class="btn purple-gradient borradius50per">
                 <i class="material-icons">bookmark_border</i>
@@ -153,7 +163,8 @@
           </div>
         </div>
         <div class="col-md-3 tikshow hidden-xs">
-          <div class="featurebtn row fixedheaderbtn" *ngIf="showD">
+          <!--Icon Block-->
+          <div class="featurebtn row fixedheaderbtn">
             <div class="col-3">
               <button class="btn purple-gradient borradius50per callbtn">
                 <i class="material-icons">call</i>
@@ -162,11 +173,20 @@
                 <i class="material-icons">call</i>
               </button>
             </div>
-            <div class="col-3">
+            <!--Message Block Start-->
+            <div class="col-3" *ngIf="showD else elseModel4">
               <button class="btn purple-gradient borradius50per" data-toggle="modal" data-target="#address">
                 <i class="material-icons">mail_outline</i>
               </button>
             </div>
+            <ng-template #elseModel4>
+                <div class="col-3">
+                    <button class="btn purple-gradient borradius50per" data-toggle="modal" data-target="#MMM">
+                      <i class="material-icons">mail_outline</i>
+                    </button>
+                </div>
+            </ng-template>
+            <!--Message Block End-->
             <div class="col-3">
               <button class="btn purple-gradient borradius50per">
                 <i class="material-icons">bookmark_border</i>
@@ -235,7 +255,7 @@
             <div class="col-6 col-sm-3 image_div" *ngFor='let pi of vendorDetails?.albums;let i=index' (click)='goto_detail_of_album(pi)'>
               <div class="thumbnail text-center" *ngIf='i<4'>
                 <div>
-                  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg" alt="..."> {{pi?.albumName}}
+                  <img [src]="pi?.coverImage" alt="..."> {{pi?.albumName}}
                   <br>
                   <span>({{pi?.albumImages.length}} Images ) </span>
 
@@ -463,15 +483,27 @@
                     <p class="blue">
                       <strong>Discount</strong> {{vendorDetails?.discounts.discount}}% </p>
                   </div>
+                  <!--Icon Block-->
                   <div class="col-sm-2">
                     <button class="btn purple-gradient btntik borradius50per callbtn">
                       <i class="material-icons">call</i>
                     </button>
-
-                    <button class="btn purple-gradient btntik borradius50per" data-target="#address" data-toggle="modal">
-                      <i class="material-icons">mail_outline</i>
-                    </button>
                   </div>
+                    <!--Message Block start-->
+                    <div class="col-sm-2" *ngIf="showD else elseModel5">
+                          <button class="btn purple-gradient btntik borradius50per" data-target="#address" data-toggle="modal">
+                              <i class="material-icons">mail_outline</i>
+                          </button>
+                     </div>
+                     <ng-template #elseModel5>
+                        <div class="btnMessage">
+                            <button class="btn purple-gradient btntik borradius50per" data-target="#MMM" data-toggle="modal">
+                                <i class="material-icons">mail_outline</i>
+                            </button>
+                       </div>
+                     </ng-template>
+                    <!--Message Block End-->
+
                 </div>
                 <div class="col-sm-12" *ngIf="vendorDetails?.discounts == null ">
                   <span class="text-center">No discounts Available </span>
@@ -586,7 +618,7 @@
                   <i class="fa fa-map-marker" aria-hidden="true"></i> {{vendorDetails?.district.name}}
                 </div>
                 <div class="carousel_city text-center">
-                  Membership Since {{vendorDetails?.vendorLocations[0].addedOn | date}}
+                  Membership Since {{vendorDetails?.memberSince}}
                 </div>
                 <div class="vp_mainDetails_mini_rating text-center">
                   <div class="large_subtext" *ngIf="vendorDetails?.averageRating > 0 ">
@@ -603,7 +635,8 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-sm-12">
-                  <div class="featurebtn row" *ngIf="showD">
+                  <!--Icon Block-->
+                  <div class="featurebtn row">
                     <div class="col-4">
                       <button class="btn purple-gradient borradius50per callbtn">
                         <i class="material-icons">call</i>
@@ -613,14 +646,35 @@
                       </button>
                       <div class="featurehead">Call</div>
                     </div>
-                    <div class="col-4" >
+
+                    <!-- <div > -->
+                        <div class="col-4" *ngIf="showD else elseModel1">
+                        <!-- <div>with Login</div> -->
+                            <button class="btn purple-gradient borradius50per" data-toggle="modal" data-target="#address">
+                              <i class="material-icons">mail_outline</i>
+                            </button>
+                            <div  class="featurehead"> Message </div>
+                        </div>
+                    <!-- </div> -->
+
+                    <ng-template #elseModel1>
+                        <div class="col-4" >
+                            <button class="btn purple-gradient borradius50per" data-toggle="modal" data-target="#MMM">
+                              <i class="material-icons">mail_outline</i>
+                            </button>
+                            <div class="featurehead"> Message </div>
+                        </div>
+                    </ng-template>
+
+                    <!-- <div class="col-4" >
                       <button class="btn purple-gradient borradius50per" data-toggle="modal" data-target="#address">
                         <i class="material-icons">mail_outline</i>
                       </button>
                       <div  class="featurehead">
                         Message
                       </div>
-                    </div>
+                    </div> -->
+
                     <div class="col-4">
                       <button class="btn purple-gradient borradius50per">
                         <i class="material-icons">bookmark_border</i>
@@ -635,6 +689,201 @@
                   </div>
                 </div>
               </div>
+
+<!-- Login box -->
+<div class="modal fade loginboxmodal " id="MMM" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Modal cascading tabs-->
+            <div class="modal-c-tabs text-right">
+                <!-- Nav tabs -->
+                <button type="button" class="btn waves-effect ml-auto closebtn" data-dismiss="modal">&times;</button>
+                <ul class="nav nav-tabs tabs-2 light-blue darken-3 customerlogin" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active logintab" data-toggle="tab" href="#CouplesLogin" role="tab">
+                            <i class="fa fa-user mr-1"></i> Couples
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link registertab" data-toggle="tab" href="#VendorsLogin" role="tab">
+                            <i class="fa fa-user-plus mr-1"></i> Vendors
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Tab panels -->
+                <div class="tab-content">
+                    <!--Panel 7-->
+                    <div class="tab-pane fade in active" id="CouplesLogin" role="tabpanel">
+                        <!--Body-->
+                        <form role="form" action="" method="post" id="id7" (ngSubmit)="userlogin()" #f="ngForm">
+                            <div class="modal-body mb-1 align_left">
+                                <div class="field">
+
+                                    <input type="email" [(ngModel)]="user.username" name="username" id="username1"
+                                       required placeholder="Your Email">
+                                    <label for="username1">Your Email</label>
+                                </div>
+                                <div class="field">
+                                    <input type="password" [(ngModel)]="user.password" name="password" id="password4"
+                                         required placeholder="Password">
+                                    <label for="password">Password</label>
+                                </div>
+                                <div class="text-center mt-2">
+                                    <p class="pt-1 text-right">
+                                        <a (click)="forgotbox()" class="pink-text">Forgot Password</a>
+                                    </p>
+                                    <button class="btn btn-info" type="submit">SIGN IN
+                                        <!-- <i class="fa fa-sign-in ml-1"></i> -->
+                                    </button>
+                                    <p class="text-center">or Sign up with: </p>
+                                </div>
+                            </div>
+                        </form>
+                        <!--Footer-->
+                        <div class="footer_span text-center">
+                            <a href=""> <span><i class="fa fa-facebook" aria-hidden="true"></i></span> </a>
+                            <a href=""> <span><i class="fa fa-twitter" aria-hidden="true"></i></span> </a>
+                            <a href=""><span><i class="fa fa-google-plus" aria-hidden="true"></i></span> </a>
+                            <p>Already a member? <a (click)="loadScript()">Sign Up </a> </p>
+                        </div>
+                    </div>
+                    <!--/.Panel 7-->
+                    <!--Panel 8-->
+                    <div class="tab-pane fade" id="panel8" role="tabpanel">
+                        <!--Body-->
+                        <form role="form" action="" method="post" id="id8" (ngSubmit)="userSubmit()" #f="ngForm">
+                            <div class="modal-body mb-1 align_left">
+
+                                <div class="field">
+                                    <input type="email"  required="required" #emailError="ngModel"
+                                        [(ngModel)]="userSingUp.email" id="email" name="email" placeholder="Your Email">
+                                    <label for="email">Your Email</label>
+                                </div>
+                                <div class="field">
+                                    <input type="password" required="required"
+                                        [(ngModel)]="userSingUp.password" id="password2" name="password" placeholder="Password">
+                                    <label for="password">Password</label>
+                                </div>
+                                <div class="field">
+                                    <input type="password"  required="required" [(ngModel)]="userSingUp.confirmpass"
+                                        name="confirmpass" id="confirmpass" placeholder="Confirm Password">
+                                    <label for="confirmpass">Confirm Password</label>
+                                </div>
+                                <div class="field">
+                                    <input type="text"  required="required" [(ngModel)]="userSingUp.firstName"
+                                        name="firstName" id="firstName" placeholder="First Name">
+                                    <label for="firstName">First Name</label>
+                                </div>
+                                <div class="field">
+                                    <input type="text"  required="required" [(ngModel)]="userSingUp.lastName"
+                                        name="lastName" id="lastName" placeholder="Last Name">
+                                    <label for="lastName">Last Name</label>
+                                </div>
+                                <div class="text-center form-sm mt-2">
+                                    <button class="btn btn-info">SIGN UP</button>
+                                    <p class="pt-1">or Sign up with:</p>
+                                    <!-- <a data-toggle="tab" href="#panel7" role="tab" class="pink-text signin_click" >up with</a> -->
+                                </div>
+                            </div>
+                        </form>
+                        <div class="footer_span text-center">
+                            <a href=""> <span><i class="fa fa-facebook" aria-hidden="true"></i></span> </a>
+                            <a href=""> <span><i class="fa fa-twitter" aria-hidden="true"></i></span> </a>
+                            <a href=""><span><i class="fa fa-google-plus" aria-hidden="true"></i></span> </a>
+                            <p>Already a member? <a (click)="loadScript()">Sign In </a> </p>
+                        </div>
+                    </div>
+                    <!--/.Panel 8-->
+                    <!--/.Panel 9-->
+                    <div class="tab-pane fade" id="VendorsLogin" role="tabpanel">
+
+                        <form role="form" (ngSubmit)="onSubmit()" #f="ngForm">
+                            <div class="modal-body mb-1 align_left">
+                                <div class="field">
+                                    <input type="email" [(ngModel)]="usercouple.username" name="username" id="username2"
+                                        placeholder="Your Email" required>
+                                    <label for="username2">Your Email</label>
+                                </div>
+
+                                <div class="field">
+                                    <input type="password" [(ngModel)]="usercouple.password" name="password" id="password3"
+                                        required placeholder="Password">
+                                    <label for="password">Password</label>
+                                </div>
+                                <div class="text-center mt-2">
+                                    <p class="pt-1 text-right">
+                                        <a (click)="forgotvendor()" class="blue-text">Forgot Password</a>
+                                    </p>
+                                    <button class="btn btn-vendor vendor" type="submit" id="type-success1">SIGN IN
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="footer_span1 text-center">
+                            <p>Not a member? <a routerLink="/register/step1" class="signuplink">Sign Up </a></p>
+                        </div>
+                    </div>
+                    <!--/.Panel 9-->
+                    <!--/.Panel 10-->
+                    <div class="tab-pane fade" id="panel10" role="tabpanel">
+
+                        <form role="form" action="" method="post" (ngSubmit)="onSubmit()" #f="ngForm">
+                            <div class="text-center">
+                                <img src="../../assets/img/lockpink.png" class="forgotlock" /></div>
+                            <h1 class="forgothead">Forgot Your Password? Don't Worry!</h1>
+                            <div class="modal-body mb-1 align_left">
+                                <div class="field">
+                                    <input type="email" [(ngModel)]="usercouple.username" name="username" id="username3"
+                                        required placeholder="Your Email">
+                                    <label for="username3">Your Email</label>
+                                </div>
+
+                                <div class="text-center mt-2">
+                                    <button class="btn btn-info" type="submit" id="type-success2">Send link
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="footer_span1 text-center">
+                            <p><a (click)="userin()" class="pink-text"> Return To Sign In</a></p>
+                        </div>
+                    </div>
+                    <!--/.Panel 10-->
+                    <div class="tab-pane fade" id="panel11" role="tabpanel">
+
+                        <form role="form" action="" method="post" (ngSubmit)="onSubmit()" #f="ngForm">
+                            <div class="text-center">
+                                <img src="../../assets/img/lockblue.png" class="forgotlock" /></div>
+                            <h1 class="forgothead">Forgot Your Password? Don't Worry!</h1>
+                            <div class="modal-body mb-1 align_left">
+                                <div class="field">
+                                    <input type="email" [(ngModel)]="usercouple.username" name="username" id="username4"
+                                        required placeholder="Your Email">
+                                    <label for="username4">Your Email</label>
+                                </div>
+
+                                <div class="text-center mt-2">
+                                    <button class="btn btn-vendor vendor" type="submit" id="type-success3">Send link
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="footer_span1 text-center">
+                            <p><a (click)="loadScript()" class="blue-text"> Return To Sign In</a></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!-- Login box -->
+
+
 
               <div class="clearfix"></div>
               <div class="left_box_section paddleftrite0px martop20px">
@@ -689,7 +938,7 @@
                         <table class="banchtable text-center">
                           <tr>
                             <th><strong>Mon</strong></th>
-                            <td>{{loc.mondayOpen}} - {{loc.mondayClose}}
+                            <td> {{loc.mondayOpen}} - {{loc.mondayClose}}
                             </td>
                             <td><span class="greentext" *ngIf='loc.isMondayOpen == true'>Open</span></td>
                             <td><span class="greentext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
@@ -884,17 +1133,27 @@
             </div>
             <div class="featurebtn col-6">
               <div class="row">
-                <div class="col-12" *ngIf="showD">
+                <!--Icon Block-->
+                <div class="col-12">
                   <div class="col-4">
                     <button class="btn purple-gradient borradius50per">
                       <i class="material-icons">call</i>
                     </button>
                   </div>
-                  <div class="col-4">
+                  <!--Message Block-->
+                  <div class="col-4"  *ngIf="showD else elseModel2">
                     <button class="btn purple-gradient borradius50per" data-target="#address" data-toggle="modal">
                       <i class="material-icons">mail_outline</i>
                     </button>
                   </div>
+                  <ng-template #elseModel2>
+                      <div class="col-4">
+                          <button class="btn purple-gradient borradius50per" data-target="#MMM" data-toggle="modal">
+                            <i class="material-icons">mail_outline</i>
+                          </button>
+                        </div>
+                  </ng-template>
+                  <!--Message Block End-->
                   <div class="col-4">
                     <button class="btn purple-gradient borradius50per">
                       <i class="material-icons">bookmark_border</i>
@@ -955,7 +1214,8 @@
                       </div>
                       <div class="clearfix"></div>
                       <div class="input-effect  form-group mt-3">
-                        <textarea class="effect-16" type="textarea" name="message" [(ngModel)]="MessagesVMObj.message"></textarea>
+                        <textarea class="effect-16" type="textarea" name="message" 
+                        placeholder="“Hi, I would like to know more about your services and offers for my upcoming wedding event. Please let me know of a suitable time to discuss. Thank you.“" [(ngModel)]="MessagesVMObj.message"></textarea>
                         <label>Message</label>
                         <span class="focus-border"></span>
                       </div>

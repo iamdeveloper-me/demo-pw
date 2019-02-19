@@ -28,7 +28,7 @@ export class AllReviewsComponent implements OnInit {
     console.log(this.reviewsArray);
   }
 
-  review = { rating: '', comments: "", rateVendorID: 'a96129c3-8861-43aa-8bc9-1c155f1ffd79' }
+  review = { rating: '', comments: "", rateVendorID: '' }
   putReview(review) {
    
     

@@ -439,7 +439,7 @@
                     <div class="rating_star" style="text-align: left;">
                       <rating [(ngModel)]="vendorDetails.averageRating" readonly="isReadonly"></rating>
                     </div>
-                    ({{vendorDetails.reviews.length}} REVIEWS) 
+                   <strong>({{vendorDetails.reviews.length}} REVIEWS) </strong> 
                     <!-- (click)='showHideReviews()' -->
                     <span style="cursor:pointer" *ngIf='vendorDetails.reviews.length>1' (click)='goToAllReviews(vendorDetails)'  >{{reviewButtonLabel}}</span>
                     </div>
@@ -900,7 +900,7 @@
                   [include]="['facebook','whatsapp','messenger','google']"
                   [show]="4"
                   [size]="4"
-                  [url]="'https://twitter.com/'"
+                  [url]="'http://13.59.229.254/home/'"
                   [autoSetMeta]="false"
                  ></share-buttons>
                  <!-- [showText]="true" -->
@@ -1223,7 +1223,7 @@
                       <div class="clearfix"></div>
                       <div class="input-effect  form-group mt-3">
                         <textarea class="effect-16" type="textarea" name="message" 
-                        placeholder="“Hi, I would like to know more about your services and offers for my upcoming wedding event. Please let me know of a suitable time to discuss. Thank you.“" [(ngModel)]="MessagesVMObj.message"></textarea>
+                        [placeholder]="templateText" [(ngModel)]="MessagesVMObj.message"></textarea>
                         <label>Message</label>
                         <span class="focus-border"></span>
                       </div>

@@ -30,6 +30,7 @@ interface Location {
   providers: [apiService],
 })
 export class DetailpageComponent implements OnInit {
+  templateText:string = '“Hi, I would like to know more about your services and offers for my upcoming wedding event.Please let me know of a suitable time to discuss. Thank you. “'
   usercouple = {username:'',password:''}
   user = {username:'',password:''}
   error = {} ;

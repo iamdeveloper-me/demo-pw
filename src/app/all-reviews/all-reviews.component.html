@@ -42,7 +42,7 @@
         </div>
       
       </div>
-      <h1 *ngIf="responce_thanks == true ">THANK YOU FOR YOUR REVIEW</h1>
+      <!-- <h1 *ngIf="responce_thanks == true ">THANK YOU FOR YOUR REVIEW</h1> -->
     </div>
   </div>
 </div>
@@ -73,7 +73,7 @@
                 <div class="rating_star" style="text-align: left;">
                   <rating [(ngModel)]="vendorDetails.averageRating" readonly="isReadonly"></rating>
                 </div>
-                ({{vendorDetails.reviews.length}} REVIEWS) 
+                <strong>({{vendorDetails.reviews.length}} REVIEWS)</strong>
                 </div>
               </div>
 

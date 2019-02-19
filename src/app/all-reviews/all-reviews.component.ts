@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import{ ratingStars } from '../ngservices/ratingstars';
 import { apiService } from '../shared/service/api.service';
 import { ToastrService } from 'ngx-toastr';
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-all-reviews',
   templateUrl: './all-reviews.component.html',
@@ -28,7 +29,7 @@ export class AllReviewsComponent implements OnInit {
     console.log(this.reviewsArray);
   }
 
-  review = { rating: '', comments: "", rateVendorID: 'a96129c3-8861-43aa-8bc9-1c155f1ffd79' }
+  review = { rating: '', comments: "", rateVendorID: '' }
   putReview(review) {
    
     
@@ -45,9 +46,31 @@ export class AllReviewsComponent implements OnInit {
    }
     console.log(this.user_login_token);
     this.apiService.postData(this.apiService.serverPath+'Reviews/postreview', a).subscribe(data => {
-      console.log(data)
-      this.responce_review = false;
-      this.responce_thanks = true;
+      console.log(data);
+      review.resetForm();
+      swal({
+  
+        title: "Thank You!",
+        text: "Your submition has been received.",
+        type: "success",
+        showCancelButton: false,
+        confirmButtonClass: "btn-default",
+    }).then((res)=>{
+                    if(res.value===true){
+                          // this.responce_review = false;
+                          // this.responce_thanks = true;
+                          
+                   } else{
+                      //  console.log('Cancel Process !');
+                      this.responce_review = false;
+                    }
+  },error=>{
+      alert(JSON.stringify(error));
+    })
+    return;
+
+
+
       }, error => { 
         console.log(error);
         this.toastr.error(error.statusText);

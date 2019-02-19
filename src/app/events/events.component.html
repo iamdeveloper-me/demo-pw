@@ -61,58 +61,79 @@
 						<p *ngIf="pagedItems?.length == 0">No Events Found!!!</p>
 						<!-- items being paged -->
 						<div class="col-sm-4 " *ngFor="let item of pagedItems ">
-							<div class="card cardshadow" (click)="goToNextPage(item)">
-								<img class="card-img-top img-fluid eventimg" *ngIf="item.files" [src]="item.files.path">
-								<div class="ribbon ribbon-top-right" *ngIf="item?.entryFee == null; else entry"><span>Free</span></div>
-								<ng-template #entry>
-									<div class="ribbon ribbon-top-right"><span>{{item.entry}}</span></div>
-								</ng-template>
-								<div class="ribbon ribbon-top-right"  >
-									<span>{{item.entry}}</span>
-								</div>
-								<div class="card-block text-center">
-									<div class="eventbtnholder">
-										<button class="purple-gradient borradius50per">
+							<div class="card cardshadow">
+								<div class="eventbtnholder">
+										<button class="borradius50per purple-gradient">
 											<i class="material-icons">share</i>
 										</button>
-										<button class="purple-gradient borradius50per" (click)="bookMark(item,'events','bookmarked')">
+
+										<!-- <button class="borradius50per purple-gradient"> -->
+										<button class="borradius50per" (click)="bookMark(item,'events','bookmarked')">
 											<i class="material-icons">
 												bookmark_border
 											</i>
 										</button>
-									</div>
-									<div class="eventdate col-sm-4" *ngFor='let Date of item.eventsDates | slice:0:1 ;let i=index '>
-									<p><span> Start Date </span>  {{Date.startDateString | date}}</p>
-									<p><span> End Date </span> {{Date.endDateString | date}} </p>
-									</div>
-									<div class="col-sm-8 heightadjust">
+								</div>
+								<div (click)="goToNextPage(item)">
+									<img class="card-img-top img-fluid eventimg" *ngIf="item.files" [src]="item.files.path">
 
-										<div class="eventtitle">
-											<!--  routerLink="../event_list"p -->
-											<a>{{item.eventTitle}}</a>
-										</div>
-										<div class="eventvenue">
-												<i class="material-icons">location_on</i> {{item.location}}, {{item.venueName}}
-										</div>
-										<div class="eventvenue" *ngIf="item.entryFee == null">
-
-												Ticket Cost/Entry Fee :  0
-										</div>
-										<div class="eventvenue" *ngIf="item.entryFee != null">
-												Ticket Cost/Entry Fee :  {{item.entryFee}}
-
-										</div>
+									<div class="ribbon ribbon-top-right" *ngIf="item?.entryFee == null; else entry">
+										<span>Free</span>
 									</div>
-									<div class="col-sm-12 footericon">
-										<span>
-											<i class="material-icons">bookmark</i> {{item.numberOfBookmarks}}
-										</span>
-										<span>
-											<i class="material-icons">visibility</i> {{item.numberOfViews}}
-										</span>
+
+									<!-- <ng-template #entry>
+										<div class="ribbon ribbon-top-right"><span>{{item.entry}}</span></div>
+									</ng-template> -->
+
+									<!-- <div class="ribbon ribbon-top-right" >
+										<span>{{item.entry}}</span>
+									</div> -->
+
+									<div class="card-block text-center">
+										
+										<div class="eventdate col-sm-4" *ngFor='let Date of item.eventsDates | slice:0:1 ;let i=index '>
+										<p><span> Start Date </span>  {{Date.startDateString | date}}</p>
+										<p><span> End Date </span> {{Date.endDateString | date}} </p>
+										</div>
+										<div class="col-sm-8 heightadjust">
+
+											<div class="eventtitle">
+												<!--  routerLink="../event_list"p -->
+												{{item.eventTitle}}
+											</div>
+											<div class="eventvenue">
+												<table>
+													<tr>
+														<td valign="top" style="font-size: 18px;padding-top: 5px;">
+															<i class="material-icons">location_on</i>
+														</td>
+														<td style="padding: 5px;">
+															<strong>{{item.venueName}}</strong>,
+														{{item.location}}
+														</td>
+													</tr>
+												</table>
+											</div>
+											<div class="eventprice" *ngIf="item.entryFee == null">
+												Free
+											</div>
+											<div class="eventprice" *ngIf="item.entryFee != null">
+											 	{{item.entryFee}}
+											</div>
+
+											
+										</div>
+										<div class="col-sm-12 footericon">
+												<span>
+													<i class="material-icons">bookmark</i> {{item.numberOfBookmarks}}
+												</span>
+												<span>
+													<i class="material-icons">visibility</i> {{item.numberOfViews}}
+												</span>
+											</div>
 									</div>
 								</div>
-							</div>
+						</div>
 						</div>
 		            	<div class="clearfix"></div>
 						<!-- pager -->

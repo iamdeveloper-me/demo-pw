@@ -121,10 +121,10 @@ export class SearchresultComponent implements OnInit {
   ngOnInit() {   
  
   $.getScript('./assets/js/searchresult.js'); 
-  $.getScript('./assets/register/js/jquery-2.2.4.min.js');
   $.getScript('./assets/register/js/bootstrap.min.js');
+  $.getScript('./assets/register/js/jquery-2.2.4.min.js');
   $.getScript('./assets/jss/core/popper.min.js');
-  $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
+  // $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
 //  $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');
   $.getScript('./assets/jss/plugins/chartist.min.js');
   $.getScript('./assets/jss/plugins/bootstrap-notify.js');

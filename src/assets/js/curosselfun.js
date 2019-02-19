@@ -323,6 +323,10 @@ $(".callbtnhide").click(function() {
 });
 
 $(document).ready(function() {
+
+ $("i.star-icon").removeAttr("title");
+
+
     var $lightbox = $('#lightbox');
     
     $('[data-target="#lightbox"]').on('click', function(event) {
@@ -439,7 +443,5 @@ window.onload = function(){
 
 
 
-$(document).ready(function () {
-  alert("hi")
-  $("i.star-icon").removeAttr("title");
-});
+
+ 

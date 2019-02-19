@@ -426,7 +426,7 @@ export class DetailpageComponent implements OnInit {
                             localStorage.setItem('role',data.json().role);
                             localStorage.setItem('userToken',data.json().auth_token);
                             sessionStorage.setItem('userToken',data.json().auth_token);
-                            this.router.navigate(['../vendor/dashboard'])
+                            this.router.navigate(['/home/detailprofile/0'])
                             $("body").removeClass( "modal-open");
                             $("div").removeClass( "modal-backdrop"); 
                         }
@@ -457,9 +457,8 @@ userlogin(){
                                 sessionStorage.setItem('role',data.json().role);
 
                                 // localStorage.setItem('userId',data.json().id);
-                                this.router.navigate(['../User/vendor'])
+                                this.router.navigate(['/home/detailprofile/0'])
                                 this.typeSuccess();
-                                this.router.navigate(['../User/vendor'])
                                 $("div").removeClass( "modal-backdrop fade show");
                                 $("body").removeClass( "modal-open");
                                 $("body").removeClass( "modal-open");

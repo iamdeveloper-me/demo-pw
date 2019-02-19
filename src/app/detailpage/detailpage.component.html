@@ -645,6 +645,11 @@
                         <i class="material-icons">call</i>
                       </button>
                       <div class="featurehead">Call</div>
+                      <div class="callinfo" style="display:none" *ngFor='let phone of  vendorDetails?.vendorLocations | slice:0:1'>
+                          <strong>Contact Number</strong><br />
+                          <!-- +91-99999 12345// -->
+                          {{phone.mobile}}<br> {{phone.phone}}
+                        </div>
                     </div>
 
                     <!-- <div > -->
@@ -682,11 +687,7 @@
                       <div class="featurehead">Bookmark</div>
                     </div>
                   </div>
-                  <div class="callinfo" style="display:none" *ngFor='let phone of  vendorDetails?.vendorLocations | slice:0:1'>
-                    <strong>Contact Number</strong><br />
-                    <!-- +91-99999 12345// -->
-                    {{phone.mobile}}<br> {{phone.phone}}
-                  </div>
+
                 </div>
               </div>
 
@@ -890,12 +891,19 @@
                 <div class="large_subtext bob_pa_left text-center">
                   Share Vendor Profile
                 </div>
-                <div class="featurebtn">
-                  <div class="col-sm-3"><a><img src="../../assets/img/fb_icon.png"></a></div>
+                <div class="featurebtn sb-icon ng-star-inserted">
+                  <!-- <div class="col-sm-3"><a><img src="../../assets/img/fb_icon.png"></a></div>
                   <div class="col-sm-3"><a><img src="../../assets/img/wa_icon.png"></a></div>
                   <div class="col-sm-3"><a><img src="../../assets/img/msg_icon.png"></a></div>
-                  <div class="col-sm-3"><a><img src="../../assets/img/share_icon.png"></a></div>
-
+                  <div class="col-sm-3"><a><img src="../../assets/img/share_icon.png"></a></div> -->
+                  <share-buttons 
+                  [include]="['facebook','whatsapp','messenger','google']"
+                  [show]="4"
+                  [size]="4"
+                  [url]="'https://twitter.com/'"
+                  [autoSetMeta]="false"
+                 ></share-buttons>
+                 <!-- [showText]="true" -->
                 </div>
               </div>
               <div class="clearfix"></div>

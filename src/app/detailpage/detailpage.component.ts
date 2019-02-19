@@ -13,6 +13,7 @@ import { ContactUsVM } from '../advertise/advertise.component';
 import { filterParam } from '../vendorcard/vendorcard.component'
 import { SignupVendorService } from 'app/shared/service/signup-vendor.service';
 import { LoginServiceService } from 'app/shared/service/login-service.service';
+import '../../assets/js/icon';
 declare var google: any;
 
 interface Marker {lat: number;lng: number;label?: string;draggable: boolean;}

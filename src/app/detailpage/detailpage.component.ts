@@ -85,7 +85,7 @@ export class DetailpageComponent implements OnInit {
       console.log(this.currentDate )
       this.user_login_token = sessionStorage.getItem('userId')
       this.role = (sessionStorage.getItem('role'))
-      debugger
+      
   if(sessionStorage.getItem('role') == 'Users'){
     this.show = true
   }else{
@@ -227,8 +227,12 @@ export class DetailpageComponent implements OnInit {
     });
   }
   goToPhotogallary(vendorDetails){
+    console.log(vendorDetails);
     sessionStorage.setItem('Vendorimages',JSON.stringify(this.vendorDetails.albums));
-    this.router.navigateByUrl('/home/Photogallary');
+    const a = vendorDetails.vendorCategories[0].categories.categoryName;
+    const b = vendorDetails.vendorId;
+    const c = vendorDetails.nameOfBusiness;
+    this.router.navigateByUrl('/home/weddingvendorss/'+a+'/'+b+'/'+c);
     // this.router.navigate(['home/Photogallary'])
     
   }
@@ -325,39 +329,14 @@ export class DetailpageComponent implements OnInit {
 
     // CHANGE THE NAME OF THE BUTTON.
     if (this.show)
-      this.buttonName = "Show Less";
-    else
-      this.buttonName = "Show More";
+      {this.buttonName = "Show Less";
+        $('.tabledesktop').hide();
+    } else
+     { 
+        this.buttonName = "Show More";
+        $('.tabledesktop').show();
+    }
   }
-
-
-
-
-  // showHidetrading_hours(){
-  //   alert("vfdsg")
-  //   this.vendorDetails.vendorLocations.forEach((element,index) => {
-  //    if(this.vendorLocationsButtonLabel=='Show More')
-  //    {
-  //          element.visible=true;
-  //    }else{
-  //          if(index<=1){
-  //               element.visible=true;
-  //          } else {
-  //               element.visible=false;
-  //          }
-  //    }
-  //   });
-
-
- 
-
-  //   if(this.vendorDetails.vendorLocations.filter(r=>r.visible==true).length>3){
-  //    this.vendorLocationsButtonLabel = 'Show Less';
-
-  //  }else{
-  //    this.vendorLocationsButtonLabel = 'Show More';
-  //  }
-  // }
 
 
     message(msg){
@@ -394,10 +373,10 @@ export class DetailpageComponent implements OnInit {
     )
   }
 
-  search(e,){
+  search(e){    
     if(e){
-      this.objFilterParam.catId  = e.value.category?e.value.category.categoryId:0;
-      this.objFilterParam.categoryName= e.value.category?e.value.category.categoryName: '' ;
+      this.objFilterParam.catId  = e.category?e.categoryId:0;
+      this.objFilterParam.categoryName= e.categoryName?e.categoryName: '' ;
       this.objFilterParam.page = 0;
       this.objFilterParam.pageSize = 25;
       this.objFilterParam.sortDir = "";
@@ -407,7 +386,11 @@ export class DetailpageComponent implements OnInit {
       sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
       this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   }
-  
+  deal_Detail(a){
+    sessionStorage.setItem('Deal_Details',JSON.stringify(a));
+   
+    this.router.navigate(['home/Deal_Details']);
+  }
 }
 
 

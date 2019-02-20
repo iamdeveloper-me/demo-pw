@@ -152,7 +152,7 @@ export class MenuComponent implements OnInit {
                     this.Categorie();
                     this.location();
                     this.search;
-
+                    sessionStorage.removeItem('Honeymoon_detail');
                     $("#sidebar-wrapper").hide();
                     $(".userlogindisplay").hide();
                     $(".vendorlogindisplay").hide();

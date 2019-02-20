@@ -161,7 +161,7 @@ const appRoutes: Routes = [
   { path: 'register/step3', component: StepThirdComponent },
   { path: 'register/step4', component: StepForthComponent },
   { path: 'home/weddingvendors', component: SearchresultComponent },
-  { path: 'home/weddingvendors/:id', component: SearchresultComponent },
+  { path: 'home/weddingvendors/:id', component:   SearchresultComponent },
   { path: 'home/weddingvendors/:id/:id', component: SearchresultComponent },
   { path: 'home/tips_list', component: TipslistComponent },
   { path: 'home/event_list', component: EventlistComponent },
@@ -300,7 +300,7 @@ const appRoutes: Routes = [
   { path: 'Admin/Network-stats', component:   NetworkstatsComponent,canActivate:[AuthGuardService]  },
   { path: 'Admin/Category-stats', component:   CategorystatsComponent,canActivate:[AuthGuardService]  },
   { path: 'Admin/Vendor-stats', component:   VendorstatsComponent,canActivate:[AuthGuardService]  },
- { path: 'Admin/adminaccount', component:   AdminuseraccountComponent,canActivate:[AuthGuardService]  },
+  { path: 'Admin/adminaccount', component:   AdminuseraccountComponent,canActivate:[AuthGuardService]  },
 
   { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES, canActivate: [AuthGuard] },
   { path: '', component: ContentLayoutComponent, data: { title: 'content Views' }, children: CONTENT_ROUTES, canActivate: [AuthGuard] },

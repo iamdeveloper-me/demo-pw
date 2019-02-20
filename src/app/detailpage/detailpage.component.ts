@@ -383,12 +383,8 @@ export class DetailpageComponent implements OnInit {
     )
   }
 
-<<<<<<< HEAD
-  search(e){
-=======
   search(e){    
->>>>>>> 0daff18e9931cc48c1fdfb597176564523a28427
-    if(e){
+        if(e){
       this.objFilterParam.catId  = e.category?e.categoryId:0;
       this.objFilterParam.categoryName= e.categoryName?e.categoryName: '' ;
       this.objFilterParam.page = 0;

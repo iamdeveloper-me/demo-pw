@@ -11,15 +11,10 @@
       <div class="martop0px">
         <ol class="breadcrumb breadcrumbcontainer">
           <li><a routerLink="/home">Home</a></li>
-<<<<<<< HEAD
-          <!-- <li><a (click)="search(e)">Wedding Vendors</a></li> -->
-          <li><a routerLink="/home/detailprofile/0"> {{vendorDetails?.vendorCategories[0].categories?.categoryName}}</a></li>
-=======
 
           <li><a (click)="search()">Wedding Vendors</a></li>
           <li><a (click)="search(vendorDetails?.vendorCategories[0].categories)"> {{vendorDetails?.vendorCategories[0].categories?.categoryName}}</a></li>
 
->>>>>>> 0daff18e9931cc48c1fdfb597176564523a28427
           <li class="active">{{vendorDetails?.nameOfBusiness}}</li>
         </ol>
       </div>

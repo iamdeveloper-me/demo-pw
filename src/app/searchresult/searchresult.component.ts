@@ -40,6 +40,7 @@ export class SearchresultComponent implements OnInit {
   slidesStore: any[];
   collection = [];
   paginations=[];
+  page:number = 1;
   objSearchFilter: filterParam
   locations:any;
   categories:any;

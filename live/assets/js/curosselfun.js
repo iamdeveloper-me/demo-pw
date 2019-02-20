@@ -443,12 +443,5 @@ window.onload = function(){
 
 
 
-<<<<<<< HEAD
-$(document).ready(function () {
-  alert("hi")
-  $("i.star-icon").removeAttr("title");
-});
-=======
 
  
->>>>>>> 6401f8459c0afa2f20c6d9cbc5896d633bbd236d

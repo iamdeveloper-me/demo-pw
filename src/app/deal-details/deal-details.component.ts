@@ -52,11 +52,17 @@ export class DealDetailsComponent implements OnInit {
   }
   ngOnInit() {
 
-    this.data = JSON.parse(sessionStorage.getItem('deal,mydeal'));
-    this.data = sessionStorage.getItem('deal');
+    
+    if(sessionStorage.getItem('deal,mydeal')){
+      this.data = JSON.parse(sessionStorage.getItem('deal,mydeal'));
+    }else{
+      this.data = JSON.parse(sessionStorage.getItem('Deal_Details'));
+     
+    } 
+   
     console.log(this.data);
 
-          //Meta Tags
+     //Meta Tags
     this.title.setTitle(this.data.title + ` | Perfect Weddings ` );   
 
     this.dealsAlbumArray = this.data.dealsImages

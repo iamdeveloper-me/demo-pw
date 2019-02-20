@@ -121,7 +121,7 @@ export class DetailpageComponent implements OnInit {
     this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
     console.log(this.vendorDetails)
     // setTimeout(function () { 
-    // alert("dfdsff") 
+
     // this.showLoader = false;}, 2900);
     this.vendorDetails.reviews.forEach((element,index) => {
       if(index<=2){ element.visible=true;this.reviewButtonLabel='View All'; } 

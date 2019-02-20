@@ -12,7 +12,7 @@
         <ol class="breadcrumb breadcrumbcontainer">
           <li><a routerLink="/home">Home</a></li>
 
-          <li><a (click)="search()">Wedding Vendors</a></li>
+          <li><a >Wedding Vendors</a></li>
           <li><a (click)="search(vendorDetails?.vendorCategories[0].categories)"> {{vendorDetails?.vendorCategories[0].categories?.categoryName}}</a></li>
 
           <li class="active">{{vendorDetails?.nameOfBusiness}}</li>
@@ -52,7 +52,7 @@
           <i class="fa fa-map-marker" aria-hidden="true"></i> {{vendorDetails?.suburb.name}}
         </div>
         <div class="carousel_city text-center">
-          Membership of 2 years
+            Membership Since {{vendorDetails?.memberSince}}
         </div>
         <div class="vp_mainDetails_mini_rating text-center">
           <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px" *ngIf="vendorDetails?.averageRating > 0 ">
@@ -894,17 +894,17 @@
                   Share Vendor Profile
                 </div>
                 <div class="featurebtn sb-icon ng-star-inserted">
-                  <!-- <div class="col-sm-3"><a><img src="../../assets/img/fb_icon.png"></a></div>
+                  <div class="col-sm-3"><a><img src="../../assets/img/fb_icon.png"></a></div>
                   <div class="col-sm-3"><a><img src="../../assets/img/wa_icon.png"></a></div>
                   <div class="col-sm-3"><a><img src="../../assets/img/msg_icon.png"></a></div>
-                  <div class="col-sm-3"><a><img src="../../assets/img/share_icon.png"></a></div> -->
-                  <share-buttons [theme]="'circles-dark'"
+                  <div class="col-sm-3"><a><img src="../../assets/img/share_icon.png"></a></div>
+                  <!-- <share-buttons [theme]="'circles-dark'"
                   [include]="['facebook','whatsapp','messenger','google']"
                   [show]="4"
                   [size]="4"
                   [url]="'http://13.59.229.254/home/'"
                   [autoSetMeta]="false"
-                 ></share-buttons>
+                 ></share-buttons> -->
                  <!-- [showText]="true" -->
                 </div>
               </div>

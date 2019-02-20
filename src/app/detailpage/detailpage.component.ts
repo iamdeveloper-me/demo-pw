@@ -108,7 +108,6 @@ export class DetailpageComponent implements OnInit {
   ngOnInit() {
 
     $.getScript('./assets/js/prism.min.js');
-
     $.getScript('./assets/js/owljsor.js');
     $.getScript('./assets/js/curosselfun.js');
     $.getScript('./assets/js/detailpagescroll_active.js');
@@ -397,6 +396,84 @@ export class DetailpageComponent implements OnInit {
       this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   }
 
+        //loginpage
+        loadScript(){ 
+          $("#panel9").removeClass( "in");
+          $("#panel9").removeClass( "active");
+          $("#panel9").removeClass( "show");
+          $("#panel7").removeClass( "active");
+          $("#panel7").removeClass( "show");
+          $("#panel7").removeClass( "in");
+          $("#panel8").addClass( "in");
+          $("#panel8").addClass( "active");
+          $("#panel8").addClass( "show");
+          $("#panel10").removeClass( "in");
+          $("#panel10").removeClass( "active");
+          $("#panel10").removeClass( "show");
+          $("#panel11").removeClass( "in");
+          $("#panel11").removeClass( "active");
+          $("#panel11").removeClass( "show");
+      }
+      userin(){
+          $("#panel9").removeClass( "in");
+          $("#panel9").removeClass( "active");
+          $("#panel9").removeClass( "show");
+          $("#panel7").addClass( "active");
+          $("#panel7").addClass( "show");
+          $("#panel7").addClass( "in");
+          $("#panel8").removeClass( "in");
+          $("#panel8").removeClass( "active");
+          $("#panel8").removeClass( "show");
+          $("#panel10").removeClass( "in");
+          $("#panel10").removeClass( "active");
+          $("#panel10").removeClass( "show");
+          $("#panel11").removeClass( "in");
+          $("#panel11").removeClass( "active");
+          $("#panel11").removeClass( "show");
+      }
+      forgotbox(){ 
+          $("#panel9").removeClass( "in");
+          $("#panel9").removeClass( "active");
+          $("#panel9").removeClass( "show");
+          $("#panel7").removeClass( "active");
+          $("#panel7").removeClass( "show");
+          $("#panel7").removeClass( "in");
+          $("#panel8").removeClass( "in");
+          $("#panel8").removeClass( "active");
+          $("#panel8").removeClass( "show");
+          $("#panel10").addClass( "in");
+          $("#panel10").addClass( "active");
+          $("#panel10").addClass( "show");
+          $("#panel11").removeClass( "in");
+          $("#panel11").removeClass( "active");
+          $("#panel11").removeClass( "show");
+      }
+      forgotvendor(){ 
+          $("#panel9").removeClass( "in");
+          $("#panel9").removeClass( "active");
+          $("#panel9").removeClass( "show");
+          $("#panel7").removeClass( "active");
+          $("#panel7").removeClass( "show");
+          $("#panel7").removeClass( "in");
+          $("#panel8").removeClass( "in");
+          $("#panel8").removeClass( "active");
+          $("#panel8").removeClass( "show");
+          $("#panel10").removeClass( "in");
+          $("#panel10").removeClass( "active");
+          $("#panel10").removeClass( "show");
+          $("#panel11").addClass( "in");
+          $("#panel11").addClass( "active");
+          $("#panel11").addClass( "show");
+      }
+      //end
+      remove(){
+          if(window.location.pathname == '/home' )
+          {     
+              $("body").removeClass( "modal-open");
+              $("body").css({ 'padding-right' : '' }); 
+          }
+      }
+
   onSubmit(){ 
     this.cservice.login(this.usercouple).subscribe((data)=> {
                         if (data.statusText == "OK" && data.json().role =="Vendors" ) {
@@ -405,7 +482,7 @@ export class DetailpageComponent implements OnInit {
                             localStorage.setItem('role',data.json().role);
                             localStorage.setItem('userToken',data.json().auth_token);
                             sessionStorage.setItem('userToken',data.json().auth_token);
-                            this.router.navigate(['../vendor/dashboard'])
+                            this.router.navigate(['/home/detailprofile/0'])
                             $("body").removeClass( "modal-open");
                             $("div").removeClass( "modal-backdrop"); 
                         }
@@ -436,9 +513,8 @@ userlogin(){
                                 sessionStorage.setItem('role',data.json().role);
 
                                 // localStorage.setItem('userId',data.json().id);
-                                this.router.navigate(['../User/vendor'])
+                                this.router.navigate(['/home/detailprofile/0'])
                                 this.typeSuccess();
-                                this.router.navigate(['../User/vendor'])
                                 $("div").removeClass( "modal-backdrop fade show");
                                 $("body").removeClass( "modal-open");
                                 $("body").removeClass( "modal-open");

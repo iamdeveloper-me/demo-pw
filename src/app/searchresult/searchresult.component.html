@@ -113,7 +113,8 @@
 
 
            <select class="pagedropdown" [(ngModel)]='objSearchFilter.pageSize' (change)='this.paginate(objSearchFilter.pageSize)'>
-             <option value="25">Page Size 25</option>
+              <option value="5">Page Size 5</option> 
+            <option value="25">Page Size 25</option>
              <option value="50">Page Size 50</option>
              <option value="100">Page Size 100</option>
            </select>
@@ -539,15 +540,15 @@
 
             
           </div>
-                  <!-- <ngb-pagination [collectionSize]="objSearchResultItems?.totalCount" [(page)]="objSearchResultItems.page" [boundaryLinks]="true"></ngb-pagination>
-             <span class="totalpage">{{objSearchResultItems.totalPages}} (Page)s</span> -->
+                  <ngb-pagination [collectionSize]="objSearchResultItems.totalCount" (pageChange)='goToPage($event)' [(page)]="page" [pageSize]="objSearchFilter.pageSize" [boundaryLinks]="true"></ngb-pagination>
+                  
         </div>
       </div>
-      <ul style="display:block" class="pageNumbers" *ngIf='paginations.length>0'>
+      <!-- <ul style="display:block" class="pageNumbers" *ngIf='paginations.length>0'>
           <li *ngIf='objSearchlistvm.page > 1' (click)='goToPage(0,"P")'>Previous</li>
            <li *ngFor='let p of paginations' (click)='goToPage(p,0)'>{{p}}</li>
            <li *ngIf='paginations.length > 10 ' (click)='goToPage(0,"N")'>Next</li>
-      </ul>
+      </ul> -->
     </div>
 </div>
 </div>

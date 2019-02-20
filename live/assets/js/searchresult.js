@@ -282,6 +282,7 @@ $(".rating").click(function(){
     
  //  });
 
+<<<<<<< HEAD
 $('.panel-collapse').on('show.bs.collapse', function () {
  // alert("add");
   $(this).siblings('.panel-heading').addClass('active');
@@ -291,3 +292,14 @@ $('.panel-collapse').on('hide.bs.collapse', function () {
  // alert("remove");
   $(this).siblings('.panel-heading').removeClass('active');
 });
+=======
+// $('.panel-collapse').on('show.bs.collapse', function () {
+//  // alert("add");
+//   $(this).siblings('.panel-heading').addClass('active');
+// });
+
+// $('.panel-collapse').on('hide.bs.collapse', function () {
+//  // alert("remove");
+//   $(this).siblings('.panel-heading').removeClass('active');
+// });
+>>>>>>> 6401f8459c0afa2f20c6d9cbc5896d633bbd236d

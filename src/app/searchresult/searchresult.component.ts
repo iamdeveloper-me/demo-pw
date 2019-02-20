@@ -44,6 +44,7 @@ export class SearchresultComponent implements OnInit {
   locations:any;
   categories:any;
   filters: any;
+  numberOfPages:number;
   SelectedLocation:any;
   
   @ViewChild('servicefilters') servicefilters:SafeHtml;
@@ -70,7 +71,6 @@ export class SearchresultComponent implements OnInit {
     constructor(private masterservice: MasterserviceService,public _route:Router, public _activeRoute: ActivatedRoute, 
     private _masterservice: MasterserviceService, private api: apiService,
     public toastr: ToastrService) {
-      debugger;
       this._activeRoute.params.subscribe((params) => {
         this.initializeResult();   
      });
@@ -103,16 +103,12 @@ export class SearchresultComponent implements OnInit {
   this.categories[0].services[0].customFields[0].customFieldOptionList.forEach(element => {element['isSelect'] = false});
  }
 
-
-   
- 
-
   }
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
   }
   getCategoryName(i):string{
-    if(this.SelectedCategory){
+    if(this.SelectedCategory && this.SelectedCategory.categoryId!=0){
       return this.SelectedCategory.categoryName;
     }else{
       return i.vendorCategories[0].categories.categoryName;
@@ -273,7 +269,6 @@ export class SearchresultComponent implements OnInit {
       }
   }
   setFilterOptions(filterType,FilterValue){
-    debugger;
     this.collection=[];
     this.objSearchlistvm.page=0;
     switch(filterType){
@@ -295,7 +290,6 @@ export class SearchresultComponent implements OnInit {
       }
        break;
       case 2: // Service
-      debugger;
       FilterValue['isSelect'] = !FilterValue['isSelect']
        break;
       case 3: // location
@@ -399,6 +393,8 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
   console.log(this.objSearchlistvm);
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
+    this.numberOfPages=res.totalPages;
+    console.log(res);
     this.generatePageNumbers();
     console.log(JSON.stringify(this.objSearchResultItems));
     this.setBlankImg();
@@ -416,29 +412,34 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
     this.paginate(this.objSearchFilter.pageSize); 
   }
  }
- goToPage(pageNumber,buttonType){
-   debugger;
-  switch(buttonType){
-    case 'N':
-    if(this.objSearchResultItems.totalPages>this.objSearchlistvm.page)
-    {
-    this.collection=[];
-    this.objSearchlistvm.page+=1;
-    this.paginate(this.objSearchFilter.pageSize);
+ testpaging(ev:Event){
+  this.objSearchFilter.page =  parseInt(JSON.stringify(ev));
+  console.log(JSON.stringify(ev));
     }
-    break;
-    case 'P':
-    if(this.objSearchlistvm.page>1){
-    this.collection=[];
-    this.objSearchlistvm.page-=1;
+ goToPage(ev:Event){
+  this.objSearchlistvm.page =  parseInt(JSON.stringify(ev));
+  //  debugger;
+  // switch(buttonType){
+  //   case 'N':
+  //   if(this.objSearchResultItems.totalPages>this.objSearchlistvm.page-1)
+  //   {
+  //   this.collection=[];
+  //   this.objSearchlistvm.page+=1;
+  //   this.paginate(this.objSearchFilter.pageSize);
+  //   }
+  //   break;
+  //   case 'P':
+  //   if(this.objSearchlistvm.page>1){
+  //   this.collection=[];
+  //   this.objSearchlistvm.page-=1;
+  //   this.paginate(this.objSearchFilter.pageSize);
+  //   }
+  //   break;
+  //   default:
+  //   this.collection=[];
+  //   this.objSearchlistvm.page= pageNumber;
     this.paginate(this.objSearchFilter.pageSize);
-    }
-    break;
-    default:
-    this.collection=[];
-    this.objSearchlistvm.page= pageNumber;
-    this.paginate(this.objSearchFilter.pageSize);
-  }
+ // }
     
  }
  navigateToDynamicUrl() {

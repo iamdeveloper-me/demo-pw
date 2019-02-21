@@ -2,6 +2,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import {RatingModule} from "ngx-rating";
 import { SelectDropDownModule } from 'ngx-select-dropdown'
+import {SelectModule} from 'ng2-select';
 
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
@@ -467,6 +468,7 @@ export function getAuthServiceConfigs() {
 
   ],
     imports: [
+        SelectModule,
         CarouselModule,
        // BrowserModule,
         AppRoutingModule,

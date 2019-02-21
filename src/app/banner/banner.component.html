@@ -24,11 +24,11 @@
               </div>
               <form (ngSubmit)="search(e,true,false)" #e="ngForm">
                 <div class="col-sm-10 mx-auto no-gutters searchbar mob_dis_none">
-                  <div class="form-group col-sm-5 padd_bottom">
+                  <div id="append" class="form-group col-sm-5 padd_bottom">
                     <span class="home_search"><i class="material-icons">camera_alt</i></span>
-                    <ngx-select-dropdown [(ngModel)]="category" name="category" [config]="configCategory" [options]="Categories" 
-                    [multiple]="false"></ngx-select-dropdown>
-                    <!-- <select class="form-control chosen-wrapper chosen-wrapper--style2 round_first" [(ngModel)]="category" name="category" data-js="custom-scroll">
+                    <ngx-select-dropdown [(ngModel)]="category" [(value)]="singleSelect" [allowClear]="true" name="category" [config]="configCategory" [options]="Categories"  [disabled]="disabled"
+                    [multiple]="false" ></ngx-select-dropdown>
+                    <!-- <select id="source" class="form-control chosen-wrapper chosen-wrapper--style2 round_first" [(ngModel)]="category" name="category" data-js="custom-scroll">
                       <option value='undefined'> All Categories </option>
                       <option *ngFor='let list_Categories of Categories' [ngValue]="list_Categories">
                         {{list_Categories.categoryName}} </option>
@@ -43,7 +43,8 @@
                         {{list_locations.name}}</option>
                     </select> -->
                     <ngx-select-dropdown [(ngModel)]='locationId' name='location' [config]="configLocation" [options]="locations" 
-                    [multiple]="false"></ngx-select-dropdown>
+                    [multiple]="false">
+                    </ngx-select-dropdown>
                    
                   </div>
                   <div class="form-group col-sm-2 posi_rela_100px">

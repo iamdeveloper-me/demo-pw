@@ -1,7 +1,7 @@
 import { Component,  OnInit , Input } from '@angular/core';
 import { LoginServiceService } from '../shared/service/login-service.service';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Http,Headers } from '@angular/http';
 import { SignupVendorService } from '../shared/service/signup-vendor.service';
 import 'rxjs/Rx';
@@ -9,9 +9,10 @@ import { MasterserviceService } from '../ngservices/masterservice.service';
 import { apiService } from '../shared/service/api.service';
 import{filterParam} from '../vendorcard/vendorcard.component'
 import { ToastrService } from 'ngx-toastr';
+import { AuthGuardService } from 'app/services/auth-guard.service';
 export class NgbdModalContent {
   @Input() name;
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(public auth : AuthGuardService,public activeModal: NgbActiveModal) { }
 }
 @Component({
   selector: 'app-menu',
@@ -30,8 +31,17 @@ export class MenuComponent implements OnInit {
         Categories = [];
         locations = [];
         locationId:number=0;
-        constructor(private router: Router ,public toastr: ToastrService,private masterservice: MasterserviceService , private apiService: apiService,public http: Http,private cservice: LoginServiceService , private modalService: NgbModal, private uservice: SignupVendorService,) {
+        showModelLogin:boolean = false
+        constructor(public routerActivate: ActivatedRoute,public auth :AuthGuardService,private router: Router ,public toastr: ToastrService,private masterservice: MasterserviceService , private apiService: apiService,public http: Http,private cservice: LoginServiceService , private modalService: NgbModal, private uservice: SignupVendorService,) {
             this.objFilterParam = new filterParam();
+            // if(window.location.href.indexOf('returnURl'))
+            
+            if(window.location.href.indexOf('returnURl') == -1){
+                this.showModelLogin = false;
+            }else{
+                this.showModelLogin = true;
+            }
+            // this.showModal = this.auth.userActive ? true  : false ;
         }
         Categorie(){ 
             this.masterservice.getAllCategories().subscribe(data => {
@@ -113,11 +123,16 @@ export class MenuComponent implements OnInit {
                                         sessionStorage.setItem('userToken',data.json().auth_token);
                                         sessionStorage.setItem('userId',data.json().id);
                                         sessionStorage.setItem('role',data.json().role);
-
+                                        sessionStorage.setItem('_u',data.json().auth_token);
+                                   
                                         // localStorage.setItem('userId',data.json().id);
-                                        this.router.navigate(['../User/vendor'])
+                                        if(window.location.href.indexOf('?returnURl=') == -1) {
+                                            this.router.navigate(['../User/vendor'])
+                                        }else{
+                                            debugger
+                                            this.router.navigate([window.location.href.split('?returnURl=')[1].split('%2F').join('/')])
+                                        }                                           
                                         this.typeSuccess();
-                                        this.router.navigate(['../User/vendor'])
                                         $("div").removeClass( "modal-backdrop fade show");
                                         $("body").removeClass( "modal-open");
                                         $("body").removeClass( "modal-open");
@@ -159,11 +174,11 @@ export class MenuComponent implements OnInit {
 
                     var vendorid = localStorage.getItem('vendorid')
                     this.session_token =   sessionStorage.getItem('userToken')
-                    if(this.session_token)
+                    if(this.auth.userActive())
                     {  
                         var firstName = localStorage.getItem('firstName');
                         let headers = new Headers();
-                        var authToken = localStorage.getItem('userToken');
+                        var authToken = sessionStorage.getItem('_u');
                         headers.append('Accept', 'application/json')
                         headers.append('Content-Type', 'application/json');
                         headers.append("Authorization",'Bearer '+authToken);
@@ -413,6 +428,7 @@ export class MenuComponent implements OnInit {
         }
         //end
         remove(){
+            this.showModelLogin = true;
             if(window.location.pathname == '/home' )
             {     
                 $("body").removeClass( "modal-open");

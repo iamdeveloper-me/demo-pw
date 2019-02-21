@@ -43,6 +43,7 @@ export class SearchresultComponent implements OnInit {
   slidesStore: any[];
   collection = [];
   paginations=[];
+  page:number = 1;
   objSearchFilter: filterParam
   locations:any;
   categories:any;
@@ -491,12 +492,7 @@ generateStaticArray(){
   ]
 
 }
-bookMark(data, type , action_which_lacation){
-  const id = data['vendorId'] 
- this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
-   console.log(data)
- })
-}
+
 radioChecker(mainItem , selectedItem, filterType=0){
   debugger;
  // const data = selectedItem

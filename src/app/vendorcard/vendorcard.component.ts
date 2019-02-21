@@ -116,12 +116,16 @@ export class VendorcardComponent implements OnInit {
     )
   }
   goToVendordetails(slide) {
-      let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
-      this.apiService.getData(url+'?id='+slide.vendorId).subscribe(res=>{
-        sessionStorage.setItem('vendorDetails',JSON.stringify(res));
-
-       this.router.navigate(['home/detailprofile',0]);
-    });
+     // let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
+     //this.apiService.getData(url+'?id='+slide.vendorId).subscribe(res=>{
+        //sessionStorage.setItem('vendorDetails',JSON.stringify(res));
+       
+        const a = slide.vendorCategories[0].categories.categoryName;
+        const b = slide.vendorId;
+        const c = slide.nameOfBusiness;
+        this.router.navigateByUrl('/home/weddingvendorsdetailprofile/'+a+'/'+b+'/'+c.replace(/\s/g,''));
+       //this.router.navigate(['home/detailprofile',0]);
+    //});
    // this.router.navigate(['home/detailprofile/',slide.vendorId])
   }
   Categories_each(c,isAllSupplier,isDreamLocation){

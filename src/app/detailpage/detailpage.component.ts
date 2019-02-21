@@ -40,7 +40,7 @@ export class DetailpageComponent implements OnInit {
   MessagesVMObj  = new MessagesVM();
   contactInfoObj: ContactUsVM;
   MemberSince:string;
-  private url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails/'
+  vendorid ;
   responce_review = true;
   responce_thanks = false;
   showLoader: boolean = true;
@@ -49,8 +49,8 @@ export class DetailpageComponent implements OnInit {
   report= false;
   succesfull_report = ""
   vendorId: number;
-  vendorDetails: any;
-  data_arr = []
+  public vendorDetails: any;
+
   showD:boolean = false
   businessServices_length ;
   portfolioAndAlbumImagesTotal: number = 0;
@@ -64,7 +64,6 @@ export class DetailpageComponent implements OnInit {
   currentDate
   vendorVideo_details:any = [];
   CatName;
-  
 
   public show: boolean = false;
   public hide: boolean = true;
@@ -78,122 +77,99 @@ export class DetailpageComponent implements OnInit {
   @ViewChild(AgmMap) map: AgmMap;
   @ViewChild('gmapInput') gmapInput: ElementRef;
   constructor(public http: Http, 
-     public toastr: ToastrService, 
-     private apiService: apiService,
-     private masterservice: MasterserviceService,
-     public mapsApiLoader: MapsAPILoader,
-     private router: Router,
-     private meta : Meta,
-     private title : Title,
-     private uservice: SignupVendorService,
-     private cservice: LoginServiceService
+              public toastr: ToastrService, 
+              private apiService: apiService,
+              private masterservice: MasterserviceService,
+              public mapsApiLoader: MapsAPILoader,
+              private router: Router,
+              private meta : Meta,
+              private title : Title,
+              private uservice: SignupVendorService,
+              private route : ActivatedRoute,
+              private cservice: LoginServiceService
    ) { 
       this.ratingmodel = new ratingStars();
       this.contactInfoObj = new ContactUsVM();
       var dateObj = new Date();
       this.currentDate  = dateObj.getDay()  //months from 1-12
-      console.log(this.currentDate )
-      // this.user_login_token = sessionStorage.getItem('userId')
       this.role = (sessionStorage.getItem('role'))
-      
-  if(sessionStorage.getItem('role') == 'Users'){
-    this.showD = true
-  }else{
-    this.showD = false
-
-  }
+      if(sessionStorage.getItem('role') == 'Users'){
+        this.showD = true
+      }else{
+        this.showD = false
+      }
       console.log(this.user_login_token);
       this.objFilterParam = new filterParam();
+      this.route.paramMap.subscribe(params => {
+        this.vendorid = params
+          this.apiService.getData(this.apiService.serverPath+'PerfectWedding/vendordetails'+'?id='+this.vendorid.params.id).subscribe(data=>{    
+            this.vendorDetails  = data;     
+            console.log(  this.vendorDetails  )
+
+            this.vendorDetails.vendorLocations.forEach((element,index) => {
+              if(index<=2){ element.visible=true; 
+              this.vendorLocationsButtonLabel='View All';
+              }else{ element.visible=false; }
+              });
+              
+            for (let cat of this.vendorDetails.vendorCategories) {
+              this.CatName = cat.categories.categoryName;
+              console.log(this.CatName)
+            }
+              //Meta Tags
+              this.title.setTitle(this.vendorDetails.nameOfBusiness + ` , ` + this.vendorDetails.district.name + ` , ` + this.CatName + ` | Perfect Weddings` );   
+              this.meta.addTag({name:'description',content:'Team Contact | Perfect Weddings'});  
+
+              this.vendorVideo_details = this.vendorDetails.vendorVideos.length;
+              this.businessServices_length = this.vendorDetails.businessServices.length;
+
+              this.getSimilarVendors();
+
+              this.vendorDetails.vendorLocations.reverse();
+
+              this.vendorDetails.albums.forEach(vendor => {
+                if(vendor.albumImages != []){
+                  vendor.albumImages.forEach(img => {
+                  const data = {
+                      "name" : vendor.albumName,
+                      "image" : img.path,
+                      "likeCounts": img.likeCounts
+                    }
+                    this.sliderImgaes.push(data);
+                  });
+                }
+              });
+
+              this.vendorDetails.portfolios.forEach(dxg => {
+                const data = {
+                    "name" : "PORTFOLIO",
+                    "image" : dxg.path,
+                    "likeCounts": dxg.likeCounts
+                  }
+                  this.sliderImgaes.push(data);   
+              });
+
+              this.vendorDetails.albums.forEach(element => {
+                this.portfolioAndAlbumImagesTotal += element.albumImages.length ? element.albumImages.length : 0;
+              });
+
+              this.portfolioAndAlbumImagesTotal += this.vendorDetails.portfolios.length;
+
+              this.vendorDetails.portfolios.forEach(element => {
+                  this.portfolioImages.push(element.path);
+              });
+      },error =>{console.log(error)}); });
   }
   ngOnInit() {
-
-    $.getScript('./assets/js/prism.min.js');
-    $.getScript('./assets/js/owljsor.js');
-    $.getScript('./assets/js/curosselfun.js');
-    $.getScript('./assets/js/detailpagescroll_active.js');
-    $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
-    $("#Vediogallarypopup").on('hidden.bs.modal', function (e) {
-      $("#Vediogallarypopup iframe").attr("src", $("#Vediogallarypopup iframe").attr("src"));
-    });
-    $.getScript('./assets/js/prism.min.js');
-
-   
-    this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
-    console.log(this.vendorDetails)
-    // setTimeout(function () { 
-
-    // this.showLoader = false;}, 2900);
-    this.vendorDetails.reviews.forEach((element,index) => {
-      if(index<=2){ element.visible=true;this.reviewButtonLabel='View All'; } 
-            else { element.visible=false; }
-            
-    });
-    this.vendorDetails.deals.forEach((element,index) => {
-      if(index<=2){ element.visible=true; 
-        this.dealButtonLabel='View All';
-      }else{  
-        element.visible=false; }
-    });
-    this.vendorDetails.vendorLocations.forEach((element,index) => {
-      if(index<=2){ element.visible=true; 
-        this.vendorLocationsButtonLabel='View All';
-      }else{ element.visible=false; }
-    });
-    for (let cat of this.vendorDetails.vendorCategories) {
-      this.CatName = cat.categories.categoryName;
-      console.log(this.CatName)
-    }
-        //Meta Tags
-      this.title.setTitle(this.vendorDetails.nameOfBusiness + ` , ` + this.vendorDetails.district.name + ` , ` + this.CatName + ` | Perfect Weddings` );   
-      this.meta.addTag({name:'description',content:'Team Contact | Perfect Weddings'});  
-      console.log(this.vendorDetails.vendorCategories)
-      
-
-    this.vendorVideo_details = this.vendorDetails.vendorVideos.length;
-    this.businessServices_length = this.vendorDetails.businessServices.length;
-    this.getSimilarVendors();
-    this.vendorDetails.vendorLocations.reverse();
-    
-     this.data_arr = this.vendorDetails.albums
-    console.log(this.data_arr)
-    this.data_arr.forEach(vendor => {
-      if(vendor.albumImages != []){
-        vendor.albumImages.forEach(img => {
-        const data = {
-            "name" : vendor.albumName,
-            "image" : img.path,
-            "likeCounts": img.likeCounts
-          }
-          this.sliderImgaes.push(data);
-        });
-      }
-    });
-    console.log(this.sliderImgaes)
-    console.log(this.vendorDetails.portfolios)
-      
-      this.vendorDetails.portfolios.forEach(dxg => {
-        const data = {
-            "name" : "PORTFOLIO",
-            "image" : dxg.path,
-            "likeCounts": dxg.likeCounts
-          }
-          this.sliderImgaes.push(data);
-          
-          
-        });
-
-        console.log(this.sliderImgaes)
-
-    this.vendorDetails.albums.forEach(element => {
-      this.portfolioAndAlbumImagesTotal += element.albumImages.length ? element.albumImages.length : 0;
-    });
-   
-    this.portfolioAndAlbumImagesTotal += this.vendorDetails.portfolios.length;
-    this.vendorDetails.portfolios.forEach(element => {
-      // this.portfolioImages.push(element.files.path);
-         this.portfolioImages.push(element.path);
-    });
-
+                $.getScript('./assets/js/prism.min.js');
+                $.getScript('./assets/js/owljsor.js');
+                $.getScript('./assets/js/curosselfun.js');
+                $.getScript('./assets/js/detailpagescroll_active.js');
+                $.getScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js');
+                $("#Vediogallarypopup").on('hidden.bs.modal', function (e) {
+                  $("#Vediogallarypopup iframe").attr("src", $("#Vediogallarypopup iframe").attr("src"));
+                });
+                $.getScript('./assets/js/prism.min.js');            
   }
   classAdd(item){
       
@@ -302,13 +278,16 @@ export class DetailpageComponent implements OnInit {
     }
     
   }
-
   //GoToAllReviews
   goToAllReviews(vendorDetails){
-    sessionStorage.setItem('Vendorimages',JSON.stringify(this.vendorDetails.reviews));
-    this.router.navigateByUrl('/home/allReviews');
+   // sessionStorage.setItem('Vendorimages',JSON.stringify(this.vendorDetails.reviews));
+    const a = vendorDetails.vendorCategories[0].categories.categoryName;
+    const b = vendorDetails.vendorId;
+    const c = vendorDetails.nameOfBusiness;
+    const j = "allReviews";
+    this.router.navigateByUrl('/home/weddingsvendors/'+a+'/'+b+'/'+c.replace(/\s/g,'')+'/'+j);
+    //this.router.navigateByUrl('/home/allReviews');
   }
-
   showHideevents(){
  
      this.vendorDetails.deals.forEach((element,index) => {
@@ -346,30 +325,27 @@ export class DetailpageComponent implements OnInit {
         $('.tabledesktop').show();
     }
   }
-
-
-    message(msg){
-      this.user_login_token = sessionStorage.getItem('userToken');
-      this.userId = sessionStorage.getItem('userId'); 
-      msg.value.sendToUserId =  sessionStorage.getItem('userId'); 
-      console.log(msg.value)
-      if (!sessionStorage.getItem('userToken')) {
-        this.toastr.error('Login To Give Your Message');
-        msg.resetForm();
-     } 
-        else
-     {
-        this.apiService.postData(this.apiService.serverPath+'Messages/Post',msg.value).subscribe(data => {
-        console.log(data)
-        msg.resetForm();
-        this.toastr.success(data.message);
-    },error=>{
-      this.toastr.error(error._body);
-      // this.toastr.error(error);
-    })
+  message(msg){
+    this.user_login_token = sessionStorage.getItem('userToken');
+    this.userId = sessionStorage.getItem('userId'); 
+    msg.value.sendToUserId =  sessionStorage.getItem('userId'); 
+    console.log(msg.value)
+    if (!sessionStorage.getItem('userToken')) {
+      this.toastr.error('Login To Give Your Message');
+      msg.resetForm();
+    } 
+      else
+    {
+      this.apiService.postData(this.apiService.serverPath+'Messages/Post',msg.value).subscribe(data => {
+      console.log(data)
+      msg.resetForm();
+      this.toastr.success(data.message);
+  },error=>{
+    this.toastr.error(error._body);
+    // this.toastr.error(error);
+  })
+}
   }
-    }
-
   contact(list){
     this.apiService.postData(this.apiService.serverPath+'Home/contactus',list.value).subscribe(data => {
       this.toastr.success(data.message);
@@ -381,10 +357,9 @@ export class DetailpageComponent implements OnInit {
       }
     )
   }
-
   search(e){    
-        if(e){
-      this.objFilterParam.catId  = e.category?e.categoryId:0;
+    if(e){
+      this.objFilterParam.catId  = e.categoryId?e.categoryId:0;
       this.objFilterParam.categoryName= e.categoryName?e.categoryName: '' ;
       this.objFilterParam.page = 0;
       this.objFilterParam.pageSize = 25;
@@ -393,11 +368,10 @@ export class DetailpageComponent implements OnInit {
       this.objFilterParam.searchQuery ="";
      }
       sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
-      this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
+      this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,''), this.objFilterParam.catId]);
   }
-
-        //loginpage
-        loadScript(){ 
+///////////////////////////////////////////////////////////////loginpage
+      loadScript(){ 
           $("#panel9").removeClass( "in");
           $("#panel9").removeClass( "active");
           $("#panel9").removeClass( "show");
@@ -473,8 +447,7 @@ export class DetailpageComponent implements OnInit {
               $("body").css({ 'padding-right' : '' }); 
           }
       }
-
-  onSubmit(){ 
+       onSubmit(){ 
     this.cservice.login(this.usercouple).subscribe((data)=> {
                         if (data.statusText == "OK" && data.json().role =="Vendors" ) {
                             this.typeSuccess();
@@ -493,16 +466,16 @@ export class DetailpageComponent implements OnInit {
                         }
                     
         });
-}
-typeSuccess() {
-    this.cservice.typeSuccess();
-}
-typeWarning() {
-    this.cservice.typeWarning();
-}
-typeLogout() {
-    this.cservice.typeLogout();
-}
+       }
+      typeSuccess() {
+          this.cservice.typeSuccess();
+      }
+      typeWarning() {
+          this.cservice.typeWarning();
+      }
+      typeLogout() {
+          this.cservice.typeLogout();
+      }
 //--------------------------------user login 
 userlogin(){ 
                 this.cservice.login(this.user).subscribe((data)=> {

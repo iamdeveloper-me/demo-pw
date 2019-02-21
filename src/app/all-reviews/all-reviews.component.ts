@@ -3,6 +3,7 @@ import{ ratingStars } from '../ngservices/ratingstars';
 import { apiService } from '../shared/service/api.service';
 import { ToastrService } from 'ngx-toastr';
 import swal from 'sweetalert2';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-all-reviews',
   templateUrl: './all-reviews.component.html',
@@ -16,7 +17,8 @@ export class AllReviewsComponent implements OnInit {
   user_login_token;
   responce_review = true;
   responce_thanks = false;
-  constructor(private apiService : apiService, public toastr: ToastrService, ) {
+  vendorid
+  constructor(private apiService : apiService, public toastr: ToastrService,  private route : ActivatedRoute ) {
     this.ratingmodel = new ratingStars();
     this.user_login_token = sessionStorage.getItem('userToken')
     console.log(this.user_login_token);
@@ -25,6 +27,13 @@ export class AllReviewsComponent implements OnInit {
   ngOnInit() {
     this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
     console.log(this.vendorDetails);
+    this.route.paramMap.subscribe(params => {
+      this.vendorid = params
+       this.apiService.getData(this.apiService.serverPath+'PerfectWedding/vendordetails'+'?id='+this.vendorid.params.id).subscribe(data=>{    
+         this.vendorDetails  = data;     
+         },error =>{console.log(error)});
+
+       });
     this.reviewsArray = this.vendorDetails.reviews;
     console.log(this.reviewsArray);
   }

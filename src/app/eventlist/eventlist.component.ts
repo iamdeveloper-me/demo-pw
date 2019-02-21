@@ -22,10 +22,7 @@ export class EventlistComponent implements OnInit {
   subscribedParam = "initial value";
   ngOnInit() {
 
-   // this.animal = this.route.paramMap.get("data")
-  // console.log(this.animal);
 
-  //  alert( this.route.params['eventId']);
     this.route.paramMap.subscribe(params => {
       this.animal = params
       console.log(this.animal.params.eventId);

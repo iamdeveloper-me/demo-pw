@@ -75,8 +75,7 @@
             </ng-template>
           </ng-container>
         </owl-carousel-o>
-        <!-- {{slidesStore | json}} -->    
-  </div>  
+    </div>  
     <!--End Slides-->
 </div>
 
@@ -112,9 +111,8 @@
 
 
 
-           <select class="pagedropdown" [(ngModel)]='objSearchFilter.pageSize' (change)='this.paginate(objSearchFilter.pageSize)'>
-              <option value="5">Page Size 5</option> 
-            <option value="25">Page Size 25</option>
+           <select class="pagedropdown" [(ngModel)]='_ngbConfigService.pageSize' (change)='this.paginate(objSearchFilter.pageSize)'>
+             <option value="25">Page Size 25</option>
              <option value="50">Page Size 50</option>
              <option value="100">Page Size 100</option>
            </select>
@@ -122,9 +120,8 @@
         <div class="clearfix"></div>
           <ol class="breadcrumb breadcrumbcontainer">
             <li><a href="/home" routerlink="/home">Home</a></li>
-            <li><a href="/home/weddingvendors" routerlink="/home/weddingvendors">Wedding Vendors</a></li>
-            <!-- <li><a href="#">All Categories</a></li> -->
-            <li class="active">
+            <li><a>Wedding Vendors</a></li>
+              <li class="active">
               <a (click)='navigateToDynamicUrl()'>
               {{SelectedCategory?SelectedCategory.categoryName:''}}</a></li>
           </ol>
@@ -209,8 +206,6 @@
                             </i>
                       <a class="collapsed" data-toggle="collapse" href="#collapse2" role="button" data-parent="#accordion" aria-expanded="false" aria-controls="collapse2">
                          Category 
-                        
-                        <!-- ({{objSearchlistvm.categoryId.length}}) -->
                       </a>
                     </h4>
 
@@ -360,8 +355,7 @@
                     <div class="funkyradio">
                       <div class="funkyradio-info" *ngFor='let dd of dealsAndOfferArray'>
                          <input type="radio" name="key" [id]="dd.key" value='{{dd.key}}' [checked]="dd.isSelect" (change)='radioChecker(dealsAndOfferArray, dd)' />
-                         <!-- setFilterOptions(9,dd) || -->
-                        <label for="{{dd.key}}">{{dd.displayText}}</label>  
+                            <label for="{{dd.key}}">{{dd.displayText}}</label>  
                       </div>
                     </div>
                 </div>
@@ -526,9 +520,6 @@
           </div>
          </div>
         <div>
-
-       <!--    <img  src="https://www.walgreens-hearing.com/img/loader.gif" style="bottom:35%;position: fixed;z-index:99999;margin-left:18%"> -->
-
           <div class="preloaderbox" *ngIf='loading'>
             <span class="circle"></span>
 
@@ -540,15 +531,10 @@
 
             
           </div>
-                  <ngb-pagination [collectionSize]="objSearchResultItems.totalCount" (pageChange)='goToPage($event)' [(page)]="page" [pageSize]="objSearchFilter.pageSize" [boundaryLinks]="true"></ngb-pagination>
+                  <ngb-pagination [collectionSize]="objSearchResultItems?.totalCount" [(maxSize)]='_ngbConfigService.maxSize' (pageChange)='goToPage($event)' [(page)]="page" [pageSize]="_ngbConfigService.pageSize" [boundaryLinks]="true"></ngb-pagination>
                   
         </div>
       </div>
-      <!-- <ul style="display:block" class="pageNumbers" *ngIf='paginations.length>0'>
-          <li *ngIf='objSearchlistvm.page > 1' (click)='goToPage(0,"P")'>Previous</li>
-           <li *ngFor='let p of paginations' (click)='goToPage(p,0)'>{{p}}</li>
-           <li *ngIf='paginations.length > 10 ' (click)='goToPage(0,"N")'>Next</li>
-      </ul> -->
     </div>
 </div>
 </div>
@@ -578,19 +564,12 @@
     <span class="badge" *ngFor='let l of locations'>
       <div *ngIf='l.isSelect'>{{l.name}} </div>
     </span>
-     <!-- <span class="badge">
-     Grand Port <i class="material-icons">clear</i>
-    </span> -->
-  </div>
+    </div>
   <div *ngIf='!showAllLocation'>
       <span class="badge" *ngFor='let l of locations'>
         <div *ngIf='l.isSelect'> {{SelectedLocation.name}}</div>
       </span>
-       <!-- <span class="badge">
-       Grand Port <i class="material-icons">clear</i>
-      </span> -->
-    </div>
-  
+    </div>  
 </div>
 
 <div class="filterrow servicefilter">
@@ -664,34 +643,8 @@
             {{ur.key}}
         </label>
         </div>
-
-        <!-- <i style="color:red" [innerHTML]='ratingmodel.printStars(2)'></i> -->
-      <!-- <i class="material-icons">star</i> 
-      <i class="material-icons">star</i> 
-      <i class="material-icons">star_border</i>
-      <i class="material-icons">star_border</i>
-      <i class="material-icons">star_border</i> -->
     </div>
-  <!-- <button class="rating">
-    3.0
-  <div>
-        <i class="material-icons">star</i> 
-        <i class="material-icons">star</i> 
-        <i class="material-icons">star</i>
-        <i class="material-icons">star_border</i>
-        <i class="material-icons">star_border</i>
-      </div>
-  </button>
-  <button class="rating">4.0
-    <div>
-      <i class="material-icons">star</i> 
-      <i class="material-icons">star</i> 
-      <i class="material-icons">star</i>
-      <i class="material-icons">star</i>
-      <i class="material-icons">star_border</i>
     </div>
-  </button> -->
-  </div>
 </div>
 
 

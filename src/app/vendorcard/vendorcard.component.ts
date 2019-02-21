@@ -148,20 +148,19 @@ export class VendorcardComponent implements OnInit {
    sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
     this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   }
-  supplier_all(c,isAllSupplier,isDreamLocation){
+  supplier_all(c,isAllSupplier,isDreamLocation,isSearchInFeaturedSupplier){
       this.objFilterParam.catId  = c?c.categoryId:0;
       this.objFilterParam.categoryName= c?c.categoryName:'';
       this.objFilterParam.isDreamLocation=isDreamLocation;
       this.objFilterParam.isAllSupplier=isAllSupplier;
+      this.objFilterParam.isSearchInFeaturedSupplier = isSearchInFeaturedSupplier;
       this.objFilterParam.page = 0;
       this.objFilterParam.pageSize = 25;
       this.objFilterParam.sortDir = "";
       this.objFilterParam.sortedBy ="";
       this.objFilterParam.searchQuery ="";
-
-  
-    sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
-    this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
+      sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+      this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   
   }
 
@@ -171,6 +170,7 @@ export class filterParam{
   categoryName:string='';
   isAllSupplier:boolean=false;
   isDreamLocation:boolean=false;
+  isSearchInFeaturedSupplier:boolean=false;
   page:number=0;
   pageSize: number=3;
   sortDir: "";

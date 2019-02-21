@@ -229,7 +229,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { VendorDealDetailComponent } from './vendor-deal-detail/vendor-deal-detail.component';
 import { AllReviewsComponent } from './all-reviews/all-reviews.component';
 
-import { ShareButtonsModule } from '@ngx-share/buttons';
+// import { ShareButtonsModule } from '@ngx-share/buttons';
 
 
 
@@ -477,7 +477,7 @@ export function getAuthServiceConfigs() {
         CalendarModule.forRoot(),
         // calender End
         HttpClientJsonpModule,  // (Optional) Add if you want tumblr share counts
-        ShareButtonsModule,
+        // ShareButtonsModule,
         NgxPaginationModule,
 
         RecaptchaModule,

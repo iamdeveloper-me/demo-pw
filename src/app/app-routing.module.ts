@@ -165,7 +165,7 @@ const appRoutes: Routes = [
   { path: 'home/weddingvendors/:id/:id', component: SearchresultComponent },
   { path: 'home/tips_list', component: TipslistComponent },
   { path: 'home/event_list/:eventId', component: EventlistComponent },
-  { path: 'home/detailprofile/:id', component:  DetailpageComponent  },
+  { path: 'home/weddingvendorsdetailprofile/:categoryname/:id/:bussinesname', component:  DetailpageComponent  },
   { path: 'home/gallery', component:  GalleryComponent  },
   //{ path: 'home/vendor', component:  VendorComponent  },VendorDealDetailComponent
   { path: 'home/photo', component: PhotoComponent },
@@ -184,7 +184,7 @@ const appRoutes: Routes = [
   { path: 'home/cuplefoot', component:  FootCupleComponent },
   { path: 'home/weddingvendorss/:id/:id/:id', component:  PhotogallaryComponent },
   //All Reviews Page
-  { path: 'home/allReviews', component: AllReviewsComponent },
+  { path: 'home/weddingsvendors/:id/:id/:id/:id', component: AllReviewsComponent },
   { path: 'home/Vediogallary', component:  VediogallaryComponent },
   { path: 'home/supplierbylocation', component:  SupplierbylocationComponent },
   { path: 'home/weddingvendorsss/:id/:id/:id/:id/:id', component:  PhotogallerydetailComponent },

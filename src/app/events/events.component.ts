@@ -28,7 +28,7 @@ export class EventsComponent implements OnInit {
     private title : Title,
     private route : ActivatedRoute 
     ) {
-              this.objSearchlistvm = new SearchListingVM()
+    this.objSearchlistvm = new SearchListingVM()
 
   }
 
@@ -47,9 +47,6 @@ export class EventsComponent implements OnInit {
   total_item_page
   page_sizzze  = 1;
   searchQuery: ""
-
-  public firstname: string;
-    public lastname: string;
 
   ngOnInit() {
 
@@ -111,7 +108,7 @@ export class EventsComponent implements OnInit {
   goToNextPage(a){
   //  sessionStorage.setItem('event',JSON.stringify(a));
   //  alert("aaaaaaa");
-    this.router.navigate(['home/event_list' , a.eventId,a.eventTitle]);
+    this.router.navigate(['home/event_list' , a.eventId,a.eventTitle.replace(/\s/g,'')]);
   }
   bookMark(data, type , action_which_lacation){
     const id = data['eventId'] 

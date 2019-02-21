@@ -16,29 +16,19 @@ export class EventlistComponent implements OnInit {
 
   data:any = {};
   all_event:any;
-  animal
+  animal;
   noImage:string='https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg';
   snapshotParam = "initial value";
   subscribedParam = "initial value";
   ngOnInit() {
-
-
     this.route.paramMap.subscribe(params => {
       this.animal = params
       console.log(this.animal.params.eventId);
       this.event_all_load(this.animal.params.eventId);
-  
     });
-
-  
 
   //  this.data = JSON.parse(sessionStorage.getItem('event'));
     //console.log(this.data);
-    //Meta Tags
-    // this.title.setTitle(this.data.eventTitle + ` | ` + this.data.districts);   
-    this.meta.addTag({name:'description',content:'Team Contact | Perfect Weddings'});   
-
-
   }
 
   event_all_load(a){
@@ -58,6 +48,9 @@ export class EventlistComponent implements OnInit {
           console.log(this.all_event); 
           this.data = this.all_event.filter(items => items.eventId == a);
          console.log(this.data)
+             //Meta Tags
+          this.title.setTitle(this.data[0].eventTitle + ` | ` + this.data[0].districts);   
+          this.meta.addTag({name:'description',content:'Team Contact | Perfect Weddings'});  
         });  
   }
 }

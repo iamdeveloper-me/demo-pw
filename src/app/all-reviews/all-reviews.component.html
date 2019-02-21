@@ -42,7 +42,7 @@
         </div>
       
       </div>
-      <h1 *ngIf="responce_thanks == true ">THANK YOU FOR YOUR REVIEW</h1>
+      <!-- <h1 *ngIf="responce_thanks == true ">THANK YOU FOR YOUR REVIEW</h1> -->
     </div>
   </div>
 </div>
@@ -55,7 +55,7 @@
 	<div class="container mobnopadd ipad100">
       <div class="col-sm-12 detail_page nopadd">
           <div class="card inspirationhead">
-               <a routerLink="../detailprofile/0" class="backlink"> 
+               <a routerLink="/home" class="backlink"> 
                  <i class="material-icons">arrow_back_ios</i>
                  <span>Go Back</span>
              </a>
@@ -73,7 +73,7 @@
                 <div class="rating_star" style="text-align: left;">
                   <rating [(ngModel)]="vendorDetails.averageRating" readonly="isReadonly"></rating>
                 </div>
-                ({{vendorDetails.reviews.length}} REVIEWS) 
+                <strong>({{vendorDetails.reviews.length}} REVIEWS)</strong>
                 </div>
               </div>
 

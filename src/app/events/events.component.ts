@@ -5,8 +5,9 @@ import { PagerService } from '../_services';
 import 'rxjs/add/operator/map'
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
+import { AuthGuardService } from 'app/services/auth-guard.service';
 
 @Component({
   selector: 'app-events',
@@ -16,8 +17,18 @@ import { Meta, Title } from '@angular/platform-browser';
 export class EventsComponent implements OnInit {
   objSearchlistvm: SearchListingVM;
 
-  constructor( public http:Http, private pagerService: PagerService,private apiService: apiService,private masterservice: MasterserviceService,private router:Router,private meta:Meta, private title : Title ) {
-              this.objSearchlistvm = new SearchListingVM()
+  constructor( 
+    public auth:AuthGuardService, 
+    public http:Http, 
+    private pagerService: PagerService,
+    private apiService: apiService,
+    private masterservice: MasterserviceService,
+    private router:Router,
+    private meta:Meta, 
+    private title : Title,
+    private route : ActivatedRoute 
+    ) {
+    this.objSearchlistvm = new SearchListingVM()
 
   }
 
@@ -36,10 +47,11 @@ export class EventsComponent implements OnInit {
   total_item_page
   page_sizzze  = 1;
   searchQuery: ""
+
   ngOnInit() {
+
     this.title.setTitle('Top Wedding Events in Mauritius |Perfect Weddings');    
     this.meta.addTag({name:'description',content:'Top Wedding Events in Mauritius |Perfect Weddings'});    
-    sessionStorage.clear();
     this.locationD();
     this.event();
   }
@@ -94,14 +106,23 @@ export class EventsComponent implements OnInit {
   }
 
   goToNextPage(a){
-    sessionStorage.setItem('event',JSON.stringify(a));
-    this.router.navigate(['home/event_list']);
+  //  sessionStorage.setItem('event',JSON.stringify(a));
+  //  alert("aaaaaaa");
+    this.router.navigate(['home/event_list' , a.eventId,a.eventTitle.replace(/\s/g,'')]);
   }
   bookMark(data, type , action_which_lacation){
     const id = data['eventId'] 
-   this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
-     console.log(data)
-   })
+    if(this.auth.userActive()){
+      this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
+        console.log(data)
+      })
+    }else{
+        this.router.navigateByUrl('/home',{ queryParams: { login: true}});
+        
+  
+       }
+    
+   
   }
 
 }

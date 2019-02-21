@@ -2,6 +2,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import {RatingModule} from "ngx-rating";
 import { SelectDropDownModule } from 'ngx-select-dropdown'
+import {SelectModule} from 'ng2-select';
 
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
@@ -39,7 +40,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from "./shared/shared.module";
 // import { VendorModule } from "./vendor/vendor.module" 
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpClientJsonpModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StoreModule } from '@ngrx/store';
@@ -229,7 +230,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { VendorDealDetailComponent } from './vendor-deal-detail/vendor-deal-detail.component';
 import { AllReviewsComponent } from './all-reviews/all-reviews.component';
 
-
+// import { ShareButtonsModule } from '@ngx-share/buttons';
 
 
 
@@ -467,6 +468,7 @@ export function getAuthServiceConfigs() {
 
   ],
     imports: [
+        SelectModule,
         CarouselModule,
        // BrowserModule,
         AppRoutingModule,
@@ -476,7 +478,8 @@ export function getAuthServiceConfigs() {
         FlatpickrModule.forRoot(),
         CalendarModule.forRoot(),
         // calender End
-
+        HttpClientJsonpModule,  // (Optional) Add if you want tumblr share counts
+        // ShareButtonsModule,
         NgxPaginationModule,
 
         RecaptchaModule,

@@ -3,6 +3,8 @@ import { apiService } from '../shared/service/api.service';
 import { Meta , Title } from '@angular/platform-browser';
 import { MasterserviceService } from '../ngservices/masterservice.service';
 import { PagerService } from 'app/_services';
+import { AuthGuardService } from 'app/services/auth-guard.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-photo',
   templateUrl: './photo.component.html',
@@ -38,7 +40,7 @@ titleSet:any = [];
     error_1 = '';
     pager: any = {};
     pagedItems: any[];
-    constructor(public pagerService : PagerService,private masterservice: MasterserviceService,private apiService: apiService,private meta:Meta, private title : Title ) {
+    constructor(public router : Router,public auth: AuthGuardService,public pagerService : PagerService,private masterservice: MasterserviceService,private apiService: apiService,private meta:Meta, private title : Title ) {
      this.colout_tag= false;
       this.allItems = [];
       this.photo_search_param = new  photoSearchParam();
@@ -116,9 +118,14 @@ this.find_photo();
      }
     bookMark(data, type , action_which_lacation){
       const id = data['id'] 
-     this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
-       console.log(data)
-     })
+      if(this.auth.userActive()){
+        this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
+          console.log(data)
+        })
+      }else{
+        this.router.navigateByUrl('/home',{ queryParams: { login: true}});
+       }
+     
     }
     createColorPanel(){
       this.colors= Array<ColorPicker>();

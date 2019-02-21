@@ -25,17 +25,28 @@ export class PhotogallaryComponent implements OnInit {
 
 goto_detail_of_album(a){
   
-  console.log(a);
+  console.log( this.vendorDetails);
   sessionStorage.setItem('albumimages',JSON.stringify(a));
   sessionStorage.setItem('portfolio_count',JSON.stringify('0'));
-  
-  this.router.navigate(['home/Photogallerydetail']);
+  const a1 =  this.vendorDetails.vendorCategories[0].categories.categoryName;
+  const b = a.vendorId;
+  const c =  this.vendorDetails.nameOfBusiness;
+  const j = 'album';
+  const k = a.albumName;
+  this.router.navigateByUrl('/home/weddingvendorsss/'+a1+'/'+b+'/'+c+'/'+j+'/'+k);
+  //this.router.navigate(['home/Photogallerydetail']);
 }
 
 goto_detail_of_portfolio(d){
+  console.log(d);
   sessionStorage.setItem('portfolios',JSON.stringify(d));
   sessionStorage.setItem('portfolio_count',JSON.stringify('1'));
-  
-  this.router.navigate(['home/Photogallerydetail']);
+  const a = this.vendorDetails.vendorCategories[0].categories.categoryName;
+  const b = d.vendorId;
+  const c = this.vendorDetails.nameOfBusiness;
+  const j = 'portfolios';
+  const k = d.vendorId;
+  this.router.navigateByUrl('/home/weddingvendorsss/'+a+'/'+b+'/'+c+'/'+j+'/'+k);
+  //this.router.navigate(['home/Photogallerydetail']);
 }
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import{ ratingStars } from '../ngservices/ratingstars';
 import { apiService } from '../shared/service/api.service';
 import { ToastrService } from 'ngx-toastr';
+import swal from 'sweetalert2';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-all-reviews',
   templateUrl: './all-reviews.component.html',
@@ -15,7 +17,8 @@ export class AllReviewsComponent implements OnInit {
   user_login_token;
   responce_review = true;
   responce_thanks = false;
-  constructor(private apiService : apiService, public toastr: ToastrService, ) {
+  vendorid
+  constructor(private apiService : apiService, public toastr: ToastrService,  private route : ActivatedRoute ) {
     this.ratingmodel = new ratingStars();
     this.user_login_token = sessionStorage.getItem('userToken')
     console.log(this.user_login_token);
@@ -24,11 +27,18 @@ export class AllReviewsComponent implements OnInit {
   ngOnInit() {
     this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
     console.log(this.vendorDetails);
+    this.route.paramMap.subscribe(params => {
+      this.vendorid = params
+       this.apiService.getData(this.apiService.serverPath+'PerfectWedding/vendordetails'+'?id='+this.vendorid.params.id).subscribe(data=>{    
+         this.vendorDetails  = data;     
+         },error =>{console.log(error)});
+
+       });
     this.reviewsArray = this.vendorDetails.reviews;
     console.log(this.reviewsArray);
   }
 
-  review = { rating: '', comments: "", rateVendorID: 'a96129c3-8861-43aa-8bc9-1c155f1ffd79' }
+  review = { rating: '', comments: "", rateVendorID: '' }
   putReview(review) {
    
     
@@ -45,9 +55,31 @@ export class AllReviewsComponent implements OnInit {
    }
     console.log(this.user_login_token);
     this.apiService.postData(this.apiService.serverPath+'Reviews/postreview', a).subscribe(data => {
-      console.log(data)
-      this.responce_review = false;
-      this.responce_thanks = true;
+      console.log(data);
+      review.resetForm();
+      swal({
+  
+        title: "Thank You!",
+        text: "Your submition has been received.",
+        type: "success",
+        showCancelButton: false,
+        confirmButtonClass: "btn-default",
+    }).then((res)=>{
+                    if(res.value===true){
+                          // this.responce_review = false;
+                          // this.responce_thanks = true;
+                          
+                   } else{
+                      //  console.log('Cancel Process !');
+                      this.responce_review = false;
+                    }
+  },error=>{
+      alert(JSON.stringify(error));
+    })
+    return;
+
+
+
       }, error => { 
         console.log(error);
         this.toastr.error(error.statusText);

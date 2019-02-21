@@ -7,6 +7,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
+import { AuthGuardService } from 'app/services/auth-guard.service';
 
 @Component({
   selector: 'app-events',
@@ -17,6 +18,7 @@ export class EventsComponent implements OnInit {
   objSearchlistvm: SearchListingVM;
 
   constructor( 
+    public auth:AuthGuardService, 
     public http:Http, 
     private pagerService: PagerService,
     private apiService: apiService,
@@ -110,13 +112,21 @@ export class EventsComponent implements OnInit {
   goToNextPage(a){
   //  sessionStorage.setItem('event',JSON.stringify(a));
   //  alert("aaaaaaa");
-    this.router.navigate(['home/event_list' , a.eventId]);
+    this.router.navigate(['home/event_list' , a.eventId,a.eventTitle]);
   }
   bookMark(data, type , action_which_lacation){
     const id = data['eventId'] 
-   this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
-     console.log(data)
-   })
+    if(this.auth.userActive()){
+      this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
+        console.log(data)
+      })
+    }else{
+        this.router.navigateByUrl('/home',{ queryParams: { login: true}});
+        
+  
+       }
+    
+   
   }
 
 }

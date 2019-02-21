@@ -121,7 +121,7 @@ export class DetailpageComponent implements OnInit {
     this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
     console.log(this.vendorDetails)
     // setTimeout(function () { 
-    // alert("dfdsff") 
+
     // this.showLoader = false;}, 2900);
     this.vendorDetails.reviews.forEach((element,index) => {
       if(index<=2){ element.visible=true;this.reviewButtonLabel='View All'; } 
@@ -383,7 +383,7 @@ export class DetailpageComponent implements OnInit {
   }
 
   search(e){    
-    if(e){
+        if(e){
       this.objFilterParam.catId  = e.category?e.categoryId:0;
       this.objFilterParam.categoryName= e.categoryName?e.categoryName: '' ;
       this.objFilterParam.page = 0;

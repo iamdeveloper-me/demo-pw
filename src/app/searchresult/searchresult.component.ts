@@ -277,7 +277,7 @@ export class SearchresultComponent implements OnInit {
        });
       }
   }
-  setFilterOptions(filterType,FilterValue){
+  setFilterOptions(filterType,FilterValue,collection){
     this.collection=[];
     this.objSearchlistvm.page=0;
     switch(filterType){
@@ -299,9 +299,11 @@ export class SearchresultComponent implements OnInit {
       }
        break;
       case 2: // Service
+      this.deselectAllItemsInCollection(collection);
       FilterValue['isSelect'] = !FilterValue['isSelect']
        break;
       case 3: // location
+      this.deselectAllItemsInCollection(collection);
       this.checkUncheckFilter(FilterValue);
      if(FilterValue.isSelect){
        this.SelectedLocation = FilterValue;
@@ -319,14 +321,18 @@ export class SearchresultComponent implements OnInit {
       this.objSearchlistvm.customsFields=[];
       break;
       case 6: // Rating
+      this.deselectAllItemsInCollection(collection);
+  //    FilterValue['isSelect'] = !FilterValue['isSelect']
       this.checkUncheckFilter(FilterValue); break;
       case 7: // Pricing
-      FilterValue['isSelect'] = !FilterValue['isSelect']
+      this.deselectAllItemsInCollection(collection);
+//      FilterValue['isSelect'] = !FilterValue['isSelect']
       ; break;
       case 8: // Feature Listing
       this.checkUncheckFilter(FilterValue); break;
       case 9: // Deals And Offer
-       this.checkUncheckFilter(FilterValue); 
+      this.deselectAllItemsInCollection(collection);
+      this.checkUncheckFilter(FilterValue); 
       break;
     }
     if(filterType!==4){ 
@@ -426,7 +432,12 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
     this.paginate(this.objSearchFilter.pageSize);
  }
  navigateToDynamicUrl() {
-  this._route.navigate(['/home/weddingvendors/',this.SelectedCategory.categoryName])
+  this._route.navigate(['/home/weddingvendors/',this.SelectedCategory.categoryName.replace(/\s/g,'')]);
+}
+deselectAllItemsInCollection(collection:Array<any>){
+collection.forEach(element => {
+  element.isSelect=false;
+});
 }
 deselectAllCategories(){
   if(this.categories){
@@ -438,7 +449,6 @@ deselectAllCategories(){
   this.objSearchlistvm.page=0;
   this.collection=[];
 }
-
 selectCategory(paramType,Param){
   this.deselectAllCategories();
   if(paramType=='index'){
@@ -492,7 +502,7 @@ radioChecker(mainItem , selectedItem, filterType=0){
       element['isSelect'] = false
     }
   });
-this.setFilterOptions(filterType,mainItem);
+// this.setFilterOptions(filterType,mainItem);
   //  this.paginate(this.objSearchFilter.page)
   }
 

@@ -34,7 +34,7 @@
             <ng-template *ngIf="slide.promoted" carouselSlide="1" >
               <div class="boxtikslide" >
                 <div class="procard"> </div>
-                <span class="book_mark" (click)="bookMark(slide,'searchfilter','bookmarked')"><i class="material-icons">bookmark_border</i></span>
+                <span class="book_mark" (click)="api.bookMark(slide,'searchfilter','bookmarked','searchresult')"><i class="material-icons">bookmark_border</i></span>
                 <!-- {{slide.profileImage }} -->
                 <div (click)="goToPortfolioDetail(slide)" >
                 <img class="card-img-top" *ngIf = "slide" [src]="slide.profileImage | defaultImage:'https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg':true"/>
@@ -458,7 +458,7 @@
 
                   <div class="card mb-2 bordre_rad1 hover_effect">
                       <div *ngIf="i.promoted" class="procard"> </div>
-                      <span class="book_mark" (click)="bookMark(i,'searchfilter','bookmarked')">
+                      <span class="book_mark" (click)="api.bookMark(i,'searchfilter','bookmarked','searchresult')">
                           <i class="material-icons">bookmark_border</i>
                         </span>
                     <div class="thumbnail" (click)="goToPortfolioDetail(i)" >

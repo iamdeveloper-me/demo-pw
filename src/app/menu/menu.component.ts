@@ -31,8 +31,16 @@ export class MenuComponent implements OnInit {
         Categories = [];
         locations = [];
         locationId:number=0;
+        showModelLogin:boolean = false
         constructor(public routerActivate: ActivatedRoute,public auth :AuthGuardService,private router: Router ,public toastr: ToastrService,private masterservice: MasterserviceService , private apiService: apiService,public http: Http,private cservice: LoginServiceService , private modalService: NgbModal, private uservice: SignupVendorService,) {
             this.objFilterParam = new filterParam();
+            // if(window.location.href.indexOf('returnURl'))
+            
+            if(window.location.href.indexOf('returnURl') == -1){
+                this.showModelLogin = false;
+            }else{
+                this.showModelLogin = true;
+            }
             // this.showModal = this.auth.userActive ? true  : false ;
         }
         Categorie(){ 
@@ -118,9 +126,13 @@ export class MenuComponent implements OnInit {
                                         sessionStorage.setItem('_u',data.json().auth_token);
                                    
                                         // localStorage.setItem('userId',data.json().id);
-                                        this.router.navigate(['../User/vendor'])
+                                        if(window.location.href.indexOf('?returnURl=') == -1) {
+                                            this.router.navigate(['../User/vendor'])
+                                        }else{
+                                            debugger
+                                            this.router.navigate([window.location.href.split('?returnURl=')[1].split('%2F').join('/')])
+                                        }                                           
                                         this.typeSuccess();
-                                        this.router.navigate(['../User/vendor'])
                                         $("div").removeClass( "modal-backdrop fade show");
                                         $("body").removeClass( "modal-open");
                                         $("body").removeClass( "modal-open");
@@ -162,11 +174,11 @@ export class MenuComponent implements OnInit {
 
                     var vendorid = localStorage.getItem('vendorid')
                     this.session_token =   sessionStorage.getItem('userToken')
-                    if(this.session_token  && this.auth.userActive())
+                    if(this.auth.userActive())
                     {  
                         var firstName = localStorage.getItem('firstName');
                         let headers = new Headers();
-                        var authToken = localStorage.getItem('userToken');
+                        var authToken = sessionStorage.getItem('_u');
                         headers.append('Accept', 'application/json')
                         headers.append('Content-Type', 'application/json');
                         headers.append("Authorization",'Bearer '+authToken);
@@ -416,6 +428,7 @@ export class MenuComponent implements OnInit {
         }
         //end
         remove(){
+            this.showModelLogin = true;
             if(window.location.pathname == '/home' )
             {     
                 $("body").removeClass( "modal-open");

@@ -44,7 +44,6 @@ export class TipsComponent  {
       private router : Router) {
            }
     ngOnInit() { 
-      sessionStorage.clear();
       this.title.setTitle('Wedding Tips & Articles | Perfect Weddings');    
       this.meta.addTag({name:'description',content:'Wedding Tips & Articles |Perfect Weddings'});    
   

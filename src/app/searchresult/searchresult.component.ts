@@ -494,12 +494,7 @@ generateStaticArray(){
   ]
 
 }
-bookMark(data, type , action_which_lacation){
-  const id = data['vendorId'] 
- this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
-   console.log(data)
- })
-}
+
 radioChecker(mainItem , selectedItem, filterType=0){
   debugger;
  // const data = selectedItem

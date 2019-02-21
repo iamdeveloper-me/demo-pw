@@ -55,7 +55,6 @@ export class EventsComponent implements OnInit {
 
     this.title.setTitle('Top Wedding Events in Mauritius |Perfect Weddings');    
     this.meta.addTag({name:'description',content:'Top Wedding Events in Mauritius |Perfect Weddings'});    
-    sessionStorage.clear();
     this.locationD();
     this.event();
   }

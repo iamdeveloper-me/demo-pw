@@ -99,12 +99,7 @@ export class VendorcardComponent implements OnInit {
       }
     )
   }
-  bookMark(data, type , action_which_lacation){
-    const id = data['vendorId'] 
-   this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
-     console.log(data)
-   })
-  }
+
   Popular_Wedding(){
     this.apiService.getData(this.apiService.serverPath+'Categories/categorieswithlistingcount').subscribe(data => {
        console.log(data);

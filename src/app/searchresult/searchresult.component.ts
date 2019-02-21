@@ -7,7 +7,7 @@ import {RatingModule, Rating} from 'ngx-rating';
 import { CustompipePipe } from 'app/custompipe.pipe';
 import { CategoryPipePipe } from 'app/category-pipe.pipe';
 import { apiService } from 'app/shared/service/api.service';
-import { filterParam} from 'app/vendorcard/vendorcard.component';
+import { filterParam, VendorcardComponent} from 'app/vendorcard/vendorcard.component';
 import { SlidesOutputData } from 'ngx-owl-carousel-o';
 import { toBase64String } from '@angular/compiler/src/output/source_map';
 import{ratingStars} from '../ngservices/ratingstars';
@@ -18,6 +18,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { ToastrService } from 'ngx-toastr';
 import { PaginationService } from 'ngx-pagination';
 import { NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
+import { VendorComponent } from 'app/dashboard/vendor/vendor.component';
 @Pipe({ name: 'defaultImage' })
 export class PP implements PipeTransform {
   transform(value: string, fallback: string, forceHttps: boolean = false ): string {
@@ -342,6 +343,7 @@ export class SearchresultComponent implements OnInit {
   }
   checkUncheckFilter(filterValie){
     filterValie.isSelect = !filterValie.isSelect;
+    this.paginate(this._ngbConfigService.pageSize);
   }
    paginate (pageSize) {
     this.loading=true; 
@@ -408,7 +410,6 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
     this.numberOfPages=res.totalPages;
-    console.log(res);
     this.generatePageNumbers();
     console.log(JSON.stringify(this.objSearchResultItems));
     this.setBlankImg();
@@ -432,7 +433,10 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
     this.paginate(this.objSearchFilter.pageSize);
  }
  navigateToDynamicUrl() {
-  this._route.navigate(['/home/weddingvendors/',this.SelectedCategory.categoryName.replace(/\s/g,'')]);
+  sessionStorage.removeItem('filterParam');
+  this.objSearchlistvm = new SearchListingVM();
+  this.initializeResult()
+  //this._route.navigate(['/home/weddingvendors/',this.SelectedCategory.categoryName]);
 }
 deselectAllItemsInCollection(collection:Array<any>){
 collection.forEach(element => {

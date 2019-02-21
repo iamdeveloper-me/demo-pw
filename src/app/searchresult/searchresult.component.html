@@ -120,9 +120,9 @@
         <div class="clearfix"></div>
           <ol class="breadcrumb breadcrumbcontainer">
             <li><a href="/home" routerlink="/home">Home</a></li>
-            <li><a>Wedding Vendors</a></li>
+            <li><a (click)='navigateToDynamicUrl()'>Wedding Vendors</a></li>
               <li class="active">
-              <a (click)='navigateToDynamicUrl()'>
+              <a>
               {{SelectedCategory?SelectedCategory.categoryName:''}}</a></li>
           </ol>
 
@@ -408,13 +408,13 @@
             <div *ngIf=filters>
               <span class="filterrowcard" *ngFor='let f of filters.services'>
                 <span  *ngIf='f.isSelect'>Service: {{f.serviceName}}
-                    <i class="chipsCLose" (click)='setFilterOptions(2,f,filters.services)'>&times;</i>
+                    <i class="chipsCLose" (click)='checkUncheckFilter(f)'>&times;</i>
                 </span>
               </span>
               <!--Price-->
               <span class="filterrowcard"  *ngFor='let p of  categories[0].services[0].customFields[0].customFieldOptionList'>
                 <span  *ngIf='p.isSelect'> Price: {{p.key}}
-                  <i class="chipsCLose" (click)='setFilterOptions(7,p,categories[0].services[0].customFields[0].customFieldOptionList)'>&times;</i>
+                  <i class="chipsCLose" (click)='checkUncheckFilter(p)'>&times;</i>
                 </span>
               </span>
             </div>
@@ -422,16 +422,16 @@
             <span class="filterrowcard" *ngFor='let f of featuredListingArray'>
                   <span  *ngIf='f.isSelect'>
                       Featured:
-                    {{f.key}} <i class="chipsCLose" (click)='setFilterOptions(8,f,featuredListingArray)'>&times;</i></span>
+                    {{f.key}} <i class="chipsCLose" (click)='checkUncheckFilter(f)'>&times;</i></span>
             </span>
             <span class="filterrowcard" *ngFor='let f of userRatingArray'>
-                      <span *ngIf='f.isSelect'> Rating: {{f.key}} <i class="chipsCLose" (click)='setFilterOptions(6,f,userRatingArray)'>X</i>
+                      <span *ngIf='f.isSelect'> Rating: {{f.key}} <i class="chipsCLose" (click)='checkUncheckFilter(f)'>X</i>
                       </span>
             </span>
             <span class="filterrowcard" *ngFor='let f of dealsAndOfferArray'>
                       <span *ngIf='f.isSelect'>
                           Deals And Offers :
-                        {{f.key}} <i class="chipsCLose" (click)='setFilterOptions(9,f,dealsAndOfferArray)'>&times;</i></span>
+                        {{f.key}} <i class="chipsCLose" (click)='checkUncheckFilter(f)'>&times;</i></span>
             </span>
             <div *ngIf='filters && filters.filters'>
                     <div  *ngFor='let ff of filters.filters'>
